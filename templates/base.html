@@ -15,7 +15,7 @@
 	    		<input type="submit" value="{% trans 'log out'|capfirst %}"/>
 	    	</form>
 	{% else %}
-	    <p><a href="{% url auth_login %}">{% trans 'log in'|capfirst %}</p>
+	    <p><a href="{% url auth_login %}">{% trans 'log in'|capfirst %}</a></p>
 	{% endif %}
 {% endblock %}
 
