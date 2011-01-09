@@ -1,3 +1,4 @@
+{% load i18n %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -6,7 +7,18 @@
 	<title>{% block title %}Imagination for People{% endblock %}</title>
 </head>
 <body>
+{% block header %}
+	{% if user.is_authenticated %}
+	    <p>{% trans 'welcome'|capfirst %}, {{ user.username }}.</p>
+	{% else %}
+	    <p><a href="{% url auth_login %}">{% trans 'log in'|capfirst %}</p>
+	{% endif %}
+{% endblock %}
+<hr />
 {% block content %}
+{% endblock %}
+<hr />
+{% block footer %}
 {% endblock %}
 </body>
 </html>
