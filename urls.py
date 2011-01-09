@@ -14,6 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
-    (r'^$', direct_to_template, {'template' : 'base.html'}),
+    url(r'^$', direct_to_template, {'template' : 'base.html'}, name="i4p-index"),
     (r'^accounts/', include('registration.backends.default.urls')),
 )
