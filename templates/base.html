@@ -10,14 +10,18 @@
 {% block header %}
 	{% if user.is_authenticated %}
 	    <p>{% trans 'welcome'|capfirst %}, {{ user.username }}.</p>
+	    	<form action="{% url auth_logout %}" method="post">{% csrf_token %}
+	    		<input type="hidden" name="next" value="{% url i4p-index %}"/>
+	    		<input type="submit" value="{% trans 'log out'|capfirst %}"/>
+	    	</form>
 	{% else %}
 	    <p><a href="{% url auth_login %}">{% trans 'log in'|capfirst %}</p>
 	{% endif %}
 {% endblock %}
-<hr />
+
 {% block content %}
 {% endblock %}
-<hr />
+
 {% block footer %}
 {% endblock %}
 </body>
