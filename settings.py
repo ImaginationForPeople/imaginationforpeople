@@ -73,6 +73,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'imaginationforpeople.urls'
@@ -85,6 +86,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'debug_toolbar',
     'django_extensions',
     'registration',            
     'django.contrib.auth',
@@ -99,6 +101,13 @@ INSTALLED_APPS = (
     
     'apps.member'
 )
+
+#debug-tool-bar conf
+INTERNAL_IPS = ('127.0.0.1',)
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}
+
 
 #django-registration conf
 ACCOUNT_ACTIVATION_DAYS = 7
@@ -115,3 +124,8 @@ else:
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 25
     EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople]'
+    
+try:
+    from setting_dev import *
+except:
+    pass
