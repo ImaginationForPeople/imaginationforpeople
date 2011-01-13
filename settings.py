@@ -86,30 +86,34 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'debug_toolbar',
-    'django_extensions',
+    # External Apps
+    'south',
     'registration',            
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-    
+
+    # Dev Apps
+    'debug_toolbar',
+    'django_extensions',
+
+    # Internal Apps
     'apps.member'
 )
 
-#debug-tool-bar conf
+### Debug-tool-bar
 INTERNAL_IPS = ('127.0.0.1',)
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
 
-#django-registration conf
+### Django-registration
 ACCOUNT_ACTIVATION_DAYS = 7
 
 ### Mailer
