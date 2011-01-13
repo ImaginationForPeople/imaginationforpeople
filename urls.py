@@ -12,6 +12,8 @@ urlpatterns = patterns('',
 
     url(r'^$', direct_to_template, {'template' : 'base.html'}, name="i4p-index"),
     (r'^accounts/', include('apps.member.backend.urls')),
+
+    (r'^beta/', include('privatebeta.urls')),
     
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),

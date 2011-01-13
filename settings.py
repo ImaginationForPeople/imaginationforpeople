@@ -73,6 +73,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+    'privatebeta.middleware.PrivateBetaMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -95,6 +97,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'privatebeta',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 
@@ -128,8 +131,13 @@ else:
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 25
     EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople]'
+
+### Private Beta
+PRIVATEBETA_REDIRECT_URL = '/beta'
     
 try:
     from setting_dev import *
 except:
     pass
+
+
