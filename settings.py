@@ -90,6 +90,8 @@ INSTALLED_APPS = (
     # External Apps
     'south',
     'django_nose',
+    'lettuce.django',
+
     'registration',            
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -103,6 +105,11 @@ INSTALLED_APPS = (
 
     # Internal Apps
     'apps.member'
+)
+
+### Lettuce
+LETTUCE_APPS = (
+    'apps',
 )
 
 ### Nose test runner
