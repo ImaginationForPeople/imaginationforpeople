@@ -5,10 +5,6 @@ from __future__ import with_statement
 import os.path
 from fabric.api import *
 
-def help():
-    "Usage help"
-    print "use 'fab devenv deploy_bootstrap' to deploy the first time then 'fab devenv update' to update an already running environment"
-
 def commonenv():
     "Base environment"
     env.venvname = "imaginationforpeople.com"
@@ -19,21 +15,26 @@ def reloadapp():
     "Touch the wsgi"
 
 
-def venvcmd(cmd):
+def venvcmd(cmd, shell=True, pty=True):
     with cd(env.venvfullpath + '/' + env.projectname):
-        run('source %(venvfullpath)s/bin/activate && ' % env + cmd)
+        run('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell, pty)
 
     
-def run_tests():
+def tests():
     "Run all tests on remote"
     venvcmd('./manage.py test')
 
+def syncdb():
+    venvcmd('./manage.py syncdb --noinput')
+    venvcmd('./manage.py migrate')
+
 def prodenv():
     "production environment - NOT IMPLEMENTED YET"
+    fail("Not implemented yet")
     pass
     
-def devenv():
-    "Staging area environment"
+def stagenv():
+    "Stagging environment"
     commonenv()
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['webapp@dev.imaginationforpeople.com']
@@ -60,6 +61,8 @@ def deploy_bootstrap():
     with cd(env.venvfullpath):
         run(clonegitcmd)
     update_requirements()
+    syncdb()
+    tests()
     
 
 def update():
@@ -67,6 +70,8 @@ def update():
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
         run('git pull')
     update_requirements()
+    syncdb()
+    tests()
     
     
     
