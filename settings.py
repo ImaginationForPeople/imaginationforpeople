@@ -75,7 +75,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 
     'privatebeta.middleware.PrivateBetaMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'imaginationforpeople.urls'
@@ -101,10 +100,6 @@ INSTALLED_APPS = (
     'privatebeta',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
-
-    # Dev Apps
-    'debug_toolbar',
-    'django_extensions',
 
     # Internal Apps
     'apps.member'
@@ -138,10 +133,3 @@ else:
 
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta'
-    
-try:
-    from setting_dev import *
-except:
-    pass
-
-
