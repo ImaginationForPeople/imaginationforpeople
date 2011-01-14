@@ -90,6 +90,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # External Apps
     'south',
+    'django_nose',
     'registration',            
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -108,6 +109,9 @@ INSTALLED_APPS = (
     # Internal Apps
     'apps.member'
 )
+
+### Nose test runner
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 ### Debug-tool-bar
 INTERNAL_IPS = ('127.0.0.1',)
