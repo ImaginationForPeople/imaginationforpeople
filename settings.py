@@ -75,7 +75,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 
     'privatebeta.middleware.PrivateBetaMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'imaginationforpeople.urls'
@@ -90,6 +89,9 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # External Apps
     'south',
+    'django_nose',
+    'lettuce.django',
+
     'registration',            
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -101,13 +103,17 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 
-    # Dev Apps
-    'debug_toolbar',
-    'django_extensions',
-
     # Internal Apps
     'apps.member'
 )
+
+### Lettuce
+LETTUCE_APPS = (
+    'apps',
+)
+
+### Nose test runner
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 ### Debug-tool-bar
 INTERNAL_IPS = ('127.0.0.1',)
@@ -134,10 +140,3 @@ else:
 
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta'
-    
-try:
-    from setting_dev import *
-except:
-    pass
-
-

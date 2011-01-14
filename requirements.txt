@@ -1,5 +1,11 @@
 django==1.2.4
 south==0.7.3
 
+coverage<3.4
+lettuce
+django-nose
+pylint
+
+-e git+https://github.com/cmheisel/nose-xcover.git#egg=nosexcover
 -e hg+https://bitbucket.org/ubernostrum/django-registration#egg=django-registration
 -e git+https://github.com/SpreadBand/django-privatebeta.git#egg=django-privatebeta
