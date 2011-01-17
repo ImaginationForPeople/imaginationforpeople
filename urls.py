@@ -11,15 +11,21 @@ urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
+    (r'^beta/', include('privatebeta.urls')),
+
+
     url(r'^$', direct_to_template, {'template' : 'base.html'}, name="i4p-index"),
     (r'^accounts/', include('apps.member.backend.urls')),
-
-    (r'^beta/', include('privatebeta.urls')),
     
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
 )
 
+
+# Static pages
+urlpatterns += patterns('django.views.generic.simple',
+    url(r'^manifesto$', 'direct_to_template', {'template': 'manifesto.html'}, name='manifesto'),
+)
 
 # Serve static files if in debug mode
 if settings.DEBUG:

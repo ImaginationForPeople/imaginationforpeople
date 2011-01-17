@@ -146,3 +146,4 @@ else:
 
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta'
+PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)
