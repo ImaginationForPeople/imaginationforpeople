@@ -1,13 +1,84 @@
-{% extends "base.html" %}
+﻿{% extends "privatebeta/base.html" %}
+{% load i18n %}
 
-{% block content %}
+{% block content %}		
+	
+					<div class="colonne grid_18 alpha omega">
 
-Private beta page !
+					
+						<div class="grid_6 alpha">
+						
+							<h1>{% trans "Who are we ?" %}</h1>
+							
+							<p class="edito">
+								{% blocktrans %}
+								Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together. 
+								{% endblocktrans %}
+							</p>
+						
+						</div>
+						
+						<div class="grid_6">
+						
+							<h1>{% trans "Who is it for ?" %}</h1>
+							
+							<p class="edito">
+								{% blocktrans %}
+								Imagination for People gives voice to the many communities and individuals throughout the world who, with neither credit nor press, reinvent the world through tangible, exemplary and unique humanistic, social and civic undertakings.
+ 								{% endblocktrans %}	
+							</p>
+						
+						</div>
+						
+						<div class="grid_6 omega">
+						
+							<h1>{% trans "Why IP ?" %}</h1>
+							
+							<p class="edito">
+								{% blocktrans %}
+								Imagination for People is explicit in its focus on the uninhibited imagination. The experiences it aims to collect and expand upon are not only socially aware or environmentally sound, they are extraordinary, disruptive, audacious, and rule-changing. No open platform dedicated to civic imagination currently exists. 
+								{% endblocktrans %}
+							</p>
+						
+						</div>
+									
 
-<form method="POST">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit"/>
-</form>
 
+									
+						<div class="separator grid_18 alpha omega"></div>
+						
+						
+
+
+						
+						<div class="grid_6 alpha">
+						
+							<h1>{% trans "Leave your email" %}</h1>
+							
+							<p class="edito">
+								{% blocktrans %}
+								Leave your email if you want to be involved and be updated on IP and feel free to add any comment.
+								{% endblocktrans %}
+							</p>
+							
+						</div>
+						
+						<div class="grid_12 omega">
+						
+							<div class="newsletter">
+							
+								<form method="POST" action="">
+									{% csrf_token %}
+									{{ form.as_p }}
+									<p><button type="submit" class="georgia">{% trans "Envoyer" %}</button></p>
+								</form>
+								
+							</div>
+							
+						</div>
+						
+						
+					</div>
+
+					
 {% endblock %}

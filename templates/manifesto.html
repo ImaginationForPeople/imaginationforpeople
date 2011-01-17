@@ -1,0 +1,37 @@
+﻿{% extends "privatebeta/base.html" %}
+{% load i18n %}
+
+{% block content %}	
+
+
+	
+
+	<div class="colonne grid_18 alpha omega">
+							
+		<h1>{% trans "Manifesto" %}</h1>
+		
+		<p class="edito">
+			{% blocktrans %}
+			We believe in the civic imagination, or imagination for the common good. Our filter is practical - or applied - creativity.<br /><br />
+			We believe in the collective, cumulative and collaborative process of invention. The civic imagination concerns everyone and is accessible to us all. In our opinion, ingenuity is a necessary condition for social engagement.<br /><br />
+			We believe in a pragmatic definition of creativity, one that can be easily applied to social issues at a local and human level. For example, in response to climate change, a problem seen by many as too large and abstract, we prefer a finer granularity (collective transportation, sustainable habitat, etc…). We believe that this granularity makes creative initiatives more spontaneous and functional.<br /><br />
+			We believe in stories narrated by anonyms: individuals, collectives of citizens, associations, businesses, who invent, test and perfect on-the-ground, ingenious and often modest solutions that never make it to the media. Imagination for people is, in its way, a mechanism for unearthing ideas & insights and making them meaningful.<br /><br />
+			We believe in the virtue of pilot projects: our heros are those individuals who attempt, everywhere on earth, to develop local solutions with an entrepreneurial spirit. These are doers, first and foremost.<br /><br />
+			We believe in creative acupuncture. For us, this means selecting symbolic projects of often modest size that help move us all forward by enhancing how we live together.<br /><br />
+			We believe in Romain Rolland’s formulation, which we adapt and adopt : « to join the pessimism of experience with the optimism of invention”.<br /><br />
+			We believe in transdisciplinarity, which in our opinion means a unique, counter-intuitive, disarming, provoking and transgressive approach. We believe in building bridges: architecture meets health, finance meets the social sphere, design meets ecology….<br /><br />
+			We believe in humour, which is vital to a free spirit. Humour is an active and liberating form of imagining. IP aspires to be a fun platform, one that can mobilize and excite people.<br /><br />
+			We believe in the need for a transition space that helps us all move from civic imagination to civic action, from inspiration to perspiration.<br /><br />
+			We believe in the necessity to invent new terms around social innovation. This requires a renewed alphabet, the ability to connect apparently unrelated issues and to proceed by inspiring associations. We call this capacity the imaginative paths, to which we dedicate Imagination for People.<br /><br />
+			{% endblocktrans %}
+		</p>
+		
+		<a href="{% url privatebeta_invite %}">< Retour</a>
+		
+	</div>
+
+
+
+
+					
+{% endblock %}
