@@ -1,7 +1,23 @@
-{% extends "base.html" %}
+{% extends "privatebeta/base.html" %}
+{% load i18n %}
 
-{% block content %}
+{% block content %}		
+	
+	<div class="colonne grid_18 alpha omega">
 
-Marchi fiu, c'est bin enregistré !
-
+		<h1>{% trans "Thanks for your interest" %}</h1>
+		
+		<p class="edito">
+			{% blocktrans %}
+			We believe in the civic imagination, or imagination for the common good. Our filter is practical - or applied - creativity.<br /><br />
+			We believe in the collective, cumulative and collaborative process of invention. The civic imagination concerns everyone and is accessible to us all. In our opinion, ingenuity is a necessary condition for social engagement.<br /><br />
+			We believe in a pragmatic definition of creativity, one that can be easily applied to social issues at a local and human level. For example, in response to climate change, a problem seen by many as too large and abstract, we prefer a finer granularity (collective transportation, sustainable habitat, etc…). We believe that this granularity makes creative initiatives more spontaneous and functional.<br /><br />
+			We believe in stories narrated by anonyms: individuals, collectives of citizens, associations, businesses, who invent, test and perfect on-the-ground, ingenious and often modest solutions that never make it to the media. Imagination for people is, in its way, a mechanism for unearthing ideas & insights and making them meaningful.<br /><br />
+			{% endblocktrans %}
+		</p>
+		
+		<a href="{% url privatebeta_invite %}">< Retour</a>
+		
+	</div>
+					
 {% endblock %}
