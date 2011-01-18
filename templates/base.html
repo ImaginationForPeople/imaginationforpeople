@@ -10,15 +10,15 @@
 {% block header %}
 	{% if user.is_authenticated %}
 	    <p>
-	    	{% trans 'welcome'|capfirst %}, {{ user.username }}. <a href="{% url auth_password_change %}">{% trans 'Change password' %}</a> | 
-	    	<a href="{% url auth_logout %}?next={% url i4p-index %}">{% trans 'Log out' %}</a>
+	    	{% trans 'welcome'|capfirst %}, {{ user.username }}. <a href="{% url userena_password_change user.username %}">{% trans 'Change password' %}</a> | 
+	    	<a href="{% url userena_signout %}?next={% url i4p-index %}">{% trans 'Log out' %}</a>
 	    </p>
 	{% else %}
 	    <p>
-	    	<a href="{% url auth_login %}">{% trans 'log in'|capfirst %}</a>
+	    	<a href="{% url userena_signin %}">{% trans 'log in'|capfirst %}</a>
 	    	{% trans 'or' %}
-	    	<a href="{% url registration_register %}">{% trans 'sign up'|capfirst %}</a><br />
-	    	<a href="{% url auth_password_reset %}">{% trans 'lost password'|capfirst %}</a>
+	    	<a href="{% url userena_signup %}">{% trans 'sign up'|capfirst %}</a><br />
+	    	<a href="{% url userena_password_reset %}">{% trans 'lost password'|capfirst %}</a>
 	    </p>
 	{% endif %}
 {% endblock %}

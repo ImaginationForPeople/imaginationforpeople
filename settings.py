@@ -79,9 +79,19 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-
+    
     'privatebeta.middleware.PrivateBetaMiddleware',
+    'userena.middleware.UserenaLocaleMiddleware',
+    
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'userena.backends.UserenaAuthenticationBackend',
+    'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 
 ROOT_URLCONF = 'imaginationforpeople.urls'
 
@@ -97,8 +107,11 @@ INSTALLED_APPS = (
     'south',
     'django_nose',
     'lettuce.django',
-
-    'registration',            
+    'django_extensions',
+    'userena',
+    'guardian',
+    'debug_toolbar',
+               
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -118,6 +131,10 @@ LETTUCE_APPS = (
     'apps',
 )
 
+#Userena
+ANONYMOUS_USER_ID=-1
+AUTH_PROFILE_MODULE='member.I4pProfile'
+
 ### Nose test runner
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
@@ -127,9 +144,6 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
-
-### Django-registration
-ACCOUNT_ACTIVATION_DAYS = 7
 
 ### Mailer
 SERVER_EMAIL = 'noreply@imaginationforpeople.com'

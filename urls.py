@@ -4,7 +4,6 @@ from django.conf.urls.defaults import *
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 from django.views.generic.simple import direct_to_template
-from registration.views import activate
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -15,7 +14,7 @@ urlpatterns = patterns('',
 
 
     url(r'^$', direct_to_template, {'template' : 'base.html'}, name="i4p-index"),
-    (r'^accounts/', include('apps.member.backend.urls')),
+    (r'^accounts/', include('userena.urls')),
     
     # Uncomment the next line to enable the admin:
     (r'^admin/', include(admin.site.urls)),
