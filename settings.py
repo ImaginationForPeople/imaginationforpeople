@@ -36,7 +36,7 @@ TIME_ZONE = 'Europe/Paris'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'fr-FR'
+LANGUAGE_CODE = 'en'
 
 SITE_ID = 1
 
@@ -76,6 +76,7 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'transurlvania.middleware.LangInPathMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -111,6 +112,7 @@ INSTALLED_APPS = (
     'userena',
     'guardian',
     'debug_toolbar',
+    'transurlvania',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',

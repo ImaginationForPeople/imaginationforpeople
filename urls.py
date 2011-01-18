@@ -1,29 +1,26 @@
 from django.conf import settings
-from django.conf.urls.defaults import *
+#from django.conf.urls.defaults import *
+from django.views.generic.simple import direct_to_template
+from transurlvania.defaults import *
+
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
-from django.views.generic.simple import direct_to_template
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Uncomment the admin/doc line below to enable admin documentation:
-    # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
+urlpatterns = lang_prefixed_patterns('',
     (r'^beta/', include('privatebeta.urls')),
-
-
-    url(r'^$', direct_to_template, {'template' : 'base.html'}, name="i4p-index"),
+    #url(r'^$', direct_to_template, {'template' : 'base.html'}, name="i4p-index"),
     (r'^accounts/', include('userena.urls')),
-    
-    # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
 )
 
-
 # Static pages
-urlpatterns += patterns('django.views.generic.simple',
+urlpatterns += lang_prefixed_patterns('django.views.generic.simple',
     url(r'^manifesto$', 'direct_to_template', {'template': 'manifesto.html'}, name='manifesto'),
+)
+
+urlpatterns += patterns('',
+    (r'^admin/', include(admin.site.urls)),
 )
 
 # Serve static files if in debug mode
