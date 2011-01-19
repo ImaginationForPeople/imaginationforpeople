@@ -29,7 +29,7 @@
 				
 				<div class="linkbox">            
 				
-					 <form class="langswitcher newsletter" action="/i18n/setlang/" method="post">
+					 <form class="langswitcher" action="/i18n/setlang/" method="post">
                         {% csrf_token %}
                         <input name="next" type="hidden" value="/" />
                         <select name="language">
@@ -46,7 +46,7 @@
 				<div class="menu">            
 				
 					<ul>
-						<li><a href="{% url privatebeta_invite %}">Identify, deploy, solve the disruptive social innovation</a></li>
+						<li><a href="{% url privatebeta_invite %}">Detect, highlight and monetize social innovation that is truly disruptive.</a></li>
 					</ul>
 				
 				</div>
