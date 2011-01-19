@@ -1,5 +1,5 @@
 import os
-
+from django.utils.translation import ugettext_lazy as _
 # Django settings for i4p project.
 
 DEBUG = True
@@ -37,6 +37,14 @@ TIME_ZONE = 'Europe/Paris'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en'
+
+LANGUAGES = (
+  ('fr', _('French')),
+  ('en', _('English')),
+  ('es', _('Spanish')),
+  ('pt', _('Portuguese')),
+  
+)
 
 SITE_ID = 1
 
@@ -113,6 +121,7 @@ INSTALLED_APPS = (
     'guardian',
     'debug_toolbar',
     'transurlvania',
+    'rosetta',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',

@@ -23,6 +23,17 @@ urlpatterns += patterns('',
     (r'^admin/', include(admin.site.urls)),
 )
 
+
+# i18n l10n
+if 'rosetta' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        url(r'^rosetta/', include('rosetta.urls')),
+    )
+urlpatterns += patterns('',
+    (r'^i18n/', include('django.conf.urls.i18n')),
+)
+
+
 # Serve static files if in debug mode
 if settings.DEBUG:
     urlpatterns += patterns('',

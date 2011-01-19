@@ -29,19 +29,16 @@
 				
 				<div class="linkbox">            
 				
-					 <form class="langswitcher" action="/i18n/setlang/" method="post">
-						<div style='display:none'><input type='hidden' name='csrfmiddlewaretoken' value='633b64e3a101b5d87fb5d294485ba1ae' /></div>
-						<input name="next" type="hidden" value="/" />
-						<select name="language">
-						
-						<option value="fr">French</option>						
-						<option value="en">English</option>						
-						<option value="es">Spanish</option>						
-						<option value="pt">Portuguese</option>
-						
-						</select>
-						<input type="submit" value="Go" />
-					</form>
+					 <form class="langswitcher newsletter" action="/i18n/setlang/" method="post">
+                        {% csrf_token %}
+                        <input name="next" type="hidden" value="/" />
+                        <select name="language">
+                        {% for lang in LANGUAGES %}
+                        <option value="{{ lang.0 }}">{{ lang.1 }}</option>
+                        {% endfor %}
+                        </select>
+                        <input type="submit" value="Go" />
+                    </form>
 
 				
 				</div>
