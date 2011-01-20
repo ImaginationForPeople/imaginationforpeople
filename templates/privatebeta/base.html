@@ -11,8 +11,8 @@
 
 <title>{% trans "Imagination for People" %}</title>
 
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}/css/grid.css" /> 
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}/css/style.css" />
+<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" /> 
+<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
 
 </head>
 
@@ -28,10 +28,10 @@
 				<div class="logo"><a href="{% url privatebeta_invite %}"><img src="{{ MEDIA_URL }}/images/base/logo.png" alt="Imagination for People" border="0"/></a></div>
 				
 				<div class="linkbox">            
-				
+					{% comment %}
 					 <form class="langswitcher" action="/i18n/setlang/" method="post">
                         {% csrf_token %}
-                        <input name="next" type="hidden" value="/" />
+                        <input name="next" type="hidden" value="/beta" />
                         <select name="language">
                         {% for lang in LANGUAGES %}
                         <option value="{{ lang.0 }}">{{ lang.1 }}</option>
@@ -39,7 +39,10 @@
                         </select>
                         <input type="submit" value="Go" />
                     </form>
-
+				{% endcomment %}
+                        {% for lang in LANGUAGES %}
+                        <a href="/{{ lang.0 }}/beta/">{{ lang.1 }}</a>&nbsp;
+                	{% endfor %}
 				
 				</div>
 				

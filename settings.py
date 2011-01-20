@@ -1,3 +1,5 @@
+# -*- coding:utf-8 -*-
+
 import os
 from django.utils.translation import ugettext_lazy as _
 # Django settings for i4p project.
@@ -39,10 +41,10 @@ TIME_ZONE = 'Europe/Paris'
 LANGUAGE_CODE = 'en'
 
 LANGUAGES = (
-  ('fr', _('French')),
-  ('en', _('English')),
-  ('es', _('Spanish')),
-  ('pt', _('Portuguese')),
+  ('fr', u'Français'),
+  ('en', u'English'),
+  ('es', u'Español'),
+  ('pt', u'Português'),
   
 )
 
@@ -84,11 +86,10 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'transurlvania.middleware.LangInPathMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    
+    'transurlvania.middleware.LangInPathMiddleware',
     'privatebeta.middleware.PrivateBetaMiddleware',
     'userena.middleware.UserenaLocaleMiddleware',
     
@@ -170,5 +171,6 @@ else:
     EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople]'
 
 ### Private Beta
-PRIVATEBETA_REDIRECT_URL = '/beta'
-PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)
+PRIVATEBETA_REDIRECT_URL = '/en/beta'
+PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
+                                  'apps.member.views.detect_language_and_redirect')
