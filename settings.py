@@ -89,10 +89,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'userena.middleware.UserenaLocaleMiddleware',
     'transurlvania.middleware.LangInPathMiddleware',
     'privatebeta.middleware.PrivateBetaMiddleware',
-    'userena.middleware.UserenaLocaleMiddleware',
-    
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -171,6 +170,6 @@ else:
     EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople]'
 
 ### Private Beta
-PRIVATEBETA_REDIRECT_URL = '/en/beta'
+PRIVATEBETA_REDIRECT_URL = '/beta/'
 PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
-                                  'apps.member.views.detect_language_and_redirect')
+                                  'transurlvania.views.detect_language_and_redirect')

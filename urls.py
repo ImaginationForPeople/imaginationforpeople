@@ -11,33 +11,27 @@ admin.autodiscover()
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 )
-
-urlpatterns += lang_prefixed_patterns('',
-    url(r'^beta/', include('privatebeta.urls')),
-    url(r'^$', direct_to_template, {'template' : 'base.html'}, name="i4p-index"),
-    url(r'^accounts/', include('userena.urls')),
-)
-
-
-urlpatterns += patterns('',
-    (r'^$', redirect_to, {'url' : '/beta'}),
-    url(r'^beta$', 'transurlvania.views.detect_language_and_redirect'),
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )
-
-# Static pages
-urlpatterns += lang_prefixed_patterns('django.views.generic.simple',
-    url(r'^manifesto$', 'direct_to_template', {'template': 'manifesto.html'}, name='manifesto'),
-)
-
+ 
 # i18n l10n
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         url(r'^rosetta/', include('rosetta.urls')),
     )
+       
+urlpatterns += lang_prefixed_patterns('',
+    url(r'^$', include('privatebeta.urls')),
+    url(r'^beta/$', direct_to_template, {'template' : 'privatebeta/base.html'}, name="i4p-index"),
+    url(r'^manifesto/', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
+    url(r'^accounts/', include('userena.urls')),
+)
 
-# Serve static files if in debug mode
-if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
-    )
+urlpatterns += patterns('transurlvania.views',
+    (r'^$', 'detect_language_and_redirect'),
+)
+
+
 
