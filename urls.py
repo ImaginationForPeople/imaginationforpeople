@@ -21,17 +21,25 @@ if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         url(r'^rosetta/', include('rosetta.urls')),
     )
-       
-urlpatterns += lang_prefixed_patterns('',
-    url(r'^$', include('privatebeta.urls')),
-    url(r'^beta/$', direct_to_template, {'template' : 'privatebeta/base.html'}, name="i4p-index"),
-    url(r'^manifesto/', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
-    url(r'^accounts/', include('userena.urls')),
-)
 
-urlpatterns += patterns('transurlvania.views',
-    (r'^$', 'detect_language_and_redirect'),
-)
+if "privatebeta" in settings.INSTALLED_APPS:
+    urlpatterns += lang_prefixed_patterns('',
+        url(r'^beta/$', include('privatebeta.urls')),
+        url(r'^beta/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
+        url(r'^accounts/', include('userena.urls')),
+    )
+    urlpatterns += patterns('',
+        (r'^$', redirect_to, {'url' : '/beta/'}),
+        (r'^beta/', 'transurlvania.views.detect_language_and_redirect'),
+    )
+else:
+    urlpatterns += lang_prefixed_patterns('',
+        url(r'^$', direct_to_template, {'template': 'base.html'}, name='index'),
+        url(r'^accounts/', include('userena.urls')),
+    )
+    urlpatterns += patterns('transurlvania.views',
+        (r'^$', 'detect_language_and_redirect'),
+    )
 
 
 

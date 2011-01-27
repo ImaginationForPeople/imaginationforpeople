@@ -67,7 +67,7 @@
 						
 							<div class="newsletter">
 							
-								<form method="POST" action="">
+								<form method="POST" action="{% url privatebeta_invite %}">
 									{% csrf_token %}
 									{{ form.as_p }}
 									<p><button type="submit" class="georgia">{% trans "Envoyer" %}</button></p>

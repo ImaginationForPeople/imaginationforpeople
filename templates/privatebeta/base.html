@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load transurlvania_tags %}
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head> 
@@ -41,7 +43,7 @@
                     </form>
 				{% endcomment %}
                         {% for lang in LANGUAGES %}
-                        <a href="/{{ lang.0 }}/beta/">{{ lang.1 }}</a>&nbsp;
+                        <a href="{% this_page_in_lang lang.0 %}">{{ lang.1 }}</a>&nbsp;
                 	{% endfor %}
 				
 				</div>
