@@ -29,25 +29,13 @@
 			
 				<div class="logo"><a href="{% url privatebeta_invite %}"><img src="{{ MEDIA_URL }}/images/base/logo.png" alt="Imagination for People" border="0"/></a></div>
 				
-				<div class="linkbox">            
-					{% comment %}
-					 <form class="langswitcher" action="/i18n/setlang/" method="post">
-                        {% csrf_token %}
-                        <input name="next" type="hidden" value="/beta" />
-                        <select name="language">
+				<div class="linkbox">   
+				{% block lang %}
                         {% for lang in LANGUAGES %}
-                        <option value="{{ lang.0 }}">{{ lang.1 }}</option>
-                        {% endfor %}
-                        </select>
-                        <input type="submit" value="Go" />
-                    </form>
-				{% endcomment %}
-                        {% for lang in LANGUAGES %}
-                        <a href="{% this_page_in_lang lang.0 %}">{{ lang.1 }}</a>&nbsp;
+                        <a href="/{{ lang.0 }}/beta/">{{ lang.1 }}</a>&nbsp;
                 	{% endfor %}
-				
+                {% endblock %}	
 				</div>
-				
 				<div class="menu">            
 				
 					<ul>
@@ -77,7 +65,7 @@
 							{% endblocktrans %}
 						</p>
 						
-						<a href="{% url manifesto %}" class="manifesto-link">{% trans "Manifesto" %} ></a>
+						<a href="/{{LANGUAGE_CODE}}/beta/manifesto/" class="manifesto-link">{% trans "Manifesto" %} ></a>
 						
 					</div>
 					
@@ -181,7 +169,7 @@
 				
 				
 				<ul>
-					<li><a href="{% url manifesto %}">{% trans "Manifesto" %}</a></li>
+					<li><a href="/{{LANGUAGE_CODE}}/beta/manifesto/">{% trans "Manifesto" %}</a></li>
 					<li><a href="http://alpha.imaginationforpeople.com">{% trans "Alpha version" %}</a></li>
 
 				</ul>
