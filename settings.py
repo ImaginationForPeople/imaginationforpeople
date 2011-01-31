@@ -38,14 +38,13 @@ TIME_ZONE = 'Europe/Paris'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fr-FR'
 
 LANGUAGES = (
   ('fr', u'Français'),
   ('en', u'English'),
   ('es', u'Español'),
   ('pt', u'Português'),
-  
 )
 
 SITE_ID = 1
@@ -104,13 +103,14 @@ AUTHENTICATION_BACKENDS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
-    "django.contrib.messages.context_processors.messages",
-    'django.core.context_processors.request'
+    "django.core.context_processors.request",
+    "mothertongue.context_processors.router",
 )
+
 
 ROOT_URLCONF = 'imaginationforpeople.urls'
 
@@ -123,6 +123,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'localeurl',
+    'mothertongue',
     # External Apps
     'south',
     'django_nose',
@@ -144,8 +145,14 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 
     # Internal Apps
-    'apps.member'
+    'apps.member',
+    'apps.project_sheet'
 )
+
+# localeurl/monther-tongue
+PREFIX_DEFAULT_LOCALE = True
+LOCALEURL_USE_ACCEPT_LANGUAGE = True
+
 
 ### Lettuce
 LETTUCE_APPS = (
@@ -181,4 +188,5 @@ else:
 
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta/'
-PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)
+PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
+                                  'apps.project_sheet.views.manifesto')
