@@ -2,20 +2,19 @@
 <div class="header">
 	<div class="container_18">
 		<div class="grid_18 alpha omega">
-		
 			<div class="logo"><a href="index.html"><img src="{{MEDIA_URL}}images/base/logo.png" alt="Imagination for People" border="0"/></a></div>
-			
 			<div class="linkbox">            
-			
 				<ul>
-					<li><a class="linkbox-login" href="#">Login / Signup</a></li>
-					<li><a class="linkbox-language" href="#">{{LANGUAGE_CODE}}</a></li>
-				</ul>
-			
+					{% if user.is_authenticated %}
+		    			<li><a class="linkbox-login" href="#">{% trans 'welcome'|capfirst %}, {{ user.username }}.</li> 
+		    			<li><a href="{% url userena_signout %}?next={% url i4p-index %}">{% trans 'Log out' %}</a></li>
+					{% else %}
+					    <li><a href="{% url userena_signin %}">{% trans 'log in'|capfirst %}</a></li>
+					    <li><a href="{% url userena_signup %}">{% trans 'sign up'|capfirst %}</a></li>
+					{% endif %}
+				</ul>	
 			</div>
-			
-			<div class="menu">            
-			
+			<div class="menu">           
 				<ul>
 					<li><a href="#">Project</a></li>
 					<li><a href="#">Objectives</a></li>
@@ -23,9 +22,7 @@
 					<li><a href="#">Blog</a></li>
 					<li><a href="#">About us</a></li>
 				</ul>
-			
 			</div>
-			
 		</div>	
 	</div>
 </div>
