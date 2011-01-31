@@ -1,49 +1,43 @@
 {% load i18n %}
-{% load transurlvania_tags %}
+{% load localeurl_tags %}
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head> 
- 
- 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
-<meta http-equiv="Content-Language" content="FR"> 
-<meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale"> 
-<meta name="description" content="Imagination 4 People"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+	<meta http-equiv="Content-Language" content="FR" /> 
+	<meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale" /> 
+	<meta name="description" content="Imagination 4 People" /> 
 
-<title>{% trans "Imagination for People" %}</title>
+	<title>{% trans "Imagination for People" %}</title>
 
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" /> 
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
-
+	<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" /> 
+	<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
 </head>
-
 
 <body>
 
 <div class="global">
-
 	<div class="header">
 		<div class="container_18">
 			<div class="grid_18 alpha omega">
-			
-				<div class="logo"><a href="{% url privatebeta_invite %}"><img src="{{ MEDIA_URL }}/images/base/logo.png" alt="Imagination for People" border="0"/></a></div>
-				
+				<div class="logo">
+					<a href="{% url privatebeta_invite %}">
+						<img src="{{ MEDIA_URL }}/images/base/logo.png" alt="Imagination for People" border="0"/>
+					</a>
+				</div>
 				<div class="linkbox">   
 				{% block lang %}
-                        {% for lang in LANGUAGES %}
-                        <a href="/{{ lang.0 }}/beta/">{{ lang.1 }}</a>&nbsp;
-                	{% endfor %}
+					{% for lang in LANGUAGES %}
+					    <a href="{{ request.path|chlocale:lang.0 }}">{{ lang.1 }}</a>
+					{% endfor %}
                 {% endblock %}	
 				</div>
 				<div class="menu">            
-				
 					<ul>
-						<li><a href="{% url privatebeta_invite %}">{% trans "Detect, highlight and monetize social innovation that is truly disruptive." %}</a></li>
+						<li><a href=".">{% trans "Detect, highlight and monetize social innovation that is truly disruptive." %}</a></li>
 					</ul>
-				
 				</div>
-				
 			</div>	
 		</div>
 	</div>
@@ -52,30 +46,20 @@
 	<div class="nav">
 		<div class="container_18">
 			<div class="grid_18 alpha omega">
-
 				<div class="nav-bg">
-				
 					<div class="grid_6 alpha catchy">
-				
 						<h1>{% trans "About imagination for people" %}</h1>
-							
 						<p class="edito">
 							{% blocktrans %}
 							We believe in the virtue of civic imagination, imagination to serve the common good. Our filter is useful creativity or the imagination applied. 
 							{% endblocktrans %}
 						</p>
-						
-						<a href="/{{LANGUAGE_CODE}}/beta/manifesto/" class="manifesto-link">{% trans "Manifesto" %} ></a>
-						
+						<a href="{% url manifesto %}" class="manifesto-link">{% trans "Manifesto" %} ></a>
 					</div>
-					
 					<div class="grid_12 omega">						
 						<img src="{{ MEDIA_URL }}/images/teaser/teaser.png" alt="Imagination for People preview" />					
 					</div>
-				
-				
 				</div>		
-		
 			</div>
 		</div>
 	</div>
@@ -84,25 +68,19 @@
 	<div class="categories">        
 		<div class="container_18">
 			<div class="grid_18 alpha omega">
-		
 				<div class="menu">
-					
 					<ul>
 						<li class="selected"><div class="categ-button"><a href="#">{% trans "Featured" %}</a></div></li>
 						<li><div class="categ-button"><a href="#">{% trans "Filters" %}</a></div></li>
 						<li><div class="categ-button"><a href="#">{% trans "Help" %}</a></div></li>
 						<li><div class="categ-button2"><a href="#"><span class="georgia">{% trans "My</span> imagination for people" %}</a></div></li>
 					</ul>
-					
 					<div class="search">
-					
 						<form action="#">
 							<input type="button" value="&nbsp;">
 							<input type="text" value="Search project" name="search" id="searchInput">						
 						</form>
-					
 					</div>
-					
 					<div class="toolbox">
 						<div class="tools-title georgia">{% trans "Node view" %}</div>
 						<div class="tools">
@@ -113,75 +91,46 @@
 						</div>
 					</div>
 				</div>
-			
 			</div>
 		</div>
 	</div>
 	
 	
-	
 	<div class="content">        
 		<div class="container_18">
 			<div class="grid_18 alpha omega">
-			
-			
-				<div class="paging">
-											
+				<div class="paging">					
 						<a href="#"><img src="{{ MEDIA_URL }}/images/base/paging-on.png" /></a>
 						<a href="#"><img src="{{ MEDIA_URL }}/images/base/paging-off.png" /></a>
 						<a href="#"><img src="{{ MEDIA_URL }}/images/base/paging-off.png" /></a>
-			
 				</div>
-				
-				
 				<div class="block-content"> 
-
-
-
 					{% block content %}{% endblock content %} 				
-				
-					
-
-
-					</div>					
-										
-				</div>
-				
+				</div>										
 			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
+		</div>
+		<div class="clear"></div>	
 	</div>
-
 
 
 	<div class="footer">
 		<div class="container_18">
 			<div class="grid_18 alpha omega">
-			
 				<div class="social-networks">		
 						<ul>
 							<li><a href="#"><img src="{{ MEDIA_URL }}/images/base/facebook-logo.jpg" alt="facebook" /></a></li>
 							<li><a href="#"><img src="{{ MEDIA_URL }}images/base/twitter-logo.jpg"alt="twitter" /></a></li>
 						</ul>
 				</div>
-				
-				
 				<ul>
-					<li><a href="/{{LANGUAGE_CODE}}/beta/manifesto/">{% trans "Manifesto" %}</a></li>
+					<li><a href="{% url manifesto %}">{% trans "Manifesto" %}</a></li>
 					<li><a href="http://alpha.imaginationforpeople.com">{% trans "Alpha version" %}</a></li>
 
 				</ul>
-				
-				
-			
 			{% trans "&copy; 2011 Imagination for people – All rights reseved" %}
-		
 			</div>
 		</div>
 	</div>
-
 
 </div>
 

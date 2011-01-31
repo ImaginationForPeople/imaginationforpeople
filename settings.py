@@ -84,19 +84,15 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'transurlvania.middleware.URLCacheResetMiddleware',
-    'transurlvania.middleware.URLTransMiddleware',
-    
+    'localeurl.middleware.LocaleURLMiddleware', 
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    
-    'transurlvania.middleware.LangInPathMiddleware',  
+     
     'userena.middleware.UserenaLocaleMiddleware',
     'privatebeta.middleware.PrivateBetaMiddleware',
-    
     
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
@@ -113,7 +109,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.contrib.messages.context_processors.messages",
-    'transurlvania.context_processors.translate',
+    'django.core.context_processors.request'
 )
 
 ROOT_URLCONF = 'imaginationforpeople.urls'
@@ -126,6 +122,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'localeurl',
     # External Apps
     'south',
     'django_nose',
@@ -134,7 +131,6 @@ INSTALLED_APPS = (
     'userena',
     'guardian',
     'debug_toolbar',
-    'transurlvania',
     'rosetta',
                
     'django.contrib.auth',
@@ -184,6 +180,5 @@ else:
     EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople]'
 
 ### Private Beta
-PRIVATEBETA_REDIRECT_URL = '/en/beta/'
-PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
-                                  'transurlvania.views.detect_language_and_redirect')
+PRIVATEBETA_REDIRECT_URL = '/beta/'
+PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)

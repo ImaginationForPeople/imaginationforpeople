@@ -1,7 +1,6 @@
 from django.conf import settings
-#from django.conf.urls.defaults import *
+from django.conf.urls.defaults import *
 from django.views.generic.simple import direct_to_template, redirect_to
-from transurlvania.defaults import *
 
 
 # Uncomment the next two lines to enable the admin:
@@ -23,21 +22,16 @@ if 'rosetta' in settings.INSTALLED_APPS:
     )
 
 if "privatebeta" in settings.INSTALLED_APPS:
-    urlpatterns += lang_prefixed_patterns('',
-        url(r'^beta/$', include('privatebeta.urls')),
+    urlpatterns += patterns('',
+        url(r'^$', redirect_to, {'url':'/beta/'}),
+        url(r'^beta/$', 'privatebeta.views.invite', name='privatebeta_invite'),
+        url(r'^beta/sent/$', 'privatebeta.views.sent', name='privatebeta_sent'),
         url(r'^beta/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
     )
-    urlpatterns += patterns('',
-        (r'^$', redirect_to, {'url' : '/beta/'}),
-        (r'^beta/$', 'transurlvania.views.detect_language_and_redirect'),
-    )
 else:
-    urlpatterns += lang_prefixed_patterns('',
+    urlpatterns += patterns('',
         url(r'^$', direct_to_template, {'template': 'base.html'}, name='index'),
         url(r'^accounts/', include('userena.urls')),
-    )
-    urlpatterns += patterns('transurlvania.views',
-        (r'^$', 'detect_language_and_redirect'),
     )
 
 

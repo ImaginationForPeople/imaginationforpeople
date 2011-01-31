@@ -1,12 +1,6 @@
 ﻿{% extends "privatebeta/base.html" %}
 {% load i18n %}
-
-
-{% block lang %}
-	{% for lang in LANGUAGES %}
-    	<a href="/{{ lang.0 }}/beta/manifesto/">{{ lang.1 }}</a>&nbsp;
-    {% endfor %}
-{% endblock %}
+{% load localeurl_tags %}
 
 {% block content %}	
 	<div class="colonne grid_18 alpha omega">
@@ -29,7 +23,7 @@
 			{% endblocktrans %}
 		</p>
 		
-		<a href="/{{LANGUAGE_CODE}}/beta/">< Retour</a>
+		<a href="{% url privatebeta_invite %}">< Retour</a>
 		
 	</div>
 
