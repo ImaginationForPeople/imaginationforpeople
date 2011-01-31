@@ -1,0 +1,13 @@
+{% extends "privatebeta/base.html" %}
+{% load i18n %}
+{% load localeurl_tags %}
+
+{% block content %}	
+	<div class="colonne grid_18 alpha omega">				
+		<h1>{{manifesto_copy.title|safe|capfirst}}</h1>
+		<p class="edito">
+			{{manifesto_copy.content|safe}}
+		</p>
+		<a href="{% url privatebeta_invite %}">< Retour</a>
+	</div>				
+{% endblock %}
