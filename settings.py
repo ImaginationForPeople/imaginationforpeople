@@ -149,6 +149,8 @@ INSTALLED_APPS = (
     'apps.project_sheet'
 )
 
+USERENA_WITHOUT_USERNAMES = True
+
 # localeurl/monther-tongue
 PREFIX_DEFAULT_LOCALE = True
 LOCALEURL_USE_ACCEPT_LANGUAGE = True
