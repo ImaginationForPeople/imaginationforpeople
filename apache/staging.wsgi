@@ -8,7 +8,7 @@ site.addsitedir('/home/webapp/virtualenvs/imaginationforpeople.com/lib/python2.6
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 
-sys.path.append('/home/webapp/virtualenvs/imaginationforpeople.com/i4p_project/')
+sys.path.append('/home/webapp/virtualenvs/imaginationforpeople.com/imaginationforpeople/')
 
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
