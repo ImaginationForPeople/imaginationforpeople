@@ -1,8 +1,12 @@
 # -*- coding:utf-8 -*-
 
 import os
+import sys
 from django.utils.translation import ugettext_lazy as _
 # Django settings for i4p project.
+
+PROJECT_ROOT = os.path.dirname(__file__)
+sys.path.append(os.path.join(PROJECT_ROOT,'..'))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -118,7 +122,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    "./templates"
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
