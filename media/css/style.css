@@ -51,6 +51,7 @@ h1{
 a{
 
 	text-decoration:none;
+	border:0px;
 	
 }
 
@@ -80,6 +81,50 @@ margin:0px;
 
 }
 
+.button{
+
+	background-color:#eeeeee;
+	border:1px solid #bdbdbd;
+	position:relative;
+	/*float:left;*/
+	margin-left:15px;
+	margin-right:15px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:2px;
+	padding-bottom:2px;
+	font-size:9px;
+	font-family : Verdana, Arial, Sans-serif;
+	font-weight:bold;
+	color:#5a5959;
+	text-decoration:none;
+	text-transform:none;
+	font-style:normal;
+	
+	top:-2px;	
+		
+	-moz-box-shadow: 0px 0px 4px #a1a1a1;  
+    -webkit-box-shadow: 0px 0px 4px #a1a1a1;  
+    box-shadow: 0px 0px 4px #a1a1a1; 
+	
+	-moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+	
+	behavior: url(border-radius.htc); 
+
+}
+
+.button:hover{
+
+	color:white;
+	background-color:black;
+	text-decoration:none;
+	border:1px solid black;
+
+}
+
 
 /* --HEADER---------------------------------------------------------------------------------------------------- */
 
@@ -94,7 +139,7 @@ margin:0px;
 
 .logo{
 
-	position:relative;
+	position:absolute;
 	float:left;
 	top:22px;
 	left:-5px;
@@ -285,13 +330,13 @@ ul li{
 	font-size:16px;
 	font-style:normal;
 	font-weight:normal;
+	color:#979797;
 	
 	
 }
 
 .categories .menu ul  .selected a{
 
-	background-image:url(../images/base/categories-selected.png);	
 	
 	position:absolute;
 	width:109px;
@@ -304,7 +349,6 @@ ul li{
 	
 	font-weight:bold;
 	text-align:center;
-	color:white;
 
 
 }
@@ -380,7 +424,6 @@ ul li{
 
 
 }
-
 
 
 /* -- Search -- */
@@ -830,7 +873,7 @@ ul li{
 
 }
 
-#id_nom, #id_prenom, #id_mail, #id_subject,.content input{
+#id_nom, #id_prenom, #id_mail, #id_subject/*,.content input*/{
 
 	width:64%;
 	
