@@ -1,0 +1,60 @@
+﻿{% extends "base.html" %}
+{% load i18n %}
+
+{% block extra_head %}
+<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/project.css" />
+{% endblock %}
+
+{% block content %}	
+	
+	<div class="content">        
+		<div class="container_18">
+			<div class="grid_18 alpha omega">	
+
+			
+				<div class="grid_13 alpha project_content">		
+					
+					<!-- Titre du projet en mode éditable-->
+					<form action="#" method="get">
+						<input id="project_title_edit" type="text" name="project_title" value="My Project Title" />
+						<input id="project_title_submit" type="submit" value="&nbsp;" />
+					</form>
+							
+					<!-- Titre du projet en mode NON éditable-->
+					<div id="project_title_edit_inactive">My Project Title</div>
+					
+					
+					<!-- Baseline en mode NON éditable-->
+					<div class="baseline_edit">My project’s baseline<a href="#" class="button">Edit</a></div>
+					
+					<div class="project_infos">
+						<div class="creation_date">Created 2 years ago, Mai 01, 2008</div>
+						<div class="location">Location : Bali, Indonesia</div>
+					</div>
+					
+				</div>
+				
+				
+				<div class="grid_5 omega grey_column">		
+					
+					<div class="grey_column_content">	
+					
+						<div class="title"><a href="#" class="button">Edit</a>Related</div>
+						
+						<h1>What's the project's objective ?</h1>
+						<p><a href="#">Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !</a></p>
+						
+					</div>
+				</div>	
+			
+			
+				
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>		
+	</div>
+	
+	
+{% endblock %}
