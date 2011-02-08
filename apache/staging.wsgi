@@ -9,6 +9,7 @@ site.addsitedir('/home/webapp/virtualenvs/imaginationforpeople.com/lib/python2.6
 os.environ['DJANGO_SETTINGS_MODULE'] = 'imaginationforpeople.settings'
 
 sys.path.append('/home/webapp/virtualenvs/imaginationforpeople.com/')
+sys.path.append('/home/webapp/virtualenvs/imaginationforpeople.com/imaginationforpeople/')
 
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
