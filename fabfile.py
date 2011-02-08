@@ -24,6 +24,7 @@ def venvcmd(cmd, shell=True, user="webapp", pty=True):
 def tests():
     "Run all tests on remote"
     venvcmd('./manage.py test')
+    venvcmd('./manage.py harvest --verbosity=2')
 
 def syncdb():
     venvcmd('./manage.py syncdb --noinput')
