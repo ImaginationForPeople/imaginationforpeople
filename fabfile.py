@@ -13,7 +13,7 @@ def commonenv():
 
 def reloadapp():
     "Touch the wsgi"
-    venvcmd('touch apache/staging.wsgi')
+    venvcmd('touch apache/%(wsginame)s.wsgi' % env)
 
 
 def venvcmd(cmd, shell=True, user="webapp", pty=True):
@@ -30,13 +30,22 @@ def syncdb():
     venvcmd('./manage.py migrate')
 
 def prodenv():
-    "production environment - NOT IMPLEMENTED YET"
-    fail("Not implemented yet")
-    pass
+    "production environment - Will need some work when moving to seperate server"
+    commonenv()
+    env.venvname = "prod.imaginationforpeople.com"
+    env.wsginame = "prod.wsgi"
+    env.urlhost = "prod.imaginationforpeople.com"
+    require('venvname', provided_by=('commonenv',))
+    env.hosts = ['prod.imaginationforpeople.com']
+    env.gitrepo = "/var/repositories/imaginationforpeople.git"
+    env.venvbasepath = "/home/webapp/virtualenvs"
+    env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
+    
     
 def stagenv():
     "Stagging environment"
     commonenv()
+    env.wsginame = "staging.wsgi"
     env.urlhost = "dev.imaginationforpeople.com"
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['dev.imaginationforpeople.com']
