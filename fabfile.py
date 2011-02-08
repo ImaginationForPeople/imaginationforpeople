@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/bin/env python
 # -*- coding:utf-8 -*-
 from __future__ import with_statement
 
@@ -50,6 +50,7 @@ def build_env():
     cmd = 'virtualenv --no-site-packages --distribute %(venvfullpath)s' % env
     sudo(cmd, user="webapp")
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
+    
 
 def update_requirements():
     "update external dependencies on remote host"
@@ -92,7 +93,7 @@ def configure_webserver():
     Configure the webserver stack.
     """
     fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
-    sudo('cp %sapache/%s /etc/apache2/sites-avaible/%s' % (fullprojectpath, env.urlhost, env.urlhost))
+    sudo('cp %sapache/%s /etc/apache2/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
     sudo('a2ensite %s' % env.urlhost)
     check_or_install_logdir()
     reload_webserver()
@@ -118,7 +119,7 @@ def meta_full_bootstrap():
     install_webserver()
     install_buildeps()
     deploy_bootstrap()
-    check_or_install_logdir()
+    configure_webserver()
     reload_webserver()
 
     

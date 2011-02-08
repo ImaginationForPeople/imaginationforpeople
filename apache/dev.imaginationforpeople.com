@@ -1,4 +1,4 @@
-i<VirtualHost *:80>
+<VirtualHost *:80>
     ServerName dev.imaginationforpeople.com
 
     WSGIProcessGroup webapp
