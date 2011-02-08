@@ -8,7 +8,7 @@ from fabric.api import *
 def commonenv():
     "Base environment"
     env.venvname = "imaginationforpeople.com"
-    env.projectname = "i4p_project"
+    env.projectname = "imaginationforpeople"
     env.gitrepo = "ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git"
 
 def reloadapp():
@@ -36,6 +36,7 @@ def prodenv():
 def stagenv():
     "Stagging environment"
     commonenv()
+    env.urlhost = "dev.imaginationforpeople.com"
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['pmironov@dev.imaginationforpeople.com']
     env.gitrepo = "/var/repositories/imaginationforpeople.git"
@@ -45,10 +46,10 @@ def stagenv():
 def build_env():
     "Build the virtualenv"
     require('venvfullpath', provided_by=('devenv', 'prodenv'))
-    sudo('rm /tmp/distribute*') # clean after hudson
+    sudo('rm /tmp/distribute* || echo "ok"') # clean after hudson
     cmd = 'virtualenv --no-site-packages --distribute %(venvfullpath)s' % env
     sudo(cmd, user="webapp")
-    sudo('rm /tmp/distribute*') # clean after myself
+    sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
 
 def update_requirements():
     "update external dependencies on remote host"
@@ -79,19 +80,28 @@ def reload_webserver():
     """
     sudo('apache2ctl -k graceful')
     
+def check_or_install_logdir():
+    """
+    Make sure the log directory exists and has right mode and ownership
+    """
+    with cd(env.venvfullpath + '/'):
+        sudo('mkdir -p logs/ ; chown www-data logs; chmod o+rwx logs ; pwd')
+
 def configure_webserver():
     """
     Configure the webserver stack.
     """
     fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
-    sudo('cp %sapache/dev.imaginationforpeople.com /etc/apache2/sites-avaible/dev.imaginationforpeople.com' % fullprojectpath)
+    sudo('cp %sapache/%s /etc/apache2/sites-avaible/%s' % (fullprojectpath, env.urlhost, env.urlhost))
+    sudo('a2ensite %s' % env.urlhost)
+    check_or_install_logdir()
     reload_webserver()
     
 def install_webserver():
     """
     Will install the webserver stack (only apache for the moment. Could use varnish and nginx later on .. maybe)
     """
-    sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
+    sudo('apt-get install apache2-mpm-itk libapache2-mod-wsgi -y')
     
     
 def install_buildeps():
@@ -101,7 +111,7 @@ def install_buildeps():
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev')
 
 
-def meta_full_bootstrap()
+def meta_full_bootstrap():
     """
     For use on new, empty environnements
     """
