@@ -118,6 +118,7 @@ def meta_full_bootstrap():
     install_webserver()
     install_buildeps()
     deploy_bootstrap()
+    check_or_install_logdir()
     reload_webserver()
 
     
