@@ -34,7 +34,7 @@ def prodenv():
     commonenv()
     env.venvname = "prod.imaginationforpeople.com"
     env.wsginame = "prod.wsgi"
-    env.urlhost = "prod.imaginationforpeople.com"
+    env.urlhost = "www.imaginationforpeople.com"
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['prod.imaginationforpeople.com']
     env.gitrepo = "/var/repositories/imaginationforpeople.git"

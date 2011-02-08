@@ -2,8 +2,8 @@
     ServerName www.imaginationforpeople.com
     ServerAlias prod.imaginationforpeople.com imaginationforpeople.com
 
-    WSGIProcessGroup webapp
-    WSGIDaemonProcess webapp
+    WSGIProcessGroup prodwebapp
+    WSGIDaemonProcess prodwebapp
 
 
     WSGIScriptAlias / /home/webapp/virtualenvs/prod.imaginationforpeople.com/imaginationforpeople/apache/prod.wsgi/
