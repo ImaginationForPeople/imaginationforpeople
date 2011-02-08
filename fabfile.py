@@ -15,9 +15,9 @@ def reloadapp():
     "Touch the wsgi"
 
 
-def venvcmd(cmd, shell=True, pty=True):
+def venvcmd(cmd, shell=True, user="webapp", pty=True):
     with cd(env.venvfullpath + '/' + env.projectname):
-        run('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell, pty)
+        sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
 
     
 def tests():
@@ -37,7 +37,7 @@ def stagenv():
     "Stagging environment"
     commonenv()
     require('venvname', provided_by=('commonenv',))
-    env.hosts = ['webapp@dev.imaginationforpeople.com']
+    env.hosts = ['pmironov@dev.imaginationforpeople.com']
     env.gitrepo = "/var/repositories/imaginationforpeople.git"
     env.venvbasepath = "/home/webapp/virtualenvs"
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -45,21 +45,22 @@ def stagenv():
 def build_env():
     "Build the virtualenv"
     require('venvfullpath', provided_by=('devenv', 'prodenv'))
+    sudo('rm /tmp/distribute*') # clean after hudson
     cmd = 'virtualenv --no-site-packages --distribute %(venvfullpath)s' % env
-    run(cmd)
-    run('rm /tmp/distribute*')
+    sudo(cmd, user="webapp")
+    sudo('rm /tmp/distribute*') # clean after myself
 
 def update_requirements():
     "update external dependencies on remote host"
     cmd = "pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env
-    run(cmd)
+    sudo(cmd, user="webapp")
 
 def deploy_bootstrap():
     "Deploy the project the first time."
     build_env()
     clonegitcmd = "git clone %(gitrepo)s %(projectname)s" % env
     with cd(env.venvfullpath):
-        run(clonegitcmd)
+        sudo(clonegitcmd, user="webapp")
     update_requirements()
     syncdb()
     tests()
@@ -67,7 +68,7 @@ def deploy_bootstrap():
 def update():
     "Update the project"
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
-        run('git pull')
+        sudo('git pull', user="webapp")
     update_requirements()
     syncdb()
     tests()
@@ -84,15 +85,31 @@ def configure_webserver():
     """
     fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
     sudo('cp %sapache/dev.imaginationforpeople.com /etc/apache2/sites-avaible/dev.imaginationforpeople.com' % fullprojectpath)
-    sudo('')
+    reload_webserver()
     
 def install_webserver():
     """
     Will install the webserver stack (only apache for the moment. Could use varnish and nginx later on .. maybe)
     """
-    sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi')
+    sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
     
     
+def install_buildeps():
+    """
+    Will install commonly needed build deps for pip django virtualenvs.
+    """
+    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev')
+
+
+def meta_full_bootstrap()
+    """
+    For use on new, empty environnements
+    """
+    install_webserver()
+    install_buildeps()
+    deploy_bootstrap()
+    reload_webserver()
+
     
     
     
