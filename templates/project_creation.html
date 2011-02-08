@@ -14,24 +14,110 @@
 			
 				<div class="grid_13 alpha project_content">		
 					
+					<!-- Titre du projet en mode NON éditable-->
+					<div id="project_title_edit_inactive">{% trans 'My Project Title'|capfirst %}</div>
+					
 					<!-- Titre du projet en mode éditable-->
 					<form action="#" method="get">
-						<input id="project_title_edit" type="text" name="project_title" value="My Project Title" />
+						<input id="project_title_edit" type="text" name="project_title" value="{% trans 'My Project Title'|capfirst %}" />
 						<input id="project_title_submit" type="submit" value="&nbsp;" />
 					</form>
-							
-					<!-- Titre du projet en mode NON éditable-->
-					<div id="project_title_edit_inactive">My Project Title</div>
+					
+					<!-- Titre du projet créé en mode NON éditable-->
+					<div id="project_title">{% trans 'My Project Title'|capfirst %}</div>
 					
 					
 					<!-- Baseline en mode NON éditable-->
-					<div class="baseline_edit">My project’s baseline<a href="#" class="button">Edit</a></div>
+					<div class="project_baseline_edition_inactive"><p>{% trans "My project’s baseline"|capfirst %}</p><a href="#" class="button">{% trans 'Edit'|capfirst %}</a></div>
+										
+					<!-- Baseline en mode éditable-->
+					<form action="#" method="get" class="project_baseline_edition">
+						<input class="project_baseline_edit" type="text" name="project_title" value="{% trans 'My project’s baseline'|capfirst %}" />
+						<input class="button" type="submit" value="X" />
+						<input class="button" type="submit" value="Ok" />
+					</form>	
 					
-					<div class="project_infos">
-						<div class="creation_date">Created 2 years ago, Mai 01, 2008</div>
+					<!-- Baseline du projet créé en mode NON éditable-->
+					<div class="project_baseline focus"><p>{% trans "My project’s baseline"|capfirst %}</p><a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a></div>
+					
+					
+										
+					<div class="project_infos_bloc">
+						<div class="creation_date">{% trans 'Created 2 years ago, Mai 01, 2008'|capfirst %}</div>
+						<!--
 						<div class="location">Location : Bali, Indonesia</div>
+						-->
 					</div>
 					
+					<a href="#">
+						<div class="project_photo_upload">
+							<img src="" />
+						</div>
+					</a>
+					
+					<div class="project_description">
+						<h1 class="about_project">{% trans 'About the project'|capfirst %}</h2>
+						
+						<!-- Titre du projet en mode NON éditable-->
+						<div class="project_description_zone_edition">
+							<div class="project_description_txt_edit">
+								<h1>{% trans "What’s make my project an innovant project ?"|capfirst %}</h1>
+								<h2>{% trans 'Click here to describe your project'|capfirst %}</h2>
+							</div>
+						</div>
+						
+						<!-- Titre du projet en mode éditable-->
+						<!-- LE CHAMP DE SAISIE ET PLUS GENERALEMENT LA BOITE LA CONTENANT DOIT S'AGRANDIR EN FONCTION DU CONTENU TAPE-->
+						<div class="project_description_zone_edition">
+							
+							<form action="#" class="project_description_txt_edit" method="get">
+								<textarea name="project_description_txt_edit"></textarea>
+								<input class="button" type="submit" value="OK" />
+							</form>
+							
+						</div>
+						
+						<!-- Titre du projet deja créé en mode NON éditable-->
+						<div class="project_description_zone focus">
+							<div class="project_description_txt">
+								<p>The Green School, located in Bali and opened in September 2008, with classes from preschool through year eight, aims to provide a place where students can become more curious and more passionate about their education and the planet. The school's eight-hectare campus in Sibang Kaja is divided by the Ayung River, on whose western bank are the school's classrooms, libraries, laboratories and kitchens. </p>
+							</div>
+						</div>
+						
+					</div>					
+					
+					
+					<div class="project_details">
+						
+						<!-- Paragraphe vide -->
+						<div class="project_details_title_edit">
+							<h2>{% trans "What's make it creative and unique ?"|capfirst %}</h2><a href="#" class="button">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
+						</div>
+						<p class="project_details_body empty edit2">
+						{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
+						</p>
+						
+						<!-- Paragraphe en cours d'édition -->
+						<div class="project_details_title_edit">
+							<h2>{% trans 'What is the experience social added value ?'|capfirst %}</h2><a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a><a href="#" class="close">X</a>
+						</div>
+						<form action="#" class="project_details_body_edit" method="get">
+								<textarea name="project_details_body_edit"></textarea>
+								<input class="button nomargin" type="submit" value="{% trans 'Validate'|capfirst %}" />
+								<input class="redbutton nomargin" type="submit" value="{% trans 'Cancel'|capfirst %}" />
+						</form>
+						
+						<!-- Paragraphe rempli -->
+						<div class="project_details_title_edit">
+							<h2>{% trans 'How scalable it is ?'|capfirst %}</h2><a href="#" class="button">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
+						</div>
+						<p class="project_details_body">
+						Ce bloc est rempli, youhou !
+						</p>
+						
+					</div>
+					
+										
 				</div>
 				
 				
@@ -39,14 +125,13 @@
 					
 					<div class="grey_column_content">	
 					
-						<div class="title"><a href="#" class="button">Edit</a>Related</div>
+						<div class="title"><a href="#" class="button">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}</div>
 						
-						<h1>What's the project's objective ?</h1>
-						<p><a href="#">Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !</a></p>
+						<h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
+						<p><a href="#">{% trans "Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !"|capfirst %}</a></p>
 						
 					</div>
-				</div>	
-			
+				</div>				
 			
 				
 			</div>

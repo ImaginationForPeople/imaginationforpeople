@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="footer">
 	<div class="container_18">
 		<div class="grid_18 alpha omega">
@@ -11,12 +13,12 @@
 			
 			
 			<ul>
-				<li><a href="#">FAQ</a></li>
-				<li><a href="#">Guidelines</a></li>
-				<li><a href="#">About imagination for people</a></li>
-				<li><a href="#">Termes of use</a></li>
-				<li><a href="#">Privacy policy</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="#">{% trans "FAQ" %}</a></li>
+				<li><a href="#">{% trans "Guidelines"|capfirst %}</a></li>
+				<li><a href="#">{% trans 'About imagination for people'|capfirst %}</a></li>
+				<li><a href="#">{% trans 'Termes of use'|capfirst %}</a></li>
+				<li><a href="#">{% trans 'Privacy policy'|capfirst %}</a></li>
+				<li><a href="#">{% trans 'Contact'|capfirst %}</a></li>
 			</ul>
 			
 			

@@ -8,6 +8,7 @@ body{
 	
 }
 
+
 .centreur{
 	
 	margin-left:auto;
@@ -69,6 +70,12 @@ margin:0px;
 
 }
 
+img{
+
+border:0px;
+
+}
+
 
 .separator{
 
@@ -81,12 +88,12 @@ margin:0px;
 
 }
 
+
 .button{
 
 	background-color:#eeeeee;
 	border:1px solid #bdbdbd;
 	position:relative;
-	/*float:left;*/
 	margin-left:15px;
 	margin-right:15px;
 	padding-left:5px;
@@ -97,6 +104,8 @@ margin:0px;
 	font-family : Verdana, Arial, Sans-serif;
 	font-weight:bold;
 	color:#5a5959;
+	text-shadow:1px 1px 0 #fff; 
+	text-align:center;
 	text-decoration:none;
 	text-transform:none;
 	font-style:normal;
@@ -116,6 +125,67 @@ margin:0px;
 
 }
 
+.button, .redbutton{
+
+	background-color:#eeeeee;
+	border:1px solid #bdbdbd;
+	position:relative;
+	margin-left:15px;
+	margin-right:15px;
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:2px;
+	padding-bottom:2px;
+	font-size:9px;
+	font-family : Verdana, Arial, Sans-serif;
+	font-weight:bold;
+	color:#5a5959;
+	text-shadow:1px 1px 0 #fff; 
+	text-align:center;
+	text-decoration:none;
+	text-transform:none;
+	font-style:normal;
+	
+	top:-2px;	
+		
+	-moz-box-shadow: 0px 0px 4px #a1a1a1;  
+    -webkit-box-shadow: 0px 0px 4px #a1a1a1;  
+    box-shadow: 0px 0px 4px #a1a1a1; 
+	
+	-moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+	
+	behavior: url(border-radius.htc); 
+
+}
+
+
+.button:hover{
+
+	color:#fff;
+	text-decoration:none;
+	text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
+	background-position:0 -30px;
+	background:url(../images/base/minibutton_blue.jpg);
+	border:1px solid #2a65a0;	
+
+}
+
+
+.redbutton:hover{
+
+	color:#fff;
+	text-decoration:none;
+	text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
+	background-position:0 -30px;
+	background:url(../images/base/minibutton_red.jpg);
+	border:1px solid #2a65a0;	
+
+}
+
+/*
 .button:hover{
 
 	color:white;
@@ -124,6 +194,38 @@ margin:0px;
 	border:1px solid black;
 
 }
+*/
+
+
+.close{
+
+	font-family:Verdana,Arial,Sans-serif;
+	font-size:9px;
+	color:black;
+	float:right;
+	font-weight:bold;
+	text-decoration:none;
+	position:relative;
+	padding-left:2px;
+	padding-right:2px;
+	top:4px;
+	
+	-moz-border-radius: 2px; 
+    -webkit-border-radius: 2px; 
+    -khtml-border-radius: 2px; 
+    border-radius: 2px; 
+
+}
+
+
+.close:hover{
+
+	color:white;	
+	text-decoration:none;
+	background-color:black;
+
+}
+
 
 
 /* --HEADER---------------------------------------------------------------------------------------------------- */
@@ -642,142 +744,6 @@ ul li{
 .colonne a:hover{
 
 	color:#65e4ff;	
-
-}
-
-
-
-/* --Projects-- */
-
-
-.project_card{
-
-
-	/*width:47%;*/
-	margin-right:20px;
-	float:left;
-	position:relative;
-	background-color:black;
-	border:0px;
-	padding:0px;
-	border:0px;
-	top:5px;
-	text-align:right;
-	
-	-moz-box-shadow: 0px 0px 12px #181818; 
-	-webkit-box-shadow: 0px 0px 12px #181818; 
-	-opera-box-shadow: 0px 0px 12px #181818; 
-	-box-shadow: 0px 0px 12px #181818; 
-	box-shadow: 0px 0px 12px #181818; 
-
-	
-	
-	
-}
-
-.project_card .project-photo{
-
-	position:relative;
-	margin-bottom:20px;
-	top:-5px;
-
-}
-
-.project_card_type{
-
-
-	background-repeat:no-repeat;
-	position:absolute;
-	right:177px;
-	width:100%;
-	height:20px;
-	top:80px;
-
-}
-
-.project_card_status{
-
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:11px;
-	color:#7d3b09;
-	padding-top:5px;
-	padding-bottom:30px;
-	font-style:normal;
-	font-weight:normal;
-
-
-}
-
-.project_card_content{
-
-	position:relative;
-	margin-right:5px;
-	margin-bottom:5px;
-
-}
-
-.project_card_infos li{
-
-	display:block;
-	list-style-type:none;
-	
-	font-size:11px;
-	color:#a4a4a3;
-	text-decoration:none;
-		
-}
-
-
-.project_card img, .project_card a{
-
-	border:0px;
-	padding:0px;
-	
-}
-
-
-.project_infos{
-
-	width:50%;	
-	float:right;
-	position:relative;
-	height:227px;
-
-}
-
-.project_infos a{
-
-	position:absolute;
-	bottom:0px;
-
-}
-
-
-
-.project_infos_title{
-
-	font-size:16px;
-	font-family: Arial, Helvetic, sans-serif;
-	font-weight:bold;
-	margin-bottom:5px;
-
-}
-
-.project_infos_location{
-
-	font-size:12px;
-	font-family: Arial, Helvetic, sans-serif;
-	font-weight:bold;
-	margin-bottom:24px;
-	color:#848484;
-
-
-}
-
-.project_infos_description{
-
-	font-size:10px;
-	margin-bottom:27px;
 
 }
 
