@@ -13,6 +13,7 @@ def commonenv():
 
 def reloadapp():
     "Touch the wsgi"
+    venvcmd('touch apache/staging.wsgi')
 
 
 def venvcmd(cmd, shell=True, user="webapp", pty=True):
@@ -38,7 +39,7 @@ def stagenv():
     commonenv()
     env.urlhost = "dev.imaginationforpeople.com"
     require('venvname', provided_by=('commonenv',))
-    env.hosts = ['pmironov@dev.imaginationforpeople.com']
+    env.hosts = ['dev.imaginationforpeople.com']
     env.gitrepo = "/var/repositories/imaginationforpeople.git"
     env.venvbasepath = "/home/webapp/virtualenvs"
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -66,14 +67,31 @@ def deploy_bootstrap():
     update_requirements()
     syncdb()
     tests()
-    
-def update():
-    "Update the project"
+
+
+def _updatemaincode():
+    """
+    Private : we don't want people updateing code without running tests
+    """
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
         sudo('git pull', user="webapp")
+    
+def fullupdate():
+    """
+    Full Update the maincode and the deps
+    """
+    _updatemaincode()
     update_requirements()
     syncdb()
     tests()
+    reloadapp()
+
+def update():
+    "Fast Update : project maincode"
+    _updatemaincode()
+    syncdb()
+    tests()
+    reloadapp()
     
 def reload_webserver():
     """
