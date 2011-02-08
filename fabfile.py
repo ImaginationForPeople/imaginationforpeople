@@ -64,7 +64,6 @@ def deploy_bootstrap():
     syncdb()
     tests()
     
-
 def update():
     "Update the project"
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
@@ -72,6 +71,31 @@ def update():
     update_requirements()
     syncdb()
     tests()
+    
+def reload_webserver():
+    """
+    Reload the webserver stack.
+    """
+    sudo('apache2ctl -k graceful')
+    
+def configure_webserver():
+    """
+    Configure the webserver stack.
+    """
+    fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
+    sudo('cp %sapache/dev.imaginationforpeople.com /etc/apache2/sites-avaible/dev.imaginationforpeople.com' % fullprojectpath)
+    sudo('')
+    
+def install_webserver():
+    """
+    Will install the webserver stack (only apache for the moment. Could use varnish and nginx later on .. maybe)
+    """
+    sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi')
+    
+    
+    
+    
+    
     
     
     
