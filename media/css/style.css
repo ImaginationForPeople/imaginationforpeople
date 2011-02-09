@@ -125,7 +125,7 @@ border:0px;
 
 }
 
-.button, .redbutton{
+.button, .redbutton, .greenbutton{
 
 	background-color:#eeeeee;
 	border:1px solid #bdbdbd;
@@ -181,7 +181,18 @@ border:0px;
 	text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
 	background-position:0 -30px;
 	background:url(../images/base/minibutton_red.jpg);
-	border:1px solid #2a65a0;	
+	border:1px solid #881b1b;	
+
+}
+
+.greenbutton:hover{
+
+	color:#fff;
+	text-decoration:none;
+	text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
+	background-position:0 -30px;
+	background:url(../images/base/minibutton_green.jpg);
+	border:1px solid #01841f;	
 
 }
 
@@ -208,7 +219,9 @@ border:0px;
 	position:relative;
 	padding-left:2px;
 	padding-right:2px;
+	padding-right:2px;
 	top:4px;
+	font-style:normal;
 	
 	-moz-border-radius: 2px; 
     -webkit-border-radius: 2px; 
