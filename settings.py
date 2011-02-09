@@ -95,10 +95,15 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
      
     'userena.middleware.UserenaLocaleMiddleware',
-    'privatebeta.middleware.PrivateBetaMiddleware',
     
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
+
+if not DEBUG:
+	MIDDLEWARE_CLASSES += (
+		'privatebeta.middleware.PrivateBetaMiddleware',
+	)
+
 
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
@@ -150,6 +155,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 
     # Internal Apps
+    'apps.i4p_base',
     'apps.member',
     'apps.project_sheet'
 )
