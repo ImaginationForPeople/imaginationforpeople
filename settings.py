@@ -137,6 +137,7 @@ INSTALLED_APPS = (
     'guardian',
     'debug_toolbar',
     'rosetta',
+    'tagging',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',
