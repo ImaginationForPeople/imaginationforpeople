@@ -33,8 +33,8 @@
 						<!-- Baseline en mode éditable-->
 						<form action="#" method="get" class="project_baseline_edition">
 							{{ baseline_form.baseline }}
-							<input class="button" type="submit" value="X" />
-							<input class="button" type="submit" value="Ok" />
+							<input class="redbutton" type="submit" value="X" />
+							<input class="greenbutton" type="submit" value="Ok" />
 						</form>	
 					{% else %}
 						<!-- Baseline en mode NON éditable-->
@@ -46,18 +46,67 @@
 					
 										
 					<div class="project_infos_bloc">
-						<div class="creation_date">{% trans 'Created 2 years ago, Mai 01, 2008'|capfirst %}</div>
+						<div class="creation_date">Created 2 years ago, Mai 01, 2008</div>
 						<!--
 						<div class="location">Location : Bali, Indonesia</div>
 						-->
 					</div>
 					
+					<!-- Pas de photo - non éditable -->
 					<a href="#">
-						<div class="project_photo_upload">
+						<div id="project_photo_upload">
 							<img src="" />
 						</div>
 					</a>
 					
+					<!-- Pas de photo - édition en cours -->
+					<div id="project_photo_upload_edit">
+						
+						<h1>{% trans "Upload a media"|capfirst %}</h1>
+						
+						<div id="forms_files">						
+							<form method="#" action="#">
+								<p>
+									<label for="#">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision">{% trans '( Min 200x200 - Max 1000x800)' %}</span>
+									<input class="button nomargin right" type="submit" value="{% trans 'Upload'|capfirst %}" />
+								</p>
+							</form>
+							
+							<form method="#" action="#" class="hidden">
+								<p>
+									<label for="#">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision">{% trans '( Min 200x200 - Max 1000x800)' %}</span>
+									<input type="file" name="#" />
+								</p>
+							</form>
+							
+							<form method="#" action="#">
+								<p>
+									<label for="#">{% trans "Insert a video : "|capfirst %}</label><span class="precision">{% trans '( Insert your embed link here)' %}</span>
+									<input type="text" name="nom" />
+									<input class="button nomargin right" type="submit" value="{% trans 'Ok'|capfirst %}" />
+								</p>
+							</form>						
+						</div>
+							
+					</div>		
+					
+					<!-- Photos - visualisation -->
+					<div id="project_photo_gallery">
+							<a href="#" class="button">{% trans 'Add'|capfirst %}</a>
+							<img id="project_photo_gallery_current_photo" src="http://1jeu1jour.com/blog/wp-content/uploads/2008/05/lapin02.jpg" width="100%"/>
+							
+							<div id="project_photo_gallery_mini">							
+								<a href="#"><div id="previous"></div></a>
+								<div class="mini"><a href="#"><img src="http://1jeu1jour.com/blog/wp-content/uploads/2008/05/lapin02.jpg"/></a><a href="#" class="del">X</a></div>
+								<div class="mini"><a href="#"><img src="http://www.bm-lyon.fr/expo/virtuelles/follement_gay/photos/palace/glenn.jpg"/></a><a href="#" class="del">X</a></div>
+								<div class="mini"><a href="#"><img src="http://josycmoi.j.o.pic.centerblog.net/3wmp6jki.jpg"/></a><a href="#" class="del">X</a></div>
+								<div class="mini"><a href="#"><img src="http://images.serialgamer.com/cache_wallpapers/1280x960/musique/johnny_hallyday/johnny_hallyday_002.jpg"/></a><a href="#" class="del">X</a></div>
+								<a href="#"><div id="next"></div></a>							
+							</div>
+							
+					</div>					
+					
+									
 					<div class="project_description">
 						{% if about_form %}
 							<h1 class="about_project">{{about_form.about_section.label_tag}}</h2>
@@ -68,7 +117,8 @@
 							
 								<form action="#" class="project_description_txt_edit" method="get">
 									{{about_form.about_section}}
-									<input class="button" type="submit" value="OK" />
+									<input class="redbutton nomargin" type="submit" value="X" />
+									<input class="greenbutton nomargin" type="submit" value="OK" />									
 								</form>
 							
 							</div>
@@ -97,18 +147,18 @@
 							<!-- Paragraphe en cours d'édition -->
 							<div class="project_details_title_edit">
 								<h2>{{uniqueness_form.uniqueness_section.label_tag}} ? </h2>
-								<a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a><a href="#" class="close">X</a>
+								<a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
 							</div>
 							<form action="#" class="project_details_body_edit" method="get">
 									<textarea name="project_details_body_edit"></textarea>
-									<input class="button nomargin" type="submit" value="{% trans 'Validate'|capfirst %}" />
+									<input class="greenbutton nomargin" type="submit" value="{% trans 'Ok'|capfirst %}" />
 									<input class="redbutton nomargin" type="submit" value="{% trans 'Cancel'|capfirst %}" />
 							</form>
 						{% else %}
 							<!-- Paragraphe vide -->
 							<div class="project_details_title_edit">
 								<h2>{% trans "What's make it creative and unique ?"|capfirst %}</h2>
-								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
+								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a>
 							</div>
 							<p class="project_details_body empty edit2">
 							{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
@@ -117,7 +167,7 @@
 							<!-- Paragraphe rempli -->
 							<div class="project_details_title_edit">
 								<h2>{% trans 'How scalable it is ?'|capfirst %}</h2>
-								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
+								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a>
 							</div>
 							<p class="project_details_body">
 							Ce bloc est rempli, youhou !
@@ -128,18 +178,18 @@
 							<!-- Paragraphe en cours d'édition -->
 							<div class="project_details_title_edit">
 								<h2>{{value_form.value_section.label_tag}} ? </h2>
-								<a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a><a href="#" class="close">X</a>
+								<a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
 							</div>
 							<form action="#" class="project_details_body_edit" method="get">
 									<textarea name="project_details_body_edit"></textarea>
-									<input class="button nomargin" type="submit" value="{% trans 'Validate'|capfirst %}" />
+									<input class="greenbutton nomargin" type="submit" value="{% trans 'Ok'|capfirst %}" />
 									<input class="redbutton nomargin" type="submit" value="{% trans 'Cancel'|capfirst %}" />
 							</form>
 						{% else %}
 							<!-- Paragraphe vide -->
 							<div class="project_details_title_edit">
 								<h2>{% trans "What's make it creative and unique ?"|capfirst %}</h2>
-								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
+								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a>
 							</div>
 							<p class="project_details_body empty edit2">
 							{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
@@ -148,7 +198,7 @@
 							<!-- Paragraphe rempli -->
 							<div class="project_details_title_edit">
 								<h2>{% trans 'How scalable it is ?'|capfirst %}</h2>
-								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
+								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a>
 							</div>
 							<p class="project_details_body">
 							Ce bloc est rempli, youhou !
@@ -159,18 +209,18 @@
 							<!-- Paragraphe en cours d'édition -->
 							<div class="project_details_title_edit">
 								<h2>{{scalability_form.scalability_section.label_tag}} ?</h2>
-								<a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a><a href="#" class="close">X</a>
+								<a href="#" class="button hidden">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
 							</div>
 							<form action="#" class="project_details_body_edit" method="get">
 									<textarea name="project_details_body_edit"></textarea>
-									<input class="button nomargin" type="submit" value="{% trans 'Validate'|capfirst %}" />
+									<input class="greenbutton nomargin" type="submit" value="{% trans 'Ok'|capfirst %}" />
 									<input class="redbutton nomargin" type="submit" value="{% trans 'Cancel'|capfirst %}" />
 							</form>
 						{% else %}
 							<!-- Paragraphe vide -->
 							<div class="project_details_title_edit">
 								<h2>{% trans "What's make it creative and unique ?"|capfirst %}</h2>
-								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a><a href="#" class="close hidden">X</a>
+								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a>
 							</div>
 							<p class="project_details_body empty edit2">
 							{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
@@ -180,7 +230,6 @@
 							<div class="project_details_title_edit">
 								<h2>{% trans 'How scalable it is ?'|capfirst %}</h2>
 								<a href="#" class="button">{% trans 'Edit'|capfirst %}</a>
-								<a href="#" class="close hidden">X</a>
 							</div>
 							<p class="project_details_body">
 							Ce bloc est rempli, youhou !
@@ -192,18 +241,91 @@
 										
 				</div>
 				
-				
-				<div class="grid_5 omega grey_column">		
-					
-					<div class="grey_column_content">	
+				<!-- Colonne grise fermée -->
+				<div class="grid_5 omega grey_column">											
+					<div class="grey_column_content">					
 					
 						<div class="title"><a href="#" class="button">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}</div>
 						
+						
+						<!-- Colonne grise vide -->
 						<h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
 						<p><a href="#">{% trans "Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !"|capfirst %}</a></p>
 						
-					</div>
-				</div>				
+						<!-- Colonne grise remplie -->
+						<div class="grey_column_objective">	
+							<label>{% trans 'Objective :'|capfirst %}</label> 
+							<a href="#" id="project_objective">Educative</a>
+						</div>
+						
+						<div class="grey_column_tagcloud">	
+							<label>{% trans 'Tags :'|capfirst %}</label> 							
+							<ul id="cloudtag_list">
+										<li value="10"><a href="#">Open-source</a>,</li>
+										<li value="20"><a href="#">Ecology</a>,</li>
+										<li value="30"><a href="#">Creative Education</a>,</li>
+										<li value="40"><a href="#">Humanistic</a>,</li>
+										<li value="50"><a href="#">Humanistic</a>,</li>
+										<li value="60"><a href="#">Humanistic</a></li>
+							</ul>
+						</div>
+
+						
+					</div>					
+				</div>	
+
+				<!-- Colonne grise ouverte (fermée par défaut) -->
+				<div class="grid_12 omega grey_column_open hidden">											
+					<div class="grey_column_content">	
+					
+						<div class="title">{% trans 'Related'|capfirst %}</div>
+						<a href="#" id="grey_column_close">{% trans 'Close'%}</a>
+						
+						<div class="grey_column_content_edition">
+						
+							<div class="grey_column_objective_edition">						
+								<form action="#" method="#">
+									<p>
+										<label>{% trans 'Objective :'|capfirst %}</label> 
+										<select name="objective" id="objective_list">
+											<option value="#">{% trans 'Educate'|capfirst %}</option>
+											<option value="#">{% trans 'Blabla'|capfirst %}</option>
+											<option value="#">{% trans 'Blablabla'|capfirst %}</option>
+										</select>
+									</p>
+								</form>						
+							</div>						
+							
+							<div class="grey_column_cloudtag_edition">
+								
+								<div id="grey_column_cloudtag_edition_title">
+									<label>{% trans 'Tags : '|capfirst %}</label><span class="precision">{% trans '( select your tags in the following tag box )' %}</span>
+								</div>
+								
+								<ul id="cloudtag_edition_selected_tags">
+									<li>Open-source<a href="#" class="none">x</a></li>
+									<li>Ecology<a href="#" class="none">x</a></li>
+									<li>Creative Education<a href="#" class="none">x</a></li>
+									<li>Humanistic<a href="#" class="none">x</a></li>
+								</ul>
+																
+								<ul id="cloudtag_list_all">
+									<li value="10">Open-source</li>
+									<li value="20">Ecology</li>
+									<li value="30">Creative Education</li>
+									<li value="40">Humanistic</li>
+									<li value="50">Humanistic</li>
+									<li value="60">Humanistic</li>
+								</ul>
+																
+							</div>
+							
+							<a href="#" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+						
+						</div>						
+						
+					</div>					
+				</div>					
 			
 				
 			</div>

@@ -87,7 +87,7 @@
 
 .header .menu a:hover{
 
-	color:#e4e4e4;
+	color:#BDBDBD;
 
 }
 
@@ -104,18 +104,19 @@
 
 .grey_column_content{
 
-	margin-left:20px;
-	margin-right:20px;
+	padding-left:20px;
+	padding-right:20px;
 	color:#5a5959;
 
 }
 
 
-.grey_column_content .title{
+.grey_column  .title, .grey_column_open .title{
 
 	background-color:white;
-	padding:10px;
+	padding:6px;
 	padding-left:0px;
+	padding-right:20px;
 	float:right;
 	position:relative;
 	
@@ -128,17 +129,63 @@
 	
 	
 	right:-20px;
-	width:70%;
+
 	margin-top:15px;
+	margin-bottom:20px;
 
 }
+
+ .grey_column_open .title{
+ 
+	right:-21px;
+	padding-left:20px;
+ 
+ }
+ 
+  .grey_column_content .title .button{
+ 
+	top:-2px !important;
+ 
+ }
+ 
+ 
+#grey_column_close,  #grey_column_save_close{
+ 
+	background-color:white;
+	padding:6px;
+	padding-left:20px;
+	padding-right:30px;
+	float:left;
+	position:relative;
+	
+	color:#4e4e4e;
+	font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-weight:bold;
+	font-style:italic;
+	
+	font-size:22px;
+	
+	background-image:url(../images/project/close-arrow.jpg);	
+	background-repeat:no-repeat;
+	background-position:right;	
+	
+	left:-20px;
+	margin-top:15px; 
+ }
+ 
+ 
+ #grey_column_save_close{
+ 
+	color:#119CBA;
+	
+ }
 
 
 
 .grey_column_content h1{
 
 	font-size:18px;	
-	margin-top:20px;
+	/*margin-top:20px;*/
 	margin-bottom:20px;
 	color:#5a5959;
 	float:left;
@@ -165,5 +212,16 @@
 
 }
 
+.grey_column_open{
+
+	margin-left:20px;
+	margin-right:20px;
+	color:#5a5959;
+	position:absolute;
+	padding-bottom:20px;
+	right:-19px;
+	z-index:1000;
+	background-color:#e4e4e4;
 
 
+}
