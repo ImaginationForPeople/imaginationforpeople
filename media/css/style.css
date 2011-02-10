@@ -88,7 +88,7 @@ border:0px;
 
 }
 
-
+/*
 .button{
 
 	background-color:#eeeeee;
@@ -110,8 +110,6 @@ border:0px;
 	text-transform:none;
 	font-style:normal;
 	
-	top:-2px;	
-		
 	-moz-box-shadow: 0px 0px 4px #a1a1a1;  
     -webkit-box-shadow: 0px 0px 4px #a1a1a1;  
     box-shadow: 0px 0px 4px #a1a1a1; 
@@ -124,6 +122,7 @@ border:0px;
 	behavior: url(border-radius.htc); 
 
 }
+*/
 
 .button, .redbutton, .greenbutton{
 
@@ -146,7 +145,7 @@ border:0px;
 	text-transform:none;
 	font-style:normal;
 	
-	top:-2px;	
+	top:-1px;
 		
 	-moz-box-shadow: 0px 0px 4px #a1a1a1;  
     -webkit-box-shadow: 0px 0px 4px #a1a1a1;  
@@ -236,6 +235,42 @@ border:0px;
 	color:white;	
 	text-decoration:none;
 	background-color:black;
+
+}
+
+
+.del{
+
+	font-family:Verdana,Arial,Sans-serif;
+	font-size:9px;
+	font-weight:bold;
+	padding-left:2px;
+	padding-right:2px;
+	padding-right:2px;
+	top:4px;
+	font-style:normal;
+	
+	color:white;	
+	text-decoration:none;
+	background-color:black;
+	
+	-moz-border-radius: 2px; 
+    -webkit-border-radius: 2px; 
+    -khtml-border-radius: 2px; 
+    border-radius: 2px; 
+	
+	position:absolute; 
+	right:19px; 
+	z-index:4000;
+
+}
+
+
+.del:hover{
+
+	color:black;	
+	text-decoration:none;
+	background-color:white;
 
 }
 

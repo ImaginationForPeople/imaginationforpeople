@@ -214,7 +214,7 @@ form{
 
 }
 
-.project_photo_upload{
+#project_photo_upload{
 
 	background-color:#bdbdbd;
 	background-image:url("../images/project/media_upload.jpg");
@@ -225,10 +225,72 @@ form{
 
 	height:362px;
 	width:100%;
-	
 
 }
 
+
+#project_photo_upload_edit{
+
+	background-color:#E4E4E4;
+	height:292px;
+	width:100%;
+	padding-top:70px;
+	
+}
+
+#project_photo_upload_edit h1{
+
+	text-align:center;
+	font-size:25px;
+	margin-bottom:55px;
+	position:relative;
+	color:#5A5959;
+	
+}
+
+#project_photo_upload_edit #forms_files{
+
+	width:85%;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+
+#project_photo_upload_edit form{
+
+	position:relative;
+	margin-bottom:20px;
+	padding-left:5px;
+	height:30px;
+	padding-right:5px;
+	border-bottom:1px solid #BDBDBD;
+	
+}
+
+#forms_files label{
+
+	font-weight:bold;
+
+}
+
+#forms_files input[type=text], #forms_files input[type=file]{
+
+	background-color:#CCC8C8;
+	border:0 none;
+	color:white;
+	font-family:Georgia,"Ma Georgia","Century Schoolbook L","URW Palladio L",Helvetica,serif,Arial;
+	font-size:14px;
+	font-style:italic;
+	font-weight:bold;
+	padding:3px 4px;
+	width:200px;
+	
+	-moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+
+}
 
 .project_description_zone_edition{
 
@@ -551,6 +613,106 @@ form{
 /* ----------Project Body - CREATION ----------- */
 
 
+#project_photo_gallery{
+
+	position:relative;
+	
+
+}
+
+#project_photo_gallery .button{
+
+	position:absolute;
+	right:0px;
+	top:10px;
+	/*z-index:1000;*/
+
+}
+
+#project_photo_gallery_current_photo{
+
+
+
+}
+
+#project_photo_gallery_mini{
+
+	background-image:url(../images/base/black.png);	
+	position:absolute;
+	height:81px;
+	width:100%;
+	bottom:0px;
+	z-index:2000;
+	padding-top:10px;
+	
+}
+
+#project_photo_gallery_mini #previous{
+
+	background-image:url(../images/project/gallery_previous.png);	
+	background-repeat:no-repeat;
+	background-position:center;
+	
+	float:left;
+	
+	width:56px;
+	height:67px;
+	position:relative;
+	
+	top:2px;
+	
+	padding-right:30px;
+	padding-left:4px;
+
+}
+
+#project_photo_gallery_mini #next{
+
+	background-image:url(../images/project/gallery_next.png);	
+	background-repeat:no-repeat;
+	background-position:center;
+	
+	float:left;
+	
+	width:56px;
+	height:67px;
+	position:relative;
+	
+	top:2px;
+	
+	padding-left:30px;
+
+
+}
+
+.mini{
+
+	position:relative; 
+	float:left;
+
+}
+
+#project_photo_gallery_mini img{
+
+	width:95px;
+	height:65px;
+	position:relative;
+	border:3px solid white;
+	
+	float:left;
+	
+	margin-left:15px;
+	margin-right:15px;
+
+}
+
+#project_photo_gallery_mini img:hover{
+
+	border:3px solid black;
+	
+}
+
+
 .grey_column_objective_edition, .grey_column_cloudtag_edition{
 
 	position:relative;
@@ -569,12 +731,53 @@ form{
 }
 
 
-.grey_column_content_edition label{
+.grey_column_content label{
 
 	font-weight:bold;
 	color:#5a5959;
 	font-size:14px;
 	margin-bottom:30px;
+	position:relative;
+	
+
+}
+
+#project_objective{
+
+	font-size:14px;
+	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-weight:bold;
+	font-style:italic;
+	color:#119cba;
+	text-decoration:underline;
+
+}
+
+.grey_column_tagcloud{
+
+	position:relative;
+	float:left;
+	margin-top:30px;
+	
+
+}
+
+.grey_column_tagcloud ul{
+
+	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-weight:bold;
+	font-style:italic;
+	color:#119cba;
+	
+}
+
+.grey_column_tagcloud ul li a{
+
+	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-weight:bold;
+	font-style:italic;
+	color:#119cba;
+	text-decoration:underline;
 
 }
 
