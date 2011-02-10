@@ -49,6 +49,8 @@ LANGUAGES = (
   ('en', u'English'),
   ('es', u'Español'),
   ('pt', u'Português'),
+  ('de', u'German'),
+  ('it', u'Italian'),
 )
 
 SITE_ID = 1
@@ -201,5 +203,4 @@ else:
 
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta/'
-PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
-                                  'apps.project_sheet.views.manifesto')
+PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)

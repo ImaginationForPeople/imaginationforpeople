@@ -1,51 +1,51 @@
 {% load i18n %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml" lang="fr">
-<head>  
- 
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-<meta http-equiv="Content-Language" content="FR" /> 
-<meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale" /> 
-<meta name="description" content="Imagination 4 People" /> 
+  <head>  
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta http-equiv="Content-Language" content="FR" /> 
+    <meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale" /> 
+    <meta name="description" content="Imagination 4 People" /> 
 
-<title>Imagi:nation 4 People - {% block title %} Home {% endblock %}</title>
+    <title>Imagi:nation 4 People - {% block title %} Home {% endblock %}</title>
 
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" />
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
 
-<!-- inserer un test ici ; en fonction du type de page (navigation ou visualisation) le style n'est pas le même (header blanc / header noir)   -->
-{% block style %}<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />{% endblock %}
+    <!-- inserer un test ici ; en fonction du type de page (navigation ou visualisation) le style n'est pas le même (header blanc / header noir)   -->
+    {% block style %}<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />{% endblock %}
 
-{% block extra_head %}{% endblock %}
+    {% block extra_head %}{% endblock %}
 
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/generals.css" />
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/buttons.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/generals.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/buttons.css" />
 
-<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.5.js"></script>
-<script type="text/javascript" src="{{ MEDIA_URL }}js/buttons.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.5.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/buttons.js"></script>
 
-</head>
-
-
-<body>
-
-	<div class="global">
+  </head>
 
 
-		{% block header %} {% include "header.html" %} {% endblock %}			
-		
-		<!-- inserer un test ici ; en fonction du type de page (navigation ou visualisation) la navigation n'est pas le même ( bubble_nav / petite nav)   -->
-		{% block nav %} {% include "nav.html" %} {% endblock %}		
-		
-		
-		{% block content %}<br /><br /><br /><br /><br />{% endblock %}	
+  <body>
+
+    <div class="global">
 
 
-		{% block footer %} {% include "footer.html" %} {% endblock %}
+      {% block header %} {% include "header.html" %} {% endblock %}			
+      
+      <!-- inserer un test ici ; en fonction du type de page (navigation ou visualisation) la navigation n'est pas le même ( bubble_nav / petite nav)   -->
+      {% block nav %} {% include "nav.html" %} {% endblock %}		
+      
+      
+      {% block content %}<br /><br /><br /><br /><br />{% endblock %}	
 
 
-	</div>
+      {% block footer %} {% include "footer.html" %} {% endblock %}
 
-</body>
+
+    </div>
+
+  </body>
 </html>
 

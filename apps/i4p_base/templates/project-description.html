@@ -1,0 +1,35 @@
+{% extends "privatebeta/base.html" %}
+{% load i18n %}
+{% load localeurl_tags %}
+
+{% block content %}	
+<div class="colonne grid_18 alpha omega">
+  
+  <h1>{% trans "Project description" %}</h1>
+  
+  <p class="edito">
+    {% blocktrans %}
+      <div class="prezi-player">
+	<style type="text/css" media="screen">.prezi-player { width: 100%; } .prezi-player-links { text-align: center; }</style>&nbsp;
+	<object id="prezi_-3h9g23ttonb" name="prezi_-3h9g23ttonb" classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="400">
+	  <param name="movie" value="http://prezi.com/bin/preziloader.swf"/>
+	  <param name="allowfullscreen" value="true"/>
+	  <param name="allowscriptaccess" value="always"/>
+	  <param name="bgcolor" value="#282828"/>
+	  <param name="flashvars" value="prezi_id=-3h9g23ttonb&amp;lock_to_path=0&amp;color=282828&amp;autoplay=no&amp;autohide_ctrls=0"/>
+	  <embed id="preziEmbed_-3h9g23ttonb" name="preziEmbed_-3h9g23ttonb" src="http://prezi.com/bin/preziloader.swf" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="100%" height="400" bgcolor="#282828" flashvars="prezi_id=-3h9g23ttonb&amp;lock_to_path=0&amp;color=282828&amp;autoplay=no&amp;autohide_ctrls=0"></embed>
+	  </object>
+	  <div class="prezi-player-links"></div>
+      </div>
+    {% endblocktrans %}
+  </p>
+  
+  <a href="{% url privatebeta_invite %}">&lt; Retour</a>
+  
+</div>
+
+
+
+
+
+{% endblock %}
