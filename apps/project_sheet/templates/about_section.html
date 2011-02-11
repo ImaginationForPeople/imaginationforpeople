@@ -1,0 +1,50 @@
+{% load i18n %}
+
+<h1 class="about_project">{% trans 'about the project'|capfirst%}</h1>
+{% if about_section_form %}
+	<!-- Titre du projet en mode éditable-->
+	<!-- LE CHAMP DE SAISIE ET PLUS GENERALEMENT LA BOITE LA CONTENANT DOIT S'AGRANDIR EN FONCTION DU CONTENU TAPE-->
+	<div id="about" class="project_description_zone_edition">
+		{% if project_instance %}
+			<form class="project_description_txt_edit" action="{% url project_sheet-instance-edit-field project_instance.slug  'about_section' %}" method="post">{% csrf_token %}
+		{% else %}
+			<form class="project_description_txt_edit" action="{% url project_sheet-edit-field 'about_section' %}" method="post">{% csrf_token %}
+		{% endif %}
+			{{about_section_form.about_section}}
+			<input class="redbutton nomargin" type="submit" value="X" />
+			<input class="greenbutton nomargin" type="submit" value="OK" />									
+		</form>
+	
+	</div>
+{% else %}
+	{% if project_instance %} 
+		{% if project_instance.about_section %}
+			<!-- Titre du projet deja créé, avec section about, en mode NON éditable-->
+			<div class="project_description_zone focus">
+				<div class="project_description_txt">
+					<p>{{ project_instance.about_section }}</p>
+				</div>
+			</div>
+		{% else %}
+			<!-- Titre du projet deja créé, SANS section about, en mode NON éditable-->
+			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'about_section' %}">
+				<div class="project_description_zone_edition">
+					<div class="project_description_txt_edit">
+						<h1>{% trans "what’s make my project an innovant project ?"|capfirst %}</h1>
+						<h2>{% trans 'click here to describe your project'|capfirst %}</h2>
+					</div>
+				</div>
+			</a>
+		{% endif %}
+	{% else %}
+		<!-- Titre du projet en mode NON éditable-->
+		<a href="{% url project_sheet-edit-field 'about_section' %}">
+			<div class="project_description_zone_edition">
+				<div class="project_description_txt_edit">
+					<h1>{% trans "what’s make my project an innovant project ?"|capfirst %}</h1>
+					<h2>{% trans 'click here to describe your project'|capfirst %}</h2>
+				</div>
+			</div>
+		</a>
+	{% endif %}
+{% endif %}
