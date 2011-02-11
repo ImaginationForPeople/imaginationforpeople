@@ -14,16 +14,18 @@ from autoslug.fields import AutoSlugField
 
 
 class I4pProject(MothertongueModelTranslate):
-    author = models.ForeignKey(I4pProfile, verbose_name=_("author"))
+    author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
+    ip_addr = models.IPAddressField(null=True, blank=True)
+    
     created = models.DateField(_("creation date"), auto_now_add=True)
-    location = models.CharField(_("location"), max_length=80)
+    location = models.CharField(_("location"), max_length=80, null=True, blank=True)
     
     #TODO: add photos and videos list
     #see django-oembed, django-oembed-field and django-imagekit
 
-    title = models.CharField(_("my project title"), max_length=80)
-    slug = AutoSlugField(populate_from="title")
-    baseline = models.CharField(_("my project\’s baseline"), max_length=180, null=True, blank=True)
+    title = models.CharField(_("my project title"), max_length=80, default=_("my project title"))
+    slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
+    baseline = models.CharField(_("my project baseline"), max_length=180, default=_("my project baseline"))
     about_section = models.TextField(_("about the project"), null=True, blank=True)
     uniqueness_section = models.TextField(_("what is make it creative and unique"), null=True, blank=True)
     value_section = models.TextField(_("what is the experience social added value"), null=True, blank=True)

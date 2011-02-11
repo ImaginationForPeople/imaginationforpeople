@@ -1,0 +1,43 @@
+{% load i18n %}
+
+{% if value_section_form %}
+	<!-- Paragraphe en cours d'édition -->
+	<div id="value" class="project_details_title_edit">
+		<h2>{% trans 'what is the experience social added value'|capfirst %}?</h2>
+	</div>
+		{% if project_instance %}
+				<form class="project_details_body_edit" action="{% url project_sheet-instance-edit-field project_instance.slug 'value_section' %}" method="post">{% csrf_token %}
+		{% else %}
+				<form class="project_details_body_edit" action="{% url project_sheet-edit-field 'value_section' %}" method="post">{% csrf_token %}
+		{% endif %}
+			{{value_section_form.value_section}}
+			<input class="greenbutton nomargin" type="submit" value="{% trans 'ok'|capfirst %}" />
+			<input class="redbutton nomargin" type="submit" value="{% trans 'cancel'|capfirst %}" />
+	</form>
+{% else %}
+	{% if project_instance %}
+		<div class="project_details_title_edit">
+			<h2>{% trans 'what is the experience social added value'|capfirst %}?</h2>
+			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'value_section' %}" class="button">{% trans 'Edit'|capfirst %}</a>
+		</div>
+		{% if project_instance.value_section %}
+			<!-- Paragraphe rempli -->
+			<p class="project_details_body">
+			{{project_instance.value_section}}
+			</p>
+		{% else %}
+			<p class="project_details_body empty edit2">
+				{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
+			</p>
+		{% endif %}
+	{% else %}
+		<!-- Paragraphe vide -->
+		<div class="project_details_title_edit">
+			<h2>{% trans 'what is the experience social added value'|capfirst %}?</h2>
+			<a href="{% url project_sheet-edit-field 'value_section' %}" class="button">{% trans 'Edit'|capfirst %}</a>
+		</div>
+		<p class="project_details_body empty edit2">
+		{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
+		</p>
+	{% endif %}
+{% endif %}
