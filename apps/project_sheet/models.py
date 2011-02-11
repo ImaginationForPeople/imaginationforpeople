@@ -15,6 +15,7 @@ from autoslug.fields import AutoSlugField
 
 class I4pProject(MothertongueModelTranslate):
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"))
+    ip_addr = models.IPAddressField(null=True, blank=True)
     created = models.DateField(_("creation date"), auto_now_add=True)
     location = models.CharField(_("location"), max_length=80)
     
