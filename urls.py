@@ -28,6 +28,7 @@ if "privatebeta" in settings.INSTALLED_APPS:
         url(r'^beta/$', 'privatebeta.views.invite', name='privatebeta_invite'),
         url(r'^beta/sent/$', 'privatebeta.views.sent', name='privatebeta_sent'),
         url(r'^beta/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
+        url(r'^beta/project-description/$', direct_to_template, {'template': 'project-description.html'}, name='project-description'),
     )
 else:
     urlpatterns += patterns('',
