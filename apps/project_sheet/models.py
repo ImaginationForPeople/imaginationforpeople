@@ -31,7 +31,7 @@ class I4pProject(MothertongueModelTranslate):
     value_section = models.TextField(_("what is the experience social added value"), null=True, blank=True)
     scalability_section = models.TextField(_("how scalable it is"), null=True, blank=True)
     
-    theme = TagField()
+    themes = TagField()
     
     translations = models.ManyToManyField("I4pProjectTranslation", blank=True, verbose_name=_("translations"))
     translation_set = "project_translation_set"
@@ -42,6 +42,10 @@ class I4pProject(MothertongueModelTranslate):
                          "uniqueness_section",
                          "value_section",
                          "scalability_section"]
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('project_sheet-show', (self.slug,))
 
 # chunks translations model
 class I4pProjectTranslation(models.Model):

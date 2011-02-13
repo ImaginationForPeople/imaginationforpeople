@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block extra_head %}
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/project.css" />
+{% endblock %}
+
+{% block content %}	
+	
+  <div class="content">        
+    <div class="container_18">
+      <div class="grid_18 alpha omega">	
+	{% block project_content %}{% endblock %}
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+
+{% endblock %}

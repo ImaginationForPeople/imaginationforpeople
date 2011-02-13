@@ -1,198 +1,175 @@
-﻿{% extends "base.html" %}
+﻿{% extends "project_sheet/project_base.html" %}
+
 {% load i18n %}
 
-{% block extra_head %}
-<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/project.css" />
-{% endblock %}
+{% block project_content %}	
+  <div class="grid_13 alpha project_content">
 
-{% block content %}	
+    <!-- Project title -->
+    {% if title_form %}
+      <!-- Titre du projet en mode éditable-->
+      {% if project_instance %}
+	<form id="title" action="{% url  project_sheet-instance-edit-field project_instance.slug 'title' %}" method="post">{% csrf_token %}
+      {% else %}
+	<form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">{% csrf_token %}
+      {% endif %}
+      {{title_form.title}}
+      <input id="project_title_submit" type="submit" value="&nbsp;" />
+	</form>
+
+      {% else %}
+	{% if project_instance %}
+	  <!-- Titre du projet en mode NON éditable -->
+	  <a href="{% url project_sheet-instance-edit-field project_instance.slug 'title' %}">
+	    <div id="project_title">{{ project_instance.title }}</div>
+	  </a>
+	{% else %}
+	  <a href="{% url project_sheet-edit-field 'title' %}">
+	    <div id="project_title_edit_inactive">{% trans 'my project title'|capfirst %}</div>
+	  </a>
+	{% endif %}
+      {% endif %}
+      
+
+      <!-- Baseline -->
+      {% if baseline_form %}
+	<!-- Baseline en mode éditable-->
+	{% if project_instance %}
+	  <form id="baseline" action="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
+	{% else %}
+	  <form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
+	{% endif %}
+	{{ baseline_form.baseline }}
+	<input class="redbutton" type="submit" value="X" />
+	<input class="greenbutton" type="submit" value="Ok" />
+	  </form>	
+	{% else %}
+	  {% if project_instance %}
+	    <!-- Baseline du projet créé , mode NON éditable-->
+	    <div class="project_baseline focus">
+	      <p>{{ project_instance.baseline }}</p>
+	      <a href="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
+	    </div>
+	  {% else %}
+	    <!-- Baseline du projet en mode NON éditable-->
+	    <div class="project_baseline_edition_inactive">
+	      <p>{% trans "my project baseline"|capfirst %}</p>
+	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
+	    </div>
+	  {% endif %}
+	{% endif %}					
 	
-	<div class="content">        
-		<div class="container_18">
-			<div class="grid_18 alpha omega">	
+	<!-- Project info -->
+	<div class="project_infos_bloc">
+	  {% if project_instance %} 
+	    <div class="creation_date">{{ project_instance.created }} {% trans 'by' %} 
+	    <i>
+	      {% if project_instance.author %}
+		{{project_instance.author.user.email}}
+	      {% else %}
+		{% trans 'anonymous'|capfirst %}
+	      {% endif %}
+	    </i>
+	    ({{project_instance.ip_addr }})
+	    </div>
+	    <!--
+		<div class="location">{{ project_instance.location }}</div>
+	    -->
+	  {% endif %}
+	</div>
+	
+	{% include "media_gallery.html"%}
+	
+	<!-- Project description -->
+	<div class="project_description">
+	  {% include "about_section.html" %}
+	</div>					
+	
 
-			
-				<div class="grid_13 alpha project_content">		
-					{% if title_form %}
-						<!-- Titre du projet en mode éditable-->
-						{% if project_instance %}
-							<form id="title" action="{% url  project_sheet-instance-edit-field project_instance.slug 'title' %}" method="post">{% csrf_token %}
-						{% else %}
-							<form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">{% csrf_token %}
-						{% endif %}
-							{{title_form.title}}
-							<input id="project_title_submit" type="submit" value="&nbsp;" />
-						</form>
-					{% else %}
-						{% if project_instance %}
-							<!-- Titre du projet en mode NON éditable -->
-							<a href="{% url project_sheet-instance-edit-field project_instance.slug 'title' %}">
-								<div id="project_title">{{ project_instance.title }}</div>
-							</a>
-						{% else %}
-							<a href="{% url project_sheet-edit-field 'title' %}">
-								<div id="project_title_edit_inactive">{% trans 'my project title'|capfirst %}</div>
-							</a>
-						{% endif %}
-					{% endif %}
-					
-					{% if baseline_form %}
-						<!-- Baseline en mode éditable-->
-						{% if project_instance %}
-						<form id="baseline" action="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
-						{% else %}
-						<form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
-						{% endif %}
-							{{ baseline_form.baseline }}
-							<input class="redbutton" type="submit" value="X" />
-							<input class="greenbutton" type="submit" value="Ok" />
-						</form>	
-					{% else %}
-						{% if project_instance %}
-							<!-- Baseline du projet créé , mode NON éditable-->
-							<div class="project_baseline focus">
-								<p>{{ project_instance.baseline }}</p>
-								<a href="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
-							</div>
-						{% else %}
-							<!-- Baseline du projet en mode NON éditable-->
-							<div class="project_baseline_edition_inactive">
-								<p>{% trans "my project baseline"|capfirst %}</p>
-								<a href="{% url project_sheet-edit-field 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
-							</div>
-						{% endif %}
-					{% endif %}					
-					
-					<div class="project_infos_bloc">
-						{% if project_instance %} 
-						<div class="creation_date">{{ project_instance.created }} {% trans 'by' %} 
-						<i>
-						{% if project_instance.author %}
-							{{project_instance.author.user.email}}
-						{% else %}
-							{% trans 'anonymous'|capfirst %}
-						{% endif %}
-						</i>
-						({{project_instance.ip_addr }})
-						</div>
-						<!--
-						<div class="location">{{ project_instance.location }}</div>
-						-->
-						{% endif %}
-					</div>
-					
-					{% include "media_gallery.html"%}
-								
-					<div class="project_description">
-						{% include "about_section.html" %}
-					</div>					
-					
-					
-					<div class="project_details">
-						{% include "uniqueness_section.html" %}
-						
-						{% include "value_section.html" %}
-						
-						{% include "scalability_section.html" %}
-						
-					</div>
-					
-										
-				</div>
-				
-				<!-- Colonne grise fermée -->
-				<div class="grid_5 omega grey_column">											
-					<div class="grey_column_content">					
-					
-						<div class="title"><a href="#" class="button">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}</div>
-						
-						
-						<!-- Colonne grise vide -->
-						<h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
-						<p><a href="#">{% trans "Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !"|capfirst %}</a></p>
-						
-						<!-- Colonne grise remplie -->
-						<div class="grey_column_objective">	
-							<label>{% trans 'Objective :'|capfirst %}</label> 
-							<a href="#" id="project_objective">Educative</a>
-						</div>
-						
-						<div class="grey_column_tagcloud">	
-							<label>{% trans 'Tags :'|capfirst %}</label> 							
-							<ul id="cloudtag_list">
-										<li value="10"><a href="#">Open-source</a>,</li>
-										<li value="20"><a href="#">Ecology</a>,</li>
-										<li value="30"><a href="#">Creative Education</a>,</li>
-										<li value="40"><a href="#">Humanistic</a>,</li>
-										<li value="50"><a href="#">Humanistic</a>,</li>
-										<li value="60"><a href="#">Humanistic</a></li>
-							</ul>
-						</div>
-
-						
-					</div>					
-				</div>	
-
-				<!-- Colonne grise ouverte (fermée par défaut) -->
-				<div class="grid_12 omega grey_column_open hidden">											
-					<div class="grey_column_content">	
-					
-						<div class="title">{% trans 'Related'|capfirst %}</div>
-						<a href="#" id="grey_column_close">{% trans 'Close'%}</a>
-						
-						<div class="grey_column_content_edition">
-						
-							<div class="grey_column_objective_edition">						
-								<form action="#" method="#">
-									<p>
-										<label>{% trans 'Objective :'|capfirst %}</label> 
-										<select name="objective" id="objective_list">
-											<option value="#">{% trans 'Educate'|capfirst %}</option>
-											<option value="#">{% trans 'Blabla'|capfirst %}</option>
-											<option value="#">{% trans 'Blablabla'|capfirst %}</option>
-										</select>
-									</p>
-								</form>						
-							</div>						
-							
-							<div class="grey_column_cloudtag_edition">
-								
-								<div id="grey_column_cloudtag_edition_title">
-									<label>{% trans 'Tags : '|capfirst %}</label><span class="precision">{% trans '( select your tags in the following tag box )' %}</span>
-								</div>
-								
-								<ul id="cloudtag_edition_selected_tags">
-									<li>Open-source<a href="#" class="none">x</a></li>
-									<li>Ecology<a href="#" class="none">x</a></li>
-									<li>Creative Education<a href="#" class="none">x</a></li>
-									<li>Humanistic<a href="#" class="none">x</a></li>
-								</ul>
-																
-								<ul id="cloudtag_list_all">
-									<li value="10">Open-source</li>
-									<li value="20">Ecology</li>
-									<li value="30">Creative Education</li>
-									<li value="40">Humanistic</li>
-									<li value="50">Humanistic</li>
-									<li value="60">Humanistic</li>
-								</ul>
-																
-							</div>
-							
-							<a href="#" id="grey_column_save_close">{% trans 'Save & close'%}</a>
-						
-						</div>						
-						
-					</div>					
-				</div>					
-			
-				
-			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
+	<!-- Project details -->
+	<div class="project_details">
+	  {% include "uniqueness_section.html" %}
+	  
+	  {% include "value_section.html" %}
+	  
+	  {% include "scalability_section.html" %}
+	  
 	</div>
 	
 	
+      </div>
+      
+      <!-- Colonne grise fermée -->
+      <div class="grid_5 omega grey_column">											
+	<div class="grey_column_content">					
+	  
+	  {% if project_instance %}
+	    <div class="title">
+	      <a href="{% url project_sheet-instance-edit-themes project_instance.slug %}" class="button">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}
+	    </div>
+	  {% endif %}
+	  
+	  
+	  <!-- Colonne grise vide -->
+	  <h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
+	  <p>
+	    <a href="#">{% trans "Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !"|capfirst %}</a>
+	  </p>
+	    
+	</div>					
+      </div>	
+
+      <!-- Colonne grise ouverte (fermée par défaut) -->
+      <div class="grid_12 omega grey_column_open hidden">											
+	<div class="grey_column_content">	
+	  
+	  <div class="title">{% trans 'Related'|capfirst %}</div>
+	  <a href="#" id="grey_column_close">{% trans 'Close'%}</a>
+	  
+	  <div class="grey_column_content_edition">
+	    
+	    <div class="grey_column_objective_edition">						
+	      <form action="#" method="#">
+		<p>
+		  <label>{% trans 'Objective :'|capfirst %}</label> 
+		  <select name="objective" id="objective_list">
+		    <option value="#">{% trans 'Educate'|capfirst %}</option>
+		    <option value="#">{% trans 'Blabla'|capfirst %}</option>
+		    <option value="#">{% trans 'Blablabla'|capfirst %}</option>
+		  </select>
+		</p>
+	      </form>						
+	    </div>						
+	    
+	    <div class="grey_column_cloudtag_edition">
+	      
+	      <div id="grey_column_cloudtag_edition_title">
+		<label>{% trans 'Tags : '|capfirst %}</label><span class="precision">({% trans 'select your tags in the following tag box' %})</span>
+	      </div>
+	      
+	      <ul id="cloudtag_edition_selected_tags">
+		<li>Open-source<a href="#" class="none">x</a></li>
+		<li>Ecology<a href="#" class="none">x</a></li>
+		<li>Creative Education<a href="#" class="none">x</a></li>
+		<li>Humanistic<a href="#" class="none">x</a></li>
+	      </ul>
+	      
+	      <ul id="cloudtag_list_all">
+		<li value="10">Open-source</li>
+		<li value="20">Ecology</li>
+		<li value="30">Creative Education</li>
+		<li value="40">Humanistic</li>
+		<li value="50">Humanistic</li>
+		<li value="60">Humanistic</li>
+	      </ul>
+	      
+	    </div>
+	    
+	    <a href="#" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+	    
+	  </div>						
+	  
+	</div>					
+      </div>					
+
 {% endblock %}

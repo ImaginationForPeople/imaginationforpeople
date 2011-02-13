@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response, get_object_or_404
-from django.template.context import RequestContext
-from .models import I4pProject, I4pProfile
-from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.forms.models import modelform_factory
+from django.template.context import RequestContext
+from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.http import HttpResponseRedirect
+
+from .models import I4pProject, I4pProfile
 
 def get_or_create_project(request, slug):
     try:
@@ -51,3 +52,30 @@ def project_sheet_edit_field(request, field, slug=None):
     return render_to_response("project_sheet.html",
                               context,
                               context_instance = RequestContext(request))
+
+
+from .forms import I4pProjectThemesForm
+
+def project_sheet_edit_themes(request, project_slug):
+    """
+    Edit themes (using tags) of a given project sheet.
+    Non-Ajax version.
+    """
+    project_sheet = get_object_or_404(I4pProject, slug=project_slug)
+
+    project_sheet_themes_form = I4pProjectThemesForm(request.POST or None, 
+                                                     instance=project_sheet)
+
+    if request.method == 'POST':
+        if project_sheet_themes_form.is_valid():
+            project_sheet_themes_form.save()
+            return redirect(project_sheet)
+
+    dictionary = {'project_sheet': project_sheet,
+                  'project_sheet_themes_form': project_sheet_themes_form}
+
+    return render_to_response(template_name="project_sheet/project_edit_themes.html",
+                              dictionary=dictionary,
+                              context_instance=RequestContext(request)
+                              )
+    
