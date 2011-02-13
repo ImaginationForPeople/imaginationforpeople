@@ -147,6 +147,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'rosetta',
     'tagging',
+    'imagekit',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',

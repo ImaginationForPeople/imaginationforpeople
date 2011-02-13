@@ -12,6 +12,8 @@ from apps.member.models import I4pProfile
 from tagging.fields import TagField
 from autoslug.fields import AutoSlugField
 
+from imagekit.models import ImageModel
+
 
 class I4pProject(MothertongueModelTranslate):
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
@@ -65,3 +67,21 @@ class I4pProjectTranslation(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.language
+
+
+def get_projectpicture_path(aProjectPicture, filename):
+    dst = 'uploads/projects/%d/pictures/%s' % (aProjectPicture.project.id, filename)
+    return dst
+
+class ProjectPicture(ImageModel):
+    name = models.CharField(max_length=100)
+    original_image = models.ImageField(upload_to=get_projectpicture_path)
+    project = models.ForeignKey(I4pProject, related_name="pictures")
+
+    class IKOptions:
+        spec_module = 'apps.project_sheet.project_pictures_specs'
+        cache_dir = 'uploads'
+        image_field = 'original_image'
+
+
+

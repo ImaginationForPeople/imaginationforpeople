@@ -1,57 +1,58 @@
 {% load i18n %}
 
-{% if project_instance %} 
-	<!-- Photos - visualisation -->
-	<div id="project_photo_gallery">
-		<a href="#" class="button">{% trans 'Add'|capfirst %}</a>
-		<img id="project_photo_gallery_current_photo" src="http://1jeu1jour.com/blog/wp-content/uploads/2008/05/lapin02.jpg" width="100%"/>
+{% if picture_form %}
+<!-- Pas de photo - édition en cours -->
+<div id="project_photo_upload_edit">
+	
+	<h1>{% trans "upload a media"|capfirst %}</h1>
+	
+	<div id="forms_files">
+		{% if project_instance %}		
+			<form method="post" action="{% url project_sheet-instance-add-picture project_instance.slug %}" enctype="multipart/form-data" >{% csrf_token %}
+		{% else %}
+			<form method="post" action="{% url project_sheet-add-picture %}" enctype="multipart/form-data">{% csrf_token %}
+		{% endif %}
+			<p>
+				<label for="#">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision">Min 200x200 - Max 1000x800</span>
+				{{ picture_form.original_image }}
+				<input class="button nomargin right" type="submit" value="{% trans 'Upload'|capfirst %}" enctype="multipart/form-data"/>
+			</p>
+		</form>
 		
-		<div id="project_photo_gallery_mini">							
-			<a href="#"><div id="previous"></div></a>
-			<div class="mini"><a href="#"><img src="http://1jeu1jour.com/blog/wp-content/uploads/2008/05/lapin02.jpg"/></a><a href="#" class="del">X</a></div>
-			<div class="mini"><a href="#"><img src="http://www.bm-lyon.fr/expo/virtuelles/follement_gay/photos/palace/glenn.jpg"/></a><a href="#" class="del">X</a></div>
-			<div class="mini"><a href="#"><img src="http://josycmoi.j.o.pic.centerblog.net/3wmp6jki.jpg"/></a><a href="#" class="del">X</a></div>
-			<div class="mini"><a href="#"><img src="http://images.serialgamer.com/cache_wallpapers/1280x960/musique/johnny_hallyday/johnny_hallyday_002.jpg"/></a><a href="#" class="del">X</a></div>
-			<a href="#"><div id="next"></div></a>							
-		</div>
-	</div>
+		<form method="#" action="#">
+			<p>
+				<label for="#">{% trans "insert a video : "|capfirst %}</label><span class="precision">({% trans 'insert your embed link here'|capfirst %})</span>
+				<input type="text" name="nom" />
+				<input class="button nomargin right" type="submit" value="{% trans 'Ok'|capfirst %}" />
+			</p>
+		</form>						
+	</div>	
+</div>
 {% else %}
-	{% if plop %}
-		<!-- Pas de photo - édition en cours -->
-		<div id="project_photo_upload_edit">
-			
-			<h1>{% trans "Upload a media"|capfirst %}</h1>
-			
-			<div id="forms_files">						
-				<form method="#" action="#">
-					<p>
-						<label for="#">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision">{% trans '( Min 200x200 - Max 1000x800)' %}</span>
-						<input class="button nomargin right" type="submit" value="{% trans 'Upload'|capfirst %}" />
-					</p>
-				</form>
-				
-				<form method="#" action="#" class="hidden">
-					<p>
-						<label for="#">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision">{% trans '( Min 200x200 - Max 1000x800)' %}</span>
-						<input type="file" name="#" />
-					</p>
-				</form>
-				
-				<form method="#" action="#">
-					<p>
-						<label for="#">{% trans "Insert a video : "|capfirst %}</label><span class="precision">{% trans '( Insert your embed link here)' %}</span>
-						<input type="text" name="nom" />
-						<input class="button nomargin right" type="submit" value="{% trans 'Ok'|capfirst %}" />
-					</p>
-				</form>						
-			</div>	
+	{% if project_instance %}
+		{% if project_instance.pictures %}
+		<div id="project_photo_gallery">
+			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
+			<div id="gallery">
+				{% for pic in project_instance.pictures.all %}
+					<a href="{{pic.display.url}}"><img src="{{pic.thumbnail_image.url}}"/></a>
+				{% endfor %}					
+			</div>
 		</div>
+		{% else %}
+			<!-- Pas de photo - non éditable -->
+			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}">
+				<div id="project_photo_upload">
+					<img src="" />
+				</div>
+			</a>
+		{% endif %}	
 	{% else %}
 		<!-- Pas de photo - non éditable -->
-		<a href="#">
+		<a href="{% url project_sheet-add-picture%}">
 			<div id="project_photo_upload">
 				<img src="" />
 			</div>
 		</a>
 	{% endif %}
-{% endif%}
+{% endif %}
