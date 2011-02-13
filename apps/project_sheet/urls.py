@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 from django.views.generic.simple import direct_to_template
-
-from .views import project_sheet_show , project_sheet_edit_field, project_sheet_edit_themes
+from .views import project_sheet_show , project_sheet_edit_field, project_sheet_edit_themes, project_sheet_add_picture
 
 PROJECT_AUTHORIZED_FIELDS = "|".join([
     'title',
@@ -21,4 +20,7 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/edit/themes/$', project_sheet_edit_themes, name='project_sheet-instance-edit-themes'),
    
     url(r'^(?P<slug>[-\w]+)/$', project_sheet_show, name='project_sheet-show'),
+
+    url(r'^add/picture/$', project_sheet_add_picture, name='project_sheet-add-picture'),
+    url(r'^(?P<slug>[-\w]+)/add/picture/$', project_sheet_add_picture, name='project_sheet-instance-add-picture'),
 )

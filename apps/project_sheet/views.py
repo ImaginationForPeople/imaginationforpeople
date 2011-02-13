@@ -6,7 +6,8 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
-from .models import I4pProject, I4pProfile
+from .forms import I4pProjectThemesForm
+from .models import I4pProject, I4pProfile, ProjectPicture
 
 def get_or_create_project(request, slug):
     try:
@@ -35,12 +36,12 @@ def project_sheet_show(request, slug):
                               context_instance = RequestContext(request))
 
    
-def project_sheet_edit_field(request, field, slug=None):
-    FieldForm = modelform_factory(I4pProject, fields=(field,))
+def project_sheet_edit_field(request, field, slug=None, model_class=I4pProject):
+    FieldForm = modelform_factory(model_class, fields=(field,))
     context = {}
     if request.method == 'POST':
         project = get_or_create_project(request, slug)
-        form = FieldForm(request.POST, instance=project)
+        form = FieldForm(request.POST, request.FILES, instance=project)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('project_sheet-show', args=[project.slug]))
@@ -56,9 +57,6 @@ def project_sheet_edit_field(request, field, slug=None):
     return render_to_response("project_sheet.html",
                               context,
                               context_instance = RequestContext(request))
-
-
-from .forms import I4pProjectThemesForm
 
 def project_sheet_edit_themes(request, project_slug):
     """
@@ -82,4 +80,30 @@ def project_sheet_edit_themes(request, project_slug):
                               dictionary=dictionary,
                               context_instance=RequestContext(request)
                               )
-    
+
+def project_sheet_add_picture(request, slug=None):
+    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',))
+    context = {}
+    if request.method == 'POST':
+        project = get_or_create_project(request, slug)
+        picture_form = ProjectPictureForm(request.POST, request.FILES)
+        if picture_form.is_valid():
+            picture = picture_form.save(commit=False)
+            picture.project = project
+            picture.save()
+            
+            return redirect(project)
+        else :
+            print picture_form.errors
+    else:
+        try :
+            project =  I4pProject.objects.get(slug=slug)
+            context["project_instance"] = project
+        except I4pProject.DoesNotExist:
+            pass
+        picture_form = ProjectPictureForm()
+        
+    context["picture_form"] = picture_form
+    return render_to_response("project_sheet.html",
+                              context,
+                              context_instance = RequestContext(request))

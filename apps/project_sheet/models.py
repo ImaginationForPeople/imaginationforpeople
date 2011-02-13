@@ -12,6 +12,8 @@ from apps.member.models import I4pProfile
 from tagging.fields import TagField
 from autoslug.fields import AutoSlugField
 
+from imagekit.models import ImageModel
+
 
 class I4pProject(MothertongueModelTranslate):
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
@@ -19,9 +21,6 @@ class I4pProject(MothertongueModelTranslate):
     
     created = models.DateField(_("creation date"), auto_now_add=True)
     location = models.CharField(_("location"), max_length=80, null=True, blank=True)
-    
-    #TODO: add photos and videos list
-    #see django-oembed, django-oembed-field and django-imagekit
 
     title = models.CharField(_("my project title"), max_length=80, default=_("my project title"))
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
@@ -65,3 +64,21 @@ class I4pProjectTranslation(models.Model):
 
     def __unicode__(self):
         return u"%s" % self.language
+
+
+def get_projectpicture_path(aProjectPicture, filename):
+    dst = 'uploads/projects/%d/pictures/%s' % (aProjectPicture.project.id, filename)
+    return dst
+
+class ProjectPicture(ImageModel):
+    name = models.CharField(max_length=100)
+    original_image = models.ImageField(upload_to=get_projectpicture_path)
+    project = models.ForeignKey(I4pProject, related_name="pictures")
+
+    class IKOptions:
+        spec_module = 'apps.project_sheet.project_pictures_specs'
+        cache_dir = 'uploads'
+        image_field = 'original_image'
+
+
+
