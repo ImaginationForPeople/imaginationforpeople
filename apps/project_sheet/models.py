@@ -21,9 +21,6 @@ class I4pProject(MothertongueModelTranslate):
     
     created = models.DateField(_("creation date"), auto_now_add=True)
     location = models.CharField(_("location"), max_length=80, null=True, blank=True)
-    
-    #TODO: add photos and videos list
-    #see django-oembed, django-oembed-field and django-imagekit
 
     title = models.CharField(_("my project title"), max_length=80, default=_("my project title"))
     slug = AutoSlugField(populate_from="title", unique=True, always_update=True)
