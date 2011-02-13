@@ -16,13 +16,14 @@
     <!-- inserer un test ici ; en fonction du type de page (navigation ou visualisation) le style n'est pas le même (header blanc / header noir)   -->
     {% block style %}<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />{% endblock %}
 
-    {% block extra_head %}{% endblock %}
-
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/buttons.css" />
 
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.5.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/buttons.js"></script>
+    
+	{% block extra_head %}{% endblock %}
+    
 
   </head>
 
