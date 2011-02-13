@@ -818,61 +818,66 @@ form{
 
 }
 
-#cloudtag_edition_selected_tags{
-
-	float:left;
-	position:relative;
-	position:relative;
-	margin-bottom:12px;
-
+/* Tags for theme */
+ul#themes_tags {
+    background-color: white;
 }
 
-#cloudtag_edition_selected_tags li{
+ul#themes_tags li.tagit-new input {
+    height: 20px;
+    font-size: 1em;
+}
 
-	background-color:#CCC8C8;
-	padding:5px;
-	
-	-moz-border-radius: 4px; 
+ul#themes_tags li.tagit-choice a {
+    margin-left:5px;
+    color:#119cba;
+    font-family:Verdana,Arial,Sans-serif;
+    font-size:10px;
+    font-style:normal;
+    top:-1px;
+    position:relative;
+}
+
+
+ul#themes_tags li.tagit-choice {
+    background-color: #CCC8C8;
+    padding:5px;
+    
+    -moz-border-radius: 4px; 
     -webkit-border-radius: 4px; 
     -khtml-border-radius: 4px; 
     border-radius: 4px; 
-	
-	font-size:14px;
-	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
-	font-weight:bold;
-	font-style:italic;
-	color:white;
-	
-	position:relative;
-
+    
+    font-size:14px;
+    font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+    font-weight:bold;
+    font-style:italic;
+    color:white;
+    
+    position:relative;
 }
 
-#cloudtag_edition_selected_tags a{
-
-	margin-left:5px;
-	color:#119cba;
-	font-family:Verdana,Arial,Sans-serif;
-	font-size:10px;
-	font-style:normal;
-	top:-1px;
-	position:relative;
-
-}
-
-
-#cloudtag_list_all{
-
-	width:96%;
-	background-color:#ccc8c8;
-	position:relative;
-	float:left;
-	padding:10px;
-	
-	margin-bottom:15px;
-	
-	-moz-border-radius: 4px; 
+#themes_list {
+    background-color: #ccc8c8;
+    position:relative;
+    float:left;
+    padding:10px;
+    width: 100%;
+    
+    margin-bottom:15px;
+    
+    -moz-border-radius: 4px; 
     -webkit-border-radius: 4px; 
     -khtml-border-radius: 4px; 
     border-radius: 4px;
+}
 
+#themes_list li a {
+    font-size:14px;
+    font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+    font-weight:bold;
+    font-style:italic;
+    color:white;
+    
+    position:relative;
 }
