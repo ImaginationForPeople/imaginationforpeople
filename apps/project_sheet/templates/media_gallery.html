@@ -30,7 +30,7 @@
 </div>
 {% else %}
 	{% if project_instance %}
-		{% if project_instance.pictures %}
+		{% if project_instance.pictures.count %}
 		<div id="project_photo_gallery">
 			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
 			<div id="gallery">
