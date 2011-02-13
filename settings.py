@@ -133,9 +133,11 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    # External Apps
     'localeurl',
     'mothertongue',
-    # External Apps
+    'dajaxice',
+    'dajax',
     'south',
     'django_nose',
     'lettuce.django',
@@ -152,9 +154,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
-    'privatebeta',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
+    #'privatebeta',
 
     # Internal Apps
     'apps.i4p_base',
@@ -204,3 +204,10 @@ else:
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta/'
 PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)
+
+### Dajax Ice
+DAJAXICE_MEDIA_PREFIX = "js/dajax"
+DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
+DAJAXICE_JSON2_JS_IMPORT = True
+DAJAXICE_DEBUG = DEBUG
+
