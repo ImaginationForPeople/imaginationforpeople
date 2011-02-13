@@ -211,3 +211,9 @@ DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
 DAJAXICE_JSON2_JS_IMPORT = True
 DAJAXICE_DEBUG = DEBUG
 
+## Ignore dajax ice path
+import re
+LOCALE_INDEPENDENT_PATHS = (
+	re.compile('^/js/dajax/.*$'),
+	)
+

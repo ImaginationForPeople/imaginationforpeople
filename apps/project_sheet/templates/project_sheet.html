@@ -1,6 +1,74 @@
 ﻿{% extends "project_sheet/project_base.html" %}
 
 {% load i18n %}
+{% load tagging_tags %}
+
+{% block extra_head %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
+
+  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.iecompat.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tinysort.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tagcloud.js"></script>
+
+  <script type="text/javascript" src="{{ MEDIA_URL }}/js/XMLHttpRequest.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.ba-serializeobject.js"></script>
+  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.dajax.core.js"></script>
+  <script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+	var tags = $("#themes_tags").tagit({
+	    itemName: 'themes',
+	});
+
+	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200}).find("li").tsort();
+
+	$("#themes_list li").click(function($this) {
+	    $.fn.tagit.create_tag($(this).text());
+	});
+
+	// restore tags in get
+        {% tags_for_object project_instance as project_tags %}
+	{% for tag in project_tags %}
+	$.fn.tagit.create_tag("{{ tag }}");
+	{% endfor %}
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    function on_project_themes_updated(data) {
+            if ( data!= Dajaxice.EXCEPTION ) {
+                  alert(data.message);
+            } else { alert('error'); }
+//	    res = Dajax.process(data);
+
+	//	$('#search-results').fadeTo('fast', 1);
+	//	$('#search-results-wrapper').activity(false);
+	//	$('#search').unblock();
+    }
+
+    function project_update_themes() {
+        //$('#search').block({message: 'Recherche en cours, patientez svp...'});
+	//$('#search-results').fadeTo('fast', 0.3);
+	//$('#search-results-wrapper').activity({width: 6, valign: 'center', padding: '20'});
+
+	themes_form = $('#themes-form').serializeObject(true);
+
+        Dajaxice.apps.project_sheet.project_update_themes(Dajax.process, {'themes_form': themes_form,
+                                                                          'project_slug': '{{ project_instance.slug }}'}
+        );
+                                                          
+	return false;
+    }
+
+
+  </script>
+
+
+{% endblock %}
 
 {% block project_content %}	
   <div class="grid_13 alpha project_content">
@@ -65,7 +133,7 @@
 	    <div class="creation_date">{{ project_instance.created }} {% trans 'by' %} 
 	    <i>
 	      {% if project_instance.author %}
-		{{project_instance.author.user.email}}
+		{{ project_instance.author.get_full_name_or_username }}
 	      {% else %}
 		{% trans 'anonymous'|capfirst %}
 	      {% endif %}
@@ -120,11 +188,11 @@
       </div>	
 
       <!-- Colonne grise ouverte (fermée par défaut) -->
-      <div class="grid_12 omega grey_column_open hidden">											
+      <div class="grid_12 omega grey_column_open">											
 	<div class="grey_column_content">	
 	  
 	  <div class="title">{% trans 'Related'|capfirst %}</div>
-	  <a href="#" id="grey_column_close">{% trans 'Close'%}</a>
+	  <a href="#" id="grey_column_close">{% trans 'Close & discard'%}</a>
 	  
 	  <div class="grey_column_content_edition">
 	    
@@ -142,30 +210,29 @@
 	    </div>						
 	    
 	    <div class="grey_column_cloudtag_edition">
+
+	      <form id="themes-form" method="POST">
 	      
-	      <div id="grey_column_cloudtag_edition_title">
-		<label>{% trans 'Tags : '|capfirst %}</label><span class="precision">({% trans 'select your tags in the following tag box' %})</span>
-	      </div>
-	      
-	      <ul id="cloudtag_edition_selected_tags">
-		<li>Open-source<a href="#" class="none">x</a></li>
-		<li>Ecology<a href="#" class="none">x</a></li>
-		<li>Creative Education<a href="#" class="none">x</a></li>
-		<li>Humanistic<a href="#" class="none">x</a></li>
-	      </ul>
-	      
-	      <ul id="cloudtag_list_all">
-		<li value="10">Open-source</li>
-		<li value="20">Ecology</li>
-		<li value="30">Creative Education</li>
-		<li value="40">Humanistic</li>
-		<li value="50">Humanistic</li>
-		<li value="60">Humanistic</li>
-	      </ul>
-	      
+		<div id="grey_column_cloudtag_edition_title">
+		  <label>{% trans 'Themes: '|capfirst %}</label><span class="precision">({% trans 'select your tags from the cloud below' %})</span>
+		</div>
+		
+		<ul id="themes_list">
+		  {% tags_for_model project_sheet.I4pProject as project_sheet_tags with counts %}
+		    
+		    {% for tag in project_sheet_tags %}
+		      <li value="{{ tag.count }}"><a href="javascript:;">{{ tag }}</a></li>
+		    {% endfor %}
+		</ul>
+		
+		<ul id="themes_tags">
+		</ul>
+
+	      </form>
+
 	    </div>
 	    
-	    <a href="#" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+	    <a href="javascript:;" onclick="javascript: return project_update_themes();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
 	    
 	  </div>						
 	  

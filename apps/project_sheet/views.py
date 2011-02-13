@@ -25,9 +25,13 @@ def get_or_create_project(request, slug):
     return project
 
 def project_sheet_show(request, slug):
+    """
+    Display a project sheet
+    """
     project = get_object_or_404(I4pProject, slug=slug)
-    return render_to_response('project_sheet.html', 
-                              {'project_instance': project},
+
+    return render_to_response(template_name='project_sheet.html', 
+                              dictionary={'project_instance': project},
                               context_instance = RequestContext(request))
 
    
