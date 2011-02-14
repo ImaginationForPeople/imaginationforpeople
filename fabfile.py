@@ -87,6 +87,7 @@ def compile_messages():
         cwd = venvcmd('pwd', subdir=appsubdir)
         if exists(cwd + '/locale') :
             venvcmd(cmd, subdir=appsubdir)
+    fixperms()
     reloadapp()
 
 def deploy_bootstrap():
