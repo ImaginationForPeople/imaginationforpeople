@@ -1,0 +1,17 @@
+{% extends "project_sheet/project_base.html" %}
+
+{% load i18n %}
+
+{% block project_content %}
+
+  <h2>{% blocktrans with project_sheet.title as project_title %}Edit themes of &laquo;&nbsp;{{ project_title }}&nbsp;&raquo;{% endblocktrans %}</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    {{ project_sheet_themes_form.as_p }}
+    
+    <button type="submit">{% trans "Update" %}</button>
+  </form>
+
+{% endblock %}

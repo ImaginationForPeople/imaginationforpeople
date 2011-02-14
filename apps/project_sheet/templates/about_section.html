@@ -1,6 +1,14 @@
 {% load i18n %}
 
-<h1 class="about_project">{% trans 'about the project'|capfirst%}</h1>
+<h1 class="about_project">{% trans 'about the project'|capfirst%}
+	{% if not about_section_form %}
+		{% if project_instance %}
+			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'about_section' %}" class="button nomargin right">{% trans 'edit'|capfirst %}</a>
+		{% else %}
+			<a href="{% url project_sheet-edit-field 'about_section' %}" class="button nomargin right">{% trans 'edit'|capfirst %}</a>
+		{% endif %}
+	{% endif %}
+</h1>
 {% if about_section_form %}
 	<!-- Titre du projet en mode éditable-->
 	<!-- LE CHAMP DE SAISIE ET PLUS GENERALEMENT LA BOITE LA CONTENANT DOIT S'AGRANDIR EN FONCTION DU CONTENU TAPE-->
