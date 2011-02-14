@@ -16,8 +16,8 @@ def reloadapp():
     venvcmd('touch apache/%(wsginame)s.wsgi' % env)
 
 
-def venvcmd(cmd, shell=True, user="webapp", pty=True):
-    with cd(env.venvfullpath + '/' + env.projectname):
+def venvcmd(cmd, shell=True, user="webapp", pty=True, subdir=""):
+    with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
         sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
 
     
@@ -68,12 +68,29 @@ def update_requirements():
     cmd = "pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env
     sudo(cmd, user="webapp")
 
+def fixperms():
+    """
+    fix permissions
+    """
+    with cd(env.venvfullpath):
+        sudo('chown :www-data -R %(projectname)s && chmod g+rw -R %(projectname)s' % env)
+
+def compile_messages():
+    """
+    Run compile messages and reload the app
+    """
+    apps = venvcmd('ls -d */', subdir="apps").split(" ")
+    cmd = "./manage.py compilemessages"
+    for app in apps :
+        appsubdir = 'apps/%s' % app
+        venvcmd(cmd, subdir=appsubdir)
+    reloadapp()
+
 def deploy_bootstrap():
     "Deploy the project the first time."
     build_env()
     clonegitcmd = "git clone %(gitrepo)s %(projectname)s" % env
-    with cd(env.venvfullpath):
-        sudo(clonegitcmd, user="webapp")
+    fixperms()
     update_requirements()
     syncdb()
     tests()
