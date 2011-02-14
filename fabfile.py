@@ -4,6 +4,7 @@ from __future__ import with_statement
 
 import os.path
 from fabric.api import *
+from fabric.contrib.files import *
 
 def commonenv():
     "Base environment"
@@ -13,13 +14,12 @@ def commonenv():
 
 def reloadapp():
     "Touch the wsgi"
-    venvcmd('touch apache/%(wsginame)s.wsgi' % env)
+    venvcmd('touch apache/%(wsginame)s' % env)
 
 
-def venvcmd(cmd, shell=True, user="webapp", pty=True, subdir=""):
+def venvcmd(cmd, shell=True, user="webapp", pty=False, subdir=""):
     with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
-        sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
-
+        return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
     
 def tests():
     "Run all tests on remote"
@@ -79,11 +79,14 @@ def compile_messages():
     """
     Run compile messages and reload the app
     """
-    apps = venvcmd('ls -d */', subdir="apps").split(" ")
-    cmd = "./manage.py compilemessages"
+    apps = venvcmd('ls -d */', subdir="apps").split("\n")
+    cmd = "django-admin.py compilemessages"
+    print apps
     for app in apps :
         appsubdir = 'apps/%s' % app
-        venvcmd(cmd, subdir=appsubdir)
+        cwd = venvcmd('pwd', subdir=appsubdir)
+        if exists(cwd + '/locale') :
+            venvcmd(cmd, subdir=appsubdir)
     reloadapp()
 
 def deploy_bootstrap():
