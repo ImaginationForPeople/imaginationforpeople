@@ -4,6 +4,7 @@ from __future__ import with_statement
 
 import os.path
 from fabric.api import *
+from fabric.contrib.files import *
 
 def commonenv():
     "Base environment"
@@ -13,13 +14,12 @@ def commonenv():
 
 def reloadapp():
     "Touch the wsgi"
-    venvcmd('touch apache/%(wsginame)s.wsgi' % env)
+    venvcmd('touch apache/%(wsginame)s' % env)
 
 
-def venvcmd(cmd, shell=True, user="webapp", pty=True):
-    with cd(env.venvfullpath + '/' + env.projectname):
-        sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
-
+def venvcmd(cmd, shell=True, user="webapp", pty=False, subdir=""):
+    with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
+        return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
     
 def tests():
     "Run all tests on remote"
@@ -68,12 +68,33 @@ def update_requirements():
     cmd = "pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env
     sudo(cmd, user="webapp")
 
+def fixperms():
+    """
+    fix permissions
+    """
+    with cd(env.venvfullpath):
+        sudo('chown :www-data -R %(projectname)s && chmod g+rw -R %(projectname)s' % env)
+
+def compile_messages():
+    """
+    Run compile messages and reload the app
+    """
+    apps = venvcmd('ls -d */', subdir="apps").split("\n")
+    cmd = "django-admin.py compilemessages"
+    print apps
+    for app in apps :
+        appsubdir = 'apps/%s' % app
+        cwd = venvcmd('pwd', subdir=appsubdir)
+        if exists(cwd + '/locale') :
+            venvcmd(cmd, subdir=appsubdir)
+    fixperms()
+    reloadapp()
+
 def deploy_bootstrap():
     "Deploy the project the first time."
     build_env()
     clonegitcmd = "git clone %(gitrepo)s %(projectname)s" % env
-    with cd(env.venvfullpath):
-        sudo(clonegitcmd, user="webapp")
+    fixperms()
     update_requirements()
     syncdb()
     tests()
