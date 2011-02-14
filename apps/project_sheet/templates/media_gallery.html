@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if picture_form %}
-<!-- Pas de photo - édition en cours -->
+<!-- MEDIA - edition mode -->
 <div id="project_photo_upload_edit">
 	
 	<h1>{% trans "upload a media"|capfirst %}</h1>
@@ -25,12 +25,17 @@
 				<input type="text" name="nom" />
 				<input class="button nomargin right" type="submit" value="{% trans 'Ok'|capfirst %}" />
 			</p>
-		</form>						
-	</div>	
+		</form>			
+	</div>
+	<a href="#" class="redbutton nomargin right">{% trans 'X'|capfirst %}</a>	
 </div>
 {% else %}
 	{% if project_instance %}
 		{% if project_instance.pictures.count %}
+				
+		<!-- MEDIA - created project - with pictures -->
+		
+		<!-- 
 		<div id="project_photo_gallery">
 			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
 			<div id="gallery">
@@ -39,8 +44,41 @@
 				{% endfor %}					
 			</div>
 		</div>
+		-->
+		
+		
+		<div id="project_photo_gallery">
+
+			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
+
+			<div id="gallery">
+
+				<ul id="project_photo_gallery_current_photo">
+					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-1.jpg" alt=""/></li>
+					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-env-1.jpg"  height="400" alt="" /></li>
+					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-2.jpg" alt="" /></li>
+					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/251356.jpg" alt="" /></li>
+				</ul>
+				
+				
+				<ul id="project_photo_gallery_mini" class="jcarousel-skin-tango">
+					<li><a onclick="changeslider(1);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-1.jpg" alt="" /></a></li>
+					<li><a onclick="changeslider(2);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-env-1.jpg" alt="" /></a></li>
+					<li><a onclick="changeslider(3);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-2.jpg" alt="" /></a></li>
+					<li><a onclick="changeslider(4);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/251356.jpg" alt="" /></a></li>
+					<li><a onclick="changeslider(1);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-1.jpg" alt="" /></a></li>
+					<li><a onclick="changeslider(2);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-env-1.jpg" alt="" /></a></li>
+					<li><a onclick="changeslider(3);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-2.jpg" alt="" /></a></li>
+					<li><a onclick="changeslider(4);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/251356.jpg" alt="" /></a></li>
+				</ul>
+				
+			</div>				
+		</div>
+		
+		
+		
 		{% else %}
-			<!-- Pas de photo - non éditable -->
+			<!-- MEDIA - created project - no pictures -->
 			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}">
 				<div id="project_photo_upload">
 					<img src="" />
@@ -48,7 +86,7 @@
 			</a>
 		{% endif %}	
 	{% else %}
-		<!-- Pas de photo - non éditable -->
+		<!-- MEDIA - no project - no pictures -->
 		<a href="{% url project_sheet-add-picture%}">
 			<div id="project_photo_upload">
 				<img src="" />

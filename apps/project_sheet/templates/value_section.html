@@ -1,7 +1,7 @@
 {% load i18n %}
 
 {% if value_section_form %}
-	<!-- Paragraphe en cours d'édition -->
+	<!-- PARAGRAPH - edition mode -->
 	<div id="value" class="project_details_title_edit">
 		<h2>{% trans 'what is the experience social added value'|capfirst %}?</h2>
 	</div>
@@ -21,7 +21,7 @@
 			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'value_section' %}" class="button">{% trans 'Edit'|capfirst %}</a>
 		</div>
 		{% if project_instance.value_section %}
-			<!-- Paragraphe rempli -->
+			<!-- PARAGRAPH - filled -->
 			<p class="project_details_body">
 			{{project_instance.value_section}}
 			</p>
@@ -31,7 +31,7 @@
 			</p>
 		{% endif %}
 	{% else %}
-		<!-- Paragraphe vide -->
+		<!-- PARAGRAPH - empty -->
 		<div class="project_details_title_edit">
 			<h2>{% trans 'what is the experience social added value'|capfirst %}?</h2>
 			<a href="{% url project_sheet-edit-field 'value_section' %}" class="button">{% trans 'Edit'|capfirst %}</a>

@@ -235,6 +235,7 @@ form{
 	height:292px;
 	width:100%;
 	padding-top:70px;
+	position:relative;
 	
 }
 
@@ -252,7 +253,16 @@ form{
 
 	width:85%;
 	margin-left:auto;
-	margin-right:auto;
+	margin-right:auto;	
+	
+}
+
+#project_photo_upload_edit .redbutton{
+
+	position:absolute;
+	right:10px;
+	top:10px;
+	z-index:1000;
 	
 }
 
@@ -498,8 +508,8 @@ form{
 
 	color:#5a5959;
 	
-	height:56px;
-	width:100%;
+	/*height:56px;*/
+
 	padding:0px;
 	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
 	font-size:38px;
@@ -514,7 +524,8 @@ form{
     border-radius: 0px; 
 	
 	border:0px;
-	text-indent:11px;
+	/*text-indent:11px;*/
+	/*padding-left:11px;*/
 	line-height:56px;
 
 }
@@ -542,7 +553,7 @@ form{
 	/*float:left;*/
 	padding-top:5px;
 	padding-bottom:5px;
-	text-indent:10px;
+	/*text-indent:10px;*/
 	line-height:24px;
 	/*font-weight:bold;*/
 
@@ -557,12 +568,12 @@ form{
 	font-weight:bold;
 	font-style:italic;
 	position:relative;
-	width:92%;
+	width:93%;
 	border:0px;
 	float:left;
 	padding-top:5px;
 	padding-bottom:5px;
-	text-indent:10px;
+	/*text-indent:10px;*/
 	line-height:14px;
 	/*font-weight:bold;*/
 	
@@ -578,7 +589,7 @@ form{
 	top:4px;
 	padding-right:7px;
 	padding-left:8px;
-	left:2px;
+	left:5px;
 	line-height:15px;
 
 }
@@ -619,9 +630,12 @@ form{
 /* ----------Project Body - CREATION ----------- */
 
 
+
+
 #project_photo_gallery{
 
 	position:relative;
+	width:700px;
 	
 
 }
@@ -629,9 +643,9 @@ form{
 #project_photo_gallery .button{
 
 	position:absolute;
-	right:0px;
+	right:-5px;
 	top:10px;
-	/*z-index:1000;*/
+	z-index:1000;
 
 }
 
@@ -643,6 +657,7 @@ form{
 
 #project_photo_gallery_mini{
 
+	/*	
 	background-image:url(../images/base/black.png);	
 	position:absolute;
 	height:81px;
@@ -650,67 +665,36 @@ form{
 	bottom:0px;
 	z-index:2000;
 	padding-top:10px;
+	*/
 	
 }
 
-#project_photo_gallery_mini #previous{
 
-	background-image:url(../images/project/gallery_previous.png);	
-	background-repeat:no-repeat;
-	background-position:center;
+#project_photo_gallery_mini li{
+
+	list-style-type:none;
+	display:inline;
+	padding:0px;
+	/*margin:0px;*/
+	height:100%;	
 	
-	float:left;
-	
-	width:56px;
-	height:67px;
-	position:relative;
-	
-	top:2px;
-	
-	padding-right:30px;
-	padding-left:4px;
-
-}
-
-#project_photo_gallery_mini #next{
-
-	background-image:url(../images/project/gallery_next.png);	
-	background-repeat:no-repeat;
-	background-position:center;
-	
-	float:left;
-	
-	width:56px;
-	height:67px;
-	position:relative;
-	
-	top:2px;
-	
-	padding-left:30px;
-
-
-}
-
-.mini{
-
-	position:relative; 
-	float:left;
-
 }
 
 #project_photo_gallery_mini img{
+
 
 	width:95px;
 	height:65px;
 	position:relative;
 	border:3px solid white;
-	
 	float:left;
 	
-	margin-left:15px;
-	margin-right:15px;
+	margin-left:16px;
+	margin-right:16px;
+	
 
 }
+
 
 #project_photo_gallery_mini img:hover{
 
