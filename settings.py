@@ -106,6 +106,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
      
+    'request.middleware.RequestMiddleware',
+
     'userena.middleware.UserenaLocaleMiddleware',
     
     'debug_toolbar.middleware.DebugToolbarMiddleware',
@@ -159,6 +161,7 @@ INSTALLED_APPS = (
     'tagging',
     'imagekit',
     'contact_form',
+    'request',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',
