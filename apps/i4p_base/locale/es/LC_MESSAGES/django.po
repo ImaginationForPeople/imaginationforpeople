@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-15 21:15+0100\n"
-"PO-Revision-Date: 2011-02-15 21:16\n"
-"Last-Translator: <ldd@dk.fr>\n"
+"POT-Creation-Date: 2011-02-15 23:56+0100\n"
+"PO-Revision-Date: 2011-02-16 00:20\n"
+"Last-Translator: <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,8 +19,8 @@ msgstr ""
 "X-Translated-Using: django-rosetta 0.5.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/manifesto.html:8 templates/privatebeta/base.html:57
-#: templates/privatebeta/base.html:127
+#: templates/manifesto.html:8 templates/privatebeta/base.html:66
+#: templates/privatebeta/base.html:136
 msgid "Manifesto"
 msgstr "Manifesto"
 
@@ -55,9 +55,9 @@ msgstr ""
 "Creemos en la necesidad de inventar nuevos términos en torno a la innovación social y la imaginación ciudadana, y esto a través de un nuevo alfabeto: la capacidad de leer y expresar el mundo tal como se inventa, se experimenta y se proyecta todos los días. Llamamos a esta capacidad: el <i>alfabeto imaginativo</i>. Así que es a la creación de un <i>alfabeto imaginativo</i> para la comprensión y la difusión de la innovación social que dedicamos Imagination For People.\n"
 "<br /><br />"
 
-#: templates/project-description.html:8 templates/privatebeta/base.html:58
+#: templates/project-description.html:8 templates/privatebeta/base.html:67
 msgid "Project description"
-msgstr ""
+msgstr "Descripción del proyecto"
 
 #: templates/project-description.html:11
 #, python-format
@@ -78,19 +78,23 @@ msgid ""
 "    "
 msgstr ""
 
-#: templates/privatebeta/base.html:12
+#: templates/contact_form/contact_form.html:12
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/privatebeta/base.html:14
 msgid "Imagination for People"
 msgstr ""
 
-#: templates/privatebeta/base.html:38
+#: templates/privatebeta/base.html:47
 msgid "Detect, highlight and monetize social innovation that is truly disruptive."
-msgstr ""
+msgstr " "
 
-#: templates/privatebeta/base.html:51
+#: templates/privatebeta/base.html:60
 msgid "About imagination for people"
 msgstr "A propósito"
 
-#: templates/privatebeta/base.html:53
+#: templates/privatebeta/base.html:62
 msgid ""
 "\n"
 "\t\t  We believe in the virtue of civic imagination, imagination to serve the common good. Our filter is useful creativity or the imagination applied. \n"
@@ -99,27 +103,27 @@ msgstr ""
 "\n"
 "Creemos en la virtud de la imaginación cívica, la imaginación al servicio del bien común. Incentivamos la creatividad útil, la <i>imaginación aplicada</i>"
 
-#: templates/privatebeta/base.html:74
+#: templates/privatebeta/base.html:83
 msgid "Featured"
 msgstr ""
 
-#: templates/privatebeta/base.html:75
+#: templates/privatebeta/base.html:84
 msgid "Filters"
 msgstr "filtros"
 
-#: templates/privatebeta/base.html:76
+#: templates/privatebeta/base.html:85
 msgid "Help"
 msgstr "Ayuda"
 
-#: templates/privatebeta/base.html:77
+#: templates/privatebeta/base.html:86
 msgid "<span class='georgia'>My</span> imagination for people"
 msgstr ""
 
-#: templates/privatebeta/base.html:86
+#: templates/privatebeta/base.html:95
 msgid "Node view"
 msgstr ""
 
-#: templates/privatebeta/base.html:131
+#: templates/privatebeta/base.html:140
 msgid "&copy; 2011 Imagination for people – All rights reseved"
 msgstr ""
 
@@ -179,11 +183,11 @@ msgstr ""
 msgid "Envoyer"
 msgstr "Enviar"
 
-#: templates/privatebeta/sent.html:8
+#: templates/privatebeta/sent.html:16
 msgid "Thanks for your interest"
 msgstr "Gracias por su participación"
 
-#: templates/privatebeta/sent.html:11
+#: templates/privatebeta/sent.html:20
 msgid ""
 "\n"
 "\t\t\tThe team at Imagination for People would like to thank you for your interest as we embark upon this new adventure in the civic imagination. We are currently developing a Beta version of our site which we expect will be online in March of 2011. True to the spirit of Imagination for People, all of the programming, the design of the logo and the content is open source.<br /><br />\n"
@@ -193,4 +197,12 @@ msgid ""
 "\t\t\t"
 msgstr ""
 "\n"
-"Para mas información sobre el proyecto, pueden contactarnos al email siguiente : team@imaginationforpeople.org"
+" "
+
+#: templates/privatebeta/sent.html:29
+msgid "Click here to get in touch with us and leave a message"
+msgstr "Escribe un comentario"
+
+#: templates/privatebeta/sent.html:32
+msgid "Back"
+msgstr "Volver"
