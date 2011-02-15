@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT,'..'))
 
-DEBUG = True
+DEBUG = False # N'oubliez pas de remettre à False avant de commit !
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
