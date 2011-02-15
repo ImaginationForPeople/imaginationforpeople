@@ -72,14 +72,15 @@
 	$("#themes_list li").click(function($this) {
 	    $.fn.tagit.create_tag($(this).text());
 	});
-	
-	{% if project_instance %}
-		// restore tags in get
-        {% tags_for_object project_instance as project_tags %}
-		{% for tag in project_tags %}
-		$.fn.tagit.create_tag("{{ tag }}");
-		{% endfor %}
-	{% endif %}
+
+	// restore tags in get
+        {% if project_instance %}
+          {% tags_for_object project_instance as project_tags %}
+        	{% for tag in project_tags %}
+	     $.fn.tagit.create_tag("{{ tag }}");
+	  {% endfor %}
+        {% endif %}
+
     });
   </script>
 

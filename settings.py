@@ -13,6 +13,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Simon Sarazin', 'simonsarazin@imaginationforpeople.com'),
+    ('Guillaume Libersat', 'guillaume@fuzzyfrequency.com'),
 )
 
 MANAGERS = ADMINS
@@ -155,13 +156,17 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
-    #'privatebeta',
 
     # Internal Apps
     'apps.i4p_base',
     'apps.member',
     'apps.project_sheet'
 )
+
+if not DEBUG:
+	INSTALLED_APPS += (
+		'privatebeta',
+		)
 
 USERENA_WITHOUT_USERNAMES = True
 
@@ -205,6 +210,7 @@ else:
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta/'
 PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)
+PRIVATEBETA_ALWAYS_ALLOW_MODULES = ('django.contrib.admin.sites',)
 
 ### Dajax Ice
 DAJAXICE_MEDIA_PREFIX = "js/dajax"
