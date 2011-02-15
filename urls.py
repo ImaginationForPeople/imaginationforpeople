@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
+from django.contrib import admin
 from django.views.generic.simple import direct_to_template, redirect_to
 
-from django.contrib import admin
+import contact_form.views as contact_form_views
+
 from dajaxice.core import dajaxice_autodiscover
 
 # For server errors
@@ -44,9 +46,11 @@ if "privatebeta" in settings.INSTALLED_APPS:
         url(r'^beta/sent/$', 'privatebeta.views.sent', name='privatebeta_sent'),
         url(r'^beta/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
         url(r'^beta/project-description/$', direct_to_template, {'template': 'project-description.html'}, name='project-description'),
+        url(r'^beta/contact/$', contact_form_views.contact_form, name='contact_form'),
+        url(r'^beta/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
     )
 else:
-    urlpatterns += patterns('',
+  urlpatterns += patterns('',
         url(r'^$', direct_to_template, {'template': 'base.html'}, name='i4p-index'),
         url(r'^project/', include('apps.project_sheet.urls')),
         url(r'^accounts/', include('userena.urls')),

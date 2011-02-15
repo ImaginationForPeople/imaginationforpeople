@@ -992,7 +992,7 @@ ul li{
 
 }
 
-#id_nom, #id_prenom, #id_mail, #id_subject,.content input{
+#id_nom, #id_prenom, #id_mail, #id_subject,.content input, input {
 
 	width:64%;
 	
@@ -1041,9 +1041,45 @@ ul li{
 
 }
 
+textarea, input {
+    width: 60%;
 
+	
+	border:1px solid grey;
+	-moz-border-radius:4px; 
+	-webkit-border-radius:4px;
+	-khtml-border-radius:4px;
+	
+	color:white;
+	background-color:#242424;
+	font-size:11px;
+	padding:4px;
+	
+	margin-top:3px;
+	margin-bottom:3px;
 
+}
 
+#contact_form {
+    background-color: #282828;
+    background-image: url("../images/base/content-bg.jpg");
+    background-position: center top;
+    background-repeat: no-repeat;
+    color: #BDBDBD;
+    padding: 10px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+#contact_form button {
+    left: -15px;
+}
+
+#feedback {
+    margin-left: 250px;
+    text-transform: none;
+    font-size: 1.1em;
+}
 
 
 

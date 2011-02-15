@@ -1,0 +1,16 @@
+{% load i18n %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml" lang="fr">
+  <head>
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style_beta.css" />    
+  </head>
+  <body>
+    <div class="newsletter">
+      <form id="contact_form" method="POST" action="{% url contact_form %}">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">{% trans "Send" %}</button>
+      </form>
+    </div>
+  </body>
+</html>
