@@ -26,6 +26,10 @@ def tests():
     venvcmd('./manage.py test')
     venvcmd('./manage.py harvest --verbosity=2')
 
+def printenv():
+    "Print shell env"
+    venvcmd('env')
+
 def syncdb():
     venvcmd('./manage.py syncdb --noinput')
     venvcmd('./manage.py migrate')
@@ -94,6 +98,8 @@ def deploy_bootstrap():
     "Deploy the project the first time."
     build_env()
     clonegitcmd = "git clone %(gitrepo)s %(projectname)s" % env
+    with cd(env.venvfullpath):
+        sudo(clonegitcmd, user="webapp")
     fixperms()
     update_requirements()
     syncdb()
