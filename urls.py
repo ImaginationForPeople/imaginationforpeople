@@ -5,6 +5,10 @@ from django.views.generic.simple import direct_to_template, redirect_to
 from django.contrib import admin
 from dajaxice.core import dajaxice_autodiscover
 
+# For server errors
+handler500 = 'django.views.defaults.server_error'
+handler404 = 'django.views.defaults.page_not_found'
+
 ## Admin
 admin.autodiscover()
 
