@@ -15,6 +15,9 @@ if socket.gethostname() == 'i4p-dev':
 else:
 	DEBUG = True
 
+# if you need to debug privatebeta, use this
+FORCE_PRIVATEBETA = False
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -108,7 +111,7 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-if not DEBUG:
+if not DEBUG or FORCE_PRIVATEBETA:
 	MIDDLEWARE_CLASSES += (
 		'privatebeta.middleware.PrivateBetaMiddleware',
 	)
@@ -155,6 +158,7 @@ INSTALLED_APPS = (
     'rosetta',
     'tagging',
     'imagekit',
+    'contact_form',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -169,7 +173,7 @@ INSTALLED_APPS = (
     'apps.project_sheet'
 )
 
-if not DEBUG:
+if not DEBUG or FORCE_PRIVATEBETA:
 	INSTALLED_APPS += (
 		'privatebeta',
 		)
@@ -215,8 +219,10 @@ else:
 
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta/'
-PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',)
-PRIVATEBETA_ALWAYS_ALLOW_MODULES = ('django.contrib.admin.sites',)
+PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
+				  'django.views.generic.simple.redirect_to',)
+PRIVATEBETA_ALWAYS_ALLOW_MODULES = ('django.contrib.admin.sites',
+				    'contact_form.views')
 
 ### Dajax Ice
 DAJAXICE_MEDIA_PREFIX = "js/dajax"
