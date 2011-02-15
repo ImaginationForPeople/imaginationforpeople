@@ -9,10 +9,19 @@
     <meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale" /> 
     <meta name="description" content="Imagination 4 People" /> 
 
+    <link rel="icon" type="image/png" href="{{ MEDIA_URL }}/images/i4p-ico.png" />
+
     <title>{% trans "Imagination for People" %}</title>
 
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" /> 
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style_beta.css" />
+
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/jquery/colorbox.css" />
+
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.5.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.colorbox.js"></script>
+
+    {% block extra_head %}{% endblock %}
   </head>
 
   <body>
@@ -128,7 +137,7 @@
 {#		  <li><a href="http://alpha.imaginationforpeople.com">{% trans "Alpha version" %}</a></li> #}
 
 		</ul>
-		{% trans "&copy; 2011 Imagination for people – All rights reseved" %}
+
 	      </div>
 	    </div>
 	  </div>
