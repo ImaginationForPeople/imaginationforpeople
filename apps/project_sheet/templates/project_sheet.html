@@ -5,17 +5,61 @@
 
 {% block extra_head %}
   {{ block.super }}
-  <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
+	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/anythingslider.css" type="text/css" media="screen" />
 
-  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.iecompat.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tinysort.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tagcloud.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.iecompat.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tinysort.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tagcloud.js"></script>
 
-  <script type="text/javascript" src="{{ MEDIA_URL }}/js/XMLHttpRequest.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.ba-serializeobject.js"></script>
-  <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.dajax.core.js"></script>
-  <script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/XMLHttpRequest.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.ba-serializeobject.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.dajax.core.js"></script>
+	<script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
+
+	<!-- Scripts for Image Slider & Miniatures -->
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.easing.1.2.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.anythingslider.js" ></script>
+	
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.jcarousel.min.js"></script>
+
+	<!-- Scripts for Miniatures -->
+	<script type="text/javascript">
+
+		jQuery(document).ready(function() {
+			jQuery('#project_photo_gallery_mini').jcarousel();
+		});
+
+	</script>
+
+
+	<!-- Scripts for Image Slider -->
+	<script type="text/javascript">
+
+		$(function () {
+
+			$('#project_photo_gallery_current_photo').anythingSlider({
+				width : 700,          // Override the default CSS width
+				height: 460,		// Override the default CSS height
+				delay               : 2500,      // How long between slideshow transitions in AutoPlay mode (in milliseconds)
+				animationTime       : 600,       // How long the slideshow transition takes (in milliseconds)
+				buildArrows         : false,      // If true, builds the forwards and backwards buttons
+				resizeContents      : true,      // If true, solitary images/objects in the panel will expand to fit the viewport
+				autoPlay            : true,     // This turns off the entire slideshow FUNCTIONALY, not just if it starts running or not
+
+				easing: 'easeInOutExpo'
+			});	
+
+		});
+		
+		function changeslider(sid){
+				$('#project_photo_gallery_current_photo').anythingSlider(sid);
+				return false;
+		};
+
+	</script>
+
 
   <script type="text/javascript">
     $(document).ready(function() {
@@ -28,12 +72,14 @@
 	$("#themes_list li").click(function($this) {
 	    $.fn.tagit.create_tag($(this).text());
 	});
-
-	// restore tags in get
+	
+	{% if project_instance %}
+		// restore tags in get
         {% tags_for_object project_instance as project_tags %}
-	{% for tag in project_tags %}
-	$.fn.tagit.create_tag("{{ tag }}");
-	{% endfor %}
+		{% for tag in project_tags %}
+		$.fn.tagit.create_tag("{{ tag }}");
+		{% endfor %}
+	{% endif %}
     });
   </script>
 
@@ -73,9 +119,9 @@
 {% block project_content %}	
   <div class="grid_13 alpha project_content">
 
-    <!-- Project title -->
+    <!-- PROJECT TITLE -->
     {% if title_form %}
-      <!-- Titre du projet en mode éditable-->
+      <!-- PROJECT TITLE - edition mode-->
       {% if project_instance %}
 	<form id="title" action="{% url  project_sheet-instance-edit-field project_instance.slug 'title' %}" method="post">{% csrf_token %}
       {% else %}
@@ -87,11 +133,12 @@
 
       {% else %}
 	{% if project_instance %}
-	  <!-- Titre du projet en mode NON éditable -->
+	  <!-- PROJECT TITLE - filled -->
 	  <a href="{% url project_sheet-instance-edit-field project_instance.slug 'title' %}">
 	    <div id="project_title">{{ project_instance.title }}</div>
 	  </a>
 	{% else %}
+	  <!-- PROJECT TITLE - empty -->
 	  <a href="{% url project_sheet-edit-field 'title' %}">
 	    <div id="project_title_edit_inactive">{% trans 'my project title'|capfirst %}</div>
 	  </a>
@@ -99,9 +146,9 @@
       {% endif %}
       
 
-      <!-- Baseline -->
+      <!-- BASELINE -->
       {% if baseline_form %}
-	<!-- Baseline en mode éditable-->
+	<!-- BASELINE - edition mode-->
 	{% if project_instance %}
 	  <form id="baseline" action="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% else %}
@@ -113,13 +160,13 @@
 	  </form>	
 	{% else %}
 	  {% if project_instance %}
-	    <!-- Baseline du projet créé , mode NON éditable-->
+	    <!-- BASELINE - filled-->
 	    <div class="project_baseline focus">
 	      <p>{{ project_instance.baseline }}</p>
 	      <a href="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
 	    </div>
 	  {% else %}
-	    <!-- Baseline du projet en mode NON éditable-->
+	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
 	      <p>{% trans "my project baseline"|capfirst %}</p>
 	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
@@ -127,7 +174,7 @@
 	  {% endif %}
 	{% endif %}					
 	
-	<!-- Project info -->
+	<!-- PROJECT INFOS -->
 	<div class="project_infos_bloc">
 	  {% if project_instance %} 
 	    <div class="creation_date">{{ project_instance.created }} {% trans 'by' %} 
@@ -148,13 +195,13 @@
 	
 	{% include "media_gallery.html"%}
 	
-	<!-- Project description -->
+	<!-- PROJECT DESCRIPTION -->
 	<div class="project_description">
 	  {% include "about_section.html" %}
 	</div>					
 	
 
-	<!-- Project details -->
+	<!-- PROJECT DETAILS -->
 	<div class="project_details">
 	  {% include "uniqueness_section.html" %}
 	  
@@ -167,7 +214,7 @@
 	
       </div>
       
-      <!-- Colonne grise fermée -->
+      <!-- GREY COLUMN - closed (default) -->
       <div class="grid_5 omega grey_column">											
 	<div class="grey_column_content">					
 	  
@@ -178,7 +225,7 @@
 	  {% endif %}
 	  
 	  
-	  <!-- Colonne grise vide -->
+	  <!-- GREY COLUMN - empty -->
 	  <h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
 	  <p>
 	    <a href="#">{% trans "Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !"|capfirst %}</a>
@@ -187,8 +234,8 @@
 	</div>					
       </div>	
 
-      <!-- Colonne grise ouverte (fermée par défaut) -->
-      <div class="grid_12 omega grey_column_open">											
+      <!-- GREY COLUMN - opened -->
+      <div class="grid_12 omega grey_column_open hidden">											
 	<div class="grey_column_content">	
 	  
 	  <div class="title">{% trans 'Related'|capfirst %}</div>
