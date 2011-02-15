@@ -15,14 +15,14 @@
 			<p>
 				<label for="#">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision">Min 200x200 - Max 1000x800</span>
 				{{ picture_form.original_image }}
-				<input class="button nomargin right" type="submit" value="{% trans 'Upload'|capfirst %}" enctype="multipart/form-data"/>
+				<input id="upload_img_input" class="button nomargin right" type="submit" value="{% trans 'Upload'|capfirst %}" enctype="multipart/form-data"/>
 			</p>
 		</form>
 		
 		<form method="#" action="#">
 			<p>
 				<label for="#">{% trans "insert a video : "|capfirst %}</label><span class="precision">({% trans 'insert your embed link here'|capfirst %})</span>
-				<input type="text" name="nom" />
+				<input type="text" name="name" />
 				<input class="button nomargin right" type="submit" value="{% trans 'Ok'|capfirst %}" />
 			</p>
 		</form>			
@@ -32,51 +32,25 @@
 {% else %}
 	{% if project_instance %}
 		{% if project_instance.pictures.count %}
-				
-		<!-- MEDIA - created project - with pictures -->
-		
-		<!-- 
-		<div id="project_photo_gallery">
-			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
-			<div id="gallery">
-				{% for pic in project_instance.pictures.all %}
-					<a href="{{pic.display.url}}"><img src="{{pic.thumbnail_image.url}}"/></a>
-				{% endfor %}					
+			<div id="project_photo_gallery">
+	
+				<a href="{% url project_sheet-instance-add-picture project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
+	
+				<div id="gallery">
+					<ul id="project_photo_gallery_current_photo">
+						{% for pic in project_instance.pictures.all %}
+						<li><img src="{{pic.display.url}}" alt="" ></li>
+						{% endfor %}
+					</ul>
+					
+					
+					<ul id="project_photo_gallery_mini" class="jcarousel-skin-tango">
+						{% for pic in project_instance.pictures.all %}
+							<li><a onclick="changeslider({{forloop.counter}});" href="javascript:;"><img src="{{pic.thumbnail_image.url}}" alt="" /></a></li>
+						{% endfor %}
+					</ul>
+				</div>				
 			</div>
-		</div>
-		-->
-		
-		
-		<div id="project_photo_gallery">
-
-			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
-
-			<div id="gallery">
-
-				<ul id="project_photo_gallery_current_photo">
-					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-1.jpg" alt=""/></li>
-					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-env-1.jpg"  height="400" alt="" /></li>
-					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-2.jpg" alt="" /></li>
-					<li><img src="http://css-tricks.com/examples/AnythingSlider/images/251356.jpg" alt="" /></li>
-				</ul>
-				
-				
-				<ul id="project_photo_gallery_mini" class="jcarousel-skin-tango">
-					<li><a onclick="changeslider(1);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-1.jpg" alt="" /></a></li>
-					<li><a onclick="changeslider(2);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-env-1.jpg" alt="" /></a></li>
-					<li><a onclick="changeslider(3);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-2.jpg" alt="" /></a></li>
-					<li><a onclick="changeslider(4);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/251356.jpg" alt="" /></a></li>
-					<li><a onclick="changeslider(1);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-1.jpg" alt="" /></a></li>
-					<li><a onclick="changeslider(2);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-env-1.jpg" alt="" /></a></li>
-					<li><a onclick="changeslider(3);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/slide-civil-2.jpg" alt="" /></a></li>
-					<li><a onclick="changeslider(4);" href="#"><img src="http://css-tricks.com/examples/AnythingSlider/images/251356.jpg" alt="" /></a></li>
-				</ul>
-				
-			</div>				
-		</div>
-		
-		
-		
 		{% else %}
 			<!-- MEDIA - created project - no pictures -->
 			<a href="{% url project_sheet-instance-add-picture project_instance.slug %}">

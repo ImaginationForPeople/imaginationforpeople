@@ -9,8 +9,7 @@ class ResizeThumb(processors.Resize):
 
 # now we define a display size resize processor
 class ResizeDisplay(processors.Resize):
-    width = 700 
-    crop = True
+    width = 700
 
 # now let's create an adjustment processor to enhance the image at small sizes 
 class EnchanceThumb(processors.Adjustment): 

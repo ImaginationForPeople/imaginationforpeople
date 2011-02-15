@@ -11,9 +11,9 @@ sys.path.append(os.path.join(PROJECT_ROOT,'..'))
 
 # If we are on staging, then switch off debug
 if socket.gethostname() == 'i4p-dev':
-	DEBUG = False
+    DEBUG = False
 else:
-	DEBUG = True
+    DEBUG = True
 
 # if you need to debug privatebeta, use this
 FORCE_PRIVATEBETA = False
@@ -111,8 +111,8 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-if not DEBUG or FORCE_PRIVATEBETA:
-	MIDDLEWARE_CLASSES += (
+if not DEBUG:
+    MIDDLEWARE_CLASSES += (
 		'privatebeta.middleware.PrivateBetaMiddleware',
 	)
 
