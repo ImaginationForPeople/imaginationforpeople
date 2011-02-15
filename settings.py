@@ -2,13 +2,19 @@
 
 import os
 import sys
+import socket
 from django.utils.translation import ugettext_lazy as _
 # Django settings for i4p project.
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT,'..'))
 
-DEBUG = False # N'oubliez pas de remettre à False avant de commit !
+# If we are on staging, then switch off debug
+if socket.gethostname() == 'i4p-dev':
+	DEBUG = False
+else:
+	DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
