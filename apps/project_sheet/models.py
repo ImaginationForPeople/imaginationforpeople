@@ -77,7 +77,6 @@ class ProjectPicture(ImageModel):
 
     class IKOptions:
         spec_module = 'apps.project_sheet.project_pictures_specs'
-        cache_dir = 'uploads'
         image_field = 'original_image'
 
 
