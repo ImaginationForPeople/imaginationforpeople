@@ -100,7 +100,8 @@ def deploy_bootstrap():
     clonegitcmd = "git clone %(gitrepo)s %(projectname)s" % env
     with cd(env.venvfullpath):
         sudo(clonegitcmd, user="webapp")
-    fixperms()
+    #fixperms()
+    compile_messages() # runs fixperms
     update_requirements()
     syncdb()
     tests()
@@ -119,6 +120,7 @@ def fullupdate():
     """
     _updatemaincode()
     update_requirements()
+    compile_messages()
     syncdb()
     tests()
     reloadapp()
@@ -126,6 +128,7 @@ def fullupdate():
 def update():
     "Fast Update : project maincode"
     _updatemaincode()
+    compile_messages()
     syncdb()
     tests()
     reloadapp()
