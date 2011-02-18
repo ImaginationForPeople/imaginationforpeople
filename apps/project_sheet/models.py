@@ -78,6 +78,11 @@ class ProjectPicture(ImageModel):
     class IKOptions:
         spec_module = 'apps.project_sheet.project_pictures_specs'
         image_field = 'original_image'
+        
+class ProjectVideo(models.Model):
+    video_url = models.URLField()
+    project = models.ForeignKey(I4pProject, related_name="videos")
+    
 
 
 

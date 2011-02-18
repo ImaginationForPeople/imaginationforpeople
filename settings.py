@@ -162,6 +162,7 @@ INSTALLED_APPS = (
     'imagekit',
     'contact_form',
     'request',
+    'oembed',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',

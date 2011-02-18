@@ -7,7 +7,7 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
 from .forms import I4pProjectThemesForm
-from .models import I4pProject, I4pProfile, ProjectPicture
+from .models import I4pProject, I4pProfile, ProjectPicture, ProjectVideo
 
 def get_or_create_project(request, slug):
     try:
@@ -81,29 +81,51 @@ def project_sheet_edit_themes(request, project_slug):
                               context_instance=RequestContext(request)
                               )
 
+
+def project_sheet_add_media(request, slug=None):
+    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',))
+    ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
+    
+    context = {'picture_form' : ProjectPictureForm(),
+               'video_form' : ProjectVideoForm()}
+    
+    try :
+        context["project_instance"] = I4pProject.objects.get(slug=slug)
+    except I4pProject.DoesNotExist:
+            pass
+
+    return render_to_response("project_sheet.html",
+                              context, 
+                              context_instance = RequestContext(request))
+
 def project_sheet_add_picture(request, slug=None):
     ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',))
-    context = {}
+    
+    project = get_or_create_project(request, slug)
+    
     if request.method == 'POST':
-        project = get_or_create_project(request, slug)
         picture_form = ProjectPictureForm(request.POST, request.FILES)
         if picture_form.is_valid():
             picture = picture_form.save(commit=False)
             picture.project = project
             picture.save()
-            
-            return redirect(project)
         else :
             print picture_form.errors
-    else:
-        try :
-            project =  I4pProject.objects.get(slug=slug)
-            context["project_instance"] = project
-        except I4pProject.DoesNotExist:
-            pass
-        picture_form = ProjectPictureForm()
-        
-    context["picture_form"] = picture_form
-    return render_to_response("project_sheet.html",
-                              context,
-                              context_instance = RequestContext(request))
+
+    return redirect(project)
+
+def project_sheet_add_video(request, slug=None):
+    ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
+    
+    project = get_or_create_project(request, slug)
+    
+    if request.method == 'POST':
+        video_form = ProjectVideoForm(request.POST, request.FILES)
+        if video_form.is_valid():
+            video = video_form.save(commit=False)
+            video.project = project
+            video.save()
+        else :
+            print video_form.errors
+
+    return redirect(project)
