@@ -5,13 +5,13 @@ from tagging.forms import TagField
 
 from .models import I4pProject
 
-class I4pProjectThemesForm(forms.ModelForm):
+class I4pProjectRelatedForm(forms.ModelForm):
     """
     Edit themes for a given Project
     """
     class Meta:
         model = I4pProject
-        fields = ('themes',)
+        fields = ('themes', 'objective')
 
     themes = TagField(label=_("themes"),
                       widget=forms.Textarea,

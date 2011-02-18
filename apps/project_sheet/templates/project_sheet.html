@@ -46,7 +46,7 @@
 			$('#project_photo_gallery_current_photo').anythingSlider({
 				width : 700,          // Override the default CSS width
 				height: 460,		// Override the default CSS height
-				delay               : 2500,      // How long between slideshow transitions in AutoPlay mode (in milliseconds)
+				delay               : 10000,      // How long between slideshow transitions in AutoPlay mode (in milliseconds)
 				animationTime       : 600,       // How long the slideshow transition takes (in milliseconds)
 				buildArrows         : false,      // If true, builds the forwards and backwards buttons
 				resizeContents      : true,      // If true, solitary images/objects in the panel will expand to fit the viewport
@@ -101,16 +101,19 @@
 	//	$('#search').unblock();
     }
 
-    function project_update_themes() {
+    function project_update_related() {
         //$('#search').block({message: 'Recherche en cours, patientez svp...'});
 	//$('#search-results').fadeTo('fast', 0.3);
 	//$('#search-results-wrapper').activity({width: 6, valign: 'center', padding: '20'});
 
-	themes_form = $('#themes-form').serializeObject(true);
+	themes_form = $('#themes-form').serialize(); // serializeObject(true);
 
-        Dajaxice.apps.project_sheet.project_update_themes(Dajax.process, {'themes_form': themes_form,
+        Dajaxice.apps.project_sheet.project_update_related(Dajax.process, {'related_form': themes_form,
                                                                           'project_slug': '{{ project_instance.slug }}'}
         );
+
+        $('#opened-sidebar').slideToggle();
+        location.reload();
                                                           
 	return false;
     }
@@ -130,8 +133,16 @@
 
        $(this).removeClass('empty');
 
+
+       $(this).hide().fadeIn()
+       restore_edit_buttons();
+
        return(value);
      };
+
+     function restore_edit_buttons() {
+       $('.project_details_title_edit .button').fadeIn('slow');
+     }
 
      $('.project_details_body').editable(edit_callback,
                                          {event: 'dblclick',
@@ -143,19 +154,41 @@
                                           cancel: 'Cancel',
                                           submit: 'OK',
                                           onblur: 'ignore',
+                                          onreset: restore_edit_buttons,
                                           cssclass: 'inline-edit',
                                           placeholder: "{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}"
                                           });
 
+    $('.project_details_body').dblclick(function() {
+      $('.project_details_title_edit .button').fadeOut('fast');
+    });
+
     $('.project_details_title_edit .button').click(function() {
       $(this).parent().next('.project_details_body').dblclick();
-
        return false;
     });
     
     });
   </script>
 
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#opened-sidebar').hide();
+      
+
+      $('a.sidebar-opener').click(function() {
+         $('#opened-sidebar').slideToggle();
+         return false;
+      });
+
+      $('a.sidebar-close').click(function() {
+         $('#opened-sidebar').slideToggle();
+         return false;
+      });
+
+    });
+  </script>
 
 {% endblock %}
 
@@ -198,8 +231,8 @@
 	  <form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% endif %}
 	{{ baseline_form.baseline }}
-	<input class="redbutton" type="submit" value="X" />
 	<input class="greenbutton" type="submit" value="Ok" />
+	<input class="redbutton" type="submit" value="Cancel" />
 	  </form>	
 	{% else %}
 	  {% if project_instance %}
@@ -263,13 +296,13 @@
 	  
 	  {% if project_instance.themes %}
 	    <div class="title">
-	      <a href="{% url project_sheet-instance-edit-themes project_instance.slug %}" class="button">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}
+	      <a href="{% url project_sheet-instance-edit-related project_instance.slug %}" class="button sidebar-opener">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}
 	    </div>
 
 	    <!-- Colonne grise remplie -->
 	    <div class="grey_column_objective">	
 	      <label>{% trans 'Objective :'|capfirst %}</label> 
-	      <a href="#" id="project_objective">Educative</a>
+	      <a href="#" id="project_objective">{{ project_instance.get_objective_display }}</a>
 	    </div>
 
 
@@ -288,7 +321,7 @@
 	  <!-- GREY COLUMN - empty -->
 	  <h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
 	  <p>
-	    <a href="#">{% trans "Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !"|capfirst %}</a>
+	    <a class="sidebar-opener" href="#">{% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
 	  </p>
 
 	  {% endif %}
@@ -297,33 +330,28 @@
       </div>	
 
       <!-- GREY COLUMN - opened -->
-      <div class="grid_12 omega grey_column_open hidden">											
+      <div id="opened-sidebar" class="grid_12 omega grey_column_open">	
 	<div class="grey_column_content">	
 	  
 	  <div class="title">{% trans 'Related'|capfirst %}</div>
-	  <a href="#" id="grey_column_close">{% trans 'Close & discard'%}</a>
-	  
+
+	  <form id="themes-form" method="POST">
+
 	  <div class="grey_column_content_edition">
 	    
 	    <div class="grey_column_objective_edition">						
 	      <form action="#" method="#">
 		<p>
 		  <label>{% trans 'Objective :'|capfirst %}</label> 
-		  <select name="objective" id="objective_list">
-		    <option value="#">{% trans 'Educate'|capfirst %}</option>
-		    <option value="#">{% trans 'Blabla'|capfirst %}</option>
-		    <option value="#">{% trans 'Blablabla'|capfirst %}</option>
-		  </select>
+		  {{ project_related_form.objective }}
 		</p>
 	      </form>						
 	    </div>						
 	    
 	    <div class="grey_column_cloudtag_edition">
-
-	      <form id="themes-form" method="POST">
 	      
 		<div id="grey_column_cloudtag_edition_title">
-		  <label>{% trans 'Themes: '|capfirst %}</label><span class="precision">({% trans 'select your tags from the cloud below' %})</span>
+		  <label>{% trans 'Themes:'|capfirst %}</label><span class="precision">({% trans 'select your tags from the cloud below' %})</span>
 		</div>
 		
 		<ul id="themes_list">
@@ -337,15 +365,15 @@
 		<ul id="themes_tags">
 		</ul>
 
-	      </form>
-
 	    </div>
-	    
-	    <a href="javascript:;" onclick="javascript: return project_update_themes();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
-	    
-	  </div>						
+
+	    <a href="javascript:;" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+	    <a id="grey_column_close" class="sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
+
+	  </form>
+	</div>						
 	  
-	</div>					
       </div>					
+    </div>					
 
 {% endblock %}

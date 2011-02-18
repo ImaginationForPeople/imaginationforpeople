@@ -6,7 +6,7 @@ from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect
 
-from .forms import I4pProjectThemesForm
+from .forms import I4pProjectRelatedForm
 from .models import I4pProject, I4pProfile, ProjectPicture, ProjectVideo
 
 def get_or_create_project(request, slug):
@@ -29,10 +29,13 @@ def project_sheet_show(request, slug):
     """
     Display a project sheet
     """
+    project_related_form = I4pProjectRelatedForm()
+
     project = get_object_or_404(I4pProject, slug=slug)
 
     return render_to_response(template_name='project_sheet.html', 
-                              dictionary={'project_instance': project},
+                              dictionary={'project_instance': project,
+                                          'project_related_form': project_related_form},
                               context_instance = RequestContext(request))
 
    
@@ -58,23 +61,23 @@ def project_sheet_edit_field(request, field, slug=None, model_class=I4pProject):
                               context,
                               context_instance = RequestContext(request))
 
-def project_sheet_edit_themes(request, project_slug):
+def project_sheet_edit_related(request, project_slug):
     """
     Edit themes (using tags) of a given project sheet.
     Non-Ajax version.
     """
     project_sheet = get_object_or_404(I4pProject, slug=project_slug)
 
-    project_sheet_themes_form = I4pProjectThemesForm(request.POST or None, 
-                                                     instance=project_sheet)
+    project_sheet_related_form = I4pProjectRelatedForm(request.POST or None, 
+                                                      instance=project_sheet)
 
     if request.method == 'POST':
-        if project_sheet_themes_form.is_valid():
-            project_sheet_themes_form.save()
+        if project_sheet_related_form.is_valid():
+            project_sheet_related_form.save()
             return redirect(project_sheet)
 
     dictionary = {'project_sheet': project_sheet,
-                  'project_sheet_themes_form': project_sheet_themes_form}
+                  'project_sheet_related_form': project_sheet_related_form}
 
     return render_to_response(template_name="project_sheet/project_edit_themes.html",
                               dictionary=dictionary,

@@ -30,6 +30,14 @@ class I4pProject(MothertongueModelTranslate):
     value_section = models.TextField(_("what is the experience social added value"), null=True, blank=True)
     scalability_section = models.TextField(_("how scalable it is"), null=True, blank=True)
     
+    OBJECTIVE_CHOICES = [
+        ('EDUC', _('Educate')),
+        ('CONT', _('Contribute')),
+        ]
+
+    objective = models.CharField(verbose_name=_('Objective'),
+                                 max_length=4, choices=OBJECTIVE_CHOICES)
+
     themes = TagField()
     
     translations = models.ManyToManyField("I4pProjectTranslation", blank=True, verbose_name=_("translations"))
