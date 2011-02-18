@@ -1,7 +1,7 @@
 {% load i18n %}
 {% if uniqueness_section_form %}
 	<!-- PARAGRAPH - edition mode -->
-	<div id="uniqueness" class="project_details_title_edit">
+	<div id="uniqueness_section" class="project_details_title_edit">
 		<h2>{% trans "what's make it creative and unique"|capfirst %}?</h2>
 	</div>
 		{% if project_instance %}
@@ -10,33 +10,27 @@
 			<form class="project_details_body_edit" action="{% url project_sheet-edit-field 'uniqueness_section' %}" method="post">{% csrf_token %}
 		{% endif %}
 			{{uniqueness_section_form.uniqueness_section}}
-			<input class="greenbutton nomargin" type="submit" value="{% trans 'Ok'|capfirst %}" />
 			<input class="redbutton nomargin" type="submit" value="{% trans 'Cancel'|capfirst %}" />
+			<input class="greenbutton nomargin" type="submit" value="{% trans 'Ok'|capfirst %}" />
 	</form>
 {% else %}
 	{% if project_instance %}
-		<div class="project_details_title_edit">
+		<div id="uniqueness_section" class="project_details_title_edit">
 			<h2>{% trans "what's make it creative and unique"|capfirst %}?</h2>
 			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'uniqueness_section' %}" class="button">{% trans 'edit'|capfirst %}</a>
 		</div>
 		{% if project_instance.uniqueness_section %}
 			<!-- PARAGRAPH - filled -->
-			<p class="project_details_body">
-			{{project_instance.uniqueness_section}}
-			</p>
+			<p class="project_details_body">{{ project_instance.uniqueness_section }}</p>
 		{% else %}
-			<p class="project_details_body empty edit2">
-				{% trans "this bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
-			</p>
+			<p class="project_details_body empty">{% trans "this bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
 		{% endif %}
 	{% else %}
 		<!-- PARAGRAPH - empty -->
-		<div class="project_details_title_edit">
+		<div id="uniqueness_section" class="project_details_title_edit">
 			<h2>{% trans "what's make it creative and unique"|capfirst %}?</h2>
 			<a href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button">{% trans 'Edit'|capfirst %}</a>
 		</div>
-		<p class="project_details_body empty edit2">
-		{% trans "this bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}
-		</p>
+		<p class="project_details_body empty"></p>
 	{% endif %}
 {% endif %}

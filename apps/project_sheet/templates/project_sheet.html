@@ -8,12 +8,15 @@
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
 	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/anythingslider.css" type="text/css" media="screen" />
 
+	<!-- inline edit -->
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jeditable.js"></script>
+
+	<!-- for tags -->
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.iecompat.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tinysort.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tagcloud.js"></script>
 
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/XMLHttpRequest.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.ba-serializeobject.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.dajax.core.js"></script>
 	<script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
@@ -113,6 +116,44 @@
     }
 
 
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+     function edit_callback(value, settings) {
+       var fieldname = $(this).prev('div').attr('id');
+
+       Dajaxice.apps.project_sheet.project_sheet_edit_field(Dajax.process, {'fieldname': fieldname, 
+                                                                            'value': value
+                                                                            {% if project_instance %}, 'project_slug': '{{ project_instance.slug }}' {% endif %} 
+       });
+
+       $(this).removeClass('empty');
+
+       return(value);
+     };
+
+     $('.project_details_body').editable(edit_callback,
+                                         {event: 'dblclick',
+                                          tooltip: 'Double-click to edit',
+                                          indicator: 'Saving...',
+                                          type: 'textarea',
+                                          height: '80px',
+                                          width: '690px',
+                                          cancel: 'Cancel',
+                                          submit: 'OK',
+                                          onblur: 'ignore',
+                                          cssclass: 'inline-edit',
+                                          placeholder: "{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}"
+                                          });
+
+    $('.project_details_title_edit .button').click(function() {
+      $(this).parent().next('.project_details_body').dblclick();
+
+       return false;
+    });
+    
+    });
   </script>
 
 
@@ -220,18 +261,37 @@
       <div class="grid_5 omega grey_column">											
 	<div class="grey_column_content">					
 	  
-	  {% if project_instance %}
+	  {% if project_instance.themes %}
 	    <div class="title">
 	      <a href="{% url project_sheet-instance-edit-themes project_instance.slug %}" class="button">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}
 	    </div>
-	  {% endif %}
-	  
+
+	    <!-- Colonne grise remplie -->
+	    <div class="grey_column_objective">	
+	      <label>{% trans 'Objective :'|capfirst %}</label> 
+	      <a href="#" id="project_objective">Educative</a>
+	    </div>
+
+
+	    {% tags_for_object project_instance as taglist %}
+	    <div class="grey_column_tagcloud">	
+	      <label>{% trans 'Themes:'|capfirst %}</label> 							
+	      <ul id="cloudtag_list">
+		{% for tag in taglist %}
+		  <li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif %}</li>
+		{% endfor %}
+	      </ul>
+	    </div>
+	    
+	  {% else %}
 	  
 	  <!-- GREY COLUMN - empty -->
 	  <h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
 	  <p>
 	    <a href="#">{% trans "Here is the place to renseign your <strong>objective</strong> and set the <strong>tags related</strong> to your project ; don’t forget to fill these !"|capfirst %}</a>
 	  </p>
+
+	  {% endif %}
 	    
 	</div>					
       </div>	
