@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import patterns, url
 from django.views.generic.simple import direct_to_template
-from .views import project_sheet_show , project_sheet_edit_field, project_sheet_edit_themes, project_sheet_add_picture
+from .views import project_sheet_show , project_sheet_edit_field, project_sheet_edit_themes, project_sheet_add_picture, project_sheet_add_video, project_sheet_add_media
 
 PROJECT_AUTHORIZED_FIELDS = "|".join([
     'title',
@@ -20,7 +20,12 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/edit/themes/$', project_sheet_edit_themes, name='project_sheet-instance-edit-themes'),
    
     url(r'^(?P<slug>[-\w]+)/$', project_sheet_show, name='project_sheet-show'),
-
+    
+    
+    url(r'^add/media/$', project_sheet_add_media, name='project_sheet-add-media'),
+    url(r'^(?P<slug>[-\w]+)/add/media/$', project_sheet_add_media, name='project_sheet-instance-add-media'),
     url(r'^add/picture/$', project_sheet_add_picture, name='project_sheet-add-picture'),
     url(r'^(?P<slug>[-\w]+)/add/picture/$', project_sheet_add_picture, name='project_sheet-instance-add-picture'),
+    url(r'^add/video/$', project_sheet_add_video, name='project_sheet-add-video'),
+    url(r'^(?P<slug>[-\w]+)/add/video/$', project_sheet_add_video, name='project_sheet-instance-add-video'),
 )
