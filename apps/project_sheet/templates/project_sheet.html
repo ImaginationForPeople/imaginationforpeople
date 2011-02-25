@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
 	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/anythingslider.css" type="text/css" media="screen" />
 
-	<!-- inline edit -->
+	<!-- inline  -->
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jeditable.js"></script>
 
 	<!-- for tags -->
@@ -71,7 +71,7 @@
 	    itemName: 'themes',
 	});
 
-	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200}).find("li").tsort();
+	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
 
 	$("#themes_list li").click(function($this) {
 	    $.fn.tagit.create_tag($(this).text());
@@ -151,8 +151,8 @@
                                           type: 'textarea',
                                           height: '80px',
                                           width: '690px',
-                                          cancel: "<input type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='Cancel'/>",
-                                          submit: "<input type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='OK'/>",
+                                          cancel: "<input class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
+                                          submit: "<input class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
                                           onblur: 'ignore',
                                           onreset: restore_edit_buttons,
                                           cssclass: 'inline-edit',
@@ -231,21 +231,21 @@
 	  <form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% endif %}
 	{{ baseline_form.baseline }}
-	<input class="greenbutton" type="submit" value="Ok" />
-	<input class="redbutton" type="submit" value="Cancel" />
-	  </form>	
+	<input class="greenbutton" type="image"  src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
+	<input class="redbutton" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />	
+	</form>	
 	{% else %}
 	  {% if project_instance %}
 	    <!-- BASELINE - filled-->
 	    <div class="project_baseline focus">
 	      <p>{{ project_instance.baseline }}</p>
-	      <a href="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
+	      <a href="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" class="button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 	    </div>
 	  {% else %}
 	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
 	      <p>{% trans "my project baseline"|capfirst %}</p>
-	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button">{% trans 'edit'|capfirst %}</a>
+	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 	    </div>
 	  {% endif %}
 	{% endif %}					
@@ -296,7 +296,7 @@
 	  
 	  {% if project_instance.themes %}
 	    <div class="title">
-	      <a href="{% url project_sheet-instance-edit-related project_instance.slug %}" class="button sidebar-opener">{% trans 'Edit'|capfirst %}</a>{% trans 'Related'|capfirst %}
+	      <a href="{% url project_sheet-instance-edit-related project_instance.slug %}" class="button sidebar-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'Related'|capfirst %}
 	    </div>
 
 	    <!-- Colonne grise remplie -->
@@ -367,8 +367,8 @@
 
 	    </div>
 
+		<a id="grey_column_close" class="sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
 	    <a href="javascript:;" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
-	    <a id="grey_column_close" class="sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
 
 	  </form>
 	</div>						

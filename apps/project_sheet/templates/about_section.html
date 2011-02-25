@@ -3,9 +3,9 @@
 <h1 class="about_project">{% trans 'about the project'|capfirst%}
 	{% if not about_section_form %}
 		{% if project_instance %}
-			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'about_section' %}#about_section" class="button nomargin right">{% trans 'edit'|capfirst %}</a>
+			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'about_section' %}#about_section" class="button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		{% else %}
-			<a href="{% url project_sheet-edit-field 'about_section' %}#about_section" class="button nomargin right">{% trans 'edit'|capfirst %}</a>
+			<a href="{% url project_sheet-edit-field 'about_section' %}#about_section" class="button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		{% endif %}
 	{% endif %}
 </h1>
@@ -19,8 +19,8 @@
 			<form class="project_description_txt_edit" action="{% url project_sheet-edit-field 'about_section' %}" method="post">{% csrf_token %}
 		{% endif %}
 			{{about_section_form.about_section}}
-			<input class="greenbutton nomargin" type="submit" value="OK" />									
-			<input class="redbutton nomargin" type="submit" value="Cancel" />
+			<input class="greenbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
+			<input class="redbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
 		</form>
 	
 	</div>

@@ -164,19 +164,30 @@
 	font-style:italic;
 	
 	font-size:22px;
+	background-repeat:no-repeat;	
 	
-	background-image:url(../images/project/close-arrow.jpg);	
-	background-repeat:no-repeat;
+	margin-top:15px;
+	
+ }
+ 
+ 
+ #grey_column_close{
+ 
+	background-image:url(../images/project/close-arrow.jpg);
+	
 	background-position:right;	
-	
-	left:-20px;
-	margin-top:15px; 
+	left:-20px; 
+ 
  }
  
  
  #grey_column_save_close{
  
 	color:#119CBA;
+	background-image:url(../images/project/close-arrow-right.jpg);	
+	background-position:left;	
+	float:right;
+	right:-20px;
 	
  }
 

@@ -27,11 +27,11 @@
 			<p>
 				<label for="#">{% trans "add a video (youtube, dailymotion, etc): "|capfirst %}</label><span class="precision"></span>
 				{{ video_form.video_url }}
-				<input class="button nomargin right" type="submit" value="{% trans 'ok'|capfirst %}" />
+				<input class="greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" Alt="Ok" />
 			</p>
 		</form>			
 	</div>
-	<a href="#" class="redbutton nomargin right">{% trans 'X'|capfirst %}</a>	
+	<a href="#" class="redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>	
 </div>
 {% else %}
 	{% if project_instance %}

@@ -23,6 +23,12 @@ form{
 
 }
 
+.project_content a{
+
+	text-decoration:none;
+
+}
+
 #id_title{
 
 	height:54px;
@@ -129,8 +135,18 @@ form{
 	text-indent:10px;
 	line-height:24px;
 	/*font-weight:bold;*/
+	
+	margin-bottom:37px;
 
 }
+
+.project_baseline_edition .greenbutton{
+
+	margin-left:3px !important;
+	margin-right:7px !important;
+
+}
+
 
 .project_baseline_edition_inactive p{
 
@@ -182,12 +198,17 @@ form{
 	margin:0px;
 	margin-right:3px;
 	top:4px;
-	padding-right:7px;
-	padding-left:8px;
+	padding-right:10px;
+	padding-left:10px;
+	
+	padding-top:6px;
+	padding-bottom:0px;
+	
 	left:2px;
 	line-height:15px;
 
 }
+
 
 .project_baseline_edition .button, 
 .project_baseline_edition .redbutton,
@@ -230,7 +251,7 @@ form{
 	top:-1px;
 		
 	-moz-box-shadow: 0px 0px 4px #a1a1a1;  
- -webkit-box-shadow: 0px 0px 4px #a1a1a1;  
+	-webkit-box-shadow: 0px 0px 4px #a1a1a1;  
     box-shadow: 0px 0px 4px #a1a1a1; 
 	
 	-moz-border-radius: 4px; 
@@ -313,6 +334,12 @@ form{
 	margin-left:auto;
 	margin-right:auto;	
 	
+}
+
+#project_photo_upload_edit #forms_files .button{
+
+	top:2px;
+
 }
 
 #project_photo_upload_edit .redbutton{
@@ -602,7 +629,8 @@ form{
 #project_title:hover {
 
 	color:white;	
-		
+
+	text-decoration:none;
 	background-image:url("../images/project/project_title_edit.jpg");
 	background-position:right bottom;
 	background-repeat:no-repeat;
@@ -614,17 +642,15 @@ form{
 .project_baseline{
 
 	color:#2a2a2a;
-	height:24px;
 	font-size:15px;
 	font-family : Tahoma, Verdana, Arial, Sans-serif;
 	position:relative;
 	width:100%;
 	border:0px;
-	/*float:left;*/
+	float:left;
 	padding-top:5px;
 	padding-bottom:5px;
 	/*text-indent:10px;*/
-	line-height:24px;
 	/*font-weight:bold;*/
 
 }
@@ -641,10 +667,10 @@ form{
 	width:93%;
 	border:0px;
 	float:left;
-	padding-top:5px;
+	padding-top:2px;
 	padding-bottom:5px;
 	/*text-indent:10px;*/
-	line-height:14px;
+
 	/*font-weight:bold;*/
 	
 }
@@ -656,10 +682,15 @@ form{
 	text-align:center;
 	margin:0px;
 	margin-right:3px;
-	top:4px;
-	padding-right:7px;
-	padding-left:8px;
-	left:5px;
+	top:1px;
+	padding-right:10px;
+	padding-left:10px;
+	
+
+	padding-top:2px;
+	padding-bottom:2px;
+	
+	left:-4px;
 	line-height:15px;
 
 }
@@ -905,7 +936,7 @@ ul#themes_tags li.tagit-choice {
     font-size:14px;
     font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
     font-weight:bold;
-    font-style:italic;
+   /* font-style:italic;*/
     color:white;
     
     position:relative;
