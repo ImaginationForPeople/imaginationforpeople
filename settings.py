@@ -162,7 +162,7 @@ INSTALLED_APPS = (
     'imagekit',
     'contact_form',
     'request',
-    'oembed',
+    'oembed_works',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -176,6 +176,18 @@ INSTALLED_APPS = (
     'apps.member',
     'apps.project_sheet'
 )
+
+OEMBED_PROVIDERS = {
+  'YouTube': ('http://www.youtube.com/oembed/', 
+              [r'http://(?:www\.)?youtube\.com/watch\?v=[A-Za-z0-9\-=_]{11}']),
+  'Vimeo': ('http://vimeo.com/api/oembed.json',
+            [r'http://(?:www\.)?vimeo\.com/\d+']),
+  'Dailymotion': ('http://www.dailymotion.com/services/oembed/?wmode=transparent',
+                  [r'http://(?:www\.)?dailymotion\.com/video/\S+']),
+   'Flickr': ('http://www.flickr.com/services/oembed',
+              [r'http://(?:www\.)?flickr\.com/photos/\S+?/(?:sets/)?\d+/?']),
+}
+
 
 if not DEBUG or FORCE_PRIVATEBETA:
 	INSTALLED_APPS += (
