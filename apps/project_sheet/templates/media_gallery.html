@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load oembed_tags %}
+{% load oembed_works_tags %}
 
 {% if picture_form %}
 <!-- MEDIA - edition mode -->
@@ -57,7 +57,11 @@
 							<li><a onclick="changeslider({{forloop.counter}});" href="javascript:;"><img src="{{pic.thumbnail_image.url}}" alt="" /></a></li>
 						{% endfor %}
 						{% for vid in project_instance.videos.all %}
-							<li><a onclick="changeslider({{forloop.counter|add:project_instance.pictures.count}});" href="javascript:;"><img src="{{MEDIA_URL}}/images/play_video.jpg" alt="" /></a></li>
+							<li>
+								<a onclick="changeslider({{forloop.counter|add:project_instance.pictures.count}});" href="javascript:;">
+									<img src="{{MEDIA_URL}}/images/play_video.png" alt="Play" height="48" width="48"/>
+								</a>
+							</li>
 						{% endfor %}
 					</ul>
 				</div>				
