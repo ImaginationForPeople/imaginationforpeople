@@ -20,28 +20,38 @@
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.ba-serializeobject.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.dajax.core.js"></script>
 	<script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
-
-	<!-- Scripts for Image Slider & Miniatures -->
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.easing.1.2.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.anythingslider.js" ></script>
 	
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery.jcarousel.min.js"></script>
-
-	<!-- Scripts for Miniatures -->
-	<script type="text/javascript">
-
-		jQuery(document).ready(function() {
-			$('#project_photo_gallery_mini').jcarousel();
-		});
-
-		
-	</script>
-
+	<!-- Scripts for Image Slider & Miniatures -->
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.easing.1.2.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.anythingslider.js" ></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jcarousel.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/swfobject.js" ></script>
 
 	<!-- Scripts for Image Slider -->
 	<script type="text/javascript">
-
-		$(function () {
+	
+		/* Update the carousel so that it matches the current picture  */
+		function update_carousel(index) {
+			var jcarousel = $('#project_photo_gallery_mini').data('jcarousel');
+			
+			console.debug(jcarousel.options.size);
+			console.debug(jcarousel.options.scroll);
+			if ( jcarousel.options.size > jcarousel.options.scroll )
+				jcarousel.scroll(index - 1, true);
+		}
+	
+	
+		/* When a thumbnail is clicked */
+		function changeslider(sid){
+			var anyslider = $('#project_photo_gallery_current_photo');
+			
+			anyslider.anythingSlider(sid);
+			update_carousel(sid);
+					
+			return false;
+		};
+	
+		$(document).ready(function () {
 
 			$('#project_photo_gallery_current_photo').anythingSlider({
 				width : 700,          // Override the default CSS width
@@ -50,17 +60,33 @@
 				animationTime       : 600,       // How long the slideshow transition takes (in milliseconds)
 				buildArrows         : false,      // If true, builds the forwards and backwards buttons
 				resizeContents      : true,      // If true, solitary images/objects in the panel will expand to fit the viewport
-				autoPlay            : true,     // This turns off the entire slideshow FUNCTIONALY, not just if it starts running or not
-
+				autoPlay            : false,     // This turns off the entire slideshow FUNCTIONALY, not just if it starts running or not
+				addWmodeToObject	: "transparent",
 				easing: 'easeInOutExpo'
 			});	
+			
+			/* Disable callbacks on the buttons to set a new behaviour */
+			$('#project_photo_gallery_mini').jcarousel({buttonNextEvent: null, buttonPrevEvent: null, wrap: 'circular', scroll: 4});
 
+			/* When the next button is clicked */
+			$('.jcarousel-next').click(function() {
+				var anyslider = $('#project_photo_gallery_current_photo').data('AnythingSlider');
+						
+				anyslider.goForward();
+				update_carousel(anyslider.currentPage);
+			});
+			
+			/* When the previous button is clicked */
+			$('.jcarousel-prev').click(function() {
+				var anyslider = $('#project_photo_gallery_current_photo').data('AnythingSlider');
+				
+				anyslider.goBack();
+				update_carousel(anyslider.currentPage);
+			});
+			
 		});
-		
-		function changeslider(sid){
-				$('#project_photo_gallery_current_photo').anythingSlider(sid);
-				return false;
-		};
+				
+
 
 	</script>
 

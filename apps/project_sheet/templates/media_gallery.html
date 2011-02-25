@@ -36,6 +36,8 @@
 {% else %}
 	{% if project_instance %}
 		{% if project_instance.pictures.count or project_instance.videos.count%}
+			
+			<!-- MEDIA - created project - with pictures -->
 			<div id="project_photo_gallery">
 				
 				<a href="{% url project_sheet-instance-add-media project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
