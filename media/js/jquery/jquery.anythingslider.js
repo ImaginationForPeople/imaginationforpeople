@@ -207,7 +207,7 @@
 			base.hasSwfo = (typeof(swfobject) !== 'undefined' && swfobject.hasOwnProperty('embedSWF') && $.isFunction(swfobject.embedSWF)) ? true : false; // is swfobject loaded?
 
 			// Initialize YouTube javascript api, if YouTube video is present
-			if (base.hasEmb && base.hasSwfo) {
+			/*if (base.hasEmb && base.hasSwfo) {
 				base.$items.find('embed[src*=youtube]').each(function(i){
 					// Older IE doesn't have an object - just make sure we are wrapping the correct element
 					var $tar = ($(this).parent()[0].tagName === "OBJECT") ? $(this).parent() : $(this);
@@ -220,8 +220,8 @@
 						function(){ if (i >= base.hasEmb - 1) { base.$el.trigger('swf_completed', base); } } // swf callback
 					);
 				});
-			}
-
+			}*/
+			
 			// Fix tabbing through the page
 			base.$items.find('a').unbind('focus').bind('focus', function(e){
 				base.$items.find('.focusedLink').removeClass('focusedLink');
