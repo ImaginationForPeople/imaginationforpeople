@@ -54,6 +54,14 @@
 	
 		$(document).ready(function () {
 
+			
+			$('#project_photo_gallery_current_photo').find('embed[src*=youtube]').each(function(i){
+				$(this).before('<param name="wmode" value="transparent">');
+				$(this).attr('wmode', "transparent");
+			});
+			
+			$('#project_photo_gallery_current_photo > iframe').css('z-index', '-2000');
+			
 			$('#project_photo_gallery_current_photo').anythingSlider({
 				width : 700,          // Override the default CSS width
 				height: 460,		// Override the default CSS height
