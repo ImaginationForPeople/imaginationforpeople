@@ -15,14 +15,14 @@
 			<input class="redbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X"/>	
 	</form>
 {% else %}
-	{% if project_instance %}
+	{% if project_translation %}
 		<div id="scalability_section" class="project_details_title_edit">
 			<h2>{% trans 'how scalable it is'|capfirst %}?</h2>
-			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'scalability_section' %}" class="button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'scalability_section' %}" class="button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		</div>
-		{% if project_instance.scalability_section %}
+		{% if project_translation.scalability_section %}
 			<!-- PARAGRAPH - filled -->
-			<p class="project_details_body">{{project_instance.scalability_section}}</p>
+			<p class="project_details_body">{{project_translation.scalability_section}}</p>
 		{% else %}
 			<p class="project_details_body empty">{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
 		{% endif %}	

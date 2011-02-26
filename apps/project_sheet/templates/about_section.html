@@ -2,8 +2,8 @@
 
 <h1 class="about_project">{% trans 'about the project'|capfirst%}
 	{% if not about_section_form %}
-		{% if project_instance %}
-			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'about_section' %}#about_section" class="button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+		{% if project_translation %}
+			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}#about_section" class="button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		{% else %}
 			<a href="{% url project_sheet-edit-field 'about_section' %}#about_section" class="button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		{% endif %}
@@ -13,8 +13,8 @@
 	<!-- Titre du projet en mode éditable-->
 	<!-- LE CHAMP DE SAISIE ET PLUS GENERALEMENT LA BOITE LA CONTENANT DOIT S'AGRANDIR EN FONCTION DU CONTENU TAPE-->
 	<div id="about_section" class="project_description_zone_edition">
-		{% if project_instance %}
-			<form class="project_description_txt_edit" action="{% url project_sheet-instance-edit-field project_instance.slug  'about_section' %}#about_section" method="post">{% csrf_token %}
+		{% if project_translation %}
+			<form class="project_description_txt_edit" action="{% url project_sheet-instance-edit-field project_translation.slug  'about_section' %}#about_section" method="post">{% csrf_token %}
 		{% else %}
 			<form class="project_description_txt_edit" action="{% url project_sheet-edit-field 'about_section' %}" method="post">{% csrf_token %}
 		{% endif %}
@@ -25,17 +25,17 @@
 	
 	</div>
 {% else %}
-	{% if project_instance %} 
-		{% if project_instance.about_section %}
+	{% if project_translation %} 
+		{% if project_translation.about_section %}
 			<!-- Titre du projet deja créé, avec section about, en mode NON éditable-->
 			<div id="about_section" class="project_description_zone focus">
 				<div class="project_description_txt">
-					<p>{{ project_instance.about_section }}</p>
+					<p>{{ project_translation.about_section }}</p>
 				</div>
 			</div>
 		{% else %}
 			<!-- Titre du projet deja créé, SANS section about, en mode NON éditable-->
-			<a href="{% url project_sheet-instance-edit-field project_instance.slug 'about_section' %}#about_section">
+			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}#about_section">
 				<div id="about_section" class="project_description_zone_edition">
 					<div class="project_description_txt_edit">
 						<h1>{% trans "what’s make my project an innovant project ?"|capfirst %}</h1>

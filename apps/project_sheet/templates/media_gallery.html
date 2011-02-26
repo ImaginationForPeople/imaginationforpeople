@@ -7,8 +7,8 @@
 	<h1>{% trans "upload a media"|capfirst %}</h1>
 	
 	<div id="forms_files">
-		{% if project_instance %}		
-			<form method="post" action="{% url project_sheet-instance-add-picture project_instance.slug %}" enctype="multipart/form-data" >{% csrf_token %}
+		{% if project_translation %}		
+			<form method="post" action="{% url project_sheet-instance-add-picture project_translation.slug %}" enctype="multipart/form-data" >{% csrf_token %}
 		{% else %}
 			<form method="post" action="{% url project_sheet-add-picture %}" enctype="multipart/form-data">{% csrf_token %}
 		{% endif %}
@@ -19,8 +19,8 @@
 			</p>
 		</form>
 		
-		{% if project_instance %}		
-			<form method="post" action="{% url project_sheet-instance-add-video project_instance.slug %}" >{% csrf_token %}
+		{% if project_translation %}		
+			<form method="post" action="{% url project_sheet-instance-add-video project_translation.slug %}" >{% csrf_token %}
 		{% else %}
 			<form method="post" action="{% url project_sheet-add-video %}">{% csrf_token %}
 		{% endif %}
@@ -34,37 +34,37 @@
 	<a href="javascript:history.go(-1);" class="redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>	
 </div>
 {% else %}
-	{% if project_instance %}
-		{% if project_instance.pictures.count or project_instance.videos.count%}
+	{% if project_translation %}
+		{% if project_translation.project.pictures.count or project_translation.project.videos.count %}
 			
 			<!-- MEDIA - created project - with pictures -->
 			<div id="project_photo_gallery">
 				
-				<a href="{% url project_sheet-instance-add-media project_instance.slug %}" class="button">{% trans 'add'|capfirst %}</a>
+				<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button">{% trans 'add'|capfirst %}</a>
 	
 				<div id="gallery">
 					<ul id="project_photo_gallery_current_photo">
 
-						{% for pic in project_instance.pictures.all %}
+						{% for pic in project_translation.project.pictures.all %}
 							<li><img src="{{pic.display.url}}" alt="" ></li>
 						{% endfor %}
-						{% for vid in project_instance.videos.all %}
+						{% for vid in project_translation.project.videos.all %}
 							<li>{% oembed %}{{vid.video_url}}{% endoembed %}</li>
 						{% endfor %}
 					</ul>
 					<ul id="project_photo_gallery_mini" class="jcarousel-skin-tango">
-						{% for pic in project_instance.pictures.all %}
+						{% for pic in project_translation.project.pictures.all %}
 							<li><a onclick="changeslider({{forloop.counter}});" href="javascript:;"><img src="{{pic.thumbnail_image.url}}" alt="" /></a></li>
 						{% endfor %}
-						{% for vid in project_instance.videos.all %}
-							<li><a onclick="changeslider({{forloop.counter|add:project_instance.pictures.count}});" href="javascript:;"><img src="{{MEDIA_URL}}/images/play_video.jpg" alt="" /></a></li>
+						{% for vid in project_translation.project.videos.all %}
+							<li><a onclick="changeslider({{forloop.counter|add:project_translation.project.pictures.count}});" href="javascript:;"><img src="{{MEDIA_URL}}/images/play_video.jpg" alt="" /></a></li>
 						{% endfor %}
 					</ul>
 				</div>				
 			</div>
 		{% else %}
 			<!-- MEDIA - created project - no pictures -->
-			<a href="{% url project_sheet-instance-add-media project_instance.slug %}">
+			<a href="{% url project_sheet-instance-add-media project_translation.slug %}">
 				<div id="project_photo_upload">
 					<img src="" />
 				</div>

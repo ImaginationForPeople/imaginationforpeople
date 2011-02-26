@@ -1,6 +1,7 @@
 ﻿{% extends "project_sheet/project_base.html" %}
 
 {% load i18n %}
+{% load localeurl_tags %}
 {% load tagging_tags %}
 
 {% block extra_head %}
@@ -104,8 +105,8 @@
 	});
 
 	// restore tags in get
-        {% if project_instance %}
-          {% tags_for_object project_instance as project_tags %}
+        {% if project_translation %}
+          {% tags_for_object project_translation as project_tags %}
         	{% for tag in project_tags %}
 	     $.fn.tagit.create_tag("{{ tag }}");
 	  {% endfor %}
@@ -117,30 +118,27 @@
 
   <script type="text/javascript">
     function on_project_themes_updated(data) {
-            if ( data!= Dajaxice.EXCEPTION ) {
-                  alert(data.message);
-            } else { alert('error'); }
-//	    res = Dajax.process(data);
+        if ( data == Dajaxice.EXCEPTION ) { alert('error'); }
+        else {
+           $('#opened-sidebar').slideToggle();
+           location.reload();
+        } 
 
-	//	$('#search-results').fadeTo('fast', 1);
-	//	$('#search-results-wrapper').activity(false);
-	//	$('#search').unblock();
+
     }
 
     function project_update_related() {
         //$('#search').block({message: 'Recherche en cours, patientez svp...'});
 	//$('#search-results').fadeTo('fast', 0.3);
 	//$('#search-results-wrapper').activity({width: 6, valign: 'center', padding: '20'});
+        //$('#themes-form')
 
-	themes_form = $('#themes-form').serialize(); // serializeObject(true);
+	themes_form = $('#themes-form').serializeObject(true);
 
-        Dajaxice.apps.project_sheet.project_update_related(Dajax.process, {'related_form': themes_form,
-                                                                          'project_slug': '{{ project_instance.slug }}'}
-        );
-
-        $('#opened-sidebar').slideToggle();
-        location.reload();
-                                                          
+        Dajaxice.apps.project_sheet.project_update_related(on_project_themes_updated, {'language_code': '{{ LANGUAGE_CODE }}',
+                                                                                       'related_form': themes_form,
+                                                                                       'project_slug': '{{ project_translation.slug }}'}
+        );                                                          
 	return false;
     }
 
@@ -154,7 +152,8 @@
 
        Dajaxice.apps.project_sheet.project_sheet_edit_field(Dajax.process, {'fieldname': fieldname, 
                                                                             'value': value
-                                                                            {% if project_instance %}, 'project_slug': '{{ project_instance.slug }}' {% endif %} 
+                                                                            {% if project_translation %}, 'project_slug': '{{ project_translation.slug }}' {% endif %},
+                                                                            'language_code': "{{ LANGUAGE_CODE }}"
        });
 
        $(this).removeClass('empty');
@@ -224,8 +223,8 @@
     <!-- PROJECT TITLE -->
     {% if title_form %}
       <!-- PROJECT TITLE - edition mode-->
-      {% if project_instance %}
-	<form id="title" action="{% url  project_sheet-instance-edit-field project_instance.slug 'title' %}" method="post">{% csrf_token %}
+      {% if project_translation %}
+	<form id="title" action="{% url  project_sheet-instance-edit-field project_translation.slug 'title' %}" method="post">{% csrf_token %}
       {% else %}
 	<form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">{% csrf_token %}
       {% endif %}
@@ -234,10 +233,10 @@
 	</form>
 
       {% else %}
-	{% if project_instance %}
+	{% if project_translation %}
 	  <!-- PROJECT TITLE - filled -->
-	  <a href="{% url project_sheet-instance-edit-field project_instance.slug 'title' %}">
-	    <div id="project_title">{{ project_instance.title }}</div>
+	  <a href="{% url project_sheet-instance-edit-field project_translation.slug 'title' %}">
+	    <div id="project_title">{{ project_translation.title }}</div>
 	  </a>
 	{% else %}
 	  <!-- PROJECT TITLE - empty -->
@@ -251,8 +250,9 @@
       <!-- BASELINE -->
       {% if baseline_form %}
 	<!-- BASELINE - edition mode-->
-	{% if project_instance %}
-	  <form id="baseline" action="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
+	{% if project_translation %}
+
+	  <form id="baseline" action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% else %}
 	  <form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% endif %}
@@ -261,11 +261,11 @@
 	<input class="redbutton" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />	
 	</form>	
 	{% else %}
-	  {% if project_instance %}
+	  {% if project_translation %}
 	    <!-- BASELINE - filled-->
 	    <div class="project_baseline focus">
-	      <p>{{ project_instance.baseline }}</p>
-	      <a href="{% url project_sheet-instance-edit-field project_instance.slug 'baseline' %}" class="button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+	      <p>{{ project_translation.baseline }}</p>
+	      <a href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 	    </div>
 	  {% else %}
 	    <!--  BASELINE - empty -->
@@ -278,19 +278,19 @@
 	
 	<!-- PROJECT INFOS -->
 	<div class="project_infos_bloc">
-	  {% if project_instance %} 
-	    <div class="creation_date">{{ project_instance.created }} {% trans 'by' %} 
+	  {% if project_translation %} 
+	    <div class="creation_date">{{ project_translation.created }} {% trans 'by' %} 
 	    <i>
-	      {% if project_instance.author %}
-		{{ project_instance.author.get_full_name_or_username }}
+	      {% if project_translation.author %}
+		{{ project_translation.author.get_full_name_or_username }}
 	      {% else %}
 		{% trans 'anonymous'|capfirst %}
 	      {% endif %}
 	    </i>
-	    ({{project_instance.ip_addr }})
+	    ({{project_translation.ip_addr }})
 	    </div>
 	    <!--
-		<div class="location">{{ project_instance.location }}</div>
+		<div class="location">{{ project_translation.location }}</div>
 	    -->
 	  {% endif %}
 	</div>
@@ -320,38 +320,61 @@
       <div class="grid_5 omega grey_column">											
 	<div class="grey_column_content">					
 	  
-	  {% if project_instance.themes %}
+	  {% if project_translation %}
 	    <div class="title">
-	      <a href="{% url project_sheet-instance-edit-related project_instance.slug %}" class="button sidebar-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'Related'|capfirst %}
+	      <a href="{% url project_sheet-instance-edit-related project_translation.slug %}" class="button sidebar-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'Related'|capfirst %}
 	    </div>
 
 	    <!-- Colonne grise remplie -->
 	    <div class="grey_column_objective">	
 	      <label>{% trans 'Objective :'|capfirst %}</label> 
-	      <a href="#" id="project_objective">{{ project_instance.get_objective_display }}</a>
+	      <a href="#" id="project_objective">{{ project_translation.project.get_objective_display }}</a>
 	    </div>
 
+	    {% if not project_translation.themes %}
+	      <p>
+		<a class="sidebar-opener" href="#">{% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
+	      </p>
+	    {% else %}
 
-	    {% tags_for_object project_instance as taglist %}
-	    <div class="grey_column_tagcloud">	
-	      <label>{% trans 'Themes:'|capfirst %}</label> 							
-	      <ul id="cloudtag_list">
-		{% for tag in taglist %}
-		  <li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif %}</li>
+	      {% tags_for_object project_translation as taglist %}
+		<div class="grey_column_tagcloud">	
+		  <label>{% trans 'Themes:'|capfirst %}</label> 							
+		  <ul id="cloudtag_list">
+		    {% for tag in taglist %}
+		      <li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif %}</li>
+		    {% endfor %}
+		  </ul>
+		</div>
+
+	    {% endif %}
+
+	    <div class="clear"></div>
+	    
+	    {% trans "Available versions:" %}
+	    <ul id="translations">
+	    {% for translation in project_translation.project.translations.all %}
+	      <li><a href="{% locale_url translation.language_code project_sheet-show translation.slug %}">{{ translation.language_code }} </a></li>
+	      {% endfor %}
+	    </ul>
+
+	    {% trans "Create a translation in:" %}
+
+	    <form method='POST' action='{% url project_sheet-translate project_translation.slug %}'>
+	      {% csrf_token %}
+	      <select name="language_code">
+		{% for language in LANGUAGES %}
+		  <option value="{{ language.0 }}">{{ language.1 }}</option>
 		{% endfor %}
-	      </ul>
-	    </div>
-	    
-	  {% else %}
-	  
-	  <!-- GREY COLUMN - empty -->
-	  <h1>{% trans "What's the project's objective ?"|capfirst %}</h1>
-	  <p>
-	    <a class="sidebar-opener" href="#">{% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
-	  </p>
+	      </select>
+	      <button type="submit">{% trans 'Create' %}</button>
+	    </form>
 
+
+	  {% else %}
+	    <h1>{% trans "How to start your project sheet ?" %}</h1>
+	    {% trans "Click on a field to edit it, then submit your changes. Your project will be created once a field is filled." %}
 	  {% endif %}
-	    
 	</div>					
       </div>	
 
@@ -369,7 +392,7 @@
 	      <form action="#" method="#">
 		<p>
 		  <label>{% trans 'Objective :'|capfirst %}</label> 
-		  {{ project_related_form.objective }}
+		  {{ project_objective_form.objective }}
 		</p>
 	      </form>						
 	    </div>						
@@ -381,7 +404,7 @@
 		</div>
 		
 		<ul id="themes_list">
-		  {% tags_for_model project_sheet.I4pProject as project_sheet_tags with counts %}
+		  {% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags with counts %}
 		    
 		    {% for tag in project_sheet_tags %}
 		      <li value="{{ tag.count }}"><a href="javascript:;">{{ tag }}</a></li>
@@ -393,7 +416,7 @@
 
 	    </div>
 
-		<a id="grey_column_close" class="sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
+	    <a id="grey_column_close" class="sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
 	    <a href="javascript:;" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
 
 	  </form>
