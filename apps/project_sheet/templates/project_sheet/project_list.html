@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+  <div class="content">        
+    <div class="container_18">
+      <h2>Projects</h2>
+      <ul>
+	{% for project_translation in project_translation_list %}
+	  <li style="display: block"><a href="{{ project_translation.get_absolute_url }}">{{ project_translation.title }}</a> - {{ project_translation.project.author }}</li>
+        {% endfor %}
+      </ul>
+
+      {% if is_paginated %}
+	<div class="pagination">
+	  <span class="step-links">
+	    {% if page_obj.has_previous %}
+              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+	    <span class="current">
+	      Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+	    </span>
+
+	    {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}">next</a>
+            {% endif %}
+	  </span>
+	</div>
+      {% endif %}
+
+
+    </div>
+  </div>
+
+{% endblock %}

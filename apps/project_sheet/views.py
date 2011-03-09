@@ -8,12 +8,26 @@ from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.utils import translation
 from django.views.decorators.http import require_POST
+from django.views.generic.list_detail import object_list
 
 from localeurl.templatetags.localeurl_tags import chlocale
 
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm
 from .models import I4pProject, ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .utils import get_or_create_project_translation, get_project_translation
+
+def project_sheet_list(request):
+    """
+    Display a listing of all projects
+    """
+    language_code = translation.get_language()
+
+    return object_list(request,
+                       template_name='project_sheet/project_list.html',
+                       queryset=I4pProjectTranslation.objects.filter(language_code=language_code).order_by('title'),
+                       paginate_by=2,
+                       allow_empty=True,
+                       template_object_name='project_translation')
 
 def project_sheet_show(request, slug):
     """
