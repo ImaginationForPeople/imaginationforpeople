@@ -107,6 +107,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
      
+    'reversion.middleware.RevisionMiddleware',
+
     'request.middleware.RequestMiddleware',
 
     'userena.middleware.UserenaLocaleMiddleware',
@@ -165,6 +167,7 @@ INSTALLED_APPS = (
     'contact_form',
     'request',
     'oembed_works',
+    'reversion',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',

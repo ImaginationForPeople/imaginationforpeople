@@ -12,6 +12,7 @@ from tagging.fields import TagField
 from autoslug.fields import AutoSlugField
 
 from imagekit.models import ImageModel
+import reversion
 
 class I4pProject(models.Model):
     """
@@ -95,5 +96,6 @@ class ProjectVideo(models.Model):
     project = models.ForeignKey(I4pProject, related_name="videos")
     
 
-
-
+# Reversions
+reversion.register(I4pProject)
+reversion.register(I4pProjectTranslation)
