@@ -5,14 +5,15 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-# import translation stuff
+from autoslug.fields import AutoSlugField
+from imagekit.models import ImageModel
+from tagging.fields import TagField
+import reversion
+
 from apps.member.models import I4pProfile
 
-from tagging.fields import TagField
-from autoslug.fields import AutoSlugField
+from apps.i4p_base.models import Address
 
-from imagekit.models import ImageModel
-import reversion
 
 class I4pProject(models.Model):
     """
@@ -42,6 +43,10 @@ class I4pProject(models.Model):
 
     project_leader_info = models.TextField(verbose_name=_('project leader information'),
                                            null=True, blank=True)
+
+    location = models.OneToOneField(Address,
+                                    verbose_name=_('location'),
+                                    )
         
     @models.permalink
     def get_absolute_url(self):

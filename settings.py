@@ -168,6 +168,7 @@ INSTALLED_APPS = (
     'request',
     'oembed_works',
     'reversion',
+    'django_countries',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',
