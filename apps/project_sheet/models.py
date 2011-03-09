@@ -30,9 +30,18 @@ class I4pProject(models.Model):
     created = models.DateField(_("creation date"), auto_now_add=True)
     location = models.CharField(_("location"), max_length=80, null=True, blank=True)
 
-    objective = models.CharField(verbose_name=_('Objective'),
+    objective = models.CharField(verbose_name=_('objective'),
                                  max_length=4, choices=OBJECTIVE_CHOICES,
                                  null=True, blank=True)
+
+    website = models.URLField(verbose_name=_('website'),
+                              verify_exists=True,
+                              max_length=200,
+                              null=True,
+                              blank=True)
+
+    project_leader_info = models.TextField(verbose_name=_('project leader information'),
+                                           null=True, blank=True)
         
     @models.permalink
     def get_absolute_url(self):

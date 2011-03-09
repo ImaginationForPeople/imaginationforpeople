@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from django.conf import settings 
 from django.core.urlresolvers import reverse
@@ -25,7 +24,7 @@ def project_sheet_list(request):
     return object_list(request,
                        template_name='project_sheet/project_list.html',
                        queryset=I4pProjectTranslation.objects.filter(language_code=language_code).order_by('title'),
-                       paginate_by=2,
+                       paginate_by=8,
                        allow_empty=True,
                        template_object_name='project_translation')
 
