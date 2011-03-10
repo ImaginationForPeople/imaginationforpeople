@@ -168,14 +168,9 @@
 
 
        $(this).hide().fadeIn()
-       restore_edit_buttons();
 
        return(value);
      };
-
-     function restore_edit_buttons() {
-       $('.project_details_title_edit .button').fadeIn('slow');
-     }
 
      $('.project_details_body').editable(edit_callback,
                                          {event: 'dblclick',
@@ -187,19 +182,26 @@
                                           cancel: "<input class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
                                           submit: "<input class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
                                           onblur: 'ignore',
-                                          onreset: restore_edit_buttons,
                                           cssclass: 'inline-edit',
                                           placeholder: "{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}"
                                           });
 
     $('.project_details_body').dblclick(function() {
-      $('.project_details_title_edit .button').fadeOut('fast');
+      $('a.editing-button').fadeOut('fast');
     });
 
     $('.project_details_title_edit .button').click(function() {
       $(this).parent().next('.project_details_body').dblclick();
        return false;
     });
+
+    // Hide buttons when their respecting section is not hover'ed
+    $('a.editing-button').hide();
+    $('a.editing-button').parent('div').hover(function() {
+      $(this).find('a.editing-button').show();
+    }, function() {
+      $(this).find('a.editing-button').fadeOut('fast');
+    });    
     
     });
   </script>
@@ -273,13 +275,13 @@
 	    <!-- BASELINE - filled-->
 	    <div class="project_baseline focus">
 	      <p>{{ project_translation.baseline }}</p>
-	      <a href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+	      <a href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 	    </div>
 	  {% else %}
 	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
 	      <p>{% trans "my project baseline"|capfirst %}</p>
-	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 	    </div>
 	  {% endif %}
 	{% endif %}					
@@ -326,7 +328,7 @@
 
 	<div id="license-note">
 	  {% blocktrans %}
-	    This projet sheet, except media, is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons CC-BY-SA 3.0</a> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Contrat Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
+	    This project sheet, except media, is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons CC-BY-SA 3.0</a> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Contrat Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
 	  {% endblocktrans %}
 	</div>
 	

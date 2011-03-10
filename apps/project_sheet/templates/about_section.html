@@ -3,9 +3,9 @@
 <h1 class="about_project">{% trans 'about the project'|capfirst%}
 	{% if not about_section_form %}
 		{% if project_translation %}
-			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}#about_section" class="button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}#about_section" class="button editing-button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		{% else %}
-			<a href="{% url project_sheet-edit-field 'about_section' %}#about_section" class="button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a href="{% url project_sheet-edit-field 'about_section' %}#about_section" class="button editing-button nomargin right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		{% endif %}
 	{% endif %}
 </h1>

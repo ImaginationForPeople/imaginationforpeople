@@ -17,7 +17,7 @@
 	{% if project_translation %}
 		<div id="uniqueness_section" class="project_details_title_edit">
 			<h2>{% trans "what's make it creative and unique"|capfirst %}?</h2>
-			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'uniqueness_section' %}" class="button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'uniqueness_section' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		</div>
 		{% if project_translation.uniqueness_section %}
 			<!-- PARAGRAPH - filled -->
@@ -29,7 +29,7 @@
 		<!-- PARAGRAPH - empty -->
 		<div id="uniqueness_section" class="project_details_title_edit">
 			<h2>{% trans "what's make it creative and unique"|capfirst %}?</h2>
-			<a href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		</div>
 		<p class="project_details_body empty"></p>
 	{% endif %}
