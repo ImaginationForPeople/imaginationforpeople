@@ -46,6 +46,7 @@ class I4pProject(models.Model):
 
     location = models.OneToOneField(Address,
                                     verbose_name=_('location'),
+                                    null=True, blank=True
                                     )
         
     @models.permalink
