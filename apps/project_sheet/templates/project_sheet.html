@@ -155,6 +155,8 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
+
+     /* FIXME: These two functions need to be merged somewhat */
      function edit_callback(value, settings) {
        var fieldname = $(this).prev('div').attr('id');
 
@@ -171,6 +173,41 @@
 
        return(value);
      };
+
+     function edit_about_callback(value, settings) {
+       var fieldname = $(this).parent('div').attr('id');
+
+       Dajaxice.apps.project_sheet.project_sheet_edit_field(Dajax.process, {'fieldname': fieldname, 
+                                                                            'value': value
+                                                                            {% if project_translation %}, 'project_slug': '{{ project_translation.slug }}' {% endif %},
+                                                                            'language_code': "{{ LANGUAGE_CODE }}"
+       });
+
+       $(this).removeClass('empty');
+
+
+       $(this).hide().fadeIn()
+
+       return(value);
+     };
+
+
+     /* FIXME: This needs to be factorized */
+     $('.project_description_txt').editable(edit_about_callback,
+                                        {event: 'dblclick',
+                                         tooltip: 'Double-click to edit',
+                                         indicator: 'Saving...',
+                                         type: 'textarea',
+                                         height: '80px',
+                                         width: '535px',
+                                         cancel: "<input class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
+                                         submit: "<input class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
+                                         onblur: 'ignore',
+                                         cssclass: 'inline-edit',
+                                         placeholder: "{% trans "This bloc is empty : don’t forget to fill it !"|capfirst %}"
+                                         });
+
+
 
      $('.project_details_body').editable(edit_callback,
                                          {event: 'dblclick',
@@ -195,6 +232,8 @@
        return false;
     });
 
+    /* FIXME: There must be a better to determine if we need to hide them or not */
+    {% if project_translation %}
     // Hide buttons when their respecting section is not hover'ed
     $('a.editing-button').hide();
     $('a.editing-button').parent('div').hover(function() {
@@ -202,12 +241,14 @@
     }, function() {
       $(this).find('a.editing-button').fadeOut('fast');
     });    
+    {% endif %}
     
     });
   </script>
 
 
   <script type="text/javascript">
+    /* FIXME: The animation is wrong, must be fixed ! */
     $(document).ready(function() {
       $('#opened-sidebar').hide();
       

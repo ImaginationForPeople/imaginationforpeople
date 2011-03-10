@@ -10,8 +10,7 @@
 	{% endif %}
 </h1>
 {% if about_section_form %}
-	<!-- Titre du projet en mode éditable-->
-	<!-- LE CHAMP DE SAISIE ET PLUS GENERALEMENT LA BOITE LA CONTENANT DOIT S'AGRANDIR EN FONCTION DU CONTENU TAPE-->
+	<!-- Project title, in edit mode -->
 	<div id="about_section" class="project_description_zone_edition">
 		{% if project_translation %}
 			<form class="project_description_txt_edit" action="{% url project_sheet-instance-edit-field project_translation.slug  'about_section' %}#about_section" method="post">{% csrf_token %}
@@ -29,9 +28,7 @@
 		{% if project_translation.about_section %}
 			<!-- Titre du projet deja créé, avec section about, en mode NON éditable-->
 			<div id="about_section" class="project_description_zone focus">
-				<div class="project_description_txt">
-					<p>{{ project_translation.about_section }}</p>
-				</div>
+				<div class="project_description_txt">{{ project_translation.about_section }}</div>
 			</div>
 		{% else %}
 			<!-- Titre du projet deja créé, SANS section about, en mode NON éditable-->
