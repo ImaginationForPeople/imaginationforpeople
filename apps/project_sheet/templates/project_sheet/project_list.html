@@ -1,36 +1,112 @@
-{% extends "base.html" %}
+﻿{% extends "base.html" %}
+
+
+{% block style %}
+	<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
+	<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/project_card.css" />
+{% endblock %}
+
+
+{% block nav %}<div style="height:37px;"></div>{% endblock %}
+
 
 {% block content %}
 
-  <div class="content">        
-    <div class="container_18">
-      <h2>Projects</h2>
-      <ul>
-	{% for project_translation in project_translation_list %}
-	  <li style="display: block"><a href="{{ project_translation.get_absolute_url }}">{{ project_translation.title }}</a> - {{ project_translation.project.author }}</li>
-        {% endfor %}
-      </ul>
+<div class="content">        
+	<div class="container_18">
+		
+		<div id="projects_list">
+		{% for project_translation in project_translation_list %}
+		
+			<!-- Affichage à choisir en fonction du type d'affichage désiré ! -->
+			<!-- PROJECT VIEW : mosaique 6 projets par ligne : pas de descriptif, juste la carte d'ID -->
+			<div class="colonne grid_6">
+				{% include "project_complete_card.html" %}			
+			</div>
+			
+			<!-- LIST VIEW : mosaique 3 projets par ligne : descriptif et baseline -->
+			<!--
+			<div class="colonne grid_3">
+				{% include "project_id_card.html" %}			
+			</div>
+			-->
+			
+		{% endfor %}
+		</div>
+		
+		<div class="clear"></div>
 
-      {% if is_paginated %}
-	<div class="pagination">
-	  <span class="step-links">
-	    {% if page_obj.has_previous %}
-              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
+		
 
-	    <span class="current">
-	      Page {{ page_obj.number }} of {{ paginator.num_pages }}.
-	    </span>
+		{% if is_paginated %}
+		<div id="pagination">
+			<span class="step-links">
+				{% if page_obj.has_previous %}
+					<a href="?page={{ page_obj.previous_page_number }}"><img src="{{ MEDIA_URL }}images/project/page_previous.png" alt="previous" /></a>
+				{% else %}
+					<img src="{{ MEDIA_URL }}images/project/page_previous-off.png" alt="previous" />
+				{% endif %}
 
-	    {% if page_obj.has_next %}
-              <a href="?page={{ page_obj.next_page_number }}">next</a>
-            {% endif %}
-	  </span>
+			<span class="current">
+				page {{ page_obj.number }} of {{ paginator.num_pages }}
+			</span>
+
+			{% if page_obj.has_next %}
+				<a href="?page={{ page_obj.next_page_number }}"><img src="{{ MEDIA_URL }}images/project/page_next.png" alt="next" /></a>
+			{% else %}
+				<img src="{{ MEDIA_URL }}images/project/page_next-off.png" alt="previous" />
+			{% endif %}
+			</span>
+		</div>
+		{% endif %}
+	
+	
+	
+
 	</div>
-      {% endif %}
+</div>
 
 
-    </div>
-  </div>
+
+<div class="categories categories_project_page">        
+	<div class="container_18">
+		<div class="grid_18 alpha omega">
+
+			<div class="menu">
+				
+				<ul>
+					<li><div class="categ-button"><a href="#">Filters</a></div></li>
+					<li><div class="categ-button"><a href="#">Help</a></div></li>
+					<li><div class="categ-button2"><a href="#"><span class="georgia">My</span> imagination for people</a></div></li>
+				</ul>
+				
+				
+				<div class="search">
+				
+					<form action="#">
+						<input type="button" value="&nbsp;">
+						<input type="text" value="Search project" name="search" id="searchInput">						
+					</form>
+				
+				</div>
+				
+				
+				<div class="toolbox">
+					<div class="tools-title georgia">Project view</div>
+					<div class="tools">
+						<a href="#"><img src="{{ MEDIA_URL }}images/nav/tool1.png" /></a>
+						<a href="#"><img src="{{ MEDIA_URL }}images/nav/tool2-selected.png" /></a>
+						<a href="#"><img src="{{ MEDIA_URL }}images/nav/tool3.png" /></a>
+						<a href="#"><img src="{{ MEDIA_URL }}images/nav/tool4.png" /></a>
+					</div>
+				</div>
+				
+			</div>
+		
+		</div>
+	</div>
+</div>	
+
+<div class="clear"></div>
 
 {% endblock %}

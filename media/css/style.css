@@ -289,8 +289,10 @@ border:0px;
 	
 	width:100%;
 	height:60px;
+	/*height:97px;*/
 	padding:0px;
 	margin:0px;
+	overflow:visible;
 	
 }
 
@@ -300,6 +302,15 @@ border:0px;
 	float:left;
 	top:22px;
 	left:-5px;
+	overflow:visible;	
+	z-index:20000;
+	
+
+}
+
+.logo img, .logo a{
+
+	overflow:visible;
 
 }
 
@@ -398,7 +409,7 @@ ul li{
 
 .categories .menu{
 	
-
+	
 
 }
 
@@ -418,7 +429,7 @@ ul li{
 	padding:0px;
 	margin:0px;
 	width:107px;
-	height:35px;
+	height:28px;
 	float:left;
 	
 	padding-top:8px;
@@ -466,7 +477,7 @@ ul li{
 	padding:0px;
 	margin:0px;
 	width:230px;
-	height:35px;
+	height:28px;
 	float:left;
 	
 	padding-top:8px;
@@ -567,7 +578,7 @@ ul li{
 	padding:0px;
 	margin:0px;
 	width:230px;
-	height:35px;
+	height:28px;
 	float:left;
 	
 	padding-top:8px;
@@ -645,6 +656,8 @@ ul li{
 	float:left;
 	width:156px;
 	top:-38px;
+	overflow:visible;
+	z-index:4000;
 
 }
 
