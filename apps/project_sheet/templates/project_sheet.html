@@ -251,6 +251,7 @@
     /* FIXME: The animation is wrong, must be fixed ! */
     $(document).ready(function() {
       $('#opened-sidebar').hide();
+      $('#opened-sidebar-team').hide();
       
 
       $('a.sidebar-opener').click(function() {
@@ -260,6 +261,16 @@
 
       $('a.sidebar-close').click(function() {
          $('#opened-sidebar').slideToggle();
+         return false;
+      });
+	  
+	  $('a.sidebar-team-opener').click(function() {
+         $('#opened-sidebar-team').slideToggle();
+         return false;
+      });
+
+      $('a.sidebar-team-close').click(function() {
+         $('#opened-sidebar-team').slideToggle();
          return false;
       });
 
@@ -327,10 +338,19 @@
 	  {% endif %}
 	{% endif %}					
 	
-	<!-- PROJECT INFOS -->
-	<div class="project_infos_bloc">
+	<!-- PROJECT INFOS - existing project - viewable version -->
+	<div id="project_infos_bloc">
 	  {% if project_translation %} 
-	    <div class="creation_date">{{ project_translation.created }} {% trans 'by' %} 
+	  
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - edition of the full information block  -->
+		<!-- !!!!!!!!! -->
+		<a href="#" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section)  -->
+		<!-- !!!!!!!!! -->
+	    <div class="creation_date">Created {{ project_translation.created }} {% trans 'by' %} 
 	    <i>
 	      {% if project_translation.author %}
 		{{ project_translation.author.get_full_name_or_username }}
@@ -340,11 +360,52 @@
 	    </i>
 	    ({{project_translation.ip_addr }})
 	    </div>
-	    <!--
-		<div class="location">{{ project_translation.location }}</div>
-	    -->
+	    
+		<div class="location">Location : 
+		{% if project_translation.location %}
+			<!-- !!!!!!!!! -->
+			<!-- !!FOCUS!! - Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
+			<!-- !!!!!!!!! -->
+			{{ project_translation.location }}
+			<img src="{{ MEDIA_URL }}/images/project/globe.png" alt="#"/>
+		{% else %}
+			{% trans '<i> unknown </i>'|capfirst %}
+		{% endif %}
+		</div>
+		
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - Website -->
+		<!-- !!!!!!!!! -->
+		{% if project_translation.website %}
+			<div class="website">Website : <a href="http://google.fr" >http://google.fr</a>{{ project_translation.website }}</div>
+		{% endif %}
+	   
+		
 	  {% endif %}
 	</div>
+	
+	
+	<!-- PROJECT INFOS - editing version -->
+	<div id="project_infos_bloc_edit">
+		<form action="#" method="post">
+			<p>
+				<label for="#">{% trans 'Created by : '|capfirst %}</label>
+				<select name="#">
+					<option>Jean-Mauricien Percule</option>
+					<option>Sophitiella Plectre</option>
+				</select>
+			</p>
+			<p><label for="#">{% trans 'Location : '|capfirst %}</label><input type="text"name="#" value="{% trans 'place' %}" id="#"><input type="text" value="{% trans 'country' %}" name="#" id="#">&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" value="{% trans 'GPS coordinates' %}" name="#" id="#"></p>
+			<p><label for="#">{% trans 'Website : '|capfirst %}</label><input type="text" id="info_website" value="http://" name="#" id="#"></p>
+			<div class="clear"></div>
+			<input class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
+			<input class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
+		</form>	
+	</div>
+	
+	
+	
+	
 	
 	{% include "media_gallery.html"%}
 	
@@ -364,7 +425,10 @@
 	  
 	</div>
 	
-
+	<div class="clear"></div>
+	
+	{% include "references_section.html" %}
+	
 	<div class="clear"></div>
 
 	<div id="license-note">
@@ -405,8 +469,37 @@
 		    {% endfor %}
 		  </ul>
 		</div>
+		
 
 	    {% endif %}
+		
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - About the team -->
+		<!-- !!!!!!!!! -->
+		<div class="title">
+	      <a href="#" class="button sidebar-team-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'The team'|capfirst %}
+	    </div>
+		
+		<div class="grey_column_team">	
+			<!-- !!!!!!!!! -->
+			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
+			<!-- !!!!!!!!! -->
+			<img src="http://www.casafree.com/modules/xcgal/albums/userpics/10053/Gato_con_Botas.jpg" alt="#" />
+			<h2>Jean-Mauricien Percule</h2>
+			<h3>{% trans "Project Leader" %}</h3>
+			<p>The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</p>			
+		</div>
+		
+		<div class="grey_column_team">	
+			<!-- !!!!!!!!! -->
+			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
+			<!-- !!!!!!!!! -->
+			<img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" />
+			<h2>Sophitiella Plectre</h2>
+			<h3>{% trans "Project Minion" %}</h3>
+			<p>The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</p>			
+		</div>
+		
 
 	    <div class="clear"></div>
 	    
@@ -437,52 +530,80 @@
 	</div>					
       </div>	
 
-      <!-- GREY COLUMN - opened -->
-      <div id="opened-sidebar" class="grid_12 omega grey_column_open">	
-	<div class="grey_column_content">	
-	  
-	  <div class="title">{% trans 'Related'|capfirst %}</div>
+    <!-- GREY COLUMN - opened -->
+	<div id="opened-sidebar" class="grid_12 omega grey_column_open">	
+		<div class="grey_column_content">	
 
-	  <form id="themes-form" method="POST">
+			<div class="title">{% trans 'Related'|capfirst %}</div>
 
-	  <div class="grey_column_content_edition">
-	    
-	    <div class="grey_column_objective_edition">						
-	      <form action="#" method="#">
-		<p>
-		  <label>{% trans 'Objective :'|capfirst %}</label> 
-		  {{ project_objective_form.objective }}
-		</p>
-	      </form>						
-	    </div>						
-	    
-	    <div class="grey_column_cloudtag_edition">
-	      
-		<div id="grey_column_cloudtag_edition_title">
-		  <label>{% trans 'Themes:'|capfirst %}</label><span class="precision">({% trans 'select your tags from the cloud below' %})</span>
-		</div>
-		
-		<ul id="themes_list">
-		  {% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags with counts %}
-		    
-		    {% for tag in project_sheet_tags %}
-		      <li value="{{ tag.count }}"><a href="javascript:;">{{ tag }}</a></li>
-		    {% endfor %}
-		</ul>
-		
-		<ul id="themes_tags">
-		</ul>
+			<form id="themes-form" method="POST">
 
-	    </div>
+				<div class="grey_column_content_edition">
 
-	    <a id="grey_column_close" class="sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
-	    <a href="javascript:;" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+				<div class="grey_column_objective_edition">						
+					<form action="#" method="#">
+						<p>
+							<label>{% trans 'Objective :'|capfirst %}</label> 
+							{{ project_objective_form.objective }}
+						</p>
+					</form>						
+				</div>						
 
-	  </form>
-	</div>
-	  
-      </div>					
+				<div class="grey_column_cloudtag_edition">
 
-    </div>					
+					<div id="grey_column_cloudtag_edition_title">
+						<label>{% trans 'Themes:'|capfirst %}</label><span class="precision">({% trans 'select your tags from the cloud below' %})</span>
+					</div>
+
+					<ul id="themes_list">
+						{% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags with counts %}
+
+						{% for tag in project_sheet_tags %}
+						<li value="{{ tag.count }}"><a href="javascript:;">{{ tag }}</a></li>
+						{% endfor %}
+					</ul>
+
+					<ul id="themes_tags"></ul>
+
+				</div>
+
+				<a id="grey_column_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
+				<a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+
+			</form>
+			</div>
+
+		</div>					
+
+	</div>	
+	
+	
+	 <!-- GREY COLUMN - opened -->
+    <div id="opened-sidebar-team" class="grid_12 omega grey_column_open">	
+		<div class="grey_column_content">	
+		  
+			<div class="title">{% trans 'The team'|capfirst %}</div>
+
+			<div class="clear"></div>
+
+			<form id="#" method="POST">
+			 
+				<div class="grey_column_team_content_edition">
+					kjghkjgjg  
+				</div>
+				<a id="grey_column_close" class="grey_column_close sidebar-team-close" href="javascript:;">{% trans 'Close & discard'%}</a>
+				<a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+
+			</form>
+
+
+		</div>					
+
+	</div>	
+
+
+
+
+	
 
 {% endblock %}

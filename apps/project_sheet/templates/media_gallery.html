@@ -40,7 +40,11 @@
 			<!-- MEDIA - created project - with pictures -->
 			<div id="project_photo_gallery">
 				
-				<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button">{% trans 'add'|capfirst %}</a>
+				<div id="media_buttons">
+					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
+					<a href="#" class="button nomargin"><img src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
+					<a href="#" class="button redbutton nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
+				</div>
 	
 				<div id="gallery">
 					<ul id="project_photo_gallery_current_photo">

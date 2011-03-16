@@ -6,9 +6,17 @@
 	
 	<div class="project_infos">
 	
+		{% if project_translation.baseline %}
+		<div class="project_infos_baseline">{{ project_translation.baseline }}</div>
+		{% endif %}		
 		
-		<div class="project_infos_baseline">{{ project_translation.baseline }}</div>				
-		<div class="project_infos_description">The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</div>
+		<div class="project_infos_description">
+			{% if project_translation.about_section %}
+				{{ project_translation.about_section }}
+			{% else %}
+				{% trans 'There is no description for this project' %}
+			{% endif %}
+		</div>
 		
 		<a href="#">More info ></a>
 	

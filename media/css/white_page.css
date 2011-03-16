@@ -110,14 +110,9 @@
 
 }
 
-
-.grey_column  .title, .grey_column_open .title{
+.title{
 
 	background-color:white;
-	padding:6px;
-	padding-left:0px;
-	padding-right:20px;
-	float:right;
 	position:relative;
 	
 	color:#4e4e4e;
@@ -126,13 +121,20 @@
 	font-style:italic;
 	text-transform:lowercase;
 	font-size:22px;
-	
-	
-	right:-20px;
 
 	margin-top:15px;
 	margin-bottom:20px;
 
+}
+
+.grey_column  .title, .grey_column_open .title{
+
+	padding:6px;
+	padding-left:0px;
+	padding-right:20px;
+	float:right;	
+	right:-20px;
+	
 }
 
  .grey_column_open .title{
@@ -144,21 +146,21 @@
  
   .grey_column_content .title .button{
  
-	top:-2px !important;
+	/*top:-2px !important;*/
+	top:5px !important;
  
  }
  
 .grey_column_content .title .button img{
    
 	position:relative;
-	top:3px;
+	/*top:3px;*/
    
 }
  
+ .grey_column_close,  .grey_column_save_close{
  
-#grey_column_close,  #grey_column_save_close{
- 
-	background-color:white;
+	/*background-color:white;*/
 	padding:6px;
 	padding-left:20px;
 	padding-right:30px;
@@ -178,9 +180,9 @@
  }
  
  
- #grey_column_close{
+.grey_column_close{
  
-	background-image:url(../images/project/close-arrow.jpg);
+	background-image:url(../images/project/close-arrow.png);
 	
 	background-position:right;	
 	left:-20px; 
@@ -188,10 +190,10 @@
  }
  
  
- #grey_column_save_close{
+.grey_column_save_close{
  
 	color:#119CBA;
-	background-image:url(../images/project/close-arrow-right.jpg);	
+	background-image:url(../images/project/close-arrow-right.png);	
 	background-position:left;	
 	float:right;
 	right:-20px;

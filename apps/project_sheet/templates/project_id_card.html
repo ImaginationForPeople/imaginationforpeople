@@ -2,7 +2,15 @@
 
 <a href="{{ project_translation.get_absolute_url }}" class="project_card">
 	
-	<img  class="project-photo"src="http://img.clubic.com/01872174-photo-mozilla-firefox-test-pilot.jpg" alt=""/>
+	<div class="project-photo">	
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - Afficher uniquement la premiere image si elle existe -->
+		<!-- !!!!!!!!! -->
+		{% for pic in project_translation.project.pictures.all %}
+		<img src="{{pic.thumbnail_image.url}}" alt=""/>
+		{% endfor %}	
+	</div>
+	
 	<div class="project_card_type"><img src="http://www.google.fr/images/logos/ps_logo2.png" alt="democratize" /></div>
 
 	<div class="project_card_content">

@@ -145,6 +145,8 @@ border:0px;
 	text-transform:none;
 	font-style:normal;
 	
+	float:left;
+	
 	top:-1px;
 		
 	-moz-box-shadow: 0px 0px 4px #a1a1a1;  
@@ -404,6 +406,8 @@ ul li{
 	padding:0px;
 	margin:0px;
 	background-repeat:repeat-x;
+	
+	border-top:1px solid #676665;
 
 }
 
@@ -420,7 +424,6 @@ ul li{
 	position:relative;
 	top:-8px;
 
-
 }
 
 .categories .menu ul li  .categ-button{
@@ -432,13 +435,19 @@ ul li{
 	height:28px;
 	float:left;
 	
-	padding-top:8px;
-	
-	border-top:1px solid #676665;
+	padding-top:8px;	
+
+	/*border-top:1px solid #676665;*/
 	border-left:1px solid #676665;
-	
+
 	text-align:center;
 	
+}
+
+.categories .menu ul #categ-last{
+
+	border-right:1px solid #676665;
+
 }
 
 .georgia{
@@ -482,7 +491,7 @@ ul li{
 	
 	padding-top:8px;
 	
-	border-top:1px solid #676665;
+	/*border-top:1px solid #676665;*/
 	border-left:1px solid #676665;
 	border-right:1px solid #676665;
 	
