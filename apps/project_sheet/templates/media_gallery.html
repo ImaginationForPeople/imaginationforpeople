@@ -1,4 +1,4 @@
-{% load i18n %}
+﻿{% load i18n %}
 {% load oembed_works_tags %}
 
 {% if picture_form %}
@@ -8,24 +8,41 @@
 	
 	<div id="forms_files">
 		{% if project_translation %}		
-			<form method="post" action="{% url project_sheet-instance-add-picture project_translation.slug %}" enctype="multipart/form-data" >{% csrf_token %}
+			<form method="post"id="photo_upload_form"  action="{% url project_sheet-instance-add-picture project_translation.slug %}" enctype="multipart/form-data" >{% csrf_token %}
 		{% else %}
-			<form method="post" action="{% url project_sheet-add-picture %}" enctype="multipart/form-data">{% csrf_token %}
+			<form method="post" id="photo_upload_form"  action="{% url project_sheet-add-picture %}" enctype="multipart/form-data">{% csrf_token %}
 		{% endif %}
-			<p>
-				<label for="#">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision"></span>
-				{{ picture_form.original_image }}
+		
+				<p><label for="#" class="bold">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision"></span>{{ picture_form.original_image }}</p>
+					
+				<div class="clear"></div>
+				
+				<p class="media_desc_up left"><label>{% trans 'Description :'|capfirst %}</label> <input type="text"name="#" id="#" /></p>
+				<p class="media_licence_select">	
+					<label>{% trans 'Licence :'|capfirst %}</label> 						
+					<select name="#">
+						<option>Licence IV</option>
+						<option>Licence à la pompe</option>
+						<option>Licence assion</option>
+						<option>Licence assfriture</option>
+					</select>
+				</p>
+				<p class="media_licence_up left"><label>{% trans 'Author :'|capfirst %}</label> <input type="text"name="#" id="#" /></p>
+				<p class="media_licence_up left"><label>{% trans 'Source :'|capfirst %}</label> <input type="text"name="#" id="#" /></p>
+				
+				<div class="clear"></div>
+				
 				<input id="upload_img_input" class="button nomargin right" type="submit" value="{% trans 'Upload'|capfirst %}" enctype="multipart/form-data"/>
-			</p>
-		</form>
+				
+			</form>
 		
 		{% if project_translation %}		
-			<form method="post" action="{% url project_sheet-instance-add-video project_translation.slug %}" >{% csrf_token %}
+			<form method="post" id="vid_upload_form"  action="{% url project_sheet-instance-add-video project_translation.slug %}" >{% csrf_token %}
 		{% else %}
-			<form method="post" action="{% url project_sheet-add-video %}">{% csrf_token %}
+			<form method="post" id="vid_upload_form"  action="{% url project_sheet-add-video %}">{% csrf_token %}
 		{% endif %}
 			<p>
-				<label for="#">{% trans "add a video (youtube, dailymotion, etc): "|capfirst %}</label><span class="precision"></span>
+				<label for="#" class="bold">{% trans "add a video (youtube, dailymotion, etc): "|capfirst %}</label><span class="precision"></span>
 				{{ video_form.video_url }}
 				<input class="greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" Alt="Ok" />
 			</p>
@@ -41,9 +58,9 @@
 			<div id="project_photo_gallery">
 				
 				<div id="media_buttons">
-					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
-					<a href="#" class="button nomargin"><img src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
-					<a href="#" class="button redbutton nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
+					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
+					<a href="#" class="button nomargin"><img title="{% trans 'Metadata'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
+					<a href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
 				</div>
 	
 				<div id="gallery">
