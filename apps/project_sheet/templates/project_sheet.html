@@ -333,7 +333,7 @@
 	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
 	      <p>{% trans "my project baseline"|capfirst %}</p>
-	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png"/></a>
 	    </div>
 	  {% endif %}
 	{% endif %}					
@@ -480,7 +480,24 @@
 	      <a href="#" class="button sidebar-team-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'The team'|capfirst %}
 	    </div>
 		
-		<div class="grey_column_team">	
+		<div class="clear"></div>
+		
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - Text who's apparent when this section is empty -->
+		<!-- !!!!!!!!! -->
+		<p><a href="#" class="sidebar-team-opener">{% trans "There is no <strong>registered team members</strong> : don't forget to fill this section !" %}</a></p>
+		
+		
+		<div class="grey_column_team_member">
+			
+			<!-- !!!!!!!!! -->
+			<!-- !!FOCUS!! - The admin buttons for team members must been hidden by default and visible on hover (like edit buttons for text sections) -->
+			<!-- !!!!!!!!! -->
+			<div class="grey_column_team_buttons">
+				<a href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
+				<a href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+			</div>
+			
 			<!-- !!!!!!!!! -->
 			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
 			<!-- !!!!!!!!! -->
@@ -490,7 +507,14 @@
 			<p>The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</p>			
 		</div>
 		
-		<div class="grey_column_team">	
+		
+		<div class="grey_column_team_member">
+
+			<div class="grey_column_team_buttons">
+				<a href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
+				<a href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+			</div>
+			
 			<!-- !!!!!!!!! -->
 			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
 			<!-- !!!!!!!!! -->
@@ -498,6 +522,36 @@
 			<h2>Sophitiella Plectre</h2>
 			<h3>{% trans "Project Minion" %}</h3>
 			<p>The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</p>			
+		</div>
+		
+		
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - Team Member in edition mode -->
+		<!-- !!!!!!!!! -->
+		<div class="grey_column_team_member_edit">	
+
+			<form action="#" method="post">
+				
+				<div class="empty_photo"><img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" /></div>
+				<p><input type="file" id="#" name="#" style="z-index:4000;" /></p>								
+				<p><input type="text"name="#" value="Sophitiella Plectre" id="#" /></p>
+				<p>
+					<select name="#">
+						<option>Project Leader</option>
+						<option selected>Project Minion</option>
+						<option>Referent</option>
+						<option>Project Author</option>
+					</select>
+				</p>
+				<p><textarea name="#">The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</textarea></p>
+				
+				<div class="clear"></div>
+				
+				<a href="#" class="button greenbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" /></a>	
+				<a href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a>
+						
+			</form>		
+
 		</div>
 		
 
@@ -530,7 +584,7 @@
 	</div>					
       </div>	
 
-    <!-- GREY COLUMN - opened -->
+    <!-- GREY COLUMN - RELATED - opened -->
 	<div id="opened-sidebar" class="grid_12 omega grey_column_open">	
 		<div class="grey_column_content">	
 
@@ -578,24 +632,39 @@
 	</div>	
 	
 	
-	 <!-- GREY COLUMN - opened -->
+	<!-- !!!!!!!!! -->
+	<!-- !!FOCUS!! - Team section in edition mode : if possible, the grey column must been alignated with his version in view mode : Please consult me if its not clear -->
+	<!-- !!!!!!!!! -->
+	
+	<!-- GREY COLUMN - TEAM - opened -->
     <div id="opened-sidebar-team" class="grid_12 omega grey_column_open">	
-		<div class="grey_column_content">	
+		<div class="grey_column_team_content">	
 		  
 			<div class="title">{% trans 'The team'|capfirst %}</div>
 
 			<div class="clear"></div>
-
-			<form id="#" method="POST">
 			 
-				<div class="grey_column_team_content_edition">
-					kjghkjgjg  
-				</div>
+			<form action="#" method="post">
+				
+				<p><label for="#">{% trans 'Photo : '|capfirst %}</label><input type="file" id="#" name="#" /></p>
+				<p><label for="#">{% trans 'Name : '|capfirst %}</label><input type="text" name="#" id="#" /></p>
+				<p>
+					<label for="#">{% trans 'Role : '|capfirst %}</label>
+					<select name="#">
+						<option>Project Leader</option>
+						<option>Project Minion</option>
+						<option>Referent</option>
+						<option>Project Author</option>
+					</select>
+				</p>
+				<p><label for="#">{% trans 'Description : '|capfirst %}</label><textarea name="#"></textarea></p>
+				
+				<div class="clear"></div>
+				
 				<a id="grey_column_close" class="grey_column_close sidebar-team-close" href="javascript:;">{% trans 'Close & discard'%}</a>
 				<a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
-
-			</form>
-
+						
+			</form>	
 
 		</div>					
 

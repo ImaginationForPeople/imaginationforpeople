@@ -193,6 +193,7 @@ form{
 
 .project_baseline_edition_inactive .button{
 
+	/*
 	position:relative;
 	text-align:center;
 	margin:0px;
@@ -206,6 +207,16 @@ form{
 	
 	left:2px;
 	line-height:15px;
+	*/
+		
+	left:-4px;
+	line-height:15px;
+	margin:0 3px 0 0;
+	padding-top:2px;
+	padding-bottom:2px;
+	padding-left:0px;
+	padding-right:10px;
+	top:1px;
 
 }
 
@@ -1032,13 +1043,37 @@ form{
 /* --- The Team --- */
 
 
-.grey_column_team img{
+.grey_column_team_member {
+
+	position:relative;
+	float:left;
+
+}
+
+.grey_column_team_member img{
 
 	width:100%;
 
 }
 
-.grey_column_team h2{
+.grey_column_team_member .grey_column_team_buttons{
+
+	position:absolute;
+	top:5px;
+	right:5px;
+
+}
+
+.grey_column_team_member .grey_column_team_buttons .button{
+
+	margin-left:3px;
+	position:relative;
+	padding:0px;
+
+}
+
+
+.grey_column_team_member h2{
 
 	font-size:14px;
 	font-family:Georgia, "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
@@ -1050,7 +1085,7 @@ form{
 
 }
 
-.grey_column_team h3{
+.grey_column_team_member h3{
 
 	font-size:12px;
 	padding:0px;
@@ -1060,15 +1095,158 @@ form{
 	
 }
 
-.grey_column_team p{
+.grey_column_team_member p{
 
 	font-size:12px;
 	margin-bottom:25px;
 	
 }
 
+.grey_column_team_content{
+
+	padding-left:20px;
+	padding-right:20px;
+	margin-top:15px;
+	position:relative;
+	float:left;
+	
+}
+
+
+.grey_column_team_content form p{
+
+	margin-bottom:3px;
+
+}
+
+.grey_column_team_content form p label{
+
+	width:15%;
+	float:left;
+
+}
+
+
+.grey_column_team_content form p input, .grey_column_team_content form p textarea{
+
+	width:495px;
+
+}
+
+.grey_column_team_content form p textarea{
+
+	height:80px;
+
+}
+
+.grey_column_team_content form p option{
+
+	width:475px;
+
+}
+
+
+.grey_column_team_member_edit{
+
+	position:relative;
+	float:left;
+	/*background-color:#CCC8C8;*/
+	width:100%;	
+	margin-bottom:10px;
+
+}
+
+.grey_column_team_member_edit .empty_photo{
+
+	height:143px;
+	background-color:#CCC8C8;
+	position:relative;
+	overflow:hidden;
+
+}
+
+.grey_column_team_member_edit .empty_photo img{
+
+	width:100%;
+	position:absolute;
+
+}
+
+
+.grey_column_team_member_edit form p{
+
+	margin-top:0px;
+	margin-bottom:1px;
+	
+
+}
+
+
+.grey_column_team_member_edit form p input, .grey_column_team_member_edit form p textarea, .grey_column_team_member_edit form p select{
+
+	background-color:#CCC8C8;
+	color:#5A5959;
+	border:1px solid grey;
+
+}
+
+.grey_column_team_member_edit form p input, .grey_column_team_member_edit form p textarea{
+
+	width:214px;
+
+}
+
+.grey_column_team_member_edit form p input[type=file]{
+
+	border:1px solid grey;
+	margin-bottom:13px;
+
+}
+
+.grey_column_team_member_edit form p input{
+
+	font-family: Georgia, "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-weight:bold;
+	font-style:italic;
+	font-size:14px;
+	padding-left:2px;
+	padding-right:2px;
+
+}
+
+.grey_column_team_member_edit form p textarea{
+	
+	margin-top:9px;
+	height:80px;
+	font-family:Tahoma,Verdana,Arial,Sans-serif;
+	font-size:12px;
+	padding-top:2px;
+	padding-left:2px;
+	padding-right:2px;
+
+}
+
+
+.grey_column_team_member_edit form p select{
+
+	width:220px;
+	font-weight:bold;
+	font-size:12px;
+	font-family:Verdana,Arial,Helvetica,sans-serif;
+
+}
+
+.grey_column_team_member_edit .button{
+
+	margin-left:3px;
+	margin-top:5px;
+
+}
+
+
 
 /* Tags for theme */
+
 ul#themes_tags {
     background-color: white;
 }
