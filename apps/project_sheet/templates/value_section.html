@@ -11,8 +11,8 @@
 				<form class="project_details_body_edit" action="{% url project_sheet-edit-field 'value_section' %}" method="post">{% csrf_token %}
 		{% endif %}
 			{{ value_section_form.value_section }}
-			<input class="greenbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
-			<input class="redbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
+			<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
+			<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
 	</form>
 {% else %}
 	{% if project_translation %}
@@ -30,7 +30,7 @@
 		<!-- PARAGRAPH - empty -->
 		<div id="value_section" class="project_details_title_edit">
 			<h2>{% trans 'what is the experience social added value'|capfirst %}?</h2>
-			<a href="{% url project_sheet-edit-field 'value_section' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'value_section' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 		</div>
 		<p class="project_details_body empty"></p>
 	{% endif %}

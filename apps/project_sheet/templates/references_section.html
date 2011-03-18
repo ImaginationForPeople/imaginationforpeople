@@ -7,7 +7,7 @@
 	<!-- !!FOCUS!! - références -->
 	<!-- !!!!!!!!! -->
 	<div class="title">
-		{% trans 'References'|capfirst %}<a href="#" class="button sidebar-opener right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+		{% trans 'References'|capfirst %}<a title="{% trans 'Edit'|capfirst %}" href="#" class="button sidebar-opener right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 	</div>
 	
 	<div class="clear"></div>
@@ -37,10 +37,10 @@
 	<form action="#" method="post">		
 		
 		<ul class="project_refs">
-			<li class="ref new_ref"><p><input type="text" name="#" value="{% trans 'Insert your new reference here (URL, books, etc...)' %}" id="#"><a href="#" class="button greenbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" /></a></p></li>
-			<li class="ref"><p><input type="text" value="Alessandro Barbero, Waterloo, Flammarion, 2005." name="#" id="#" /><a href="#" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a></p></li>
-			<li class="ref"><p><input type="text" value="Gilles Bernard, Waterloo : Les reliques, Histoire et Collections, 2006. (ISBN 978-2915239683)" name="#" id="#" /><a href="#" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a></p></li>
-			<li class="ref"><p><input type="text" value="http://www.napoleonic-literature.com/Waterloo_OB/Allied.htm" name="#" id="#"><a href="#" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a></p></li>	
+			<li class="ref new_ref"><p><input type="text" name="#" value="{% trans 'Insert your new reference here (URL, books, etc...)' %}" id="#"><a href="#"  title="{% trans 'Add'|capfirst %}" class="button greenbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="Add" /></a></p></li>
+			<li class="ref"><p><input type="text" value="Alessandro Barbero, Waterloo, Flammarion, 2005." name="#" id="#" /><a href="#"  title="{% trans 'Delete'|capfirst %}" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a></p></li>
+			<li class="ref"><p><input type="text" value="Gilles Bernard, Waterloo : Les reliques, Histoire et Collections, 2006. (ISBN 978-2915239683)" name="#" id="#" /><a href="#"  title="{% trans 'Delete'|capfirst %}" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a></p></li>
+			<li class="ref"><p><input type="text" value="http://www.napoleonic-literature.com/Waterloo_OB/Allied.htm" name="#" id="#"><a href="#"  title="{% trans 'Delete'|capfirst %}" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a></p></li>	
 		</ul>
 		
 		<a id="references_save" class="grey_column_close" href="javascript:;">{% trans 'Close & discard'%}</a>

@@ -200,8 +200,8 @@
                                          type: 'textarea',
                                          height: '80px',
                                          width: '535px',
-                                         cancel: "<input class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
-                                         submit: "<input class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
+                                         cancel: "<input  title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
+                                         submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
                                          onblur: 'ignore',
                                          cssclass: 'inline-edit',
                                          placeholder: "{% trans "This bloc is empty : don’t forget to fill it !"|capfirst %}"
@@ -216,8 +216,8 @@
                                           type: 'textarea',
                                           height: '80px',
                                           width: '690px',
-                                          cancel: "<input class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
-                                          submit: "<input class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
+                                          cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
+                                          submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
                                           onblur: 'ignore',
                                           cssclass: 'inline-edit',
                                           placeholder: "{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}"
@@ -319,21 +319,21 @@
 	  <form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% endif %}
 	{{ baseline_form.baseline }}
-	<input class="greenbutton" type="image"  src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
-	<input class="redbutton" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />	
+	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
+	<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />	
 	</form>	
 	{% else %}
 	  {% if project_translation %}
 	    <!-- BASELINE - filled-->
 	    <div class="project_baseline focus">
 	      <p>{{ project_translation.baseline }}</p>
-	      <a href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
 	    </div>
 	  {% else %}
 	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
 	      <p>{% trans "my project baseline"|capfirst %}</p>
-	      <a href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png"/></a>
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png"/></a>
 	    </div>
 	  {% endif %}
 	{% endif %}					
@@ -345,7 +345,7 @@
 		<!-- !!!!!!!!! -->
 		<!-- !!FOCUS!! - edition of the full information block  -->
 		<!-- !!!!!!!!! -->
-		<a href="#" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+		<a href="#" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 
 		<!-- !!!!!!!!! -->
 		<!-- !!FOCUS!! - add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section)  -->
@@ -398,8 +398,8 @@
 			<p><label for="#">{% trans 'Location : '|capfirst %}</label><input type="text"name="#" value="{% trans 'place' %}" id="#"><input type="text" value="{% trans 'country' %}" name="#" id="#">&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" value="{% trans 'GPS coordinates' %}" name="#" id="#"></p>
 			<p><label for="#">{% trans 'Website : '|capfirst %}</label><input type="text" id="info_website" value="http://" name="#" id="#"></p>
 			<div class="clear"></div>
-			<input class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
-			<input class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
+			<input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
+			<input title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
 		</form>	
 	</div>
 	
@@ -445,7 +445,7 @@
 	  
 	  {% if project_translation %}
 	    <div class="title">
-	      <a href="{% url project_sheet-instance-edit-related project_translation.slug %}" class="button sidebar-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'Related'|capfirst %}
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-related project_translation.slug %}" class="button sidebar-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'Related'|capfirst %}
 	    </div>
 
 	    <!-- Colonne grise remplie -->
@@ -477,7 +477,7 @@
 		<!-- !!FOCUS!! - About the team -->
 		<!-- !!!!!!!!! -->
 		<div class="title">
-	      <a href="#" class="button sidebar-team-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'The team'|capfirst %}
+	      <a title="{% trans 'Edit'|capfirst %}" href="#" class="button sidebar-team-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'The team'|capfirst %}
 	    </div>
 		
 		<div class="clear"></div>
@@ -494,8 +494,8 @@
 			<!-- !!FOCUS!! - The admin buttons for team members must been hidden by default and visible on hover (like edit buttons for text sections) -->
 			<!-- !!!!!!!!! -->
 			<div class="grey_column_team_buttons">
-				<a href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
-				<a href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+				<a title="{% trans 'Delete'|capfirst %}" href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
+				<a title="{% trans 'Edit'|capfirst %}" href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 			</div>
 			
 			<!-- !!!!!!!!! -->
@@ -511,8 +511,8 @@
 		<div class="grey_column_team_member">
 
 			<div class="grey_column_team_buttons">
-				<a href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
-				<a href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+				<a  title="{% trans 'Delete'|capfirst %}" href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
+				<a title="{% trans 'Edit'|capfirst %}" href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 			</div>
 			
 			<!-- !!!!!!!!! -->
@@ -547,8 +547,8 @@
 				
 				<div class="clear"></div>
 				
-				<a href="#" class="button greenbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" /></a>	
-				<a href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a>
+				<a href="#" title="{% trans 'Ok'|capfirst %}"  class="button greenbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" /></a>	
+				<a href="#" title="{% trans 'Cancel'|capfirst %}" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a>
 						
 			</form>		
 
