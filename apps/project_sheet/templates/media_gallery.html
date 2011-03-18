@@ -48,7 +48,7 @@
 			</p>
 		</form>			
 	</div>
-	<a href="javascript:history.go(-1);" class="redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>	
+	<a href="javascript:history.go(-1);" title="{% trans 'Cancel'|capfirst %}"  class="redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>	
 </div>
 {% else %}
 	{% if project_translation %}
@@ -59,9 +59,49 @@
 				
 				<div id="media_buttons">
 					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
-					<a href="#" class="button nomargin"><img title="{% trans 'Metadata'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
+					<a href="#" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
 					<a href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
 				</div>
+				
+				<!-- !!!!!!!!! -->
+				<!-- !!FOCUS!! -  Each field must be tested ; if one field is not filled, it is not present -->
+				<!-- !!!!!!!!!-->
+				
+				<!-- MEDIA - Metadata viewing - Hidden by default. When user hover #media_metadata_button, metadata becomes visible -->
+				<div id="metadata" class="">
+					<strong>{% trans 'Date :'|capfirst %}</strong> 12-03-1995 <br /><br />
+					<strong>{% trans 'Description :'|capfirst %}</strong> The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile... <br /><br />
+					<strong>{% trans 'Author :'|capfirst %}</strong> Pierrick Mabrouk |	<strong>{% trans 'Source :'|capfirst %}</strong> Naturelle | <strong>{% trans 'Licence :'|capfirst %}</strong> Licence IV
+				</div>
+				
+				
+				<!-- MEDIA - Metadata editing - Class hidden by default. When user click on #media_metadata_button, metadata edition becomes visible, but the medatada viewing must not been visible on hover ! -->
+				<!-- When user edit metadata, the block buttons (#media_buttons) is hidden until action is validated or cancelled -->
+				<div id="metadata" class="metadata_edit hidden">
+					<form action="#">	
+						<strong>{% trans 'Date :'|capfirst %}</strong> 12-03-1995<br /><br />
+
+						<p class="media_desc_edit"><label>{% trans 'Description :'|capfirst %}</label><input type="text" value="The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile... " name="#" id="#" /></p>
+
+						<p class="left"><label>{% trans 'Author :'|capfirst %}</label><input type="text" value="Pierrick Mabrouk" name="#" id="#" /></p>
+						<p class="left"><label>{% trans 'Source :'|capfirst %}</label><input type="text" value="Naturelle" name="#" id="#" /></p>
+
+						<p class="left">	
+							<label>{% trans 'Licence :'|capfirst %}</label> 						
+							<select name="#">
+								<option selected>Licence IV</option>
+								<option>Licence à la pompe</option>
+								<option>Licence assion</option>
+								<option>Licence assfriture</option>
+							</select>
+						</p>
+							
+					<a href="#" title="{% trans 'Ok'|capfirst %}"  class="button greenbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" /></a>	
+					<a href="#" title="{% trans 'Cancel'|capfirst %}" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a>
+						
+					</form>				
+				</div>
+				
 	
 				<div id="gallery">
 					<ul id="project_photo_gallery_current_photo">

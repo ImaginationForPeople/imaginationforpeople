@@ -497,6 +497,17 @@ form{
 
 	padding-top:1px;
 	padding-bottom:1px;
+	margin-left:1px;
+
+	background-color:#CCC8C8;
+	border:1px solid #CCC8C8;
+	color:white;
+
+	
+	-moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
 	
 }
 
@@ -924,9 +935,58 @@ form{
 	position:absolute;
 	right:7px;
 	top:10px;
-	z-index:1000;
+	z-index:1500;
 	
 }
+
+#metadata{
+
+	position:absolute;
+	left:0px;
+	z-index:1000;
+	padding:10px;
+	background-image:url("../images/base/black.png");
+	width:683px;
+	color:white;
+	top:3px;
+
+}
+
+.metadata_edit{
+
+	height:84px;
+
+}
+
+#metadata label{
+
+
+}
+
+#metadata input[type=text],#metadata select{
+
+	font-size:12px;
+	width:110px;
+	margin-right:10px;
+
+}
+
+#metadata .media_desc_edit{
+
+	position:relative;
+	top:-4px;
+	margin-bottom:16px;
+
+}
+
+#metadata .media_desc_edit input{
+
+	width:590px;
+	position:relative;
+	left:10px;
+
+}
+
 
 #project_photo_gallery .button{
 
@@ -1264,6 +1324,10 @@ form{
 	margin-bottom:13px;
 	width:100%;
 
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+            .grey_column_team_member_edit form p input[type=file]{ width:214px; } /*hack pour chrome*/
 }
 
 .grey_column_team_member_edit form p input{
