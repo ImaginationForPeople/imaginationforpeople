@@ -34,9 +34,7 @@
 		/* Update the carousel so that it matches the current picture  */
 		function update_carousel(index) {
 			var jcarousel = $('#project_photo_gallery_mini').data('jcarousel');
-			
-			console.debug(jcarousel.options.size);
-			console.debug(jcarousel.options.scroll);
+
 			if ( jcarousel.options.size > jcarousel.options.scroll )
 				jcarousel.scroll(index - 1, true);
 		}

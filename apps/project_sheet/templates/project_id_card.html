@@ -3,12 +3,7 @@
 <a href="{{ project_translation.get_absolute_url }}" class="project_card">
 	
 	<div class="project-photo">	
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - Afficher uniquement la premiere image si elle existe -->
-		<!-- !!!!!!!!! -->
-		{% for pic in project_translation.project.pictures.all %}
-		<img src="{{pic.thumbnail_image.url}}" alt=""/>
-		{% endfor %}	
+		<img src="{{ project_translation.project.pictures.all.1.thumbnail_idcard.url }}" alt=""/>
 	</div>
 	
 	<div class="project_card_type"><img src="http://www.google.fr/images/logos/ps_logo2.png" alt="democratize" /></div>
