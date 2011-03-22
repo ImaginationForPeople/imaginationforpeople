@@ -247,28 +247,54 @@
 
   <script type="text/javascript">
     /* FIXME: The animation is wrong, must be fixed ! */
+    function showSidebar(aSidebar){
+    	aSidebar.css('visibility', 'visible');
+    	aSidebar.animate({'width': 960}, {
+			duration: 450,
+			step: function(now, fx) {
+				if(now > 400){
+					aSidebar.find('form').fadeIn();
+				}
+			 }
+		});
+    }
+  
+  	function hideSideBar(aSidebar){
+  		aSidebar.animate({'width': 260}, {
+			duration: 450,
+			step: function(now, fx) {
+				aSidebar.find('form').fadeOut();
+			},
+			complete: function() {
+				aSidebar.css('visibility', 'hidden');
+			}
+		});
+  	}
+
     $(document).ready(function() {
-      $('#opened-sidebar').hide();
-      $('#opened-sidebar-team').hide();
-      
+      $('#opened-sidebar').css({'visibility': 'hidden','width': 260, 'height': 500});
+      $('#opened-sidebar form').hide();
 
       $('a.sidebar-opener').click(function() {
-         $('#opened-sidebar').slideToggle();
-         return false;
-      });
+    	  showSidebar($('#opened-sidebar'));
+    	  return false;
+	  });
 
       $('a.sidebar-close').click(function() {
-         $('#opened-sidebar').slideToggle();
+    	 hideSideBar($('#opened-sidebar'));
          return false;
       });
 	  
+      $('#opened-sidebar-team').css({'visibility': 'hidden','width': 260, 'height': 350});
+      $('#opened-sidebar-team form').hide();
+      
 	  $('a.sidebar-team-opener').click(function() {
-         $('#opened-sidebar-team').slideToggle();
+		 showSidebar($('#opened-sidebar-team'));
          return false;
       });
 
       $('a.sidebar-team-close').click(function() {
-         $('#opened-sidebar-team').slideToggle();
+    	 hideSideBar($('#opened-sidebar-team'));
          return false;
       });
 
@@ -591,7 +617,7 @@
       </div>	
 
     <!-- GREY COLUMN - RELATED - opened -->
-	<div id="opened-sidebar" class="grid_12 omega grey_column_open">	
+	<div id="opened-sidebar" class="grey_column_open">	
 		<div class="grey_column_content">	
 
 			<div class="title">{% trans 'Related'|capfirst %}</div>
@@ -643,7 +669,7 @@
 	<!-- !!!!!!!!! -->
 	
 	<!-- GREY COLUMN - TEAM - opened -->
-    <div id="opened-sidebar-team" class="grid_12 omega grey_column_open">	
+    <div id="opened-sidebar-team" class="grey_column_open">	
 		<div class="grey_column_team_content">	
 		  
 			<div class="title">{% trans 'The team'|capfirst %}</div>
