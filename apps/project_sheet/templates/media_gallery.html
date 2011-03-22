@@ -1,6 +1,20 @@
 ﻿{% load i18n %}
 {% load oembed_works_tags %}
 
+<script type="text/javascript">
+$(document).ready(function() {
+    var button = $('#media_metadata_button')
+    var metadata_panel = $('#metadata')
+    metadata_panel.hide();
+
+    button.hover(function() {
+	metadata_panel.fadeIn('fast');
+    }, function() {
+	metadata_panel.fadeOut('fast');
+    });
+});
+</script>
+
 {% if picture_form %}
 <!-- MEDIA - edition mode -->
 <div id="project_photo_upload_edit">
@@ -8,7 +22,7 @@
 	
 	<div id="forms_files">
 		{% if project_translation %}		
-			<form method="post"id="photo_upload_form"  action="{% url project_sheet-instance-add-picture project_translation.slug %}" enctype="multipart/form-data" >{% csrf_token %}
+			<form method="post" id="photo_upload_form"  action="{% url project_sheet-instance-add-picture project_translation.slug %}" enctype="multipart/form-data" >{% csrf_token %}
 		{% else %}
 			<form method="post" id="photo_upload_form"  action="{% url project_sheet-add-picture %}" enctype="multipart/form-data">{% csrf_token %}
 		{% endif %}

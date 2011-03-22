@@ -275,6 +275,34 @@
     });
   </script>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+	var project_infos_block_edit = $('#project_infos_block_edit')
+	var project_infos_block = $('#project_infos_block');
+	var project_infos_edit_button = $('#project_infos_block_edit_button');
+	var project_infos_edit_button_cancel = $('#project_infos_block_edit_button_cancel');
+
+	project_infos_block_edit.hide();
+
+	/* When clicking on the edit pencil, for the project infos section */
+	project_infos_edit_button.click(function() {
+	    project_infos_block.hide();
+	    project_infos_block_edit.show();
+
+	    return false;
+	});
+
+	/* When clicking on the [X] button in inline edit mode */
+	project_infos_edit_button_cancel.click(function() {
+	    project_infos_block_edit.hide();
+	    project_infos_block.show();
+	    project_infos_edit_button.hide();
+
+	    return false;
+	});
+    });
+  </script>
+
 {% endblock %}
 
 {% block project_content %}	
@@ -337,13 +365,13 @@
 	{% endif %}					
 	
 	<!-- PROJECT INFOS - existing project - viewable version -->
-	<div id="project_infos_bloc">
+	<div id="project_infos_block">
 	  {% if project_translation %} 
 	  
 		<!-- !!!!!!!!! -->
 		<!-- !!FOCUS!! - edition of the full information block  -->
 		<!-- !!!!!!!!! -->
-		<a href="#" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+		<a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 
 		<!-- !!!!!!!!! -->
 		<!-- !!FOCUS!! - add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section)  -->
@@ -367,7 +395,7 @@
 			{{ project_translation.location }}
 			<img src="{{ MEDIA_URL }}/images/project/globe.png" alt="#"/>
 		{% else %}
-			{% trans '<i> unknown </i>'|capfirst %}
+			<em>{% trans 'unknown'|capfirst %}</em>
 		{% endif %}
 		</div>
 		
@@ -384,7 +412,7 @@
 	
 	
 	<!-- PROJECT INFOS - editing version -->
-	<div id="project_infos_bloc_edit">
+	<div id="project_infos_block_edit">
 		<form action="#" method="post">
 			<p>
 				<label for="#">{% trans 'Created by : '|capfirst %}</label>
@@ -397,7 +425,7 @@
 			<p><label for="#">{% trans 'Website : '|capfirst %}</label><input type="text" id="info_website" value="http://" name="#" id="#"></p>
 			<div class="clear"></div>
 			<input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
-			<input title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
+			<input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
 		</form>	
 	</div>
 	
@@ -483,27 +511,7 @@
 		<!-- !!!!!!!!! -->
 		<!-- !!FOCUS!! - Text who's apparent when this section is empty -->
 		<!-- !!!!!!!!! -->
-		<p><a href="#" class="sidebar-team-opener">{% trans "There is no <strong>registered team members</strong> : don't forget to fill this section !" %}</a></p>
-		
-		
-		<div class="grey_column_team_member">
-			
-			<!-- !!!!!!!!! -->
-			<!-- !!FOCUS!! - The admin buttons for team members must been hidden by default and visible on hover (like edit buttons for text sections) -->
-			<!-- !!!!!!!!! -->
-			<div class="grey_column_team_buttons">
-				<a title="{% trans 'Delete'|capfirst %}" href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
-				<a title="{% trans 'Edit'|capfirst %}" href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
-			</div>
-			
-			<!-- !!!!!!!!! -->
-			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
-			<!-- !!!!!!!!! -->
-			<img src="http://www.casafree.com/modules/xcgal/albums/userpics/10053/Gato_con_Botas.jpg" alt="#" />
-			<h2>Jean-Mauricien Percule</h2>
-			<h3>{% trans "Project Leader" %}</h3>
-			<p>The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</p>			
-		</div>
+		<!-- <p><a href="#" class="sidebar-team-opener">{% trans "There is no <strong>registered team members</strong> : don't forget to fill this section !" %}</a></p> -->
 		
 		
 		<div class="grey_column_team_member">
