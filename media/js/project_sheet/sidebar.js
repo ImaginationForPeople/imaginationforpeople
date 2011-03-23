@@ -7,7 +7,7 @@ function showSidebar(aSidebar){
     	    	applyPlatformOpacityRules : false
     	      });
     aSidebar.css('visibility', 'visible');
-    aSidebar.animate({'width': 960}, {
+    aSidebar.animate({'width': 760}, {
 	duration: 450,
 	step: function(now, fx) {
 	    if(now > 400){
@@ -32,10 +32,10 @@ function hideSideBar(aSidebar){
 
 $(document).ready(function() {
     $('#opened-sidebar').css({'visibility': 'hidden','width': 260, 'height': 500});
-    $('#opened-sidebar form').hide();
+    //$('#opened-sidebar form').hide();
     
     $('#opened-sidebar-team').css({'visibility': 'hidden','width': 260, 'height': 350});
-    $('#opened-sidebar-team form').hide();
+    //$('#opened-sidebar-team form').hide();
     
     $('a.sidebar-opener.button').each(function(){
     	sidebar = $(this).attr("name");
