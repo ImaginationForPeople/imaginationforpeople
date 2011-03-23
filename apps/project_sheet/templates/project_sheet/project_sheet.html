@@ -8,7 +8,9 @@
   {{ block.super }}
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
 	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/anythingslider.css" type="text/css" media="screen" />
-
+	
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.blockUI.js" ></script>
+	
 	<!-- inline  -->
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jeditable.js"></script>
 
@@ -246,8 +248,14 @@
 
 
   <script type="text/javascript">
-    /* FIXME: The animation is wrong, must be fixed ! */
     function showSidebar(aSidebar){
+    	$.blockUI({ message: null,
+    	    		overlayCSS:  { 
+    	        		backgroundColor: '#000', 
+    	        		opacity:         0.6 
+    	    		},
+    	    		applyPlatformOpacityRules : false
+    			   });
     	aSidebar.css('visibility', 'visible');
     	aSidebar.animate({'width': 960}, {
 			duration: 450,
@@ -269,35 +277,38 @@
 				aSidebar.css('visibility', 'hidden');
 			}
 		});
+  		$.unblockUI();
   	}
 
     $(document).ready(function() {
       $('#opened-sidebar').css({'visibility': 'hidden','width': 260, 'height': 500});
       $('#opened-sidebar form').hide();
-
+	  
+      $('#opened-sidebar-team').css({'visibility': 'hidden','width': 260, 'height': 350});
+      $('#opened-sidebar-team form').hide();
+	  
+      $('a.sidebar-opener.button').each(function(){
+    	  sidebar = $(this).attr("name");
+    	  top = $(this).parent().position().top
+    	  if(top > 0){
+    		  /* Remove the margin of the Team sidebar */
+    		  top -= 15
+    	  }
+    	  $("#"+sidebar).css("top", top)
+      });
+      
       $('a.sidebar-opener').click(function() {
-    	  showSidebar($('#opened-sidebar'));
+    	  /* The name attribute of the anchor is the ID of the sidebar to open */
+    	  sidebar = $(this).attr("name");
+    	  showSidebar($("#"+sidebar));
     	  return false;
 	  });
 
       $('a.sidebar-close').click(function() {
-    	 hideSideBar($('#opened-sidebar'));
+    	 sidebar = $(this).parents(".grey_column_open");
+    	 hideSideBar(sidebar);
          return false;
       });
-	  
-      $('#opened-sidebar-team').css({'visibility': 'hidden','width': 260, 'height': 350});
-      $('#opened-sidebar-team form').hide();
-      
-	  $('a.sidebar-team-opener').click(function() {
-		 showSidebar($('#opened-sidebar-team'));
-         return false;
-      });
-
-      $('a.sidebar-team-close').click(function() {
-    	 hideSideBar($('#opened-sidebar-team'));
-         return false;
-      });
-
     });
   </script>
 
@@ -366,9 +377,9 @@
 	<!-- BASELINE - edition mode-->
 	{% if project_translation %}
 
-	  <form id="baseline" action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
+	<form id="baseline" action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% else %}
-	  <form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
+	<form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% endif %}
 	{{ baseline_form.baseline }}
 	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
@@ -459,27 +470,27 @@
 	
 	
 	
-	{% include "media_gallery.html"%}
+	{% include "project_sheet/media_gallery.html"%}
 	
 	<!-- PROJECT DESCRIPTION -->
 	<div class="project_description">
-	  {% include "about_section.html" %}
+	  {% include "project_sheet/about_section.html" %}
 	</div>					
 	
 
 	<!-- PROJECT DETAILS -->
 	<div class="project_details">
-	  {% include "uniqueness_section.html" %}
+	  {% include "project_sheet/uniqueness_section.html" %}
 	  
-	  {% include "value_section.html" %}
+	  {% include "project_sheet/value_section.html" %}
 	  
-	  {% include "scalability_section.html" %}
+	  {% include "project_sheet/scalability_section.html" %}
 	  
 	</div>
 	
 	<div class="clear"></div>
 	
-	{% include "references_section.html" %}
+	{% include "project_sheet/references_section.html" %}
 	
 	<div class="clear"></div>
 
@@ -492,219 +503,13 @@
       </div>
       
       <!-- GREY COLUMN - closed (default) -->
-      <div class="grid_5 omega grey_column">											
-	<div class="grey_column_content">					
-	  
-	  {% if project_translation %}
-	    <div class="title">
-	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-related project_translation.slug %}" class="button sidebar-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'Related'|capfirst %}
-	    </div>
+	  {% include "project_sheet/grey_column.html"%}
 
-	    <!-- Colonne grise remplie -->
-	    <div class="grey_column_objective">	
-	      <label>{% trans 'Objective :'|capfirst %}</label> 
-	      <a href="#" id="project_objective">{{ project_translation.project.get_objective_display }}</a>
-	    </div>
-
-	    {% if not project_translation.themes %}
-	      <p>
-		<a class="sidebar-opener" href="#">{% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
-	      </p>
-	    {% else %}
-
-	      {% tags_for_object project_translation as taglist %}
-		<div class="grey_column_tagcloud">	
-		  <label>{% trans 'Themes:'|capfirst %}</label> 							
-		  <ul id="cloudtag_list">
-		    {% for tag in taglist %}
-		      <li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif %}</li>
-		    {% endfor %}
-		  </ul>
-		</div>
-		
-
-	    {% endif %}
-		
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - About the team -->
-		<!-- !!!!!!!!! -->
-		<div class="title">
-	      <a title="{% trans 'Edit'|capfirst %}" href="#" class="button sidebar-team-opener"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>{% trans 'The team'|capfirst %}
-	    </div>
-		
-		<div class="clear"></div>
-		
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - Text who's apparent when this section is empty -->
-		<!-- !!!!!!!!! -->
-		<!-- <p><a href="#" class="sidebar-team-opener">{% trans "There is no <strong>registered team members</strong> : don't forget to fill this section !" %}</a></p> -->
-		
-		
-		<div class="grey_column_team_member">
-
-			<div class="grey_column_team_buttons">
-				<a  title="{% trans 'Delete'|capfirst %}" href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a>
-				<a title="{% trans 'Edit'|capfirst %}" href="#" class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
-			</div>
-			
-			<!-- !!!!!!!!! -->
-			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
-			<!-- !!!!!!!!! -->
-			<img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" />
-			<h2>Sophitiella Plectre</h2>
-			<h3>{% trans "Project Minion" %}</h3>
-			<p>The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</p>			
-		</div>
-		
-		
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - Team Member in edition mode -->
-		<!-- !!!!!!!!! -->
-		<div class="grey_column_team_member_edit">	
-
-			<form action="#" method="post">
-				
-				<div class="empty_photo"><img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" /></div>
-				<p><input type="file" id="#" name="#" style="z-index:4000;" /></p>								
-				<p><input type="text"name="#" value="Sophitiella Plectre" id="#" /></p>
-				<p>
-					<select name="#">
-						<option>Project Leader</option>
-						<option selected>Project Minion</option>
-						<option>Referent</option>
-						<option>Project Author</option>
-					</select>
-				</p>
-				<p><textarea name="#">The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</textarea></p>
-				
-				<div class="clear"></div>
-				
-				<a href="#" title="{% trans 'Ok'|capfirst %}"  class="button greenbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" /></a>	
-				<a href="#" title="{% trans 'Cancel'|capfirst %}" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a>
-						
-			</form>		
-
-		</div>
-		
-
-	    <div class="clear"></div>
-	    
-	    {% trans "Available versions:" %}
-	    <ul id="translations">
-	    {% for translation in project_translation.project.translations.all %}
-	      <li><a href="{% locale_url translation.language_code project_sheet-show translation.slug %}">{{ translation.language_code }} </a></li>
-	      {% endfor %}
-	    </ul>
-
-	    {% trans "Create a translation in:" %}
-
-	    <form method='POST' action='{% url project_sheet-translate project_translation.slug %}'>
-	      {% csrf_token %}
-	      <select name="language_code">
-		{% for language in LANGUAGES %}
-		  <option value="{{ language.0 }}">{{ language.1 }}</option>
-		{% endfor %}
-	      </select>
-	      <button type="submit">{% trans 'Create' %}</button>
-	    </form>
-
-
-	  {% else %}
-	    <h1>{% trans "How to start your project sheet ?" %}</h1>
-	    {% trans "Click on a field to edit it, then submit your changes. Your project will be created once a field is filled." %}
-	  {% endif %}
-	</div>					
-      </div>	
-
-    <!-- GREY COLUMN - RELATED - opened -->
-	<div id="opened-sidebar" class="grey_column_open">	
-		<div class="grey_column_content">	
-
-			<div class="title">{% trans 'Related'|capfirst %}</div>
-
-			<form id="themes-form" method="POST">
-
-				<div class="grey_column_content_edition">
-
-				<div class="grey_column_objective_edition">						
-					<form action="#" method="#">
-						<p>
-							<label>{% trans 'Objective :'|capfirst %}</label> 
-							{{ project_objective_form.objective }}
-						</p>
-					</form>						
-				</div>						
-
-				<div class="grey_column_cloudtag_edition">
-
-					<div id="grey_column_cloudtag_edition_title">
-						<label>{% trans 'Themes:'|capfirst %}</label><span class="precision">({% trans 'select your tags from the cloud below' %})</span>
-					</div>
-
-					<ul id="themes_list">
-						{% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags with counts %}
-
-						{% for tag in project_sheet_tags %}
-						<li value="{{ tag.count }}"><a href="javascript:;">{{ tag }}</a></li>
-						{% endfor %}
-					</ul>
-
-					<ul id="themes_tags"></ul>
-
-				</div>
-
-				<a id="grey_column_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
-				<a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
-
-			</form>
-			</div>
-
-		</div>					
-
-	</div>	
 	
-	
-	<!-- !!!!!!!!! -->
-	<!-- !!FOCUS!! - Team section in edition mode : if possible, the grey column must been alignated with his version in view mode : Please consult me if its not clear -->
-	<!-- !!!!!!!!! -->
+	<!-- GREY COLUMN - RELATED - opened -->
+	{% include "project_sheet/sidebar_related.html"%}
 	
 	<!-- GREY COLUMN - TEAM - opened -->
-    <div id="opened-sidebar-team" class="grey_column_open">	
-		<div class="grey_column_team_content">	
-		  
-			<div class="title">{% trans 'The team'|capfirst %}</div>
-
-			<div class="clear"></div>
-			 
-			<form action="#" method="post">
-				
-				<p><label for="#">{% trans 'Photo : '|capfirst %}</label><input type="file" id="#" name="#" /></p>
-				<p><label for="#">{% trans 'Name : '|capfirst %}</label><input type="text" name="#" id="#" /></p>
-				<p>
-					<label for="#">{% trans 'Role : '|capfirst %}</label>
-					<select name="#">
-						<option>Project Leader</option>
-						<option>Project Minion</option>
-						<option>Referent</option>
-						<option>Project Author</option>
-					</select>
-				</p>
-				<p><label for="#">{% trans 'Description : '|capfirst %}</label><textarea name="#"></textarea></p>
-				
-				<div class="clear"></div>
-				
-				<a id="grey_column_close" class="grey_column_close sidebar-team-close" href="javascript:;">{% trans 'Close & discard'%}</a>
-				<a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
-						
-			</form>	
-
-		</div>					
-
-	</div>	
-
-
-
-
-	
+	{% include "project_sheet/sidebar_team.html"%}
 
 {% endblock %}

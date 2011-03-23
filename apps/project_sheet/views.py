@@ -41,7 +41,7 @@ def project_sheet_show(request, slug):
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
     project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
 
-    return render_to_response(template_name='project_sheet.html', 
+    return render_to_response(template_name='project_sheet/project_sheet.html', 
                               dictionary={'project_translation': project_translation,
                                           'project_themes_form': project_themes_form,
                                           'project_objective_form': project_objective_form},
@@ -96,7 +96,7 @@ def project_sheet_edit_field(request, field, slug=None):
             form = FieldForm()
 
     context["%s_form" % field] =  form
-    return render_to_response(template_name="project_sheet.html",
+    return render_to_response(template_name="project_sheet/project_sheet.html",
                               dictionary=context,
                               context_instance=RequestContext(request))
 
@@ -156,7 +156,7 @@ def project_sheet_add_media(request, slug=None):
     except I4pProjectTranslation.DoesNotExist:
             pass
 
-    return render_to_response("project_sheet.html",
+    return render_to_response("project_sheet/project_sheet.html",
                               context, 
                               context_instance = RequestContext(request))
 

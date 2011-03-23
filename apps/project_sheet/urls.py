@@ -13,7 +13,7 @@ PROJECT_AUTHORIZED_FIELDS = "|".join([
 ])
 
 urlpatterns = patterns('',
-    url(r'^start/$', direct_to_template, {'template' : 'project_sheet.html'}, name='project_sheet-start'),
+    url(r'^start/$', direct_to_template, {'template' : 'project_sheet/project_sheet.html'}, name='project_sheet-start'),
     url(r'^list/$', views.project_sheet_list, name='project_sheet-list'),
 
     url(r'^edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),

@@ -1,0 +1,156 @@
+{% load i18n %}
+{% load tagging_tags %}
+{% load localeurl_tags %}
+
+<div class="grid_5 omega grey_column">
+	<div class="grey_column_content">
+
+		{% if project_translation %}
+		<div class="title">
+			<a title="{% trans 'Edit'|capfirst %}"
+				href="{% url project_sheet-instance-edit-related project_translation.slug %}"
+				class="button sidebar-opener" name="opened-sidebar"> 
+				<img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /> </a>
+				{% trans 'Related'|capfirst %}
+		</div>
+
+		<!-- Colonne grise remplie -->
+		<div class="grey_column_objective">
+			<label>{% trans 'Objective :'|capfirst %}</label> 
+			<a href="#" id="project_objective">{{project_translation.project.get_objective_display }}</a>
+		</div>
+
+		{% if not project_translation.themes %}
+		<p>
+			<a class="sidebar-opener" href="#" name="opened-sidebar">
+			{% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong>of your project."|capfirst %}</a>
+		</p>
+		{% else %} {% tags_for_object project_translation as taglist %}
+		<div class="grey_column_tagcloud">
+			<label>{% trans 'Themes:'|capfirst %}</label>
+			<ul id="cloudtag_list">
+				{% for tag in taglist %}
+					<li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif%}</li> 
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - About the team -->
+		<!-- !!!!!!!!! -->
+		<div class="title">
+			<a title="{% trans 'Edit'|capfirst %}" href="#"
+				class="button sidebar-opener" name="opened-sidebar-team"><img
+				src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" />
+			</a>
+			{% trans 'The team'|capfirst %}
+		</div>
+
+		<div class="clear"></div>
+
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - Text who's apparent when this section is empty -->
+		<!-- !!!!!!!!! -->
+		<!-- <p><a href="#" class="sidebar-opener">{% trans "There is no <strong>registered team members</strong> : don't forget to fill this section !" %}</a></p> -->
+
+
+		<div class="grey_column_team_member">
+
+			<div class="grey_column_team_buttons">
+				<a title="{% trans 'Delete'|capfirst %}" href="#"
+					class="button redbutton right nomargin"><img
+					src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" />
+				</a> <a title="{% trans 'Edit'|capfirst %}" href="#"
+					class="button right nomargin"><img
+					src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" />
+				</a>
+			</div>
+
+			<!-- !!!!!!!!! -->
+			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
+			<!-- !!!!!!!!! -->
+			<img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" />
+			<h2>Sophitiella Plectre</h2>
+			<h3>{% trans "Project Minion" %}</h3>
+			<p>The Speaker's Corner is a very unique way of giving lorem
+				ipsum dolores ectamed dolred iposed lidum ed solimec acladim so
+				remule delumdolesc deloea siloga iposbile...</p>
+		</div>
+
+
+		<!-- !!!!!!!!! -->
+		<!-- !!FOCUS!! - Team Member in edition mode -->
+		<!-- !!!!!!!!! -->
+		<div class="grey_column_team_member_edit">
+
+			<form action="#" method="post">
+
+				<div class="empty_photo">
+					<img
+						src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg"
+						alt="#" />
+				</div>
+				<p>
+					<input type="file" id="#" name="#" style="z-index: 4000;" />
+				</p>
+				<p>
+					<input type="text" name="#" value="Sophitiella Plectre" id="#" />
+				</p>
+				<p>
+					<select name="#">
+						<option>Project Leader</option>
+						<option selected>Project Minion</option>
+						<option>Referent</option>
+						<option>Project Author</option>
+					</select>
+				</p>
+				<p>
+					<textarea name="#">The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</textarea>
+				</p>
+
+				<div class="clear"></div>
+
+				<a href="#" title="{% trans 'Ok'|capfirst %}" class="button greenbutton right nomargin">
+					<img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" />
+				</a> 
+				<a href="#" title="{% trans 'Cancel'|capfirst %}" class="button redbutton right nomargin">
+					<img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" />
+				</a>
+
+			</form>
+
+		</div>
+
+
+		<div class="clear"></div>
+
+		{% trans "Available versions:" %}
+		<ul id="translations">
+			{% for translation in project_translation.project.translations.all %}
+			<li><a
+				href="{% locale_url translation.language_code project_sheet-show translation.slug %}">
+				{{ translation.language_code }} </a>
+			</li> 
+			{% endfor %}
+		</ul>
+
+		{% trans "Create a translation in:" %}
+
+		<form method='POST'
+			action='{% url project_sheet-translate project_translation.slug %}'>
+			{% csrf_token %} <select name="language_code"> 
+			{% for language in LANGUAGES %}
+				<option value="{{ language.0 }}">{{ language.1 }}</option> 
+			{% endfor %}
+			</select>
+			<button type="submit">{% trans 'Create' %}</button>
+		</form>
+
+
+		{% else %}
+		<h1>{% trans "How to start your project sheet ?" %}</h1>
+		{% trans "Click on a field to edit it, then submit your changes. Your
+		project will be created once a field is filled." %} {% endif %}
+	</div>
+</div>
