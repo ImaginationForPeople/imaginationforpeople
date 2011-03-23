@@ -30,74 +30,11 @@
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jcarousel.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/swfobject.js" ></script>
 
-	<!-- Scripts for Image Slider -->
-	<script type="text/javascript">
-	
-		/* Update the carousel so that it matches the current picture  */
-		function update_carousel(index) {
-			var jcarousel = $('#project_photo_gallery_mini').data('jcarousel');
+	<!-- Scripts for Media Slider -->
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/project_sheet/media.js"></script>
 
-			if ( jcarousel.options.size > jcarousel.options.scroll )
-				jcarousel.scroll(index - 1, true);
-		}
-	
-	
-		/* When a thumbnail is clicked */
-		function changeslider(sid){
-			var anyslider = $('#project_photo_gallery_current_photo');
-			
-			anyslider.anythingSlider(sid);
-			update_carousel(sid);
-					
-			return false;
-		};
-	
-		$(document).ready(function () {
-
-			
-			$('#project_photo_gallery_current_photo').find('embed[src*=youtube]').each(function(i){
-				$(this).before('<param name="wmode" value="transparent">');
-				$(this).attr('wmode', "transparent");
-			});
-			
-			$('#project_photo_gallery_current_photo > iframe').css('z-index', '-2000');
-			
-			$('#project_photo_gallery_current_photo').anythingSlider({
-				width : 700,          // Override the default CSS width
-				height: 460,		// Override the default CSS height
-				delay               : 10000,      // How long between slideshow transitions in AutoPlay mode (in milliseconds)
-				animationTime       : 600,       // How long the slideshow transition takes (in milliseconds)
-				buildArrows         : false,      // If true, builds the forwards and backwards buttons
-				resizeContents      : true,      // If true, solitary images/objects in the panel will expand to fit the viewport
-				autoPlay            : false,     // This turns off the entire slideshow FUNCTIONALY, not just if it starts running or not
-				addWmodeToObject	: "transparent",
-				easing: 'easeInOutExpo'
-			});	
-			
-			/* Disable callbacks on the buttons to set a new behaviour */
-			$('#project_photo_gallery_mini').jcarousel({buttonNextEvent: null, buttonPrevEvent: null, wrap: 'circular', scroll: 4});
-
-			/* When the next button is clicked */
-			$('.jcarousel-next').click(function() {
-				var anyslider = $('#project_photo_gallery_current_photo').data('AnythingSlider');
-						
-				anyslider.goForward();
-				update_carousel(anyslider.currentPage);
-			});
-			
-			/* When the previous button is clicked */
-			$('.jcarousel-prev').click(function() {
-				var anyslider = $('#project_photo_gallery_current_photo').data('AnythingSlider');
-				
-				anyslider.goBack();
-				update_carousel(anyslider.currentPage);
-			});
-			
-		});
-				
-
-
-	</script>
+	<!-- Sidebar -->
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/project_sheet/sidebar.js"></script>
 
 
   <script type="text/javascript">
@@ -243,72 +180,6 @@
     });    
     {% endif %}
     
-    });
-  </script>
-
-
-  <script type="text/javascript">
-    function showSidebar(aSidebar){
-    	$.blockUI({ message: null,
-    	    		overlayCSS:  { 
-    	        		backgroundColor: '#000', 
-    	        		opacity:         0.6 
-    	    		},
-    	    		applyPlatformOpacityRules : false
-    			   });
-    	aSidebar.css('visibility', 'visible');
-    	aSidebar.animate({'width': 960}, {
-			duration: 450,
-			step: function(now, fx) {
-				if(now > 400){
-					aSidebar.find('form').fadeIn();
-				}
-			 }
-		});
-    }
-  
-  	function hideSideBar(aSidebar){
-  		aSidebar.animate({'width': 260}, {
-			duration: 450,
-			step: function(now, fx) {
-				aSidebar.find('form').fadeOut();
-			},
-			complete: function() {
-				aSidebar.css('visibility', 'hidden');
-			}
-		});
-  		$.unblockUI();
-  	}
-
-    $(document).ready(function() {
-      $('#opened-sidebar').css({'visibility': 'hidden','width': 260, 'height': 500});
-      $('#opened-sidebar form').hide();
-	  
-      $('#opened-sidebar-team').css({'visibility': 'hidden','width': 260, 'height': 350});
-      $('#opened-sidebar-team form').hide();
-	  
-      $('a.sidebar-opener.button').each(function(){
-    	  sidebar = $(this).attr("name");
-    	  top = $(this).parent().position().top
-    	  if(top > 0){
-    		  /* Remove the margin of the Team sidebar */
-    		  top -= 15
-    	  }
-    	  $("#"+sidebar).css("top", top)
-      });
-      
-      $('a.sidebar-opener').click(function() {
-    	  /* The name attribute of the anchor is the ID of the sidebar to open */
-    	  sidebar = $(this).attr("name");
-    	  showSidebar($("#"+sidebar));
-    	  return false;
-	  });
-
-      $('a.sidebar-close').click(function() {
-    	 sidebar = $(this).parents(".grey_column_open");
-    	 hideSideBar(sidebar);
-         return false;
-      });
     });
   </script>
 

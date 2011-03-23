@@ -1,0 +1,58 @@
+/* Update the carousel so that it matches the current picture  */
+function update_carousel(index) {
+    var jcarousel = $('#project_photo_gallery_mini').data('jcarousel');
+    
+    if ( jcarousel.options.size > jcarousel.options.scroll )
+    jcarousel.scroll(index - 1, true);
+}
+
+/* When a thumbnail is clicked */
+function changeslider(sid){
+    var anyslider = $('#project_photo_gallery_current_photo');
+    
+    anyslider.anythingSlider(sid);
+    update_carousel(sid);
+    
+    return false;
+};
+
+$(document).ready(function () {
+    $('#project_photo_gallery_current_photo').find('embed[src*=youtube]').each(function(i) {
+	$(this).before('<param name="wmode" value="transparent">');
+	$(this).attr('wmode', "transparent");
+    });
+
+    $('#project_photo_gallery_current_photo > iframe').css('z-index', '-2000');
+
+    $('#project_photo_gallery_current_photo').anythingSlider({
+	width : 700,          // Override the default CSS width
+	height: 460,		// Override the default CSS height
+	delay               : 10000,      // How long between slideshow transitions in AutoPlay mode (in milliseconds)
+	animationTime       : 600,       // How long the slideshow transition takes (in milliseconds)
+	buildArrows         : false,      // If true, builds the forwards and backwards buttons
+	resizeContents      : true,      // If true, solitary images/objects in the panel will expand to fit the viewport
+	autoPlay            : false,     // This turns off the entire slideshow FUNCTIONALY, not just if it starts running or not
+	addWmodeToObject	: "transparent",
+	easing: 'easeInOutExpo'
+    });	
+
+    /* Disable callbacks on the buttons to set a new behaviour */
+    $('#project_photo_gallery_mini').jcarousel({buttonNextEvent: null, buttonPrevEvent: null, wrap: 'circular', scroll: 4});
+    
+    /* When the next button is clicked */
+    $('.jcarousel-next').click(function() {
+	var anyslider = $('#project_photo_gallery_current_photo').data('AnythingSlider');
+	
+	anyslider.goForward();
+	update_carousel(anyslider.currentPage);
+    });
+    
+    /* When the previous button is clicked */
+    $('.jcarousel-prev').click(function() {
+	var anyslider = $('#project_photo_gallery_current_photo').data('AnythingSlider');
+	
+	anyslider.goBack();
+	update_carousel(anyslider.currentPage);
+    });
+    
+});
