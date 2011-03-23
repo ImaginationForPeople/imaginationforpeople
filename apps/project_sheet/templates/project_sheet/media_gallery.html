@@ -1,20 +1,6 @@
 ﻿{% load i18n %}
 {% load oembed_works_tags %}
 
-<script type="text/javascript">
-$(document).ready(function() {
-    var button = $('#media_metadata_button')
-    var metadata_panel = $('#metadata')
-    metadata_panel.hide();
-
-    button.hover(function() {
-	metadata_panel.fadeIn('fast');
-    }, function() {
-	metadata_panel.fadeOut('fast');
-    });
-});
-</script>
-
 {% if picture_form %}
 <!-- MEDIA - edition mode -->
 <div id="project_photo_upload_edit">
@@ -31,18 +17,12 @@ $(document).ready(function() {
 					
 				<div class="clear"></div>
 				
-				<p class="media_desc_up left"><label>{% trans 'Description :'|capfirst %}</label> <input type="text"name="#" id="#" /></p>
+				<p class="media_desc_up left">{{picture_form.desc.label_tag}} : {{picture_form.desc}}</p>
 				<p class="media_licence_select">	
-					<label>{% trans 'Licence :'|capfirst %}</label> 						
-					<select name="#">
-						<option>Licence IV</option>
-						<option>Licence à la pompe</option>
-						<option>Licence assion</option>
-						<option>Licence assfriture</option>
-					</select>
+					{{picture_form.license.label_tag}} : {{picture_form.license}} 						
 				</p>
-				<p class="media_licence_up left"><label>{% trans 'Author :'|capfirst %}</label> <input type="text"name="#" id="#" /></p>
-				<p class="media_licence_up left"><label>{% trans 'Source :'|capfirst %}</label> <input type="text"name="#" id="#" /></p>
+				<p class="media_licence_up left">{{picture_form.author.label_tag}} : {{picture_form.author}}</p>
+				<p class="media_licence_up left">{{picture_form.source.label_tag}} : {{picture_form.source}}</p>
 				
 				<div class="clear"></div>
 				
@@ -77,17 +57,24 @@ $(document).ready(function() {
 					<a href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
 				</div>
 				
+                <ul id="all_metadata">
+                {% for pic in project_translation.project.pictures.all %}
+                <!-- MEDIA - Metadata viewing - Hidden by default. When user hover #media_metadata_button, metadata becomes visible -->
+                    <li>
+                        <div class="metadata">
+                            <strong>{% trans 'Date :'|capfirst %}</strong> {{pic.created}} <br /><br />
+                            <strong>{% trans 'Description :'|capfirst %}</strong> {{pic.desc}} <br /><br />
+                            <strong>{% trans 'Author :'|capfirst %}</strong> {{pic.author}} |   
+                            <strong>{% trans 'Source :'|capfirst %}</strong> {{pic.source}} | 
+                            <strong>{% trans 'Licence :'|capfirst %}</strong> {{pic.license}}
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+                
 				<!-- !!!!!!!!! -->
 				<!-- !!FOCUS!! -  Each field must be tested ; if one field is not filled, it is not present -->
 				<!-- !!!!!!!!!-->
-				
-				<!-- MEDIA - Metadata viewing - Hidden by default. When user hover #media_metadata_button, metadata becomes visible -->
-				<div id="metadata" class="">
-					<strong>{% trans 'Date :'|capfirst %}</strong> 12-03-1995 <br /><br />
-					<strong>{% trans 'Description :'|capfirst %}</strong> The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile... <br /><br />
-					<strong>{% trans 'Author :'|capfirst %}</strong> Pierrick Mabrouk |	<strong>{% trans 'Source :'|capfirst %}</strong> Naturelle | <strong>{% trans 'Licence :'|capfirst %}</strong> Licence IV
-				</div>
-				
 				
 				<!-- MEDIA - Metadata editing - Class hidden by default. When user click on #media_metadata_button, metadata edition becomes visible, but the medatada viewing must not been visible on hover ! -->
 				<!-- When user edit metadata, the block buttons (#media_buttons) is hidden until action is validated or cancelled -->
@@ -119,9 +106,10 @@ $(document).ready(function() {
 	
 				<div id="gallery">
 					<ul id="project_photo_gallery_current_photo">
-
 						{% for pic in project_translation.project.pictures.all %}
-							<li><img src="{{pic.display.url}}" alt="" ></li>
+							<li>
+                                <img src="{{pic.display.url}}" alt="" >
+                            </li>
 						{% endfor %}
 						{% for vid in project_translation.project.videos.all %}
 							<li>{% oembed %}{{vid.video_url}}{% endoembed %}</li>

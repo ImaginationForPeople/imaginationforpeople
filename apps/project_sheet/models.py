@@ -8,6 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 from autoslug.fields import AutoSlugField
 from imagekit.models import ImageModel
 from tagging.fields import TagField
+from licenses.fields import LicenseField
 import reversion
 
 from apps.member.models import I4pProfile
@@ -101,11 +102,17 @@ class ProjectPicture(ImageModel):
     name = models.CharField(max_length=100)
     original_image = models.ImageField(upload_to=get_projectpicture_path)
     project = models.ForeignKey(I4pProject, related_name="pictures")
+    created = models.DateField(_("creation date"), auto_now_add=True)
+    desc = models.CharField(_("description"), max_length=150, null=True, blank=True)
+    author = models.CharField(_("author"), max_length=150, null=True, blank=True)
+    source = models.CharField(_("source"), max_length=150, null=True, blank=True)
+    license = LicenseField(required = False)
 
     class IKOptions:
         spec_module = 'apps.project_sheet.project_pictures_specs'
         image_field = 'original_image'
-        
+
+
 class ProjectVideo(models.Model):
     video_url = models.URLField()
     project = models.ForeignKey(I4pProject, related_name="videos")

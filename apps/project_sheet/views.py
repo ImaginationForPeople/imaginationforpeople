@@ -144,7 +144,12 @@ def project_sheet_add_media(request, slug=None):
     """
     language_code = translation.get_language()
 
-    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',))
+    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image', 
+                                                                   'desc',
+                                                                   'license',
+                                                                   'author',
+                                                                   'source'))
+    
     ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
     
     context = {'picture_form' : ProjectPictureForm(),
@@ -166,7 +171,11 @@ def project_sheet_add_picture(request, slug=None):
     """
     language_code = translation.get_language()
 
-    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',))
+    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image', 
+                                                                   'desc',
+                                                                   'license',
+                                                                   'author',
+                                                                   'source'))
     
     project_translation = get_or_create_project_translation(project_translation_slug=slug,
                                                             language_code=language_code)
