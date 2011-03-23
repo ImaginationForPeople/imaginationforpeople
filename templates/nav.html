@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load localeurl_tags %}
 
 
 {% block nav %}	
@@ -37,13 +38,49 @@
 						-->
 					</ul>
 					
+					<div id="langage-tool" class="grid_5 omega">				
+	
+						<ul id="sample-menu-1" class="sf-menu">		
+
+							<li class="current">
+								<a href="#a">{% trans 'others languages'|capfirst %}&nbsp;&nbsp;<img src="{{ MEDIA_URL }}/images/flags/{{ LANGUAGE_CODE }}.gif" title="{{ LANGUAGE_CODE }}" /></a>
+								<ul>
+									
+										{% for translation in project_translation.project.translations.all %}
+                                        <!-- FIXME - if possible, the title and the text next the flag must been the full language name, and NOT the abreviation ! -->
+											<li><a href="{% locale_url translation.language_code project_sheet-show translation.slug %}"><img src="{{ MEDIA_URL }}/images/flags/{{ translation.language_code }}.gif" title="{{ translation.language_code }}" />{{ translation.language_code }}</a>
+										{% endfor %}		
+										
+									</li>
+									<li class="current">
+										<a href="#ab" id="new_translation">{% trans 'create a new translation'|capfirst %}</a>
+										
+										<!-- FIXME - the translatable languages must be displayed in 3 columns of 33% and margin-left:5px; in a div of 520px of width -->
+                                        <!-- FIXME - add the link for translation's creation -->
+										<ul>
+											{% for language in LANGUAGES %}
+											<li><a href="#"><img src="{{ MEDIA_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.1 }}</a>
+											{% endfor %}										
+										</ul>
+									</li>
+								</ul>		
+							</li>
+							
+
+						</ul>
+
+					
+					
+					
+					</div>
+					
 					<!-- MOTEUR DE RECHERCHE -->
 					
 					<div class="search">
 					
 						<form action="#">
 							<input type="button" value="&nbsp;">
-							<input type="text" value="Search project" name="search" id="searchInput">						
+							<input type="text" value="Search projects" name="search" id="searchInput">						
 						</form>
 					
 					</div>

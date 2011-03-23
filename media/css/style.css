@@ -454,13 +454,12 @@ ul li{
 
 	position:relative;
 	
-	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-family:Georgia, "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
 	font-size:17px;
 	
 	font-weight:bold;
 	font-style:italic;
-	text-transform:lowercase;
-	
+	text-transform:lowercase;	
 
 
 }
@@ -470,6 +469,56 @@ ul li{
 	float:left;
 
 }
+
+#langage-tool{
+
+	position:absolute;
+	right:0px;
+	top:0px;
+	float:right;
+	color:#979797;
+	text-align:center;
+	z-index:6000;
+
+}
+
+#langage-tool form {
+
+	left:5px;
+	position:relative;
+
+}
+
+#langage-tool form select{
+
+
+
+}
+
+.selected-lang{
+
+	width:33px;
+	height:11px;
+	background-repeat:no-repeat;	
+	background-color:#211E1C;
+	border:0px solid #646464;
+	margin-left:5px;
+	position:relative;
+	top:4px;
+
+}
+
+
+#langage-tool form .button{
+
+	padding:1px;
+	padding-top:0px;
+	padding-bottom:0px;
+	margin-left:10px;
+	top:1px;
+
+}
+
 
 .menu a:hover {
 

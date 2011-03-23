@@ -40,10 +40,7 @@
 		<!-- !!FOCUS!! - About the team -->
 		<!-- !!!!!!!!! -->
 		<div class="title">
-			<a title="{% trans 'Edit'|capfirst %}" href="#"
-				class="button sidebar-opener" name="opened-sidebar-team"><img
-				src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" />
-			</a>
+			<a title="{% trans 'Edit'|capfirst %}" href="#"	class="button sidebar-opener" name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 			{% trans 'The team'|capfirst %}
 		</div>
 
@@ -52,19 +49,16 @@
 		<!-- !!!!!!!!! -->
 		<!-- !!FOCUS!! - Text who's apparent when this section is empty -->
 		<!-- !!!!!!!!! -->
-		<!-- <p><a href="#" class="sidebar-opener">{% trans "There is no <strong>registered team members</strong> : don't forget to fill this section !" %}</a></p> -->
+        
+        <!-- The name attribute of the anchor is the ID of the sidebar to open -->
+		<p><a href="#" class="sidebar-opener"  name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/project/avatar.jpg" alt="{% trans 'There is no registered team members : please to fill this section !' %}" /></a></p>
 
 
 		<div class="grey_column_team_member">
 
 			<div class="grey_column_team_buttons">
-				<a title="{% trans 'Delete'|capfirst %}" href="#"
-					class="button redbutton right nomargin"><img
-					src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" />
-				</a> <a title="{% trans 'Edit'|capfirst %}" href="#"
-					class="button right nomargin"><img
-					src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" />
-				</a>
+                <a title="{% trans 'Delete'|capfirst %}" href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a> 
+				<a title="{% trans 'Edit'|capfirst %}" href="#"	class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 			</div>
 
 			<!-- !!!!!!!!! -->
@@ -87,9 +81,7 @@
 			<form action="#" method="post">
 
 				<div class="empty_photo">
-					<img
-						src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg"
-						alt="#" />
+					<img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" />
 				</div>
 				<p>
 					<input type="file" id="#" name="#" style="z-index: 4000;" />
@@ -124,29 +116,6 @@
 
 
 		<div class="clear"></div>
-
-		{% trans "Available versions:" %}
-		<ul id="translations">
-			{% for translation in project_translation.project.translations.all %}
-			<li><a
-				href="{% locale_url translation.language_code project_sheet-show translation.slug %}">
-				{{ translation.language_code }} </a>
-			</li> 
-			{% endfor %}
-		</ul>
-
-		{% trans "Create a translation in:" %}
-
-		<form method='POST'
-			action='{% url project_sheet-translate project_translation.slug %}'>
-			{% csrf_token %} <select name="language_code"> 
-			{% for language in LANGUAGES %}
-				<option value="{{ language.0 }}">{{ language.1 }}</option> 
-			{% endfor %}
-			</select>
-			<button type="submit">{% trans 'Create' %}</button>
-		</form>
-
 
 		{% else %}
 		<h1>{% trans "How to start your project sheet ?" %}</h1>
