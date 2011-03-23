@@ -236,7 +236,8 @@
 	<form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">{% csrf_token %}
       {% endif %}
       {{title_form.title}}
-      <input id="project_title_submit" type="submit" value="&nbsp;" />
+      <input id="project_title_cancel" type="submit" value="&nbsp;" alt="X" title="{% trans 'Cancel'|capfirst %}"  />
+      <input id="project_title_submit" type="submit" value="&nbsp;" alt="V" title="{% trans 'Ok'|capfirst %}"  />
 	</form>
 
       {% else %}

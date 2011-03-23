@@ -29,17 +29,23 @@ form{
 
 }
 
+#title{
+
+    background-color:#5a5959;	
+
+}
+
 #id_title{
 
 	height:54px;
-	width:642px;
+	width:596px;
 	padding:0px;
 	/*background-color:#5a5959;*/
 	background-color:white;
 	color:black;
 	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
 	font-size:38px;
-        float:left;
+    float:left;
 	border:1px solid grey;
 
 	
@@ -61,7 +67,7 @@ form{
 	position:relative;
 	/*float:left;*/
 	height:56px;
-	width:8%;
+	width:7%;
 	margin:0px;
 	padding:0px;
 	border:0px;
@@ -73,10 +79,35 @@ form{
 
 }
 
+#project_title_cancel{
+
+    position:relative;
+	/*float:left;*/
+	height:56px;
+	width:7%;
+	margin:0px;
+	padding:0px;
+	border:0px;
+    left:5px;
+	
+	background-image:url("../images/project/project_title_cancel.jpg");
+	background-position:right;
+	background-repeat:no-repeat;
+	background-color:#5a5959;	
+
+}
+
 
 #project_title_submit:hover{
 
 	background-image:url("../images/project/project_title_validate_hover.jpg");
+
+}
+
+
+#project_title_cancel:hover{
+
+    background-image:url("../images/project/project_title_cancel_hover.jpg");
 
 }
 
