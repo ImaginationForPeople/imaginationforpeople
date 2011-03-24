@@ -1,25 +1,23 @@
 {% load i18n %}
-					
-	
-	{% include "project_sheet/project_id_card.html" %}
-	
-	
-	<div class="project_infos">
-	
-		{% if project_translation.baseline %}
-		<div class="project_infos_baseline">{{ project_translation.baseline }}</div>
-		{% endif %}		
-		
-		<div class="project_infos_description">
-			{% if project_translation.about_section %}
-				{{ project_translation.about_section }}
-			{% else %}
-				{% trans "There is no description for this project" %}
-			{% endif %}
-		</div>
-		
-		<a href="{{ project_translation.get_absolute_url }}">More info ></a>
-	
-	</div>
+
+{% include "project_sheet/project_id_card.html" %}
+
+<div class="project_infos">
+  
+  {% if project_translation.baseline %}
+    <div class="project_infos_baseline">{{ project_translation.baseline }}</div>
+  {% endif %}		
+  
+  <div class="project_infos_description">
+    {% if project_translation.about_section %}
+      {{ project_translation.about_section }}
+    {% else %}
+      {% trans "There is no description for this project" %}
+    {% endif %}
+  </div>
+  
+  <a href="{{ project_translation.get_absolute_url }}">More info ></a>
+  
+</div>
 	
 	
