@@ -129,25 +129,30 @@
 .grey_column  .title, .grey_column_open .title{
 
 	padding:6px;
-	padding-left:0px;
+	padding-left: 60px;
 	padding-right:20px;
 	float:right;	
 	right:-20px;
 	
 }
 
+.grey_column_objective {
+    clear: both;
+}
+
  .grey_column_open .title{
  
 	right:-20px;
-	padding-left:20px;
     padding-right:19px !important;
  
  }
  
   .grey_column_content .title .button{
  
+      position: absolute;
+      left: 2px;
 	/*top:-2px !important;*/
-	top:5px !important;
+	top: 10px !important;
  
  }
  
@@ -220,7 +225,7 @@
 	margin-top:5px;
 	margin-bottom:5px;
 	color:#5a5959;
-	float:left;
+//	float:left;
 	text-decoration:none;
 
 }

@@ -180,15 +180,38 @@
        return false;
     });
 
-    /* FIXME: There must be a better to determine if we need to hide them or not */
+    $('.project_description .button').click(function() {
+	$('.project_description_txt').dblclick();
+       return false;
+    });
+
+    /*
+     * FIXME: There must be a better to determine if we need to hide
+     * them or not (we can't externalize the js because of this)
+     */
     {% if project_translation %}
-    // Hide buttons when their respecting section is not hover'ed
-    $('a.editing-button').hide();
-    $('a.editing-button').parent('div').hover(function() {
-      $(this).find('a.editing-button').show();
-    }, function() {
-      $(this).find('a.editing-button').fadeOut('fast');
-    });    
+	// Hide buttons when their respecting section is not hover'ed
+	$('a.editing-button').hide();
+
+	$('a.editing-button').parent('div').hover(function() {
+	    $(this).find('a.editing-button').show();
+	}, function() {
+	    $(this).find('a.editing-button').fadeOut('fast');
+	});    
+	
+	$('.project_description').hover(function() {
+	    $(this).find('a.editing-button').show();	    
+	}, function() {
+	    $(this).find('a.editing-button').fadeOut('fast');
+	});
+
+	/* For sidebars */
+	$(".sidebar-section-openable").hover(function() {
+	    $(this).find('a.editing-button').show();
+	}, function() {
+	    $(this).find('a.editing-button').fadeOut('fast');
+	});
+
     {% endif %}
     
     });
