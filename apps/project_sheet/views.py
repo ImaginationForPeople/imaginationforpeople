@@ -1,7 +1,7 @@
 
-from django.conf import settings 
+from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.forms.models import modelform_factory
+from django.forms.models import modelform_factory, modelformset_factory
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponseNotFound
@@ -14,6 +14,8 @@ from localeurl.templatetags.localeurl_tags import chlocale
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm
 from .models import I4pProject, ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .utils import get_or_create_project_translation, get_project_translation
+from apps.project_sheet.models import ProjectReference
+from django.forms.formsets import formset_factory
 
 def project_sheet_list(request):
     """
@@ -34,18 +36,18 @@ def project_sheet_show(request, slug):
     """
     language_code = translation.get_language()
 
-    project_translation = get_object_or_404(I4pProjectTranslation, 
-                                            slug=slug, 
+    project_translation = get_object_or_404(I4pProjectTranslation,
+                                            slug=slug,
                                             language_code=language_code)
 
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
     project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
 
-    return render_to_response(template_name='project_sheet/project_sheet.html', 
+    return render_to_response(template_name='project_sheet/project_sheet.html',
                               dictionary={'project_translation': project_translation,
                                           'project_themes_form': project_themes_form,
                                           'project_objective_form': project_objective_form},
-                              context_instance = RequestContext(request))
+                              context_instance=RequestContext(request))
 
 
 @require_POST
@@ -55,7 +57,7 @@ def project_sheet_create_translation(request, project_slug):
     """
     requested_language_code = request.POST['language_code']
     current_language_code = translation.get_language()
-    
+
     try:
         current_project_translation = get_project_translation(project_translation_slug=project_slug,
                                                               language_code=current_language_code)
@@ -69,7 +71,7 @@ def project_sheet_create_translation(request, project_slug):
 
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     return redirect(chlocale(url, requested_language_code))
-   
+
 
 def project_sheet_edit_field(request, field, slug=None):
     """
@@ -95,7 +97,7 @@ def project_sheet_edit_field(request, field, slug=None):
         except I4pProjectTranslation.DoesNotExist:
             form = FieldForm()
 
-    context["%s_form" % field] =  form
+    context["%s_form" % field] = form
     return render_to_response(template_name="project_sheet/project_sheet.html",
                               dictionary=context,
                               context_instance=RequestContext(request))
@@ -114,10 +116,10 @@ def project_sheet_edit_related(request, project_slug):
 
     parent_project = project_translation.project
 
-    project_sheet_themes_form = I4pProjectThemesForm(request.POST or None, 
+    project_sheet_themes_form = I4pProjectThemesForm(request.POST or None,
                                                      instance=project_translation)
 
-    project_sheet_objective_form = I4pProjectObjectiveForm(request.POST or None, 
+    project_sheet_objective_form = I4pProjectObjectiveForm(request.POST or None,
                                                            instance=parent_project)
 
     if request.method == 'POST':
@@ -144,17 +146,17 @@ def project_sheet_add_media(request, slug=None):
     """
     language_code = translation.get_language()
 
-    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image', 
+    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
                                                                    'desc',
                                                                    'license',
                                                                    'author',
                                                                    'source'))
-    
+
     ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
-    
+
     context = {'picture_form' : ProjectPictureForm(),
                'video_form' : ProjectVideoForm()}
-    
+
     try :
         context["project_translation"] = get_project_translation(project_translation_slug=slug,
                                                                  language_code=language_code)
@@ -162,8 +164,8 @@ def project_sheet_add_media(request, slug=None):
             pass
 
     return render_to_response("project_sheet/project_sheet.html",
-                              context, 
-                              context_instance = RequestContext(request))
+                              context,
+                              context_instance=RequestContext(request))
 
 def project_sheet_add_picture(request, slug=None):
     """
@@ -171,15 +173,15 @@ def project_sheet_add_picture(request, slug=None):
     """
     language_code = translation.get_language()
 
-    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image', 
+    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
                                                                    'desc',
                                                                    'license',
                                                                    'author',
                                                                    'source'))
-    
+
     project_translation = get_or_create_project_translation(project_translation_slug=slug,
                                                             language_code=language_code)
-    
+
     if request.method == 'POST':
         picture_form = ProjectPictureForm(request.POST, request.FILES)
         if picture_form.is_valid():
@@ -196,10 +198,10 @@ def project_sheet_add_video(request, slug=None):
     language_code = translation.get_language()
 
     ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
-    
+
     project_translation = get_or_create_project_translation(project_translation_slug=slug,
                                                             language_code=language_code)
-    
+
     if request.method == 'POST':
         video_form = ProjectVideoForm(request.POST)
         if video_form.is_valid():
@@ -208,3 +210,37 @@ def project_sheet_add_video(request, slug=None):
             video.save()
 
     return redirect(project_translation)
+
+def project_sheet_edit_references(request, project_slug):
+    """
+    Edit references of a project
+    """
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    project_translation = get_project_translation(project_translation_slug=project_slug,
+                                                  language_code=language_code)
+
+    parent_project = project_translation.project
+
+    context = {"project_translation" : project_translation}
+
+    ProjectReferenceForm = modelform_factory(ProjectReference)
+    ProjectReferenceFormSet = modelformset_factory(ProjectReference, extra=0, can_delete=True)
+
+    if request.method == 'POST':
+        reference_form = ProjectReferenceForm(request.POST)
+        if reference_form.is_valid():
+            ref = reference_form.save()
+            parent_project.references.add(ref)
+        reference_formset = ProjectReferenceFormSet(request.POST, queryset=parent_project.references.all())
+        if reference_formset.is_valid():
+            reference_formset.save()
+        return redirect(project_translation)
+    else:
+        context["reference_form"] = ProjectReferenceForm()
+        context["reference_formset"] = ProjectReferenceFormSet(queryset=parent_project.references.all())
+
+    return render_to_response("project_sheet/project_sheet.html",
+                              context,
+                              context_instance=RequestContext(request))

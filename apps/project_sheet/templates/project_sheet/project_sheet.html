@@ -39,6 +39,9 @@
 
 	<!-- Sidebar -->
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/project_sheet/sidebar.js"></script>
+    
+    <!-- Custom checkbox -->
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.simpleImageCheck-0.4.js"></script>
 
   <script type="text/javascript">
  
@@ -221,6 +224,25 @@
 	});
     });
   </script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $('li.ref input[type=checkbox]').simpleImageCheck({
+              image: '{{ MEDIA_URL }}/images/check_off.png',
+              imageChecked: '{{ MEDIA_URL }}/images/check_on.png',
+              afterCheck: function(isChecked) {
+                  input = $(this).parent().find('input[type=text]')
+                if (isChecked) {
+                  input.attr('disabled', 'disabled');
+                }
+                else{
+                  input.removeAttr("disabled");
+                }
+              }
+        });
+    });
+  </script>
+
 
 {% endblock %}
 

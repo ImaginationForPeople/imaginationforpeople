@@ -1,51 +1,53 @@
 {% load i18n %}
 
 <!-- REFERENCES - Viewable version -->
+{% if project_translation%}
 <div id="project_refs">
-
 	<!-- !!!!!!!!! -->
 	<!-- !!FOCUS!! - références -->
 	<!-- !!!!!!!!! -->
-	<div class="title">
-		{% trans 'References'|capfirst %}<a title="{% trans 'Edit'|capfirst %}" href="#" class="button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
-	</div>
+     <div class="title">{% trans 'References'|capfirst %}
+    {% if not reference_form %}
+        <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-references project_translation.slug %}" class="button right">
+            <img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" />
+        </a>
+    {% endif %}
+    </div>
 	
 	<div class="clear"></div>
 	
-	<ul>
-		<li class="ref">Alessandro Barbero, Waterloo, Flammarion, 2005.</li>
-		<li class="ref">Gilles Bernard, Waterloo : Les reliques, Histoire et Collections, 2006. (<a href="#">ISBN 978-2915239683</a>)</li>
-		<li class="ref"><a href="http://www.napoleonic-literature.com/Waterloo_OB/Allied.htm">Ordre de bataille des Alliés</a></li>	
-	</ul>
-
+    {% if reference_form %}
+        <!-- !!!!!!!!! -->
+        <!-- !!FOCUS!! - comportment : user add a ref with the first field : when he validate, the new ref is auto-added in the editable list, and the first field is cleared -->
+        <!-- !!!!!!!!! if possible : auto-detection of ISBN codes and URL -> Tranformation into <a href> -->
+        <form action="" method="post">{% csrf_token %}
+            {{ reference_formset.management_form }}
+            <ul class="project_refs">
+                {% if reference_form %}
+                <li class="ref new_ref">
+                    <p>{{reference_form.desc}}
+                    <input type="image" alt="Ok" src="{{ MEDIA_URL }}/images/base/v.png" class="button greenbutton nomargin right" title="Ok">
+                    </p>
+                </li>
+                {% endif %}
+                {% for ref_form in reference_formset.forms %}
+                <li class="ref">
+                    <p>
+                        {{ ref_form.id }}{{ ref_form.desc }}{{ ref_form.DELETE }}
+                    </p>
+                </li>  
+                {% endfor %}
+            </ul>
+             <input type="image" alt="{% trans 'Save & close'%}" class="grey_column_save_close" title="{% trans 'Save & close'%}">
+        </form> 
+    {% else %}
+    	<ul>
+            {% for ref in project_translation.project.references.all %}
+    		<li class="ref">{{ref.desc|urlize}}</li>
+            {% empty %}
+            <li class="ref">{% trans 'no reference for the moment'|capfirst %}</li>
+            {% endfor %}
+    	</ul>
+    {% endif %}
 </div>
-
-
-<!-- REFERENCES - editing version -->
-<div id="project_refs">
-
-	<div class="title">
-		{% trans 'References'|capfirst %}&nbsp;&nbsp;&nbsp;
-	</div>
-	
-	<div class="clear"></div>	
-	
-	
-	<!-- !!!!!!!!! -->
-	<!-- !!FOCUS!! - comportment : user add a ref with the first field : when he validate, the new ref is auto-added in the editable list, and the first field is cleared -->
-	<!-- !!!!!!!!! if possible : auto-detection of ISBN codes and URL -> Tranformation into <a href> -->
-	<form action="#" method="post">		
-		
-		<ul class="project_refs">
-			<li class="ref new_ref"><p><input type="text" name="#" value="{% trans 'Insert your new reference here (URL, books, etc...)' %}" id="#"><a href="#"  title="{% trans 'Add'|capfirst %}" class="button greenbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="Add" /></a></p></li>
-			<li class="ref"><p><input type="text" value="Alessandro Barbero, Waterloo, Flammarion, 2005." name="#" id="#" /><a href="#"  title="{% trans 'Delete'|capfirst %}" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a></p></li>
-			<li class="ref"><p><input type="text" value="Gilles Bernard, Waterloo : Les reliques, Histoire et Collections, 2006. (ISBN 978-2915239683)" name="#" id="#" /><a href="#"  title="{% trans 'Delete'|capfirst %}" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a></p></li>
-			<li class="ref"><p><input type="text" value="http://www.napoleonic-literature.com/Waterloo_OB/Allied.htm" name="#" id="#"><a href="#"  title="{% trans 'Delete'|capfirst %}" class="button redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a></p></li>	
-		</ul>
-		
-		<a id="references_save" class="grey_column_close" href="javascript:;">{% trans 'Close & discard'%}</a>
-		<a href="javascript:;" class="grey_column_save_close" onclick="#" id="references_save_close">{% trans 'Save & close'%}</a>
-	
-	</form>	
-	
-</div>
+{% endif %}

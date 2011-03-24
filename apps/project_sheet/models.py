@@ -15,7 +15,9 @@ from apps.member.models import I4pProfile
 
 from apps.i4p_base.models import Address
 
-
+class ProjectReference(models.Model):
+    desc = models.CharField(_("description"), max_length=300)
+    
 class I4pProject(models.Model):
     """
     Root object for a project. Holds only shared data
@@ -49,7 +51,9 @@ class I4pProject(models.Model):
                                     verbose_name=_('location'),
                                     null=True, blank=True
                                     )
-        
+    
+    references = models.ManyToManyField(ProjectReference, null=True, blank=True)
+    
     @models.permalink
     def get_absolute_url(self):
         return ('project_sheet-show', (self.slug,))
