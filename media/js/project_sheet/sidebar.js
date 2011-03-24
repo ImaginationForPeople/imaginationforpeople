@@ -1,11 +1,11 @@
 function showSidebar(aSidebar){
-    $.blockUI({ message: null,
+    /*$.blockUI({ message: null,
     	    	overlayCSS:  { 
     	            backgroundColor: '#000', 
     	            opacity:         0.6 
     	    	},
     	    	applyPlatformOpacityRules : false
-    	      });
+    	      });*/
     aSidebar.css('visibility', 'visible');
     aSidebar.animate({'width': 760}, {
 	duration: 450,
@@ -27,7 +27,7 @@ function hideSideBar(aSidebar){
 	    aSidebar.css('visibility', 'hidden');
 	}
     });
-    $.unblockUI();
+    //$.unblockUI();
 }
 
 $(document).ready(function() {
