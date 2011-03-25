@@ -281,7 +281,7 @@
 	<form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">{% csrf_token %}
       {% endif %}
       {{title_form.title}}
-      <input id="project_title_cancel" type="submit" value="&nbsp;" alt="X" title="{% trans 'Cancel'|capfirst %}"  />
+      <input id="project_title_cancel" type="reset" onclick="history.back()" value="&nbsp;" alt="X" title="{% trans 'Cancel'|capfirst %}"  />
       <input id="project_title_submit" type="submit" value="&nbsp;" alt="V" title="{% trans 'Ok'|capfirst %}"  />
 	</form>
 
@@ -311,7 +311,7 @@
 	{% endif %}
 	{{ baseline_form.baseline }}
 	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
-	<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />	
+    <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
 	</form>	
 	{% else %}
 	  {% if project_translation %}

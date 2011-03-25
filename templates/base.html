@@ -13,7 +13,7 @@
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
 
-    <!-- inserer un test ici ; en fonction du type de page (navigation ou visualisation) le style n'est pas le même (header blanc / header noir)   -->
+    <!-- insert a test here ; in function of the type of the page (nav ou view) the style nis not the same (white page / black page)   -->
     {% block style %}<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />{% endblock %}
 
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/generals.css" />
@@ -34,8 +34,7 @@
 
 
       {% block header %} {% include "header.html" %} {% endblock %}			
-      
-      <!-- inserer un test ici ; en fonction du type de page (navigation ou visualisation) la navigation n'est pas le même ( bubble_nav / petite nav)   -->
+      <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->
       {% block nav %} {% include "nav.html" %} {% endblock %}
       
       
