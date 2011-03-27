@@ -248,8 +248,16 @@
     });
   </script>
 
+  <!-- References section -->
   <script type="text/javascript">
     $(document).ready(function() {
+    	$('#reference_form').hide();
+    	$('#edit_references_button').click(function(){
+    		$('#edit_references_button').hide()
+    		$('#reference_list').hide();
+    		$('#reference_form').show('slow');
+    		return false;
+    	});
         $('li.ref input[type=checkbox]').simpleImageCheck({
               image: '{{ MEDIA_URL }}/images/check_off.png',
               imageChecked: '{{ MEDIA_URL }}/images/check_on.png',

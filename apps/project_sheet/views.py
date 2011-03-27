@@ -11,7 +11,7 @@ from django.views.generic.list_detail import object_list
 
 from localeurl.templatetags.localeurl_tags import chlocale
 
-from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm
+from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, ProjectReferenceForm, ProjectReferenceFormSet
 from .models import I4pProject, ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .utils import get_or_create_project_translation, get_project_translation
 from apps.project_sheet.models import ProjectReference
@@ -43,10 +43,15 @@ def project_sheet_show(request, slug):
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
     project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
 
+    reference_form = ProjectReferenceForm()
+    reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
+
     return render_to_response(template_name='project_sheet/project_sheet.html',
                               dictionary={'project_translation': project_translation,
                                           'project_themes_form': project_themes_form,
-                                          'project_objective_form': project_objective_form},
+                                          'project_objective_form': project_objective_form,
+                                          'reference_form' : reference_form,
+                                          'reference_formset' : reference_formset},
                               context_instance=RequestContext(request))
 
 
@@ -211,6 +216,7 @@ def project_sheet_add_video(request, slug=None):
 
     return redirect(project_translation)
 
+@require_POST
 def project_sheet_edit_references(request, project_slug):
     """
     Edit references of a project
@@ -223,24 +229,14 @@ def project_sheet_edit_references(request, project_slug):
 
     parent_project = project_translation.project
 
-    context = {"project_translation" : project_translation}
+    reference_form = ProjectReferenceForm(request.POST)
+    reference_formset = ProjectReferenceFormSet(request.POST, queryset=parent_project.references.all())
 
-    ProjectReferenceForm = modelform_factory(ProjectReference)
-    ProjectReferenceFormSet = modelformset_factory(ProjectReference, extra=0, can_delete=True)
+    if reference_form.is_valid():
+        ref = reference_form.save()
+        parent_project.references.add(ref)
 
-    if request.method == 'POST':
-        reference_form = ProjectReferenceForm(request.POST)
-        if reference_form.is_valid():
-            ref = reference_form.save()
-            parent_project.references.add(ref)
-        reference_formset = ProjectReferenceFormSet(request.POST, queryset=parent_project.references.all())
-        if reference_formset.is_valid():
-            reference_formset.save()
-        return redirect(project_translation)
-    else:
-        context["reference_form"] = ProjectReferenceForm()
-        context["reference_formset"] = ProjectReferenceFormSet(queryset=parent_project.references.all())
+    if reference_formset.is_valid():
+        reference_formset.save()
 
-    return render_to_response("project_sheet/project_sheet.html",
-                              context,
-                              context_instance=RequestContext(request))
+    return redirect(project_translation)

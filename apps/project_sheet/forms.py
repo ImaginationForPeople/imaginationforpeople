@@ -3,7 +3,8 @@ from django.utils.translation import ugettext as _
 
 from tagging.forms import TagField
 
-from .models import I4pProject, I4pProjectTranslation
+from .models import I4pProject, I4pProjectTranslation, ProjectReference
+from django.forms.models import modelform_factory, modelformset_factory
 
 class I4pProjectThemesForm(forms.ModelForm):
     """
@@ -27,6 +28,8 @@ class I4pProjectObjectiveForm(forms.ModelForm):
         model = I4pProject
         fields = ('objective',)
 
+ProjectReferenceForm = modelform_factory(ProjectReference)
+ProjectReferenceFormSet = modelformset_factory(ProjectReference, extra=0, can_delete=True)
 
 
 

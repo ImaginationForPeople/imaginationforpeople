@@ -3,51 +3,38 @@
 <!-- REFERENCES - Viewable version -->
 {% if project_translation%}
 <div id="project_refs">
-	<!-- !!!!!!!!! -->
-	<!-- !!FOCUS!! - références -->
-	<!-- !!!!!!!!! -->
-     <div class="title">{% trans 'References'|capfirst %}
-    {% if not reference_form %}
-        <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-references project_translation.slug %}" class="button right">
-            <img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" />
-        </a>
-    {% endif %}
+    <div class="title">
+        {% trans 'References'|capfirst %} <a id="edit_references_button" title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-references project_translation.slug %}" class="button right"> <img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /> </a>
     </div>
-	
-	<div class="clear"></div>
-	
-    {% if reference_form %}
-        <!-- !!!!!!!!! -->
-        <!-- !!FOCUS!! - comportment : user add a ref with the first field : when he validate, the new ref is auto-added in the editable list, and the first field is cleared -->
-        <!-- !!!!!!!!! if possible : auto-detection of ISBN codes and URL -> Tranformation into <a href> -->
-        <form action="" method="post">{% csrf_token %}
-            {{ reference_formset.management_form }}
-            <ul class="project_refs">
-                {% if reference_form %}
-                <li class="ref new_ref">
-                    <p>{{reference_form.desc}}
+
+    <div class="clear"></div>
+
+    <ul id="reference_list">
+        {% for ref in project_translation.project.references.all %}
+        <li class="ref">{{ref.desc|urlize}}</li> 
+        {% empty %}
+        <li class="ref">{% trans 'no reference for the moment'|capfirst %}</li> 
+        {% endfor %}
+    </ul>
+
+    <form id="reference_form" action="{% url project_sheet-instance-edit-references project_translation.slug %}" method="post">
+        {% csrf_token %} {{ reference_formset.management_form }}
+        <ul class="project_refs">
+            {% if reference_form %}
+            <li class="ref new_ref">
+                <p>
+                    {{reference_form.desc}} 
                     <input type="image" alt="Ok" src="{{ MEDIA_URL }}/images/base/v.png" class="button greenbutton nomargin right" title="Ok">
-                    </p>
-                </li>
-                {% endif %}
-                {% for ref_form in reference_formset.forms %}
-                <li class="ref">
-                    <p>
-                        {{ ref_form.id }}{{ ref_form.desc }}{{ ref_form.DELETE }}
-                    </p>
-                </li>  
-                {% endfor %}
-            </ul>
-             <input type="image" alt="{% trans 'Save & close'%}" class="grey_column_save_close" title="{% trans 'Save & close'%}">
-        </form> 
-    {% else %}
-    	<ul>
-            {% for ref in project_translation.project.references.all %}
-    		<li class="ref">{{ref.desc|urlize}}</li>
-            {% empty %}
-            <li class="ref">{% trans 'no reference for the moment'|capfirst %}</li>
+                </p>
+            </li> 
+            {% endif %} 
+            {% for ref_form in reference_formset.forms %}
+            <li class="ref">
+                <p>{{ ref_form.id }}{{ ref_form.desc }}{{ ref_form.DELETE }}</p>
+            </li> 
             {% endfor %}
-    	</ul>
-    {% endif %}
+        </ul>
+        <input type="image" alt="{% trans 'Save & close'%}" class="grey_column_save_close" title="{% trans 'Save & close'%}">
+    </form>
 </div>
 {% endif %}
