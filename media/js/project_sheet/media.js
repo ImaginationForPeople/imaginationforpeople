@@ -63,4 +63,8 @@ $(document).ready(function () {
 	    }
     );
     
+    $('#del_media').click(function(){
+    	$(this).attr("href", anyslider.$currentPage.find('a.del_link').attr("href"));
+    });
+    
 });

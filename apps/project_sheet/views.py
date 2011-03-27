@@ -196,6 +196,19 @@ def project_sheet_add_picture(request, slug=None):
 
     return redirect(project_translation)
 
+def project_sheet_del_picture(request, slug, pic_id):
+
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    project_translation = get_project_translation(project_translation_slug=slug,
+                                                  language_code=language_code)
+
+    picture = ProjectPicture.objects.filter(project=project_translation.project, id=pic_id)
+    picture.delete()
+
+    return redirect(project_translation)
+
 def project_sheet_add_video(request, slug=None):
     """
     Embed a video to a project
@@ -215,6 +228,20 @@ def project_sheet_add_video(request, slug=None):
             video.save()
 
     return redirect(project_translation)
+
+def project_sheet_del_video(request, slug, vid_id):
+
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    project_translation = get_project_translation(project_translation_slug=slug,
+                                                  language_code=language_code)
+
+    video = ProjectVideo.objects.filter(project=project_translation.project, id=vid_id)
+    video.delete()
+
+    return redirect(project_translation)
+
 
 @require_POST
 def project_sheet_edit_references(request, project_slug):
@@ -240,3 +267,5 @@ def project_sheet_edit_references(request, project_slug):
         reference_formset.save()
 
     return redirect(project_translation)
+
+

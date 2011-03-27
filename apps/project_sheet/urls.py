@@ -34,4 +34,7 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/add/picture/$', views.project_sheet_add_picture, name='project_sheet-instance-add-picture'),
     url(r'^add/video/$', views.project_sheet_add_video, name='project_sheet-add-video'),
     url(r'^(?P<slug>[-\w]+)/add/video/$', views.project_sheet_add_video, name='project_sheet-instance-add-video'),
+
+    url(r'^(?P<slug>[-\w]+)/del/picture/(?P<pic_id>\d+)/$', views.project_sheet_del_picture, name='project_sheet-instance-del-picture'),
+    url(r'^(?P<slug>[-\w]+)/del/video/(?P<vid_id>\d+)/$', views.project_sheet_del_video, name='project_sheet-instance-del-video'),
 )

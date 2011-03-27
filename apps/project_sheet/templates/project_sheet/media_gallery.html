@@ -54,7 +54,7 @@
 				<div id="media_buttons">
 					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
 					<a href="#" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
-					<a href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
+					<a id='del_media' href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
 				</div>
 				
                 <ul id="all_metadata">
@@ -108,11 +108,15 @@
 					<ul id="project_photo_gallery_current_photo">
 						{% for pic in project_translation.project.pictures.all %}
 							<li>
+                                <a class="hidden del_link" href="{% url project_sheet-instance-del-picture project_translation.slug pic.id%}"></a>
                                 <img src="{{pic.display.url}}" alt="" >
                             </li>
 						{% endfor %}
 						{% for vid in project_translation.project.videos.all %}
-							<li>{% oembed %}{{vid.video_url}}{% endoembed %}</li>
+							<li>
+                                <a class="hidden del_link" href="{% url project_sheet-instance-del-video project_translation.slug vid.id%}"></a>
+                                {% oembed %}{{vid.video_url}}{% endoembed %}
+                           </li>
 						{% endfor %}
 					</ul>
 					<ul id="project_photo_gallery_mini" class="jcarousel-skin-tango">
