@@ -34,6 +34,7 @@
             </li> 
             {% endfor %}
         </ul>
+        <a id="cancel_ref_edit" class="grey_column_save_close" href="{% url project_sheet-show project_translation.slug %}">{% trans 'Cancel & close'%}</a>
         <input type="image" alt="{% trans 'Save & close'%}" class="grey_column_save_close" title="{% trans 'Save & close'%}">
     </form>
 </div>
