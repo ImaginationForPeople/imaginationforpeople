@@ -30,6 +30,13 @@ class I4pProject(models.Model):
 
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
     ip_addr = models.IPAddressField(null=True, blank=True)
+
+    members = models.ManyToManyField(I4pProfile,
+                                     verbose_name=_("members"),
+                                     through='ProjectMember',
+                                     related_name='projects',
+                                     )
+                                     
     
     created = models.DateField(_("creation date"), auto_now_add=True)
     location = models.CharField(_("location"), max_length=80, null=True, blank=True)
@@ -110,7 +117,8 @@ class ProjectPicture(ImageModel):
     desc = models.CharField(_("description"), max_length=150, null=True, blank=True)
     author = models.CharField(_("author"), max_length=150, null=True, blank=True)
     source = models.CharField(_("source"), max_length=150, null=True, blank=True)
-    license = LicenseField(required = False)
+    license = LicenseField(verbose_name=_("license"),
+                           required=False)
 
     class IKOptions:
         spec_module = 'apps.project_sheet.project_pictures_specs'
@@ -120,6 +128,19 @@ class ProjectPicture(ImageModel):
 class ProjectVideo(models.Model):
     video_url = models.URLField()
     project = models.ForeignKey(I4pProject, related_name="videos")
+
+class ProjectMember(models.Model):
+    project = models.ForeignKey(I4pProject, related_name="detailed_members")
+    user_profile = models.ForeignKey(I4pProfile, related_name="project_memberships")
+    
+    role = models.CharField(verbose_name=_("role"),
+                            max_length=100,
+                            blank=True,
+                            null=True)
+
+    comment = models.TextField(verbose_name=_("comment"),
+                               blank=False,
+                               null=True)
     
 
 # Reversions
