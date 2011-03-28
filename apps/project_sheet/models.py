@@ -3,6 +3,7 @@
 # import stuff we need from django
 from django.db import models
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
@@ -31,7 +32,7 @@ class I4pProject(models.Model):
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
     ip_addr = models.IPAddressField(null=True, blank=True)
 
-    members = models.ManyToManyField(I4pProfile,
+    members = models.ManyToManyField(User,
                                      verbose_name=_("members"),
                                      through='ProjectMember',
                                      related_name='projects',
@@ -130,8 +131,11 @@ class ProjectVideo(models.Model):
     project = models.ForeignKey(I4pProject, related_name="videos")
 
 class ProjectMember(models.Model):
+    class Meta:
+        unique_together = ('project', 'user')
+
     project = models.ForeignKey(I4pProject, related_name="detailed_members")
-    user_profile = models.ForeignKey(I4pProfile, related_name="project_memberships")
+    user = models.ForeignKey(User, related_name="project_memberships")
     
     role = models.CharField(verbose_name=_("role"),
                             max_length=100,

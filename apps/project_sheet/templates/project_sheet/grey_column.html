@@ -40,22 +40,54 @@
 	</div>
 
 	<div id="sidebar-section-team" class="sidebar-section-openable">
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - About the team -->
-		<!-- !!!!!!!!! -->
+		<!-- About the team -->
 		<div class="title">
-			<a title="{% trans 'Edit'|capfirst %}" href="#"	class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+			<a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="{% trans "add" %}" /></a>
 			{% trans 'The team'|capfirst %}
 		</div>
 
 		<div class="clear"></div>
 
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - Text that is visible when this section is empty -->
-		<!-- !!!!!!!!! -->
-        
-        <!-- The name attribute of the anchor is the ID of the sidebar to open -->
-		<p><a href="#" class="sidebar-opener"  name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/project/avatar.jpg" alt="{% trans 'There is no registered team members : please to fill this section !' %}" /></a></p>
+		{% if project.members.all|length == 0 %}
+		  <!-- Text that is visible when this section is empty -->
+		  <!-- The name attribute of the anchor is the ID of the sidebar to open -->
+		  <p>
+		    <a href="#" class="sidebar-opener"  name="opened-sidebar-team">
+		      <img src="{{ MEDIA_URL }}/images/project/avatar.jpg" alt="{% trans 'There is no registered team members: please to fill this section !' %}" />
+		    </a>
+		  </p>
+		{% else %}
+
+		  <ul id="member_list">
+		    {% for member in project.detailed_members.all %}
+		      <li class="member{{ member.id }}">
+			<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" />
+			<h2><a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a></h2>
+			{% if member.user.get_profile.country %}
+			  <img src="{{ member.user.get_profile.country.flag }}" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
+		      {% endif %}
+			<h3>{{ member.role }}</h3>
+			<p>{{ member.comment }}</p>
+		      </li>
+		    {% endfor %}
+		  </ul>
+		  
+
+		<form id="project_member_form" action="" method="post">
+		  {% csrf_token %} {{ project_member_formset.management_form }}
+
+		  <ul id="member_list_edit">
+		    {% for member_form in project_member_formset.forms %}
+		    <li class="member{{ member.id }}">
+		      <p></p>
+		      <p>{{ member_form }}</p>
+		    </li>
+		    {% endfor %}
+		  </ul>
+
+		</form>
+
+		{% endif %}
 
 
 		<div class="grey_column_team_member">
@@ -65,21 +97,10 @@
 				<a title="{% trans 'Edit'|capfirst %}" href="#"	class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 			</div>
 
-			<!-- !!!!!!!!! -->
-			<!-- !!FOCUS!! - Mettre le nom de la personne en alt sur l'image + l'url associée -->
-			<!-- !!!!!!!!! -->
-			<img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" />
-			<h2>Sophitiella Plectre</h2>
-			<h3>{% trans "Project Minion" %}</h3>
-			<p>The Speaker's Corner is a very unique way of giving lorem
-				ipsum dolores ectamed dolred iposed lidum ed solimec acladim so
-				remule delumdolesc deloea siloga iposbile...</p>
 		</div>
 
 
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - Team Member in edition mode -->
-		<!-- !!!!!!!!! -->
+		<!-- Team Member in edition mode -->
 		<div class="grey_column_team_member_edit">
 
 			<form action="#" method="post">

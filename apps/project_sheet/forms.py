@@ -6,7 +6,7 @@ from tagging.forms import TagField
 
 from apps.i4p_base.models import Location
 
-from .models import I4pProject, I4pProjectTranslation, ProjectReference
+from .models import I4pProject, I4pProjectTranslation, ProjectReference, ProjectMember
 
 class I4pProjectThemesForm(forms.ModelForm):
     """
@@ -50,3 +50,12 @@ class I4pProjectLocationForm(forms.ModelForm):
         model = Location
         fields = ('address', 'country',)
 
+class ProjectMemberForm(forms.ModelForm):
+    """
+    A member for a project
+    """
+    class Meta:
+        model = ProjectMember
+        fields = ('user', 'role', 'comment')
+
+ProjectMemberFormSet = modelformset_factory(ProjectMember, extra=0, can_delete=True, fields=('role', 'comment'))

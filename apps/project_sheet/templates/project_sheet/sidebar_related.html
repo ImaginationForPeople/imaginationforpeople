@@ -7,24 +7,14 @@
 	<div class="clear"></div>
 	 
 		<form action="#" method="post">
-		
-			<p><label for="#">{% trans 'Photo : '|capfirst %}</label><input type="file" id="#" name="#" /></p>
-			<p><label for="#">{% trans 'Name : '|capfirst %}</label><input type="text" name="#" id="#" /></p>
-			<p>
-				<label for="#">{% trans 'Role : '|capfirst %}</label>
-				<select name="#">
-					<option>Project Leader</option>
-					<option>Project Minion</option>
-					<option>Referent</option>
-					<option>Project Author</option>
-				</select>
-			</p>
-			<p><label for="#">{% trans 'Description : '|capfirst %}</label><textarea name="#"></textarea></p>
+		  {% csrf_token %}
+		  {{ project_member_form.as_p }}
+
+		  <div class="clear"></div>
 			
-			<div class="clear"></div>
-			
-			<a id="grey_column_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
-			<a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+		  <a id="grey_column_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
+		  <a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+		  <input type="submit">
 						
 		</form>	
 
