@@ -58,12 +58,12 @@ def project_sheet_show(request, slug):
         if not project_translation.project.location:
             project_translation.project.location = location
             project_translation.project.save()
-            
+
 
     reference_form = ProjectReferenceForm()
     reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
 
-    return render_to_response(template_name='project_sheet/project_sheet.html', 
+    return render_to_response(template_name='project_sheet/project_sheet.html',
                               dictionary={'project': project_translation.project,
                                           'project_translation': project_translation,
                                           'project_themes_form': project_themes_form,
@@ -72,7 +72,7 @@ def project_sheet_show(request, slug):
                                           'reference_formset' : reference_formset,
                                           'project_info_form': project_info_form,
                                           'project_location_form': project_location_form},
-                              context_instance = RequestContext(request))
+                              context_instance=RequestContext(request))
 
 
 @require_POST
@@ -285,6 +285,10 @@ def project_sheet_edit_references(request, project_slug):
 
     if reference_formset.is_valid():
         reference_formset.save()
+
+    next = request.POST.get("next", None)
+    if next:
+        return HttpResponseRedirect(next)
 
     return redirect(project_translation)
 
