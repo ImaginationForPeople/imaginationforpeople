@@ -12,7 +12,7 @@ from django.views.generic.list_detail import object_list
 from localeurl.templatetags.localeurl_tags import chlocale
 
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
-from .forms import ProjectReferenceForm, ProjectReferenceFormSet, I4pProjectLocationForm
+from .forms import ProjectReferenceForm, ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .models import I4pProject, ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .utils import get_or_create_project_translation, get_project_translation
 from apps.project_sheet.models import ProjectReference
@@ -44,6 +44,15 @@ def project_sheet_show(request, slug):
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
     project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
 
+    # Member
+    project_member_form = ProjectMemberForm(request.POST or None)
+    if request.method == 'POST' and project_member_form.is_valid():
+        project_member = project_member_form.save(commit=False)
+        project_member.project = project_translation.project
+        project_member.save()
+
+    project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.members.all())
+
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
                                            instance=project_translation.project)
@@ -71,7 +80,9 @@ def project_sheet_show(request, slug):
                                           'reference_form' : reference_form,
                                           'reference_formset' : reference_formset,
                                           'project_info_form': project_info_form,
-                                          'project_location_form': project_location_form},
+                                          'project_location_form': project_location_form,
+                                          'project_member_form': project_member_form,
+                                          'project_member_formset': project_member_formset},
                               context_instance = RequestContext(request))
 
 

@@ -359,14 +359,13 @@
 	    
 		<div class="location">{% trans "Location:" %}
 		{% if project.location %}
-			<!-- !!!!!!!!! -->
-			<!-- !!FOCUS!! - Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-			<!-- !!!!!!!!! -->
+			<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
 			{{ project.location.address }} -
-			{% if project.location %}
+
 			  <img src="{{ project.location.country.flag }}" alt="{{ project.location.country }}"/> {{ project.location.country.name }}
-			{% endif %}
+			{% if project.location.lat %}
 			<img src="{{ MEDIA_URL }}/images/project/globe.png" alt="#"/>
+			{% endif %}
 		{% else %}
 			<em>{% trans 'unknown'|capfirst %}</em>
 		{% endif %}
@@ -421,7 +420,6 @@
 	  {% include "project_sheet/value_section.html" %}
 	  
 	  {% include "project_sheet/scalability_section.html" %}
-	  
 	</div>
 	
 	<div class="clear"></div>
