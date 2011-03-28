@@ -1,46 +1,23 @@
 {% load i18n %}
-{% load tagging_tags %}
-<div id="opened-sidebar" class="grey_column_open">
-	<div class="grey_column_content">	
-	
-		<div class="title">{% trans 'Related'|capfirst %}</div>
-		
-		<form id="themes-form" method="POST">
-	
-			<div class="grey_column_content_edition">
-	
-				<div class="grey_column_objective_edition">						
-					<form action="#" method="#">
-						<p>
-							<label>{% trans 'Objective :'|capfirst %}</label> 
-							{{ project_objective_form.objective }}
-						</p>
-					</form>						
-				</div>						
-	
-				<div class="grey_column_cloudtag_edition">
-	
-					<div id="grey_column_cloudtag_edition_title">
-						<label>{% trans 'Themes:'|capfirst %}</label><span class="precision">({% trans 'select your tags from the cloud below' %})</span>
-					</div>
-	
-					<ul id="themes_list">
-						{% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags with counts %}
-	
-						{% for tag in project_sheet_tags %}
-						<li value="{{ tag.count }}"><a href="javascript:;">{{ tag }}</a></li>
-						{% endfor %}
-					</ul>
-	
-					<ul id="themes_tags"></ul>
-	
-				</div>
-	
-				<a id="grey_column_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
-				<a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
-			
-			</div>
-		
-		</form>
-	</div>
-</div>
+<div id="opened-sidebar-team" class="grey_column_open"> 
+    <div class="grey_column_team_content">  
+  
+    <div class="title">{% trans 'The team'|capfirst %}</div>
+
+    <div class="clear"></div>
+     
+        <form action="#" method="post">
+          {% csrf_token %}
+          {{ project_member_form.as_p }}
+
+          <div class="clear"></div>
+            
+          <a id="grey_column_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close & discard'%}</a>
+          <a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save & close'%}</a>
+          <input type="submit">
+                        
+        </form> 
+
+    </div>                  
+
+</div>  
