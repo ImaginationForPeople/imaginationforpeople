@@ -169,6 +169,7 @@ INSTALLED_APPS = (
     'oembed_works',
     'reversion',
     'django_countries',
+    'easy_thumbnails',
     'licenses',
                
     'django.contrib.auth',
@@ -201,7 +202,10 @@ if not DEBUG or FORCE_PRIVATEBETA:
 		'privatebeta',
 		)
 
+## Userena
 USERENA_WITHOUT_USERNAMES = True
+USERENA_MUGSHOT_DEFAULT = 'mm'
+USERENA_MUGSHOT_SIZE = 80
 
 # localeurl/monther-tongue
 PREFIX_DEFAULT_LOCALE = True
