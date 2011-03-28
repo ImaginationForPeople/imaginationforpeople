@@ -1,0 +1,40 @@
+#confirm {display:none;}
+
+#confirm-overlay {
+    background-color:#eee; 
+    cursor:wait;
+}
+
+/* Container */
+#confirm-container {
+    height:90px; 
+    width:420px; 
+    font-family: Tahoma,Verdana,Arial,Sans-serif;
+    font-size: 15px;
+    text-align:left; 
+    background:#fff; 
+    border:2px solid black;}
+
+#confirm-container .message {
+    color:#333; 
+    font-size:14px;
+    margin:0; 
+    padding:12px 4px 12px 8px;
+}
+#confirm-container .buttons {
+    line-height:26px; 
+    width:160px; 
+    float:right; 
+    padding:10px 8px 0;
+} 
+#confirm-container .buttons div {
+    float:right; 
+    margin-left:4px; 
+    width:70px; 
+    height:26px; 
+    color:#666; 
+    font-weight:bold; 
+    text-align:center;  
+    border:1px solid #bbb; 
+    cursor:pointer;
+} 

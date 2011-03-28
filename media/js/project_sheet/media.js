@@ -1,3 +1,23 @@
+function confirm(message, callback) {
+	$('#confirm').modal({
+		position: ["30%",],
+		overlayId: 'confirm-overlay',
+		containerId: 'confirm-container', 
+		onShow: function (dialog) {
+			var modal = this;
+
+			$('.message', dialog.data[0]).append(message);
+            
+			$('.yes', dialog.data[0]).click(function () {
+				if ($.isFunction(callback)) {
+					callback.apply();
+				}
+				modal.close();
+			});
+		}
+	});
+}
+
 /* Update the carousel so that it matches the current picture  */
 function update_carousel(index) {
     var jcarousel = $('#project_photo_gallery_mini').data('jcarousel');
@@ -62,9 +82,12 @@ $(document).ready(function () {
     		$('#all_metadata li:nth-child('+anyslider.currentPage+') div.metadata').fadeOut('fast');
 	    }
     );
-    
-    $('#del_media').click(function(){
-    	$(this).attr("href", anyslider.$currentPage.find('a.del_link').attr("href"));
-    });
+
+    $('#del_media').click(function (e) {
+		e.preventDefault();
+		confirm("Are you sure to want to delete this media ? ", function () {
+			window.location.href = anyslider.$currentPage.find('a.del_link').attr("href");
+		});
+	});
     
 });
