@@ -109,13 +109,13 @@
 						{% for pic in project_translation.project.pictures.all %}
 							<li>
                                 <a class="hidden del_link" href="{% url project_sheet-instance-del-picture project_translation.slug pic.id%}"></a>
-                                <img src="{{pic.display.url}}" alt="" >
+                                <img src="{{pic.display.url}}" alt="">
                             </li>
 						{% endfor %}
 						{% for vid in project_translation.project.videos.all %}
 							<li>
                                 <a class="hidden del_link" href="{% url project_sheet-instance-del-video project_translation.slug vid.id%}"></a>
-                                {% oembed %}{{vid.video_url}}{% endoembed %}
+                                {% oembed 700x460 %}{{vid.video_url}}{% endoembed %}
                            </li>
 						{% endfor %}
 					</ul>
