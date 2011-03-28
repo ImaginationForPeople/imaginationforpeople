@@ -18,6 +18,7 @@
     </ul>
 
     <form id="reference_form" action="{% url project_sheet-instance-edit-references project_translation.slug %}" method="post">
+        <input type="hidden" name="next" value="{{project_translation.get_absolute_url}}#project_refs">
         {% csrf_token %} {{ reference_formset.management_form }}
         <ul class="project_refs">
             {% if reference_form %}
