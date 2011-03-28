@@ -13,7 +13,7 @@ import reversion
 
 from apps.member.models import I4pProfile
 
-from apps.i4p_base.models import Address
+from apps.i4p_base.models import Location
 
 class ProjectReference(models.Model):
     desc = models.CharField(_("description"), max_length=300)
@@ -54,7 +54,7 @@ class I4pProject(models.Model):
     project_leader_info = models.TextField(verbose_name=_('project leader information'),
                                            null=True, blank=True)
 
-    location = models.OneToOneField(Address,
+    location = models.OneToOneField(Location,
                                     verbose_name=_('location'),
                                     null=True, blank=True
                                     )

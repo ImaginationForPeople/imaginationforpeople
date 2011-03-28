@@ -11,7 +11,8 @@ from django.views.generic.list_detail import object_list
 
 from localeurl.templatetags.localeurl_tags import chlocale
 
-from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, ProjectReferenceForm, ProjectReferenceFormSet
+from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
+from .forms import ProjectReferenceForm, ProjectReferenceFormSet, I4pProjectLocationForm
 from .models import I4pProject, ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .utils import get_or_create_project_translation, get_project_translation
 from apps.project_sheet.models import ProjectReference
@@ -43,16 +44,35 @@ def project_sheet_show(request, slug):
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
     project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
 
+    # Info
+    project_info_form = I4pProjectInfoForm(request.POST or None,
+                                           instance=project_translation.project)
+    if request.method == 'POST' and project_info_form.is_valid():
+        project_info_form.save()
+
+    # Location
+    project_location_form = I4pProjectLocationForm(request.POST or None,
+                                                   instance=project_translation.project.location)
+    if request.method == 'POST' and project_location_form.is_valid():
+        location = project_location_form.save()
+        if not project_translation.project.location:
+            project_translation.project.location = location
+            project_translation.project.save()
+            
+
     reference_form = ProjectReferenceForm()
     reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
 
-    return render_to_response(template_name='project_sheet/project_sheet.html',
-                              dictionary={'project_translation': project_translation,
+    return render_to_response(template_name='project_sheet/project_sheet.html', 
+                              dictionary={'project': project_translation.project,
+                                          'project_translation': project_translation,
                                           'project_themes_form': project_themes_form,
                                           'project_objective_form': project_objective_form,
                                           'reference_form' : reference_form,
-                                          'reference_formset' : reference_formset},
-                              context_instance=RequestContext(request))
+                                          'reference_formset' : reference_formset,
+                                          'project_info_form': project_info_form,
+                                          'project_location_form': project_location_form},
+                              context_instance = RequestContext(request))
 
 
 @require_POST

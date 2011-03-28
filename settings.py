@@ -272,3 +272,5 @@ LOCALE_INDEPENDENT_PATHS = (
 	re.compile('^/js/dajax/.*$'),
 	)
 
+## Flags
+COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'

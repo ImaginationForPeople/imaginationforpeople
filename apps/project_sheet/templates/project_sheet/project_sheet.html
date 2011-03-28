@@ -341,42 +341,40 @@
 	<div id="project_infos_block">
 	  {% if project_translation %} 
 	  
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - edition of the full information block  -->
-		<!-- !!!!!!!!! -->
+		<!-- edition of the full information block  -->
 		<a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section)  -->
-		<!-- !!!!!!!!! -->
-	    <div class="creation_date">Created {{ project_translation.created }} {% trans 'by' %} 
+		<!-- add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section)  -->
+		<div class="creation_date">
+	    Created {{ project_translation.created }} {% trans 'by' %} 
 	    <i>
-	      {% if project_translation.author %}
-		{{ project_translation.author.get_full_name_or_username }}
+	      {% if project.author %}
+		{{ project.author.get_full_name_or_username }}
 	      {% else %}
 		{% trans 'anonymous'|capfirst %}
 	      {% endif %}
 	    </i>
-	    ({{project_translation.ip_addr }})
+	    ({{ project.ip_addr }})
 	    </div>
 	    
-		<div class="location">Location : 
-		{% if project_translation.location %}
+		<div class="location">{% trans "Location:" %}
+		{% if project.location %}
 			<!-- !!!!!!!!! -->
 			<!-- !!FOCUS!! - Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
 			<!-- !!!!!!!!! -->
-			{{ project_translation.location }}
+			{{ project.location.address }} -
+			{% if project.location %}
+			  <img src="{{ project.location.country.flag }}" alt="{{ project.location.country }}"/> {{ project.location.country.name }}
+			{% endif %}
 			<img src="{{ MEDIA_URL }}/images/project/globe.png" alt="#"/>
 		{% else %}
 			<em>{% trans 'unknown'|capfirst %}</em>
 		{% endif %}
 		</div>
 		
-		<!-- !!!!!!!!! -->
-		<!-- !!FOCUS!! - Website -->
-		<!-- !!!!!!!!! -->
-		{% if project_translation.website %}
-			<div class="website">Website : <a href="http://google.fr" >http://google.fr</a>{{ project_translation.website }}</div>
+		<!-- Website -->
+		{% if project.website %}
+		  <div class="website">{% trans "Website:" %} <a href="{{ project.website }}">{{ project.website }}</a></div>
 		{% endif %}
 	   
 		
@@ -386,20 +384,22 @@
 	
 	<!-- PROJECT INFOS - editing version -->
 	<div id="project_infos_block_edit">
-		<form action="#" method="post">
-			<p>
-				<label for="#">{% trans 'Created by : '|capfirst %}</label>
-				<select name="#">
-					<option>Jean-Mauricien Percule</option>
-					<option>Sophitiella Plectre</option>
-				</select>
-			</p>
-			<p><label for="#">{% trans 'Location : '|capfirst %}</label><input type="text"name="#" value="{% trans 'place' %}" id="#"><input type="text" value="{% trans 'country' %}" name="#" id="#">&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;<input type="text" value="{% trans 'GPS coordinates' %}" name="#" id="#"></p>
-			<p><label for="#">{% trans 'Website : '|capfirst %}</label><input type="text" id="info_website" value="http://" name="#" id="#"></p>
-			<div class="clear"></div>
-			<input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
-			<input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
-		</form>	
+	  <form action="" method="post">
+	    {% csrf_token %}
+
+	    {{ project_info_form.as_p }}
+ 	    {{ project_location_form.as_p }}
+	    <p>
+	      <label for="#">{% trans 'Created by : '|capfirst %}</label>
+	      <select name="#">
+		<option>Jean-Mauricien Percule</option>
+		<option>Sophitiella Plectre</option>
+	      </select>
+	    </p>
+	    <div class="clear"></div>
+	    <input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
+	    <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
+	  </form>	
 	</div>
 	
 	
