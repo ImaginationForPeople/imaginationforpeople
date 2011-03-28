@@ -6,9 +6,9 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_countries import CountryField
 
-class Address(models.Model):
+class Location(models.Model):
     """
-    A generic address model designed to be used to localize any object
+    A generic location model designed to be used to localize any object
     """
     lat = models.FloatField(verbose_name=_('latitude'),
                             null=True, blank=True)
