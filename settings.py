@@ -16,7 +16,7 @@ else:
     DEBUG = True
 
 # if you need to debug privatebeta, use this
-FORCE_PRIVATEBETA = False
+FORCE_PRIVATEBETA = True
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -62,6 +62,7 @@ LANGUAGES = (
   ('de', u'German'),
   ('it', u'Italian'),
   ('ru', u'Russian'),
+  ('zh', u'Chinese'),
 )
 
 SITE_ID = 1
