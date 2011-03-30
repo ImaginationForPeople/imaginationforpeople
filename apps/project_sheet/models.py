@@ -17,8 +17,8 @@ from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
 
 class ProjectReference(models.Model):
-    desc = models.CharField(_("description"), max_length=300)
-    
+    desc = models.CharField(_("description"), max_length=300, help_text=_("Insert your reference here (URL, books, etc)"))
+
 class I4pProject(models.Model):
     """
     Root object for a project. Holds only shared data
@@ -37,8 +37,8 @@ class I4pProject(models.Model):
                                      through='ProjectMember',
                                      related_name='projects',
                                      )
-                                     
-    
+
+
     created = models.DateField(_("creation date"), auto_now_add=True)
     location = models.CharField(_("location"), max_length=80, null=True, blank=True)
 
@@ -59,9 +59,9 @@ class I4pProject(models.Model):
                                     verbose_name=_('location'),
                                     null=True, blank=True
                                     )
-    
+
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
-    
+
     @models.permalink
     def get_absolute_url(self):
         return ('project_sheet-show', (self.slug,))
@@ -95,7 +95,7 @@ class I4pProjectTranslation(models.Model):
     uniqueness_section = models.TextField(_("what is make it creative and unique"), null=True, blank=True)
     value_section = models.TextField(_("what is the experience social added value"), null=True, blank=True)
     scalability_section = models.TextField(_("how scalable it is"), null=True, blank=True)
-    
+
     themes = TagField(_("Themes of the project"), null=True, blank=True)
 
     @models.permalink
@@ -136,7 +136,7 @@ class ProjectMember(models.Model):
 
     project = models.ForeignKey(I4pProject, related_name="detailed_members")
     user = models.ForeignKey(User, related_name="project_memberships")
-    
+
     role = models.CharField(verbose_name=_("role"),
                             max_length=100,
                             blank=True,
@@ -145,7 +145,7 @@ class ProjectMember(models.Model):
     comment = models.TextField(verbose_name=_("comment"),
                                blank=False,
                                null=True)
-    
+
 
 # Reversions
 reversion.register(I4pProject)

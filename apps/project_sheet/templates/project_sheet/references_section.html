@@ -27,6 +27,7 @@
                     {{reference_form.desc}} 
                     <input type="image" alt="Ok" title="Add this reference" src="{{ MEDIA_URL }}/images/base/v.png" class="button greenbutton nomargin right" title="Ok">
                 </p>
+                {{reference_form.desc.help_text}} 
             </li> 
             {% endif %} 
             {% for ref_form in reference_formset.forms %}
