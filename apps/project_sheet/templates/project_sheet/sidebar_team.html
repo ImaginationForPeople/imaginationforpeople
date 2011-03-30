@@ -5,7 +5,7 @@
     <div class="title">{% trans 'The team'|capfirst %}</div>
 
     <div class="clear"></div>
-     
+    <h3>{% trans 'Add a team member' %}</h3>
         <form action="#" method="post">
           {% csrf_token %}
           {{ project_member_form.as_p }}
