@@ -6,7 +6,7 @@ from imagekit.lib import *
 class Center(ImageProcessor):
     width = None
     height = None
-    background_color = '#FFFFFF'
+    background_color = '#000000'
 
     @classmethod
     def process(cls, img, fmt, obj):
