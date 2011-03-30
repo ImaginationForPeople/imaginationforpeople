@@ -86,12 +86,10 @@ def project_sheet_show(request, slug):
                               context_instance=RequestContext(request)
                               )
 
-@require_POST
-def project_sheet_create_translation(request, project_slug):
+def project_sheet_create_translation(request, project_slug, requested_language_code):
     """
     Given a language and a slug, create a translation for a new language
     """
-    requested_language_code = request.POST['language_code']
     current_language_code = translation.get_language()
 
     try:

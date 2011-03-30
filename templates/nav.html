@@ -43,12 +43,13 @@
 						<ul id="sample-menu-1" class="sf-menu">		
 
 							<li class="current">
-								<a href="#a">{% trans 'others languages'|capfirst %}&nbsp;&nbsp;<img src="{{ MEDIA_URL }}/images/flags/{{ LANGUAGE_CODE }}.gif" title="{{ LANGUAGE_CODE }}" /></a>
+								<a href="#a">{% trans 'other languages'|capfirst %}&nbsp;&nbsp;<img src="{{ MEDIA_URL }}/images/flags/{{ LANGUAGE_CODE }}.gif" title="{{ LANGUAGE_CODE }}" /></a>
 								<ul>
 									
 										{% for translation in project_translation.project.translations.all %}
-                                        <!-- FIXME - if possible, the title and the text next the flag must been the full language name, and NOT the abreviation ! -->
-											<li><a href="{% locale_url translation.language_code project_sheet-show translation.slug %}"><img src="{{ MEDIA_URL }}/images/flags/{{ translation.language_code }}.gif" title="{{ translation.language_code }}" />{{ translation.language_code }}</a>
+										<!-- FIXME - if possible, the title and the text next the flag must been the full language name, and NOT the abreviation ! -->
+											<li>
+											  <a href="{% locale_url translation.language_code project_sheet-show translation.slug %}"><img src="{{ MEDIA_URL }}/images/flags/{{ translation.language_code }}.gif" title="{{ translation.language_code }}" />{{ translation.language_code }}</a>
 										{% endfor %}		
 										
 									</li>
@@ -59,7 +60,7 @@
                                         <!-- FIXME - add the link for translation's creation -->
 										<ul>
 											{% for language in LANGUAGES %}
-											<li><a href="#"><img src="{{ MEDIA_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.1 }}</a>
+											<li><a href="{% url project_sheet-translate project_translation.slug language.0 %}"><img src="{{ MEDIA_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.1 }}</a>
 											{% endfor %}										
 										</ul>
 									</li>

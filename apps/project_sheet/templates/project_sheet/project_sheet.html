@@ -48,7 +48,7 @@
   <script type="text/javascript">
  
     $(document).ready(function(){ 
-        $("ul.sf-menu").superfish(); 
+        $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
     }); 
   </script>
 
@@ -405,13 +405,6 @@
 
 	    {{ project_info_form.as_p }}
  	    {{ project_location_form.as_p }}
-	    <p>
-	      <label for="#">{% trans 'Created by : '|capfirst %}</label>
-	      <select name="#">
-		<option>Jean-Mauricien Percule</option>
-		<option>Sophitiella Plectre</option>
-	      </select>
-	    </p>
 	    <div class="clear"></div>
 	    <input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
 	    <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
