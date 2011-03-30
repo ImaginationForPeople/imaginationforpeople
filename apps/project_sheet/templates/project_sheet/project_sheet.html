@@ -361,7 +361,7 @@
 		<!-- edition of the full information block  -->
 		<a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
 
-		<!-- add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section)  -->
+		<!-- add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section) 
 		<div class="creation_date">
 	    Created {{ project_translation.created }} {% trans 'by' %} 
 	    <i>
@@ -372,13 +372,14 @@
 	      {% endif %}
 	    </i>
 	    ({{ project.ip_addr }})
-	    </div>
+	    </div> -->
 	    
 		<div class="location">{% trans "Location:" %}
 		{% if project.location %}
 			<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-			{{ project.location.address }} -
-
+			{% if project.location.address %}
+            {{ project.location.address }} -
+            {% endif %}
 			  <img src="{{ project.location.country.flag }}" alt="{{ project.location.country }}"/> {{ project.location.country.name }}
 			{% if project.location.lat %}
 			<img src="{{ MEDIA_URL }}/images/project/globe.png" alt="#"/>
