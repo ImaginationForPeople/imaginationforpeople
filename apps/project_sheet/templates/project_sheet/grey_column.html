@@ -60,15 +60,24 @@
 
 		  <ul id="member_list">
 		    {% for member in project.detailed_members.all %}
-		      <li class="member{{ member.id }}">
-			<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" />
-			<h2><a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a></h2>
-			{% if member.user.get_profile.country %}
-			  <img src="{{ member.user.get_profile.country.flag }}" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
-		      {% endif %}
-			<h3>{{ member.role }}</h3>
-			<p>{{ member.comment }}</p>
-		      </li>
+		    <li class="grey_column_team_member member{{ member.id }}">
+                <a href="{% url userena_profile_detail member.user %}">
+                    <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
+                </a>  
+                {% if member.user.get_profile.country %}
+                <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
+                {% endif %}   
+                <h2>
+                    <a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
+                </h2>
+
+              
+                <h3>{{ member.role }}</h3>
+                
+                <div class="clear"></div>
+                
+                <p>{{ member.comment }}</p>
+		    </li>
 		    {% endfor %}
 		  </ul>
 		  

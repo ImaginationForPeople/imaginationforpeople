@@ -54,7 +54,7 @@
 				<div id="media_buttons">
 					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
 					<a href="#" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
-					<a id='del_media' href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
+					<a id='del_media' href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/trash.png" alt="X" /></a>
 				</div>
 				
                 <ul id="all_metadata">
@@ -78,7 +78,7 @@
 				
 				<!-- MEDIA - Metadata editing - Class hidden by default. When user click on #media_metadata_button, metadata edition becomes visible, but the medatada viewing must not been visible on hover ! -->
 				<!-- When user edit metadata, the block buttons (#media_buttons) is hidden until action is validated or cancelled -->
-				<div id="metadata" class="metadata_edit hidden">
+				<div id="metadata" class="metadata_edit metadata">
 					<form action="#">	
 						<strong>{% trans 'Date :'|capfirst %}</strong> 12-03-1995<br /><br />
 
@@ -154,8 +154,8 @@
     <div id='confirm'>
         <div class='message'></div>
         <div class='buttons'>
-            <div class='no simplemodal-close'>No</div>
-            <div class='yes'>Yes</div>
+		<a title="{% trans 'Yes'|capfirst %}" href="#"	class="yes button greenbutton right"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="edit" /></a>
+        <a title="{% trans 'No'|capfirst %}" href="#" class="no button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a> 
         </div>
     </div>
 {% endif %}

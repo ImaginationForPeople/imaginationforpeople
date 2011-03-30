@@ -277,7 +277,7 @@ form{
 }
 
 .project_details_body form button {
-    	background-color:#eeeeee;
+    background-color:#eeeeee;
 	border:1px solid #bdbdbd;
 	position:relative;
 	margin-left:15px;
@@ -1214,7 +1214,8 @@ form{
 
 .grey_column_team_member img{
 
-	width:100%;
+    float:left;
+    margin-right:10px;
 
 }
 
@@ -1242,8 +1243,23 @@ form{
 	font-weight:bold;
 	font-style:italic;
 	padding:0px;
-	padding-top:10px;
 	margin:0px;
+    
+
+}
+
+.grey_column_team_member h2 a{
+
+	font-size:14px;
+    color:#5a5959;
+
+}
+
+.grey_column_team_member .flag{
+
+    position:absolute;
+    top:68px;
+    left:-28px;
 
 }
 
@@ -1491,14 +1507,15 @@ ul#themes_tags li.tagit-choice {
 #project_refs .title{
 
 	float:left;
-	padding:6px 0px 6px 20px;
+	padding:6px 60px 6px 20px;
 
 
 }
 
 #project_refs .title .button{
 
-	top:4px;
+	top:10px;
+    position:absolute;
 
 }
 
@@ -1521,6 +1538,14 @@ ul#themes_tags li.tagit-choice {
 
 	color:#5A5859;
 
+}
+
+#project_refs .ref img{
+
+  position:relative;
+  top:7px;
+  left:6px;
+    
 }
 
 
