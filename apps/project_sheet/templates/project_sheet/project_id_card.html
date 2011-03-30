@@ -13,7 +13,7 @@
     <div class="project_infos_title">{{ project_translation.title }}</div>	
     <div class="project_infos_location">
         {% if project_translation.project.location.country %}
-            {{project_translation.project.location.country.name|capfirst}}
+            {{project_translation.project.location.country.name|truncatewords:2|capfirst}}
             <img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.country.name }}" alt="{{ project_translation.project.location.country.name }}"/>
         {% else %}
         -
