@@ -62,7 +62,11 @@
 		    {% for member in project.detailed_members.all %}
 		    <li class="grey_column_team_member member{{ member.id }}">
 		      <a href="{% url userena_profile_detail member.user %}">
-			<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
+                <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
+                  <div class="grey_column_team_buttons">
+                    <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+                    <a title="{% trans 'Delete'|capfirst %}" href="javascript:alert('Not Yet Implemented');" class="button redbutton nomargin"><img src="{{ MEDIA_URL }}/images/base/trash.png" alt="{% trans 'delete' %}" /></a> 
+                  </div>
 		      </a>  
 		      {% if member.user.get_profile.country %}
 		      <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
@@ -76,12 +80,7 @@
 		      
 		      <div class="clear"></div>
 		      
-		      <p>{{ member.comment }}</p>
-
-		      <div class="grey_column_team_buttons">
-			<a title="{% trans 'Delete'|capfirst %}" href="javascript:alert('Not Yet Implemented');" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/trash.png" alt="{% trans "delete" %}" /></a> 
-			<a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
-		      </div>
+		      <p>{{ member.comment }}</p>		      
 
 		    </li>
 		    {% endfor %}
