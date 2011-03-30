@@ -13,7 +13,7 @@
         {% for ref in project_translation.project.references.all %}
         <li class="ref">{{ref.desc|urlize}}</li> 
         {% empty %}
-        <li class="ref">{% trans 'no reference for the moment'|capfirst %}</li> 
+        <li class="ref">{% trans 'no references'|capfirst %}</li> 
         {% endfor %}
     </ul>
 
