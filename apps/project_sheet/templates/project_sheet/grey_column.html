@@ -42,7 +42,7 @@
 	<div id="sidebar-section-team" class="sidebar-section-openable">
 		<!-- About the team -->
 		<div class="title">
-			<a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="{% trans "add" %}" /></a>
+			<a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/base/add.png" alt="{% trans "add" %}" /></a>
 			{% trans 'The team'|capfirst %}
 		</div>
 
@@ -61,22 +61,28 @@
 		  <ul id="member_list">
 		    {% for member in project.detailed_members.all %}
 		    <li class="grey_column_team_member member{{ member.id }}">
-                <a href="{% url userena_profile_detail member.user %}">
-                    <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
-                </a>  
-                {% if member.user.get_profile.country %}
-                <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
-                {% endif %}   
-                <h2>
-                    <a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
-                </h2>
+		      <a href="{% url userena_profile_detail member.user %}">
+			<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
+		      </a>  
+		      {% if member.user.get_profile.country %}
+		      <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
+		      {% endif %}   
+		      <h2>
+			<a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
+		      </h2>
+		      
+		      
+		      <h3>{{ member.role }}</h3>
+		      
+		      <div class="clear"></div>
+		      
+		      <p>{{ member.comment }}</p>
 
-              
-                <h3>{{ member.role }}</h3>
-                
-                <div class="clear"></div>
-                
-                <p>{{ member.comment }}</p>
+		      <div class="grey_column_team_buttons">
+			<a title="{% trans 'Delete'|capfirst %}" href="javascript:alert('Not Yet Implemented');" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/trash.png" alt="{% trans "delete" %}" /></a> 
+			<a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+		      </div>
+
 		    </li>
 		    {% endfor %}
 		  </ul>
@@ -89,7 +95,7 @@
 		    {% for member_form in project_member_formset.forms %}
 		    <li class="member{{ member.id }}">
 		      <p></p>
-		      <p>{{ member_form }}</p>
+		      <p>{{ member_form.as_p }}</p>
 		    </li>
 		    {% endfor %}
 		  </ul>
@@ -101,54 +107,8 @@
 
 		<div class="grey_column_team_member">
 
-			<div class="grey_column_team_buttons">
-                <a title="{% trans 'Delete'|capfirst %}" href="#" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a> 
-				<a title="{% trans 'Edit'|capfirst %}" href="#"	class="button right nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
-			</div>
-
+		  
 		</div>
-
-
-		<!-- Team Member in edition mode -->
-		<div class="grey_column_team_member_edit">
-
-			<form action="#" method="post">
-
-				<div class="empty_photo">
-					<img src="http://s1.e-monsite.com/2008/10/18/10/14425546gollum-5-jpg.jpg" alt="#" />
-				</div>
-				<p>
-					<input type="file" id="#" name="#" style="z-index: 4000;" />
-				</p>
-				<p>
-					<input type="text" name="#" value="Sophitiella Plectre" id="#" />
-				</p>
-				<p>
-					<select name="#">
-						<option>Project Leader</option>
-						<option selected>Project Minion</option>
-						<option>Referent</option>
-						<option>Project Author</option>
-					</select>
-				</p>
-				<p>
-					<textarea name="#">The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</textarea>
-				</p>
-
-				<div class="clear"></div>
-
-				<a href="#" title="{% trans 'Ok'|capfirst %}" class="button greenbutton right nomargin">
-					<img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" />
-				</a> 
-				<a href="#" title="{% trans 'Cancel'|capfirst %}" class="button redbutton right nomargin">
-					<img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" />
-				</a>
-
-			</form>
-
-		</div>
-	</div>
-
 
 		<div class="clear"></div>
 

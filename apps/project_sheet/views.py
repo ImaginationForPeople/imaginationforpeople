@@ -51,7 +51,7 @@ def project_sheet_show(request, slug):
         project_member.project = project_translation.project
         project_member.save()
 
-    project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.members.all())
+    project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
