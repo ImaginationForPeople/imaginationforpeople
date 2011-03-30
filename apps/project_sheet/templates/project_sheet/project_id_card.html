@@ -9,9 +9,16 @@
   <div class="project_card_type">{# <img src="http://www.google.fr/images/logos/ps_logo2.png" alt="democratize" /> #}</div>
   
   <div class="project_card_content">
-    {# <div class="project_card_status">Completed</div> #}
+    {# <div class="project_card_status">{% trans 'completed'|capfirst %}  </div> #}
     <div class="project_infos_title">{{ project_translation.title }}</div>	
-    <div class="project_infos_location">USA, New York</div>				
+    <div class="project_infos_location">
+        {% if project_translation.project.location.country %}
+            {{project_translation.project.location.country.name|capfirst}}
+            <img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.country.name }}" alt="{{ project_translation.project.location.country.name }}"/>
+        {% else %}
+        -
+        {% endif %}
+    </div>				
   </div>
   <div class="clear"></div>
   
