@@ -16,7 +16,7 @@ else:
     DEBUG = True
 
 # if you need to debug privatebeta, use this
-FORCE_PRIVATEBETA = True
+FORCE_PRIVATEBETA = False
 
 TEMPLATE_DEBUG = DEBUG
 
