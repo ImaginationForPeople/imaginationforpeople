@@ -14,6 +14,10 @@ function confirm(message, callback) {
 				}
 				modal.close();
 			});
+			$('.no').click(function () {
+				modal.close();
+				return false;
+			});
 		}
 	});
 }
