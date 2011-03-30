@@ -276,6 +276,21 @@
     });
   </script>
 
+  <!-- Team section -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+	$("#member_list_edit").hide();
+
+	$(".grey_column_team_buttons").hide();
+
+	$("#member_list li").hover(function() {
+	    $(this).find(".grey_column_team_buttons").show();
+	}, function() {
+	    $(this).find(".grey_column_team_buttons").fadeOut("fast");
+	});
+    });
+  </script>
+
 
 {% endblock %}
 
