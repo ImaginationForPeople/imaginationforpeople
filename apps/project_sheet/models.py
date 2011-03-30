@@ -40,7 +40,6 @@ class I4pProject(models.Model):
 
 
     created = models.DateField(_("creation date"), auto_now_add=True)
-    location = models.CharField(_("location"), max_length=80, null=True, blank=True)
 
     objective = models.CharField(verbose_name=_('objective'),
                                  max_length=4, choices=OBJECTIVE_CHOICES,
