@@ -1,103 +1,99 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" />
+{% endblock %}
+
+
+{% block nav %}	
+
+    <div class="nav">
+        <div class="container_18">
+            <div class="grid_18 alpha omega">
+                <div class="nav-bg">
+                    <div class="grid_6 alpha catchy">
+                        <h1>{% trans "About imagination for people" %}</h1>
+                        <p class="edito">
+                            {% blocktrans %}
+                            We believe in the virtue of civic imagination, imagination to serve the common good. Our filter is useful creativity or the imagination applied. 
+                            {% endblocktrans %}
+                        </p>
+                        <a href="#" class="manifesto-link">{% trans "Manifesto" %} ></a>
+                        <a href="#" class="manifesto-link">{% trans "Project description" %} ></a>
+                    </div>
+                    <div class="grid_12 omega">						
+                        <img src="{{ MEDIA_URL }}/images/teaser/teaser.png" alt="Imagination for People preview" />					
+                    </div>
+                </div>		
+            </div>
+        </div>
+    </div>
+    
+    <div class="categories">        
+        <div class="container_18">
+            <div class="grid_18 alpha omega">
+                <div class="menu">
+                    <ul>
+                        <li class="selected"><div class="categ-button"><a href="#">{% trans "Featured" %}</a></div></li>
+                        <li><div class="categ-button"><a href="#">{% trans "Filters" %}</a></div></li>
+                        <li><div class="categ-button"><a href="#">{% trans "Help" %}</a></div></li>
+                        <li><div class="categ-button2"><a href="#">{% trans "<span class='georgia'>My</span> imagination for people" %}</a></div></li>
+                    </ul>
+                    <div class="search">
+                        <form action="#">
+                            <input type="button" value="&nbsp;">
+                            <input type="text" value="Search project" name="search" id="searchInput">						
+                        </form>
+                    </div>
+                    <div class="toolbox">
+                        <div class="tools-title georgia">{% trans "Node view" %}</div>
+                        <div class="tools">
+                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool1.png" /></a>
+                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool2.png" /></a>
+                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool3.png" /></a>
+                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool4-selected.png" /></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
 {% block content %}	
 	
 	<div class="content">        
 		<div class="container_18">
 			<div class="grid_18 alpha omega">			
 			
-				<div class="paging">
-											
-						<a href="#"><img src="{{ MEDIA_URL }}images/base/paging-on.png" /></a>
-						<a href="#"><img src="{{ MEDIA_URL }}images/base/paging-off.png" /></a>
-						<a href="#"><img src="{{ MEDIA_URL }}images/base/paging-off.png" /></a>
-			
-				</div>				
-				
 				<div class="block-content">  			
 				
-					<div class="colonne grid_6 alpha">
-						<h1>About imagination for people</h1>
-						
-						<p class="edito">
-						We believe in the virtue of civic imagination, imagination to serve the common good. Our filter is useful creativity or the imagination applied.
-						</p>
-						
-						<a href="#">more info ></a>
-						<a href="#">read our blog ></a>
-						
+					<div class="colonne grid_4 alpha">
+						<h1>{% trans '- explore'|capfirst %}</h1>						
+                        <p>{% blocktrans %}Get to know the most creative and rule changing social projects in the world.{% endblocktrans %}</p>
+						<a href="{% url project_sheet-list %}">{% trans 'More info &gt;' %}</a> 						
 					</div>
 					
-					<div class="colonne grid_6">
-						
-						
-						<a href="#" class="project_card">
-						
-								<img  class="project-photo"src="{{ MEDIA_URL }}images/projects/project-img.jpg" alt=""/>
-								<div class="project_card_type"><img src="{{ MEDIA_URL }}images/base/categ-democratize.jpg" alt="democratize" /></div>
-								
-								<div class="project_card_content">
-									<div class="project_card_status">Completed</div>
-									
-									<img src="{{ MEDIA_URL }}images/base/dialog-icon.jpg" alt=""/>							
-									<ul class="project_card_infos">							
-										<li>2 help request</li>
-										<li>4 updates</li>
-										<li>12 followers</li>							
-									</ul>							
-								</div>
-						</a>
-						
-						
-						<div class="project_infos">
-						
-							<div class="project_infos_title">Speakers corner</div>
-							<div class="project_infos_location">USA, New York</div>
-							
-							<div class="project_infos_description">The Speaker's Corner is a very unique way of giving lorem ipsum dolores ectamed dolred iposed lidum ed solimec acladim so remule delumdolesc deloea siloga iposbile...</div>
-							
-							<a href="#">More info ></a>
-						
-						</div>
-						
+					<div class="colonne grid_4">						
+						<h1>{% trans '- add a project'|capfirst %}</h1>						
+						<p>{% blocktrans %}Be a part of the first wiki platform dedicated to social innovation and civic imagination.{% endblocktrans %}</p>
+						<a href="{% url project_sheet-start %}">{% trans 'More info &gt;' %}</a> 		       
 					</div>
 					
-					<div class="colonne grid_6 omega">
+					<div class="colonne grid_4">
+						<h1>{% trans '- help'|capfirst %}</h1>						
+						<p>{% blocktrans %}Go from inspiration to persipiration : help the projects get off the ground.{% endblocktrans %}</p>											
+						<a href="#">{% trans 'More info &gt;' %}</a> 		    
+                    </div>	
 
-
-						<a href="#" class="project_card">
-						
-								<img class="project-photo" src="{{ MEDIA_URL }}images/projects/project-img.jpg" alt=""/>
-								<div class="project_card_type"><img src="{{ MEDIA_URL }}images/base/categ-sustain.jpg" alt="sustain" /></div>
-								
-								<div class="project_card_content">
-									<div class="project_card_status">Completed</div>
-									
-									<img src="{{ MEDIA_URL }}images/base/dialog-icon.jpg" alt=""/>							
-									<ul class="project_card_infos">							
-										<li>2 help request</li>
-										<li>4 updates</li>
-										<li>12 followers</li>							
-									</ul>							
-								</div>
-						</a>
-					
-						
-						
-						<div class="project_infos">
-						
-							<div class="project_infos_title">Telemedicine project in Afghanistan</div>
-							<div class="project_infos_location">Afghanistan, Asia</div>
-							
-							<div class="project_infos_description">Afghanistan’s telemedicine’s project has been launched in Kabul in June 2007 by the telecommunications company Roshan in partnership with...</div>
-							
-							<a href="#">More info ></a>
-						
-						</div>
-
-
-					</div>					
+                    <div class="colonne grid_4 omega">
+                        <h1>
+                            {% blocktrans %}Think TED but with a focus on the imagination and getting things done.{% endblocktrans %}
+						</h1>				
+                    </div>	                    
 										
 				</div>
 				

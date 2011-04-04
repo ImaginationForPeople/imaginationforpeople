@@ -51,7 +51,7 @@ if "privatebeta" in settings.INSTALLED_APPS:
     )
 else:
   urlpatterns += patterns('',
-        url(r'^$', direct_to_template, {'template': 'base.html'}, name='i4p-index'),
+        url(r'^$', direct_to_template, {'template': 'homepage.html'}, name='i4p-index'),
         url(r'^project/', include('apps.project_sheet.urls')),
         url(r'^accounts/', include('userena.urls')),
     )
