@@ -21,7 +21,7 @@
 		</div>
 		{% if project_translation.uniqueness_section %}
 			<!-- PARAGRAPH - filled -->
-			<p class="project_details_body">{{ project_translation.uniqueness_section }}</p>
+			<p class="project_details_body">{{ project_translation.uniqueness_section|linebreaksbr }}</p>
 		{% else %}
 			<p class="project_details_body empty">{% trans "this bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
 		{% endif %}

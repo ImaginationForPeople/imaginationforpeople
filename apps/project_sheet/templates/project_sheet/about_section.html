@@ -28,7 +28,7 @@
 		{% if project_translation.about_section %}
 			<!-- Titre du projet deja créé, avec section about, en mode NON éditable-->
 			<div id="about_section" class="project_description_zone focus">
-				<div class="project_description_txt">{{ project_translation.about_section }}</div>
+				<div class="project_description_txt">{{ project_translation.about_section|linebreaksbr }}</div>
 			</div>
 		{% else %}
 			<!-- Titre du projet deja créé, SANS section about, en mode NON éditable-->
