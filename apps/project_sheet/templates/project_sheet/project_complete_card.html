@@ -5,12 +5,12 @@
 <div class="project_infos">
   
   {% if project_translation.baseline %}
-    <div class="project_infos_baseline">{{ project_translation.baseline }}</div>
+    <div class="project_infos_baseline" title="{{ project_translation.baseline}}">{{ project_translation.baseline|truncatewords:4 }}</div>
   {% endif %}		
   
-  <div class="project_infos_description">
+  <div class="project_infos_description" title=" {{ project_translation.about_section }}">
     {% if project_translation.about_section %}
-      {{ project_translation.about_section }}
+      {{ project_translation.about_section|truncatewords:40 }}
     {% else %}
       {% trans "There is no description for this project" %}
     {% endif %}
