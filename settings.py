@@ -16,7 +16,7 @@ else:
     DEBUG = True
 
 # if you need to debug privatebeta, use this
-FORCE_PRIVATEBETA = False
+FORCE_PRIVATEBETA = True
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -119,7 +119,7 @@ MIDDLEWARE_CLASSES = (
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-if not DEBUG:
+if (not DEBUG) or FORCE_PRIVATEBETA:
     MIDDLEWARE_CLASSES += (
 		'privatebeta.middleware.PrivateBetaMiddleware',
 	)
@@ -261,10 +261,11 @@ else:
 ### Private Beta
 PRIVATEBETA_REDIRECT_URL = '/beta/'
 PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
-				  'django.views.generic.simple.redirect_to',)
+				  'django.views.generic.simple.redirect_to',
+                                  'userena.views.signin')
+
 PRIVATEBETA_ALWAYS_ALLOW_MODULES = ('django.contrib.admin.sites',
 				    'contact_form.views')
-
 ### Dajax Ice
 DAJAXICE_MEDIA_PREFIX = "js/dajax"
 DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
