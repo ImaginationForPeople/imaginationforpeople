@@ -226,7 +226,7 @@ AUTH_PROFILE_MODULE='member.I4pProfile'
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 ### Debug-tool-bar
-INTERNAL_IPS = ('127.0.0.1',)
+INTERNAL_IPS = ('127.0.0.1','192.168.0.18')
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }

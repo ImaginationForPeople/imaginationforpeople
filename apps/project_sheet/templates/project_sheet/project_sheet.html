@@ -340,7 +340,7 @@
 	{{ baseline_form.baseline }}
 	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
     <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
-	</form>	
+	</form>
 	{% else %}
 	  {% if project_translation %}
 	    <!-- BASELINE - filled-->
@@ -351,7 +351,7 @@
 	  {% else %}
 	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
-	      <p>{% trans "my project baseline"|capfirst %}</p>
+	      <p>{% trans "One line description"|capfirst %}</p>
 	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png"/></a>
 	    </div>
 	  {% endif %}

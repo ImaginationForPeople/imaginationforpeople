@@ -1,6 +1,6 @@
 {% load i18n %}
 
-<a href="{{ project_translation.get_absolute_url }}" class="project_card">
+<a href="{{ project_translation.get_absolute_url }}" class="project_card"  title="{{ project_translation.baseline}}">
   
   <div class="project-photo">	
     <img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
