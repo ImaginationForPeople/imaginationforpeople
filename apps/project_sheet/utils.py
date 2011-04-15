@@ -21,13 +21,20 @@ def get_or_create_project(request, project_slug):
     return project
 
 
-def get_project_translation(project_translation_slug, language_code):
+def get_project_translation_by_slug(project_translation_slug, language_code):
     """
     Get a translation of a given project
     """
     return I4pProjectTranslation.objects.get(language_code=language_code,
                                              slug=project_translation_slug)
-    
+
+
+def get_project_translation_from_parent(parent, language_code):
+    """
+    Get a translation of a given project
+    """
+    return parent.translations.get(language_code=language_code)
+
 def create_project_translation(language_code, parent_project=None, default_title=None):
     """
     Create a translation of a project.
@@ -47,13 +54,34 @@ def create_project_translation(language_code, parent_project=None, default_title
     return project_translation
         
 
-def get_or_create_project_translation(project_translation_slug, language_code, parent_project=None, default_title=None):
+def get_or_create_project_translation_by_slug(project_translation_slug, language_code, parent_project=None, default_title=None):
     """
-    Create a project translation for the given language_code.
-    Create the parent project if needed
+    Create a project translation for the given language_code with the
+    given slug.
+
+    This version does not need a parent. Beware: using it twice for
+    the same language with a different slug can lead to duplicate
+    projects.
+    When possible, use the "_from_parent" version instead.
+
+    It can create the parent project if needed.
     """
     try:
-        project_translation = get_project_translation(project_translation_slug, language_code)
+        project_translation = get_project_translation_by_slug(project_translation_slug, language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        project_translation = create_project_translation(language_code=language_code, 
+                                                         parent_project=parent_project,
+                                                         default_title=default_title)
+
+    return project_translation
+
+
+def get_or_create_project_translation_from_parent(parent_project, language_code, default_title=None):
+    """
+    Create a project translation for the given language_code, related to a parent project (language agnostic)
+    """
+    try:
+        project_translation = get_project_translation_from_parent(parent_project, language_code)
     except I4pProjectTranslation.DoesNotExist:
         project_translation = create_project_translation(language_code=language_code, 
                                                          parent_project=parent_project,
