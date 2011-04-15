@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n i4p_tags %}
 
 <!-- REFERENCES - Viewable version -->
 {% if project_translation%}
@@ -11,7 +11,7 @@
 
     <ul id="reference_list">
         {% for ref in project_translation.project.references.all %}
-        <li class="ref">{{ref.desc|urlize}}</li> 
+        <li class="ref">{{ ref.desc|urlize|url_target_blank }}</li> 
         {% empty %}
         <li class="ref">{% trans 'no references'|capfirst %}</li> 
         {% endfor %}
