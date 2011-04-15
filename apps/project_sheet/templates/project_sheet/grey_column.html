@@ -8,24 +8,31 @@
 	  <div id="sidebar-section-related" class="sidebar-section-openable">
 		{% if project_translation %}
 		<div class="title">
-		  <a title="{% trans 'Edit'|capfirst %}"
+		  <a title="{% trans 'edit'|capfirst %}"
 		     href="{% url project_sheet-instance-edit-related project_translation.slug %}"
 		     class="button sidebar-opener editing-button" name="opened-sidebar"> 
 		    <img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /> 
 		  </a>
-		  {% trans 'Related'|capfirst %}
+		  {% trans 'related'|capfirst %}
 		</div>
 
 		<!-- Colonne grise remplie -->
+        
 		<div class="grey_column_objective">
-			<label>{% trans 'Objective :'|capfirst %}</label> 
+            <!-- 
+			<label>{% trans 'objective :'|capfirst %}</label> 
 			<a href="#" class="sidebar-opener" name="opened-sidebar" id="project_objective">{{project_translation.project.get_objective_display }}</a>
+             -->
 		</div>
+        
 
 		{% if not project_translation.themes %}
 		<p>
 			<a class="sidebar-opener" href="#" name="opened-sidebar">
-			{% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
+            {% trans "Click here to set the <strong>themes</strong> of your project."|capfirst %}</a>
+			<!-- 
+            {% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
+             -->
 		</p>
 		{% else %} {% tags_for_object project_translation as taglist %}
 		<div class="grey_column_tagcloud">
