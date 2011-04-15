@@ -89,7 +89,7 @@ class I4pProjectTranslation(models.Model):
                          always_update=True,
                          unique_with=['language_code'])
 
-    baseline = models.CharField(_("my project baseline"), max_length=180, null=True, blank=True, default=_("My baseline"))
+    baseline = models.CharField(_("one line description"), max_length=180, null=True, blank=True, default=_("One line description"))
     about_section = models.TextField(_("about the project"), null=True, blank=True)
     uniqueness_section = models.TextField(_("what is make it creative and unique"), null=True, blank=True)
     value_section = models.TextField(_("what is the experience social added value"), null=True, blank=True)
