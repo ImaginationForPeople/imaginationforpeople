@@ -4,6 +4,9 @@
 {% load localeurl_tags %}
 {% load tagging_tags %}
 
+{% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
+{% block title %}{{project_translation.title|capfirst}} | Imagination for People{% endblock %}
+
 {% block extra_head %}
   {{ block.super }}
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
