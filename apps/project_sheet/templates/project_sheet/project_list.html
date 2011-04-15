@@ -1,5 +1,8 @@
 ﻿{% extends "base.html" %}
+{% load i18n %}
 
+{% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
+{% block title %}{% trans 'Find project on Imagination for People'%}{% endblock %}
 
 {% block style %}
   <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />

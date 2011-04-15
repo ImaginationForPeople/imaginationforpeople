@@ -4,11 +4,11 @@
   <head>  
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-    <meta http-equiv="Content-Language" content="FR" /> 
+    <meta http-equiv="Content-Language" content="{{LANGUAGE_CODE}}" /> 
     <meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale" /> 
-    <meta name="description" content="Imagination 4 People" /> 
-
-    <title>Imagi:nation 4 People - {% block title %} Home {% endblock %}</title>
+    
+    <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
+    <title>{% block title %}Imagination for People | {% trans 'detect, highlight and monetize social innovation'|capfirst%}{% endblock %}</title>
 
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />

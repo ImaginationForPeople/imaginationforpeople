@@ -1,6 +1,8 @@
 {% extends "project_sheet/project_base.html" %}
-
 {% load i18n %}
+
+{% block meta_desc %}{{project_translation.about_section}}{% endblock %}
+{% block title %}{{project_translation.title|capfirst}} | Imagination for People{% endblock %}
 
 {% block project_content %}
 
