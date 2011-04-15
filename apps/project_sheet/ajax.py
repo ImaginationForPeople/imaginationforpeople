@@ -12,7 +12,7 @@ from tagging.utils import get_tag_list, parse_tag_input
 
 from .models import I4pProject, I4pProjectTranslation
 from .forms import I4pProjectObjectiveForm, I4pProjectThemesForm
-from .utils import get_or_create_project, get_or_create_project_translation, get_project_translation
+from .utils import get_or_create_project, get_or_create_project_translation_by_slug, get_project_translation_by_slug
 
 from django.http import QueryDict, HttpResponse
 from django.utils import simplejson
@@ -25,8 +25,8 @@ def project_update_related(request, language_code, related_form, project_slug):
     translation.activate(language_code)
 
     # get the project translation and its base
-    project_translation = get_project_translation(project_translation_slug=project_slug,
-                                                  language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                          language_code=language_code)
 
     parent_project = project_translation.project
 
@@ -62,8 +62,8 @@ def project_sheet_edit_field(request, language_code, fieldname, value, project_s
     # Activate requested language
     translation.activate(language_code)
 
-    project_translation = get_or_create_project_translation(project_translation_slug=project_slug, 
-                                                            language_code=language_code)
+    project_translation = get_or_create_project_translation_by_slug(project_translation_slug=project_slug, 
+                                                                    language_code=language_code)
 
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(fieldname,))
 

@@ -14,7 +14,7 @@ from localeurl.templatetags.localeurl_tags import chlocale
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
 from .forms import ProjectReferenceForm, ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .models import I4pProject, ProjectPicture, ProjectVideo, I4pProjectTranslation
-from .utils import get_or_create_project_translation, get_project_translation
+from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug
 from apps.project_sheet.models import ProjectReference
 from django.forms.formsets import formset_factory
 
@@ -93,16 +93,15 @@ def project_sheet_create_translation(request, project_slug, requested_language_c
     current_language_code = translation.get_language()
 
     try:
-        current_project_translation = get_project_translation(project_translation_slug=project_slug,
-                                                              language_code=current_language_code)
+        current_project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                                      language_code=current_language_code)
     except I4pProjectTranslation.DoesNotExist:
         return HttpResponseNotFound()
 
-    requested_project_translation = get_or_create_project_translation(project_translation_slug=project_slug,
-                                                                      language_code=requested_language_code,
-                                                                      parent_project=current_project_translation.project,
-                                                                      default_title=current_project_translation.title)
-
+    requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
+                                                                                  language_code=requested_language_code,
+                                                                                  default_title=current_project_translation.title)
+    
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     return redirect(chlocale(url, requested_language_code))
 
@@ -117,14 +116,14 @@ def project_sheet_edit_field(request, field, slug=None):
     context = {}
 
     if request.method == 'POST':
-        project_translation = get_or_create_project_translation(slug, language_code)
+        project_translation = get_or_create_project_translation_by_slug(slug, language_code)
         form = FieldForm(request.POST, request.FILES, instance=project_translation)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('project_sheet-show', args=[project_translation.slug]))
     else:
         try:
-            project_translation = get_project_translation(slug, language_code)
+            project_translation = get_project_translation_by_slug(slug, language_code)
 
             form = FieldForm(instance=project_translation)
             context["project_translation"] = project_translation
@@ -145,8 +144,8 @@ def project_sheet_edit_related(request, project_slug):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation(project_translation_slug=project_slug,
-                                                  language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                          language_code=language_code)
 
     parent_project = project_translation.project
 
@@ -192,8 +191,8 @@ def project_sheet_add_media(request, slug=None):
                'video_form' : ProjectVideoForm()}
 
     try :
-        context["project_translation"] = get_project_translation(project_translation_slug=slug,
-                                                                 language_code=language_code)
+        context["project_translation"] = get_project_translation_by_slug(project_translation_slug=slug,
+                                                                         language_code=language_code)
     except I4pProjectTranslation.DoesNotExist:
             pass
 
@@ -213,8 +212,8 @@ def project_sheet_add_picture(request, slug=None):
                                                                    'author',
                                                                    'source'))
 
-    project_translation = get_or_create_project_translation(project_translation_slug=slug,
-                                                            language_code=language_code)
+    project_translation = get_or_create_project_translation_by_slug(project_translation_slug=slug,
+                                                                    language_code=language_code)
 
     if request.method == 'POST':
         picture_form = ProjectPictureForm(request.POST, request.FILES)
@@ -230,8 +229,8 @@ def project_sheet_del_picture(request, slug, pic_id):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation(project_translation_slug=slug,
-                                                  language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                          language_code=language_code)
 
     picture = ProjectPicture.objects.filter(project=project_translation.project, id=pic_id)
     picture.delete()
@@ -246,8 +245,8 @@ def project_sheet_add_video(request, slug=None):
 
     ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
 
-    project_translation = get_or_create_project_translation(project_translation_slug=slug,
-                                                            language_code=language_code)
+    project_translation = get_or_create_project_translation_by_slug(project_translation_slug=slug,
+                                                                    language_code=language_code)
 
     if request.method == 'POST':
         video_form = ProjectVideoForm(request.POST)
@@ -263,8 +262,8 @@ def project_sheet_del_video(request, slug, vid_id):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation(project_translation_slug=slug,
-                                                  language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                          language_code=language_code)
 
     video = ProjectVideo.objects.filter(project=project_translation.project, id=vid_id)
     video.delete()
@@ -280,8 +279,8 @@ def project_sheet_edit_references(request, project_slug):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation(project_translation_slug=project_slug,
-                                                  language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                          language_code=language_code)
 
     parent_project = project_translation.project
 
