@@ -50,14 +50,14 @@ if "privatebeta" in settings.INSTALLED_APPS:
         url(r'^beta/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
 
         url(r'^project/', include('apps.project_sheet.urls')),
-        url(r'^accounts/', include('apps.member.urls')),
+        url(r'^accounts/', include('userena.urls')),
 
         url(r'^normal_index$', direct_to_template, {'template': 'homepage.html'}, name='i4p-index'),
     )
 else:
   urlpatterns += patterns('',
         url(r'^project/', include('apps.project_sheet.urls')),
-        url(r'^accounts/', include('apps.member.urls')),
+        url(r'^accounts/', include('userena.urls')),
         url(r'^$', direct_to_template, {'template': 'homepage.html'}, name='i4p-index'),
     )
 

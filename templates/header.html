@@ -21,7 +21,7 @@
 					
 				<ul>
 					{% if user.is_authenticated %}
-		    			<li><a class="linkbox-login" href="{% url member_profile_detail request.user %}">{% trans 'welcome'|capfirst %}, {{ user.username }}.</li> 
+		    			<li><a class="linkbox-login" href="{% url userena_profile_detail request.user %}">{% trans 'welcome'|capfirst %}, {{ user.username }}.</li> 
 		    			<li><a href="{% url userena_signout %}?next={% url i4p-index %}">{% trans 'Log out' %}</a></li>
 					{% else %}
 					    <li><a href="{% url userena_signin %}">{% trans 'log in'|capfirst %}</a></li>
