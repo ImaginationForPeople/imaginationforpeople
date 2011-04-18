@@ -55,6 +55,8 @@
     <!-- Custom checkbox -->
     <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.simpleImageCheck-0.4.js"></script>
 
+    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.formset.js"></script>
+    
   <script type="text/javascript">
  
     $(document).ready(function(){ 
@@ -251,14 +253,23 @@
   <!-- References section -->
   <script type="text/javascript">
     $(document).ready(function() {
-    	$('#reference_form').hide();
+    	$('#reference_form tr').formset();
+    	
+        $('#cancel_ref_edit').click(function(){
+            $('#reference_list').show();
+            $('#reference_form').replaceWith(refFormClone);
+            $('#reference_form').hide();
+            return false;
+        })
+
     	$('#edit_references_button').click(function(){
-    		$('#edit_references_button').hide()
+    		refFormClone = $('#reference_form').clone(true);
     		$('#reference_list').hide();
     		$('#reference_form').show('slow');
     		return false;
     	});
-        $('li.ref input[type=checkbox]').simpleImageCheck({
+    	
+        $('td.ref input[type=checkbox]').simpleImageCheck({
               image: '{{ MEDIA_URL }}/images/check_off.png',
               imageChecked: '{{ MEDIA_URL }}/images/check_on.png',
               afterCheck: function(isChecked) {
@@ -271,9 +282,9 @@
                 }
               }
         });
-        
-        
-        
+
+        refFormClone = null;
+        $('#reference_form').hide();
     });
   </script>
 
@@ -292,6 +303,23 @@
     });
   </script>
 
+    <style>
+        .dynamic-form {
+            width: 100%;
+        }
+        
+        .dynamic-form input{
+            width: 90%;
+            border: 1px solid #AAAAAA;
+            margin-bottom: 5px;
+            padding: 4px;
+            font-size: 11px;
+            color: #838181;
+        }
+        .delete-row {
+            background:url({{ MEDIA_URL }}/images/check_on.png) no-repeat left center;
+        }
+    </style>
 
 {% endblock %}
 

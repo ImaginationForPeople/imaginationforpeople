@@ -19,25 +19,19 @@
 
     <form id="reference_form" action="{% url project_sheet-instance-edit-references project_translation.slug %}" method="post">
         <input type="hidden" name="next" value="{{project_translation.get_absolute_url}}#project_refs">
-        {% csrf_token %} {{ reference_formset.management_form }}
-        <ul class="project_refs">
-            {% if reference_form %}
-            <li class="ref new_ref">
-                <p>
-                    {{reference_form.desc}} 
-                    <input type="image" alt="Ok" title="Add this reference" src="{{ MEDIA_URL }}/images/base/v.png" class="button greenbutton nomargin right" title="Ok">
-                </p>
-                {{reference_form.desc.help_text}} 
-            </li> 
-            {% endif %} 
+        {% csrf_token %}
+        <table width="100%" border="0" cellpadding="0">
             {% for ref_form in reference_formset.forms %}
-            <li class="ref">
-                <p>{{ ref_form.id }}{{ ref_form.desc }}{{ ref_form.DELETE }}</p>
-            </li> 
+            <tr>
+                <td class="ref">{{ ref_form.id }}{{ ref_form.desc }}{% if ref_form.instance.pk %}{{ ref_form.DELETE }}{% endif %}</td>
+            </tr>
             {% endfor %}
-        </ul>
-        <a id="cancel_ref_edit" class="grey_column_close" href="{% url project_sheet-show project_translation.slug %}">{% trans 'Cancel & close'%}</a>
-        <input type="image" alt="{% trans 'Save & close'%}" class="grey_column_save_close right" title="{% trans 'Save & close'%}">
+        </table>
+        <p>
+            {{ reference_formset.management_form }}
+            <a id="cancel_ref_edit" class="grey_column_close" href="{% url project_sheet-show project_translation.slug %}">{% trans 'Cancel & close'%}</a>
+            <input type="image" alt="{% trans 'Save & close'%}" class="grey_column_save_close right" title="{% trans 'Save & close'%}">
+        </p>
     </form>
 </div>
 {% endif %}

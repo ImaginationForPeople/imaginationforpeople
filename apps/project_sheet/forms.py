@@ -30,8 +30,7 @@ class I4pProjectObjectiveForm(forms.ModelForm):
         model = I4pProject
         fields = ('objective',)
 
-ProjectReferenceForm = modelform_factory(ProjectReference)
-ProjectReferenceFormSet = modelformset_factory(ProjectReference, extra=0, can_delete=True)
+ProjectReferenceFormSet = modelformset_factory(ProjectReference, extra=1, can_delete=True)
 
 class I4pProjectInfoForm(forms.ModelForm):
     """

@@ -1,7 +1,7 @@
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django.forms.models import modelform_factory, modelformset_factory
+from django.forms.models import modelform_factory
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, HttpResponseNotFound
@@ -12,11 +12,9 @@ from django.views.generic.list_detail import object_list
 from localeurl.templatetags.localeurl_tags import chlocale
 
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
-from .forms import ProjectReferenceForm, ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
-from .models import I4pProject, ProjectPicture, ProjectVideo, I4pProjectTranslation
+from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
+from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug
-from apps.project_sheet.models import ProjectReference
-from django.forms.formsets import formset_factory
 
 def project_sheet_list(request):
     """
@@ -68,8 +66,6 @@ def project_sheet_show(request, slug):
             project_translation.project.location = location
             project_translation.project.save()
 
-
-    reference_form = ProjectReferenceForm()
     reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
 
     return render_to_response(template_name='project_sheet/project_sheet.html',
@@ -77,7 +73,7 @@ def project_sheet_show(request, slug):
                                           'project_translation': project_translation,
                                           'project_themes_form': project_themes_form,
                                           'project_objective_form': project_objective_form,
-                                          'reference_form' : reference_form,
+#                                          'reference_form' : reference_form,
                                           'reference_formset' : reference_formset,
                                           'project_info_form': project_info_form,
                                           'project_location_form': project_location_form,
@@ -101,7 +97,7 @@ def project_sheet_create_translation(request, project_slug, requested_language_c
     requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
                                                                                   language_code=requested_language_code,
                                                                                   default_title=current_project_translation.title)
-    
+
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     return redirect(chlocale(url, requested_language_code))
 
@@ -284,15 +280,12 @@ def project_sheet_edit_references(request, project_slug):
 
     parent_project = project_translation.project
 
-    reference_form = ProjectReferenceForm(request.POST)
     reference_formset = ProjectReferenceFormSet(request.POST, queryset=parent_project.references.all())
 
-    if reference_form.is_valid():
-        ref = reference_form.save()
-        parent_project.references.add(ref)
-
     if reference_formset.is_valid():
-        reference_formset.save()
+        refs = reference_formset.save()
+        for ref in refs:
+            parent_project.references.add(ref)
 
     next = request.POST.get("next", None)
     if next:
