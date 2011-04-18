@@ -31,7 +31,7 @@ if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )
- 
+
 ## i18n l10n translation UI
 if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
@@ -50,14 +50,14 @@ if "privatebeta" in settings.INSTALLED_APPS:
         url(r'^beta/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
 
         url(r'^project/', include('apps.project_sheet.urls')),
-        url(r'^accounts/', include('userena.urls')),
+        url(r'^accounts/', include('apps.member.urls')),
 
         url(r'^normal_index$', direct_to_template, {'template': 'homepage.html'}, name='i4p-index'),
     )
 else:
   urlpatterns += patterns('',
         url(r'^project/', include('apps.project_sheet.urls')),
-        url(r'^accounts/', include('userena.urls')),
+        url(r'^accounts/', include('apps.member.urls')),
         url(r'^$', direct_to_template, {'template': 'homepage.html'}, name='i4p-index'),
     )
 
