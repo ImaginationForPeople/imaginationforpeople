@@ -5,7 +5,14 @@
 {% load tagging_tags %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
-{% block title %}{{project_translation.title|capfirst}} | Imagination for People{% endblock %}
+{% block title %}
+    {% if project_translation.title %}
+        {{project_translation.title|capfirst}} 
+    {% else %}
+        {% trans 'start project'|capfirst %}
+    {% endif %}
+    | Imagination for People
+{% endblock %}
 
 {% block extra_head %}
   {{ block.super }}
