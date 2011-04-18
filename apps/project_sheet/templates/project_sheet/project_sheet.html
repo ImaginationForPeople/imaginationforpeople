@@ -201,32 +201,20 @@
     });
 
     /*
-     * FIXME: There must be a better to determine if we need to hide
-     * them or not (we can't externalize the js because of this)
+     * TODO: only related to the fadeIn/Out of edition button
+     * can be externalized
      */
     {% if project_translation %}
-	// Hide buttons when their respecting section is not hover'ed
-	$('a.editing-button').hide();
-
-	$('a.editing-button').parent('div').hover(function() {
-	    $(this).find('a.editing-button').show();
-	}, function() {
-	    $(this).find('a.editing-button').fadeOut('fast');
-	});    
-	
-	$('.project_description').hover(function() {
-	    $(this).find('a.editing-button').show();	    
-	}, function() {
-	    $(this).find('a.editing-button').fadeOut('fast');
-	});
-
-	/* For sidebars */
-	$(".sidebar-section-openable").hover(function() {
-	    $(this).find('a.editing-button').show();
-	}, function() {
-	    $(this).find('a.editing-button').fadeOut('fast');
-	});
-
+        $('a.editing-button').hide();
+        $('a.editing-button').each(function(){
+        	var button = $(this);
+        	$(this).parents("div").first().hover(function() {
+        		button.show();
+        	},function() {
+        		button.fadeOut('fast');
+            }
+        	);
+        });  
     {% endif %}
     
     });
@@ -283,6 +271,9 @@
                 }
               }
         });
+        
+        
+        
     });
   </script>
 
