@@ -41,6 +41,31 @@
 
 }
 
+.separator{
+
+	height:2px;
+	background-image:url(../images/base/separator.jpg);
+	background-repeat:repeat-x;
+	position:relative;
+	margin-top:15px;
+	margin-bottom:15px;
+
+}
+
+.link{
+    color:#04ADD1;
+    font-family:Georgia,"Century Schoolbook L","URW Palladio L",Helvetica,serif,Arial;
+    font-size:12px;
+    font-style:italic;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.link:hover{
+    text-decoration:underline;
+}
+
+
 .edit1:hover{
 
 	background-image:url("../images/project/edit1.png");

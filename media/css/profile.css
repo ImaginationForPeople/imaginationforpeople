@@ -1,23 +1,125 @@
-/* --Projects Cards-- */
 
-.profile{
+.categories{
+    display:none;
+    visibility:hidden;
+}
+
+
+.nav-white {
+    background-color:black;
+    background-image:url("../images/base/nav-white-bg.png");
+    background-position:center center;
+    background-repeat:repeat-x;
+    height:181px;
+    margin:0;
+    padding:0;
+    width:100%;
+}
+
+.content{
+    border-top:1px solid #393939;
+}
+
+
+/* --Profile-- */
+
+
+#profile{
 	position:relative;
-	margin-top:35px;
     padding-bottom:15px;
     float:left;
+    width:100%;
 }
 
-.profile_action a {
-    color: #555555;
-    font-family: Georgia,"Ma Georgia","Century Schoolbook L","URW Palladio L",Helvetica,serif,Arial;
-    font-size: 12px;
-    font-style: italic;
-    font-weight: bold;
-    margin-right: 20px;
-    text-decoration: underline;
+#profile #avatar img{
+	width:164px;
+    height:164px;
+    border:1px solid white;
+    
+    -moz-box-shadow: 0px 0px 8px black;  
+    -webkit-box-shadow: 0px 0px 8px black; 
+    box-shadow: 0px 0px 8px black;  
+    
+    position:absolute;
+    top:-80px;
+    right:0px;
+    
+    z-index:1000;
 }
 
-.profile_action li {
-    display: block;
-    list-style-type: block;
+#profile_action{
+    position:absolute;
+    clear:both;
+    top:-3px;
+}
+
+#profile_action .button{
+    margin-right:5px;
+    z-index:3000;
+}
+
+#profile_action .button:hover{
+    margin-right:5px;
+    z-index:3000;
+}
+
+#profile_bar{
+    padding-right:180px;
+    position:relative;
+    top:-5px;
+    text-align:right;
+    background-image:url("../images/profile/profile_bar.jpg");
+    background-repeat:repeat-x;
+    background-position:0px 29px;
+    height:90px;
+}
+
+#profile_bar #profile_bar_middle{
+    height:30px;
+    width:100%;
+    padding-top:7px;
+    position:relative;
+}
+
+#profile_bar .motto{
+    position:absolute;
+    left:10px;
+    font-style:italic;
+}
+
+#profile_bar .infos{
+    position:absolute;
+    right:0px;
+}
+
+#profile h1{
+    font-size:25px;
+    position:relative;
+    top:-5px;
+    display:inline;
+}
+
+#profile_about{
+    background-image:url("../images/project/quote2-white.png"), url("../images/project/quote1-white.png");
+    background-position:right top, left bottom;
+    background-repeat:no-repeat;
+    min-height:55px;
+    padding-left:80px;
+    padding-right:80px;
+    margin-top:30px;
+    color:#909090;
+    text-align:justify;
+}
+
+#profile_projects .separator{
+    margin-top:40px;
+}
+
+#profile_projects .separator h2{
+    position:relative;
+    top:-11px;
+    padding-right:15px;
+    background-color:#282828;
+    width:auto;
+    display:inline;
 }

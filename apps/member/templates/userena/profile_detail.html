@@ -11,46 +11,88 @@
 {% endblock %}
 
 
-{% block nav %}<div style="height:37px;"></div>{% endblock %}
+{% block nav %}
+    {% include "nav.html" %}
+{% endblock %}
 
 
 {% block content %}
-  <div class="content">        
+<div class="content">        
     <div class="container_18">
-        <div class="profile">
-          <div class="profile_action">
-              {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
-              {% if user.username == profile.user.username %}
-              <ul>
-                <li><a href="{% url userena_profile_edit user.username %}">{% trans "Edit details" %} &raquo;</a></li>
-                <li><a href="{% url userena_password_change user.username %}">{% trans "Change password" %} &raquo;</a></li>
-                <li><a href="{% url userena_email_change user.username %}">{% trans "Change email" %} &raquo;</a></li>
-              </ul>
-              {% endif %}
-          </div>
-        
-          <div>
-            <img src="{{ profile.get_mugshot_url }}" alt="{% trans "Your mugshot" %}" />
-            {% if profile.user.get_full_name %}
-            <p><strong>{% trans "Name" %}</strong><br /> {{ profile.user.get_full_name }}</p>
-            {% endif %}
-            {% if profile.user.email %}
-            <p><strong>{% trans "Email" %}</strong><br />{{ profile.user.email }}</p>
-            {% endif %}
-            {% if profile.age %}
-            <p><strong>{% trans "Age" %}</strong><br /> {{ profile.age }}</p>
-            {% endif %}
-            {% if profile.website %}
-            <p><strong>{% trans "Website" %}</strong><br /> <a href="{{ profile.website }}">{{ profile.website }}</a></p>
-            {% endif %}
-            {% if profile.location %}
-            <p><strong>{% trans "Location" %}</strong><br />{{ profile.location }}</p>
-            {% endif %}
-            {% if profile.about_me %}
-            <p><strong>{% trans "About me" %}</strong><br />{{ profile.about }}</p>
-            {% endif %}
-          </div>
+        <div class="grid_18 alpha omega">
+
+            <div id="profile">
+
+
+              <div id="profile_action">
+                  {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
+                  {% if user.username == profile.user.username %}
+                  <ul>
+                    <li><a class="button nomargin"  href="{% url userena_profile_edit user.username %}" title="{% trans 'Edit details'|capfirst %}"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="" />{% trans "details" %}</a></li>
+                    <li><a class="button nomargin"  href="{% url userena_password_change user.username %}" title="{% trans 'Edit password'|capfirst %}"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="" />{% trans "password" %}</a></li>
+                    <li><a class="button nomargin"  href="{% url userena_email_change user.username %}" title="{% trans 'Edit email'|capfirst %}"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="" />{% trans "email" %}</a></li>
+                  </ul>
+                  {% endif %}
+              </div>            
+
+                <div id="avatar">
+                    <img src="{{ profile.get_mugshot_url }}" alt="{% trans 'Your mugshot' %}" />            
+                </div>
+               
+                <div id="profile_bar">
+                    {% if profile.user.get_full_name %}
+                    <h1>{{ profile.user.get_full_name }}</h1>
+                    {% endif %}
+                    
+                    <div id="profile_bar_middle">
+                        {% if profile.motto %}
+                        <p class="motto">"{{ profile.motto }}"</p>
+                        {% endif %}
+                        
+                        <p class="infos">
+                        {% if profile.age %}
+                        {{ profile.age }}
+                        {% endif %}                        
+                        {% if profile.country %}
+                        - {{ profile.country }}
+                        {% endif %}
+                        
+                        </p>
+                    </div>
+                    
+                    {% if profile.website %}
+                    <p class="site"><a class="link" href="{{ profile.website }}">{{ profile.website }}</a></p>
+                    {% endif %}
+                    
+                </div>
+                
+                <div id="profile_about">
+                    {% if profile.about %}
+                    <p>{{ profile.about|linebreaksbr }}</p>
+                    {% else %}
+                    <p>{% trans '<i>This member has no description...</i>' %}</p>
+                    {% endif %}                    
+                </div>
+               
+                <!-- CODE ME ! PLEASE CODE MEEEEEEE ! -->
+                <div id="profile_projects">                
+                <div class="separator"><h2>{% trans 'My project' %}</h2></div>
+                
+                CODE ME ! pass project_translation_list to the template to show projects list
+                
+                {% for project_translation in project_translation_list %}	  
+                    <div class="colonne grid_6">
+                        {% include "project_sheet/project_complete_card.html" %}			
+                    </div>
+                {% endfor %}
+                
+                </div>
+               
+               
+            </div>
+            
         </div>
+        <div class="clear"></div>
     </div>
 </div>
 {% endblock %}
