@@ -36,7 +36,12 @@
               </div>            
 
                 <div id="avatar">
-                    <img src="{{ profile.get_mugshot_url }}" alt="{% trans 'Your mugshot' %}" />            
+                    <div id="social_buttons">
+                        <a  href="#" title="Linkedin"><img src="{{ MEDIA_URL }}/images/profile/linkedin.png" alt="Linkedin" /></a>                    
+                        <a  href="#" title="Twitter"><img src="{{ MEDIA_URL }}/images/profile/twitter.png" alt="Twitter" /></a>                    
+                        <a  href="#" title="Facebook"><img src="{{ MEDIA_URL }}/images/profile/facebook.png" alt="Facebook" /></a> 
+                    </div>                    
+                    <img src="{{ profile.get_mugshot_url }}" alt="{% trans 'Your mugshot' %}" /> 
                 </div>
                
                 <div id="profile_bar">
@@ -76,7 +81,15 @@
                
                 <!-- CODE ME ! PLEASE CODE MEEEEEEE ! -->
                 <div id="profile_projects">                
-                <div class="separator"><h2>{% trans 'My project' %}</h2></div>
+                <div class="separator">
+                    <h2>
+                    {% if user.username == profile.user.username %}
+                        {% trans 'My projects' %}
+                    {% else %}
+                        {% trans 'His projects' %}
+                    {% endif %}
+                    </h2>
+                </div>
                 
                 CODE ME ! pass project_translation_list to the template to show projects list
                 

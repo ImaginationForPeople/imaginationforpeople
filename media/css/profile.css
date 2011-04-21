@@ -31,20 +31,30 @@
     width:100%;
 }
 
-#profile #avatar img{
+#profile #avatar {
+    position:relative;
+    position:absolute;
+    top:-80px;
+    right:0px;    
+    z-index:1000;
+}
+
+#profile #avatar > #social_buttons{
+    position:absolute;
+    right:5px;
+    bottom:0px;
+    /bottom:3px;
+    z-index:4000;
+}
+
+#profile #avatar > img{
 	width:164px;
     height:164px;
     border:1px solid white;
     
     -moz-box-shadow: 0px 0px 8px black;  
     -webkit-box-shadow: 0px 0px 8px black; 
-    box-shadow: 0px 0px 8px black;  
-    
-    position:absolute;
-    top:-80px;
-    right:0px;
-    
-    z-index:1000;
+    box-shadow: 0px 0px 8px black;      
 }
 
 #profile_action{
