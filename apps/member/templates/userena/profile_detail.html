@@ -34,25 +34,22 @@
                     {% endif %}                    
                 </div>
                
-                <!-- CODE ME ! PLEASE CODE MEEEEEEE ! -->
-                <div id="profile_projects">                
-                <div class="separator">
+		<div id="profile_projects">                
+		  <div class="separator">
                     <h2>
-                    {% if user.username == profile.user.username %}
+		      {% if user.username == profile.user.username %}
                         {% trans 'My projects' %}
-                    {% else %}
-                        {% trans 'His projects' %}
-                    {% endif %}
+                      {% else %}
+                        {% trans 'Her/His projects' %}
+                      {% endif %}
                     </h2>
-                </div>
-                
-                CODE ME ! pass project_translation_list to the template to show projects list
-                
-                {% for project_translation in project_translation_list %}	  
+		  </div>
+		  
+		  {% for project_translation in project_translation_list %}	  
                     <div class="colonne grid_6">
-                        {% include "project_sheet/project_complete_card.html" %}			
+		      {% include "project_sheet/project_complete_card.html" %}			
                     </div>
-                {% endfor %}
+                  {% endfor %}
                 
                 </div>
                

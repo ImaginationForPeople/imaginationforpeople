@@ -29,11 +29,28 @@ def get_project_translation_by_slug(project_translation_slug, language_code):
                                              slug=project_translation_slug)
 
 
-def get_project_translation_from_parent(parent, language_code):
+def get_project_translation_from_parent(parent, language_code, fallback_language=None, fallback_any=False):
     """
-    Get a translation of a given project
+    Get a translation of a given project.
+    If we have a fallback language, try to use it.
+    If we also have fallback_any, then pick the first translation.
+    Otherwise, raise a DoesNotExist exception
     """
-    return parent.translations.get(language_code=language_code)
+    try:
+        project_translation = parent.translations.get(language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist, e:
+        if fallback_language:
+            try:
+                project_translation = parent.translations.get(language_code=language_code)
+            except I4pProjectTranslation.DoesNotExist, e:
+                if fallback_any:
+                    project_translation = parent.translations.all()[0]
+                else:
+                    raise e
+        else:
+            raise e
+
+    return project_translation
 
 def create_project_translation(language_code, parent_project=None, default_title=None):
     """
