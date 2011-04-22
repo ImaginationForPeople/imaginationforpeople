@@ -42,7 +42,8 @@
 #profile #avatar > #social_buttons{
     position:absolute;
     right:5px;
-    bottom:0px;
+    bottom:4px;
+    height:30px;
     /bottom:3px;
     z-index:4000;
 }
@@ -106,7 +107,8 @@
     font-size:25px;
     position:relative;
     top:-5px;
-    display:inline;
+    height:30px;
+   /*display:inline;*/
 }
 
 #profile_about{
@@ -125,11 +127,50 @@
     margin-top:40px;
 }
 
-#profile_projects .separator h2{
+#profile .separator h2{
     position:relative;
     top:-11px;
     padding-right:15px;
     background-color:#282828;
     width:auto;
     display:inline;
+}
+
+
+
+/* ----- Profile Edition -----*/
+
+
+#profile.profile_edition p {
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
+
+#profile.profile_edition label{
+    color:#04ADD1;
+    width:120px;
+    margin-right:10px;
+    float:left;
+    position:relative;
+    text-align:right;
+    top:2px;
+}
+
+#profile.profile_edition .button{
+    background-image:url("../images/base/minibutton_blue.jpg");
+    border:1px solid #2A65A0;
+    color:#FFFFFF;
+    text-shadow:-1px -1px 0 rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black;  
+}
+
+#profile.profile_edition .button:hover{
+   background-color:#EEEEEE;
+   background-image:none !important;
+   border:1px solid #BDBDBD;
+   color:#5A5959;
+   text-shadow:1px 1px 0 #FFFFFF;
 }

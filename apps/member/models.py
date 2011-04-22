@@ -24,6 +24,7 @@ class I4pProfile(UserenaLanguageBaseProfile):
     about = models.TextField(null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
     website = models.URLField(verbose_name=_('website'), verify_exists=True, max_length=200, blank=True)
+    linkedin = models.URLField(verbose_name=_('linkedin'), verify_exists=True, max_length=200, blank=True)
     twitter = models.URLField(verbose_name=_('twitter'), verify_exists=True, max_length=200, blank=True)
     facebook = models.URLField(verbose_name=_('facebook'), verify_exists=True, max_length=200, blank=True)
     address = models.TextField(null=True, blank=True)
