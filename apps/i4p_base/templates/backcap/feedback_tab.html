@@ -1,0 +1,13 @@
+{% load i18n %}
+
+<div id="feedback-tab" class="alpha omega grid_10">
+  <div id="feedback-tab-new" class="alpha grid_6">
+    {% with backcap_feedback_form as feedback_form %}
+    {% include 'backcap/feedback_new_form.html' %}
+    {% endwith %}
+  </div>
+  <div class="clear"></div>
+  <div class="grid_10 alpha omega">
+    <a href="{% url feedback-list %}">{% trans "See all feedbacks" %}</a>
+  </div>
+</div>

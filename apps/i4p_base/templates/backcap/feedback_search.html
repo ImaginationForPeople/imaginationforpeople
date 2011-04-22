@@ -1,0 +1,14 @@
+{% load highlight %}
+
+<ul>
+  {% for result in results %}
+  <li>
+    <a href="{% url backcap:feedback-detail result.object.pk %}">{{ result.object.title|capfirst }}</a>
+    <p>
+      {% with result.object.text|truncatewords:20 as short_text %}
+      {% highlight short_text with query %}
+      {% endwith %}
+    </p>
+  </li>
+{% endfor %}
+</ul>
