@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block meta_desc %}{% endblock %}
+{% block title %}{% trans "Account setup" %} | Imagination for People{% endblock %}
+
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/profile.css" />
+{% endblock %}
+
+
+
+{% block nav %}
+    {% include "nav.html" %}
+{% endblock %}
+
+
+{% block content %}
+<div class="content">        
+    <div class="container_18">
+        <div class="grid_18 alpha omega">
+
+            <div id="profile" class="profile_edition">
+
+
+                {% include "userena/profile_idbar.html" %}
+
+                <form action="" enctype="multipart/form-data" method="post">
+                   
+                   <div class="separator">
+                        <h2>
+                            {% trans 'About me' %}
+                        </h2>
+                    </div>
+                    
+                    {% csrf_token %}
+                    
+                    <div class="grid_8 alpha">
+                        <p>{{ form.gender.label_tag }}{{ form.gender}}</p>
+                        <p>{{ form.first_name.label_tag }}{{ form.first_name}}</p>
+                        <p>{{ form.last_name.label_tag }}{{ form.last_name}}</p>
+                        <p><label for="id_mugshot">{% trans 'Avatar' %}</label>{{ form.mugshot}}</p>
+                        <p>{{ form.privacy.label_tag }}{{ form.privacy}}</p>
+                    </div>
+                    
+                    <div class="grid_10 omega">
+                        <p>{{ form.motto.label_tag }}{{ form.motto}}</p>
+                        <p>{{ form.about.label_tag }}{{ form.about}}</p>
+                    </div>
+                    
+                    <div class="clear"></div>
+                    
+                    <div class="separator">
+                        <h2>
+                            {% trans 'Generals infos' %}
+                        </h2>
+                    </div>
+                    
+                    <div class="grid_8 alpha">
+                        <p>{{ form.language.label_tag }}{{ form.language}}</p>
+                        <p>{{ form.birthday.label_tag }}{{ form.birthday}}</p>
+                    </div>
+                    
+                    <div class="grid_10 omega">
+                        <p>{{ form.address.label_tag }}{{ form.address}}</p>
+                        <p>{{ form.country.label_tag }}{{ form.country}}</p>
+                    </div>
+                    
+                     <div class="clear"></div>
+                    
+                    <div class="separator">
+                        <h2>
+                            {% trans 'External links' %}
+                        </h2>
+                    </div>
+                    
+                    <div class="grid_8 alpha">
+                        <p>{{ form.website.label_tag }}{{ form.website}}</p>
+                        <p>{{ form.linkedin.label_tag }}{{ form.linkedin}}</p>
+                        <p>{{ form.twitter.label_tag }}{{ form.twitter}}</p>
+                        <p>{{ form.facebook.label_tag }}{{ form.facebook}}</p>
+                    </div>
+                    
+                    <input type="submit" class="button" value="{% trans "Save changes" %}" />
+                </form>
+               
+            </div>
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endblock %}

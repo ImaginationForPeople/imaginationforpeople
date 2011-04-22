@@ -1,0 +1,70 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Signin" %} | Imagination for People{% endblock %}
+
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/profile.css" />
+{% endblock %}
+
+
+{% block content %}
+<div class="content">        
+    <div class="container_18">
+        <div class="grid_18 alpha omega">
+
+            <div id="profile" class="profile_edition">
+                
+                
+                <div class="separator">
+                    <h2>
+                        {% trans 'Signin' %}
+                    </h2>
+                </div>
+            
+                <form action="" method="post" id="signin_form">
+                    {% csrf_token %}
+                        {{ form.non_field_errors }}
+                        {% for field in form %}
+                        {{ field.errors }}
+                        {% comment %} Displaying checkboxes differently {% endcomment %}
+                        {% if field.name == 'remember_me' %}
+                        <p class="checkbox">
+                            <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                        </p>
+                        {% else %}
+                        <p>
+                            {{ field.label_tag }} 
+                            {{ field }}
+                        </p>
+                        {% endif %}
+                        {% endfor %}
+                    <input type="submit" class="button" value="{% trans "Signin" %}" />
+                    <div class="clear"></div>
+                    <br />
+                    <p class="forgot-password right "><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>
+                </form>                
+
+             
+            </div>
+            
+        </div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -141,6 +141,11 @@
 /* ----- Profile Edition -----*/
 
 
+#profile.profile_edition  .separator{
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
 #profile.profile_edition p {
     margin-top:5px;
     margin-bottom:5px;
@@ -165,6 +170,10 @@
     -moz-box-shadow: 0px 0px 4px black;  
     -webkit-box-shadow: 0px 0px 4px black;  
     box-shadow: 0px 0px 4px black;  
+    position:absolute !important;
+    bottom:25px !important;
+    top:auto !important;
+    right:0px;
 }
 
 #profile.profile_edition .button:hover{
@@ -173,4 +182,84 @@
    border:1px solid #BDBDBD;
    color:#5A5959;
    text-shadow:1px 1px 0 #FFFFFF;
+}
+
+#id_website, #id_linkedin, #id_twitter, #id_facebook{
+    width:250px;
+}
+
+#password_change_form p{
+    width:56%;
+    float:left;
+    position:relative !important;
+}
+
+#password_change_form p label{
+    width:60% !important;    
+}
+
+#password_change_form p input{
+    width:35%;
+}
+
+#email_change_form p{
+    width:56%;
+    float:left;
+}
+
+#email_change_form p label{
+    width:25% !important;    
+}
+
+#email_change_form p input{
+    width:30%;
+}
+
+#id_motto{
+    height:16px;
+    width:400px;
+}
+
+#id_about{
+    height:96px;
+    width:400px;
+}
+
+
+#id_address{
+    height:50px;
+    width:400px;
+}
+
+.errorlist{
+    float:right;
+    top:8px;
+    display:block;
+    position:relative;
+    right:220px;
+    margin-bottom:18px;
+    clear:both;
+    
+}
+
+#signin_form{
+   /* 
+    width:400px;
+    margin-left:auto;
+    margin-right:auto;
+    position:relative;
+    */
+}
+
+#signin_form .checkbox label{
+    width:100% !important;
+    float:none !important;
+    top:10px;
+    font-style:italic;
+}
+
+#signin_form  .forgot-password{
+    position:relative;
+    top:-6px;
+    right:100px;
 }

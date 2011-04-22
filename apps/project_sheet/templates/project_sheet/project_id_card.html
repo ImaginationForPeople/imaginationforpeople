@@ -1,6 +1,7 @@
 {% load i18n %}
+{% load localeurl_tags %}
 
-<a href="{{ project_translation.get_absolute_url }}" class="project_card"  title="{{ project_translation.baseline}}">
+<a href="{% locale_url project_translation.language_code project_sheet-show project_translation.slug %}" class="project_card"  title="{{ project_translation.baseline}}">
   
   <div class="project-photo">	
     <img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>

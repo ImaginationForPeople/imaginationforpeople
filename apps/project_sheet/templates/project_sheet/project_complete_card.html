@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load localeurl_tags %}
 
 {% include "project_sheet/project_id_card.html" %}
 
@@ -16,7 +17,7 @@
     {% endif %}
   </div>
   
-  <a href="{{ project_translation.get_absolute_url }}">More info ></a>
+  <a href="{% locale_url project_translation.language_code project_sheet-show project_translation.slug %}">More info &gt;</a>
   
 </div>
 	
