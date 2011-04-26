@@ -19,7 +19,7 @@ class I4pProfile(UserenaLanguageBaseProfile):
        ('M', _('male')),
        ('F', _('female'))
     )
-    gender = models.CharField(max_length=1, choices=GENDER_TYPE)
+    gender = models.CharField(max_length=1, choices=GENDER_TYPE, null=True, blank=True)
     motto = models.TextField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
     birthday = models.DateField(null=True, blank=True)
