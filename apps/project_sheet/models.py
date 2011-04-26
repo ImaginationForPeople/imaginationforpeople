@@ -16,6 +16,10 @@ from apps.member.models import I4pProfile
 
 from apps.i4p_base.models import Location
 
+# Add Introspector for south: django-licenses field
+from south.modelsinspector import add_introspection_rules
+add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
+
 class ProjectReference(models.Model):
     desc = models.CharField(_("description"), max_length=300, help_text=_("Insert your reference here (URL, books, etc)"))
 
