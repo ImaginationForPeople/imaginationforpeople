@@ -25,7 +25,10 @@ ADMINS = (
     ('Guillaume Libersat', 'guillaume@fuzzyfrequency.com'),
 )
 
-MANAGERS = ADMINS
+MANAGERS = (
+    ('IP Team', 'team@imaginationforpeople.org'),
+)
+MANAGERS += ADMINS
 
 DATABASES = {
     'default': {
