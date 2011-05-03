@@ -29,6 +29,7 @@ class I4pProject(models.Model):
     """
 
     OBJECTIVE_CHOICES = [
+        ('', _('-----')),
         ('EDUC', _('Educate')),
         ('CONT', _('Contribute')),
         ]
