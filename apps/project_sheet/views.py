@@ -15,16 +15,22 @@ from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfo
 from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug
+from .filters import TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm, FilterSet
 
-def project_sheet_list(request):
+def project_sheet_list(request, queryset=None):
     """
     Display a listing of all projects
     """
     language_code = translation.get_language()
 
+    qs = queryset
+    if qs == None:
+        qs = I4pProjectTranslation.objects.filter(language_code=language_code).order_by('title')
+
+    print qs
     return object_list(request,
                        template_name='project_sheet/project_list.html',
-                       queryset=I4pProjectTranslation.objects.filter(language_code=language_code).order_by('title'),
+                       queryset=qs,
                        paginate_by=12,
                        allow_empty=True,
                        template_object_name='project_translation')
@@ -292,5 +298,19 @@ def project_sheet_edit_references(request, project_slug):
         return HttpResponseRedirect(next)
 
     return redirect(project_translation)
+
+def project_sheet_filter(request):
+    filter_forms = [TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm]
+    if request.method == "POST":
+        filters = FilterSet(filter_forms, data=request.POST)
+        if filters.is_valid():
+            qs = filters.apply_to(I4pProjectTranslation.objects.all())
+            return project_sheet_list(request, queryset=qs)
+    else:
+        filters = FilterSet(filter_forms)
+
+    return render_to_response('project_sheet/project_filter.html',
+                              {'filters': filters},
+                              context_instance=RequestContext(request))
 
 
