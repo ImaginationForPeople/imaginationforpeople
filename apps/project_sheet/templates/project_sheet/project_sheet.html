@@ -19,12 +19,14 @@
 	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
 	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/anythingslider.css" type="text/css" media="screen" />
 	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/superfish.css" type="text/css" media="screen" />
-    <link rel="stylesheet" href="{{ MEDIA_URL }}/css/confirm.css" type="text/css" media="screen" />
-	
+	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/confirm.css" type="text/css" media="screen" />
+    
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.blockUI.js" ></script>
 	
 	<!-- inline  -->
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.autogrow.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jeditable.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jeditable.autogrow.js"></script>
 
 	<!-- for tags -->
 	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.js"></script>
@@ -162,8 +164,8 @@
                                         {event: 'dblclick',
                                          tooltip: 'Double-click to edit',
                                          indicator: 'Saving...',
-                                         type: 'textarea',
-                                         height: '80px',
+                                         type: 'autogrow',
+                                         height: '40px',
                                          width: '535px',
                                          cancel: "<input  title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
                                          submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
@@ -178,8 +180,8 @@
                                          {event: 'dblclick',
                                           tooltip: 'Double-click to edit',
                                           indicator: 'Saving...',
-                                          type: 'textarea',
-                                          height: '80px',
+                                          type: 'autogrow',
+                                          height: '40px',
                                           width: '690px',
                                           cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
                                           submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
