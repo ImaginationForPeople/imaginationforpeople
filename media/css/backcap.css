@@ -1,13 +1,71 @@
+#feedback-text{
+    font-size:11px;
+    margin-bottom:10px;
+}
+
+#feedback_filters{
+    background-color:#0c0c0c;
+    border-top:1px solid #353535;
+    border-bottom:1px solid black;
+    padding:10px;
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black; 	
+	
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+    position:fixed;
+    width:80px;
+}
+
+#feedback_filters .button{
+   margin-left:0px;
+   margin-bottom:4px;
+   top:-5px;
+   
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black; 	
+}
+
+#feedback_infos{
+    margin-top:10px;
+}
+
 #feedback-list
 {
     list-style-type: none;
-    border-top: 1px #eee solid;
+    padding-top:5px;
+   /* border-top: 1px #eee solid;*/
 }
 
 #feedback-list li {
-    border-bottom: 1px #eee solid;
+    /*border-bottom: 1px #eee solid;*/
     padding-bottom: 5px;
     padding-top: 5px;
+    background-image:url(../images/base/separator.jpg);
+	background-repeat:repeat-x;
+	background-position:top;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-left:20px;
+}
+
+#feedback-pagination{
+    position:absolute;
+    right:0px;
+    bottom:0px;
+}
+
+.vote-actions .button{
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black; 	
+    margin-left:2px;
+    margin-right:2px;
+    left:1px;
 }
 
 .feedback-votes {
@@ -15,11 +73,28 @@
     width: 50px;
     text-align: center;
     padding: 3px;
+    background-color:#0c0c0c;
+    border-top:1px solid #353535;
+    border-bottom:1px solid black;
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black; 	
+	-moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+}
+
+.feedback-votes .numvotes{
+    font-size:10px;
+    margin-bottom:3px;
 }
 
 .feedback-entry .score {
+    /*
     padding-top: 8px;
     padding-bottom: 8px;
+    */
     font-size: 3em;
     font-weight: bold;
 }
@@ -29,7 +104,6 @@
 }
 
 .feedback-entry .vote_button {
-   background: #eee;
    border:1px solid #666;
    width: 20px;
    height: 20px;
@@ -37,27 +111,40 @@
 
 .feedback-entry .feedback-info .type_Q {
     padding: 3px;
+    color:white;
     vertical-align: middle;
-    background-color: #66ccff;
+    /*background-image:url(../images/base/minibutton_blue.jpg);
+	background-repeat:repeat-x;*/
 }
 
 .feedback-entry .feedback-info .type_P { 
     padding: 3px; 
-    vertical-align:
-    middle; 
-    background-color: #ff3333; 
+    color:white;
+    vertical-align:middle; 
+   /* background-image:url(../images/base/minibutton_red.jpg);
+	background-repeat:repeat-x;*/
 }
 
 .feedback-entry .feedback-info .type_I { 
-    padding: 3px; 
-    vertical-align:
-    middle; 
-    background-color: #99ff66; 
+    padding: 3px;    
+    color:white;
+    vertical-align:middle; 
+   /* background-image:url(../images/base/minibutton_green.jpg);
+	background-repeat:repeat-x;*/
+}
+
+.feedback-entry .feedback-info  span img{
+    position:relative;
+    top:-1px;
 }
 
 .feedback-entry .feedback-info .title { 
     font-size: 1.4em;
     vertical-align: middle; 
+}
+
+.feedback-entry .feedback-info .title .link { 
+    font-size:17px;
 }
 
 .feedback-entry .feedback-info .feedback-desc { 
@@ -73,16 +160,11 @@
     margin-bottom: 20px;
 }
 
-#feedback-filter .filter-on
-{
-    background-color: #222;
-}
-
 #feedback-filter li {
     list-style: none;
     text-align: center;
     margin-bottom: 3px;
-    background-color: #666;
+    /*background-color: #666;*/
     color: #eee;
     width: 100%;
     font-size: 1.1em;
@@ -92,15 +174,20 @@
     list-style: none;
     text-align: center;
     margin-bottom: 3px;
-    background-color: #666;
+    /*background-color: #666;*/
     color: #eee;
     width: 100%;
     font-size: 1.1em;
 }
 
-#feedback-order .order-on
+#feedback-order .order-on .button, #feedback-filter .filter-on .button
 {
-    background-color: #222;
+    background-image:url(../images/base/minibutton_red.jpg);
+	background-repeat:repeat-x;
+    color:white;
+    text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
+    border:1px solid #881b1b;	
+
 }
 
 

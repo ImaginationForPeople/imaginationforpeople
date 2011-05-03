@@ -35,10 +35,23 @@
 
 }
 
+.absolute{
+
+	position:absolute;
+
+}
+
 .bold{
 
 	font-weight:bold;
 
+}
+
+.arrondi{
+    -moz-border-radius: 2px; 
+    -webkit-border-radius: 2px; 
+    -khtml-border-radius: 2px; 
+    border-radius: 2px; 
 }
 
 .separator{
@@ -51,6 +64,18 @@
 	margin-bottom:15px;
 
 }
+
+hr{
+    background-image:url(../images/base/separator.jpg);
+    background-repeat:repeat-x;
+    background-position:bottom;
+    width:100%;
+    border:0px;
+    margin-top:10px;
+    margin-bottom:10px;
+    height:2px;
+}
+
 
 .link{
     color:#04ADD1;
@@ -93,4 +118,48 @@
 
 	background-color:#e4e4e4;
 	
+}
+
+
+
+
+/* Infobulles-------------------------------------------------------------------------------------------------- */
+
+
+a.info{
+position:relative !important;
+z-index:24;
+color:white;
+text-decoration:none;
+float:left;
+}
+ 
+a.info:hover{
+z-index:25;
+}
+ 
+a.info span{
+display: none;
+}
+ 
+a.info:hover span{
+display:block;
+position:absolute;
+top:10px; left:2em; width:5em;
+border:1px solid #000;
+background-color:black;
+color:white;
+text-align: center;
+font-weight:none;
+padding:5px;
+
+-moz-border-radius:4px; 
+-webkit-border-radius:4px;
+-khtml-border-radius:4px;
+
+}
+
+.greyblock table a.info:hover span{
+left:-7em; 
+width:5em;
 }

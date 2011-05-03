@@ -179,6 +179,7 @@ INSTALLED_APPS = (
     'licenses',
     'haystack',
     'voting',
+    'notification',
     'backcap',
                
     'django.contrib.auth',
@@ -187,6 +188,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
+    'django.contrib.comments',
 
     # Internal Apps
     'apps.i4p_base',

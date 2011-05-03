@@ -15,6 +15,8 @@ handler404 = 'django.views.defaults.page_not_found'
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^comment/', include('django.contrib.comments.urls')),
+    url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
