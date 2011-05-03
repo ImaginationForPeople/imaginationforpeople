@@ -65,7 +65,7 @@ class Migration(SchemaMigration):
             ('desc', self.gf('django.db.models.fields.CharField')(max_length=150, null=True, blank=True)),
             ('author', self.gf('django.db.models.fields.CharField')(max_length=150, null=True, blank=True)),
             ('source', self.gf('django.db.models.fields.CharField')(max_length=150, null=True, blank=True)),
-            ('license', self.gf('licenses.fields.LicenseField')(to=orm['licenses.License'], null=True, blank=True)),
+            ('license', self.gf('licenses.fields.LicenseField')(null=True, blank=True)),
         ))
         db.send_create_signal('project_sheet', ['ProjectPicture'])
 
@@ -174,7 +174,7 @@ class Migration(SchemaMigration):
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
             'logo': ('django.db.models.fields.URLField', [], {'max_length': '200', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '200'}),
-            'organization': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'licenses'", 'null': 'True', 'to': "orm['licenses.Organization']"}),
+            'organization': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'licenses'", 'null': 'True'}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '50', 'db_index': 'True'}),
             'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
         },
@@ -247,7 +247,7 @@ class Migration(SchemaMigration):
             'created': ('django.db.models.fields.DateField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'desc': ('django.db.models.fields.CharField', [], {'max_length': '150', 'null': 'True', 'blank': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'license': ('licenses.fields.LicenseField', [], {'to': "orm['licenses.License']", 'null': 'True', 'blank': 'True'}),
+            'license': ('licenses.fields.LicenseField', [], {'null': 'True', 'blank': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'original_image': ('django.db.models.fields.files.ImageField', [], {'max_length': '100'}),
             'project': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'pictures'", 'to': "orm['project_sheet.I4pProject']"}),
