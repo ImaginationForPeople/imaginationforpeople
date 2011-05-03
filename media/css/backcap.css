@@ -1,0 +1,146 @@
+#feedback-list
+{
+    list-style-type: none;
+    border-top: 1px #eee solid;
+}
+
+#feedback-list li {
+    border-bottom: 1px #eee solid;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+
+.feedback-votes {
+    background-color: #eee;
+    width: 50px;
+    text-align: center;
+    padding: 3px;
+}
+
+.feedback-entry .score {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 3em;
+    font-weight: bold;
+}
+
+.feedback-entry form {
+   display: inline;
+}
+
+.feedback-entry .vote_button {
+   background: #eee;
+   border:1px solid #666;
+   width: 20px;
+   height: 20px;
+}
+
+.feedback-entry .feedback-info .type_Q {
+    padding: 3px;
+    vertical-align: middle;
+    background-color: #66ccff;
+}
+
+.feedback-entry .feedback-info .type_P { 
+    padding: 3px; 
+    vertical-align:
+    middle; 
+    background-color: #ff3333; 
+}
+
+.feedback-entry .feedback-info .type_I { 
+    padding: 3px; 
+    vertical-align:
+    middle; 
+    background-color: #99ff66; 
+}
+
+.feedback-entry .feedback-info .title { 
+    font-size: 1.4em;
+    vertical-align: middle; 
+}
+
+.feedback-entry .feedback-info .feedback-desc { 
+    color: #666; 
+}
+
+.feedback-entry .feedback-info .who { 
+    font-size: 0.8em; 
+}
+
+#feedback-filter {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+#feedback-filter .filter-on
+{
+    background-color: #222;
+}
+
+#feedback-filter li {
+    list-style: none;
+    text-align: center;
+    margin-bottom: 3px;
+    background-color: #666;
+    color: #eee;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+#feedback-order li {
+    list-style: none;
+    text-align: center;
+    margin-bottom: 3px;
+    background-color: #666;
+    color: #eee;
+    width: 100%;
+    font-size: 1.1em;
+}
+
+#feedback-order .order-on
+{
+    background-color: #222;
+}
+
+
+#feedback-tab-suggestions
+{
+    width: 200px;
+}
+
+form#feedback-new #kind {
+    margin-bottom: 10px;
+}
+
+form#feedback-new ul {
+    display: inline;
+}
+
+form#feedback-new ul li {
+    list-style-type: none;
+    display: inline;
+    vertical-align: middle;
+    padding-left: 0px;
+    margin-left: 5px;
+}
+
+form#feedback-new div#subject {
+    margin-bottom: 10px;
+}
+
+form#feedback-new div#subject input {
+    width: 400px;
+}
+
+form#feedback-new input[type="submit"] {
+    border: 1px solid black;
+    height: 25px;
+    background-color: #eee;
+}
+
+div#feedback-sidebar {
+    border-left: 1px solid #eee;
+    padding-left: 10px;
+    color: #666;
+}

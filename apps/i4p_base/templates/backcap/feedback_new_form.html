@@ -1,0 +1,21 @@
+{% load i18n %}
+
+<form id="feedback-new" method="POST" action="{% url feedback-new %}">
+  
+  <div id="kind">
+    {% trans "I have a:" %}{{ feedback_form.kind }}
+    
+    <span class="error">{{ feedback_form.kind.errors }}</span>
+  </div>
+  
+  <div id="subject">
+    {% trans "And I want to tell you that:" %}
+    {{ feedback_form.title }}
+    
+    <span class="error">{{ feedback_form.title.errors }}</span>
+  </div>
+
+  <input type="hidden" id="id_referer" name="referer" value="{{ request.path }}"/>
+  
+  <input type="submit" value="{% trans "Send" %}" />
+</form>

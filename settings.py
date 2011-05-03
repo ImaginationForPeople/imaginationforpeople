@@ -140,6 +140,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
     "django.core.context_processors.request",
+    'backcap.context_processors.backcap_forms',
 #    "mothertongue.context_processors.router",
 )
 
@@ -176,6 +177,9 @@ INSTALLED_APPS = (
     'django_countries',
     'easy_thumbnails',
     'licenses',
+    'haystack',
+    'voting',
+    'backcap',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -284,3 +288,8 @@ LOCALE_INDEPENDENT_PATHS = (
 
 ## Flags
 COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
+
+### HAYSTACK
+HAYSTACK_SITECONF = 'imaginationforpeople.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_PATH, 'i4p_index')

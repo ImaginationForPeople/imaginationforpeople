@@ -20,9 +20,15 @@ django-imagekit
 PIL
 
 django-request==0.3
+whoosh==1.1.1
+django-haystack==1.1.0
 
 django-licenses
 
+django-voting==0.1
+django-annoying==0.7.4
+
+-e git+https://github.com/jtauber/django-notification.git#egg=django-notification
 
 #-e svn+http://django-rosetta.googlecode.com/svn/trunk/#egg=django-rosetta
 -e git+https://github.com/philippbosch/django-rosetta.git#egg=django-rosetta
@@ -33,5 +39,7 @@ django-licenses
 -e git+https://github.com/SpreadBand/django-privatebeta.git#egg=django-privatebeta
 -e git+https://github.com/jorgebastida/django-dajaxice.git#egg=django-dajaxice
 -e git+https://github.com/jorgebastida/django-dajax.git#egg=django-dajax
+
+-e git+https://github.com/SpreadBand/django-backcap.git#egg=django-backcap
 
 -e git+https://github.com/etianen/django-reversion.git#egg=django-reversion

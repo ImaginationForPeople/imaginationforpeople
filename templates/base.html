@@ -18,9 +18,12 @@
 
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/buttons.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}/css/backcap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}/css/support-panel.css" media="screen, projection" />
 
     <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.5.js"></script>
     <script type="text/javascript" src="{{ MEDIA_URL }}js/buttons.js"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/jquery.slidePanel.js"></script>
     
     {% if not debug %}
     <script type="text/javascript">
@@ -36,9 +39,22 @@
     </script>
     {% endif %}
 
+    <!-- Support panel -->
+    <script type="text/javascript">
+      $(document).ready(function(){
+	  $('#feedback').slidePanel({
+	      triggerName: '#feedback-trigger',
+	      position: 'fixed',
+	      triggerTopPos: '150px',
+	      panelTopPos: '0px',
+	      ajax: false,
+	  });
+      });
+    </script>
+
 
     
-	{% block extra_head %}{% endblock %}
+    {% block extra_head %}{% endblock %}
     
 
   </head>
@@ -53,6 +69,15 @@
       <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->
       {% block nav %} {% include "bubble_nav.html" %} {% endblock %}
       
+      {% if user.is_authenticated %}
+      <div>
+	<a href="#" id="feedback-trigger" class="trigger right">{% trans "Feedback" %}</a>
+	<div id="feedback" class="panel right">
+	  {% include 'backcap/feedback_tab.html' %}
+	</div>
+      </div>
+      {% endif %}
+
       
       {% block content %}<br /><br /><br /><br /><br />{% endblock %}	
 
