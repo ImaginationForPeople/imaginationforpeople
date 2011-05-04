@@ -1,6 +1,7 @@
 from django import forms
 from tagging.models import TaggedItem, Tag
 from .models import I4pProjectTranslation, I4pProject
+from django.utils.translation import ugettext as _
 
 ORDER_CHOICES = (
      ('lte', '<='),
@@ -51,7 +52,9 @@ class FilterForm(forms.Form):
         raise NotImplementedError
 
 class TitleFilterForm(FilterForm):
-    title = forms.CharField(max_length=80, required=False)
+    title = forms.CharField(max_length=80,
+                            required=False,
+                            label=_("Title must contains"))
 
     def apply_to(self, queryset):
         qs = queryset
@@ -61,7 +64,9 @@ class TitleFilterForm(FilterForm):
         return qs
 
 class OjectiveFilterForm(FilterForm):
-    objective = forms.ChoiceField(choices=I4pProject.OBJECTIVE_CHOICES, required=False)
+    objective = forms.ChoiceField(choices=I4pProject.OBJECTIVE_CHOICES,
+                                  required=False,
+                                  label=_("Objective is"))
 
     def apply_to(self, queryset):
         qs = queryset
@@ -72,7 +77,8 @@ class OjectiveFilterForm(FilterForm):
 
 class ThemesFilterForm(FilterForm):
     themes = forms.ModelMultipleChoiceField(queryset=Tag.objects.filter(id__in=[t.id for t in Tag.objects.usage_for_model(I4pProjectTranslation)]),
-                                            required=False)
+                                            required=False,
+                                            label=_("Themes contain"))
 
     def apply_to(self, queryset):
         tags = self.cleaned_data.get("themes")
@@ -82,10 +88,13 @@ class ThemesFilterForm(FilterForm):
         return queryset
 
 class CreationFilterForm(FilterForm):
-    created_order = forms.ChoiceField(choices=ORDER_CHOICES)
-    created = forms.DateField(required=False, label="", input_formats=['%Y-%m-%d',
-                                                                       '%m/%d/%Y',
-                                                                       '%m/%d/%y'])
+    created_order = forms.ChoiceField(choices=ORDER_CHOICES,
+                                      label=_("Created "))
+    created = forms.DateField(required=False,
+                              label="",
+                              input_formats=['%Y-%m-%d',
+                                             '%m/%d/%Y',
+                                             '%m/%d/%y'])
 
     def apply_to(self, queryset):
         qs = queryset
