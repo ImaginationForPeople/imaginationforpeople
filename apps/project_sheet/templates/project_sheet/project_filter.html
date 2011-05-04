@@ -20,7 +20,10 @@
     <form method="post" action="">{% csrf_token %}
         {% for filter in filters %}
         <p>
-        {{filter}}
+        {% for field in filter %}
+            {{field.label_tag}}
+            {{field}}
+        {% endfor %}
         </p>
         {% endfor %}
         <input type="submit" value="{% trans 'filter'|capfirst %}" />
