@@ -287,6 +287,12 @@
 
         refFormClone = null;
         $('#reference_form').hide();
+        $('a.delete-row').each(function(){
+        	var txt = $(this).html();
+        	$(this).html("<img src='{{ MEDIA_URL }}/images/check_on.png' title='"+txt+"' alt='"+txt+"'/>");
+        });
+        $('a.add-row').addClass("link");
+        
     });
   </script>
 
@@ -317,9 +323,6 @@
             padding: 4px;
             font-size: 11px;
             color: #838181;
-        }
-        .delete-row {
-            background:url({{ MEDIA_URL }}/images/check_on.png) no-repeat left center;
         }
     </style>
 
