@@ -34,7 +34,7 @@
 			<!-- Titre du projet deja créé, SANS section about, en mode NON éditable-->
 			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}#about_section">
 				<div id="about_section" class="project_description_zone_edition">
-					<div class="project_description_txt_edit">
+					<div class="project_description_txt">
 						<h1>{% trans "what’s make my project an innovant project ?"|capfirst %}</h1>
 						<h2>{% trans 'click here to describe your project'|capfirst %}</h2>
 					</div>
@@ -45,7 +45,7 @@
 		<!-- Titre du projet en mode NON éditable-->
 		<a href="{% url project_sheet-edit-field 'about_section' %}#about_section">
 			<div class="project_description_zone_edition">
-				<div class="project_description_txt_edit">
+				<div class="project_description_txt">
 					<h1>{% trans "what’s make my project an innovant project ?"|capfirst %}</h1>
 					<h2>{% trans 'click here to describe your project'|capfirst %}</h2>
 				</div>

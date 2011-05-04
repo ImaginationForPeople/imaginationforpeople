@@ -208,7 +208,6 @@
      * TODO: only related to the fadeIn/Out of edition button
      * can be externalized
      */
-    {% if project_translation %}
         $('a.editing-button').hide();
         $('a.editing-button').each(function(){
         	var button = $(this);
@@ -218,8 +217,7 @@
         		button.fadeOut('fast');
             }
         	);
-        });  
-    {% endif %}
+        });
     
     });
   </script>
