@@ -136,6 +136,7 @@ $(document).ready(function() {
                                         <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ MEDIA_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
                                         <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
                                     </div>
+                                    <br />
                                     <div class="feedback-desc">
                                         {{ feedback.text|truncatewords:20 }}
                                     </div>
