@@ -1,7 +1,7 @@
 {% load i18n %}
 
 <form id="feedback-new" method="POST" action="{% url feedback-new %}">
-  
+  {% csrf_token %}
   <div id="kind">
     {% trans "I have a:" %}{{ feedback_form.kind }}
     
@@ -17,5 +17,5 @@
 
   <input type="hidden" id="id_referer" name="referer" value="{{ request.path }}"/>
   
-  <input type="submit" value="{% trans "Send" %}" />
+  <input type="submit" class="button greenbutton nomargin"  value="{% trans 'Send' %}" />
 </form>

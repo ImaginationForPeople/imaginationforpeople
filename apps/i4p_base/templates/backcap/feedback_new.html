@@ -9,7 +9,7 @@
 	    $('#feedback-tab-suggestions-results').hide();
 	    $('#feedback-tab-no-suggestions-noresult').show();
 	} else {
-	    $.get("{% url backcap:feedback-search %}", {q: ""+inputString+""}, function(data){
+	    $.get("{% url feedback-search %}", {q: ""+inputString+""}, function(data){
 		if(data.length >0) {
 		    $('#feedback-tab-suggestions-results').html(data); 
 		    $('#feedback-tab-suggestions-noresult').hide();

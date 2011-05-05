@@ -1,6 +1,7 @@
 <h3>Edit feedback</h3>
 
 <form action="" method="POST">
-  {{ form.as_p }}
-  <input type="submit">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class="button greenbutton" type="submit">
 </form>
