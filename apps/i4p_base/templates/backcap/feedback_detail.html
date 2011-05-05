@@ -89,6 +89,7 @@ $(document).ready(function() {
 										    {% url feedback-vote feedback.id 'up' %}
 										  {% endif %}
 										  " method="POST">
+          {% csrf_token %}
 		  <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
 		</form>
 		
@@ -98,6 +99,7 @@ $(document).ready(function() {
 										      {% url feedback-vote feedback.id 'down' %}
 										    {% endif %}
 										    " method="POST">
+            {% csrf_token %}
 		  
 		  <input type="submit" class="ui-corner-all vote_button button redbutton nomargin" id="feedbackdownarrow{{ feedback.id }}" value="{% if vote and vote.is_downvote %}X{% else %}-{% endif %}"/>
 		<div class="clear"></div>
