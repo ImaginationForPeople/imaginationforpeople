@@ -621,7 +621,7 @@ form{
 }
 
 
-.project_description_txt_edit{
+.project_description_txt_edit, .project_description_txt{
 
 	width:77%;
 	padding-top:10px;
@@ -658,7 +658,7 @@ form{
 
 }
 
-.project_description_txt_edit h1{
+.project_description_txt h1{
 
 	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
 	font-size:22px;
@@ -674,7 +674,7 @@ form{
 
 }
 
-.project_description_txt_edit h2{
+.project_description_txt h2{
 
 	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
 	font-size:17px;
@@ -930,7 +930,13 @@ form{
 	background-image: url("../images/project/quote2-white.png"),url("../images/project/quote1-white.png"); 
 	background-position: right top, left bottom; 
 	background-repeat: no-repeat; 
+    padding-bottom:18px;
 
+}
+
+
+.project_description_txt .greenbutton, .project_description_txt .redbutton{
+    top:3px;
 }
 
 

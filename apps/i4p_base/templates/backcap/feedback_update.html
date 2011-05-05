@@ -1,7 +1,71 @@
-<h3>Edit feedback</h3>
+{% extends "base.html" %}
 
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input class="button greenbutton" type="submit">
-</form>
+{% load i18n %}
+
+
+{% block style %}
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/no-nav.css" />
+{% endblock %}
+
+
+{% block title %}
+  {% trans "Edit Feedback" %}
+{% endblock %}
+
+
+{% block nav %}
+    {% include "nav.html" %}
+{% endblock %}
+
+
+{% block content %}	
+	
+	<div class="content">        
+		<div class="container_18">
+			<div class="grid_18 alpha omega">			
+			
+				<div class="block-content feedback-edit-admin">  
+
+
+                    <h3>Edit feedback</h3>
+
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input class="button greenbutton" type="submit">
+                    </form>
+
+
+                </div>
+
+
+										
+				</div>
+				
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>		
+	</div>
+	
+	
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

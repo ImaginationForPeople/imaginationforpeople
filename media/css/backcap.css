@@ -48,8 +48,6 @@
     background-image:url(../images/base/separator.jpg);
 	background-repeat:repeat-x;
 	background-position:top;
-    padding-top:10px;
-    padding-bottom:10px;
     padding-left:20px;
 }
 
@@ -83,6 +81,8 @@
     -webkit-border-radius: 4px; 
     -khtml-border-radius: 4px; 
     border-radius: 4px; 
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 .feedback-votes .numvotes{
@@ -107,6 +107,12 @@
    border:1px solid #666;
    width: 20px;
    height: 20px;
+}
+
+
+.feedback-info{
+    margin-top:10px;
+    margin-bottom:10px;
 }
 
 .feedback-entry .feedback-info .type_Q {
@@ -227,7 +233,58 @@ form#feedback-new input[type="submit"] {
 }
 
 div#feedback-sidebar {
-    border-left: 1px solid #eee;
-    padding-left: 10px;
     color: #666;
+
+    background-color:#0c0c0c;
+    border-top:1px solid #353535;
+    border-bottom:1px solid black;
+    padding:10px;
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black; 	
+	
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+}
+
+
+
+#feedback-comment #id_comment{
+    width:100%;
+    border:1px solid black;
+    top:-10px;
+    position:relative;
+}
+
+#feedback-comment input[type=submit]{
+    float:right;
+}
+
+#feedback-comments-list li div{
+    margin-bottom:15px;
+}
+
+
+#feedback-comments-list li div{
+    font-size:10px;
+    color:#7F7E7E;
+}
+
+#feedback-new #id_text{
+    width:100%;
+}
+
+.feedback-description{
+    text-align:justify;
+}
+
+.feedback-new-page #id_title{
+    width:100% !important;
+}
+
+.feedback-edit-admin  form label{
+    width:10%;
+    float:left;
 }

@@ -89,6 +89,7 @@ $(document).ready(function() {
 										    {% url feedback-vote feedback.id 'up' %}
 										  {% endif %}
 										  " method="POST">
+          {% csrf_token %}
 		  <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
 		</form>
 		
@@ -98,6 +99,7 @@ $(document).ready(function() {
 										      {% url feedback-vote feedback.id 'down' %}
 										    {% endif %}
 										    " method="POST">
+            {% csrf_token %}
 		  
 		  <input type="submit" class="ui-corner-all vote_button button redbutton nomargin" id="feedbackdownarrow{{ feedback.id }}" value="{% if vote and vote.is_downvote %}X{% else %}-{% endif %}"/>
 		<div class="clear"></div>
@@ -108,10 +110,12 @@ $(document).ready(function() {
 	</div>
     
     <div class="feedback-info">
+    
         <div>
             <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ MEDIA_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
             <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
         </div>
+        <br />
         <div class="feedback-desc">
             {{ feedback.text|truncatewords:20 }}
         </div>
@@ -156,31 +160,34 @@ $(document).ready(function() {
 	    </p>
 	  {% endif %}
 
-	  <p>{% trans "Description:" %} {{ feedback.text|linebreaks }}</p>
+	  <p><strong>{% trans "Description:" %}<br /><br /></strong><div class="feedback-description"> {{ feedback.text|linebreaks }}</div></p>
 
 	  <hr/>
 
-	  <h4>{% trans "Comments" %}</h4>
-	  <ul>
+	  <h4>{% trans "Comments:" %}</h4>
+	  <ul id="feedback-comments-list">
 	    {% get_comment_list for feedback as feedback_comments %}
 	      {% for comment in feedback_comments %}
-		<li><a href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> said "{{ comment.comment|linebreaks }}"</li>
+		<li><a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> said :<div>{{ comment.comment|linebreaks }}</div></li>
 	      {% endfor %}
 	  </ul>
 
 	  {% if not feedback.status == 'D' %}
-	    <h5>{% trans "Post a new comment" %}</h5>
+	    <hr/>
+        <h5>{% trans "Post a new comment" %}</h5>
 	        {% get_comment_form for feedback as comment_form %}
-		  <form action="{% comment_form_target %}" method="post">
+		  <form id="feedback-comment" action="{% comment_form_target %}" method="post">
+          {% csrf_token %}
 		    {{ comment_form.content_type }}
 		    {{ comment_form.timestamp }}
 		    {{ comment_form.object_pk }}
 		    {{ comment_form.security_hash }}
 		    {{ comment_form.comment }}
 		    
-		    <input type="submit" value="{% trans "Post" %}"/>  
+		    <input type="submit" class="button nomargin" value="{% trans 'Post' %}"/>  
 		    <input type="hidden" name="next" value="{% url feedback-detail feedback.id %}" />
 		  </form>
+          <div class="clear"></div>
            {% else %}
 	     {% trans "Comments closed." %}
 	   {% endif %}
@@ -188,19 +195,20 @@ $(document).ready(function() {
 		<hr/>
 
 		<p>{% trans "This issue is" %} {{ feedback.get_status_display|lower }}.
-		<a href="{% url feedback-close feedback.id %}" class="minibutton btn-fork"><span><span class="icon"></span>{% trans "Close issue" %}</span></a>
-
-		<p>{% trans "Reported from:" %} <a href="http://{{ request.get_host }}{{ feedback.referer }}">http://{{ request.get_host }}{{ feedback.referer }}</a></p>
-
+		<a href="{% url feedback-close feedback.id %}" class="button none"><span><span class="icon"></span>{% trans "Close issue" %}</span></a>
+        <br /><br />
+		<p>{% trans "Reported from:" %} <a href="http://{{ request.get_host }}{{ feedback.referer }}" class="link">http://{{ request.get_host }}{{ feedback.referer }}</a></p>
+        <br />
 		{% if user.is_superuser %}
-		  <p>
-		    <a href="{% url feedback-update feedback.id %}" class="minibutton btn-edit"><span><span class="icon"></span>{% trans "Edit" %}</span></a>
-		    <a href="{% url feedback-ping-observers feedback.id %}" class="minibutton btn-fork"><span><span class="icon"></span>{% trans "Ping observers" %}</span></a>
+		  
+          <p>
+		    <a href="{% url feedback-update feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Edit" %}</span></a> -
+		    <a href="{% url feedback-ping-observers feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Ping observers" %}</span></a>
 		  </p>
 		{% endif %}
 
 		<p>
-		  <a href="{% url feedback-list %}">&larr; {% trans "See all feedbacks" %}</a>
+		  <a href="{% url feedback-list %}" class="link">&larr; {% trans "See all feedbacks" %}</a>
 		</p>
 
 	      </div>
