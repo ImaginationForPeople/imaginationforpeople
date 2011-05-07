@@ -31,11 +31,12 @@
 			</div>
 			<div class="menu">           
 				<ul>
-					<li><a href="{% url project_sheet-list %}">Projects</a></li>
-					<!-- <li><a href="#">Objectives</a></li> -->
-					<li><a href="{% url project_sheet-start %}">Start a project</a></li>
-					<!-- <li><a href="#">Blog</a></li> -->
-					<li><a href="#">About us</a></li>
+				  <li><a href="{% url i4p-index %}">{% trans "Homepage" %}</a></li>
+				  <li><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
+				  <!-- <li><a href="#">Objectives</a></li> -->
+				  <li><a href="{% url project_sheet-start %}">{% trans "Start a project" %}</a></li>
+				  <!-- <li><a href="#">Blog</a></li> -->
+				  <li><a href="#">{% trans "About us" %}</a></li>
 				</ul>
 			</div>
 		</div>	
