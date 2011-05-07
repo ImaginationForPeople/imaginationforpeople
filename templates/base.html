@@ -49,6 +49,9 @@
 	      panelTopPos: '0px',
 	      ajax: false,
 	  });
+          var more = $('#feedback-tab textarea');
+          more.hide();
+          $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
       });
     </script>
 
