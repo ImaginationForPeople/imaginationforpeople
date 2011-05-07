@@ -53,7 +53,7 @@
 				
 				<div id="media_buttons">
 					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
-					<a href="javascript:alert('Not Yet Implemented');" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
+					<a href="#" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
 					<a id='del_media' href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/trash.png" alt="X" /></a>
 				</div>
 				
@@ -109,7 +109,7 @@
 						{% for pic in project_translation.project.pictures.all %}
 							<li>
                                 <a class="hidden del_link" href="{% url project_sheet-instance-del-picture project_translation.slug pic.id%}"></a>
-                                <img src="{{pic.display.url}}" alt="">
+                                <img class="big-pic" src="{{pic.display.url}}" alt="">
                             </li>
 						{% endfor %}
 						{% for vid in project_translation.project.videos.all %}

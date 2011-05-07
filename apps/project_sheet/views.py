@@ -300,11 +300,13 @@ def project_sheet_edit_references(request, project_slug):
     return redirect(project_translation)
 
 def project_sheet_filter(request):
+    language_code = translation.get_language()
+
     filter_forms = [TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm]
     if request.method == "POST":
         filters = FilterSet(filter_forms, data=request.POST)
         if filters.is_valid():
-            qs = filters.apply_to(I4pProjectTranslation.objects.all())
+            qs = filters.apply_to(I4pProjectTranslation.objects.filter(language_code=language_code))
             return project_sheet_list(request, queryset=qs)
     else:
         filters = FilterSet(filter_forms)

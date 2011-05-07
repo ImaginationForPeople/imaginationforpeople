@@ -36,7 +36,7 @@ function changeslider(sid){
     
     anyslider.anythingSlider(sid);
     update_carousel(sid);
-    
+
     return false;
 };
 
@@ -64,10 +64,11 @@ $(document).ready(function () {
     $('#project_photo_gallery_mini').jcarousel({buttonNextEvent: null, buttonPrevEvent: null, wrap: 'circular', scroll: 4});
     
     var anyslider = $('#project_photo_gallery_current_photo').data('AnythingSlider');
+    
     /* When the next button is clicked */
     $('.jcarousel-next').click(function() {
 		anyslider.goForward();
-			update_carousel(anyslider.currentPage);
+		update_carousel(anyslider.currentPage);
     });
     
     /* When the previous button is clicked */
@@ -94,4 +95,24 @@ $(document).ready(function () {
 		});
 	});
     
+    $('ul#project_photo_gallery_current_photo').bind('slide_complete', function(){
+    	var isImg = Boolean($(this).find("li.activePage").has("img.big-pic").length);
+    
+    	if(isImg){
+    		button.unbind('click');
+    		button.click(function(){
+    			alert("Coming soon ...")
+    			return false;
+    		});
+    	}
+    	else {
+    		button.unbind('click');
+    		button.click(function(){
+    			alert("TODO: Add a CSS class to gray out the button");
+    			return false;
+    		});
+    	}
+    });
+    
+    anyslider.gotoPage(1, false);
 });
