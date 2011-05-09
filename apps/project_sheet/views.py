@@ -13,7 +13,7 @@ from localeurl.templatetags.localeurl_tags import chlocale
 
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
 from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
+from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug
 from .filters import TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm, FilterSet
 
@@ -314,5 +314,27 @@ def project_sheet_filter(request):
     return render_to_response('project_sheet/project_filter.html',
                               {'filters': filters},
                               context_instance=RequestContext(request))
+
+
+def project_sheet_member_delete(request, project_slug, username):
+    """
+    Delete a projet member
+    """
+    language_code = translation.get_language()
+    
+    # get the project translation and its base
+    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                          language_code=language_code)
+
+    parent_project = project_translation.project
+
+    project_member = get_object_or_404(ProjectMember, 
+                                       user__username=username,
+                                       project=parent_project)
+    
+    project_member.delete()
+
+    return redirect(project_translation)
+    
 
 

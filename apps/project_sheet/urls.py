@@ -38,4 +38,6 @@ urlpatterns = patterns('',
 
     url(r'^(?P<slug>[-\w]+)/del/picture/(?P<pic_id>\d+)/$', views.project_sheet_del_picture, name='project_sheet-instance-del-picture'),
     url(r'^(?P<slug>[-\w]+)/del/video/(?P<vid_id>\d+)/$', views.project_sheet_del_video, name='project_sheet-instance-del-video'),
+
+    url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
 )

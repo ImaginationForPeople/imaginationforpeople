@@ -150,6 +150,9 @@ class ProjectMember(models.Model):
                                blank=False,
                                null=True)
 
+    def __unicode__(self):
+        return "%s - %s" % (project, user)
+
 
 # Reversions
 reversion.register(I4pProject)
