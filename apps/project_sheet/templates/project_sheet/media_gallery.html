@@ -13,7 +13,7 @@
 			<form method="post" id="photo_upload_form"  action="{% url project_sheet-add-picture %}" enctype="multipart/form-data">{% csrf_token %}
 		{% endif %}
 		
-				<p><label for="#" class="bold">{% trans "Choose an image to upload :"|capfirst %}</label> <span class="precision"></span>{{ picture_form.original_image }}</p>
+				<p><label for="#" class="bold">{% trans "Image to upload :"|capfirst %}</label> <span class="precision"></span>{{ picture_form.original_image }}</p>
 					
 				<div class="clear"></div>
 				
@@ -36,7 +36,7 @@
 			<form method="post" id="vid_upload_form"  action="{% url project_sheet-add-video %}">{% csrf_token %}
 		{% endif %}
 			<p>
-				<label for="#" class="bold">{% trans "add a video (youtube, dailymotion, etc): "|capfirst %}</label><span class="precision"></span>
+				<label for="#" class="bold">{% trans "Video link (youtube, dailymotion, etc): "|capfirst %}</label><span class="precision"></span>
 				{{ video_form.video_url }}
 				<input class="greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" Alt="Ok" />
 			</p>

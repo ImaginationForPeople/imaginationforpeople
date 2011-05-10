@@ -11,7 +11,7 @@
   
   <div class="project_infos_description" title=" {{ project_translation.about_section }}">
     {% if project_translation.about_section %}
-      {{ project_translation.about_section|truncatewords:40 }}
+      {{ project_translation.about_section|truncatewords:37 }}
     {% else %}
       {% trans "There is no description for this project" %}
     {% endif %}

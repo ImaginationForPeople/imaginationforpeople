@@ -19,7 +19,7 @@
                 
                 <div class="separator">
                     <h2>
-                        {% trans 'Signin' %}
+                        {% trans 'Sign in' %}
                     </h2>
                 </div>
             
@@ -40,10 +40,10 @@
                         </p>
                         {% endif %}
                         {% endfor %}
-                    <input type="submit" class="button" value="{% trans "Signin" %}" />
+                    <input type="submit" class="button" value="{% trans "Sign in" %}" />
                     <div class="clear"></div>
-                    <br />
-                    <p class="forgot-password right "><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>
+                    <br /><br /><br />
+                    <p class="forgot-password"><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>
                 </form>                
 
              

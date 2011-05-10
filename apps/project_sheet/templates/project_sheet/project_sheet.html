@@ -427,7 +427,9 @@
 		<!-- Website -->
 		{% if project.website %}
 		  <div class="website">{% trans "Website:" %} <a href="{{ project.website }}">{{ project.website }}</a></div>
-		{% endif %}
+		{% else %}
+            {% trans "Website:" %} <em>{% trans 'unknown'|capfirst %}</em>
+        {% endif %}
 	   
 		
 	  {% endif %}
