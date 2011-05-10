@@ -17,6 +17,10 @@
 
   <div class="content">        
     <div class="container_18">
+    
+    <div style="position:relative; top:25px; height:35px;">
+        {% include "project_sheet/project_list_pagination.html" %}
+    </div>
       
       <div id="projects_list">
 	{% for project_translation in project_translation_list %}
@@ -41,27 +45,7 @@
 
       
 
-      {% if is_paginated %}
-	<div id="pagination">
-	  <span class="step-links">
-	    {% if page_obj.has_previous %}
-	      <a href="?page={{ page_obj.previous_page_number }}"><img src="{{ MEDIA_URL }}images/project/page_previous.png" alt="previous" /></a>
-	    {% else %}
-	      <img src="{{ MEDIA_URL }}images/project/page_previous-off.png" alt="previous" />
-	    {% endif %}
-
-	    <span class="current">
-	      page {{ page_obj.number }} of {{ paginator.num_pages }}
-	    </span>
-
-	    {% if page_obj.has_next %}
-	      <a href="?page={{ page_obj.next_page_number }}"><img src="{{ MEDIA_URL }}images/project/page_next.png" alt="next" /></a>
-	    {% else %}
-	      <img src="{{ MEDIA_URL }}images/project/page_next-off.png" alt="previous" />
-	    {% endif %}
-	  </span>
-	</div>
-      {% endif %}
+    {% include "project_sheet/project_list_pagination.html" %}
       
       
       
@@ -104,12 +88,12 @@
 		</div>
 	      </div>
 	      
-	    </div>
+    </div>
 	    
 	  </div>
 	</div>
-      </div>	
+  </div>	
 
-      <div class="clear"></div>
+  <div class="clear"></div>
 
-      {% endblock %}
+  {% endblock %}

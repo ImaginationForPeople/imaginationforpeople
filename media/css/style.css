@@ -1,3 +1,33 @@
+/* --TEMP---------------------------------------------------------------------------------------------------- */
+
+
+.categories .menu ul li, .search, .toolbox{
+    display:none;
+    visibility:hidden;
+}
+
+.categories .menu ul li:first-child{
+    display:block;
+    visibility:visible;
+    border-right:1px solid #676665;
+}
+
+.categories .menu ul li:first-child .categ-button{
+    border-right:1px solid #676665;
+}
+
+.sf-menu .current{
+    border-right:0px !important;
+}
+
+
+
+/* ----------------------------------------------------------------------------------------------------------- */
+
+
+
+
+
 body{
 	
 	background-color:black;
@@ -760,7 +790,7 @@ ul li{
 	
 	top:-37px;	
 	
-	padding-top:15px;
+	/*padding-top:15px;*/
 	padding-bottom:20px;
 	
 

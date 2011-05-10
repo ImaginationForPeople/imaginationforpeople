@@ -576,8 +576,9 @@ form{
 #project_photo_upload_edit form{
 
 	position:relative;
-	margin-bottom:10px;
+	margin-bottom:25px;
 	padding-left:5px;
+	padding-bottom:20px !important;
 	/*height:30px;*/
 	padding-right:5px;
 	border-bottom:1px solid #BDBDBD;
@@ -1468,6 +1469,10 @@ ul#themes_tags li.tagit-choice a {
     position:relative;
 }
 
+ul#themes_tags li.tagit-choice:first-letter {
+    text-transform:uppercase;
+}
+
 
 ul#themes_tags li.tagit-choice {
     background-color: #CCC8C8;
@@ -1513,6 +1518,10 @@ ul#themes_tags li.tagit-choice {
     left:-6px;
     
     position:relative;
+}
+
+#themes_list li a:first-letter {
+    text-transform:uppercase;
 }
 
 
