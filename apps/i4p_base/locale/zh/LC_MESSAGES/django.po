@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-29 01:10+0200\n"
+"POT-Creation-Date: 2011-05-12 17:18+0200\n"
 "PO-Revision-Date: 2011-03-29 01:21\n"
 "Last-Translator:   <simonsarazin@imaginationforpeople.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.5.6\n"
 
 #: models.py:13
@@ -34,10 +34,160 @@ msgstr "国家"
 msgid "address"
 msgstr "地址"
 
-#: templates/manifesto.html:8 templates/privatebeta/base.html:66
-#: templates/privatebeta/base.html:136
+#: templates/base.html:10
+#, fuzzy
+msgid ""
+"Imagination for People (IP) is a multilingual, Wikipedia-like open platform "
+"dedicated to disruptive social innovation. At a global scale, IP aims to "
+"detect, publicize, amplify and adapt creative solutions to the new "
+"challenges of living together."
+msgstr ""
+"\n"
+"“为人民而想象”是一个多语种网络\n"
+"平台，为全球的社会创新活动提供一个交流、学习的空间。"
+
+#: templates/base.html:11
+#, fuzzy
+msgid "detect, highlight and monetize social innovation"
+msgstr "搜集、推广、运营具有革命性的社会创新"
+
+#: templates/base.html:77 templates/backcap/feedback_detail.html:8
+msgid "Feedback"
+msgstr ""
+
+#: templates/footer.html:16
+msgid "FAQ"
+msgstr ""
+
+#: templates/footer.html:17
+msgid "Guidelines"
+msgstr ""
+
+#: templates/footer.html:18 templates/homepage.html:17
+#: templates/privatebeta/base.html:60
+msgid "About imagination for people"
+msgstr "关于“为人民而想象”"
+
+#: templates/footer.html:19
+msgid "Termes of use"
+msgstr ""
+
+#: templates/footer.html:20
+msgid "Privacy policy"
+msgstr ""
+
+#: templates/footer.html:21
+msgid "Contact"
+msgstr ""
+
+#: templates/header.html:25
+msgid "welcome"
+msgstr ""
+
+#: templates/header.html:26
+msgid "Log out"
+msgstr ""
+
+#: templates/header.html:28 templates/privatebeta/base.html:137
+msgid "log in"
+msgstr ""
+
+#: templates/header.html:29
+msgid "sign up"
+msgstr ""
+
+#: templates/header.html:35
+msgid "Home"
+msgstr ""
+
+#: templates/header.html:36
+msgid "Projects"
+msgstr ""
+
+#: templates/header.html:38
+msgid "Start a project"
+msgstr ""
+
+#: templates/header.html:40
+msgid "About us"
+msgstr ""
+
+#: templates/homepage.html:19
+#, fuzzy
+msgid ""
+"\n"
+"                            We believe in the virtue of civic imagination, "
+"imagination to serve the common good. Our filter is useful creativity or the "
+"imagination applied. \n"
+"                            "
+msgstr ""
+"\n"
+"我们相信公众的想象力，相信为大众服务的创造力。我们挑选项目的标准是创新性和实"
+"用\n"
+"性。"
+
+#: templates/homepage.html:23 templates/manifesto.html:8
+#: templates/privatebeta/base.html:66 templates/privatebeta/base.html:136
 msgid "Manifesto"
 msgstr "节选宣言"
+
+#: templates/homepage.html:24 templates/project-description.html:8
+#: templates/privatebeta/base.html:67
+msgid "Project description"
+msgstr "项目介绍"
+
+#: templates/homepage.html:39 templates/privatebeta/base.html:84
+msgid "Filters"
+msgstr "过滤器"
+
+#: templates/homepage.html:40 templates/privatebeta/base.html:85
+msgid "Help"
+msgstr "帮助"
+
+#: templates/homepage.html:41 templates/privatebeta/base.html:86
+msgid "<span class='georgia'>My</span> imagination for people"
+msgstr ""
+
+#: templates/homepage.html:50 templates/privatebeta/base.html:95
+msgid "Node view"
+msgstr ""
+
+#: templates/homepage.html:74
+msgid "- projects"
+msgstr ""
+
+#: templates/homepage.html:75
+msgid "Discover the world's most innovative and inspiring social projects."
+msgstr ""
+
+#: templates/homepage.html:76 templates/homepage.html.py:82
+#: templates/homepage.html:88
+msgid "More info &gt;"
+msgstr ""
+
+#: templates/homepage.html:80
+msgid "- add a project"
+msgstr ""
+
+#: templates/homepage.html:81
+msgid ""
+"Describe stimulating and innovative social projects that spark your "
+"imagination."
+msgstr ""
+
+#: templates/homepage.html:86
+msgid "- help"
+msgstr ""
+
+#: templates/homepage.html:87
+msgid "Join the IP community and help projects get off the round."
+msgstr ""
+
+#: templates/homepage.html:93
+msgid ""
+"A community to detect, publicize, amplify and adapt creative solutions to "
+"the new challenges of living together. "
+msgstr ""
 
 #: templates/manifesto.html:11
 msgid ""
@@ -87,77 +237,320 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"我们相信公众的想像力，相信为大众服务的创造力。我们挑选项目的标准是创新性和实用<br /><br />\n"
-"性。我们相信集体的、凝聚的、累积的、合作的想像力。公众的想像力是所有人的责任，这个\n"
+"我们相信公众的想像力，相信为大众服务的创造力。我们挑选项目的标准是创新性和实"
+"用<br /><br />\n"
+"性。我们相信集体的、凝聚的、累积的、合作的想像力。公众的想像力是所有人的责"
+"任，这个\n"
 "幸福的大众责任感是所有集体运动的前提。\n"
 "<br /><br />\n"
-"我们相信实用的创新力，它可以实际地、人性地、舒适地解决集体问题。因此，对于气候变\n"
-"化这样过大，过于抽象的问题，我们选择用更细化的途径来解决（公共交通、环保住宅等），\n"
+"我们相信实用的创新力，它可以实际地、人性地、舒适地解决集体问题。因此，对于气"
+"候变\n"
+"化这样过大，过于抽象的问题，我们选择用更细化的途径来解决（公共交通、环保住宅"
+"等），\n"
 "这些途径更简单、更易于理解和实际操作。\n"
 "<br /><br />\n"
-"我们相信无数无名人士，包括个人、协会、集体或公司创造的历史。他们发明、试验、完\n"
-"善创新成果，并取得伟大成功。而宣传推广的不足往往使这些成果不为人知。“为人民而想\n"
+"我们相信无数无名人士，包括个人、协会、集体或公司创造的历史。他们发明、试验、"
+"完\n"
+"善创新成果，并取得伟大成功。而宣传推广的不足往往使这些成果不为人知。“为人民而"
+"想\n"
 "象”就是这些成果宣传和升值的途径\n"
 "<br /><br />\n"
-"我们相信在全球建立创新项目跟踪体制的必要性。我们的《英雄》就是那些在全球每一个角\n"
+"我们相信在全球建立创新项目跟踪体制的必要性。我们的《英雄》就是那些在全球每一"
+"个角\n"
 "落大胆尝试创新的人，他们包括《发明者》、企业家、实践者和探索者。\n"
 "<br /><br />\n"
-"我们向往一个《创造性的针灸术》，即通过筛选即尖端又实用的创新项目来促进世界平衡的\n"
+"我们向往一个《创造性的针灸术》，即通过筛选即尖端又实用的创新项目来促进世界平"
+"衡的\n"
 "改变，通过一个典范的推广来实现人们行为举止和生活方式的改变。\n"
 "<br /><br />\n"
-"我们相信罗曼·罗兰的观点，并不断更新、采纳：《我们要把悲观的实践经验和乐观的创新成\n"
+"我们相信罗曼·罗兰的观点，并不断更新、采纳：《我们要把悲观的实践经验和乐观的创"
+"新成\n"
 "果结合起来。》\n"
 "<br /><br />\n"
-"我们相信跨学科的力量，尤其当它是有创造性的、新颖的、理性的、和平的、有推动性的和\n"
-"有生命力的时候。我们相信所有的跨学科尝试：当建筑遇见医药，当金融遇见社区，当设计遇\n"
+"我们相信跨学科的力量，尤其当它是有创造性的、新颖的、理性的、和平的、有推动性"
+"的和\n"
+"有生命力的时候。我们相信所有的跨学科尝试：当建筑遇见医药，当金融遇见社区，当"
+"设计遇\n"
 "见生态，当科技遇见团结……\n"
 "<br /><br />\n"
-"我们相信幽默的力量。幽默是自由思想的特权，是想象力活跃的、自由的表现形式。“为\n"
+"我们相信幽默的力量。幽默是自由思想的特权，是想象力活跃的、自由的表现形"
+"式。“为\n"
 "人民而想象”是一个《有趣的》，有影响力的，能创造《能量场》的平台。\n"
 "<br /><br />\n"
-"我们相信建立一个把公众想象转变成公众行动空间的必要性，这个空间把《灵感》和《出\n"
+"我们相信建立一个把公众想象转变成公众行动空间的必要性，这个空间把《灵感》和"
+"《出\n"
 "汗》联系在一起。\n"
 "<br /><br />\n"
-"我们相信发明关于社会创新和公众想象新词汇的必要性，这个新词汇是我们理解、表述这个\n"
-"每天都在经历发明、探索和实践世界的能力。我们把这个能力称作——想象字母表，“为人民而\n"
+"我们相信发明关于社会创新和公众想象新词汇的必要性，这个新词汇是我们理解、表述"
+"这个\n"
+"每天都在经历发明、探索和实践世界的能力。我们把这个能力称作——想象字母表，“为人"
+"民而\n"
 "想象”正是为创造想象字母表，并促进人们对社会创新的理解和推广而成立。"
 
-#: templates/project-description.html:8 templates/privatebeta/base.html:67
-msgid "Project description"
-msgstr "项目介绍"
+#: templates/nav.html:32
+msgid "Project"
+msgstr ""
+
+#: templates/nav.html:33
+msgid "History"
+msgstr ""
+
+#: templates/nav.html:47
+msgid "other languages"
+msgstr ""
+
+#: templates/nav.html:58
+msgid "create a new translation"
+msgstr ""
 
 #: templates/project-description.html:11
 #, python-format
 msgid ""
 "\n"
-"      <div class=\"prezi-player\">\n"
-"\t<style type=\"text/css\" media=\"screen\">.prezi-player { width: 100%%; } ."
-"prezi-player-links { text-align: center; }</style>&nbsp;\n"
-"\t<object id=\"prezi_-3h9g23ttonb\" name=\"prezi_-3h9g23ttonb\" classid="
-"\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" width=\"100%%\" height="
+"    <div class=\"prezi-player\">\n"
+"        <style type=\"text/css\" media=\"screen\">\n"
+"            .prezi-player {\n"
+"                width: 100%%;\n"
+"            }\n"
+"            \n"
+"            .prezi-player-links {\n"
+"                text-align: center;\n"
+"            }\n"
+"        </style>\n"
+"        <object id=\"prezi_pf-honkfcwnc\" name=\"prezi_pf-honkfcwnc\" "
+"classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" width=100%% height="
 "\"400\">\n"
-"\t  <param name=\"movie\" value=\"http://prezi.com/bin/preziloader.swf\"/>\n"
-"\t  <param name=\"allowfullscreen\" value=\"true\"/>\n"
-"\t  <param name=\"allowscriptaccess\" value=\"always\"/>\n"
-"\t  <param name=\"bgcolor\" value=\"#282828\"/>\n"
-"\t  <param name=\"flashvars\" value=\"prezi_id=-3h9g23ttonb&amp;"
-"lock_to_path=0&amp;color=282828&amp;autoplay=no&amp;autohide_ctrls=0\"/>\n"
-"\t  <embed id=\"preziEmbed_-3h9g23ttonb\" name=\"preziEmbed_-3h9g23ttonb\" "
-"src=\"http://prezi.com/bin/preziloader.swf\" type=\"application/x-shockwave-"
-"flash\" allowfullscreen=\"true\" allowscriptaccess=\"always\" width=\"100%%"
-"\" height=\"400\" bgcolor=\"#282828\" flashvars=\"prezi_id=-3h9g23ttonb&amp;"
-"lock_to_path=0&amp;color=282828&amp;autoplay=no&amp;autohide_ctrls=0\"></"
-"embed>\n"
-"\t  </object>\n"
-"\t  <div class=\"prezi-player-links\"></div>\n"
-"      </div>\n"
+"            <param name=\"movie\" value=\"http://prezi.com/bin/preziloader."
+"swf\" />\n"
+"            <param name=\"allowfullscreen\" value=\"true\" />\n"
+"            <param name=\"allowscriptaccess\" value=\"always\" />\n"
+"            <param name=\"bgcolor\" value=\"#ffffff\" />\n"
+"            <param name=\"flashvars\" value=\"prezi_id=pf-"
+"honkfcwnc&lock_to_path=0&color=ffffff&autoplay=no&autohide_ctrls=0\" />\n"
+"            <embed id=\"preziEmbed_pf-honkfcwnc\" \n"
+"                    name=\"preziEmbed_pf-honkfcwnc\" \n"
+"                    src=\"http://prezi.com/bin/preziloader.swf\" \n"
+"                    type=\"application/x-shockwave-flash\" \n"
+"                    allowfullscreen=\"true\" \n"
+"                    allowscriptaccess=\"always\"\n"
+"                     width=100%% \n"
+"                     height=\"400\" \n"
+"                     bgcolor=\"#ffffff\"\n"
+"                     flashvars=\"prezi_id=pf-"
+"honkfcwnc&lock_to_path=0&color=ffffff&autoplay=no&autohide_ctrls=0\">\n"
+"            </embed>\n"
+"        </object>\n"
+"        <div class=\"prezi-player-links\"></div>\n"
+"    </div>\n"
 "    "
 msgstr ""
 
+#: templates/backcap/feedback_detail.html:76
+msgid "This issue is closed."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:124
+#: templates/backcap/feedback_list.html:148
+msgid "Assigned to"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:129
+#, python-format
+msgid ""
+"\n"
+"                Posted %(since)s ago by\n"
+"                "
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:148
+msgid "is working on this. Poke him if you think it's taking too long !"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:156
+msgid "This issue is a duplicate of"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:157
+msgid "Please don't comment on this issue anymore."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:163
+#, fuzzy
+msgid "Description:"
+msgstr "项目介绍"
+
+#: templates/backcap/feedback_detail.html:167
+msgid "Comments:"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:177
+msgid "Post a new comment"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:187
+msgid "Post"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:192
+msgid "Comments closed."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:197
+msgid "This issue is"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:198
+msgid "Close issue"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:200
+msgid "Reported from:"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:205
+msgid "Edit"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:206
+msgid "Ping observers"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:211
+#: templates/backcap/feedback_new.html:85
+#: templates/backcap/feedback_tab.html:12
+msgid "See all feedbacks"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:7
+msgid "Help Center"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:67
+msgid "Feedbacks"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:74
+msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:86
+msgid ""
+"If you think one of these entries is important for you, then <strong>click "
+"on the '+' button</strong>. If you disagree or think this is not important "
+"at all, then <strong>click on '-'</strong>."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:90
+msgid ""
+"The <strong>highest the score</strong> an issue will get, the "
+"<strong>earlier we'll work on</strong> it."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:96
+#: templates/contact_form/contact_form_subject.txt:2
+msgid "New feedback"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:120
+#: templates/backcap/feedback_list.html:131
+msgid "Clear my vote"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:120
+msgid "Vote for"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:131
+msgid "Vote against"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:153
+#, python-format
+msgid ""
+"\n"
+"                                            Posted %(since)s ago by\n"
+"                                            "
+msgstr ""
+
+#: templates/backcap/feedback_list.html:162
+msgid "There's no feedback yet."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:167
+msgid "previous"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:184
+msgid "next"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:192
+msgid "Display"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:195
+msgid "All"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:196
+msgid "Questions"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:197
+msgid "Problems"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:198
+msgid "Ideas"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:201
+msgid "Order by"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:203
+msgid "Score"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:204
+msgid "Newest"
+msgstr ""
+
+#: templates/backcap/feedback_new.html:40
+msgid "New Feedback"
+msgstr ""
+
+#: templates/backcap/feedback_new.html:66
+msgid "Leave feedback"
+msgstr ""
+
+#: templates/backcap/feedback_new.html:81
+msgid ""
+"We are very eager you leave feedback to help us improve the website, thank "
+"you !"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:6
+msgid "I have a:"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:12
+msgid "And I want to tell you that:"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:16
+msgid "+ I have more to say !"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:27
 #: templates/contact_form/contact_form.html:12
 #: templates/privatebeta/invite.html:73
 msgid "Send"
 msgstr "发送"
+
+#: templates/backcap/feedback_update.html:13
+msgid "Edit Feedback"
+msgstr ""
 
 #: templates/privatebeta/base.html:14
 msgid "Imagination for People"
@@ -168,10 +561,6 @@ msgid ""
 "Detect, highlight and monetize social innovation that is truly disruptive."
 msgstr "搜集、推广、运营具有革命性的社会创新"
 
-#: templates/privatebeta/base.html:60
-msgid "About imagination for people"
-msgstr "关于“为人民而想象”"
-
 #: templates/privatebeta/base.html:62
 msgid ""
 "\n"
@@ -181,28 +570,13 @@ msgid ""
 "\t\t  "
 msgstr ""
 "\n"
-"我们相信公众的想象力，相信为大众服务的创造力。我们挑选项目的标准是创新性和实用\n"
+"我们相信公众的想象力，相信为大众服务的创造力。我们挑选项目的标准是创新性和实"
+"用\n"
 "性。"
 
 #: templates/privatebeta/base.html:83
 msgid "Featured"
 msgstr "精选"
-
-#: templates/privatebeta/base.html:84
-msgid "Filters"
-msgstr "过滤器"
-
-#: templates/privatebeta/base.html:85
-msgid "Help"
-msgstr "帮助"
-
-#: templates/privatebeta/base.html:86
-msgid "<span class='georgia'>My</span> imagination for people"
-msgstr ""
-
-#: templates/privatebeta/base.html:95
-msgid "Node view"
-msgstr ""
 
 #: templates/privatebeta/invite.html:11
 msgid "Who are we ?"
@@ -236,7 +610,8 @@ msgid ""
 msgstr ""
 "\n"
 "“为人民而想象”不仅为社会创新人士提供交流\n"
-"平台，更主要的是面向所有公众（《为99%的人而设计》）。我们的对象是《所有集体》。"
+"平台，更主要的是面向所有公众（《为99%的人而设计》）。我们的对象是《所有集"
+"体》。"
 
 #: templates/privatebeta/invite.html:35
 msgid "Why IP ?"
@@ -254,8 +629,10 @@ msgid ""
 msgstr ""
 "\n"
 "我们的目的是让人们搜集、分享、支持并\n"
-"运营兼具创新性和实用性的社会项目。“为人民而想象”选择革命性的创新项目，它们是惊人\n"
-"的，有创意的，在某一个行业，某区域甚至全球是领先的，其实际应用对社会经济将产生重\n"
+"运营兼具创新性和实用性的社会项目。“为人民而想象”选择革命性的创新项目，它们是"
+"惊人\n"
+"的，有创意的，在某一个行业，某区域甚至全球是领先的，其实际应用对社会经济将产"
+"生重\n"
 "大影响。"
 
 #: templates/privatebeta/invite.html:56
@@ -278,6 +655,7 @@ msgid "Thanks for your interest"
 msgstr "感谢您的关注"
 
 #: templates/privatebeta/sent.html:20
+#, fuzzy
 msgid ""
 "\n"
 "\t\t\tThe team at Imagination for People would like to thank you for your "
@@ -286,7 +664,7 @@ msgid ""
 "online in March of 2011. True to the spirit of Imagination for People, all "
 "of the programming, the design of the logo and the content is open source."
 "<br /><br />\n"
-"\t\t\tAs of March 2011, it will be your turn, should you be interested, to "
+"\t\t\tAs of June 2011, it will be your turn, should you be interested, to "
 "share your comments, improvements and interests so that the Imagination for "
 "People platform meets your expectations. <br /><br />\n"
 "\t\t\tWe will keep you regularly informed as we advance during this short "

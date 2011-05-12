@@ -2,129 +2,584 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-02-15 23:56+0100\n"
+"POT-Creation-Date: 2011-05-12 17:18+0200\n"
 "PO-Revision-Date: 2011-03-04 19:29\n"
 "Last-Translator: <kdd@kfr.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "X-Translated-Using: django-rosetta 0.5.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/manifesto.html:8 templates/privatebeta/base.html:66
-#: templates/privatebeta/base.html:136
+#: models.py:13
+msgid "latitude"
+msgstr ""
+
+#: models.py:16
+msgid "longitude"
+msgstr ""
+
+#: models.py:19
+msgid "country"
+msgstr ""
+
+#: models.py:22
+msgid "address"
+msgstr ""
+
+#: templates/base.html:10
+#, fuzzy
+msgid ""
+"Imagination for People (IP) is a multilingual, Wikipedia-like open platform "
+"dedicated to disruptive social innovation. At a global scale, IP aims to "
+"detect, publicize, amplify and adapt creative solutions to the new "
+"challenges of living together."
+msgstr ""
+"\n"
+"Imagination For People es una plataforma web multilingüe dedicada a la "
+"Imaginación Ciudadana. Este espacio de intercambios se propone identificar y "
+"hacer crecer, a nivel mundial, experiencias inéditas en el campo de la "
+"innovación social."
+
+#: templates/base.html:11
+#, fuzzy
+msgid "detect, highlight and monetize social innovation"
+msgstr " "
+
+#: templates/base.html:77 templates/backcap/feedback_detail.html:8
+msgid "Feedback"
+msgstr ""
+
+#: templates/footer.html:16
+msgid "FAQ"
+msgstr ""
+
+#: templates/footer.html:17
+msgid "Guidelines"
+msgstr ""
+
+#: templates/footer.html:18 templates/homepage.html:17
+#: templates/privatebeta/base.html:60
+msgid "About imagination for people"
+msgstr "A propósito"
+
+#: templates/footer.html:19
+msgid "Termes of use"
+msgstr ""
+
+#: templates/footer.html:20
+msgid "Privacy policy"
+msgstr ""
+
+#: templates/footer.html:21
+msgid "Contact"
+msgstr ""
+
+#: templates/header.html:25
+msgid "welcome"
+msgstr ""
+
+#: templates/header.html:26
+msgid "Log out"
+msgstr ""
+
+#: templates/header.html:28 templates/privatebeta/base.html:137
+msgid "log in"
+msgstr ""
+
+#: templates/header.html:29
+msgid "sign up"
+msgstr ""
+
+#: templates/header.html:35
+msgid "Home"
+msgstr ""
+
+#: templates/header.html:36
+msgid "Projects"
+msgstr ""
+
+#: templates/header.html:38
+msgid "Start a project"
+msgstr ""
+
+#: templates/header.html:40
+msgid "About us"
+msgstr ""
+
+#: templates/homepage.html:19
+#, fuzzy
+msgid ""
+"\n"
+"                            We believe in the virtue of civic imagination, "
+"imagination to serve the common good. Our filter is useful creativity or the "
+"imagination applied. \n"
+"                            "
+msgstr ""
+"\n"
+"Creemos en la virtud de la imaginación cívica, la imaginación al servicio "
+"del bien común. Incentivamos la creatividad útil, la <i>imaginación "
+"aplicada</i>"
+
+#: templates/homepage.html:23 templates/manifesto.html:8
+#: templates/privatebeta/base.html:66 templates/privatebeta/base.html:136
 msgid "Manifesto"
 msgstr "Manifiesto"
+
+#: templates/homepage.html:24 templates/project-description.html:8
+#: templates/privatebeta/base.html:67
+msgid "Project description"
+msgstr "Descripción del proyecto"
+
+#: templates/homepage.html:39 templates/privatebeta/base.html:84
+msgid "Filters"
+msgstr "filtros"
+
+#: templates/homepage.html:40 templates/privatebeta/base.html:85
+msgid "Help"
+msgstr "Ayuda"
+
+#: templates/homepage.html:41 templates/privatebeta/base.html:86
+msgid "<span class='georgia'>My</span> imagination for people"
+msgstr ""
+
+#: templates/homepage.html:50 templates/privatebeta/base.html:95
+msgid "Node view"
+msgstr ""
+
+#: templates/homepage.html:74
+msgid "- projects"
+msgstr ""
+
+#: templates/homepage.html:75
+msgid "Discover the world's most innovative and inspiring social projects."
+msgstr ""
+
+#: templates/homepage.html:76 templates/homepage.html.py:82
+#: templates/homepage.html:88
+msgid "More info &gt;"
+msgstr ""
+
+#: templates/homepage.html:80
+msgid "- add a project"
+msgstr ""
+
+#: templates/homepage.html:81
+msgid ""
+"Describe stimulating and innovative social projects that spark your "
+"imagination."
+msgstr ""
+
+#: templates/homepage.html:86
+msgid "- help"
+msgstr ""
+
+#: templates/homepage.html:87
+msgid "Join the IP community and help projects get off the round."
+msgstr ""
+
+#: templates/homepage.html:93
+msgid ""
+"A community to detect, publicize, amplify and adapt creative solutions to "
+"the new challenges of living together. "
+msgstr ""
 
 #: templates/manifesto.html:11
 msgid ""
 "\n"
-"    We believe in the civic imagination, or imagination for the common good. Our filter is practical - or applied - creativity.<br /><br />\n"
-"    We believe in the collective, cumulative and collaborative process of invention. The civic imagination concerns everyone and is accessible to us all. In our opinion, ingenuity is a necessary condition for social engagement.<br /><br />\n"
-"    We believe in a pragmatic definition of creativity, one that can be easily applied to social issues at a local and human level. For example, in response to climate change, a problem seen by many as too large and abstract, we prefer a finer granularity (collective transportation, sustainable habitat, etc…). We believe that this granularity makes creative initiatives more spontaneous and functional.<br /><br />\n"
-"    We believe in stories narrated by anonyms: individuals, collectives of citizens, associations, businesses, who invent, test and perfect on-the-ground, ingenious and often modest solutions that never make it to the media. Imagination for people is, in its way, a mechanism for unearthing ideas & insights and making them meaningful.<br /><br />\n"
-"    We believe in the virtue of pilot projects: our heros are those individuals who attempt, everywhere on earth, to develop local solutions with an entrepreneurial spirit. These are doers, first and foremost.<br /><br />\n"
-"    We believe in creative acupuncture. For us, this means selecting symbolic projects of often modest size that help move us all forward by enhancing how we live together.<br /><br />\n"
-"    We believe in Romain Rolland’s formulation, which we adapt and adopt : \"to join the pessimism of experience with the optimism of invention\".<br /><br />\n"
-"    We believe in transdisciplinarity, which in our opinion means a unique, counter-intuitive, disarming, provoking and transgressive approach. We believe in building bridges: architecture meets health, finance meets the social sphere, design meets ecology….<br /><br />\n"
-"    We believe in humour, which is vital to a free spirit. Humour is an active and liberating form of imagining. IP aspires to be a fun platform, one that can mobilize and excite people.<br /><br />\n"
-"    We believe in the need for a transition space that helps us all move from civic imagination to civic action, from inspiration to perspiration.<br /><br />\n"
-"    We believe in the necessity to invent new terms around social innovation. This requires a renewed alphabet, the ability to connect apparently unrelated issues and to proceed by inspiring associations. We call this capacity the imaginative paths, to which we dedicate Imagination for People.<br /><br />\n"
+"    We believe in the civic imagination, or imagination for the common good. "
+"Our filter is practical - or applied - creativity.<br /><br />\n"
+"    We believe in the collective, cumulative and collaborative process of "
+"invention. The civic imagination concerns everyone and is accessible to us "
+"all. In our opinion, ingenuity is a necessary condition for social "
+"engagement.<br /><br />\n"
+"    We believe in a pragmatic definition of creativity, one that can be "
+"easily applied to social issues at a local and human level. For example, in "
+"response to climate change, a problem seen by many as too large and "
+"abstract, we prefer a finer granularity (collective transportation, "
+"sustainable habitat, etc…). We believe that this granularity makes creative "
+"initiatives more spontaneous and functional.<br /><br />\n"
+"    We believe in stories narrated by anonyms: individuals, collectives of "
+"citizens, associations, businesses, who invent, test and perfect on-the-"
+"ground, ingenious and often modest solutions that never make it to the "
+"media. Imagination for people is, in its way, a mechanism for unearthing "
+"ideas & insights and making them meaningful.<br /><br />\n"
+"    We believe in the virtue of pilot projects: our heros are those "
+"individuals who attempt, everywhere on earth, to develop local solutions "
+"with an entrepreneurial spirit. These are doers, first and foremost.<br /"
+"><br />\n"
+"    We believe in creative acupuncture. For us, this means selecting "
+"symbolic projects of often modest size that help move us all forward by "
+"enhancing how we live together.<br /><br />\n"
+"    We believe in Romain Rolland’s formulation, which we adapt and adopt : "
+"\"to join the pessimism of experience with the optimism of invention\".<br /"
+"><br />\n"
+"    We believe in transdisciplinarity, which in our opinion means a unique, "
+"counter-intuitive, disarming, provoking and transgressive approach. We "
+"believe in building bridges: architecture meets health, finance meets the "
+"social sphere, design meets ecology….<br /><br />\n"
+"    We believe in humour, which is vital to a free spirit. Humour is an "
+"active and liberating form of imagining. IP aspires to be a fun platform, "
+"one that can mobilize and excite people.<br /><br />\n"
+"    We believe in the need for a transition space that helps us all move "
+"from civic imagination to civic action, from inspiration to perspiration."
+"<br /><br />\n"
+"    We believe in the necessity to invent new terms around social "
+"innovation. This requires a renewed alphabet, the ability to connect "
+"apparently unrelated issues and to proceed by inspiring associations. We "
+"call this capacity the imaginative paths, to which we dedicate Imagination "
+"for People.<br /><br />\n"
 "    "
 msgstr ""
 "\n"
-"<p>Creemos en la virtud de la imaginación cívica, la imaginación al servicio del bien común. Incentivamos la creatividad útil, la <i>imaginación aplicada.</i><br /><br />Creemos en la virtud de una imaginación colectiva, acumulativa, colaborativa. La imaginación es la responsabilidad cívica de todos y está al alcance de todos. Esta <i>ubicuidad oportuna</i>  es la condición de todos los compromisos colectivos.<br /><br />Creemos en una <i>creatividad realista</i>  aplicada a problemas colectivos de amplitud local, humana, fácilmente manejable. Por lo tanto, en la cuestión del cambio climático, un tema demasiado amplio y demasiado abstracto, preferimos una granularidad más fina (transportes colectivos, vivienda responsable, etc.) que sea al alcance de iniciativas creativas más simples, más espontáneas, más operativas.<br /><br />Creemos en las historias llevadas por anónimos - individuos, asociaciones, colectivos o empresas - que inventan, prueban y mejoran sobre el terreno. Son éxitos ingeniosos, a menudo modestos, que no salen en los medios de comunicación. Imagination For People será a su manera, un <i>motor de búsqueda y valoración</i>. <br /><br />\n"
-"Creemos en la necesidad de una “vigilancia” universal sobre proyectos y actividades \"piloto\" concretos. Nuestros héroes son los que intentan, en cualquier parte del mundo, soluciones locales: los \"<i>hacedores</i>”, empresarios, profesionales y experimentadores.<br /><br />\n"
-"Aspiramos a una \"<i>acupuntura creativa</i> \", definida por la identificación de proyectos simbólicos a menudo finos y de tamaño pequeño , que pueden mover los grandes equilibrios con una modificación ejemplar de maneras de proceder y de vivir juntos.<br /><br />\n"
-"Creemos en la fórmula de Romain Rolland, adaptamos y adoptamos al mismo tiempo, \"combinar la experiencia del pesimismo al optimismo de la invención.</i> \"\n"
+"<p>Creemos en la virtud de la imaginación cívica, la imaginación al servicio "
+"del bien común. Incentivamos la creatividad útil, la <i>imaginación aplicada."
+"</i><br /><br />Creemos en la virtud de una imaginación colectiva, "
+"acumulativa, colaborativa. La imaginación es la responsabilidad cívica de "
+"todos y está al alcance de todos. Esta <i>ubicuidad oportuna</i>  es la "
+"condición de todos los compromisos colectivos.<br /><br />Creemos en una "
+"<i>creatividad realista</i>  aplicada a problemas colectivos de amplitud "
+"local, humana, fácilmente manejable. Por lo tanto, en la cuestión del cambio "
+"climático, un tema demasiado amplio y demasiado abstracto, preferimos una "
+"granularidad más fina (transportes colectivos, vivienda responsable, etc.) "
+"que sea al alcance de iniciativas creativas más simples, más espontáneas, "
+"más operativas.<br /><br />Creemos en las historias llevadas por anónimos - "
+"individuos, asociaciones, colectivos o empresas - que inventan, prueban y "
+"mejoran sobre el terreno. Son éxitos ingeniosos, a menudo modestos, que no "
+"salen en los medios de comunicación. Imagination For People será a su "
+"manera, un <i>motor de búsqueda y valoración</i>. <br /><br />\n"
+"Creemos en la necesidad de una “vigilancia” universal sobre proyectos y "
+"actividades \"piloto\" concretos. Nuestros héroes son los que intentan, en "
+"cualquier parte del mundo, soluciones locales: los \"<i>hacedores</i>”, "
+"empresarios, profesionales y experimentadores.<br /><br />\n"
+"Aspiramos a una \"<i>acupuntura creativa</i> \", definida por la "
+"identificación de proyectos simbólicos a menudo finos y de tamaño pequeño , "
+"que pueden mover los grandes equilibrios con una modificación ejemplar de "
+"maneras de proceder y de vivir juntos.<br /><br />\n"
+"Creemos en la fórmula de Romain Rolland, adaptamos y adoptamos al mismo "
+"tiempo, \"combinar la experiencia del pesimismo al optimismo de la invención."
+"</i> \"\n"
 "<br /><br />\n"
-"Creemos en la virtud de la transdisciplinariedad, sobre todo cuando es ingeniosa, única, contra-intuitiva, desarmadora, provocadora, transgresora. Creemos en todos los intentos de puentes: cuando la arquitectura se une a la salud, cuando las finanzas se unen a lo social, cuando el diseño se une a la ecología, cuando la tecnología se une a la solidaridad…\n"
+"Creemos en la virtud de la transdisciplinariedad, sobre todo cuando es "
+"ingeniosa, única, contra-intuitiva, desarmadora, provocadora, transgresora. "
+"Creemos en todos los intentos de puentes: cuando la arquitectura se une a la "
+"salud, cuando las finanzas se unen a lo social, cuando el diseño se une a la "
+"ecología, cuando la tecnología se une a la solidaridad…\n"
 "<br /><br />\n"
-"Creemos en la virtud del humor, que es prerrogativa de los espíritus libres. El humor es una forma activa y liberadora de la imaginación. IP se concibe como \"divertida\", capaz de movilizar y \"energetizar”.\n"
+"Creemos en la virtud del humor, que es prerrogativa de los espíritus libres. "
+"El humor es una forma activa y liberadora de la imaginación. IP se concibe "
+"como \"divertida\", capaz de movilizar y \"energetizar”.\n"
 "<br /><br />\n"
-"Creemos en la necesidad de un lugar de transición para pasar de la imaginación ciudadana a la acción cívica; en un lugar de reconciliación entre la idea (\"inspiración\") y el acto (\"sudor\").\n"
+"Creemos en la necesidad de un lugar de transición para pasar de la "
+"imaginación ciudadana a la acción cívica; en un lugar de reconciliación "
+"entre la idea (\"inspiración\") y el acto (\"sudor\").\n"
 "<br /><br />\n"
-"Creemos en la necesidad de inventar nuevos términos en torno a la innovación social y la imaginación ciudadana, y esto a través de un nuevo alfabeto: la capacidad de leer y expresar el mundo tal como se inventa, se experimenta y se proyecta todos los días. Llamamos a esta capacidad: el <i>alfabeto imaginativo</i>. Así que es a la creación de un <i>alfabeto imaginativo</i> para la comprensión y la difusión de la innovación social que dedicamos Imagination For People.\n"
+"Creemos en la necesidad de inventar nuevos términos en torno a la innovación "
+"social y la imaginación ciudadana, y esto a través de un nuevo alfabeto: la "
+"capacidad de leer y expresar el mundo tal como se inventa, se experimenta y "
+"se proyecta todos los días. Llamamos a esta capacidad: el <i>alfabeto "
+"imaginativo</i>. Así que es a la creación de un <i>alfabeto imaginativo</i> "
+"para la comprensión y la difusión de la innovación social que dedicamos "
+"Imagination For People.\n"
 "<br /><br />"
 
-#: templates/project-description.html:8 templates/privatebeta/base.html:67
-msgid "Project description"
-msgstr "Descripción del proyecto"
+#: templates/nav.html:32
+msgid "Project"
+msgstr ""
+
+#: templates/nav.html:33
+msgid "History"
+msgstr ""
+
+#: templates/nav.html:47
+msgid "other languages"
+msgstr ""
+
+#: templates/nav.html:58
+msgid "create a new translation"
+msgstr ""
 
 #: templates/project-description.html:11
 #, python-format
 msgid ""
 "\n"
-"      <div class=\"prezi-player\">\n"
-"\t<style type=\"text/css\" media=\"screen\">.prezi-player { width: 100%%; } .prezi-player-links { text-align: center; }</style>&nbsp;\n"
-"\t<object id=\"prezi_-3h9g23ttonb\" name=\"prezi_-3h9g23ttonb\" classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" width=\"100%%\" height=\"400\">\n"
-"\t  <param name=\"movie\" value=\"http://prezi.com/bin/preziloader.swf\"/>\n"
-"\t  <param name=\"allowfullscreen\" value=\"true\"/>\n"
-"\t  <param name=\"allowscriptaccess\" value=\"always\"/>\n"
-"\t  <param name=\"bgcolor\" value=\"#282828\"/>\n"
-"\t  <param name=\"flashvars\" value=\"prezi_id=-3h9g23ttonb&amp;lock_to_path=0&amp;color=282828&amp;autoplay=no&amp;autohide_ctrls=0\"/>\n"
-"\t  <embed id=\"preziEmbed_-3h9g23ttonb\" name=\"preziEmbed_-3h9g23ttonb\" src=\"http://prezi.com/bin/preziloader.swf\" type=\"application/x-shockwave-flash\" allowfullscreen=\"true\" allowscriptaccess=\"always\" width=\"100%%\" height=\"400\" bgcolor=\"#282828\" flashvars=\"prezi_id=-3h9g23ttonb&amp;lock_to_path=0&amp;color=282828&amp;autoplay=no&amp;autohide_ctrls=0\"></embed>\n"
-"\t  </object>\n"
-"\t  <div class=\"prezi-player-links\"></div>\n"
-"      </div>\n"
+"    <div class=\"prezi-player\">\n"
+"        <style type=\"text/css\" media=\"screen\">\n"
+"            .prezi-player {\n"
+"                width: 100%%;\n"
+"            }\n"
+"            \n"
+"            .prezi-player-links {\n"
+"                text-align: center;\n"
+"            }\n"
+"        </style>\n"
+"        <object id=\"prezi_pf-honkfcwnc\" name=\"prezi_pf-honkfcwnc\" "
+"classid=\"clsid:D27CDB6E-AE6D-11cf-96B8-444553540000\" width=100%% height="
+"\"400\">\n"
+"            <param name=\"movie\" value=\"http://prezi.com/bin/preziloader."
+"swf\" />\n"
+"            <param name=\"allowfullscreen\" value=\"true\" />\n"
+"            <param name=\"allowscriptaccess\" value=\"always\" />\n"
+"            <param name=\"bgcolor\" value=\"#ffffff\" />\n"
+"            <param name=\"flashvars\" value=\"prezi_id=pf-"
+"honkfcwnc&lock_to_path=0&color=ffffff&autoplay=no&autohide_ctrls=0\" />\n"
+"            <embed id=\"preziEmbed_pf-honkfcwnc\" \n"
+"                    name=\"preziEmbed_pf-honkfcwnc\" \n"
+"                    src=\"http://prezi.com/bin/preziloader.swf\" \n"
+"                    type=\"application/x-shockwave-flash\" \n"
+"                    allowfullscreen=\"true\" \n"
+"                    allowscriptaccess=\"always\"\n"
+"                     width=100%% \n"
+"                     height=\"400\" \n"
+"                     bgcolor=\"#ffffff\"\n"
+"                     flashvars=\"prezi_id=pf-"
+"honkfcwnc&lock_to_path=0&color=ffffff&autoplay=no&autohide_ctrls=0\">\n"
+"            </embed>\n"
+"        </object>\n"
+"        <div class=\"prezi-player-links\"></div>\n"
+"    </div>\n"
 "    "
 msgstr ""
 
+#: templates/backcap/feedback_detail.html:76
+msgid "This issue is closed."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:124
+#: templates/backcap/feedback_list.html:148
+msgid "Assigned to"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:129
+#, python-format
+msgid ""
+"\n"
+"                Posted %(since)s ago by\n"
+"                "
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:148
+msgid "is working on this. Poke him if you think it's taking too long !"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:156
+msgid "This issue is a duplicate of"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:157
+msgid "Please don't comment on this issue anymore."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:163
+#, fuzzy
+msgid "Description:"
+msgstr "Descripción del proyecto"
+
+#: templates/backcap/feedback_detail.html:167
+msgid "Comments:"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:177
+msgid "Post a new comment"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:187
+msgid "Post"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:192
+msgid "Comments closed."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:197
+msgid "This issue is"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:198
+msgid "Close issue"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:200
+msgid "Reported from:"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:205
+msgid "Edit"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:206
+msgid "Ping observers"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:211
+#: templates/backcap/feedback_new.html:85
+#: templates/backcap/feedback_tab.html:12
+msgid "See all feedbacks"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:7
+msgid "Help Center"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:67
+msgid "Feedbacks"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:74
+msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:86
+msgid ""
+"If you think one of these entries is important for you, then <strong>click "
+"on the '+' button</strong>. If you disagree or think this is not important "
+"at all, then <strong>click on '-'</strong>."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:90
+msgid ""
+"The <strong>highest the score</strong> an issue will get, the "
+"<strong>earlier we'll work on</strong> it."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:96
+#: templates/contact_form/contact_form_subject.txt:2
+msgid "New feedback"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:120
+#: templates/backcap/feedback_list.html:131
+msgid "Clear my vote"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:120
+msgid "Vote for"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:131
+msgid "Vote against"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:153
+#, python-format
+msgid ""
+"\n"
+"                                            Posted %(since)s ago by\n"
+"                                            "
+msgstr ""
+
+#: templates/backcap/feedback_list.html:162
+msgid "There's no feedback yet."
+msgstr ""
+
+#: templates/backcap/feedback_list.html:167
+msgid "previous"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:184
+msgid "next"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:192
+msgid "Display"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:195
+msgid "All"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:196
+msgid "Questions"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:197
+msgid "Problems"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:198
+msgid "Ideas"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:201
+msgid "Order by"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:203
+msgid "Score"
+msgstr ""
+
+#: templates/backcap/feedback_list.html:204
+msgid "Newest"
+msgstr ""
+
+#: templates/backcap/feedback_new.html:40
+msgid "New Feedback"
+msgstr ""
+
+#: templates/backcap/feedback_new.html:66
+msgid "Leave feedback"
+msgstr ""
+
+#: templates/backcap/feedback_new.html:81
+msgid ""
+"We are very eager you leave feedback to help us improve the website, thank "
+"you !"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:6
+msgid "I have a:"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:12
+msgid "And I want to tell you that:"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:16
+msgid "+ I have more to say !"
+msgstr ""
+
+#: templates/backcap/feedback_new_form.html:27
 #: templates/contact_form/contact_form.html:12
+#: templates/privatebeta/invite.html:73
 msgid "Send"
 msgstr "Enviar"
+
+#: templates/backcap/feedback_update.html:13
+msgid "Edit Feedback"
+msgstr ""
 
 #: templates/privatebeta/base.html:14
 msgid "Imagination for People"
 msgstr ""
 
 #: templates/privatebeta/base.html:47
-msgid "Detect, highlight and monetize social innovation that is truly disruptive."
+msgid ""
+"Detect, highlight and monetize social innovation that is truly disruptive."
 msgstr " "
-
-#: templates/privatebeta/base.html:60
-msgid "About imagination for people"
-msgstr "A propósito"
 
 #: templates/privatebeta/base.html:62
 msgid ""
 "\n"
-"\t\t  We believe in the virtue of civic imagination, imagination to serve the common good. Our filter is useful creativity or the imagination applied. \n"
+"\t\t  We believe in the virtue of civic imagination, imagination to serve "
+"the common good. Our filter is useful creativity or the imagination "
+"applied. \n"
 "\t\t  "
 msgstr ""
 "\n"
-"Creemos en la virtud de la imaginación cívica, la imaginación al servicio del bien común. Incentivamos la creatividad útil, la <i>imaginación aplicada</i>"
+"Creemos en la virtud de la imaginación cívica, la imaginación al servicio "
+"del bien común. Incentivamos la creatividad útil, la <i>imaginación "
+"aplicada</i>"
 
 #: templates/privatebeta/base.html:83
 msgid "Featured"
-msgstr ""
-
-#: templates/privatebeta/base.html:84
-msgid "Filters"
-msgstr "filtros"
-
-#: templates/privatebeta/base.html:85
-msgid "Help"
-msgstr "Ayuda"
-
-#: templates/privatebeta/base.html:86
-msgid "<span class='georgia'>My</span> imagination for people"
-msgstr ""
-
-#: templates/privatebeta/base.html:95
-msgid "Node view"
-msgstr ""
-
-#: templates/privatebeta/base.html:140
-msgid "&copy; 2011 Imagination for people – All rights reseved"
 msgstr ""
 
 #: templates/privatebeta/invite.html:11
@@ -134,11 +589,17 @@ msgstr "¿Quiénes somos?"
 #: templates/privatebeta/invite.html:14
 msgid ""
 "\n"
-"      Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together. \n"
+"      Imagination for People (IP) is a multilingual, Wikipedia-like open "
+"platform dedicated to disruptive social innovation. At a global scale, IP "
+"aims to detect, publicize, amplify and adapt creative solutions to the new "
+"challenges of living together. \n"
 "      "
 msgstr ""
 "\n"
-"Imagination For People es una plataforma web multilingüe dedicada a la Imaginación Ciudadana. Este espacio de intercambios se propone identificar y hacer crecer, a nivel mundial, experiencias inéditas en el campo de la innovación social."
+"Imagination For People es una plataforma web multilingüe dedicada a la "
+"Imaginación Ciudadana. Este espacio de intercambios se propone identificar y "
+"hacer crecer, a nivel mundial, experiencias inéditas en el campo de la "
+"innovación social."
 
 #: templates/privatebeta/invite.html:23
 msgid "Who is it for ?"
@@ -147,11 +608,17 @@ msgstr "¿Para quién?"
 #: templates/privatebeta/invite.html:26
 msgid ""
 "\n"
-"      Imagination for People gives voice to the many communities and individuals throughout the world who, with neither credit nor press, reinvent the world through tangible, exemplary and unique humanistic, social and civic undertakings.\n"
+"      Imagination for People gives voice to the many communities and "
+"individuals throughout the world who, with neither credit nor press, "
+"reinvent the world through tangible, exemplary and unique humanistic, social "
+"and civic undertakings.\n"
 "      "
 msgstr ""
 "\n"
-"Imagination For People está destinada al público más amplio posible (\"diseñado para el 99%), más allá de los activistas y de los \"convencidos\" de la innovación social. Buscamos lo que llamamos \"las comunidades sin una causa\"."
+"Imagination For People está destinada al público más amplio posible "
+"(\"diseñado para el 99%), más allá de los activistas y de los \"convencidos"
+"\" de la innovación social. Buscamos lo que llamamos \"las comunidades sin "
+"una causa\"."
 
 #: templates/privatebeta/invite.html:35
 msgid "Why IP ?"
@@ -160,11 +627,20 @@ msgstr "¿Por qué ?"
 #: templates/privatebeta/invite.html:38
 msgid ""
 "\n"
-"      Imagination for People is explicit in its focus on the uninhibited imagination. The experiences it aims to collect and expand upon are not only socially aware or environmentally sound, they are extraordinary, disruptive, audacious, and rule-changing. No open platform dedicated to civic imagination currently exists. \n"
+"      Imagination for People is explicit in its focus on the uninhibited "
+"imagination. The experiences it aims to collect and expand upon are not only "
+"socially aware or environmentally sound, they are extraordinary, disruptive, "
+"audacious, and rule-changing. No open platform dedicated to civic "
+"imagination currently exists. \n"
 "      "
 msgstr ""
 "\n"
-"El objetivo es conseguir que las personas identifiquen, compartan, apoyen y reproduzcan los proyectos sociales y ciudadanos más singulares e innovadores. Imagination For People optó por la imaginación radical. Los experimentos descritos extienden las fronteras de la economía social y solidaria: son impresionantes, perturbadores, inspiradores, y son insólitos en un determinado sector, en una determinada cultura o en el mundo."
+"El objetivo es conseguir que las personas identifiquen, compartan, apoyen y "
+"reproduzcan los proyectos sociales y ciudadanos más singulares e "
+"innovadores. Imagination For People optó por la imaginación radical. Los "
+"experimentos descritos extienden las fronteras de la economía social y "
+"solidaria: son impresionantes, perturbadores, inspiradores, y son insólitos "
+"en un determinado sector, en una determinada cultura o en el mundo."
 
 #: templates/privatebeta/invite.html:56
 msgid "Leave your email"
@@ -173,26 +649,34 @@ msgstr "Ingrese su e-mail"
 #: templates/privatebeta/invite.html:59
 msgid ""
 "\n"
-"      Leave your email if you want to be involved and be updated on IP and feel free to add any comment.\n"
+"      Leave your email if you want to be involved and be updated on IP and "
+"feel free to add any comment.\n"
 "      "
 msgstr ""
 "\n"
-"Ingrese su e-mail para que se le mantenga informado de los avances del proyecto y puesta al día. Escribe un comentario si desea participar."
-
-#: templates/privatebeta/invite.html:73
-msgid "Envoyer"
-msgstr "Enviar"
+"Ingrese su e-mail para que se le mantenga informado de los avances del "
+"proyecto y puesta al día. Escribe un comentario si desea participar."
 
 #: templates/privatebeta/sent.html:16
 msgid "Thanks for your interest"
 msgstr "Gracias por su participación"
 
 #: templates/privatebeta/sent.html:20
+#, fuzzy
 msgid ""
 "\n"
-"\t\t\tThe team at Imagination for People would like to thank you for your interest as we embark upon this new adventure in the civic imagination. We are currently developing a Beta version of our site which we expect will be online in March of 2011. True to the spirit of Imagination for People, all of the programming, the design of the logo and the content is open source.<br /><br />\n"
-"\t\t\tAs of March 2011, it will be your turn, should you be interested, to share your comments, improvements and interests so that the Imagination for People platform meets your expectations. <br /><br />\n"
-"\t\t\tWe will keep you regularly informed as we advance during this short development period. Thank you for being part of the \"early bird\" IP community!<br /><br />\n"
+"\t\t\tThe team at Imagination for People would like to thank you for your "
+"interest as we embark upon this new adventure in the civic imagination. We "
+"are currently developing a Beta version of our site which we expect will be "
+"online in March of 2011. True to the spirit of Imagination for People, all "
+"of the programming, the design of the logo and the content is open source."
+"<br /><br />\n"
+"\t\t\tAs of June 2011, it will be your turn, should you be interested, to "
+"share your comments, improvements and interests so that the Imagination for "
+"People platform meets your expectations. <br /><br />\n"
+"\t\t\tWe will keep you regularly informed as we advance during this short "
+"development period. Thank you for being part of the \"early bird\" IP "
+"community!<br /><br />\n"
 "\t\t\t- The Imagination for People team\n"
 "\t\t\t"
 msgstr ""
@@ -206,3 +690,6 @@ msgstr "Escribe un comentario"
 #: templates/privatebeta/sent.html:32
 msgid "Back"
 msgstr "Volver"
+
+#~ msgid "Envoyer"
+#~ msgstr "Enviar"

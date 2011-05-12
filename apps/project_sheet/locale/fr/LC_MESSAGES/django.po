@@ -2,40 +2,38 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-10 19:47+0200\n"
-"PO-Revision-Date: 2011-04-28 11:58\n"
-"Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
+"POT-Creation-Date: 2011-05-12 17:54+0200\n"
+"PO-Revision-Date: 2011-05-12 17:55\n"
+"Last-Translator:   <alban@plop.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Translated-Using: django-rosetta 0.5.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
 #: filters.py:57
 msgid "Title must contains"
-msgstr ""
+msgstr "Titre doit contenir"
 
 #: filters.py:69
-#, fuzzy
 msgid "Objective is"
-msgstr "Objectif:"
+msgstr "L'objectif est :"
 
 #: filters.py:81
 msgid "Themes contain"
-msgstr ""
+msgstr "Thèmes contiennent"
 
 #: filters.py:92
-#, fuzzy
 msgid "Created "
-msgstr "Liens"
+msgstr "Crée "
 
 #: models.py:24 models.py:122
 msgid "description"
@@ -79,7 +77,7 @@ msgstr "site web"
 
 #: models.py:59
 msgid "project leader information"
-msgstr ""
+msgstr "Information du responsable de projet"
 
 #: models.py:63
 msgid "location"
@@ -186,14 +184,17 @@ msgid "Cancel"
 msgstr "Annuler"
 
 #: templates/project_sheet/about_section.html:38
-#: templates/project_sheet/about_section.html:49
-msgid "what’s make my project an innovant project ?"
-msgstr "En quoi ce projet est il singulier et créatif ? :"
+msgid "project description"
+msgstr "Décrire le projet"
 
 #: templates/project_sheet/about_section.html:39
 #: templates/project_sheet/about_section.html:50
 msgid "click here to describe your project"
 msgstr "Cliquez ici pour décrire votre projet"
+
+#: templates/project_sheet/about_section.html:49
+msgid "what’s make my project an innovant project ?"
+msgstr "En quoi ce projet est il singulier et créatif ? :"
 
 #: templates/project_sheet/grey_column.html:11
 msgid "edit"
@@ -270,18 +271,16 @@ msgid "upload a media"
 msgstr "télécharger un média"
 
 #: templates/project_sheet/media_gallery.html:16
-#, fuzzy
 msgid "Image to upload :"
-msgstr "Choisissez une image à télécharger"
+msgstr "Image à télécharger"
 
 #: templates/project_sheet/media_gallery.html:29
 msgid "Upload"
 msgstr "Upload"
 
 #: templates/project_sheet/media_gallery.html:39
-#, fuzzy
 msgid "Video link (youtube, dailymotion, etc): "
-msgstr "ajouter une vidéo (youtube, dailymotion, etc):"
+msgstr "Vidéo à ajouter (youtube, dailymotion, etc):"
 
 #: templates/project_sheet/media_gallery.html:55
 msgid "Add"
@@ -352,7 +351,7 @@ msgstr "Trouver des projets sur Imagination for People"
 
 #: templates/project_sheet/project_filter.html:30
 msgid "filter"
-msgstr ""
+msgstr "filtre"
 
 #: templates/project_sheet/project_sheet.html:12
 msgid "start project"
@@ -360,7 +359,7 @@ msgstr "démarrer un projet"
 
 #: templates/project_sheet/project_sheet.html:174
 msgid "This bloc is empty : don’t forget to fill it !"
-msgstr ""
+msgstr "Ce bloc est vide: n'oubliez pas de le remplir!"
 
 #: templates/project_sheet/project_sheet.html:190
 #: templates/project_sheet/scalability_section.html:27
@@ -369,6 +368,8 @@ msgid ""
 "This bloc is empty : don’t forget to fill it ! A good project is a complete "
 "project !"
 msgstr ""
+"Ce bloc est vide: n'oubliez pas de le remplir! Un bon projet est un projet "
+"complet!"
 
 #: templates/project_sheet/project_sheet.html:357
 msgid "my project title"
@@ -440,7 +441,7 @@ msgstr "Quel est le potentiel de déploiement de cette initative"
 
 #: templates/project_sheet/sidebar_related.html:16
 msgid "Objective :"
-msgstr "Objectif:"
+msgstr "Objectif :"
 
 #: templates/project_sheet/sidebar_related.html:26
 msgid "select your tags from the cloud below"
