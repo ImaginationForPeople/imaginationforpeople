@@ -39,7 +39,7 @@ a.trigger {
      background:#666 url(images/minus.png) 6% 55% no-repeat;
  }
 
-.panel {
+.feedback-panel {
      color:#CCC;
      position: absolute;
      display: none;
@@ -48,7 +48,7 @@ a.trigger {
      z-index:2000;
  }
 
-.panel.left {
+.feedback-panel.left {
      left: 0;
      padding: 20px 30px 20px 100px;
      border-top-right-radius: 15px;
@@ -59,7 +59,7 @@ a.trigger {
      border-bottom-right-radius: 15px;
  }
 
-.panel.right {
+.feedback-panel.right {
     right: 0;
     padding: 20px 100px 20px 30px;
     border-bottom-left-radius: 15px;
@@ -75,7 +75,7 @@ a.trigger {
      
  }
 
-.panel p {
+.feedback-panel p {
      font-size:11px;
  }
 
