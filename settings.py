@@ -152,7 +152,7 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_PATH, 'apps/member/templates'),
-    os.path.join(PROJECT_PATH, 'templates'),
+    os.path.join(PROJECT_PATH, 'apps/i4p_base/templates'),
 )
 
 INSTALLED_APPS = (
