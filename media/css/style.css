@@ -1,12 +1,18 @@
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
 
-.categories .menu ul li, .search, .toolbox{
+.categ-button, .categ-button2, .search, .toolbox{
     display:none;
     visibility:hidden;
 }
 
 .categories .menu ul li:first-child{
+    display:block;
+    visibility:visible;
+    border-right:1px solid #676665;
+}
+
+.categories .menu  .selected .categ-button{
     display:block;
     visibility:visible;
     border-right:1px solid #676665;
