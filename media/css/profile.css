@@ -173,7 +173,11 @@
     position:absolute !important;
     bottom:25px !important;
     top:auto !important;
-    left:214px;
+    right:-14px;
+}
+
+#signin_form  .button{
+    left:210px; !important;
 }
 
 #profile.profile_edition .button:hover{
@@ -190,7 +194,7 @@
 
 #password_change_form p{
     width:56%;
-    float:left;
+    /*float:left;*/
     position:relative !important;
 }
 
@@ -232,14 +236,27 @@
 }
 
 .errorlist{
-    float:right;
-    top:8px;
+    /*float:right;
+    top:8px;*/
     display:block;
     position:relative;
-    right:220px;
-    margin-bottom:18px;
+    /*right:220px;*/
+    margin-top:18px;
     clear:both;
     
+}
+
+.errorlist li{
+   /* margin-left:30%;*/
+   margin-left:130px;
+}
+
+#password_change_form .errorlist li{
+    margin-left:338px;
+}
+
+#email_change_form  .errorlist li{
+    margin-left:150px;
 }
 
 #signin_form{

@@ -26,7 +26,7 @@
 
                 {% include "userena/profile_idbar.html" %}
 
-                <form action="" enctype="multipart/form-data" method="post">
+                <form action="" method="post">
                    
                    <div class="separator">
                         <h2>
@@ -37,15 +37,22 @@
                     {% csrf_token %}
                     
                     <div class="grid_8 alpha">
+                        {{ form.gender.errors }}
                         <p>{{ form.gender.label_tag }}{{ form.gender}}</p>
+                        {{ form.first_name.errors }}
                         <p>{{ form.first_name.label_tag }}{{ form.first_name}}</p>
+                        {{ form.last_name.errors }}
                         <p>{{ form.last_name.label_tag }}{{ form.last_name}}</p>
+                        {{ form.mugshot.errors }}
                         <p><label for="id_mugshot">{% trans 'Avatar' %}</label>{{ form.mugshot}}</p>
+                        {{ form.privacy.errors }}
                         <p>{{ form.privacy.label_tag }}{{ form.privacy}}</p>
                     </div>
                     
                     <div class="grid_10 omega">
+                        {{ form.motto.errors }}
                         <p>{{ form.motto.label_tag }}{{ form.motto}}</p>
+                        {{ form.about.errors }}
                         <p>{{ form.about.label_tag }}{{ form.about}}</p>
                     </div>
                     
@@ -57,13 +64,17 @@
                         </h2>
                     </div>
                     
-                    <div class="grid_8 alpha">
+                    <div class="grid_8 alpha">                   
+                        {{ form.language.errors }}
                         <p>{{ form.language.label_tag }}{{ form.language}}</p>
+                        {{ form.birthday.errors }}
                         <p>{{ form.birthday.label_tag }}{{ form.birthday}}</p>
                     </div>
                     
                     <div class="grid_10 omega">
+                        {{ form.address.errors }}
                         <p>{{ form.address.label_tag }}{{ form.address}}</p>
+                        {{ form.country.errors }}
                         <p>{{ form.country.label_tag }}{{ form.country}}</p>
                     </div>
                     
@@ -76,9 +87,14 @@
                     </div>
                     
                     <div class="grid_8 alpha">
+                    
+                        {{ form.website.errors }}
                         <p>{{ form.website.label_tag }}{{ form.website}}</p>
+                        {{ form.linkedin.errors }}
                         <p>{{ form.linkedin.label_tag }}{{ form.linkedin}}</p>
+                        {{ form.twitter.errors }}
                         <p>{{ form.twitter.label_tag }}{{ form.twitter}}</p>
+                        {{ form.facebook.errors }}
                         <p>{{ form.facebook.label_tag }}{{ form.facebook}}</p>
                     </div>
                     
