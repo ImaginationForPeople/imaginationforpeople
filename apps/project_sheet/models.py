@@ -151,7 +151,7 @@ class ProjectMember(models.Model):
                                null=True)
 
     def __unicode__(self):
-        return "%s - %s" % (project, user)
+        return "%s - %s" % (self.project, self.user)
 
 
 # Reversions
