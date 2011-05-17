@@ -23,6 +23,7 @@ TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     ('Simon Sarazin', 'simonsarazin@imaginationforpeople.com'),
     ('Guillaume Libersat', 'guillaume@fuzzyfrequency.com'),
+    ('Alban Tiberghien', 'alban.tiberghien@gmail.com'),
 )
 
 MANAGERS = (
