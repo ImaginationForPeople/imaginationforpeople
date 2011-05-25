@@ -29,6 +29,7 @@
 				<div class="menu">
 					
 					<ul>
+                        {% if project_translation %}
 						<li class="selected"><div class="categ-button first"><a href="#">{% trans "Project" %}</a></div></li>
 						<li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}">{% trans "History" %}</a></div></li>
 						<!--
@@ -36,6 +37,7 @@
 						<li><div class="categ-button"><a href="#">Help</a></div></li>
 						<li><div class="categ-button2"><a href="#"><span class="georgia">My</span> imagination for people</a></div></li>
 						-->
+                        {% endif %}
 					</ul>
 					
 					<div id="langage-tool" class="grid_5 omega">				
