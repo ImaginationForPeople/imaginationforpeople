@@ -1,7 +1,7 @@
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
 
-.categ-button2, .search, .toolbox{
+.categ-button2, .toolbox{
     display:none;
     visibility:hidden;
 }
@@ -451,6 +451,10 @@ ul li{
 
 }
 
+.categories .menu .categ-button.first{
+    border-left:1px solid #676665;
+}
+
 .categories .menu ul li  .categ-button{
 
 	position:relative;
@@ -463,7 +467,7 @@ ul li{
 	padding-top:8px;	
 
 	/*border-top:1px solid #676665;*/
-	border-left:1px solid #676665;
+	/*border-left:1px solid #676665;*/
 
 	text-align:center;
 	
@@ -684,8 +688,8 @@ ul li{
 
 	height:40px;
 	position:relative;
-	float:left;
-	top:-1px;
+	float:right;
+    top:-1px;
 	padding-left:5px;
 }
 

@@ -17,12 +17,13 @@
 					
 				<div class="clear"></div>
 				
-				<p class="media_desc_up left">{{picture_form.desc.label_tag}} : {{picture_form.desc}}</p>
+				<p class="media_desc_up">{{picture_form.desc.label_tag}} {{picture_form.desc}}</p>
+                <p class="media_licence_up">{{picture_form.author.label_tag}} {{picture_form.author}}</p>
+				<p class="media_licence_up">{{picture_form.source.label_tag}} {{picture_form.source}}</p>
 				<p class="media_licence_select">	
-					{{picture_form.license.label_tag}} : {{picture_form.license}} 						
+					{{picture_form.license.label_tag}} {{picture_form.license}} 						
 				</p>
-				<p class="media_licence_up left">{{picture_form.author.label_tag}} : {{picture_form.author}}</p>
-				<p class="media_licence_up left">{{picture_form.source.label_tag}} : {{picture_form.source}}</p>
+				
 				
 				<div class="clear"></div>
 				
@@ -35,7 +36,7 @@
 		{% else %}
 			<form method="post" id="vid_upload_form"  action="{% url project_sheet-add-video %}">{% csrf_token %}
 		{% endif %}
-			<p>
+			<p class="media_movie_upload">
 				<label for="#" class="bold">{% trans "Video link (youtube, dailymotion, etc): "|capfirst %}</label><span class="precision"></span>
 				{{ video_form.video_url }}
 				<input class="greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" Alt="Ok" />

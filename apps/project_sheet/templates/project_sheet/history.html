@@ -1,15 +1,9 @@
 {% extends "project_sheet/project_base.html" %}
 {% load i18n %}
 
-{% block extra_head %}
-  {{block.super}}
-  
-  <style>
-    ul.history li {
-    display: block;
-    list-style-type: circle;
-    }
-  </style>
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/history.css" />
 {% endblock %}
 
 
@@ -19,12 +13,14 @@
 
 <ul class="history">
 {% for version, fields in versions.iteritems %}
-<li>{{version.revision.user}}, {{version.revision.date_created|date:_("DATETIME_FORMAT")}}, 
-
+    
     {% for field in fields %}
-        {{field}} 
+    <li>{% trans "Done the" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} <a href="#" class="link">{{version.revision.user}}</a> {% trans "on the field" %}
+    <strong>{% trans '"' %}{{field}}{% trans '"' %}</strong>
+     
+    </li>   
     {% endfor %}
-</li>
+
 {% endfor %}
 </ul>
 {% endblock %}
