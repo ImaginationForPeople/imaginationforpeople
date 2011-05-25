@@ -1,0 +1,30 @@
+{% extends "project_sheet/project_base.html" %}
+{% load i18n %}
+
+{% block extra_head %}
+  {{block.super}}
+  
+  <style>
+    ul.history li {
+    display: block;
+    list-style-type: circle;
+    }
+  </style>
+{% endblock %}
+
+
+{% block nav %} {% include "nav.html" %} {% endblock %}
+
+{% block project_content %}
+
+<ul class="history">
+{% for version, fields in versions.iteritems %}
+<li>{{version.revision.user}}, {{version.revision.date_created|date:_("DATETIME_FORMAT")}}, 
+
+    {% for field in fields %}
+        {{field}} 
+    {% endfor %}
+</li>
+{% endfor %}
+</ul>
+{% endblock %}

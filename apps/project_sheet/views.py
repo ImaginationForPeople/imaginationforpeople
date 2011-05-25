@@ -10,12 +10,14 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 
 from localeurl.templatetags.localeurl_tags import chlocale
+from reversion.models import Version
 
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
 from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug
 from .filters import TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm, FilterSet
+from django.contrib.contenttypes.generic import GenericForeignKey
 
 def project_sheet_list(request, queryset=None):
     """
@@ -300,6 +302,9 @@ def project_sheet_edit_references(request, project_slug):
     return redirect(project_translation)
 
 def project_sheet_filter(request):
+    """
+    Show project sheet filters
+    """
     language_code = translation.get_language()
 
     filter_forms = [TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm]
@@ -318,23 +323,53 @@ def project_sheet_filter(request):
 
 def project_sheet_member_delete(request, project_slug, username):
     """
-    Delete a projet member
+    Delete a project member
     """
     language_code = translation.get_language()
-    
+
     # get the project translation and its base
     project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
                                                           language_code=language_code)
 
     parent_project = project_translation.project
 
-    project_member = get_object_or_404(ProjectMember, 
+    project_member = get_object_or_404(ProjectMember,
                                        user__username=username,
                                        project=parent_project)
-    
+
     project_member.delete()
 
     return redirect(project_translation)
-    
 
+
+def project_sheet_history(request, project_slug):
+    """
+    Show the history of a project member
+    """
+    language_code = translation.get_language()
+
+        # get the project translation and its base
+    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                          language_code=language_code)
+
+    parent_project = project_translation.project
+
+    versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
+
+    version_field_diff = {}
+    previous_version = None
+    for version in versions:
+        if previous_version:
+            version_field_diff[version] = []
+            previous_field_dict = previous_version.get_field_dict()
+            current_field_dict = version.get_field_dict()
+            for field, value in current_field_dict.iteritems():
+                if previous_field_dict.has_key(field) and previous_field_dict[field] != value:
+                    version_field_diff[version].append(version.content_type.model_class()._meta.get_field(field).verbose_name + '')
+        previous_version = version
+
+    return render_to_response('project_sheet/history.html',
+                              {'project_translation' : project_translation,
+                               'versions' : version_field_diff},
+                              context_instance=RequestContext(request))
 
