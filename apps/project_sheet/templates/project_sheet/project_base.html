@@ -2,7 +2,8 @@
 {% load i18n %}
 {% load compress %}
 
-{% block extra_head %}
+{% block style %}
+  {{ block.super }}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project.css" />
   {% endcompress %}

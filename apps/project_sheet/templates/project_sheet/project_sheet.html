@@ -15,16 +15,36 @@
     | Imagination for People
 {% endblock %}
 
-{% block extra_head %}
+{% block style %}
   {{ block.super }}
-  
   {% compress css %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/confirm.css" type="text/css" media="screen" />
-  {% endcompress %}
 
+  
+  <style type="text/css">
+  .dynamic-form {
+      width: 100%;
+    }
+    
+    .dynamic-form input{
+    width: 90%;
+    border: 1px solid #AAAAAA;
+    margin-bottom: 5px;
+    padding: 4px;
+    font-size: 11px;
+    color: #838181;
+    }
+    </style>
+
+  {% endcompress %}
+{% endblock %}
+
+{% block extra_head %}
+  {{ block.super }}
+  
   <script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
 
   {% compress js %}
@@ -63,16 +83,13 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.simpleImageCheck-0.4.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.formset.js"></script>
-
   {% endcompress %}
 
   {% compress js %}
   <!-- Sidebar -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js"></script>
-  {% endcompress %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js" defer="defer"></script>
   
-    
-  <script type="text/javascript">
+  <script type="text/javascript" defer="defer">
  
     $(document).ready(function(){ 
         $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
@@ -80,7 +97,56 @@
   </script>
 
 
-  <script type="text/javascript">
+  <!-- Team section -->
+  <script type="text/javascript" defer="defer">
+    $(document).ready(function() {
+	$("#member_list_edit").hide();
+
+	$(".grey_column_team_buttons").hide();
+
+	$("#member_list li").hover(function() {
+	    $(this).find(".grey_column_team_buttons").show();
+	}, function() {
+	    $(this).find(".grey_column_team_buttons").fadeOut("fast");
+	});
+    });
+  </script>
+
+  <!-- Project infos -->
+  <script type="text/javascript" defer="defer">
+    $(document).ready(function() {
+	var project_infos_block_edit = $('#project_infos_block_edit')
+	var project_infos_block = $('#project_infos_block');
+	var project_infos_edit_button = $('#project_infos_block_edit_button');
+	var project_infos_edit_button_cancel = $('#project_infos_block_edit_button_cancel');
+
+	project_infos_block_edit.hide();
+
+	/* When clicking on the edit pencil, for the project infos section */
+	project_infos_edit_button.click(function() {
+	    project_infos_block.hide();
+	    project_infos_block_edit.show();
+
+	    return false;
+	});
+
+	/* When clicking on the [X] button in inline edit mode */
+	project_infos_edit_button_cancel.click(function() {
+	    project_infos_block_edit.hide();
+	    project_infos_block.show();
+	    project_infos_edit_button.hide();
+
+	    return false;
+	});
+    });
+  </script>
+
+
+  {% endcompress %}
+
+
+
+  <script type="text/javascript" defer="defer">
     $(document).ready(function() {
 	var tags = $("#themes_tags").tagit({
 	    itemName: 'themes',
@@ -104,7 +170,7 @@
   </script>
 
 
-  <script type="text/javascript">
+  <script type="text/javascript" defer="defer">
     function on_project_themes_updated(data) {
         if ( data == Dajaxice.EXCEPTION ) { alert('error'); }
         else {
@@ -133,7 +199,7 @@
 
   </script>
 
-  <script type="text/javascript">
+  <script type="text/javascript" defer="defer">
     $(document).ready(function() {
 
      /* FIXME: These two functions need to be merged somewhat */
@@ -235,36 +301,9 @@
     });
   </script>
 
-  <script type="text/javascript">
-    $(document).ready(function() {
-	var project_infos_block_edit = $('#project_infos_block_edit')
-	var project_infos_block = $('#project_infos_block');
-	var project_infos_edit_button = $('#project_infos_block_edit_button');
-	var project_infos_edit_button_cancel = $('#project_infos_block_edit_button_cancel');
-
-	project_infos_block_edit.hide();
-
-	/* When clicking on the edit pencil, for the project infos section */
-	project_infos_edit_button.click(function() {
-	    project_infos_block.hide();
-	    project_infos_block_edit.show();
-
-	    return false;
-	});
-
-	/* When clicking on the [X] button in inline edit mode */
-	project_infos_edit_button_cancel.click(function() {
-	    project_infos_block_edit.hide();
-	    project_infos_block.show();
-	    project_infos_edit_button.hide();
-
-	    return false;
-	});
-    });
-  </script>
 
   <!-- References section -->
-  <script type="text/javascript">
+  <script type="text/javascript" defer="defer">
     $(document).ready(function() {
     	$('#reference_form tr').formset();
     	
@@ -307,35 +346,7 @@
     });
   </script>
 
-  <!-- Team section -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-	$("#member_list_edit").hide();
 
-	$(".grey_column_team_buttons").hide();
-
-	$("#member_list li").hover(function() {
-	    $(this).find(".grey_column_team_buttons").show();
-	}, function() {
-	    $(this).find(".grey_column_team_buttons").fadeOut("fast");
-	});
-    });
-  </script>
-
-    <style>
-        .dynamic-form {
-            width: 100%;
-        }
-        
-        .dynamic-form input{
-            width: 90%;
-            border: 1px solid #AAAAAA;
-            margin-bottom: 5px;
-            padding: 4px;
-            font-size: 11px;
-            color: #838181;
-        }
-    </style>
 
 {% endblock %}
 
@@ -428,7 +439,9 @@
 			{% if project.location.address %}
             {{ project.location.address }} -
             {% endif %}
+	    {% if project.location.country %}
 			  <img src="{{ project.location.country.flag }}" alt="{{ project.location.country }}"/> {{ project.location.country.name }}
+			  {% endif %}
 			{% if project.location.lat %}
 			<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
 			{% endif %}
