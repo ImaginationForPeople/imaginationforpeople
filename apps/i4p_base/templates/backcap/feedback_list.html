@@ -196,8 +196,9 @@ $(document).ready(function() {
                                     <li class="ui-corner-all {% if qtype == 'P' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'P' %}?order={{order}}">{% trans "Problems" %}</a></li>
                                     <li class="ui-corner-all {% if qtype == 'I' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'I' %}?order={{order}}">{% trans "Ideas" %}</a></li>
                                 </ul>
-
+                                <div class="clear"></div>
                                 <h4>{% trans "Order by" %}</h4>
+                                <div class="clear"></div>
                                 <ul id="feedback-order">
                                     <li class="ui-corner-all {% if order == 'score' %}order-on{% endif %}"><a class="button" href="{% url feedback-list qtype %}?order=score">{% trans "Score" %}</a></li>
                                     <li class="ui-corner-all {% if order == 'newest' %}order-on{% endif %}"><a class="button" href="{% url feedback-list qtype %}?order=newest">{% trans "Newest" %}</a></li>
