@@ -30,7 +30,7 @@
 					
 					<ul>
                         {% if project_translation %}
-						<li class="selected"><div class="categ-button first"><a href="#">{% trans "Project" %}</a></div></li>
+						<li class="selected"><div class="categ-button first"><a href="{% url project_sheet-show project_translation.slug %}">{% trans "Project" %}</a></div></li>
 						<li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}">{% trans "History" %}</a></div></li>
 						<!--
 						<li><div class="categ-button"><a href="#">Filters</a></div></li>
