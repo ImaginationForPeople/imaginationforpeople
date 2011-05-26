@@ -1,7 +1,7 @@
-
 {% extends "base.html" %}
 
 {% load i18n %}
+{% load compress %}
 
 {% block javascript %}
   <script type="text/javascript">
@@ -31,8 +31,10 @@
 
 
 {% block style %}
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/no-nav.css" />
+  {% compress csss %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
+  {% endcompress %}
 {% endblock %}
 
 

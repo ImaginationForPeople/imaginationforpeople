@@ -1,9 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load compress %}
 
 {% block style %}
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/homepage.css" />
+  {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
+    {% endcompress %}
 {% endblock %}
 
 
@@ -24,7 +27,7 @@
                         <a href="http://alpha.imaginationforpeople.org/wakka.php?wiki=vpresentation" class="manifesto-link" rel="noindex, nofollow">{% trans "Project description" %} ></a>
                     </div>
                     <div class="grid_12 omega">						
-                        <img src="{{ MEDIA_URL }}/images/teaser/teaser.png" alt="Imagination for People preview" />					
+                        <img src="{{ STATIC_URL }}images/teaser/teaser.png" alt="Imagination for People preview" />					
                     </div>
                 </div>		
             </div>
@@ -49,10 +52,10 @@
                     <div class="toolbox">
                         <div class="tools-title georgia">{% trans "Node view" %}</div>
                         <div class="tools">
-                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool1.png" /></a>
-                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool2.png" /></a>
-                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool3.png" /></a>
-                            <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool4-selected.png" /></a>
+                            <a href="#"><img src="{{ STATIC_URL }}images/base/tool1.png" /></a>
+                            <a href="#"><img src="{{ STATIC_URL }}images/base/tool2.png" /></a>
+                            <a href="#"><img src="{{ STATIC_URL }}images/base/tool3.png" /></a>
+                            <a href="#"><img src="{{ STATIC_URL }}images/base/tool4-selected.png" /></a>
                         </div>
                     </div>
                 </div>

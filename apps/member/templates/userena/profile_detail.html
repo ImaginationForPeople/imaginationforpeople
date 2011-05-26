@@ -1,16 +1,17 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load compress %}
 
 {% block meta_desc %}{% endblock %}
 {% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile{% endblocktrans %} | Imagination for People{% endblock %}
 
 
 {% block style %}
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/profile.css" />
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/project_card.css" />
-
-
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
+  {% endcompress %}
 {% endblock %}
 
 

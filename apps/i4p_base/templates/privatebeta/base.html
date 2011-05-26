@@ -1,6 +1,5 @@
 {% load i18n %}
 {% load localeurl_tags %}
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head> 
@@ -9,17 +8,20 @@
     <meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale" /> 
     <meta name="description" content="Imagination 4 People" /> 
 
-    <link rel="icon" type="image/png" href="{{ MEDIA_URL }}/images/i4p-ico.png" />
+    <link rel="icon" type="image/png" href="{{ STATIC_URL }}images/i4p-ico.png" />
 
     <title>{% trans "Imagination for People" %}</title>
 
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" /> 
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style_beta.css" />
-
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/jquery/colorbox.css" />
-
-    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery-1.5.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.colorbox.js"></script>
+      {% compress css %}
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" /> 
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style_beta.css" />
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/colorbox.css" />
+      {% endcompress %}
+      
+    {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.5.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.colorbox.js"></script>
+    {% endcompress %}
 
     {% block extra_head %}{% endblock %}
   </head>
@@ -32,7 +34,7 @@
 	  <div class="grid_18 alpha omega">
 	    <div class="logo">
 	      <a href="{% url privatebeta_invite %}">
-		<img src="{{ MEDIA_URL }}/images/base/logo.png" alt="Imagination for People" border="0"/>
+		<img src="{{ STATIC_URL }}images/base/logo.png" alt="Imagination for People" border="0"/>
 	      </a>
 	    </div>
 	    <div class="linkbox">   
@@ -67,7 +69,7 @@
 		<a href="{% url project-description %}" class="manifesto-link">{% trans "Project description" %} ></a>
 	      </div>
 	      <div class="grid_12 omega">						
-		<img src="{{ MEDIA_URL }}/images/teaser/teaser.png" alt="Imagination for People preview" />					
+		<img src="{{ STATIC_URL }}images/teaser/teaser.png" alt="Imagination for People preview" />					
 	      </div>
 	    </div>		
 	  </div>
@@ -94,10 +96,10 @@
 		  <div class="toolbox">
 		    <div class="tools-title georgia">{% trans "Node view" %}</div>
 		    <div class="tools">
-		      <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool1.png" /></a>
-		      <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool2.png" /></a>
-		      <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool3.png" /></a>
-		      <a href="#"><img src="{{ MEDIA_URL }}/images/base/tool4-selected.png" /></a>
+		      <a href="#"><img src="{{ STATIC_URL }}images/base/tool1.png" /></a>
+		      <a href="#"><img src="{{ STATIC_URL }}images/base/tool2.png" /></a>
+		      <a href="#"><img src="{{ STATIC_URL }}images/base/tool3.png" /></a>
+		      <a href="#"><img src="{{ STATIC_URL }}images/base/tool4-selected.png" /></a>
 		    </div>
 		  </div>
 		</div>
@@ -110,9 +112,9 @@
 	    <div class="container_18">
 	      <div class="grid_18 alpha omega">
 		<div class="paging">					
-		  <a href="#"><img src="{{ MEDIA_URL }}/images/base/paging-on.png" /></a>
-		  <a href="#"><img src="{{ MEDIA_URL }}/images/base/paging-off.png" /></a>
-		  <a href="#"><img src="{{ MEDIA_URL }}/images/base/paging-off.png" /></a>
+		  <a href="#"><img src="{{ STATIC_URL }}images/base/paging-on.png" /></a>
+		  <a href="#"><img src="{{ STATIC_URL }}images/base/paging-off.png" /></a>
+		  <a href="#"><img src="{{ STATIC_URL }}images/base/paging-off.png" /></a>
 		</div>
 		<div class="block-content"> 
 		  {% block content %}{% endblock content %} 				
@@ -128,8 +130,8 @@
 	      <div class="grid_18 alpha omega">
 		<div class="social-networks">		
 		  <ul>
-		    <li><a href="#"><img src="{{ MEDIA_URL }}/images/base/facebook-logo.jpg" alt="facebook" /></a></li>
-		    <li><a href="#"><img src="{{ MEDIA_URL }}images/base/twitter-logo.jpg"alt="twitter" /></a></li>
+		    <li><a href="#"><img src="{{ STATIC_URL }}images/base/facebook-logo.jpg" alt="facebook" /></a></li>
+		    <li><a href="#"><img src="{{ STATIC_URL }}images/base/twitter-logo.jpg"alt="twitter" /></a></li>
 		  </ul>
 		</div>
 		<ul>

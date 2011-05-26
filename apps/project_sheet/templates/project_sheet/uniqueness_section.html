@@ -10,14 +10,14 @@
 			<form class="project_details_body_edit" action="{% url project_sheet-edit-field 'uniqueness_section' %}" method="post">{% csrf_token %}
 		{% endif %}
 			{{uniqueness_section_form.uniqueness_section}}
-			<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />	
-			<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
+			<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />	
+			<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
 	</form>
 {% else %}
 	{% if project_translation %}
 		<div id="uniqueness_section" class="project_details_title_edit">
 			<h2>{% trans "how unique and creative is the experience"|capfirst %}?</h2>
-			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'uniqueness_section' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'uniqueness_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 		</div>
 		{% if project_translation.uniqueness_section %}
 			<!-- PARAGRAPH - filled -->
@@ -29,7 +29,7 @@
 		<!-- PARAGRAPH - empty -->
 		<div id="uniqueness_section" class="project_details_title_edit">
 			<h2>{% trans "how unique and creative is the experience"|capfirst %}?</h2>
-			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 		</div>
 		<p class="project_details_body empty"></p>
 	{% endif %}

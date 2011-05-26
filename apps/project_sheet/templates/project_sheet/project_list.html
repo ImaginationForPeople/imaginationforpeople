@@ -1,12 +1,15 @@
 ﻿{% extends "base.html" %}
 {% load i18n %}
+{% load compress %}
 
 {% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
 {% block title %}{% trans 'Find project on Imagination for People'%}{% endblock %}
 
 {% block style %}
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/project_card.css" />
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
+  {% endcompress %}
 {% endblock %}
 
 
@@ -81,10 +84,10 @@
 	      <div class="toolbox">
 		<div class="tools-title georgia">Project view</div>
 		<div class="tools">
-		  <a href="#"><img src="{{ MEDIA_URL }}images/nav/tool1-selected.png" /></a>
-		  <a href="#"><img src="{{ MEDIA_URL }}images/nav/tool2.png" /></a>
-		  <a href="#"><img src="{{ MEDIA_URL }}images/nav/tool3.png" /></a>
-		  <a href="#"><img src="{{ MEDIA_URL }}images/nav/tool4.png" /></a>
+		  <a href="#"><img src="{{ STATIC_URL }}images/nav/tool1-selected.png" /></a>
+		  <a href="#"><img src="{{ STATIC_URL }}images/nav/tool2.png" /></a>
+		  <a href="#"><img src="{{ STATIC_URL }}images/nav/tool3.png" /></a>
+		  <a href="#"><img src="{{ STATIC_URL }}images/nav/tool4.png" /></a>
 		</div>
 	      </div>
 	      

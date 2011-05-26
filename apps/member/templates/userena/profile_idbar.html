@@ -5,9 +5,9 @@
             {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
             {% if user.username == profile.user.username %}
                 <ul>
-                    <li><a class="button nomargin"  href="{% url userena_profile_edit user.username %}" title="{% trans 'Edit details'|capfirst %}"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="" />{% trans "details" %}</a></li>
-                    <li><a class="button nomargin"  href="{% url userena_password_change user.username %}" title="{% trans 'Edit password'|capfirst %}"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="" />{% trans "password" %}</a></li>
-                    <li><a class="button nomargin"  href="{% url userena_email_change user.username %}" title="{% trans 'Edit email'|capfirst %}"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="" />{% trans "email" %}</a></li>
+                    <li><a class="button nomargin"  href="{% url userena_profile_edit user.username %}" title="{% trans 'Edit details'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "details" %}</a></li>
+                    <li><a class="button nomargin"  href="{% url userena_password_change user.username %}" title="{% trans 'Edit password'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "password" %}</a></li>
+                    <li><a class="button nomargin"  href="{% url userena_email_change user.username %}" title="{% trans 'Edit email'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "email" %}</a></li>
                 </ul>
             {% endif %}
         {% endblock %}
@@ -16,13 +16,13 @@
     <div id="avatar">
         <div id="social_buttons">
             {% if profile.linkedin %}
-                <a  href="#" title="Linkedin"><img src="{{ MEDIA_URL }}/images/profile/linkedin.png" alt="Linkedin" /></a> 
+                <a  href="#" title="Linkedin"><img src="{{ STATIC_URL }}images/profile/linkedin.png" alt="Linkedin" /></a> 
             {% endif %}  
             {% if profile.twitter %}            
-                <a  href="#" title="Twitter"><img src="{{ MEDIA_URL }}/images/profile/twitter.png" alt="Twitter" /></a>  
+                <a  href="#" title="Twitter"><img src="{{ STATIC_URL }}images/profile/twitter.png" alt="Twitter" /></a>  
             {% endif %} 
             {% if profile.facebook %}
-                <a  href="#" title="Facebook"><img src="{{ MEDIA_URL }}/images/profile/facebook.png" alt="Facebook" /></a> 
+                <a  href="#" title="Facebook"><img src="{{ STATIC_URL }}images/profile/facebook.png" alt="Facebook" /></a> 
             {% endif %} 
         </div>                    
         <img src="{{ profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 

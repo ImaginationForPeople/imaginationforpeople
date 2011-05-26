@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load localeurl_tags %}
 {% load tagging_tags %}
+{% load compress %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
 {% block title %}
@@ -16,48 +17,60 @@
 
 {% block extra_head %}
   {{ block.super }}
-	<link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}/css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
-	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/anythingslider.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/superfish.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="{{ MEDIA_URL }}/css/confirm.css" type="text/css" media="screen" />
+  
+  {% compress css %}
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/confirm.css" type="text/css" media="screen" />
+  {% endcompress %}
+
+  <script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
+
+  {% compress js %}
     
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.blockUI.js" ></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js" ></script>
 	
-	<!-- inline  -->
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.autogrow.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jeditable.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jeditable.autogrow.js"></script>
+  <!-- inline  -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.autogrow.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.autogrow.js"></script>
+  
+  <!-- for tags -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tag-it.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tag-it.iecompat.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tinysort.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tagcloud.js"></script>
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-serializeobject.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.dajax.core.js"></script>
 
-	<!-- for tags -->
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tag-it.iecompat.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tinysort.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.tagcloud.js"></script>
+  
+  <!-- Scripts for Image Slider & Miniatures -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.easing.1.2.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider.js" ></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jcarousel.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/swfobject.js" ></script>
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
+  
+  <!-- Scripts for Media Slider -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.simplemodal.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/media.js"></script>
 
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.ba-serializeobject.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.dajax.core.js"></script>
-	<script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
-	
-	<!-- Scripts for Image Slider & Miniatures -->
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.easing.1.2.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.anythingslider.js" ></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.jcarousel.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/swfobject.js" ></script>
+  <!-- Custom checkbox -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.simpleImageCheck-0.4.js"></script>
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.formset.js"></script>
 
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/hoverIntent.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/superfish.js"></script>
+  {% endcompress %}
 
-	<!-- Scripts for Media Slider -->
-    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.simplemodal.js"></script>
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/project_sheet/media.js"></script>
-
-	<!-- Sidebar -->
-	<script type="text/javascript" src="{{ MEDIA_URL }}/js/project_sheet/sidebar.js"></script>
-    
-    <!-- Custom checkbox -->
-    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.simpleImageCheck-0.4.js"></script>
-
-    <script type="text/javascript" src="{{ MEDIA_URL }}/js/jquery/jquery.formset.js"></script>
+  {% compress js %}
+  <!-- Sidebar -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js"></script>
+  {% endcompress %}
+  
     
   <script type="text/javascript">
  
@@ -167,8 +180,8 @@
                                          type: 'autogrow',
                                          height: '40px',
                                          width: '535px',
-                                         cancel: "<input  title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
-                                         submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
+                                         cancel: "<input  title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                                         submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
                                          onblur: 'ignore',
                                          cssclass: 'inline-edit',
                                          placeholder: "{% trans "This bloc is empty : don’t forget to fill it !"|capfirst %}"
@@ -183,8 +196,8 @@
                                           type: 'autogrow',
                                           height: '40px',
                                           width: '690px',
-                                          cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/x.png' alt='X'/>",
-                                          submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ MEDIA_URL }}/images/base/v.png' alt='Ok'/>",
+                                          cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                                          submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
                                           onblur: 'ignore',
                                           cssclass: 'inline-edit',
                                           placeholder: "{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}"
@@ -270,8 +283,8 @@
     	});
     	
         $('td.ref input[type=checkbox]').simpleImageCheck({
-              image: '{{ MEDIA_URL }}/images/check_off.png',
-              imageChecked: '{{ MEDIA_URL }}/images/check_on.png',
+              image: '{{ STATIC_URL }}images/check_off.png',
+              imageChecked: '{{ STATIC_URL }}images/check_on.png',
               afterCheck: function(isChecked) {
                   input = $(this).parent().find('input[type=text]')
                 if (isChecked) {
@@ -287,7 +300,7 @@
         $('#reference_form').hide();
         $('a.delete-row').each(function(){
         	var txt = $(this).html();
-        	$(this).html("<img src='{{ MEDIA_URL }}/images/check_on.png' title='"+txt+"' alt='"+txt+"'/>");
+        	$(this).html("<img src='{{ STATIC_URL }}images/check_on.png' title='"+txt+"' alt='"+txt+"'/>");
         });
         $('a.add-row').addClass("link");
         
@@ -370,21 +383,21 @@
 	<form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% endif %}
 	{{ baseline_form.baseline }}
-	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />
-    <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>
+	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />
+    <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>
 	</form>
 	{% else %}
 	  {% if project_translation %}
 	    <!-- BASELINE - filled-->
 	    <div class="project_baseline focus">
 	      <p>{{ project_translation.baseline }}</p>
-	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" /></a>
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 	    </div>
 	  {% else %}
 	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
 	      <p>{% trans "One line description"|capfirst %}</p>
-	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png"/></a>
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
 	    </div>
 	  {% endif %}
 	{% endif %}					
@@ -394,7 +407,7 @@
 	  {% if project_translation %} 
 	  
 		<!-- edition of the full information block  -->
-		<a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a>
+		<a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a>
 
 		<!-- add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section) 
 		<div class="creation_date">
@@ -417,7 +430,7 @@
             {% endif %}
 			  <img src="{{ project.location.country.flag }}" alt="{{ project.location.country }}"/> {{ project.location.country.name }}
 			{% if project.location.lat %}
-			<img src="{{ MEDIA_URL }}/images/project/globe.png" alt="#"/>
+			<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
 			{% endif %}
 		{% else %}
 			<em>{% trans 'unknown'|capfirst %}</em>
@@ -444,8 +457,8 @@
 	    {{ project_info_form.as_p }}
  	    {{ project_location_form.as_p }}
 	    <div class="clear"></div>
-	    <input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" alt="Ok" />							
-	    <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/x.png" alt="X" />
+	    <input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />							
+	    <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
 	  </form>	
 	</div>
 	

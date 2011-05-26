@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load compress %}
 
 {% block extra_head %}
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/project.css" />
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project.css" />
+  {% endcompress %}
 {% endblock %}
 
 {% block content %}	

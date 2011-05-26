@@ -81,7 +81,7 @@ USE_L10N = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -142,6 +142,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     'backcap.context_processors.backcap_forms',
+    'django.core.context_processors.static',
 #    "mothertongue.context_processors.router",
 )
 
@@ -182,6 +183,7 @@ INSTALLED_APPS = (
     'voting',
     'notification',
     'backcap',
+    'compressor',
                
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -190,6 +192,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.comments',
+    'django.contrib.staticfiles',
 
     # Internal Apps
     'apps.i4p_base',
@@ -296,3 +299,26 @@ COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
 HAYSTACK_SITECONF = 'imaginationforpeople.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_PATH, 'i4p_index')
+
+### STATIC FILES
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
+    # Compressor finder
+    'compressor.finders.CompressorFinder',
+)
+
+STATICFILES_DIRS = (
+    ('js', os.path.join(MEDIA_ROOT, 'js')),
+    ('css', os.path.join(MEDIA_ROOT, 'css')),
+    ('images', os.path.join(MEDIA_ROOT, 'images')),
+)
+
+STATIC_URL = MEDIA_URL + 'static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
+
+### COMPRESOR
+COMPRESS = True
+COMPRESS_ROOT = STATIC_ROOT
+COMPRESS_URL = STATIC_URL
