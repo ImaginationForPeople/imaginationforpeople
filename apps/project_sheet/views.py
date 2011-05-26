@@ -8,6 +8,7 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound
 from django.utils import translation
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
+from django.db.models import Q
 
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
@@ -17,7 +18,8 @@ from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMembe
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug
 from .filters import TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm, FilterSet
-from django.contrib.contenttypes.generic import GenericForeignKey
+from apps.project_sheet.models import I4pProject, VERSIONNED_FIELDS
+from django.contrib.contenttypes.models import ContentType
 
 def project_sheet_list(request, queryset=None):
     """
@@ -354,19 +356,40 @@ def project_sheet_history(request, project_slug):
 
     parent_project = project_translation.project
 
-    versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
+    #versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
+
+    project_translation_ct = ContentType.objects.get_for_model(project_translation)
+    parent_project_ct = ContentType.objects.get_for_model(parent_project)
+
+    versions = Version.objects.filter(Q(content_type=project_translation_ct, object_id=unicode(project_translation.id)) |
+                                      Q(content_type=parent_project_ct, object_id=unicode(parent_project.id))).order_by('revision__date_created')
 
     version_field_diff = {}
-    previous_version = None
+    project_translation_previous_version = None
+    parent_project_previous_version = None
+
+    def fields_diff(previous_version, current_version, versionned_fields):
+        fields = []
+        previous_field_dict = previous_version.get_field_dict()
+        current_field_dict = current_version.get_field_dict()
+        for field, value in current_field_dict.iteritems():
+            if field in versionned_fields and field in previous_field_dict and previous_field_dict[field] != value:
+                fields.append(version.content_type.model_class()._meta.get_field(field).verbose_name + '')
+        return fields
+
     for version in versions:
-        if previous_version:
-            version_field_diff[version] = []
-            previous_field_dict = previous_version.get_field_dict()
-            current_field_dict = version.get_field_dict()
-            for field, value in current_field_dict.iteritems():
-                if previous_field_dict.has_key(field) and previous_field_dict[field] != value:
-                    version_field_diff[version].append(version.content_type.model_class()._meta.get_field(field).verbose_name + '')
-        previous_version = version
+        if version.content_type == project_translation_ct:
+            if project_translation_previous_version:
+                version_field_diff[version] = fields_diff(project_translation_previous_version,
+                                                          version,
+                                                          VERSIONNED_FIELDS[project_translation_ct.model_class()])
+            project_translation_previous_version = version
+        elif version.content_type == parent_project_ct:
+            if parent_project_previous_version:
+                version_field_diff[version] = fields_diff(parent_project_previous_version,
+                                                          version,
+                                                          VERSIONNED_FIELDS[parent_project_ct.model_class()])
+            parent_project_previous_version = version
 
     return render_to_response('project_sheet/history.html',
                               {'project_translation' : project_translation,

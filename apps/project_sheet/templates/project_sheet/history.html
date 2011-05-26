@@ -4,6 +4,12 @@
 {% block style %}
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />
     <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/history.css" />
+    
+    <script type="text/javascript">
+        $(document).ready(function(){ 
+            
+        }); 
+    </script>
 {% endblock %}
 
 
@@ -13,14 +19,23 @@
 
 <ul class="history">
 {% for version, fields in versions.iteritems %}
-    
+    <li>{% trans "Done the" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} 
+    {% if version.revision.user.profile %}
+        <a href="{% url userena_profile_detail version.revision.user.profile.user.username %}" class="link">{{version.revision.user.profile.get_full_name_or_username}}</a> {% trans "on the field" %}
+    {% else %}
+        {% trans 'anonymous' %}
+    {% endif %}
     {% for field in fields %}
-    <li>{% trans "Done the" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} <a href="#" class="link">{{version.revision.user}}</a> {% trans "on the field" %}
-    <strong>{% trans '"' %}{{field}}{% trans '"' %}</strong>
-     
-    </li>   
+        {% if forloop.last %}
+            &nbsp;{% trans 'and' %}&nbsp;
+        {%else%}
+            {% if not forloop.first %}
+                ,&nbsp;
+            {%endif%}
+        {%endif%}
+         <strong>{% trans '"' %}{{field}}{% trans '"' %} </strong>
     {% endfor %}
-
+    </li>   
 {% endfor %}
 </ul>
 {% endblock %}

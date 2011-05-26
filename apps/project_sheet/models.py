@@ -155,5 +155,11 @@ class ProjectMember(models.Model):
 
 
 # Reversions
-reversion.register(I4pProject)
-reversion.register(I4pProjectTranslation)
+VERSIONNED_FIELDS = {
+    I4pProject : ['author', 'objective', 'website', 'project_leader_info', 'location'],
+    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'uniqueness_section', 'value_section', 'scalability_section', 'themes']
+}
+
+for model, fields in VERSIONNED_FIELDS.iteritems():
+        reversion.register(model, fields=fields)
+
