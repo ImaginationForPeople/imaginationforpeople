@@ -55,7 +55,23 @@
                   {% endfor %}
                 
                 </div>
-               
+                
+        {% if user.username == profile.user.username %}
+        <div id="profile_projects">                
+        <div class="separator">
+            <h2>
+                  {% trans 'My contributions' %}
+           </h2>
+        </div>
+        
+        {% for project_translation in project_contrib_list %}   
+                <div class="colonne grid_6">
+                    {% include "project_sheet/project_complete_card.html" %}          
+                </div>
+        {% endfor %}
+            
+        </div>
+        {% endif %}
                
             </div>
             
