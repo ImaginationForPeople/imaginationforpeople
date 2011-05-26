@@ -1,0 +1,151 @@
+/*---- Projects sorting ----*/
+
+#projectlist_sort{
+    background-color:#0c0c0c;
+    border-top:1px solid #353535;
+    border-bottom:1px solid black;
+    padding:3px;
+    padding-top:5px;
+    padding-bottom:5px;
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black; 		
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+    float:right;
+}
+
+#projectlist_sort h4{
+    margin-top:8px;
+}
+
+#projectlist_sort .button{
+    top:1px;
+    margin-left:3px;
+    margin-right:4px;
+    -moz-box-shadow: 0px 0px 4px black;  
+    -webkit-box-shadow: 0px 0px 4px black;  
+    box-shadow: 0px 0px 4px black; 	
+}
+
+#projectlist_sort_buttons{
+    display:block;
+    float:left;
+}
+
+/*---- Projects languages ----*/
+
+#langage-tool  {
+    position:relative !important;
+    width:90px;
+    top:-2px;
+}
+
+.sf-menu {
+    position:absolute;
+}
+
+.sf-menu ul {
+	position: static !important;
+    width:auto !important;
+    border-top:0px solid #393939 !important;
+}
+
+.sf-menu li {
+    width:80px;
+}
+
+.sf-menu a {
+	color:#979797;
+}
+
+.sf-menu a {
+    padding:5px;
+}
+
+.sf-menu .sf-sub-indicator {
+    top:6px;
+}
+
+
+/*---- Filters ----*/
+
+.categories .menu ul .selected a {
+    color:#888888;
+}
+
+.categories {
+    background-image:url("../images/base/menu-bg.jpg");
+    background-color:#161616;
+    height:250px;
+}
+
+#projects_filters{
+    background-color:#161616;
+    padding-top:10px;
+    padding-bottom:10px;
+    position:relative;
+    top:-11px;
+}
+
+.filters_box{
+    background-color:#0e0e0e;
+    -moz-border-radius:3px; 
+	-webkit-border-radius:3px;
+	-khtml-border-radius:3px;
+    margin-bottom:10px;
+}
+
+.filtersbox_content{
+    margin:10px;
+    color:#393939;
+    position:relative;
+}
+
+.filtersbox_content h4{
+    color:#d3d3d1;
+    font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-size:18px;
+	font-weight:bold;
+	font-style:italic;
+    display:block;
+    border-bottom:1px solid #393939;
+    margin:0px;
+    margin-bottom:10px;
+}
+
+.filtersbox_content .invert{
+    position:absolute;
+    top:6px;
+    right:0px;
+    cursor:pointer;
+}
+
+.filtersbox_content .invert:hover{
+    text-decoration:none;
+    color:#d3d3d1;
+}
+
+
+.filtersbox_content a{
+    font-size:11px;
+    color:#393939;
+}
+
+.filtersbox_content  .filtersbox_choices{
+    position:absolute;
+    top:2px;
+    right:0px;
+}
+
+.filtersbox_content  .filtersbox_choices a{
+    margin-left:5px;
+    cursor:pointer;
+}
+
+.filtersbox_content  .filtersbox_choices a:hover{
+    text-decoration:none;
+    color:#d3d3d1;
+}
