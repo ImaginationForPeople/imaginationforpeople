@@ -29,7 +29,6 @@ def project_sheet_list(request, queryset=None):
     if qs == None:
         qs = I4pProjectTranslation.objects.filter(language_code=language_code).order_by('title')
 
-    print qs
     return object_list(request,
                        template_name='project_sheet/project_list.html',
                        queryset=qs,
