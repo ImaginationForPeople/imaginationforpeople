@@ -120,7 +120,7 @@ MIDDLEWARE_CLASSES = (
 
     'localeurl.middleware.LocaleURLMiddleware', 
     
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 if (not DEBUG) or FORCE_PRIVATEBETA:
