@@ -21,6 +21,8 @@
   {% compress js %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
+    
+	<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/custom-form-elements.js"></script>
 
     <script type="text/javascript" defer="defer">
  
@@ -143,54 +145,110 @@
         <!-- Filters -->
         <div id="projects_filters"> 
          
-            <div class="grid_6 alpha">
-                <div class="filtersbox_content">
-                    <h4>{% trans "Themes" %}</h4>
-                    <a class="invert">{% trans "invert" %}</a>
-                </div>
-            </div>
-            
-            <div class="grid_4 filters_box">
-                <div class="filtersbox_content">
-                    <h4>{% trans "Location" %}</h4>
-                    <a class="invert">{% trans "invert" %}</a>
-                </div>
-            </div>
-            
-            <div class="grid_5">
-                <div class="filtersbox_content">
-                    <h4>{% trans "Leader" %}</h4>
-                    <div class="filtersbox_choices">
-                        <a class="">{% trans "Orphan" %}</a>
-                        <a class="">{% trans "Associated leader" %}</a>
+            <form>
+             
+                <div class="grid_6 alpha">
+                    <div class="filtersbox_content">
+                        <h4>{% trans "Themes" %}</h4>
+                        <a class="invert">{% trans "invert" %}</a>
+                        
+                        <ul id="cloudtag_list">				
+                            <li><a href="#">Art</a>,</li>                        
+                            <li><a href="#">Militantisme</a>,</li>                        
+                            <li><a href="#" class="selected">Transmission</a>,</li>                        
+                            <li><a href="#">urbanisme</a></li>  
+                            <li><a href="#" class="selected">Art</a>,</li>                        
+                            <li><a href="#">Transmission</a>,</li>                        
+                            <li><a href="#">Militantisme</a>,</li>                            
+                        </ul>
+                        
+                        <input type="text" id="#" style="display:none;" />
+                        
                     </div>
                 </div>
                 
-                <div class="filtersbox_content">
-                    <h4>{% trans "Implement" %}</h4>
-                    <div class="filtersbox_choices">
-                        <a class="">{% trans "PPP" %}</a>
-                        <a class="">{% trans "Public private" %}</a>
+                <div class="grid_4 filters_box">
+                    <div class="filtersbox_content">
+                        <h4>{% trans "Location" %}</h4>
+                        <a class="invert">{% trans "invert" %}</a>
+                        <select multiple size=8>
+                             <option value="#">Option 1
+                             <option value="#">Option 2
+                             <option value="#">Option 3
+                             <option value="#">Option 4
+                             <option value="#">Option 5
+                             <option value="#">Option 6
+                             <option value="#">Option 6
+                             <option value="#">Option 6
+                             <option value="#">Option 6
+                             <option value="#">Option 6
+                             <option value="#">Option 6
+                             <option value="#">Option 6
+                        </select>
+
                     </div>
                 </div>
-
                 
-            </div>
-            
-            <div class="grid_3 omega">
-                <div class="grid_3 omega filters_box">
-                    <div class="filtersbox_content">
-kjgkjgkj
-                    </div>
-                </div> 
+                <div class="grid_8 omega">
+                    <div class="grid_8 omega filters_box">
+                        <div class="filtersbox_content">
+                        
+                            <h4>{% trans "Sheet status" %}</h4>
+                            <div class="grid_2 alpha omega pictos-categ">
+                                <div class="filters-picto">
+                                    <ul>
+                                        <li id="bestof" title="{% trans 'Best-of' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                        <li id="popular" title="{% trans 'Popular project' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                    </ul>
+                                </div>
+                                <p>{% trans "quality" %}</p>
+                            </div>
+                            <div class="grid_2 alpha omega pictos-categ">
+                            
+                                <div class="filters-picto">
+                                    <ul>
+                                        <li id="editing" title="{% trans 'Editing in progress' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                        <li id="complete" title="{% trans 'Project sheet complete' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                    </ul>
+                                </div>                            
+                                <p>{% trans "progression" %}</p>
+                                
+                            </div>
+                            <div class="grid_2 alpha omega pictos-categ">
+                            
+                                <div class="filters-picto">
+                                    <ul>
+                                        <li id="team" title="{% trans 'Associated team' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                        <li id="nobody" title="{% trans 'Orphan project' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                    </ul>
+                                </div>                            
+                                <p>{% trans "team" %}</p>
+                                
+                            </div>
+                            
+                        </div>
+                    </div> 
 
-                <div class="grid_3 omega filters_box">
-                    <div class="filtersbox_content">
-kjgkjgkj
-                    </div>
-                </div>                    
-            </div>         
-         
+                    <div class="grid_8 omega filters_box">
+                        <div class="filtersbox_content">
+                        
+                            <h4>{% trans "Project status" %}</h4>
+                                <div class="filters-progress">
+                                    <ul>
+                                        <li id="concept"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Concept" %}</p></li>
+                                        <li id="beginning"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Beginning" %}</p></li>
+                                        <li id="development"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Development" %}</p></li>
+                                        <li id="finished"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Finished" %}</p></li>
+                                    </ul>
+                                </div>                            
+                              
+                           
+                        </div>
+                    </div>                    
+                </div>         
+            
+            </form>
+        
         </div>
         
         <div class="clear"></div>

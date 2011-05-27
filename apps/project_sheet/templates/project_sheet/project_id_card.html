@@ -7,10 +7,16 @@
     <img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
   </div>
   
-  <div class="project_card_type">{# <img src="http://www.google.fr/images/logos/ps_logo2.png" alt="democratize" /> #}</div>
+  <!-- Image will change in function of progression of project sheet (progress25.jpg, progress50.jpg, progress75.jpg, progress100)  -->
+  <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress100.jpg" /><p>{% trans 'completed' %}</p></div>
   
   <div class="project_card_content">
-    {# <div class="project_card_status">{% trans 'completed'|capfirst %}  </div> #}
+    <div class="project_card_pictos">
+        <img src="{{ STATIC_URL }}images/project/picto-team.jpg" alt="{% trans 'associated team' %}" title="{% trans 'associated team' %}"/>
+        <img src="{{ STATIC_URL }}images/project/picto-editing.jpg" alt="{% trans 'in progress' %}" title="{% trans 'in progress' %}"/>
+        <img src="{{ STATIC_URL }}images/project/picto-popular.jpg" alt="{% trans 'popular' %}" title="{% trans 'popular' %}"/>
+        <img src="{{ STATIC_URL }}images/project/picto-bestof.jpg" alt="{% trans 'bestof' %}" title="{% trans 'bestof' %}"/>
+    </div>
     <div class="project_infos_title">{{ project_translation.title }}</div>	
     <div class="project_infos_location">
         {% if project_translation.project.location.country %}
