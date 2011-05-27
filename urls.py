@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
 import contact_form.views as contact_form_views
@@ -34,8 +35,10 @@ urlpatterns += patterns('',
 ## Static Media
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+      (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     )
+
+urlpatterns += staticfiles_urlpatterns()
 
 ## i18n l10n translation UI
 if 'rosetta' in settings.INSTALLED_APPS:

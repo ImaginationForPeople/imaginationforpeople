@@ -1,15 +1,12 @@
 {% extends "project_sheet/project_base.html" %}
 {% load i18n %}
+{% load compress %}
 
 {% block style %}
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/history.css" />
-    
-    <script type="text/javascript">
-        $(document).ready(function(){ 
-            
-        }); 
-    </script>
+  {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/history.css" />
+    {% endcompress %}
 {% endblock %}
 
 

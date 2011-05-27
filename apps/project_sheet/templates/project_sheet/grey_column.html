@@ -11,7 +11,7 @@
 		  <a title="{% trans 'edit'|capfirst %}"
 		     href="{% url project_sheet-instance-edit-related project_translation.slug %}"
 		     class="button sidebar-opener editing-button" name="opened-sidebar"> 
-		    <img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /> 
+		    <img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /> 
 		  </a>
 		  {% trans 'related'|capfirst %}
 		</div>
@@ -49,7 +49,7 @@
 	<div id="sidebar-section-team" class="sidebar-section-openable">
 		<!-- About the team -->
 		<div class="title">
-			<a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ MEDIA_URL }}/images/base/add.png" alt="{% trans "add" %}" /></a>
+			<a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ STATIC_URL }}images/base/add.png" alt="{% trans "add" %}" /></a>
 			{% trans 'The team'|capfirst %}
 		</div>
 
@@ -60,7 +60,7 @@
 		  <!-- The name attribute of the anchor is the ID of the sidebar to open -->
 		  <p>
 		    <a href="#" class="sidebar-opener"  name="opened-sidebar-team">
-		      <img src="{{ MEDIA_URL }}/images/project/avatar.jpg" alt="{% trans 'There is no registered team members: please to fill this section !' %}" />
+		      <img src="{{ STATIC_URL }}images/project/avatar.jpg" alt="{% trans 'There is no registered team members: please to fill this section !' %}" />
 		    </a>
 		  </p>
 		{% else %}
@@ -71,8 +71,8 @@
 		      <a href="{% url userena_profile_detail member.user %}">
                 <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
                   <div class="grey_column_team_buttons">
-                    <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /></a> -->
-                    <a title="{% trans 'Delete'|capfirst %}" href="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin"><img src="{{ MEDIA_URL }}/images/base/trash.png" alt="{% trans 'delete' %}" /></a> 
+                    <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
+                    <a title="{% trans 'Delete'|capfirst %}" href="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin"><img src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /></a> 
                   </div>
 		      </a>  
 		      {% if member.user.get_profile.country %}

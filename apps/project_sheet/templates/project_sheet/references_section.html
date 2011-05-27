@@ -4,7 +4,7 @@
 {% if project_translation%}
 <div id="project_refs">
     <div class="title">
-        {% trans 'references'|capfirst %} <a id="edit_references_button" title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-references project_translation.slug %}" class="button right editing-button"> <img src="{{ MEDIA_URL }}/images/base/edit.png" alt="edit" /> </a>
+        {% trans 'references'|capfirst %} <a id="edit_references_button" title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-references project_translation.slug %}" class="button right editing-button"> <img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /> </a>
     </div>
 
     <div class="clear"></div>

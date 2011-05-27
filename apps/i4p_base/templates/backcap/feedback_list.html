@@ -2,14 +2,17 @@
 
 {% load i18n %}
 {% load voting_tags %}
+{% load compress %}
 
 {% block title %}
   {% trans "Help Center" %}
 {% endblock %}
 
 {% block style %}
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/no-nav.css" />
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
+  {% endcompress %}
 {% endblock %}
 
 {% block javascript %}
@@ -135,7 +138,7 @@ $(document).ready(function() {
                                 </div>
                                 <div class="feedback-info">
                                     <div>
-                                        <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ MEDIA_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
+                                        <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
                                         <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
                                     </div>
                                     <br />

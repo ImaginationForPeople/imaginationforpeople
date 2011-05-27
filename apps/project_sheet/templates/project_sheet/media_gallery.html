@@ -39,11 +39,11 @@
 			<p class="media_movie_upload">
 				<label for="#" class="bold">{% trans "Video link (youtube, dailymotion, etc): "|capfirst %}</label><span class="precision"></span>
 				{{ video_form.video_url }}
-				<input class="greenbutton nomargin right" type="image" src="{{ MEDIA_URL }}/images/base/v.png" Alt="Ok" />
+				<input class="greenbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/v.png" Alt="Ok" />
 			</p>
 		</form>			
 	</div>
-	<a href="javascript:history.go(-1);" title="{% trans 'Cancel'|capfirst %}"  class="redbutton nomargin right"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="X" /></a>	
+	<a href="javascript:history.go(-1);" title="{% trans 'Cancel'|capfirst %}"  class="redbutton nomargin right"><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>	
 </div>
 {% else %}
 	{% if project_translation %}
@@ -53,9 +53,9 @@
 			<div id="project_photo_gallery">
 				
 				<div id="media_buttons">
-					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ MEDIA_URL }}/images/base/add.png" alt="+" /></a>
-					<a href="#" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ MEDIA_URL }}/images/base/infos.png" alt="?" /></a>
-					<a id='del_media' href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ MEDIA_URL }}/images/base/trash.png" alt="X" /></a>
+					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ STATIC_URL }}images/base/add.png" alt="+" /></a>
+					<a href="#" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ STATIC_URL }}images/base/infos.png" alt="?" /></a>
+					<a id='del_media' href="#" class="button redbutton nomargin"><img title="{% trans 'Delete'|capfirst %}" src="{{ STATIC_URL }}images/base/trash.png" alt="X" /></a>
 				</div>
 				
                 <ul id="all_metadata">
@@ -98,8 +98,8 @@
 							</select>
 						</p>
 							
-					<a href="#" title="{% trans 'Ok'|capfirst %}"  class="button greenbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="ok" /></a>	
-					<a href="#" title="{% trans 'Cancel'|capfirst %}" class="button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="x" /></a>
+					<a href="#" title="{% trans 'Ok'|capfirst %}"  class="button greenbutton right nomargin"><img src="{{ STATIC_URL }}images/base/v.png" alt="ok" /></a>	
+					<a href="#" title="{% trans 'Cancel'|capfirst %}" class="button redbutton right nomargin"><img src="{{ STATIC_URL }}images/base/x.png" alt="x" /></a>
 						
 					</form>				
 				</div>
@@ -128,7 +128,7 @@
 						{% for vid in project_translation.project.videos.all %}
 							<li>
 								<a onclick="changeslider({{forloop.counter|add:project_translation.project.pictures.count}});" href="javascript:;">
-									<img src="{{MEDIA_URL}}/images/play_video.png" alt="Play" height="48" width="48"/>
+									<img src="{{ STATIC_URL }}images/play_video.png" alt="Play" height="48" width="48"/>
 								</a>
 							</li>
 
@@ -155,8 +155,8 @@
     <div id='confirm'>
         <div class='message'></div>
         <div class='buttons'>
-		<a title="{% trans 'Yes'|capfirst %}" href="#"	class="yes button greenbutton right"><img src="{{ MEDIA_URL }}/images/base/v.png" alt="edit" /></a>
-        <a title="{% trans 'No'|capfirst %}" href="#" class="no button redbutton right nomargin"><img src="{{ MEDIA_URL }}/images/base/x.png" alt="edit" /></a> 
+		<a title="{% trans 'Yes'|capfirst %}" href="#"	class="yes button greenbutton right"><img src="{{ STATIC_URL }}images/base/v.png" alt="edit" /></a>
+        <a title="{% trans 'No'|capfirst %}" href="#" class="no button redbutton right nomargin"><img src="{{ STATIC_URL }}images/base/x.png" alt="edit" /></a> 
         </div>
     </div>
 {% endif %}

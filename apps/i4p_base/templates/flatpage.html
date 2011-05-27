@@ -1,10 +1,13 @@
 ﻿{% extends "base.html" %}
 {% load i18n %}
+{% load compress %}
 
 {% block style %}
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/black_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/flatpage.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/no-nav.css" />
+  {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/flatpage.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
+    {% endcompress %}
 {% endblock %}
 
 

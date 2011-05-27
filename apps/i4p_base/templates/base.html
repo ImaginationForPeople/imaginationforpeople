@@ -1,29 +1,36 @@
 {% load i18n %}
+{% load compress %}
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xml:lang="fr" xmlns="http://www.w3.org/1999/xhtml" lang="fr">
   <head>  
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-    <meta http-equiv="Content-Language" content="{{LANGUAGE_CODE}}" /> 
+    <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
     <meta name="keywords" content="Imagin:nation for people, i4p, social, innovation sociale" /> 
     
     <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
     <title>{% block title %}Imagination for People | {% trans 'detect, highlight and monetize social innovation'|capfirst%}{% endblock %}</title>
 
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/grid.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/style.css" />
+    {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
+    {% endcompress %}
 
-    <!-- insert a test here ; in function of the type of the page (nav ou view) the style nis not the same (white page / black page)   -->
-    {% block style %}<link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/white_page.css" />{% endblock %}
+    {% block style %}
+      {% compress css %}
+      <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
+      {% endcompress %}
+    {% endblock %}
 
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/generals.css" />
-    <link type="text/css" rel="stylesheet" href="{{ MEDIA_URL }}css/buttons.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}/css/backcap.css" media="screen, projection" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}/css/support-panel.css" media="screen, projection" />
-
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-1.5.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/buttons.js"></script>
-    <script type="text/javascript" src="{{ MEDIA_URL }}js/jquery/jquery.slidePanel.js"></script>
+    {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.5.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
+    {% endcompress %}
     
     {% if not debug %}
     <script type="text/javascript">
