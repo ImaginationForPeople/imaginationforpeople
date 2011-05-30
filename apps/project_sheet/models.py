@@ -34,6 +34,12 @@ class I4pProject(models.Model):
         ('CONT', _('Contribute')),
         ]
 
+    STATUS_CHOICES = [
+        ('IDEA', _('Concept')),
+        ('BEGIN', _('Starting')),
+        ('WIP', _('In development')),
+        ('END', _('Finished')),
+    ]
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
     ip_addr = models.IPAddressField(null=True, blank=True)
 
@@ -55,6 +61,10 @@ class I4pProject(models.Model):
                               max_length=200,
                               null=True,
                               blank=True)
+
+    status = models.CharField(verbose_name=_('status'),
+                              max_length=5, choices=STATUS_CHOICES, default="IDEA",
+                              null=True, blank=True)
 
     project_leader_info = models.TextField(verbose_name=_('project leader information'),
                                            null=True, blank=True)
@@ -79,6 +89,12 @@ class I4pProjectTranslation(models.Model):
     A translation of a project
     """
 
+    PROGRESS_CHOICES = [
+        ("BEST", _("Best of")),
+        ("EDITING", _("In edition")),
+        ("FULL", _("Full")),
+
+    ]
     class Meta:
         unique_together = ('project', 'language_code', 'slug')
 
@@ -93,6 +109,10 @@ class I4pProjectTranslation(models.Model):
     slug = AutoSlugField(populate_from="title",
                          always_update=True,
                          unique_with=['language_code'])
+
+    completion_progress = models.CharField(verbose_name=_('status'),
+                                max_length=5, choices=PROGRESS_CHOICES, default="EDITING",
+                                null=True, blank=True)
 
     baseline = models.CharField(_("one line description"), max_length=180, null=True, blank=True, default=_("One line description"))
     about_section = models.TextField(_("about the project"), null=True, blank=True)
