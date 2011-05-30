@@ -11,6 +11,8 @@ from itertools import chain
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 
+from django_countries.countries import COUNTRIES
+
 ORDER_CHOICES = (
      ('lte', '<='),
      ('gte', '>=')
@@ -172,7 +174,6 @@ class ProjectProgressFilter(FilterForm):
         self.fields['progress'].widget.attrs['class'] = 'styled'
 
 
-from django_countries.countries import COUNTRIES
 def current_countries():
     result = []
     project_countries = I4pProject.objects.exclude(location__country='').exclude(location__country__isnull=True).distinct().order_by('location__country').values_list('location__country', flat=True)
@@ -201,3 +202,18 @@ class ProjectLocationFilter(FilterForm):
                         q = Q(**lookup)
                 qs = qs.filter(q)
         return qs
+
+
+class NameBaselineFilter(FilterForm):
+    """
+    Simulates a full-text search in either the baseline or the title.
+    """
+    text = forms.CharField(max_length=100)
+
+    def apply_to(self, queryset, model_class):
+        if model_class == I4pProjectTranslation:
+            text = self.cleaned_data.get("text")
+            filters = Q(name__contains=text) | Q(baseline__contains=text)
+            queryset = queryset.filter(filters)
+
+        return queryset

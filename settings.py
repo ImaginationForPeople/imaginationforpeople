@@ -142,7 +142,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     'backcap.context_processors.backcap_forms',
+
     'django.core.context_processors.static',
+    'apps.project_sheet.context_processors.project_search_forms',
 #    "mothertongue.context_processors.router",
 )
 
