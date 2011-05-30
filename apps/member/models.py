@@ -1,20 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from userena.models import UserenaLanguageBaseProfile
+from userena.models import UserenaLanguageBaseProfile, PROFILE_PERMISSIONS
 from django_countries import CountryField
 from apps.i4p_base.models import Location
 
 class I4pProfile(UserenaLanguageBaseProfile):
-    #From UserenaLanguageBaseProfile.user
-    #    - first_name
-    #    - last_name
-    #    - email
-    #    - password
-    #From UserenaLanguageBaseProfile
-    #    - user language
-    #    - mugshot
-    #    - privacy (profile visibility)
-
     GENDER_TYPE = (
        ('M', _('male')),
        ('F', _('female'))
@@ -31,6 +21,8 @@ class I4pProfile(UserenaLanguageBaseProfile):
     country = CountryField(null=True, blank=True)
     location = models.OneToOneField(Location, verbose_name=_('location'), null=True, blank=True)
 
+    class Meta:
+        permissions = PROFILE_PERMISSIONS
 
 
 

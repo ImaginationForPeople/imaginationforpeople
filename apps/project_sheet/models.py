@@ -49,6 +49,7 @@ class I4pProject(models.Model):
                                      related_name='projects',
                                      )
 
+    best_of = models.BooleanField(verbose_name=_('best of'), default=False)
 
     created = models.DateField(_("creation date"), auto_now_add=True)
 
@@ -90,10 +91,8 @@ class I4pProjectTranslation(models.Model):
     """
 
     PROGRESS_CHOICES = [
-        ("BEST", _("Best of")),
         ("EDITING", _("In edition")),
-        ("FULL", _("Full")),
-
+        ("FULL", _("Complete")),
     ]
     class Meta:
         unique_together = ('project', 'language_code', 'slug')

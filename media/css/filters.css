@@ -138,8 +138,15 @@
     color:#393939;
 }
 
+.filtersbox_content p{
+    clear: both;
+    display: block;
+}
+
+
 .filtersbox_content select{
     width:100%;
+    height: 148px;
 }
 
 .filtersbox_content option[selected="selected"]{
@@ -196,6 +203,11 @@
     margin-right:auto;
 }
 
+.filters-picto p {
+    visibility: hidden;
+    display: none;
+}
+
 .filters-progress{
     margin-bottom:10px;
     position:relative;
@@ -220,7 +232,7 @@
     margin-right:5px;
 }
 
-.filters-picto  .checkbox {
+.filters-picto  .ez-checkbox {
 	width: 19px;
 	height: 27px;
 	padding: 0 5px 0 0;
@@ -232,27 +244,37 @@
     cursor:pointer;
 }
 
-.filters-picto #filter_val_editing .checkbox{
+.ez-hide { 
+    opacity: 0; 
+    filter:alpha(opacity=0); 
+    cursor:pointer;
+}
+
+.filters-picto .ez-checked { 
+    background-position: 0 -25px !important; 
+}
+
+.filters-picto #filter_val_editing .ez-checkbox{
     background-image: url("../images/project/filters-picto-editing.jpg");
 }
 
-.filters-picto #filter_val_full .checkbox{
+.filters-picto #filter_val_full .ez-checkbox{
     background-image: url("../images/project/filters-picto-complete.jpg");
 }
 
-.filters-picto #bestof .checkbox{
+.filters-picto #bestof .ez-checkbox{
     background-image: url("../images/project/filters-picto-bestof.jpg");
 }
 
-.filters-picto #popular .checkbox{
+.filters-picto #popular .ez-checkbox{
     background-image: url("../images/project/filters-picto-popular.jpg");
 }
 
-.filters-picto #team .checkbox{
+.filters-picto #team .ez-checkbox{
     background-image: url("../images/project/filters-picto-team.jpg");
 }
 
-.filters-picto #nobody .checkbox{
+.filters-picto #nobody .ez-checkbox{
     background-image: url("../images/project/filters-picto-nobody.jpg");
 }
 
@@ -272,7 +294,7 @@
 }
 
 
-.filters-progress  .checkbox {
+.filters-progress  .ez-checkbox {
 	width: 90px;
 	height: 20px;
 	padding: 0 5px 0 0;
@@ -285,19 +307,23 @@
     margin-bottom:5px;
 }
 
-.filters-progress #filter_val_idea .checkbox{
+.filters-progress .ez-checked { 
+    background-position: 2px -25px !important; 
+}
+
+.filters-progress #filter_val_idea .ez-checkbox{
     background-image: url("../images/project/filters-progressbar_25.jpg");
 }
 
-.filters-progress #filter_val_begin .checkbox{
+.filters-progress #filter_val_begin .ez-checkbox{
     background-image: url("../images/project/filters-progressbar_50.jpg");
 }
 
-.filters-progress  #filter_val_wip .checkbox{
+.filters-progress  #filter_val_wip .ez-checkbox{
     background-image: url("../images/project/filters-progressbar_75.jpg");
 }
 
-.filters-progress  #filter_val_end .checkbox{
+.filters-progress  #filter_val_end .ez-checkbox{
     background-image: url("../images/project/filters-progressbar_100.jpg");
 }
 

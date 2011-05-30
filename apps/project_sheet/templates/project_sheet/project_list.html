@@ -21,13 +21,28 @@
   {% compress js %}
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
-    
-	<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/custom-form-elements.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
 
     <script type="text/javascript" defer="defer">
  
     $(document).ready(function(){ 
         $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
+        
+        $(".filters_box input.styled").ezMark();
+        
+        $(".filtersbox_content select#id_country").change(function(){
+        	$("#filter_form").submit()
+        });
+        
+        $(".filters_box input.styled").change(function(){
+            $("#filter_form").submit()
+        });
+        
+        $(".tag_link").click(function(){
+        	val = $("#id_themes").val();
+        	 $(this).addClass("selected")
+        	$("#id_themes").val(val + "'" + $(this).html()+ "',");
+        });
     }); 
   </script>
 {% endcompress %}
@@ -38,7 +53,7 @@
 
 
 {% block content %}
-<form>
+<form id="filter_form" action="{{submit_url}}" method="get">
 
   <div class="content">
     <div class="container_18 relative">
@@ -47,13 +62,9 @@
         <!-- Projects sorting -->
         <div id="projectlist_sort" >
             <ul id="projectlist_sort_buttons">
-                <li class="ui-corner-all {% if not qtype or qtype == 'all' %}filter-on{% endif %}">
-                    <input type="image" class="button" id="#" value="{% trans 'Last projects' %}"/>
-                </li>
-                <li class="ui-corner-all {% if qtype == 'Q' %}filter-on{% endif %}">
-                    <input type="image" class="button" id="#" value="{% trans 'Last editions' %}"/>               
-                </li>
-            </ul>              
+                <li class="ui-corner-all {% if last_created %}filter-on{% endif %}"><a class="button" href="{% url project_sheet-list %}?{{getparams_last_created}}">{% trans "Last projects" %}</a></li>
+                <li class="ui-corner-all {% if last_modif %}filter-on{% endif %}"><a class="button" href="{% url project_sheet-list %}?{{getparams_last_modif}}">{% trans "Last editions" %}</a></li>
+            </ul>            
             
            <div id="langage-tool">				
                 <ul id="sample-menu-1" class="sf-menu">		
@@ -116,20 +127,20 @@
         <div class="menu">
           
           <ul>
-            <li><div class="categ-button first selected"><a href="{% url project_sheet-filter %}">{% trans "Filters" %}</a></div></li>
+            <li><div class="categ-button first selected"><a href="#">{% trans "Filters" %}</a></div></li>
             <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
             <li><div class="categ-button2"><a href="#"><span class="georgia">My</span> imagination for people</a></div></li>
           </ul>
           
           
-          <div class="search">
+<!--           <div class="search">
             
             <form action="#">
             <input type="button" value="&nbsp;">
             <input type="text" name="search" id="searchInput" value="{% trans "Search project" %}">						
             </form>
             
-              </div>
+              </div> -->
               
               
               <div class="toolbox">
@@ -157,17 +168,13 @@
                         <h4>{% trans "Themes" %}</h4>
                         <a class="invert">{% trans "invert" %}</a>
                         
-                        <ul id="cloudtag_list">				
-                            <li><a href="#">Art</a>,</li>                        
-                            <li><a href="#">Militantisme</a>,</li>                        
-                            <li><a href="#" class="selected">Transmission</a>,</li>                        
-                            <li><a href="#">urbanisme</a></li>  
-                            <li><a href="#" class="selected">Art</a>,</li>                        
-                            <li><a href="#">Transmission</a>,</li>                        
-                            <li><a href="#">Militantisme</a>,</li>                            
+                        <ul id="cloudtag_list">     
+                            {% for tag in themes_filter.get_tags %}     
+                            <li><a class="tag_link" href="javascript:;">{{tag}}</a>,</li>                        
+                            {% endfor %}                    
                         </ul>
                         
-                        <input type="text" id="#" style="display:none;" />
+                        {{themes_filter.themes.as_hidden}}
                         
                     </div>
                 </div>
@@ -176,20 +183,7 @@
                     <div class="filtersbox_content">
                         <h4>{% trans "Location" %}</h4>
                         <a class="invert">{% trans "invert" %}</a>
-                        <select multiple size="9">
-                             <option value="#">Option 1
-                             <option value="#">Option 2
-                             <option value="#">Option 3
-                             <option value="#">Option 4
-                             <option value="#">Option 5
-                             <option value="#">Option 6
-                             <option value="#">Option 6
-                             <option value="#">Option 6
-                             <option value="#">Option 6
-                             <option value="#">Option 6
-                             <option value="#">Option 6
-                             <option value="#">Option 6
-                        </select>
+                        {{location_filter.country}}
 
                     </div>
                 </div>
@@ -202,8 +196,8 @@
                             <div class="grid_2 alpha omega pictos-categ">
                                 <div class="filters-picto">
                                     <ul>
-                                        <li id="bestof" title="{% trans 'Best-of' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
-                                        <li id="popular" title="{% trans 'Popular project' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                        <li id="bestof" title="{% trans 'Best-of' %}" >{{best_of_filter.best_of}}</li>
+<!--                                         <li id="popular" title="{% trans 'Popular project' %}"><input type="checkbox" class="styled hidden" checked="checked" name="1"></li> -->
                                     </ul>
                                 </div>
                                 <p>{% trans "quality" %}</p>
@@ -211,10 +205,7 @@
                             <div class="grid_2 alpha omega pictos-categ">
                             
                                 <div class="filters-picto">
-                                    <ul>
-                                        <li id="filter_val_editing" title="{% trans 'Editing in progress' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
-                                        <li id="filter_val_full" title="{% trans 'Project sheet complete' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
-                                    </ul>
+                                    {{progress_filter.progress}}
                                 </div>                            
                                 <p>{% trans "progression" %}</p>
                                 
@@ -223,8 +214,8 @@
                             
                                 <div class="filters-picto">
                                     <ul>
-                                        <li id="team" title="{% trans 'Associated team' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
-                                        <li id="nobody" title="{% trans 'Orphan project' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                        <li id="team" title="{% trans 'Associated team' %}" >{{members_filter.with_members}}</li>
+                                        <li id="nobody" title="{% trans 'Orphan project' %}">{{members_filter.without_members}}</li>
                                     </ul>
                                 </div>                            
                                 <p>{% trans "team" %}</p>
@@ -239,12 +230,7 @@
                         
                             <h4>{% trans "Project status" %}</h4>
                             <div class="filters-progress">
-                                <ul>
-                                    <li id="filter_val_idea"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Concept" %}</p></div></li>
-                                    <li id="filter_val_begin"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Beginning" %}</p></div></li>
-                                    <li id="filter_val_wip" class="selected"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Development" %}</p></div></li>
-                                    <li id="filter_val_end"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Finished" %}</p></div></li>
-                                </ul>
+                                {{status_filter.status}}
                             </div>                            
                           
                            
@@ -261,7 +247,7 @@
 	  </div>
 	</div>
   </div>
-
+<input type="submit" value="submit"/>
 </form>
 
 <div class="clear"></div>

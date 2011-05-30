@@ -69,7 +69,7 @@ def create_project_translation(language_code, parent_project=None, default_title
                                                                    language_code=language_code)
 
     return project_translation
-        
+
 
 def get_or_create_project_translation_by_slug(project_translation_slug, language_code, parent_project=None, default_title=None):
     """
@@ -86,7 +86,7 @@ def get_or_create_project_translation_by_slug(project_translation_slug, language
     try:
         project_translation = get_project_translation_by_slug(project_translation_slug, language_code)
     except I4pProjectTranslation.DoesNotExist:
-        project_translation = create_project_translation(language_code=language_code, 
+        project_translation = create_project_translation(language_code=language_code,
                                                          parent_project=parent_project,
                                                          default_title=default_title)
 
@@ -100,7 +100,7 @@ def get_or_create_project_translation_from_parent(parent_project, language_code,
     try:
         project_translation = get_project_translation_from_parent(parent_project, language_code)
     except I4pProjectTranslation.DoesNotExist:
-        project_translation = create_project_translation(language_code=language_code, 
+        project_translation = create_project_translation(language_code=language_code,
                                                          parent_project=parent_project,
                                                          default_title=default_title)
 

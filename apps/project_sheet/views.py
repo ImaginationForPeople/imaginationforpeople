@@ -16,27 +16,84 @@ from reversion.models import Version
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
 from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember
-from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug
-from .filters import TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm, FilterSet
+from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug, get_project_translation_from_parent
+from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm, ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter, BestOfFilter
 from apps.project_sheet.models import I4pProject, VERSIONNED_FIELDS
 from django.contrib.contenttypes.models import ContentType
 
-def project_sheet_list(request, queryset=None):
+def project_sheet_list(request):
     """
     Display a listing of all projects
     """
     language_code = translation.get_language()
 
-    qs = queryset
-    if qs == None:
-        qs = I4pProjectTranslation.objects.filter(language_code=language_code).order_by('title')
+    filter_forms = {
+        'themes_filter' : ThemesFilterForm(request.GET),
+        'location_filter' : ProjectLocationFilter(request.GET),
+        'best_of_filter' : BestOfFilter(request.GET),
+        'status_filter' : ProjectStatusFilter(request.GET),
+        'members_filter' : WithMembersFilterForm(request.GET),
+        'progress_filter' : ProjectProgressFilter(request.GET)
+    }
+
+    extra_context = {
+        "getparams_last_created" : "last_created=1",
+        "getparams_last_modif" : "last_modif=1",
+        "submit_url" : reverse("project_sheet-list")
+    }
+
+    ordered_project_sheets = None
+    filters = FilterSet(filter_forms)
+
+    if request.GET and filters.is_valid():
+        filters = FilterSet(filter_forms)
+
+        #First pass to filter project
+        filtered_projects = filters.apply_to(queryset=I4pProject.objects.all(),
+                                             model_class=I4pProject)
+        #Second pass to select language
+        project_sheet_ids = []
+        for project in filtered_projects:
+            project_sheet = get_project_translation_from_parent(project,
+                                                                language_code,
+                                                                fallback_language='en',
+                                                                fallback_any=True)
+            project_sheet_ids.append(project_sheet.id)
+        i18n_project_sheets = I4pProjectTranslation.objects.filter(id__in=project_sheet_ids)
+
+        #Third pass to filter sheet
+        filtered_project_sheets = filters.apply_to(queryset=i18n_project_sheets,
+                                                   model_class=I4pProjectTranslation)
+
+        #Fourth pass to order sheet
+        if request.GET.get("last_created"):
+            ordered_project_sheets = filtered_project_sheets.order_by('project__created')
+            extra_context["submit_url"] = "%s%s" % (reverse("project_sheet-list"), extra_context["getparams_last_created"])
+            extra_context["last_created"] = True
+        elif request.GET.get("last_modif"):
+            ordered_project_sheets = filtered_project_sheets.order_by('project__created')
+            extra_context["submit_url"] = "%s%s" % (reverse("project_sheet-list"), extra_context["getparams_last_modif"])
+            extra_context["last_modif"] = True
+        else:
+            ordered_project_sheets = filtered_project_sheets.order_by('title')
+
+        extra_context["getparams_last_created"] += "&%s" % request.GET.urlencode().replace("last_modif=1", "").replace("&last_created=1", "")
+        extra_context["getparams_last_modif"] += "&%s" % request.GET.urlencode().replace("last_modif=1", "").replace("&last_created=1", "")
+    else:
+        pass
+
+    extra_context.update(filter_forms)
+
+    if ordered_project_sheets == None:
+        ordered_project_sheets = I4pProjectTranslation.objects.filter(language_code=language_code).order_by('title')
 
     return object_list(request,
                        template_name='project_sheet/project_list.html',
-                       queryset=qs,
+                       queryset=ordered_project_sheets,
                        paginate_by=12,
                        allow_empty=True,
-                       template_object_name='project_translation')
+                       template_object_name='project_translation',
+                       extra_context=extra_context)
 
 def project_sheet_show(request, slug):
     """
@@ -301,25 +358,6 @@ def project_sheet_edit_references(request, project_slug):
         return HttpResponseRedirect(next)
 
     return redirect(project_translation)
-
-def project_sheet_filter(request):
-    """
-    Show project sheet filters
-    """
-    language_code = translation.get_language()
-
-    filter_forms = [TitleFilterForm, OjectiveFilterForm, ThemesFilterForm, CreationFilterForm]
-    if request.method == "POST":
-        filters = FilterSet(filter_forms, data=request.POST)
-        if filters.is_valid():
-            qs = filters.apply_to(I4pProjectTranslation.objects.filter(language_code=language_code))
-            return project_sheet_list(request, queryset=qs)
-    else:
-        filters = FilterSet(filter_forms)
-
-    return render_to_response('project_sheet/project_filter.html',
-                              {'filters': filters},
-                              context_instance=RequestContext(request))
 
 
 def project_sheet_member_delete(request, project_slug, username):
