@@ -86,11 +86,11 @@
 }
 
 #projects_filters{
-    background-color:#161616;
+    /*background-color:#161616;*/
     padding-top:10px;
     padding-bottom:10px;
     position:relative;
-    top:-11px;
+    top:-7px;
 }
 
 .filters_box{
@@ -251,7 +251,7 @@
 }
 
 .filters-picto .ez-checked { 
-    background-position: 0 -25px !important; 
+    background-position: -2px -25px !important; 
 }
 
 .filters-picto #filter_val_editing .ez-checkbox{
@@ -264,6 +264,8 @@
 
 .filters-picto #bestof .ez-checkbox{
     background-image: url("../images/project/filters-picto-bestof.jpg");
+    left:17px;
+    position:relative;
 }
 
 .filters-picto #popular .ez-checkbox{
@@ -308,7 +310,7 @@
 }
 
 .filters-progress .ez-checked { 
-    background-position: 2px -25px !important; 
+    background-position: 3px -25px !important; 
 }
 
 .filters-progress #filter_val_idea .ez-checkbox{

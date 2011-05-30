@@ -1,6 +1,7 @@
 ﻿{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
+{% load tagging_tags %}
 
 {% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
 {% block title %}{% trans 'Find project on Imagination for People'%}{% endblock %}
@@ -74,7 +75,8 @@
                         <ul>
                               {% for language in LANGUAGES %}
                               <li><a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.0 }}</a>
-                              {% endfor %}										
+                              {% endfor %}	
+					
                         </ul>		
                     </li>
                 </ul>					
@@ -169,8 +171,9 @@
                         <a class="invert">{% trans "invert" %}</a>
                         
                         <ul id="cloudtag_list">     
-                            {% for tag in themes_filter.get_tags %}     
-                            <li><a class="tag_link" href="javascript:;">{{tag}}</a>,</li>                        
+                            {% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags %}
+                            {% for tag in project_sheet_tags|slice:":35" %}
+                                <li value="{{ tag.count }}"><a class="tag_link" href="javascript:;">{{ tag }}</a></li>
                             {% endfor %}                    
                         </ul>
                         
@@ -247,7 +250,6 @@
 	  </div>
 	</div>
   </div>
-<input type="submit" value="submit"/>
 </form>
 
 <div class="clear"></div>

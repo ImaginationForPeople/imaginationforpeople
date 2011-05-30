@@ -46,9 +46,6 @@ class FilterForm(forms.Form):
 class ThemesFilterForm(FilterForm):
     themes = forms.CharField(required=False, label=_("Themes contain"))
 
-    def get_tags(self):
-        return Tag.objects.filter(id__in=[t.id for t in Tag.objects.usage_for_model(I4pProjectTranslation)])[:35]
-
     def apply_to(self, queryset, model_class):
         if model_class == I4pProject:
             tags = self.cleaned_data.get("themes")
