@@ -17,6 +17,7 @@
     /*float:right;*/
     position:absolute;
     right:0px;
+    top:0px;
 }
 
 #projectlist_sort h4{
@@ -81,7 +82,7 @@
 .categories {
     background-image:url("../images/base/menu-bg.jpg");
     background-color:#161616;
-    height:250px;
+    height:260px;
 }
 
 #projects_filters{
@@ -231,11 +232,11 @@
     cursor:pointer;
 }
 
-.filters-picto #editing .checkbox{
+.filters-picto #filter_val_editing .checkbox{
     background-image: url("../images/project/filters-picto-editing.jpg");
 }
 
-.filters-picto #complete .checkbox{
+.filters-picto #filter_val_full .checkbox{
     background-image: url("../images/project/filters-picto-complete.jpg");
 }
 
@@ -255,3 +256,51 @@
     background-image: url("../images/project/filters-picto-nobody.jpg");
 }
 
+
+.filters-progress{
+    position:relative;
+    margin-left:20px;
+    margin-top:12px;
+}
+
+.filters-progress ul li{
+    margin:0px;
+    padding:0px;
+    width:90px;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+
+.filters-progress  .checkbox {
+	width: 90px;
+	height: 20px;
+	padding: 0 5px 0 0;
+	display: block;
+	clear: left;
+	float: left;
+    background-repeat:no-repeat;
+    background-position:top center;
+    cursor:pointer;
+    margin-bottom:5px;
+}
+
+.filters-progress #filter_val_idea .checkbox{
+    background-image: url("../images/project/filters-progressbar_25.jpg");
+}
+
+.filters-progress #filter_val_begin .checkbox{
+    background-image: url("../images/project/filters-progressbar_50.jpg");
+}
+
+.filters-progress  #filter_val_wip .checkbox{
+    background-image: url("../images/project/filters-progressbar_75.jpg");
+}
+
+.filters-progress  #filter_val_end .checkbox{
+    background-image: url("../images/project/filters-progressbar_100.jpg");
+}
+
+.filters-progress ul li.selected p{
+    color:white;
+}
