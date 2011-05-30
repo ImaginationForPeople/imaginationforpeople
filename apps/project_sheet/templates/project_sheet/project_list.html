@@ -38,6 +38,7 @@
 
 
 {% block content %}
+<form>
 
   <div class="content">
     <div class="container_18 relative">
@@ -46,8 +47,12 @@
         <!-- Projects sorting -->
         <div id="projectlist_sort" >
             <ul id="projectlist_sort_buttons">
-                <li class="ui-corner-all {% if not qtype or qtype == 'all' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list %}?order={{order}}">{% trans "Last projects" %}</a></li>
-                <li class="ui-corner-all {% if qtype == 'Q' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'Q' %}?order={{order}}">{% trans "Last editions" %}</a></li>
+                <li class="ui-corner-all {% if not qtype or qtype == 'all' %}filter-on{% endif %}">
+                    <input type="image" class="button" id="#" value="{% trans 'Last projects' %}"/>
+                </li>
+                <li class="ui-corner-all {% if qtype == 'Q' %}filter-on{% endif %}">
+                    <input type="image" class="button" id="#" value="{% trans 'Last editions' %}"/>               
+                </li>
             </ul>              
             
            <div id="langage-tool">				
@@ -145,7 +150,7 @@
         <!-- Filters -->
         <div id="projects_filters"> 
          
-            <form>
+           
              
                 <div class="grid_6 alpha">
                     <div class="filtersbox_content">
@@ -171,7 +176,7 @@
                     <div class="filtersbox_content">
                         <h4>{% trans "Location" %}</h4>
                         <a class="invert">{% trans "invert" %}</a>
-                        <select multiple size=8>
+                        <select multiple size="9">
                              <option value="#">Option 1
                              <option value="#">Option 2
                              <option value="#">Option 3
@@ -207,8 +212,8 @@
                             
                                 <div class="filters-picto">
                                     <ul>
-                                        <li id="editing" title="{% trans 'Editing in progress' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
-                                        <li id="complete" title="{% trans 'Project sheet complete' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                        <li id="filter_val_editing" title="{% trans 'Editing in progress' %}" ><input type="checkbox" class="styled" checked="checked" name="1"></li>
+                                        <li id="filter_val_full" title="{% trans 'Project sheet complete' %}"><input type="checkbox" class="styled" checked="checked" name="1"></li>
                                     </ul>
                                 </div>                            
                                 <p>{% trans "progression" %}</p>
@@ -233,21 +238,21 @@
                         <div class="filtersbox_content">
                         
                             <h4>{% trans "Project status" %}</h4>
-                                <div class="filters-progress">
-                                    <ul>
-                                        <li id="concept"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Concept" %}</p></li>
-                                        <li id="beginning"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Beginning" %}</p></li>
-                                        <li id="development"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Development" %}</p></li>
-                                        <li id="finished"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Finished" %}</p></li>
-                                    </ul>
-                                </div>                            
-                              
+                            <div class="filters-progress">
+                                <ul>
+                                    <li id="filter_val_idea"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Concept" %}</p></div></li>
+                                    <li id="filter_val_begin"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Beginning" %}</p></div></li>
+                                    <li id="filter_val_wip" class="selected"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Development" %}</p></div></li>
+                                    <li id="filter_val_end"><div class="pictos-progress"><input type="checkbox" class="styled" checked="checked" name="1"><p>{% trans "Finished" %}</p></div></li>
+                                </ul>
+                            </div>                            
+                          
                            
                         </div>
                     </div>                    
                 </div>         
             
-            </form>
+            
         
         </div>
         
@@ -257,8 +262,9 @@
 	</div>
   </div>
 
+</form>
 
-  <div class="clear"></div>
+<div class="clear"></div>
   
   
   {% endblock %}
