@@ -292,7 +292,36 @@ div#feedback-sidebar {
     width:100% !important;
 }
 
+.feedback-edit-admin  form p{
+    margin-top:5px;
+    margin-bottom:5px;
+}
+
 .feedback-edit-admin  form label{
     width:10%;
     float:left;
+    text-align:right;
+    padding-right:10px;
+    font-weight:bold;
+    position:relative;
+    top:3px;
+    color:#04ADD1;
+}
+
+.feedback-edit-admin  form .helptext{
+    margin-left:11%;
+}
+
+.feedback-edit-admin  form input[type=text], .feedback-edit-admin  form textarea {
+    width:85%;
+}
+
+.feedback-edit-admin  form select{
+
+}
+.feedback-edit-admin  input[type=submit]{
+    float:right;
+    position:relative;
+    right:20px;
+    top:5px;
 }

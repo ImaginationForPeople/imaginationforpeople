@@ -5,123 +5,128 @@
 <div class="grid_5 omega grey_column">
 	<div class="grey_column_content">
 
-	  <div id="sidebar-section-related" class="sidebar-section-openable">
-		{% if project_translation %}
-		<div class="title">
-		  <a title="{% trans 'edit'|capfirst %}"
-		     href="{% url project_sheet-instance-edit-related project_translation.slug %}"
-		     class="button sidebar-opener editing-button" name="opened-sidebar"> 
-		    <img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /> 
-		  </a>
-		  {% trans 'related'|capfirst %}
-		</div>
+        <div id="sidebar-section-related" class="sidebar-section-openable">
+            {% if project_translation %}
+            <div class="title">
+                <a title="{% trans 'edit'|capfirst %}"
+                 href="{% url project_sheet-instance-edit-related project_translation.slug %}"
+                 class="button sidebar-opener editing-button" name="opened-sidebar"> 
+                    <img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /> 
+                </a>
+                {% trans 'related'|capfirst %}
+            </div>
 
-		<!-- Colonne grise remplie -->
-        
-		<div class="grey_column_objective">
-            <!-- 
-			<label>{% trans 'objective :'|capfirst %}</label> 
-			<a href="#" class="sidebar-opener" name="opened-sidebar" id="project_objective">{{project_translation.project.get_objective_display }}</a>
-             -->
-		</div>
-        
+            <!-- Colonne grise remplie -->
 
-		{% if not project_translation.themes %}
-		<p>
-			<a class="sidebar-opener" href="#" name="opened-sidebar">
-            {% trans "Click here to set the <strong>themes</strong> of your project."|capfirst %}</a>
-			<!-- 
-            {% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
-             -->
-		</p>
-		{% else %} {% tags_for_object project_translation as taglist %}
-		<div class="grey_column_tagcloud">
-			<label>{% trans 'Themes:'|capfirst %}</label>
-			<ul id="cloudtag_list">
-				{% for tag in taglist %}
-					<li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif%}</li> 
-				{% endfor %}
-			</ul>
-		</div>
-		{% endif %}
-	</div>
+            <div class="grey_column_objective">
+                <!-- 
+                <label>{% trans 'objective :'|capfirst %}</label> 
+                <a href="#" class="sidebar-opener" name="opened-sidebar" id="project_objective">{{project_translation.project.get_objective_display }}</a>
+                 -->
+            </div>
 
-	<div id="sidebar-section-team" class="sidebar-section-openable">
-		<!-- About the team -->
-		<div class="title">
-			<a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ STATIC_URL }}images/base/add.png" alt="{% trans "add" %}" /></a>
-			{% trans 'The team'|capfirst %}
-		</div>
 
-		<div class="clear"></div>
+            {% if not project_translation.themes %}
+            <p>
+                <a class="sidebar-opener" href="#" name="opened-sidebar">
+                {% trans "Click here to set the <strong>themes</strong> of your project."|capfirst %}</a>
+                <!-- 
+                {% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
+                 -->
+            </p>
+            {% else %} {% tags_for_object project_translation as taglist %}
+            <div class="grey_column_tagcloud">
+                <label>{% trans 'Themes:'|capfirst %}</label>
+                <ul id="cloudtag_list">
+                    {% for tag in taglist %}
+                        <li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif%}</li> 
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
 
-		{% if project.members.all|length == 0 %}
-		  <!-- Text that is visible when this section is empty -->
-		  <!-- The name attribute of the anchor is the ID of the sidebar to open -->
-		  <p>
-		    <a href="#" class="sidebar-opener"  name="opened-sidebar-team">
-		      <img src="{{ STATIC_URL }}images/project/avatar.jpg" alt="{% trans 'There is no registered team members: please to fill this section !' %}" />
-		    </a>
-		  </p>
+        <div id="sidebar-section-team" class="sidebar-section-openable">
+            <!-- About the team -->
+            <div class="title">
+                <a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ STATIC_URL }}images/base/add.png" alt="{% trans 'add' %}" /></a>
+                {% trans 'The team'|capfirst %}
+            </div>
+
+            <div class="clear"></div>
+
+            {% if project.members.all|length == 0 %}
+              <!-- Text that is visible when this section is empty -->
+              <!-- The name attribute of the anchor is the ID of the sidebar to open -->
+              <p>
+                <a href="#" class="sidebar-opener"  name="opened-sidebar-team">
+                  <img src="{{ STATIC_URL }}images/project/avatar.jpg" alt="{% trans 'There is no registered team members: please to fill this section !' %}" />
+                </a>
+              </p>
+            {% else %}
+
+            <ul id="member_list">
+                {% for member in project.detailed_members.all %}
+                <li class="grey_column_team_member member{{ member.id }}">
+                  <a href="{% url userena_profile_detail member.user %}">
+                    <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
+                      <div class="grey_column_team_buttons">
+                        <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
+                        <a title="{% trans 'Delete'|capfirst %}" href="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin"><img src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /></a> 
+                      </div>
+                  </a>  
+                  {% if member.user.get_profile.country %}
+                  <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
+                  {% endif %}   
+                    <h2>
+                        <a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
+                    </h2>
+                  
+                      
+                    <h3>{{ member.role }}</h3>
+                      
+                    <div class="clear"></div>
+                      
+                    <p>{{ member.comment }}</p>		      
+
+                </li>
+                {% endfor %}
+            </ul>
+              
+
+            <form id="project_member_form" action="" method="post">
+              {% csrf_token %} {{ project_member_formset.management_form }}
+
+                <ul id="member_list_edit">
+                    {% for member_form in project_member_formset.forms %}
+                    <li class="member{{ member.id }}">
+                        <p></p>
+                        <p>{{ member_form.as_p }}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+            </form>
+
+            {% endif %}
+
+
+            <div class="grey_column_team_member">
+
+              
+            </div>
+            
+
+
 		{% else %}
+            <h1>{% trans "How to start your project sheet ?" %}</h1>
+            {% trans "Click on a field to edit it, then submit your changes. Your project will be created once a field is filled." %} 
 
-		  <ul id="member_list">
-		    {% for member in project.detailed_members.all %}
-		    <li class="grey_column_team_member member{{ member.id }}">
-		      <a href="{% url userena_profile_detail member.user %}">
-                <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
-                  <div class="grey_column_team_buttons">
-                    <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
-                    <a title="{% trans 'Delete'|capfirst %}" href="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin"><img src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /></a> 
-                  </div>
-		      </a>  
-		      {% if member.user.get_profile.country %}
-		      <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
-		      {% endif %}   
-		      <h2>
-			<a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
-		      </h2>
-		      
-		      
-		      <h3>{{ member.role }}</h3>
-		      
-		      <div class="clear"></div>
-		      
-		      <p>{{ member.comment }}</p>		      
-
-		    </li>
-		    {% endfor %}
-		  </ul>
-		  
-
-		<form id="project_member_form" action="" method="post">
-		  {% csrf_token %} {{ project_member_formset.management_form }}
-
-		  <ul id="member_list_edit">
-		    {% for member_form in project_member_formset.forms %}
-		    <li class="member{{ member.id }}">
-		      <p></p>
-		      <p>{{ member_form.as_p }}</p>
-		    </li>
-		    {% endfor %}
-		  </ul>
-
-		</form>
-
-		{% endif %}
-
-
-		<div class="grey_column_team_member">
-
-		  
-		</div>
-		</div>
-
-		<div class="clear"></div>
-
-		{% else %}
-		<h1>{% trans "How to start your project sheet ?" %}</h1>
-		{% trans "Click on a field to edit it, then submit your changes. Your project will be created once a field is filled." %} 
         {% endif %}
+        
+        </div>
+        
+		<div class="clear"></div>
+        
 	</div>
 </div>

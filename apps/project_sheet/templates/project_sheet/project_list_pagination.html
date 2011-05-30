@@ -9,9 +9,16 @@
           <img src="{{ STATIC_URL }}images/project/page_previous-off.png" alt="previous" />
         {% endif %}
 
-        <span class="current">
-          page {{ page_obj.number }} of {{ paginator.num_pages }}
-        </span>
+          pages
+          {% for page_num in page_obj.paginator.page_range %}
+                           
+            <a href="{% url project_sheet-list %}?page={{ page_num }}&order={{ order }}" class="{% if page_num == page_obj.number %}current{% endif %}">
+                    {{ page_num }}
+            </a>
+
+        {% if not forloop.last %}|{% endif %}
+        {% endfor %}
+          
 
         {% if page_obj.has_next %}
           <a href="?page={{ page_obj.next_page_number }}"><img src="{{ STATIC_URL }}images/project/page_next.png" alt="next" /></a>
