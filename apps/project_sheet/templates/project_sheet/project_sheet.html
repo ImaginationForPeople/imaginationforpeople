@@ -87,9 +87,9 @@
 
   {% compress js %}
   <!-- Sidebar -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js" defer="defer"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js"></script>
   
-  <script type="text/javascript" defer="defer">
+  <script type="text/javascript">
  
     $(document).ready(function(){ 
         $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
@@ -202,85 +202,80 @@
   <script type="text/javascript" defer="defer">
     $(document).ready(function() {
 
-     /* FIXME: These two functions need to be merged somewhat */
-     function edit_callback(value, settings) {
-       var fieldname = $(this).prev('div').attr('id');
 
-       Dajaxice.apps.project_sheet.project_sheet_edit_field(Dajax.process, {'fieldname': fieldname, 
-                                                                            'value': value
-                                                                            {% if project_translation %}, 'project_slug': '{{ project_translation.slug }}' {% endif %},
-                                                                            'language_code': "{{ LANGUAGE_CODE }}"
-       });
+	function inline_editing_save_callback(data) {
+	    var res = jQuery.parseJSON(data);
 
-       $(this).removeClass('empty');
+	    /* Toggle black background to white in case we're editing for the first time the "About Project" section */
+	    $(this).parent('div.project_description_zone_edition').removeClass('project_description_zone_edition').addClass('project_description_zone');
 
-
-       $(this).hide().fadeIn()
-
-       return(value);
-     };
-
-     function edit_about_callback(value, settings) {
-       var fieldname = $(this).parent('div').attr('id');
-
-       Dajaxice.apps.project_sheet.project_sheet_edit_field(Dajax.process, {'fieldname': fieldname, 
-                                                                            'value': value
-                                                                            {% if project_translation %}, 'project_slug': '{{ project_translation.slug }}' {% endif %},
-                                                                            'language_code': "{{ LANGUAGE_CODE }}"
-       });
-
-       $(this).removeClass('empty');
-
-
-       $(this).hide().fadeIn()
-
-       return(value);
-     };
-
+	    if ( res.redirect ) {
+		window.location = res.redirect_url;
+	    }
+	    
+	    $(this).html(res.text);
+	}
 
      /* FIXME: This needs to be factorized */
-     $('.project_description_txt').editable(edit_about_callback,
-                                        {event: 'dblclick',
-                                         tooltip: 'Double-click to edit',
-                                         indicator: 'Saving...',
-                                         type: 'autogrow',
-                                         height: '40px',
-                                         width: '535px',
-                                         cancel: "<input  title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
-                                         submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
-                                         onblur: 'ignore',
-                                         cssclass: 'inline-edit',
-                                         placeholder: "{% trans "This bloc is empty : don’t forget to fill it !"|capfirst %}"
-                                         });
+	$('.project_description_txt').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
+                                               {event: 'dblclick',
+						tooltip: 'Double-click to edit',
+						loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
+						loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
+						submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+						dataType: 'json',
+						callback: inline_editing_save_callback,
+						indicator: 'Saving...',
+						type: 'autogrow',
+						height: '40px',
+						width: '535px',
+						cancel: "<input  title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+						submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
+						onblur: 'ignore',
+						cssclass: 'inline-edit',
+						placeholder: "{% trans "This bloc is empty : don’t forget to fill it !"|capfirst %}"
+                                               });
 
 
 
-     $('.project_details_body').editable(edit_callback,
-                                         {event: 'dblclick',
-                                          tooltip: 'Double-click to edit',
-                                          indicator: 'Saving...',
-                                          type: 'autogrow',
-                                          height: '40px',
-                                          width: '690px',
-                                          cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
-                                          submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
-                                          onblur: 'ignore',
-                                          cssclass: 'inline-edit',
-                                          placeholder: "{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}"
-                                          });
+	$('.project_details_body').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
+                                            {event: 'dblclick',
+                                             tooltip: 'Double-click to edit',
+                                             loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
+					     loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
+					     submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+					     dataType: 'json',
+					     callback: inline_editing_save_callback,
+                                             indicator: 'Saving...',
+                                             type: 'autogrow',
+                                             height: '40px',
+                                             width: '690px',
+                                             cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                                             submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
+                                             onblur: 'ignore',
+                                             cssclass: 'inline-edit',
+                                             placeholder: "{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}"
+                                            });
+	
 
     $('.project_details_body').dblclick(function() {
       $('a.editing-button').fadeOut('fast');
     });
 
-    $('.project_details_title_edit .button').click(function() {
+    $('.project_details_title_edit a.button').click(function() {
       $(this).parent().next('.project_details_body').dblclick();
        return false;
     });
 
+
     $('.project_description .button').click(function() {
 	$('.project_description_txt').dblclick();
        return false;
+    });
+
+    $('div#about_section_txt > a').click(function() {
+	$('.project_description_txt').dblclick();
+	return false;
     });
 
     /*
@@ -297,6 +292,7 @@
             }
         	);
         });
+
     
     });
   </script>

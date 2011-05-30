@@ -28,28 +28,29 @@
 		{% if project_translation.about_section %}
 			<!-- Titre du projet deja créé, avec section about, en mode NON éditable-->
 			<div id="about_section" class="project_description_zone focus">
-				<div class="project_description_txt">{{ project_translation.about_section|linebreaksbr }}</div>
+				<div id="about_section_txt" class="project_description_txt">{{ project_translation.about_section|linebreaksbr }}</div>
 			</div>
 		{% else %}
 			<!-- Titre du projet deja créé, SANS section about, en mode NON éditable-->
-			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}#about_section">
+
 				<div id="about_section" class="project_description_zone_edition">
-					<div class="project_description_txt">
-						<h1>{% trans "project description"|capfirst %}</h1>
-						<h2>{% trans 'click here to describe your project'|capfirst %}</h2>
+					<div id="about_section_txt" class="project_description_txt">
+						<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}#about_section">
+						  <h1>{% trans "project description"|capfirst %}</h1>
+						  <h2>{% trans 'click here to describe your project'|capfirst %}</h2>
+						</a>
 					</div>
 				</div>
-			</a>
 		{% endif %}
 	{% else %}
 		<!-- Titre du projet en mode NON éditable-->
-		<a href="{% url project_sheet-edit-field 'about_section' %}#about_section">
 			<div class="project_description_zone_edition">
-				<div class="project_description_txt">
+				<div id="about_section_txt" class="project_description_txt">
+				  <a href="{% url project_sheet-edit-field 'about_section' %}#about_section">
 					<h1>{% trans "project description"|capfirst %}</h1>
 					<h2>{% trans 'click here to describe your project'|capfirst %}</h2>
+				  </a>
 				</div>
 			</div>
-		</a>
 	{% endif %}
 {% endif %}
