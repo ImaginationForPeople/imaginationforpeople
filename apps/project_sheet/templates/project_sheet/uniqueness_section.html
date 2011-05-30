@@ -21,9 +21,9 @@
 		</div>
 		{% if project_translation.uniqueness_section %}
 			<!-- PARAGRAPH - filled -->
-			<p class="project_details_body">{{ project_translation.uniqueness_section|linebreaksbr }}</p>
+			<p id="project_uniqueness_txt" class="project_details_body">{{ project_translation.uniqueness_section|linebreaksbr }}</p>
 		{% else %}
-			<p class="project_details_body empty">{% trans "this bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
+			<p id="project_uniqueness_txt" class="project_details_body empty">{% trans "this bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
 		{% endif %}
 	{% else %}
 		<!-- PARAGRAPH - empty -->
@@ -31,6 +31,6 @@
 			<h2>{% trans "how unique and creative is the experience"|capfirst %}?</h2>
 			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 		</div>
-		<p class="project_details_body empty"></p>
+		<p id="project_uniqueness_txt" class="project_details_body empty"></p>
 	{% endif %}
 {% endif %}

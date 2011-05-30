@@ -22,16 +22,16 @@
 		</div>
 		{% if project_translation.value_section %}
 			<!-- PARAGRAPH - filled -->
-			<p class="project_details_body">{{ project_translation.value_section|linebreaksbr }}</p>
+			<p id="project_value_txt" class="project_details_body">{{ project_translation.value_section|linebreaksbr }}</p>
 		{% else %}
-			<p class="project_details_body empty">{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
+			<p id="project_value_txt" class="project_details_body empty">{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
 		{% endif %}
 	{% else %}
 		<!-- PARAGRAPH - empty -->
 		<div id="value_section" class="project_details_title_edit">
 			<h2>{% trans 'what is the experience social added value'|capfirst %}?</h2>
-			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'value_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+			<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'value_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 		</div>
-		<p class="project_details_body empty"></p>
+		<p id="project_value_txt" class="project_details_body empty"></p>
 	{% endif %}
 {% endif %}

@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, url
 from django.views.generic.simple import direct_to_template
 
 from . import views
+from . import ajax
 
 PROJECT_AUTHORIZED_FIELDS = "|".join([
     'title',
@@ -41,4 +42,10 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/del/video/(?P<vid_id>\d+)/$', views.project_sheet_del_video, name='project_sheet-instance-del-video'),
 
     url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
+
+    # Ajax views
+    url(r'^start/ajax/field/save$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
+    url(r'^start/ajax/field/load$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
+    url(r'^(?P<project_slug>[-\w]+)/ajax/field/load$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
+    url(r'^(?P<project_slug>[-\w]+)/ajax/field/save$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
 )
