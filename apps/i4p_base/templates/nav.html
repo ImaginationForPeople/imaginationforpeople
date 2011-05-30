@@ -86,6 +86,8 @@
 					<div class="search">
 					
 						<form action="#">
+						  {% csrf_token %}
+						  {{ project_sheet_search_form.as_p }}
 							<input type="button" value="&nbsp;">
 							<input type="text" value="Search projects" name="search" id="searchInput">						
 						</form>

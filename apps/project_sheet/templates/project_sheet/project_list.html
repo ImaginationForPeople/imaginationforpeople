@@ -54,7 +54,7 @@
 
 
 {% block content %}
-<form id="filter_form" action="{{submit_url}}" method="get">
+
 
   <div class="content">
     <div class="container_18 relative">
@@ -135,14 +135,16 @@
           </ul>
           
           
-<!--           <div class="search">
+	  <div class="search">
             
-            <form action="#">
-            <input type="button" value="&nbsp;">
-            <input type="text" name="search" id="searchInput" value="{% trans "Search project" %}">						
+            <form action="">
+	      <input type="button" value="&nbsp;">
+		<input type="text" name="search" id="searchInput" value="{% trans "Search project" %}">						
+		  {{ project_sheet_search_form.as_p }}
+		  <input type="submit"/>
             </form>
             
-              </div> -->
+	    </div>
               
               
               <div class="toolbox">
@@ -163,7 +165,7 @@
         <!-- Filters -->
         <div id="projects_filters"> 
          
-           
+	  <form id="filter_form" action="{{submit_url}}" method="get">
              
                 <div class="grid_6 alpha">
                     <div class="filtersbox_content">
@@ -241,8 +243,7 @@
                     </div>                    
                 </div>         
             
-            
-        
+	  </form>
         </div>
         
         <div class="clear"></div>
@@ -250,7 +251,7 @@
 	  </div>
 	</div>
   </div>
-</form>
+
 
 <div class="clear"></div>
   
