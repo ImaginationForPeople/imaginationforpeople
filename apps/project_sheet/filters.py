@@ -210,7 +210,7 @@ class NameBaselineFilter(FilterForm):
     def apply_to(self, queryset, model_class):
         if model_class == I4pProjectTranslation:
             text = self.cleaned_data.get("text")
-            filters = Q(name__contains=text) | Q(baseline__contains=text)
+            filters = Q(title__contains=text) | Q(baseline__contains=text)
             queryset = queryset.filter(filters)
 
         return queryset

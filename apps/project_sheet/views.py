@@ -17,7 +17,7 @@ from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfo
 from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug, get_project_translation_from_parent
-from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm, ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter, BestOfFilter
+from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm, ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter, BestOfFilter, NameBaselineFilter
 from apps.project_sheet.models import I4pProject, VERSIONNED_FIELDS
 from django.contrib.contenttypes.models import ContentType
 
@@ -33,7 +33,8 @@ def project_sheet_list(request):
         'best_of_filter' : BestOfFilter(request.GET),
         'status_filter' : ProjectStatusFilter(request.GET),
         'members_filter' : WithMembersFilterForm(request.GET),
-        'progress_filter' : ProjectProgressFilter(request.GET)
+        'progress_filter' : ProjectProgressFilter(request.GET),
+        'project_sheet_search_form' : NameBaselineFilter(request.GET),
     }
 
     extra_context = {

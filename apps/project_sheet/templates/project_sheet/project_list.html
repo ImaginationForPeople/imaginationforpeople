@@ -32,17 +32,25 @@
         $(".filters_box input.styled").ezMark();
         
         $(".filtersbox_content select#id_country").change(function(){
-        	$("#filter_form").submit()
+        	$("#filter_form").submit();
         });
         
         $(".filters_box input.styled").change(function(){
-            $("#filter_form").submit()
+            $("#filter_form").submit();
         });
         
         $(".tag_link").click(function(){
-        	val = $("#id_themes").val();
-        	 $(this).addClass("selected")
-        	$("#id_themes").val(val + "'" + $(this).html()+ "',");
+        	var val = $("#id_themes").val();
+        	var new_val = "'" + $(this).html()+ "',";
+        	if($(this).hasClass("selected")){
+        		$(this).removeClass("selected");
+        		$("#id_themes").val(val.replace(new_val, ""));
+        	}
+        	else {
+                $(this).addClass("selected");
+                $("#id_themes").val(val + new_val);
+        	}
+        	$("#filter_form").submit();
         });
     }); 
   </script>
