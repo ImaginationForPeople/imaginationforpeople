@@ -41,6 +41,11 @@
                         <li class="selected"><div class="categ-button first"><a href="#">{% trans "Project" %}</a></div></li>
                        {% endif %}
 					</ul>
+                    
+                    
+                    <!-- MOTEUR DE RECHERCHE -->					
+					{% block search %} {% include "search.html" %} {% endblock %}
+                    
 					
 					<div id="langage-tool" class="grid_5 omega">				
 	
@@ -80,20 +85,6 @@
 					
 					</div>
 
-					
-					<!-- MOTEUR DE RECHERCHE -->
-					
-					<div class="search">
-					
-						<form action="#">
-						  {% csrf_token %}
-						  {{ project_sheet_search_form.as_p }}
-							<input type="button" value="&nbsp;">
-							<input type="text" value="Search projects" name="search" id="searchInput">						
-						</form>
-					
-					</div>
-			
 					
 				</div>
 			
