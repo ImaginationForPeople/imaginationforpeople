@@ -41,14 +41,19 @@
         
         $(".tag_link").click(function(){
         	var val = $("#id_themes").val();
-        	var new_val = "'" + $(this).html()+ "',";
+        	var tag_id = $(this).attr("id").replace("tag_", "");
+        	
         	if($(this).hasClass("selected")){
         		$(this).removeClass("selected");
-        		$("#id_themes").val(val.replace(new_val, ""));
+        		var new_val = val.replace(tag_id, "");
+        		new_val = new_val.replace(",,", ",");
+        		new_val = new_val.replace(/^,/g,'').replace(/,$/g,'')
+        		$("#id_themes").val(new_val);
         	}
         	else {
                 $(this).addClass("selected");
-                $("#id_themes").val(val + new_val);
+                var new_tag = val == "" ? tag_id : ","+tag_id;
+                $("#id_themes").val(val + new_tag);
         	}
         	$("#filter_form").submit();
         });
@@ -74,11 +79,10 @@
                 <li class="ui-corner-all {% if last_created %}filter-on{% endif %}"><a class="button" href="{% url project_sheet-list %}?{{getparams_last_created}}">{% trans "Last projects" %}</a></li>
                 <li class="ui-corner-all {% if last_modif %}filter-on{% endif %}"><a class="button" href="{% url project_sheet-list %}?{{getparams_last_modif}}">{% trans "Last editions" %}</a></li>
             </ul>            
-            
+           <!--   
            <div id="langage-tool">				
                 <ul id="sample-menu-1" class="sf-menu">		
                     <li class="current">
-                        <!-- FIXME ! It is necessary to put the good URL on each language changes -->
                         <a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ LANGUAGE_CODE }}.gif" title="{{ LANGUAGE_CODE }}" /> {{ LANGUAGE_CODE }}</a>
                         <ul>
                               {% for language in LANGUAGES %}
@@ -88,7 +92,8 @@
                         </ul>		
                     </li>
                 </ul>					
-            </div>        
+            </div>
+             -->        
         </div>
 
     
@@ -144,7 +149,6 @@
           
           
             {% block search %} {% include "search.html" %} {% endblock %}
-
               
               
             <div class="toolbox">
@@ -164,18 +168,18 @@
         
         <!-- Filters -->
         <div id="projects_filters"> 
-         
-	  <form id="filter_form" action="{{submit_url}}" method="get">
+        
+	  <form id="filter_form" action="{% url project_sheet-list %}?{{getparams_submit}}" method="get">
              
                 <div class="grid_6 alpha">
+                <a href="{% url project_sheet-list %}" style="color: #767676;">{% trans "reset filtering"|capfirst %}</a>
                     <div class="filtersbox_content">
                         <h4>{% trans "Themes" %}</h4>
-                        <a class="invert">{% trans "invert" %}</a>
-                        
-                        <ul id="cloudtag_list">     
+                        <!-- <a class="invert">{% trans "invert" %}</a> -->
+                        <ul id="cloudtag_list">
                             {% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags %}
                             {% for tag in project_sheet_tags|slice:":35" %}
-                                <li value="{{ tag.count }}"><a class="tag_link" href="javascript:;">{{ tag }}</a></li>
+                                <li><a class="tag_link {%if tag.id in selected_tags%}selected{% endif %}" href="javascript:;" id="tag_{{tag.id}}">{{ tag }}</a></li>
                             {% endfor %}                    
                         </ul>
                         
@@ -187,7 +191,7 @@
                 <div class="grid_4 filters_box">
                     <div class="filtersbox_content">
                         <h4>{% trans "Location" %}</h4>
-                        <a class="invert">{% trans "invert" %}</a>
+                         <!-- <a class="invert">{% trans "invert" %}</a> -->
                         {{location_filter.country}}
 
                     </div>

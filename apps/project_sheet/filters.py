@@ -46,11 +46,18 @@ class FilterForm(forms.Form):
 class ThemesFilterForm(FilterForm):
     themes = forms.CharField(required=False, label=_("Themes contain"))
 
+    def get_tags(self):
+        data = self.cleaned_data
+        if data.get("themes"):
+            tag_ids = [int(x) for x in data.get("themes").split(',')]
+            return Tag.objects.filter(id__in=tag_ids)
+        return []
+
     def apply_to(self, queryset, model_class):
-        if model_class == I4pProject:
-            tags = self.cleaned_data.get("themes")
+        if model_class == I4pProjectTranslation:
+            tags = self.get_tags()
             if tags:
-                return TaggedItem.objects.get_intersection_by_model(queryset, tags)
+                return TaggedItem.objects.get_union_by_model(queryset, tags)
 
         return queryset
 
@@ -205,7 +212,7 @@ class NameBaselineFilter(FilterForm):
     """
     Simulates a full-text search in either the baseline or the title.
     """
-    text = forms.CharField(max_length=100)
+    text = forms.CharField(max_length=100, required=False)
 
     def apply_to(self, queryset, model_class):
         if model_class == I4pProjectTranslation:

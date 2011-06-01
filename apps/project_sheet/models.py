@@ -15,6 +15,7 @@ import reversion
 from apps.member.models import I4pProfile
 
 from apps.i4p_base.models import Location
+from reversion.models import Version
 
 # Add Introspector for south: django-licenses field
 from south.modelsinspector import add_introspection_rules
@@ -127,6 +128,19 @@ class I4pProjectTranslation(models.Model):
 
     def __unicode__(self):
         return u"Translation of '%s' in '%s' : %s" % (self.project, self.language_code, self.slug)
+
+
+def get_last_modification_date(aProjectSheet):
+    last_version = Version.objects.get_for_object(aProjectSheet).latest("revision__date_created")
+    project_last_version = Version.objects.get_for_object(aProjectSheet.project).latest("revision__date_created")
+
+    last_date = None
+    if last_version :
+        last_date = last_version.revision.date_created
+    if project_last_version and last_version.revision.date_created > last_date:
+        last_date = project_last_version.revision.date_created
+
+    return last_date or aProjectSheet.project.created
 
 
 def get_projectpicture_path(aProjectPicture, filename):

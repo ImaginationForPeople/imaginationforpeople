@@ -18,7 +18,8 @@ from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMembe
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug, get_project_translation_from_parent
 from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm, ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter, BestOfFilter, NameBaselineFilter
-from apps.project_sheet.models import I4pProject, VERSIONNED_FIELDS
+from apps.project_sheet.models import I4pProject, VERSIONNED_FIELDS, \
+    get_last_modification_date
 from django.contrib.contenttypes.models import ContentType
 
 def project_sheet_list(request):
@@ -40,7 +41,7 @@ def project_sheet_list(request):
     extra_context = {
         "getparams_last_created" : "last_created=1",
         "getparams_last_modif" : "last_modif=1",
-        "submit_url" : reverse("project_sheet-list")
+        "getparams_submit" : ""
     }
 
     ordered_project_sheets = None
@@ -69,17 +70,24 @@ def project_sheet_list(request):
         #Fourth pass to order sheet
         if request.GET.get("last_created"):
             ordered_project_sheets = filtered_project_sheets.order_by('project__created')
-            extra_context["submit_url"] = "%s%s" % (reverse("project_sheet-list"), extra_context["getparams_last_created"])
             extra_context["last_created"] = True
+            extra_context["getparams_submit"] = extra_context["getparams_last_created"]
         elif request.GET.get("last_modif"):
-            ordered_project_sheets = filtered_project_sheets.order_by('project__created')
-            extra_context["submit_url"] = "%s%s" % (reverse("project_sheet-list"), extra_context["getparams_last_modif"])
+            ordered_project_sheets = list(filtered_project_sheets)
+            ordered_project_sheets.sort(key=get_last_modification_date)
+            ordered_project_sheets = I4pProjectTranslation.objects.filter(id__in=[p.id for p in ordered_project_sheets])
+
             extra_context["last_modif"] = True
+            extra_context["getparams_submit"] = extra_context["getparams_last_modif"]
         else:
             ordered_project_sheets = filtered_project_sheets.order_by('title')
 
-        extra_context["getparams_last_created"] += "&%s" % request.GET.urlencode().replace("last_modif=1", "").replace("&last_created=1", "")
-        extra_context["getparams_last_modif"] += "&%s" % request.GET.urlencode().replace("last_modif=1", "").replace("&last_created=1", "")
+        params = request.GET.urlencode().replace("last_modif=1", "").replace("last_created=1", "")
+        extra_context["getparams_last_created"] += "&%s" % params
+        extra_context["getparams_last_modif"] += "&%s" % params
+
+        extra_context["selected_tags"] = [int(t.id) for t in filter_forms["themes_filter"].get_tags()]
+
     else:
         pass
 
