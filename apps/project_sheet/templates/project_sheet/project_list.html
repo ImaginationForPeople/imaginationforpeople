@@ -147,7 +147,8 @@
                 <li><div class="categ-button2"><a href="#"><span class="georgia">My</span> imagination for people</a></div></li>
             </ul>
           
-          
+            <a href="{% url project_sheet-list %}" id="reset_filters">{% trans "reset filtering"|capfirst %}</a>
+
             {% block search %} {% include "search.html" %} {% endblock %}
               
               
@@ -172,7 +173,6 @@
 	  <form id="filter_form" action="{% url project_sheet-list %}?{{getparams_submit}}" method="get">
              
                 <div class="grid_6 alpha">
-                <a href="{% url project_sheet-list %}" style="color: #767676;">{% trans "reset filtering"|capfirst %}</a>
                     <div class="filtersbox_content">
                         <h4>{% trans "Themes" %}</h4>
                         <!-- <a class="invert">{% trans "invert" %}</a> -->

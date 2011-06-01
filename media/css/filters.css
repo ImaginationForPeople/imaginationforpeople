@@ -38,6 +38,14 @@
     float:left;
 }
 
+#projectlist_sort_buttons .filter-on a.button {
+    background-image:url("../images/base/minibutton_red.jpg");
+    background-repeat:repeat-x;
+    border:1px solid #881B1B;
+    color:white;
+    text-shadow:-1px -1px 0 rgba(0, 0, 0, 0.3);
+}
+
 /*---- Projects languages ----*/
 
 #langage-tool  {
@@ -330,5 +338,23 @@
 }
 
 .filters-progress ul li.selected p{
+    color:white;
+}
+
+
+
+#reset_filters{
+    position:relative;
+    margin-left:15px;
+    cursor:pointer;
+    font-size:11px;
+    top:4px;
+    font-style:normal;
+    font-family:Verdana,Arial,Helvetica,sans-serif;   
+    font-weight:normal;    
+}
+
+#reset_filters:hover{
+    text-decoration:none;
     color:white;
 }
