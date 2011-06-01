@@ -1,4 +1,4 @@
-{% extends 'userena/base_userena.html' %}
+{% extends "userena/profile_detail.html" %}
 {% load i18n %}
 {% load compress %}
 
@@ -10,6 +10,9 @@
     {% endcompress %}
 {% endblock %}
 
+{% block nav %}
+    {% include "nav.html" %}
+{% endblock %}
 
 
 {% block content %}
