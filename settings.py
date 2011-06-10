@@ -260,6 +260,8 @@ DEBUG_TOOLBAR_PANELS = (
 )
 
 
+### Tagging
+FORCE_LOWERCASE_TAGS=True
 
 ### Mailer
 SERVER_EMAIL = 'noreply@imaginationforpeople.com'
