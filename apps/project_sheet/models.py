@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 # import stuff we need from django
+import uuid
+import os
+
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -144,7 +147,16 @@ def get_last_modification_date(aProjectSheet):
 
 
 def get_projectpicture_path(aProjectPicture, filename):
-    dst = 'uploads/projects/%d/pictures/%s' % (aProjectPicture.project.id, filename)
+    """
+    Generate a random UUID for a picture,
+    use the uuid as the track name
+    """
+    track_uuid = uuid.uuid4()
+    name, extension = os.path.splitext(filename)
+    
+    dst = 'uploads/projects/%d/pictures/%s%s' % (aProjectPicture.project.id, 
+                                                 track_uuid, 
+                                                 extension)
     return dst
 
 class ProjectPicture(ImageModel):
