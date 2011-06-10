@@ -39,7 +39,7 @@ $(document).ready(function() {
     
     $('a.sidebar-opener.button').each(function(){
     	sidebar = $(this).attr("name");
-    	top = $(this).parent().position().top
+	var top = $(this).parent().position().top;
     	if(top > 0){
     		  /* Remove the margin of the Team sidebar */
     	    top -= 15

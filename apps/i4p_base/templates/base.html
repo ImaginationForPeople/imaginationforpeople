@@ -11,6 +11,10 @@
     <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
     <title>{% block title %}Imagination for People | {% trans 'detect, highlight and monetize social innovation'|capfirst%}{% endblock %}</title>
 
+
+    <script type="text/javascript" src="https://getfirebug.com/firebug-lite-beta.js"></script>
+
+
     {% compress css %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
@@ -54,7 +58,7 @@
 	      position: 'fixed',
 	      triggerTopPos: '150px',
 	      panelTopPos: '0px',
-	      ajax: false,
+	      ajax: false
 	  });
           var more = $('#feedback-tab textarea');
           more.hide();

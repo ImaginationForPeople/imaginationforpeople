@@ -52,9 +52,12 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js" ></script>
 	
   <!-- inline  -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.autogrow.js"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.autogrow.js"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
+
   
   <!-- for tags -->
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tag-it.js"></script>
@@ -149,7 +152,7 @@
   <script type="text/javascript" defer="defer">
     $(document).ready(function() {
 	var tags = $("#themes_tags").tagit({
-	    itemName: 'themes',
+	    itemName: 'themes'
 	});
 
 	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
@@ -226,7 +229,7 @@
 						dataType: 'json',
 						callback: inline_editing_save_callback,
 						indicator: 'Saving...',
-						type: 'autogrow',
+						type: 'growfield',
 						height: '40px',
 						width: '535px',
 						cancel: "<input  title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
@@ -247,7 +250,7 @@
 					     dataType: 'json',
 					     callback: inline_editing_save_callback,
                                              indicator: 'Saving...',
-                                             type: 'autogrow',
+                                             type: 'growfield',
                                              height: '40px',
                                              width: '690px',
                                              cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
