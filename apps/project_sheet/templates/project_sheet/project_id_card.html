@@ -26,7 +26,7 @@
         {% if plop %}
         <img src="{{ STATIC_URL }}images/project/picto-team.jpg" alt="{% trans 'associated team' %}" title="{% trans 'associated team' %}"/>
         {% endif %}
-        {% ifequal project_translation.completion_progress "EDITING" %}
+        {% ifequal project_translation.completion_progress "EDIT" %}
         <img src="{{ STATIC_URL }}images/project/picto-editing.jpg" alt="{% trans 'in progress' %}" title="{% trans 'in progress' %}"/>
         {% endifequal  %}
         {% if project_translation.project.popular %}
