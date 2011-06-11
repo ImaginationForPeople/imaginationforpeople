@@ -95,7 +95,7 @@ class I4pProjectTranslation(models.Model):
     """
 
     PROGRESS_CHOICES = [
-        ("EDITING", _("In edition")),
+        ("EDIT", _("In edition")),
         ("FULL", _("Complete")),
     ]
     class Meta:
@@ -114,7 +114,7 @@ class I4pProjectTranslation(models.Model):
                          unique_with=['language_code'])
 
     completion_progress = models.CharField(verbose_name=_('status'),
-                                max_length=5, choices=PROGRESS_CHOICES, default="EDITING",
+                                max_length=5, choices=PROGRESS_CHOICES, default="EDIT",
                                 null=True, blank=True)
 
     baseline = models.CharField(_("one line description"), max_length=180, null=True, blank=True, default=_("One line description"))
