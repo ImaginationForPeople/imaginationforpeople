@@ -86,8 +86,12 @@ class I4pProject(models.Model):
         return ('project_sheet-show', (self.slug,))
 
     def __unicode__(self):
-        return u"Parent project %d" % self.id
+        res = u"Parent project %d" % self.id
+        if self.translations.all().count():
+           res = "%s (%s)" % (res,
+                              self.translations.all()[0].slug)
 
+        return res
 
 class I4pProjectTranslation(models.Model):
     """
@@ -130,7 +134,7 @@ class I4pProjectTranslation(models.Model):
         return ('project_sheet-show', (self.slug,))
 
     def __unicode__(self):
-        return u"Translation of '%s' in '%s' : %s" % (self.project, self.language_code, self.slug)
+        return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
 
 
 def get_last_modification_date(aProjectSheet):
