@@ -16,9 +16,9 @@
 
 <ul class="history">
 {% for version, fields in versions.iteritems %}
-    <li>{% trans "Done the" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} 
+    <li>{% trans "Made on" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} 
     {% if version.revision.user.profile %}
-        <a href="{% url userena_profile_detail version.revision.user.profile.user.username %}" class="link">{{version.revision.user.profile.get_full_name_or_username}}</a> {% trans "on the field" %}
+        <a href="{% url userena_profile_detail version.revision.user.profile.user.username %}" class="link">{{version.revision.user.profile.get_full_name_or_username}}</a>
     {% else %}
         {% trans 'anonymous' %}
     {% endif %}
