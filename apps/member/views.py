@@ -17,10 +17,11 @@ def profile_detail(request, username):
     """
     user = get_object_or_404(User, username__iexact=username)
 
-    current_language_code = translation.get_language()
-    fallback_language = 'en'
-
-    project_translation_list = [get_project_translation_from_parent(project, current_language_code, fallback_language, fallback_any=True)
+    project_translation_list = [get_project_translation_from_parent(project, 
+                                                                    language_code=translation.get_language(),
+                                                                    fallback_language='en', 
+                                                                    fallback_any=True
+                                                                    )
                                 for project
                                 in user.projects.all().distinct()[:3]
                                 ]
