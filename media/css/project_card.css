@@ -229,8 +229,11 @@
 
 .categories_project_page{
 
-	position:relative !important;
-	top:-73px;
+	position:fixed !important;
+    top:auto;
+    height:36px !important;
+	bottom:0px;
+    z-index:8000;
 	/*overflow:hidden;*/
 
 }
