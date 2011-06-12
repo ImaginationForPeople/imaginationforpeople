@@ -57,7 +57,14 @@
         	}
         	$("#filter_form").submit();
         });
-    }); 
+
+        $("#filters").toggle(function() {
+				 $('.categories_project_page').animate({height: '260px'});
+			     },
+			     function() {
+				 $('.categories_project_page').animate({height: '36px'});
+			     });
+		      }); 
   </script>
 {% endcompress %}
 {% endblock %}
@@ -142,7 +149,7 @@
         <div class="menu">
           
             <ul>
-                <li><div class="categ-button first selected"><a href="#">{% trans "Filters" %}</a></div></li>
+                <li><div id="filters" class="categ-button first selected"><a href="#">{% trans "Filters" %}</a></div></li>
                 <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
                 <li><div class="categ-button2"><a href="#"><span class="georgia">My</span> imagination for people</a></div></li>
             </ul>

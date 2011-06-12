@@ -4,7 +4,9 @@
 <a href="{% locale_url project_translation.language_code project_sheet-show project_translation.slug %}" class="project_card"  title="{{ project_translation.baseline}}">
   
     <div class="project-photo">	
+    {% if project_translation.project.pictures.all|length > 0 %}
         <img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
+    {% endif %}
     </div>
     
     {% ifequal project_translation.project.status "IDEA" %}

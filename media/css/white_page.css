@@ -1,3 +1,16 @@
+#opened-sidebar, #opened-sidebar-team, #langage-tool ul li ul{
+    visibility:hidden;
+}
+
+#langage-tool  ul li ul{
+    visibility:hidden;
+    display:none;
+}
+
+
+
+
+
 .content{
 
 	background-color:white;	
@@ -202,8 +215,16 @@
 	background-position:left;	
 	float:right;
 	right:-35px;
-	
- }
+    
+    border:0px; 
+    background-color:transparent;
+    cursor:pointer; 
+ } 
+  
+.grey_column_close:hover{
+    text-decoration:underline;
+}
+
 
 
 
