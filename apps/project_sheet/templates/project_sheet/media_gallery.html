@@ -120,21 +120,23 @@
                            </li>
 						{% endfor %}
 					</ul>
-					<ul id="project_photo_gallery_mini" class="jcarousel-skin-tango">
-						{% for pic in project_translation.project.pictures.all %}
-							<li><a onclick="changeslider({{forloop.counter}});" href="javascript:;"><img src="{{pic.thumbnail_image.url}}" alt="" /></a></li>
-						{% endfor %}
-
-						{% for vid in project_translation.project.videos.all %}
-							<li>
-								<a onclick="changeslider({{forloop.counter|add:project_translation.project.pictures.count}});" href="javascript:;">
-									<img src="{{ STATIC_URL }}images/play_video.png" alt="Play" height="48" width="48"/>
-								</a>
-							</li>
-
-						{% endfor %}
-					</ul>
-				</div>				
+				</div>	
+                <div id="thumbs_nav">
+                    <ul id="project_photo_gallery_mini" class="jcarousel-skin-tango">
+                            {% for pic in project_translation.project.pictures.all %}
+                                <li><a onclick="changeslider({{forloop.counter}});" href="javascript:;"><img src="{{pic.thumbnail_image.url}}" alt="" /></a></li>
+                            {% endfor %}
+    
+                            {% for vid in project_translation.project.videos.all %}
+                                <li>
+                                    <a onclick="changeslider({{forloop.counter|add:project_translation.project.pictures.count}});" href="javascript:;">
+                                        <img src="{{ STATIC_URL }}images/play_video.png" alt="Play" height="48" width="48"/>
+                                    </a>
+                                </li>
+    
+                            {% endfor %}
+                    </ul>
+                </div>			
 			</div>
 		{% else %}
 			<!-- MEDIA - created project - no pictures -->
