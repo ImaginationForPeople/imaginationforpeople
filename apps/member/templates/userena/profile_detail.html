@@ -21,61 +21,63 @@
 
 
 {% block content %}
-<div class="content">        
+  <div class="content">        
     <div class="container_18">
 
-            <div id="profile">
+      <div id="profile">
 
 
-                {% include "userena/profile_idbar.html" %}
-                
-                <div id="profile_about">
-                    {% if profile.about %}
-                    <p>{{ profile.about|linebreaksbr }}</p>
-                    {% else %}
-                    <p>{% trans '<i>This member has no description...</i>' %}</p>
-                    {% endif %}                    
-                </div>
-               
-		<div id="profile_projects">                
-		  <div class="separator">
-                    <h2>
-		      {% if user.username == profile.user.username %}
-                        {% trans 'My projects' %}
-                      {% else %}
-                        {% trans 'Her/His projects' %}
-                      {% endif %}
-                    </h2>
-		  </div>
-		  
-		  {% for project_translation in project_translation_list %}	  
-                    <div class="colonne grid_6">
-		      {% include "project_sheet/project_complete_card.html" %}			
-                    </div>
-                  {% endfor %}
-                
-                </div>
-                
+	{% include "userena/profile_idbar.html" %}
+	
+	<div id="profile_about">
+	  {% if profile.about %}
+            <p>{{ profile.about|linebreaksbr }}</p>
+          {% else %}
+            <p>{% trans '<i>This member has no description...</i>' %}</p>
+          {% endif %}                    
+	</div>
+	
+	<div id="profile_projects">                
+	  <div class="separator">
+	    <h2>
+	      {% if user.username == profile.user.username %}
+                {% trans 'My projects' %}
+              {% else %}
+                {% trans 'Her/His projects' %}
+              {% endif %}
+	    </h2>
+	  </div>
+	  
+	  {% for project_translation in project_translation_list %}	  
+            <div class="colonne grid_6">
+	      {% include "project_sheet/project_complete_card.html" %}			
+	    </div>
+          {% endfor %}
+	  
+	</div>
+
+	<div class="clear"></div>
+	
         {% if user.username == profile.user.username %}
-        <div id="profile_projects">                
-        <div class="separator">
-            <h2>
-                  {% trans 'My contributions' %}
-           </h2>
-        </div>
-        
-        {% for project_translation in project_contrib_list %}   
-                <div class="colonne grid_6">
-                    {% include "project_sheet/project_complete_card.html" %}          
-                </div>
-        {% endfor %}
+          <div id="profile_projects">                
+	    <div class="separator">
+	      <h2>
+		{% trans 'My contributions' %}
+	      </h2>
+	    </div>
+	    
+	    {% for project_translation in project_contrib_list %}   
+              <div class="colonne grid_6">
+		{% include "project_sheet/project_complete_card.html" %}          
+	      </div>
+            {% endfor %}
             
-        </div>
+	  </div>
         {% endif %}
-               
-            </div>
-            
-        <div class="clear"></div>
+	
+      </div>
+      
+      <div class="clear"></div>
     </div>
-</div>
+  </div>
 {% endblock %}
