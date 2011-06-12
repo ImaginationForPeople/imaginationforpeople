@@ -22,12 +22,13 @@
     {% else %}
         {% trans 'anonymous' %}
     {% endif %}
+    {% trans 'on' %}
     {% for field in fields %}
-        {% if forloop.last %}
-            &nbsp;{% trans 'and' %}&nbsp;
-        {%else%}
-            {% if not forloop.first %}
+        {% if not forloop.first %}
+            {% if forloop.last %}
                 ,&nbsp;
+            {%else%}
+                &nbsp;{% trans 'and' %}&nbsp;  
             {%endif%}
         {%endif%}
          <strong>{% trans '"' %}{{field}}{% trans '"' %} </strong>
