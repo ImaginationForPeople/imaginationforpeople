@@ -196,7 +196,7 @@ class ProjectMember(models.Model):
                             null=True)
 
     comment = models.TextField(verbose_name=_("comment"),
-                               blank=False,
+                               blank=True,
                                null=True)
 
     def __unicode__(self):
