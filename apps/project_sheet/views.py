@@ -21,6 +21,7 @@ from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm, Project
 from apps.project_sheet.models import I4pProject, VERSIONNED_FIELDS, \
     get_last_modification_date
 from django.contrib.contenttypes.models import ContentType
+from tagging.models import Tag
 
 def project_sheet_list(request):
     """
@@ -43,6 +44,11 @@ def project_sheet_list(request):
         "getparams_last_modif" : "last_modif=1",
         "getparams_submit" : ""
     }
+
+    project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
+    project_sheet_tags.sort(key=lambda tag:-tag.count)
+
+    extra_context["project_sheet_tags"] = project_sheet_tags
 
     ordered_project_sheets = None
     filters = FilterSet(filter_forms)
