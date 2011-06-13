@@ -19,9 +19,12 @@ from apps.member.models import I4pProfile
 
 from apps.i4p_base.models import Location
 from reversion.models import Version
+from django.db.models import Q
 
 # Add Introspector for south: django-licenses field
 from south.modelsinspector import add_introspection_rules
+from django.contrib.contenttypes.models import ContentType
+from django.db.models.signals import post_save
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
 
 class ProjectReference(models.Model):
@@ -121,6 +124,8 @@ class I4pProjectTranslation(models.Model):
                                 max_length=5, choices=PROGRESS_CHOICES, default="EDIT",
                                 null=True, blank=True)
 
+    modified = models.DateField(null=True, blank=True)
+
     baseline = models.CharField(_("one line description"), max_length=180, null=True, blank=True, default=_("One line description"))
     about_section = models.TextField(_("about the project"), null=True, blank=True)
     uniqueness_section = models.TextField(_("what is make it creative and unique"), null=True, blank=True)
@@ -137,17 +142,30 @@ class I4pProjectTranslation(models.Model):
         return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
 
 
-def get_last_modification_date(aProjectSheet):
-    last_version = Version.objects.get_for_object(aProjectSheet).latest("revision__date_created")
-    project_last_version = Version.objects.get_for_object(aProjectSheet.project).latest("revision__date_created")
+def last_modification_date(sender, instance, **kwargs):
+    if sender == Version:
+        version = instance
+        ct_project = ContentType.objects.get_for_model(I4pProject)
+        ct_sheet = ContentType.objects.get_for_model(I4pProjectTranslation)
 
-    last_date = None
-    if last_version :
-        last_date = last_version.revision.date_created
-    if project_last_version and last_version.revision.date_created > last_date:
-        last_date = project_last_version.revision.date_created
+        if version.content_type == ct_sheet :
+            try:
+                project_sheet = ct_sheet.model_class().objects.get(id=version.object_id)
+                project_sheet.modified = version.revision.date_created
+                project_sheet.save()
+            except:
+                print ct_sheet, version.object_id
+        elif version.content_type == ct_project :
+            try:
+                project = ct_project.model_class().objects.get(id=version.object_id)
+                for project_sheet in project.translations.all():
+                    project_sheet.modified = version.revision.date_created
+                    project_sheet.save()
+            except:
+                print ct_project, version.object_id
 
-    return last_date or aProjectSheet.project.created
+post_save.connect(last_modification_date, sender=Version)
+
 
 
 def get_projectpicture_path(aProjectPicture, filename):
@@ -157,9 +175,9 @@ def get_projectpicture_path(aProjectPicture, filename):
     """
     track_uuid = uuid.uuid4()
     name, extension = os.path.splitext(filename)
-    
-    dst = 'uploads/projects/%d/pictures/%s%s' % (aProjectPicture.project.id, 
-                                                 track_uuid, 
+
+    dst = 'uploads/projects/%d/pictures/%s%s' % (aProjectPicture.project.id,
+                                                 track_uuid,
                                                  extension)
     return dst
 
