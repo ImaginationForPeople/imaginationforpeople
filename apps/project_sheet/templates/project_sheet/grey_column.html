@@ -39,7 +39,7 @@
                 <label>{% trans 'Themes:'|capfirst %}</label>
                 <ul id="cloudtag_list">
                     {% for tag in taglist %}
-                        <li><a href="#">{{ tag }}</a>{% if not forloop.last %},{% endif%}</li> 
+                        <li><a href="{% url project_sheet-list%}?themes={{tag.id}}">{{ tag }}</a>{% if not forloop.last %},{% endif%}</li> 
                     {% endfor %}
                 </ul>
             </div>
