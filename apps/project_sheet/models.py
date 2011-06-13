@@ -154,7 +154,7 @@ def last_modification_date(sender, instance, **kwargs):
                 project_sheet.modified = version.revision.date_created
                 project_sheet.save()
             except:
-                print ct_sheet, version.object_id
+                pass
         elif version.content_type == ct_project :
             try:
                 project = ct_project.model_class().objects.get(id=version.object_id)
@@ -162,7 +162,7 @@ def last_modification_date(sender, instance, **kwargs):
                     project_sheet.modified = version.revision.date_created
                     project_sheet.save()
             except:
-                print ct_project, version.object_id
+                pass
 
 post_save.connect(last_modification_date, sender=Version)
 
