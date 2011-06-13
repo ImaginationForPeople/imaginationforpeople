@@ -1,8 +1,10 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
-from userena.models import UserenaLanguageBaseProfile, PROFILE_PERMISSIONS
+from userena.models import UserenaLanguageBaseProfile
 from django_countries import CountryField
 from apps.i4p_base.models import Location
+from guardian.shortcuts import assign
+from django.db.models.signals import post_save
 
 class I4pProfile(UserenaLanguageBaseProfile):
     GENDER_TYPE = (
@@ -21,8 +23,15 @@ class I4pProfile(UserenaLanguageBaseProfile):
     country = CountryField(null=True, blank=True)
     location = models.OneToOneField(Location, verbose_name=_('location'), null=True, blank=True)
 
-    class Meta:
-        permissions = PROFILE_PERMISSIONS
 
+def assign_good_profile_perm(sender, instance, created, **kwargs):
+    if created:
+        user = instance.user
+        assign('change_profile', user, instance)
+        assign('change_user', user, user)
 
+post_save.connect(assign_good_profile_perm, I4pProfile)
 
+def init_good_profile_perm():
+    for profile in I4pProfile.objects.all():
+        assign_good_profile_perm(I4pProfile, profile, True)
