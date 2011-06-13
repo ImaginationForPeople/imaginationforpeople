@@ -283,7 +283,8 @@ PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_templat
                                   'userena.views.signin')
 
 PRIVATEBETA_ALWAYS_ALLOW_MODULES = ('django.contrib.admin.sites',
-				    'contact_form.views')
+				    'contact_form.views',
+                    'userena.views')
 ### Dajax Ice
 DAJAXICE_MEDIA_PREFIX = "js/dajax"
 DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
