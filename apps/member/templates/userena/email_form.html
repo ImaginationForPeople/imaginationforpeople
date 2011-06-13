@@ -3,16 +3,6 @@
 {% load compress %}
 
 {% block title %}{% trans "Change email" %} | Imagination for People{% endblock %}
-{% block style %}
-  {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" />
-    {% endcompress %}
-{% endblock %}
-
-{% block nav %}
-    {% include "nav.html" %}
-{% endblock %}
 
 
 {% block content %}
@@ -27,12 +17,12 @@
                 
                 <div class="separator">
                     <h2>
-                        {% trans 'Change Password' %}
+                        {% trans 'Change email' %}
                     </h2>
                 </div>
                 
                 <form action="" method="post" id="email_change_form">
-                    {{ profile.email }}  
+                    {{ user.email }}  
                     {% csrf_token %}
                     {{ form.as_p }}
                     <input type="submit" class="button" value="{% trans "Change email" %}" />

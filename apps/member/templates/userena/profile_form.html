@@ -5,20 +5,6 @@
 {% block meta_desc %}{% endblock %}
 {% block title %}{% trans "Account setup" %} | Imagination for People{% endblock %}
 
-{% block style %}
-  {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" />
-    {% endcompress %}
-{% endblock %}
-
-
-
-{% block nav %}
-    {% include "nav.html" %}
-{% endblock %}
-
-
 {% block content %}
 <div class="content">        
     <div class="container_18">
@@ -28,7 +14,7 @@
 
                 {% include "userena/profile_idbar.html" %}
 
-                <form action="" method="post">
+                <form action="" method="post" >
                    
                    <div class="separator">
                         <h2>

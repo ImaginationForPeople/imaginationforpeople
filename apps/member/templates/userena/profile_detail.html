@@ -5,7 +5,6 @@
 {% block meta_desc %}{% endblock %}
 {% block title %}{% blocktrans with profile.user.username as username %}{{ username }}'s profile{% endblocktrans %} | Imagination for People{% endblock %}
 
-
 {% block style %}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
@@ -21,7 +20,7 @@
 
 
 {% block content %}
-  <div class="content">        
+  <div class="content"> 
     <div class="container_18">
 
       <div id="profile">

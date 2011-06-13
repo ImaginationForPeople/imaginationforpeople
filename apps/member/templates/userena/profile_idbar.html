@@ -2,14 +2,11 @@
 
     <div id="profile_action">
         {% block profile_button_panel %}
-            {% comment %}Dirty hack. Will use django-guardian in the future.{% endcomment %}
-            {% if user.username == profile.user.username %}
                 <ul>
                     <li><a class="button nomargin"  href="{% url userena_profile_edit user.username %}" title="{% trans 'Edit details'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "details" %}</a></li>
                     <li><a class="button nomargin"  href="{% url userena_password_change user.username %}" title="{% trans 'Edit password'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "password" %}</a></li>
                     <li><a class="button nomargin"  href="{% url userena_email_change user.username %}" title="{% trans 'Edit email'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "email" %}</a></li>
                 </ul>
-            {% endif %}
         {% endblock %}
     </div>            
 
@@ -25,35 +22,35 @@
                 <a  href="#" title="Facebook"><img src="{{ STATIC_URL }}images/profile/facebook.png" alt="Facebook" /></a> 
             {% endif %} 
         </div>                    
-        <img src="{{ profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
+        <img src="{{ user.profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
     </div>
                
     <div id="profile_bar"> 
         <h1>
-            {% if profile.user.get_full_name %}
-                {{ profile.user.get_full_name }}
+            {% if user.get_full_name %}
+                {{ user.get_full_name }}
             {% else %}
                 {% trans 'Anonymous' %}
             {% endif %}
         </h1>
         
         <div id="profile_bar_middle">
-            {% if profile.motto %}
-            <p class="motto">"{{ profile.motto }}"</p>
+            {% if user.profile.motto %}
+            <p class="motto">"{{ user.profile.motto }}"</p>
             {% endif %}
             
             <p class="infos">
             {% if profile.age %}
-            {{ profile.age }}
+            {{ user.profile.age }}
             {% endif %}                        
-            {% if profile.country %}
-            - {{ profile.country }}
+            {% if user.profile.country %}
+            - {{ user.profile.country }}
             {% endif %}
             
             </p>
         </div>
         
-        {% if profile.website %}
+        {% if user.profile.website %}
         <p class="site"><a class="link" href="{{ profile.website }}">{{ profile.website }}</a></p>
         {% endif %}
         
