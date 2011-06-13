@@ -433,15 +433,15 @@
 	    </div> -->
 	    
 		<div class="location">{% trans "Location:" %}
-		{% if project.location %}
+		{% if project_translation.project.location %}
 			<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-			{% if project.location.address %}
-            {{ project.location.address }} -
+			{% if project_translation.project.location.address %}
+            {{ project_translation.project.location.address }} -
             {% endif %}
-	    {% if project.location.country %}
-			  <img src="{{ project.location.country.flag }}" alt="{{ project.location.country }}"/> {{ project.location.country.name }}
+	    {% if project_translation.project.location.country %}
+			  <img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
 			  {% endif %}
-			{% if project.location.lat %}
+			{% if project_translation.project.location.lat %}
 			<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
 			{% endif %}
 		{% else %}
@@ -450,8 +450,8 @@
 		</div>
 		
 		<!-- Website -->
-		{% if project.website %}
-		  <div class="website">{% trans "Website:" %} <a href="{{ project.website }}">{{ project.website }}</a></div>
+		{% if project_translation.project.website %}
+		  <div class="website">{% trans "Website:" %} <a href="{{ project.website }}">{{ project_translation.project.website }}</a></div>
 		{% else %}
             {% trans "Website:" %} <em>{% trans 'unknown'|capfirst %}</em>
         {% endif %}
