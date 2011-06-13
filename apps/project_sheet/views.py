@@ -157,7 +157,8 @@ def project_sheet_show(request, slug):
                                           'project_info_form': project_info_form,
                                           'project_location_form': project_location_form,
                                           'project_member_form': project_member_form,
-                                          'project_member_formset': project_member_formset},
+                                          'project_member_formset': project_member_formset,
+                                          'project_tab' : True},
                               context_instance=RequestContext(request)
                               )
 
@@ -445,6 +446,7 @@ def project_sheet_history(request, project_slug):
 
     return render_to_response('project_sheet/history.html',
                               {'project_translation' : project_translation,
-                               'versions' : version_field_diff},
+                               'versions' : version_field_diff,
+                               'history_tab' : True},
                               context_instance=RequestContext(request))
 
