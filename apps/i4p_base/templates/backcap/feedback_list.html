@@ -136,27 +136,30 @@ $(document).ready(function() {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="feedback-info">
-                                    <div>
-                                        <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
-                                        <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
-                                    </div>
-                                    <br />
-                                    <div class="feedback-desc">
-                                        {{ feedback.text|truncatewords:20 }}
-                                    </div>
-                                    <div id="feedback_infos">
-                                        {% if feedback.status == 'A' %}
-                                        {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
-                                        {% else %}
-                                        {{ feedback.get_status_display }} / 
-                                        {% endif %}
-                                        <span class="who">
-                                            {% blocktrans with feedback.created_on|timesince as since %}
-                                            Posted {{ since }} ago by
-                                            {% endblocktrans %}
-                                            <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
-                                        </span>
+                                
+                                <div class="omega grid_13">
+                                    <div class="feedback-info">
+                                        <div>
+                                            <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
+                                            <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
+                                        </div>
+                                        <br />
+                                        <div class="feedback-desc">
+                                            {{ feedback.text|truncatewords:20 }}
+                                        </div>
+                                        <div id="feedback_infos">
+                                            {% if feedback.status == 'A' %}
+                                            {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
+                                            {% else %}
+                                            {{ feedback.get_status_display }} / 
+                                            {% endif %}
+                                            <span class="who">
+                                                {% blocktrans with feedback.created_on|timesince as since %}
+                                                Posted {{ since }} ago by
+                                                {% endblocktrans %}
+                                                <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -200,7 +203,7 @@ $(document).ready(function() {
                                     <li class="ui-corner-all {% if qtype == 'I' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'I' %}?order={{order}}">{% trans "Ideas" %}</a></li>
                                 </ul>
                                 <div class="clear"></div>
-                                <h4>{% trans "Order by" %}</h4>
+                                <h4 style="display:block;">{% trans "Order by" %}</h4>
                                 <div class="clear"></div>
                                 <ul id="feedback-order">
                                     <li class="ui-corner-all {% if order == 'score' %}order-on{% endif %}"><a class="button" href="{% url feedback-list qtype %}?order=score">{% trans "Score" %}</a></li>

@@ -112,28 +112,30 @@ $(document).ready(function() {
 	    </div>
 	</div>
     
-    <div class="feedback-info">
-    
-        <div>
-            <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
-            <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
-        </div>
-        <br />
-        <div class="feedback-desc">
-            {{ feedback.text|truncatewords:20 }}
-        </div>
-        <div id="feedback_infos">
-            {% if feedback.status == 'A' %}
-            {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
-            {% else %}
-            {{ feedback.get_status_display }} / 
-            {% endif %}
-            <span class="who">
-                {% blocktrans with feedback.created_on|timesince as since %}
-                Posted {{ since }} ago by
-                {% endblocktrans %}
-                <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
-            </span>
+    <div class="omega grid_16">
+        <div class="feedback-info">
+        
+            <div>
+                <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
+                <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
+            </div>
+            <br />
+            <div class="feedback-desc">
+                {{ feedback.text|truncatewords:20 }}
+            </div>
+            <div id="feedback_infos">
+                {% if feedback.status == 'A' %}
+                {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
+                {% else %}
+                {{ feedback.get_status_display }} / 
+                {% endif %}
+                <span class="who">
+                    {% blocktrans with feedback.created_on|timesince as since %}
+                    Posted {{ since }} ago by
+                    {% endblocktrans %}
+                    <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
+                </span>
+            </div>
         </div>
     </div>
     
