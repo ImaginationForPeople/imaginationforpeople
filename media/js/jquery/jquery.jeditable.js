@@ -353,6 +353,7 @@
                                       callback.apply(self, [result, settings]);
                                       if (!$.trim($(self).html())) {
                                           $(self).html(settings.placeholder);
+
                                       }
                                   },
                                   error   : function(xhr, status, error) {
@@ -362,7 +363,7 @@
                               
                               /* override with what is given in settings.ajaxoptions */
                               $.extend(ajaxoptions, settings.ajaxoptions);   
-                              $.ajax(ajaxoptions);          
+                              $.ajax(ajaxoptions);
                               
                             }
                         }
@@ -421,6 +422,7 @@
                                 if (submit.attr("type") != "submit") {
                                     form.submit();
                                 }
+				return false;
                             });
                         /* otherwise use button with given string as text */
                         } else {

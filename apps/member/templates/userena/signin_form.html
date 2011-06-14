@@ -17,7 +17,7 @@
     <div class="container_18">
         <div class="grid_18 alpha omega">
 
-            <div id="profile" class="profile_edition">
+            <div id="profile">
                 
                 
                 <div class="separator">
@@ -26,7 +26,7 @@
                     </h2>
                 </div>
             
-                <form action="" method="post" id="signin_form">
+                <form action="" method="post" id="signin_form"  class="profile_edition">
                     {% csrf_token %}
                     <input type="hidden" name="next" value="{% url project_sheet-list %}" />
                         {{ form.non_field_errors }}
@@ -44,6 +44,7 @@
                         </p>
                         {% endif %}
                         {% endfor %}
+                    <div class="clear"></div>
                     <input type="submit" class="button" value="{% trans "Sign in" %}" />
                     <div class="clear"></div>
                     <br /><br /><br />

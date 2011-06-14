@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-05-12 17:54+0200\n"
-"PO-Revision-Date: 2011-05-12 17:55\n"
-"Last-Translator:   <alban@plop.fr>\n"
+"POT-Creation-Date: 2011-06-13 17:32+0200\n"
+"PO-Revision-Date: 2011-06-13 20:40\n"
+"Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,136 +19,164 @@ msgstr ""
 "X-Translated-Using: django-rosetta 0.5.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: filters.py:57
-msgid "Title must contains"
-msgstr "Titre doit contenir"
-
-#: filters.py:69
-msgid "Objective is"
-msgstr "L'objectif est :"
-
-#: filters.py:81
+#: filters.py:47
 msgid "Themes contain"
 msgstr "Thèmes contiennent"
 
-#: filters.py:92
-msgid "Created "
-msgstr "Crée "
+#: filters.py:65
+msgid "With associated leaders"
+msgstr "Avec porteur de projet"
 
-#: models.py:24 models.py:122
+#: filters.py:66
+msgid "Without associated leaders"
+msgstr "Sans porteur de projet"
+
+#: models.py:28 models.py:171
 msgid "description"
 msgstr "description"
 
-#: models.py:24
+#: models.py:28
 msgid "Insert your reference here (URL, books, etc)"
 msgstr "Insérez votre référence ici (URL, livres, etc)"
 
-#: models.py:32
+#: models.py:36
 msgid "-----"
 msgstr ""
 
-#: models.py:33
+#: models.py:37
 msgid "Educate"
 msgstr "Éduquer"
 
-#: models.py:34
+#: models.py:38
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: models.py:37 models.py:123
+#: models.py:42
+msgid "Concept"
+msgstr "Concept"
+
+#: models.py:43
+msgid "Starting"
+msgstr "Démarrage"
+
+#: models.py:44
+msgid "In development"
+msgstr "En développement"
+
+#: models.py:45
+msgid "Mature"
+msgstr "Mature"
+
+#: models.py:47 models.py:172
 msgid "author"
 msgstr "auteur"
 
-#: models.py:41
+#: models.py:51
 msgid "members"
 msgstr "membres"
 
-#: models.py:47 models.py:121
+#: models.py:56
+msgid "best of"
+msgstr "Favoris"
+
+#: models.py:58 models.py:170
 msgid "creation date"
 msgstr "date de création"
 
-#: models.py:49
+#: models.py:60
 msgid "objective"
 msgstr "objectif"
 
-#: models.py:53
+#: models.py:64
 msgid "website"
 msgstr "site web"
 
-#: models.py:59
-msgid "project leader information"
-msgstr "Information du responsable de projet"
+#: models.py:70 models.py:120
+msgid "status"
+msgstr "statut"
 
-#: models.py:63
+#: models.py:74
+msgid "project leader information"
+msgstr "Information du porteur de projet"
+
+#: models.py:78
 msgid "location"
 msgstr "emplacement"
 
-#: models.py:87
+#: models.py:102
+msgid "In edition"
+msgstr "En cours d'édition"
+
+#: models.py:103
+msgid "Complete"
+msgstr "Complet"
+
+#: models.py:110
 msgid "language"
 msgstr "langue"
 
-#: models.py:91
+#: models.py:114
 msgid "title"
 msgstr "titre"
 
-#: models.py:92
+#: models.py:115
 msgid "My Project Title"
 msgstr "Le titre du projet"
 
-#: models.py:97
+#: models.py:124
 msgid "one line description"
 msgstr "Description en une ligne"
 
-#: models.py:97 templates/project_sheet/project_sheet.html:386
+#: models.py:124 templates/project_sheet/project_sheet.html:409
 msgid "One line description"
 msgstr "Description en une ligne"
 
-#: models.py:98 templates/project_sheet/about_section.html:3
+#: models.py:125 templates/project_sheet/about_section.html:3
 msgid "about the project"
 msgstr "A propos du projet"
 
-#: models.py:99
+#: models.py:126
 msgid "what is make it creative and unique"
-msgstr "En quoi ce projet est il singulier et créatif ?"
+msgstr "En quoi ce projet est-il singulier et créatif"
 
-#: models.py:100 templates/project_sheet/value_section.html:6
+#: models.py:127 templates/project_sheet/value_section.html:6
 #: templates/project_sheet/value_section.html:20
 #: templates/project_sheet/value_section.html:32
 msgid "what is the experience social added value"
-msgstr "Quelle est la plus-value sociale du projet ?"
+msgstr "Quelle est la plus-value sociale du projet"
 
-#: models.py:101
+#: models.py:128
 msgid "how scalable it is"
 msgstr ""
 "Quel est le potentiel de déploiement (autres territoires, autres "
 "disciplines, autres secteurs) ?"
 
-#: models.py:103
+#: models.py:130
 msgid "Themes of the project"
 msgstr "Thèmes du projet"
 
-#: models.py:124
+#: models.py:173
 msgid "source"
 msgstr "source"
 
-#: models.py:125
+#: models.py:174
 msgid "license"
 msgstr "licence"
 
-#: models.py:144
+#: models.py:193
 msgid "role"
 msgstr "rôle"
 
-#: models.py:149
+#: models.py:198
 msgid "comment"
 msgstr "Commentaire"
 
 #: templates/project_sheet/about_section.html:6
 #: templates/project_sheet/about_section.html:8
 #: templates/project_sheet/grey_column.html:74
-#: templates/project_sheet/project_sheet.html:381
-#: templates/project_sheet/project_sheet.html:387
-#: templates/project_sheet/project_sheet.html:397
+#: templates/project_sheet/project_sheet.html:404
+#: templates/project_sheet/project_sheet.html:410
+#: templates/project_sheet/project_sheet.html:420
 #: templates/project_sheet/references_section.html:7
 #: templates/project_sheet/scalability_section.html:33
 #: templates/project_sheet/uniqueness_section.html:32
@@ -157,12 +185,12 @@ msgid "Edit"
 msgstr "Modifier"
 
 #: templates/project_sheet/about_section.html:21
-#: templates/project_sheet/media_gallery.html:100
-#: templates/project_sheet/project_sheet.html:171
-#: templates/project_sheet/project_sheet.html:187
-#: templates/project_sheet/project_sheet.html:345
-#: templates/project_sheet/project_sheet.html:373
-#: templates/project_sheet/project_sheet.html:447
+#: templates/project_sheet/media_gallery.html:101
+#: templates/project_sheet/project_sheet.html:236
+#: templates/project_sheet/project_sheet.html:257
+#: templates/project_sheet/project_sheet.html:368
+#: templates/project_sheet/project_sheet.html:396
+#: templates/project_sheet/project_sheet.html:472
 #: templates/project_sheet/scalability_section.html:14
 #: templates/project_sheet/uniqueness_section.html:13
 #: templates/project_sheet/value_section.html:14
@@ -170,31 +198,28 @@ msgid "Ok"
 msgstr "Ok"
 
 #: templates/project_sheet/about_section.html:22
-#: templates/project_sheet/media_gallery.html:45
-#: templates/project_sheet/media_gallery.html:101
-#: templates/project_sheet/project_sheet.html:170
-#: templates/project_sheet/project_sheet.html:186
-#: templates/project_sheet/project_sheet.html:344
-#: templates/project_sheet/project_sheet.html:374
-#: templates/project_sheet/project_sheet.html:448
+#: templates/project_sheet/media_gallery.html:46
+#: templates/project_sheet/media_gallery.html:102
+#: templates/project_sheet/project_sheet.html:235
+#: templates/project_sheet/project_sheet.html:256
+#: templates/project_sheet/project_sheet.html:367
+#: templates/project_sheet/project_sheet.html:397
+#: templates/project_sheet/project_sheet.html:473
 #: templates/project_sheet/scalability_section.html:15
 #: templates/project_sheet/uniqueness_section.html:14
 #: templates/project_sheet/value_section.html:15
 msgid "Cancel"
 msgstr "Annuler"
 
-#: templates/project_sheet/about_section.html:38
+#: templates/project_sheet/about_section.html:39
+#: templates/project_sheet/about_section.html:50
 msgid "project description"
 msgstr "Décrire le projet"
 
-#: templates/project_sheet/about_section.html:39
-#: templates/project_sheet/about_section.html:50
+#: templates/project_sheet/about_section.html:40
+#: templates/project_sheet/about_section.html:51
 msgid "click here to describe your project"
 msgstr "Cliquez ici pour décrire votre projet"
-
-#: templates/project_sheet/about_section.html:49
-msgid "what’s make my project an innovant project ?"
-msgstr "En quoi ce projet est il singulier et créatif ? :"
 
 #: templates/project_sheet/grey_column.html:11
 msgid "edit"
@@ -203,7 +228,7 @@ msgstr "modifier"
 #: templates/project_sheet/grey_column.html:16
 #: templates/project_sheet/sidebar_related.html:6
 msgid "related"
-msgstr "Liens"
+msgstr "thèmes"
 
 #: templates/project_sheet/grey_column.html:23
 msgid "objective :"
@@ -237,7 +262,7 @@ msgstr "Ajouter"
 #: templates/project_sheet/grey_column.html:53
 #: templates/project_sheet/sidebar_team.html:5
 msgid "The team"
-msgstr "L'équipe"
+msgstr "Porteurs de projet"
 
 #: templates/project_sheet/grey_column.html:63
 msgid "There is no registered team members: please to fill this section !"
@@ -246,7 +271,7 @@ msgstr ""
 "section."
 
 #: templates/project_sheet/grey_column.html:75
-#: templates/project_sheet/media_gallery.html:57
+#: templates/project_sheet/media_gallery.html:58
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -254,17 +279,47 @@ msgstr "Supprimer"
 msgid "delete"
 msgstr "supprimer"
 
-#: templates/project_sheet/grey_column.html:123
+#: templates/project_sheet/grey_column.html:122
 msgid "How to start your project sheet ?"
 msgstr "Comment démarrer une fiche projet?"
 
-#: templates/project_sheet/grey_column.html:124
+#: templates/project_sheet/grey_column.html:123
 msgid ""
 "Click on a field to edit it, then submit your changes. Your project will be "
 "created once a field is filled."
 msgstr ""
 "Cliquez sur un champ pour le modifier, puis soumettre vos modifications. "
 "Votre projet sera créé une fois un premier champ rempli."
+
+#: templates/project_sheet/history.html:19
+msgid "Done the"
+msgstr "Fait le"
+
+#: templates/project_sheet/history.html:19
+msgid "DATETIME_FORMAT"
+msgstr "DATETIME_FORMAT"
+
+#: templates/project_sheet/history.html:19
+#: templates/project_sheet/project_sheet.html:424
+msgid "by"
+msgstr "par"
+
+#: templates/project_sheet/history.html:21
+msgid "on the field"
+msgstr "sur la section"
+
+#: templates/project_sheet/history.html:23
+#: templates/project_sheet/project_sheet.html:429
+msgid "anonymous"
+msgstr "anonyme"
+
+#: templates/project_sheet/history.html:27
+msgid "and"
+msgstr "et"
+
+#: templates/project_sheet/history.html:33
+msgid "\""
+msgstr "\""
 
 #: templates/project_sheet/media_gallery.html:7
 msgid "upload a media"
@@ -274,52 +329,52 @@ msgstr "télécharger un média"
 msgid "Image to upload :"
 msgstr "Image à télécharger"
 
-#: templates/project_sheet/media_gallery.html:29
+#: templates/project_sheet/media_gallery.html:30
 msgid "Upload"
 msgstr "Upload"
 
-#: templates/project_sheet/media_gallery.html:39
+#: templates/project_sheet/media_gallery.html:40
 msgid "Video link (youtube, dailymotion, etc): "
 msgstr "Vidéo à ajouter (youtube, dailymotion, etc):"
 
-#: templates/project_sheet/media_gallery.html:55
+#: templates/project_sheet/media_gallery.html:56
 msgid "Add"
 msgstr "Ajouter"
 
-#: templates/project_sheet/media_gallery.html:56
+#: templates/project_sheet/media_gallery.html:57
 msgid "Metadata - Click to edit"
 msgstr "Métadonnées - Cliquez pour modifier"
 
-#: templates/project_sheet/media_gallery.html:65
-#: templates/project_sheet/media_gallery.html:83
+#: templates/project_sheet/media_gallery.html:66
+#: templates/project_sheet/media_gallery.html:84
 msgid "Date :"
 msgstr "Date :"
 
-#: templates/project_sheet/media_gallery.html:66
-#: templates/project_sheet/media_gallery.html:85
+#: templates/project_sheet/media_gallery.html:67
+#: templates/project_sheet/media_gallery.html:86
 msgid "Description :"
 msgstr "Description :"
 
-#: templates/project_sheet/media_gallery.html:67
-#: templates/project_sheet/media_gallery.html:87
+#: templates/project_sheet/media_gallery.html:68
+#: templates/project_sheet/media_gallery.html:88
 msgid "Author :"
 msgstr "Auteur :"
 
-#: templates/project_sheet/media_gallery.html:68
-#: templates/project_sheet/media_gallery.html:88
+#: templates/project_sheet/media_gallery.html:69
+#: templates/project_sheet/media_gallery.html:89
 msgid "Source :"
 msgstr "Source :"
 
-#: templates/project_sheet/media_gallery.html:69
-#: templates/project_sheet/media_gallery.html:91
+#: templates/project_sheet/media_gallery.html:70
+#: templates/project_sheet/media_gallery.html:92
 msgid "Licence :"
 msgstr "Licence :"
 
-#: templates/project_sheet/media_gallery.html:157
+#: templates/project_sheet/media_gallery.html:160
 msgid "Yes"
 msgstr "Oui"
 
-#: templates/project_sheet/media_gallery.html:158
+#: templates/project_sheet/media_gallery.html:161
 msgid "No"
 msgstr "Non"
 
@@ -331,37 +386,123 @@ msgstr "Il n'y a pas de description pour ce projet"
 #, python-format
 msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
 msgstr ""
+"Modifier les informations liées de &laquo;&nbsp;%(project_title)s&nbsp;"
+"&raquo;"
 
 #: templates/project_sheet/project_edit_themes.html:17
 msgid "Update"
 msgstr "Mise à jour"
 
-#: templates/project_sheet/project_filter.html:4
-#: templates/project_sheet/project_list.html:4
+#: templates/project_sheet/project_id_card.html:29
+msgid "associated team"
+msgstr "porteurs de projet associés"
+
+#: templates/project_sheet/project_id_card.html:32
+msgid "in progress"
+msgstr "en cours d'édition"
+
+#: templates/project_sheet/project_id_card.html:35
+msgid "popular"
+msgstr "populaires"
+
+#: templates/project_sheet/project_id_card.html:38
+msgid "bestof"
+msgstr "projet favoris"
+
+#: templates/project_sheet/project_list.html:6
 msgid ""
 "These experiences have a positive social impact and create social goodwill. "
 "they demonstrate a disruptive inventiveness and can be easily disseminated "
 "and scaled in other places or cultural contexts."
 msgstr ""
 
-#: templates/project_sheet/project_filter.html:5
-#: templates/project_sheet/project_list.html:5
+#: templates/project_sheet/project_list.html:7
 msgid "Find project on Imagination for People"
 msgstr "Trouver des projets sur Imagination for People"
 
-#: templates/project_sheet/project_filter.html:30
-msgid "filter"
-msgstr "filtre"
+#: templates/project_sheet/project_list.html:86
+msgid "Last projects"
+msgstr "Derniers projets"
 
-#: templates/project_sheet/project_sheet.html:12
+#: templates/project_sheet/project_list.html:87
+msgid "Last editions"
+msgstr "Dernières modifications"
+
+#: templates/project_sheet/project_list.html:152
+msgid "Filters"
+msgstr "Filtres"
+
+#: templates/project_sheet/project_list.html:153
+msgid "Help"
+msgstr "Aide"
+
+#: templates/project_sheet/project_list.html:157
+msgid "reset filtering"
+msgstr "Annuler les filtres"
+
+#: templates/project_sheet/project_list.html:184
+msgid "Themes"
+msgstr "Thèmes"
+
+#: templates/project_sheet/project_list.html:185
+#: templates/project_sheet/project_list.html:199
+msgid "invert"
+msgstr "Inverser"
+
+#: templates/project_sheet/project_list.html:188
+#, python-format
+msgid "%(count)s project sheets"
+msgstr "%(count)s fiches-projet"
+
+#: templates/project_sheet/project_list.html:198
+msgid "Location"
+msgstr "Lieu"
+
+#: templates/project_sheet/project_list.html:209
+msgid "Sheet status"
+msgstr "État de la fiche"
+
+#: templates/project_sheet/project_list.html:213
+msgid "Best-of"
+msgstr "Favoris"
+
+#: templates/project_sheet/project_list.html:214
+msgid "Popular project"
+msgstr "Les plus populaires"
+
+#: templates/project_sheet/project_list.html:217
+msgid "quality"
+msgstr "Projets favoris"
+
+#: templates/project_sheet/project_list.html:224
+msgid "progression"
+msgstr "Etat de l'écriture"
+
+#: templates/project_sheet/project_list.html:231
+msgid "Associated team"
+msgstr "Porteurs de projet associés"
+
+#: templates/project_sheet/project_list.html:232
+msgid "Orphan project"
+msgstr "Projet sans porteur"
+
+#: templates/project_sheet/project_list.html:235
+msgid "team"
+msgstr "Porteurs du projet"
+
+#: templates/project_sheet/project_list.html:245
+msgid "Project status"
+msgstr "État du projet"
+
+#: templates/project_sheet/project_sheet.html:13
 msgid "start project"
-msgstr "démarrer un projet"
+msgstr "ajouter un projet"
 
-#: templates/project_sheet/project_sheet.html:174
+#: templates/project_sheet/project_sheet.html:239
 msgid "This bloc is empty : don’t forget to fill it !"
 msgstr "Ce bloc est vide: n'oubliez pas de le remplir!"
 
-#: templates/project_sheet/project_sheet.html:190
+#: templates/project_sheet/project_sheet.html:260
 #: templates/project_sheet/scalability_section.html:27
 #: templates/project_sheet/value_section.html:27
 msgid ""
@@ -371,33 +512,25 @@ msgstr ""
 "Ce bloc est vide: n'oubliez pas de le remplir! Un bon projet est un projet "
 "complet!"
 
-#: templates/project_sheet/project_sheet.html:357
+#: templates/project_sheet/project_sheet.html:380
 msgid "my project title"
 msgstr "Mon titre de projet"
 
-#: templates/project_sheet/project_sheet.html:401
-msgid "by"
-msgstr "par"
-
-#: templates/project_sheet/project_sheet.html:406
-msgid "anonymous"
-msgstr "anonyme"
-
-#: templates/project_sheet/project_sheet.html:412
+#: templates/project_sheet/project_sheet.html:435
 msgid "Location:"
 msgstr "Lieu : "
 
-#: templates/project_sheet/project_sheet.html:423
-#: templates/project_sheet/project_sheet.html:431
+#: templates/project_sheet/project_sheet.html:448
+#: templates/project_sheet/project_sheet.html:456
 msgid "unknown"
 msgstr "inconnue"
 
-#: templates/project_sheet/project_sheet.html:429
-#: templates/project_sheet/project_sheet.html:431
+#: templates/project_sheet/project_sheet.html:454
+#: templates/project_sheet/project_sheet.html:456
 msgid "Website:"
 msgstr "Site Web :"
 
-#: templates/project_sheet/project_sheet.html:480
+#: templates/project_sheet/project_sheet.html:505
 msgid ""
 "\n"
 "\t    This project sheet, except media, is licensed under the <a rel="
@@ -428,7 +561,6 @@ msgid "Cancel & close"
 msgstr "Annuler et fermer"
 
 #: templates/project_sheet/references_section.html:33
-#: templates/project_sheet/sidebar_related.html:44
 #: templates/project_sheet/sidebar_team.html:16
 msgid "Save & close"
 msgstr "Enregistrer et fermer"
@@ -437,7 +569,7 @@ msgstr "Enregistrer et fermer"
 #: templates/project_sheet/scalability_section.html:20
 #: templates/project_sheet/scalability_section.html:32
 msgid "how scalable can the experience be"
-msgstr "Quel est le potentiel de déploiement de cette initative"
+msgstr "Quel est le potentiel de déploiement de cette initiative"
 
 #: templates/project_sheet/sidebar_related.html:16
 msgid "Objective :"
@@ -448,19 +580,26 @@ msgid "select your tags from the cloud below"
 msgstr "Sélectionnez vos tags dans le nuage ci-dessous"
 
 #: templates/project_sheet/sidebar_related.html:43
-#: templates/project_sheet/sidebar_team.html:15
-msgid "Close & discard"
+msgid "Close &amp; discard"
 msgstr "Fermer et annuler"
+
+#: templates/project_sheet/sidebar_related.html:44
+msgid "Save &amp; close"
+msgstr "Enregistrer et fermer"
 
 #: templates/project_sheet/sidebar_team.html:8
 msgid "Add a team member"
-msgstr "Ajouter un membre de l'équipe"
+msgstr "Ajouter un porteur du projet"
+
+#: templates/project_sheet/sidebar_team.html:15
+msgid "Close & discard"
+msgstr "Fermer et annuler"
 
 #: templates/project_sheet/uniqueness_section.html:5
 #: templates/project_sheet/uniqueness_section.html:19
 #: templates/project_sheet/uniqueness_section.html:31
 msgid "how unique and creative is the experience"
-msgstr "En quoi ce projet est il singulier et créatif ?"
+msgstr "En quoi ce projet est-il singulier et créatif"
 
 #: templates/project_sheet/uniqueness_section.html:26
 msgid ""
@@ -469,3 +608,15 @@ msgid ""
 msgstr ""
 "Ce champ est vide, n'oubliez pas de le remplir ! Un bon projet est un projet "
 "complet !"
+
+#~ msgid "Title must contains"
+#~ msgstr "Titre doit contenir"
+
+#~ msgid "Objective is"
+#~ msgstr "L'objectif est :"
+
+#~ msgid "Created "
+#~ msgstr "Crée "
+
+#~ msgid "what’s make my project an innovant project ?"
+#~ msgstr "En quoi ce projet est il singulier et créatif ? :"
