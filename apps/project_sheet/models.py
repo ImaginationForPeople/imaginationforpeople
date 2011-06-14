@@ -45,7 +45,7 @@ class I4pProject(models.Model):
         ('IDEA', _('Concept')),
         ('BEGIN', _('Starting')),
         ('WIP', _('In development')),
-        ('END', _('Finished')),
+        ('END', _('Mature')),
     ]
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
     ip_addr = models.IPAddressField(null=True, blank=True)
@@ -200,6 +200,9 @@ class ProjectPicture(ImageModel):
 class ProjectVideo(models.Model):
     video_url = models.URLField()
     project = models.ForeignKey(I4pProject, related_name="videos")
+
+    def __unicode__(self):
+        return u"Video for '%s'" % project
 
 class ProjectMember(models.Model):
     class Meta:
