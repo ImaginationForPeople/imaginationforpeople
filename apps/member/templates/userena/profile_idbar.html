@@ -49,19 +49,34 @@
         </h1>
         
         <div id="profile_bar_middle">
+	  {% if profile %}
+            {% if profile.motto %}
+            <p class="motto">"{{ profile.motto }}"</p>
+            {% endif %}
+            
+            <p class="infos">
+            {% if profile.age %}
+            {{ profile.age }}
+            {% endif %}                        
+            {% if profile.country %}
+            - {{ profile.country }}
+            {% endif %}
+            </p>
+	  {% else %}
             {% if user.profile.motto %}
             <p class="motto">"{{ user.profile.motto }}"</p>
             {% endif %}
             
             <p class="infos">
-            {% if profile.age %}
+            {% if user.profile.age %}
             {{ user.profile.age }}
             {% endif %}                        
             {% if user.profile.country %}
             - {{ user.profile.country }}
             {% endif %}
-            
             </p>
+	  {% endif %}
+	  {% endif %}
         </div>
         
         {% if user.profile.website %}
