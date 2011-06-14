@@ -202,7 +202,7 @@ class ProjectVideo(models.Model):
     project = models.ForeignKey(I4pProject, related_name="videos")
 
     def __unicode__(self):
-        return u"Video for '%s'" % project
+        return u"Video for '%s'" % self.project
 
 class ProjectMember(models.Model):
     class Meta:
