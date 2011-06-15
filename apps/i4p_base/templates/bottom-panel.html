@@ -5,7 +5,9 @@
       <div class="grid_18 alpha omega">
 
         <div id="browse-picto"></div>
-        <div id="arrow-picto"></div>
+        
+        <!-- Lock is by default in "off" class ; user's click set class at "on" -->
+        <a href="#"><div id="lock-picto" class="off" title="{% trans 'lock/unlock the filters panel' %}"></div></a>
       
         <div class="menu">
           
@@ -24,8 +26,8 @@
                 <div class="tools-title georgia">Project view</div>
                 <div class="tools">
                     <a href="#"><img src="{{ STATIC_URL }}images/nav/tool1-selected.png" /></a>                   
-                    <a href="#"><img src="{{ STATIC_URL }}images/nav/tool2.png" /></a>
                     <!--
+                    <a href="#"><img src="{{ STATIC_URL }}images/nav/tool2.png" /></a>                   
                     <a href="#"><img src="{{ STATIC_URL }}images/nav/tool3.png" /></a>
                     <a href="#"><img src="{{ STATIC_URL }}images/nav/tool4.png" /></a>
                     -->
@@ -128,21 +130,21 @@
                 <br />
                  
                 <div class="colonne grid_4 alpha">
-                    <h1>{% trans 'projects'|capfirst %}</h1>						
+                    <h1><img src="{{ STATIC_URL }}images/home/picto-projects.jpg" />{% trans 'projects'|capfirst %}</h1>						
                     <p>{% blocktrans %}Explore, add or edit inovative social project...<br />Join a project team{% endblocktrans %}</p>
                     <a href="{% url project_sheet-list %}">{% trans 'Projects &gt;' %}</a> 						
                     <a href="#">{% trans 'Add a new project &gt;' %}</a> 						
                 </div>
                 
                 <div class="colonne grid_4">						
-                    <h1>{% trans 'community'|capfirst %}</h1>						
+                    <h1><img src="{{ STATIC_URL }}images/home/picto-community.jpg" />{% trans 'community'|capfirst %}</h1>						
                     <p>{% blocktrans %}Connect with more than xxx creative citizens from xx countries.{% endblocktrans %}</p>
                     <a href="#}">{% trans 'The community &gt;' %}</a> 		       
                     <a href="#">{% trans 'Join the community &gt;' %}</a> 		       
                 </div>
                 
                 <div class="colonne grid_4">
-                    <h1>{% trans 'ressources'|capfirst %}</h1>						
+                    <h1><img src="{{ STATIC_URL }}images/home/picto-ressources.jpg" />{% trans 'ressources'|capfirst %}</h1>						
                     <p>{% blocktrans %}Discover the latest tools, methods and debates on social innovation{% endblocktrans %}</p>											
                     <a href="#">{% trans 'Ressources &gt;' %}</a> 		    
                     <a href="#">{% trans 'Join a group &gt;' %}</a> 		    

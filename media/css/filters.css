@@ -94,6 +94,10 @@
 
 }
 
+.categories .menu{
+    margin-left:28px;
+}
+
 .categories .menu ul .selected a {
     color:#888888;
 }
@@ -495,12 +499,35 @@
 }
 
 
-#arrow-picto{
-    background-image:url('../images/home/arrow-picto.png');
+#lock-picto{
     background-repeat:no-repeat;
-    width:91px;
-    height:46px;
+    width:18px;
+    height:18px;
     position:absolute;
-    left:-25px;
+    /*left:-25px;*/
     top:10px;
 }
+
+#lock-picto.on{
+    background-image:url('../images/base/lock-on.png');
+}
+
+#lock-picto.off{
+    background-image:url('../images/base/lock-off.png');
+}
+
+.block-content .colonne h1{
+    padding-left:30px;
+    position:relative;
+}
+
+.block-content .colonne.omega h1{
+    padding-left:0px;
+}
+
+.block-content .colonne h1 img{
+    position:absolute;
+    top:-5px;
+    left:-4px;
+}
+
