@@ -83,6 +83,17 @@
 
 /*---- Filters ----*/
 
+
+.categories_project_page{
+
+	position:fixed !important;
+    top:auto;
+	bottom:0px;
+    z-index:8000;
+	/*overflow:hidden;*/
+
+}
+
 .categories .menu ul .selected a {
     color:#888888;
 }
@@ -357,4 +368,139 @@
 #reset_filters:hover{
     text-decoration:none;
     color:white;
+}
+
+
+
+
+
+/*---- About section ----*/
+
+
+.block-content .colonne:last-child {
+
+    width:310px !important;
+
+}
+
+.block-content p{
+    margin-top:10px;
+    margin-bottom:10px;
+    font-size:15px;
+    color:#BDBDBD;
+}
+
+.block-content .colonne h1:last-child {
+    /*margin-top:28px;*/
+}
+
+.catchy{
+
+	position:relative;
+	margin-top:50px;
+	/*background-color:#282828;*/
+	color:white;
+
+}
+
+.catchy h1{
+
+	font-size:25px;
+	/*background-color:#282828;*/
+
+	
+	-moz-text-shadow: 2px 2px black; 
+	-webkit-text-shadow: 2px 2px #181818; 
+	-opera-text-shadow: 2px 2px #181818; 
+	-text-shadow: 2px 2px #181818; 
+	text-shadow: 2px 2px #181818; 
+
+}
+
+.catchy  .edito{
+
+	font-size:18px;
+	/*background-color:#282828;*/
+	padding-right:20px;
+	
+	-moz-text-shadow: 2px 2px black; 
+	-webkit-text-shadow: 2px 2px #181818; 
+	-opera-text-shadow: 2px 2px #181818; 
+	-text-shadow: 2px 2px #181818; 
+	text-shadow: 2px 2px #181818; 	
+
+	text-align:left;
+
+}
+
+.manifesto-link{
+
+	color:#04add1;
+	
+	font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+	font-size:18px;	
+
+	border-bottom:1px solid #1b5e6c;
+	padding-top:5px;
+	margin-right:15px;
+    // margin-left: 30px;
+	padding-bottom:3px;
+	
+	float:right;
+	
+	font-weight:bold;
+	font-style:italic;
+	
+	-moz-text-shadow: 2px 2px black; 
+	-webkit-text-shadow: 2px 2px #181818; 
+	-opera-text-shadow: 2px 2px #181818; 
+	-text-shadow: 2px 2px #181818; 
+	text-shadow: 2px 2px #181818;
+
+}
+
+.manifesto-link:hover{
+
+	color:#65e4ff;
+    text-decoration:none;
+
+}
+
+
+
+.categories .search{
+    right:162px;
+}
+
+
+
+
+
+
+.footer{
+    top:11px;
+    margin-top:10px;
+    height:30px;
+    padding-top:10px;
+    background-color:black;
+}
+
+.footer ul {
+}
+
+.social-networks a {
+    padding:3px;
+    top:-5px;
+    position:relative;
+}
+
+
+#arrow-picto{
+    background-image:url('../images/home/arrow-picto.png');
+    background-repeat:no-repeat;
+    width:91px;
+    height:46px;
+    position:absolute;
+    left:-25px;
+    top:10px;
 }

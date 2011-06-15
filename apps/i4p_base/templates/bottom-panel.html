@@ -1,0 +1,190 @@
+  {% load i18n %}
+  
+  <div class="categories categories_project_page">        
+    <div class="container_18">
+      <div class="grid_18 alpha omega">
+
+        <div id="browse-picto"></div>
+        <div id="arrow-picto"></div>
+      
+        <div class="menu">
+          
+            <ul>
+                <li><div id="about" class="categ-button first "><a href="#">{% trans "About" %}</a></div></li>
+                <li><div id="filters" class="categ-button selected"><a href="#">{% trans "Filters" %}</a></div></li>
+                <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
+            </ul>
+          
+            <a href="{% url project_sheet-list %}" id="reset_filters">{% trans "reset filtering"|capfirst %}</a>
+
+            {% block search %} {% include "search.html" %} {% endblock %}
+              
+              
+            <div class="toolbox">
+                <div class="tools-title georgia">Project view</div>
+                <div class="tools">
+                    <a href="#"><img src="{{ STATIC_URL }}images/nav/tool1-selected.png" /></a>                   
+                    <a href="#"><img src="{{ STATIC_URL }}images/nav/tool2.png" /></a>
+                    <!--
+                    <a href="#"><img src="{{ STATIC_URL }}images/nav/tool3.png" /></a>
+                    <a href="#"><img src="{{ STATIC_URL }}images/nav/tool4.png" /></a>
+                    -->
+                </div>
+            </div>
+              
+        </div>
+        
+        <div class="clear"></div>
+        
+        
+        <!-- Filters -->
+        <div id="projects_filters" class="hidden"> 
+        
+          <form id="filter_form" action="{% url project_sheet-list %}?{{getparams_submit}}" method="get">
+                 
+                    <div class="grid_6 alpha">
+                        <div class="filtersbox_content">
+                            <h4>{% trans "Themes" %}</h4>
+                            <!-- <a class="invert">{% trans "invert" %}</a> -->
+                            <ul id="cloudtag_list">
+                                {% for tag in project_sheet_tags|slice:":35" %}
+                                    <li><a class="tag_link {%if tag.id in selected_tags%}selected{% endif %}" title="{% blocktrans with count=tag.count %}{{ count }} project sheets{% endblocktrans %}" href="javascript:;" id="tag_{{tag.id}}">{{ tag|capfirst }}</a></li>
+                                {% endfor %}                    
+                            </ul>
+                            {{themes_filter.themes.as_hidden}}
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="grid_4 filters_box">
+                        <div class="filtersbox_content">
+                            <h4>{% trans "Location" %}</h4>
+                             <!-- <a class="invert">{% trans "invert" %}</a> -->
+                            {{location_filter.country}}
+
+                        </div>
+                    </div>
+                    
+                    <div class="grid_8 omega">
+                        <div class="grid_8 omega filters_box">
+                            <div class="filtersbox_content">
+                            
+                                <h4>{% trans "Sheet status" %}</h4>
+                                <div class="grid_2 alpha omega pictos-categ">
+                                    <div class="filters-picto">
+                                        <ul>
+                                            <li id="bestof" title="{% trans 'Best-of' %}" >{{best_of_filter.best_of}}</li>
+    <!--                                         <li id="popular" title="{% trans 'Popular project' %}"><input type="checkbox" class="styled hidden" checked="checked" name="1"></li> -->
+                                        </ul>
+                                    </div>
+                                    <p>{% trans "quality" %}</p>
+                                </div>
+                                <div class="grid_2 alpha omega pictos-categ">
+                                
+                                    <div class="filters-picto">
+                                        {{progress_filter.progress}}
+                                    </div>                            
+                                    <p>{% trans "progression" %}</p>
+                                    
+                                </div>
+                                <div class="grid_2 alpha omega pictos-categ">
+                                
+                                    <div class="filters-picto">
+                                        <ul>
+                                            <li id="team" title="{% trans 'Associated team' %}" >{{members_filter.with_members}}</li>
+                                            <li id="nobody" title="{% trans 'Orphan project' %}">{{members_filter.without_members}}</li>
+                                        </ul>
+                                    </div>                            
+                                    <p>{% trans "team" %}</p>
+                                    
+                                </div>
+                                
+                            </div>
+                        </div> 
+
+                        <div class="grid_8 omega filters_box">
+                            <div class="filtersbox_content">
+                            
+                                <h4>{% trans "Project status" %}</h4>
+                                <div class="filters-progress">
+                                    {{status_filter.status}}
+                                </div>                            
+                              
+                               
+                            </div>
+                        </div>                    
+                    </div>         
+                
+          </form>
+        </div>
+        
+        
+        
+        <!-- About -->
+        <div id="projects_about" class=""> 
+
+            <div class="block-content">  			
+
+                <br />
+                 
+                <div class="colonne grid_4 alpha">
+                    <h1>{% trans 'projects'|capfirst %}</h1>						
+                    <p>{% blocktrans %}Explore, add or edit inovative social project...<br />Join a project team{% endblocktrans %}</p>
+                    <a href="{% url project_sheet-list %}">{% trans 'Projects &gt;' %}</a> 						
+                    <a href="#">{% trans 'Add a new project &gt;' %}</a> 						
+                </div>
+                
+                <div class="colonne grid_4">						
+                    <h1>{% trans 'community'|capfirst %}</h1>						
+                    <p>{% blocktrans %}Connect with more than xxx creative citizens from xx countries.{% endblocktrans %}</p>
+                    <a href="#}">{% trans 'The community &gt;' %}</a> 		       
+                    <a href="#">{% trans 'Join the community &gt;' %}</a> 		       
+                </div>
+                
+                <div class="colonne grid_4">
+                    <h1>{% trans 'ressources'|capfirst %}</h1>						
+                    <p>{% blocktrans %}Discover the latest tools, methods and debates on social innovation{% endblocktrans %}</p>											
+                    <a href="#">{% trans 'Ressources &gt;' %}</a> 		    
+                    <a href="#">{% trans 'Join a group &gt;' %}</a> 		    
+                </div>	
+
+                <div class="colonne grid_6 omega">
+                    <h1>
+                        {% blocktrans %}A community of creative citizens collaborating to detect, share and help social innovative projects get off the ground. {% endblocktrans %}
+                    </h1>
+                    <p></p>
+                    <a href="#">{% trans 'Read the manifesto &gt;' %}</a> 		    
+                    <a href="#">{% trans 'About I4P &gt;' %}</a> 	                    
+                </div>	                    
+                                    
+            </div> 
+
+        </div>
+        
+                  
+        
+        
+        
+        <div class="clear"></div>
+	    
+	  </div>
+	</div>
+      
+      
+    <div class="clear"></div>
+    
+      {% block footer %} {% include "footer.html" %} {% endblock %}
+ 
+    
+</div>
+  
+  
+
+
+
+  
+
+
+<div class="clear"></div>
+
+
