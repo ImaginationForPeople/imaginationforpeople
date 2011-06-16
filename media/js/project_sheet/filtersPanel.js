@@ -1,6 +1,4 @@
 $(document).ready(function(){ 
-    $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
-    
     $(".filters_box input.styled").ezMark();
     
     $(".filtersbox_content select#id_country").change(function(){
