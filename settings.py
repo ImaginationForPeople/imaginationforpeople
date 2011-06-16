@@ -7,16 +7,16 @@ from django.utils.translation import ugettext_lazy as _
 # Django settings for i4p project.
 
 PROJECT_ROOT = os.path.dirname(__file__)
-sys.path.append(os.path.join(PROJECT_ROOT,'..'))
+sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
 # If we are on staging, then switch off debug
 if socket.gethostname() == 'i4p-dev':
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
 # if you need to debug privatebeta, use this
-FORCE_PRIVATEBETA = True
+FORCE_PRIVATEBETA = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -34,11 +34,11 @@ MANAGERS += ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_ROOT,'i4p.db'),                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+        'NAME': os.path.join(PROJECT_ROOT, 'i4p.db'), # Or path to database file if using sqlite3.
+        'USER': '', # Not used with sqlite3.
+        'PASSWORD': '', # Not used with sqlite3.
+        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -111,15 +111,15 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-     
+
     'reversion.middleware.RevisionMiddleware',
 
     'request.middleware.RequestMiddleware',
 
     'userena.middleware.UserenaLocaleMiddleware',
 
-    'localeurl.middleware.LocaleURLMiddleware', 
-    
+    'localeurl.middleware.LocaleURLMiddleware',
+
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -186,7 +186,7 @@ INSTALLED_APPS = (
     'notification',
     'backcap',
     'compressor',
-               
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -203,7 +203,7 @@ INSTALLED_APPS = (
 )
 
 OEMBED_PROVIDERS = {
-  'YouTube': ('http://www.youtube.com/oembed/', 
+  'YouTube': ('http://www.youtube.com/oembed/',
               [r'http://(?:www\.)?youtube\.com/watch\?v=[A-Za-z0-9\-=_]{11}']),
   'Vimeo': ('http://vimeo.com/api/oembed.json',
             [r'http://(?:www\.)?vimeo\.com/\d+']),
@@ -235,14 +235,14 @@ LETTUCE_APPS = (
 )
 
 #Userena
-ANONYMOUS_USER_ID=-1
-AUTH_PROFILE_MODULE='member.I4pProfile'
+ANONYMOUS_USER_ID = -1
+AUTH_PROFILE_MODULE = 'member.I4pProfile'
 
 ### Nose test runner
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 ### Debug-tool-bar
-INTERNAL_IPS = ('127.0.0.1','192.168.0.18')
+INTERNAL_IPS = ('127.0.0.1', '192.168.0.18')
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
@@ -261,7 +261,7 @@ DEBUG_TOOLBAR_PANELS = (
 
 
 ### Tagging
-FORCE_LOWERCASE_TAGS=True
+FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
 SERVER_EMAIL = 'noreply@imaginationforpeople.com'
@@ -320,7 +320,7 @@ STATICFILES_DIRS = (
     ('images', os.path.join(MEDIA_ROOT, 'images')),
 )
 
-STATIC_URL = MEDIA_URL + 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 
 ### COMPRESOR

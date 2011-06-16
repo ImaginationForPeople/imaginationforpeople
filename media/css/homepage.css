@@ -1,3 +1,8 @@
+#reset_filters {
+    display: none;
+    visibility: hidden;
+}
+
 body{
     background-image:url("../images/home/home-bg.jpg");
     background-position:top center;
@@ -42,6 +47,17 @@ body{
     box-shadow: 0px 0px 8px #161616;  
 }
 
+#projects_rotator_minis li.selected img {
+    border:1px solid white;
+}
+
+#projects_rotator_minis li:hover img {
+    border:1px solid #04ADD1;
+}
+
+#projects_rotator_minis li:last-child img {
+    border: 1px solid black;
+}
 
 #projects_rotator_minis li{
     float:left;
@@ -57,9 +73,6 @@ body{
     border:1px solid black;
 }
 
-#projects_rotator_minis li img:hover{
-    border:1px solid white;
-}
 
 #projects_rotator_minis .home-minis-plus:hover{
     border:1px solid black;
@@ -86,9 +99,9 @@ body{
 
 #projects_rotator .project_desc{
     position:absolute;
-    z-index:200;
+    z-index:9;
     width:350px;
-    right:266px;
+    right:0px;
     bottom:90px;
     padding:10px;
     background-color:black;

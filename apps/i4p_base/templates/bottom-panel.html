@@ -12,14 +12,14 @@
         <div class="menu">
           
             <ul>
-                <li><div id="about" class="categ-button first "><a href="#">{% trans "About" %}</a></div></li>
-                <li><div id="filters" class="categ-button selected"><a href="#">{% trans "Filters" %}</a></div></li>
+                <li><div id="about" class="categ-button first {% if about_tab_selected %}selected{% endif %}"><a href="#">{% trans "About" %}</a></div></li>
+                <li><div id="filters" class="categ-button {% if filters_tab_selected %}selected{% endif %}"><a href="#">{% trans "Filters" %}</a></div></li>
                 <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
             </ul>
           
             <a href="{% url project_sheet-list %}" id="reset_filters">{% trans "reset filtering"|capfirst %}</a>
 
-            {% block search %} {% include "search.html" %} {% endblock %}
+            {% include "search.html" %}
               
               
             <div class="toolbox">
@@ -40,7 +40,7 @@
         
         
         <!-- Filters -->
-        <div id="projects_filters" class="hidden"> 
+        <div id="projects_filters" class="categ-panel"> 
         
           <form id="filter_form" action="{% url project_sheet-list %}?{{getparams_submit}}" method="get">
                  
@@ -123,7 +123,7 @@
         
         
         <!-- About -->
-        <div id="projects_about" class=""> 
+        <div id="projects_about" class="categ-panel"> 
 
             <div class="block-content">  			
 
@@ -175,17 +175,11 @@
       
     <div class="clear"></div>
     
-      {% block footer %} {% include "footer.html" %} {% endblock %}
+    {% include "footer.html" %}
  
     
 </div>
   
-  
-
-
-
-  
-
 
 <div class="clear"></div>
 
