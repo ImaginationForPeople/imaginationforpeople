@@ -645,9 +645,11 @@ ul li{
 	
 	border-top:1px solid #676665;
 	border-left:1px solid #676665;
+	border-right:1px solid #676665;
 	
 	text-align:center;
 }
+
 
 .categories .menu ul li .categ-button2 a:hover{
 
@@ -881,6 +883,10 @@ ul li{
 
 }
 
+#about .colonne a{
+    text-decoration:underline;
+}
+
 .colonne a{
 
 	color:#04add1;
@@ -889,10 +895,10 @@ ul li{
 	font-size:12px;
 	
 
-	border-bottom:1px solid #1b5e6c;
+	/*border-bottom:1px solid #1b5e6c;*/
 	padding-top:5px;
 	padding-bottom:3px;
-	display:table;
+	display:block;
 
 	
 	font-weight:bold;

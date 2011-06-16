@@ -43,12 +43,34 @@
 }
 
 
-.categories .menu ul  .selected a{
+.categories .menu ul  .selected{
 
 	background-image:url(../images/base/categories-selected-white.png);	
 	color:black;
+    border:0px !important;
 	
 }
+
+.categories .menu ul li .categ-button .selected:hover{
+    background-image:url(../images/base/categories-selected-white.png);	
+    color:black;
+    
+    width:109px;
+	height:40px;
+	top:-16px;
+	left:-1px;
+    
+    border:0px;
+	
+	padding-top:16px;
+	z-index:5000;	
+	
+	font-weight:bold;
+	text-align:center;
+    
+    cursor:default;
+}
+
 
 
 .black_column{
