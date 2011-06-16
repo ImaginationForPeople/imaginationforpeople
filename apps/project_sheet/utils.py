@@ -1,6 +1,9 @@
 from django.utils import translation
 
+from tagging.models import Tag
+
 from .models import I4pProject, I4pProjectTranslation
+from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter, BestOfFilter, NameBaselineFilter
 
 def create_parent_project():
     """
@@ -57,9 +60,9 @@ def get_project_translations_from_parents(parents_qs, language_code, fallback_la
     """
     Same as above, but given a queryset of parents
     """
-    return [get_project_translation_from_parent(project, 
+    return [get_project_translation_from_parent(project,
                                                 language_code=language_code,
-                                                fallback_language=fallback_language, 
+                                                fallback_language=fallback_language,
                                                 fallback_any=fallback_any
                                                 )
             for project
@@ -122,6 +125,40 @@ def get_or_create_project_translation_from_parent(parent_project, language_code,
     return project_translation
 
 
+
+def build_filters_and_context(request_data):
+    """
+    Build the set of filter in order to include them in homepage and project list page
+    
+    request : the GET variables passes to the view (i.e i4pbase.views.homepage or project_sheet.views.project_sheet_list)
+    
+    Return :
+    - the set of filters form
+    - an extra context
+    """
+
+    filter_forms = {
+        'themes_filter' : ThemesFilterForm(request_data),
+        'location_filter' : ProjectLocationFilter(request_data),
+        'best_of_filter' : BestOfFilter(request_data),
+        'status_filter' : ProjectStatusFilter(request_data),
+        'members_filter' : WithMembersFilterForm(request_data),
+        'progress_filter' : ProjectProgressFilter(request_data),
+        'project_sheet_search_form' : NameBaselineFilter(request_data),
+    }
+
+    extra_context = {
+        "getparams_last_created" : "last_created=1",
+        "getparams_last_modif" : "last_modif=1",
+        "getparams_submit" : "",
+    }
+
+    project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
+    project_sheet_tags.sort(key=lambda tag:-tag.count)
+
+    extra_context["project_sheet_tags"] = project_sheet_tags
+
+    return (filter_forms, extra_context)
 
 
 

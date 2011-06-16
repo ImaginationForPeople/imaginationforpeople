@@ -1,6 +1,7 @@
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.contrib.contenttypes.models import ContentType
 from django.forms.models import modelform_factory
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
@@ -13,14 +14,11 @@ from django.db.models import Q
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm
-from .forms import ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember
+from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm, ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
+from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug, get_project_translation_from_parent
-from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm, ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter, BestOfFilter, NameBaselineFilter
-from apps.project_sheet.models import I4pProject, VERSIONNED_FIELDS
-from django.contrib.contenttypes.models import ContentType
-from tagging.models import Tag
+from .filters import FilterSet
+from apps.project_sheet.utils import build_filters_and_context
 
 def project_sheet_list(request):
     """
@@ -32,34 +30,12 @@ def project_sheet_list(request):
     if not data :
         data = QueryDict('best_of=on')
 
-
-    filter_forms = {
-        'themes_filter' : ThemesFilterForm(data),
-        'location_filter' : ProjectLocationFilter(data),
-        'best_of_filter' : BestOfFilter(data),
-        'status_filter' : ProjectStatusFilter(data),
-        'members_filter' : WithMembersFilterForm(data),
-        'progress_filter' : ProjectProgressFilter(data),
-        'project_sheet_search_form' : NameBaselineFilter(data),
-    }
-
-    extra_context = {
-        "getparams_last_created" : "last_created=1",
-        "getparams_last_modif" : "last_modif=1",
-        "getparams_submit" : ""
-    }
-
-    project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
-    project_sheet_tags.sort(key=lambda tag:-tag.count)
-
-    extra_context["project_sheet_tags"] = project_sheet_tags
+    filter_forms, extra_context = build_filters_and_context(data)
 
     ordered_project_sheets = None
     filters = FilterSet(filter_forms)
 
     if filters.is_valid():
-        filters = FilterSet(filter_forms)
-
         #First pass to filter project
         filtered_projects = filters.apply_to(queryset=I4pProject.objects.all(),
                                              model_class=I4pProject)
@@ -99,6 +75,7 @@ def project_sheet_list(request):
         pass
 
     extra_context.update(filter_forms)
+    extra_context["filters_tab_selected"] = True,
 
     return object_list(request,
                        template_name='project_sheet/project_list.html',
