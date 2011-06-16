@@ -11,12 +11,12 @@ sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
 # If we are on staging, then switch off debug
 if socket.gethostname() == 'i4p-dev':
-    DEBUG = True
+    DEBUG = False
 else:
     DEBUG = True
 
 # if you need to debug privatebeta, use this
-FORCE_PRIVATEBETA = False
+FORCE_PRIVATEBETA = True
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -295,6 +295,7 @@ DAJAXICE_DEBUG = DEBUG
 import re
 LOCALE_INDEPENDENT_PATHS = (
 	re.compile('^/js/dajax/.*$'),
+    re.compile('^/static/.*$'),
 	)
 
 ## Flags
