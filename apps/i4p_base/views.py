@@ -6,6 +6,7 @@ from django.utils import translation
 
 from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents, build_filters_and_context
+from django.http import QueryDict
 
 def homepage(request):
     """
@@ -15,12 +16,15 @@ def homepage(request):
     project_translations = get_project_translations_from_parents(project_sheets,
                                                                  language_code=translation.get_language()
                                                                  )
+    data = request.GET
+    if not data :
+        data = QueryDict('best_of=on')
 
     context = {'project_sheets': project_sheets,
                'project_translations': project_translations,
                'about_tab_selected' : True}
 
-    filter_forms, extra_context = build_filters_and_context(request.GET)
+    filter_forms, extra_context = build_filters_and_context(data)
     context.update(filter_forms)
     context.update(extra_context)
 
