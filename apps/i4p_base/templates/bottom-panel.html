@@ -12,8 +12,8 @@
         <div class="menu">
           
             <ul>
-                <li><div id="about" class="categ-button first {% if about_tab_selected %}selected{% endif %}"><a href="#">{% trans "About" %}</a></div></li>
-                <li><div id="filters" class="categ-button {% if filters_tab_selected %}selected{% endif %}"><a href="#">{% trans "Filters" %}</a></div></li>
+                <li><div class="categ-button first"><a href="#about" class="{%if about_tab_selected %}selected{% endif %}">{% trans "About" %}</a></div></li>
+                <li><div class="categ-button"><a href="#filters" class="{%if filters_tab_selected %}selected{% endif %}">{% trans "Filters" %}</a></div></li>
                 <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
             </ul>
           
@@ -40,7 +40,7 @@
         
         
         <!-- Filters -->
-        <div id="projects_filters" class="categ-panel"> 
+        <div id="filters" class="categ-panel"> 
         
           <form id="filter_form" action="{% url project_sheet-list %}?{{getparams_submit}}" method="get">
                  
@@ -123,7 +123,7 @@
         
         
         <!-- About -->
-        <div id="projects_about" class="categ-panel"> 
+        <div id="about" class="categ-panel"> 
 
             <div class="block-content">  			
 

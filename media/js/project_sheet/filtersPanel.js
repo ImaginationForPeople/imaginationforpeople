@@ -28,7 +28,7 @@ $(document).ready(function(){
         $("#filter_form").submit();
     });
     
-    $("div.categories_project_page .categ-button a").click(function(){
+    /*$("div.categories_project_page .categ-button a").click(function(){
     	$("div.categories_project_page .categ-button").removeClass("selected");
     	$("div.categories_project_page .categ-panel").hide();
     	
@@ -37,7 +37,7 @@ $(document).ready(function(){
     	
     	tab.addClass("selected");
     	panel.show();
-    });
+    });*/
    
     $("div#lock-picto").toggle(
     	function () {
@@ -72,10 +72,15 @@ $(document).ready(function(){
 	     },  
 	});
     
-    $("div.categories_project_page .selected > a").click();
-
+    $(".categories_project_page").height('260px');
+    $("div#lock-picto").click();
+    
 });
   
 $(document).ready(function() {
     $(".search #id_text").example("project search");
+});
+
+$(document).ready(function() {
+	$(".categories_project_page .menu ul").idTabs();
 });
