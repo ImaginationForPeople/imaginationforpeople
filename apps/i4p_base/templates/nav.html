@@ -30,8 +30,8 @@
 					
 					<ul>
                         {% if project_translation %}
-						<li {% if project_tab %} class="selected" {% endif %}><div class="categ-button first"><a href="{% url project_sheet-show project_translation.slug %}">{% trans "Project" %}</a></div></li>
-						<li {% if history_tab %} class="selected" {% endif %}><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}">{% trans "History" %}</a></div></li>
+						<li><div class="categ-button first"><a href="{% url project_sheet-show project_translation.slug %}" {% if project_tab %}class="selected"{% endif %}>{% trans "Project" %}</a></div></li>
+						<li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}" {% if history_tab %}class="selected"{% endif %}>{% trans "History" %}</a></div></li>
 						<!--
 						<li><div class="categ-button"><a href="#">Filters</a></div></li>
 						<li><div class="categ-button"><a href="#">Help</a></div></li>
