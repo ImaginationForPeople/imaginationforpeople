@@ -52,6 +52,21 @@ def get_project_translation_from_parent(parent, language_code, fallback_language
 
     return project_translation
 
+
+def get_project_translations_from_parents(parents_qs, language_code, fallback_language='en', fallback_any=True):
+    """
+    Same as above, but given a queryset of parents
+    """
+    return [get_project_translation_from_parent(project, 
+                                                language_code=language_code,
+                                                fallback_language=fallback_language, 
+                                                fallback_any=fallback_any
+                                                )
+            for project
+            in parents_qs
+            ]
+
+
 def create_project_translation(language_code, parent_project=None, default_title=None):
     """
     Create a translation of a project.
