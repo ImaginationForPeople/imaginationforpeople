@@ -70,8 +70,8 @@
 	    var picture = $(current_item).children('img');
 	    var scroll = $(current_item).children('div.project_desc');
 
-	    $(scroll).stop().css('z-index', '9').animate({right: '-120', opacity: '0.2'}, 800, function() { $(this).hide(); });
-	    $(picture).stop().fadeOut('fast', function() { $(this).hide(); });
+	    $(scroll).stop().css('z-index', '9').animate({right: '-266', opacity: '0.2'}, 600, function() { $(this).hide(); });
+	    $(picture).stop().animate({'opacity': '0.2'}, 600, function() { $(this).hide(); });
 
 	}
 
@@ -82,11 +82,11 @@
 	    var previous_picture = $(previous_item).children('img');
 
 	    $(previous_picture).promise().done(function() {
-		$(picture).stop().show().css('opacity', '0').animate({opacity: '1.0'});
+		$(picture).stop().show().css('opacity', '0').animate({opacity: '1.0'}, 600);
 	    });
 
 
-	    $(scroll).stop().show().animate({right: '266'}, 1000, function() {
+	    $(scroll).stop().show().animate({right: '266', opacity: '0.90'}, 800, function() {
 		$(this).css('z-index', '110')
 	    });
 	}
