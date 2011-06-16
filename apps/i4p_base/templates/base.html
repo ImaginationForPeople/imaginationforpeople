@@ -17,6 +17,7 @@
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/buttons.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     {% endcompress %}
@@ -31,6 +32,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
     {% endcompress %}
     
     {% if not debug %}
@@ -60,6 +62,13 @@
           var more = $('#feedback-tab textarea');
           more.hide();
           $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
+      });
+    </script>
+
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+	 $('.tipsed').tipsy({delayIn: 600});
       });
     </script>
 
