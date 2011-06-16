@@ -58,10 +58,5 @@ if "privatebeta" in settings.INSTALLED_APPS:
         url(r'^beta/contact/$', contact_form_views.contact_form, name='contact_form'),
         url(r'^beta/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
     )
-else:
-  urlpatterns += patterns('',
-        url(r'^$', direct_to_template, {'template': 'homepage.html'}, name='i4p-index'),
-    )
-
 
 
