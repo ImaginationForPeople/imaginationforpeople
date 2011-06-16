@@ -12,6 +12,8 @@
 
 	var item_count = $(project_items).length;
 
+	var block_rotator = false;
+
 	project_items.children().hide();
 	
 	var init_delay = 1500;
@@ -38,6 +40,9 @@
 	}
 
 	function switchToRandom() {
+	    if ( block_rotator )
+		return;
+
 	    if ( item_count == 0 )
 		return;
 
@@ -103,7 +108,7 @@
 	this.children('li').hoverIntent(function(e) {
 	    $(this).addClass('hovered');
 
-	    stopRotator();
+	    block_rotator = true;
 
 	    var idx = $(this).index();
 
@@ -120,13 +125,13 @@
 	})
 
 	this.hover(function() {}, function() {
-	    scheduleRotatorFirstRun(init_delay, rotator_delay);
+	    block_rotator = false;
 	})
 
 	project_items.children('.project_desc').hover(function() {
-	    stopRotator();
+	    block_rotator = true;
 	}, function() {
-	    scheduleRotatorFirstRun(init_delay, rotator_delay);
+	    block_rotator = false;
 	})
 
     }
