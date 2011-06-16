@@ -54,7 +54,7 @@
       
       <ul id="projects_rotator_minis">
 	{% for project_translation in project_translations %}
-          <li><a href="#"><img src="{{ project_translation.project.pictures.all.0.mosaic_tile.url }}" title="XX" /></a></li>
+          <li><a href="#"><img class="tipsed" src="{{ project_translation.project.pictures.all.0.mosaic_tile.url }}" title="{{ project_translation.title }}" /></a></li>
 	{% endfor %}
 	<li><a href="{% url project_sheet-list %}"><img src="{{ STATIC_URL }}images/home/home-minis-plus.jpg" title="{% trans 'Discover more projects' %}" class="home-minis-plus" /></a></li>
 	
