@@ -38,6 +38,9 @@
 	}
 
 	function switchToRandom() {
+	    if ( item_count == 0 )
+		return;
+
 	    do {
 		var random_index = Math.floor(Math.random()*item_count)
 		selected_item = project_items.get(random_index);
