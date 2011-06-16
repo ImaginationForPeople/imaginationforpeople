@@ -38,6 +38,15 @@ class ResizeIDCard(processors.Resize):
 class ResizeDisplay(processors.Resize):
     width = 700
 
+class PreResizeMosaic(processors.Resize):
+    width = 200
+
+class CenterMosaic(processors.Resize):
+    width = 40
+    height = 40
+    crop = True
+
+
 class CenterDisplay(Center):
     width = 700
     height = 460
@@ -60,6 +69,9 @@ class Display(ImageSpec):
     processors = [ResizeDisplay, CenterDisplay]
 
 
+class MosaicTile(ImageSpec):
+    access_as = 'mosaic_tile'
+    processors = [PreResizeMosaic, CenterMosaic]
 
 class IDCard(ImageSpec):
     access_as = 'thumbnail_idcard'

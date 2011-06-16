@@ -320,7 +320,7 @@ STATICFILES_DIRS = (
     ('images', os.path.join(MEDIA_ROOT, 'images')),
 )
 
-STATIC_URL = MEDIA_URL + 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 
 ### COMPRESOR

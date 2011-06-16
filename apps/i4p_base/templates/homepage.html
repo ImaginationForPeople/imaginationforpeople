@@ -14,66 +14,114 @@
     {% endcompress %}
 {% endblock %}
 
-
-
 {% block extra_head %}
   {{ block.super }}
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.timers-1.2.js"></script>  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/homepage.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+	$('ul#projects_rotator_minis').mosaic();
+        
+    });
+  </script>
+
   {% compress js %}
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
-    
+
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-    
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.filtersPanel.js"></script>
   
-{% endcompress %}
-{% endblock %}
+    <script type="text/javascript" defer="defer">
+ 
+    $(document).ready(function(){ 
+        $(".filters_box input.styled").ezMark();
+        
+        $(".filtersbox_content select#id_country").change(function(){
+        	$("#filter_form").submit();
+        });
+        
+        $(".filters_box input.styled").change(function(){
+            $("#filter_form").submit();
+        });
+        
+        $(".tag_link").click(function(){
+        	var val = $("#id_themes").val();
+        	var tag_id = $(this).attr("id").replace("tag_", "");
+        	
+        	if($(this).hasClass("selected")){
+        		$(this).removeClass("selected");
+        		var new_val = val.replace(tag_id, "");
+        		new_val = new_val.replace(",,", ",");
+        		new_val = new_val.replace(/^,/g,'').replace(/,$/g,'')
+        		$("#id_themes").val(new_val);
+        	}
+        	else {
+                $(this).addClass("selected");
+                var new_tag = val == "" ? tag_id : ","+tag_id;
+                $("#id_themes").val(val + new_tag);
+        	}
+        	$("#filter_form").submit();
+        });
 
+        $("#filters").toggle(function() {
+				 $('.categories_project_page').animate({height: '260px'});
+			     },
+			     function() {
+				 $('.categories_project_page').animate({height: '36px'});
+			     });
+		      }); 
+  </script>
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+        $(".search #id_text").example("project search");
+    });
+  </script>
+  {% endcompress %}
+
+{% endblock %}
 
 {% block nav %}<div style="height:37px;"></div>{% endblock %}
 
 {% block content %}	
 	
-		<div class="container_18">
-			<div class="grid_18 alpha omega rotator">			
-                
-                <h1 id="i4p_baseline">"{% trans " Repérer, déployer, solvabiliser <br /> l'innovation sociale de rupture " %}"</h1>
-                
-                <img id="for-picto" src="{{ STATIC_URL }}images/home/for-picto.png" />
-
-                <ul id="projects_rotator_minis">
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" title="#" /></a></li>
-                   <li><a href="#"><img src="{{ STATIC_URL }}images/home/home-minis-plus.jpg" title="{% trans 'Discover more projects' %}" class="home-minis-plus" /></a></li>
- 
-                </ul>
-                
-                <img id="mask" src="{{ STATIC_URL }}images/home/mask.png" />	
-                
-                <ul id="projects_rotator">
-                    <li><div class="project_desc"><a href="#"><h1>We feel fine</h1><h2>Exploration of human emotion on a global scale ; it’s a very very long long sentence !!!</h2></a><a href="#" class="link">{% trans "Discover this project &gt;" %}</a></div><img src="http://imaginationforpeople.org/site_media/cache/uploads/projects/162/pictures/3365197181_83cfe00b50_b_display.jpg" /></li>
-                </ul>
-            
-			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
+  <div class="container_18">
+    <div class="grid_18 alpha omega rotator">			
+      
+      <h1 id="i4p_baseline">"{% trans " Repérer, déployer, solvabiliser <br /> l'innovation sociale de rupture " %}"</h1>
+      
+      <img id="for-picto" src="{{ STATIC_URL }}images/home/for-picto.png" />
+      
+      <ul id="projects_rotator_minis">
+	{% for project_translation in project_translations %}
+          <li><a href="#"><img src="{{ project_translation.project.pictures.all.0.mosaic_tile.url }}" title="XX" /></a></li>
+	{% endfor %}
+	<li><a href="{% url project_sheet-list %}"><img src="{{ STATIC_URL }}images/home/home-minis-plus.jpg" title="{% trans 'Discover more projects' %}" class="home-minis-plus" /></a></li>
 	
-	
+      </ul>
+      
+      <img id="mask" src="{{ STATIC_URL }}images/home/mask.png" />	
+      
+      <ul id="projects_rotator">
+	{% for project_translation in project_translations %}
+          <li>
+	    <div class="project_desc">
+	      <a href="{{ project_translation.get_absolute_url }}"><h1>{{ project_translation.title }}</h1><h2>{{ project_translation.baseline }}</h2></a>
+	      <a href="{{ project_translation.get_absolute_url }}" class="link">{% trans "Discover this project &gt;" %}</a>
+	    </div>
+	    <img src="{{ project_translation.project.pictures.all.0.original_image.url }}" />
+	  </li>
+	{% endfor %}
+      </ul>
+      
+    </div>
+    
+    <div class="clear"></div>
+    
+  </div>		
 {% endblock %}
 
 {% block footer %} {% include "bottom-panel.html" %} {% endblock %}
