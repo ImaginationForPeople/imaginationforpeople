@@ -16,28 +16,30 @@
 
 {% block extra_head %}
   {{ block.super }}
-
+  
+  {% compress js %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.timers-1.2.js"></script>  
   <script type="text/javascript" src="{{ STATIC_URL }}js/homepage.js"></script>
 
-  <script type="text/javascript">
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.cookie.js"></script>
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/filtersPanel.js"></script>
+  {% endcompress %}
+  
+
+  <script type="text/javascript" defer="defer">
     $(document).ready(function() {
 	$('ul#projects_rotator_minis').mosaic();
         
     });
   </script>
 
-  {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
-
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.cookie.js"></script>
-    
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/filtersPanel.js"></script>
-  {% endcompress %}
 
 {% endblock %}
 

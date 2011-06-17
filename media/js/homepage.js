@@ -16,8 +16,8 @@
 
 	project_items.children().hide();
 	
-	var init_delay = 1500;
-	var rotator_delay = 5000;
+	var init_delay = 2000;
+	var rotator_delay = 6000;
 	
 	$(this).oneTime(init_delay, 'for', function() {
 	    $('#for-picto').fadeOut('slow');
@@ -79,7 +79,7 @@
 	    var scroll = $(current_item).children('div.project_desc');
 
 	    $(scroll).stop().css('z-index', '9').animate({right: '-266', opacity: '0.2'}, 600, function() { $(this).hide(); });
-	    $(picture).stop().animate({'opacity': '0.2'}, 600, function() { $(this).hide(); });
+	    $(picture).stop().animate({'opacity': '0.5'}, 600); //, function() { $(this).hide(); });
 
 	}
 
@@ -90,7 +90,8 @@
 	    var previous_picture = $(previous_item).children('img');
 
 	    $(previous_picture).promise().done(function() {
-		$(picture).stop().show().css('opacity', '0').animate({opacity: '1.0'}, 600);
+		$(previous_picture).animate({'opacity': '0.0'}, 600, function() { $(this).hide(); });
+		$(picture).stop().show().css('opacity', '0.2').animate({opacity: '1.0'}, 600);
 	    });
 
 
