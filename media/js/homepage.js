@@ -20,6 +20,7 @@
 	var rotator_delay = 6000;
 	
 	$(this).oneTime(init_delay, 'for', function() {
+	    $('#mask-bg').animate({opacity: '0.2'});
 	    $('#for-picto').fadeOut('slow');
 	});
 	scheduleRotatorFirstRun(init_delay, rotator_delay);
