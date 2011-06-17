@@ -39,7 +39,7 @@ $(document).ready(function(){
     	panel.show();
     });*/
    
-    $("div#lock-picto").toggle(
+    $("a#lock-picto").toggle(
     	function () {
     		$(this).removeClass("off");
     		$(this).addClass("on");
@@ -70,17 +70,5 @@ $(document).ready(function(){
 	    		 $(".categories_project_page").animate({height: '36px'});
 	    	 }
 	     },  
-	});
-    
-    $(".categories_project_page").height('260px');
-    $("div#lock-picto").click();
-    
-});
-  
-$(document).ready(function() {
-    $(".search #id_text").example("project search");
-});
-
-$(document).ready(function() {
-	$(".categories_project_page .menu ul").idTabs();
+	}); 
 });
