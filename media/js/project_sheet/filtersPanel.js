@@ -71,4 +71,6 @@ $(document).ready(function(){
 	    	 }
 	     },  
 	}); 
+    
+    $('.categories_project_page .menu ul').idTabs();
 });
