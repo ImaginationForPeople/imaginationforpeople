@@ -1,4 +1,7 @@
 $(document).ready(function(){ 
+    $(".search #id_text").example("Project Search");
+
+
     $(".filters_box input.styled").ezMark();
     
     $(".filtersbox_content select#id_country").change(function(){

@@ -2,63 +2,64 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-12 20:40+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-06-17 18:43+0200\n"
+"PO-Revision-Date: 2011-06-17 18:45\n"
+"Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
+"X-Translated-Using: django-rosetta 0.5.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
-#: models.py:9
+#: models.py:11
 msgid "male"
-msgstr ""
+msgstr "homme"
 
-#: models.py:10
+#: models.py:12
 msgid "female"
-msgstr ""
-
-#: models.py:16
-msgid "website"
-msgstr ""
-
-#: models.py:17
-msgid "linkedin"
-msgstr ""
+msgstr "femme"
 
 #: models.py:18
-msgid "twitter"
-msgstr ""
+msgid "website"
+msgstr "site web"
 
 #: models.py:19
-msgid "facebook"
-msgstr ""
+msgid "linkedin"
+msgstr "linkedIn"
 
-#: models.py:22
+#: models.py:20
+msgid "twitter"
+msgstr "twitter"
+
+#: models.py:21
+msgid "facebook"
+msgstr "facebook"
+
+#: models.py:24
 msgid "location"
-msgstr ""
+msgstr "lieu"
 
 #: templates/userena/email_change_complete.html:5
 msgid "Email verification"
-msgstr ""
+msgstr "Vérification de l'email"
 
 #: templates/userena/email_change_complete.html:6
 #: templates/userena/email_change_complete.html:27
 msgid "Confirm your new email"
-msgstr ""
+msgstr "Confirmez votre nouveau courriel"
 
 #: templates/userena/email_change_complete.html:31
 #, python-format
 msgid "You have received an email at %(email)s."
-msgstr ""
+msgstr "Vous avez reçu un e-mail à %(email)s ."
 
 #: templates/userena/email_change_complete.html:32
 #, python-format
@@ -66,6 +67,8 @@ msgid ""
 "To associate this email address with your account (%(username)s) click on "
 "the link provided in this email."
 msgstr ""
+"Pour associer cette adresse e-mail avec votre compte ( %(username)s ), "
+"cliquez sur le lien fourni dans ce courriel."
 
 #: templates/userena/email_change_complete.html:34
 #: templates/userena/email_confirm_complete.html:33
@@ -75,201 +78,214 @@ msgstr ""
 #: templates/userena/password_reset_confirm_form.html:38
 #: templates/userena/password_reset_done.html:33
 msgid "Back to my profile"
-msgstr ""
+msgstr "Retour à mon profil"
 
 #: templates/userena/email_confirm_complete.html:5
 msgid "Email changed!"
-msgstr ""
+msgstr "Email changé!"
 
 #: templates/userena/email_confirm_complete.html:6
 #: templates/userena/email_confirm_complete.html:27
 msgid "New email"
-msgstr ""
+msgstr "Nouveau courriel"
 
 #: templates/userena/email_confirm_complete.html:31
 msgid ""
 "Your new email address is saved. You can continue using userena with this "
 "email."
 msgstr ""
+"Votre nouvelle adresse email est sauvée. Vous pouvez continuer à utiliser "
+"userena avec ce courriel."
 
 #: templates/userena/email_confirm_fail.html:5
 msgid "Email verification failed."
-msgstr ""
+msgstr "Vérification email échouée"
 
 #: templates/userena/email_confirm_fail.html:6
 #: templates/userena/email_confirm_fail.html:27
 msgid "Your email could not be verified..."
-msgstr ""
+msgstr "Votre email ne peut pas être vérifié"
 
 #: templates/userena/email_confirm_fail.html:31
 msgid "You could try changing it again in your account settings."
 msgstr ""
+"Vous pouvez essayer de le changer à nouveau dans les paramètres de votre "
+"compte."
 
-#: templates/userena/email_form.html:5 templates/userena/email_form.html:38
+#: templates/userena/email_form.html:5 templates/userena/email_form.html:20
+#: templates/userena/email_form.html:28
 msgid "Change email"
-msgstr ""
+msgstr "Changer l'email"
 
-#: templates/userena/email_form.html:30
-#: templates/userena/password_form.html:31
-msgid "Change Password"
-msgstr ""
+#: templates/userena/email_form.html:23
+msgid "Your current email address is the following:"
+msgstr "Votre adresse e-mail actuelle est la suivante:"
 
 #: templates/userena/password_complete.html:5
 msgid "Password changed"
-msgstr ""
+msgstr "Mot de passe changé"
 
 #: templates/userena/password_complete.html:6
 #: templates/userena/password_complete.html:27
 msgid "Your password has been changed"
-msgstr ""
+msgstr "Votre mot de passe a été changé"
 
 #: templates/userena/password_complete.html:31
 msgid "From now on you can use your new password to signin"
 msgstr ""
+"A partir de maintenant vous pouvez utiliser votre nouveau mot de passe."
 
 #: templates/userena/password_form.html:5
-#: templates/userena/password_form.html:38
+#: templates/userena/password_form.html:26
 msgid "Change password"
-msgstr ""
+msgstr "Changer le mot de passe"
+
+#: templates/userena/password_form.html:19
+msgid "Change Password"
+msgstr "Changer le mot de passe"
 
 #: templates/userena/password_reset_complete.html:5
 msgid "Password reset"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: templates/userena/password_reset_complete.html:6
 #: templates/userena/password_reset_complete.html:27
 msgid "Your password has been reset"
-msgstr ""
+msgstr "Votre mot de passe a été réinitialisé"
 
 #: templates/userena/password_reset_complete.html:31
 msgid "You can now "
-msgstr ""
+msgstr "Vous pouvez maintenant"
 
 #: templates/userena/password_reset_complete.html:31
 msgid "signin"
-msgstr ""
+msgstr "signin"
 
 #: templates/userena/password_reset_complete.html:31
 msgid "with your new password."
-msgstr ""
+msgstr "avec votre nouveau mot de passe."
 
 #: templates/userena/password_reset_confirm_form.html:5
 #: templates/userena/password_reset_confirm_form.html:34
 #: templates/userena/password_reset_form.html:5
 msgid "Reset password"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: templates/userena/password_reset_confirm_form.html:26
 #: templates/userena/password_reset_confirm_form.html:31
 #: templates/userena/password_reset_form.html:26
 #: templates/userena/password_reset_form.html:31
 msgid "Reset Password"
-msgstr ""
+msgstr "Réinitialiser le mot de passe"
 
 #: templates/userena/password_reset_done.html:5
 #: templates/userena/password_reset_done.html:6
 #: templates/userena/password_reset_done.html:27
 msgid "Reset password email is send"
-msgstr ""
+msgstr "Un mail de réinitialisation du mot de passé a été envoyé"
 
 #: templates/userena/password_reset_done.html:31
 msgid ""
 "An e-mail has been send to you which explains how to reset your password."
 msgstr ""
+"Un e-mail vous a été envoyé, qui vous explique comment réinitialiser votre "
+"mot de passe."
 
 #: templates/userena/password_reset_form.html:34
 msgid "Send password"
-msgstr ""
+msgstr "Envoyer le mot de passe"
 
 #: templates/userena/profile_detail.html:6
 #, python-format
 msgid "%(username)s's profile"
-msgstr ""
+msgstr "profil de %(username)s"
 
-#: templates/userena/profile_detail.html:36
+#: templates/userena/profile_detail.html:35
 msgid "<i>This member has no description...</i>"
-msgstr ""
+msgstr "<i>Ce membre n'a pas de description ...</i>"
 
-#: templates/userena/profile_detail.html:44
+#: templates/userena/profile_detail.html:43
 msgid "My projects"
-msgstr ""
+msgstr "Mes projets"
 
-#: templates/userena/profile_detail.html:46
+#: templates/userena/profile_detail.html:45
 msgid "Her/His projects"
-msgstr ""
+msgstr "Son/Ses projets"
 
-#: templates/userena/profile_detail.html:56
+#: templates/userena/profile_detail.html:55
 msgid "This user does not have any project yet."
-msgstr ""
+msgstr "Cet utilisateur n'a pas encore de projet."
 
-#: templates/userena/profile_detail.html:66
+#: templates/userena/profile_detail.html:65
 msgid "Her/His contributions"
-msgstr ""
+msgstr "Son/Sa contribution"
 
-#: templates/userena/profile_detail.html:75
+#: templates/userena/profile_detail.html:74
 msgid "No contributions yet."
-msgstr ""
+msgstr "Pas encore de contributions."
 
 #: templates/userena/profile_form.html:6
 msgid "Account setup"
-msgstr ""
+msgstr "Configuration du compte"
+
+#: templates/userena/profile_form.html:21
+msgid "About me"
+msgstr "A propos de moi"
 
 #: templates/userena/profile_form.html:35
-msgid "About me"
-msgstr ""
-
-#: templates/userena/profile_form.html:49
 msgid "Avatar"
-msgstr ""
+msgstr "Avatar"
 
-#: templates/userena/profile_form.html:65
+#: templates/userena/profile_form.html:51
 msgid "Generals infos"
-msgstr ""
+msgstr "Infos générales"
 
-#: templates/userena/profile_form.html:87
+#: templates/userena/profile_form.html:73
 msgid "External links"
-msgstr ""
+msgstr "Liens externes"
 
-#: templates/userena/profile_form.html:103
+#: templates/userena/profile_form.html:89
 msgid "Save changes"
-msgstr ""
+msgstr "Enregistrer les modifications"
 
-#: templates/userena/profile_idbar.html:9
+#: templates/userena/profile_idbar.html:7
 msgid "Edit details"
-msgstr ""
+msgstr "Modifier les détails"
+
+#: templates/userena/profile_idbar.html:7
+msgid "details"
+msgstr "details"
+
+#: templates/userena/profile_idbar.html:8
+msgid "Edit password"
+msgstr "Modifier le mot de passe"
+
+#: templates/userena/profile_idbar.html:8
+msgid "password"
+msgstr "Mot de passe"
 
 #: templates/userena/profile_idbar.html:9
-msgid "details"
-msgstr ""
-
-#: templates/userena/profile_idbar.html:10
-msgid "Edit password"
-msgstr ""
-
-#: templates/userena/profile_idbar.html:10
-msgid "password"
-msgstr ""
-
-#: templates/userena/profile_idbar.html:11
 msgid "Edit email"
-msgstr ""
+msgstr "Modifier courriel"
 
-#: templates/userena/profile_idbar.html:11
+#: templates/userena/profile_idbar.html:9
 msgid "email"
-msgstr ""
+msgstr "email"
 
-#: templates/userena/profile_idbar.html:29
+#: templates/userena/profile_idbar.html:28
+#: templates/userena/profile_idbar.html:30
 msgid "Your avatar"
-msgstr ""
+msgstr "Votre avatar"
 
-#: templates/userena/profile_idbar.html:37
+#: templates/userena/profile_idbar.html:40
+#: templates/userena/profile_idbar.html:46
 msgid "Anonymous"
-msgstr ""
+msgstr "Anonyme"
 
 #: templates/userena/signin_form.html:5
 msgid "Signin"
-msgstr ""
+msgstr "Signin"
 
-#: templates/userena/signin_form.html:25 templates/userena/signin_form.html:47
+#: templates/userena/signin_form.html:25 templates/userena/signin_form.html:48
 msgid "Sign in"
-msgstr ""
+msgstr "Connexion"

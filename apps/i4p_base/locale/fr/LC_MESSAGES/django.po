@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-12 20:38+0200\n"
-"PO-Revision-Date: 2011-06-13 17:13\n"
+"POT-Creation-Date: 2011-06-17 19:01+0200\n"
+"PO-Revision-Date: 2011-06-17 19:20\n"
 "Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -1011,9 +1011,155 @@ msgstr ""
 msgid "detect, highlight and monetize social innovation"
 msgstr "Repérer, déployer, solvabiliser l'innovation sociale de rupture."
 
-#: templates/base.html:84 templates/backcap/feedback_detail.html:9
+#: templates/base.html:95 templates/backcap/feedback_detail.html:9
 msgid "Feedback"
 msgstr "Feedback"
+
+#: templates/bottom-panel.html:10
+msgid "Pin/Unpin the panel"
+msgstr "Bloquer/Débloquer le bandeau"
+
+#: templates/bottom-panel.html:15
+msgid "About"
+msgstr "À propos"
+
+#: templates/bottom-panel.html:16 templates/privatebeta/base.html:87
+msgid "Filters"
+msgstr "Filtres"
+
+#: templates/bottom-panel.html:17 templates/privatebeta/base.html:88
+msgid "Help"
+msgstr "Aide"
+
+#: templates/bottom-panel.html:20
+msgid "reset filtering"
+msgstr "réinitialiser le filtrage"
+
+#: templates/bottom-panel.html:49
+msgid "Themes"
+msgstr "Thèmes"
+
+#: templates/bottom-panel.html:50 templates/bottom-panel.html.py:64
+msgid "invert"
+msgstr "inverser"
+
+#: templates/bottom-panel.html:53
+#, python-format
+msgid "%(count)s project sheets"
+msgstr "%(count)s fiches projets"
+
+#: templates/bottom-panel.html:63
+msgid "Location"
+msgstr "Lieu"
+
+#: templates/bottom-panel.html:74
+msgid "Sheet status"
+msgstr "Etat de la fiche"
+
+#: templates/bottom-panel.html:78
+msgid "Best-of"
+msgstr "Best-of"
+
+#: templates/bottom-panel.html:79
+msgid "Popular project"
+msgstr "Les plus populaires"
+
+#: templates/bottom-panel.html:82
+msgid "quality"
+msgstr "stimulants"
+
+#: templates/bottom-panel.html:89
+msgid "progression"
+msgstr "progression"
+
+#: templates/bottom-panel.html:96
+msgid "Associated team"
+msgstr "Porteur associé"
+
+#: templates/bottom-panel.html:97
+msgid "Orphan project"
+msgstr "Projet sans porteur"
+
+#: templates/bottom-panel.html:100
+msgid "team"
+msgstr "Equipe"
+
+#: templates/bottom-panel.html:110
+msgid "Project status"
+msgstr "Statut du projet"
+
+#: templates/bottom-panel.html:133
+msgid "projects"
+msgstr "projets"
+
+#: templates/bottom-panel.html:134
+msgid "Explore and contribute to the creative social projects."
+msgstr "Explorez et contribuez aux projets sociaux à l'échelle internationale."
+
+#: templates/bottom-panel.html:135
+msgid "Projects &gt;"
+msgstr "Projets &gt;"
+
+#: templates/bottom-panel.html:136
+msgid "Add a new project &gt;"
+msgstr "Ajouter un projet &gt;"
+
+#: templates/bottom-panel.html:140
+msgid "community"
+msgstr "communauté"
+
+#: templates/bottom-panel.html:141
+msgid "Connect with a community of creative citizens from many countries."
+msgstr "Rejoignez une communauté de citoyens de plus de 30 pays."
+
+#: templates/bottom-panel.html:142 templates/bottom-panel.html.py:150
+msgid "Work-in-Progress"
+msgstr "En cours de développement"
+
+#: templates/bottom-panel.html:142
+msgid "The community (WIP)"
+msgstr "La communauté (WIP)"
+
+#: templates/bottom-panel.html:143
+msgid "The community &gt;"
+msgstr "La communauté &gt;"
+
+#: templates/bottom-panel.html:144
+msgid "Join the community &gt;"
+msgstr "Rejoignez la communauté &gt;"
+
+#: templates/bottom-panel.html:148
+msgid "resources"
+msgstr "ressources"
+
+#: templates/bottom-panel.html:149
+msgid "Discover the latest tools, methods and debates on social innovation"
+msgstr ""
+"Découvrir les derniers outils, méthodes et débats sur l'innovation sociale"
+
+#: templates/bottom-panel.html:150
+msgid "Resources (WIP)"
+msgstr "Ressources (WIP)"
+
+#: templates/bottom-panel.html:152
+msgid "Join a group &gt;"
+msgstr "Joindre un groupe &gt;"
+
+#: templates/bottom-panel.html:157
+msgid ""
+"A community of creative citizens collaborating to detect, share and help "
+"social innovative projects get off the ground."
+msgstr ""
+"Une communauté de citoyens créatifs coopérants afin de détecter, partager et "
+"d'aider les projets d'innovation sociales à se développer."
+
+#: templates/bottom-panel.html:160
+msgid "Read the manifesto &gt;"
+msgstr "Lire le manifeste &gt;"
+
+#: templates/bottom-panel.html:161
+msgid "About IP &gt;"
+msgstr "À propos d'IP &gt;"
 
 #: templates/footer.html:16
 msgid "FAQ"
@@ -1023,8 +1169,7 @@ msgstr "FAQ"
 msgid "Guidelines"
 msgstr "Charte sociale"
 
-#: templates/footer.html:18 templates/homepage.html:20
-#: templates/privatebeta/base.html:63
+#: templates/footer.html:18 templates/privatebeta/base.html:63
 msgid "About imagination for people"
 msgstr "À propos d'Imagination For People"
 
@@ -1057,102 +1202,39 @@ msgid "sign up"
 msgstr "S'inscrire"
 
 #: templates/header.html:35
-msgid "Home"
-msgstr "Accueil"
-
-#: templates/header.html:36
-msgid "Projects"
-msgstr "Projets"
-
-#: templates/header.html:38
-msgid "Start a project"
-msgstr "Démarrer un projet"
-
-#: templates/header.html:40
 msgid "About us"
 msgstr "À propos"
 
-#: templates/homepage.html:22
+#: templates/header.html:36
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/header.html:37
+msgid "Projects"
+msgstr "Projets"
+
+#: templates/header.html:39
+msgid "Start a project"
+msgstr "Démarrer un projet"
+
+#: templates/homepage.html:57
 msgid ""
-"\n"
-"                            We believe in the virtue of civic imagination, "
-"imagination to serve the common good. Our filter is useful creativity or the "
-"imagination applied. \n"
-"                            "
-msgstr ""
-"\n"
-"Nous croyons à la vertu de l’imagination citoyenne, l’imagination au service "
-"du bien commun. Notre filtre est la créativité utile, l’imagination "
-"appliquée."
+"Detect, highlight and monetize <br/> social innovation that is truly "
+"disruptive"
+msgstr "Une communauté de citoyens créatifs <br/> pour repérer et soutenir les projets d'innovation sociale"
 
-#: templates/homepage.html:26 templates/manifesto.html:8
-#: templates/privatebeta/base.html:69 templates/privatebeta/base.html:139
-msgid "Manifesto"
-msgstr "Extrait du manifeste"
-
-#: templates/homepage.html:27 templates/project-description.html:8
-#: templates/privatebeta/base.html:70
-msgid "Project description"
-msgstr "Description du projet"
-
-#: templates/homepage.html:42 templates/privatebeta/base.html:87
-msgid "Filters"
-msgstr "Filtres"
-
-#: templates/homepage.html:43 templates/privatebeta/base.html:88
-msgid "Help"
-msgstr "Aide"
-
-#: templates/homepage.html:44 templates/privatebeta/base.html:89
-msgid "<span class='georgia'>My</span> imagination for people"
-msgstr ""
-
-#: templates/homepage.html:53 templates/privatebeta/base.html:98
-msgid "Node view"
-msgstr "Vue par noeuds"
+#: templates/homepage.html:65
+msgid "Discover more projects"
+msgstr "Découvrir plus de projets"
 
 #: templates/homepage.html:77
-msgid "- projects"
-msgstr "- projets"
+msgid "Discover this project &gt;"
+msgstr "Découvrir ce projet &gt;"
 
-#: templates/homepage.html:78
-msgid "Discover the world's most innovative and inspiring social projects."
-msgstr ""
-"Découvrez les projets les plus inspirants et innovants en terme de réponses "
-"aux enjeux sociaux actuels"
-
-#: templates/homepage.html:79 templates/homepage.html.py:85
-#: templates/homepage.html:91
-msgid "More info &gt;"
-msgstr "Plus d'infos &gt; "
-
-#: templates/homepage.html:83
-msgid "- add a project"
-msgstr "- éditer un projet"
-
-#: templates/homepage.html:84
-msgid ""
-"Describe stimulating and innovative social projects that spark your "
-"imagination."
-msgstr ""
-"Décrivez ou complétez les informations sur les projets sociaux les plus "
-"inventifs et singuliers que vous ayez repéré."
-
-#: templates/homepage.html:89
-msgid "- help"
-msgstr "- aide"
-
-#: templates/homepage.html:90
-msgid "Join the IP community and help projects get off the round."
-msgstr "Rejoignez la communauté IP et aidez les projets à se développer."
-
-#: templates/homepage.html:96
-msgid ""
-"A community to detect, publicize, amplify and adapt creative solutions to "
-"the new challenges of living together. "
-msgstr ""
-"Une communauté pour détecter, publier, amplifier et adapter les solutions "
-"créatives aux défis du vivre ensemble."
+#: templates/manifesto.html:8 templates/privatebeta/base.html:69
+#: templates/privatebeta/base.html:139
+msgid "Manifesto"
+msgstr "Extrait du manifeste"
 
 #: templates/manifesto.html:11
 msgid ""
@@ -1273,6 +1355,10 @@ msgstr "Autres langues"
 msgid "create a new translation"
 msgstr "Créer une nouvelle traduction"
 
+#: templates/project-description.html:8 templates/privatebeta/base.html:70
+msgid "Project description"
+msgstr "Description du projet"
+
 #: templates/project-description.html:11
 #, python-format
 msgid ""
@@ -1341,76 +1427,76 @@ msgstr ""
 msgid "This issue is closed."
 msgstr "Cette question est fermée."
 
-#: templates/backcap/feedback_detail.html:127
-#: templates/backcap/feedback_list.html:151
+#: templates/backcap/feedback_detail.html:128
+#: templates/backcap/feedback_list.html:153
 msgid "Assigned to"
 msgstr "Assigné à"
 
-#: templates/backcap/feedback_detail.html:132
+#: templates/backcap/feedback_detail.html:133
 #, python-format
 msgid ""
 "\n"
-"                Posted %(since)s ago by\n"
-"                "
+"                    Posted %(since)s ago by\n"
+"                    "
 msgstr ""
 "\n"
 "Posté %(since)s  il y a"
 
-#: templates/backcap/feedback_detail.html:151
+#: templates/backcap/feedback_detail.html:153
 msgid "is working on this. Poke him if you think it's taking too long !"
 msgstr ""
 "travaille sur cette demande. Envoyez une petite alerte si vous pensez que "
 "cela devient urgent !"
 
-#: templates/backcap/feedback_detail.html:159
+#: templates/backcap/feedback_detail.html:161
 msgid "This issue is a duplicate of"
 msgstr "Cette demande est un double de"
 
-#: templates/backcap/feedback_detail.html:160
+#: templates/backcap/feedback_detail.html:162
 msgid "Please don't comment on this issue anymore."
 msgstr "S'il vous plaît, ne plus faire de commentaires sur cette question."
 
-#: templates/backcap/feedback_detail.html:166
+#: templates/backcap/feedback_detail.html:168
 msgid "Description:"
 msgstr "Description:"
 
-#: templates/backcap/feedback_detail.html:170
+#: templates/backcap/feedback_detail.html:172
 msgid "Comments:"
 msgstr "Commentaires:"
 
-#: templates/backcap/feedback_detail.html:180
+#: templates/backcap/feedback_detail.html:182
 msgid "Post a new comment"
 msgstr "Poster un nouveau commentaire"
 
-#: templates/backcap/feedback_detail.html:190
+#: templates/backcap/feedback_detail.html:192
 msgid "Post"
 msgstr "Poster"
 
-#: templates/backcap/feedback_detail.html:195
+#: templates/backcap/feedback_detail.html:197
 msgid "Comments closed."
 msgstr "Commentaires fermés."
 
-#: templates/backcap/feedback_detail.html:200
+#: templates/backcap/feedback_detail.html:202
 msgid "This issue is"
 msgstr "Cette demande est"
 
-#: templates/backcap/feedback_detail.html:201
+#: templates/backcap/feedback_detail.html:203
 msgid "Close issue"
 msgstr "demande fermée"
 
-#: templates/backcap/feedback_detail.html:203
+#: templates/backcap/feedback_detail.html:205
 msgid "Reported from:"
 msgstr "Signalé par:"
 
-#: templates/backcap/feedback_detail.html:208
+#: templates/backcap/feedback_detail.html:210
 msgid "Edit"
 msgstr "Modifier"
 
-#: templates/backcap/feedback_detail.html:209
+#: templates/backcap/feedback_detail.html:211
 msgid "Ping observers"
 msgstr "Rappel aux observateurs"
 
-#: templates/backcap/feedback_detail.html:214
+#: templates/backcap/feedback_detail.html:216
 #: templates/backcap/feedback_new.html:87
 #: templates/backcap/feedback_tab.html:12
 msgid "See all feedbacks"
@@ -1447,7 +1533,6 @@ msgstr ""
 "nous allons travailler dessus.</strong>"
 
 #: templates/backcap/feedback_list.html:99
-#: templates/contact_form/contact_form_subject.txt:2
 msgid "New feedback"
 msgstr "Nouvelle demande"
 
@@ -1464,57 +1549,57 @@ msgstr "Voter pour"
 msgid "Vote against"
 msgstr "Voter contre"
 
-#: templates/backcap/feedback_list.html:156
+#: templates/backcap/feedback_list.html:158
 #, python-format
 msgid ""
 "\n"
-"                                            Posted %(since)s ago by\n"
-"                                            "
+"                                                Posted %(since)s ago by\n"
+"                                                "
 msgstr ""
 "\n"
 "Posté %(since)s il y a"
 
-#: templates/backcap/feedback_list.html:165
+#: templates/backcap/feedback_list.html:168
 msgid "There's no feedback yet."
 msgstr "Il n'y a pas encore de commentaires."
 
-#: templates/backcap/feedback_list.html:170
+#: templates/backcap/feedback_list.html:173
 msgid "previous"
 msgstr "précédent"
 
-#: templates/backcap/feedback_list.html:187
+#: templates/backcap/feedback_list.html:190
 msgid "next"
 msgstr "prochain"
 
-#: templates/backcap/feedback_list.html:195
+#: templates/backcap/feedback_list.html:198
 msgid "Display"
 msgstr "Affichage"
 
-#: templates/backcap/feedback_list.html:198
+#: templates/backcap/feedback_list.html:201
 msgid "All"
 msgstr "Tous"
 
-#: templates/backcap/feedback_list.html:199
+#: templates/backcap/feedback_list.html:202
 msgid "Questions"
 msgstr "Questions"
 
-#: templates/backcap/feedback_list.html:200
+#: templates/backcap/feedback_list.html:203
 msgid "Problems"
 msgstr "Problèmes"
 
-#: templates/backcap/feedback_list.html:201
+#: templates/backcap/feedback_list.html:204
 msgid "Ideas"
 msgstr "Idées"
 
-#: templates/backcap/feedback_list.html:204
+#: templates/backcap/feedback_list.html:207
 msgid "Order by"
 msgstr "Trier par"
 
-#: templates/backcap/feedback_list.html:207
+#: templates/backcap/feedback_list.html:210
 msgid "Score"
 msgstr "Score"
 
-#: templates/backcap/feedback_list.html:208
+#: templates/backcap/feedback_list.html:211
 msgid "Newest"
 msgstr "Le plus récent"
 
@@ -1558,12 +1643,12 @@ msgstr "Modifier la demande"
 
 #: templates/privatebeta/base.html:14
 msgid "Imagination for People"
-msgstr ""
+msgstr "Imagination for People"
 
 #: templates/privatebeta/base.html:50
 msgid ""
 "Detect, highlight and monetize social innovation that is truly disruptive."
-msgstr "Repérer, déployer, solvabiliser l'innovation sociale de rupture."
+msgstr "Une communauté de citoyens créatifs pour repérer et soutenir les projets d'innovation sociale"
 
 #: templates/privatebeta/base.html:65
 msgid ""
@@ -1581,6 +1666,14 @@ msgstr ""
 #: templates/privatebeta/base.html:86
 msgid "Featured"
 msgstr "Projets"
+
+#: templates/privatebeta/base.html:89
+msgid "<span class='georgia'>My</span> imagination for people"
+msgstr "<span class='georgia'>Mon</span> imagination for people"
+
+#: templates/privatebeta/base.html:98
+msgid "Node view"
+msgstr "Vue par noeuds"
 
 #: templates/privatebeta/invite.html:11
 msgid "Who are we ?"
@@ -1710,6 +1803,46 @@ msgstr ""
 #: templates/privatebeta/sent.html:32
 msgid "Back"
 msgstr "Retour"
+
+#~ msgid ""
+#~ "\n"
+#~ "                            We believe in the virtue of civic "
+#~ "imagination, imagination to serve the common good. Our filter is useful "
+#~ "creativity or the imagination applied. \n"
+#~ "                            "
+#~ msgstr ""
+#~ "\n"
+#~ "Nous croyons à la vertu de l’imagination citoyenne, l’imagination au "
+#~ "service du bien commun. Notre filtre est la créativité utile, "
+#~ "l’imagination appliquée."
+
+#~ msgid "Discover the world's most innovative and inspiring social projects."
+#~ msgstr ""
+#~ "Découvrez les projets les plus inspirants et innovants en terme de "
+#~ "réponses aux enjeux sociaux actuels"
+
+#~ msgid "More info &gt;"
+#~ msgstr "Plus d'infos &gt; "
+
+#~ msgid ""
+#~ "Describe stimulating and innovative social projects that spark your "
+#~ "imagination."
+#~ msgstr ""
+#~ "Décrivez ou complétez les informations sur les projets sociaux les plus "
+#~ "inventifs et singuliers que vous ayez repéré."
+
+#~ msgid "- help"
+#~ msgstr "- aide"
+
+#~ msgid "Join the IP community and help projects get off the round."
+#~ msgstr "Rejoignez la communauté IP et aidez les projets à se développer."
+
+#~ msgid ""
+#~ "A community to detect, publicize, amplify and adapt creative solutions to "
+#~ "the new challenges of living together. "
+#~ msgstr ""
+#~ "Une communauté pour détecter, publier, amplifier et adapter les solutions "
+#~ "créatives aux défis du vivre ensemble."
 
 #~ msgid "&copy; 2011 Imagination for people – All rights reseved"
 #~ msgstr "® 2011 Imagination for people est une marque déposée."

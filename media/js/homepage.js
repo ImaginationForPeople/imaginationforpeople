@@ -16,7 +16,7 @@
 
 	project_items.children().hide();
 	
-	var init_delay = 2000;
+	var init_delay = 4000;
 	var rotator_delay = 6000;
 	
 	$(this).oneTime(init_delay, 'for', function() {

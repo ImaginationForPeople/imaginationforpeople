@@ -28,7 +28,6 @@
             
                 <form action="" method="post" id="signin_form"  class="profile_edition">
                     {% csrf_token %}
-                    <input type="hidden" name="next" value="{% url project_sheet-list %}" />
                         {{ form.non_field_errors }}
                         {% for field in form %}
                         {{ field.errors }}

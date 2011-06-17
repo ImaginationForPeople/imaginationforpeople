@@ -7,13 +7,13 @@
         <div id="browse-picto"></div>
         
         <!-- Lock is by default in "off" class ; user's click set class at "on" -->
-        <a id="lock-picto" class="off tipsed" href="#"></a>
+        <a id="lock-picto" class="off tipsed" href="#" title="{% trans "Pin/Unpin the panel" %}"></a>
       
         <div class="menu">
           
             <ul>
-                <li><div class="categ-button first"><a href="#about" class="{%if about_tab_selected %}selected{% endif %}">{% trans "About" %}</a></div></li>
-                <li><div class="categ-button"><a href="#filters" class="{%if filters_tab_selected %}selected{% endif %}">{% trans "Filters" %}</a></div></li>
+                <li><div class="categ-button first"><a href="#about" class="{%if about_tab_selected %}selected{% endif %}">{% trans "About"|capfirst %}</a></div></li>
+                <li><div class="categ-button"><a href="#filters" class="{%if filters_tab_selected %}selected{% endif %}">{% trans "Filters"|capfirst %}</a></div></li>
                 <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
             </ul>
           
@@ -131,32 +131,34 @@
                  
                 <div class="colonne grid_4 alpha">
                     <h1><img src="{{ STATIC_URL }}images/home/picto-projects.jpg" />{% trans 'projects'|capfirst %}</h1>						
-                    <p>{% blocktrans %}Explore, add or edit inovative social project...<br />Join a project team{% endblocktrans %}</p>
+                    <p>{% blocktrans %}Explore and contribute to the creative social projects.{% endblocktrans %}</p>
                     <a href="{% url project_sheet-list %}">{% trans 'Projects &gt;' %}</a> 						
-                    <a href="#">{% trans 'Add a new project &gt;' %}</a> 						
+                    <a href="{% url project_sheet-start %}">{% trans 'Add a new project &gt;' %}</a> 						
                 </div>
                 
                 <div class="colonne grid_4">						
                     <h1><img src="{{ STATIC_URL }}images/home/picto-community.jpg" />{% trans 'community'|capfirst %}</h1>						
-                    <p>{% blocktrans %}Connect with more than xxx creative citizens from xx countries.{% endblocktrans %}</p>
-                    <a href="#}">{% trans 'The community &gt;' %}</a> 		       
-                    <a href="#">{% trans 'Join the community &gt;' %}</a> 		       
+                    <p>{% blocktrans %}Connect with a community of creative citizens from many countries.{% endblocktrans %}</p>
+		    <a class="tipsed" href="#" title="{% trans "Work-in-Progress" %}">{% trans 'The community (WIP)' %}</a>
+                    <!-- <a href="#">{% trans 'The community &gt;' %}</a> 		       -->
+                    <!-- <a href="{% url userena_signup %}">{% trans 'Join the community &gt;' %}</a> 		       -->
                 </div>
                 
                 <div class="colonne grid_4">
-                    <h1><img src="{{ STATIC_URL }}images/home/picto-ressources.jpg" />{% trans 'ressources'|capfirst %}</h1>						
-                    <p>{% blocktrans %}Discover the latest tools, methods and debates on social innovation{% endblocktrans %}</p>											
-                    <a href="#">{% trans 'Ressources &gt;' %}</a> 		    
-                    <a href="#">{% trans 'Join a group &gt;' %}</a> 		    
+                    <h1><img src="{{ STATIC_URL }}images/home/picto-ressources.jpg" />{% trans 'resources'|capfirst %}</h1>						
+                    <p>{% blocktrans %}Discover the latest tools, methods and debates on social innovation{% endblocktrans %}.</p>											
+		    <a class="tipsed" href="#" title="{% trans "Work-in-Progress" %}">{% trans 'Resources (WIP)' %}</a>
+
+                    <!-- <a href="#">{% trans 'Join a group &gt;' %}</a> 		     -->
                 </div>	
 
                 <div class="colonne grid_6 omega">
                     <h1>
-                        {% blocktrans %}A community of creative citizens collaborating to detect, share and help social innovative projects get off the ground. {% endblocktrans %}
+                        {% blocktrans %}A community of creative citizens collaborating to detect, share and help social innovative projects get off the ground.{% endblocktrans %}
                     </h1>
                     <p></p>
-                    <a href="#">{% trans 'Read the manifesto &gt;' %}</a> 		    
-                    <a href="#">{% trans 'About I4P &gt;' %}</a> 	                    
+                    <a href="{% url manifesto %}">{% trans 'Read the manifesto &gt;' %}</a> 		    
+                    <a href="http://alpha.imaginationforpeople.org/wakka.php?wiki=vAboutUsFr">{% trans 'About IP &gt;' %}</a> 	                    
                 </div>	                    
                                     
             </div> 
