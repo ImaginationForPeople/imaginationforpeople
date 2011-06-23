@@ -3,17 +3,15 @@ from django.core.management.base import BaseCommand
 import csv
 from optparse import make_option
 from django.contrib.auth.models import User
-import unicodedata
 from datetime import datetime
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
 from userena.models import UserenaSignup
 from userena import settings as userena_settings
 from django.utils.encoding import smart_unicode
+from apps.i4p_base.utils import remove_accents
 
-def remove_accents(str):
-    nkfd_form = unicodedata.normalize('NFKD', str.decode("utf-8"))
-    return u"".join([c for c in nkfd_form if not unicodedata.combining(c)])
+
 
 
 class Command(BaseCommand):
@@ -23,9 +21,9 @@ class Command(BaseCommand):
     )
 
     def handle(self, *args, **options):
-        User.objects.filter(is_superuser=False).delete()
-        I4pProfile.objects.all().delete()
-        Location.objects.all().delete()
+#        User.objects.filter(is_superuser=False).delete()
+#        I4pProfile.objects.all().delete()
+#        Location.objects.all().delete()
 
         with open(options.get('file'), 'rb') as f:
             reader = csv.reader(f, delimiter=';')
