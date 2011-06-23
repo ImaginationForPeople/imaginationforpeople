@@ -48,6 +48,15 @@ def signin(request,
            redirect_signin_function=signin_redirect, 
            extra_context=None):
 
+    
+    response = userena_views.signin(request,
+                                    auth_form=auth_form,
+                                    template_name=template_name,
+                                    redirect_field_name=REDIRECT_FIELD_NAME,
+                                    redirect_signin_function=signin_redirect,
+                                    extra_context=extra_context)
+
+
     if request.method == 'POST':
         form = auth_form(request.POST)
         if form.is_valid():
@@ -58,24 +67,21 @@ def signin(request,
             # Temp fix to auth on Alpha
             try:
                 conn = HTTPConnection('alpha.imaginationforpeople.org', timeout=5)
-                conn.request('GET', 'jrest/User/%s/%s' % (user, password))
+                conn.request('GET', '/jrest/User/%s/%s' % (user, password))
 
                 res = conn.getresponse()
                 cookies = res.getheader("set-cookie")   
                 
-                if res.status:
-                    #print "cookies", cookies
-                    pass
+                if res.status == 200:
+                    name, value = cookies.split(";")[0].split("=")
+                    response.set_cookie(name, value=value, domain="alpha.imaginationforpeople.org")
+                    print "cookie set"
 
             except Exception, e:
                 pass
-    
-    return userena_views.signin(request,
-                                auth_form=auth_form,
-                                template_name=template_name,
-                                redirect_field_name=REDIRECT_FIELD_NAME,
-                                redirect_signin_function=signin_redirect,
-                                extra_context=extra_context)
+
+
+    return response
 
 
     
