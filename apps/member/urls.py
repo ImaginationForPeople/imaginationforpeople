@@ -7,11 +7,13 @@ from userena import views as userena_views
 from userena import settings as userena_settings
 
 import views as member_views
+from apps.member.forms import I4PSignupForm
 
 urlpatterns = patterns('',
                        # Signup, signin and signout
                        url(r'^signup/$',
                            userena_views.signup,
+                           {'signup_form' : I4PSignupForm},
                            name='userena_signup'),
                        url(r'^signin/$',
                            userena_views.signin,
