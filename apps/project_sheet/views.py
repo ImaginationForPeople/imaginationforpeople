@@ -61,7 +61,7 @@ def project_sheet_list(request):
             extra_context["last_modif"] = True
             extra_context["getparams_submit"] = extra_context["getparams_last_modif"]
         else:
-            ordered_project_sheets = filtered_project_sheets.order_by('slug')
+            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', 'slug')
 
         params = data.urlencode().replace("last_modif=1", "").replace("last_created=1", "")
         extra_context["getparams_last_created"] += "&%s" % params
