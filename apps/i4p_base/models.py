@@ -273,6 +273,12 @@ class Location(models.Model):
     address = models.TextField(verbose_name=_('address'),
                                null=True, blank=True)
 
+    def __unicode__(self):
+        return u"%s %s (%s, %s)" % (self.address,
+                                     self.get_country_display(),
+                                     self.lon,
+                                     self.lat)
+
 
 
 
