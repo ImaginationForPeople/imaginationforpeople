@@ -4,6 +4,7 @@
 
 {% block style %}
   {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/queryLoader.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/filters.css" />
@@ -18,8 +19,12 @@
   {{ block.super }}
   
   {% compress js %}
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/queryLoader.js"></script>
+
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.timers-1.2.js"></script>  
   <script type="text/javascript" src="{{ STATIC_URL }}js/homepage.js"></script>
+
+
 
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
@@ -32,25 +37,28 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/filtersPanel.js"></script>
   {% endcompress %}
   
-
-  <script type="text/javascript" defer="defer">
+  <script type="text/javascript">
     $(document).ready(function() {
 	$('ul#projects_rotator_minis').mosaic();
     });
   </script>
-
 
 {% endblock %}
 
 {% block nav %}<div style="height:37px;"></div>{% endblock %}
 
 {% block content %}	
-	
+
+
   <div class="container_18">
-    <div class="grid_18 alpha omega rotator">			
-      
+
+      <div id="preload">      	
+    <div class="grid_18 alpha omega rotator" style="display: none">			
+
+
       <h1 id="i4p_baseline">&#8220; {% trans "Detect, highlight and monetize <br/> social innovation that is truly disruptive" %} &#8221;</h1>
       
+
       <img id="for-picto" src="{{ STATIC_URL }}images/home/for-picto.png" />
       
       <ul id="projects_rotator_minis">
@@ -81,10 +89,18 @@
       </ul>
       
     </div>
+    </div>
     
     <div class="clear"></div>
     
   </div>		
+
+ <script type='text/javascript'>
+    QueryLoader.selectorPreload = "#preload";
+    QueryLoader.init({overlay: "#preload"});
+</script>
+
+
 {% endblock %}
 
-{% block footer %} {% include "bottom-panel.html" %} {% endblock %}
+{% block footer %} {% include "bottom-panel.html" %}{% endblock %}

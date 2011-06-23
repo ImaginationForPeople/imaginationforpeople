@@ -35,49 +35,52 @@ class Command(BaseCommand):
                 firstname, lastname = full_name[0].title(), " ".join(full_name[1:]).title()
                 username = "%s%s" % (firstname, lastname)
                 username = remove_accents(username.replace(" ", "").replace("-", ""))
-                print username, firstname, lastname
 
-                if User.objects.filter(username=username).count() == 0:
-                    user = UserenaSignup.objects.create_inactive_user(username, email, "changeme", send_email=False)
-                    userena = UserenaSignup.objects.get(user__username=username)
+                users = User.objects.filter(username__istartswith=username)
+                if users.count() > 0:
+                    username = "%s%s" % (username, users.count())
 
-                    assert user.id == userena.user.id
+                user = UserenaSignup.objects.create_inactive_user(username, email, "changeme", send_email=False)
+                userena = UserenaSignup.objects.get(user__username=username)
 
-                    userena.activation_key = userena_settings.USERENA_ACTIVATED
-                    user = userena.user
-                    user.is_active = True
-                    userena.save()
+                assert user.id == userena.user.id
 
-                    user.first_name = firstname
-                    user.last_name = lastname
-                    user.date_joined = datetime.strptime(date_joined, "%Y-%m-%d %H:%M:%S")
-                    user.email = email
-                    user.password = "md5$$%s" % pwd
-                    user.save()
+                userena.activation_key = userena_settings.USERENA_ACTIVATED
+                user = userena.user
+                user.is_active = True
+                userena.save()
 
-                    full_addr = []
-                    addr = addr.strip()
-                    if addr:
-                        full_addr.append(addr)
-                    if zipcode:
-                        full_addr.append(zipcode)
-                    if city:
-                        full_addr.append(city)
-                    if full_addr:
-                        addr = ",".join(full_addr)
+                user.first_name = firstname
+                user.last_name = lastname
+                user.date_joined = datetime.strptime(date_joined, "%Y-%m-%d %H:%M:%S")
+                user.email = email
+                user.password = "md5$$%s" % pwd
+                user.save()
 
-                    lon = lon.strip() or "0.0"
-                    lat = lat.strip() or "0.0"
+                full_addr = []
+                addr = addr.strip()
+                if addr:
+                    full_addr.append(addr)
+                if zipcode:
+                    full_addr.append(zipcode)
+                if city:
+                    full_addr.append(city)
+                if full_addr:
+                    addr = ",".join(full_addr)
 
-                    location = Location.objects.create(lon=float(lon),
-                                                       lat=float(lat),
-                                                       country=country.upper(),
-                                                       address=addr)
-                    profile = user.get_profile()
+                lon = lon.strip() or "0.0"
+                lat = lat.strip() or "0.0"
 
-                    profile.about = about_me
-                    profile.address = smart_unicode(addr)
-                    profile.country = country.upper()
-                    profile.location = location
-                    profile.save()
+                location = Location.objects.create(lon=float(lon),
+                                                   lat=float(lat),
+                                                   country=country.upper(),
+                                                   address=addr)
+                profile = user.get_profile()
+
+                profile.about = about_me
+                profile.address = smart_unicode(addr)
+                profile.country = country.upper()
+                profile.location = location
+                profile.save()
+                print profile, "[SAVED]"
 
