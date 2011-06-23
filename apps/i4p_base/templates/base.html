@@ -30,6 +30,7 @@
 
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
@@ -49,9 +50,24 @@
     </script>
     {% endif %}
 
-    <!-- Support panel -->
+
     <script type="text/javascript">
       $(document).ready(function(){
+          $.reject({reject: {msie5: true,
+			    msie6: true,
+			    msie7: true,
+			    },
+		   imagePath: '{{ STATIC_URL}}images/browsers/',
+		   header: '{% trans "Did you know that your Internet Browser is out of date?" %}',
+		   paragraph1: '{% trans "Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below." %}',
+		   paragraph2: '{% trans "Just click on the icons to get to the download page" %}',
+		   closeMessage: '{% trans "By closing this window you acknowledge that your experience on this website may be degraded" %}',
+		   closeLink: '{% trans "Close This Window" %}',
+	 });
+		    
+	 $('.tipsed').tipsy({delayIn: 300});
+
+         // Support panel
 	  $('#feedback').slidePanel({
 	      triggerName: '#feedback-trigger',
 	      position: 'fixed',
@@ -63,13 +79,7 @@
           more.hide();
           $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
       });
-    </script>
 
-
-    <script type="text/javascript">
-      $(document).ready(function() {
-	 $('.tipsed').tipsy({delayIn: 600});
-      });
     </script>
 
 

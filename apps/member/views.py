@@ -1,9 +1,13 @@
 from django.utils import translation
 from django.contrib.auth.models import User
+from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.shortcuts import get_object_or_404
+from django.test.client import Client
 
 from userena import views as userena_views
-
+from userena.decorators import secure_required
+from userena.forms import AuthenticationForm
+from userena.utils import signin_redirect
 
 from apps.project_sheet.utils import get_project_translations_from_parents
 from reversion.models import Version
@@ -30,3 +34,48 @@ def profile_detail(request, username):
                                         extra_context={'project_translation_list': project_translation_list,
                                                        'project_contrib_list' : project_contrib_list}
                                         )
+
+
+import urllib2
+import cookielib
+from httplib import HTTPConnection
+
+@secure_required
+def signin(request, 
+           auth_form=AuthenticationForm,
+           template_name='userena/signin_form.html',
+           redirect_field_name=REDIRECT_FIELD_NAME,
+           redirect_signin_function=signin_redirect, 
+           extra_context=None):
+
+    if request.method == 'POST':
+        form = auth_form(request.POST)
+        if form.is_valid():
+            user = form.cleaned_data['identification']
+            password = form.cleaned_data['password']
+
+            print user, password
+            # Temp fix to auth on Alpha
+            try:
+                conn = HTTPConnection('alpha.imaginationforpeople.org', timeout=5)
+                conn.request('GET', 'jrest/User/%s/%s' % (user, password))
+
+                res = conn.getresponse()
+                cookies = res.getheader("set-cookie")   
+                
+                if res.status:
+                    #print "cookies", cookies
+                    pass
+
+            except Exception, e:
+                pass
+    
+    return userena_views.signin(request,
+                                auth_form=auth_form,
+                                template_name=template_name,
+                                redirect_field_name=REDIRECT_FIELD_NAME,
+                                redirect_signin_function=signin_redirect,
+                                extra_context=extra_context)
+
+
+    
