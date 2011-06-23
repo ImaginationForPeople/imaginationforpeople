@@ -74,7 +74,7 @@ def signin(request,
                 
                 if res.status == 200:
                     name, value = cookies.split(";")[0].split("=")
-                    response.set_cookie(name, value=value, domain="alpha.imaginationforpeople.org")
+                    response.set_cookie(name, value=value, domain=".imaginationforpeople.org")
                     print "cookie set"
 
             except Exception, e:
