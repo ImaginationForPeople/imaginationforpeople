@@ -19,7 +19,8 @@
                 }
 
                 if ($(this).attr('title') || typeof($(this).attr('original-title')) != 'string') {
-                    $(this).attr('original-title', $(this).attr('title') || '').removeAttr('title');
+                    //$(this).attr('original-title', $(this).attr('title') || '').removeAttr('title');
+                    $(this).attr('original-title', $(this).attr('title') || '').removeAttr('title').attr("title", "");
                 }
 
                 var title;

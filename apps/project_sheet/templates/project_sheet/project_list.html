@@ -93,7 +93,8 @@
 	      {% include "project_sheet/project_id_card.html" %}			
 	      </div>
 	  -->
-	  
+	{% empty %}
+        {% trans 'Your request did not return any result.'%}
 	{% endfor %}
       </div>
       
