@@ -9,7 +9,7 @@
     <div class="project_infos_baseline" title="{{ project_translation.baseline}}">{{ project_translation.baseline|truncatewords:8 }}</div>
   {% endif %}		
   
-  <div class="project_infos_description" title=" {{ project_translation.about_section }}">
+  <div class="project_infos_description" title="{{ project_translation.about_section }}">
     {% if project_translation.about_section %}
       {{ project_translation.about_section|truncatewords:37 }}
     {% else %}

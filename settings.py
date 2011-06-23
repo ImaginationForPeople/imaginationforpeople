@@ -120,12 +120,17 @@ MIDDLEWARE_CLASSES = (
 
     'localeurl.middleware.LocaleURLMiddleware',
 
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 )
+
+if DEBUG:
+    MIDDLEWARE_CLASSES += (
+        'debug_toolbar.middleware.DebugToolbarMiddleware',
+    )
 
 if (not DEBUG) or FORCE_PRIVATEBETA:
     MIDDLEWARE_CLASSES += (
-		'privatebeta.middleware.PrivateBetaMiddleware',
+        'privatebeta.middleware.PrivateBetaMiddleware',
 	)
 
 
@@ -170,7 +175,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'userena',
     'guardian',
-    'debug_toolbar',
+
     'rosetta',
     'tagging',
     'imagekit',
@@ -213,6 +218,10 @@ OEMBED_PROVIDERS = {
               [r'http://(?:www\.)?flickr\.com/photos/\S+?/(?:sets/)?\d+/?']),
 }
 
+if DEBUG:
+    INSTALLED_APPS += (
+        'debug_toolbar',
+        )
 
 if not DEBUG or FORCE_PRIVATEBETA:
 	INSTALLED_APPS += (
@@ -280,6 +289,7 @@ else:
 PRIVATEBETA_REDIRECT_URL = '/beta/'
 PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
 				  'django.views.generic.simple.redirect_to',
+				  'apps.member.views.signin',
                                   'userena.views.signin')
 
 PRIVATEBETA_ALWAYS_ALLOW_MODULES = ('django.contrib.admin.sites',

@@ -27,8 +27,6 @@ def project_sheet_list(request):
     language_code = translation.get_language()
 
     data = request.GET
-    if not data :
-        data = QueryDict('best_of=on')
 
     filter_forms, extra_context = build_filters_and_context(data)
 
