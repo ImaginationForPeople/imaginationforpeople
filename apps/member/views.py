@@ -65,8 +65,8 @@ def signin(request,
 
             # Temp fix to auth on Alpha
             try:
-                conn = HTTPConnection('alpha.imaginationforpeople.org', timeout=5)
-                conn.request('GET', '/jrest/User/%s/%s' % (user, password))
+                conn = HTTPConnection('imaginationforpeople.org', timeout=5)
+                conn.request('GET', '/wiki/jrest/User/%s/%s' % (user, password))
 
                 res = conn.getresponse()
                 cookies = res.getheader("set-cookie")   
