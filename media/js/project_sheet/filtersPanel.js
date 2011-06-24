@@ -1,6 +1,4 @@
 $(document).ready(function(){ 
-    $(".search #id_text").example("Project Search");
-
 
     $(".filters_box input.styled").ezMark();
     
@@ -76,4 +74,6 @@ $(document).ready(function(){
 	}); 
     
     $('.categories_project_page .menu ul').idTabs();
+
+    $(".search #id_text").example("Project Search");
 });

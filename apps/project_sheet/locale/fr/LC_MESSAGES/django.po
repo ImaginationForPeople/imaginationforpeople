@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-23 19:24+0200\n"
+"POT-Creation-Date: 2011-06-24 18:13+0200\n"
 "PO-Revision-Date: 2011-06-17 18:59\n"
 "Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -370,17 +370,25 @@ msgstr "Source :"
 msgid "Licence :"
 msgstr "Licence :"
 
-#: templates/project_sheet/media_gallery.html:160
+#: templates/project_sheet/media_gallery.html:136
+msgid "Sorry, video are temporary disabled on Internet Explorer"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:168
 msgid "Yes"
 msgstr "Oui"
 
-#: templates/project_sheet/media_gallery.html:161
+#: templates/project_sheet/media_gallery.html:169
 msgid "No"
 msgstr "Non"
 
 #: templates/project_sheet/project_complete_card.html:16
 msgid "There is no description for this project"
 msgstr "Il n'y a pas de description pour ce projet"
+
+#: templates/project_sheet/project_complete_card.html:20
+msgid "More info"
+msgstr ""
 
 #: templates/project_sheet/project_edit_themes.html:9
 #, python-format
@@ -430,6 +438,10 @@ msgstr "Derniers projets"
 #: templates/project_sheet/project_list.html:56
 msgid "Last editions"
 msgstr "Dernières modifications"
+
+#: templates/project_sheet/project_list.html:97
+msgid "Your request did not return any result."
+msgstr ""
 
 #: templates/project_sheet/project_sheet.html:13
 msgid "start project"

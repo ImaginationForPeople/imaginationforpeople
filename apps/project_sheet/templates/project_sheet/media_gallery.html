@@ -113,12 +113,14 @@
                                 <img class="big-pic" src="{{pic.display.url}}" alt="">
                             </li>
 						{% endfor %}
+						<!--[if !IE]> -->
 						{% for vid in project_translation.project.videos.all %}
 							<li>
                                 <a class="hidden del_link" href="{% url project_sheet-instance-del-video project_translation.slug vid.id%}"></a>
                                 {% oembed 700x460 %}{{vid.video_url}}{% endoembed %}
                            </li>
 						{% endfor %}
+						<!-- <![endif]-->
 					</ul>
 				</div>	
                 <div id="thumbs_nav">
@@ -130,7 +132,13 @@
                             {% for vid in project_translation.project.videos.all %}
                                 <li>
                                     <a onclick="changeslider({{forloop.counter|add:project_translation.project.pictures.count}});" href="javascript:;">
+				      <!--[if IE]>
+				      <div class="tipsed" title="{% trans 'Sorry, video are temporary disabled on Internet Explorer' %}">
+					<![endif]-->
                                         <img src="{{ STATIC_URL }}images/play_video.png" alt="Play" height="48" width="48"/>
+				      <!--[if IE]>
+				      </div>
+				      <![endif]-->				      
                                     </a>
                                 </li>
     
