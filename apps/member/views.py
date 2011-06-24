@@ -63,7 +63,6 @@ def signin(request,
             user = form.cleaned_data['identification']
             password = form.cleaned_data['password']
 
-            print user, password
             # Temp fix to auth on Alpha
             try:
                 conn = HTTPConnection('alpha.imaginationforpeople.org', timeout=5)
@@ -74,8 +73,7 @@ def signin(request,
                 
                 if res.status == 200:
                     name, value = cookies.split(";")[0].split("=")
-                    response.set_cookie(name, value=value, domain=".alpha.imaginationforpeople.org")
-                    print "cookie set"
+                    response.set_cookie(name, value=value, domain=".imaginationforpeople.org")
 
             except Exception, e:
                 pass
