@@ -3,7 +3,7 @@
 {% if scalability_section_form %}
 	<!-- PARAGRAPH - edition mode -->
 	<div id="scalability_section" class="project_details_title_edit">
-		<h2>{% trans 'how scalable can the experience be'|capfirst %}?</h2>
+		<h2>{% trans 'what is the potential of this project to expand and develop'|capfirst %}?</h2>
 	</div>
 		{% if project_instance %}
 			<form class="project_details_body_edit" action="{% url project_sheet-instance-edit-field project_instance.slug 'scalability_section' %}" method="post">{% csrf_token %}
@@ -17,19 +17,19 @@
 {% else %}
 	{% if project_translation %}
 		<div id="scalability_section" class="project_details_title_edit">
-			<h2>{% trans 'how scalable can the experience be'|capfirst %}?</h2>
+			<h2>{% trans 'what is the potential of this project to expand and develop'|capfirst %}?</h2>
 			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'scalability_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 		</div>
 		{% if project_translation.scalability_section %}
 			<!-- PARAGRAPH - filled -->
 			<p id="project_scalability_txt" class="project_details_body">{{project_translation.scalability_section|linebreaksbr }}</p>
 		{% else %}
-			<p id="project_scalability_txt" class="project_details_body empty">{% trans "This bloc is empty : don’t forget to fill it ! A good project is a complete project !"|capfirst %}</p>
+			<p id="project_scalability_txt" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it! "|capfirst %}</p>
 		{% endif %}	
 	{% else %}
 		<!-- PARAGRAPH - empty -->
 		<div id="scalability_section" class="project_details_title_edit">
-			<h2>{% trans 'how scalable can the experience be'|capfirst %}?</h2>
+			<h2>{% trans 'what is the potential of this project to expand and develop'|capfirst %}?</h2>
 			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'scalability_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 		</div>
 		<p id="project_scalability_txt" class="project_details_body empty"></p>

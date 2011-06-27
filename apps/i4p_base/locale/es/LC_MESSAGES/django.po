@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-23 19:24+0200\n"
+"POT-Creation-Date: 2011-06-27 17:18+0200\n"
 "PO-Revision-Date: 2011-03-04 19:29\n"
 "Last-Translator: <kdd@kfr.fr>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1010,9 +1010,8 @@ msgstr ""
 "innovación social."
 
 #: templates/base.html:12
-#, fuzzy
-msgid "detect, highlight and monetize social innovation"
-msgstr " "
+msgid "identify and support imaginative social projects"
+msgstr ""
 
 #: templates/base.html:61
 msgid "Did you know that your Internet Browser is out of date?"
@@ -1085,8 +1084,9 @@ msgid "Location"
 msgstr ""
 
 #: templates/bottom-panel.html:74
-msgid "Sheet status"
-msgstr ""
+#, fuzzy
+msgid "Sheet Status"
+msgstr "Descripción del proyecto"
 
 #: templates/bottom-panel.html:78
 msgid "Best-of"
@@ -1097,7 +1097,7 @@ msgid "Popular project"
 msgstr ""
 
 #: templates/bottom-panel.html:82
-msgid "quality"
+msgid "best-of"
 msgstr ""
 
 #: templates/bottom-panel.html:89
@@ -1118,7 +1118,7 @@ msgstr ""
 
 #: templates/bottom-panel.html:110
 #, fuzzy
-msgid "Project status"
+msgid "Project Status"
 msgstr "Descripción del proyecto"
 
 #: templates/bottom-panel.html:133
@@ -1126,7 +1126,7 @@ msgid "projects"
 msgstr ""
 
 #: templates/bottom-panel.html:134
-msgid "Explore and contribute to the creative social projects."
+msgid "Explore and contribute to social projects around the world."
 msgstr ""
 
 #: templates/bottom-panel.html:135
@@ -1142,7 +1142,7 @@ msgid "community"
 msgstr ""
 
 #: templates/bottom-panel.html:141
-msgid "Connect with a community of creative citizens from many countries."
+msgid "Connect with a community of citizens from over 30 countries."
 msgstr ""
 
 #: templates/bottom-panel.html:142 templates/bottom-panel.html.py:150
@@ -1166,7 +1166,9 @@ msgid "resources"
 msgstr ""
 
 #: templates/bottom-panel.html:149
-msgid "Discover the latest tools, methods and debates on social innovation"
+msgid ""
+"Discover the latest tools, methods and debates in the world of social "
+"innovation"
 msgstr ""
 
 #: templates/bottom-panel.html:150
@@ -1179,8 +1181,8 @@ msgstr ""
 
 #: templates/bottom-panel.html:157
 msgid ""
-"A community of creative citizens collaborating to detect, share and help "
-"social innovative projects get off the ground."
+"A community of imaginative citizens collaborating to detect and develop "
+"socially innovative projects."
 msgstr ""
 
 #: templates/bottom-panel.html:160
@@ -1191,28 +1193,18 @@ msgstr ""
 msgid "About IP &gt;"
 msgstr ""
 
-#: templates/footer.html:16
-msgid "FAQ"
-msgstr ""
-
-#: templates/footer.html:17
-msgid "Guidelines"
-msgstr ""
-
-#: templates/footer.html:18 templates/privatebeta/base.html:63
-msgid "About imagination for people"
-msgstr "A propósito"
-
-#: templates/footer.html:19
-msgid "Termes of use"
-msgstr ""
-
-#: templates/footer.html:20
-msgid "Privacy policy"
-msgstr ""
-
-#: templates/footer.html:21
-msgid "Contact"
+#: templates/footer.html:14
+msgid ""
+"\n"
+"     <ul>\n"
+"        <li><a href=\"../wiki/FAQEn\">FAQ</a></li>\n"
+"\t<li><a href=\"../wiki/ProjectSheetHelpEn\">Project sheet guide</a></li>\n"
+"\t<li><a href=\"../wiki/LegalNoticeEn\">Legal Notice</a></li>\n"
+"\t<li><a href=\"../wiki/TermsOfUseEn\">Terms of use</a></li>\n"
+"        <li><a href=\"../wiki/AboutUsEn\">About Us</a></li>\n"
+"\t<li><a href=\"../wiki/ContactEn\">Contact</a></li>\n"
+"      </ul>\n"
+"      "
 msgstr ""
 
 #: templates/header.html:25
@@ -1244,14 +1236,12 @@ msgid "Projects"
 msgstr ""
 
 #: templates/header.html:39
-msgid "Start a project"
+msgid "Add a project"
 msgstr ""
 
 #: templates/homepage.html:59
 #, fuzzy
-msgid ""
-"Detect, highlight and monetize <br/> social innovation that is truly "
-"disruptive"
+msgid "Detect and support <br/> imaginative social projects"
 msgstr " "
 
 #: templates/homepage.html:68
@@ -1638,6 +1628,10 @@ msgstr ""
 msgid "Imagination for People"
 msgstr ""
 
+#: templates/privatebeta/base.html:63
+msgid "About imagination for people"
+msgstr "A propósito"
+
 #: templates/privatebeta/base.html:65
 msgid ""
 "\n"
@@ -1772,8 +1766,12 @@ msgstr "Escribe un comentario"
 msgid "Back"
 msgstr "Volver"
 
-#~ msgid ""
-#~ "Detect, highlight and monetize social innovation that is truly disruptive."
+#, fuzzy
+#~ msgid "detect and support social projects that are truly disruptive"
+#~ msgstr " "
+
+#, fuzzy
+#~ msgid "detect, highlight and monetize social innovation"
 #~ msgstr " "
 
 #, fuzzy
