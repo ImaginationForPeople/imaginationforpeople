@@ -2,20 +2,20 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-24 18:13+0200\n"
-"PO-Revision-Date: 2011-06-17 18:59\n"
-"Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
+"POT-Creation-Date: 2011-06-27 15:01+0200\n"
+"PO-Revision-Date: 2011-06-27 15:07\n"
+"Last-Translator: Simon Sarazin <simonsarazin@imaginationforpeople.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "X-Translated-Using: django-rosetta 0.5.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
@@ -139,9 +139,7 @@ msgstr "A propos du projet"
 msgid "what is make it creative and unique"
 msgstr "En quoi ce projet est-il singulier et créatif"
 
-#: models.py:132 templates/project_sheet/value_section.html:6
-#: templates/project_sheet/value_section.html:20
-#: templates/project_sheet/value_section.html:32
+#: models.py:132
 msgid "what is the experience social added value"
 msgstr "Quelle est la plus-value sociale du projet"
 
@@ -280,16 +278,14 @@ msgid "delete"
 msgstr "supprimer"
 
 #: templates/project_sheet/grey_column.html:122
-msgid "How to start your project sheet ?"
-msgstr "Comment démarrer une fiche projet?"
+msgid "Want to get started on your project sheet ?"
+msgstr "Comment démarrer une fiche projet ?"
 
 #: templates/project_sheet/grey_column.html:123
 msgid ""
-"Click on a field to edit it, then submit your changes. Your project will be "
-"created once a field is filled."
+"Click on the field you want to edit, edit it, and save the changes. Once "
+"you’ve modified a field, your project sheet will be created."
 msgstr ""
-"Cliquez sur un champ pour le modifier, puis soumettre vos modifications. "
-"Votre projet sera créé une fois un premier champ rempli."
 
 #: templates/project_sheet/history.html:19
 msgid "Made on"
@@ -452,14 +448,10 @@ msgid "This bloc is empty : don’t forget to fill it !"
 msgstr "Ce bloc est vide: n'oubliez pas de le remplir!"
 
 #: templates/project_sheet/project_sheet.html:263
-#: templates/project_sheet/scalability_section.html:27
+#: templates/project_sheet/uniqueness_section.html:26
 #: templates/project_sheet/value_section.html:27
-msgid ""
-"This bloc is empty : don’t forget to fill it ! A good project is a complete "
-"project !"
-msgstr ""
-"Ce bloc est vide: n'oubliez pas de le remplir! Un bon projet est un projet "
-"complet!"
+msgid "This field is blank. Don’t forget to complete it!"
+msgstr "Ce bloc est vide : n'oubliez pas de le remplir !"
 
 #: templates/project_sheet/project_sheet.html:383
 msgid "my project title"
@@ -517,8 +509,12 @@ msgstr "Enregistrer et fermer"
 #: templates/project_sheet/scalability_section.html:6
 #: templates/project_sheet/scalability_section.html:20
 #: templates/project_sheet/scalability_section.html:32
-msgid "how scalable can the experience be"
-msgstr "Quel est le potentiel de déploiement de cette initiative"
+msgid "what is the potential of this project to expand and develop"
+msgstr ""
+
+#: templates/project_sheet/scalability_section.html:27
+msgid "This field is blank. Don’t forget to complete it! "
+msgstr "Ce bloc est vide : n'oubliez pas de le remplir !"
 
 #: templates/project_sheet/sidebar_related.html:16
 msgid "Objective :"
@@ -547,16 +543,44 @@ msgstr "Fermer et annuler"
 #: templates/project_sheet/uniqueness_section.html:5
 #: templates/project_sheet/uniqueness_section.html:19
 #: templates/project_sheet/uniqueness_section.html:31
-msgid "how unique and creative is the experience"
-msgstr "En quoi ce projet est-il singulier et créatif"
-
-#: templates/project_sheet/uniqueness_section.html:26
-msgid ""
-"this bloc is empty : don’t forget to fill it ! A good project is a complete "
-"project !"
+msgid "in what ways is this project unique and creative"
 msgstr ""
-"Ce champ est vide, n'oubliez pas de le remplir ! Un bon projet est un projet "
-"complet !"
+
+#: templates/project_sheet/value_section.html:6
+#: templates/project_sheet/value_section.html:20
+#: templates/project_sheet/value_section.html:32
+msgid "What is the social value of this project"
+msgstr "Quelle est la plus-value sociale du projet"
+
+#~ msgid ""
+#~ "Click on a field to edit it, then submit your changes. Your project will "
+#~ "be created once a field is filled."
+#~ msgstr ""
+#~ "Cliquez sur un champ pour le modifier, puis soumettre vos modifications. "
+#~ "Votre projet sera créé une fois un premier champ rempli."
+
+#~ msgid ""
+#~ "This bloc is empty : don’t forget to fill it ! A good project is a "
+#~ "complete project !"
+#~ msgstr ""
+#~ "Ce bloc est vide: n'oubliez pas de le remplir! Un bon projet est un "
+#~ "projet complet!"
+
+#~ msgid "how scalable can the experience be"
+#~ msgstr "Quel est le potentiel de déploiement de cette initiative"
+
+#~ msgid "how unique and creative is the experience"
+#~ msgstr "En quoi ce projet est-il singulier et créatif"
+
+#~ msgid "this bloc is empty : don’t forget to fill it !"
+#~ msgstr "Ce bloc est vide: n'oubliez pas de le remplir!"
+
+#~ msgid ""
+#~ "this bloc is empty : don’t forget to fill it ! A good project is a "
+#~ "complete project !"
+#~ msgstr ""
+#~ "Ce champ est vide, n'oubliez pas de le remplir ! Un bon projet est un "
+#~ "projet complet !"
 
 #~ msgid "Done the"
 #~ msgstr "Fait le"
