@@ -25,7 +25,7 @@
             <div class="toolbox">
                 <div class="tools-title georgia">{% trans "Project view" %}</div>
                 <div class="tools">
-                    <a href="#"><img src="{{ STATIC_URL }}images/nav/tool1-selected.png" /></a>                   
+                    <a href="{% url project_sheet-list %}"><img src="{{ STATIC_URL }}images/nav/tool1-selected.png" /></a>                   
                     <!--
                     <a href="#"><img src="{{ STATIC_URL }}images/nav/tool2.png" /></a>                   
                     <a href="#"><img src="{{ STATIC_URL }}images/nav/tool3.png" /></a>
@@ -158,7 +158,7 @@
                     </h1>
                     <p></p>
                     <a href="{% url manifesto %}">{% trans 'Read the manifesto &gt;' %}</a> 		    
-                    <a href="/wiki/AboutUsFr">{% trans 'About IP &gt;' %}</a> 	                    
+                    <a href="/wiki/{% trans "AboutUsEn" %}">{% trans 'About IP &gt;' %}</a> 	                    
                 </div>	                    
                                     
             </div> 
