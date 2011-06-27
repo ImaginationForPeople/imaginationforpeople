@@ -281,6 +281,7 @@ DAJAXICE_DEBUG = DEBUG
 
 ## LOGGING
 LOGIN_REDIRECT_URL='/'
+USERENA_SIGNIN_REDIRECT_URL='/'
 
 ## Ignore dajax ice path
 import re
