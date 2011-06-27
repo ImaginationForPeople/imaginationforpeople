@@ -15,9 +15,6 @@ if socket.gethostname() == 'i4p-dev':
 else:
     DEBUG = True
 
-# if you need to debug privatebeta, use this
-FORCE_PRIVATEBETA = True
-
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -128,12 +125,6 @@ if DEBUG:
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
 
-if (not DEBUG) or FORCE_PRIVATEBETA:
-    MIDDLEWARE_CLASSES += (
-        'privatebeta.middleware.PrivateBetaMiddleware',
-	)
-
-
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
@@ -223,10 +214,6 @@ if DEBUG:
         'debug_toolbar',
         )
 
-if not DEBUG or FORCE_PRIVATEBETA:
-	INSTALLED_APPS += (
-		'privatebeta',
-		)
 
 ## Userena
 USERENA_WITHOUT_USERNAMES = True
@@ -285,16 +272,7 @@ else:
     EMAIL_PORT = 25
     EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople]'
 
-### Private Beta
-PRIVATEBETA_REDIRECT_URL = '/beta/'
-PRIVATEBETA_ALWAYS_ALLOW_VIEWS = ('django.views.generic.simple.direct_to_template',
-				  'django.views.generic.simple.redirect_to',
-				  'apps.member.views.signin',
-                                  'userena.views.signin')
 
-PRIVATEBETA_ALWAYS_ALLOW_MODULES = ('django.contrib.admin.sites',
-				    'contact_form.views',
-                    'userena.views')
 ### Dajax Ice
 DAJAXICE_MEDIA_PREFIX = "js/dajax"
 DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
