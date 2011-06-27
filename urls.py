@@ -22,6 +22,13 @@ urlpatterns = patterns('',
     url(r'^project/', include('apps.project_sheet.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
+
+    # Static pages
+    url(r'^pages/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
+    url(r'^pages/project-description/$', direct_to_template, {'template': 'project-description.html'}, name='project-description'),
+    url(r'^pages/contact/$', contact_form_views.contact_form, name='contact_form'),
+    url(r'^pages/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
+
     (r'^admin/', include(admin.site.urls)),
 )
 
@@ -46,17 +53,4 @@ if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         url(r'^rosetta/', include('rosetta.urls')),
     )
-
-## Privatebeta
-if "privatebeta" in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
-        url(r'^$', redirect_to, {'url':'/beta/'}),
-        url(r'^beta/$', 'privatebeta.views.invite', name='privatebeta_invite'),
-        url(r'^beta/sent/$', 'privatebeta.views.sent', name='privatebeta_sent'),
-        url(r'^beta/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
-        url(r'^beta/project-description/$', direct_to_template, {'template': 'project-description.html'}, name='project-description'),
-        url(r'^beta/contact/$', contact_form_views.contact_form, name='contact_form'),
-        url(r'^beta/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
-    )
-
 
