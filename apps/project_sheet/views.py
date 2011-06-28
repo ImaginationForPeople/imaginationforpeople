@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.forms.models import modelform_factory
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, HttpResponseNotFound, QueryDict
+from django.http import HttpResponseRedirect, HttpResponseNotFound, QueryDict, Http404
 from django.utils import translation
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
@@ -356,8 +356,11 @@ def project_sheet_member_delete(request, project_slug, username):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        return Http404
 
     parent_project = project_translation.project
 
