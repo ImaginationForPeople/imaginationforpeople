@@ -3,6 +3,7 @@ from userena.forms import SignupForm
 from apps.i4p_base.utils import remove_accents
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+import re
 
 class I4PSignupForm(SignupForm):
     first_name = forms.CharField(_(u'first name'))
@@ -21,11 +22,18 @@ class I4PSignupForm(SignupForm):
     def save(self):
         firstname = self.cleaned_data['first_name'].title()
         lastname = self.cleaned_data['last_name'].title()
-        username = remove_accents("%s%s".replace(" ", "").replace("-", "") % (firstname, lastname))
+        fullname = "%s%s" % (firstname, lastname)
+        username = re.sub("[^a-zA-Z]", "", remove_accents(fullname))
+
         users = User.objects.filter(username__istartswith=username)
         if users.count() > 0:
             username = "%s%s" % (username, users.count())
 
         self.cleaned_data['username'] = username
 
-        return super(I4PSignupForm, self).save()
+        new_user = super(I4PSignupForm, self).save()
+        new_user.first_name = firstname
+        new_user.last_name = lastname
+
+        new_user.save()
+        return new_user
