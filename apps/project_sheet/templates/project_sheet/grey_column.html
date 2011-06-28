@@ -72,7 +72,7 @@
                     <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
                       <div class="grey_column_team_buttons">
                         <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
-                        <a title="{% trans 'Delete'|capfirst %}" href="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin"><img src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /></a> 
+                        <a rel="nofollow" title="{% trans 'Delete'|capfirst %}" href="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin"><img src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /></a> 
                       </div>
                   </a>  
                   {% if member.user.get_profile.country %}
