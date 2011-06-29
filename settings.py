@@ -182,6 +182,7 @@ INSTALLED_APPS = (
     'notification',
     'backcap',
     'compressor',
+    'robots',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -288,6 +289,7 @@ import re
 LOCALE_INDEPENDENT_PATHS = (
 	re.compile('^/js/dajax/.*$'),
     re.compile('^/static/.*$'),
+        re.compile('^/robots.txt$'),
 	)
 
 ## Flags
