@@ -19,6 +19,7 @@ from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, Project
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug, get_project_translation_from_parent
 from .filters import FilterSet
 from apps.project_sheet.utils import build_filters_and_context
+from django.contrib.auth.decorators import login_required
 
 def project_sheet_list(request):
     """
@@ -137,6 +138,7 @@ def project_sheet_show(request, slug):
                               context_instance=RequestContext(request)
                               )
 
+@login_required
 def project_sheet_create_translation(request, project_slug, requested_language_code):
     """
     Given a language and a slug, create a translation for a new language
