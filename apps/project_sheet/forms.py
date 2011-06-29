@@ -74,6 +74,6 @@ class ProjectMemberForm(forms.ModelForm):
         model = ProjectMember
         fields = ('user', 'role', 'comment')
 
-    user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt=0))
+    user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt=-1).order_by('username'))
 
 ProjectMemberFormSet = modelformset_factory(ProjectMember, extra=0, can_delete=True, fields=('role', 'comment'))

@@ -374,7 +374,7 @@ def project_sheet_member_delete(request, project_slug, username):
         project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
                                                               language_code=language_code)
     except I4pProjectTranslation.DoesNotExist:
-        return Http404
+        raise Http404
 
     parent_project = project_translation.project
 
