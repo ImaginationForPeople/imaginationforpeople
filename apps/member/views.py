@@ -1,17 +1,19 @@
+from httplib import HTTPConnection
+
 from django.utils import translation
 from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.contenttypes.models import ContentType
 from django.shortcuts import get_object_or_404
-from django.test.client import Client
 
 from userena import views as userena_views
 from userena.decorators import secure_required
 from userena.forms import AuthenticationForm
 from userena.utils import signin_redirect
 
-from apps.project_sheet.utils import get_project_translations_from_parents
 from reversion.models import Version
-from django.contrib.contenttypes.models import ContentType
+
+from apps.project_sheet.utils import get_project_translations_from_parents
 from apps.project_sheet.models import I4pProjectTranslation
 
 def profile_detail(request, username):
@@ -26,7 +28,7 @@ def profile_detail(request, username):
                                                                      )
 
     project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
-    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=Version.objects.filter(content_type=project_translation_ct, revision__user=user).values_list('object_id', flat=True))
+    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=Version.objects.filter(content_type=project_translation_ct, revision__user=user).reverse().values_list('object_id', flat=True))
 
     return userena_views.profile_detail(request,
                                         username,
@@ -35,10 +37,6 @@ def profile_detail(request, username):
                                                        'project_contrib_list' : project_contrib_list}
                                         )
 
-
-import urllib2
-import cookielib
-from httplib import HTTPConnection
 
 @secure_required
 def signin(request, 
