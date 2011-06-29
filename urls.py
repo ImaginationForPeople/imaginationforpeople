@@ -30,6 +30,8 @@ urlpatterns = patterns('',
     url(r'^pages/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
     url(r'^beta/', redirect_to, {'url': '/', 'permanent': True}),
 
+    url('^robots.txt$', include('robots.urls')),
+
     (r'^admin/', include(admin.site.urls)),
 )
 
