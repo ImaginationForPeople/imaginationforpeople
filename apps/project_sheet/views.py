@@ -195,8 +195,11 @@ def project_sheet_edit_related(request, project_slug):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     parent_project = project_translation.project
 
@@ -280,8 +283,11 @@ def project_sheet_del_picture(request, slug, pic_id):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     picture = ProjectPicture.objects.filter(project=project_translation.project, id=pic_id)
     picture.delete()
@@ -313,8 +319,11 @@ def project_sheet_del_video(request, slug, vid_id):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     video = ProjectVideo.objects.filter(project=project_translation.project, id=vid_id)
     video.delete()
@@ -330,8 +339,11 @@ def project_sheet_edit_references(request, project_slug):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     parent_project = project_translation.project
 
@@ -379,9 +391,12 @@ def project_sheet_history(request, project_slug):
     """
     language_code = translation.get_language()
 
-        # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     parent_project = project_translation.project
 
