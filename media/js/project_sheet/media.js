@@ -91,7 +91,7 @@ $(document).ready(function () {
     $('#del_media').click(function (e) {
 		e.preventDefault();
 		confirm("Are you sure to want to delete this media ? ", function () {
-			window.location.href = anyslider.$currentPage.find('a.del_link').attr("href");
+			window.location.href = anyslider.$currentPage.find('input.del_media_link').val();
 		});
 	});
     
