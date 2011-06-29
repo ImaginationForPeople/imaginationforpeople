@@ -2,7 +2,7 @@ import urllib
 
 from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404
-from django.http import QueryDict, HttpResponse, HttpResponseNotFound
+from django.http import QueryDict, HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
@@ -34,8 +34,11 @@ def project_textfield_load(request, project_slug=None):
     if not project_slug:
         return HttpResponse('')
 
-    language_code = request.GET['language_code']
-    section = request.GET['id']
+    try:
+        language_code = request.GET['language_code']
+        section = request.GET['id']
+    except KeyError:
+        raise HttpResponseBadRequest()
 
     # Check if we allow this field
     if not section in TEXTFIELD_MAPPINGS:
