@@ -38,7 +38,7 @@ def project_textfield_load(request, project_slug=None):
         language_code = request.GET['language_code']
         section = request.GET['id']
     except KeyError:
-        raise HttpResponseBadRequest()
+        return HttpResponseBadRequest()
 
     # Check if we allow this field
     if not section in TEXTFIELD_MAPPINGS:
