@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^pages/contact/$', contact_form_views.contact_form, name='contact_form'),
     url(r'^pages/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
     url(r'^beta/', redirect_to, {'url': '/', 'permanent': True}),
+    url(r'^normal_index$', redirect_to, {'url': '/', 'permanent': True}),
 
     url('^robots.txt$', include('robots.urls')),
 
