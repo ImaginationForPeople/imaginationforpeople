@@ -2,7 +2,11 @@ import urllib
 
 from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404
+from django.http import QueryDict, HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
+from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 from dajax.core import Dajax
 from dajaxice.core import dajaxice_functions
@@ -13,12 +17,6 @@ from tagging.utils import get_tag_list, parse_tag_input
 from .models import I4pProject, I4pProjectTranslation
 from .forms import I4pProjectObjectiveForm, I4pProjectThemesForm
 from .utils import get_or_create_project, get_or_create_project_translation_by_slug, get_project_translation_by_slug
-
-from django.http import QueryDict, HttpResponse, HttpResponseNotFound
-from django.utils import simplejson
-
-from django.views.decorators.csrf import csrf_exempt
-from django.template.defaultfilters import linebreaksbr
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -36,8 +34,11 @@ def project_textfield_load(request, project_slug=None):
     if not project_slug:
         return HttpResponse('')
 
-    language_code = request.GET['language_code']
-    section = request.GET['id']
+    try:
+        language_code = request.GET['language_code']
+        section = request.GET['id']
+    except KeyError:
+        return HttpResponseBadRequest()
 
     # Check if we allow this field
     if not section in TEXTFIELD_MAPPINGS:
@@ -55,6 +56,7 @@ def project_textfield_load(request, project_slug=None):
 
     return HttpResponse(text or '')
 
+@require_POST
 @csrf_exempt
 def project_textfield_save(request, project_slug=None):
     """

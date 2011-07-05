@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-# import stuff we need from django
 import uuid
 import os
 
+from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models.signals import post_save
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -13,18 +14,15 @@ from autoslug.fields import AutoSlugField
 from imagekit.models import ImageModel
 from tagging.fields import TagField
 from licenses.fields import LicenseField
+from localeurl.models import reverse
 import reversion
+from reversion.models import Version
 
 from apps.member.models import I4pProfile
-
 from apps.i4p_base.models import Location
-from reversion.models import Version
-from django.db.models import Q
 
 # Add Introspector for south: django-licenses field
 from south.modelsinspector import add_introspection_rules
-from django.contrib.contenttypes.models import ContentType
-from django.db.models.signals import post_save
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
 
 class ProjectReference(models.Model):
@@ -84,10 +82,6 @@ class I4pProject(models.Model):
 
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
 
-    @models.permalink
-    def get_absolute_url(self):
-        return ('project_sheet-show', (self.slug,))
-
     def __unicode__(self):
         res = u"Parent project %d" % self.id
         if self.translations.all().count():
@@ -134,9 +128,10 @@ class I4pProjectTranslation(models.Model):
 
     themes = TagField(_("Themes of the project"), null=True, blank=True)
 
-    @models.permalink
+    # @models.permalink
     def get_absolute_url(self):
-        return ('project_sheet-show', (self.slug,))
+        return reverse('project_sheet-show', kwargs={'slug': self.slug, 'locale':self.language_code})
+
 
     def __unicode__(self):
         return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)

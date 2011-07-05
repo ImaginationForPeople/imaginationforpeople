@@ -5,7 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.forms.models import modelform_factory
 from django.template.context import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, HttpResponseNotFound, QueryDict
+from django.http import HttpResponseRedirect, HttpResponseNotFound, QueryDict, Http404
 from django.utils import translation
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
@@ -19,6 +19,7 @@ from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, Project
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug, get_project_translation_from_parent
 from .filters import FilterSet
 from apps.project_sheet.utils import build_filters_and_context
+from django.contrib.auth.decorators import login_required
 
 def project_sheet_list(request):
     """
@@ -137,6 +138,7 @@ def project_sheet_show(request, slug):
                               context_instance=RequestContext(request)
                               )
 
+@login_required
 def project_sheet_create_translation(request, project_slug, requested_language_code):
     """
     Given a language and a slug, create a translation for a new language
@@ -195,8 +197,11 @@ def project_sheet_edit_related(request, project_slug):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     parent_project = project_translation.project
 
@@ -280,8 +285,11 @@ def project_sheet_del_picture(request, slug, pic_id):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     picture = ProjectPicture.objects.filter(project=project_translation.project, id=pic_id)
     picture.delete()
@@ -313,8 +321,11 @@ def project_sheet_del_video(request, slug, vid_id):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     video = ProjectVideo.objects.filter(project=project_translation.project, id=vid_id)
     video.delete()
@@ -330,8 +341,11 @@ def project_sheet_edit_references(request, project_slug):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     parent_project = project_translation.project
 
@@ -356,8 +370,11 @@ def project_sheet_member_delete(request, project_slug, username):
     language_code = translation.get_language()
 
     # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     parent_project = project_translation.project
 
@@ -376,9 +393,12 @@ def project_sheet_history(request, project_slug):
     """
     language_code = translation.get_language()
 
-        # get the project translation and its base
-    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                          language_code=language_code)
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
 
     parent_project = project_translation.project
 
