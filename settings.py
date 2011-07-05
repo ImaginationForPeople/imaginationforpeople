@@ -170,7 +170,6 @@ INSTALLED_APPS = (
     'rosetta',
     'tagging',
     'imagekit',
-    'contact_form',
     'request',
     'oembed_works',
     'reversion',
@@ -320,3 +319,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 COMPRESS = not DEBUG
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
+
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'scss {infile} {outfile}'),
+)
