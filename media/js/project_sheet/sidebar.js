@@ -1,3 +1,30 @@
+/*FIXME DUPLICATED CODE IN media.js */
+
+function confirm(message, callback) {
+	$('#confirm').modal({
+		position: ["30%",],
+		overlayId: 'confirm-overlay',
+		containerId: 'confirm-container', 
+		onShow: function (dialog) {
+			var modal = this;
+
+			$('.message', dialog.data[0]).append(message);
+            
+			$('.yes', dialog.data[0]).click(function () {
+				if ($.isFunction(callback)) {
+					callback.apply();
+				}
+				modal.close();
+			});
+			$('.no').click(function () {
+				modal.close();
+				return false;
+			});
+		}
+	});
+}
+
+
 function showSidebar(aSidebar){
     /*$.blockUI({ message: null,
     	    	overlayCSS:  { 
@@ -59,4 +86,14 @@ $(document).ready(function() {
     	hideSideBar(sidebar);
         return false;
     });
+    
+    
+    $('#del_member_link').click(function (e) {
+		e.preventDefault();
+		var link = $(this).val();
+		confirm("Are you sure to want to delete this member ? ", function () {
+			console.log(link);
+			window.location.href = link;
+		});
+	});
 });

@@ -181,6 +181,7 @@ INSTALLED_APPS = (
     'notification',
     'backcap',
     'compressor',
+    'robots',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -279,14 +280,16 @@ DAJAXICE_JSON2_JS_IMPORT = True
 DAJAXICE_DEBUG = DEBUG
 
 ## LOGGING
-LOGIN_REDIRECT_URL='/'
-USERENA_SIGNIN_REDIRECT_URL='/'
+LOGIN_REDIRECT_URL = '/'
+USERENA_SIGNIN_REDIRECT_URL = '/'
+LOGIN_URL = "/member/signin/"
 
 ## Ignore dajax ice path
 import re
 LOCALE_INDEPENDENT_PATHS = (
 	re.compile('^/js/dajax/.*$'),
     re.compile('^/static/.*$'),
+        re.compile('^/robots.txt$'),
 	)
 
 ## Flags
