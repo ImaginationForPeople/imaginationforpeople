@@ -30,7 +30,7 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
 
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.cookie.js"></script>
-  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
@@ -39,7 +39,8 @@
   
   <script type="text/javascript">
     $(document).ready(function() {
-	$('ul#projects_rotator_minis').mosaic();
+    	$.cookie('i4p_bottom_panel', null, { expires: -1, path: '/' } );
+        $('ul#projects_rotator_minis').mosaic();
     });
   </script>
 
