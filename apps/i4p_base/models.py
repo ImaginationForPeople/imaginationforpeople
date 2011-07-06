@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from django_countries import CountryField
@@ -275,9 +274,9 @@ class Location(models.Model):
 
     def __unicode__(self):
         return u"%s %s (%s, %s)" % (self.address,
-                                     self.get_country_display(),
-                                     self.lon,
-                                     self.lat)
+                                    self.get_country_display(),
+                                    self.lon,
+                                    self.lat)
 
 
 
