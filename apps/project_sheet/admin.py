@@ -1,11 +1,10 @@
 from django.contrib import admin
-from django.conf import settings
+
+from oembed_works.models import StoredOEmbedResponse
+from reversion.admin import VersionAdmin
 
 from .models import I4pProject, I4pProjectTranslation
 from .models import ProjectVideo, ProjectPicture, ProjectMember
-
-from reversion.admin import VersionAdmin
-from oembed_works.models import StoredOEmbedResponse
 
 admin.site.register(I4pProject, VersionAdmin)
 admin.site.register(I4pProjectTranslation, VersionAdmin)

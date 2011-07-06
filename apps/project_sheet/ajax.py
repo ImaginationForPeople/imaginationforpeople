@@ -1,25 +1,18 @@
 """
 Ajax views for handling project sheet creation and edition.
 """
-import urllib
-
 from django.forms.models import modelform_factory
-from django.shortcuts import get_object_or_404
-from django.http import QueryDict, HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.template.defaultfilters import linebreaksbr
-from django.utils import simplejson
+from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
-from dajax.core import Dajax
 from dajaxice.core import dajaxice_functions
 
-from tagging.models import Tag
-from tagging.utils import get_tag_list, parse_tag_input
-
-from .models import I4pProject, I4pProjectTranslation
+from .models import I4pProjectTranslation
 from .forms import I4pProjectObjectiveForm, I4pProjectThemesForm
-from .utils import get_or_create_project, get_or_create_project_translation_by_slug, get_project_translation_by_slug
+from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -123,7 +116,6 @@ def project_update_related(request, language_code, related_form, project_slug):
     if project_themes_form.is_valid() and project_objective_form.is_valid():
         # Use Tag otherwise it doesn't work because of the proxy model
         project_themes_form.save()
-        #Tag.objects.update_tags(project_sheet.get_translation(), related_form['themes'])
 
         # Save objective
         project_objective_form.save()
