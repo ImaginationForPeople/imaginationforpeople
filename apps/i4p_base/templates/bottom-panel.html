@@ -42,8 +42,8 @@
         <!-- Filters -->
         <div id="filters" class="categ-panel"> 
         
-          <form id="filter_form" action="{% url project_sheet-list %}?{{getparams_submit}}" method="get">
-                 
+          <form id="filter_form" action="{% url project_sheet-list %}" method="get">
+                    <input type="hidden" name="order" value="{{order}}" />
                     <div class="grid_6 alpha">
                         <div class="filtersbox_content">
                             <h4>{% trans "Themes" %}</h4>

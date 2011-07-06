@@ -63,8 +63,8 @@
         <!-- Projects sorting -->
         <div id="projectlist_sort" >
             <ul id="projectlist_sort_buttons">
-                <li class="ui-corner-all {% if last_created %}filter-on{% endif %}"><a class="button" href="{% url project_sheet-list %}?{{getparams_last_created}}">{% trans "Last projects" %}</a></li>
-                <li class="ui-corner-all {% if last_modif %}filter-on{% endif %}"><a class="button" href="{% url project_sheet-list %}?{{getparams_last_modif}}">{% trans "Last editions" %}</a></li>
+                <li class="ui-corner-all {% ifequal order 'creation' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?order=creation&{{orderparams}}">{% trans "Last projects" %}</a></li>
+                <li class="ui-corner-all {% ifequal order 'modification' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?order=modification&{{orderparams}}">{% trans "Last editions" %}</a></li>
             </ul>            
            <!--   
            <div id="langage-tool">				
