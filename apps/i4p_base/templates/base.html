@@ -35,6 +35,10 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
     {% endcompress %}
+
+    <!-- for i18n -->
+    <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
+
     
     {% if not debug %}
     <script type="text/javascript">
