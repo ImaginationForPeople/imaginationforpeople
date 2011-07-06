@@ -20,6 +20,7 @@
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     {% endcompress %}
 
     {% block style %}
@@ -34,6 +35,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>
     {% endcompress %}
     
     {% if not debug %}
@@ -98,6 +100,8 @@
     
     <div class="global">   
     
+      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}			  
+      
       {% block header %} {% include "header.html" %} {% endblock %}			
       <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->
       {% block nav %} {% include "nav.html" %} {% endblock %}

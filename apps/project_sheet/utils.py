@@ -147,16 +147,12 @@ def build_filters_and_context(request_data):
         'project_sheet_search_form' : NameBaselineFilter(request_data),
     }
 
-    extra_context = {
-        "getparams_last_created" : "last_created=1",
-        "getparams_last_modif" : "last_modif=1",
-        "getparams_submit" : "",
-    }
-
     project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
     project_sheet_tags.sort(key=lambda tag:-tag.count)
 
-    extra_context["project_sheet_tags"] = project_sheet_tags
+    extra_context = {
+         "project_sheet_tags" : project_sheet_tags
+    }
 
     return (filter_forms, extra_context)
 
