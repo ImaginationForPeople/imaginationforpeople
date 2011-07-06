@@ -1,10 +1,13 @@
+"""
+Ajax views for handling project sheet creation and edition.
+"""
 import urllib
 
 from django.forms.models import modelform_factory
 from django.shortcuts import get_object_or_404
 from django.http import QueryDict, HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
 from django.template.defaultfilters import linebreaksbr
-from django.utils import simplejson, translation
+from django.utils import simplejson
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
