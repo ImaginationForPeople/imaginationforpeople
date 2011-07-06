@@ -7,8 +7,8 @@ def member_forms(request):
     Signin and signup forms (for the upper panel)
     """
     additions = {
-        'signin_form': I4PSignupForm(),
-        'signup_form': AuthenticationForm(),
+        'signup_form': I4PSignupForm(),
+        'signin_form': AuthenticationForm(),
     }
     return additions
 
