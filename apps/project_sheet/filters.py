@@ -28,14 +28,14 @@ class FilterSet(object):
 
     def is_valid(self):
         res = True
-        for f in self:
-            res &= f.is_valid()
+        for filt in self:
+            res &= filt.is_valid()
         return res
 
-    def apply_to(self, queryset, model_class):
-        qs = queryset
-        for f in self.forms:
-            qs = f.apply_to(qs, model_class)
+    def apply_to(self, aQuerySet, aModelClass):
+        qs = aQuerySet
+        for filt in self.forms:
+            qs = filt.apply_to(qs, aModelClass)
         return qs
 
     def __iter__(self):

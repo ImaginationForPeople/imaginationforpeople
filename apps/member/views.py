@@ -1,3 +1,6 @@
+"""
+Views for handling members
+"""
 from httplib import HTTPConnection
 
 from django.utils import translation
@@ -28,7 +31,9 @@ def profile_detail(request, username):
                                                                      )
 
     project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
-    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=Version.objects.filter(content_type=project_translation_ct, revision__user=user).reverse().values_list('object_id', flat=True))
+    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=Version.objects.filter(content_type=project_translation_ct, 
+                                                                                              revision__user=user).reverse().values_list('object_id', flat=True)
+                                                                )
 
     return userena_views.profile_detail(request,
                                         username,
@@ -45,7 +50,11 @@ def signin(request,
            redirect_field_name=REDIRECT_FIELD_NAME,
            redirect_signin_function=signin_redirect, 
            extra_context=None):
-
+    """
+    Userena wrapper to signin a member. Also login the user on the
+    wiki (alpha.) by calling a remote view and grabbing the PHPSESSID
+    cookie.
+    """
     
     response = userena_views.signin(request,
                                     auth_form=auth_form,
@@ -74,6 +83,7 @@ def signin(request,
                     response.set_cookie(name, value=value, domain=".imaginationforpeople.org")
 
             except Exception, e:
+                # We don't care if it was not possible to login the user on the wiki
                 pass
 
 

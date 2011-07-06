@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-
+"""
+Models for Project Sheet
+"""
 import uuid
 import os
 
@@ -17,15 +19,18 @@ from licenses.fields import LicenseField
 from localeurl.models import reverse
 import reversion
 from reversion.models import Version
+from south.modelsinspector import add_introspection_rules
 
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
 
 # Add Introspector for south: django-licenses field
-from south.modelsinspector import add_introspection_rules
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
 
 class ProjectReference(models.Model):
+    """
+    A reference, such as a book or URL, for a Project Sheet
+    """
     desc = models.CharField(_("description"), max_length=300, help_text=_("Insert your reference here (URL, books, etc)"))
 
 class I4pProject(models.Model):
@@ -56,7 +61,8 @@ class I4pProject(models.Model):
 
     best_of = models.BooleanField(verbose_name=_('best of'), default=False)
 
-    created = models.DateField(_("creation date"), auto_now_add=True)
+    created = models.DateField(verbose_name=_("creation date"), 
+                               auto_now_add=True)
 
     objective = models.CharField(verbose_name=_('objective'),
                                  max_length=4, choices=OBJECTIVE_CHOICES,
@@ -120,7 +126,13 @@ class I4pProjectTranslation(models.Model):
 
     modified = models.DateField(null=True, blank=True)
 
-    baseline = models.CharField(_("one line description"), max_length=180, null=True, blank=True, default=_("One line description"))
+    baseline = models.CharField(verbose_name=_("one line description"), 
+                                max_length=180, 
+                                null=True, 
+                                blank=True, 
+                                default=_("One line description")
+                                )
+
     about_section = models.TextField(_("about the project"), null=True, blank=True)
     uniqueness_section = models.TextField(_("what is make it creative and unique"), null=True, blank=True)
     value_section = models.TextField(_("what is the experience social added value"), null=True, blank=True)
@@ -143,14 +155,14 @@ def last_modification_date(sender, instance, **kwargs):
         ct_project = ContentType.objects.get_for_model(I4pProject)
         ct_sheet = ContentType.objects.get_for_model(I4pProjectTranslation)
 
-        if version.content_type == ct_sheet :
+        if version.content_type == ct_sheet:
             try:
                 project_sheet = ct_sheet.model_class().objects.get(id=version.object_id)
                 project_sheet.modified = version.revision.date_created
                 project_sheet.save()
             except:
                 pass
-        elif version.content_type == ct_project :
+        elif version.content_type == ct_project:
             try:
                 project = ct_project.model_class().objects.get(id=version.object_id)
                 for project_sheet in project.translations.all():
@@ -177,6 +189,9 @@ def get_projectpicture_path(aProjectPicture, filename):
     return dst
 
 class ProjectPicture(ImageModel):
+    """
+    A picture illustrating a project (jpg, png accepted)
+    """
     name = models.CharField(max_length=100)
     original_image = models.ImageField(upload_to=get_projectpicture_path)
     project = models.ForeignKey(I4pProject, related_name="pictures")
@@ -193,6 +208,9 @@ class ProjectPicture(ImageModel):
 
 
 class ProjectVideo(models.Model):
+    """
+    An embeddable Video for a project
+    """
     video_url = models.URLField()
     project = models.ForeignKey(I4pProject, related_name="videos")
 
@@ -200,6 +218,9 @@ class ProjectVideo(models.Model):
         return u"Video for '%s'" % self.project
 
 class ProjectMember(models.Model):
+    """
+    A team member of a project
+    """
     class Meta:
         unique_together = ('project', 'user')
 
@@ -216,7 +237,7 @@ class ProjectMember(models.Model):
                                null=True)
 
     def __unicode__(self):
-        return "%s - %s" % (self.project, self.user)
+        return u"%s - %s" % (self.project, self.user)
 
 
 # Reversions

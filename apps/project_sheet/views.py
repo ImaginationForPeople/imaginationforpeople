@@ -1,25 +1,30 @@
-
-from django.conf import settings
+"""
+Django Views for a Project Sheet
+"""
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
+from django.db.models import Q
 from django.forms.models import modelform_factory
-from django.template.context import RequestContext
+from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
-from django.http import HttpResponseRedirect, HttpResponseNotFound, QueryDict, Http404
+from django.template.context import RequestContext
 from django.utils import translation
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
-from django.db.models import Q
 
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm, ProjectReferenceFormSet, I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember, I4pProject, VERSIONNED_FIELDS
-from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, get_project_translation_by_slug, get_project_translation_from_parent
-from .filters import FilterSet
 from apps.project_sheet.utils import build_filters_and_context
-from django.contrib.auth.decorators import login_required
+
+from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember, I4pProject, VERSIONNED_FIELDS
+from .filters import FilterSet
+from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm, ProjectReferenceFormSet
+from .forms import I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
+from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug
+from .utils import get_project_translation_by_slug, get_project_translation_from_parent
+
 
 def project_sheet_list(request):
     """
@@ -281,7 +286,9 @@ def project_sheet_add_picture(request, slug=None):
     return redirect(project_translation)
 
 def project_sheet_del_picture(request, slug, pic_id):
-
+    """
+    Delete a picture from a project sheet
+    """
     language_code = translation.get_language()
 
     # get the project translation and its base
@@ -317,7 +324,9 @@ def project_sheet_add_video(request, slug=None):
     return redirect(project_translation)
 
 def project_sheet_del_video(request, slug, vid_id):
-
+    """
+    Delete a video from a project sheet
+    """
     language_code = translation.get_language()
 
     # get the project translation and its base
@@ -356,9 +365,9 @@ def project_sheet_edit_references(request, project_slug):
         for ref in refs:
             parent_project.references.add(ref)
 
-    next = request.POST.get("next", None)
-    if next:
-        return HttpResponseRedirect(next)
+    next_url = request.POST.get("next", None)
+    if next_url:
+        return HttpResponseRedirect(next_url)
 
     return redirect(project_translation)
 
@@ -417,6 +426,9 @@ def project_sheet_history(request, project_slug):
     parent_project_previous_version = None
 
     def fields_diff(previous_version, current_version, versionned_fields):
+        """
+        Diff between two model fields
+        """
         fields = []
         previous_field_dict = previous_version.get_field_dict()
         current_field_dict = current_version.get_field_dict()
