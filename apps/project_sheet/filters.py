@@ -1,17 +1,19 @@
+from itertools import chain
+
 from django import forms
-from tagging.models import TaggedItem, Tag
-from .models import I4pProjectTranslation, I4pProject
-from django.utils.translation import ugettext as _
 from django.db.models import Q
-from apps.project_sheet.models import ProjectMember
-from django.db.models.query import QuerySet
 from django.forms.widgets import SelectMultiple, CheckboxInput
 from django.utils.encoding import force_unicode
-from itertools import chain
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext as _
 
 from django_countries.countries import COUNTRIES
+from tagging.models import TaggedItem, Tag
+
+from apps.project_sheet.models import ProjectMember
+
+from .models import I4pProjectTranslation, I4pProject
 
 ORDER_CHOICES = (
      ('lte', '<='),
