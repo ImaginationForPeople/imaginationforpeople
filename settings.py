@@ -141,6 +141,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
+    'apps.member.context_processors.member_forms',
 #    "mothertongue.context_processors.router",
 )
 
