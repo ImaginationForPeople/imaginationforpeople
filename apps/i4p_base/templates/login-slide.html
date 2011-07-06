@@ -1,0 +1,137 @@
+{% load i18n %}	
+	
+<div id="toppanel">
+	<div id="panel">
+		<div class="panel_content clearfix">
+			
+            {% if not user.is_authenticated %}
+            <div class="left">
+            {% else%}
+            <div class="left-logged">
+            {% endif %}            
+				<h1>{% trans "Interface language" %}</h1>
+				<ul id="interface_lang">
+                    {% for lang in LANGUAGES %}
+                    <li><a href="" title="{{ lang.0 }}"><img src="{{ STATIC_URL }}images/flags/{{ lang.0 }}.gif" />{{ lang.1 }}</a>
+                    {% endfor %}
+                </ul>
+			</div>
+			
+            {% if not user.is_authenticated %}
+            
+            <div class="left">
+                <form action="{% url userena_signin %}" class="clearfix" method="post" id="signin_form"  class="profile_edition">
+					<h1 class="padlock">{% trans "Member Login" %}</h1>
+                    
+                    {% csrf_token %}
+                        {{ signin_form.non_field_errors }}
+                        {% for field in signin_form %}
+                        {{ field.errors }}
+                        {% comment %} Displaying checkboxes differently {% endcomment %}
+                        {% if field.name == 'remember_me' %}
+                        <p class="checkbox">
+                            <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                        </p>
+                        {% else %}
+                        <p>
+                            {{ field.label_tag }} 
+                            {{ field }}
+                        </p>
+                        {% endif %}
+                        {% endfor %}
+                    <div class="clear"></div><br />
+                    <input type="submit" class="button" style="margin-left:0px;" value="{% trans 'Sign in' %}" />
+					<a class="link" href="#">{% trans "Lost your password?" %}</a>
+
+				</form>
+			</div>
+			
+            <div class="left right">
+                <form action="{% url userena_signup %}" method="post" id="signup_form"  class="profile_edition">
+					<h1>{% trans "Not a member yet? Sign Up!" %}</h1>	
+
+                    {% csrf_token %}
+                        {{ signup_form.non_field_errors }}
+                        {% for field in signup_form %}
+                        {{ field.errors }}
+                        {% comment %} Displaying checkboxes differently {% endcomment %}
+                        {% if field.name == 'remember_me' %}
+                        <p class="checkbox">
+                            <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                        </p>
+                        {% else %}
+                        <p>
+                            {{ field.label_tag }} 
+                            {{ field }}
+                        </p>
+                        {% endif %}
+                        {% endfor %}                   
+					<label>{% trans "A password will be e-mailed to you." %}</label> 
+                    <div class="clear"></div><br />
+					<input type="submit" name="submit" value="{% trans 'Register' %}" class="button" style="margin-left:0px;" /><div class="clear"></div>
+                    
+				</form>
+			</div>
+            
+            {% else %}
+            
+            
+            <div class="panel_projects">
+            
+                <h1>{% trans "My last projects" %}</h1>	
+                
+                {% for membership in user.project_memberships.all|slice:'4' %}
+                    
+                <a href="{{ membership.project.translations.0.get_absolute_url }}" class="project_card" title="{{ membership.project.translations.all.0.baseline }}">
+                    <div class="project-photo">	
+                        {% if membership.project.pictures.all|length > 0 %}
+                            <img src="{{ membership.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
+                        {% endif %}
+                    </div>
+
+                    <div class="project_card_content">
+                        <div class="project_infos_title">{{ membership.project.translations.all.0.title|slice:'45' }}</div>	
+                        <!-- <div class="project_infos_baseline">{{ membership.project.translations.all.0.baseline }}</div> -->
+                    </div>
+                    <div class="clear"></div>              
+                </a>
+                    
+                {% empty %}
+                    {% trans "You have no projects" %}            
+                {% endfor %}
+            
+            </div>
+            
+            {% endif %}
+            
+            
+		</div>
+	</div> <!-- /login -->	
+
+    <!-- The tab on top -->	
+	<div class="tab">
+        <div class="container_18">
+            <ul class="login">
+                <li class="left">&nbsp;</li>
+                <li>{{ LANGUAGE_CODE|upper}}</li>
+                <li id="toggle">
+                {% if user.is_authenticated %}	
+                    <a id="open" class="open link" href="#">{{ user.username }}</a>
+                {% else %}
+                    <a id="open" class="open link" href="#">{% trans "Log In | Register" %}</a>
+                {% endif %}
+                    <a id="close" style="display: none;" class="close link" href="#">{% trans "Close Panel" %}</a>			
+                </li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'view my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-view.png" /></a></li>
+                <li><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'edit' %}"><img src="{{ STATIC_URL }}images/base/panel-edit.png" /></a></li>
+                <li><a href="{% url userena_signout %}?next={% url i4p-index %}" class="tipsed on" title="{% trans 'Log out' %}"><img src="{{ STATIC_URL }}images/base/panel-logout.png" /></a></li>
+            {% endif %}
+
+                <li class="right">&nbsp;</li>
+            </ul> 
+        </div> <!-- / top -->
+	</div> 
+	
+</div> 	
+	
