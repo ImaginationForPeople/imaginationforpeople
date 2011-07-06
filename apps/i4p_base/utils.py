@@ -1,8 +1,10 @@
 import unicodedata
 
-
-def remove_accents(s):
-    if isinstance(s, str):
-        s = unicode(s, "utf8", "replace")
-    s = unicodedata.normalize('NFD', s)
-    return s.encode('ascii', 'ignore')
+def remove_accents(aString):
+    """
+    Remove accents from a string
+    """
+    if isinstance(aString, str):
+        aString = unicode(aString, "utf8", "replace")
+    aString = unicodedata.normalize('NFD', aString)
+    return aString.encode('ascii', 'ignore')

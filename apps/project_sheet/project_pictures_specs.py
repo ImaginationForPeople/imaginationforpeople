@@ -1,7 +1,7 @@
 from imagekit.specs import ImageSpec
 from imagekit import processors
 from imagekit.processors import ImageProcessor
-from imagekit.lib import *
+from imagekit.lib import ImageColor
 
 class Center(ImageProcessor):
     width = None
@@ -12,15 +12,15 @@ class Center(ImageProcessor):
     def process(cls, img, fmt, obj):
         if cls.width and cls.height:
             background_color = ImageColor.getrgb(cls.background_color)
-            bg = Image.new("RGB", (cls.width, cls.height), background_color)
+            bg_picture = Image.new("RGB", (cls.width, cls.height), background_color)
 
             ## paste it
-            W, H = bg.size
-            w, h = img.size
-            xo, yo = (W - w) / 2, (H - h) / 2
+            bg_w, bg_h = bg_picture.size
+            img_w, img_h = img.size
+            xo, yo = (bg_w - img_w) / 2, (bg_h - img_h) / 2
 
-            bg.paste(img, (xo, yo, xo + w, yo + h))
-        return bg, fmt
+            bg_picture.paste(img, (xo, yo, xo + img_w, yo + img_h))
+        return bg_picture, fmt
 
 # first we define our thumbnail resize processor 
 class ResizeThumb(processors.Resize):
@@ -51,8 +51,11 @@ class CenterDisplay(Center):
     width = 700
     height = 460
 
-# now let's create an adjustment processor to enhance the image at small sizes 
+
 class EnhanceThumb(processors.Adjustment):
+    """
+    Adjustment processor to enhance the image at small sizes
+    """
     contrast = 1.2
     sharpness = 1.1
 
@@ -68,12 +71,17 @@ class Display(ImageSpec):
     increment_count = True
     processors = [ResizeDisplay, CenterDisplay]
 
-
 class MosaicTile(ImageSpec):
+    """
+    For the Homepage
+    """
     access_as = 'mosaic_tile'
     processors = [PreResizeMosaic, CenterMosaic]
 
 class IDCard(ImageSpec):
+    """
+    Preview when displaying a project sheet card
+    """
     access_as = 'thumbnail_idcard'
     pre_cache = True
     processors = [ResizeIDCard, EnhanceThumb]
