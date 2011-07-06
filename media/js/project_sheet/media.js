@@ -114,6 +114,8 @@ $(document).ready(function () {
     	}
     });
 
-    if ( anyslider )
-	anyslider.gotoPage(1, false);
+    if(anyslider){
+    	anyslider.gotoPage(1, false);
+    }
+
 });
