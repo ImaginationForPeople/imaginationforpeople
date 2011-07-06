@@ -1,4 +1,5 @@
 {% load i18n %}	
+{% load localeurl_tags %}
 	
 <div id="toppanel">
 	<div id="panel">
@@ -12,7 +13,7 @@
 				<h1>{% trans "Interface language" %}</h1>
 				<ul id="interface_lang">
                     {% for lang in LANGUAGES %}
-                    <li><a href="" title="{{ lang.0 }}"><img src="{{ STATIC_URL }}images/flags/{{ lang.0 }}.gif" />{{ lang.1 }}</a>
+                    <li><a href="{{ request.path|chlocale:lang.0 }}" title="{{ lang.0 }}"><img src="{{ STATIC_URL }}images/flags/{{ lang.0 }}.gif" />{{ lang.1 }}</a>
                     {% endfor %}
                 </ul>
 			</div>
@@ -21,7 +22,7 @@
             
             <div class="left">
                 <form action="{% url userena_signin %}" class="clearfix" method="post" id="signin_form"  class="profile_edition">
-					<h1 class="padlock">{% trans "Member Login" %}</h1>
+		  <h1 class="padlock">{% trans "Member Login" %}</h1>
                     
                     {% csrf_token %}
                         {{ signin_form.non_field_errors }}
@@ -66,12 +67,12 @@
                         </p>
                         {% endif %}
                         {% endfor %}                   
-					<label>{% trans "A password will be e-mailed to you." %}</label> 
-                    <div class="clear"></div><br />
-					<input type="submit" name="submit" value="{% trans 'Register' %}" class="button" style="margin-left:0px;" /><div class="clear"></div>
-                    
-				</form>
-			</div>
+			<label>{% trans "A password will be e-mailed to you." %}</label> 
+			<div class="clear"></div><br />
+			<input type="submit" name="submit" value="{% trans 'Register' %}" class="button" style="margin-left:0px;" /><div class="clear"></div>
+			
+		</form>
+	    </div>
             
             {% else %}
             
@@ -82,7 +83,7 @@
                 
                 {% for membership in user.project_memberships.all|slice:'4' %}
                     
-                <a href="{{ membership.project.translations.0.get_absolute_url }}" class="project_card" title="{{ membership.project.translations.all.0.baseline }}">
+                <a href="{{ membership.project.translations.all.0.get_absolute_url }}" class="project_card" title="{{ membership.project.translations.all.0.baseline }}">
                     <div class="project-photo">	
                         {% if membership.project.pictures.all|length > 0 %}
                             <img src="{{ membership.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
@@ -118,7 +119,7 @@
                 {% if user.is_authenticated %}	
                     <a id="open" class="open link" href="#">{{ user.username }}</a>
                 {% else %}
-                    <a id="open" class="open link" href="#">{% trans "Log In | Register" %}</a>
+                    <a id="open" class="open link" href="#">{% trans "Log In" %} | {% trans "Register" %}</a>
                 {% endif %}
                     <a id="close" style="display: none;" class="close link" href="#">{% trans "Close Panel" %}</a>			
                 </li>
