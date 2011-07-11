@@ -58,20 +58,19 @@ def project_sheet_list(request):
                                                    model_class=I4pProjectTranslation)
 
         #Fourth pass to order sheet
-        if data.get("last_created"):
+        if data.get("order") == "creation":
             ordered_project_sheets = filtered_project_sheets.order_by('-project__created')
-            extra_context["last_created"] = True
-            extra_context["getparams_submit"] = extra_context["getparams_last_created"]
-        elif data.get("last_modif"):
+            extra_context["order"] = "creation"
+        elif data.get("order") == "modification":
             ordered_project_sheets = filtered_project_sheets.order_by('-modified')
-            extra_context["last_modif"] = True
-            extra_context["getparams_submit"] = extra_context["getparams_last_modif"]
+            extra_context["order"] = "modification"
         else:
             ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', 'slug')
 
-        params = data.urlencode().replace("last_modif=1", "").replace("last_created=1", "")
-        extra_context["getparams_last_created"] += "&%s" % params
-        extra_context["getparams_last_modif"] += "&%s" % params
+        extra_context["getparams"] = data.urlencode()
+        extra_context["orderparams"] = extra_context["getparams"]\
+                                        .replace("order=creation", "")\
+                                        .replace("order=modification", "")
 
         extra_context["selected_tags"] = [int(t.id) for t in filter_forms["themes_filter"].get_tags()]
 
@@ -79,7 +78,7 @@ def project_sheet_list(request):
         pass
 
     extra_context.update(filter_forms)
-    extra_context["filters_tab_selected"] = True,
+    extra_context["filters_tab_selected"] = True
 
     return object_list(request,
                        template_name='project_sheet/project_list.html',

@@ -4,7 +4,7 @@
 <div id="pagination">
     <span class="step-links">
         {% if page_obj.has_previous %}
-          <a href="?page={{ page_obj.previous_page_number }}"><img src="{{ STATIC_URL }}images/project/page_previous.png" alt="previous" /></a>
+          <a href="?page={{ page_obj.previous_page_number }}&{{getparams}}"><img src="{{ STATIC_URL }}images/project/page_previous.png" alt="previous" /></a>
         {% else %}
           <img src="{{ STATIC_URL }}images/project/page_previous-off.png" alt="previous" />
         {% endif %}
@@ -12,7 +12,7 @@
           pages
           {% for page_num in page_obj.paginator.page_range %}
                            
-            <a href="{% url project_sheet-list %}?page={{ page_num }}&order={{ order }}" class="{% if page_num == page_obj.number %}current{% endif %}">
+            <a href="{% url project_sheet-list %}?page={{ page_num }}&{{getparams}}" class="{% if page_num == page_obj.number %}current{% endif %}">
                     {{ page_num }}
             </a>
 
@@ -21,7 +21,7 @@
           
 
         {% if page_obj.has_next %}
-          <a href="?page={{ page_obj.next_page_number }}"><img src="{{ STATIC_URL }}images/project/page_next.png" alt="next" /></a>
+          <a href="?page={{ page_obj.next_page_number }}&{{getparams}}"><img src="{{ STATIC_URL }}images/project/page_next.png" alt="next" /></a>
         {% else %}
           <img src="{{ STATIC_URL }}images/project/page_next-off.png" alt="previous" />
         {% endif %}
