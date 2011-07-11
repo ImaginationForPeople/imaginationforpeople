@@ -36,6 +36,11 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 )
 
+## Javascript i18n catalog
+urlpatterns += patterns('',
+    (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
+)
+
 ## DajaxIce (should be replaced by a static file once in production env)
 dajaxice_autodiscover()
 
