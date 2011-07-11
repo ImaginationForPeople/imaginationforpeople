@@ -61,7 +61,7 @@ class I4pProject(models.Model):
 
     best_of = models.BooleanField(verbose_name=_('best of'), default=False)
 
-    created = models.DateField(verbose_name=_("creation date"), 
+    created = models.DateField(verbose_name=_("creation date"),
                                auto_now_add=True)
 
     objective = models.CharField(verbose_name=_('objective'),
@@ -91,8 +91,8 @@ class I4pProject(models.Model):
     def __unicode__(self):
         res = u"Parent project %d" % self.id
         if self.translations.all().count():
-           res = "%s (%s)" % (res,
-                              self.translations.all()[0].slug)
+            res = "%s (%s)" % (res,
+                               self.translations.all()[0].slug)
 
         return res
 
@@ -126,10 +126,10 @@ class I4pProjectTranslation(models.Model):
 
     modified = models.DateField(null=True, blank=True)
 
-    baseline = models.CharField(verbose_name=_("one line description"), 
-                                max_length=180, 
-                                null=True, 
-                                blank=True, 
+    baseline = models.CharField(verbose_name=_("one line description"),
+                                max_length=180,
+                                null=True,
+                                blank=True,
                                 default=_("One line description")
                                 )
 

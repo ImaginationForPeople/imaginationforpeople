@@ -17,9 +17,9 @@ class Center(ImageProcessor):
             ## paste it
             bg_w, bg_h = bg_picture.size
             img_w, img_h = img.size
-            xo, yo = (bg_w - img_w) / 2, (bg_h - img_h) / 2
+            coord_x, coord_y = (bg_w - img_w) / 2, (bg_h - img_h) / 2
 
-            bg_picture.paste(img, (xo, yo, xo + img_w, yo + img_h))
+            bg_picture.paste(img, (coord_x, coord_y, coord_x + img_w, coord_y + img_h))
         return bg_picture, fmt
 
 # first we define our thumbnail resize processor 

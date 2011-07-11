@@ -1,18 +1,17 @@
-from django.core.management.base import BaseCommand
-
-import csv
-from optparse import make_option
-from django.contrib.auth.models import User
 from datetime import datetime
-from apps.member.models import I4pProfile
-from apps.i4p_base.models import Location
-from userena.models import UserenaSignup
-from userena import settings as userena_settings
+from optparse import make_option
+
+from django.contrib.auth.models import User
+from django.core.management.base import BaseCommand
 from django.utils.encoding import smart_unicode
+
+from userena import settings as userena_settings
+from userena.models import UserenaSignup
+
+from apps.i4p_base.models import Location
 from apps.i4p_base.utils import remove_accents
 
-
-
+import csv
 
 class Command(BaseCommand):
     help = "Importation command of the alpha users"
@@ -25,8 +24,8 @@ class Command(BaseCommand):
 #        I4pProfile.objects.all().delete()
 #        Location.objects.all().delete()
 
-        with open(options.get('file'), 'rb') as f:
-            reader = csv.reader(f, delimiter=';')
+        with open(options.get('file'), 'rb') as file:
+            reader = csv.reader(file, delimiter=';')
             reader.next()
 
             for row in reader:
