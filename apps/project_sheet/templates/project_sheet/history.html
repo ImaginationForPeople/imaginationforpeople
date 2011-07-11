@@ -15,25 +15,27 @@
 {% block project_content %}
 
 <ul class="history">
-{% for version, fields in versions.iteritems %}
-    <li>{% trans "Made on" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} 
-    {% if version.revision.user.profile %}
-        <a href="{% url userena_profile_detail version.revision.user.profile.user.username %}" class="link">{{version.revision.user.profile.get_full_name_or_username}}</a>
-    {% else %}
-        {% trans 'anonymous' %}
-    {% endif %}
-    {% trans 'on' %}
-    {% for field in fields %}
-        {% if not forloop.first %}
-            {% if forloop.last %}
-                ,&nbsp;
-            {%else%}
-                &nbsp;{% trans 'and' %}&nbsp;  
+{% for version in versions %}
+    {% if version.diff%}
+        <li>{% trans "Made on" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} 
+        {% if version.revision.user.profile %}
+            <a href="{% url userena_profile_detail version.revision.user.profile.user.username %}" class="link">{{version.revision.user.profile.get_full_name_or_username}}</a>
+        {% else %}
+            {% trans 'Anonymous' %}
+        {% endif %}
+        {% trans 'on' %}
+        {% for field in version.diff %}
+            {% if not forloop.first %}
+                {% if forloop.last %}
+                    ,&nbsp;
+                {%else%}
+                    &nbsp;{% trans 'and' %}&nbsp;  
+                {%endif%}
             {%endif%}
-        {%endif%}
-         <strong>{% trans '"' %}{{field}}{% trans '"' %} </strong>
-    {% endfor %}
-    </li>   
+             <strong>{% trans '"' %}{{field}}{% trans '"' %} </strong>
+        {% endfor %}
+        </li>
+     {% endif %}  
 {% endfor %}
 </ul>
 {% endblock %}
