@@ -21,10 +21,12 @@ ORDER_CHOICES = (
 )
 
 class FilterSet(object):
+    """ 
+    Filters container
+    """
 
-    def __init__(self, filter_or_orderer_forms):
-        self.forms = filter_or_orderer_forms.values()
-
+    def __init__(self, filters):
+        self.forms = filters
 
     def is_valid(self):
         res = True
@@ -32,10 +34,10 @@ class FilterSet(object):
             res &= filt.is_valid()
         return res
 
-    def apply_to(self, aQuerySet, aModelClass):
-        qs = aQuerySet
-        for filt in self.forms:
-            qs = filt.apply_to(qs, aModelClass)
+    def apply_to(self, queryset, model_class):
+        qs = queryset
+        for filter in self.forms:
+            qs = filter.apply_to(qs, model_class)
         return qs
 
     def __iter__(self):
@@ -43,9 +45,16 @@ class FilterSet(object):
 
 
 class FilterForm(forms.Form):
-    pass
+    """
+    Filter base class 
+    """
+    def apply_to(self, queryset, model_class):
+        raise NotYepImplementedException
 
 class ThemesFilterForm(FilterForm):
+    """
+    Implements a filter on I4pProjectTranslation themes (tags)
+    """
     themes = forms.CharField(required=False, label=_("Themes contain"))
 
     def get_tags(self):
@@ -64,6 +73,10 @@ class ThemesFilterForm(FilterForm):
         return queryset
 
 class WithMembersFilterForm(FilterForm):
+    """
+    Implements a filter on I4pProject including or not members
+    """
+
     with_members = forms.BooleanField(required=False, label=_('With associated leaders'))
     without_members = forms.BooleanField(required=False, label=_('Without associated leaders'))
 
@@ -86,6 +99,10 @@ class WithMembersFilterForm(FilterForm):
         self.fields['without_members'].widget.attrs['class'] = 'styled'
 
 class MyCheckboxSelectMultiple(SelectMultiple):
+    """
+    Implements custom multi select checkbox widget
+    FIXME: find source, maybe djangosnippets.org
+    """
     def render(self, name, value, attrs=None, choices=()):
         if value is None: value = []
         has_id = attrs and 'id' in attrs
@@ -97,13 +114,13 @@ class MyCheckboxSelectMultiple(SelectMultiple):
             if has_id:
                 final_attrs = dict(final_attrs, id='%s_%s' % (attrs['id'], i))
 
-            cb = CheckboxInput(final_attrs, check_test=lambda value: value in str_values)
+            checkbox = CheckboxInput(final_attrs, check_test=lambda value: value in str_values)
             option_value = force_unicode(option_value)
-            rendered_cb = cb.render(name, option_value)
+            rendered_checkbox = checkbox.render(name, option_value)
             option_label = conditional_escape(force_unicode(option_label))
             output.append(u'<li id="filter_val_%s" title="%s">%s<p>%s</p></li>' % (option_value.lower(),
                                                                                    option_label.title(),
-                                                                                   rendered_cb,
+                                                                                   rendered_checkbox,
                                                                                    option_label))
         output.append(u'</ul>')
         return mark_safe(u'\n'.join(output))
@@ -116,6 +133,9 @@ class MyCheckboxSelectMultiple(SelectMultiple):
     id_for_label = classmethod(id_for_label)
 
 class ProjectStatusFilter(FilterForm):
+    """
+    Implements a filter on I4pProject status
+    """
     status = forms.TypedMultipleChoiceField(required=False, coerce=str,
                                             choices=I4pProject.STATUS_CHOICES,
                                             widget=MyCheckboxSelectMultiple)
@@ -125,14 +145,14 @@ class ProjectStatusFilter(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("status")
             if data :
-                q = None
+                Q_objects = None
                 for val in data:
                     lookup = {"status" : val}
-                    if q :
-                        q |= Q(**lookup)
+                    if Q_objects :
+                        Q_objects |= Q(**lookup)
                     else :
-                        q = Q(**lookup)
-                qs = qs.filter(q)
+                        Q_objects = Q(**lookup)
+                qs = qs.filter(Q_objects)
         return qs
 
     def __init__(self, *args, **kwargs):
@@ -140,6 +160,10 @@ class ProjectStatusFilter(FilterForm):
         self.fields['status'].widget.attrs['class'] = 'styled'
 
 class BestOfFilter(FilterForm):
+    """
+    Implements a filter on I4pProject best of
+    """
+
     best_of = forms.BooleanField(required=False)
 
     def apply_to(self, queryset, model_class):
@@ -156,6 +180,10 @@ class BestOfFilter(FilterForm):
 
 
 class ProjectProgressFilter(FilterForm):
+    """
+    Implements a filter on I4pProjectTranslation progression
+    """
+
     progress = forms.TypedMultipleChoiceField(required=False, coerce=str,
                                             choices=I4pProjectTranslation.PROGRESS_CHOICES,
                                             widget=MyCheckboxSelectMultiple)
@@ -165,14 +193,14 @@ class ProjectProgressFilter(FilterForm):
         if model_class == I4pProjectTranslation:
             data = self.cleaned_data.get("progress")
             if data :
-                q = None
+                Q_objects = None
                 for val in data:
                     lookup = {"completion_progress" : val}
-                    if q :
-                        q |= Q(**lookup)
+                    if Q_objects :
+                        Q_objects |= Q(**lookup)
                     else :
-                        q = Q(**lookup)
-                qs = qs.filter(q)
+                        Q_objects = Q(**lookup)
+                qs = qs.filter(Q_objects)
         return qs
 
     def __init__(self, *args, **kwargs):
@@ -181,8 +209,15 @@ class ProjectProgressFilter(FilterForm):
 
 
 def current_countries():
+    """
+    Build the list of countries used in project location 
+    """
     result = []
-    project_countries = I4pProject.objects.exclude(location__country='').exclude(location__country__isnull=True).distinct().order_by('location__country').values_list('location__country', flat=True)
+    project_countries = I4pProject.objects.exclude(location__country='').\
+                                           exclude(location__country__isnull=True).\
+                                           distinct().\
+                                           order_by('location__country').\
+                                           values_list('location__country', flat=True)
     for country in project_countries:
         for code, name in COUNTRIES:
             if country == code:
@@ -191,6 +226,9 @@ def current_countries():
     return result
 
 class ProjectLocationFilter(FilterForm):
+    """
+    Implements a filter on I4pProject location
+    """
     country = forms.MultipleChoiceField(required=False,
                                         choices=current_countries())
 
@@ -199,14 +237,14 @@ class ProjectLocationFilter(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("country")
             if data :
-                q = None
+                Q_objects = None
                 for val in data:
                     lookup = {"location__country" : val}
-                    if q :
-                        q |= Q(**lookup)
+                    if Q_objects :
+                        Q_objects |= Q(**lookup)
                     else :
-                        q = Q(**lookup)
-                qs = qs.filter(q)
+                        Q_objects = Q(**lookup)
+                qs = qs.filter(Q_objects)
         return qs
 
 
