@@ -34,10 +34,10 @@ def project_sheet_list(request):
 
     data = request.GET
 
-    filter_forms, extra_context = build_filters_and_context(data)
+    filter_forms_dict, extra_context = build_filters_and_context(data)
 
     ordered_project_sheets = None
-    filters = FilterSet(filter_forms)
+    filters = FilterSet(filter_forms_dict.values())
 
     if filters.is_valid():
         #First pass to filter project
@@ -72,12 +72,12 @@ def project_sheet_list(request):
                                         .replace("order=creation", "")\
                                         .replace("order=modification", "")
 
-        extra_context["selected_tags"] = [int(t.id) for t in filter_forms["themes_filter"].get_tags()]
+        extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].get_tags()]
 
     else:
         pass
 
-    extra_context.update(filter_forms)
+    extra_context.update(filter_forms_dict)
     extra_context["filters_tab_selected"] = True
 
     return object_list(request,
