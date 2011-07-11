@@ -19,7 +19,8 @@
 					
 			{% endcomment %}
 					
-				<ul>
+				<!-- 
+                <ul>
 					{% if user.is_authenticated %}
 		    			<li><a class="linkbox-login" href="{% url userena_profile_detail request.user %}">{% trans 'welcome'|capfirst %}, {{ user.username }}.</li> 
 		    			<li><a href="{% url userena_signout %}?next={% url i4p-index %}">{% trans 'Log out' %}</a></li>
@@ -27,7 +28,9 @@
 					    <li><a href="{% url userena_signin %}">{% trans 'log in'|capfirst %}</a></li>
 					    <li><a href="{% url userena_signup %}">{% trans 'sign up'|capfirst %}</a></li>
 					{% endif %}
-				</ul>	
+				</ul>
+                -->
+                
 			</div>
 			<div class="menu">           
 				<ul>

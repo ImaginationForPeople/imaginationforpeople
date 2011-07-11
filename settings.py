@@ -141,6 +141,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
+    'apps.member.context_processors.member_forms',
 #    "mothertongue.context_processors.router",
 )
 
@@ -319,10 +320,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 
 ### COMPRESOR
-COMPRESS = not DEBUG
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
 
-COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'scss {infile} {outfile}'),
-)
+if not DEBUG:
+    COMPRESS_PRECOMPILERS = (
+        ('text/x-scss', 'scss {infile} {outfile}'),
+    )
+   
