@@ -145,14 +145,14 @@ class ProjectStatusFilter(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("status")
             if data :
-                Q_objects = None
+                q_objects = None
                 for val in data:
                     lookup = {"status" : val}
-                    if Q_objects :
-                        Q_objects |= Q(**lookup)
+                    if q_objects :
+                        q_objects |= Q(**lookup)
                     else :
-                        Q_objects = Q(**lookup)
-                qs = qs.filter(Q_objects)
+                        q_objects = Q(**lookup)
+                qs = qs.filter(q_objects)
         return qs
 
     def __init__(self, *args, **kwargs):
@@ -193,14 +193,14 @@ class ProjectProgressFilter(FilterForm):
         if model_class == I4pProjectTranslation:
             data = self.cleaned_data.get("progress")
             if data :
-                Q_objects = None
+                q_objects = None
                 for val in data:
                     lookup = {"completion_progress" : val}
-                    if Q_objects :
-                        Q_objects |= Q(**lookup)
+                    if q_objects :
+                        q_objects |= Q(**lookup)
                     else :
-                        Q_objects = Q(**lookup)
-                qs = qs.filter(Q_objects)
+                        q_objects = Q(**lookup)
+                qs = qs.filter(q_objects)
         return qs
 
     def __init__(self, *args, **kwargs):
@@ -237,14 +237,14 @@ class ProjectLocationFilter(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("country")
             if data :
-                Q_objects = None
+                q_objects = None
                 for val in data:
                     lookup = {"location__country" : val}
-                    if Q_objects :
-                        Q_objects |= Q(**lookup)
+                    if q_objects :
+                        q_objects |= Q(**lookup)
                     else :
-                        Q_objects = Q(**lookup)
-                qs = qs.filter(Q_objects)
+                        q_objects = Q(**lookup)
+                qs = qs.filter(q_objects)
         return qs
 
 

@@ -1,10 +1,7 @@
 from django import forms
-from django.forms.models import modelform_factory, modelformset_factory
-from django.utils.translation import ugettext as _
+from django.forms.models import modelformset_factory
 
 from django.contrib.auth.models import User
-
-from tagging.forms import TagField
 
 from apps.i4p_base.models import Location
 
@@ -74,6 +71,6 @@ class ProjectMemberForm(forms.ModelForm):
         model = ProjectMember
         fields = ('user', 'role', 'comment')
 
-    user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt=-1).order_by('username'))
+    user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt= -1).order_by('username'))
 
 ProjectMemberFormSet = modelformset_factory(ProjectMember, extra=0, can_delete=True, fields=('role', 'comment'))
