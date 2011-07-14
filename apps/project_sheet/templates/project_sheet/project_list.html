@@ -7,17 +7,12 @@
 {% block title %}{% trans 'Find project on Imagination for People'%}{% endblock %}
 
 {% block style %}
-  {{ block.super }}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" />
 
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/filters.css" />
-    
-    <style type="text/css"> 
-        body{background-color:#282828;}
-    </style>
 
   {% endcompress %}
 {% endblock %}
