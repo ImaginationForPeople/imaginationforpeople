@@ -313,18 +313,21 @@ STATICFILES_FINDERS = (
 STATICFILES_DIRS = (
     ('js', os.path.join(MEDIA_ROOT, 'js')),
     ('css', os.path.join(MEDIA_ROOT, 'css')),
+    ('css', os.path.join(MEDIA_ROOT, 'compiled_sass')),
     ('images', os.path.join(MEDIA_ROOT, 'images')),
 )
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 
+COMPRESS_CSS_FILTERS = (
+    'compressor.filters.css_default.CssAbsoluteFilter',
+    'compressor.filters.cssmin.CSSMinFilter'
+    )
+
 ### COMPRESOR
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
 
-if not DEBUG:
-    COMPRESS_PRECOMPILERS = (
-        ('text/x-scss', 'scss {infile} {outfile}'),
-    )
+
    
