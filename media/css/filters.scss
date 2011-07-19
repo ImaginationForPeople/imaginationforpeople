@@ -1,0 +1,499 @@
+@import "mixin.scss";
+
+
+/*---- Projects sorting ----*/
+
+#projectlist_sort{
+    background-color:#0c0c0c;
+    border-top:1px solid #353535;
+    border-bottom:1px solid black;
+    padding:3px;
+    padding-top:5px;
+    padding-bottom:5px;
+    
+    @include shadow(4px, black); 
+	@include rounded(4px);
+    position:absolute;
+    right:0px;
+    top:0px;
+    
+    h4{
+        margin-top:8px;
+    }
+    
+    .button{
+        top:1px;
+        margin-left:3px;
+        margin-right:4px;
+        @include shadow(4px, black); 
+    }
+}
+
+
+#projectlist_sort_buttons{
+    display:block;
+    float:left;
+    
+    .filter-on a.button {
+        background-image:url("../images/base/minibutton_red.jpg");
+        background-repeat:repeat-x;
+        border:1px solid #881B1B;
+        color:white;
+        text-shadow:-1px -1px 0 rgba(0, 0, 0, 0.3);
+    }
+}
+
+
+/*---- Projects languages ----*/
+
+#langage-tool  {
+    position:relative !important;
+    width:90px;
+    top:-2px;
+}
+
+.sf-menu {
+    position:absolute;
+    
+    ul {
+        position: static !important;
+        width:auto !important;
+        border-top:0px solid #393939 !important;
+        
+         li {
+            width:80px;
+        }
+    }
+    
+    a {
+        padding:5px;
+        color:#979797;
+    }
+    
+    .sf-sub-indicator {
+        top:6px;
+    }
+}
+
+
+
+/*---- Filters ----*/
+
+
+.categories_project_page{
+	position:fixed !important;
+    top:auto;
+	bottom:0px;
+    z-index:200;
+}
+
+
+.categories {
+    background-image:url("../images/base/menu-bg.jpg");
+    background-color:#161616;
+    height:36px;
+    
+    .menu{
+        margin-left:34px;
+        
+        a {
+            width: 100%;
+            height: 30px;
+            display: block;
+        }
+        
+        ul .selected {
+            color:#888888;
+        }
+    }
+}
+
+
+
+#projects_filters{
+    padding-top:10px;
+    padding-bottom:10px;
+    position:relative;
+    top:-10px;
+}
+
+.filters_box{
+    background-color:#0e0e0e;
+    
+    @include rounded(3px); 
+    margin-bottom:10px;
+}
+
+.filtersbox_content{
+    margin:10px;
+    color:#393939;
+    position:relative;
+    
+    h4{
+        color:#d3d3d1;
+        @include georgia(18px); 
+        display:block;
+        border-bottom:1px solid #393939;
+        margin:0px;
+        margin-bottom:10px;
+        padding-bottom:3px;
+    }
+    
+    .invert{
+        position:absolute;
+        top:6px;
+        right:0px;
+        cursor:pointer;
+    }
+    
+    .invert:hover{
+        text-decoration:none;
+        color:#d3d3d1;
+    }
+    
+    a{
+        font-size:11px;
+        color:#393939;
+    }
+    
+    p{
+        clear: both;
+        display: block;
+    }
+    
+    select{
+        width:100%;
+        height: 148px;
+    }
+    
+    option[selected="selected"]{
+        background-color:red;
+    }
+    
+    .pictos-categ{
+        margin-bottom:10px;
+        border-right:1px solid #393939;
+        text-align:center;
+        font-size:10px;
+    }
+    
+    .pictos-categ:last-child{
+        border-right:0px solid #393939;
+    }
+    
+    .filtersbox_choices{
+        position:absolute;
+        top:2px;
+        right:0px;
+        
+        a{
+            margin-left:5px;
+            cursor:pointer;
+        }
+        
+        a:hover{
+            text-decoration:none;
+            color:#d3d3d1;
+        }
+    }
+}
+
+
+
+/*---- Themes - Cloudtag ----*/
+
+#cloudtag_list{
+
+    li a {
+        color:#767676;
+        @include georgia(inherit); 
+        text-decoration:underline;
+    }
+    
+    li a.selected {
+        color:#119CBA;
+    }
+}
+
+
+
+/*---- Project Status - Checkboxes ----*/
+
+.filters-picto {
+    width:70px;
+    margin-left:auto;
+    margin-right:auto;
+    
+    p {
+        visibility: hidden;
+        display: none;
+    }
+    
+    .ez-checkbox {
+        width: 19px;
+        height: 27px;
+        padding: 0 5px 0 0;
+        display: block;
+        clear: left;
+        float: left;
+        background-position:top center;
+        cursor:pointer;
+    }
+    
+    .ez-checked { 
+        background-position: -2px -25px !important; 
+    }
+    
+    #filter_val_edit .ez-checkbox{
+        background-image: url("../images/project/filters-picto-editing.jpg");
+    }
+
+    #filter_val_full .ez-checkbox{
+        background-image: url("../images/project/filters-picto-complete.jpg");
+    }
+
+    #bestof .ez-checkbox{
+        background-image: url("../images/project/filters-picto-bestof.jpg");
+        left:17px;
+        position:relative;
+    }
+
+    #popular .ez-checkbox{
+        background-image: url("../images/project/filters-picto-popular.jpg");
+    }
+
+    #team .ez-checkbox{
+        background-image: url("../images/project/filters-picto-team.jpg");
+    }
+
+    #nobody .ez-checkbox{
+        background-image: url("../images/project/filters-picto-nobody.jpg");
+    }
+}
+
+
+.filters-progress{
+    margin-bottom:10px;
+    position:relative;
+    font-size:10px;
+    position:relative;
+    margin-left:20px;
+    margin-top:12px;
+    
+    a{
+        font-size:10px;
+    }
+    
+    ul{
+        li{
+            width:90px;
+            text-align:center;
+            margin:0px !important;
+            margin-bottom:15px !important;            
+        }
+        
+        li.selected p{
+            color:white;
+        }
+    }
+    
+    .ez-checkbox {
+        width: 90px;
+        height: 20px;
+        padding: 0 5px 0 0;
+        display: block;
+        clear: left;
+        float: left;
+        background-repeat:no-repeat;
+        background-position:top center;
+        cursor:pointer;
+        margin-bottom:5px;
+    }
+    
+    .ez-checked { 
+        background-position: 3px -25px !important; 
+    }
+    
+    #filter_val_idea .ez-checkbox{
+        background-image: url("../images/project/filters-progressbar_25.jpg");
+    }
+
+    #filter_val_begin .ez-checkbox{
+        background-image: url("../images/project/filters-progressbar_50.jpg");
+    }
+
+    #filter_val_wip .ez-checkbox{
+        background-image: url("../images/project/filters-progressbar_75.jpg");
+    }
+
+    #filter_val_end .ez-checkbox{
+        background-image: url("../images/project/filters-progressbar_100.jpg");
+    }
+}
+
+
+.filters-picto ul, .filters-progress ul{
+    margin:0;
+    padding:0;
+}
+
+.filters-picto ul li , .filters-progress ul li{
+    display:inline;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    float:left;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+
+.ez-hide { 
+    opacity: 0; 
+    filter:alpha(opacity=0); 
+    cursor:pointer;
+}
+
+
+
+#reset_filters{
+    position:relative;
+    margin-left:15px;
+    cursor:pointer;
+    font-size:11px;
+    top:4px;
+    display:inline;
+    font-style:normal;
+    font-family:Verdana,Arial,Helvetica,sans-serif;   
+    font-weight:normal;    
+}
+
+#reset_filters:hover{
+    text-decoration:none;
+    color:white;
+}
+
+
+
+/*---- About section ----*/
+
+
+.block-content {
+
+    .colonne:last-child {
+        width:310px !important;
+    }
+    
+    .colonne{ 
+        
+        h1:last-child {
+
+        }
+        
+        h1{
+            padding-left:30px;
+            position:relative;
+            
+            img{
+                position:absolute;
+                top:-5px;
+                left:-4px;
+            }
+        }
+    }
+    
+    .colonne.omega h1{
+        padding-left:0px;
+    }
+    
+    p{
+        margin-top:10px;
+        margin-bottom:10px;
+        font-size:15px;
+        color:#BDBDBD;
+    }
+}
+
+
+
+.catchy{
+	position:relative;
+	margin-top:50px;
+	color:white;
+    
+     h1{
+        font-size:25px;    
+        @include shadow(2px, #181818); 
+    }
+    
+    .edito{
+        font-size:18px;
+        padding-right:20px;
+        
+        @include shadow(2px, #181818); 
+        text-align:left;
+    }
+}
+
+
+
+.manifesto-link{
+	color:$blue;	
+    @include georgia(18px); 
+	border-bottom:1px solid #1b5e6c;
+	padding-top:5px;
+	margin-right:15px;
+	padding-bottom:3px;
+	float:right;    
+    @include shadow(2px, #181818); 
+}
+
+.manifesto-link:hover{
+	color:#65e4ff;
+    text-decoration:none;
+}
+
+
+
+.categories .search{
+    right:162px;
+}
+
+
+
+.footer{
+    top:11px;
+    margin-top:10px;
+    height:30px;
+    padding-top:10px;
+    background-color:black;
+    
+    ul {
+    
+    }
+}
+
+
+.social-networks a {
+    padding:3px;
+    top:-5px;
+    position:relative;
+}
+
+#lock-picto{
+    background-repeat:no-repeat;
+    width:24px;
+    height:24px;
+    position:absolute;
+    top:7px;
+}
+
+#lock-picto.on{
+    background-image:url('../images/base/lock-on.png');
+    left:-4px;
+}
+
+#lock-picto.off{
+    background-image:url('../images/base/lock-off.png');
+}
+

@@ -1,0 +1,22 @@
+$blue:#04ADD1;
+
+@mixin georgia($font-size) {
+    font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+    font-size:$font-size;
+	font-weight:bold;
+	font-style:italic;
+}
+
+@mixin rounded($radius) {
+    -moz-border-radius: $radius; 
+    -webkit-border-radius: $radius; 
+    -khtml-border-radius: $radius; 
+    border-radius: $radius; 	
+	behavior: url(border-radius.htc);
+}
+
+@mixin shadow($size,$color) {
+    -moz-box-shadow: 0px 0px $size $color;  
+    -webkit-box-shadow: 0px 0px $size $color;  
+    box-shadow: 0px 0px $size $color; 
+}
