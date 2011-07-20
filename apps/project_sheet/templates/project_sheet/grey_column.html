@@ -69,7 +69,7 @@
                 {% for member in project.detailed_members.all %}
                 <li class="grey_column_team_member member{{ member.id }}">
                   <a href="{% url userena_profile_detail member.user %}">
-                    <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" /> 
+                    <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" width="80" height="80"/>
                       <div class="grey_column_team_buttons">
                         <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
                         <input id="del_member_link" type="image" title="{% trans 'Delete'|capfirst %}" value="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin" src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /> 
