@@ -4,6 +4,8 @@ Member
 Models
 ------
 
+.. image:: images/member_models.png
+
 .. automodule:: apps.member.models
    :members:
 

@@ -4,6 +4,8 @@ Base
 Models
 ------
 
+.. image:: images/i4p_base_models.png
+
 .. automodule:: apps.i4p_base.models
    :members:
 

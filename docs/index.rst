@@ -11,6 +11,7 @@ Developer's Documentation
 .. toctree::
    :maxdepth: 2
 
+   settings.rst
    api.rst
 
 Administrator's documentation

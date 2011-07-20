@@ -4,6 +4,8 @@ Project Sheet
 Models
 ------
 
+.. image:: images/project_sheet_models.png
+
 .. automodule:: apps.project_sheet.models
    :members:
 
