@@ -14,6 +14,16 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
 
+APPS=project_sheet i4p_base member
+
+db_graphs:
+	@echo "Generating DB graphs"
+	@test -x images || mkdir images
+	@for app in $(APPS) ; do \
+		echo "\t* " $$app; \
+		../manage.py graph_models $$app -o images/"$$app"_models.png ; \
+	done
+
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
 	@echo "  html       to make standalone HTML files"
@@ -36,7 +46,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html:
+html: db_graphs
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
