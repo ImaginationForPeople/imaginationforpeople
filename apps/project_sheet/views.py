@@ -394,6 +394,19 @@ def project_sheet_member_delete(request, project_slug, username):
 
     return redirect(project_translation)
 
+def fields_diff(previous_version, current_version, versionned_fields):
+    """
+    Diff between two model fields
+    """
+    fields = []
+    previous_field_dict = previous_version.get_field_dict()
+    current_field_dict = current_version.get_field_dict()
+    for field, value in current_field_dict.iteritems():
+        if field in versionned_fields:
+            if field in previous_field_dict:
+                if previous_field_dict[field] != value:
+                    fields.append(current_version.content_type.model_class()._meta.get_field(field).verbose_name + '')
+    return fields
 
 def project_sheet_history(request, project_slug):
     """
@@ -418,41 +431,30 @@ def project_sheet_history(request, project_slug):
     versions = Version.objects.filter(Q(content_type=project_translation_ct,
                                         object_id=unicode(project_translation.id)) |
                                       Q(content_type=parent_project_ct,
-                                        object_id=unicode(parent_project.id))).order_by('revision__date_created')
+                                        object_id=unicode(parent_project.id))).order_by('-revision__date_created')
 
-    version_field_diff = {}
     project_translation_previous_version = None
     parent_project_previous_version = None
 
-    def fields_diff(previous_version, current_version, versionned_fields):
-        """
-        Diff between two model fields
-        """
-        fields = []
-        previous_field_dict = previous_version.get_field_dict()
-        current_field_dict = current_version.get_field_dict()
-        for field, value in current_field_dict.iteritems():
-            if field in versionned_fields and field in previous_field_dict and previous_field_dict[field] != value:
-                fields.append(version.content_type.model_class()._meta.get_field(field).verbose_name + '')
-        return fields
-
     for version in versions:
+        #Directly modify object in query set in order to keep order
         if version.content_type == project_translation_ct:
             if project_translation_previous_version:
-                version_field_diff[version] = fields_diff(project_translation_previous_version,
-                                                          version,
-                                                          VERSIONNED_FIELDS[project_translation_ct.model_class()])
+                version.diff = fields_diff(project_translation_previous_version,
+                                           version,
+                                           VERSIONNED_FIELDS[project_translation_ct.model_class()])
             project_translation_previous_version = version
-        elif version.content_type == parent_project_ct:
+        else:# version.content_type == parent_project_ct:
             if parent_project_previous_version:
-                version_field_diff[version] = fields_diff(parent_project_previous_version,
-                                                          version,
-                                                          VERSIONNED_FIELDS[parent_project_ct.model_class()])
+                version.diff = fields_diff(parent_project_previous_version,
+                                           version,
+                                           VERSIONNED_FIELDS[parent_project_ct.model_class()])
             parent_project_previous_version = version
+
 
     return render_to_response('project_sheet/history.html',
                               {'project_translation' : project_translation,
-                               'versions' : version_field_diff,
+                               'versions' : versions,
                                'history_tab' : True},
                               context_instance=RequestContext(request))
 

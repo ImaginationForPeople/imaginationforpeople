@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+
+{% block style %}
+    {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/filters.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/error_pages.css" />
+    {% endcompress %}
+{% endblock %}
+
+{% block extra_head %}
+  {{ block.super }}
+  
+  {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.cookie.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/filtersPanel.js"></script>
+  {% endcompress %}
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+    	$.cookie('i4p_bottom_panel', null, { expires: -1, path: '/' } );
+    });
+  </script>
+
+{% endblock %}
+
+{% block nav %}<div style="height:37px;"></div>{% endblock %}
+
+{% block content %}	
+
+    <div class="container_18">
+
+        <div id="error_page" class="page404">
+            <div id="error_page_content">
+                <h1>{% trans "Ooops!" %} </h1>
+                <br /> 
+                <p>
+                    {% trans "It seems the page you looking for doesn't exist..." %}<br />
+                    {% trans "Have you try using the search engine ?" %}<br />
+                    <br />
+                </p>
+                <a class="link" href="{% url i4p-index %}">{% trans "Back to home &gt;" %}</a>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+    </div>	
+
+{% endblock %}
+
+{% block footer %} {% include "bottom-panel.html" %}{% endblock %}
