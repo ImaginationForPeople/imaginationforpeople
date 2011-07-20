@@ -1,5 +1,6 @@
-from django.utils import translation
-
+"""
+Toolkit for a project sheet management
+"""
 from tagging.models import Tag
 
 from .models import I4pProject, I4pProjectTranslation
@@ -10,19 +11,6 @@ def create_parent_project():
     Create a parent project
     """
     return I4pProject.objects.create()
-
-def get_or_create_project(request, project_slug):
-    """
-    Get or create a project
-    If a creation is needed, only the base language version is created
-    """
-    try:
-        project = get_project(project_slug)
-    except I4pProject.DoesNotExist:
-        project = create_project(request)
-
-    return project
-
 
 def get_project_translation_by_slug(project_translation_slug, language_code):
     """

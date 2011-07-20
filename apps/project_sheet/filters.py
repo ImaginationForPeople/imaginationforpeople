@@ -1,3 +1,6 @@
+"""
+Filter framework
+"""
 from itertools import chain
 
 from django import forms

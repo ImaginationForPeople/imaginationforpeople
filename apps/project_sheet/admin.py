@@ -1,3 +1,6 @@
+"""
+Django Admin for a Project Sheet
+"""
 from django.contrib import admin
 
 from oembed_works.models import StoredOEmbedResponse

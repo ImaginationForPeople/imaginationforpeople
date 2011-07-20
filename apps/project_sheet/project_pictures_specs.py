@@ -1,9 +1,15 @@
+"""
+Specification for image manipulation throw imagekit
+"""
 from imagekit.specs import ImageSpec
 from imagekit import processors
 from imagekit.processors import ImageProcessor
 from imagekit.lib import ImageColor
 
 class Center(ImageProcessor):
+    """
+    Generic image centering processor
+    """
     width = None
     height = None
     background_color = '#000000'
@@ -12,6 +18,7 @@ class Center(ImageProcessor):
     def process(cls, img, fmt, obj):
         if cls.width and cls.height:
             background_color = ImageColor.getrgb(cls.background_color)
+            #FIXME : Image is not imported but it never raises exception so ...
             bg_picture = Image.new("RGB", (cls.width, cls.height), background_color)
 
             ## paste it
@@ -22,32 +29,45 @@ class Center(ImageProcessor):
             bg_picture.paste(img, (coord_x, coord_y, coord_x + img_w, coord_y + img_h))
         return bg_picture, fmt
 
-# first we define our thumbnail resize processor 
 class ResizeThumb(processors.Resize):
+    """
+    Resizing processor providing media thumbnail
+    """
     width = 95
     height = 65
     crop = True
 
-# first we define our thumbnail resize processor 
 class ResizeIDCard(processors.Resize):
+    """
+    Resizing processor providing profile ID card
+    """
     width = 137
     height = 71
     crop = True
 
-# now we define a display size resize processor
 class ResizeDisplay(processors.Resize):
+    """
+    Resizing processor for media gallery
+    """
     width = 700
 
 class PreResizeMosaic(processors.Resize):
+    """
+    Resizing processor for mosaic
+    """
     width = 200
 
 class CenterMosaic(processors.Resize):
+    #FIXME : semantic ? Center or Resize ?
     width = 40
     height = 40
     crop = True
 
 
 class CenterDisplay(Center):
+    """
+    Image centering processor for media gallery
+    """
     width = 700
     height = 460
 
@@ -59,13 +79,11 @@ class EnhanceThumb(processors.Adjustment):
     contrast = 1.2
     sharpness = 1.1
 
-# now we can define our thumbnail spec 
 class Thumbnail(ImageSpec):
     access_as = 'thumbnail_image'
     pre_cache = True
     processors = [ResizeThumb, EnhanceThumb]
 
-# and our display spec
 class Display(ImageSpec):
     access_as = 'display'
     increment_count = True
