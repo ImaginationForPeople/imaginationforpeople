@@ -6,16 +6,20 @@
 Imagination For People documentation!
 =====================================
 
-Contents:
-
-Application APIs
+Developer's Documentation
 
 .. toctree::
    :maxdepth: 2
 
-   i4p_base.rst
-   member.rst
-   project_sheet.rst
+   api.rst
+
+Administrator's documentation
+
+.. toctree::
+   :maxdepth: 2
+
+   deploying.rst
+
 
 Indices and tables
 ==================
