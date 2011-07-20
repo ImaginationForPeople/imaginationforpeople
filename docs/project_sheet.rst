@@ -7,6 +7,7 @@ Models
 .. automodule:: apps.project_sheet.models
    :members:
 
+
 Forms
 -----
 
@@ -26,4 +27,9 @@ Utils
 .. automodule:: apps.project_sheet.utils
    :members:
 
+URLs
+----
+
+.. literalinclude:: ../apps/project_sheet/urls.py
+	:language: python
 

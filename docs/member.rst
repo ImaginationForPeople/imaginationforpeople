@@ -24,3 +24,10 @@ Context Processors
 
 .. automodule:: apps.member.context_processors
    :members:
+
+URLs
+----
+
+.. literalinclude:: ../apps/member/urls.py
+        :language: python
+

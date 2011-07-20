@@ -18,3 +18,10 @@ Views
 
 .. automodule:: apps.i4p_base.views
    :members:
+
+URLs
+----
+
+.. literalinclude:: ../apps/i4p_base/urls.py
+        :language: python
+
