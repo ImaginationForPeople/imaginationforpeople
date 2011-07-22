@@ -123,8 +123,7 @@ def project_update_related(request, language_code, related_form, project_slug):
     return simplejson.dumps({})
 
 
-
-#dajaxice_functions.register(project_sheet_edit_field)
+# Dajax Registration
 dajaxice_functions.register(project_update_related)
 
 

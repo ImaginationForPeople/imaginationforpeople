@@ -1,11 +1,17 @@
-from django import forms
-from userena.forms import SignupForm
-from apps.i4p_base.utils import remove_accents
-from django.utils.translation import ugettext_lazy as _
-from django.contrib.auth.models import User
 import re
 
+from django import forms
+from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
+
+from userena.forms import SignupForm
+
+from apps.i4p_base.utils import remove_accents
+
 class I4PSignupForm(SignupForm):
+    """
+    Form to signup with first and last names
+    """
     first_name = forms.CharField(_(u'first name'))
     last_name = forms.CharField(_(u'last name'))
 

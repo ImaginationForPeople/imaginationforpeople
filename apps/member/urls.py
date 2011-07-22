@@ -5,8 +5,9 @@ from django.contrib.auth.decorators import login_required
 from userena import views as userena_views
 from userena import settings as userena_settings
 
-import views as member_views
 from apps.member.forms import I4PSignupForm
+
+import views as member_views
 
 urlpatterns = patterns('',
                        # Signup, signin and signout

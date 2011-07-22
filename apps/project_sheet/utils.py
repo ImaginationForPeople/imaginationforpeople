@@ -4,7 +4,9 @@ Toolkit for a project sheet management
 from tagging.models import Tag
 
 from .models import I4pProject, I4pProjectTranslation
-from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter, BestOfFilter, NameBaselineFilter
+from .filters import , BestOfFilter, NameBaselineFilter
+from .filters import ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter
+from .filters import ThemesFilterForm, WithMembersFilterForm
 
 def create_parent_project():
     """

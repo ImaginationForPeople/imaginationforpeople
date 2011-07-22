@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from django.http import QueryDict
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.utils import translation
 
 from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents, build_filters_and_context
-from django.http import QueryDict
 
 def homepage(request):
     """

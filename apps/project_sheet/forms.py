@@ -2,9 +2,8 @@
 Django Forms for a Project Sheet
 """
 from django import forms
-from django.forms.models import modelformset_factory
-
 from django.contrib.auth.models import User
+from django.forms.models import modelformset_factory
 
 from apps.i4p_base.models import Location
 
@@ -76,4 +75,8 @@ class ProjectMemberForm(forms.ModelForm):
 
     user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt= -1).order_by('username'))
 
-ProjectMemberFormSet = modelformset_factory(ProjectMember, extra=0, can_delete=True, fields=('role', 'comment'))
+ProjectMemberFormSet = modelformset_factory(ProjectMember, 
+                                            extra=0, 
+                                            can_delete=True, 
+                                            fields=('role', 'comment')
+                                            )
