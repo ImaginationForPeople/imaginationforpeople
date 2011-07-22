@@ -18,7 +18,8 @@ from reversion.models import Version
 
 from apps.project_sheet.utils import build_filters_and_context
 
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, ProjectMember, I4pProject, VERSIONNED_FIELDS
+from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
+from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
 from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm, ProjectReferenceFormSet
 from .forms import I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet

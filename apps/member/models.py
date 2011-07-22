@@ -1,12 +1,17 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
-from userena.models import UserenaLanguageBaseProfile
-from django_countries import CountryField
-from apps.i4p_base.models import Location
-from guardian.shortcuts import assign
 from django.db.models.signals import post_save
+from django.utils.translation import ugettext_lazy as _
+
+from django_countries import CountryField
+from guardian.shortcuts import assign
+from userena.models import UserenaLanguageBaseProfile
+
+from apps.i4p_base.models import Location
 
 class I4pProfile(UserenaLanguageBaseProfile):
+    """
+    Userena Profile with language switch
+    """
     GENDER_TYPE = (
        ('M', _('male')),
        ('F', _('female'))
