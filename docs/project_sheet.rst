@@ -22,6 +22,11 @@ Views
 .. automodule:: apps.project_sheet.views
    :members:
 
+Filters
+-------
+
+.. automodule:: apps.project_sheet.filters
+   :members:
 
 Utils
 -----
