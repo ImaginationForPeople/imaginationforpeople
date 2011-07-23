@@ -52,7 +52,7 @@ class FilterForm(forms.Form):
     Filter base class 
     """
     def apply_to(self, queryset, model_class):
-        raise NotYepImplementedException
+        raise NotImplementedError
 
 class ThemesFilterForm(FilterForm):
     """

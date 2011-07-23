@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.http import QueryDict
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils import translation
 

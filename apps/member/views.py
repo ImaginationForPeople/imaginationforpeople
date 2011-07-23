@@ -82,7 +82,7 @@ def signin(request,
                     name, value = cookies.split(";")[0].split("=")
                     response.set_cookie(name, value=value, domain=".imaginationforpeople.org")
 
-            except Exception, e:
+            except Exception:
                 # We don't care if it was not possible to login the user on the wiki
                 pass
 
