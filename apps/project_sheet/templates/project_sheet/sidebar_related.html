@@ -29,7 +29,7 @@
                     <ul id="themes_list">
                         {% tags_for_model project_sheet.I4pProjectTranslation as project_sheet_tags with counts %}
     
-                        {% for tag in project_sheet_tags %}
+                        {% for tag in project_sheet_tags|dictsortreversed:"count"|slice:":35" %}
                         <li value="{{ tag.count }}"><a href="javascript:;">{{ tag }}</a></li>
                         {% endfor %}
                     </ul>
