@@ -4,7 +4,7 @@ Toolkit for a project sheet management
 from tagging.models import Tag
 
 from .models import I4pProject, I4pProjectTranslation
-from .filters import , BestOfFilter, NameBaselineFilter
+from .filters import BestOfFilter, NameBaselineFilter
 from .filters import ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter
 from .filters import ThemesFilterForm, WithMembersFilterForm
 

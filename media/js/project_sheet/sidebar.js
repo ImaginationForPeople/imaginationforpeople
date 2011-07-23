@@ -89,11 +89,10 @@ $(document).ready(function() {
     
     
     $('#del_member_link').click(function (e) {
-		e.preventDefault();
-		var link = $(this).val();
-		confirm("Are you sure to want to delete this member ? ", function () {
-			console.log(link);
-			window.location.href = link;
-		});
+	e.preventDefault();
+	var link = $(this).val();
+	confirm("Are you sure to want to delete this member ?", function () {
+	    window.location.href = link;
 	});
+    });
 });
