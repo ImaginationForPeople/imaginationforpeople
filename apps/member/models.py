@@ -29,14 +29,15 @@ class I4pProfile(UserenaLanguageBaseProfile):
     location = models.OneToOneField(Location, verbose_name=_('location'), null=True, blank=True)
 
 
-def assign_good_profile_perm(sender, instance, created, **kwargs):
-    if created:
-        user = instance.user
-        assign('change_profile', user, instance)
-        assign('change_user', user, user)
+# XXX: userena should be enough
+# def assign_good_profile_perm(sender, instance, created, **kwargs):
+#     if created:
+#         user = instance.user
+#         assign('change_profile', user, instance)
+#         assign('change_user', user, user)
 
-post_save.connect(assign_good_profile_perm, I4pProfile)
+# post_save.connect(assign_good_profile_perm, I4pProfile)
 
-def init_good_profile_perm():
-    for profile in I4pProfile.objects.all():
-        assign_good_profile_perm(I4pProfile, profile, True)
+# def init_good_profile_perm():
+#     for profile in I4pProfile.objects.all():
+#         assign_good_profile_perm(I4pProfile, profile, True)
