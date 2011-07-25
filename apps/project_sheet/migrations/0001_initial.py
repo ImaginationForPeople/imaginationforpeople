@@ -65,7 +65,8 @@ class Migration(SchemaMigration):
             ('desc', self.gf('django.db.models.fields.CharField')(max_length=150, null=True, blank=True)),
             ('author', self.gf('django.db.models.fields.CharField')(max_length=150, null=True, blank=True)),
             ('source', self.gf('django.db.models.fields.CharField')(max_length=150, null=True, blank=True)),
-            ('license', self.gf('licenses.fields.LicenseField')()),
+            #('license', self.gf('licenses.fields.LicenseField')()),
+            ('license', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['licenses.License'], null=True, blank=True)),
         ))
         db.send_create_signal('project_sheet', ['ProjectPicture'])
 
