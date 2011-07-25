@@ -247,5 +247,6 @@ VERSIONNED_FIELDS = {
 }
 
 for model, fields in VERSIONNED_FIELDS.iteritems():
+    if not reversion.is_registered(model):
         reversion.register(model, fields=fields)
 
