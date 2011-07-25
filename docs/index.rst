@@ -11,6 +11,7 @@ Developer's Documentation
 .. toctree::
    :maxdepth: 2
 
+   setup_dev_env.rst
    settings.rst
    api.rst
 
@@ -19,6 +20,7 @@ Administrator's documentation
 .. toctree::
    :maxdepth: 2
 
+   server_setup.rst
    deploying.rst
 
 
