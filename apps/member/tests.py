@@ -1,8 +1,9 @@
 """
 Example on how to use tests for TDD
 """
+from django.test import TestCase
 
-class TestExample(object):
+class TestExample(TestCase):
     def setUp(self):
         pass
 

@@ -34,7 +34,7 @@ def get_project_translation_from_parent(parent, language_code, fallback_language
     except I4pProjectTranslation.DoesNotExist, e:
         if fallback_language:
             try:
-                project_translation = parent.translations.get(language_code=language_code)
+                project_translation = parent.translations.get(language_code=fallback_language)
             except I4pProjectTranslation.DoesNotExist, e:
                 if fallback_any:
                     project_translation = parent.translations.all()[0]
@@ -42,6 +42,8 @@ def get_project_translation_from_parent(parent, language_code, fallback_language
                     raise e
         else:
             raise e
+    except AttributeError:
+        raise I4pProject.DoesNotExist
 
     return project_translation
 
