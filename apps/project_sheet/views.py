@@ -27,7 +27,7 @@ def project_sheet_list(request):
     """
     language_code = translation.get_language()
 
-    data = request.GET
+    data = request.GET.copy()
 
     filter_forms, extra_context = build_filters_and_context(data)
 
@@ -62,6 +62,8 @@ def project_sheet_list(request):
         else:
             ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', 'slug')
 
+        if data.has_key('page'):
+            del data["page"]
         extra_context["getparams"] = data.urlencode()
         extra_context["orderparams"] = extra_context["getparams"]\
                                         .replace("order=creation", "")\
