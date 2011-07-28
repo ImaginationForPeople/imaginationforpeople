@@ -188,6 +188,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
+    'django.contrib.sitemaps',
     'django.contrib.messages',
     'django.contrib.admin',
     'django.contrib.comments',
@@ -228,7 +229,7 @@ LOCALEURL_USE_ACCEPT_LANGUAGE = True
 
 ### Lettuce
 LETTUCE_APPS = (
-    'apps',
+    'apps.project_sheet',
 )
 
 #Userena
@@ -289,8 +290,9 @@ LOGIN_URL = "/member/signin/"
 import re
 LOCALE_INDEPENDENT_PATHS = (
 	re.compile('^/js/dajax/.*$'),
-    re.compile('^/static/.*$'),
+        re.compile('^/static/.*$'),
         re.compile('^/robots.txt$'),
+        re.compile('^/sitemap.xml$'),
 	)
 
 ## Flags
