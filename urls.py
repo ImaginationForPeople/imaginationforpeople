@@ -8,12 +8,19 @@ import contact_form.views as contact_form_views
 
 from dajaxice.core import dajaxice_autodiscover
 
+from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
+
 # For server errors
 handler500 = 'django.views.defaults.server_error'
 handler404 = 'django.views.defaults.page_not_found'
 
 ## Admin
 admin.autodiscover()
+
+## Sitemaps
+sitemaps = {
+    'projects': I4pProjectTranslationSitemap(),
+    }
 
 urlpatterns = patterns('',
     url(r'^', include('apps.i4p_base.urls')),
@@ -31,7 +38,8 @@ urlpatterns = patterns('',
     url(r'^beta/', redirect_to, {'url': '/', 'permanent': True}),
     url(r'^normal_index$', redirect_to, {'url': '/', 'permanent': True}),
     
-    url('^robots.txt$', include('robots.urls')),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url('^robots\.txt$', include('robots.urls')),
 
     (r'^admin/', include(admin.site.urls)),
 )
