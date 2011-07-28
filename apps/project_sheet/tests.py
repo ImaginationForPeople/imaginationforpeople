@@ -120,18 +120,31 @@ class TestUtils(TestCase):
     def test_get_project_translations_from_parents(self):
         projects = I4pProject.objects.all()
 
-        # Get ONLY translations in french
+        # Get ONLY translations in french. All projects have a french
+        # translation so it has to work.
         translations = get_project_translations_from_parents(parents_qs=projects,
                                                              language_code='fr',
                                                              fallback_language=None,
                                                              fallback_any=False)
 
 
-        # Get translations in language 'kk'
-        translations = get_project_translations_from_parents(parents_qs=projects,
-                                                             language_code='kk',
-                                                             fallback_language=None,
-                                                             fallback_any=False)
+        # Get translations in language 'kk'. This language does not exist.
+        self.assertRaises(I4pProjectTranslation.DoesNotExist,
+                          get_project_translations_from_parents,
+                          parents_qs=projects,
+                          language_code='kk',
+                          fallback_language=None,
+                          fallback_any=False)
+
+        # Get translations in language 'zh'. Some sheets are not in
+        # chinese, so it should raise an exception.
+        self.assertRaises(I4pProjectTranslation.DoesNotExist,
+                          get_project_translations_from_parents,
+                          parents_qs=projects,
+                          language_code='kk',
+                          fallback_language=None,
+                          fallback_any=False)
+
 
         # Get translations in chinese ('zh') and in french if not found
         translations = get_project_translations_from_parents(parents_qs=projects,
@@ -166,6 +179,8 @@ class TestUtils(TestCase):
         self.assertEqual(second_project_translation.slug, 'new-project-2')
 
         self.assertNotEqual(project_translation.pk, second_project_translation.pk)
+
+        
 
 
         
