@@ -1,0 +1,35 @@
+body {
+  background-image: url("../images/home/home-bg.jpg");
+  background-position: top center;
+}
+
+#error_page {
+  width: 100%;
+  height: 485px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  position: relative;
+  top: -37px;
+  left: -2px;
+}
+#error_page #error_page_content {
+  position: absolute;
+  width: 49%;
+  right: 0px;
+  bottom: 120px;
+}
+#error_page #error_page_content h1 {
+  font-size: 40px;
+}
+#error_page #error_page_content p {
+  font-size: 18px;
+  color: white;
+}
+
+#error_page.page404 {
+  background-image: url("../images/404.jpg");
+}
+
+#error_page.page500 {
+  background-image: url("../images/500.jpg");
+}
