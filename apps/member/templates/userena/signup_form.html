@@ -1,15 +1,8 @@
-{% extends 'userena/base_userena.html' %}
+{% extends "userena/profile_base.html" %}
 {% load i18n %}
-{% load compress %}
 
 {% block title %}{% trans "Signup" %} | Imagination for People{% endblock %}
 
-{% block style %}
-  {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" />
-    {% endcompress %}
-{% endblock %}
 
 {% block content %}
 <div class="content">        
