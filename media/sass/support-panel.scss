@@ -17,12 +17,12 @@ a.trigger {
 
 a.trigger.left {
     left: 0;
-    @include border-radius(5px);
+    @include border-radius(5px 0px 0px 5px);
 }
 
  a.trigger.right {
     right: 0;
-    @include border-radius(5px);
+    @include border-radius(5px 0px 0px 5px);
  }
 
 a.trigger:hover {

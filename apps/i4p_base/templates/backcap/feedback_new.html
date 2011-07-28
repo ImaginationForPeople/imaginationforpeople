@@ -1,7 +1,6 @@
-{% extends "base.html" %}
+{% extends "backcap/feedback_base.html" %}
 
 {% load i18n %}
-{% load compress %}
 
 {% block javascript %}
   <script type="text/javascript">
@@ -27,14 +26,6 @@
      //});
  });
   </script>
-{% endblock %}
-
-
-{% block style %}
-  {% compress css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
-  {% endcompress %}
 {% endblock %}
 
 
