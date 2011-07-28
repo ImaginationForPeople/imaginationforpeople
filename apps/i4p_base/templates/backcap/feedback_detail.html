@@ -1,20 +1,13 @@
-{% extends "base.html" %}
+{% extends "backcap/feedback_base.html" %}
 
 {% load i18n %}
 {% load comments %}
-{% load compress %}
 {% load voting_tags %}
 
 {% block title %}
   {% trans "Feedback" %} &raquo; {{ feedback.title|capfirst|truncatewords:7 }}
 {% endblock %}
 
-{% block style %}
-  {% compress css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
-  {% endcompress %}
-{% endblock %}
 
 {% block javascript %}
 

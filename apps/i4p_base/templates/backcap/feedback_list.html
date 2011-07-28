@@ -1,19 +1,12 @@
-{% extends "base.html" %}
+{% extends "backcap/feedback_base.html" %}
 
 {% load i18n %}
 {% load voting_tags %}
-{% load compress %}
 
 {% block title %}
   {% trans "Help Center" %}
 {% endblock %}
 
-{% block style %}
-  {% compress css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
-  {% endcompress %}
-{% endblock %}
 
 {% block javascript %}
 
