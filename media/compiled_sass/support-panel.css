@@ -1,0 +1,84 @@
+a.trigger {
+  position: absolute;
+  background: #88bbd4 url(images/plus.png) 6% 55% no-repeat;
+  text-decoration: none;
+  font-size: 16px;
+  letter-spacing: -1px;
+  font-family: verdana, helvetica, arial, sans-serif;
+  color: #fff;
+  padding: 4px 12px 6px 24px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+a.trigger.left {
+  left: 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+a.trigger.right {
+  right: 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -khtml-border-radius: 5px;
+  border-radius: 5px;
+}
+
+a.trigger:hover {
+  background-color: #59B;
+}
+
+a.active.trigger {
+  background: #666666 url(images/minus.png) 6% 55% no-repeat;
+}
+
+.feedback-panel {
+  color: #CCC;
+  position: absolute;
+  display: none;
+  background: #000000;
+  height: auto;
+  z-index: 10000;
+}
+
+.feedback-panel.left {
+  left: 0;
+  padding: 20px 30px 20px 100px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+}
+
+.feedback-panel.right {
+  right: -80px;
+  padding: 20px 100px 20px 30px;
+  -moz-border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -o-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -khtml-border-radius: 15px;
+  border-radius: 15px;
+  background-color: #0C0C0C;
+  border-bottom: 1px solid black;
+  border-top: 1px solid #353535;
+  margin-top: 190px;
+}
+
+.feedback-panel p {
+  font-size: 11px;
+}
+
+.highlighted {
+  background-color: #ffff66;
+  color: #000;
+}

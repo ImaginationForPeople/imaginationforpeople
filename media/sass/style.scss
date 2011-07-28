@@ -115,7 +115,7 @@ img{
 	top:-1px;	
 	
 	@include shadow(4px, #a1a1a1); 
-	@include rounded(4px); 
+	@include border-radius(4px); 
     
     img{
         position:relative;
@@ -159,7 +159,7 @@ img{
 	top:4px;
 	font-style:normal;
 	
-	@include rounded(2px); 
+	@include border-radius(2px); 
 }
 
 
@@ -183,7 +183,7 @@ img{
 	text-decoration:none;
 	background-color:black;
 	
-	@include rounded(2px); 	
+	@include border-radius(2px); 	
     
 	position:absolute; 
 	right:19px; 
@@ -585,7 +585,7 @@ ul{
 	padding:3px;
 	padding-left:10px;
 	
-	@include rounded(5px); 
+	@include border-radius(5px); 
 	
 	background-image:url("../images/base/tools-bg.png");
 }
@@ -644,7 +644,7 @@ ul{
 	font-size:11px;
 	margin-top:3px;
 	margin-bottom:3px;
-    @include rounded(4px); 
+    @include border-radius(4px); 
 }
 
 #id_content{
