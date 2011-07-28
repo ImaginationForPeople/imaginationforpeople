@@ -1,11 +1,11 @@
 """
-Example on how to use tests for TDD
+TDD for i4p_base
 """
 from django.test import TestCase
 
-from .models import I4pProfile
+from .models import Location
 
-class TestExample(TestCase):
+class TestI4pBase(TestCase):
     def setUp(self):
         pass
 
@@ -18,6 +18,12 @@ class TestExample(TestCase):
         """
         pass
         
+
+
+
+
+
+
 
 
 
