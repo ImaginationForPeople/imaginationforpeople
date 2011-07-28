@@ -5,9 +5,10 @@ from django.test import TestCase
 
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 
-from utils import create_parent_project, get_project_translation_by_slug
-from utils import get_project_translation_from_parent, get_project_translations_from_parents
-from utils import create_project_translation
+from .utils import create_parent_project, get_project_translation_by_slug
+from .utils import get_project_translation_from_parent, get_project_translations_from_parents
+from .utils import create_project_translation, get_or_create_project_translation_by_slug
+from .utils import get_or_create_project_translation_from_parent
 
 class TestUtils(TestCase):
     fixtures = ["test_pjsheet"]
@@ -161,8 +162,10 @@ class TestUtils(TestCase):
 
 
     def test_create_project_translation(self):
+        ## Tests with no parent project
+
         # Create a new project sheet in french with a slug
-        project_translation = create_project_translation('fr',
+        project_translation = create_project_translation(language_code='fr',
                                                          parent_project=None,
                                                          default_title='new-project')
 
@@ -170,7 +173,7 @@ class TestUtils(TestCase):
         self.assertTrue(project_translation.pk > 0)
         
         # Try to create it again, the slug and model should be different
-        second_project_translation = create_project_translation('fr',
+        second_project_translation = create_project_translation(language_code='fr',
                                                                 parent_project=None,
                                                                 default_title='new-project')
 
@@ -180,8 +183,82 @@ class TestUtils(TestCase):
 
         self.assertNotEqual(project_translation.pk, second_project_translation.pk)
 
-        
+        # Create a project translation but with no given slug
+        project_translation = create_project_translation(language_code='fr',
+                                                         parent_project=None)
 
+        self.assertTrue(project_translation.pk > 0)
+
+        ## Tests with parent project
+        project_translation = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
+                                                              language_code='fr')
+
+        project = project_translation.project
+
+        # Request to create a translation that already exists. That should fail.
+        self.assertRaises(Exception,
+                          create_project_translation,
+                          language_code='fr',
+                          parent_project=project)
+
+        self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'fr']), 1)
+
+        
+        # Request to create a new translation
+        requested_translation = create_project_translation(language_code='es',
+                                                           parent_project=project)
+        
+        self.assertTrue(requested_translation.pk > 0)
+        self.assertEqual(requested_translation.language_code, 'es')
+        self.assertEqual(requested_translation.project, project)
+
+
+    def test_get_or_create_project_translation_by_slug(self):
+        project_translation = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
+                                                              language_code='fr')
+
+        project = project_translation.project
+
+        # Request to get or create a translation that already exists.
+        requested_translation = get_or_create_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
+                                                                          language_code='fr')
+
+        self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'fr']), 1)
+        self.assertEqual(requested_translation, project_translation)
+
+        # Request to get or create a translation that does not exist
+        new_translation = get_or_create_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
+                                                                    language_code='en',
+                                                                    parent_project=project,
+                                                                    default_title='Boby at the sea')
+
+        self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'en']), 1)
+        self.assertEqual(new_translation.slug, 'boby-a-la-mer')
+        self.assertEqual(new_translation.project, project)
+
+
+    def test_get_or_create_project_translation_from_parent(self):
+        project_translation = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
+                                                              language_code='fr')
+
+        project = project_translation.project
+
+
+        # already existing translation
+        requested_translation = get_or_create_project_translation_from_parent(parent_project=project,
+                                                                              language_code='fr')
+        
+        self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'fr']), 1)
+        self.assertEqual(requested_translation, project_translation)
+
+        # new translation
+        new_translation = get_or_create_project_translation_from_parent(parent_project=project,
+                                                                        language_code='pt',
+                                                                        default_title='New One')
+
+        self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'pt']), 1)
+        self.assertEqual(new_translation.slug, 'new-one')
+        self.assertEqual(new_translation.project, project)
 
         
 
