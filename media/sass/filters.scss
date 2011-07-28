@@ -12,7 +12,7 @@
     padding-bottom:5px;
     
     @include shadow(4px, black); 
-	@include rounded(4px);
+	@include border-radius(4px);
     position:absolute;
     right:0px;
     top:0px;
@@ -120,7 +120,7 @@
 .filters_box{
     background-color:#0e0e0e;
     
-    @include rounded(3px); 
+    @include border-radius(3px); 
     margin-bottom:10px;
 }
 
