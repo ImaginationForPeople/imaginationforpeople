@@ -17,7 +17,7 @@
     padding:10px;
     
     @include shadow(4px, black); 
-	@include rounded(4px);
+	@include border-radius(4px);
     
     position:fixed;
     width:80px;
@@ -78,7 +78,7 @@
     border-bottom:1px solid black;
     
     @include shadow(4px, black); 
-    @include rounded(4px);  
+    @include border-radius(4px);  
 	
     margin-top:12px;
     margin-bottom:12px;
@@ -232,7 +232,7 @@ div#feedback-sidebar {
     padding:10px;
     
     @include shadow(4px, black); 
-	@include rounded(4px);
+	@include border-radius(4px);
 }
 
 

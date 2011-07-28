@@ -17,12 +17,12 @@ a.trigger {
 
 a.trigger.left {
     left: 0;
-    @include rounded(5px);
+    @include border-radius(5px);
 }
 
  a.trigger.right {
     right: 0;
-    @include rounded(5px);
+    @include border-radius(5px);
  }
 
 a.trigger:hover {
@@ -45,13 +45,13 @@ a.active.trigger {
 .feedback-panel.left {
     left: 0;
     padding: 20px 30px 20px 100px;
-    @include rounded(15px);
+    @include border-radius(15px);
 }
 
 .feedback-panel.right {
     right:-80px;
     padding: 20px 100px 20px 30px;
-    @include rounded(15px);
+    @include border-radius(15px);
     background-color:#0C0C0C;
     border-bottom:1px solid black;
     border-top:1px solid #353535;

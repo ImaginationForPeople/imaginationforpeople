@@ -48,7 +48,7 @@
 }
 
 .arrondi{
-	@include rounded(2px); 
+	@include border-radius(2px); 
 }
 
 
@@ -140,7 +140,7 @@ a.info:hover span{
     font-weight:none;
     padding:5px;
 
-    @include rounded(4px); 
+    @include border-radius(4px); 
 }
 
 .greyblock table a.info:hover span{

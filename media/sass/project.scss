@@ -40,7 +40,7 @@ form{
     text-indent:10px;	
 
     @include georgia(28px); 
-    @include rounded(0px); 
+    @include border-radius(0px); 
 }
 
 #project_title_submit, #project_title_cancel{
@@ -85,7 +85,7 @@ form{
 	background-position:right bottom;
 	background-repeat:no-repeat;
 	
-	@include rounded(0px);
+	@include border-radius(0px);
     @include georgia(28px);
 	
 	border:0px;
@@ -375,7 +375,7 @@ form{
         padding:3px 4px;
         width:350px;
         
-        @include rounded(4px);
+        @include border-radius(4px);
     }
     
     select{
@@ -408,7 +408,7 @@ form{
                 border:1px solid #CCC8C8;
                 color:white;
                 
-                @include rounded(4px);	
+                @include border-radius(4px);	
             }
 
         }        
@@ -604,7 +604,7 @@ form{
 	padding:0px;
     
     @include georgia(25px);
-    @include rounded(0px);
+    @include border-radius(0px);
     
 	border:0px;
     padding-top:13px;
@@ -862,7 +862,7 @@ form{
 	padding-right:4px;
 	width:200px;
 	
-    @include rounded(4px);
+    @include border-radius(4px);
 }
 
 .precision{
@@ -1074,7 +1074,7 @@ ul#themes_tags li.tagit-choice {
     background-color: #CCC8C8;
     padding:5px;
     
-    @include rounded(4px);    
+    @include border-radius(4px);    
     @include georgia(14px);  
     
     font-style:normal;
@@ -1090,7 +1090,7 @@ ul#themes_tags li.tagit-choice {
     width: 730px;
     margin-bottom:15px;
     
-    @include rounded(4px);
+    @include border-radius(4px);
 }
 
 #themes_list li a {
