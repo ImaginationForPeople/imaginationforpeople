@@ -5,33 +5,23 @@
 
 {% block content_title %}<h2>{% trans 'New email' %}</h2>{% endblock %}
 
+{% block profile_type %}
+    <div id="profile" class="profile_edition">
+{% endblock %}
 
-{% block content %}
-<div class="content">        
-    <div class="container_18">
-        <div class="grid_18 alpha omega">
 
-            <div id="profile" class="profile_edition">
+{% block profile_content %}
                 
-                {% include "userena/profile_idbar.html" %}
-                
-                <div class="separator">
-                    <h2>
-                        {% trans 'New email' %}
-                    </h2>
-                </div>
-                
-                <p>{% blocktrans %}Your new email address is saved. You can continue using userena with this email.{% endblocktrans %}</p>
-                <br />
-                <a href="{% url userena_profile_detail request.user.username %}" class="link">{% trans "Back to my profile" %} &gt;</a>
-
-             
-            </div>
-            
-        </div>
-        <div class="clear"></div>
+    <div class="separator">
+        <h2>
+            {% trans 'New email' %}
+        </h2>
     </div>
-</div>
+    
+    <p>{% blocktrans %}Your new email address is saved. You can continue using userena with this email.{% endblocktrans %}</p>
+    <br />
+    <a href="{% url userena_profile_detail request.user.username %}" class="link">{% trans "Back to my profile" %} &gt;</a>
+ 
 {% endblock %}
 
 

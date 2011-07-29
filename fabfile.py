@@ -6,78 +6,102 @@ import os.path
 from fabric.api import *
 from fabric.contrib.files import *
 
-def commonenv():
-    "Base environment"
-    env.venvname = "imaginationforpeople.com"
-    env.projectname = "imaginationforpeople"
-    env.gitrepo = "ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git"
 
 def reloadapp():
-    "Touch the wsgi"
+    """
+    Touch the wsgi
+    """
     venvcmd('touch apache/%(wsginame)s' % env)
 
 
-def venvcmd(cmd, shell=True, user="webapp", pty=False, subdir=""):
+def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
+    if not user:
+        user = env.user
     with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
         return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
     
-def tests():
-    "Run all tests on remote"
-    venvcmd('./manage.py test')
-    venvcmd('./manage.py harvest --verbosity=2')
 
 def printenv():
-    "Print shell env"
+    """
+    Print shell env
+    """
     venvcmd('env')
 
-def syncdb():
-    venvcmd('./manage.py syncdb --noinput')
-    venvcmd('./manage.py migrate')
+## Server scenarios
+def commonenv():
+    """
+    Base environment
+    """
+    env.venvname = "imaginationforpeople.org"
+    env.projectname = "imaginationforpeople"
+    env.gitrepo = "ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git"
+
 
 def prodenv():
-    "production environment - Will need some work when moving to seperate server"
+    """
+    production environment - Will need some work when moving to seperate server
+    """
     commonenv()
-    env.venvname = "prod.imaginationforpeople.com"
+    env.venvname = "imaginationforpeople.org"
     env.wsginame = "prod.wsgi"
-    env.urlhost = "www.imaginationforpeople.com"
+    env.urlhost = "www.imaginationforpeople.org"
+    env.user = "web"
+    env.home = "www"
     require('venvname', provided_by=('commonenv',))
-    env.hosts = ['prod.imaginationforpeople.com']
-    env.gitrepo = "/var/repositories/imaginationforpeople.git"
-    env.venvbasepath = "/home/webapp/virtualenvs"
+    env.hosts = ['i4p-prod.imaginationforpeople.org']
+    env.gitrepo = "ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git"
+    env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
     
     
 def stagenv():
-    "Stagging environment"
+    """
+    Stagging environment
+    """
     commonenv()
     env.wsginame = "staging.wsgi"
     env.urlhost = "dev.imaginationforpeople.com"
+    env.user = "webapp"
+    env.home = "webapp"
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['dev.imaginationforpeople.com']
     env.gitrepo = "/var/repositories/imaginationforpeople.git"
-    env.venvbasepath = "/home/webapp/virtualenvs"
+    env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
 
-def build_env():
-    "Build the virtualenv"
+
+## Virtualenv
+def build_virtualenv():
+    """
+    Build the virtualenv
+    """
     require('venvfullpath', provided_by=('devenv', 'prodenv'))
     sudo('rm /tmp/distribute* || echo "ok"') # clean after hudson
     cmd = 'virtualenv --no-site-packages --distribute %(venvfullpath)s' % env
-    sudo(cmd, user="webapp")
+    sudo(cmd, user=env.user)
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
 
 def update_requirements():
-    "update external dependencies on remote host"
+    """
+    update external dependencies on remote host
+    """
     cmd = "pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env
-    sudo(cmd, user="webapp")
+    sudo(cmd, user=env.user)
 
 def fixperms():
     """
     fix permissions
     """
     with cd(env.venvfullpath):
-        sudo('chown :www-data -R %(projectname)s && chmod g+rw -R %(projectname)s' % env)
+        # sudo('chown :www-data -R %(projectname)s && chmod g+rw -R %(projectname)s' % env)
+        # FIXME: This SUCKS
+        pass
+
+## Django
+def syncdb():
+    venvcmd('./manage.py syncdb --noinput')
+    venvcmd('./manage.py migrate')
 
 def compile_messages():
     """
@@ -94,25 +118,31 @@ def compile_messages():
     fixperms()
     reloadapp()
 
+def tests():
+    """
+    Run all tests on remote
+    """
+    venvcmd('./manage.py test')
+    venvcmd('./manage.py harvest --verbosity=2')
+
+
 def deploy_bootstrap():
-    "Deploy the project the first time."
-    build_env()
+    """
+    Deploy the project the first time.
+    """
+    build_virtualenv()
     clonegitcmd = "git clone %(gitrepo)s %(projectname)s" % env
     with cd(env.venvfullpath):
-        sudo(clonegitcmd, user="webapp")
-    #fixperms()
-    compile_messages() # runs fixperms
-    update_requirements()
-    syncdb()
-    tests()
+        sudo(clonegitcmd, user=env.user)
 
+    fullupdate()
 
 def _updatemaincode():
     """
     Private : we don't want people updateing code without running tests
     """
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
-        sudo('git pull', user="webapp")
+        sudo('git pull', user=env.user)
     
 def fullupdate():
     """
@@ -122,17 +152,36 @@ def fullupdate():
     update_requirements()
     compile_messages()
     syncdb()
-    tests()
+    # tests()
     reloadapp()
 
 def update():
-    "Fast Update : project maincode"
+    """
+    Fast Update : project maincode
+    """
     _updatemaincode()
     compile_messages()
     syncdb()
-    tests()
+    # tests()
     reloadapp()
+
+## Webserver
+def configure_webserver():
+    """
+    Configure the webserver stack.
+    """
+    fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
+    sudo('cp %sapache/%s /etc/apache2/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
+    sudo('a2ensite %s' % env.urlhost)
+    check_or_install_logdir()
     
+def install_webserver():
+    """
+    Will install the webserver stack
+    """
+    sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
+    sudo('apt-get install nginx -y')
+
 def reload_webserver():
     """
     Reload the webserver stack.
@@ -146,37 +195,50 @@ def check_or_install_logdir():
     with cd(env.venvfullpath + '/'):
         sudo('mkdir -p logs/ ; chown www-data logs; chmod o+rwx logs ; pwd')
 
-def configure_webserver():
+
+## Database server
+def install_database_server():
     """
-    Configure the webserver stack.
+    Install a postgresql DB
     """
-    fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
-    sudo('cp %sapache/%s /etc/apache2/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
-    sudo('a2ensite %s' % env.urlhost)
-    check_or_install_logdir()
-    reload_webserver()
+    sudo('apt-get install -y postgresql-8.4 postgresql-8.4')
+
+def setup_database():
+    """
+    Create a user and a DB for the project
+    """
+    # FIXME: pg_hba has to be changed by hand (see doc)
+    # FIXME: Password has to be set by hand (see doc)
+    sudo('createuser %s -D -R -S' % env.projectname, user='postgres')
+    sudo('createdb -O%s %s' % (env.projectname, env.projectname), user='postgres')
     
-def install_webserver():
+## Server packages    
+def install_basetools():
     """
-    Will install the webserver stack (only apache for the moment. Could use varnish and nginx later on .. maybe)
+    Install required base tools
     """
-    sudo('apt-get install apache2-mpm-itk libapache2-mod-wsgi -y')
-    
-    
-def install_buildeps():
+    sudo('apt-get install -y python-virtualenv python-pip')
+    sudo('apt-get install -y git mercurial subversion')
+    sudo('apt-get install -y gettext')
+
+def install_builddeps():
     """
     Will install commonly needed build deps for pip django virtualenvs.
     """
-    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev')
+    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
+
 
 
 def meta_full_bootstrap():
     """
     For use on new, empty environnements
     """
+    install_basetools()
+    install_database_server()
     install_webserver()
-    install_buildeps()
+    install_builddeps()
     deploy_bootstrap()
+
     configure_webserver()
     reload_webserver()
 
