@@ -6,7 +6,7 @@ from django_countries import CountryField
 from guardian.shortcuts import assign
 from userena.models import UserenaLanguageBaseProfile
 
-from apps.i4p_base.models import Location
+from apps.i4p_base.models import Location, I4P_COUNTRIES
 
 class I4pProfile(UserenaLanguageBaseProfile):
     """
@@ -25,7 +25,9 @@ class I4pProfile(UserenaLanguageBaseProfile):
     twitter = models.URLField(verbose_name=_('twitter'), verify_exists=True, max_length=200, blank=True)
     facebook = models.URLField(verbose_name=_('facebook'), verify_exists=True, max_length=200, blank=True)
     address = models.TextField(null=True, blank=True)
-    country = CountryField(null=True, blank=True)
+    country = CountryField(null=True, blank=True, choices=I4P_COUNTRIES)
+
+    #FIXME:  USELESS ???
     location = models.OneToOneField(Location, verbose_name=_('location'), null=True, blank=True)
 
 

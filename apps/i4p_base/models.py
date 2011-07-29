@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_countries import CountryField
 
-COUNTRIES = (
+I4P_COUNTRIES = (
     ('AF', _(u'Afghanistan')),
     ('AX', _(u'\xc5land Islands')),
     ('AL', _(u'Albania')),
@@ -190,7 +190,7 @@ COUNTRIES = (
     ('RU', _(u'Russian Federation')),
     ('RW', _(u'Rwanda')),
     ('BL', _(u'Saint Barth\xe9lemy')),
-    ('SH', _(u'Saint Helena, Ascension and Tristan Da Cunha')),
+#    ('SH', _(u'Saint Helena, Ascension and Tristan Da Cunha')),
     ('KN', _(u'Saint Kitts and Nevis')),
     ('LC', _(u'Saint Lucia')),
     ('MF', _(u'Saint Martin')),
@@ -266,7 +266,7 @@ class Location(models.Model):
     lon = models.FloatField(verbose_name=_('longitude'),
                             null=True, blank=True)
 
-    country = CountryField(verbose_name=_('country'), choices=COUNTRIES,
+    country = CountryField(verbose_name=_('country'), choices=I4P_COUNTRIES,
                            null=True, blank=True)
 
     address = models.TextField(verbose_name=_('address'),
