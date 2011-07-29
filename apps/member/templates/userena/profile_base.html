@@ -10,4 +10,22 @@
   {% endcompress %}
 {% endblock %}
 
+{% block content %}
+    <div class="content"> 
+        <div class="container_18">
 
+        {% block profile_type %}
+            <div id="profile">
+        {% endblock %}
+
+            {% include "userena/profile_idbar.html" %}
+
+            {% block profile_content %}{% endblock %}
+
+
+            </div>
+
+        <div class="clear"></div>
+        </div>
+    </div>
+{% endblock %}

@@ -3,8 +3,8 @@
 
 /*---- Projects sorting ----*/
 
-#projectlist_sort{
-    background-color:#0c0c0c;
+#projectlist_sort {
+    background-color: #0c0c0c;
     border-top:1px solid #353535;
     border-bottom:1px solid black;
     padding:3px;
@@ -358,14 +358,22 @@
 
 #reset_filters{
     position:relative;
-    margin-left:15px;
     cursor:pointer;
     font-size:11px;
-    top:4px;
     display:inline;
     font-style:normal;
     font-family:Verdana,Arial,Helvetica,sans-serif;   
-    font-weight:normal;    
+    font-weight:normal;  
+    
+    img{
+        position:relative;
+        top:2px;
+        margin-right:5px;
+    }
+    
+    span{
+       text-decoration:underline;
+    }
 }
 
 #reset_filters:hover{

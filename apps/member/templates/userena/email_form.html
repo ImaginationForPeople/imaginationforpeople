@@ -3,33 +3,21 @@
 
 {% block title %}{% trans "Change email" %} | Imagination for People{% endblock %}
 
-{% block content %}
-<div class="content">        
-    <div class="container_18">
-        <div class="grid_18 alpha omega">
 
-            <div id="profile">
-
-
-                {% include "userena/profile_idbar.html" %}
+{% block profile_content %}
                 
-                <div class="separator">
-                    <h2>
-                        {% trans 'Change email' %}
-                    </h2>
-                </div>
-                <br /><p>{% trans 'Your current email address is the following:' %} <em>{{ user.email }}</em></p><br />
-                <form action="" method="post" id="email_change_form"  class="profile_edition">
-                  
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" class="button" value="{% trans "Change email" %}" />
-                </form>
-             
-            </div>
-            
-        </div>
-        <div class="clear"></div>
+    <div class="separator">
+        <h2>
+            {% trans 'Change email' %}
+        </h2>
     </div>
-</div>
+    <br />
+    <p>{% trans 'Your current email address is the following:' %} <em>{{ user.email }}</em></p><br />
+    <form action="" method="post" id="email_change_form"  class="profile_edition">
+      
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="button" value="{% trans 'Change email' %}" />
+    </form>
+             
 {% endblock %}
