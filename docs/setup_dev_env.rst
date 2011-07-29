@@ -16,7 +16,7 @@ Add this at the end of your "bin/activate" script::
 
 then, source it again and run::
 
-      gem install compass
+      gem install compass rb-inotify
 
 
 Running
@@ -25,5 +25,9 @@ Running
 To allow CSS (re)generation, use the following command while modifying
 CSSes::
 
-	compass watch media/
+   compass watch media/
+
+To run a one-time compilation, use::
+
+   compass compile media
 

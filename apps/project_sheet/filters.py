@@ -17,6 +17,7 @@ from tagging.models import TaggedItem, Tag
 from apps.project_sheet.models import ProjectMember
 
 from .models import I4pProjectTranslation, I4pProject
+from apps.i4p_base.models import I4P_COUNTRIES
 
 ORDER_CHOICES = (
      ('lte', '<='),
@@ -92,9 +93,9 @@ class WithMembersFilterForm(FilterForm):
     with_members = forms.BooleanField(required=False, label=_('With associated leaders'))
     without_members = forms.BooleanField(required=False, label=_('Without associated leaders'))
 
-    def apply_to(self, queryset, model_class):
+    def apply_to(self, queryset, model_class=None):
         qs = queryset
-        if model_class == I4pProject:
+        if qs.query.model == I4pProject:
             with_members = self.cleaned_data.get("with_members")
             without_members = self.cleaned_data.get("without_members")
             if with_members != without_members:
@@ -231,7 +232,7 @@ def current_countries():
                                            order_by('location__country').\
                                            values_list('location__country', flat=True)
     for country in project_countries:
-        for code, name in COUNTRIES:
+        for code, name in I4P_COUNTRIES:
             if country == code:
                 result.append((code, name))
                 break

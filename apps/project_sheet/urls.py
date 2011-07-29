@@ -19,6 +19,7 @@ urlpatterns = patterns('',
 
     url(r'^edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-instance-edit-field'),
+    url(r'^(?P<slug>[-\w]+)/edit/location/$', views.project_sheet_edit_location, name='project_sheet-instance-edit-location'),
 
     url(r'^(?P<project_slug>[-\w]+)/edit/references/$', views.project_sheet_edit_references, name='project_sheet-instance-edit-references'),
 
@@ -41,6 +42,7 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/del/video/(?P<vid_id>\d+)/$', views.project_sheet_del_video, name='project_sheet-instance-del-video'),
 
     url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
+    url(r'^(?P<project_slug>[-\w]+)/member/add/$', views.project_sheet_member_add, name='project_sheet-instance-add-member'),
 
     # Ajax views
     url(r'^start/ajax/field/save$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),

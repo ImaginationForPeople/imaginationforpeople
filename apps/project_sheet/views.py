@@ -101,32 +101,17 @@ def project_sheet_show(request, slug, add_media=False):
                                             slug=slug,
                                             language_code=language_code)
 
-    project_themes_form = I4pProjectThemesForm(instance=project_translation)
-    project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
-
-    # Member
-    project_member_form = ProjectMemberForm(request.POST or None)
-    if request.method == 'POST' and project_member_form.is_valid():
-        project_member = project_member_form.save(commit=False)
-        project_member.project = project_translation.project
-        project_member.save()
-
-    project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
-
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
                                            instance=project_translation.project)
     if request.method == 'POST' and project_info_form.is_valid():
         project_info_form.save()
 
-    # Location
-    project_location_form = I4pProjectLocationForm(request.POST or None,
-                                                   instance=project_translation.project.location)
-    if request.method == 'POST' and project_location_form.is_valid():
-        location = project_location_form.save()
-        if not project_translation.project.location:
-            project_translation.project.location = location
-            project_translation.project.save()
+    project_themes_form = I4pProjectThemesForm(instance=project_translation)
+    project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
+    project_member_form = ProjectMemberForm()
+    #project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
+    project_location_form = I4pProjectLocationForm(instance=project_translation.project.location)
 
     reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
 
@@ -138,7 +123,7 @@ def project_sheet_show(request, slug, add_media=False):
                'project_info_form': project_info_form,
                'project_location_form': project_location_form,
                'project_member_form': project_member_form,
-               'project_member_formset': project_member_formset,
+               #'project_member_formset': project_member_formset,
                'project_tab' : True}
 
     if add_media:
@@ -177,6 +162,28 @@ def project_sheet_create_translation(request, project_slug, requested_language_c
 
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     return redirect(chlocale(url, requested_language_code))
+
+def project_sheet_edit_location(request, slug):
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    # Location
+    project_location_form = I4pProjectLocationForm(request.POST,
+                                                   instance=project_translation.project.location)
+
+    if request.method == 'POST' and project_location_form.is_valid():
+        location = project_location_form.save()
+        if not project_translation.project.location:
+            project_translation.project.location = location
+            project_translation.project.save()
+
+    return redirect(project_translation)
 
 
 def project_sheet_edit_field(request, field, slug=None):
@@ -377,6 +384,26 @@ def project_sheet_edit_references(request, project_slug):
     next_url = request.POST.get("next", None)
     if next_url:
         return HttpResponseRedirect(next_url)
+
+    return redirect(project_translation)
+
+
+def project_sheet_member_add(request, project_slug):
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    if request.method == 'POST' :
+        project_member_form = ProjectMemberForm(request.POST)
+        if project_member_form.is_valid():
+            project_member = project_member_form.save(commit=False)
+            project_member.project = project_translation.project
+            project_member.save()
 
     return redirect(project_translation)
 

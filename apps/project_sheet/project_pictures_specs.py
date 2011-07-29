@@ -4,7 +4,8 @@ Specification for image manipulation throw imagekit
 from imagekit.specs import ImageSpec
 from imagekit import processors
 from imagekit.processors import ImageProcessor
-from imagekit.lib import ImageColor
+from imagekit.lib import ImageColor, Image
+
 
 class Center(ImageProcessor):
     """
