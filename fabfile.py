@@ -12,6 +12,7 @@ def reloadapp():
     """
     Touch the wsgi
     """
+    print(cyan('Reloading the application'))
     venvcmd('touch apache/%(wsginame)s' % env)
 
 
@@ -84,10 +85,10 @@ def build_virtualenv():
     """
     Build the virtualenv
     """
+    print(cyan('Creating a fresh virtualenv'))
     require('venvfullpath', provided_by=('devenv', 'prodenv'))
     sudo('rm /tmp/distribute* || echo "ok"') # clean after hudson
-    cmd = 'virtualenv --no-site-packages --distribute %(venvfullpath)s' % env
-    sudo(cmd, user=env.user)
+    run('virtualenv --no-site-packages --distribute %(venvfullpath)s' % env)
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
 
@@ -95,8 +96,8 @@ def update_requirements():
     """
     update external dependencies on remote host
     """
-    cmd = "pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env
-    sudo(cmd, user=env.user)
+    print(cyan('Updating requirements using PIP'))
+    run("pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env)
 
 def fixperms():
     """
@@ -109,6 +110,7 @@ def fixperms():
 
 ## Django
 def syncdb():
+    print(cyan('Synching Django database'))
     venvcmd('./manage.py syncdb --noinput')
     venvcmd('./manage.py migrate')
 
@@ -117,6 +119,7 @@ def collect_static_files():
     """
     Collect static files such as pictures
     """
+    print(cyan('Collecting static files'))
     venvcmd('./manage.py collectstatic --noinput')
 
 def compile_messages():
@@ -125,12 +128,12 @@ def compile_messages():
     """
     apps = venvcmd('ls -d */', subdir="apps").split("\n")
     cmd = "django-admin.py compilemessages -v0"
-    print "Need to compile i18n messages for the following apps:", apps
+    print(cyan('Compiling i18 messages for the following apps: %s' % apps))
     for app in apps:
         appsubdir = 'apps/%s' % app
         cwd = venvcmd('pwd', subdir=appsubdir)
         if exists(cwd + '/locale'):
-            print cmd, 'in', appsubdir
+            print(cyan('\t * %s' % appsubdir))
             venvcmd(cmd, subdir=appsubdir)
     fixperms()
     reloadapp()
@@ -139,7 +142,10 @@ def tests():
     """
     Run all tests on remote
     """
+    print(cyan('Running TDD tests'))
     venvcmd('./manage.py test')
+
+    print(cyan('Running BDD tests'))
     venvcmd('./manage.py harvest --verbosity=2')
 
 
@@ -149,6 +155,7 @@ def deploy_bootstrap():
     """
     build_virtualenv()
 
+    print(cyan('Cloning Git repository'))
     with cd(env.venvfullpath):
         run("git clone %(gitrepo)s %(projectname)s" % env)
         run("git fetch origin %s" % env.gitbranch)
@@ -160,9 +167,10 @@ def _updatemaincode():
     Private : we don't want people updating the code without running
     tests
     """
+    print(cyan('Updating Git repository'))
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
         run('git checkout %s' % env.gitbranch)
-        sudo('git pull origin %s' % env.gitbranch, user=env.user)
+        run('git pull origin %s' % env.gitbranch)
     
 def fullupdate():
     """
@@ -193,15 +201,16 @@ def configure_webservers():
     Configure the webserver stack.
     """
     # apache
+    print(cyan('Configuring Apache'))
     fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
     sudo('cp %sapache/%s /etc/apache2/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
     sudo('a2ensite %s' % env.urlhost)
 
     # nginx
-    with cd('/etc/nginx/sites-enabled/'):
-        sudo('ln -s ../sites-available/%s .' % env.urlhost)
-        
+    print(cyan('Configuring Nginx'))
     sudo('cp %snginx/%s /etc/nginx/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
+    with cd('/etc/nginx/sites-enabled/'):
+        sudo('ln -sf ../sites-available/%s .' % env.urlhost)
 
     # Fix log dir
     check_or_install_logdir()
@@ -211,6 +220,7 @@ def install_webservers():
     """
     Install the webserver stack
     """
+    print(cyan('Installing web servers'))
     sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
     sudo('apt-get install nginx -y')
 
@@ -218,18 +228,19 @@ def reload_webservers():
     """
     Reload the webserver stack.
     """
-    print(cyan("reloading apache"))
+    print(cyan("Reloading apache"))
     # Apache
     sudo('apache2ctl -k graceful')
 
     # Nginx
-    print(cyan("reloading nginx"))
+    print(cyan("Reloading nginx"))
     sudo('/etc/init.d/nginx restart')
     
 def check_or_install_logdir():
     """
     Make sure the log directory exists and has right mode and ownership
     """
+    print(cyan('Installing a log dir'))
     with cd(env.venvfullpath + '/'):
         sudo('mkdir -p logs/ ; chown www-data logs; chmod o+rwx logs ; pwd')
 
@@ -239,6 +250,7 @@ def install_database_server():
     """
     Install a postgresql DB
     """
+    print(cyan('Installing Postgresql'))
     sudo('apt-get install -y postgresql-8.4 postgresql-8.4')
 
 def setup_database():
@@ -255,6 +267,7 @@ def install_basetools():
     """
     Install required base tools
     """
+    print(cyan('Installing base tools'))
     sudo('apt-get install -y python-virtualenv python-pip')
     sudo('apt-get install -y git mercurial subversion')
     sudo('apt-get install -y gettext')
@@ -263,6 +276,7 @@ def install_builddeps():
     """
     Will install commonly needed build deps for pip django virtualenvs.
     """
+    print(cyan('Installing compilers and required libraries'))
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
 
