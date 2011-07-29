@@ -93,9 +93,9 @@ class WithMembersFilterForm(FilterForm):
     with_members = forms.BooleanField(required=False, label=_('With associated leaders'))
     without_members = forms.BooleanField(required=False, label=_('Without associated leaders'))
 
-    def apply_to(self, queryset, model_class):
+    def apply_to(self, queryset, model_class=None):
         qs = queryset
-        if model_class == I4pProject:
+        if qs.query.model == I4pProject:
             with_members = self.cleaned_data.get("with_members")
             without_members = self.cleaned_data.get("without_members")
             if with_members != without_members:
