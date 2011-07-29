@@ -163,7 +163,6 @@ INSTALLED_APPS = (
     'dajax',
     'south',
     'django_nose',
-    'lettuce.django',
     'django_extensions',
     'userena',
     'guardian',
@@ -226,13 +225,7 @@ USERENA_MUGSHOT_SIZE = 160
 PREFIX_DEFAULT_LOCALE = True
 LOCALEURL_USE_ACCEPT_LANGUAGE = True
 
-
-### Lettuce
-LETTUCE_APPS = (
-    'apps.project_sheet',
-)
-
-#Userena
+# Userena
 ANONYMOUS_USER_ID = -1
 AUTH_PROFILE_MODULE = 'member.I4pProfile'
 
