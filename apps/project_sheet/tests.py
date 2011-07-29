@@ -9,7 +9,7 @@ from .utils import create_parent_project, get_project_translation_by_slug
 from .utils import get_project_translation_from_parent, get_project_translations_from_parents
 from .utils import create_project_translation, get_or_create_project_translation_by_slug
 from .utils import get_or_create_project_translation_from_parent
-from .filters import ThemesFilterForm, FilterSet
+from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm
 
 
 class TestUtils(TestCase):
@@ -294,7 +294,6 @@ class TestFilters(TestCase):
         self.assertTrue(theme_filter.is_valid())
 
         filters = FilterSet([theme_filter])
-
         result = filters.apply_to(queryset=I4pProjectTranslation.objects.all())
         self.assertEqual(result.count(), 1)
         self.assertTrue(isinstance(result[0], I4pProjectTranslation))
@@ -302,12 +301,38 @@ class TestFilters(TestCase):
         # No filter return the same queryset as in input
         theme_filter = ThemesFilterForm(QueryDict('themes='))
         filters = FilterSet([theme_filter])
-
         self.assertEquals(filters.is_valid(), theme_filter.is_valid())
 
         queryset = I4pProjectTranslation.objects.all()
         result = filters.apply_to(queryset=queryset)
         self.assertEquals(result, queryset)
+
+    def test_members_filter(self):
+#        [{'project__id': 1, 'slug': u'boby-a-la-mer'}, 
+#        {'project__id': 2, 'slug': u'le-titre-du-projet'}, 
+#        {'project__id': 3, 'slug': u'youpi'}, 
+#        {'project__id': 4, 'slug': u'project_test2'},
+#        {'project__id': 1, 'slug': u'boby-a-la-playa'},
+#        {'project__id': 1, 'slug': u'boby-a-la-mer'}]
+
+        member_cases = [
+            #(with_members, without_members, project ids)
+            ("on", "on", [1, 2, 3, 4]),
+            ("on", "", [2, 3]),
+            ("", "on", [1, 4]),
+            ("", "", [1, 2, 3, 4]),
+        ]
+
+        for member_case in member_cases:
+            members_filter = WithMembersFilterForm(QueryDict('with_members=%s&without_members=%s' % (member_case[0],
+                                                                                                     member_case[1])))
+
+            self.assertTrue(members_filter.is_valid())
+            filters = FilterSet([members_filter])
+            results = filters.apply_to(queryset=I4pProject.objects.all())
+            for res in results.values_list('id', flat=True):
+                self.assertTrue(res in member_case[2], "%s not in %s" % (res, member_case[2]))
+
 
 
 
