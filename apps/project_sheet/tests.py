@@ -1,8 +1,10 @@
 """
 Example on how to use tests for TDD
 """
-from django.test import TestCase
+from django.db import DatabaseError
 from django.http import QueryDict
+from django.test import TestCase
+
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 
 from .utils import create_parent_project, get_project_translation_by_slug
@@ -198,7 +200,7 @@ class TestUtils(TestCase):
         project = project_translation.project
 
         # Request to create a translation that already exists. That should fail.
-        self.assertRaises(Exception,
+        self.assertRaises(DatabaseError,
                           create_project_translation,
                           language_code='fr',
                           parent_project=project)
@@ -207,11 +209,11 @@ class TestUtils(TestCase):
 
 
         # Request to create a new translation
-        requested_translation = create_project_translation(language_code='es',
+        requested_translation = create_project_translation(language_code='pt',
                                                            parent_project=project)
 
         self.assertTrue(requested_translation.pk > 0)
-        self.assertEqual(requested_translation.language_code, 'es')
+        self.assertEqual(requested_translation.language_code, 'pt')
         self.assertEqual(requested_translation.project, project)
 
 
@@ -235,7 +237,7 @@ class TestUtils(TestCase):
                                                                     default_title='Boby at the sea')
 
         self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'en']), 1)
-        self.assertEqual(new_translation.slug, 'boby-a-la-mer')
+        self.assertEqual(new_translation.slug, 'boby-at-the-sea')
         self.assertEqual(new_translation.project, project)
 
 

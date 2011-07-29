@@ -1,6 +1,8 @@
 """
 Toolkit for a project sheet management
 """
+from django.db import DatabaseError
+
 from tagging.models import Tag
 
 from .models import I4pProject, I4pProjectTranslation
@@ -70,10 +72,17 @@ def create_project_translation(language_code, parent_project=None, default_title
     if not parent_project:
         parent_project = create_parent_project()
 
+    try:
+        I4pProjectTranslation.objects.get(project=parent_project,
+                                          language_code=language_code)
+        raise DatabaseError('This translation already exist')
+    except I4pProjectTranslation.DoesNotExist:
+        pass
+
     if default_title:
         project_translation = I4pProjectTranslation.objects.create(project=parent_project,
                                                                    language_code=language_code,
-                                                                   title=default_title)
+                                                                   title=default_title)            
     else:
         project_translation = I4pProjectTranslation.objects.create(project=parent_project,
                                                                    language_code=language_code)
