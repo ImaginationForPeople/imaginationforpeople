@@ -5,18 +5,12 @@ from django.test import TestCase
 
 from .models import Location
 
-class TestI4pBase(TestCase):
-    def setUp(self):
-        pass
+from .templatetags.i4p_tags import url_target_blank
 
-    def tearDown(self):
-        pass
-
-    def test_something(self):
-        """
-        That must start with test_
-        """
-        pass
+class TestI4pBaseTags(TestCase):
+    def test_url_target_blank(self):
+        res = url_target_blank("<a href='plop.html'>coin</a>")
+        self.assertEqual(res, """<a target="_blank" href='plop.html'>coin</a>""")
         
 
 

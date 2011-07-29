@@ -4,8 +4,6 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
-import contact_form.views as contact_form_views
-
 from dajaxice.core import dajaxice_autodiscover
 
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
@@ -33,8 +31,6 @@ urlpatterns = patterns('',
     # Static pages
     url(r'^pages/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
     url(r'^pages/project-description/$', direct_to_template, {'template': 'project-description.html'}, name='project-description'),
-    url(r'^pages/contact/$', contact_form_views.contact_form, name='contact_form'),
-    url(r'^pages/contact/sent$', redirect_to, {'url': '/beta/sent/', 'permanent': False}, name='contact_form_sent'),
     url(r'^beta/', redirect_to, {'url': '/', 'permanent': True}),
     url(r'^normal_index$', redirect_to, {'url': '/', 'permanent': True}),
     
