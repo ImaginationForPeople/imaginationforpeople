@@ -28,9 +28,10 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
 
     url(r'^(?P<slug>[-\w]+)/$', views.project_sheet_show, name='project_sheet-show'),
+    url(r'^(?P<slug>[-\w]+)/add/media/$', views.project_sheet_show, {'add_media' : True}, name='project_sheet-instance-add-media'),
 
     url(r'^add/media/$', views.project_sheet_add_media, name='project_sheet-add-media'),
-    url(r'^(?P<slug>[-\w]+)/add/media/$', views.project_sheet_add_media, name='project_sheet-instance-add-media'),
+
     url(r'^add/picture/$', views.project_sheet_add_picture, name='project_sheet-add-picture'),
     url(r'^(?P<slug>[-\w]+)/add/picture/$', views.project_sheet_add_picture, name='project_sheet-instance-add-picture'),
     url(r'^add/video/$', views.project_sheet_add_video, name='project_sheet-add-video'),
