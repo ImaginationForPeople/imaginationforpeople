@@ -1,6 +1,6 @@
-============
+************
 Server Setup
-============
+************
 
 This document assumes the server is running the following OS :
 
@@ -9,34 +9,74 @@ Debian GNU/Linux 6.0 (Squeeze) / AMD64
 We also assume to have a user called **web** which handles the Django
 application.
 
-Bootstrap
-=========
+First deployement
+*****************
 
-As **root**, install virtualenv::
+Make sure the **web** user can access the main git repository on the
+developement server using a RSA key.
 
-  # apt-get install python-virtualenv python-pip
+To install for the first time on a production environement, run::
 
-We also need the versioning tools::
+   fab prodenv meta_full_bootstrap
 
-  # apt-get install git mercurial subversion
+Web servers configuration
+*************************
 
-
-Web servers
-===========
-
+======
 Apache
-------
+======
 
-We run *Django* using Apache2/WSGI::
+We run *Django* using Apache2/WSGI.
 
-   # apt-get install apache2-mpm-prefork libapache2-mod-wsgi
+Production configuration file
+=============================
 
+.. literalinclude:: ../apache/prod.imaginationforpeople.org
+   :linenos:
+
+Staging configuration file
+==========================
+
+.. literalinclude:: ../apache/staging.imaginationforpeople.org
+   :linenos:
+
+=====
 Ngnix
------
+=====
 
-Static files are handled by Nginx::
+Static files are handled by Nginx.
 
-   # apt-get install nginx
+
+Database server configuration
+*****************************
+
+==========
+Postgresql
+==========
+
+Access control
+==============
+
+From the file '/etc/postgresql/8.4/main/pg_hba.conf', update the
+following line::
+
+  # "local" is for Unix domain socket connections only
+  local   all         all                       ident
+
+with::
+
+  # "local" is for Unix domain socket connections only
+  local   all         all                       md5
+
+
+User password
+=============
+
+Change the 'imaginationforpeople' user password using the following
+commands::
+
+  web@i4p-prod:~$ sudo su postgres -c psql template1
+  postgres=# ALTER USER imaginationforpeople with PASSWORD 'THE-NEW-PASSWORD';
 
 
 Setting-up the app

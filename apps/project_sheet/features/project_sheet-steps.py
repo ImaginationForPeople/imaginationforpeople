@@ -6,19 +6,11 @@ from lettuce.django import django_url
 
 from nose.tools import assert_equals
 
-from tagging.utils import parse_tag_input
+from lettuce import *
+from radish.features import base
+from radish.settings import *
 
 from apps.project_sheet.models import I4pProject
-
-@before.all
-def setup_env():
-    world.project_slug = 'a-sample-project'
-
-    world.browser = Client()
-    world.edit_theme_url = django_url(reverse('project_sheet-instance-edit-themes', args=(world.project_slug,)))
-
-    project = I4pProject.objects.create(slug=world.project_slug)
-
 
 @step(r'I want to change the themes of my project')
 def project_sheet_change_theme(step):
