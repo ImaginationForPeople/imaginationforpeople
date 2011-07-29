@@ -58,7 +58,7 @@
                         {% comment %} Displaying checkboxes differently {% endcomment %}
                         {% if field.name == 'remember_me' %}
                         <p class="checkbox">
-                            <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                            <label for="id_{{ field.name }}">{{ field }} {{ field.label|capfirst }}</label>
                         </p>
                         {% else %}
                         <p>
