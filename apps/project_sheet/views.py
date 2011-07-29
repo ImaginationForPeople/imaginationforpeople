@@ -75,7 +75,7 @@ def project_sheet_list(request):
                                         .replace("order=creation", "")\
                                         .replace("order=modification", "")
 
-        extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].get_tags()]
+        extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].cleaned_data["themes"]]
 
     else:
         pass
