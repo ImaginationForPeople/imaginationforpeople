@@ -28,10 +28,22 @@ Apache
 
 We run *Django* using Apache2/WSGI.
 
+The following changes are still needed by hand before deploying, in
+'ports.conf'. Replace::
+	
+	NameVirtualHost *:80
+	Listen 80
+
+by::
+
+	NameVirtualHost *:8281
+	Listen 8281
+	
+
 Production configuration file
 =============================
 
-.. literalinclude:: ../apache/prod.imaginationforpeople.org
+.. literalinclude:: ../apache/www.imaginationforpeople.org
    :linenos:
 
 Staging configuration file
