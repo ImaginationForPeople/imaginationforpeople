@@ -37,7 +37,7 @@ class FilterSet(object):
             res &= filt.is_valid()
         return res
 
-    def apply_to(self, queryset, model_class):
+    def apply_to(self, queryset, model_class=None):
         qs = queryset
         for filter in self.forms:
             qs = filter.apply_to(qs, model_class)
@@ -51,7 +51,7 @@ class FilterForm(forms.Form):
     """
     Filter base class 
     """
-    def apply_to(self, queryset, model_class):
+    def apply_to(self, queryset, model_class=None):
         raise NotImplementedError
 
 class ThemesFilterForm(FilterForm):
@@ -60,20 +60,29 @@ class ThemesFilterForm(FilterForm):
     """
     themes = forms.CharField(required=False, label=_("Themes contain"))
 
-    def get_tags(self):
-        data = self.cleaned_data
-        if data.get("themes"):
-            tag_ids = [int(x) for x in data.get("themes").split(',')]
-            return Tag.objects.filter(id__in=tag_ids)
-        return []
+    def clean_themes(self):
+        data = self.cleaned_data.get('themes', '')
+        themes = []
+        if data:
+            for tag_ids in data.split(','):
+                try:
+                    tag_id = int(tag_ids)
+                    tag = Tag.objects.filter(id=tag_id)
+                    themes.extend(tag)
+                except ValueError:
+                    raise forms.ValidationError("Must be an integer id");
+                except Tag.DoesNotExist:
+                    raise forms.ValidationError("Unknown theme");
+        return themes
 
-    def apply_to(self, queryset, model_class):
-        if model_class == I4pProjectTranslation:
-            tags = self.get_tags()
+    # TODO model_class is useless
+    def apply_to(self, queryset, model_class=None):
+        qs = queryset
+        if qs.query.model == I4pProjectTranslation:
+            tags = self.cleaned_data.get("themes")
             if tags:
-                return TaggedItem.objects.get_union_by_model(queryset, tags)
-
-        return queryset
+                qs = TaggedItem.objects.get_union_by_model(queryset, tags)
+        return qs
 
 class WithMembersFilterForm(FilterForm):
     """

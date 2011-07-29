@@ -17,8 +17,6 @@
                 <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
             </ul>
           
-            <a href="{% url project_sheet-list %}" id="reset_filters">{% trans "reset filtering"|capfirst %}</a>
-
             {% include "search.html" %}
               
               
@@ -44,17 +42,26 @@
         
           <form id="filter_form" action="{% url project_sheet-list %}" method="get">
                     <input type="hidden" name="order" value="{{order}}" />
+                    
                     <div class="grid_6 alpha">
-                        <div class="filtersbox_content">
-                            <h4>{% trans "Themes" %}</h4>
-                            <!-- <a class="invert">{% trans "invert" %}</a> -->
-                            <ul id="cloudtag_list">
-                                {% for tag in project_sheet_tags|slice:":35" %}
-                                    <li><a class="tag_link {%if tag.id in selected_tags%}selected{% endif %}" title="{% blocktrans with count=tag.count %}{{ count }} project sheets{% endblocktrans %}" href="javascript:;" id="tag_{{tag.id}}">{{ tag|capfirst }}</a></li>
-                                {% endfor %}                    
-                            </ul>
-                            {{themes_filter.themes.as_hidden}}
-                            
+                        <div class="grid_6 alpha filters_box">
+                            <div class="filtersbox_content">
+                                <a href="{% url project_sheet-list %}" id="reset_filters"><img src="{{ STATIC_URL }}images/project/reset-picto.png" /><span>{% trans "Clear filters"|capfirst %}</span></a>
+                            </div>
+                        </div>
+                        
+                        <div class="grid_6 alpha ">
+                            <div class="filtersbox_content">
+                                <h4>{% trans "Themes" %}</h4>
+                                <!-- <a class="invert">{% trans "invert" %}</a> -->
+                                <ul id="cloudtag_list">
+                                    {% for tag in project_sheet_tags|slice:":33" %}
+                                        <li><a class="tag_link {%if tag.id in selected_tags%}selected{% endif %}" title="{% blocktrans with count=tag.count %}{{ count }} project sheets{% endblocktrans %}" href="javascript:;" id="tag_{{tag.id}}">{{ tag|capfirst }}</a></li>
+                                    {% endfor %}                    
+                                </ul>
+                                {{themes_filter.themes.as_hidden}}
+                                
+                            </div>
                         </div>
                     </div>
                     
