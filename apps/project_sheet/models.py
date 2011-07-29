@@ -106,7 +106,7 @@ class I4pProjectTranslation(models.Model):
         ("FULL", _("Complete")),
     ]
     class Meta:
-        unique_together = ('project', 'language_code', 'slug')
+        unique_together = ('language_code', 'slug')
 
     project = models.ForeignKey(I4pProject, related_name='translations')
 
