@@ -262,6 +262,50 @@ class TestUtils(TestCase):
 
         
 
+class TestFilters(TestCase):
+    fixtures = ["test_pjsheet"]
+
+
+    def setUp(self):
+        pass
+
+    def tearDown(self):
+        pass
+
+    def test_themes_filter(self):
+
+        # "themes" param must be a list of comma separated integer
+        theme_filter = ThemesFilterForm(QueryDict('themes=Coin'))
+        self.assertFalse(theme_filter.is_valid())
+
+        theme_filter = ThemesFilterForm(QueryDict('themes=Coin,Plop'))
+        self.assertFalse(theme_filter.is_valid())
+
+        theme_filter = ThemesFilterForm(QueryDict('themes=Coin,1'))
+        self.assertFalse(theme_filter.is_valid())
+
+        theme_filter = ThemesFilterForm(QueryDict('themes=1,2')) #"tag Coin"
+        self.assertTrue(theme_filter.is_valid())
+
+        #Normal filtering
+        theme_filter = ThemesFilterForm(QueryDict('themes=1')) #"tag Coin"
+        self.assertTrue(theme_filter.is_valid())
+
+        filters = FilterSet([theme_filter])
+
+        result = filters.apply_to(queryset=I4pProjectTranslation.objects.all())
+        self.assertEqual(result.count(), 1)
+        self.assertTrue(isinstance(result[0], I4pProjectTranslation))
+
+        # No filter return the same queryset as in input
+        theme_filter = ThemesFilterForm(QueryDict('themes='))
+        filters = FilterSet([theme_filter])
+
+        self.assertEquals(filters.is_valid(), theme_filter.is_valid())
+
+        queryset = I4pProjectTranslation.objects.all()
+        result = filters.apply_to(queryset=queryset)
+        self.assertEquals(result, queryset)
 
 
 
