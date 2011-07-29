@@ -307,14 +307,20 @@
 
 #reset_filters {
   position: relative;
-  margin-left: 15px;
   cursor: pointer;
   font-size: 11px;
-  top: 4px;
   display: inline;
   font-style: normal;
   font-family: Verdana,Arial,Helvetica,sans-serif;
   font-weight: normal;
+}
+#reset_filters img {
+  position: relative;
+  top: 2px;
+  margin-right: 5px;
+}
+#reset_filters span {
+  text-decoration: underline;
 }
 
 #reset_filters:hover {
