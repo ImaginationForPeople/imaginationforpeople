@@ -4,6 +4,7 @@ from __future__ import with_statement
 
 import os.path
 from fabric.api import *
+from fabric.colors import cyan
 from fabric.contrib.files import *
 
 
@@ -17,8 +18,9 @@ def reloadapp():
 def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
     if not user:
         user = env.user
+
     with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
-        return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user,pty=pty)
+        return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user, pty=pty)
     
 
 def printenv():
@@ -146,9 +148,10 @@ def deploy_bootstrap():
     Deploy the project the first time.
     """
     build_virtualenv()
-    clonegitcmd = "git clone %(gitrepo)s %(projectname)s" % env
+
     with cd(env.venvfullpath):
-        sudo(clonegitcmd, user=env.user)
+        run("git clone %(gitrepo)s %(projectname)s" % env)
+        run("git fetch origin %s" % env.gitbranch)
 
     fullupdate()
 
@@ -158,9 +161,8 @@ def _updatemaincode():
     tests
     """
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
-        sudo('git pull --all', user=env.user)
-        run('git fetch origin %s' % env.gitbranch)
         run('git checkout %s' % env.gitbranch)
+        sudo('git pull origin %s' % env.gitbranch, user=env.user)
     
 def fullupdate():
     """
@@ -186,7 +188,7 @@ def update():
     reloadapp()
 
 ## Webserver
-def configure_webserver():
+def configure_webservers():
     """
     Configure the webserver stack.
     """
@@ -196,8 +198,8 @@ def configure_webserver():
     sudo('a2ensite %s' % env.urlhost)
 
     # nginx
-    with cd('/etc/nginx/site-enabled/'):
-        run('ln -s ../site-available/%s .' % env.urlhost)
+    with cd('/etc/nginx/sites-enabled/'):
+        sudo('ln -s ../sites-available/%s .' % env.urlhost)
         
     sudo('cp %snginx/%s /etc/nginx/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
 
@@ -205,21 +207,23 @@ def configure_webserver():
     check_or_install_logdir()
 
     
-def install_webserver():
+def install_webservers():
     """
     Install the webserver stack
     """
     sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
     sudo('apt-get install nginx -y')
 
-def reload_webserver():
+def reload_webservers():
     """
     Reload the webserver stack.
     """
+    print(cyan("reloading apache"))
     # Apache
     sudo('apache2ctl -k graceful')
 
     # Nginx
+    print(cyan("reloading nginx"))
     sudo('/etc/init.d/nginx restart')
     
 def check_or_install_logdir():
@@ -269,13 +273,13 @@ def meta_full_bootstrap():
     """
     install_basetools()
     install_database_server()
-    install_webserver()
+    install_webservers()
     install_builddeps()
 
     deploy_bootstrap()
 
-    configure_webserver()
-    reload_webserver()
+    configure_webservers()
+    reload_webservers()
 
     
     
