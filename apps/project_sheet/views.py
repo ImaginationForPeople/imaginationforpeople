@@ -75,7 +75,7 @@ def project_sheet_list(request):
                                         .replace("order=creation", "")\
                                         .replace("order=modification", "")
 
-        extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].get_tags()]
+        extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].cleaned_data["themes"]]
 
     else:
         pass
@@ -91,7 +91,7 @@ def project_sheet_list(request):
                        template_object_name='project_translation',
                        extra_context=extra_context)
 
-def project_sheet_show(request, slug):
+def project_sheet_show(request, slug, add_media=False):
     """
     Display a project sheet
     """
@@ -130,18 +130,31 @@ def project_sheet_show(request, slug):
 
     reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
 
+    context = {'project': project_translation.project,
+               'project_translation': project_translation,
+               'project_themes_form': project_themes_form,
+               'project_objective_form': project_objective_form,
+               'reference_formset' : reference_formset,
+               'project_info_form': project_info_form,
+               'project_location_form': project_location_form,
+               'project_member_form': project_member_form,
+               'project_member_formset': project_member_formset,
+               'project_tab' : True}
+
+    if add_media:
+        ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
+                                                                       'desc',
+                                                                       'license',
+                                                                       'author',
+                                                                       'source'))
+
+        ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
+
+        context.update({'picture_form' : ProjectPictureForm(),
+                        'video_form' : ProjectVideoForm()})
+
     return render_to_response(template_name='project_sheet/project_sheet.html',
-                              dictionary={'project': project_translation.project,
-                                          'project_translation': project_translation,
-                                          'project_themes_form': project_themes_form,
-                                          'project_objective_form': project_objective_form,
-#                                          'reference_form' : reference_form,
-                                          'reference_formset' : reference_formset,
-                                          'project_info_form': project_info_form,
-                                          'project_location_form': project_location_form,
-                                          'project_member_form': project_member_form,
-                                          'project_member_formset': project_member_formset,
-                                          'project_tab' : True},
+                              dictionary=context,
                               context_instance=RequestContext(request)
                               )
 
@@ -235,13 +248,13 @@ def project_sheet_edit_related(request, project_slug):
                               )
 
 
-def project_sheet_add_media(request, slug=None):
+def project_sheet_add_media(request):
     """
     Display a page where it is possible to submit either a video or
     picture
+    Only call when the project is not yet created, else it's project_sheet_show with add_media=True
+    that is called.
     """
-    language_code = translation.get_language()
-
     ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
                                                                    'desc',
                                                                    'license',
@@ -252,12 +265,6 @@ def project_sheet_add_media(request, slug=None):
 
     context = {'picture_form' : ProjectPictureForm(),
                'video_form' : ProjectVideoForm()}
-
-    try :
-        context["project_translation"] = get_project_translation_by_slug(project_translation_slug=slug,
-                                                                         language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-            pass
 
     return render_to_response("project_sheet/project_sheet.html",
                               context,
