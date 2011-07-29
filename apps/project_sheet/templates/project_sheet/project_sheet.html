@@ -461,10 +461,10 @@
 	  {% endif %}
 	</div>
 	
-	
+	{% if project_translation %} 
 	<!-- PROJECT INFOS - editing version -->
 	<div id="project_infos_block_edit">
-	  <form action="" method="post">
+	  <form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
 	    {% csrf_token %}
 
 	    {{ project_info_form.as_p }}
@@ -474,7 +474,7 @@
 	    <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
 	  </form>	
 	</div>
-	
+	{% endif %}
 	
 	
 	
