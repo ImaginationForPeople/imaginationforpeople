@@ -57,9 +57,11 @@
             <p class="infos">
             {% if profile.age %}
             {{ profile.age }}
-            {% endif %}                        
+            - 
+            {% endif %} 
+                                   
             {% if profile.country %}
-            - {{ profile.country }}
+            {{ profile.get_country_display }}
             {% endif %}
             </p>
 	  {% else %}
@@ -70,10 +72,11 @@
             <p class="infos">
             {% if user.profile.age %}
             {{ user.profile.age }}
+            - 
             {% endif %}           
              
             {% if user.profile.country %}
-            - {{ user.profile.country }}
+            {{ user.profile.get_country_display }}
             {% endif %}
             </p>
 	  {% endif %}
