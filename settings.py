@@ -111,8 +111,6 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-    'request.middleware.RequestMiddleware',
-
     'userena.middleware.UserenaLocaleMiddleware',
 
     'localeurl.middleware.LocaleURLMiddleware',
@@ -170,7 +168,6 @@ INSTALLED_APPS = (
     'rosetta',
     'tagging',
     'imagekit',
-    'request',
     'oembed_works',
     'reversion',
     'django_countries',
@@ -196,7 +193,8 @@ INSTALLED_APPS = (
     # Internal Apps
     'apps.i4p_base',
     'apps.member',
-    'apps.project_sheet'
+    'apps.project_sheet',
+
 )
 
 OEMBED_PROVIDERS = {
