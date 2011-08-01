@@ -51,7 +51,7 @@ class I4pProject(models.Model):
         ('END', _('Mature')),
     ]
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
-    ip_addr = models.IPAddressField(null=True, blank=True)
+    ip_addr = models.CharField(max_length=15, null=True, blank=True)
 
     members = models.ManyToManyField(User,
                                      verbose_name=_("members"),
