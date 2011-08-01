@@ -19,6 +19,14 @@
     WSGIProcessGroup prodwebapp
     WSGIDaemonProcess prodwebapp
 
+    # wiki
+    Alias /wiki /home/webapp/wiki/
+
+    <Location "/wiki">
+        SetHandler None
+        Options -Indexes FollowSymLinks
+    </Location>
+
 </VirtualHost>
 
 
