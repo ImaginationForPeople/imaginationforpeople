@@ -1,19 +1,16 @@
 # -*- coding:utf-8 -*-
+# Django settings for imaginationforpeople project.
 
 import os
 import sys
 import socket
 from django.utils.translation import ugettext_lazy as _
-# Django settings for i4p project.
+
+# Import settings for the given site
+from site_settings import *
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
-
-# If we are on staging, then switch off debug
-if socket.gethostname() == 'i4p-dev':
-    DEBUG = False
-else:
-    DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -27,17 +24,6 @@ MANAGERS = (
     ('IP Team', 'team@imaginationforpeople.org'),
 )
 MANAGERS += ADMINS
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_ROOT, 'i4p.db'), # Or path to database file if using sqlite3.
-        'USER': '', # Not used with sqlite3.
-        'PASSWORD': '', # Not used with sqlite3.
-        'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '', # Set to empty string for default. Not used with sqlite3.
-    }
-}
 
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
