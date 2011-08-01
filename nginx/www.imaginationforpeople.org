@@ -12,8 +12,8 @@ server {
                 proxy_pass      http://i4p-prod:8281;
         }
 
-        location /media {
-                alias /home/www/imaginationforpeople.org/virtualenvs/imaginationforpeople.org/media;
+        location /static {
+                alias /home/www/imaginationforpeople.org/virtualenvs/imaginationforpeople.org/static;
         }
         
         location /site_media {
