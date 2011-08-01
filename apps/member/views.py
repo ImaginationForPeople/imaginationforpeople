@@ -31,9 +31,10 @@ def profile_detail(request, username):
                                                                      )
 
     project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
-    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=Version.objects.filter(content_type=project_translation_ct, 
-                                                                                              revision__user=user).reverse().values_list('object_id', flat=True)
-                                                                )
+
+    # FIXME : UGLY AND DOESN'T WORK !
+    version_ids = [int(id["object_id"]) for id in Version.objects.filter(content_type=project_translation_ct, revision__user=user).values('object_id').distinct()[:30]]
+    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=version_ids)
 
     return userena_views.profile_detail(request,
                                         username,
