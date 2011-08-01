@@ -13,11 +13,11 @@ server {
         }
 
         location /static {
-                alias /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople.org/static;
+                alias /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/static;
         }
         
         location /site_media {
-                alias /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople.org/media;
+                alias /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media;
                 expires 48h;
         }
 
