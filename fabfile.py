@@ -55,7 +55,7 @@ def prodenv():
     env.hosts = ['i4p-prod.imaginationforpeople.org']
 
     env.gitrepo = "ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git"
-    env.gitbranch = "iteration7"
+    env.gitbranch = "master"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
