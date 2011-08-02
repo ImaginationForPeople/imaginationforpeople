@@ -21,7 +21,8 @@
             {% if not user.is_authenticated %}
             
             <div class="left">
-                <form action="{% url userena_signin %}" class="clearfix" method="post" id="signin_form"  class="profile_edition">
+				<!-- j'ai enlevé de la ligne cet élement id="signin_form" (Simon Sarazin) -->
+                <form action="{% url userena_signin %}" class="clearfix" method="post" class="profile_edition">
 		  <h1 class="padlock">{% trans "Member Login" %}</h1>
                     
                     {% csrf_token %}
@@ -124,8 +125,8 @@
                     <a id="close" style="display: none;" class="close link" href="#">{% trans "Close Panel" %}</a>			
                 </li>
             {% if user.is_authenticated %}
-                <li><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'view my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-view.png" /></a></li>
-                <li><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'edit' %}"><img src="{{ STATIC_URL }}images/base/panel-edit.png" /></a></li>
+                <li><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-view.png" /></a></li>
+                <li><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'Edit my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-edit.png" /></a></li>
                 <li><a href="{% url userena_signout %}?next={% url i4p-index %}" class="tipsed on" title="{% trans 'Log out' %}"><img src="{{ STATIC_URL }}images/base/panel-logout.png" /></a></li>
             {% endif %}
 

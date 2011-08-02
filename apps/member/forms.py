@@ -12,8 +12,8 @@ class I4PSignupForm(SignupForm):
     """
     Form to signup with first and last names
     """
-    first_name = forms.CharField(label=_("first name"))
-    last_name = forms.CharField(label=_("last name"))
+    first_name = forms.CharField(label=_("First name"))
+    last_name = forms.CharField(label=_("Last name"))
 
     def __init__(self, *args, **kwargs):
         super(I4PSignupForm, self).__init__(*args, **kwargs)
