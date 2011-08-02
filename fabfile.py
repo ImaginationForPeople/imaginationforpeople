@@ -97,7 +97,7 @@ def update_requirements():
     update external dependencies on remote host
     """
     print(cyan('Updating requirements using PIP'))
-    run("pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env)
+    run("yes w | pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env)
 
 def fixperms():
     """
