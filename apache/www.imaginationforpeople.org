@@ -2,7 +2,15 @@
 
     ServerAdmin     contact@si7v.fr
     ServerName      www.imaginationforpeople.org
-    ServerAlias prod.imaginationforpeople.com imaginationforpeople.com www.imaginationforpeople.com imaginationforpeople.org admin.imaginationforpeople.org
+    ServerAlias     prod.imaginationforpeople.com imaginationforpeople.com www.imaginationforpeople.com imaginationforpeople.org admin.imaginationforpeople.org i4p-prod.imaginationforpeople.org
+
+    RewriteEngine on
+    RewriteCond %{HTTP_HOST} imaginationforpeople.com
+    RewriteRule ^(.*)$ http://imaginationforpeople.org$1 [L]
+
+    RewriteCond %{HTTP_HOST} admin.imaginationforpeople.org
+    RewriteRule ^(.*)$ http://imaginationforpeople.org/admin/$1 [L]
+
     CustomLog       /var/log/apache2/www.imaginationforpeople.org.log combined env=!dontlog
     ErrorLog        /var/log/apache2/www.imaginationforpeople.org.error.log
     LogLevel warn

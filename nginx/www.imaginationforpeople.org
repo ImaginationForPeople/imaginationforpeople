@@ -1,6 +1,6 @@
 server {
         listen 80;
-        server_name imaginationforpeople.org prod.imaginationforpeople.com imaginationforpeople.com www.imaginationforpeople.com imaginationforpeople.org admin.imaginationforpeople.org;
+        server_name imaginationforpeople.org www.imaginationforpeople.org i4p-prod.imaginationforpeople.org imaginationforpeople.com www.imaginationforpeople.com admin.imaginationforpeople.org;
 
         access_log /var/log/nginx/www.imaginationforpeople.org.log;
 
@@ -12,12 +12,12 @@ server {
                 proxy_pass      http://i4p-prod:8281;
         }
 
-        location /media {
-                alias /home/www/imaginationforpeople.org/virtualenvs/imaginationforpeople.org/media;
+        location /static {
+                alias /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/static;
         }
         
         location /site_media {
-                alias /home/www/imaginationforpeople.org/virtualenvs/imaginationforpeople.org/media;
+                alias /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media;
                 expires 48h;
         }
 
