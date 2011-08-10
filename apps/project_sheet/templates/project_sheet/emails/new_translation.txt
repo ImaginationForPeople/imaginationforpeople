@@ -1,0 +1,6 @@
+A new project/translation was added:
+  Title: {{ project_translation.title }}
+  Language: {{ project_translation.get_language_code_display }}
+
+See more by following this link:
+http://imaginationforpeople.org/{{ project_translation.get_absolute_url }}

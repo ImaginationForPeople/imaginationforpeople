@@ -5,11 +5,14 @@ Models for Project Sheet
 import uuid
 import os
 
-from django.contrib.contenttypes.models import ContentType
-from django.db import models
-from django.db.models.signals import post_save
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.core.mail import mail_managers
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
@@ -238,6 +241,20 @@ class ProjectMember(models.Model):
 
     def __unicode__(self):
         return u"%s - %s" % (self.project, self.user)
+
+
+# Email on events
+@receiver(post_save, sender=I4pProjectTranslation, dispatch_uid='email-on-new-project-translation')
+def email_managers_on_new_translation(sender, instance, created, **kwargs):
+    if created:
+        body = render_to_string('project_sheet/emails/new_translation.txt', {'project_translation': instance})
+        mail_managers(subject=_(u'New project/translation added'), message=body)
+
+@receiver(post_save, sender=ProjectMember, dispatch_uid='email-on-member-project-association')
+def email_managers_when_a_member_joins_a_project(sender, instance, created, **kwargs):
+    if created:
+        body = render_to_string('project_sheet/emails/member_joined_project.txt', {'project_member': instance})
+        mail_managers(subject=_(u'A member has joined a project'), message=body)
 
 
 # Reversions

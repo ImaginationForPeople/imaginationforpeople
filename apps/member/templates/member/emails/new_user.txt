@@ -1,0 +1,7 @@
+The following user has registered:
+ Firstname: {{ user.first_name }}
+ Lastname: {{ user.last_name }}
+ E-mail: {{ user.email }}
+
+You can see his/her profile by following this link:
+http://imaginationforpeople.org/{% url userena_profile_detail user %}
