@@ -1,10 +1,13 @@
+from django.core.mail import mail_managers
 from django.db import models
-from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
 from django_countries import CountryField
 from guardian.shortcuts import assign
 from userena.models import UserenaLanguageBaseProfile
+from userena.signals import activation_complete
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 
@@ -30,6 +33,12 @@ class I4pProfile(UserenaLanguageBaseProfile):
     #FIXME:  USELESS ???
     location = models.OneToOneField(Location, verbose_name=_('location'), null=True, blank=True)
 
+
+@receiver(activation_complete, dispatch_uid='email-on-new-user')
+def email_managers_on_account_activation(sender, user, **kwargs):
+    body = render_to_string('member/emails/new_user.txt', {'user': user})
+    mail_managers(subject=_(u'New user registered'), message=body)
+        
 
 # XXX: userena should be enough
 # def assign_good_profile_perm(sender, instance, created, **kwargs):

@@ -1,0 +1,6 @@
+{{ project_member.user }} joined 
+   the project "{{ project_member.project.translations.all.0.title }}" 
+   as "{{ project_member.role }}".
+
+You can see his/her profile by following this link:
+http://imaginationforpeople.org/{% url userena_profile_detail project_member.user %}
