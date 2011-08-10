@@ -242,6 +242,8 @@ FORCE_LOWERCASE_TAGS = True
 SERVER_EMAIL = 'noreply@imaginationforpeople.com'
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 # Write emails to console if in development mode
+EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople] '
+
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # else, use SMTP
@@ -249,7 +251,7 @@ else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'localhost'
     EMAIL_PORT = 25
-    EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople]'
+
 
 
 ### Dajax Ice
