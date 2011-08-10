@@ -29,8 +29,6 @@ urlpatterns = patterns('',
     url(r'^feedback/', include('backcap.urls')),
 
     # Static pages
-    url(r'^pages/manifesto/$', direct_to_template, {'template': 'manifesto.html'}, name='manifesto'),
-    url(r'^pages/project-description/$', direct_to_template, {'template': 'project-description.html'}, name='project-description'),
     url(r'^beta/', redirect_to, {'url': '/', 'permanent': True}),
     url(r'^normal_index$', redirect_to, {'url': '/', 'permanent': True}),
     
