@@ -153,6 +153,27 @@ $(document).ready(function() {
 
 	  <hr/>
 
+	  <!-- following -->
+	  {% if not user.is_anonymous %}
+	  <div>
+	    Users following this feedback:
+	    <ul>
+	      {% for follower in feedback.followers %}
+	      <li><a href="{% url userena_profile_detail follower %}">{{ follower.username }}</a></li>
+	      {% endfor %}
+	    </ul>
+
+	    <form method='POST' action='{% url feedback-follow feedback.pk %}'>
+	      {% csrf_token %}
+	      <input type='submit' value='{% trans "Follow" %}'/>
+	    </form>
+	    <form method='POST' action='{% url feedback-unfollow feedback.pk %}'>
+	      {% csrf_token %}
+	      <input type='submit' value='{% trans "Unfollow" %}'/>
+	    </form>
+	  </div>
+	  {% endif %}
+
 	  <h4>{% trans "Comments:" %}</h4>
 	  <ul id="feedback-comments-list">
 	    {% get_comment_list for feedback as feedback_comments %}
