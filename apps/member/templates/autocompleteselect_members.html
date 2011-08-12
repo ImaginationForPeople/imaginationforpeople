@@ -1,0 +1,12 @@
+{% extends "autocompleteselect.html" %}
+
+
+{% block extra_script %}
+$('#{{ html_id }}_on_deck').bind('added',function() {
+        $('#{{ html_id }}_text').hide();
+        $('#{{ html_id }}_text').after($(this));
+});
+$('#{{ html_id }}_on_deck').bind('killed',function() {
+        $('#{{ html_id }}_text').show();
+});
+{% endblock %}

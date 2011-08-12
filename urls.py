@@ -27,6 +27,8 @@ urlpatterns = patterns('',
     url(r'^project/', include('apps.project_sheet.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
+    
+    (r'^ajax_select/', include('ajax_select.urls')),
 
     # Static pages
     url(r'^beta/', redirect_to, {'url': '/', 'permanent': True}),
