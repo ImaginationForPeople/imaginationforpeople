@@ -5,6 +5,9 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms.models import modelformset_factory
 
+from ajax_select.fields import AutoCompleteSelectField
+
+
 from apps.i4p_base.models import Location
 
 from .models import I4pProject, I4pProjectTranslation, ProjectReference, ProjectMember
@@ -73,7 +76,8 @@ class ProjectMemberForm(forms.ModelForm):
         model = ProjectMember
         fields = ('user', 'role', 'comment')
 
-    user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt= -1).order_by('username'))
+    #user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt= -1).order_by('username'))
+    user = AutoCompleteSelectField("members", required=True)
 
 ProjectMemberFormSet = modelformset_factory(ProjectMember, 
                                             extra=0, 

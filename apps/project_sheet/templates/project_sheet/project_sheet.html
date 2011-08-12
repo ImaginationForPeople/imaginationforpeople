@@ -19,6 +19,7 @@
   {{ block.super }}
   {% compress css %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery/jquery.autocomplete.css" media="screen, projection" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/confirm.css" type="text/css" media="screen" />
@@ -86,6 +87,9 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.simpleImageCheck-0.4.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.formset.js"></script>
+  
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.autocomplete.js"></script>
+  
   {% endcompress %}
 
   {% compress js %}

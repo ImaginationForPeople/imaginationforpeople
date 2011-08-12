@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     'backcap',
     'compressor',
     'robots',
+    'ajax_select',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -182,6 +183,12 @@ INSTALLED_APPS = (
     'apps.project_sheet',
 
 )
+
+#django-ajax_select
+AJAX_LOOKUP_CHANNELS = {
+    'members' : ('apps.member.lookups', 'UserLookup'),
+}
+
 
 OEMBED_PROVIDERS = {
   'YouTube': ('http://www.youtube.com/oembed/',
