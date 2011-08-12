@@ -18,7 +18,8 @@ TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
     'project_uniqueness_txt': 'uniqueness_section',
     'project_value_txt': 'value_section',
-    'project_scalability_txt': 'scalability_section'
+    'project_scalability_txt': 'scalability_section',
+    'project_translation_progress' : 'completion_progress',
     }
 
 def project_textfield_load(request, project_slug=None):
@@ -48,9 +49,16 @@ def project_textfield_load(request, project_slug=None):
                                                           language_code=language_code)
 
     # Get the text
-    text = getattr(project_translation, TEXTFIELD_MAPPINGS[section])
+    choices = project_translation._meta.get_field(TEXTFIELD_MAPPINGS[section]).choices
+    if choices : # it's possible because choices are Charfield
+        choice_dict = {}
+        for key, value in choices:
+            choice_dict[key] = u"%s" % value
+        resp = simplejson.dumps(choice_dict)
+    else:
+        resp = getattr(project_translation, TEXTFIELD_MAPPINGS[section]) or ''
 
-    return HttpResponse(text or '')
+    return HttpResponse(resp)
 
 @require_POST
 @csrf_exempt
@@ -81,7 +89,12 @@ def project_textfield_save(request, project_slug=None):
 
     if form.is_valid():
         form.save()
-        return HttpResponse(simplejson.dumps({'text': linebreaksbr(value),
+        if project_translation._meta.get_field(fieldname).choices:
+            text = getattr(project_translation, "get_%s_display" % fieldname)()
+        else:
+            text = linebreaksbr(value)
+            
+        return HttpResponse(simplejson.dumps({'text': text or '',
                                               'redirect': project_slug is None,
                                               'redirect_url': project_translation.get_absolute_url()}), 'application/json')
     else:

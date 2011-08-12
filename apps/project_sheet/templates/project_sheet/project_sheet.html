@@ -221,12 +221,45 @@
 	    }
 	    
 	    $(this).html(res.text);
+	    if($(this).attr('id') == "project_translation_progress"){
+	    	edit_btn = $("<a title=\"{% trans 'Edit'|capfirst %}\" href=\"#\" class=\"button editing-button nomargin right\"><img src=\"{{ STATIC_URL }}images/base/edit.png\" /></a>");
+	    	$(this).append(edit_btn);
+	    	
+	    	edit_btn.click(function() {
+	    		$(this).dblclick();
+	    	    return false;
+	    	});
+	    	
+	    	edit_btn.hide();
+	        $(this).hover(function() {edit_btn.show();},
+	        		      function() {edit_btn.fadeOut('fast');}
+	        );
+	    	
+	    }
 
 	    return false;
 
 	}
 
      /* FIXME: This needs to be factorized */
+    $('#project_translation_progress').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
+                                               {event: 'dblclick',
+						tooltip: 'Double-click to edit',
+						loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
+						loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
+						submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+						dataType: 'json',
+						callback: inline_editing_save_callback,
+						indicator: 'Saving...',
+						type: 'select',
+						height: '40px',
+						width: '535px',
+						cancel: "<input title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+						submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
+						onblur: 'ignore',
+						cssclass: 'inline-edit',
+						});
+	
 	$('.project_description_txt').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
                                                {event: 'dblclick',
 						tooltip: 'Double-click to edit',
@@ -256,15 +289,15 @@
 					     submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
 					     dataType: 'json',
 					     callback: inline_editing_save_callback,
-                                             indicator: 'Saving...',
-                                             type: 'growfield',
-                                             height: '40px',
-                                             width: '690px',
-                                             cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
-                                             submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
-                                             onblur: 'ignore',
-                                             cssclass: 'inline-edit',
-                                             placeholder: "{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
+                         indicator: 'Saving...',
+                         type: 'growfield',
+                         height: '40px',
+                         width: '690px',
+                         cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                         submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
+                         onblur: 'ignore',
+                         cssclass: 'inline-edit',
+                         placeholder: "{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
                                             });
 	
 
@@ -286,6 +319,11 @@
     $('div#about_section_txt > a').click(function() {
 	$('.project_description_txt').dblclick();
 	return false;
+    });
+    
+    $('div##project_translation_progress > a').click(function() {
+    	$('#project_translation_progress').dblclick();
+    	return false;
     });
 
     /*
@@ -379,6 +417,10 @@
 	  <a href="{% url project_sheet-instance-edit-field project_translation.slug 'title' %}">
 	    <div id="project_title">{{ project_translation.title }}</div>
 	  </a>
+	  <div id="project_translation_progress">
+	  	  <label>{{ project_translation.get_completion_progress_display }}</label>
+	  	  <a title="{% trans 'Edit'|capfirst %}" href="#" class="button editing-button nomargin right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+	  </div>
 	{% else %}
 	  <!-- PROJECT TITLE - empty -->
 	  <a href="{% url project_sheet-edit-field 'title' %}">
