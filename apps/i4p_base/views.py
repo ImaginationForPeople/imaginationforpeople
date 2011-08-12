@@ -17,8 +17,6 @@ def homepage(request):
                                                                  language_code=translation.get_language()
                                                                  )
     data = request.GET
-    if not data :
-        data = QueryDict('best_of=on')
 
     context = {'project_sheets': project_sheets,
                'project_translations': project_translations,
