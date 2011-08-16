@@ -3,6 +3,7 @@
 {% load i18n %}
 {% load localeurl_tags %}
 {% load tagging_tags %}
+{% load comments %}
 {% load compress %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
@@ -89,6 +90,8 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.formset.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.autocomplete.js"></script>
+
+  <script type="text/javascript" src="{{ STATIC_URL }}js/post-comment.js"></script>
   
   {% endcompress %}
 
@@ -101,6 +104,21 @@
     $(document).ready(function(){ 
         $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
     }); 
+  </script>
+
+
+  <!-- Comments -->
+  <script type="text/javascript">
+    $(document).ready(function() {
+    // Customize the location of the media to match your project structure
+    media = '{{ STATIC_URL }}'
+    
+    // Customize the selector for your project
+    $('div.comment-form form').submit(function() {
+        ajaxComment({'media': media});
+        return false;
+	});
+   });
   </script>
 
 
@@ -545,6 +563,28 @@
 	<div class="clear"></div>
 	
 	{% include "project_sheet/references_section.html" %}
+	
+	<div class="clear"></div>
+
+	<!-- Comments. NOTE: /static//img/ajax-wait.gif can be used -->
+	<h3>{% trans "Comments" %}</h3>
+
+	  <!-- NOTE: Comment count -->
+	{% get_comment_count for project_translation as comment_count %}
+	
+	  <!-- NOTE: Comment form -->
+	<div class="comment-form">
+	  {% render_comment_form for project_translation %}
+	</div>
+
+	  <!-- NOTE: Comments rendered using two templates:
+	       - 'comments/list.html' 
+               - 'comments/comment.html' 
+	  -->
+	<div class="comment-list">
+	  {% render_comment_list for project_translation %}
+	</div>
+
 	
 	<div class="clear"></div>
 

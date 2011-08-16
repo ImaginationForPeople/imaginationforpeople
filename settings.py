@@ -166,6 +166,7 @@ INSTALLED_APPS = (
     'compressor',
     'robots',
     'ajax_select',
+    'ajaxcomments',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
