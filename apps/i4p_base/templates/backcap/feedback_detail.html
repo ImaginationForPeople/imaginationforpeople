@@ -2,17 +2,17 @@
 
 {% load i18n %}
 {% load comments %}
-{% load voting_tags %}
+  {% load voting_tags %}
 
-{% block title %}
-  {% trans "Feedback" %} &raquo; {{ feedback.title|capfirst|truncatewords:7 }}
-{% endblock %}
+  {% block title %}
+    {% trans "Feedback" %} &raquo; {{ feedback.title|capfirst|truncatewords:7 }}
+  {% endblock %}
 
 
-{% block javascript %}
+  {% block javascript %}
 
-<script type="text/javascript">
-$(document).ready(function() {
+    <script type="text/javascript">
+      $(document).ready(function() {
     $(".feedbackvote :submit").click(function() {
 	feedback_id = $(this).parent().parent().parent().parent().parent().attr("id");
 
@@ -122,57 +122,66 @@ $(document).ready(function() {
             </div>
         </div>
     </div>
-    
-    
-      </div>
 
-      <div class="alpha omega grid_18">
-
-	  {{ vote }}
-
-	  <hr/>
-
-	  {% if feedback.status == 'A' %}
-	    <p>
-	      <strong><a href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> {% trans "is working on this. Poke him if you think it's taking too long !" %}</strong>
-	    </p>
-	  {% endif %}
-
-	  {% if feedback.status == 'D' %}
-	    <p>
-	      <strong>
-		<em>
+    <div class="alpha omega grid_18">
+      <div class="alpha grid_13">
+	{{ vote }}
+	
+	<hr/>
+	
+	
+	{% if feedback.status == 'A' %}
+	  <p>
+	    <strong><a href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> {% trans "is working on this. Poke him if you think it's taking too long !" %}</strong>
+	  </p>
+	{% endif %}
+	
+	{% if feedback.status == 'D' %}
+	  <p>
+	    <strong>
+	      <em>
 		{% trans "This issue is a duplicate of" %} <a href="{{ feedback.duplicate_of.get_absolute_url }}">{{ feedback.duplicate_of }}</a>
 		{% trans "Please don't comment on this issue anymore." %}
 		  </em>
-	      </strong>
-	    </p>
-	  {% endif %}
-
-	  <p><strong>{% trans "Description:" %}<br /><br /></strong><div class="feedback-description"> {{ feedback.text|linebreaks }}</div></p>
+	    </strong>
+	  </p>
+	{% endif %}
+	
+	<p><strong>{% trans "Description:" %}<br /><br/></strong><div class="feedback-description"> {{ feedback.text|linebreaks }}</div></p>
+      </div>
+      
+      <div class="grid_5 omega">
+	<!-- following -->
+	{% if not user.is_anonymous %}
+	  <div>
+	    <h4>{% trans "Followers:" %} ({{ feedback.followers|length }})</h4>
+	    <ul>
+	      {% for follower in feedback.followers %}
+		<li><a href="{% url userena_profile_detail follower %}"><img src="{{ follower.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+	      {% endfor %}
+	    </ul>
+	    <br/>
+	    {% if request.user in feedback.followers %}
+	      <form method='POST' action='{% url feedback-unfollow feedback.pk %}'>
+		{% csrf_token %}
+		<input type='submit' class="button nomargin" value='{% trans "Unfollow" %}'/>
+	      </form>
+	    {% else %}
+	      <form method='POST' action='{% url feedback-follow feedback.pk %}'>
+		{% csrf_token %}
+		<input type='submit' class="button nomargin" value='{% trans "Follow" %}'/>
+	      </form>
+	    {% endif %}
+	  </div>
+	{% endif %}
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="alpha omega grid_18">
 
 	  <hr/>
 
-	  <!-- following -->
-	  {% if not user.is_anonymous %}
-	  <div>
-	    Users following this feedback:
-	    <ul>
-	      {% for follower in feedback.followers %}
-	      <li><a href="{% url userena_profile_detail follower %}">{{ follower.username }}</a></li>
-	      {% endfor %}
-	    </ul>
-
-	    <form method='POST' action='{% url feedback-follow feedback.pk %}'>
-	      {% csrf_token %}
-	      <input type='submit' value='{% trans "Follow" %}'/>
-	    </form>
-	    <form method='POST' action='{% url feedback-unfollow feedback.pk %}'>
-	      {% csrf_token %}
-	      <input type='submit' value='{% trans "Unfollow" %}'/>
-	    </form>
-	  </div>
-	  {% endif %}
 
 	  <h4>{% trans "Comments:" %}</h4>
 	  <ul id="feedback-comments-list">
@@ -184,60 +193,54 @@ $(document).ready(function() {
 
 	  {% if not feedback.status == 'D' %}
 	    <hr/>
-        <h5>{% trans "Post a new comment" %}</h5>
-	        {% get_comment_form for feedback as comment_form %}
-		  <form id="feedback-comment" action="{% comment_form_target %}" method="post">
-          {% csrf_token %}
-		    {{ comment_form.content_type }}
-		    {{ comment_form.timestamp }}
-		    {{ comment_form.object_pk }}
-		    {{ comment_form.security_hash }}
-		    {{ comment_form.comment }}
-		    
-		    <input type="submit" class="button nomargin" value="{% trans 'Post' %}"/>  
-		    <input type="hidden" name="next" value="{% url feedback-detail feedback.id %}" />
-		  </form>
-          <div class="clear"></div>
-           {% else %}
-	     {% trans "Comments closed." %}
-	   {% endif %}
-
-		<hr/>
-
-		<p>{% trans "This issue is" %} {{ feedback.get_status_display|lower }}.
-		<a href="{% url feedback-close feedback.id %}" class="button none"><span><span class="icon"></span>{% trans "Close issue" %}</span></a>
-        <br /><br />
-		<p>{% trans "Reported from:" %} <a href="http://{{ request.get_host }}{{ feedback.referer }}" class="link">http://{{ request.get_host }}{{ feedback.referer }}</a></p>
-        <br />
-		{% if user.is_superuser %}
+	    <h5>{% trans "Post a new comment" %}</h5>
+	      {% get_comment_form for feedback as comment_form %}
+		<form id="feedback-comment" action="{% comment_form_target %}" method="post">
+		  {% csrf_token %}
+		  {{ comment_form.content_type }}
+		  {{ comment_form.timestamp }}
+		  {{ comment_form.object_pk }}
+		  {{ comment_form.security_hash }}
+		  {{ comment_form.comment }}
 		  
-          <p>
-		    <a href="{% url feedback-update feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Edit" %}</span></a> -
-		    <a href="{% url feedback-ping-observers feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Ping observers" %}</span></a>
-		  </p>
-		{% endif %}
-
+		  <input type="submit" class="button nomargin" value="{% trans 'Post' %}"/>  
+		  <input type="hidden" name="next" value="{% url feedback-detail feedback.id %}" />
+		</form>
+		<div class="clear"></div>
+              {% else %}
+		{% trans "Comments closed." %}
+	      {% endif %}
+	      
+	      <hr/>
+	      
+	      <p>{% trans "This issue is" %} {{ feedback.get_status_display|lower }}.
+	      <a href="{% url feedback-close feedback.id %}" class="button none"><span><span class="icon"></span>{% trans "Close issue" %}</span></a>
+	      <br /><br />
+	      <p>{% trans "Reported from:" %} <a href="http://{{ request.get_host }}{{ feedback.referer }}" class="link">http://{{ request.get_host }}{{ feedback.referer }}</a></p>
+	      <br />
+	      {% if user.is_superuser %}
+		
 		<p>
-		  <a href="{% url feedback-list %}" class="link">&larr; {% trans "See all feedbacks" %}</a>
+		  <a href="{% url feedback-update feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Edit" %}</span></a> -
+		  <a href="{% url feedback-ping-observers feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Ping observers" %}</span></a>
 		</p>
-
-	      </div>
+	      {% endif %}
+	      
+	      <p>
+		<a href="{% url feedback-list %}" class="link">&larr; {% trans "See all feedbacks" %}</a>
+	      </p>
+	      
 	    </div>
-
 	  </div>
-
-
-
-										
-				</div>
-				
-			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
+	  
 	</div>
-	
+      </div>
+    </div>
+  </div>
+    
+    <div class="clear"></div>
+    
+  </div>		
 	
 {% endblock %}
 
