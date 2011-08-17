@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
     url(r'^workgroup/', include('apps.workgroup.urls')),
+    url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
     
