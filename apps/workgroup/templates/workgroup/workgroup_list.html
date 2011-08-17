@@ -1,0 +1,22 @@
+{% extends "workgroup/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="container_18 relative">
+      <h2>{% trans "Workgroup" %}</h2>
+
+      <ul>
+	{% for workgroup in workgroup_list %}
+	 <li><a href="{{ workgroup.get_absolute_url }}">{{ workgroup }}</a></li>
+	{% endfor %}
+      </ul>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+
