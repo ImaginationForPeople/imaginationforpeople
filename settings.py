@@ -188,6 +188,7 @@ INSTALLED_APPS = (
 
     # Internal Apps
     'apps.i4p_base',
+    'apps.partner',
     'apps.member',
     'apps.project_sheet',
     'apps.workgroup',
