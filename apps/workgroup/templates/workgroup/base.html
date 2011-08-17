@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% load compress %}
+
+{% block style %}
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  {% endcompress %}
+{% endblock %}
+
+{% block nav %}<div style="height:37px;"></div>{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "workgroup/base.html" %}
+
+{% load i18n %}
+
+{% block content %}
+
+  <div class="content">
+    <div class="container_18 relative">
+      <br/>
+      <br/>
+      <h1>{% trans "Workgroup" %} &raquo; {{ workgroup.name }}</h1>
+
+      <span>{{ workgroup.description }}</span>
+
+      <span>Spoken language: {{ workgroup.get_language_display }}<span>
+
+      {% if workgroup.mailing_list %}
+      <h2>{% trans "Mailing List" %}</h2>
+
+      <h3>General Info</h3>
+      <ul>
+	<br/>
+	<li>Name: {{ workgroup.mailing_list.name }} - [<a href="{{ workgroup.mailing_list.main_url }}/listinfo/{{ workgroup.mailing_list.name }}/">Go to the ML Homepage</a>]</li>
+	<br/>
+	<li>To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</li>
+	<br/>
+	<li>Browse the <a href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">Archives</a></li>
+      </ul>
+      
+
+      <h3>Subscribers ({{ ml_member_list|add:ml_nonmember_list|length }})</h3>
+
+      {# Subscribe/Unsubscribe button for logged-in users  #}
+      {% if not request.user.is_anonymous %}
+	{% if not request.user in ml_member_list %}
+	  You are not susbcribed to this Mailing List
+	  <form method='POST' action='{% url workgroup-subscribe workgroup.slug %}'>
+	    {% csrf_token %}
+	    <input type='submit' class='button' value='Subscribe' />
+	  </form>
+	{% else %}
+	  You are susbcribed to this Mailing List
+	  <form method='POST' action='{% url workgroup-unsubscribe workgroup.slug %}'>
+	    {% csrf_token %}
+	    <input type='submit' class='button' value='Unsubscribe' />
+	  </form>
+	{% endif %}
+      {% endif %}
+
+      <br/>
+
+      {# Subscriber list #}
+      <div id="wg-ml-subscriber-list">
+	<ul>
+	  {% for member in ml_member_list %}
+	    <li><a class="tipsed" href="{% url userena_profile_detail member.username %}" title="{{ member.first_name }} {{ member.last_name }}"><img {% if request.user == member %}style="border: 1px solid red;"{% endif %} src="{{ member.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+	  {% endfor %}
+	</ul>
+	{% with ml_nonmember_list|length as anonymous_count %}
+	  {% if anonymous_count > 0 %}
+	    And {{ anonymous_count }} anonymous subscriber{{ anonymous_count|pluralize }}
+	  {% endif %}
+	{% endwith %}
+      </div>
+
+      {% endif %}
+    </div>
+  </div>
+
+{% endblock %}
+
+

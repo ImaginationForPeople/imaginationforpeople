@@ -80,6 +80,13 @@ ADMIN_MEDIA_PREFIX = '/static/admin/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
+# Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -167,6 +174,7 @@ INSTALLED_APPS = (
     'robots',
     'ajax_select',
     'ajaxcomments',
+    'django_mailman',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -182,10 +190,10 @@ INSTALLED_APPS = (
     'apps.i4p_base',
     'apps.member',
     'apps.project_sheet',
-
+    'apps.workgroup',
 )
 
-#django-ajax_select
+# django-ajax_select
 AJAX_LOOKUP_CHANNELS = {
     'members' : ('apps.member.lookups', 'UserLookup'),
 }
