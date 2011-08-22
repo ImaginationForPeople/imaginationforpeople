@@ -108,7 +108,7 @@ def project_sheet_show(request, slug, add_media=False):
         project_info_form.save()
 
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
-    project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project)
+    project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project, prefix="objective-form")
     project_member_form = ProjectMemberForm()
     #project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
     project_location_form = I4pProjectLocationForm(instance=project_translation.project.location)
@@ -236,7 +236,8 @@ def project_sheet_edit_related(request, project_slug):
                                                      instance=project_translation)
 
     project_sheet_objective_form = I4pProjectObjectiveForm(request.POST or None,
-                                                           instance=parent_project)
+                                                           instance=parent_project,
+                                                           prefix="objective-form")
 
     if request.method == 'POST':
         if project_sheet_themes_form.is_valid() and project_sheet_objective_form.is_valid():
