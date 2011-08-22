@@ -226,8 +226,44 @@
 
   <script type="text/javascript" defer="defer">
     $(document).ready(function() {
+    /* Notification  area 
+    Must be here because functions are used in inline_editing_save_callback
+    */
+	function clearNotification(theDivNotificationClass){
+		$("#notification-area ul li ."+theDivNotificationClass).parent("li").remove();
+	}
+	
+	function notifySomething(theDivNotificationClass){
+		clearNotification(theDivNotificationClass);
+		var notifClone = $("div."+theDivNotificationClass).clone();
+		$("#notification-area ul").append("<li></li>");
+		$("#notification-area ul li:last").append(notifClone);
+		notifClone.removeClass("hidden");
+		notifClone.find("a.close-notif").click(function(){
+			notifClone.parent("li").remove();
+			return false;
+		});
+		notifClone.find("a.login-slide-openner").click(function(){
+			$("#open").click();
+			clearNotification(theDivNotificationClass);
+			return false;
+		});
+	}
+	
+	{% if not user.is_authenticated %}
+		{% if title_form or baseline_form or picture_form %}
+		notifySomething("anonymous-disclaimer");
+		{% endif %}
+		$(".editing-button").click(function(){
+			notifySomething("anonymous-disclaimer");
+		});
+	{% endif %}
+	
+	{% if project_translation.completion_progress == "EDIT" %}
+	notifySomething("edition-notification");
+	{% endif %}
 
-
+	
 	function inline_editing_save_callback(data) {
 	    var res = jQuery.parseJSON(data);
 
@@ -244,6 +280,9 @@
 	    	$(this).append(edit_btn);
 	    	
 	    	edit_btn.click(function() {
+	    		{% if not user.is_authenticated %}
+	    		notifySomething("anonymous-disclaimer");
+	    		{% endif %}
 	    		$(this).dblclick();
 	    	    return false;
 	    	});
@@ -253,6 +292,13 @@
 	        		      function() {edit_btn.fadeOut('fast');}
 	        );
 	    	
+	        if(res.completion_progress == "EDIT"){
+	        	notifySomething("edition-notification");
+	        }
+	        else {
+	        	clearNotification("edition-notification");
+	        }
+	        
 	    }
 
 	    return false;
@@ -407,44 +453,33 @@
         
     });
   </script>
-
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
-		$(".login-slide-openner").click(function(){
-			$("#open").click();
-			return false;
-		});
-		
-		$("#anonymous-disclaimer").hide();
-		{% if not user.is_authenticated %}
-			{% if title_form or baseline_form or picture_form %}
-			$("#anonymous-disclaimer").show();
-			{% endif %}
-			$(".editing-button").click(function(){
-				$("#anonymous-disclaimer").show();
-			});
-		{% endif %}
-    });
-  </script>
 {% endblock %}
 
 
 {% block project_content %}	
   <div class="grid_13 alpha project_content">
-		<div id="anonymous-disclaimer" style="margin-top: -10px;
-					position : fixed;
-					bottom: 0px; 
-					z-index: 3000 ;
-					width: 687px;
-					background-color : white;
-					margin-bottom : 15px;
-					padding : 5px;
-					border:1px solid black">
-			{% blocktrans %}
-			Thank you for the interest you have shown in this project. <br />
-			Don't you want to <a class="login-slide-openner" href="#">log in</a> or <a class="login-slide-openner" href="#">sign up</a> before editing?
-			{% endblocktrans %}
-		</div>
+  	 <div id="notification-area" class="grid_13 alpha omega" style="background-color: yellow;
+  	 										 position : fixed;
+  	 										 bottom: 0px;
+  	 										 z-index: 3000 ;">
+  	 
+  	 <ul>
+  	 </ul>
+	<div class="anonymous-disclaimer hidden">
+		{% blocktrans %}
+		Thank you for the interest you have shown in this project. <br />
+		Don't you want to <a class="login-slide-openner" href="#">log in</a> or <a class="login-slide-openner" href="#">sign up</a> before editing?
+		{% endblocktrans %}
+		<a class="close-notif" href="#"><img src="" alt="[X]"/></a>
+	</div>
+	<div class="edition-notification hidden">
+		{% blocktrans %}
+		This sheet is a draft. You can complete it very simply by clicking on text boxes which seems to be not enough filled, you will have access to a wiki space for writing. 
+		Become, in one click, a co-publisher for this project sheet.
+		{% endblocktrans %}
+		<a class="close-notif" href="#"><img src="" alt="[X]"/></a>
+	</div>
+	 </div>
     <!-- PROJECT TITLE -->
     {% if title_form %}
       <!-- PROJECT TITLE - edition mode-->
