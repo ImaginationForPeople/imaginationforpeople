@@ -82,21 +82,26 @@ def project_textfield_save(request, project_slug=None):
 
     # Resolve the fieldname
     fieldname = TEXTFIELD_MAPPINGS[section]
-
+    print fieldname
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(fieldname,))
 
     form = FieldForm({fieldname: value}, instance=project_translation)
 
     if form.is_valid():
+        response_dict = {}
         form.save()
         if project_translation._meta.get_field(fieldname).choices:
             text = getattr(project_translation, "get_%s_display" % fieldname)()
+            if fieldname == "completion_progress" :
+                response_dict["completion_progress"] = getattr(project_translation,fieldname)
         else:
             text = linebreaksbr(value)
-            
-        return HttpResponse(simplejson.dumps({'text': text or '',
-                                              'redirect': project_slug is None,
-                                              'redirect_url': project_translation.get_absolute_url()}), 'application/json')
+        
+        response_dict.update({'text': text or '',
+                              'redirect': project_slug is None,
+                              'redirect_url': project_translation.get_absolute_url()})
+        
+        return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
         return HttpResponseNotFound()
 
