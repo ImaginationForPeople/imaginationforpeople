@@ -1,0 +1,94 @@
+﻿{% load i18n %}
+{% load comments %}
+
+<br />
+
+<div id="comments-module">
+
+    <div class="title">
+        <img src="{{ STATIC_URL }}images/project/comments-picto.jpg" />{% trans "Comments" %}
+    </div>
+    
+    <div id="comments-count">
+        <a href="#" class="link">{% trans "View the" %} {% get_comment_count for project_translation as comment_count %} {% trans "comments" %}</a>
+    </div>
+    
+    <div class="clear"></div>
+
+    <div id="comment-form">
+        
+        {% if user.is_authenticated %}
+
+            {% get_comment_form for project_translation as comment_form %}
+            <form action="{% comment_form_target %}" method="post">
+                {% csrf_token %}
+                {{ comment_form.content_type }}
+                {{ comment_form.object_pk }}
+                {{ comment_form.timestamp }}
+                {{ comment_form.security_hash }}
+                <input type="hidden" maxlength="50" name="name" id="id_name" value="{{ user.first_name }} {{ user.last_name }}">
+                <input type="hidden" id="id_email" name="email" value="{{ user.email }}">
+                <textarea name="comment" id="id_comment"></textarea>
+                <div class="comment-info">
+                    <div class="bulle"></div>
+                    {% if profile %}
+                          <img src="{{ profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
+                    {% else %}
+                          <img src="{{ user.profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
+                    {% endif %}
+                </div>
+                
+                <p style="display: none;">
+                    {{ comment_form.honeypot}}
+                </p>
+                
+                <input type="hidden" name="next" value="{{ project_translation.get_absolute_url }}">
+
+            </form>
+        
+        {% endif %}
+        
+	</div>
+
+    <div id="clear"></div>
+    
+    <ul id="comment-list">
+    
+        <li class="odd">
+            <div class="comment-message">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />Ut at sapien massa, et commodo eros. Donec condimentum, sem ut sodales pretium, est neque vehicula felis, et pretium arcu justo ut massa. Quisque mi diam, semper in aliquam sed, feugiat quis mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <br />Maecenas pellentesque porta purus id molestie. 
+            </div>
+            <div class="comment-info">
+                <div class="bulle"></div>
+                <a href="#"><img src="https://secure.gravatar.com/avatar/bdc9812a92d2288c8a77c7b3c608d301?rating=PG&size=50&default=monsterid" /></a>
+                <span><strong><a href="#">Vincent Charrier</a></strong> - 11 Juillet 2011</span>  
+            </div>            
+        </li>
+        
+         <li class="even">
+            <div class="comment-message">bla bla bl</div>
+            <div class="comment-info">
+                <div class="bulle"></div>
+                <a href="#"><img src="https://secure.gravatar.com/avatar/bdc9812a92d2288c8a77c7b3c608d301?rating=PG&size=50&default=monsterid" /></a>
+                <span><strong><a href="#">Vincent Charrier</a></strong> - 11 Juillet 2011</span>  
+            </div>            
+        </li>
+        
+        <li class="odd">
+            <div class="comment-message">bla bla bl</div>
+            <div class="comment-info">
+                <div class="bulle"></div>
+                <a href="#"><img src="https://secure.gravatar.com/avatar/bdc9812a92d2288c8a77c7b3c608d301?rating=PG&size=50&default=monsterid" /></a>
+                <span><strong><a href="#">Aldebert Truche</a></strong> - 11 Juillet 2011</span> 
+            </div>            
+        </li>
+        
+        <div class="clear"></div>
+        
+	</ul>
+
+</div>
+
+
+<div class="clear"></div>
+

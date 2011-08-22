@@ -675,6 +675,11 @@ form {
   border: 3px solid black;
 }
 
+.grey_column #social-sharing.title {
+  padding-left: 6px;
+  font-style: normal;
+}
+
 .grey_column_objective_edition, .grey_column_cloudtag_edition {
   position: relative;
   display: block-inline;
@@ -1025,6 +1030,159 @@ ul#themes_tags li.tagit-choice {
 }
 #project_refs form .add-row {
   margin-left: 10px;
+}
+
+/* Comments */
+#comments-module {
+  background-color: #303030;
+  position: relative;
+  background-image: url("../images/project/comments-bg.jpg");
+}
+#comments-module .title {
+  float: left;
+  padding: 6px 25px 6px 20px;
+}
+#comments-module .title img {
+  position: relative;
+  margin-right: 10px;
+  top: 3px;
+}
+#comments-module #comments-count {
+  position: absolute;
+  right: 20px;
+  top: 30px;
+}
+#comments-module #comment-form, #comments-module #comment-list {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+#comments-module #comment-form {
+  position: relative;
+}
+#comments-module #comment-form form {
+  margin-bottom: 30px;
+  height: 50px;
+}
+#comments-module #comment-form textarea {
+  background-color: #5d5d5d;
+  border: 0px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  width: 99%;
+  height: 17px;
+  padding: 4px;
+  color: #aaa7a7;
+  font-style: italic;
+}
+#comments-module #comment-form .comment-info {
+  position: relative;
+}
+#comments-module #comment-form .comment-info .bulle {
+  background-image: url("../images/project/bulle2.png");
+  position: absolute;
+  top: -6px;
+  right: 60px;
+  width: 16px;
+  height: 16px;
+}
+#comments-module #comment-form .comment-info img {
+  position: absolute;
+  top: -8px;
+  right: 10px;
+  -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
+  box-shadow: 0px 0px 4px black;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #f1e4d3;
+}
+#comments-module #comment-list li {
+  list-style-type: none;
+  padding: 0px;
+  position: relative;
+  margin-bottom: 40px;
+  width: 100%;
+  float: left;
+}
+#comments-module #comment-list li .comment-message {
+  background-color: white;
+  border: 0px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  width: 99%;
+  padding: 4px;
+  margin-bottom: 3px;
+  padding-bottom: 15px;
+  -moz-box-shadow: 0px 2px 5px #1d1a1a;
+  -webkit-box-shadow: 0px 2px 5px #1d1a1a;
+  -o-box-shadow: 0px 2px 5px #1d1a1a;
+  box-shadow: 0px 2px 5px #1d1a1a;
+  color: #828181;
+  font-size: 11px;
+}
+#comments-module #comment-list li .comment-info {
+  position: relative;
+  color: #acacac;
+  font-size: 11px;
+}
+#comments-module #comment-list li .comment-info a {
+  color: #acacac;
+}
+#comments-module #comment-list li .comment-info strong {
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+}
+#comments-module #comment-list li .comment-info .bulle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+}
+#comments-module #comment-list li .comment-info img {
+  position: absolute;
+  -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
+  box-shadow: 0px 0px 4px black;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #f1e4d3;
+}
+#comments-module #comment-list li.even .bulle {
+  background-image: url("../images/project/bulle1-d.png");
+  top: -6px;
+  right: 60px;
+}
+#comments-module #comment-list li.even img {
+  top: -15px;
+  right: 10px;
+}
+#comments-module #comment-list li.even span {
+  position: absolute;
+  left: 0px;
+}
+#comments-module #comment-list li.odd .bulle {
+  background-image: url("../images/project/bulle1-g.png");
+  top: -6px;
+  left: 60px;
+}
+#comments-module #comment-list li.odd img {
+  top: -15px;
+  left: 10px;
+}
+#comments-module #comment-list li.odd span {
+  position: absolute;
+  right: 0px;
 }
 
 /*-- license --*/

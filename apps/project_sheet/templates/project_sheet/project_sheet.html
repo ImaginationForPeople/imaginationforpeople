@@ -3,7 +3,6 @@
 {% load i18n %}
 {% load localeurl_tags %}
 {% load tagging_tags %}
-{% load comments %}
 {% load compress %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
@@ -93,6 +92,10 @@
 
   <script type="text/javascript" src="{{ STATIC_URL }}js/post-comment.js"></script>
   
+  
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+
+  
   {% endcompress %}
 
   {% compress js %}
@@ -105,6 +108,22 @@
         $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
     }); 
   </script>
+  
+    <!-- Comments -->
+  
+    <script type="text/javascript">
+        $(document).ready(function(){             
+            $("#comment-form #id_comment").example("Type your message here and press enter when done...");
+            
+            $('#comment-form #id_comment').keypress(function(event) {
+                if ( event.which == 13 ) {
+                     event.preventDefault();
+                      $('#comment-form form').submit();
+                }
+            });
+
+        }); 
+    </script>
 
 
   <!-- Comments -->
@@ -595,27 +614,7 @@
 	
 	<div class="clear"></div>
 
-	<!-- Comments. NOTE: /static//img/ajax-wait.gif can be used -->
-	<h3>{% trans "Comments" %}</h3>
-
-	  <!-- NOTE: Comment count -->
-	{% get_comment_count for project_translation as comment_count %}
-	
-	  <!-- NOTE: Comment form -->
-	<div class="comment-form">
-	  {% render_comment_form for project_translation %}
-	</div>
-
-	  <!-- NOTE: Comments rendered using two templates:
-	       - 'comments/list.html' 
-               - 'comments/comment.html' 
-	  -->
-	<div class="comment-list">
-	  {% render_comment_list for project_translation %}
-	</div>
-
-	
-	<div class="clear"></div>
+    {% include "comments/comments-module.html" %}
 
 	<div id="license-note">
 	  {% blocktrans %}
