@@ -34,10 +34,13 @@
             <!-- Colonne grise remplie -->
 
             <div class="grey_column_objective">
-                <!-- 
                 <label>{% trans 'objective :'|capfirst %}</label> 
-                <a href="#" class="sidebar-opener" name="opened-sidebar" id="project_objective">{{project_translation.project.get_objective_display }}</a>
-                 -->
+                  <ul id="cloudtag_list">
+                  {%for objective in project_translation.project.objective.all%}
+                        <li><a href="">{{objective}}</a>{% if not forloop.last %},{% endif%}</li> 
+                    {% endfor %}
+                </ul>
+<!--                 <a href="#" class="sidebar-opener" name="opened-sidebar" id="project_objective">{{project_translation.project.get_objective_display }}</a> -->
             </div>
 
 

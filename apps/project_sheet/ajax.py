@@ -82,21 +82,26 @@ def project_textfield_save(request, project_slug=None):
 
     # Resolve the fieldname
     fieldname = TEXTFIELD_MAPPINGS[section]
-
+    print fieldname
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(fieldname,))
 
     form = FieldForm({fieldname: value}, instance=project_translation)
 
     if form.is_valid():
+        response_dict = {}
         form.save()
         if project_translation._meta.get_field(fieldname).choices:
             text = getattr(project_translation, "get_%s_display" % fieldname)()
+            if fieldname == "completion_progress" :
+                response_dict["completion_progress"] = getattr(project_translation,fieldname)
         else:
             text = linebreaksbr(value)
-            
-        return HttpResponse(simplejson.dumps({'text': text or '',
-                                              'redirect': project_slug is None,
-                                              'redirect_url': project_translation.get_absolute_url()}), 'application/json')
+        
+        response_dict.update({'text': text or '',
+                              'redirect': project_slug is None,
+                              'redirect_url': project_translation.get_absolute_url()})
+        
+        return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
         return HttpResponseNotFound()
 
@@ -114,24 +119,29 @@ def project_update_related(request, language_code, related_form, project_slug):
 
     parent_project = project_translation.project
 
-    project_objective_form = I4pProjectObjectiveForm(related_form,
-                                                     instance=parent_project)
-
 
     # Convert tags to string list, separated by comma
     if isinstance(related_form['themes'], list):
         related_form['themes'] = ", ".join(related_form['themes'])
+    
+    if not isinstance(related_form['objective-form-objective'], list):
+        related_form['objective-form-objective'] = related_form['objective-form-objective'].split(',')
 
     project_themes_form = I4pProjectThemesForm(related_form,
                                                instance=project_translation)
+    
+    project_objective_form = I4pProjectObjectiveForm(related_form,
+                                                     instance=parent_project,
+                                                     prefix="objective-form")
 
 
-    if project_themes_form.is_valid() and project_objective_form.is_valid():
-        # Use Tag otherwise it doesn't work because of the proxy model
+    if project_themes_form.is_valid():
         project_themes_form.save()
-
-        # Save objective
+        
+    if  project_objective_form.is_valid():
         project_objective_form.save()
+    else:
+        print project_objective_form.errors
 
     return simplejson.dumps({})
 

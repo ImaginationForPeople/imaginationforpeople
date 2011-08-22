@@ -25,6 +25,7 @@ BeautifulSoup
 lxml
 html5lib
 django-ajax-selects
+django-ajaxcomments==0.2
 
 -e git+https://github.com/jezdez/django_compressor.git@8c7961d2eb778edce2f1e101121629b96f93aba5#egg=django_compressor
 
@@ -43,6 +44,8 @@ django-ajax-selects
 
 -e git+https://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
 
+
+-e git+https://github.com/ojii/django-nani.git#egg=django-nani
 
 # Testing tools
 coverage<3.4
