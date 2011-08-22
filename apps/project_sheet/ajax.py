@@ -114,24 +114,29 @@ def project_update_related(request, language_code, related_form, project_slug):
 
     parent_project = project_translation.project
 
-    project_objective_form = I4pProjectObjectiveForm(related_form,
-                                                     instance=parent_project)
-
 
     # Convert tags to string list, separated by comma
     if isinstance(related_form['themes'], list):
         related_form['themes'] = ", ".join(related_form['themes'])
+    
+    if not isinstance(related_form['objective-form-objective'], list):
+        related_form['objective-form-objective'] = related_form['objective-form-objective'].split(',')
 
     project_themes_form = I4pProjectThemesForm(related_form,
                                                instance=project_translation)
+    
+    project_objective_form = I4pProjectObjectiveForm(related_form,
+                                                     instance=parent_project,
+                                                     prefix="objective-form")
 
 
-    if project_themes_form.is_valid() and project_objective_form.is_valid():
-        # Use Tag otherwise it doesn't work because of the proxy model
+    if project_themes_form.is_valid():
         project_themes_form.save()
-
-        # Save objective
+        
+    if  project_objective_form.is_valid():
         project_objective_form.save()
+    else:
+        print project_objective_form.errors
 
     return simplejson.dumps({})
 
