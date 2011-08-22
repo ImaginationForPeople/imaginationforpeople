@@ -23,6 +23,7 @@ from localeurl.models import reverse
 import reversion
 from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
+from nani.models import TranslatableModel, TranslatedFields
 
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
@@ -36,16 +37,19 @@ class ProjectReference(models.Model):
     """
     desc = models.CharField(_("description"), max_length=300, help_text=_("Insert your reference here (URL, books, etc)"))
 
+class Objective(TranslatableModel):
+    translations = TranslatedFields(
+        name = models.CharField(max_length=255)
+    )
+
+    def __unicode__(self):
+        return self.safe_translation_getter('name', 'Objective: %s' % self.pk)
+
+
 class I4pProject(models.Model):
     """
     Root object for a project. Holds only shared data
     """
-
-    OBJECTIVE_CHOICES = [
-        ('', _('-----')),
-        ('EDUC', _('Educate')),
-        ('CONT', _('Contribute')),
-        ]
 
     STATUS_CHOICES = [
         ('IDEA', _('Concept')),
@@ -67,9 +71,7 @@ class I4pProject(models.Model):
     created = models.DateField(verbose_name=_("creation date"),
                                auto_now_add=True)
 
-    objective = models.CharField(verbose_name=_('objective'),
-                                 max_length=4, choices=OBJECTIVE_CHOICES,
-                                 null=True, blank=True)
+    objective = models.ManyToManyField(Objective, verbose_name=_('objective'), null=True, blank=True)
 
     website = models.URLField(verbose_name=_('website'),
                               verify_exists=True,

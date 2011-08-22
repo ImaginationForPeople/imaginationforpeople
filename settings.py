@@ -157,6 +157,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'userena',
     'guardian',
+    'nani',
 
     'rosetta',
     'tagging',
