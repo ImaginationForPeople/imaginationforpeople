@@ -58,7 +58,7 @@ urlpatterns = patterns('',
 
                        # Change email and confirm it
                        url(r'^(?P<username>\w+)/email/$',
-                           userena_views.email_change,
+                           member_views.email_change,
                            name='userena_email_change'),
                        url(r'^(?P<username>\w+)/email/complete/$',
                            userena_views.direct_to_user_template,
@@ -80,7 +80,7 @@ urlpatterns = patterns('',
 
                        # Change password
                        url(r'^(?P<username>\w+)/password/$',
-                           userena_views.password_change,
+                           member_views.password_change,
                            name='userena_password_change'),
                        url(r'^(?P<username>\w+)/password/complete/$',
                            userena_views.direct_to_user_template,
@@ -89,7 +89,7 @@ urlpatterns = patterns('',
 
                        # Edit profile
                        url(r'^(?P<username>\w+)/edit/$',
-                           userena_views.profile_edit,
+                           member_views.profile_edit,
                            name='userena_profile_edit'),
 
                        # View profiles
