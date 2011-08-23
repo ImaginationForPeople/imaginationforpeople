@@ -12,7 +12,7 @@ from django.shortcuts import get_object_or_404
 
 from userena import views as userena_views
 from userena.decorators import secure_required
-from userena.forms import AuthenticationForm, ChangeEmailForm, EditProfileForm
+from userena.forms import AuthenticationForm, ChangeEmailForm
 from userena.utils import signin_redirect, get_profile_model
 
 from guardian.decorators import permission_required_or_403
@@ -20,6 +20,8 @@ from reversion.models import Version
 
 from apps.project_sheet.utils import get_project_translations_from_parents
 from apps.project_sheet.models import I4pProjectTranslation
+
+from .forms import I4PEditProfileForm
 
 
 def profile_detail(request, username):
@@ -98,7 +100,7 @@ def signin(request,
 
 @secure_required
 @permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
-def profile_edit(request, username, edit_profile_form=EditProfileForm,
+def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None):
     """
@@ -121,7 +123,7 @@ def profile_edit(request, username, edit_profile_form=EditProfileForm,
     # Also pass the password and email forms
     extra_context.update({'password_form': PasswordChangeForm(user=request.user),
                           'email_form': ChangeEmailForm(user=request.user),
-                          'profile_form': EditProfileForm(instance=profile, initial=user_initial)}
+                          'profile_form': I4PEditProfileForm(instance=profile, initial=user_initial)}
                          )
 
 
@@ -153,7 +155,7 @@ def password_change(request, username, template_name='userena/password_form.html
     # Also pass the password and email forms
     extra_context.update({'password_form': PasswordChangeForm(user=request.user),
                           'email_form': ChangeEmailForm(user=request.user),
-                          'profile_form': EditProfileForm(instance=profile, initial=user_initial)}
+                          'profile_form': I4PEditProfileForm(instance=profile, initial=user_initial)}
                          )
 
     return userena_views.password_change(request=request, 
@@ -184,7 +186,7 @@ def email_change(request, username, form=ChangeEmailForm,
     # Also pass the password and email forms
     extra_context.update({'password_form': PasswordChangeForm(user=request.user),
                           'email_form': ChangeEmailForm(user=request.user),
-                          'profile_form': EditProfileForm(instance=profile, initial=user_initial)
+                          'profile_form': I4PEditProfileForm(instance=profile, initial=user_initial)
                           })
 
     return userena_views.email_change(request=request,
