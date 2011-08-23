@@ -1,11 +1,14 @@
 """
 Toolkit for a project sheet management
 """
+from reversion.models import Version
+
+from django.contrib.contenttypes.models import ContentType
 from django.db import DatabaseError
 
 from tagging.models import Tag
 
-from .models import I4pProject, I4pProjectTranslation
+from .models import I4pProject, I4pProjectTranslation, VERSIONNED_FIELDS
 from .filters import BestOfFilter, NameBaselineFilter
 from .filters import ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter
 from .filters import ThemesFilterForm, WithMembersFilterForm
@@ -157,7 +160,75 @@ def build_filters_and_context(request_data):
 
     return (filter_forms, extra_context)
 
+#-- Reversion utils --#
+def fields_diff(previous_version, current_version, versionned_fields):
+    """
+    Diff between two model fields
+    """
+    fields = []
+    previous_field_dict = previous_version.get_field_dict()
+    current_field_dict = current_version.get_field_dict()
+    for field, value in current_field_dict.iteritems():
+        if field in versionned_fields:
+            if field in previous_field_dict:
+                if previous_field_dict[field] != value:
+                    fields.append(current_version.content_type.model_class()._meta.get_field(field).verbose_name + '')
+    return fields
 
+
+def get_project_project_translation_recent_changes(queryset):
+    """
+    Return the diff as a dict of the given version queryset
+    """
+    project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
+    parent_project_ct = ContentType.objects.get_for_model(I4pProject)
+
+    project_translation_previous_version = None
+    parent_project_previous_version = None
+    
+    history = []
+    
+    for version in queryset:
+        try:
+            version.object_version.object.title
+        except Exception: 
+            continue
+        
+        infos = {'version': version,
+                 'revision': version.revision,
+                 'object': version.object_version.object,
+                 'diff': None}
+        
+        if version.content_type == project_translation_ct: # I4pProjectTranslation Type
+            if project_translation_previous_version:
+                infos['diff'] = fields_diff(project_translation_previous_version,
+                                            version,
+                                            VERSIONNED_FIELDS[project_translation_ct.model_class()])
+            project_translation_previous_version = version
+
+            try:
+                instance = I4pProjectTranslation.objects.get(pk=version.object_version.object.pk)
+                slug = instance.slug
+                language_code = instance.language_code
+            
+            except I4pProjectTranslation.DoesNotExist:
+                slug = None
+                language_code = None
+                
+            infos['slug'] = slug
+            infos['language_code'] = language_code
+
+        else: # I4pProject type:
+            if parent_project_previous_version:
+                infos['diff'] = fields_diff(parent_project_previous_version,
+                                            version,
+                                            VERSIONNED_FIELDS[parent_project_ct.model_class()])
+            parent_project_previous_version = version
+
+        if infos['diff']:
+            history.append(infos)
+
+    return history
 
 
 

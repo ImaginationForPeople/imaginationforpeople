@@ -1,8 +1,11 @@
 from django.conf.urls.defaults import patterns, url
+from django.views.decorators.cache import cache_page
 from django.views.generic.simple import direct_to_template
 
 from . import views
 from . import ajax
+
+import feeds
 
 PROJECT_AUTHORIZED_FIELDS = "|".join([
     'title',
@@ -16,6 +19,7 @@ PROJECT_AUTHORIZED_FIELDS = "|".join([
 urlpatterns = patterns('',
     url(r'^add/$', direct_to_template, {'template' : 'project_sheet/project_sheet.html'}, name='project_sheet-start'),
     url(r'^list/$', views.project_sheet_list, name='project_sheet-list'),
+    url(r'^recent-changes/$', views.ProjectRecentChangesView.as_view(), name='project_sheet-recent-changes'),
 
     url(r'^edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-instance-edit-field'),
@@ -49,4 +53,9 @@ urlpatterns = patterns('',
     url(r'^start/ajax/field/load$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
     url(r'^(?P<project_slug>[-\w]+)/ajax/field/load$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
     url(r'^(?P<project_slug>[-\w]+)/ajax/field/save$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
+
+    # RSS Feeds
+    url(r'^list/new-projects\.rss$', feeds.NewProjectsFeed(), name='project_sheet-new-projects-rss'),
+    url(r'^recent-changes\.rss$', feeds.LatestChangesFeed(), name='project_sheet-recent-changes-rss'),
+
 )
