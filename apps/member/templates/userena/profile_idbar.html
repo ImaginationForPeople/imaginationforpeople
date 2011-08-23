@@ -1,17 +1,5 @@
 {% load i18n %}
 
-    <div id="profile_action">
-        {% block profile_button_panel %}
-                <ul>
-		  {% if profile.user == request.user or form %}
-                    <li><a class="button nomargin"  href="{% url userena_profile_edit user.username %}" title="{% trans 'Edit details'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "details" %}</a></li>
-                    <li><a class="button nomargin"  href="{% url userena_password_change user.username %}" title="{% trans 'Edit password'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "password" %}</a></li>
-                    <li><a class="button nomargin"  href="{% url userena_email_change user.username %}" title="{% trans 'Edit email'|capfirst %}"><img src="{{ STATIC_URL }}images/base/edit.png" alt="" />{% trans "email" %}</a></li>
-		    {% endif %}
-                </ul>
-        {% endblock %}
-    </div>            
-
     <div id="avatar">
         <div id="social_buttons">
             {% if profile.linkedin %}

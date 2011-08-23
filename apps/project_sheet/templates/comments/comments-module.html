@@ -27,8 +27,15 @@
                 {{ comment_form.object_pk }}
                 {{ comment_form.timestamp }}
                 {{ comment_form.security_hash }}
+                
+                <!--
                 <input type="hidden" maxlength="50" name="name" id="id_name" value="{{ user.first_name }} {{ user.last_name }}">
                 <input type="hidden" id="id_email" name="email" value="{{ user.email }}">
+                -->
+                
+                {{ request.comment.user }}
+                
+                
                 <textarea name="comment" id="id_comment"></textarea>
                 <div class="comment-info">
                     <div class="bulle"></div>
