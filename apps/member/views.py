@@ -7,17 +7,20 @@ from django.utils import translation
 from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
 
 from userena import views as userena_views
 from userena.decorators import secure_required
-from userena.forms import AuthenticationForm
-from userena.utils import signin_redirect
+from userena.forms import AuthenticationForm, ChangeEmailForm, EditProfileForm
+from userena.utils import signin_redirect, get_profile_model
 
+from guardian.decorators import permission_required_or_403
 from reversion.models import Version
 
 from apps.project_sheet.utils import get_project_translations_from_parents
 from apps.project_sheet.models import I4pProjectTranslation
+
 
 def profile_detail(request, username):
     """
@@ -91,4 +94,103 @@ def signin(request,
     return response
 
 
+
+
+@secure_required
+@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
+def profile_edit(request, username, edit_profile_form=EditProfileForm,
+                 template_name='userena/profile_form.html', success_url=None,
+                 extra_context=None):
+    """
+    Custom version of userena's profile edit, with the three following forms:
+     - Profile edition ;
+     - Password update ;
+     - Email update.
+    """
+    user = get_object_or_404(User,
+                             username__iexact=username)
+
+    profile = user.get_profile()
+
+    user_initial = {'first_name': user.first_name,
+                    'last_name': user.last_name}
+
+    if not extra_context:
+        extra_context = {}
+
+    # Also pass the password and email forms
+    extra_context.update({'password_form': PasswordChangeForm(user=request.user),
+                          'email_form': ChangeEmailForm(user=request.user),
+                          'profile_form': EditProfileForm(instance=profile, initial=user_initial)}
+                         )
+
+
+    return userena_views.profile_edit(request=request,
+                                      username=username,
+                                      edit_profile_form=edit_profile_form,
+                                      template_name=template_name,
+                                      success_url=success_url,
+                                      extra_context=extra_context)
+    
+
+
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
+def password_change(request, username, template_name='userena/password_form.html',
+                    pass_form=PasswordChangeForm, success_url=None, extra_context=None):
+
+    user = get_object_or_404(User,
+                             username__iexact=username)
+
+    profile = user.get_profile()
+
+    user_initial = {'first_name': user.first_name,
+                    'last_name': user.last_name}
+
+    if not extra_context:
+        extra_context = {}
+
+    # Also pass the password and email forms
+    extra_context.update({'password_form': PasswordChangeForm(user=request.user),
+                          'email_form': ChangeEmailForm(user=request.user),
+                          'profile_form': EditProfileForm(instance=profile, initial=user_initial)}
+                         )
+
+    return userena_views.password_change(request=request, 
+                                         username=username, 
+                                         template_name='userena/profile_form.html',
+                                         pass_form=pass_form, 
+                                         success_url=success_url, 
+                                         extra_context=extra_context)
+
+
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
+def email_change(request, username, form=ChangeEmailForm,
+                 template_name='userena/email_form.html', success_url=None,
+                 extra_context=None):
+
+    user = get_object_or_404(User,
+                             username__iexact=username)
+
+    profile = user.get_profile()
+
+    user_initial = {'first_name': user.first_name,
+                    'last_name': user.last_name}
+
+    if not extra_context:
+        extra_context = {}
+
+    # Also pass the password and email forms
+    extra_context.update({'password_form': PasswordChangeForm(user=request.user),
+                          'email_form': ChangeEmailForm(user=request.user),
+                          'profile_form': EditProfileForm(instance=profile, initial=user_initial)
+                          })
+
+    return userena_views.email_change(request=request,
+                                      username=username,
+                                      form=form,
+                                      template_name='userena/profile_form.html',
+                                      success_url=success_url,
+                                      extra_context=extra_context)
     
