@@ -1,23 +1,28 @@
 {% extends "userena/profile_base.html" %}
 {% load i18n %}
+{% load compress %}
 
-{% block title %}{% trans "Change email" %} | Imagination for People{% endblock %}
+
+{% block meta_desc %}{% endblock %}
+{% block title %}{% trans "Account setup" %} | Imagination for People{% endblock %}
+
+{% block extra_head %}
+    {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
+    {% endcompress %}
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#profile_edit .menu ul').idTabs("mail");
+    });
+  </script>
+{% endblock %}
 
 
 {% block profile_content %}
-                
-    <div class="separator">
-        <h2>
-            {% trans 'Change email' %}
-        </h2>
-    </div>
-    <br />
-    <p>{% trans 'Your current email address is the following:' %} <em>{{ user.email }}</em></p><br />
-    <form action="" method="post" id="email_change_form"  class="profile_edition">
-      
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" class="button" value="{% trans 'Change email' %}" />
-    </form>
-             
+
+    {% with form as email_form %}
+        {% include "userena/forms.html" %}   
+    {% endwith %}    
+    
 {% endblock %}

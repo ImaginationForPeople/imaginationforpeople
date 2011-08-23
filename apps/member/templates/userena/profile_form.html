@@ -1,85 +1,30 @@
-{% extends "userena/profile_base.html" %}
+﻿{% extends "userena/profile_base.html" %}
 {% load i18n %}
+{% load compress %}
+
 
 {% block meta_desc %}{% endblock %}
 {% block title %}{% trans "Account setup" %} | Imagination for People{% endblock %}
 
+{% block extra_head %}
+    {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
+    {% endcompress %}
+    
+    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#profile_edit .menu ul').idTabs("about_me");
+    });
+  </script>
+{% endblock %}
+
 
 {% block profile_content %}
 
-    <form action="" method="post" enctype="multipart/form-data" class="profile_edition">
-       
-       <div class="separator">
-            <h2>
-                {% trans 'About me' %}
-            </h2>
-        </div>
-        
-        {% csrf_token %}
-        
-        <div class="grid_8 alpha">
-            {{ form.gender.errors }}
-            <p>{{ form.gender.label_tag }}{{ form.gender}}</p>
-            {{ form.first_name.errors }}
-            <p>{{ form.first_name.label_tag }}{{ form.first_name}}</p>
-            {{ form.last_name.errors }}
-            <p>{{ form.last_name.label_tag }}{{ form.last_name}}</p>
-            {{ form.mugshot.errors }}
-            <p><label for="id_mugshot">{% trans 'Avatar' %}</label>{{ form.mugshot}}</p>
-            {{ form.privacy.errors }}
-            <p>{{ form.privacy.label_tag }}{{ form.privacy}}</p>
-        </div>
-        
-        <div class="grid_10 omega">
-            {{ form.motto.errors }}
-            <p>{{ form.motto.label_tag }}{{ form.motto}}</p>
-            {{ form.about.errors }}
-            <p>{{ form.about.label_tag }}{{ form.about}}</p>
-        </div>
-        
-        <div class="clear"></div>
-        
-        <div class="separator">
-            <h2>
-                {% trans 'Generals infos' %}
-            </h2>
-        </div>
-        
-        <div class="grid_8 alpha">                   
-            {{ form.language.errors }}
-            <p>{{ form.language.label_tag }}{{ form.language}}</p>
-            {{ form.birthday.errors }}
-            <p>{{ form.birthday.label_tag }}{{ form.birthday}}</p>
-        </div>
-        
-        <div class="grid_10 omega">
-            {{ form.address.errors }}
-            <p>{{ form.address.label_tag }}{{ form.address}}</p>
-            {{ form.country.errors }}
-            <p>{{ form.country.label_tag }}{{ form.country}}</p>
-        </div>
-        
-         <div class="clear"></div>
-        
-        <div class="separator">
-            <h2>
-                {% trans 'External links' %}
-            </h2>
-        </div>
-        
-        <div class="grid_8 alpha">
-        
-            {{ form.website.errors }}
-            <p>{{ form.website.label_tag }}{{ form.website}}</p>
-            {{ form.linkedin.errors }}
-            <p>{{ form.linkedin.label_tag }}{{ form.linkedin}}</p>
-            {{ form.twitter.errors }}
-            <p>{{ form.twitter.label_tag }}{{ form.twitter}}</p>
-            {{ form.facebook.errors }}
-            <p>{{ form.facebook.label_tag }}{{ form.facebook}}</p>
-        </div>
-        
-        <input type="submit" class="button" value="{% trans 'Save changes' %}" />
-    </form>
+    {% with form as profile_form %}
+        {% include "userena/forms.html" %}   
+    {% endwith %}    
+    
                
 {% endblock %}

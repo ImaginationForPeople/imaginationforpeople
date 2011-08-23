@@ -13,7 +13,7 @@
 				<h1>{% trans "Interface language" %}</h1>
 				<ul id="interface_lang">
                     {% for lang in LANGUAGES %}
-                    <li><a href="{{ request.path|chlocale:lang.0 }}" title="{{ lang.0 }}"><img src="{{ STATIC_URL }}images/flags/{{ lang.0 }}.gif" />{{ lang.1 }}</a>
+                    <li><a href="{{ request.path|chlocale:lang.0 }}" title="{{ lang.0 }}"><img src="{{ STATIC_URL }}images/flags/{{ lang.0 }}.gif" alt="{{ lang.0 }}" />{{ lang.1 }}</a></li>
                     {% endfor %}
                 </ul>
 			</div>

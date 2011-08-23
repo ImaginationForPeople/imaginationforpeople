@@ -119,121 +119,147 @@
   margin-top: 40px;
 }
 
-/* ----- Profile Edition -----*/
-#profile .profile_edition .separator {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
-#profile .profile_edition p {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-#profile .profile_edition label {
-  color: #04add1;
-  width: 120px;
-  margin-right: 10px;
-  float: left;
+/* --Profile Edition-- */
+#profile_edit {
+  background-image: url("../images/profile/edit_profile-bg.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  width: 981px;
+  height: 480px;
   position: relative;
-  text-align: right;
+  top: -37px;
+  padding-top: 35px;
+}
+#profile_edit .menu ul {
+  padding-left: 55px;
+}
+#profile_edit .menu ul li {
+  display: list-item;
+  margin-bottom: 4px;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+}
+#profile_edit .menu ul li a {
+  color: white;
+}
+#profile_edit .menu ul li a.selected div {
+  background-image: url("../images/profile/title-bar.png");
+  background-position: left top;
+  background-repeat: no-repeat;
+  width: 240px;
+  height: 45px;
+  line-height: 40px;
+  padding-left: 40px;
+  position: relative;
+  left: -40px;
+}
+#profile_edit .menu ul li img {
+  position: relative;
   top: 2px;
+  left: -7px;
 }
-#profile .profile_edition .button {
-  background-image: url("../images/base/minibutton_blue.jpg");
-  border: 1px solid #2A65A0;
-  color: #FFFFFF;
+#profile_edit .menu ul li img:first-child {
+  top: 3px;
+}
+#profile_edit form ul.errorlist + p input, #profile_edit form .errorlist + p select, #profile_edit form .errorlist + p textarea {
+  border: 1px solid red;
+  background-color: #ef464f;
+  color: white;
+}
+#profile_edit form p {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+#profile_edit form p label {
+  width: 150px;
+  text-align: right;
+  float: left;
+  font-size: 17px;
+  margin-right: 15px;
+}
+#profile_edit form p input, #profile_edit form p select, #profile_edit form p textarea {
+  width: 350px;
+  font-size: 17px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+  border: 1px solid #8e8e8e;
+  color: #737373;
+  font-family: Verdana,Arial,Helvetica,sans-serif;
+}
+#profile_edit form p select {
+  width: 352px;
+}
+#profile_edit form p #id_motto {
+  height: 50px;
+}
+#profile_edit form p #id_about {
+  height: 100px;
+}
+#profile_edit form p #id_address {
+  height: 68px;
+}
+#profile_edit form p #id_gender_0 {
+  background-image: url("../images/profile/profil-edit-woman.png");
+  background-repeat: no-repeat;
+}
+#profile_edit form p #id_gender_1 {
+  background-image: url("../images/profile/profil-edit-men.png");
+  background-repeat: no-repeat;
+}
+#profile_edit form p.mugshot #mugshot-clear_id, #profile_edit form p.mugshot a, #profile_edit form p.mugshot label, #profile_edit form p.mugshot br {
+  display: none;
+  visibility: hidden;
+}
+#profile_edit form p.mugshot label:first-child {
+  display: inherit;
+  visibility: visible;
+}
+#profile_edit form .errorlist {
+  position: absolute;
+  background-color: #c2333d;
+  width: 150px;
+  right: 10px;
+  padding: 5px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -o-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -khtml-border-radius: 6px;
+  border-radius: 6px;
+}
+#profile_edit form .button {
+  float: right;
+  margin-right: 184px;
+  color: #fff;
+  text-decoration: none;
   text-shadow: -1px -1px 0 rgba(0, 0, 0, 0.3);
-  -moz-box-shadow: 0px 0px 4px black;
-  -webkit-box-shadow: 0px 0px 4px black;
-  -o-box-shadow: 0px 0px 4px black;
-  box-shadow: 0px 0px 4px black;
-  position: absolute !important;
-  bottom: 25px !important;
-  top: auto !important;
-  right: -14px;
-  width: auto;
+  background-position: 0 -30px;
+  background: url(../images/base/minibutton_blue.jpg);
+  border: 1px solid #2a65a0;
+  margin-top: 10px;
 }
-#profile .profile_edition .button:hover {
-  background-color: #EEEEEE;
-  background-image: none !important;
-  border: 1px solid #BDBDBD;
-  color: #5A5959;
-  text-shadow: 1px 1px 0 #FFFFFF;
+#profile_edit form .button:hover {
+  color: #5a5959;
+  text-decoration: none;
+  text-shadow: 1px 1px 0 #fff;
+  background-color: #eeeeee;
+  border: 1px solid #bdbdbd;
+  background-image: none;
 }
-
-#signin_form .button {
-  left: 200px !important;
-  clear: both;
-  width: 120px;
-  float: none !important;
+#profile_edit #password_change_form label {
+  width: 250px;
 }
-
-#id_website, #id_linkedin, #id_twitter, #id_facebook {
+#profile_edit #password_change_form input[type=password] {
   width: 250px;
 }
 
-#password_change_form p {
-  width: 56%;
-  position: relative !important;
-}
-#password_change_form label {
-  width: 60% !important;
-}
-#password_change_form input {
-  width: 35%;
-}
-#password_change_form .errorlist li {
-  margin-left: 338px;
-}
-
-#email_change_form p {
-  width: 56%;
-  float: left;
-}
-#email_change_form label {
-  width: 25% !important;
-}
-#email_change_form input {
-  width: 30%;
-}
-#email_change_form .errorlist li {
-  margin-left: 150px;
-}
-
-#id_motto {
-  height: 16px;
-  width: 399px;
-}
-
-#id_about {
-  height: 96px;
-  width: 399px;
-}
-
-#id_address {
-  height: 50px;
-  width: 399px;
-}
-
-.errorlist {
-  display: block;
-  position: relative;
-  margin-top: 18px;
-  clear: both;
-}
-
-.errorlist li {
-  margin-left: 130px;
-}
-
-#signin_form .checkbox label {
-  width: 100% !important;
-  float: none !important;
-  top: 10px;
-  font-style: italic;
-}
-#signin_form .forgot-password {
-  position: relative;
-  top: -12px;
-  left: 0px;
-  display: inline;
+#mail p:first-child {
+  padding-left: 25px;
 }
