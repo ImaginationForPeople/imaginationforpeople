@@ -14,16 +14,17 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.utils import translation
 
 from autoslug.fields import AutoSlugField
 from imagekit.models import ImageModel
-from tagging.fields import TagField
 from licenses.fields import LicenseField
 from localeurl.models import reverse
+from nani.models import TranslatableModel, TranslatedFields
 import reversion
 from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
-from nani.models import TranslatableModel, TranslatedFields
+from tagging.fields import TagField
 
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
@@ -68,8 +69,8 @@ class I4pProject(models.Model):
 
     best_of = models.BooleanField(verbose_name=_('best of'), default=False)
 
-    created = models.DateField(verbose_name=_("creation date"),
-                               auto_now_add=True)
+    created = models.DateTimeField(verbose_name=_("creation date"),
+                                   auto_now_add=True)
 
     objective = models.ManyToManyField(Objective, verbose_name=_('objective'), null=True, blank=True)
 
@@ -101,6 +102,19 @@ class I4pProject(models.Model):
 
         return res
 
+
+    def get_absolute_url(self):
+        # Don't move this, or you get in trouble with cyclic imports
+        from .utils import get_project_translation_from_parent
+
+        language_code = translation.get_language()
+        project_translation = get_project_translation_from_parent(parent=self,
+                                                                  language_code=language_code,
+                                                                  fallback_language='en',
+                                                                  fallback_any=True)
+
+        return project_translation.get_absolute_url()
+
 class I4pProjectTranslation(models.Model):
     """
     A translation of a project
@@ -129,7 +143,7 @@ class I4pProjectTranslation(models.Model):
                                 max_length=5, choices=PROGRESS_CHOICES, default="EDIT",
                                 null=True, blank=True)
 
-    modified = models.DateField(null=True, blank=True)
+    modified = models.DateTimeField(null=True, blank=True)
 
     baseline = models.CharField(verbose_name=_("one line description"),
                                 max_length=180,

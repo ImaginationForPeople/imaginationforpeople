@@ -187,6 +187,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.comments',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
 
     # Internal Apps
     'apps.i4p_base',

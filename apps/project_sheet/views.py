@@ -1,6 +1,8 @@
 """
 Django Views for a Project Sheet
 """
+import datetime
+
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -12,6 +14,7 @@ from django.template.context import RequestContext
 from django.utils import translation
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
+from django.views.generic import TemplateView
 
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
@@ -25,6 +28,7 @@ from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfo
 from .forms import I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
+from .utils import get_project_project_translation_recent_changes, fields_diff
 
 
 def project_sheet_list(request):
@@ -432,19 +436,6 @@ def project_sheet_member_delete(request, project_slug, username):
 
     return redirect(project_translation)
 
-def fields_diff(previous_version, current_version, versionned_fields):
-    """
-    Diff between two model fields
-    """
-    fields = []
-    previous_field_dict = previous_version.get_field_dict()
-    current_field_dict = current_version.get_field_dict()
-    for field, value in current_field_dict.iteritems():
-        if field in versionned_fields:
-            if field in previous_field_dict:
-                if previous_field_dict[field] != value:
-                    fields.append(current_version.content_type.model_class()._meta.get_field(field).verbose_name + '')
-    return fields
 
 def project_sheet_history(request, project_slug):
     """
@@ -495,4 +486,24 @@ def project_sheet_history(request, project_slug):
                                'versions' : versions,
                                'history_tab' : True},
                               context_instance=RequestContext(request))
+
+
+class ProjectRecentChangesView(TemplateView):
+    template_name = 'project_sheet/all_recent_changes.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
+
+        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=20)
+
+        project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
+        parent_project_ct = ContentType.objects.get_for_model(I4pProject)
+        
+        versions = Version.objects.filter(Q(content_type=project_translation_ct) | Q(content_type=parent_project_ct)).filter(revision__date_created__gt=twenty_days_ago).order_by('-revision__date_created')
+
+        context['history'] = get_project_project_translation_recent_changes(versions)
+
+        return context
+
+
 
