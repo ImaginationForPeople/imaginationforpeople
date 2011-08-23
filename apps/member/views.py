@@ -158,7 +158,7 @@ def password_change(request, username, template_name='userena/password_form.html
 
     return userena_views.password_change(request=request, 
                                          username=username, 
-                                         template_name='userena/profile_form.html',
+                                         template_name=template_name,
                                          pass_form=pass_form, 
                                          success_url=success_url, 
                                          extra_context=extra_context)
@@ -190,7 +190,7 @@ def email_change(request, username, form=ChangeEmailForm,
     return userena_views.email_change(request=request,
                                       username=username,
                                       form=form,
-                                      template_name='userena/profile_form.html',
+                                      template_name=template_name,
                                       success_url=success_url,
                                       extra_context=extra_context)
     
