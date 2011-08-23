@@ -4,9 +4,11 @@ from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-from userena.forms import SignupForm
+from userena.forms import SignupForm, EditProfileForm
 
 from apps.i4p_base.utils import remove_accents
+
+from .models import I4pProfile
 
 class I4PSignupForm(SignupForm):
     """
@@ -43,3 +45,8 @@ class I4PSignupForm(SignupForm):
 
         new_user.save()
         return new_user
+
+
+class I4PEditProfileForm(EditProfileForm):
+    gender = forms.ChoiceField(choices=I4pProfile.GENDER_TYPE,
+                               widget=forms.RadioSelect)
