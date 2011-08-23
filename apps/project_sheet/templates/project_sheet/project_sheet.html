@@ -109,31 +109,16 @@
     }); 
   </script>
   
-    <!-- Comments -->
-  
-    <script type="text/javascript">
-        $(document).ready(function(){             
-            $("#comment-form #id_comment").example("Type your message here and press enter when done...");
-            
-            $('#comment-form #id_comment').keypress(function(event) {
-                if ( event.which == 13 ) {
-                     event.preventDefault();
-                      $('#comment-form form').submit();
-                }
-            });
-
-        }); 
-    </script>
-
-
-  <!-- Comments -->
+   <!-- Comments -->
   <script type="text/javascript">
     $(document).ready(function() {
     // Customize the location of the media to match your project structure
     media = '{{ STATIC_URL }}'
+
+    $("#comment-form #id_comment").example("Type your message here and press enter when done...");
     
     // Customize the selector for your project
-    $('div.comment-form form').submit(function() {
+    $('div#comment-form form').submit(function() {
         ajaxComment({'media': media});
         return false;
 	});
@@ -649,7 +634,7 @@
 	
 	<div class="clear"></div>
 
-    {% include "comments/comments-module.html" %}
+	{% include "comments/comments-module.html" %}
 
 	<div id="license-note">
 	  {% blocktrans %}

@@ -10,7 +10,8 @@
     </div>
     
     <div id="comments-count">
-        <a href="#" class="link">{% trans "View the" %} {% get_comment_count for project_translation as comment_count %} {% trans "comments" %}</a>
+      {% get_comment_count for project_translation as comment_count %}
+        <a href="#" class="link">{% trans "View the" %} {{ comment_count }} {% trans "comments" %}</a>
     </div>
     
     <div class="clear"></div>
