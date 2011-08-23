@@ -29,13 +29,15 @@
       <div id="changes_list">
 	
 	{% for entry in history %}
+	  {% ifchanged entry.revision.date_created.date %}<hr/>{% endifchanged %}
 	  {% ifchanged entry.revision.date_created.date %}<h3>{{ entry.revision.date_created.date|naturalday|capfirst }}</h3>{% endifchanged %}
 
 	  {% with entry.object as the_object %}
 	    {% if the_object.title %} {# that's a project translation #}
-	    {% ifchanged %}<h4>{{ the_object.title }}</h4>{% endifchanged %}
+	    {% ifchanged %}<h4><a href="{% locale_url entry.language_code project_sheet-show entry.slug %}">{{ the_object.title }}</a></h4>{% endifchanged %}
+
 	      <ul>
-		<li>{{ entry.revision.date_created.time }} -- <a href="{% locale_url entry.language_code project_sheet-show entry.slug %}">{{ the_object.title }}</a>: {{ entry.diff|join:", " }}<br/></li>
+		<li>{{ entry.revision.date_created.time }}: {{ entry.diff|join:", " }}<br/></li>
 	      </ul>
 	    {% else %}
 	      dd
