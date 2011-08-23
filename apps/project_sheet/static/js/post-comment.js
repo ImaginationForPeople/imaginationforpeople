@@ -11,7 +11,7 @@ function ajaxComment(args) {
     $('div.comment-error').remove();
     
     if (commentBusy) {
-        $('div.comment-form form').before('\
+        $('div#comment-form form').before('\
             <div class="comment-error">\
                 Your comment is currently in the process of posting.\
             </div>\
@@ -21,7 +21,7 @@ function ajaxComment(args) {
         return false;
     }
     
-    comment = $('div.comment-form form').serialize();
+    comment = $('div#comment-form form').serialize();
    
     // Add a wait animation
     $('input.submit-post').after('\
@@ -39,7 +39,7 @@ function ajaxComment(args) {
     
     commentBusy = true;
     
-    url = $('div.comment-form form').attr('action');
+    url = $('div#comment-form form').attr('action');
     
     // Use AJAX to post the comment.
     $.ajax({
@@ -62,8 +62,8 @@ function ajaxComment(args) {
             
             removeWaitAnimation()
             
-            $('div.comment-form form').unbind('submit');
-            $('div.comment-form form').submit();
+            $('div#comment-form form').unbind('submit');
+            $('div#comment-form form').submit();
         },
         dataType: 'json'
     });
@@ -83,7 +83,7 @@ function commentSuccess(data) {
         )
     }
     
-   $('div.comment-form form textarea')[0].value = "";
+   $('div#comment-form form textarea')[0].value = "";
 
     $('#id_comment').val('');
     
