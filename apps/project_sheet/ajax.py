@@ -54,6 +54,7 @@ def project_textfield_load(request, project_slug=None):
         choice_dict = {}
         for key, value in choices:
             choice_dict[key] = u"%s" % value
+        choice_dict["selected"] = getattr(project_translation, TEXTFIELD_MAPPINGS[section])
         resp = simplejson.dumps(choice_dict)
     else:
         resp = getattr(project_translation, TEXTFIELD_MAPPINGS[section]) or ''
