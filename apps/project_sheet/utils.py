@@ -197,7 +197,8 @@ def get_project_project_translation_recent_changes(queryset):
         infos = {'version': version,
                  'revision': version.revision,
                  'object': version.object_version.object,
-                 'diff': None}
+                 'diff': None,
+                 'language_code': 'en'}
         
         if version.content_type == project_translation_ct: # I4pProjectTranslation Type
             if project_translation_previous_version:
@@ -216,7 +217,7 @@ def get_project_project_translation_recent_changes(queryset):
                 language_code = None
                 
             infos['slug'] = slug
-            infos['language_code'] = language_code
+            infos['language_code'] = language_code or 'en'
 
         else: # I4pProject type:
             if parent_project_previous_version:

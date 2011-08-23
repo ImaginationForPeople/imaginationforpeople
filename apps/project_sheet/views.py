@@ -494,7 +494,7 @@ class ProjectRecentChangesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
 
-        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=20)
+        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=30)
 
         project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
         parent_project_ct = ContentType.objects.get_for_model(I4pProject)
