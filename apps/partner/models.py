@@ -27,7 +27,8 @@ class Partner(models.Model):
 
     projects = models.ManyToManyField(I4pProject,
                                       verbose_name=_("supported projects"),
-                                      blank=True)
+                                      blank=True,
+                                      related_name='partners')
                                       
     def __unicode__(self):
         return self.name
