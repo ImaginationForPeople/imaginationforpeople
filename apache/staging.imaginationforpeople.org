@@ -1,11 +1,11 @@
 <VirtualHost *:80>
-    ServerName dev.imaginationforpeople.com
+    ServerName staging.imaginationforpeople.org
 
     WSGIProcessGroup webapp
     WSGIDaemonProcess webapp
 
 
-    WSGIScriptAlias / /home/webapp/virtualenvs/imaginationforpeople.com/imaginationforpeople/apache/staging.wsgi/
+    WSGIScriptAlias / /home/webapp/virtualenvs/staging.imaginationforpeople.org/imaginationforpeople/apache/staging.wsgi/
 
     <Location "/">
         Order Allow,Deny
@@ -13,7 +13,7 @@
     </Location>
 
 
-    <Directory /home/webapp/virtualenvs/imaginationforpeople.com/imaginationforpeople/media/>
+    <Directory /home/webapp/virtualenvs/staging.imaginationforpeople.org/imaginationforpeople/media/>
         Options -Indexes FollowSymLinks
     </Directory>
 
@@ -21,18 +21,17 @@
         SetHandler None
     </Location>
 
-    Alias /site_media /home/webapp/virtualenvs/imaginationforpeople.com/imaginationforpeople/media/
+    Alias /site_media /home/webapp/virtualenvs/staging.imaginationforpeople.org/imaginationforpeople/media/
 
     <Location "/admin_media">
         SetHandler None
         Options -Indexes FollowSymLinks
     </Location>
 
-    Alias /admin_media /home/webapp/virtualenvs/imaginationforpeople.com/lib/python2.6/site-packages/django/contrib/admin/media/
+    Alias /admin_media /home/webapp/virtualenvs/staging.imaginationforpeople.org/lib/python2.6/site-packages/django/contrib/admin/media/
 
-    ErrorLog /home/webapp/virtualenvs/imaginationforpeople.com/logs/error.log
-    LogLevel info
-    CustomLog /home/webapp/virtualenvs/imaginationforpeople.com/logs/access.log combined
+    ErrorLog /var/log/apache2/staging.imaginationforpeople.org/logs/error.log
+    CustomLog /var/log/apache2/staging.imaginationforpeople.org/logs/access.log combined
 
 </VirtualHost>
 
