@@ -820,12 +820,20 @@ form{
 }
 
 
-.grey_column_content label{
-	font-weight:bold;
-	color:#5a5959;
-	font-size:14px;
-	margin-bottom:30px;
-	position:relative;
+.grey_column_content {
+    
+    .objectives_label{
+        float:left;
+        margin-right:5px;
+    }
+
+    label{
+        font-weight:bold;
+        color:#5a5959;
+        font-size:14px;
+        margin-bottom:30px;
+        position:relative;
+    }
 }
 
 
@@ -1396,4 +1404,31 @@ ul#themes_tags li.tagit-choice {
 
 .search {
     float:left;
+}
+
+
+/* ----------Popups ----------- */
+
+
+#notification-area{
+    bottom:10px;
+    z-index:3000;
+    position :fixed;
+
+    .anonymous-disclaimer, .edition-notification{
+        background-color:black;
+        @include border-radius(4px); 	
+        @include shadow(4px, black); 
+        padding:10px;
+        color:white;
+        border:2px solid $blue;
+
+        
+        .close-notif{
+            position:absolute;
+            top:10px;
+            right:10px;
+            color:white;    
+        }
+    }
 }
