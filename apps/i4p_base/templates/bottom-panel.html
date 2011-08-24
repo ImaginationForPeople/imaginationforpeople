@@ -55,7 +55,7 @@
                                 <h4>{% trans "Themes" %}</h4>
                                 <!-- <a class="invert">{% trans "invert" %}</a> -->
                                 <ul id="cloudtag_list">
-                                    {% for tag in project_sheet_tags|slice:":33" %}
+                                    {% for tag in project_sheet_tags|slice:":27" %}
                                         <li><a class="tag_link {%if tag.id in selected_tags%}selected{% endif %}" title="{% blocktrans with count=tag.count %}{{ count }} project sheets{% endblocktrans %}" href="javascript:;" id="tag_{{tag.id}}">{{ tag|capfirst }}</a></li>
                                     {% endfor %}                    
                                 </ul>
@@ -64,12 +64,18 @@
                         </div>
                     </div>
                     
-                    <div class="grid_4 filters_box">
+
+                    
+                    <div class="grid_4 filters_box omega">
                         <div class="filtersbox_content">
                             <h4>{% trans "Location" %}</h4>
-                             <!-- <a class="invert">{% trans "invert" %}</a> -->
                             {{location_filter.country}}
-
+                        </div>
+                        
+                        <div class="filtersbox_content">
+                            <h4>{% trans "Objectives" %}</h4>
+                             <!-- <a class="invert">{% trans "invert" %}</a> -->
+                            {{objective_filter.objective}}
                         </div>
                     </div>
                     

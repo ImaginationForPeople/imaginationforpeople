@@ -462,17 +462,15 @@
 
 {% block project_content %}	
   <div class="grid_13 alpha project_content">
-  	 <div id="notification-area" class="grid_13 alpha omega" style="background-color: yellow;
-  	 										 position : fixed;
-  	 										 bottom: 0px;
-  	 										 z-index: 3000 ;">
+  	 <div id="notification-area" class="grid_13 alpha omega">
   	 
   	 <ul>
   	 </ul>
-	<div class="anonymous-disclaimer hidden">
+     
+    <div class="anonymous-disclaimer hidden">
 		{% blocktrans %}
 		Thank you for the interest you have shown in this project. <br />
-		Don't you want to <a class="login-slide-openner" href="#">log in</a> or <a class="login-slide-openner" href="#">sign up</a> before editing?
+		Don't you want to <a class="login-slide-openner link" href="#">log in</a> or <a class="login-slide-openner link" href="#">sign up</a> before editing?
 		{% endblocktrans %}
 		<a class="close-notif" href="#"><img src="" alt="[X]"/></a>
 	</div>
@@ -483,6 +481,7 @@
 		{% endblocktrans %}
 		<a class="close-notif" href="#"><img src="" alt="[X]"/></a>
 	</div>
+
 	 </div>
     <!-- PROJECT TITLE -->
     {% if title_form %}

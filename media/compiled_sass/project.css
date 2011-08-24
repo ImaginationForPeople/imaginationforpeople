@@ -693,6 +693,10 @@ form {
   margin-bottom: 10px;
 }
 
+.grey_column_content .objectives_label {
+  float: left;
+  margin-right: 5px;
+}
 .grey_column_content label {
   font-weight: bold;
   color: #5a5959;
@@ -1206,4 +1210,33 @@ ul#themes_tags li.tagit-choice {
 
 .search {
   float: left;
+}
+
+/* ----------Popups ----------- */
+#notification-area {
+  bottom: 10px;
+  z-index: 3000;
+  position: fixed;
+}
+#notification-area .anonymous-disclaimer, #notification-area .edition-notification {
+  background-color: black;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
+  box-shadow: 0px 0px 4px black;
+  padding: 10px;
+  color: white;
+  border: 2px solid #04add1;
+}
+#notification-area .anonymous-disclaimer .close-notif, #notification-area .edition-notification .close-notif {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
 }
