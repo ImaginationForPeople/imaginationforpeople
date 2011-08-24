@@ -898,6 +898,29 @@ form {
 
   /*hack pour chrome*/
 }
+/* --- Partners Widget --- */
+#partners-widget #partners_list li.grey_column_team_partner {
+  float: left;
+  margin-bottom: 20px;
+}
+#partners-widget #partners_list li.grey_column_team_partner img {
+  width: 100%;
+}
+#partners-widget #partners_list li.grey_column_team_partner h2 {
+  margin-bottom: 5px;
+}
+#partners-widget #partners_list li.grey_column_team_partner h2 a {
+  font-size: 12px;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 17px;
+  font-weight: bold;
+  font-style: italic;
+  color: #5A5959;
+}
+#partners-widget #partners_list li.grey_column_team_partner p {
+  font-size: 11px;
+}
+
 /* Tags for theme */
 ul#themes_tags {
   background-color: white;
@@ -1214,7 +1237,7 @@ ul#themes_tags li.tagit-choice {
 
 /* ----------Popups ----------- */
 #notification-area {
-  bottom: 10px;
+  bottom: 0px;
   z-index: 3000;
   position: fixed;
 }
@@ -1233,6 +1256,7 @@ ul#themes_tags li.tagit-choice {
   padding: 10px;
   color: white;
   border: 2px solid #04add1;
+  margin-bottom: 10px;
 }
 #notification-area .anonymous-disclaimer .close-notif, #notification-area .edition-notification .close-notif {
   position: absolute;

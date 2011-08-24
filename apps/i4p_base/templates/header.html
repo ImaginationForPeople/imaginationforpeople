@@ -19,28 +19,17 @@
 					
 			{% endcomment %}
 					
-				<!-- 
-                <ul>
-					{% if user.is_authenticated %}
-		    			<li><a class="linkbox-login" href="{% url userena_profile_detail request.user %}">{% trans 'welcome'|capfirst %}, {{ user.username }}.</li> 
-		    			<li><a href="{% url userena_signout %}?next={% url i4p-index %}">{% trans 'Log out' %}</a></li>
-					{% else %}
-					    <li><a href="{% url userena_signin %}">{% trans 'log in'|capfirst %}</a></li>
-					    <li><a href="{% url userena_signup %}">{% trans 'sign up'|capfirst %}</a></li>
-					{% endif %}
-				</ul>
-                -->
                 
 			</div>
 			<div class="menu">           
 				<ul>
-				  <!-- <li><a href="http://alpha.imaginationforpeople.org/wakka.php?wiki=vAboutUs{{ LANGUAGE_CODE }}" rel="noindex, nofollow">{% trans "About us" %}</a></li>-->
-				  <li><a href="{% url i4p-index %}">{% trans "Home" %}</a></li>
-				  <li><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
-				  <!-- <li><a href="#">Objectives</a></li> -->
-				  <li><a href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
-				  <li><a href="http://blog.imaginationforpeople.org/?lang={{ LANGUAGE_CODE }}" rel="noindex, nofollow">Blog</a></li>
-				  
+                    <!-- <li><a href="http://alpha.imaginationforpeople.org/wakka.php?wiki=vAboutUs{{ LANGUAGE_CODE }}" rel="noindex, nofollow">{% trans "About us" %}</a></li>-->
+                    <li><a href="{% url i4p-index %}">{% trans "Home" %}</a></li>
+                    <li><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
+                    <!-- <li><a href="#">Objectives</a></li> -->
+                    <li><a href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
+                    <li><a href="{% url userena_profile_list %}">{% trans 'Community' %}</a></li>
+                    <li><a href="http://blog.imaginationforpeople.org/?lang={{ LANGUAGE_CODE }}" rel="noindex, nofollow">Blog</a></li>
 				</ul>
 			</div>
 		</div>	

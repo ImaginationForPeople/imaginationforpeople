@@ -1055,6 +1055,42 @@ form{
 }
 
 
+/* --- Partners Widget --- */
+
+#partners-widget{
+
+    #partners_list{
+    
+        li.grey_column_team_partner{
+            float:left;
+            margin-bottom:20px;
+            
+            img{
+                width:100%;
+            }
+            
+            h2{
+                margin-bottom:5px;
+            
+                a{
+                    font-size:12px;
+                    @include georgia(17px);
+                    color: #5A5959;
+                }
+            }
+            
+            p{
+                font-size:11px;
+            }
+            
+        }
+    }
+    
+}
+
+
+
+
 
 /* Tags for theme */
 
@@ -1411,7 +1447,7 @@ ul#themes_tags li.tagit-choice {
 
 
 #notification-area{
-    bottom:10px;
+    bottom:0px;
     z-index:3000;
     position :fixed;
 
@@ -1422,6 +1458,7 @@ ul#themes_tags li.tagit-choice {
         padding:10px;
         color:white;
         border:2px solid $blue;
+        margin-bottom: 10px;
 
         
         .close-notif{
