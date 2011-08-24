@@ -11,7 +11,7 @@
     
     <div id="comments-count">
       {% get_comment_count for project_translation as comment_count %}
-        <a href="#" class="link">{% trans "View the" %} {{ comment_count }} {% trans "comments" %}</a>
+        <a href="?show_comments=1#comments-module" class="link">{% trans "View the" %} {{ comment_count }} {% trans "comments" %}</a>
     </div>
     
     <div class="clear"></div>
@@ -28,73 +28,30 @@
                 {{ comment_form.timestamp }}
                 {{ comment_form.security_hash }}
                 
-                <!--
-                <input type="hidden" maxlength="50" name="name" id="id_name" value="{{ user.first_name }} {{ user.last_name }}">
-                <input type="hidden" id="id_email" name="email" value="{{ user.email }}">
-                -->
-                
-                {{ request.comment.user }}
-                
-                
                 <textarea name="comment" id="id_comment"></textarea>
                 <div class="comment-info">
                     <div class="bulle"></div>
-                    {% if profile %}
-                          <img src="{{ profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
-                    {% else %}
-                          <img src="{{ user.profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
-                    {% endif %}
+		    <img src="{{ request.user.profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
                 </div>
                 
                 <p style="display: none;">
-                    {{ comment_form.honeypot}}
+                    {{ comment_form.honeypot }}
+		    <input type="submit" value="{% trans "Post comment" %}"/>
                 </p>
                 
                 <input type="hidden" name="next" value="{{ project_translation.get_absolute_url }}">
 
             </form>
-        
         {% endif %}
         
 	</div>
 
     <div id="clear"></div>
     
-    <ul id="comment-list">
-    
-        <li class="odd">
-            <div class="comment-message">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br />Ut at sapien massa, et commodo eros. Donec condimentum, sem ut sodales pretium, est neque vehicula felis, et pretium arcu justo ut massa. Quisque mi diam, semper in aliquam sed, feugiat quis mauris. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. <br />Maecenas pellentesque porta purus id molestie. 
-            </div>
-            <div class="comment-info">
-                <div class="bulle"></div>
-                <a href="#"><img src="https://secure.gravatar.com/avatar/bdc9812a92d2288c8a77c7b3c608d301?rating=PG&size=50&default=monsterid" /></a>
-                <span><strong><a href="#">Vincent Charrier</a></strong> - 11 Juillet 2011</span>  
-            </div>            
-        </li>
-        
-         <li class="even">
-            <div class="comment-message">bla bla bl</div>
-            <div class="comment-info">
-                <div class="bulle"></div>
-                <a href="#"><img src="https://secure.gravatar.com/avatar/bdc9812a92d2288c8a77c7b3c608d301?rating=PG&size=50&default=monsterid" /></a>
-                <span><strong><a href="#">Vincent Charrier</a></strong> - 11 Juillet 2011</span>  
-            </div>            
-        </li>
-        
-        <li class="odd">
-            <div class="comment-message">bla bla bl</div>
-            <div class="comment-info">
-                <div class="bulle"></div>
-                <a href="#"><img src="https://secure.gravatar.com/avatar/bdc9812a92d2288c8a77c7b3c608d301?rating=PG&size=50&default=monsterid" /></a>
-                <span><strong><a href="#">Aldebert Truche</a></strong> - 11 Juillet 2011</span> 
-            </div>            
-        </li>
-        
-        <div class="clear"></div>
-        
-	</ul>
 
+    {% render_comment_list for project_translation %}
+
+    <div class="clear"></div>
 </div>
 
 

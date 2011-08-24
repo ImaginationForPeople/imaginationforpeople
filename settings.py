@@ -145,6 +145,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(PROJECT_PATH, 'apps/member/templates'),
     os.path.join(PROJECT_PATH, 'apps/i4p_base/templates'),
+    os.path.join(PROJECT_PATH, 'apps/project_sheet/templates'),
 )
 
 INSTALLED_APPS = (
@@ -191,9 +192,9 @@ INSTALLED_APPS = (
 
     # Internal Apps
     'apps.i4p_base',
-    'apps.partner',
     'apps.member',
     'apps.project_sheet',
+    'apps.partner',
     'apps.workgroup',
 )
 

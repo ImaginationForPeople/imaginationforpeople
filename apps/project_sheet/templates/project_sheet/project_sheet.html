@@ -92,8 +92,7 @@
 
   <script type="text/javascript" src="{{ STATIC_URL }}js/post-comment.js"></script>
   
-  
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
 
   
   {% endcompress %}
@@ -113,11 +112,20 @@
   <script type="text/javascript">
     $(document).ready(function() {
     // Customize the location of the media to match your project structure
-    media = '{{ STATIC_URL }}'
+    media = '{{ STATIC_URL }}';
 
+    // On enter
+    $('#comment-form #id_comment').keypress(function(e) {
+          if ( e.which == 13 ) {
+               $('#comment-form form').blur();
+               $('#comment-form form').submit();
+          }
+    });
+
+    // Sample text
     $("#comment-form #id_comment").example("Type your message here and press enter when done...");
     
-    // Customize the selector for your project
+    // Ajax 
     $('div#comment-form form').submit(function() {
         ajaxComment({'media': media});
         return false;
