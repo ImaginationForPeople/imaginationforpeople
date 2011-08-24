@@ -67,14 +67,14 @@ def stagenv():
     """
     commonenv()
     env.wsginame = "staging.wsgi"
-    env.urlhost = "dev.imaginationforpeople.com"
+    env.urlhost = "staging.imaginationforpeople.org"
     env.user = "webapp"
     env.home = "webapp"
     require('venvname', provided_by=('commonenv',))
-    env.hosts = ['dev.imaginationforpeople.com']
+    env.hosts = ['i4p-dev.imaginationforpeople.org']
 
     env.gitrepo = "/var/repositories/imaginationforpeople.git"
-    env.gitbranch = "iteration7"
+    env.gitbranch = "iteration8"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -86,7 +86,7 @@ def build_virtualenv():
     Build the virtualenv
     """
     print(cyan('Creating a fresh virtualenv'))
-    require('venvfullpath', provided_by=('devenv', 'prodenv'))
+    require('venvfullpath', provided_by=('stagenv', 'prodenv'))
     sudo('rm /tmp/distribute* || echo "ok"') # clean after hudson
     run('virtualenv --no-site-packages --distribute %(venvfullpath)s' % env)
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
