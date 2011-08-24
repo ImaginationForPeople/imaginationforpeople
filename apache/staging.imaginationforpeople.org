@@ -5,7 +5,7 @@
     WSGIDaemonProcess webapp
 
 
-    WSGIScriptAlias / /home/webapp/virtualenvs/staging.imaginationforpeople.org/imaginationforpeople/apache/staging.wsgi/
+    WSGIScriptAlias / /home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/apache/staging.wsgi/
 
     <Location "/">
         Order Allow,Deny
@@ -13,7 +13,7 @@
     </Location>
 
 
-    <Directory /home/webapp/virtualenvs/staging.imaginationforpeople.org/imaginationforpeople/media/>
+    <Directory /home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/>
         Options -Indexes FollowSymLinks
     </Directory>
 
@@ -21,14 +21,14 @@
         SetHandler None
     </Location>
 
-    Alias /site_media /home/webapp/virtualenvs/staging.imaginationforpeople.org/imaginationforpeople/media/
+    Alias /site_media /home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/
 
     <Location "/admin_media">
         SetHandler None
         Options -Indexes FollowSymLinks
     </Location>
 
-    Alias /admin_media /home/webapp/virtualenvs/staging.imaginationforpeople.org/lib/python2.6/site-packages/django/contrib/admin/media/
+    Alias /admin_media /home/webapp/virtualenvs/imaginationforpeople.org/lib/python2.6/site-packages/django/contrib/admin/media/
 
     ErrorLog /var/log/apache2/staging.imaginationforpeople.org.error.log
     CustomLog /var/log/apache2/staging.imaginationforpeople.org.access.log combined
