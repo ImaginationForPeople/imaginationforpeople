@@ -11,14 +11,12 @@ from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext as _
 
-from django_countries.countries import COUNTRIES
 from tagging.models import TaggedItem, Tag
 
-from apps.project_sheet.models import ProjectMember
+from apps.project_sheet.models import ProjectMember, Objective
 
 from .models import I4pProjectTranslation, I4pProject
 from apps.i4p_base.models import I4P_COUNTRIES
-
 ORDER_CHOICES = (
      ('lte', '<='),
      ('gte', '>=')
@@ -225,7 +223,7 @@ def current_countries():
     """
     Build the list of countries used in project location 
     """
-    result = []
+    result = [("", _("all"))]
     project_countries = I4pProject.objects.exclude(location__country='').\
                                            exclude(location__country__isnull=True).\
                                            distinct().\
@@ -242,14 +240,13 @@ class ProjectLocationFilter(FilterForm):
     """
     Implements a filter on I4pProject location
     """
-    country = forms.MultipleChoiceField(required=False,
-                                        choices=current_countries())
+    country = forms.ChoiceField(required=False, choices=current_countries())
 
     def apply_to(self, queryset, model_class):
         qs = queryset
         if model_class == I4pProject:
             data = self.cleaned_data.get("country")
-            if data :
+            if data:
                 q_objects = None
                 for val in data:
                     lookup = {"location__country" : val}
@@ -260,6 +257,21 @@ class ProjectLocationFilter(FilterForm):
                 qs = qs.filter(q_objects)
         return qs
 
+
+class ProjectObjectiveFilter(FilterForm):
+    """
+    Implements a filter on I4pProject location
+    """
+    objectives = forms.ModelMultipleChoiceField(required=False, 
+                                                queryset=Objective.objects.all())
+
+    def apply_to(self, queryset, model_class):
+        qs = queryset
+        if model_class == I4pProject:
+            data = self.cleaned_data.get("objectives")
+            if data:
+                qs = qs.filter(objective__in=[d.id for d in data])
+        return qs
 
 class NameBaselineFilter(FilterForm):
     """

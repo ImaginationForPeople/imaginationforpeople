@@ -11,7 +11,7 @@ from tagging.models import Tag
 from .models import I4pProject, I4pProjectTranslation, VERSIONNED_FIELDS
 from .filters import BestOfFilter, NameBaselineFilter
 from .filters import ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter
-from .filters import ThemesFilterForm, WithMembersFilterForm
+from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilter
 
 def create_parent_project():
     """
@@ -149,6 +149,7 @@ def build_filters_and_context(request_data):
         'members_filter' : WithMembersFilterForm(request_data),
         'progress_filter' : ProjectProgressFilter(request_data),
         'project_sheet_search_form' : NameBaselineFilter(request_data),
+        'objective_filter' : ProjectObjectiveFilter(request_data)
     }
 
     project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
