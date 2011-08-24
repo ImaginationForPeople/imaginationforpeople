@@ -1,4 +1,7 @@
 <VirtualHost *:80>
+
+    ServerAdmin     guillaumelibersat@imaginationforpeople.org
+
     ServerName staging.imaginationforpeople.org
 
     WSGIProcessGroup webapp
@@ -32,6 +35,7 @@
 
     ErrorLog /var/log/apache2/staging.imaginationforpeople.org.error.log
     CustomLog /var/log/apache2/staging.imaginationforpeople.org.access.log combined
+    LogLevel warn
 
 </VirtualHost>
 
