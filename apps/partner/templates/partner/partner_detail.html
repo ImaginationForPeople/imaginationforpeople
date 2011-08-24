@@ -6,6 +6,7 @@
   {% compress css %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/partners.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
     {% endcompress %}
 {% endblock %}
 
@@ -25,11 +26,11 @@
         <br />
         <div class="separator"></div>
 
-        <div class="grid_6 alpha alpha">
-            <img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}"/>
+        <div class="grid_6 alpha">
+            <img class="logo" src="{{ MEDIA_URL }}{{ partner.picture.original_image }}"/>
         </div>
         
-        <div class="grid_12 alpha omega">
+        <div class="grid_12 omega">
             {{ partner.description|linebreaks }}
         </div>
         
@@ -41,7 +42,7 @@
                 <h2>{% trans 'Her/His contributions' %}</h2>
             </div>
 
-            {% for project in partner_projects %}   
+            {% for project_translation in partner_projects %}   
                 <div class="colonne grid_6">
                     {% include "project_sheet/project_complete_card.html" %}   
                 </div>
