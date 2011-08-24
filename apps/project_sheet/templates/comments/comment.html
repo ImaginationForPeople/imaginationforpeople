@@ -1,3 +1,9 @@
+{% load humanize %}
 <div class="comment">
-  {{ comment.comment }}
+  <div class="comment-message">{{ comment.comment|capfirst }}</div>
+  <div class="comment-info">
+    <div class="bulle"></div>
+    <a href="#"><img src="{{ comment.user.get_profile.get_mugshot_url }}" /></a>
+    <span><strong><a href="{{ comment.user.get_profile.get_absolute_url }}">{{ comment.user.get_full_name|default:comment.user.username }}</a></strong> - {{ comment.submit_date|naturalday|capfirst }}</span> 
+  </div>            
 </div>

@@ -77,25 +77,28 @@ function commentSuccess(data) {
     name = $('#id_name').val();
     url = $('#id_url').val();
     
-    if ($('div#comments').children().length == 0) {
-        $('div#comments').prepend(
+    if ($('div#comment-list').children().length == 0) {
+        $('div#comment-list').prepend(
             '<h2 class="comment-hd">1 comment so far:</h2>'
         )
     }
     
    $('div#comment-form form textarea')[0].value = "";
 
+
+
     $('#id_comment').val('');
+
+    var html = $("<li class='odd'></li>").append(data['html']);
+    $('#comment-list').prepend(html);
+    html.hide();
+
+    $('div#comment-form form').hide('normal', function() {
+	$('div.comment:last').slideUp('slow', function() {
+	    html.slideDown('slow');
+	});
+    });
     
-    $('#comments').append(data['html']);
-    $('div.comment:last').show('slow');
-    
-    $('p.submit').after('\
-        <div class="comment-thanks">\
-            Thank you for your comment!\
-        </div>\
-    ');
-    $('div.comment-thanks').fadeOut(4000);
 }
 
 function commentFailure(data) {

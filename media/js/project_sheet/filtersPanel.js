@@ -18,6 +18,11 @@ $(document).ready(function(){
         $("#filter_form").submit();
     });
     
+    $(".filtersbox_content select#id_objectives").change(function(){
+    	blockPanel();
+        $("#filter_form").submit();
+    });
+    
     $(".filters_box input.styled").change(function(){
     	blockPanel();
         $("#filter_form").submit();
