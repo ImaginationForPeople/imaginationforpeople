@@ -37,7 +37,7 @@ def commonenv():
     """
     env.venvname = "imaginationforpeople.org"
     env.projectname = "imaginationforpeople"
-    env.gitrepo = "ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git"
+    env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
     env.gitbranch = "master"
 
 
@@ -54,7 +54,6 @@ def prodenv():
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['i4p-prod.imaginationforpeople.org']
 
-    env.gitrepo = "ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git"
     env.gitbranch = "master"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
@@ -158,7 +157,8 @@ def deploy_bootstrap():
     print(cyan('Cloning Git repository'))
     with cd(env.venvfullpath):
         run("git clone %(gitrepo)s %(projectname)s" % env)
-        run("git fetch origin %s" % env.gitbranch)
+        with cd("%(projectname)s" % env):
+            run("git fetch origin %s" % env.gitbranch)
 
     fullupdate()
 
@@ -277,7 +277,7 @@ def install_builddeps():
     Will install commonly needed build deps for pip django virtualenvs.
     """
     print(cyan('Installing compilers and required libraries'))
-    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
+    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
 
 
@@ -285,6 +285,7 @@ def meta_full_bootstrap():
     """
     For use on new, empty environnements
     """
+    sudo('apt-get update')
     install_basetools()
     install_database_server()
     install_webservers()
