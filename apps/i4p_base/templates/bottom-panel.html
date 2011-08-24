@@ -151,7 +151,7 @@
                 <div class="colonne grid_4">						
                     <h1><img src="{{ STATIC_URL }}images/home/picto-community.jpg" />{% trans 'community'|capfirst %}</h1>						
                     <p>{% blocktrans %}Connect with a community of citizens from over 30 countries.{% endblocktrans %}</p>
-                    <a class="tipsed" href="#" title="{% trans "Work-in-Progress" %}">{% trans 'The community (WIP)' %}</a>
+                    <a href="{% url userena_profile_list %}">{% trans 'The community' %}</a>
                     <!-- <a href="#">{% trans 'The community &gt;' %}</a> 		       -->
                     <!-- <a href="{% url userena_signup %}">{% trans 'Join the community &gt;' %}</a> 		       -->
 	                </div>

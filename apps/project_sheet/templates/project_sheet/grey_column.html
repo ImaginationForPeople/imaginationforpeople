@@ -112,7 +112,7 @@
                 </li>
                 {% endfor %}
             </ul>
-              
+            
             <!-- 
             <form id="project_member_form" action="" method="post">
               {% csrf_token %} {{ project_member_formset.management_form }}
@@ -131,10 +131,30 @@
              
             {% endif %}
 
+            <div id="partners-widget">
+                <div class="title">
+                    {% trans 'Partners'|capfirst %}
+                </div> 
+                
+                <ul id="partners_list">
+                    {% for partner in project.partners.all %}
+                    
+                    <div class="clear"></div>
 
-            <div class="grey_column_team_member">
+                    <li class="grey_column_team_partner">
+                        <a href="{% url partner-detail partner.slug %}">
+                            <img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}" alt="{{ partner.name }}" />
+                        </a>  
+                            
+                        <h2>
+                            <a href="{% url partner-detail partner.slug %}">{{ partner.name }}</a>             
+                        </h2>
 
-              
+                        {{ partner.description|linebreaks }}
+                    </li>
+                    {% endfor %}
+                </ul>                
+                
             </div>
             
 

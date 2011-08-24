@@ -1,2 +1,63 @@
-{{ partner }}
-<img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}"/>
+{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+
+{% block style %}
+  {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/partners.css" />
+    {% endcompress %}
+{% endblock %}
+
+{% block nav %}<div style="height:37px;"></div>{% endblock %}
+
+{% block content %}	  
+
+<div class="content" id="partner_detail"> 
+    <div class="container_18">
+    
+        <br /><br />
+    
+        <div class="grid_18 alpha omega title">
+            <h1>{{ partner.name }}</h1>                            
+            <a href="{{ partner.website }}" class="link">{{ partner.website }}</a>         
+        </div>
+        <br />
+        <div class="separator"></div>
+
+        <div class="grid_6 alpha alpha">
+            <img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}"/>
+        </div>
+        
+        <div class="grid_12 alpha omega">
+            {{ partner.description|linebreaks }}
+        </div>
+        
+        <div class="clear"></div>
+        <br /><br />
+        
+        <div id="partner_projects">                
+            <div class="separator">
+                <h2>{% trans 'Her/His contributions' %}</h2>
+            </div>
+
+            {% for project in partner_projects %}   
+                <div class="colonne grid_6">
+                    {% include "project_sheet/project_complete_card.html" %}   
+                </div>
+                {% empty %}
+                <em>{% trans "No contributions yet." %}</em>
+            {% endfor %}
+
+        </div>
+
+        
+        
+        <div class="clear"></div>
+        
+    </div>
+</div>
+{% endblock %}
+
+
+
