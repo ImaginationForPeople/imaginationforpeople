@@ -30,8 +30,8 @@
 
     Alias /admin_media /home/webapp/virtualenvs/staging.imaginationforpeople.org/lib/python2.6/site-packages/django/contrib/admin/media/
 
-    ErrorLog /var/log/apache2/staging.imaginationforpeople.org/logs/error.log
-    CustomLog /var/log/apache2/staging.imaginationforpeople.org/logs/access.log combined
+    ErrorLog /var/log/apache2/staging.imaginationforpeople.org.error.log
+    CustomLog /var/log/apache2/staging.imaginationforpeople.org.access.log combined
 
 </VirtualHost>
 
