@@ -26,13 +26,13 @@ class I4pProjectThemesForm(forms.ModelForm):
     #                  )
 
 
-class I4pProjectObjectiveForm(forms.ModelForm):
+class I4pProjectObjectivesForm(forms.ModelForm):
     """
-    Edit objective for a given Project
+    Edit objectives for a given Project
     """
     class Meta:
         model = I4pProject
-        fields = ('objective',)
+        fields = ('objectives',)
 
 ProjectReferenceFormSet = modelformset_factory(ProjectReference, extra=1, can_delete=True)
 

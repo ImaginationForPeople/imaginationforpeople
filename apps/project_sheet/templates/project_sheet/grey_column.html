@@ -6,7 +6,8 @@
 	<div class="grey_column_content">
     
         <center>
-        <div id="project_status">
+	  {% if project_translation %}
+	  <div id="project_status">
         
             <div class="project_card_pictos">        
                 {% if project_translation.project.members.count > 0 %}
@@ -38,12 +39,14 @@
             {% endifequal %}
 
         </div>
+            {% endif %}
         </center>
         
         <br />
 
         <div id="sidebar-section-related" class="sidebar-section-openable">
-            
+
+            {% if project_translation %}            
             <div class="title" id="social-sharing">
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style ">
@@ -58,36 +61,34 @@
                 <!-- AddThis Button END -->
             </div>
             
-            {% if project_translation %}
+
             <div class="title">
                 <a title="{% trans 'edit'|capfirst %}"
                  href="{% url project_sheet-instance-edit-related project_translation.slug %}"
                  class="button sidebar-opener editing-button" name="opened-sidebar"> 
                     <img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /> 
                 </a>
-                {% trans 'related'|capfirst %}
+                {% trans 'categories'|capfirst %}
             </div>
 
             <!-- Colonne grise remplie -->
 
+            {% if project_translation.objectives %}
             <div class="grey_column_objective">
-                <label>{% trans 'objective :'|capfirst %}</label> 
+                <label>{% trans 'objectives:'|capfirst %}</label> 
                   <ul id="cloudtag_list">
-                  {%for objective in project_translation.project.objective.all%}
-                        <li><a href="">{{objective}}</a>{% if not forloop.last %},{% endif%}</li> 
+                  {% for objective in project.objectives.all %}
+                        <li><a href="">{{ objective }}</a>{% if not forloop.last %},{% endif%}</li> 
                     {% endfor %}
                 </ul>
-<!--                 <a href="#" class="sidebar-opener" name="opened-sidebar" id="project_objective">{{project_translation.project.get_objective_display }}</a> -->
             </div>
+	    {% endif %}
 
 
             {% if not project_translation.themes %}
             <p>
                 <a class="sidebar-opener" href="#" name="opened-sidebar">
-                {% trans "Click here to set the <strong>themes</strong> of your project."|capfirst %}</a>
-                <!-- 
-                {% trans "Click here to set the <strong>objective</strong> and the <strong>themes</strong> of your project."|capfirst %}</a>
-                 -->
+                {% trans "Click here to set the <strong>objectives</strong> and <strong>themes</strong> of this project."|capfirst %}</a>
             </p>
             {% else %} {% tags_for_object project_translation as taglist %}
             <div class="grey_column_tagcloud">
@@ -168,6 +169,7 @@
              
             {% endif %}
 
+	    {% if project.partners.all|length %}
             <div id="partners-widget">
                 <div class="title">
                     {% trans 'Partners'|capfirst %}
@@ -193,6 +195,7 @@
                 </ul>                
                 
             </div>
+	    {% endif %}
             
 
 

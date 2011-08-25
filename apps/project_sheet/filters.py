@@ -260,7 +260,7 @@ class ProjectLocationFilter(FilterForm):
 
 class ProjectObjectiveFilter(FilterForm):
     """
-    Implements a filter on I4pProject location
+    Implements a filter on I4pProject objective
     """
     objectives = forms.ModelMultipleChoiceField(required=False, 
                                                 queryset=Objective.objects.all())
@@ -270,7 +270,7 @@ class ProjectObjectiveFilter(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("objectives")
             if data:
-                qs = qs.filter(objective__in=[d.id for d in data])
+                qs = qs.filter(objectives__in=[d.id for d in data])
         return qs
 
 class NameBaselineFilter(FilterForm):

@@ -94,9 +94,13 @@ function commentSuccess(data) {
     html.hide();
 
     $('div#comment-form form').hide('normal', function() {
-	$('div.comment:last').slideUp('slow', function() {
-	    html.slideDown('slow');
-	});
+	if ( $('div.comment').size() >= 5 )
+	    $('div.comment:last').slideUp('slow', function() {
+		html.slideDown('slow');
+	    });
+	else
+	    html.slideDown('slow');	    
+
     });
     
 }
