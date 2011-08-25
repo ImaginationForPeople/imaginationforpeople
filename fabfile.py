@@ -162,6 +162,12 @@ def deploy_bootstrap():
 
     fullupdate()
 
+    # Fix perms
+    with cd(env.venvfullpath):
+        with cd("%(projectname)s" % env):
+            run('mkdir media/uploads media/cache static/CACHE media/mugshots -p')
+            sudo('chown www-data -R media/uploads media/cache media/mugshots static/CACHE')
+
 def _updatemaincode():
     """
     Private : we don't want people updating the code without running
