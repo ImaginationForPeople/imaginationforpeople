@@ -72,7 +72,7 @@ class I4pProject(models.Model):
     created = models.DateTimeField(verbose_name=_("creation date"),
                                    auto_now_add=True)
 
-    objective = models.ManyToManyField(Objective, verbose_name=_('objective'), null=True, blank=True)
+    objectives = models.ManyToManyField(Objective, verbose_name=_('objectives'), null=True, blank=True)
 
     website = models.URLField(verbose_name=_('website'),
                               verify_exists=True,

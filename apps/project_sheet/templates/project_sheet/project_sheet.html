@@ -640,7 +640,9 @@
 	
 	<div class="clear"></div>
 
+	{% if project_translation %}
 	{% include "comments/comments-module.html" %}
+	{% endif %}
 
 	<div id="license-note">
 	  {% blocktrans %}
