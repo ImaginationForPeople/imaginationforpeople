@@ -1,8 +1,8 @@
 {% extends "project_sheet/project_base.html" %}
 {% load i18n %}
 
-{% block meta_desc %}{{project_translation.about_section}}{% endblock %}
-{% block title %}{{project_translation.title|capfirst}} | Imagination for People{% endblock %}
+{% block meta_desc %}{{ project_translation.about_section }}{% endblock %}
+{% block title %}{{ project_translation.title|capfirst }} | Imagination for People{% endblock %}
 
 {% block project_content %}
 
@@ -11,7 +11,7 @@
   <form method="POST">
     {% csrf_token %}
 
-    {{ project_sheet_objective_form.as_p }}
+    {{ project_sheet_objectives_form.as_p }}
     {{ project_sheet_themes_form.as_p }}
     
     <button type="submit">{% trans "Update" %}</button>

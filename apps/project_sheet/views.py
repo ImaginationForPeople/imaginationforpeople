@@ -24,7 +24,7 @@ from apps.project_sheet.utils import build_filters_and_context
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
-from .forms import I4pProjectThemesForm, I4pProjectObjectiveForm, I4pProjectInfoForm, ProjectReferenceFormSet
+from .forms import I4pProjectThemesForm, I4pProjectObjectivesForm, I4pProjectInfoForm, ProjectReferenceFormSet
 from .forms import I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -112,7 +112,7 @@ def project_sheet_show(request, slug, add_media=False):
         project_info_form.save()
 
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
-    project_objective_form = I4pProjectObjectiveForm(instance=project_translation.project, prefix="objective-form")
+    project_objectives_form = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
     project_member_form = ProjectMemberForm()
     #project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
     project_location_form = I4pProjectLocationForm(instance=project_translation.project.location)
@@ -122,7 +122,7 @@ def project_sheet_show(request, slug, add_media=False):
     context = {'project': project_translation.project,
                'project_translation': project_translation,
                'project_themes_form': project_themes_form,
-               'project_objective_form': project_objective_form,
+               'project_objectives_form': project_objectives_form,
                'reference_formset' : reference_formset,
                'project_info_form': project_info_form,
                'project_location_form': project_location_form,
@@ -239,20 +239,20 @@ def project_sheet_edit_related(request, project_slug):
     project_sheet_themes_form = I4pProjectThemesForm(request.POST or None,
                                                      instance=project_translation)
 
-    project_sheet_objective_form = I4pProjectObjectiveForm(request.POST or None,
-                                                           instance=parent_project,
-                                                           prefix="objective-form")
+    project_sheet_objectives_form = I4pProjectObjectivesForm(request.POST or None,
+                                                             instance=parent_project,
+                                                             prefix="objectives-form")
 
     if request.method == 'POST':
-        if project_sheet_themes_form.is_valid() and project_sheet_objective_form.is_valid():
+        if project_sheet_themes_form.is_valid() and project_sheet_objectives_form.is_valid():
             project_sheet_themes_form.save()
-            project_sheet_objective_form.save()
+            project_sheet_objectives_form.save()
 
             return redirect(project_translation)
 
     dictionary = {'project_translation': project_translation,
                   'project_sheet_themes_form': project_sheet_themes_form,
-                  'project_sheet_objective_form': project_sheet_objective_form}
+                  'project_sheet_objectives_form': project_sheet_objectives_form}
 
     return render_to_response(template_name="project_sheet/project_edit_themes.html",
                               dictionary=dictionary,

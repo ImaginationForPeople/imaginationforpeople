@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from dajaxice.core import dajaxice_functions
 
 from .models import I4pProjectTranslation
-from .forms import I4pProjectObjectiveForm, I4pProjectThemesForm
+from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
 from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
 
 TEXTFIELD_MAPPINGS = {
@@ -109,7 +109,7 @@ def project_textfield_save(request, project_slug=None):
 
 def project_update_related(request, language_code, related_form, project_slug):
     """
-    Update themes and objective of a given project, in a given language
+    Update themes and objectives of a given project, in a given language
     """
     # Activate requested language
     translation.activate(language_code)
@@ -125,24 +125,22 @@ def project_update_related(request, language_code, related_form, project_slug):
     if isinstance(related_form['themes'], list):
         related_form['themes'] = ", ".join(related_form['themes'])
     
-    if not isinstance(related_form['objective-form-objective'], list):
-        related_form['objective-form-objective'] = related_form['objective-form-objective'].split(',')
+    if not isinstance(related_form['objectives-form-objectives'], list):
+        related_form['objectives-form-objectives'] = related_form['objectives-form-objectives'].split(',')
 
     project_themes_form = I4pProjectThemesForm(related_form,
                                                instance=project_translation)
     
-    project_objective_form = I4pProjectObjectiveForm(related_form,
-                                                     instance=parent_project,
-                                                     prefix="objective-form")
+    project_objectives_form = I4pProjectObjectivesForm(related_form,
+                                                       instance=parent_project,
+                                                       prefix="objectives-form")
 
 
     if project_themes_form.is_valid():
         project_themes_form.save()
         
-    if  project_objective_form.is_valid():
-        project_objective_form.save()
-    else:
-        print project_objective_form.errors
+    if  project_objectives_form.is_valid():
+        project_objectives_form.save()
 
     return simplejson.dumps({})
 
