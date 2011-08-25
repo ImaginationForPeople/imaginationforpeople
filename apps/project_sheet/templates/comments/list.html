@@ -10,7 +10,7 @@
     {% endfor %}
 
   {% else %}
-    {% for comment in comment_list|slice:":5" reversed %}
+    {% for comment in comment_list|slice:"5:" reversed %}
       <li class="{% cycle 'odd' 'even' %}">
 	{% include "comments/comment.html" %}
       </li>

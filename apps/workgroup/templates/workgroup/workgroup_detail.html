@@ -5,60 +5,65 @@
 {% block content %}
 
   <div class="content">
-    <div class="container_18 relative">
+    <div class="container_18 relative" id="workgroup_detail">
       <br/>
       <br/>
-      <h1>{% trans "Workgroup" %} &raquo; {{ workgroup.name }}</h1>
-
-      <span>{{ workgroup.description }}</span>
-
-      <span>Spoken language: {{ workgroup.get_language_display }}<span>
-
-      {% if workgroup.mailing_list %}
-      <h2>{% trans "Mailing List" %}</h2>
-
-      <h3>General Info</h3>
-      <ul>
-	<br/>
-	<li>Name: {{ workgroup.mailing_list.name }} - [<a href="{{ workgroup.mailing_list.main_url }}/listinfo/{{ workgroup.mailing_list.name }}/">Go to the ML Homepage</a>]</li>
-	<br/>
-	<li>To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</li>
-	<br/>
-	<li>Browse the <a href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">Archives</a></li>
-      </ul>
+      <h1><a href="{% url workgroup-list %}">{% trans "Workgroup" %}</a> &raquo; {{ workgroup.name }}</h1>
+      <img class="language tipsed" alt="{{ workgroup.language }}" src="{{ STATIC_URL }}images/flags/{{ workgroup.language }}.gif" title="{{ workgroup.get_language_display }}" />
       
+      <div class="separator"></div>
+      
+    {% if workgroup.mailing_list %}
+      <em>To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em> - [<a href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">Browse the Archives</a>]
+        {% if not request.user in ml_member_list %}
+          <form method='POST' action='{% url workgroup-subscribe workgroup.slug %}'>
+            {% csrf_token %}
+            <input type='submit' class='button' value='Subscribe' />
+          </form>
+        {% else %}
+          <form method='POST' action='{% url workgroup-unsubscribe workgroup.slug %}'>
+            {% csrf_token %}
+            <input type='submit' class='button' value='Unsubscribe' />
+          </form>
+        {% endif %}
 
-      <h3>Subscribers ({{ ml_member_list|add:ml_nonmember_list|length }})</h3>
+      <div class="separator"></div>
+    {% endif %}
 
+
+      <span class="workgroup_desc">{{ workgroup.description|urlize|linebreaksbr }}</span>
+
+        <div class="separator"></div>
+      
+      {% if workgroup.mailing_list %}
+      
+        
+      <h3>Group subscribers ({{ ml_member_list|add:ml_nonmember_list|length }})</h3>
+      
+      <br /><br />
+    
       {# Subscribe/Unsubscribe button for logged-in users  #}
       {% if not request.user.is_anonymous %}
 	{% if not request.user in ml_member_list %}
-	  You are not susbcribed to this Mailing List
-	  <form method='POST' action='{% url workgroup-subscribe workgroup.slug %}'>
-	    {% csrf_token %}
-	    <input type='submit' class='button' value='Subscribe' />
-	  </form>
+	  <em>You are not susbcribed to this Mailing List</em>
 	{% else %}
-	  You are susbcribed to this Mailing List
-	  <form method='POST' action='{% url workgroup-unsubscribe workgroup.slug %}'>
-	    {% csrf_token %}
-	    <input type='submit' class='button' value='Unsubscribe' />
-	  </form>
+	  <em>You are susbcribed to this Mailing List</em>
 	{% endif %}
       {% endif %}
 
-      <br/>
+      <br/><br />
 
       {# Subscriber list #}
       <div id="wg-ml-subscriber-list">
 	<ul>
 	  {% for member in ml_member_list %}
-	    <li><a class="tipsed" href="{% url userena_profile_detail member.username %}" title="{{ member.first_name }} {{ member.last_name }}"><img {% if request.user == member %}style="border: 1px solid red;"{% endif %} src="{{ member.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+	    <li><a href="{% url userena_profile_detail member.username %}"><img class="tipsed"  {% if request.user == member %}{% endif %} title="{{ member.first_name }} {{ member.last_name }}" src="{{ member.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
 	  {% endfor %}
 	</ul>
 	{% with ml_nonmember_list|length as anonymous_count %}
 	  {% if anonymous_count > 0 %}
-	    And {{ anonymous_count }} anonymous subscriber{{ anonymous_count|pluralize }}
+	    <br />
+        <em>And {{ anonymous_count }} anonymous subscriber{{ anonymous_count|pluralize }}</em>
 	  {% endif %}
 	{% endwith %}
       </div>
