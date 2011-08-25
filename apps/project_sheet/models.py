@@ -275,7 +275,7 @@ def email_managers_when_a_member_joins_a_project(sender, instance, created, **kw
 
 # Reversions
 VERSIONNED_FIELDS = {
-    I4pProject : ['author', 'objective', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
+    I4pProject : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
     I4pProjectTranslation : ['title', 'baseline', 'about_section', 'uniqueness_section', 'value_section', 'scalability_section', 'themes', 'completion_progress']
 }
 
