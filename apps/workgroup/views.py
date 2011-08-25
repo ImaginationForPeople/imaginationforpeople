@@ -24,7 +24,6 @@ class WorkGroupDetailView(DetailView):
     def _get_ml_members(self, workgroup):
         cache_key = '%s-ml-members' % workgroup.slug
         res = cache.get(cache_key, None)
-        print "cache is", res
         if not res:
             res = workgroup.mailing_list.get_all_members()
             cache.set(cache_key, res, 3600)
