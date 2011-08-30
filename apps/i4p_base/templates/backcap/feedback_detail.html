@@ -152,16 +152,16 @@
       
       <div class="grid_5 omega">
 	<!-- following -->
-	{% if not user.is_anonymous %}
 	  <div>
-	    <h4>{% trans "Followers:" %} ({{ feedback.followers|length }})</h4>
+	    <h4>{% trans "Followers:" %} ({{ feedback.following_users|length }})</h4>
 	    <ul>
-	      {% for follower in feedback.followers %}
-		<li><a href="{% url userena_profile_detail follower %}"><img src="{{ follower.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+	      {% for follower in feedback.followers.all %}
+		<li><a href="{% url userena_profile_detail follower.user %}"><img src="{{ follower.user.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
 	      {% endfor %}
 	    </ul>
 	    <br/>
-	    {% if request.user in feedback.followers %}
+	    {% if not user.is_anonymous %}
+	    {% if request.user in feedback.following_users %}
 	      <form method='POST' action='{% url feedback-unfollow feedback.pk %}'>
 		{% csrf_token %}
 		<input type='submit' class="button nomargin" value='{% trans "Unfollow" %}'/>
@@ -172,8 +172,8 @@
 		<input type='submit' class="button nomargin" value='{% trans "Follow" %}'/>
 	      </form>
 	    {% endif %}
+	    {% endif %}
 	  </div>
-	{% endif %}
       </div>
       <div class="clear"></div>
     </div>
