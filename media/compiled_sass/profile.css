@@ -177,12 +177,14 @@
   width: 150px;
   text-align: right;
   float: left;
-  font-size: 17px;
+  font-size: 12px;
   margin-right: 15px;
+  position: relative;
+  top: 3px;
 }
 #profile_edit form p input, #profile_edit form p select, #profile_edit form p textarea {
   width: 350px;
-  font-size: 17px;
+  font-size: 12px;
   -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
   -o-border-radius: 6px;
@@ -192,6 +194,7 @@
   border: 1px solid #8e8e8e;
   color: #737373;
   font-family: Verdana,Arial,Helvetica,sans-serif;
+  padding: 3px;
 }
 #profile_edit form p select {
   width: 352px;

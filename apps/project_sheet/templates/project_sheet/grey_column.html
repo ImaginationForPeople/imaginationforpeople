@@ -6,39 +6,39 @@
 	<div class="grey_column_content">
     
         <center>
-	  {% if project_translation %}
-	  <div id="project_status">
-        
-            <div class="project_card_pictos">        
-                {% if project_translation.project.members.count > 0 %}
-                <img src="{{ STATIC_URL }}images/project/picto-team.jpg" alt="{% trans 'associated team' %}" class="tipsed" title="{% trans 'associated team' %}"/>
-                {% endif %}
-                {% ifequal project_translation.completion_progress "EDIT" %}
-                <img src="{{ STATIC_URL }}images/project/picto-editing.jpg" alt="{% trans 'in progress' %}" class="tipsed" title="{% trans 'in progress' %}"/>
-                {% endifequal  %}
-                {% if project_translation.project.popular %}
-                <img src="{{ STATIC_URL }}images/project/picto-popular.jpg" alt="{% trans 'popular' %}" class="tipsed" title="{% trans 'popular' %}"/>
-                {% endif %}
-                {% if project_translation.project.best_of %}
-                <img src="{{ STATIC_URL }}images/project/picto-bestof.jpg" alt="{% trans 'bestof' %}" class="tipsed" title="{% trans 'bestof' %}"/>
-                {% endif %}
-            </div>
+          {% if project_translation %}
+                <div id="project_status">
+                
+                    <div class="project_card_pictos">        
+                        {% if project_translation.project.members.count > 0 %}
+                        <img src="{{ STATIC_URL }}images/project/picto-team.jpg" alt="{% trans 'associated team' %}" class="tipsed" title="{% trans 'associated team' %}"/>
+                        {% endif %}
+                        {% ifequal project_translation.completion_progress "EDIT" %}
+                        <img src="{{ STATIC_URL }}images/project/picto-editing.jpg" alt="{% trans 'in progress' %}" class="tipsed" title="{% trans 'in progress' %}"/>
+                        {% endifequal  %}
+                        {% if project_translation.project.popular %}
+                        <img src="{{ STATIC_URL }}images/project/picto-popular.jpg" alt="{% trans 'popular' %}" class="tipsed" title="{% trans 'popular' %}"/>
+                        {% endif %}
+                        {% if project_translation.project.best_of %}
+                        <img src="{{ STATIC_URL }}images/project/picto-bestof.jpg" alt="{% trans 'bestof' %}" class="tipsed" title="{% trans 'bestof' %}"/>
+                        {% endif %}
+                    </div>
 
-        
-            {% ifequal project_translation.project.status "IDEA" %}
-            <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress25.jpg" /><p> {{ project_translation.project.get_status_display }}</p></div>
-            {% endifequal %}
-            {% ifequal project_translation.project.status "BEGIN" %}
-            <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress50.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
-            {% endifequal %}
-            {% ifequal project_translation.project.status "WIP" %}
-            <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress75.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
-            {% endifequal %}
-            {% ifequal project_translation.project.status "END" %}
-            <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress100.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
-            {% endifequal %}
+                
+                    {% ifequal project_translation.project.status "IDEA" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress25.jpg" /><p> {{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
+                    {% ifequal project_translation.project.status "BEGIN" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress50.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
+                    {% ifequal project_translation.project.status "WIP" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress75.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
+                    {% ifequal project_translation.project.status "END" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress100.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
 
-        </div>
+                </div>
             {% endif %}
         </center>
         
@@ -47,7 +47,13 @@
         <div id="sidebar-section-related" class="sidebar-section-openable">
 
             {% if project_translation %}            
-            <div class="title" id="social-sharing">
+            <div class="title">
+                {% trans 'take action'|capfirst %}
+            </div>            
+            
+            <div class="clear"></div>        
+
+            <div id="social-sharing" style="float:right; height:20px; position:relative;">
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style ">
                 <a class="addthis_button_facebook"></a>
@@ -61,14 +67,15 @@
                 <!-- AddThis Button END -->
             </div>
             
-
+            <div class="clear"></div>    
+            
             <div class="title">
                 <a title="{% trans 'edit'|capfirst %}"
                  href="{% url project_sheet-instance-edit-related project_translation.slug %}"
                  class="button sidebar-opener editing-button" name="opened-sidebar"> 
                     <img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /> 
                 </a>
-                {% trans 'categories'|capfirst %}
+                {% trans 'related'|capfirst %}
             </div>
 
             <!-- Colonne grise remplie -->
@@ -88,7 +95,7 @@
             {% if not project_translation.themes %}
             <p>
                 <a class="sidebar-opener" href="#" name="opened-sidebar">
-                {% trans "Click here to set the <strong>objectives</strong> and <strong>themes</strong> of this project."|capfirst %}</a>
+                {% trans "Click here to set the <strong>categories</strong> and <strong>tags</strong> of this project."|capfirst %}</a>
             </p>
             {% else %} {% tags_for_object project_translation as taglist %}
             <div class="grey_column_tagcloud">
@@ -124,30 +131,38 @@
             <ul id="member_list">
                 {% for member in project.detailed_members.all %}
                 <li class="grey_column_team_member member{{ member.id }}">
-                  <a href="{% url userena_profile_detail member.user %}">
-                    <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" width="80" height="80"/>
-                      <div class="grey_column_team_buttons">
-                        <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
-                        {% if user.is_authenticated %}
-                        <input id="del_member_link" type="image" title="{% trans 'Delete'|capfirst %}" value="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin" src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /> 
+                    <div  style="position:relative; float:left; width:80px;">
+                        <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" width="80" height="80"/>
+                        <div class="grey_column_team_buttons">
+                            <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
+                            {% if user.is_authenticated %}
+                            <input id="del_member_link" type="image" title="{% trans 'Delete'|capfirst %}" value="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin" src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /> 
+                            {% endif %}
+                        </div>
+                        {% if member.user.get_profile.country %}
+                            <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
                         {% endif %}
-                      </div>
-                  </a>  
-                  {% if member.user.get_profile.country %}
-                  <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
-                  {% endif %}   
-                    <h2>
-                        <a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
-                    </h2>
-                  
+                    </div> 
+                    
+                    <div  style="position:relative; float:left; width:130px; margin-left:10px;">
+
+                        <h2>
+                            <a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
+                        </h2>
                       
-                    <h3>{{ member.role }}</h3>
-                      
-                    <div class="clear"></div>
-                      
-                    <p>{{ member.comment }}</p>		      
+                          
+                        <h3>{{ member.role }}</h3>
+                          
+                        <p>{{ member.comment }}</p>	
+                    
+                    </div> 
+
+                    <div class="clear"></div>                    
 
                 </li>
+                
+                <div class="clear"></div>                    
+
                 {% endfor %}
             </ul>
             
