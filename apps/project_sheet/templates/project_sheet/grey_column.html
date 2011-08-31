@@ -73,12 +73,12 @@
 
             <!-- Colonne grise remplie -->
 
-            {% if project_translation.objectives %}
+            {% if project_translation.objectives.all|length > 0 %}
             <div class="grey_column_objective">
                 <label>{% trans 'objectives:'|capfirst %}</label> 
                   <ul id="cloudtag_list">
                   {% for objective in project.objectives.all %}
-                        <li><a href="">{{ objective }}</a>{% if not forloop.last %},{% endif%}</li> 
+                        <li><a href="{% url project_sheet-list%}?objectives={{ objective.id }}">{{ objective }}</a>{% if not forloop.last %},{% endif%}</li> 
                     {% endfor %}
                 </ul>
             </div>
