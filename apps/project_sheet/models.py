@@ -75,7 +75,7 @@ class I4pProject(models.Model):
     objectives = models.ManyToManyField(Objective, verbose_name=_('objectives'), null=True, blank=True)
 
     website = models.URLField(verbose_name=_('website'),
-                              verify_exists=True,
+                              verify_exists=False,
                               max_length=200,
                               null=True,
                               blank=True)
