@@ -181,6 +181,13 @@ def project_sheet_edit_location(request, slug):
     project_location_form = I4pProjectLocationForm(request.POST,
                                                    instance=project_translation.project.location)
 
+    # Website
+    project_info_form = I4pProjectInfoForm(request.POST,
+                                           instance=project_translation.project)
+
+    if request.method == 'POST' and project_info_form.is_valid():
+        info = project_info_form.save()
+
     if request.method == 'POST' and project_location_form.is_valid():
         location = project_location_form.save()
         if not project_translation.project.location:
