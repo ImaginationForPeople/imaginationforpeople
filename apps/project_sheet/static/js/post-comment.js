@@ -89,7 +89,8 @@ function commentSuccess(data) {
 
     $('#id_comment').val('');
 
-    var html = $("<li class='odd'></li>").append(data['html']);
+    var html = $("<li class='even'></li>").append(data['html']);
+
     $('#comment-list').prepend(html);
     html.hide();
 
