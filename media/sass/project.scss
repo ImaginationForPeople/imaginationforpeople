@@ -930,10 +930,19 @@ form{
         margin-right:10px;
     }
     
+    h3, h2{
+        float:left;
+    }
+    
+    p{
+        float:left !important;
+        font-size:11px !important;
+    }
+    
     .grey_column_team_buttons{
         position:absolute;
         top:3px;
-        right:15px;
+        right:-14px;
         padding:0px;
         width:34px;
         
@@ -962,6 +971,7 @@ form{
     @include georgia(14px);
 	padding:0px;
 	margin:0px;
+    float:left;
     
         a{
             font-size:14px;
@@ -971,8 +981,8 @@ form{
     
     .flag{
         position:absolute;
-        top:68px;
-        left:-28px;
+        bottom:3px;
+        right:-7px;
     }
     
     h3{

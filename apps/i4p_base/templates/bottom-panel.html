@@ -52,7 +52,7 @@
                         
                         <div class="grid_6 alpha ">
                             <div class="filtersbox_content">
-                                <h4>{% trans "Themes" %}</h4>
+                                <h4>{% trans "Tags" %}</h4>
                                 <!-- <a class="invert">{% trans "invert" %}</a> -->
                                 <ul id="cloudtag_list">
                                     {% for tag in project_sheet_tags|slice:":27" %}
@@ -73,7 +73,7 @@
                         </div>
                         
                         <div class="filtersbox_content">
-                            <h4>{% trans "Objectives" %}</h4>
+                            <h4>{% trans "Categories" %}</h4>
                              <!-- <a class="invert">{% trans "invert" %}</a> -->
                             {{objective_filter.objectives}}
                         </div>

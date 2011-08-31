@@ -800,10 +800,17 @@ form {
   float: left;
   margin-right: 10px;
 }
+.grey_column_team_member h3, .grey_column_team_member h2 {
+  float: left;
+}
+.grey_column_team_member p {
+  float: left !important;
+  font-size: 11px !important;
+}
 .grey_column_team_member .grey_column_team_buttons {
   position: absolute;
   top: 3px;
-  right: 15px;
+  right: -14px;
   padding: 0px;
   width: 34px;
 }
@@ -829,6 +836,7 @@ form {
   font-style: italic;
   padding: 0px;
   margin: 0px;
+  float: left;
 }
 .grey_column_team_member h2 a, .grey_column_team_content h2 a {
   font-size: 14px;
@@ -836,8 +844,8 @@ form {
 }
 .grey_column_team_member .flag, .grey_column_team_content .flag {
   position: absolute;
-  top: 68px;
-  left: -28px;
+  bottom: 3px;
+  right: -7px;
 }
 .grey_column_team_member h3, .grey_column_team_content h3 {
   font-size: 12px;
