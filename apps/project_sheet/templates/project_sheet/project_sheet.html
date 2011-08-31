@@ -219,11 +219,6 @@
     }
 
     function project_update_related() {
-        //$('#search').block({message: 'Recherche en cours, patientez svp...'});
-	//$('#search-results').fadeTo('fast', 0.3);
-	//$('#search-results-wrapper').activity({width: 6, valign: 'center', padding: '20'});
-        //$('#themes-form')
-
 	themes_form = $('#themes-form').serializeObject(true);
 
         Dajaxice.apps.project_sheet.project_update_related(on_project_themes_updated, {'language_code': '{{ LANGUAGE_CODE }}',
@@ -397,7 +392,7 @@
 	return false;
     });
     
-    $('div##project_translation_progress > a').click(function() {
+    $('div#project_translation_progress > a').click(function() {
     	$('#project_translation_progress').dblclick();
     	return false;
     });
