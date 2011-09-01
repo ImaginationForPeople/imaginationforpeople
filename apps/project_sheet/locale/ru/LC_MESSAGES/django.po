@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-25 11:57+0200\n"
+"POT-Creation-Date: 2011-09-01 10:23+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgid "Without associated leaders"
 msgstr ""
 
 #: filters.py:226
-msgid "all"
+msgid "World"
 msgstr ""
 
 #: models.py:39 models.py:218
@@ -119,11 +119,11 @@ msgstr ""
 msgid "one line description"
 msgstr ""
 
-#: models.py:152
+#: models.py:152 templates/project_sheet/project_sheet.html:545
 msgid "One line description"
 msgstr ""
 
-#: models.py:155
+#: models.py:155 templates/project_sheet/about_section.html:3
 msgid "about the project"
 msgstr ""
 
@@ -165,4 +165,435 @@ msgstr ""
 
 #: models.py:273
 msgid "A member has joined a project"
+msgstr ""
+
+#: templates/comments/comments-module.html:9
+msgid "Comments"
+msgstr ""
+
+#: templates/comments/comments-module.html:14
+msgid "View the"
+msgstr ""
+
+#: templates/comments/comments-module.html:14
+msgid "comments"
+msgstr ""
+
+#: templates/comments/comments-module.html:34
+msgid "Your avatar"
+msgstr ""
+
+#: templates/comments/comments-module.html:39
+msgid "Post comment"
+msgstr ""
+
+#: templates/project_sheet/about_section.html:6
+#: templates/project_sheet/about_section.html:8
+#: templates/project_sheet/grey_column.html:137
+#: templates/project_sheet/project_sheet.html:286
+#: templates/project_sheet/project_sheet.html:511
+#: templates/project_sheet/project_sheet.html:540
+#: templates/project_sheet/project_sheet.html:546
+#: templates/project_sheet/project_sheet.html:556
+#: templates/project_sheet/references_section.html:7
+#: templates/project_sheet/scalability_section.html:33
+#: templates/project_sheet/uniqueness_section.html:32
+#: templates/project_sheet/value_section.html:33
+msgid "Edit"
+msgstr ""
+
+#: templates/project_sheet/about_section.html:21
+#: templates/project_sheet/media_gallery.html:103
+#: templates/project_sheet/project_sheet.html:329
+#: templates/project_sheet/project_sheet.html:347
+#: templates/project_sheet/project_sheet.html:368
+#: templates/project_sheet/project_sheet.html:501
+#: templates/project_sheet/project_sheet.html:532
+#: templates/project_sheet/project_sheet.html:608
+#: templates/project_sheet/scalability_section.html:14
+#: templates/project_sheet/uniqueness_section.html:13
+#: templates/project_sheet/value_section.html:14
+msgid "Ok"
+msgstr ""
+
+#: templates/project_sheet/about_section.html:22
+#: templates/project_sheet/media_gallery.html:46
+#: templates/project_sheet/media_gallery.html:104
+#: templates/project_sheet/project_sheet.html:328
+#: templates/project_sheet/project_sheet.html:346
+#: templates/project_sheet/project_sheet.html:367
+#: templates/project_sheet/project_sheet.html:500
+#: templates/project_sheet/project_sheet.html:533
+#: templates/project_sheet/project_sheet.html:609
+#: templates/project_sheet/scalability_section.html:15
+#: templates/project_sheet/uniqueness_section.html:14
+#: templates/project_sheet/value_section.html:15
+msgid "Cancel"
+msgstr ""
+
+#: templates/project_sheet/about_section.html:39
+#: templates/project_sheet/about_section.html:50
+msgid "project description"
+msgstr ""
+
+#: templates/project_sheet/about_section.html:40
+#: templates/project_sheet/about_section.html:51
+msgid "click here to describe your project"
+msgstr ""
+
+#: templates/project_sheet/all_recent_changes.html:27
+msgid "Latest 20 days changes"
+msgstr ""
+
+#: templates/project_sheet/all_recent_changes.html:48
+#: templates/project_sheet/project_list.html:110
+msgid "Your request did not return any result."
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:14
+#: templates/project_sheet/project_id_card.html:29
+msgid "associated team"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:17
+#: templates/project_sheet/project_id_card.html:32
+msgid "in progress"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:20
+#: templates/project_sheet/project_id_card.html:35
+msgid "popular"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:23
+#: templates/project_sheet/project_id_card.html:38
+msgid "bestof"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:51
+msgid "take action"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:73
+msgid "edit"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:78
+#: templates/project_sheet/sidebar_related.html:6
+msgid "related"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:85
+msgid "objectives:"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:98
+msgid ""
+"Click here to set the <strong>categories</strong> and <strong>tags</strong> "
+"of this project."
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:102
+#: templates/project_sheet/sidebar_related.html:22
+msgid "Themes:"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:115
+msgid "Add a member"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:115
+msgid "add"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:116
+#: templates/project_sheet/sidebar_team.html:6
+msgid "The team"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:126
+msgid "There is no registered team members: please to fill this section !"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:139
+#: templates/project_sheet/media_gallery.html:59
+msgid "Delete"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:139
+msgid "delete"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:190
+msgid "Partners"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:218
+msgid "Want to get started on your project sheet ?"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:219
+msgid ""
+"Click on the field you want to edit, edit it, and save the changes. Once "
+"you’ve modified a field, your project sheet will be created."
+msgstr ""
+
+#: templates/project_sheet/history.html:18
+msgid "Made on"
+msgstr ""
+
+#: templates/project_sheet/history.html:18
+msgid "DATETIME_FORMAT"
+msgstr ""
+
+#: templates/project_sheet/history.html:18
+#: templates/project_sheet/project_sheet.html:560
+msgid "by"
+msgstr ""
+
+#: templates/project_sheet/history.html:22
+msgid "Anonymous"
+msgstr ""
+
+#: templates/project_sheet/history.html:24
+msgid "on"
+msgstr ""
+
+#: templates/project_sheet/history.html:30
+msgid "and"
+msgstr ""
+
+#: templates/project_sheet/history.html:33
+msgid "\""
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:7
+msgid "upload a media"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:16
+msgid "Image to upload :"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:30
+msgid "Upload"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:40
+msgid "Video link (youtube, dailymotion, etc): "
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:56
+msgid "Add"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:57
+msgid "Metadata - Click to edit"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:68
+#: templates/project_sheet/media_gallery.html:86
+msgid "Date :"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:69
+#: templates/project_sheet/media_gallery.html:88
+msgid "Description :"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:70
+#: templates/project_sheet/media_gallery.html:90
+msgid "Author :"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:71
+#: templates/project_sheet/media_gallery.html:91
+msgid "Source :"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:72
+#: templates/project_sheet/media_gallery.html:94
+msgid "Licence :"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:142
+msgid "Sorry, video are temporary disabled on Internet Explorer"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:174
+msgid "Yes"
+msgstr ""
+
+#: templates/project_sheet/media_gallery.html:175
+msgid "No"
+msgstr ""
+
+#: templates/project_sheet/project_complete_card.html:16
+msgid "There is no description for this project"
+msgstr ""
+
+#: templates/project_sheet/project_complete_card.html:20
+msgid "More info"
+msgstr ""
+
+#: templates/project_sheet/project_edit_themes.html:9
+#, python-format
+msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
+msgstr ""
+
+#: templates/project_sheet/project_edit_themes.html:17
+msgid "Update"
+msgstr ""
+
+#: templates/project_sheet/project_list.html:6
+msgid ""
+"These experiences have a positive social impact and create social goodwill. "
+"they demonstrate a disruptive inventiveness and can be easily disseminated "
+"and scaled in other places or cultural contexts."
+msgstr ""
+
+#: templates/project_sheet/project_list.html:7
+msgid "Find project on Imagination for People"
+msgstr ""
+
+#: templates/project_sheet/project_list.html:68
+msgid "Last projects"
+msgstr ""
+
+#: templates/project_sheet/project_list.html:69
+msgid "Last editions"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:13
+msgid "start project"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:350
+msgid "This bloc is empty : don’t forget to fill it !"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:371
+#: templates/project_sheet/uniqueness_section.html:26
+#: templates/project_sheet/value_section.html:27
+msgid "This field is blank. Don’t forget to complete it!"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:474
+msgid ""
+"\n"
+"            Thank you for the interest you have shown in this project. <br /"
+">\n"
+"            Don't you want to <a class=\"login-slide-openner link\" href=\"#"
+"\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign up</"
+"a> before editing?\n"
+"            "
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:481
+msgid ""
+"\n"
+"            This project sheet is a draft. \n"
+"            <br />You can enrich it very simply by clicking on text boxes "
+"which seem to be incomplete. You will then have access to a wiki field "
+"allowing you to write additional content.\n"
+"            <br />Become in one click a co-publisher of this project.\n"
+"\n"
+"            "
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:516
+msgid "my project title"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:565
+msgid "anonymous"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:571
+msgid "Location:"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:584
+#: templates/project_sheet/project_sheet.html:592
+msgid "unknown"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:590
+#: templates/project_sheet/project_sheet.html:592
+msgid "Website:"
+msgstr ""
+
+#: templates/project_sheet/project_sheet.html:645
+msgid ""
+"\n"
+"\t    This project sheet, except media, is licensed under the <a rel="
+"\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons."
+"org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style="
+"\"border-width:0\" src=\"http://i.creativecommons.org/l/by-sa/3.0/80x15.png"
+"\" /></a>\n"
+"\t  "
+msgstr ""
+
+#: templates/project_sheet/references_section.html:7
+msgid "references"
+msgstr ""
+
+#: templates/project_sheet/references_section.html:16
+msgid "no references"
+msgstr ""
+
+#: templates/project_sheet/references_section.html:32
+msgid "Cancel & close"
+msgstr ""
+
+#: templates/project_sheet/references_section.html:33
+#: templates/project_sheet/sidebar_team.html:17
+msgid "Save & close"
+msgstr ""
+
+#: templates/project_sheet/scalability_section.html:6
+#: templates/project_sheet/scalability_section.html:20
+#: templates/project_sheet/scalability_section.html:32
+msgid "what is the potential of this project to expand and develop"
+msgstr ""
+
+#: templates/project_sheet/scalability_section.html:27
+msgid "This field is blank. Don’t forget to complete it! "
+msgstr ""
+
+#: templates/project_sheet/sidebar_related.html:14
+msgid "Objectives:"
+msgstr ""
+
+#: templates/project_sheet/sidebar_related.html:22
+msgid "select your tags from the cloud below"
+msgstr ""
+
+#: templates/project_sheet/sidebar_related.html:39
+msgid "Close &amp; discard"
+msgstr ""
+
+#: templates/project_sheet/sidebar_related.html:40
+msgid "Save &amp; close"
+msgstr ""
+
+#: templates/project_sheet/sidebar_team.html:9
+msgid "Add a team member"
+msgstr ""
+
+#: templates/project_sheet/sidebar_team.html:16
+msgid "Close & discard"
+msgstr ""
+
+#: templates/project_sheet/uniqueness_section.html:5
+#: templates/project_sheet/uniqueness_section.html:19
+#: templates/project_sheet/uniqueness_section.html:31
+msgid "in what ways is this project unique and creative"
+msgstr ""
+
+#: templates/project_sheet/value_section.html:6
+#: templates/project_sheet/value_section.html:20
+#: templates/project_sheet/value_section.html:32
+msgid "What is the social value of this project"
 msgstr ""
