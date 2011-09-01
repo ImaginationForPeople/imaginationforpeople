@@ -3,6 +3,7 @@ Views for handling members
 """
 from httplib import HTTPConnection
 
+from django.core.mail import mail_admins
 from django.utils import translation
 from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
@@ -88,10 +89,10 @@ def signin(request,
                     name, value = cookies.split(";")[0].split("=")
                     response.set_cookie(name, value=value, domain=".imaginationforpeople.org")
 
-            except Exception:
+            except Exception, e:
                 # We don't care if it was not possible to login the user on the wiki
-                pass
-
+                mail_admins(subject='YesWiki login error',
+                            message="%s" % e)
 
     return response
 
