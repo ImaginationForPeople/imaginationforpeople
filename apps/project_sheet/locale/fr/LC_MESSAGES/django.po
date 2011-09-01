@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-01 10:23+0200\n"
-"PO-Revision-Date: 2011-09-01 10:35\n"
+"POT-Creation-Date: 2011-09-01 14:55+0200\n"
+"PO-Revision-Date: 2011-09-01 14:56\n"
 "Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -247,8 +247,13 @@ msgstr "Cliquez ici pour décrire votre projet"
 msgid "Latest 20 days changes"
 msgstr "Dernier 20 changements"
 
-#: templates/project_sheet/all_recent_changes.html:48
-#: templates/project_sheet/project_list.html:110
+#: templates/project_sheet/all_recent_changes.html:28
+#: templates/project_sheet/project_list.html:67
+msgid "RSS Feed"
+msgstr "Flux RSS"
+
+#: templates/project_sheet/all_recent_changes.html:50
+#: templates/project_sheet/project_list.html:114
 msgid "Your request did not return any result."
 msgstr "Votre recherche ne retourne aucun résultat."
 
@@ -330,15 +335,15 @@ msgstr "Supprimer"
 msgid "delete"
 msgstr "supprimer"
 
-#: templates/project_sheet/grey_column.html:190
+#: templates/project_sheet/grey_column.html:191
 msgid "Partners"
 msgstr "Partenaires"
 
-#: templates/project_sheet/grey_column.html:218
+#: templates/project_sheet/grey_column.html:219
 msgid "Want to get started on your project sheet ?"
 msgstr "Comment démarrer une fiche projet ?"
 
-#: templates/project_sheet/grey_column.html:219
+#: templates/project_sheet/grey_column.html:220
 msgid ""
 "Click on the field you want to edit, edit it, and save the changes. "
 "Once you’ve modified a field, your project sheet will be created."
@@ -473,17 +478,21 @@ msgstr ""
 msgid "Find project on Imagination for People"
 msgstr "Trouver des projets sur Imagination for People"
 
-#: templates/project_sheet/project_list.html:68
+#: templates/project_sheet/project_list.html:70
 msgid "Last projects"
 msgstr "Derniers projets"
 
-#: templates/project_sheet/project_list.html:69
+#: templates/project_sheet/project_list.html:71
 msgid "Last editions"
 msgstr "Dernières modifications"
 
 #: templates/project_sheet/project_sheet.html:13
 msgid "start project"
 msgstr "ajouter un projet"
+
+#: templates/project_sheet/project_sheet.html:126
+msgid "Type your message here and hit enter when done..."
+msgstr "Saisissez votre message ici et appuyez sur entrée pour poster..."
 
 #: templates/project_sheet/project_sheet.html:350
 msgid "This bloc is empty : don’t forget to fill it !"
