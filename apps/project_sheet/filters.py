@@ -223,7 +223,7 @@ def current_countries():
     """
     Build the list of countries used in project location 
     """
-    result = [("", _("all"))]
+    result = [("", _("World"))]
     project_countries = I4pProject.objects.exclude(location__country='').\
                                            exclude(location__country__isnull=True).\
                                            distinct().\
