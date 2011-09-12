@@ -1,4 +1,5 @@
 from django.core.mail import mail_managers
+from django.contrib.auth.models import User
 from django.db import models
 from django.dispatch import receiver
 from django.template.loader import render_to_string
@@ -19,6 +20,7 @@ class I4pProfile(UserenaLanguageBaseProfile):
        ('M', _('male')),
        ('F', _('female'))
     )
+    user = models.ForeignKey(User)
     gender = models.CharField(max_length=1, choices=GENDER_TYPE, null=True, blank=True)
     motto = models.TextField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
