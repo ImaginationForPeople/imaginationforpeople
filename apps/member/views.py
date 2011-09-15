@@ -10,6 +10,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
+from django.views.generic.simple import direct_to_template
 
 from userena import views as userena_views
 from userena.decorators import secure_required
