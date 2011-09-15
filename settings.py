@@ -336,3 +336,9 @@ COMPRESS_URL = STATIC_URL
 
 ## Rosetta
 ROSETTA_WSGI_AUTO_RELOAD = True
+
+## Backcap config
+BACKCAP_NOTIFY_WHOLE_STAFF = False
+BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
+                          'SimonSarazin',
+                          'AlbanTiberghien']
