@@ -99,8 +99,8 @@ def signin(request,
 
 
 
-@secure_required
-@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
+#@secure_required
+#@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
 def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None):
@@ -137,8 +137,8 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
     
 
 
-@secure_required
-@permission_required_or_403('change_user', (User, 'username', 'username'))
+#@secure_required
+#@permission_required_or_403('change_user', (User, 'username', 'username'))
 def password_change(request, username, template_name='userena/password_form.html',
                     pass_form=PasswordChangeForm, success_url=None, extra_context=None):
 
@@ -167,8 +167,8 @@ def password_change(request, username, template_name='userena/password_form.html
                                          extra_context=extra_context)
 
 
-@secure_required
-@permission_required_or_403('change_user', (User, 'username', 'username'))
+#@secure_required
+#@permission_required_or_403('change_user', (User, 'username', 'username'))
 def email_change(request, username, form=ChangeEmailForm,
                  template_name='userena/email_form.html', success_url=None,
                  extra_context=None):
