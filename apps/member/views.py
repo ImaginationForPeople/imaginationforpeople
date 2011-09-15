@@ -5,6 +5,7 @@ from httplib import HTTPConnection
 
 from django.core.mail import mail_admins
 from django.utils import translation
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.contenttypes.models import ContentType
