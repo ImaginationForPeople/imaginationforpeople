@@ -4,6 +4,7 @@ Views for handling members
 from httplib import HTTPConnection
 
 from django.core.mail import mail_admins
+from django.core.urlresolvers import reverse
 from django.utils import translation
 from django.contrib import messages
 from django.contrib.auth.models import User
