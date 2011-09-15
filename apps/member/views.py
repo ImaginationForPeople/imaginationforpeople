@@ -12,6 +12,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.shortcuts import get_object_or_404
 from django.views.generic.simple import direct_to_template
 
+from userena import settings as userena_settings
 from userena import views as userena_views
 from userena.decorators import secure_required
 from userena.forms import AuthenticationForm, ChangeEmailForm
