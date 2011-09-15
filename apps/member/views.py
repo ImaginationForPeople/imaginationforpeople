@@ -99,8 +99,8 @@ def signin(request,
 
 
 
-#@secure_required
-#@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
+@secure_required
+@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
 def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None):
@@ -121,20 +121,30 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
     if not extra_context:
         extra_context = {}
 
-    # Also pass the password and email forms
-    extra_context.update({'password_form': PasswordChangeForm(user=request.user),
-                          'email_form': ChangeEmailForm(user=request.user),
-                          'profile_form': I4PEditProfileForm(instance=profile, initial=user_initial)}
-                         )
+    # From userena. 
+    form = edit_profile_form(instance=profile, initial=user_initial)
 
+    if request.method == 'POST':
+        form = edit_profile_form(request.POST, request.FILES, instance=profile,
+                                 initial=user_initial)
 
-    return userena_views.profile_edit(request=request,
-                                      username=username,
-                                      edit_profile_form=edit_profile_form,
-                                      template_name=template_name,
-                                      success_url=success_url,
-                                      extra_context=extra_context)
-    
+        if form.is_valid():
+            profile = form.save()
+
+            if userena_settings.USERENA_USE_MESSAGES:
+                messages.success(request, _('Your profile has been updated.'),
+                                 fail_silently=True)
+
+            if success_url: redirect_to = success_url
+            else: redirect_to = reverse('userena_profile_detail', kwargs={'username': username})
+            return redirect(redirect_to)
+
+    if not extra_context: extra_context = dict()
+    extra_context['form'] = form
+    extra_context['profile'] = profile
+    return direct_to_template(request,
+                              template_name,
+                              extra_context=extra_context)
 
 
 #@secure_required
