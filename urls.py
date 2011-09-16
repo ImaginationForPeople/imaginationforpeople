@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
+    (r'^sentry/', include('sentry.web.urls')),
     
     (r'^ajax_select/', include('ajax_select.urls')),
 
