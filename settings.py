@@ -364,21 +364,21 @@ LOGGING = {
             'class': 'sentry.client.handlers.SentryHandler',
             'formatter': 'verbose'
         },
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
+#        'console': {
+#            'level': 'DEBUG',
+#            'class': 'logging.StreamHandler',
+#            'formatter': 'verbose'
+#        }
     },
     'loggers': {
         '()': {
             'level': 'WARNING',
             'handlers': ['sentry'],
         },
-        'sentry.errors': {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-            'propagate': False,
-        },
+ #       'sentry.errors': {
+ #           'level': 'DEBUG',
+ #           'handlers': ['console'],
+ #           'propagate': False,
+ #       },
     },
 }
