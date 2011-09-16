@@ -12,8 +12,6 @@ from site_settings import *
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     ('Simon Sarazin', 'simonsarazin@imaginationforpeople.com'),
     ('Guillaume Libersat', 'guillaume@fuzzyfrequency.com'),
@@ -118,8 +116,8 @@ if DEBUG:
 
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
-    'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -177,6 +175,8 @@ INSTALLED_APPS = (
     'ajax_select',
     'ajaxcomments',
     'django_mailman',
+    'sentry',
+    'sentry.client',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -284,7 +284,7 @@ DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
 DAJAXICE_JSON2_JS_IMPORT = True
 DAJAXICE_DEBUG = DEBUG
 
-## LOGGING
+## LOG IN
 LOGIN_REDIRECT_URL = '/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
@@ -342,3 +342,43 @@ BACKCAP_NOTIFY_WHOLE_STAFF = False
 BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
                           'SimonSarazin',
                           'AlbanTiberghien']
+
+
+## LOGGING
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+            },
+        },
+    
+    'handlers': {
+        'sentry': {
+            'level': 'DEBUG',
+            'class': 'sentry.client.handlers.SentryHandler',
+            'formatter': 'verbose'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        '()': {
+            'level': 'WARNING',
+            'handlers': ['sentry'],
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
+}
