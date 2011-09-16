@@ -6,6 +6,7 @@
 
     WSGIProcessGroup webapp
     WSGIDaemonProcess webapp
+    WSGIPassAuthorization On
 
 
     WSGIScriptAlias / /home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/apache/staging.wsgi/

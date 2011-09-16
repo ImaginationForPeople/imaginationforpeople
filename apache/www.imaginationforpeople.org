@@ -18,6 +18,7 @@
     WSGIScriptAlias / /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/apache/prod.wsgi
     WSGIProcessGroup prodwebapp
     WSGIDaemonProcess prodwebapp
+    WSGIPassAuthorization On
 
     # wiki
     Alias /wiki /home/www/wiki/
