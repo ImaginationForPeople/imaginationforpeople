@@ -175,8 +175,6 @@ INSTALLED_APPS = (
     'ajax_select',
     'ajaxcomments',
     'django_mailman',
-    'sentry',
-    'sentry.client',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
