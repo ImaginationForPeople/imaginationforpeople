@@ -264,13 +264,19 @@ class ProjectLocationFilter(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("country")
             if data:
+                print data
                 q_objects = None
-                for val in data:
-                    lookup = {"location__country" : val}
-                    if q_objects :
-                        q_objects |= Q(**lookup)
-                    else :
-                        q_objects = Q(**lookup)
+                # Dirty Fix: switch depending on type. Loop if list.
+                if isinstance(data, unicode):
+                    lookup = {"location__country" : data}
+                    q_objects = Q(**lookup)
+                else:
+                    for val in data:
+                        lookup = {"location__country" : val}
+                        if q_objects :
+                            q_objects |= Q(**lookup)
+                        else :
+                            q_objects = Q(**lookup)
                 qs = qs.filter(q_objects)
         return qs
 
