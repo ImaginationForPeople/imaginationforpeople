@@ -31,7 +31,7 @@
                 <textarea name="comment" id="id_comment"></textarea>
                 <div class="comment-info">
                     <div class="bulle"></div>
-		    <img src="{{ request.user.profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
+		    <img src="{{ request.user.get_profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
                 </div>
                 
                 <p style="display: none;">
