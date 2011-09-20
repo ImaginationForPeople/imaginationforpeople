@@ -41,12 +41,6 @@
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
-    
-    {% if not debug %}
-    <script>var _gaq=[['_setAccount','UA-21778007-2'], ['_setDomainName', 'imaginationforpeople.org'], ['_setAllowHash', 'false'], '_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
-    {% endif %}
-
-
     <script type="text/javascript">
       $(document).ready(function(){
           $.reject({reject: {msie5: true,
@@ -82,6 +76,9 @@
     
     {% block extra_head %}{% endblock %}
     
+    {% if not debug %}
+    <script>var _gaq=[['_setAccount','UA-21778007-2'], ['_setDomainName', 'imaginationforpeople.org'], ['_setAllowHash', 'false'], '_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+    {% endif %}
 
   </head>
 
