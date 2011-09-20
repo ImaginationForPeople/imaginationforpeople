@@ -52,8 +52,7 @@
     
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js" ></script>
 	
-  <!-- inline  -->
-
+  <!-- inline editing -->
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
 
@@ -97,22 +96,22 @@
   
   {% endcompress %}
 
+
+{% endblock %}
+
+{% block inline_js %}
   {% compress js %}
   <!-- Sidebar -->
   <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js"></script>
   
   <script type="text/javascript">
- 
+    // Upper menu
     $(document).ready(function(){ 
-        $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
-    }); 
-  </script>
+        $("ul.sf-menu").superfish({delay: 400, speed: 'fast'})
   
-   <!-- Comments -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-    // Customize the location of the media to match your project structure
-    media = '{{ STATIC_URL }}';
+        // Comments
+	// Customize the location of the media to match your project structure
+        var media = '{{ STATIC_URL }}'
 
     // On enter
     $('#comment-form #id_comment').keypress(function(e) {
@@ -129,31 +128,22 @@
     $('div#comment-form form').submit(function() {
         ajaxComment({'media': media});
         return false;
-	});
-   });
-  </script>
+    });
 
-
-  <!-- Team section -->
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
-	$("#member_list_edit").hide();
-
-	$(".grey_column_team_buttons").hide();
+    // Team section 
+    $("#member_list_edit").hide();
+    $(".grey_column_team_buttons").hide();
 
 	$("#member_list li").hover(function() {
 	    $(this).find(".grey_column_team_buttons").show();
 	}, function() {
 	    $(this).find(".grey_column_team_buttons").fadeOut("fast");
 	});
-    });
-  </script>
 
-  <!-- Project infos -->
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
-	var project_infos_block_edit = $('#project_infos_block_edit')
-	var project_infos_block = $('#project_infos_block');
+
+  // Project infos 
+    var project_infos_block_edit = $('#project_infos_block_edit');
+    var project_infos_block = $('#project_infos_block');
 	var project_infos_edit_button = $('#project_infos_block_edit_button');
 	var project_infos_edit_button_cancel = $('#project_infos_block_edit_button_cancel');
 
@@ -175,13 +165,14 @@
 
 	    return false;
 	});
+
+        // Addthis
+        addthis.init();
     });
   </script>
 
 
   {% endcompress %}
-
-
 
   <script type="text/javascript" defer="defer">
     $(document).ready(function() {
@@ -203,11 +194,8 @@
 	  {% endfor %}
         {% endif %}
 
-    });
-  </script>
 
-
-  <script type="text/javascript" defer="defer">
+    // Related updates
     function on_project_themes_updated(data) {
         if ( data == Dajaxice.EXCEPTION ) { alert('error'); }
         else {
@@ -229,10 +217,6 @@
     }
 
 
-  </script>
-
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
     /* Notification  area 
     Must be here because functions are used in inline_editing_save_callback
     */
@@ -270,7 +254,7 @@
 	notifySomething("edition-notification");
 	{% endif %}
 
-	
+	// Inline save callback
 	function inline_editing_save_callback(data) {
 	    var res = jQuery.parseJSON(data);
 
@@ -412,14 +396,8 @@
         	);
         });
 
-    
-    });
-  </script>
 
-
-  <!-- References section -->
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
+    // References section
     	$('#reference_form tr').formset();
     	
         $('#cancel_ref_edit').click(function(){
@@ -460,7 +438,13 @@
         
     });
   </script>
+
+
+
+
+
 {% endblock %}
+
 
 
 {% block project_content %}	
@@ -643,7 +627,7 @@
 
 	<div id="license-note">
 	  {% blocktrans %}
-	    This project sheet, except media, is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons CC-BY-SA 3.0</a> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Contrat Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
+	    This project sheet, except media, is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons CC-BY-SA 3.0</a> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Contrat Creative Commons" style="border-width:0" src="{{ STATIC_URL }}images/cc-by-sa3_80_25.png" /></a>
 	  {% endblocktrans %}
 	</div>
 	
