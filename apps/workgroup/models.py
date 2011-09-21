@@ -45,6 +45,9 @@ class WorkGroup(models.Model):
                                      default=None, 
                                      null=True, blank=True)
 
+    visible = models.BooleanField(verbose_name=_('visible'), 
+                                  default=True)
+
 
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
