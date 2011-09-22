@@ -149,6 +149,13 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
     # From userena. 
     form = edit_profile_form(instance=profile, initial=user_initial)
 
+    # Also pass the password and email forms
+    extra_context.update({'password_form': PasswordChangeForm(user=request.user),
+                          'email_form': ChangeEmailForm(user=request.user),
+                          'profile_form': form}
+                         )
+
+
     if request.method == 'POST':
         form = edit_profile_form(request.POST, request.FILES, instance=profile,
                                  initial=user_initial)
@@ -172,8 +179,8 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                               extra_context=extra_context)
 
 
-#@secure_required
-#@permission_required_or_403('change_user', (User, 'username', 'username'))
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
 def password_change(request, username, template_name='userena/password_form.html',
                     pass_form=PasswordChangeForm, success_url=None, extra_context=None):
 
@@ -202,8 +209,8 @@ def password_change(request, username, template_name='userena/password_form.html
                                          extra_context=extra_context)
 
 
-#@secure_required
-#@permission_required_or_403('change_user', (User, 'username', 'username'))
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
 def email_change(request, username, form=ChangeEmailForm,
                  template_name='userena/email_form.html', success_url=None,
                  extra_context=None):
