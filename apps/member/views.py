@@ -28,6 +28,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 from django.views.generic.simple import direct_to_template
@@ -122,7 +123,6 @@ def signin(request,
 
 
 @secure_required
-@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
 def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None):
@@ -134,6 +134,9 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
     """
     user = get_object_or_404(User,
                              username__iexact=username)
+
+    if not user.has_perm('change_profile', user.get_profile()):
+        return HttpResponseForbidden()
 
     profile = user.get_profile()
 
