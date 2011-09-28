@@ -2,170 +2,172 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-01 14:55+0200\n"
-"PO-Revision-Date: 2011-09-12 11:52\n"
-"Last-Translator: Guillaume Libersat <glibersat@sigill.org>\n"
+"POT-Creation-Date: 2011-09-28 20:21+0200\n"
+"PO-Revision-Date: 2011-09-28 19:51\n"
+"Last-Translator: Simon Sarazin <simonsarazin@imaginationforpeople.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Translated-Using: django-rosetta 0.6.2\n"
 
-#: filters.py:60
+#: filters.py:77
 msgid "Themes contain"
 msgstr "Thèmes contiennent"
 
-#: filters.py:91
+#: filters.py:108
 msgid "With associated leaders"
 msgstr "Avec porteur de projet"
 
-#: filters.py:92
+#: filters.py:109
 msgid "Without associated leaders"
 msgstr "Sans porteur de projet"
 
-#: filters.py:226
+#: filters.py:243
 msgid "World"
 msgstr "Monde"
 
-#: models.py:39 models.py:218
+#: models.py:56 models.py:235
 msgid "description"
 msgstr "description"
 
-#: models.py:39
+#: models.py:56
 msgid "Insert your reference here (URL, books, etc)"
 msgstr "Insérez votre référence ici (URL, livres, etc)"
 
-#: models.py:56
+#: models.py:73
 msgid "Concept"
 msgstr "Concept"
 
-#: models.py:57
+#: models.py:74
 msgid "Starting"
 msgstr "Démarrage"
 
-#: models.py:58
+#: models.py:75
 msgid "In development"
 msgstr "En développement"
 
-#: models.py:59
+#: models.py:76
 msgid "Mature"
 msgstr "Mature"
 
-#: models.py:61 models.py:219
+#: models.py:78 models.py:236
 msgid "author"
 msgstr "auteur"
 
-#: models.py:65
+#: models.py:82
 msgid "members"
 msgstr "membres"
 
-#: models.py:70
+#: models.py:87
 msgid "best of"
 msgstr "Favoris"
 
-#: models.py:72 models.py:217
+#: models.py:89 models.py:234
 msgid "creation date"
 msgstr "date de création"
 
-#: models.py:75
+#: models.py:92
 msgid "objectives"
 msgstr "objectifs"
 
-#: models.py:77
+#: models.py:94
 msgid "website"
 msgstr "site web"
 
-#: models.py:83 models.py:142
+#: models.py:100 models.py:159
 msgid "status"
 msgstr "statut"
 
-#: models.py:87
+#: models.py:104
 msgid "project leader information"
 msgstr "Information du porteur de projet"
 
-#: models.py:91
+#: models.py:108
 msgid "location"
 msgstr "emplacement"
 
-#: models.py:124
+#: models.py:141
 msgid "In edition"
 msgstr "En cours d'édition"
 
-#: models.py:125
+#: models.py:142
 msgid "Complete"
 msgstr "Complet"
 
-#: models.py:132
+#: models.py:149
 msgid "language"
 msgstr "langue"
 
-#: models.py:136
+#: models.py:153
 msgid "title"
 msgstr "titre"
 
-#: models.py:137
+#: models.py:154
 msgid "My Project Title"
 msgstr "Le titre du projet"
 
-#: models.py:148
+#: models.py:165
 msgid "one line description"
 msgstr "Description en une ligne"
 
-#: models.py:152 templates/project_sheet/project_sheet.html:545
+#: models.py:169 templates/project_sheet/project_sheet.html:529
 msgid "One line description"
 msgstr "Description en une ligne"
 
-#: models.py:155 templates/project_sheet/about_section.html:3
+#: models.py:172 templates/project_sheet/about_section.html:3
 msgid "about the project"
 msgstr "A propos du projet"
 
-#: models.py:156
-msgid "what is make it creative and unique"
-msgstr "En quoi ce projet est-il singulier et créatif "
+#: models.py:173 templates/project_sheet/uniqueness_section.html:5
+#: templates/project_sheet/uniqueness_section.html:19
+#: templates/project_sheet/uniqueness_section.html:31
+msgid "in what ways is this project unique and creative"
+msgstr "en quoi ce projet est-il singulier et créatif "
 
-#: models.py:157
-msgid "what is the experience social added value"
+#: models.py:174
+msgid "what is the social value of this project"
 msgstr "Quelle est la plus-value sociale du projet "
 
-#: models.py:158
-msgid "how scalable it is"
-msgstr ""
-"Quel est le potentiel de déploiement (autres territoires, autres "
-"disciplines, autres secteurs) ?"
+#: models.py:175 templates/project_sheet/scalability_section.html:6
+#: templates/project_sheet/scalability_section.html:20
+#: templates/project_sheet/scalability_section.html:32
+msgid "what is the potential of this project to expand and develop"
+msgstr "Quel est le potentiel de déploiement de cette initiative "
 
-#: models.py:160
+#: models.py:177
 msgid "Themes of the project"
 msgstr "Thèmes du projet"
 
-#: models.py:220
+#: models.py:237
 msgid "source"
 msgstr "source"
 
-#: models.py:221
+#: models.py:238
 msgid "license"
 msgstr "licence"
 
-#: models.py:249
+#: models.py:266
 msgid "role"
 msgstr "rôle"
 
-#: models.py:254
+#: models.py:271
 msgid "comment"
 msgstr "Commentaire"
 
-#: models.py:267
+#: models.py:284
 msgid "New project/translation added"
 msgstr "Nouveau projet / traduction ajoutée"
 
-#: models.py:273
+#: models.py:290
 msgid "A member has joined a project"
 msgstr "Un membre a rejoint un projet"
 
@@ -192,11 +194,11 @@ msgstr "Poster le commentaire"
 #: templates/project_sheet/about_section.html:6
 #: templates/project_sheet/about_section.html:8
 #: templates/project_sheet/grey_column.html:137
-#: templates/project_sheet/project_sheet.html:286
-#: templates/project_sheet/project_sheet.html:511
+#: templates/project_sheet/project_sheet.html:270
+#: templates/project_sheet/project_sheet.html:495
+#: templates/project_sheet/project_sheet.html:524
+#: templates/project_sheet/project_sheet.html:530
 #: templates/project_sheet/project_sheet.html:540
-#: templates/project_sheet/project_sheet.html:546
-#: templates/project_sheet/project_sheet.html:556
 #: templates/project_sheet/references_section.html:7
 #: templates/project_sheet/scalability_section.html:33
 #: templates/project_sheet/uniqueness_section.html:32
@@ -206,12 +208,12 @@ msgstr "Modifier"
 
 #: templates/project_sheet/about_section.html:21
 #: templates/project_sheet/media_gallery.html:103
-#: templates/project_sheet/project_sheet.html:329
-#: templates/project_sheet/project_sheet.html:347
-#: templates/project_sheet/project_sheet.html:368
-#: templates/project_sheet/project_sheet.html:501
-#: templates/project_sheet/project_sheet.html:532
-#: templates/project_sheet/project_sheet.html:608
+#: templates/project_sheet/project_sheet.html:313
+#: templates/project_sheet/project_sheet.html:331
+#: templates/project_sheet/project_sheet.html:352
+#: templates/project_sheet/project_sheet.html:485
+#: templates/project_sheet/project_sheet.html:516
+#: templates/project_sheet/project_sheet.html:592
 #: templates/project_sheet/scalability_section.html:14
 #: templates/project_sheet/uniqueness_section.html:13
 #: templates/project_sheet/value_section.html:14
@@ -221,12 +223,12 @@ msgstr "Ok"
 #: templates/project_sheet/about_section.html:22
 #: templates/project_sheet/media_gallery.html:46
 #: templates/project_sheet/media_gallery.html:104
-#: templates/project_sheet/project_sheet.html:328
-#: templates/project_sheet/project_sheet.html:346
-#: templates/project_sheet/project_sheet.html:367
-#: templates/project_sheet/project_sheet.html:500
-#: templates/project_sheet/project_sheet.html:533
-#: templates/project_sheet/project_sheet.html:609
+#: templates/project_sheet/project_sheet.html:312
+#: templates/project_sheet/project_sheet.html:330
+#: templates/project_sheet/project_sheet.html:351
+#: templates/project_sheet/project_sheet.html:484
+#: templates/project_sheet/project_sheet.html:517
+#: templates/project_sheet/project_sheet.html:593
 #: templates/project_sheet/scalability_section.html:15
 #: templates/project_sheet/uniqueness_section.html:14
 #: templates/project_sheet/value_section.html:15
@@ -296,11 +298,11 @@ msgstr "objectifs :"
 
 #: templates/project_sheet/grey_column.html:98
 msgid ""
-"Click here to set the <strong>categories</strong> and "
-"<strong>tags</strong> of this project."
+"Click here to set the <strong>categories</strong> and <strong>tags</strong> "
+"of this project."
 msgstr ""
-"Cliquez ici pour définir les <strong>objectifs</strong> et les "
-"<strong>tags</strong> de ce projet."
+"Cliquez ici pour définir les <strong>objectifs</strong> et les <strong>tags</"
+"strong> de ce projet."
 
 #: templates/project_sheet/grey_column.html:102
 #: templates/project_sheet/sidebar_related.html:22
@@ -345,12 +347,11 @@ msgstr "Comment démarrer une fiche projet ?"
 
 #: templates/project_sheet/grey_column.html:220
 msgid ""
-"Click on the field you want to edit, edit it, and save the changes. "
-"Once you’ve modified a field, your project sheet will be created."
+"Click on the field you want to edit, edit it, and save the changes. Once "
+"you’ve modified a field, your project sheet will be created."
 msgstr ""
-"Cliquez sur un champ pour le modifier, puis soumettre vos "
-"modifications. Votre projet sera créé une fois un premier champ "
-"rempli."
+"Cliquez sur un champ pour le modifier, puis soumettre vos modifications. "
+"Votre projet sera créé une fois un premier champ rempli."
 
 #: templates/project_sheet/history.html:18
 msgid "Made on"
@@ -361,7 +362,7 @@ msgid "DATETIME_FORMAT"
 msgstr "DATETIME_FORMAT"
 
 #: templates/project_sheet/history.html:18
-#: templates/project_sheet/project_sheet.html:560
+#: templates/project_sheet/project_sheet.html:544
 msgid "by"
 msgstr "par"
 
@@ -433,8 +434,7 @@ msgstr "Licence :"
 #: templates/project_sheet/media_gallery.html:142
 msgid "Sorry, video are temporary disabled on Internet Explorer"
 msgstr ""
-"Désolé, les vidéos sont temporairement désactivées sur Internet "
-"Explorer."
+"Désolé, les vidéos sont temporairement désactivées sur Internet Explorer."
 
 #: templates/project_sheet/media_gallery.html:174
 msgid "Yes"
@@ -456,8 +456,8 @@ msgstr "En savoir plus"
 #, python-format
 msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
 msgstr ""
-"Modifier les informations liées de "
-"&laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
+"Modifier les informations liées de &laquo;&nbsp;%(project_title)s&nbsp;"
+"&raquo;"
 
 #: templates/project_sheet/project_edit_themes.html:17
 msgid "Update"
@@ -465,14 +465,13 @@ msgstr "Mise à jour"
 
 #: templates/project_sheet/project_list.html:6
 msgid ""
-"These experiences have a positive social impact and create social "
-"goodwill. they demonstrate a disruptive inventiveness and can be easily"
-" disseminated and scaled in other places or cultural contexts."
+"These experiences have a positive social impact and create social goodwill. "
+"they demonstrate a disruptive inventiveness and can be easily disseminated "
+"and scaled in other places or cultural contexts."
 msgstr ""
-"Ces expériences ont un impact social positif et créent une bonté "
-"sociale. Ils démontrent une inventivité disruptive et peuvent être "
-"facilement diffusées et adaptés dans d'autres lieux ou contextes "
-"culturels."
+"Ces expériences ont un impact social positif et créent une bonté sociale. "
+"Ils démontrent une inventivité disruptive et peuvent être facilement "
+"diffusées et adaptés dans d'autres lieux ou contextes culturels."
 
 #: templates/project_sheet/project_list.html:7
 msgid "Find project on Imagination for People"
@@ -490,75 +489,93 @@ msgstr "Dernières modifications"
 msgid "start project"
 msgstr "ajouter un projet"
 
-#: templates/project_sheet/project_sheet.html:126
+#: templates/project_sheet/project_sheet.html:125
 msgid "Type your message here and hit enter when done..."
 msgstr "Saisissez votre message ici et appuyez sur entrée pour poster..."
 
-#: templates/project_sheet/project_sheet.html:350
+#: templates/project_sheet/project_sheet.html:334
 msgid "This bloc is empty : don’t forget to fill it !"
 msgstr "Ce bloc est vide: n'oubliez pas de le remplir!"
 
-#: templates/project_sheet/project_sheet.html:371
+#: templates/project_sheet/project_sheet.html:355
 #: templates/project_sheet/uniqueness_section.html:26
 #: templates/project_sheet/value_section.html:27
 msgid "This field is blank. Don’t forget to complete it!"
 msgstr "Ce bloc est vide : n'oubliez pas de le remplir !"
 
-#: templates/project_sheet/project_sheet.html:474
+#: templates/project_sheet/project_sheet.html:458
 msgid ""
 "\n"
-"            Thank you for the interest you have shown in this project. <br />\n"
-"            Don't you want to <a class=\"login-slide-openner link\" href=\"#\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign up</a> before editing?\n"
+"            Thank you for the interest you have shown in this project. <br /"
+">\n"
+"            Don't you want to <a class=\"login-slide-openner link\" href=\"#"
+"\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign up</"
+"a> before editing?\n"
 "            "
 msgstr ""
 "\n"
 "Merci de l'intérêt que vous portez à ce projet.<br />\n"
-"Pourquoi ne pas vous <a class=\"login-slide-openner link\" href=\"#\">connecter</a> ou <a class=\"login-slide-openner link\" href=\"#\">vous inscrire</a> avant d'éditer ?"
+"Pourquoi ne pas vous <a class=\"login-slide-openner link\" href=\"#"
+"\">connecter</a> ou <a class=\"login-slide-openner link\" href=\"#\">vous "
+"inscrire</a> avant d'éditer ?"
 
-#: templates/project_sheet/project_sheet.html:481
+#: templates/project_sheet/project_sheet.html:465
 msgid ""
 "\n"
 "            This project sheet is a draft. \n"
-"            <br />You can enrich it very simply by clicking on text boxes which seem to be incomplete. You will then have access to a wiki field allowing you to write additional content.\n"
+"            <br />You can enrich it very simply by clicking on text boxes "
+"which seem to be incomplete. You will then have access to a wiki field "
+"allowing you to write additional content.\n"
 "            <br />Become in one click a co-publisher of this project.\n"
 "\n"
 "            "
 msgstr ""
 "\n"
 "Cette fiche projet est en cours d'écriture.\n"
-"<br />Vous pouvez l'enrichir très simplement en cliquant sur les champs qui vous semblent incomplets. Vous aurez alors l'accès à un champ wiki vous permettant d'écrire du contenu additionnel.\n"
+"<br />Vous pouvez l'enrichir très simplement en cliquant sur les champs qui "
+"vous semblent incomplets. Vous aurez alors l'accès à un champ wiki vous "
+"permettant d'écrire du contenu additionnel.\n"
 "<br />Devenez, en un clic, contributeur de ce projet."
 
-#: templates/project_sheet/project_sheet.html:516
+#: templates/project_sheet/project_sheet.html:500
 msgid "my project title"
 msgstr "Mon titre de projet"
 
-#: templates/project_sheet/project_sheet.html:565
+#: templates/project_sheet/project_sheet.html:549
 msgid "anonymous"
 msgstr "anonyme"
 
-#: templates/project_sheet/project_sheet.html:571
+#: templates/project_sheet/project_sheet.html:555
 msgid "Location:"
 msgstr "Lieu : "
 
-#: templates/project_sheet/project_sheet.html:584
-#: templates/project_sheet/project_sheet.html:592
+#: templates/project_sheet/project_sheet.html:568
+#: templates/project_sheet/project_sheet.html:576
 msgid "unknown"
 msgstr "inconnue"
 
-#: templates/project_sheet/project_sheet.html:590
-#: templates/project_sheet/project_sheet.html:592
+#: templates/project_sheet/project_sheet.html:574
+#: templates/project_sheet/project_sheet.html:576
 msgid "Website:"
 msgstr "Site Web :"
 
-#: templates/project_sheet/project_sheet.html:645
+#: templates/project_sheet/project_sheet.html:629
+#, python-format
 msgid ""
 "\n"
-"\t    This project sheet, except media, is licensed under the <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" src=\"http://i.creativecommons.org/l/by-sa/3.0/80x15.png\" /></a>\n"
+"\t    This project sheet, except media, is licensed under the <a rel="
+"\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative "
+"Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons."
+"org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style="
+"\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>\n"
 "\t  "
 msgstr ""
 "\n"
-"Cette page, en dehors des médias, est sous licence <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" src=\"http://i.creativecommons.org/l/by-sa/3.0/80x15.png\" /></a>"
+"Cette page, en dehors des médias, est sous licence <a rel=\"license\" href="
+"\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons CC-BY-SA "
+"3.0</a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-"
+"sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" src="
+"\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>"
 
 #: templates/project_sheet/references_section.html:7
 msgid "references"
@@ -576,12 +593,6 @@ msgstr "Annuler et fermer"
 #: templates/project_sheet/sidebar_team.html:17
 msgid "Save & close"
 msgstr "Enregistrer et fermer"
-
-#: templates/project_sheet/scalability_section.html:6
-#: templates/project_sheet/scalability_section.html:20
-#: templates/project_sheet/scalability_section.html:32
-msgid "what is the potential of this project to expand and develop"
-msgstr "Quel est le potentiel de déploiement de cette initiative "
 
 #: templates/project_sheet/scalability_section.html:27
 msgid "This field is blank. Don’t forget to complete it! "
@@ -611,17 +622,22 @@ msgstr "Ajouter un porteur du projet"
 msgid "Close & discard"
 msgstr "Fermer et annuler"
 
-#: templates/project_sheet/uniqueness_section.html:5
-#: templates/project_sheet/uniqueness_section.html:19
-#: templates/project_sheet/uniqueness_section.html:31
-msgid "in what ways is this project unique and creative"
-msgstr "en quoi ce projet est-il singulier et créatif "
-
 #: templates/project_sheet/value_section.html:6
 #: templates/project_sheet/value_section.html:20
 #: templates/project_sheet/value_section.html:32
 msgid "What is the social value of this project"
 msgstr "Quelle est la plus-value sociale du projet "
+
+#~ msgid "what is make it creative and unique"
+#~ msgstr "En quoi ce projet est-il singulier et créatif "
+
+#~ msgid "what is the experience social added value"
+#~ msgstr "Quelle est la plus-value sociale du projet "
+
+#~ msgid "how scalable it is"
+#~ msgstr ""
+#~ "Quel est le potentiel de déploiement (autres territoires, autres "
+#~ "disciplines, autres secteurs) ?"
 
 #~ msgid "all"
 #~ msgstr "tous"
@@ -639,15 +655,15 @@ msgstr "Quelle est la plus-value sociale du projet "
 #~ msgstr "objectif"
 
 #~ msgid "Click here to set the <strong>themes</strong> of your project."
-#~ msgstr "Cliquez ici pour régler les <strong>thèmes </strong> de votre projet."
+#~ msgstr ""
+#~ "Cliquez ici pour régler les <strong>thèmes </strong> de votre projet."
 
 #~ msgid ""
-#~ "Click on a field to edit it, then submit your changes. Your project "
-#~ "will be created once a field is filled."
+#~ "Click on a field to edit it, then submit your changes. Your project will "
+#~ "be created once a field is filled."
 #~ msgstr ""
-#~ "Cliquez sur un champ pour le modifier, puis soumettre vos "
-#~ "modifications. Votre projet sera créé une fois un premier champ "
-#~ "rempli."
+#~ "Cliquez sur un champ pour le modifier, puis soumettre vos modifications. "
+#~ "Votre projet sera créé une fois un premier champ rempli."
 
 #~ msgid ""
 #~ "This bloc is empty : don’t forget to fill it ! A good project is a "
