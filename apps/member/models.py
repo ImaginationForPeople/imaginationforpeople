@@ -51,7 +51,10 @@ class I4pProfile(UserenaLanguageBaseProfile):
 
     #FIXME:  USELESS ???
     location = models.OneToOneField(Location, verbose_name=_('location'), null=True, blank=True)
-
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('userena_profile_detail', [self.user.username])
 
 @receiver(activation_complete, dispatch_uid='email-on-new-user')
 def email_managers_on_account_activation(sender, user, **kwargs):
