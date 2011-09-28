@@ -170,9 +170,9 @@ class I4pProjectTranslation(models.Model):
                                 )
 
     about_section = models.TextField(_("about the project"), null=True, blank=True)
-    uniqueness_section = models.TextField(_("what is make it creative and unique"), null=True, blank=True)
-    value_section = models.TextField(_("what is the experience social added value"), null=True, blank=True)
-    scalability_section = models.TextField(_("how scalable it is"), null=True, blank=True)
+    uniqueness_section = models.TextField(_("in what ways is this project unique and creative"), null=True, blank=True)
+    value_section = models.TextField(_("what is the social value of this project"), null=True, blank=True)
+    scalability_section = models.TextField(_("what is the potential of this project to expand and develop"), null=True, blank=True)
 
     themes = TagField(_("Themes of the project"), null=True, blank=True)
 
