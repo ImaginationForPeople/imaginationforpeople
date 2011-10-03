@@ -175,26 +175,6 @@
   {% endcompress %}
 
   <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
-	var tags = $("#themes_tags").tagit({
-	    itemName: 'themes'
-	});
-
-	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
-
-	$("#themes_list li").click(function($this) {
-	    $.fn.tagit.create_tag($(this).text());
-	});
-
-	// restore tags in get
-        {% if project_translation %}
-          {% tags_for_object project_translation as project_tags %}
-        	{% for tag in project_tags %}
-	     $.fn.tagit.create_tag("{{ tag }}");
-	  {% endfor %}
-        {% endif %}
-
-
     // Related updates
     function on_project_themes_updated(data) {
         if ( data == Dajaxice.EXCEPTION ) { alert('error'); }
@@ -295,6 +275,28 @@
 	    return false;
 
 	}
+
+
+    $(document).ready(function() {
+	var tags = $("#themes_tags").tagit({
+	    itemName: 'themes'
+	});
+
+	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
+
+	$("#themes_list li").click(function($this) {
+	    $.fn.tagit.create_tag($(this).text());
+	});
+
+	// restore tags in get
+        {% if project_translation %}
+          {% tags_for_object project_translation as project_tags %}
+        	{% for tag in project_tags %}
+	     $.fn.tagit.create_tag("{{ tag }}");
+	  {% endfor %}
+        {% endif %}
+
+
 
      /* FIXME: This needs to be factorized */
     $('#project_translation_progress').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
