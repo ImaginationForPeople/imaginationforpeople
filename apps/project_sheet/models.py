@@ -174,6 +174,11 @@ class I4pProjectTranslation(models.Model):
     value_section = models.TextField(_("what is the social value of this project"), null=True, blank=True)
     scalability_section = models.TextField(_("what is the potential of this project to expand and develop"), null=True, blank=True)
 
+    triggering_factor_section = models.TextField(_("what was the triggering factor of this project"), null=True, blank=True)
+    business_model_section = models.TextField(_("what is the business model of the project"), null=True, blank=True)
+    partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
+    
+
     themes = TagField(_("Themes of the project"), null=True, blank=True)
 
     # @models.permalink

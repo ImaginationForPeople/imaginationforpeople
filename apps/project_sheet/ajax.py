@@ -36,6 +36,9 @@ TEXTFIELD_MAPPINGS = {
     'project_uniqueness_txt': 'uniqueness_section',
     'project_value_txt': 'value_section',
     'project_scalability_txt': 'scalability_section',
+    'project_triggering_factor_txt': 'triggering_factor_section',
+    'project_partners_txt': 'partners_section',
+    'project_business_model_txt': 'business_model_section',
     'project_translation_progress' : 'completion_progress',
     }
 
