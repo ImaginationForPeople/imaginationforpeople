@@ -109,6 +109,33 @@
             {% endif %}
         </div>
 
+        <div id="sidebar-section-callto">
+            <!-- Call to (help request) -->
+            <div class="title">
+                <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-callto" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" /></a>
+                {% trans 'Project&nbsp;needs'|capfirst %}
+            </div>
+
+            <div class="clear"></div>
+
+	    <div>
+	    {% if callto_section_form %}
+	      <form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-callto">
+		{% csrf_token %}
+		{{ callto_section_form.callto_section }}
+		<input type="submit" value="{% trans "submit" %}"/>
+	      </form>
+	    {% else %}
+	      {% if project_translation.callto_section %}
+	        {{ project_translation.callto_section }}
+	      {% else %}
+	        {% trans "Project support is not needed or not known. Please edit if you think this project needs help." %}
+	       {% endif %}
+	    {% endif %}
+	    </div>
+
+	</div>	
+
         <div id="sidebar-section-team" class="sidebar-section-openable">
             <!-- About the team -->
             <div class="title">
@@ -185,12 +212,13 @@
              
             {% endif %}
 
-	    {% if project.partners.all|length %}
             <div id="partners-widget">
                 <div class="title">
+		  <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" /></a>
                     {% trans 'Partners'|capfirst %}
                 </div> 
                 
+		{% if project.partners.all|length %}
                 <ul id="partners_list">
                     {% for partner in project.partners.all %}
                     
@@ -208,10 +236,27 @@
                         {{ partner.description|linebreaks }}
                     </li>
                     {% endfor %}
-                </ul>                
+                </ul>     
+		{% endif %}
+
+		{% if partners_section_form %}
+		<form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget">
+		{% csrf_token %}
+		{{ partners_section_form.partners_section }}
+		<input type="submit" value="{% trans "submit" %}"/>
+	      </form>
+	      {% else %}
+	      {% if project_translation.partners_section %}
+	       {{ project_translation.partners_section|linebreaks }}
+	      {% endif %}
+	      {% endif %}
+
+	      {% if not project.partners.all|length and not project_translation.partners_section %}
+		{% trans "This project has no known parterns." %}
+	      {% endif %}
                 
             </div>
-	    {% endif %}
+
             
 
 

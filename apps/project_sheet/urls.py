@@ -18,6 +18,7 @@ PROJECT_AUTHORIZED_FIELDS = "|".join([
     'triggering_factor_section',
     'business_model_section',
     'partners_section',
+    'callto_section'
 ])
 
 urlpatterns = patterns('',

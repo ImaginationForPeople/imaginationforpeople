@@ -177,6 +177,7 @@ class I4pProjectTranslation(models.Model):
     triggering_factor_section = models.TextField(_("what was the triggering factor of this project"), null=True, blank=True)
     business_model_section = models.TextField(_("what is the business model of the project"), null=True, blank=True)
     partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
+    callto_section = models.TextField(_("Help request"), null=True, blank=True)
     
 
     themes = TagField(_("Themes of the project"), null=True, blank=True)
