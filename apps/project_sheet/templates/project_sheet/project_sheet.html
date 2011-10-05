@@ -450,11 +450,11 @@
 
 
 {% block project_content %}	
-  <div class="grid_13 alpha project_content">
-  	 <div id="notification-area" class="grid_13 alpha omega">
+<div class="grid_13 alpha project_content">
+    <div id="notification-area" class="grid_13 alpha omega">
   	 
-         <ul>
-         </ul>
+        <ul>
+        </ul>
          
         <div class="anonymous-disclaimer hidden">
             {% blocktrans %}
@@ -463,6 +463,7 @@
             {% endblocktrans %}
             <a class="close-notif" href="#">X</a>
         </div>
+        
         <div class="edition-notification hidden">
             {% blocktrans %}
             This project sheet is a draft. 
@@ -473,7 +474,7 @@
             <a class="close-notif" href="#">X</a>
         </div>
 
-	 </div>
+    </div>
     <!-- PROJECT TITLE -->
     {% if title_form %}
       <!-- PROJECT TITLE - edition mode-->
@@ -637,7 +638,7 @@
 	  {% endblocktrans %}
 	</div>
 	
-      </div>      
+    </div>      
     <!-- GREY COLUMN - closed (default) -->
 	{% include "project_sheet/grey_column.html"%}
 
