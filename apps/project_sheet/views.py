@@ -223,6 +223,7 @@ def project_sheet_edit_field(request, field, slug=None):
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(field,))
     context = {}
 
+    project_translation = None
     if request.method == 'POST':
         project_translation = get_or_create_project_translation_by_slug(slug, language_code)
         form = FieldForm(request.POST, request.FILES, instance=project_translation)
@@ -237,6 +238,16 @@ def project_sheet_edit_field(request, field, slug=None):
             context["project_translation"] = project_translation
         except I4pProjectTranslation.DoesNotExist:
             form = FieldForm()
+
+    if project_translation:
+        context['project_info_form'] = I4pProjectInfoForm(instance=project_translation.project)
+        context['project_themes_form'] = I4pProjectThemesForm(instance=project_translation)
+        context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
+        context['project_member_form'] = ProjectMemberForm()
+        context['project_location_form'] = I4pProjectLocationForm(instance=project_translation.project.location)
+        context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
+        context['project_tab'] = True
+        context['project'] = project_translation.project
 
     context["%s_form" % field] = form
     return render_to_response(template_name="project_sheet/project_sheet.html",

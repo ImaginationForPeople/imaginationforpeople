@@ -127,7 +127,7 @@
                 </form>
             {% else %}
               {% if project_translation.callto_section %}
-                {{ project_translation.callto_section }}
+                {{ project_translation.callto_section|linebreaks }}
               {% else %}
                 {% trans "Project support is not needed or not known. Please edit if you think this project needs help." %}
                {% endif %}
