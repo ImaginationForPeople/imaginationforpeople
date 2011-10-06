@@ -93,12 +93,13 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+
+    'linaro_django_pagination.middleware.PaginationMiddleware',
 
     'reversion.middleware.RevisionMiddleware',
 
@@ -175,6 +176,7 @@ INSTALLED_APPS = (
     'ajax_select',
     'ajaxcomments',
     'django_mailman',
+    'linaro_django_pagination',
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -251,7 +253,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    'debug_toolbar.panels.sql.SQLDebugPanel',
+    # 'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )

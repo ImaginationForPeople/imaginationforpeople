@@ -675,14 +675,20 @@ form {
   border: 3px solid black;
 }
 
-#sidebar-section-callto textarea, #sidebar-section-partners textarea {
+#section-callto textarea, #sidebar-section-partners textarea {
   width: 99%;
-  height: 120px;
+  height: 180px;
 }
 
 .grey_column #social-sharing.title {
   padding-left: 6px;
   font-style: normal;
+}
+
+.grey_column #social-sharing span.spread {
+  font-size: 0.7em;
+  margin-bottom: 3px;
+  display: block;
 }
 
 .grey_column_objective_edition, .grey_column_cloudtag_edition {
@@ -763,6 +769,15 @@ form {
   margin-top: 30px;
 }
 .grey_column_tagcloud ul li a {
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: inherit;
+  font-weight: bold;
+  font-style: italic;
+  color: #119cba;
+  text-decoration: underline;
+}
+
+.grey_column_objective ul li a {
   font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
   font-size: inherit;
   font-weight: bold;

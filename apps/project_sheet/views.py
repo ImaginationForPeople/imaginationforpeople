@@ -107,7 +107,7 @@ def project_sheet_list(request):
     return object_list(request,
                        template_name='project_sheet/project_list.html',
                        queryset=ordered_project_sheets,
-                       paginate_by=12,
+                       # paginate_by=12,
                        allow_empty=True,
                        template_object_name='project_translation',
                        extra_context=extra_context)
