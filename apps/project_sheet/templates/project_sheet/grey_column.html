@@ -45,12 +45,39 @@
         <div id="sidebar-section-related" class="sidebar-section-openable">
             
             <div class="title">
-                {% trans 'take action'|capfirst %}
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-callto" class="button editing-button">
+		<img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" />
+	      </a>
+	      {% trans 'take action'|capfirst %}
             </div>            
             
-            <div class="clear"></div>        
+            <div class="clear"></div>
 
-            <div id="social-sharing" style="float:right; height:20px; width: position:relative; width: 145px;">
+	    <!-- Call to (help request) -->
+	    <div id="section-callto">
+
+	      {% if callto_section_form %}
+	        <form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-related">
+		  {% csrf_token %}
+		  {{ callto_section_form.callto_section }}
+		  <br /><br />
+		  <input type="image" alt="Ok" src="{{ STATIC_URL }}images/base/v.png" style="margin-left: 4px;" class="greenbutton right nomargin" title="{ % trans "Ok" %}" />
+		  <input type="image" alt="X" src="{{ STATIC_URL }}images/base/x.png" style="margin-left: 4px;" class="redbutton right nomargin" title="{% trans "Cancel" %}" />
+		</form>
+              {% else %}
+                {% if project_translation.callto_section %}
+                  {{ project_translation.callto_section|linebreaks }}
+                {% else %}
+                  {% trans "This project has not claimed its needs yet. Please edit if you are aware of a requirement." %}
+                {% endif %}
+              {% endif %}
+            </div>
+
+            <div class="clear"></div>
+	    <br/>
+
+            <div id="social-sharing" style="float:left; margin-bottom: 5px; height:20px; width: position:relative; width: 145px;">
+	      <span class="spread">{% trans "Spread the word:" %}</span>
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style ">
                     <a class="addthis_button_facebook"></a>
@@ -64,7 +91,7 @@
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
             </div>
             
-            <div class="clear"></div>    
+            <div class="clear"></div>
             
             <div class="title">
                 <a title="{% trans 'edit'|capfirst %}"
@@ -107,35 +134,6 @@
         </div>
         
         <div class="clear"></div>
-
-        <div id="sidebar-section-callto">
-            <!-- Call to (help request) -->
-            <div class="title">
-                <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-callto" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" /></a>
-                {% trans 'Project&nbsp;needs'|capfirst %}
-            </div>
-
-            <div class="clear"></div>
-
-            {% if callto_section_form %}
-                <form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-callto">
-                    {% csrf_token %}
-                    {{ callto_section_form.callto_section }}
-                    <br /><br />
-                    <input type="image" alt="Ok" src="/static/images/base/v.png" style="margin-left: 4px;" class="greenbutton right nomargin" title="Ok">
-                    <input type="image" alt="X" src="/static/images/base/x.png" style="margin-left: 4px;" class="redbutton right nomargin" title="Cancel">
-                </form>
-            {% else %}
-              {% if project_translation.callto_section %}
-                {{ project_translation.callto_section|linebreaks }}
-              {% else %}
-                {% trans "Project support is not needed or not known. Please edit if you think this project needs help." %}
-               {% endif %}
-            {% endif %}
-
-        </div>
-
-        <div class="clear"></div>        
 
         <div id="sidebar-section-team" class="sidebar-section-openable">
             <!-- About the team -->

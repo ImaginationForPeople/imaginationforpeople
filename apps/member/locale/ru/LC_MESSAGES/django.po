@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-28 20:21+0200\n"
+"POT-Creation-Date: 2011-10-06 12:59+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,7 +206,6 @@ msgstr ""
 #: templates/userena/password_reset_confirm_form.html:16
 #: templates/userena/password_reset_confirm_form.html:21
 #: templates/userena/password_reset_form.html:16
-#: templates/userena/password_reset_form.html:21
 msgid "Reset Password"
 msgstr ""
 
@@ -221,7 +220,7 @@ msgid ""
 "An e-mail has been send to you which explains how to reset your password."
 msgstr ""
 
-#: templates/userena/password_reset_form.html:26
+#: templates/userena/password_reset_form.html:25
 msgid "Send password"
 msgstr ""
 
@@ -288,8 +287,18 @@ msgstr ""
 msgid "Signin"
 msgstr ""
 
-#: templates/userena/signin_form.html:17 templates/userena/signin_form.html:40
+#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
+#: templates/userena/signup_form.html:79
 msgid "Sign in"
+msgstr ""
+
+#: templates/userena/signin_form.html:54
+msgid "Not a member yet?"
+msgstr ""
+
+#: templates/userena/signin_form.html:77 templates/userena/signup_form.html:19
+#: templates/userena/signup_form.html:42
+msgid "Sign up"
 msgstr ""
 
 #: templates/userena/signup_complete.html:4
@@ -318,6 +327,28 @@ msgstr ""
 msgid "Signup"
 msgstr ""
 
-#: templates/userena/signup_form.html:17 templates/userena/signup_form.html:40
-msgid "Sign up"
+#: templates/userena/signup_form.html:56
+msgid "Already a member?"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:2
+#, python-format
+msgid "Dear %(username)s,"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:4
+#, python-format
+msgid "You requested a change of your email address at %(site)s."
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:7
+msgid "Please confirm this email address by clicking on the link below:"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:11
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:13
+msgid "Sincerely"
 msgstr ""
