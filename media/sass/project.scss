@@ -800,9 +800,26 @@ form{
   
 }
 
+#section-callto, #sidebar-section-partners {
+    
+    textarea{
+        width:99%;
+        height:180px;
+    }
+    
+    
+}
+
+
 .grey_column #social-sharing.title{
     padding-left: 6px;
     font-style:normal;
+}
+
+.grey_column #social-sharing span.spread {
+    font-size: 0.7em;
+    margin-bottom: 3px;
+    display: block;
 }
 
 .grey_column_objective_edition, .grey_column_cloudtag_edition{
@@ -881,6 +898,7 @@ form{
     
 	color:#119cba;
 	text-decoration:underline;
+
 }
 
 .grey_column_tagcloud{
@@ -898,18 +916,27 @@ form{
     }   
 }
 
+.grey_column_objective {
+  ul {
+     li a {
+	 @include georgia(inherit);
+         color:#119cba;
+	 text-decoration:underline;
+     }
+  }
+}
 
 .grey_column_objective_edition select{
 	font-weight:bold;
     
     @include georgia(14px);	
-    color:white;
+    color:#888888;
 	border:0px;
 	background-color:#ccc8c8;
 	padding:3px;
 	padding-left:4px;
 	padding-right:4px;
-	width:200px;
+	width:300px;
 	
     @include border-radius(4px);
 }

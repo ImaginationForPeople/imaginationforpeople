@@ -4,9 +4,8 @@
 
 <div class="grid_5 omega grey_column">
 	<div class="grey_column_content">
-    
+     {% if project_translation %}
         <center>
-          {% if project_translation %}
                 <div id="project_status">
                 
                     <div class="project_card_pictos">        
@@ -39,35 +38,60 @@
                     {% endifequal %}
 
                 </div>
-            {% endif %}
         </center>
         
         <br />
-
+                
         <div id="sidebar-section-related" class="sidebar-section-openable">
-
-            {% if project_translation %}            
+            
             <div class="title">
-                {% trans 'take action'|capfirst %}
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-callto" class="button editing-button">
+		<img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" />
+	      </a>
+	      {% trans 'take action'|capfirst %}
             </div>            
             
-            <div class="clear"></div>        
+            <div class="clear"></div>
 
-            <div id="social-sharing" style="float:right; height:20px; position:relative;">
+	    <!-- Call to (help request) -->
+	    <div id="section-callto">
+
+	      {% if callto_section_form %}
+	        <form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-related">
+		  {% csrf_token %}
+		  {{ callto_section_form.callto_section }}
+		  <br /><br />
+		  <input type="image" alt="Ok" src="{{ STATIC_URL }}images/base/v.png" style="margin-left: 4px;" class="greenbutton right nomargin" title="{ % trans "Ok" %}" />
+		  <input type="image" alt="X" src="{{ STATIC_URL }}images/base/x.png" style="margin-left: 4px;" class="redbutton right nomargin" title="{% trans "Cancel" %}" />
+		</form>
+              {% else %}
+                {% if project_translation.callto_section %}
+                  {{ project_translation.callto_section|linebreaks }}
+                {% else %}
+                  {% trans "This project has not claimed its needs yet. Please edit if you are aware of a requirement." %}
+                {% endif %}
+              {% endif %}
+            </div>
+
+            <div class="clear"></div>
+	    <br/>
+
+            <div id="social-sharing" style="float:left; margin-bottom: 5px; height:20px; width: position:relative; width: 145px;">
+	      <span class="spread">{% trans "Spread the word:" %}</span>
                 <!-- AddThis Button BEGIN -->
                 <div class="addthis_toolbox addthis_default_style ">
-                <a class="addthis_button_facebook"></a>
-                <a class="addthis_button_twitter"></a>
-                <a class="addthis_button_google"></a>
-                <a class="addthis_button_email"></a>
-                <a class="addthis_button_compact"></a>
-                <a class="addthis_counter addthis_bubble_style"></a>
+                    <a class="addthis_button_facebook"></a>
+                    <a class="addthis_button_twitter"></a>
+                    <a class="addthis_button_google"></a>
+                    <a class="addthis_button_email"></a>
+                    <a class="addthis_button_compact"></a>
+                    <a class="addthis_counter addthis_bubble_style"></a>
                 </div>
-                <script type="text/javascript" src="{{ STATIC_URL }}js/addthis_widget.js"></script>
                 <!-- AddThis Button END -->
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
             </div>
             
-            <div class="clear"></div>    
+            <div class="clear"></div>
             
             <div class="title">
                 <a title="{% trans 'edit'|capfirst %}"
@@ -89,7 +113,7 @@
                     {% endfor %}
                 </ul>
             </div>
-	    {% endif %}
+            {% endif %}
 
 
             {% if not project_translation.themes %}
@@ -108,6 +132,8 @@
             </div>
             {% endif %}
         </div>
+        
+        <div class="clear"></div>
 
         <div id="sidebar-section-team" class="sidebar-section-openable">
             <!-- About the team -->
@@ -166,52 +192,65 @@
 
                 {% endfor %}
             </ul>
-            
-            <!-- 
-            <form id="project_member_form" action="" method="post">
-              {% csrf_token %} {{ project_member_formset.management_form }}
-
-                <ul id="member_list_edit">
-                    {% for member_form in project_member_formset.forms %}
-                    <li class="member{{ member.id }}">
-                        <p></p>
-                        <p>{{ member_form.as_p }}</p>
-                    </li>
-                    {% endfor %}
-                </ul>
-
-            </form>
-             -->
-             
-            {% endif %}
-
-	    {% if project.partners.all|length %}
+        {% endif %}
+         </div>
+     
+        
+        <div class="clear"></div>      
+        <div id="sidebar-section-partners">
             <div id="partners-widget">
                 <div class="title">
+                    <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" /></a>
                     {% trans 'Partners'|capfirst %}
                 </div> 
                 
-                <ul id="partners_list">
-                    {% for partner in project.partners.all %}
-                    
-                    <div class="clear"></div>
+                <div class="clear"></div>   
+                
+            {% if project.partners.all|length %}
+                    <ul id="partners_list">
+                        {% for partner in project.partners.all %}
+                        
+                        <div class="clear"></div>
 
-                    <li class="grey_column_team_partner">
-                        <a href="{% url partner-detail partner.slug %}">
-                            <img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}" alt="{{ partner.name }}" />
-                        </a>  
-                            
-                        <h2>
-                            <a href="{% url partner-detail partner.slug %}">{{ partner.name }}</a>             
-                        </h2>
+                        <li class="grey_column_team_partner">
+                            <a href="{% url partner-detail partner.slug %}">
+                                <img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}" alt="{{ partner.name }}" />
+                            </a>  
+                                
+                            <h2>
+                                <a href="{% url partner-detail partner.slug %}">{{ partner.name }}</a>             
+                            </h2>
 
-                        {{ partner.description|linebreaks }}
-                    </li>
-                    {% endfor %}
-                </ul>                
+                            {{ partner.description|linebreaks }}
+                        </li>
+                        {% endfor %}
+                    </ul>     
+            {% endif %}
+            
+            {% if not project.partners.all|length and not project_translation.partners_section %}
+                {% trans "This project has no known partners." %}
+                <br /><br />
+            {% endif %}
+
+            {% if partners_section_form %}
+                <form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget">
+                    {% csrf_token %}
+                    {{ partners_section_form.partners_section }}
+                    <br /><br />
+                    <input type="image" alt="Ok" src="/static/images/base/v.png" style="margin-left: 4px;" class="greenbutton right nomargin" title="Ok">
+                    <input type="image" alt="X" src="/static/images/base/x.png" style="margin-left: 4px;" class="redbutton right nomargin" title="Cancel">
+                </form>
+                {% else %}
+                    {% if project_translation.partners_section %}
+                        {{ project_translation.partners_section|linebreaks }}
+                    {% endif %}
+                {% endif %}
+
+                
                 
             </div>
-	    {% endif %}
+        </div>
+
             
 
 
@@ -221,7 +260,6 @@
 
         {% endif %}
         
-        </div>
         
 		<div class="clear"></div>
         

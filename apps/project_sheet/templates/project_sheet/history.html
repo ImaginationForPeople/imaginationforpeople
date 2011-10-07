@@ -16,8 +16,8 @@
 {% for version in versions %}
     {% if version.diff%}
         <li>{% trans "Made on" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} 
-        {% if version.revision.user.profile %}
-            <a href="{% url userena_profile_detail version.revision.user.profile.user.username %}" class="link">{{version.revision.user.profile.get_full_name_or_username}}</a>
+        {% if version.revision.user.get_profile %}
+            <a href="{{version.revision.user.get_profile.get_absolute_url}}" class="link">{{version.revision.user.get_profile.get_full_name_or_username}}</a>
         {% else %}
             {% trans 'Anonymous' %}
         {% endif %}

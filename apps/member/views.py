@@ -28,6 +28,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 from django.views.generic.simple import direct_to_template
@@ -122,7 +123,6 @@ def signin(request,
 
 
 @secure_required
-@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
 def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None):
@@ -135,6 +135,9 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
     user = get_object_or_404(User,
                              username__iexact=username)
 
+    if not user.has_perm('change_profile', user.get_profile()):
+        return HttpResponseForbidden()
+
     profile = user.get_profile()
 
     user_initial = {'first_name': user.first_name,
@@ -145,6 +148,13 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
 
     # From userena. 
     form = edit_profile_form(instance=profile, initial=user_initial)
+
+    # Also pass the password and email forms
+    extra_context.update({'password_form': PasswordChangeForm(user=request.user),
+                          'email_form': ChangeEmailForm(user=request.user),
+                          'profile_form': form}
+                         )
+
 
     if request.method == 'POST':
         form = edit_profile_form(request.POST, request.FILES, instance=profile,
@@ -169,8 +179,8 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                               extra_context=extra_context)
 
 
-#@secure_required
-#@permission_required_or_403('change_user', (User, 'username', 'username'))
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
 def password_change(request, username, template_name='userena/password_form.html',
                     pass_form=PasswordChangeForm, success_url=None, extra_context=None):
 
@@ -199,8 +209,8 @@ def password_change(request, username, template_name='userena/password_form.html
                                          extra_context=extra_context)
 
 
-#@secure_required
-#@permission_required_or_403('change_user', (User, 'username', 'username'))
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
 def email_change(request, username, form=ChangeEmailForm,
                  template_name='userena/email_form.html', success_url=None,
                  extra_context=None):
