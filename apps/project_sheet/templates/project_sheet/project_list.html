@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load compress %}
 {% load tagging_tags %}
+{% load pagination_tags %}
 
 {% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
 {% block title %}{% trans 'Find project on Imagination for People'%}{% endblock %}
@@ -91,37 +92,30 @@
 
     
    
-    <div style="position:relative; top:25px; height:35px;">
-        {% include "project_sheet/project_list_pagination.html" %}
-    </div>
+	<div style="position:relative; top:25px; height:35px;">
+	  {% autopaginate project_translation_list 12 %}
+	  {% paginate using "project_sheet/project_list_pagination.html" %}
+	</div>
       
-      <div id="projects_list">
-	{% for project_translation in project_translation_list %}
+	<div id="projects_list">
+	  {% for project_translation in project_translation_list %}
 	  
 	  <!-- Affichage à choisir en fonction du type d'affichage désiré ! -->
-	  <!-- PROJECT VIEW : mosaique 6 projets par ligne : pas de descriptif, juste la carte d'ID -->
 	  <div class="colonne grid_6">
 	    {% include "project_sheet/project_complete_card.html" %}			
 	  </div>
 	  
-	  <!-- LIST VIEW : mosaique 3 projets par ligne : descriptif et baseline -->
-	  <!--
-	      <div class="colonne grid_3">
-	      {% include "project_sheet/project_id_card.html" %}			
-	      </div>
-	  -->
 	{% empty %}
         {% trans 'Your request did not return any result.'%}
 	{% endfor %}
-      </div>
+	</div>
       
-      <div class="clear"></div>
+	<div class="clear"></div>
+	
+	<div>
+	  {% paginate using "project_sheet/project_list_pagination.html" %}
+	</div>
 
-      
-
-    {% include "project_sheet/project_list_pagination.html" %}
-      
-      
 
     </div>
   </div>
