@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
-    #(r'^sentry/', include('sentry.web.urls')),
+    (r'^newsletters/', include('emencia.django.newsletter.urls')),
     
     (r'^ajax_select/', include('ajax_select.urls')),
 
@@ -39,6 +39,12 @@ urlpatterns = patterns('',
     
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     url('^robots\.txt$', include('robots.urls')),
+
+    (r'^tinymce/', include('tinymce.urls')),
+    (r'^uploadify/', include('uploadify.urls')),
+
+#    (r'^grappelli/', include('grappelli.urls')),
+    url(r'^admin/filebrowser/', include('filebrowser.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
@@ -70,4 +76,5 @@ if 'rosetta' in settings.INSTALLED_APPS:
     urlpatterns += patterns('',
         url(r'^rosetta/', include('rosetta.urls')),
     )
+
 

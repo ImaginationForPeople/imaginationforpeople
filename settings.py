@@ -2,6 +2,7 @@
 # Django settings for imaginationforpeople project.
 
 import os
+import re
 import sys
 import socket
 from django.utils.translation import ugettext_lazy as _
@@ -73,7 +74,8 @@ MEDIA_URL = '/site_media/'
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
+#ADMIN_MEDIA_PREFIX = STATIC_URL + '/admin/'
+
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
@@ -159,6 +161,7 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
 
+    'tinymce',
     'rosetta',
     'tagging',
     'imagekit',
@@ -178,6 +181,10 @@ INSTALLED_APPS = (
     'django_mailman',
     'linaro_django_pagination',
 
+
+    #'grappelli',
+    'filebrowser',
+
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -189,6 +196,8 @@ INSTALLED_APPS = (
     'django.contrib.comments',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+
+    'emencia.django.newsletter',
 
     # Internal Apps
     'apps.i4p_base',
@@ -290,10 +299,10 @@ USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
 
 ## Ignore dajax ice path
-import re
 LOCALE_INDEPENDENT_PATHS = (
 	re.compile('^/js/dajax/.*$'),
         re.compile('^/static/.*$'),
+        re.compile('^/media/.*$'),
         re.compile('^/robots.txt$'),
         re.compile('^/sitemap.xml$'),
 	)
@@ -307,6 +316,9 @@ HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_PATH, 'i4p_index')
 
 ### STATIC FILES
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -322,13 +334,15 @@ STATICFILES_DIRS = (
     ('images', os.path.join(MEDIA_ROOT, 'images')),
 )
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
-
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
     )
+
+## Grappelli
+#ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+GRAPPELLI_ADMIN_TITLE = "Imagination For People"
+ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 ### COMPRESOR
 COMPRESS_ROOT = STATIC_ROOT
@@ -343,6 +357,13 @@ BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
                           'SimonSarazin',
                           'AlbanTiberghien']
 
+
+## TINYMCE
+TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
+                          'relative_urls': False,
+                          'plugins': "contextmenu"}
+TINYMCE_FILEBROWSER = True
+FILEBROWSER_USE_UPLOADIFY = False
 
 ## LOGGING
 # LOGGING = {
