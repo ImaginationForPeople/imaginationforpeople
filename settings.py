@@ -352,6 +352,8 @@ BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
 ## TINYMCE
 TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
                           'relative_urls': False,
+                          'remove_script_host': 0,
+                          'convert_urls': False,
                           'plugins': "contextmenu"}
 TINYMCE_FILEBROWSER = True
 FILEBROWSER_USE_UPLOADIFY = False
