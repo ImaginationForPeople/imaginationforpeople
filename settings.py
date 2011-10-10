@@ -66,17 +66,6 @@ USE_L10N = True
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash if there is a path component (optional in other cases).
-# Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = '/site_media/'
-
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-#ADMIN_MEDIA_PREFIX = STATIC_URL + '/admin/'
-
-
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
@@ -134,7 +123,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
     'apps.member.context_processors.member_forms',
-#    "mothertongue.context_processors.router",
 )
 
 
@@ -340,8 +328,11 @@ COMPRESS_CSS_FILTERS = (
     )
 
 ## Grappelli
-#ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
 GRAPPELLI_ADMIN_TITLE = "Imagination For People"
+
+# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
+# trailing slash.
+# Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 ### COMPRESOR
@@ -403,3 +394,7 @@ FILEBROWSER_USE_UPLOADIFY = False
 #             },
 #         },
 #     }
+
+
+## Newsletter
+DEFAULT_HEADER_SENDER = "Imagination For People Newsletter <contact@imaginationforpeople.org>"
