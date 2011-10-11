@@ -55,12 +55,11 @@
                         </h2>
                     </div>
                 
-                    <form action="" method="post" id="signin_form"  class="profile_edition">
+                    <form action="{% url userena_signin %}" method="post" id="signin_form"  class="profile_edition">
                         {% csrf_token %}
-                            {{ form.non_field_errors }}
-                            {% for field in form %}
+                            {{ signin_form.non_field_errors }}
+                            {% for field in signin_form %}
                             {{ field.errors }}
-                            {% comment %} Displaying checkboxes differently {% endcomment %}
                             {% if field.name == 'remember_me' %}
                             <p class="checkbox">
                                 <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
@@ -76,7 +75,6 @@
                         <input type="submit" class="button" value="{% trans "Sign in" %}" />
                         <div class="clear"></div>
                         <br /><br /><br />
-                        {% comment %}<p class="forgot-password"><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>{% endcomment %}
                     </form>  
                     
                 </div>

@@ -47,7 +47,7 @@ from reversion.models import Version
 from apps.project_sheet.utils import get_project_translations_from_parents
 from apps.project_sheet.models import I4pProjectTranslation
 
-from .forms import I4PEditProfileForm
+from .forms import I4PEditProfileForm, I4PSignupForm
 
 
 def profile_detail(request, username):
@@ -87,6 +87,7 @@ def signin(request,
     wiki (alpha.) by calling a remote view and grabbing the PHPSESSID
     cookie.
     """
+    extra_context = {'signup_form': I4PSignupForm()}
     
     response = userena_views.signin(request,
                                     auth_form=auth_form,
