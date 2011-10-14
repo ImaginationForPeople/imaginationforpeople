@@ -111,9 +111,25 @@ ul.sf-menu li li li.sfHover ul {
 .sf-menu a, .sf-menu a:visited  { /* visited pseudo selector so IE6 applies text colour*/
 	/*color:			#13a;*/
 }
-.sf-menu ul a:hover  { /* visited pseudo selector so IE6 applies text colour*/
+
+.sf-menu ul li li{
+    position:relative;
+    width:98%;
+}
+
+.sf-menu ul li li:hover  { /* visited pseudo selector so IE6 applies text colour*/
 	background-color:#333333;
 }
+
+.sf-menu ul li li button{
+    background-color:transparent;
+    border:0px solid white;
+    color: #979797;
+    cursor:pointer;
+    width:90%;
+    text-align:left;
+}
+
 .sf-menu li {
 	/*background-image:url("../images/base/black.png");*/
 	background-color:black;
@@ -133,6 +149,7 @@ ul.sf-menu li li li.sfHover ul {
 	background-color:transparent;
 	width:100%;
     border-right:0px solid white !important;
+    text-align:left;
 }
 
 
