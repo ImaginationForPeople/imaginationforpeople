@@ -32,7 +32,7 @@ urlpatterns = patterns('',
 
     url(r'^(?P<project_slug>[-\w]+)/edit/references/$', views.project_sheet_edit_references, name='project_sheet-instance-edit-references'),
 
-    url(r'^(?P<project_slug>[-\w]+)/translate/(?P<requested_language_code>[\w]+)$', views.project_sheet_create_translation, name='project_sheet-translate'),
+    url(r'^(?P<project_slug>[-\w]+)/translate/$', views.project_sheet_create_translation, name='project_sheet-translate'),
 
     url(r'^(?P<project_slug>[-\w]+)/edit/related/$', views.project_sheet_edit_related, name='project_sheet-instance-edit-related'),
     url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
