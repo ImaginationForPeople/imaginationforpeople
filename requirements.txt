@@ -21,11 +21,19 @@ django-annoying==0.7.4
 
 django-robots==0.8.0
 
+django-tinymce==1.5.1a2
+-e git+https://github.com/smacker/django-filebrowser-no-grappelli-for-django13.git@17eee97ac7d58de76bef851b092625dcec8e5b2b#egg=django-filebrowser
+-e git+https://github.com/tstone/django-uploadify.git@5d9ba2f6ed0687d2c8d74eb2a57edc578d0ffb0a#egg=django_uploadify
+
+
 BeautifulSoup
 lxml
 html5lib
 django-ajax-selects
 django-ajaxcomments==0.2
+linaro-django-pagination==2.0.2
+
+-e git://github.com/Fantomas42/emencia-django-newsletter.git@42224a9659fef5f4d28fc8ee70a085592c2ca7c4#egg=emencia.django.newsletter
 
 -e git+https://github.com/jezdez/django_compressor.git@8c7961d2eb778edce2f1e101121629b96f93aba5#egg=django_compressor
 
@@ -60,3 +68,4 @@ werkzeug
 django-debug-toolbar
 -e git+https://github.com/mbi/django-rosetta.git#egg=django-rosetta
 sphinx
+dozer==0.1

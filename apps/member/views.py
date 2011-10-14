@@ -1,3 +1,4 @@
+
 #-- encoding: utf-8 --
 #
 # This file is part of I4P.
@@ -26,8 +27,10 @@ from django.utils import translation
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
+from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 from django.views.generic.simple import direct_to_template
@@ -44,7 +47,7 @@ from reversion.models import Version
 from apps.project_sheet.utils import get_project_translations_from_parents
 from apps.project_sheet.models import I4pProjectTranslation
 
-from .forms import I4PEditProfileForm
+from .forms import I4PEditProfileForm, I4PSignupForm
 
 
 def profile_detail(request, username):
@@ -84,6 +87,7 @@ def signin(request,
     wiki (alpha.) by calling a remote view and grabbing the PHPSESSID
     cookie.
     """
+    extra_context = {'signup_form': I4PSignupForm()}
     
     response = userena_views.signin(request,
                                     auth_form=auth_form,
@@ -119,10 +123,7 @@ def signin(request,
     return response
 
 
-
-
-@secure_required
-@permission_required_or_403('change_profile', (get_profile_model(), 'user__username', 'username'))
+@login_required
 def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                  template_name='userena/profile_form.html', success_url=None,
                  extra_context=None):
@@ -132,19 +133,31 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
      - Password update ;
      - Email update.
     """
-    user = get_object_or_404(User,
-                             username__iexact=username)
+    current_user = request.user
 
-    profile = user.get_profile()
+    requested_user = get_object_or_404(User,
+                                       username__iexact=username)
 
-    user_initial = {'first_name': user.first_name,
-                    'last_name': user.last_name}
+    profile = requested_user.get_profile()
+
+    if not current_user.has_perm('change_profile', profile):
+        return HttpResponseForbidden()
+
+    user_initial = {'first_name': requested_user.first_name,
+                    'last_name': requested_user.last_name}
 
     if not extra_context:
         extra_context = {}
 
     # From userena. 
     form = edit_profile_form(instance=profile, initial=user_initial)
+
+    # Also pass the password and email forms
+    extra_context.update({'password_form': PasswordChangeForm(user=current_user),
+                          'email_form': ChangeEmailForm(user=current_user),
+                          'profile_form': form}
+                         )
+
 
     if request.method == 'POST':
         form = edit_profile_form(request.POST, request.FILES, instance=profile,
@@ -169,8 +182,8 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                               extra_context=extra_context)
 
 
-#@secure_required
-#@permission_required_or_403('change_user', (User, 'username', 'username'))
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
 def password_change(request, username, template_name='userena/password_form.html',
                     pass_form=PasswordChangeForm, success_url=None, extra_context=None):
 
@@ -199,8 +212,8 @@ def password_change(request, username, template_name='userena/password_form.html
                                          extra_context=extra_context)
 
 
-#@secure_required
-#@permission_required_or_403('change_user', (User, 'username', 'username'))
+@secure_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
 def email_change(request, username, form=ChangeEmailForm,
                  template_name='userena/email_form.html', success_url=None,
                  extra_context=None):

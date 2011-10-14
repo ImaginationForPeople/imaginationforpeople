@@ -52,8 +52,7 @@
     
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js" ></script>
 	
-  <!-- inline  -->
-
+  <!-- inline editing -->
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
 
@@ -97,22 +96,22 @@
   
   {% endcompress %}
 
+
+{% endblock %}
+
+{% block inline_js %}
   {% compress js %}
   <!-- Sidebar -->
   <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js"></script>
   
   <script type="text/javascript">
- 
+    // Upper menu
     $(document).ready(function(){ 
-        $("ul.sf-menu").superfish({delay: 400, speed: 'fast'}); 
-    }); 
-  </script>
+        $("ul.sf-menu").superfish({delay: 400, speed: 'fast'})
   
-   <!-- Comments -->
-  <script type="text/javascript">
-    $(document).ready(function() {
-    // Customize the location of the media to match your project structure
-    media = '{{ STATIC_URL }}';
+        // Comments
+	// Customize the location of the media to match your project structure
+        var media = '{{ STATIC_URL }}'
 
     // On enter
     $('#comment-form #id_comment').keypress(function(e) {
@@ -129,31 +128,22 @@
     $('div#comment-form form').submit(function() {
         ajaxComment({'media': media});
         return false;
-	});
-   });
-  </script>
+    });
 
-
-  <!-- Team section -->
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
-	$("#member_list_edit").hide();
-
-	$(".grey_column_team_buttons").hide();
+    // Team section 
+    $("#member_list_edit").hide();
+    $(".grey_column_team_buttons").hide();
 
 	$("#member_list li").hover(function() {
 	    $(this).find(".grey_column_team_buttons").show();
 	}, function() {
 	    $(this).find(".grey_column_team_buttons").fadeOut("fast");
 	});
-    });
-  </script>
 
-  <!-- Project infos -->
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
-	var project_infos_block_edit = $('#project_infos_block_edit')
-	var project_infos_block = $('#project_infos_block');
+
+  // Project infos 
+    var project_infos_block_edit = $('#project_infos_block_edit');
+    var project_infos_block = $('#project_infos_block');
 	var project_infos_edit_button = $('#project_infos_block_edit_button');
 	var project_infos_edit_button_cancel = $('#project_infos_block_edit_button_cancel');
 
@@ -175,39 +165,17 @@
 
 	    return false;
 	});
+
+        // Addthis
+        addthis.init();
     });
   </script>
 
 
   {% endcompress %}
 
-
-
   <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
-	var tags = $("#themes_tags").tagit({
-	    itemName: 'themes'
-	});
-
-	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
-
-	$("#themes_list li").click(function($this) {
-	    $.fn.tagit.create_tag($(this).text());
-	});
-
-	// restore tags in get
-        {% if project_translation %}
-          {% tags_for_object project_translation as project_tags %}
-        	{% for tag in project_tags %}
-	     $.fn.tagit.create_tag("{{ tag }}");
-	  {% endfor %}
-        {% endif %}
-
-    });
-  </script>
-
-
-  <script type="text/javascript" defer="defer">
+    // Related updates
     function on_project_themes_updated(data) {
         if ( data == Dajaxice.EXCEPTION ) { alert('error'); }
         else {
@@ -229,10 +197,6 @@
     }
 
 
-  </script>
-
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
     /* Notification  area 
     Must be here because functions are used in inline_editing_save_callback
     */
@@ -270,7 +234,7 @@
 	notifySomething("edition-notification");
 	{% endif %}
 
-	
+	// Inline save callback
 	function inline_editing_save_callback(data) {
 	    var res = jQuery.parseJSON(data);
 
@@ -311,6 +275,28 @@
 	    return false;
 
 	}
+
+
+    $(document).ready(function() {
+	var tags = $("#themes_tags").tagit({
+	    itemName: 'themes'
+	});
+
+	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
+
+	$("#themes_list li").click(function($this) {
+	    $.fn.tagit.create_tag($(this).text());
+	});
+
+	// restore tags in get
+        {% if project_translation %}
+          {% tags_for_object project_translation as project_tags %}
+        	{% for tag in project_tags %}
+	     $.fn.tagit.create_tag("{{ tag }}");
+	  {% endfor %}
+        {% endif %}
+
+
 
      /* FIXME: This needs to be factorized */
     $('#project_translation_progress').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
@@ -412,14 +398,8 @@
         	);
         });
 
-    
-    });
-  </script>
 
-
-  <!-- References section -->
-  <script type="text/javascript" defer="defer">
-    $(document).ready(function() {
+    // References section
     	$('#reference_form tr').formset();
     	
         $('#cancel_ref_edit').click(function(){
@@ -460,15 +440,21 @@
         
     });
   </script>
+
+
+
+
+
 {% endblock %}
 
 
+
 {% block project_content %}	
-  <div class="grid_13 alpha project_content">
-  	 <div id="notification-area" class="grid_13 alpha omega">
+<div class="grid_13 alpha project_content">
+    <div id="notification-area" class="grid_13 alpha omega">
   	 
-         <ul>
-         </ul>
+        <ul>
+        </ul>
          
         <div class="anonymous-disclaimer hidden">
             {% blocktrans %}
@@ -477,6 +463,7 @@
             {% endblocktrans %}
             <a class="close-notif" href="#">X</a>
         </div>
+        
         <div class="edition-notification hidden">
             {% blocktrans %}
             This project sheet is a draft. 
@@ -487,7 +474,7 @@
             <a class="close-notif" href="#">X</a>
         </div>
 
-	 </div>
+    </div>
     <!-- PROJECT TITLE -->
     {% if title_form %}
       <!-- PROJECT TITLE - edition mode-->
@@ -629,6 +616,10 @@
 	  {% include "project_sheet/value_section.html" %}
 	  
 	  {% include "project_sheet/scalability_section.html" %}
+
+	  {% include "project_sheet/triggering_factor_section.html" %}
+
+	  {% include "project_sheet/business_model_section.html" %}
 	</div>
 	
 	<div class="clear"></div>
@@ -643,11 +634,11 @@
 
 	<div id="license-note">
 	  {% blocktrans %}
-	    This project sheet, except media, is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons CC-BY-SA 3.0</a> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Contrat Creative Commons" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/80x15.png" /></a>
+	    This project sheet, except media, is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons CC-BY-SA 3.0</a> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Contrat Creative Commons" style="border-width:0" src="{{ STATIC_URL }}images/cc-by-sa3_80_25.png" /></a>
 	  {% endblocktrans %}
 	</div>
 	
-      </div>      
+    </div>      
     <!-- GREY COLUMN - closed (default) -->
 	{% include "project_sheet/grey_column.html"%}
 

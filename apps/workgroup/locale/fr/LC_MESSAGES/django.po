@@ -2,59 +2,71 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-25 11:57+0200\n"
-"PO-Revision-Date: 2011-08-24 23:51\n"
-"Last-Translator:   <simons@simons.fr>\n"
+"POT-Creation-Date: 2011-09-28 20:21+0200\n"
+"PO-Revision-Date: 2011-10-06 12:54\n"
+"Last-Translator: Simon Sarazin <simonsarazin@imaginationforpeople.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: \n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Translated-Using: django-rosetta 0.6.2\n"
 
-#: models.py:16
+#: models.py:33
 msgid "name"
 msgstr "Nom"
 
-#: models.py:19
+#: models.py:36
 msgid "spoken language"
 msgstr "langue parlée"
 
-#: models.py:23
+#: models.py:40
 msgid "Description"
 msgstr "Description"
 
-#: views.py:75
+#: models.py:48
+msgid "visible"
+msgstr "visible"
+
+#: views.py:92
 #, python-format
 msgid ""
-"You have been successfully subscribed to the%(workgroup_name)s mailing list "
-"(%(user_email)s)"
+"You have been successfully subscribed to the%(workgroup_name)s mailing "
+"list (%(user_email)s)"
 msgstr ""
 "Vous avez été abonné au groupe de discussion %(workgroup_name)s  "
 "(%(user_email)s)"
 
-#: views.py:82
+#: views.py:99
 #, python-format
 msgid "You couldn't be subscribed to this workgroup:%s"
 msgstr "Vous n'avez pas pu être abonné au groupe de travail : %s"
 
-#: views.py:105
+#: views.py:122
 #, python-format
 msgid ""
-"You have been successfully unsubscribed from the%(workgroup_name)s mailing "
-"list (%(user_email)s)"
+"You have been successfully unsubscribed from the%(workgroup_name)s "
+"mailing list (%(user_email)s)"
 msgstr ""
 "Vous avez été désinscrit avec succès du groupe de travail : "
 "%(workgroup_name)s  (%(user_email)s)"
 
-#: views.py:112
+#: views.py:129
 #, python-format
 msgid "You couldn't be unsubscribed from this workgroup:%s"
 msgstr "Vous n'avez pas pu être désabonné au groupe de travail : %s"
+
+#: templates/workgroup/workgroup_detail.html:11
+msgid "Workgroup"
+msgstr "Groupe de travail"
+
+#: templates/workgroup/workgroup_list.html:10
+msgid "Workgroups"
+msgstr "Groupes de travail"
