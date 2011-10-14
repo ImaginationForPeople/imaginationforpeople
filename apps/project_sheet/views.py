@@ -25,7 +25,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django.forms.models import modelform_factory
-from django.http import HttpResponseRedirect, HttpResponseNotFound, Http404
+from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.utils import translation
@@ -165,11 +165,15 @@ def project_sheet_show(request, slug, add_media=False):
                               )
 
 @login_required
-def project_sheet_create_translation(request, project_slug, requested_language_code):
+def project_sheet_create_translation(request, project_slug):
     """
     Given a language and a slug, create a translation for a new language
     """
     current_language_code = translation.get_language()
+
+    requested_language_code = request.POST.get("requested_language", None)
+    if None:
+        return HttpResponseForbidden()
 
     try:
         current_project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,

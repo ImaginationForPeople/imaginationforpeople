@@ -71,13 +71,14 @@
                                    
                                         <ul> 
                                             <form action="{% url project_sheet-translate project_translation.slug %}" method="post">
+					      {% csrf_token %}
                                                 {% for language in LANGUAGES %}
-                                                <li><img src="{{ STATIC_URL }}images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" /><input type="submit" name="{{ language.1 }}" value="{{ language.1 }}" />
+                                                <li><img src="{{ STATIC_URL }}images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" /><button type="submit" name="requested_language" value="{{ language.0 }}">{{ language.1 }}</button>
+						</li>
                                                 {% endfor %}										
                                             </form> 
                                         </ul>
-                                  
-                                    
+					
 								  </li>
 								</ul>		
 							</li>
