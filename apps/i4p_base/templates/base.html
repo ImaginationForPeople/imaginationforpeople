@@ -1,6 +1,6 @@
 {% load i18n %}
 {% load compress %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//{{ LANGUAGE_CODE|upper }}" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
@@ -41,24 +41,6 @@
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
-    
-    {% if not debug %}
-    <script type="text/javascript">
-	   var _gaq = _gaq || [];
-	   _gaq.push(['_setAccount', 'UA-21778007-2']);
-	   _gaq.push(['_setDomainName', 'imaginationforpeople.org']);
-	   _gaq.push(['_setAllowHash', 'false']);
-	   _gaq.push(['_trackPageview']);
-	
-	   (function() {
-	     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	   })();
-    </script>
-    {% endif %}
-
-
     <script type="text/javascript">
       $(document).ready(function(){
           $.reject({reject: {msie5: true,
@@ -94,6 +76,20 @@
     
     {% block extra_head %}{% endblock %}
     
+    {% if not debug %}
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-21778007-2']);
+      _gaq.push(['_setDomainName', 'imaginationforpeople.org']);
+      _gaq.push(['_trackPageview']);
+   
+     (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    {% endif %}
 
   </head>
 
@@ -120,7 +116,7 @@
       {% endif %}
 
       
-      {% block content %}<br /><br /><br /><br /><br />{% endblock %}	
+      {% block content %}<br /><br /><br /><br /><br />{% endblock %}
 
 
       {% block footer %} {% include "footer.html" %} {% endblock %}
@@ -128,6 +124,10 @@
 
     </div>
 
+
+    {% block inline_js %}
+    {% endblock %}
+    
   </body>
 
 </html>

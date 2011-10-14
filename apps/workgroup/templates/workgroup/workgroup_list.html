@@ -11,13 +11,15 @@
         
         <ul>
             {% for workgroup in workgroup_list %}
-            <li>
-                <a href="{{ workgroup.get_absolute_url }}" class="link">{{ workgroup.name }}</a>
-                <img class="tipsed" alt="{{ workgroup.language }}" src="{{ STATIC_URL }}images/flags/{{ workgroup.language }}.gif" title="{{ workgroup.get_language_display }}" />
-                <div style="border-top:1px solid #f2e4e4; margin-top:10px;"></div>
-                <br />
-                <span><a href="{{ workgroup.get_absolute_url }}">{{ workgroup.description|safe|slice:":250"|linebreaksbr }}...</a></span>
-            </li>
+	      {% if workgroup.visible %}
+		<li>
+		  <a href="{{ workgroup.get_absolute_url }}" class="link">{{ workgroup.name }}</a>
+		  <img class="tipsed" alt="{{ workgroup.language }}" src="{{ STATIC_URL }}images/flags/{{ workgroup.language }}.gif" title="{{ workgroup.get_language_display }}" />
+		  <div style="border-top:1px solid #f2e4e4; margin-top:10px;"></div>
+		  <br />
+		  <span><a href="{{ workgroup.get_absolute_url }}">{{ workgroup.description|safe|slice:":250"|linebreaksbr }}...</a></span>
+		</li>
+	      {% endif %}
             {% endfor %}
         </ul>
         

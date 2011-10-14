@@ -266,3 +266,73 @@
 #mail p:first-child {
   padding-left: 25px;
 }
+
+/* ---- Signin / Signup / Reset password ---- */
+#sign-row-big {
+  width: 58%;
+  float: left;
+  padding: 1%;
+  margin-right: 2%;
+  background-color: #292424;
+  -moz-box-shadow: 0px 0px 4px #262626;
+  -webkit-box-shadow: 0px 0px 4px #262626;
+  -o-box-shadow: 0px 0px 4px #262626;
+  box-shadow: 0px 0px 4px #262626;
+  border: 1px solid #676665;
+}
+#sign-row-big .separator h2 {
+  background-color: #292424;
+}
+
+#sign-row-tiny {
+  width: 35%;
+  float: left;
+  padding: 1%;
+}
+
+#profile #sign-row-big form p, #profile #sign-row-tiny form p {
+  float: left;
+  width: 100%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+#profile #sign-row-big form p label, #profile #sign-row-tiny form p label {
+  width: 52%;
+  float: left;
+  text-align: right;
+  padding-right: 2%;
+  position: relative;
+  top: 3px;
+}
+#profile #sign-row-big form p input[type=text], #profile #sign-row-big form p input[type=password], #profile #sign-row-tiny form p input[type=text], #profile #sign-row-tiny form p input[type=password] {
+  width: 44%;
+  background: none repeat scroll 0 0 #414141;
+  border: 1px solid #1A1A1A;
+  color: white;
+}
+#profile #sign-row-big form p.checkbox label, #profile #sign-row-tiny form p.checkbox label {
+  width: 98%;
+  padding-right: 2%;
+}
+#profile #sign-row-big form p.checkbox label input, #profile #sign-row-tiny form p.checkbox label input {
+  position: relative;
+  top: 2px;
+}
+#profile #sign-row-big form input.button, #profile #sign-row-tiny form input.button {
+  float: right;
+  top: 15px;
+  margin-right: 10px;
+}
+#profile #sign-row-big form .errorlist, #profile #sign-row-tiny form .errorlist {
+  color: #999999;
+  font-size: 10px;
+  text-align: right;
+  padding-right: 2%;
+}
+
+#profile.reset_password label {
+  text-align: right;
+}
+#profile.reset_password input.button {
+  margin-left: 0px;
+}

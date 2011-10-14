@@ -67,4 +67,5 @@ class I4PSignupForm(SignupForm):
 class I4PEditProfileForm(EditProfileForm):
     gender = forms.ChoiceField(choices=I4pProfile.GENDER_TYPE,
                                widget=forms.RadioSelect,
-                               required=False)
+                               required=False,
+                               label=_("gender"))

@@ -42,7 +42,11 @@
 	<div id="profile_projects">                
 	  <div class="separator">
 	    <h2>
-	      {% trans 'Her/His contributions' %}
+	    	{% if user.username == profile.user.username %}
+                {% trans 'My contributions' %}
+              {% else %}
+                {% trans 'Her/His contributions' %}
+              {% endif %}
 	    </h2>
 	  </div>
 	    
