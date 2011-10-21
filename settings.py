@@ -98,7 +98,7 @@ MIDDLEWARE_CLASSES = (
 
     'localeurl.middleware.LocaleURLMiddleware',
 
-    'cms.middleware.multilingual.MultilingualURLMiddleware',
+#    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
