@@ -98,7 +98,10 @@ MIDDLEWARE_CLASSES = (
 
     'localeurl.middleware.LocaleURLMiddleware',
 
-
+    'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'cms.middleware.page.CurrentPageMiddleware',
+    'cms.middleware.user.CurrentUserMiddleware',
+    'cms.middleware.toolbar.ToolbarMiddleware',
 )
 
 if DEBUG:
@@ -123,6 +126,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
     'apps.member.context_processors.member_forms',
+
+    'cms.context_processors.media',
+    'sekizai.context_processors.sekizai',
 )
 
 
@@ -186,6 +192,11 @@ INSTALLED_APPS = (
     'django.contrib.humanize',
 
     'emencia.django.newsletter',
+    'cms',
+    'mptt',
+    'menus',
+    'sekizai',
+    'cms.plugins.text',
 
     # Internal Apps
     'apps.i4p_base',
@@ -290,6 +301,7 @@ LOGIN_URL = "/member/signin/"
 LOCALE_INDEPENDENT_PATHS = (
 	re.compile('^/js/dajax/.*$'),
         re.compile('^/static/.*$'),
+        re.compile('^/admin/.*$'),
         re.compile('^/media/.*$'),
         re.compile('^/robots.txt$'),
         re.compile('^/sitemap.xml$'),
@@ -400,3 +412,8 @@ FILEBROWSER_USE_UPLOADIFY = False
 
 ## Newsletter
 DEFAULT_HEADER_SENDER = "Imagination For People Newsletter <contact@imaginationforpeople.org>"
+
+## CMS
+CMS_TEMPLATES = (
+  ('pages/contrib.html', 'Contrib page'),
+)
