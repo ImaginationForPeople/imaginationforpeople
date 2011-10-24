@@ -22,6 +22,7 @@ sitemaps = {
 
 urlpatterns = patterns('',
     url(r'^', include('apps.i4p_base.urls')),
+
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
@@ -43,11 +44,11 @@ urlpatterns = patterns('',
     (r'^tinymce/', include('tinymce.urls')),
     (r'^uploadify/', include('uploadify.urls')),
 
-#    (r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
+    url(r'^', include('cms.urls')),
 )
 
 ## Javascript i18n catalog

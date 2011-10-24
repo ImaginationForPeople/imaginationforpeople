@@ -1,0 +1,77 @@
+﻿{% load i18n cms_tags menu_tags sekizai_tags %}
+{% load compress %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+	<title>Imagination for People - Contrib - {% page_attribute page_title %}</title>
+	
+	<meta name="description" content="{% page_attribute meta_description %}"/>
+	<meta name="keywords" content="{% page_attribute meta_keywords %}"/>
+	
+    {% addtoblock "css" %}
+	{% compress css %}
+	<link href="{{ STATIC_URL }}css/pages/style.css" media="all" rel="stylesheet" type="text/css" />
+	{% endcompress %}
+    {% endaddtoblock %}
+
+	{% addtoblock "js" %}
+	{% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
+    {% endcompress %}
+    <script type="text/javascript">
+        jQuery(document).ready(function($){
+            
+            $(".details").hide();
+            $(".details").first().show();
+            
+            $("ul#jobs li a").mouseenter(function(){
+                $(".details").stop().fadeOut("slow");
+                var panelID=$(this).attr("href");
+                $("#"+panelID).fadeIn("slow");
+            });
+        });
+        
+    </script>
+    {% endaddtoblock %}
+    
+    {% block extra_head %}{% endblock %}	
+    
+    {% render_block "css" %}
+
+
+    
+</head>
+
+
+<body>
+
+        {% if user.is_authenticated %}
+            {% cms_toolbar %}
+        {% endif %}
+        
+
+         {% block header %} {% include "pages/header.html" %} {% endblock %}
+
+
+        <div class="centreur">
+           
+           <div class="content">    
+
+                {% block content %}{% endblock %}
+
+            </div>
+            <div class="push"></div>
+        </div>
+        
+            
+        {% block footer %} {% include "pages/footer.html" %} {% endblock %}    
+    
+        {% render_block "js" %}
+
+    
+</body>
+
+</html>
