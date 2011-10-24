@@ -1,91 +1,115 @@
 ﻿{% extends "pages/base.html" %}
-{% load i18n cms_tags %}
+{% load i18n cms_tags sekizai_tags %}
 
+{% block extra_head %}
+    {% addtoblock "js" %}
+        <script type="text/javascript">
+            jQuery(document).ready(function($){
+                
+                $(".details").hide();
+                $(".details").first().show();
+                
+                $("ul#jobs li a").mouseenter(function(){
+                    $(".details").stop().fadeOut("slow");
+                    var panelID=$(this).attr("href");
+                    $("#"+panelID).fadeIn("slow");
+                });
+            });
+            
+        </script>
+    {% endaddtoblock %}
+{% endblock %}	
 
 {% block content %}  
 
 
-    <!-- ACCROCHE -->
+    <!-- TAGLINE -->
 
-    <img id="accroche" src="{{ STATIC_URL }}images/pages/contrib/accroche.jpg" width="974px" height="114px" alt="Une communauté dédiée à l'imagination citoyenne" />
+    <div id="tagline">
+        <img src="{{ STATIC_URL }}images/pages/contrib/tagline.jpg" width="974px" height="114px" alt="Une communauté dédiée à l'imagination citoyenne" />
+        <span id="tagline1">{% trans "Une communauté dédiée" %}</span>
+        <span id="tagline2">{% trans "à l'imagination citoyenne" %}</span>
+    </div>
     <br />
     <h2>
-        <a href="http://imaginationforpeople.org" target="_blank">Imaginationforpeople.org</a> est propulsée par un ensemble de composants libres sous <a href="http://fr.wikipedia.org/wiki/GNU_Affero_General_Public_License" target="_blank">licences AGPL</a> et <a href="http://fr.wikipedia.org/wiki/Creative_Commons" target="_blank">Creative Commons.</a>
-        <br />
-        Cette plateforme est la votre, la notre : vous pouvez aider à l'améliorer ou l'utiliser pour votre propre projet.
+        {% blocktrans %}
+            <a href="http://imaginationforpeople.org" target="_blank">Imaginationforpeople.org</a> est propulsée par un ensemble de composants libres sous <a href="http://fr.wikipedia.org/wiki/GNU_Affero_General_Public_License" target="_blank">licences AGPL</a> et <a href="http://fr.wikipedia.org/wiki/Creative_Commons" target="_blank">Creative Commons.</a>
+            <br />
+            Cette plateforme est la votre, la notre : vous pouvez aider à l'améliorer ou l'utiliser pour votre propre projet.
+        {% endblocktrans %}
     </h2>
     
     
-    <!-- GROS BLOC CENTRAL DES DIFFERENTS METIERS-->
+    <!-- JOBS BIG BLOCK-->
     
     <div id="jobs_block">
-        <!-- Pictos des différents jobs -->
+        <!-- Jobs picto -->
         <ul id="jobs">
-                <li><a href="trad"><img src="{{ STATIC_URL }}images/pages/contrib/job-trad.jpg" width="159px" height="126px" alt="Traducteur" /></a></li>
+                <li><a href="trad"><img src="{{ STATIC_URL }}images/pages/contrib/job-trad.jpg" width="159px" height="126px" alt="Traducteur" /><span>{% trans "Translator" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="dev"><img src="{{ STATIC_URL }}images/pages/contrib/job-dev.jpg" width="159px" height="126px" alt="Developpeur" /></a></li>
+                <li><a href="dev"><img src="{{ STATIC_URL }}images/pages/contrib/job-dev.jpg" width="159px" height="126px" alt="Developpeur" /><span>{% trans "Developer" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="graph"><img src="{{ STATIC_URL }}images/pages/contrib/job-graph.jpg" width="159px" height="126px" alt="Graphiste" /></a></li>
+                <li><a href="graph"><img src="{{ STATIC_URL }}images/pages/contrib/job-graph.jpg" width="159px" height="126px" alt="Graphiste" /><span>{% trans "Graphist" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="redac"><img src="{{ STATIC_URL }}images/pages/contrib/job-redac.jpg" width="159px" height="126px" alt="Redacteur" /></a></li>
+                <li><a href="redac"><img src="{{ STATIC_URL }}images/pages/contrib/job-redac.jpg" width="159px" height="126px" alt="Redacteur" /><span>{% trans "Redactor" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="ess"><img src="{{ STATIC_URL }}images/pages/contrib/job-ess.jpg" width="159px" height="126px" alt="Essaimeur" /></a></li>
+                <li><a href="ess"><img src="{{ STATIC_URL }}images/pages/contrib/job-ess.jpg" width="159px" height="126px" alt="Essaimeur" /><span>{% trans "Essemer" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="rapp"><img src="{{ STATIC_URL }}images/pages/contrib/job-rap.jpg" width="159px" height="126px" alt="Rapporteur" /></a></li>
+                <li><a href="rapp"><img src="{{ STATIC_URL }}images/pages/contrib/job-rap.jpg" width="159px" height="126px" alt="Rapporteur" /><span>{% trans "Rapporter" %}</span></a></li>
         </ul>  
         
         <div class="clear"></div>
         
-        <!-- Détails des jobs -->
+        <!-- Jobs details -->
         <div class="details-block">                    
             <div class="details" id="trad">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-trad.png" width="387px" height="167px" />
-                <p>Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ...</p>
-                <a href="#">Get the code</a>
+                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="dev">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-dev.png" width="387px" height="167px" />
-                <p>Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ...</p>
-                <a href="#">Get the code</a>
+                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="graph">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-graph.png" width="387px" height="167px" />
-                <p>Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ...</p>
-                <a href="#">Get the code</a>
+                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="redac">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-redac.png" width="387px" height="167px" />
-                <p>Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ...</p>
-                <a href="#">Get the code</a>
+                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="ess">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-ess.png" width="387px" height="167px" />
-                <p>Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ...</p>
-                <a href="#">Get the code</a>
+                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="rapp">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="387px" height="167px" />
                 <p>Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ...</p>
-                <a href="#">Get the code</a>
+                <a href="#">{% trans "Get the code" %}</a>
             </div>                    
         </div>
         
         <div class="clear"></div>
     </div>
-    <img class="tache_centre" src="{{ STATIC_URL }}images/pages/contrib/tache-centre.jpg" width="974px" height="30px" alt="Une communauté dédiée à l'imagination citoyenne" />
+    <img class="stain_center" src="{{ STATIC_URL }}images/pages/contrib/tache-centre.jpg" width="974px" height="30px" alt="Une communauté dédiée à l'imagination citoyenne" />
     
     <br /><br />
     
     
-    <!-- BLOC CONTENU LES 3 COLONNES DE NEWS DIVERSES-->
+    <!-- 3 NEWS COLUMNS -->
     
     <div class="col col1">
-        <h1>Dernières activités<img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" /></h1>
+        <h1>{% trans "Latest activities" %}<img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" /></h1>
         <ul>
             <li class="odd">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
@@ -115,19 +139,19 @@
     
     <div class="col col2">
     
-        <h1>Rejoignez la communauté</h1>
+        <h1>{% trans "Join the community" %}</h1>
         <ul class="community">
             <li>
-                <span>Blabla bla canaal irc blabal coincoin</span>
+                <span>Blabla bla canal irc blabal coincoin</span>
                 <p>#14p@irc.freenode.net</p>
             </li>
             <li>
-                <span>Blabla bla canaal irc blabal coincoin</span>
+                <span>Blabla bla canal irc blabal coincoin</span>
                 <p>#14p@irc.freenode.net</p>
             </li>
         </ul>
         
-        <h1>Derniers commits<img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" /></h1>
+        <h1>{% trans "Latest commits" %}<img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" /></h1>
         <ul>
             <li class="odd">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
@@ -145,7 +169,7 @@
     </div>
     
     <div class="col col3">
-        <h1>Blog / News<img src="{{ STATIC_URL }}images/pages/contrib/rss.jpg" width="20px" height="21x" alt="RSS" style="float:right;" /></h1>
+        <h1>{% trans "Blog / News" %}<img src="{{ STATIC_URL }}images/pages/contrib/rss.jpg" width="20px" height="21x" alt="RSS" style="float:right;" /></h1>
         <ul>
             <li class="odd">
                 <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>

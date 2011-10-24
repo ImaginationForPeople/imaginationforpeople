@@ -13,28 +13,14 @@
 	
     {% addtoblock "css" %}
 	{% compress css %}
-	<link href="{{ STATIC_URL }}css/pages/style.css" media="all" rel="stylesheet" type="text/css" />
+	<link href="{{ STATIC_URL }}css/pages/contrib.css" media="all" rel="stylesheet" type="text/css" />
 	{% endcompress %}
     {% endaddtoblock %}
 
 	{% addtoblock "js" %}
-	{% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
-    {% endcompress %}
-    <script type="text/javascript">
-        jQuery(document).ready(function($){
-            
-            $(".details").hide();
-            $(".details").first().show();
-            
-            $("ul#jobs li a").mouseenter(function(){
-                $(".details").stop().fadeOut("slow");
-                var panelID=$(this).attr("href");
-                $("#"+panelID).fadeIn("slow");
-            });
-        });
-        
-    </script>
+        {% compress js %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
+        {% endcompress %}
     {% endaddtoblock %}
     
     {% block extra_head %}{% endblock %}	
@@ -56,7 +42,7 @@
          {% block header %} {% include "pages/header.html" %} {% endblock %}
 
 
-        <div class="centreur">
+        <div class="centrer">
            
            <div class="content">    
 
