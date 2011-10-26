@@ -1,5 +1,6 @@
 ﻿{% extends "pages/base.html" %}
 {% load i18n cms_tags sekizai_tags %}
+{% load cache feeds %}
 
 {% block extra_head %}
     {% addtoblock "js" %}
@@ -10,9 +11,10 @@
                 $(".details").first().show();
                 
                 $("ul#jobs li a").mouseenter(function(){
-                    $(".details").stop().fadeOut("slow");
-                    var panelID=$(this).attr("href");
-                    $("#"+panelID).fadeIn("slow");
+                    var panelID=$(this).attr("id").replace(/-button$/, '');
+                    $("#"+panelID).show()
+                    $(".details").hide();
+                    $("#"+panelID).show();
                 });
             });
             
@@ -27,17 +29,11 @@
 
     <div id="tagline">
         <img src="{{ STATIC_URL }}images/pages/contrib/tagline.jpg" width="974px" height="114px" alt="Une communauté dédiée à l'imagination citoyenne" />
-        <span id="tagline1">{% trans "Une communauté dédiée" %}</span>
-        <span id="tagline2">{% trans "à l'imagination citoyenne" %}</span>
+        <span id="tagline1">{% trans "A community dedicated to" %}</span>
+        <span id="tagline2">{% trans "citizen imagination" %}</span>
     </div>
     <br />
-    <h2>
-        {% blocktrans %}
-            <a href="http://imaginationforpeople.org" target="_blank">Imaginationforpeople.org</a> est propulsée par un ensemble de composants libres sous <a href="http://fr.wikipedia.org/wiki/GNU_Affero_General_Public_License" target="_blank">licences AGPL</a> et <a href="http://fr.wikipedia.org/wiki/Creative_Commons" target="_blank">Creative Commons.</a>
-            <br />
-            Cette plateforme est la votre, la notre : vous pouvez aider à l'améliorer ou l'utiliser pour votre propre projet.
-        {% endblocktrans %}
-    </h2>
+    <h2>{% placeholder "baseline" %}</h2>
     
     
     <!-- JOBS BIG BLOCK-->
@@ -45,17 +41,17 @@
     <div id="jobs_block">
         <!-- Jobs picto -->
         <ul id="jobs">
-                <li><a href="trad"><img src="{{ STATIC_URL }}images/pages/contrib/job-trad.jpg" width="159px" height="126px" alt="Traducteur" /><span>{% trans "Translator" %}</span></a></li>
+                <li><a id="trad-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-trad.jpg" width="159px" height="126px" alt="{% trans "Translator" %}" /><span>{% trans "Translator" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="dev"><img src="{{ STATIC_URL }}images/pages/contrib/job-dev.jpg" width="159px" height="126px" alt="Developpeur" /><span>{% trans "Developer" %}</span></a></li>
+                <li><a id="dev-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-dev.jpg" width="159px" height="126px" alt="{% trans "Developer" %}" /><span>{% trans "Developer" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="graph"><img src="{{ STATIC_URL }}images/pages/contrib/job-graph.jpg" width="159px" height="126px" alt="Graphiste" /><span>{% trans "Graphist" %}</span></a></li>
+                <li><a id="graph-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-graph.jpg" width="159px" height="126px" alt="{% trans "Designer" %}" /><span>{% trans "Designer" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="redac"><img src="{{ STATIC_URL }}images/pages/contrib/job-redac.jpg" width="159px" height="126px" alt="Redacteur" /><span>{% trans "Redactor" %}</span></a></li>
+                <li><a id="redac-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-redac.jpg" width="159px" height="126px" alt="{% trans "Writer" %}" /><span>{% trans "Writer" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="ess"><img src="{{ STATIC_URL }}images/pages/contrib/job-ess.jpg" width="159px" height="126px" alt="Essaimeur" /><span>{% trans "Essemer" %}</span></a></li>
+                <li><a id="ess-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-ess.jpg" width="159px" height="126px" alt="{% trans "Seeder" %}" /><span>{% trans "Seeder" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a href="rapp"><img src="{{ STATIC_URL }}images/pages/contrib/job-rap.jpg" width="159px" height="126px" alt="Rapporteur" /><span>{% trans "Rapporter" %}</span></a></li>
+                <li><a id="rapp-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-rap.jpg" width="159px" height="126px" alt="{% trans "Q&A" %}" /><span>{% trans "Q&A" %}</span></a></li>
         </ul>  
         
         <div class="clear"></div>
@@ -64,44 +60,43 @@
         <div class="details-block">                    
             <div class="details" id="trad">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-trad.png" width="387px" height="167px" />
-                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
-                <a href="#">{% trans "Get the code" %}</a>
+                <div>{% placeholder "desc-trad" %}</div>
             </div>
             
             <div class="details" id="dev">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-dev.png" width="387px" height="167px" />
-                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
-                <a href="#">{% trans "Get the code" %}</a>
+                <div>{% placeholder "desc-dev" %}</div>
+                <a href="https://github.com/ImaginationForPeople/imaginationforpeople">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="graph">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-graph.png" width="387px" height="167px" />
-                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <div>{% placeholder "desc-graph" %}</div>
                 <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="redac">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-redac.png" width="387px" height="167px" />
-                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <div>{% placeholder "desc-writer" %}</div>
                 <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="ess">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-ess.png" width="387px" height="167px" />
-                <p>{% trans "Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ..." %}</p>
+                <div>{% placeholder "desc-ess" %}</div>
                 <a href="#">{% trans "Get the code" %}</a>
             </div>
             
             <div class="details" id="rapp">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="387px" height="167px" />
-                <p>Developers can help Mozilla by adding new features, making our technology smaller and faster and making development easier for others. You can find many developers on IRC so stop by and ask ...</p>
+                <div>{% placeholder "desc-rapp" %}</div>
                 <a href="#">{% trans "Get the code" %}</a>
             </div>                    
         </div>
         
         <div class="clear"></div>
     </div>
-    <img class="stain_center" src="{{ STATIC_URL }}images/pages/contrib/tache-centre.jpg" width="974px" height="30px" alt="Une communauté dédiée à l'imagination citoyenne" />
+    <img class="stain_center" src="{{ STATIC_URL }}images/pages/contrib/tache-centre.jpg" width="974px" height="30px" alt="{% trans "Une communauté dédiée à l'imagination citoyenne" %}" />
     
     <br /><br />
     
@@ -109,32 +104,15 @@
     <!-- 3 NEWS COLUMNS -->
     
     <div class="col col1">
-        <h1>{% trans "Latest activities" %}<img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" /></h1>
-        <ul>
-            <li class="odd">
-                <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
-                <span>10:37 | Guillaume Libersat</span>
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-            
-            <li class="even">
-                <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
-                <span>10:37 | Guillaume Libersat</span>
-                <p><a href="#">Révision 3e336783: Merge branch 'hotfix/loginforms'</a></p>
-            </li>
-            
-            <li class="odd">
-                <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
-                <span>10:37 | Guillaume Libersat</span>
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-            
-            <li class="even">
-                <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
-                <span>10:37 | Guillaume Libersat</span>
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-        </ul>
+        <h1>{% trans "Latest activities" %}
+	<a href="https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity?show_issues=1">
+	  <img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" />
+	</a>
+	</h1>
+
+	{% cache 600 contrib_latest_activities %}
+	{% include_feed "https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity.atom?show_issues=1" 8 pages/feed_includes/latest_activities.html %}
+	{% endcache %}
     </div>
     
     <div class="col col2">
@@ -142,51 +120,39 @@
         <h1>{% trans "Join the community" %}</h1>
         <ul class="community">
             <li>
-                <span>Blabla bla canal irc blabal coincoin</span>
-                <p>#14p@irc.freenode.net</p>
+                <span>{% trans "Join us on IRC:" %}</span>
+                <p><a href="http://webchat.freenode.net/?channels=imaginationforpeople" target="_blank">#imaginationforpeople@irc.freenode.net</a></p>
             </li>
             <li>
-                <span>Blabla bla canal irc blabal coincoin</span>
-                <p>#14p@irc.freenode.net</p>
+                <span>{% trans "or subscribe to the mailing list:" %}</span>
+                <p><a href="http://lists.imaginationforpeople.org/cgi-bin/mailman/listinfo/community" target="_blank">community@lists.imaginationforpeople.org</a></p>
+		[<a href="http://lists.imaginationforpeople.org/pipermail/dev/">{% trans "Archives" %}</a>]
             </li>
         </ul>
         
-        <h1>{% trans "Latest commits" %}<img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" /></h1>
-        <ul>
-            <li class="odd">
-                <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
-                <span>10:37 | Guillaume Libersat</span>
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-            
-            <li class="even">
-                <img src="{{ STATIC_URL }}images/pages/contrib/illus-rapp.png" width="24px" height="24x" alt="Guillaume Libersat" />
-                <span>10:37 | Guillaume Libersat</span>
-                <p><a href="#">Révision 3e336783: Merge branch 'hotfix/loginforms'</a></p>
-            </li>
-        </ul>
+        <h1>{% trans "Latest commits" %}
+	  <a href="https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity?show_changesets=1">
+	    <img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" />
+	  </a>
+	</h1>
+
+	{% cache 600 contrib_latest_commits %}
+	{% include_feed "https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity.atom?show_commits=1" 5 pages/feed_includes/latest_commits.html %}
+	{% endcache %}
     
     </div>
     
     <div class="col col3">
-        <h1>{% trans "Blog / News" %}<img src="{{ STATIC_URL }}images/pages/contrib/rss.jpg" width="20px" height="21x" alt="RSS" style="float:right;" /></h1>
-        <ul>
-            <li class="odd">
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-            
-            <li class="even">
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-            
-            <li class="odd">
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-            
-            <li class="even">
-                <p>Révision 3e336783: Merge branch 'hotfix/loginforms'</p>
-            </li>
-        </ul>
+        <h1>{% trans "Blog / News" %}
+          <a href="http://imaginationforpeople.org/blog/?feed=rss2">
+	    <img src="{{ STATIC_URL }}images/pages/contrib/rss.jpg" width="20px" height="21x" alt="RSS" style="float:right;" />
+	  </a>
+	</h1>
+
+	{% cache 600 contrib_news %}
+	{% include_feed "http://imaginationforpeople.org/blog/?feed=rss2" 3 pages/feed_includes/news.html %}
+	{% endcache %}
+
     </div>
     
     <div class="clear"></div>

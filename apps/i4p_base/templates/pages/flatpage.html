@@ -1,0 +1,49 @@
+﻿{% extends "base.html" %}
+
+{% load i18n cms_tags sekizai_tags %}
+{% load compress %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+{% addtoblock "css" %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/flatpage.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
+    
+    <style type="text/css">
+        body {
+        background-color: #282828;
+        }    
+    </style>  
+{% endaddtoblock %}
+        {% if user.is_authenticated %}
+            {% cms_toolbar %}
+        {% endif %}
+
+
+	<div class="content">        
+
+		<div class="container_18">
+
+			<div class="grid_18 alpha omega">			
+			
+				<div class="block-content">  			
+
+				  {% placeholder "content" or %}
+				  {% trans "There is no content yet. Switch to edit mode and add a widget." %}
+				  {% endplaceholder %}
+										
+				</div>
+				
+			</div>
+			
+			<div class="clear"></div>
+			
+		</div>		
+	</div>
+
+	
+
+{% endblock %}

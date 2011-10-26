@@ -96,9 +96,10 @@ MIDDLEWARE_CLASSES = (
 
     'userena.middleware.UserenaLocaleMiddleware',
 
+#    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'localeurl.middleware.LocaleURLMiddleware',
 
-#    'cms.middleware.multilingual.MultilingualURLMiddleware',
+
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
@@ -174,6 +175,8 @@ INSTALLED_APPS = (
     'ajaxcomments',
     'django_mailman',
     'linaro_django_pagination',
+    'template_utils',
+    'simplegravatar',
 
 
     #'grappelli',
@@ -190,6 +193,7 @@ INSTALLED_APPS = (
     'django.contrib.comments',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.syndication',
 
     'emencia.django.newsletter',
     'cms',
@@ -197,6 +201,14 @@ INSTALLED_APPS = (
     'menus',
     'sekizai',
     'cms.plugins.text',
+    'cms.plugins.link',
+    'cms.plugins.file',
+    'cms.plugins.picture',
+    'cms.plugins.googlemap',
+    'cms.plugins.video',
+    'cms.plugins.twitter',
+    'cms.plugins.teaser',
+    'cms.plugins.snippet',
 
     # Internal Apps
     'apps.i4p_base',
@@ -366,54 +378,17 @@ TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
                           'relative_urls': False,
                           'remove_script_host': 0,
                           'convert_urls': False,
-                          'plugins': "contextmenu"}
+                          'plugins': "contextmenu",
+                          'width': '90%',
+                          'height': '500px'}
 TINYMCE_FILEBROWSER = True
 FILEBROWSER_USE_UPLOADIFY = False
-
-## LOGGING
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': True,
-    
-#     'formatters': {
-#         'verbose': {
-#             'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-#             },
-#         'simple': {
-#             'format': '%(levelname)s %(message)s'
-#             },
-#         },
-    
-#     'handlers': {
-#         'sentry': {
-#             'level': 'DEBUG',
-#             'class': 'sentry.client.handlers.SentryHandler',
-#             'formatter': 'verbose'
-#             },
-#         'console': {
-#             'level': 'DEBUG',
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'verbose'
-#             }
-#         },
-#     'loggers': {
-#         '()': {
-#             'level': 'WARNING',
-#             'handlers': ['sentry'],
-#             },
-#         'sentry.errors': {
-#             'level': 'DEBUG',
-#             'handlers': ['console'],
-#             'propagate': False,
-#             },
-#         },
-#     }
-
 
 ## Newsletter
 DEFAULT_HEADER_SENDER = "Imagination For People Newsletter <contact@imaginationforpeople.org>"
 
 ## CMS
 CMS_TEMPLATES = (
-  ('pages/contrib.html', 'Contrib page'),
+  ('pages/flatpage.html', _('Black Page')),
+  ('pages/contrib.html', _('Contribution page')),
 )
