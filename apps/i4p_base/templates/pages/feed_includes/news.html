@@ -1,0 +1,10 @@
+{% load simplegravatar %}
+{% load humanize %}
+ <ul>
+ {% for item in items %}
+   <li class="{% cycle 'odd' 'even' %}">
+    {% show_gravatar "contact@imaginationforpeople.org" 24 %}
+     <p><a href="{{ item.link }}">{{ item.title }}</a></p>
+   </li>
+ {% endfor %}
+</ul>

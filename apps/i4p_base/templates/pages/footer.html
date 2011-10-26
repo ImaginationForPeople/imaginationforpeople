@@ -1,4 +1,5 @@
 ﻿{% load i18n %}
+{% load cms_tags %}
 
 <div id="footer">
     <div class="centrer">
@@ -8,26 +9,25 @@
         <div id="links">
             <div class="separatorv"></div>
             <ul >
-                <h1>{% trans "Nebuleuse" %}</h1>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
+                <h1>{% trans "Network" %}</h1>
+		<li><a href="#">Redmine</a></li>
+		<li><a href="#">GitHub</a></li>
+                <li><a href="#">Blog</a></li>
             </ul>
             <div class="separatorv"></div>
             <ul>
                 <h1>{% trans "About" %}</h1>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
+                <li><a href="#">...</a></li>
             </ul>
             <div class="separatorv"></div>
             <ul>
-                <h1>{% trans "Participate" %}</h1>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
-                <li><a href="#">Les plus</a></li>
+                <h1>{% trans "Get Involved" %}</h1>
+                <li><a href="#">{% trans "Translator" %}</a></li>
+                <li><a href="#">{% trans "Developer" %}</a></li>
+                <li><a href="#">{% trans "Designer" %}</a></li>
+                <li><a href="#">{% trans "Writer" %}</a></li>
+                <li><a href="#">{% trans "Seeder" %}</a></li>
+                <li><a href="#">{% trans "Q&A" %}</a></li>
             </ul>
         </div>
     </div>   

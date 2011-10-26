@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load compress %}
+{% load sekizai_tags %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
@@ -28,7 +29,10 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
+    {% render_block "css" %}	
 
+
+    {% render_block "js" %}
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
@@ -37,6 +41,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>
     {% endcompress %}
+
 
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
