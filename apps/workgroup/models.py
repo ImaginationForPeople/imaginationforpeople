@@ -59,3 +59,11 @@ class WorkGroup(models.Model):
         return ('workgroup-detail', (self.slug,))
 
     
+
+from cms.models.pluginmodel import CMSPlugin
+
+class WorkGroupCMS(CMSPlugin):
+    workgroup = models.ForeignKey(WorkGroup)
+
+    def copy_relations(self, oldinstance):
+        self.workgroup = oldinstance.workgroup

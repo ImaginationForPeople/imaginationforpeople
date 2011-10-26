@@ -14,18 +14,9 @@
       <div class="separator"></div>
       
     {% if workgroup.mailing_list %}
-      <em>To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em> - [<a href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">Browse the Archives</a>]
-        {% if not request.user in ml_member_list %}
-          <form method='POST' action='{% url workgroup-subscribe workgroup.slug %}'>
-            {% csrf_token %}
-            <input type='submit' class='button' value='Subscribe' />
-          </form>
-        {% else %}
-          <form method='POST' action='{% url workgroup-unsubscribe workgroup.slug %}'>
-            {% csrf_token %}
-            <input type='submit' class='button' value='Unsubscribe' />
-          </form>
-        {% endif %}
+       <em>To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em> - [<a href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">Browse the Archives</a>]
+
+           {% include "workgroup/subscribe_button.html" %}
 
       <div class="separator"></div>
     {% endif %}
@@ -42,13 +33,12 @@
       
       <br /><br />
     
-      {# Subscribe/Unsubscribe button for logged-in users  #}
       {% if not request.user.is_anonymous %}
-	{% if not request.user in ml_member_list %}
-	  <em>You are not susbcribed to this Mailing List</em>
-	{% else %}
-	  <em>You are susbcribed to this Mailing List</em>
-	{% endif %}
+        {% if not request.user in ml_member_list %}
+	    <em>{% trans "You are not susbcribed to this Mailing List" %}</em>
+        {% else %}
+          <em>{% trans "You are susbcribed to this Mailing List" %}</em>
+         {% endif %}
       {% endif %}
 
       <br/><br />

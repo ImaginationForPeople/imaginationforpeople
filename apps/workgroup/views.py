@@ -26,7 +26,7 @@ from django.views.generic import ListView, DetailView
 from django.views.generic import View
 
 from .models import WorkGroup
-
+from .utils import get_ml_members
 
 class WorkGroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
@@ -38,15 +38,6 @@ class WorkGroupDetailView(DetailView):
     context_object_name = 'workgroup'
     model = WorkGroup
 
-    def _get_ml_members(self, workgroup):
-        cache_key = '%s-ml-members' % workgroup.slug
-        res = cache.get(cache_key, None)
-        if not res:
-            res = workgroup.mailing_list.get_all_members()
-            cache.set(cache_key, res, 3600)
-
-        return res
-
     def get_context_data(self, **kwargs):
         """
         Adds the member of the associated ML if there's one
@@ -57,7 +48,7 @@ class WorkGroupDetailView(DetailView):
         if workgroup.mailing_list:
             context['ml_member_list'] = []
             context['ml_nonmember_list'] = []
-            members = self._get_ml_members(workgroup) # workgroup.mailing_list.get_all_members()
+            members = get_ml_members(workgroup) # workgroup.mailing_list.get_all_members()
             
             for member in members:
                 try:
@@ -98,7 +89,11 @@ class SubscribeView(View):
             except Exception, e:
                 messages.error(request, _(u"You couldn't be subscribed to this workgroup:%s" % unicode(e.message, encoding=ml.encoding)))
 
-        return redirect('workgroup-detail', workgroup.slug)
+        next_url = request.POST.get('next_url', None)
+        if next_url:
+            return redirect(next_url)
+        else:
+            return redirect('workgroup-detail', workgroup.slug)
 
 
 class UnsubscribeView(View):
@@ -128,6 +123,11 @@ class UnsubscribeView(View):
             except Exception, e:
                 messages.error(request, _(u"You couldn't be unsubscribed from this workgroup:%s" % e.message))
 
-        return redirect('workgroup-detail', workgroup.slug)
+        next_url = request.POST.get('next_url', None)
+        if next_url:
+            return redirect(next_url)
+        else:
+            return redirect('workgroup-detail', workgroup.slug)
+
             
         
