@@ -48,7 +48,6 @@ urlpatterns = patterns('',
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
-    url(r'^', include('cms.urls')),
 )
 
 ## Javascript i18n catalog
@@ -74,8 +73,12 @@ urlpatterns += staticfiles_urlpatterns()
 
 ## i18n l10n translation UI
 if 'rosetta' in settings.INSTALLED_APPS:
-    urlpatterns += patterns('',
+    urlpatterns = patterns('',
         url(r'^rosetta/', include('rosetta.urls')),
-    )
+    ) + urlpatterns
 
 
+## CMS
+urlpatterns += patterns('',
+                        url(r'^', include('cms.urls'))
+                        )

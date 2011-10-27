@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-06 12:12+0200\n"
-"PO-Revision-Date: 2011-10-06 12:35\n"
+"POT-Creation-Date: 2011-10-27 17:32+0200\n"
+"PO-Revision-Date: 2011-10-27 17:34\n"
 "Last-Translator: Simon Sarazin <simonsarazin@imaginationforpeople.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -282,12 +282,12 @@ msgid "Latest 20 days changes"
 msgstr "Dernier 20 changements"
 
 #: templates/project_sheet/all_recent_changes.html:28
-#: templates/project_sheet/project_list.html:67
+#: templates/project_sheet/project_list.html:68
 msgid "RSS Feed"
 msgstr "Flux RSS"
 
 #: templates/project_sheet/all_recent_changes.html:50
-#: templates/project_sheet/project_list.html:114
+#: templates/project_sheet/project_list.html:109
 msgid "Your request did not return any result."
 msgstr "Votre recherche ne retourne aucun résultat."
 
@@ -349,7 +349,7 @@ msgstr "Diffusez le projet :"
 #: templates/project_sheet/grey_column.html:102
 #: templates/project_sheet/sidebar_related.html:6
 msgid "related"
-msgstr "corrélation"
+msgstr "catégories"
 
 #: templates/project_sheet/grey_column.html:109
 msgid "objectives:"
@@ -364,9 +364,8 @@ msgstr ""
 "<strong>tags</strong> de ce projet."
 
 #: templates/project_sheet/grey_column.html:126
-#: templates/project_sheet/sidebar_related.html:22
-msgid "Themes:"
-msgstr "Thèmes :"
+msgid "Tags:"
+msgstr "Tags:"
 
 #: templates/project_sheet/grey_column.html:141
 msgid "Add a member"
@@ -530,7 +529,7 @@ msgstr ""
 msgid "Update"
 msgstr "Mise à jour"
 
-#: templates/project_sheet/project_list.html:6
+#: templates/project_sheet/project_list.html:7
 msgid ""
 "These experiences have a positive social impact and create social "
 "goodwill. they demonstrate a disruptive inventiveness and can be easily"
@@ -541,17 +540,27 @@ msgstr ""
 "facilement diffusées et adaptés dans d'autres lieux ou contextes "
 "culturels."
 
-#: templates/project_sheet/project_list.html:7
+#: templates/project_sheet/project_list.html:8
 msgid "Find project on Imagination for People"
 msgstr "Trouver des projets sur Imagination for People"
 
-#: templates/project_sheet/project_list.html:70
+#: templates/project_sheet/project_list.html:71
 msgid "Last projects"
 msgstr "Derniers projets"
 
-#: templates/project_sheet/project_list.html:71
+#: templates/project_sheet/project_list.html:72
 msgid "Last editions"
 msgstr "Dernières modifications"
+
+#: templates/project_sheet/project_list_pagination.html:9
+#: templates/project_sheet/project_list_pagination.html:12
+msgid "previous"
+msgstr "précédent"
+
+#: templates/project_sheet/project_list_pagination.html:36
+#: templates/project_sheet/project_list_pagination.html:39
+msgid "next"
+msgstr "suivant"
 
 #: templates/project_sheet/project_sheet.html:13
 msgid "start project"
@@ -648,6 +657,10 @@ msgstr "Enregistrer et fermer"
 #: templates/project_sheet/sidebar_related.html:14
 msgid "Objectives:"
 msgstr "Objectifs :"
+
+#: templates/project_sheet/sidebar_related.html:22
+msgid "Themes:"
+msgstr "Thèmes :"
 
 #: templates/project_sheet/sidebar_related.html:22
 msgid "select your tags from the cloud below"

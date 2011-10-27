@@ -142,26 +142,35 @@ def project_update_related(request, language_code, related_form, project_slug):
 
 
     # Convert tags to string list, separated by comma
+    if not related_form.has_key('themes'):
+        related_form['themes'] = ""
+        
     if isinstance(related_form['themes'], list):
         related_form['themes'] = ", ".join(related_form['themes'])
-    
+            
+    project_themes_form = I4pProjectThemesForm(related_form,
+                                               instance=project_translation)
+            
+    if project_themes_form.is_valid():
+        project_themes_form.save()
+
+
+    # Convert objectives to list if string or empty
+    if not related_form.has_key('objectives-form-objectives'):
+        related_form['objectives-form-objectives'] = []
+        
     if not isinstance(related_form['objectives-form-objectives'], list):
         related_form['objectives-form-objectives'] = related_form['objectives-form-objectives'].split(',')
 
-    project_themes_form = I4pProjectThemesForm(related_form,
-                                               instance=project_translation)
-    
     project_objectives_form = I4pProjectObjectivesForm(related_form,
                                                        instance=parent_project,
                                                        prefix="objectives-form")
 
-
-    if project_themes_form.is_valid():
-        project_themes_form.save()
-        
     if  project_objectives_form.is_valid():
         project_objectives_form.save()
 
+
+        
     return simplejson.dumps({})
 
 
