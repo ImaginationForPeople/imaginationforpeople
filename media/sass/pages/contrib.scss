@@ -281,7 +281,7 @@ ul#menu > li:hover{
     @include shadow(3px, #f3f3f3);
     margin-top:30px;
     
-    ul{
+    ul#jobs{
         position:relative;
         padding:0px;
         margin-left:5px;
@@ -324,7 +324,7 @@ ul#menu > li:hover{
             float:left;
         }
         
-        p{
+        div.txt{
             color:#8e8e8e;
             @include georgia(18px); 
             padding:20px;
@@ -333,7 +333,7 @@ ul#menu > li:hover{
             float:left;
         }
         
-        a{
+        a.button{
             position:absolute;
             right:20px;
             bottom:15px;
