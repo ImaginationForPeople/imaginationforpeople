@@ -54,10 +54,10 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/member/add/$', views.project_sheet_member_add, name='project_sheet-instance-add-member'),
 
     # Ajax views
-    url(r'^start/ajax/field/save$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
-    url(r'^start/ajax/field/load$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
-    url(r'^(?P<project_slug>[-\w]+)/ajax/field/load$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
-    url(r'^(?P<project_slug>[-\w]+)/ajax/field/save$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
+    url(r'^start/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
+    url(r'^start/ajax/field/load/$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
+    url(r'^(?P<project_slug>[-\w]+)/ajax/field/load/$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
+    url(r'^(?P<project_slug>[-\w]+)/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
 
     # RSS Feeds
     url(r'^list/new-projects\.rss$', feeds.NewProjectsFeed(), name='project_sheet-new-projects-rss'),
