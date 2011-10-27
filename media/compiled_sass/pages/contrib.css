@@ -245,19 +245,19 @@ ul#menu > li:hover {
   box-shadow: 0px 0px 3px #f3f3f3;
   margin-top: 30px;
 }
-#jobs_block ul {
+#jobs_block ul#jobs {
   position: relative;
   padding: 0px;
   margin-left: 5px;
 }
-#jobs_block ul li {
+#jobs_block ul#jobs li {
   float: left;
   /*pour IE*/
   list-style-type: none;
   padding-bottom: 10px;
   position: relative;
 }
-#jobs_block ul li span {
+#jobs_block ul#jobs li span {
   font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
   font-size: 20px;
   font-weight: bold;
@@ -269,7 +269,7 @@ ul#menu > li:hover {
   width: 100%;
   z-index: 50;
 }
-#jobs_block ul li:hover {
+#jobs_block ul#jobs li:hover {
   background-image: url(../../images/pages/contrib/arrow.jpg);
   background-repeat: no-repeat;
   background-position: bottom center;
@@ -286,7 +286,7 @@ ul#menu > li:hover {
 #jobs_block .details img {
   float: left;
 }
-#jobs_block .details p {
+#jobs_block .details div.txt {
   color: #8e8e8e;
   font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
   font-size: 18px;
@@ -297,7 +297,7 @@ ul#menu > li:hover {
   width: 510px;
   float: left;
 }
-#jobs_block .details a {
+#jobs_block .details a.button {
   position: absolute;
   right: 20px;
   bottom: 15px;

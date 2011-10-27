@@ -11,16 +11,11 @@
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/flatpage.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
-    
-    <style type="text/css">
-        body {
-        background-color: #282828;
-        }    
-    </style>  
 {% endaddtoblock %}
-        {% if user.is_authenticated %}
-            {% cms_toolbar %}
-        {% endif %}
+
+{% if user.is_authenticated %}
+    {% cms_toolbar %}
+{% endif %}
 
 
 	<div class="content">        

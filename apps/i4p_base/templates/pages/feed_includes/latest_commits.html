@@ -4,7 +4,8 @@
  {% for item in items %}
    <li class="{% cycle 'odd' 'even' %}">
     {% show_gravatar "contact@imaginationforpeople.org" 24 %}
-     <p><a href="{{ item.link }}">{{ item.title }}</a></p>
+    <p><a href="{{ item.link }}">{{ item.title }}</a></p>
+    <div class="clear"></div>
    </li>
  {% endfor %}
 </ul>
