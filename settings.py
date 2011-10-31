@@ -112,8 +112,8 @@ if DEBUG:
 
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
-    'django.contrib.auth.backends.ModelBackend',
     'guardian.backends.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
