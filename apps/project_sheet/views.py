@@ -58,14 +58,14 @@ def project_sheet_list(request):
 
     filter_forms_dict, extra_context = build_filters_and_context(data)
 
-    ordered_project_sheets = None
+    ordered_project_sheets = I4pProjectTranslation.objects.none()
     filters = FilterSet(filter_forms_dict.values())
 
     if filters.is_valid():
-        #First pass to filter project
+        # First pass to filter project
         filtered_projects = filters.apply_to(queryset=I4pProject.objects.all(),
                                              model_class=I4pProject)
-        #Second pass to select language
+        # Second pass to select language
         project_sheet_ids = []
         for project in filtered_projects:
             project_sheet = get_project_translation_from_parent(project,
@@ -75,11 +75,11 @@ def project_sheet_list(request):
             project_sheet_ids.append(project_sheet.id)
         i18n_project_sheets = I4pProjectTranslation.objects.filter(id__in=project_sheet_ids)
 
-        #Third pass to filter sheet
+        # Third pass to filter sheet
         filtered_project_sheets = filters.apply_to(queryset=i18n_project_sheets,
                                                    model_class=I4pProjectTranslation)
 
-        #Fourth pass to order sheet
+        # Fourth pass to order sheet
         if data.get("order") == "creation":
             ordered_project_sheets = filtered_project_sheets.order_by('-project__created')
             extra_context["order"] = "creation"
@@ -98,8 +98,6 @@ def project_sheet_list(request):
 
         extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].cleaned_data["themes"]]
 
-    else:
-        pass
 
     extra_context.update(filter_forms_dict)
     extra_context["filters_tab_selected"] = True
