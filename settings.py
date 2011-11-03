@@ -43,6 +43,7 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (
   ('en', u'English'),
   ('fr', u'Français'),
+  ('el', u'Ελληνικά'),
   ('es', u'Español'),
   ('pt', u'Português'),
   ('de', u'Deutsch'),
