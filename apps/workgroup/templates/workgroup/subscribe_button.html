@@ -2,13 +2,13 @@
 {% if not request.user in ml_member_list %}
        <form method='POST' action='{% url workgroup-subscribe workgroup.slug %}'>
          {% csrf_token %}
-         <input type='submit' class='button' value="{% trans "Subscribe" %}" />
+         <input type='submit' class='button' value="{% trans 'Subscribe' %}" style="float:none; font-size:22px;" />
 	 <input type="hidden" name='next_url' value="{{ request.path }}"/>
        </form>
 {% else %}
        <form method='POST' action='{% url workgroup-unsubscribe workgroup.slug %}'>
        {% csrf_token %}
-          <input type='submit' class='button' value="{% trans "Unsubscribe" %}" />
+          <input type='submit' class='button' value="{% trans 'Unsubscribe' %}" style="float:none; font-size:22px;" />
 	 <input type="hidden" name='next_url' value="{{ request.path }}"/>
        </form>
 {% endif %}
