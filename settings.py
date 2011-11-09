@@ -393,3 +393,5 @@ CMS_TEMPLATES = (
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
 )
+
+APPEND_SLASH = False
