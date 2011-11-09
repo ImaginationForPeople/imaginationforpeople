@@ -43,6 +43,7 @@ LANGUAGE_CODE = 'en'
 LANGUAGES = (
   ('en', u'English'),
   ('fr', u'Français'),
+  ('el', u'Ελληνικά'),
   ('es', u'Español'),
   ('pt', u'Português'),
   ('de', u'Deutsch'),
@@ -392,3 +393,5 @@ CMS_TEMPLATES = (
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
 )
+
+APPEND_SLASH = False

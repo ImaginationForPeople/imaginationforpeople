@@ -103,7 +103,7 @@ $(document).ready(function() {
                                                                             {% endif %}
                                                                             " method="POST">
                                                                             {% csrf_token %}
-                                            <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" title="{% if vote and vote.is_upvote %}{% trans "Clear my vote" %}{% else %}{% trans "Vote for" %}{% endif %}" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
+                                                <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" title="{% if vote and vote.is_upvote %}{% trans "Clear my vote" %}{% else %}{% trans "Vote for" %}{% endif %}" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
                                             </form>
 
                                             <form class="feedbackvote" id="feedbackdown{{ feedback.id }}" action="{% if vote and vote.is_downvote %}
