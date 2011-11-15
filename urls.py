@@ -71,13 +71,6 @@ if settings.DEBUG:
 
 urlpatterns += staticfiles_urlpatterns()
 
-## i18n l10n translation UI
-if 'rosetta' in settings.INSTALLED_APPS:
-    urlpatterns = patterns('',
-        url(r'^rosetta/', include('rosetta.urls')),
-    ) + urlpatterns
-
-
 ## CMS
 urlpatterns += patterns('',
                         url(r'^', include('cms.urls'))
