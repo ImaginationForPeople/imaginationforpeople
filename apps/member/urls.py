@@ -55,7 +55,11 @@ urlpatterns = patterns('',
                            name='userena_activate_complete'),
                        url(r'^(?P<username>\w+)/activate/(?P<activation_key>\w+)/$',
                            userena_views.activate,
+                           {'success_url': '/member/activate_success'},
                            name='userena_activate'),
+                       url(r'^activate_success/?$',
+                           # This redirects to userena_profile_edit
+                           member_views.activate_success),
 
                        # Change email and confirm it
                        url(r'^(?P<username>\w+)/email/$',
