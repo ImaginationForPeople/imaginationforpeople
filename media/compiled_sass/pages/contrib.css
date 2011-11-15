@@ -302,15 +302,27 @@ ul#menu > li:hover {
   right: 20px;
   bottom: 15px;
   background-image: url(../../images/pages/contrib/button.jpg);
-  background-repeat: no-repeat;
-  width: 130px;
-  height: 32px;
-  line-height: 32px;
-  padding-left: 50px;
+  background-repeat: repeat-x;
+  height: 25px;
+  line-height: 25px;
+  padding: 2px;
+  padding-right: 15px;
   font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
   font-size: 18px;
   font-weight: bold;
   font-style: italic;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+}
+#jobs_block .details a.button img {
+  position: relative;
+  top: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 /* --FOOTER---------------------------------------------------------------------------------------------------- */
