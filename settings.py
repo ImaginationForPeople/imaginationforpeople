@@ -158,7 +158,6 @@ INSTALLED_APPS = (
     'nani',
 
     'tinymce',
-    'rosetta',
     'tagging',
     'imagekit',
     'oembed_works',
@@ -363,9 +362,6 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 ### COMPRESOR
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
-
-## Rosetta
-ROSETTA_WSGI_AUTO_RELOAD = True
 
 ## Backcap config
 BACKCAP_NOTIFY_WHOLE_STAFF = False
