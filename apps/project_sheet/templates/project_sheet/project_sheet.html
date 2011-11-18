@@ -9,6 +9,9 @@
 {% block title %}
     {% if project_translation.title %}
         {{project_translation.title|capfirst}} 
+	{% if project_translation.baseline %}
+	: {{ project_translation.baseline }}
+	{% endif %}
     {% else %}
         {% trans 'start project'|capfirst %}
     {% endif %}
