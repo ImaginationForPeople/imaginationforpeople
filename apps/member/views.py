@@ -242,3 +242,14 @@ def email_change(request, username, form=ChangeEmailForm,
                                       success_url=success_url,
                                       extra_context=extra_context)
     
+
+@login_required
+def activate_success(request):
+    """
+    Userena doesn't allow to specify an activation success URL that takes a
+    username. This wrapper view doesn't require a username. It gets the username
+    from the request object and redirects to the profile edit screen URL ,which
+    requires a username parameter.
+    """
+    return redirect(reverse('userena_profile_edit',
+                            kwargs={'username': request.user.username}))
