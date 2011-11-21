@@ -385,6 +385,8 @@ FILEBROWSER_USE_UPLOADIFY = False
 DEFAULT_HEADER_SENDER = "Imagination For People Newsletter <contact@imaginationforpeople.org>"
 
 ## CMS
+CMS_PERMISSION = True
+
 CMS_TEMPLATES = (
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
