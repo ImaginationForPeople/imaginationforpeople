@@ -238,6 +238,7 @@ OEMBED_PROVIDERS = {
 if DEBUG:
     INSTALLED_APPS += (
         'debug_toolbar',
+        'lettuce.django',
         )
 
 
