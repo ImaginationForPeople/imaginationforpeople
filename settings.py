@@ -143,6 +143,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'apps/member/templates'),
     os.path.join(PROJECT_PATH, 'apps/i4p_base/templates'),
     os.path.join(PROJECT_PATH, 'apps/project_sheet/templates'),
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
@@ -154,6 +155,7 @@ INSTALLED_APPS = (
     'django_nose',
     'django_extensions',
     'userena',
+    'userena.contrib.umessages',
     'guardian',
     'nani',
 

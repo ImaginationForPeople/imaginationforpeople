@@ -30,6 +30,7 @@ urlpatterns = patterns('',
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
+    url(r'^messages/', include('userena.contrib.umessages.urls')),
     (r'^newsletters/', include('emencia.django.newsletter.urls')),
     
     (r'^ajax_select/', include('ajax_select.urls')),
