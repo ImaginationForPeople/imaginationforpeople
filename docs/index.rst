@@ -12,6 +12,7 @@ Developer's Documentation
    :maxdepth: 2
 
    setup_dev_env.rst
+   testing.rst
    settings.rst
    api.rst
 
