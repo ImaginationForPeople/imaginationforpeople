@@ -110,6 +110,11 @@ if DEBUG:
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
+    LETTUCE_APPS = (
+            'apps.member',
+            'apps.project_sheet',
+            'apps.i4p_base',
+            )
 
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
@@ -238,6 +243,7 @@ OEMBED_PROVIDERS = {
 if DEBUG:
     INSTALLED_APPS += (
         'debug_toolbar',
+        'lettuce.django',
         )
 
 
