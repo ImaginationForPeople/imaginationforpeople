@@ -159,6 +159,7 @@ INSTALLED_APPS = (
     'django_nose',
     'django_extensions',
     'userena',
+    'userena.contrib.umessages',
     'guardian',
     'nani',
 
