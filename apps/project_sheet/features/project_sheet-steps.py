@@ -17,6 +17,7 @@
 #
 
 from django.core.urlresolvers import reverse
+from django.contrib.auth.models import User
 from django.test.client import Client
 from lettuce import before, step, world
 from lettuce.django import django_url
@@ -26,10 +27,15 @@ from apps.project_sheet.utils import create_project_translation
 from apps.project_sheet.utils import get_project_translation_by_slug
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 
+def truncate(*args):
+    for model in args:
+        model.objects.all().delete()
+
 @before.all
 def setup_env():
-    I4pProject.objects.all().delete()
-    I4pProjectTranslation.objects.all().delete()
+    truncate(User)
+    User.objects.create_user('testuser', email='test@example.com', password='test')
+
     world.language_code = 'en'
     world.project_slug = 'a-sample-project'
 
@@ -39,6 +45,10 @@ def setup_env():
     world.edit_status_url = django_url(reverse('project_sheet-instance-edit-status', 
                                                args=(world.project_slug,)))
 
+
+@before.each_scenario
+def setup_scenario_env(_):
+    truncate(I4pProject, I4pProjectTranslation)
     create_project_translation(world.language_code, default_title=world.project_slug)
 
 
@@ -48,20 +58,22 @@ def navigate_to_url(step, url):
     world.response = world.browser.get(full_url, follow=True)
     assert(world.response.status_code == 200)
 
+
 @step(r'I should see the message "(.*)"')
 def check_response(step, message):
     assert 'h1' in world.response.content
+
 
 @step(r'I want to change the themes of my project')
 def project_sheet_change_theme(step):
     response = world.browser.get(world.edit_theme_url)
     assert(response.status_code == 200)
 
+
 @step(r'I tag it with "(.*)"')
 def project_sheet_tag_it(step, someTags):
-    world.browser.post(world.edit_theme_url,
-                       {'themes': someTags}
-                       )
+    world.browser.post(world.edit_theme_url, {'themes': someTags})
+
 
 @step(r'My project is at least tagged with "(.*)"')
 def project_sheet_is_tagged(step, someTags):
@@ -70,13 +82,21 @@ def project_sheet_is_tagged(step, someTags):
     for tag in parse_tag_input(someTags):
         assert(tag in project.themes)
 
+
 @step(r'I am a logged in user')
 def ensure_logged_in(step):
-    pass
+    world.browser.login(username='testuser', password='test')
+
+
+@step(r'I am not a logged in user')
+def ensure_not_logged_in(step):
+    world.browser.logout()
+
 
 @step(r'I change the status of a project to "(.*)"')
 def project_sheet_change_status(step, status):
     world.browser.post(world.edit_status_url, {'status': status})
+
 
 @step(r'the project status is "(.*)"')
 def project_sheet_check_status(step, status):
