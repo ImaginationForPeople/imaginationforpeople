@@ -49,7 +49,7 @@ from .forms import (
         ProjectReferenceFormSet,
         I4pProjectLocationForm, 
         ProjectMemberForm, 
-        ProjectMemberFormSet
+#        ProjectMemberFormSet
         )
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -224,6 +224,7 @@ def project_sheet_edit_location(request, slug):
     return redirect(project_translation)
 
 
+@login_required
 def project_sheet_edit_status(request, slug):
     language_code = translation.get_language()
 

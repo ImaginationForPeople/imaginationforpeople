@@ -15,3 +15,9 @@ Feature: Editing a project sheet
     And the project status is "IDEA"
     When I change the status of a project to "END"
     Then the project status is "END"
+
+  Scenario: Editing project status without being logged in
+    Given I am not a logged in user
+    And the project status is "IDEA"
+    When I change the status of a project to "END"
+    Then the project status is "IDEA"
