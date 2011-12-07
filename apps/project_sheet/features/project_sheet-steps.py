@@ -24,14 +24,20 @@ from tagging.utils import parse_tag_input
 
 from apps.project_sheet.utils import create_project_translation
 from apps.project_sheet.utils import get_project_translation_by_slug
+from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 
 @before.all
 def setup_env():
+    I4pProject.objects.all().delete()
+    I4pProjectTranslation.objects.all().delete()
     world.language_code = 'en'
     world.project_slug = 'a-sample-project'
 
     world.browser = Client()
-    world.edit_theme_url = django_url(reverse('project_sheet-instance-edit-related', args=(world.project_slug,)))
+    world.edit_theme_url = django_url(reverse('project_sheet-instance-edit-related', 
+                                              args=(world.project_slug,)))
+    world.edit_status_url = django_url(reverse('project_sheet-instance-edit-status', 
+                                               args=(world.project_slug,)))
 
     create_project_translation(world.language_code, default_title=world.project_slug)
 
@@ -64,3 +70,17 @@ def project_sheet_is_tagged(step, someTags):
     for tag in parse_tag_input(someTags):
         assert(tag in project.themes)
 
+@step(r'I am a logged in user')
+def ensure_logged_in(step):
+    pass
+
+@step(r'I change the status of a project to "(.*)"')
+def project_sheet_change_status(step, status):
+    world.browser.post(world.edit_status_url, {'status': status})
+
+@step(r'the project status is "(.*)"')
+def project_sheet_check_status(step, status):
+    project = get_project_translation_by_slug(world.project_slug,
+            world.language_code).project
+    assert project.status == status, \
+            "Project status should be '%s' but is '%s'" % (status, project.status)
