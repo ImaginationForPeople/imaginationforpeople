@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-instance-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/location/$', views.project_sheet_edit_location, name='project_sheet-instance-edit-location'),
-    url(r'^(?P<slug>[-\w]+)/edit/status/$', views.project_sheet_edit_status,
+    url(r'^(?P<slug>[-\w]+)/edit/status/$', ajax.project_sheet_edit_status,
         name='project_sheet-instance-edit-status'),
 
     url(r'^(?P<project_slug>[-\w]+)/edit/references/$', views.project_sheet_edit_references, name='project_sheet-instance-edit-references'),
