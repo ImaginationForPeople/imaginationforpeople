@@ -19,7 +19,9 @@
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.test.client import Client
-from lettuce import before, step, world
+from django.test.utils import setup_test_environment, teardown_test_environment
+from django.utils import translation, simplejson
+from lettuce import before, after, step, world
 from lettuce.django import django_url
 from tagging.utils import parse_tag_input
 
@@ -33,6 +35,8 @@ def truncate(*args):
 
 @before.all
 def setup_env():
+    setup_test_environment()
+    
     truncate(User)
     User.objects.create_user('testuser', email='test@example.com', password='test')
 
@@ -50,6 +54,10 @@ def setup_env():
 def setup_scenario_env(_):
     truncate(I4pProject, I4pProjectTranslation)
     create_project_translation(world.language_code, default_title=world.project_slug)
+
+@after.all
+def teardown(_):
+    teardown_test_environment()
 
 
 @step(r'I navigate to "(.*)"')
@@ -95,7 +103,7 @@ def ensure_not_logged_in(step):
 
 @step(r'I change the status of a project to "(.*)"')
 def project_sheet_change_status(step, status):
-    world.browser.post(world.edit_status_url, {'status': status})
+    world.response = world.browser.post(world.edit_status_url, {'status': status})
 
 
 @step(r'the project status is "(.*)"')

@@ -18,6 +18,7 @@
 """
 Django Views for a Project Sheet
 """
+from collections import OrderedDict
 import datetime
 
 from django.core.urlresolvers import reverse
@@ -25,10 +26,15 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django.forms.models import modelform_factory
-from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponseForbidden, Http404
+from django.http import (
+        HttpResponseRedirect, 
+        HttpResponseNotFound, 
+        HttpResponseForbidden, 
+        Http404
+        )
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
-from django.utils import translation
+from django.utils import translation, simplejson
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
@@ -45,7 +51,6 @@ from .forms import (
         I4pProjectThemesForm, 
         I4pProjectObjectivesForm, 
         I4pProjectInfoForm, 
-        I4pProjectStatusForm,
         ProjectReferenceFormSet,
         I4pProjectLocationForm, 
         ProjectMemberForm, 
@@ -142,6 +147,10 @@ def project_sheet_show(request, slug, add_media=False):
 
     reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
 
+    project_status_choices = OrderedDict((k,unicode(v)) 
+                                       for k,v in I4pProject.STATUS_CHOICES)
+    project_status_choices['selected'] = project_translation.project.status
+
     context = {'project': project_translation.project,
                'project_translation': project_translation,
                'project_themes_form': project_themes_form,
@@ -150,6 +159,7 @@ def project_sheet_show(request, slug, add_media=False):
                'project_info_form': project_info_form,
                'project_location_form': project_location_form,
                'project_member_form': project_member_form,
+               'project_status_choices': simplejson.dumps(project_status_choices),
                #'project_member_formset': project_member_formset,
                'project_tab' : True}
 
@@ -223,26 +233,6 @@ def project_sheet_edit_location(request, slug):
 
     return redirect(project_translation)
 
-
-@login_required
-def project_sheet_edit_status(request, slug):
-    language_code = translation.get_language()
-
-    # get the project translation and its base
-    try:
-        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
-                                                              language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
-
-    # Status
-    project_status_form = I4pProjectStatusForm(request.POST,
-                                                 instance=project_translation.project)
-
-    if request.method == 'POST' and project_status_form.is_valid():
-        project_status_form.save()
-
-    return redirect(project_translation)
 
 
 def project_sheet_edit_field(request, field, slug=None):
