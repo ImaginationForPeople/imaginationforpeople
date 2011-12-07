@@ -110,6 +110,11 @@ if DEBUG:
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
+    LETTUCE_APPS = (
+            'apps.member',
+            'apps.project_sheet',
+            'apps.i4p_base',
+            )
 
 AUTHENTICATION_BACKENDS = (
     'userena.backends.UserenaAuthenticationBackend',
@@ -154,11 +159,11 @@ INSTALLED_APPS = (
     'django_nose',
     'django_extensions',
     'userena',
+    'userena.contrib.umessages',
     'guardian',
     'nani',
 
     'tinymce',
-    'rosetta',
     'tagging',
     'imagekit',
     'oembed_works',
@@ -239,6 +244,7 @@ OEMBED_PROVIDERS = {
 if DEBUG:
     INSTALLED_APPS += (
         'debug_toolbar',
+        'lettuce.django',
         )
 
 
@@ -364,9 +370,6 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
 
-## Rosetta
-ROSETTA_WSGI_AUTO_RELOAD = True
-
 ## Backcap config
 BACKCAP_NOTIFY_WHOLE_STAFF = False
 BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
@@ -389,6 +392,8 @@ FILEBROWSER_USE_UPLOADIFY = False
 DEFAULT_HEADER_SENDER = "Imagination For People Newsletter <contact@imaginationforpeople.org>"
 
 ## CMS
+CMS_PERMISSION = True
+
 CMS_TEMPLATES = (
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
