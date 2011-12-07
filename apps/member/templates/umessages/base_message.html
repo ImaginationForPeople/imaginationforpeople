@@ -1,1 +1,32 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+
+{% block style %}
+  {{ block.super }}
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/usermessages.css" />
+  {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="content"> 
+        <div class="container_18">
+        
+            <div class="grid_4 alpha">
+                <i>Gestion de la boite de reception, mails envoy&eacute;s, non lus, etc...</i>
+            </div>
+        
+            <div class="grid_14 omega">
+        
+                {% block usermessage_content %}
+                {% endblock %}  
+            
+            </div>
+            
+            <div class="clear"></div>
+            
+        </div>
+    </div>
+{% endblock %}     

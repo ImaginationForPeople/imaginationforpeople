@@ -3,22 +3,47 @@
 
 {% block content_title %}<h2>Messages</h2>{% endblock %}
 
-{% block content %}
-{% get_unread_message_count_for user as unread_message_count %}
-{{ unread_message_count }} new messages.
-<a href="{% url userena_umessages_compose %}">Compose</a>
-<ul>
-  {% for message in message_list %}
-  <li>
-  {% if message.from_user == user %}
-  <a href="{% url userena_umessages_detail message.to_user.username %}">{{ message.to_user }}</a>
-  {% get_unread_message_count_between user and message.to_user as unread_between_count %}
-  {% else %}
-  <a href="{% url userena_umessages_detail message.from_user.username %}">{{ message.from_user }}</a>
-  {% get_unread_message_count_between user and message.from_user as unread_between_count %}
-  {% endif %}
-  {{ message.latest_message }} ({{ unread_between_count }} new )
-  </li>
-  {% endfor %}
-</ul>
+{% block usermessage_content %}
+    {% get_unread_message_count_for user as unread_message_count %}
+    {{ unread_message_count }} new messages.
+    <a href="{% url userena_umessages_compose %}">Compose</a>
+    <ul id="usermessage_list">
+        {% for message in message_list %}
+        
+        {% if message.from_user == user %}
+            {% get_unread_message_count_between user and message.to_user as unread_between_count %}
+         {% else %}
+            {% get_unread_message_count_between user and message.from_user as unread_between_count %}
+        {% endif %}
+        
+        <li class="usermessage 
+            {% if unread_between_count != 0 %}
+            unsee
+            {% endif %}        
+        ">
+            
+            <a href="{% url userena_umessages_detail message.to_user.username %}"> 
+                <div class="avatar"><img src="http://www.google.fr/images/srpr/logo3w.png" alt="nom" /></div>
+                
+                <div class="usermessage_body">
+                    
+                    <em>Received on {{ message.sent_at }}</em>
+                    <br /><br />
+                    
+                    <h1>
+                        {% if message.from_user == user %}
+                            {{ message.to_user }}
+                         {% else %}
+                             {{ message.from_user }}
+                        {% endif %}
+                    </h1>
+                    
+                    <br />
+                    <p>{{ message.latest_message }} ({{ unread_between_count }} new )</p>
+                </div>
+            </a>
+
+            </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
