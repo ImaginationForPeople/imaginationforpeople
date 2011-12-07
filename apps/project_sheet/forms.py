@@ -70,6 +70,17 @@ class I4pProjectLocationForm(forms.ModelForm):
         model = Location
         fields = ('address', 'country',)
 
+
+class I4pProjectStatusForm(forms.ModelForm):
+    """
+    Edit the status of a Project
+    """
+    class Meta:
+        model = I4pProject
+        fields = ('status', )
+
+
+
 class ProjectMemberChoiceField(forms.ModelChoiceField):
     """
     Show firstname and lastname instead of username if possible

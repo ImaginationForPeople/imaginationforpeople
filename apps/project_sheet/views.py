@@ -41,8 +41,16 @@ from apps.project_sheet.utils import build_filters_and_context
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
-from .forms import I4pProjectThemesForm, I4pProjectObjectivesForm, I4pProjectInfoForm, ProjectReferenceFormSet
-from .forms import I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
+from .forms import (
+        I4pProjectThemesForm, 
+        I4pProjectObjectivesForm, 
+        I4pProjectInfoForm, 
+        I4pProjectStatusForm,
+        ProjectReferenceFormSet,
+        I4pProjectLocationForm, 
+        ProjectMemberForm, 
+        ProjectMemberFormSet
+        )
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
 from .utils import get_project_project_translation_recent_changes, fields_diff
@@ -212,6 +220,26 @@ def project_sheet_edit_location(request, slug):
         if not project_translation.project.location:
             project_translation.project.location = location
             project_translation.project.save()
+
+    return redirect(project_translation)
+
+
+def project_sheet_edit_status(request, slug):
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    # Status
+    project_status_form = I4pProjectStatusForm(request.POST,
+                                                 instance=project_translation.project)
+
+    if request.method == 'POST' and project_status_form.is_valid():
+        project_status_form.save()
 
     return redirect(project_translation)
 
