@@ -4,9 +4,7 @@
 {% block content_title %}<h2>Messages</h2>{% endblock %}
 
 {% block usermessage_content %}
-    {% get_unread_message_count_for user as unread_message_count %}
-    {{ unread_message_count }} new messages.
-    <a href="{% url userena_umessages_compose %}">Compose</a>
+    <div class="title_bar"><a href="{% url userena_umessages_compose %}" class="new_message">{% trans 'New Message' %}</a></div>
     <ul id="usermessage_list">
         {% for message in message_list %}
         
@@ -21,14 +19,18 @@
             unsee
             {% endif %}        
         ">
-            
-            <a href="{% url userena_umessages_detail message.to_user.username %}"> 
+            <a href="
+                {% if message.from_user == user %}
+                    {% url userena_umessages_detail message.to_user.username %}
+                {% else %}
+                    {% url userena_umessages_detail message.from_user.username %}
+                {% endif %}
+            "> 
                 <div class="avatar"><img src="http://www.google.fr/images/srpr/logo3w.png" alt="nom" /></div>
                 
                 <div class="usermessage_body">
                     
                     <em>Received on {{ message.sent_at }}</em>
-                    <br /><br />
                     
                     <h1>
                         {% if message.from_user == user %}

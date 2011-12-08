@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
+{% load umessages_tags %}
 
 {% block style %}
   {{ block.super }}
@@ -11,11 +12,21 @@
 {% endblock %}
 
 {% block content %}
-    <div class="content"> 
+    <div class="content usermessages_content"> 
         <div class="container_18">
         
             <div class="grid_4 alpha">
-                <i>Gestion de la boite de reception, mails envoy&eacute;s, non lus, etc...</i>
+                <h1 class="title">{% trans 'My Messages' %}</h1>
+                {% get_unread_message_count_for user as unread_message_count %}
+                <div class="nb_messages">
+                    {% if unread_message_count == 0 %}
+                        {{ unread_message_count }}
+                    {% else %}
+                        <strong>{{ unread_message_count }}</strong>
+                    {% endif %}
+                    
+                    {% trans 'Inbox' %}
+                </div>
             </div>
         
             <div class="grid_14 omega">
