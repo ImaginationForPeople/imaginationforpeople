@@ -263,6 +263,7 @@ USERENA_DEFAULT_PRIVACY = 'open'
 
 # Social auth
 SOCIAL_AUTH_USERNAME_FIXER = fix_username
+FACEBOOK_EXTENDED_PERMISSIONS = ['email']
 
 # localeurl/monther-tongue
 PREFIX_DEFAULT_LOCALE = True
