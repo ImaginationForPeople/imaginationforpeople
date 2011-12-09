@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 # Import settings for the given site
 from site_settings import *
 
+from apps.member.utils import fix_username
+
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
@@ -117,6 +119,8 @@ if DEBUG:
             )
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.OpenIDBackend',
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -183,6 +187,7 @@ INSTALLED_APPS = (
     'linaro_django_pagination',
     'template_utils',
     'simplegravatar',
+    'social_auth',
 
 
     #'grappelli',
@@ -255,6 +260,9 @@ USERENA_MUGSHOT_SIZE = 160
 USERENA_MUGSHOT_PATH = 'mugshots/'
 
 USERENA_DEFAULT_PRIVACY = 'open'
+
+# Social auth
+SOCIAL_AUTH_USERNAME_FIXER = fix_username
 
 # localeurl/monther-tongue
 PREFIX_DEFAULT_LOCALE = True
