@@ -162,6 +162,7 @@ INSTALLED_APPS = (
     'userena.contrib.umessages',
     'guardian',
     'nani',
+    'honeypot',
 
     'tinymce',
     'tagging',
@@ -257,6 +258,9 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 USERENA_DEFAULT_PRIVACY = 'open'
 
 USERENA_ACTIVATION_REQUIRED = False
+
+# Honeypot
+HONEYPOT_FIELD_NAME = "homepage"
 
 # localeurl/monther-tongue
 PREFIX_DEFAULT_LOCALE = True
