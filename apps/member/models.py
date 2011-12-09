@@ -26,6 +26,8 @@ from django_countries import CountryField
 from guardian.shortcuts import assign
 from userena.models import UserenaLanguageBaseProfile
 from userena.signals import activation_complete
+from userena.utils import get_profile_model
+from social_auth.signals import socialauth_registered
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 
@@ -61,6 +63,13 @@ def email_managers_on_account_activation(sender, user, **kwargs):
     body = render_to_string('member/emails/new_user.txt', {'user': user})
     mail_managers(subject=_(u'New user registered'), message=body)
         
+
+@receiver(socialauth_registered)
+def socialauth_registered_handler(sender, user, response, details, **kwargs):
+    profile_model = get_profile_model()
+    new_profile = profile_model(user=user)
+    new_profile.save()
+
 
 # XXX: userena should be enough
 # def assign_good_profile_perm(sender, instance, created, **kwargs):
