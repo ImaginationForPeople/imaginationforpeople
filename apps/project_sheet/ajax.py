@@ -18,15 +18,15 @@
 """
 Ajax views for handling project sheet creation and edition.
 """
+from django.contrib.auth.decorators import login_required
 from django.forms.models import modelform_factory
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, Http404
-from django.template.defaultfilters import linebreaksbr
-from django.utils import simplejson, translation
-from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import login_required
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from django.template.defaultfilters import linebreaksbr
+from django.utils import simplejson, translation
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 
 from dajaxice.core import dajaxice_functions
 
@@ -132,6 +132,9 @@ def project_textfield_save(request, project_slug=None):
 
 @login_required
 def project_sheet_edit_status(request, slug):
+    """
+    Change the status (concept, work in progress, etc.) of a project.
+    """
     language_code = translation.get_language()
 
     # get the project translation and its base
@@ -154,7 +157,7 @@ def project_sheet_edit_status(request, slug):
                 dictionary={'project_translation': project_translation},
                 context_instance=RequestContext(request))
     else:
-        return HttpResponse('Error')
+        return HttpResponseBadRequest()
 
 
 
