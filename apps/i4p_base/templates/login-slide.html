@@ -1,4 +1,5 @@
 {% load i18n %}	
+{% load honeypot %}
 {% load localeurl_tags %}
 	
 <div id="toppanel">
@@ -67,6 +68,7 @@
                         </p>
                         {% endif %}
                         {% endfor %}                   
+                        {% render_honeypot_field %}
 			<label>{% trans "A password will be e-mailed to you." %}</label> 
 			<div class="clear"></div><br />
 			<input type="submit" name="submit" value="{% trans 'Register' %}" class="button" style="margin-left:0px;" /><div class="clear"></div>
