@@ -16,18 +16,19 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.test.client import Client
 from django.test.utils import setup_test_environment, teardown_test_environment
 from django.utils import translation, simplejson
+
 from lettuce import before, after, step, world
 from lettuce.django import django_url
 from tagging.utils import parse_tag_input
 
+from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 from apps.project_sheet.utils import create_project_translation
 from apps.project_sheet.utils import get_project_translation_by_slug
-from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 
 def truncate(*args):
     for model in args:
