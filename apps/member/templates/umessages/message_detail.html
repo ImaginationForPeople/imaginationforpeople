@@ -13,13 +13,25 @@
             <div class="usermessage_body">
             <em>Received on {{ message.sent_at }}</em>
             <br /><br />
-                            {{ message.from_user }}
+                {{ message.from_user }}
             <br /><br />
 
             {{ message }}
             </div>
         </li>        
         {% endfor %}
+        
+        <div id="usermessage_compose">
+        
+            <div class="avatar"><img src="http://www.google.fr/images/srpr/logo3w.png" alt="nom" /></div>
+            <form action="" method="post" id="password_change_form">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" name="send" value="{% trans 'Send' %}" />
+            </form>
+    
+        </div>
+
         
     </ul>
     

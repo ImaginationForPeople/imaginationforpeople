@@ -4,7 +4,6 @@
 {% block content_title %}<h2>Messages</h2>{% endblock %}
 
 {% block usermessage_content %}
-    <div class="title_bar"><a href="{% url userena_umessages_compose %}" class="new_message">{% trans 'New Message' %}</a></div>
     <ul id="usermessage_list">
         {% for message in message_list %}
         
