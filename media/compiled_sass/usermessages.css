@@ -53,6 +53,7 @@
 .usermessages_content .nb_messages {
   background-color: #2b2b2b;
   padding: 4px;
+  color: white;
 }
 .usermessages_content .nb_messages strong {
   background-color: #04add1;
@@ -116,4 +117,78 @@
 }
 .usermessages_content #usermessage_list .usermessage.unsee .avatar {
   background-image: url("../images/usermessages/avatar-bg2.png");
+}
+.usermessages_content #usermessage_list #usermessage_compose {
+  background-image: none;
+  padding: 0px;
+  position: relative;
+}
+.usermessages_content #usermessage_list #usermessage_compose .avatar {
+  display: none;
+  visibility: hidden;
+}
+.usermessages_content #usermessage_list #usermessage_compose textarea {
+  padding: 5px;
+}
+.usermessages_content #usermessage_list #usermessage_compose input[type=submit] {
+  left: 10px;
+  position: relative;
+}
+.usermessages_content #usermessage_compose {
+  width: 100%;
+  float: left;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-image: url("../images/usermessages/message-bg-see.jpg");
+  position: relative;
+  color: white;
+}
+.usermessages_content #usermessage_compose form {
+  margin-left: 135px;
+}
+.usermessages_content #usermessage_compose form p {
+  float: left;
+  margin-bottom: 5px;
+  width: 100%;
+  position: relative;
+}
+.usermessages_content #usermessage_compose form p label {
+  position: absolute;
+  color: #403f3d;
+  top: 4px;
+  left: 5px;
+  color: grey;
+}
+.usermessages_content #usermessage_compose form p input[type=text] {
+  padding-left: 45px;
+  width: 92%;
+}
+.usermessages_content #usermessage_compose form p textarea {
+  width: 99%;
+}
+.usermessages_content #usermessage_compose form input[type=submit] {
+  float: right;
+  background-color: #6b6b6b;
+  border: 0px;
+  margin-right: 2px;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+  padding: 4px;
+}
+.usermessages_content #usermessage_compose .avatar {
+  width: 127px;
+  height: 117px;
+  background-image: url("../images/usermessages/avatar-bg.png");
+  background-repeat: no-repeat;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+.usermessages_content #usermessage_compose .avatar img {
+  width: 97px;
+  height: 97px;
+  margin: 10px;
 }
