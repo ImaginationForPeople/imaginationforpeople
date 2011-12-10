@@ -42,6 +42,7 @@ from userena.forms import AuthenticationForm, ChangeEmailForm
 from userena.utils import signin_redirect, get_profile_model
 
 from guardian.decorators import permission_required_or_403
+from localeurl.utils import strip_path, locale_url
 from reversion.models import Version
 
 from apps.project_sheet.utils import get_project_translations_from_parents
@@ -172,6 +173,11 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
 
             if success_url: redirect_to = success_url
             else: redirect_to = reverse('userena_profile_detail', kwargs={'username': username})
+
+            # Ensure the redirect URL locale prefix matches the profile locale
+            _locale, path = strip_path(redirect_to)
+            redirect_to = locale_url(path, locale=profile.language)
+
             return redirect(redirect_to)
 
     if not extra_context: extra_context = dict()

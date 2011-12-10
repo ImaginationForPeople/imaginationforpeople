@@ -95,9 +95,14 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-    'userena.middleware.UserenaLocaleMiddleware',
-
 #    'cms.middleware.multilingual.MultilingualURLMiddleware',
+
+    ## Order locale middleware does matter
+    # Default django language selection, detects browser language preference
+    'django.middleware.locale.LocaleMiddleware',
+    # Language selection based on profile
+    'userena.middleware.UserenaLocaleMiddleware',
+    # URL based language selection from top panel
     'localeurl.middleware.LocaleURLMiddleware',
 
 
