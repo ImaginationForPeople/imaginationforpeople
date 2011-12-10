@@ -12,7 +12,7 @@ import views as member_views
 urlpatterns = patterns('',
                        # Signup, signin and signout
                        url(r'^signup/$',
-                           userena_views.signup,
+                           member_views.signup,
                            {'signup_form' : I4PSignupForm},
                            name='userena_signup'),
                        url(r'^signin/$',

@@ -26,7 +26,7 @@ from django.core.urlresolvers import reverse
 from django.utils import translation
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth import REDIRECT_FIELD_NAME
+from django.contrib.auth import REDIRECT_FIELD_NAME, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
@@ -39,7 +39,8 @@ from userena import settings as userena_settings
 from userena import views as userena_views
 from userena.decorators import secure_required
 from userena.forms import AuthenticationForm, ChangeEmailForm
-from userena.utils import signin_redirect, get_profile_model
+from userena.forms import SignupForm, SignupFormOnlyEmail
+from userena.utils import signin_redirect
 
 from guardian.decorators import permission_required_or_403
 from localeurl.utils import strip_path, locale_url
@@ -49,6 +50,44 @@ from apps.project_sheet.utils import get_project_translations_from_parents
 from apps.project_sheet.models import I4pProjectTranslation
 
 from .forms import I4PEditProfileForm, I4PSignupForm
+
+@secure_required
+def signup(request, signup_form,
+           template_name='userena/signup_form.html', success_url=None,
+           extra_context=None):
+    """
+    Custom version of userena's signup view that initialize profile language
+    based on browser settings.
+    """
+    # If no usernames are wanted and the default form is used, fallback to the
+    # default form that doesn't display to enter the username.
+    if userena_settings.USERENA_WITHOUT_USERNAMES and (signup_form == SignupForm):
+        signup_form = SignupFormOnlyEmail
+
+    form = signup_form()
+
+    if request.method == 'POST':
+        form = signup_form(request.POST, request.FILES)
+        if form.is_valid():
+            user = form.save()
+            profile = user.get_profile()
+            profile.language = request.LANGUAGE_CODE
+            profile.save()
+
+            if success_url: redirect_to = success_url
+            else: redirect_to = reverse('userena_signup_complete',
+                                        kwargs={'username': user.username})
+
+            # A new signed user should logout the old one.
+            if request.user.is_authenticated():
+                logout(request)
+            return redirect(redirect_to)
+
+    if not extra_context: extra_context = dict()
+    extra_context['form'] = form
+    return direct_to_template(request,
+                              template_name,
+                              extra_context=extra_context)
 
 
 def profile_detail(request, username):
