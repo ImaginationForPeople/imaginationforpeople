@@ -2,6 +2,7 @@
 from django.conf.urls.defaults import patterns, url
 from django.contrib.auth import views as auth_views
 
+from honeypot.decorators import check_honeypot
 from userena import views as userena_views
 from userena import settings as userena_settings
 
@@ -12,8 +13,9 @@ import views as member_views
 urlpatterns = patterns('',
                        # Signup, signin and signout
                        url(r'^signup/$',
-                           userena_views.signup,
-                           {'signup_form' : I4PSignupForm},
+                           check_honeypot(userena_views.signup),
+                           {'signup_form' : I4PSignupForm,
+                            'success_url': '/member/activate_success'},
                            name='userena_signup'),
                        url(r'^signin/$',
                            member_views.signin,
@@ -55,7 +57,11 @@ urlpatterns = patterns('',
                            name='userena_activate_complete'),
                        url(r'^(?P<username>\w+)/activate/(?P<activation_key>\w+)/$',
                            userena_views.activate,
+                           {'success_url': '/member/activate_success'},
                            name='userena_activate'),
+                       url(r'^activate_success/?$',
+                           # This redirects to userena_profile_edit
+                           member_views.activate_success),
 
                        # Change email and confirm it
                        url(r'^(?P<username>\w+)/email/$',

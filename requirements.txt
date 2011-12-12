@@ -9,7 +9,7 @@ django-countries==1.0.5
 
 django-tagging==0.3.1
 django-autoslug==1.4.1
-django-cms==2.2
+-e git+https://github.com/ImaginationForPeople/django-cms.git@master#egg=django-cms
 
 django-imagekit==0.3.6
 Pillow==1.7.4
@@ -21,6 +21,7 @@ django-voting==0.1
 django-annoying==0.7.4
 
 django-robots==0.8.0
+django-honeypot==0.3.0
 
 django-tinymce==1.5.1a2
 -e git+https://github.com/smacker/django-filebrowser-no-grappelli-for-django13.git@17eee97ac7d58de76bef851b092625dcec8e5b2b#egg=django-filebrowser
@@ -71,6 +72,5 @@ pylint
 # Dev tools
 werkzeug
 django-debug-toolbar
--e git+https://github.com/mbi/django-rosetta.git#egg=django-rosetta
 sphinx
 dozer==0.1
