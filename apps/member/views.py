@@ -136,7 +136,6 @@ def signin(request,
                                     redirect_signin_function=signin_redirect,
                                     extra_context=extra_context)
 
-
     if request.method == 'POST':
         form = auth_form(request.POST)
         if form.is_valid():

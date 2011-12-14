@@ -103,7 +103,7 @@ MIDDLEWARE_CLASSES = (
     # Language selection based on profile
     'userena.middleware.UserenaLocaleMiddleware',
     # URL based language selection from top panel
-    'localeurl.middleware.LocaleURLMiddleware',
+    'apps.member.middleware.LocaleURLMiddleware',
 
 
     'cms.middleware.page.CurrentPageMiddleware',
