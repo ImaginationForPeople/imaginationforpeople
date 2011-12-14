@@ -97,12 +97,12 @@ MIDDLEWARE_CLASSES = (
 
 #    'cms.middleware.multilingual.MultilingualURLMiddleware',
 
-    ## Order locale middleware does matter
+    ## The order of these locale middleware classes matters
     # Default django language selection, detects browser language preference
     'django.middleware.locale.LocaleMiddleware',
     # Language selection based on profile
     'userena.middleware.UserenaLocaleMiddleware',
-    # URL based language selection from top panel
+    # URL based language selection (eg. from top panel)
     'apps.member.middleware.LocaleURLMiddleware',
 
 
