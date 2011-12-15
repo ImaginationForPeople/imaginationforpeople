@@ -91,14 +91,7 @@ def send_message_notification(sender, instance, **kwargs):
             message_url_path)
 
     subject = _(u'Message from %(sender)s') % params
-    message = _(u"""
-%(sender)s has sent you a message.
-
-You can view it online at %(message_url)s
-
-The content of the message is:
-
-%(body)s""") % params
+    message = render_to_string('umessages/message_notification.txt', params)
     recipient = instance.user.email
 
     send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [recipient])
