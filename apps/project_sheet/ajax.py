@@ -25,7 +25,6 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
 from dajaxice.core import dajaxice_functions
@@ -85,7 +84,6 @@ def project_textfield_load(request, project_slug=None):
     return HttpResponse(resp)
 
 @require_POST
-@csrf_exempt
 def project_textfield_save(request, project_slug=None):
     """
     Edit a text field
