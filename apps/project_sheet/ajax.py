@@ -27,8 +27,6 @@ from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
 
-from dajaxice.core import dajaxice_functions
-
 from .models import I4pProjectTranslation
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm
 from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
@@ -204,12 +202,5 @@ def project_update_related(request, language_code, related_form, project_slug):
 
         
     return simplejson.dumps({})
-
-
-# Dajax Registration
-dajaxice_functions.register(project_update_related)
-
-
-
 
 
