@@ -4,8 +4,6 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
-from dajaxice.core import dajaxice_autodiscover
-
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
 
 # For server errors
@@ -54,14 +52,6 @@ urlpatterns = patterns('',
 ## Javascript i18n catalog
 urlpatterns += patterns('',
     (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
-)
-
-## DajaxIce (should be replaced by a static file once in production env)
-dajaxice_autodiscover()
-
-urlpatterns += patterns('',
-    # Dajax(ice)
-    (r'^%s/' % settings.DAJAXICE_MEDIA_PREFIX, include('dajaxice.urls')),
 )
 
 ## Static Media

@@ -1,0 +1,30 @@
+{% load i18n %}
+
+                    <div class="project_card_pictos">        
+                        {% if project_translation.project.members.count > 0 %}
+                        <img src="{{ STATIC_URL }}images/project/picto-team.jpg" alt="{% trans 'associated team' %}" class="tipsed" title="{% trans 'associated team' %}"/>
+                        {% endif %}
+                        {% ifequal project_translation.completion_progress "EDIT" %}
+                        <img src="{{ STATIC_URL }}images/project/picto-editing.jpg" alt="{% trans 'in progress' %}" class="tipsed" title="{% trans 'in progress' %}"/>
+                        {% endifequal  %}
+                        {% if project_translation.project.popular %}
+                        <img src="{{ STATIC_URL }}images/project/picto-popular.jpg" alt="{% trans 'popular' %}" class="tipsed" title="{% trans 'popular' %}"/>
+                        {% endif %}
+                        {% if project_translation.project.best_of %}
+                        <img src="{{ STATIC_URL }}images/project/picto-bestof.jpg" alt="{% trans 'bestof' %}" class="tipsed" title="{% trans 'bestof' %}"/>
+                        {% endif %}
+                    </div>
+
+                
+                    {% ifequal project_translation.project.status "IDEA" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress25.jpg" /><p> {{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
+                    {% ifequal project_translation.project.status "BEGIN" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress50.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
+                    {% ifequal project_translation.project.status "WIP" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress75.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
+                    {% ifequal project_translation.project.status "END" %}
+                    <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress100.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
+                    {% endifequal %}
