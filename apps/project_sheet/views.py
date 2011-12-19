@@ -18,7 +18,12 @@
 """
 Django Views for a Project Sheet
 """
-from collections import OrderedDict
+try:
+    from collections import OrderedDict
+except ImportError:
+    # Python < 2.7 compatibility
+    from ordereddict import OrderedDict
+
 import datetime
 
 from django.core.urlresolvers import reverse
