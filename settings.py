@@ -153,8 +153,6 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # External Apps
     'localeurl',
-    'dajaxice',
-    'dajax',
     'south',
     'django_nose',
     'django_extensions',
@@ -310,21 +308,12 @@ else:
     EMAIL_PORT = 25
 
 
-
-### Dajax Ice
-DAJAXICE_MEDIA_PREFIX = "js/dajax"
-DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
-DAJAXICE_JSON2_JS_IMPORT = True
-DAJAXICE_DEBUG = DEBUG
-
 ## LOG IN
 LOGIN_REDIRECT_URL = '/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
 
-## Ignore dajax ice path
 LOCALE_INDEPENDENT_PATHS = (
-	re.compile('^/js/dajax/.*$'),
         re.compile('^/static/.*$'),
         re.compile('^/admin/.*$'),
         re.compile('^/media/.*$'),
