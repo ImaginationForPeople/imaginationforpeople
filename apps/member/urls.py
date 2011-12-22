@@ -2,6 +2,7 @@
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib.auth import views as auth_views
 
+from honeypot.decorators import check_honeypot
 from userena import views as userena_views
 from userena import settings as userena_settings
 
@@ -13,8 +14,9 @@ urlpatterns = patterns('',
                        url(r'^', include('social_auth.urls')),
                        # Signup, signin and signout
                        url(r'^signup/$',
-                           userena_views.signup,
-                           {'signup_form' : I4PSignupForm},
+                           check_honeypot(userena_views.signup),
+                           {'signup_form' : I4PSignupForm,
+                            'success_url': '/member/activate_success'},
                            name='userena_signup'),
                        url(r'^signin/$',
                            member_views.signin,
