@@ -119,8 +119,8 @@ if DEBUG:
             )
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.OpenIDBackend',
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -262,7 +262,8 @@ USERENA_DEFAULT_PRIVACY = 'open'
 
 # Social auth
 SOCIAL_AUTH_USERNAME_FIXER = fix_username
-FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
+                                 'user_work_history']
 USERENA_ACTIVATION_REQUIRED = False
 
 # Honeypot

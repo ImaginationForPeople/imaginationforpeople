@@ -15,6 +15,8 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from urllib2 import urlopen
+
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
@@ -26,9 +28,11 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from easy_thumbnails.files import get_thumbnailer
 from django_countries import CountryField
 from guardian.shortcuts import assign
-from social_auth.signals import socialauth_registered
+from social_auth.backends.facebook import FacebookBackend
+from social_auth.signals import socialauth_registered, pre_update
 from userena.managers import ASSIGNED_PERMISSIONS
 from userena.models import UserenaLanguageBaseProfile
 from userena.signals import activation_complete
@@ -73,6 +77,9 @@ def email_managers_on_account_activation(sender, user, **kwargs):
 
 @receiver(socialauth_registered)
 def socialauth_registered_handler(sender, user, response, details, **kwargs):
+    """
+    Called when user registers for the first time using social auth
+    """
     # Create user profile
     profile_model = get_profile_model()
     new_profile = profile_model(user=user)
@@ -85,6 +92,25 @@ def socialauth_registered_handler(sender, user, response, details, **kwargs):
     # Give permissions to view and change itself
     for perm in ASSIGNED_PERMISSIONS['user']:
         assign(perm[0], user, user)
+
+
+@receiver(pre_update, sender=FacebookBackend)
+def facebook_pre_update_handler(sender, user, response, details, **kwargs):
+    """
+    When user authenticate with facebook
+    """
+    try:
+        profile = user.get_profile()
+        profile.website = response.get('website')
+        profile.facebook = response.get('link')
+#        photo_url = "http://graph.facebook.com/%s/picture" % response['id']
+#        photo = urlopen(photo_url)
+#        thumbnailer = get_thumbnailer(photo, relative_name="foo.jpg")
+#        profile.mugshot = thumbnailer.get_thumbnail()
+        profile.save()
+    except Exception, e:
+        print e.message
+    return True
 
 
 @receiver(post_save, sender=MessageRecipient)
