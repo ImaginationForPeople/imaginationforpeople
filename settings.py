@@ -121,6 +121,7 @@ if DEBUG:
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -328,6 +329,7 @@ LOCALE_INDEPENDENT_PATHS = (
         re.compile('^/media/.*$'),
         re.compile('^/robots.txt$'),
         re.compile('^/sitemap.xml$'),
+        re.compile('^/member/complete/google-oauth2/?'),
 	)
 
 ## Flags
