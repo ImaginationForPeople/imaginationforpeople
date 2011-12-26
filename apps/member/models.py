@@ -32,6 +32,7 @@ from easy_thumbnails.files import get_thumbnailer
 from django_countries import CountryField
 from guardian.shortcuts import assign
 from social_auth.backends.facebook import FacebookBackend
+from social_auth.backends.contrib.linkedin import LinkedinBackend
 from social_auth.signals import socialauth_registered, pre_update
 from userena.managers import ASSIGNED_PERMISSIONS
 from userena.models import UserenaLanguageBaseProfile
@@ -41,6 +42,7 @@ from userena.contrib.umessages.models import MessageRecipient
 from userena.utils import get_protocol
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
+from apps.member.utils import fix_username
 
 class I4pProfile(UserenaLanguageBaseProfile):
     """
@@ -94,10 +96,33 @@ def socialauth_registered_handler(sender, user, response, details, **kwargs):
         assign(perm[0], user, user)
 
 
+@receiver(socialauth_registered, sender=LinkedinBackend)
+def linkedin_registered_handler(sender, user, response, details, **kwargs):
+    """
+    LinkedIn doesn't return a username so instead of letting django-social-auth
+    generate a random username, we generate one based on first name and last
+    name.
+    """
+    username = response['first-name'] + response['last-name']
+    name, idx = username, 2
+    while True:
+        try:
+            name = fix_username(name)
+            User.objects.get(username__iexact=name)
+            name = username + str(idx)
+            idx += 1
+        except User.DoesNotExist:
+            username = name
+            break
+    user.username = username
+    user.save()
+
+
+
 @receiver(pre_update, sender=FacebookBackend)
 def facebook_pre_update_handler(sender, user, response, details, **kwargs):
     """
-    When user authenticate with facebook
+    When user authenticates with facebook
     """
     try:
         profile = user.get_profile()
