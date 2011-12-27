@@ -27,6 +27,8 @@ from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
 
+from honeypot.decorators import check_honeypot
+
 from .models import I4pProjectTranslation
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm
 from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
@@ -81,6 +83,7 @@ def project_textfield_load(request, project_slug=None):
 
     return HttpResponse(resp)
 
+@check_honeypot(field_name='description')
 @require_POST
 def project_textfield_save(request, project_slug=None):
     """
