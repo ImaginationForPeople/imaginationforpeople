@@ -4,6 +4,7 @@
 {% load localeurl_tags %}
 {% load tagging_tags %}
 {% load compress %}
+{% load honeypot %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
 {% block title %}
@@ -49,8 +50,6 @@
 {% block extra_head %}
   {{ block.super }}
   
-  <script type="text/javascript" src="/js/dajax/dajaxice.core.js"></script>
-
   {% compress js %}
     
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js" ></script>
@@ -69,7 +68,6 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tagcloud.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-serializeobject.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.dajax.core.js"></script>
 
   
   <!-- Scripts for Image Slider & Miniatures -->
@@ -325,20 +323,33 @@
 						tooltip: 'Double-click to edit',
 						loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
 						loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-						submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+                        submitdata: function(value, settings) {
+                          return {
+                            'language_code': '{{ LANGUAGE_CODE }}',
+                            'description': $('.project_description_txt input[name=description]').val()
+                          }
+                        },
 						dataType: 'json',
 						callback: inline_editing_save_callback,
 						indicator: 'Saving...',
 						type: 'growfield',
 						height: '40px',
 						width: '535px',
-						cancel: "<input title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                        cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}"  class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
 						submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
 						onblur: 'ignore',
 						cssclass: 'inline-edit',
 						placeholder: "{% trans "This bloc is empty : don’t forget to fill it !"|capfirst %}"
                                                });
 
+    {% if user.is_authenticated and project_translation %}
+    $('#project_status').editable('{% url project_sheet-instance-edit-status project_translation.slug %}', {
+data: '{{ project_status_choices|safe }}',
+        type: "select",
+        submit: "OK",
+        name: "status"
+    });
+    {% endif %}
 
 
 	$('.project_details_body').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
@@ -346,14 +357,19 @@
                                              tooltip: 'Double-click to edit',
                                              loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
 					     loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-					     submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+                         submitdata: function(value, settings) {
+                           return {
+                             'language_code': '{{ LANGUAGE_CODE }}',
+                             'description': $('.project_details_body input[name=description]').val()
+                           }
+                         },
 					     dataType: 'json',
 					     callback: inline_editing_save_callback,
                          indicator: 'Saving...',
                          type: 'growfield',
                          height: '40px',
                          width: '690px',
-                         cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                         cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}" class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
                          submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
                          onblur: 'ignore',
                          cssclass: 'inline-edit',
