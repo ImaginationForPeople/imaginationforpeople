@@ -73,7 +73,7 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
 
     env.gitrepo = "/var/repositories/imaginationforpeople.git"
-    env.gitbranch = "iteration8"
+    env.gitbranch = "develop"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -175,6 +175,7 @@ def _updatemaincode():
     """
     print(cyan('Updating Git repository'))
     with cd(env.venvfullpath + '/%(projectname)s/' % env):
+        run('git fetch')
         run('git checkout %s' % env.gitbranch)
         run('git pull origin %s' % env.gitbranch)
     
