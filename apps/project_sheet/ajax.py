@@ -27,6 +27,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from dajaxice.core import dajaxice_functions
 
+from honeypot.decorators import check_honeypot
+
 from .models import I4pProjectTranslation
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
 from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
@@ -81,6 +83,7 @@ def project_textfield_load(request, project_slug=None):
 
     return HttpResponse(resp)
 
+@check_honeypot(field_name='description')
 @require_POST
 @csrf_exempt
 def project_textfield_save(request, project_slug=None):
