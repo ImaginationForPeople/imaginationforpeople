@@ -14,9 +14,11 @@ PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.com'),
-    ('Guillaume Libersat', 'guillaume@fuzzyfrequency.com'),
-    ('Alban Tiberghien', 'alban.tiberghien@gmail.com'),
+    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
+    ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
+    ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
+    ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
 )
 
 MANAGERS = (
@@ -295,10 +297,13 @@ FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
 SERVER_EMAIL = 'noreply@imaginationforpeople.com'
-DEFAULT_FROM_EMAIL = SERVER_EMAIL
-# Write emails to console if in development mode
-EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople] '
 
+DEFAULT_FROM_EMAIL = SERVER_EMAIL
+
+if not 'EMAIL_SUBJECT_PREFIX' in locals():
+    EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople] '
+
+# Write emails to console if in development mode
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # else, use SMTP
