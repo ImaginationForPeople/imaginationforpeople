@@ -50,7 +50,7 @@ LANGUAGES = (
   ('pt', u'Português'),
   ('de', u'Deutsch'),
   ('it', u'Italiano'),
-  ('ru', u'Россию'),
+  ('ru', u'Русский'),
   ('zh', u'中文'),
 )
 
