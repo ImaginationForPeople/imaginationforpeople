@@ -100,6 +100,7 @@ MIDDLEWARE_CLASSES = (
 #    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'localeurl.middleware.LocaleURLMiddleware',
 
+    'honeypot.middleware.HoneypotMiddleware',
 
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
