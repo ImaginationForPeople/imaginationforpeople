@@ -229,6 +229,8 @@ INSTALLED_APPS = (
 AJAX_LOOKUP_CHANNELS = {
     'members' : ('apps.member.lookups', 'UserLookup'),
 }
+AJAX_SELECT_BOOTSTRAP = True
+AJAX_SELECT_INLINES = 'inline'
 
 
 OEMBED_PROVIDERS = {
