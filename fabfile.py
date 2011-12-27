@@ -3,6 +3,10 @@
 from __future__ import with_statement
 
 import os.path
+import time
+
+import fabric.operations
+from fabric.operations import put, get
 from fabric.api import *
 from fabric.colors import cyan
 from fabric.contrib.files import *
@@ -286,8 +290,6 @@ def install_builddeps():
     print(cyan('Installing compilers and required libraries'))
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
-
-
 def meta_full_bootstrap():
     """
     For use on new, empty environnements
@@ -303,9 +305,43 @@ def meta_full_bootstrap():
     configure_webservers()
     reload_webservers()
 
+
+def mirror_prod_to_staging():
+    """
+    Mirror the content of the production server to the staging one
+    """
+    assert(env.wsginame == 'staging.wsgi')
+
+    # Files
+    with cd(os.path.join(env.venvfullpath, env.projectname, 'media')):
+        sudo('rm -rf mugshots')
+        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/mugshots .')
+
+        sudo('rm -rf uploads')
+        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/uploads .')
+
+        sudo('rm -rf cache')
+        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/cache .')
+
+        sudo('chown www-data -R mugshots uploads cache')
+        sudo('chmod u+rw -R mugshots uploads cache')
     
-    
-    
-    
-    
-    
+def dump_database():
+    assert(env.wsginame == 'prod.wsgi')
+    run('pg_dump -Uimaginationforpeople imaginationforpeople > ~/i4p_db_%s.sql' % time.strftime('%Y%m%d'))
+
+def get_database():
+    dump_database()
+    with cd(os.path.join('/home', env.home)):
+        filename = 'i4p_db_%s.sql' % time.strftime('%Y%m%d')
+        compressed_filename = '%s.bz2' % filename
+        run('bzip2 -9 -c %s > %s' % (filename, compressed_filename))
+        get(compressed_filename, 'current_database.sql.bz2')
+
+def restore_database():
+    assert(env.wsginame == 'staging.wsgi')
+    put('current_database.sql.bz2', 'current_database.sql.bz2')
+    run('bunzip2 -c current_database.sql.bz2 > current_database.sql')
+    sudo('sudo su - postgres -c "dropdb imaginationforpeople"')
+    sudo('sudo su - postgres -c "createdb -E UNICODE -Ttemplate0 -Oimaginationforpeople imaginationforpeople"')
+    run('psql -Uimaginationforpeople imaginationforpeople < ~/current_database.sql')
