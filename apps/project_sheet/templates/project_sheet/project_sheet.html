@@ -4,6 +4,7 @@
 {% load localeurl_tags %}
 {% load tagging_tags %}
 {% load compress %}
+{% load honeypot %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
 {% block title %}
@@ -327,14 +328,19 @@
 						tooltip: 'Double-click to edit',
 						loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
 						loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-						submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+                        submitdata: function(value, settings) {
+                          return {
+                            'language_code': '{{ LANGUAGE_CODE }}',
+                            'description': $('.project_description_txt input[name=description]').val()
+                          }
+                        },
 						dataType: 'json',
 						callback: inline_editing_save_callback,
 						indicator: 'Saving...',
 						type: 'growfield',
 						height: '40px',
 						width: '535px',
-						cancel: "<input title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                        cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}"  class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
 						submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
 						onblur: 'ignore',
 						cssclass: 'inline-edit',
@@ -356,14 +362,19 @@ data: '{{ project_status_choices|safe }}',
                                              tooltip: 'Double-click to edit',
                                              loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
 					     loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-					     submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+                         submitdata: function(value, settings) {
+                           return {
+                             'language_code': '{{ LANGUAGE_CODE }}',
+                             'description': $('.project_details_body input[name=description]').val()
+                           }
+                         },
 					     dataType: 'json',
 					     callback: inline_editing_save_callback,
                          indicator: 'Saving...',
                          type: 'growfield',
                          height: '40px',
                          width: '690px',
-                         cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                         cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}" class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
                          submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
                          onblur: 'ignore',
                          cssclass: 'inline-edit',
