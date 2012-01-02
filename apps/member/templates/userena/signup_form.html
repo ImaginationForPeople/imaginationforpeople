@@ -1,5 +1,6 @@
 {% extends "userena/user_base.html" %}
 {% load i18n %}
+{% load honeypot %}
 
 {% block title %}{% trans "Signup" %} | Imagination for People{% endblock %}
 
@@ -37,6 +38,7 @@
                             </p>
                             {% endif %}
                             {% endfor %}
+                        {% render_honeypot_field %}
                         <div class="clear"></div>
                         <input type="submit" class="button" value="{% trans "Sign up" %}" />
                         <div class="clear"></div>
