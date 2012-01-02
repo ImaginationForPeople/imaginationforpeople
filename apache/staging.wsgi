@@ -13,4 +13,6 @@ sys.path.append('/home/webapp/virtualenvs/imaginationforpeople.org/imaginationfo
 sys.path.append('/home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/apps/')
 
 import django.core.handlers.wsgi
+from dozer import Dozer
 application = django.core.handlers.wsgi.WSGIHandler()
+application = Dozer(application)
