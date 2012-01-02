@@ -8,7 +8,7 @@
         
         {% for message in message_list %}
         <li class="usermessage">
-            <div class="avatar"><img src="http://www.google.fr/images/srpr/logo3w.png" alt="nom" /></div>
+        <div class="avatar"><img src="{{ message.sender.get_profile.get_mugshot_url }}" alt="nom" /></div>
             
             <div class="usermessage_body">
             <em>Received on {{ message.sent_at }}</em>
@@ -23,10 +23,12 @@
         
         <div id="usermessage_compose">
         
-            <div class="avatar"><img src="http://www.google.fr/images/srpr/logo3w.png" alt="nom" /></div>
-            <form action="" method="post" id="password_change_form">
+          <div class="avatar"><img src="{{ user.get_profile.get_mugshot_url }}" alt="nom" /></div>
+          <form action="{% url userena_umessages_compose %}" method="post">
                 {% csrf_token %}
-                {{ form.as_p }}
+                <input type="hidden" id="id_to" name="to" value="{{ recipient }}" />
+                <textarea class="message" name="body" cols="40" rows="10"
+                  id="id_body"></textarea>
                 <input type="submit" name="send" value="{% trans 'Send' %}" />
             </form>
     
