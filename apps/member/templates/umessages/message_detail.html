@@ -24,7 +24,7 @@
         <div id="usermessage_compose">
         
           <div class="avatar"><img src="{{ user.get_profile.get_mugshot_url }}" alt="nom" /></div>
-          <form action="{% url userena_umessages_compose %}" method="post">
+          <form action="{% url userena_umessages_reply %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" id="id_to" name="to" value="{{ recipient }}" />
                 <textarea class="message" name="body" cols="40" rows="10"
