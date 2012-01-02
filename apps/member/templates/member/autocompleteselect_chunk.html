@@ -1,6 +1,6 @@
 <div style="position:relative;">
 <img alt="{{user.first_name|capfirst}} {{user.last_name|capfirst}}" 
-	src="{{ user.profile.get_mugshot_url }}" 
+	src="{{ user.get_profile.get_mugshot_url }}" 
 	style="position:relative; height:40px; height:40px; float: left; margin-right: 10px">
 <div style="position:relative; float: left; width: 130px">{{user.first_name|capfirst}} {{user.last_name|capfirst}}</div>
 <div class="clear"></div>
