@@ -25,7 +25,13 @@
                     {% url userena_umessages_detail message.from_user.username %}
                 {% endif %}
             "> 
-                <div class="avatar"><img src="http://www.google.fr/images/srpr/logo3w.png" alt="nom" /></div>
+                <div class="avatar"><img src="{{ message.from_user.get_profile.get_mugshot_url }}" alt="
+                    {% if message.from_user == user %}
+                                {{ message.to_user }}
+                             {% else %}
+                                 {{ message.from_user }}
+                            {% endif %}                
+                " /></div>
                 
                 <div class="usermessage_body">
                     
@@ -40,7 +46,7 @@
                     </h1>
                     
                     <br />
-                    <p>{{ message.latest_message }} ({{ unread_between_count }} new )</p>
+                    <p>{{ message.latest_message|truncatewords:20 }} | {{ message.latest_message.sender }} ({{ unread_between_count }} new )</p>
                 </div>
             </a>
 
