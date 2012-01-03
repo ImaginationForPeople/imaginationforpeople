@@ -16,9 +16,11 @@ PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.com'),
-    ('Guillaume Libersat', 'guillaume@fuzzyfrequency.com'),
-    ('Alban Tiberghien', 'alban.tiberghien@gmail.com'),
+    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
+    ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
+    ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
+    ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
 )
 
 MANAGERS = (
@@ -50,7 +52,7 @@ LANGUAGES = (
   ('pt', u'Português'),
   ('de', u'Deutsch'),
   ('it', u'Italiano'),
-  ('ru', u'Россию'),
+  ('ru', u'Русский'),
   ('zh', u'中文'),
 )
 
@@ -102,6 +104,7 @@ MIDDLEWARE_CLASSES = (
 #    'cms.middleware.multilingual.MultilingualURLMiddleware',
     'localeurl.middleware.LocaleURLMiddleware',
 
+    'honeypot.middleware.HoneypotMiddleware',
 
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
@@ -234,6 +237,8 @@ INSTALLED_APPS = (
 AJAX_LOOKUP_CHANNELS = {
     'members' : ('apps.member.lookups', 'UserLookup'),
 }
+AJAX_SELECT_BOOTSTRAP = True
+AJAX_SELECT_INLINES = 'inline'
 
 
 OEMBED_PROVIDERS = {
@@ -307,10 +312,13 @@ FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
 SERVER_EMAIL = 'noreply@imaginationforpeople.com'
-DEFAULT_FROM_EMAIL = SERVER_EMAIL
-# Write emails to console if in development mode
-EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople] '
 
+DEFAULT_FROM_EMAIL = SERVER_EMAIL
+
+if not 'EMAIL_SUBJECT_PREFIX' in locals():
+    EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople] '
+
+# Write emails to console if in development mode
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # else, use SMTP
