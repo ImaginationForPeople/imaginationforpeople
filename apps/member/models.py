@@ -16,10 +16,12 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 from urllib2 import urlopen
+import StringIO
 
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.core.files import File
 from django.core.mail import mail_managers, send_mail
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -128,13 +130,18 @@ def facebook_pre_update_handler(sender, user, response, details, **kwargs):
         profile = user.get_profile()
         profile.website = response.get('website')
         profile.facebook = response.get('link')
-#        photo_url = "http://graph.facebook.com/%s/picture" % response['id']
-#        photo = urlopen(photo_url)
-#        thumbnailer = get_thumbnailer(photo, relative_name="foo.jpg")
-#        profile.mugshot = thumbnailer.get_thumbnail()
-        profile.save()
+        photo_url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
+        photo = urlopen(photo_url)
+        photo_io = StringIO.StringIO()
+        photo_io.write(photo.read())
+        thumbnailer = get_thumbnailer(File(photo_io),
+                relative_name=("%s%s-facebook-picture" %
+                    (settings.USERENA_MUGSHOT_PATH, user.username)))
+        thumb = thumbnailer.generate_thumbnail({'size': (200, 200)})
+        profile.mugshot = thumb
+        profile.save() 
     except Exception, e:
-        print e.message
+        print '***', e.message
     return True
 
 
