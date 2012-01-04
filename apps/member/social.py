@@ -21,8 +21,34 @@ from urllib2 import urlopen
 
 from django.conf import settings
 from django.core.files import File
+from django.utils import simplejson
 
 from easy_thumbnails.files import get_thumbnailer
+from apps.i4p_base.models import Location, I4P_COUNTRIES
+
+
+def fetch_country(profile, response):
+    try:
+        location_name = response['location']['name']
+        city, country = [s.strip() for s in location_name.split(",")]
+        profile.address = city
+        for country_code, i18n_proxy in I4P_COUNTRIES:
+            # Need to coerce Django i18n proxy into uncidoe
+            country_name = unicode(i18n_proxy)
+            if country_name == country:
+                profile.country = country_code
+                break
+        location_url = "http://graph.facebook.com/%s" % response['location']['id']
+        location_request = urlopen(location_url)
+        location_data = simplejson.loads(location_request.read())['location']
+        location = Location(lat=location_data['latitude'],
+                            lon=location_data['longitude'],
+                            address=city,
+                            country=profile.country)
+        profile.location = location
+    except KeyError, e:
+        # Don't propagate errors caused by missing data
+        print >> sys.stderr, '***', e
 
 
 def fetch_facebook_details(profile, response):
@@ -32,6 +58,7 @@ def fetch_facebook_details(profile, response):
     try:
         profile.website = response.get('website')
         profile.facebook = response.get('link')
+        fetch_country(profile, response)
 
         # Get profile picture
         #
