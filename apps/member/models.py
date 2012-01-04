@@ -15,13 +15,9 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from urllib2 import urlopen
-import StringIO
-
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
-from django.core.files import File
 from django.core.mail import mail_managers, send_mail
 from django.core.urlresolvers import reverse
 from django.db import models
@@ -30,12 +26,11 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from easy_thumbnails.files import get_thumbnailer
 from django_countries import CountryField
 from guardian.shortcuts import assign
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.contrib.linkedin import LinkedinBackend
-from social_auth.signals import socialauth_registered, pre_update
+from social_auth.signals import socialauth_registered
 from userena.managers import ASSIGNED_PERMISSIONS
 from userena.models import UserenaLanguageBaseProfile
 from userena.signals import activation_complete
@@ -45,6 +40,8 @@ from userena.utils import get_protocol
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 from apps.member.utils import fix_username
+from apps.member.social import fetch_facebook_details
+
 
 class I4pProfile(UserenaLanguageBaseProfile):
     """
@@ -73,6 +70,7 @@ class I4pProfile(UserenaLanguageBaseProfile):
     def get_absolute_url(self):
         return ('userena_profile_detail', [self.user.username])
 
+
 @receiver(activation_complete, dispatch_uid='email-on-new-user')
 def email_managers_on_account_activation(sender, user, **kwargs):
     body = render_to_string('member/emails/new_user.txt', {'user': user})
@@ -97,6 +95,11 @@ def socialauth_registered_handler(sender, user, response, details, **kwargs):
     for perm in ASSIGNED_PERMISSIONS['user']:
         assign(perm[0], user, user)
 
+    if sender is FacebookBackend:
+        fetch_facebook_details(new_profile, response)
+
+    return True
+
 
 @receiver(socialauth_registered, sender=LinkedinBackend)
 def linkedin_registered_handler(sender, user, response, details, **kwargs):
@@ -118,31 +121,6 @@ def linkedin_registered_handler(sender, user, response, details, **kwargs):
             break
     user.username = username
     user.save()
-
-
-
-@receiver(pre_update, sender=FacebookBackend)
-def facebook_pre_update_handler(sender, user, response, details, **kwargs):
-    """
-    When user authenticates with facebook
-    """
-    try:
-        profile = user.get_profile()
-        profile.website = response.get('website')
-        profile.facebook = response.get('link')
-        photo_url = "http://graph.facebook.com/%s/picture?type=large" % response['id']
-        photo = urlopen(photo_url)
-        photo_io = StringIO.StringIO()
-        photo_io.write(photo.read())
-        thumbnailer = get_thumbnailer(File(photo_io),
-                relative_name=("%s%s-facebook-picture" %
-                    (settings.USERENA_MUGSHOT_PATH, user.username)))
-        thumb = thumbnailer.generate_thumbnail({'size': (200, 200)})
-        profile.mugshot = thumb
-        profile.save() 
-    except Exception, e:
-        print '***', e.message
-    return True
 
 
 @receiver(post_save, sender=MessageRecipient)
