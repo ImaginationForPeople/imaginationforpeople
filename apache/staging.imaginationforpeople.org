@@ -27,6 +27,19 @@
 
     Alias /site_media /home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/
 
+    # Static
+    <Directory /home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/static/>
+        Options -Indexes FollowSymLinks
+    </Directory>
+
+    <Location "/static">
+        SetHandler None
+    </Location>
+
+    Alias /static /home/webapp/virtualenvs/imaginationforpeople.org/imaginationforpeople/static/
+
+
+
     <Location "/admin_media">
         SetHandler None
         Options -Indexes FollowSymLinks

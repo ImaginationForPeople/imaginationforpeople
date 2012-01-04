@@ -21,11 +21,13 @@ from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
+from userena.contrib.umessages.forms import ComposeForm
 from userena.forms import SignupForm, EditProfileForm
 
 from apps.i4p_base.utils import remove_accents
 
 from .models import I4pProfile
+from .fields import UserMessageRecipientField
 
 class I4PSignupForm(SignupForm):
     """
@@ -69,3 +71,10 @@ class I4PEditProfileForm(EditProfileForm):
                                widget=forms.RadioSelect,
                                required=False,
                                label=_("gender"))
+
+
+class AutoCompleteComposeForm(ComposeForm):
+    """
+    Subclass umessages form to add recipient autocompletion.
+    """
+    to = UserMessageRecipientField("members", required=True)
