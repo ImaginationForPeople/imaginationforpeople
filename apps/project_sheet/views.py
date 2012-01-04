@@ -18,6 +18,12 @@
 """
 Django Views for a Project Sheet
 """
+try:
+    from collections import OrderedDict
+except ImportError:
+    # Python < 2.7 compatibility
+    from ordereddict import OrderedDict
+
 import datetime
 
 from django.core.urlresolvers import reverse
@@ -25,10 +31,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.db.models import Q
 from django.forms.models import modelform_factory
-from django.http import HttpResponseRedirect, HttpResponseNotFound, HttpResponseForbidden, Http404
+from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
-from django.utils import translation
+from django.utils import translation, simplejson
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
@@ -36,13 +42,13 @@ from django.views.generic import TemplateView
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from apps.project_sheet.utils import build_filters_and_context
-
 from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
-from .forms import I4pProjectThemesForm, I4pProjectObjectivesForm, I4pProjectInfoForm, ProjectReferenceFormSet
-from .forms import I4pProjectLocationForm, ProjectMemberForm, ProjectMemberFormSet
+from .forms import I4pProjectInfoForm, I4pProjectLocationForm
+from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
+from .forms import ProjectReferenceFormSet, ProjectMemberForm
+from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
 from .utils import get_project_project_translation_recent_changes, fields_diff
@@ -134,6 +140,10 @@ def project_sheet_show(request, slug, add_media=False):
 
     reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
 
+    project_status_choices = OrderedDict((k, unicode(v)) 
+                                         for k, v in I4pProject.STATUS_CHOICES)
+    project_status_choices['selected'] = project_translation.project.status
+
     context = {'project': project_translation.project,
                'project_translation': project_translation,
                'project_themes_form': project_themes_form,
@@ -142,6 +152,7 @@ def project_sheet_show(request, slug, add_media=False):
                'project_info_form': project_info_form,
                'project_location_form': project_location_form,
                'project_member_form': project_member_form,
+               'project_status_choices': simplejson.dumps(project_status_choices),
                #'project_member_formset': project_member_formset,
                'project_tab' : True}
 
@@ -177,7 +188,7 @@ def project_sheet_create_translation(request, project_slug):
         current_project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
                                                                       language_code=current_language_code)
     except I4pProjectTranslation.DoesNotExist:
-        return HttpResponseNotFound()
+        return Http404()
 
     requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
                                                                                   language_code=requested_language_code,
@@ -214,6 +225,7 @@ def project_sheet_edit_location(request, slug):
             project_translation.project.save()
 
     return redirect(project_translation)
+
 
 
 def project_sheet_edit_field(request, field, slug=None):
