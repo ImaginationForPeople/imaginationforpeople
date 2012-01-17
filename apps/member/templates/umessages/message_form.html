@@ -3,10 +3,15 @@
 
 {% block content_title %}<h2>{% trans "Compose" %}</h2>{% endblock %}
 
+{% block extra_head %}
+  <!-- Autocomplete -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/ajax_select.js"></script>
+{% endblock %}
+
 {% block usermessage_content %}
     <div id="usermessage_compose">
 
-        <div class="avatar"><img src="http://www.google.fr/images/srpr/logo3w.png" alt="nom" /></div>
+        <div class="avatar"><img src="{{ user.get_profile.get_mugshot_url }}" alt="{{ user.username }}" /></div>
         <form action="" method="post" id="password_change_form">
             {% csrf_token %}
             {{ form.as_p }}

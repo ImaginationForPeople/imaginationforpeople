@@ -35,7 +35,7 @@
                 
                 <div class="usermessage_body">
                     
-                    <em>Received on {{ message.sent_at }}</em>
+                    <em>{% trans 'Received on' %} {{ message.latest_message.sent_at }}</em>
                     
                     <h1>
                         {% if message.from_user == user %}
