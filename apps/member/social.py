@@ -148,16 +148,17 @@ def fetch_profile_data(backend, profile, response):
             TwitterBackend: TwitterDataAdapter,
             GoogleOAuth2Backend: GoogleDataAdapter,
             }
-    adapter_class = adapters[backend]
-    adapter = adapter_class(profile, response)
+    if backend in adapters:
+        adapter_class = adapters[backend]
+        adapter = adapter_class(profile, response)
 
-    try:
-        adapter.fetch_profile_data()
-    except Exception, e:
-        # Errors while fetching profile data shouldn't be fatal.
-        # Automatically populating user's profile is a nice thing to do, but we
-        # don't want it to stop the registration process if it doesn't work.
-        print >> sys.stderr, '***', e
-        raise
+        try:
+            adapter.fetch_profile_data()
+        except Exception, e:
+            # Errors while fetching profile data shouldn't be fatal.
+            # Automatically populating user's profile is a nice thing to do, but we
+            # don't want it to stop the registration process if it doesn't work.
+            print >> sys.stderr, '***', e
+            raise
 
-    profile.save()
+        profile.save()
