@@ -200,6 +200,11 @@
                 }
             }
             
+            p.help, label[for=id_body]{
+                display:none;
+                visibility:hidden;
+            }
+            
             input[type=submit]{
                 float:right;
                 background-color:#6b6b6b;
@@ -208,6 +213,10 @@
                 @include georgia(14px);
                 color:white;
                 padding:4px;
+            }
+            
+            #id_to_on_deck>div>div{
+                margin-left:45px;
             }
         }
         
@@ -232,4 +241,9 @@
 }
 
 
-
+.ui-icon {
+    background-image: url("../images/ui-icons_222222_256x240-white.png") !important;
+    position:absolute;
+    right:0px;
+    z-index:200;
+}

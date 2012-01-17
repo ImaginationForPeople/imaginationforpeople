@@ -6,12 +6,12 @@
 {% block usermessage_content %}
     <ul id="usermessage_list">
         
-        {% for message in message_list %}
+        {% for message in message_list reversed %}
         <li class="usermessage">
         <div class="avatar"><img src="{{ message.sender.get_profile.get_mugshot_url }}" alt="{{ message.sender }}" /></div>
             
             <div class="usermessage_body">
-                <em>Received on {{ message.sent_at }}</em>
+                <em>{% trans 'Received on' %} {{ message.sent_at }}</em>
                 <h1>{{ message.sender }}</h1>
                 <br /><br />
                 {{ message.body }}
@@ -22,7 +22,7 @@
         
         <div id="usermessage_compose">
 
-        <div class="avatar"><img src="{{ user.get_profile.get_mugshot_url }}" alt="nom" /></div>
+        <div class="avatar"><img src="{{ user.get_profile.get_mugshot_url }}" alt="{{ message.to_user }}" /></div>
           <form action="{% url userena_umessages_reply %}" method="post">
                 {% csrf_token %}
                 
