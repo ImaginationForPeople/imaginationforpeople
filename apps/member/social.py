@@ -26,7 +26,7 @@ from django.utils import simplejson
 from easy_thumbnails.files import get_thumbnailer
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.twitter import TwitterBackend
-from social_auth.backends.contrib.linkedin import LinkedinBackend
+from social_auth.backends.google import GoogleOAuth2Backend
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 
@@ -114,6 +114,29 @@ class TwitterDataAdapter(DataAdapter):
         return template % self.response['screen_name']
 
 
+class GoogleDataAdapter(DataAdapter):
+
+    def __init__(self, profile, response):
+        super(GoogleDataAdapter, self).__init__(profile, response)
+        token = self.response['access_token']
+        profile_url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + token
+        profile_json = urlopen(profile_url).read()
+        self.user_info = simplejson.loads(profile_json)
+
+    def fetch_profile_data(self):
+        self.profile.user.first_name = self.user_info.get('given_name')
+        self.profile.user.last_name = self.user_info.get('family_name')
+        if self.user_info.get('gender') == 'male':
+            self.profile.gender = 'M'
+        elif self.user_info.get('gender') == 'female':
+            self.profile.gender = 'F'
+        self.fetch_picture()
+
+    @property
+    def photo_url(self):
+        return self.user_info['picture']
+
+
 
 def fetch_profile_data(backend, profile, response):
     """
@@ -123,6 +146,7 @@ def fetch_profile_data(backend, profile, response):
     adapters = {
             FacebookBackend: FacebookDataAdapter,
             TwitterBackend: TwitterDataAdapter,
+            GoogleOAuth2Backend: GoogleDataAdapter,
             }
     adapter_class = adapters[backend]
     adapter = adapter_class(profile, response)
