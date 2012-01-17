@@ -28,7 +28,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_countries import CountryField
 from guardian.shortcuts import assign
-from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.contrib.linkedin import LinkedinBackend
 from social_auth.signals import socialauth_registered
 from userena.managers import ASSIGNED_PERMISSIONS
@@ -40,7 +39,7 @@ from userena.utils import get_protocol
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 from apps.member.utils import fix_username
-from apps.member.social import fetch_facebook_details
+from apps.member.social import fetch_profile_data
 
 
 class I4pProfile(UserenaLanguageBaseProfile):
@@ -95,8 +94,8 @@ def socialauth_registered_handler(sender, user, response, details, **kwargs):
     for perm in ASSIGNED_PERMISSIONS['user']:
         assign(perm[0], user, user)
 
-    if sender is FacebookBackend:
-        fetch_facebook_details(new_profile, response)
+    # Try to get profile details
+    fetch_profile_data(sender, new_profile, response)
 
     return True
 
