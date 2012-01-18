@@ -643,6 +643,9 @@ form {
 
 .metadata_edit {
   height: 84px;
+  /*TEMP*/
+  display: none;
+  visibility: hidden;
 }
 
 #project_photo_gallery .button {
@@ -751,6 +754,80 @@ form {
   right: 16px;
   text-shadow: 1px 1px 1px black;
   top: 0px;
+}
+
+/* --- Take action --- */
+.team-contact {
+  background-repeat: no-repeat;
+  width: 187px;
+  height: 21px;
+  position: relative;
+}
+.team-contact a {
+  position: absolute;
+  z-index: 10;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 17px;
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+  top: 0px;
+  left: 30px;
+}
+.team-contact a:hover {
+  text-decoration: none;
+}
+.team-contact .on, .team-contact .off {
+  width: 187px;
+  height: 21px;
+}
+.team-contact .on {
+  width: 0px;
+  background-image: url("../images/project/team-contact-on.png");
+  position: absolute;
+  z-index: 05;
+}
+.team-contact .off {
+  background-image: url("../images/project/team-contact-off.png");
+  position: absolute;
+  z-index: 04;
+}
+
+.member-contact {
+  background-repeat: no-repeat;
+  width: 187px;
+  height: 21px;
+  position: relative;
+  top: 80px;
+}
+.member-contact a {
+  position: absolute;
+  z-index: 10;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: italic;
+  color: white;
+  top: 2px;
+  left: 25px;
+}
+.member-contact a:hover {
+  text-decoration: none;
+}
+.member-contact .on, .member-contact .off {
+  width: 80px;
+  height: 18px;
+}
+.member-contact .on {
+  width: 0px;
+  background-image: url("../images/project/contact-on.jpg");
+  position: absolute;
+  z-index: 05;
+}
+.member-contact .off {
+  background-image: url("../images/project/contact-off.jpg");
+  position: absolute;
+  z-index: 04;
 }
 
 /* --- Related --- */

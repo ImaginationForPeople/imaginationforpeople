@@ -63,7 +63,7 @@
 }
 .usermessages_content #usermessage_list .usermessage {
   width: 100%;
-  height: 107px;
+  min-height: 107px;
   float: left;
   padding: 5px;
   margin-bottom: 10px;
@@ -166,6 +166,10 @@
 .usermessages_content #usermessage_compose form p textarea {
   width: 99%;
 }
+.usermessages_content #usermessage_compose form p.help, .usermessages_content #usermessage_compose form label[for=id_body] {
+  display: none;
+  visibility: hidden;
+}
 .usermessages_content #usermessage_compose form input[type=submit] {
   float: right;
   background-color: #6b6b6b;
@@ -177,6 +181,9 @@
   font-style: italic;
   color: white;
   padding: 4px;
+}
+.usermessages_content #usermessage_compose form #id_to_on_deck > div > div {
+  margin-left: 45px;
 }
 .usermessages_content #usermessage_compose .avatar {
   width: 127px;
@@ -191,4 +198,11 @@
   width: 97px;
   height: 97px;
   margin: 10px;
+}
+
+.ui-icon {
+  background-image: url("../images/ui-icons_222222_256x240-white.png") !important;
+  position: absolute;
+  right: 0px;
+  z-index: 200;
 }

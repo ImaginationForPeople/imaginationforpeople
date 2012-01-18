@@ -175,6 +175,25 @@
         // Addthis
         addthis.init();
     });
+    
+
+    $('.team-contact a').mouseover(function() {
+        $('.team-contact .on').animate({ width: "187px" }, {duration : 180});
+     });
+     
+    $('.team-contact a').mouseout(function() {
+        $('.team-contact .on').animate({ width: "0px" }, {duration : 90});
+    });
+    
+    $('.member-contact a').mouseover(function() {
+        $(this).next('.on').animate({ width: "80px" }, {duration : 130});
+     });
+     
+    $('.member-contact a').mouseout(function() {
+        $(this).next('.on').animate({ width: "0px" }, {duration : 70});
+    });
+
+     
   </script>
 
 
