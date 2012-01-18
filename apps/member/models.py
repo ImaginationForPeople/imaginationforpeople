@@ -28,12 +28,19 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_countries import CountryField
 from guardian.shortcuts import assign
-from userena.contrib.umessages.models import MessageRecipient
+from social_auth.backends.contrib.linkedin import LinkedinBackend
+from social_auth.signals import socialauth_registered
+from userena.managers import ASSIGNED_PERMISSIONS
 from userena.models import UserenaLanguageBaseProfile
 from userena.signals import activation_complete
+from userena.utils import get_profile_model
+from userena.contrib.umessages.models import MessageRecipient
 from userena.utils import get_protocol
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
+from apps.member.utils import fix_username
+from apps.member.social import fetch_profile_data
+
 
 class I4pProfile(UserenaLanguageBaseProfile):
     """
@@ -62,11 +69,58 @@ class I4pProfile(UserenaLanguageBaseProfile):
     def get_absolute_url(self):
         return ('userena_profile_detail', [self.user.username])
 
+
 @receiver(activation_complete, dispatch_uid='email-on-new-user')
 def email_managers_on_account_activation(sender, user, **kwargs):
     body = render_to_string('member/emails/new_user.txt', {'user': user})
     mail_managers(subject=_(u'New user registered'), message=body)
         
+
+@receiver(socialauth_registered)
+def socialauth_registered_handler(sender, user, response, details, **kwargs):
+    """
+    Called when user registers for the first time using social auth
+    """
+    # Create user profile
+    profile_model = get_profile_model()
+    new_profile = profile_model(user=user)
+    new_profile.save()
+
+    # Give permissions to view and change profile
+    for perm in ASSIGNED_PERMISSIONS['profile']:
+        assign(perm[0], user, new_profile)
+
+    # Give permissions to view and change itself
+    for perm in ASSIGNED_PERMISSIONS['user']:
+        assign(perm[0], user, user)
+
+    # Try to get profile details
+    fetch_profile_data(sender, new_profile, response)
+
+    return True
+
+
+@receiver(socialauth_registered, sender=LinkedinBackend)
+def linkedin_registered_handler(sender, user, response, details, **kwargs):
+    """
+    LinkedIn doesn't return a username so instead of letting django-social-auth
+    generate a random username, we generate one based on first name and last
+    name.
+    """
+    username = response['first-name'] + response['last-name']
+    name, idx = username, 2
+    while True:
+        try:
+            name = fix_username(name)
+            User.objects.get(username__iexact=name)
+            name = username + str(idx)
+            idx += 1
+        except User.DoesNotExist:
+            username = name
+            break
+    user.username = username
+    user.save()
+
 
 @receiver(post_save, sender=MessageRecipient)
 def send_message_notification(sender, instance, **kwargs):

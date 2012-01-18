@@ -15,17 +15,14 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-import re
-
 from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 from userena.forms import SignupForm, EditProfileForm
 
-from apps.i4p_base.utils import remove_accents
-
 from .models import I4pProfile
+from .utils import fix_username
 
 class I4PSignupForm(SignupForm):
     """
@@ -48,7 +45,7 @@ class I4PSignupForm(SignupForm):
         firstname = self.cleaned_data['first_name'].title()
         lastname = self.cleaned_data['last_name'].title()
         fullname = "%s%s" % (firstname, lastname)
-        username = re.sub("[^a-zA-Z]", "", remove_accents(fullname))
+        username = fix_username(fullname)
 
         users = User.objects.filter(username__istartswith=username)
         if users.count() > 0:
