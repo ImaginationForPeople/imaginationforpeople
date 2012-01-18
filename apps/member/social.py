@@ -126,9 +126,10 @@ class TwitterDataAdapter(DataAdapter):
     Populates user profile attributes using data fetched from Twitter.
 
     Tries to populate these fields:
-     - first_name
-     - last_name
+     - first_name (Twitter only has a "name" field, django-social-auth uses
+       the content of that field to populate user.first_name)
      - website
+     - location
      - twitter (twitter profile URL)
      - mugshot (profile picture)
 
@@ -142,9 +143,11 @@ class TwitterDataAdapter(DataAdapter):
 
         Twitter API doesn't currently give access to location or email address
         """
-        self.profile.website = self.response.get('url')
         self.set_twitter_url(self.response.get('screen_name'))
         self.fetch_picture()
+        self.profile.website = self.response.get('url')
+        location = Location(address=self.response.get('location'))
+        self.profile.location = location
 
     @property
     def picture_url(self):
