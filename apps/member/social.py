@@ -16,7 +16,6 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 import StringIO
-import sys
 from urllib2 import urlopen
 import urlparse
 
@@ -35,6 +34,9 @@ from apps.i4p_base.models import Location, I4P_COUNTRIES
 
 
 class DataAdapter(object):
+    """
+    Mixin class hosting methods useful to different social data adapters.
+    """
 
     def __init__(self, profile, response):
         self.profile = profile
@@ -65,6 +67,19 @@ class DataAdapter(object):
 
 
 class FacebookDataAdapter(DataAdapter):
+    """
+    Populates user profile attributes using data fetched from Facebook.
+
+    Tries to populate these fields:
+     - first_name
+     - last_name
+     - email
+     - country
+     - location
+     - website
+     - facebook (profile URL)
+     - mugshot (profile picture)
+    """
 
     def fetch_profile_data(self):
         """
@@ -87,7 +102,7 @@ class FacebookDataAdapter(DataAdapter):
             city, country = [s.strip() for s in location_name.split(",")]
             self.profile.address = city
             for country_code, i18n_proxy in I4P_COUNTRIES:
-                # Need to coerce Django i18n proxy into uncidoe
+                # Need to coerce Django i18n proxy into unicode
                 country_name = unicode(i18n_proxy)
                 if country_name == country:
                     self.profile.country = country_code
@@ -101,12 +116,24 @@ class FacebookDataAdapter(DataAdapter):
                                 address=city,
                                 country=self.profile.country)
             self.profile.location = location
-        except KeyError, e:
+        except KeyError:
             # Don't propagate errors caused by missing data
-            print >> sys.stderr, '***', e
+            pass
 
 
 class TwitterDataAdapter(DataAdapter):
+    """
+    Populates user profile attributes using data fetched from Twitter.
+
+    Tries to populate these fields:
+     - first_name
+     - last_name
+     - website
+     - twitter (twitter profile URL)
+     - mugshot (profile picture)
+
+    Email address is NOT available via Twitter API.
+    """
 
     def fetch_profile_data(self):
         """
@@ -126,9 +153,19 @@ class TwitterDataAdapter(DataAdapter):
 
 
 class GoogleDataAdapter(DataAdapter):
+    """
+    Populates user profile attributes using data fetched from Twitter.
+
+    Tries to populate these fields:
+     - first_name
+     - last_name
+     - email
+     - mugshot (profile picture)
+     - gender
+    """
 
     def __init__(self, profile, response):
-        super(GoogleDataAdapter, self).__init__(profile, response)
+        DataAdapter.__init__(self, profile, response)
         token = self.response['access_token']
         profile_url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + token
         profile_json = urlopen(profile_url).read()
@@ -149,9 +186,24 @@ class GoogleDataAdapter(DataAdapter):
 
 
 class LinkedinDataAdapter(DataAdapter):
+    """
+    Populates user profile attributes using data fetched from Twitter.
+
+    Tries to populate these fields:
+     - first_name
+     - last_name
+     - country
+     - location
+     - mugshot (profile picture)
+     - website (first resource URLs)
+     - twitter (first twitter account registered with LinkedIn)
+     - linked (profile URL)
+
+    Email address is NOT available via LinkedIn API.
+    """
 
     def __init__(self, profile, response):
-        super(LinkedinDataAdapter, self).__init__(profile, response)
+        DataAdapter.__init__(self, profile, response)
 
         # OAuth dance documented at
         # https://developer.linkedin.com/documents/quick-start-guide
@@ -214,20 +266,19 @@ DATA_ADAPTERS = {
 
 def fetch_profile_data(backend, profile, response):
     """
-    Get profile data from response returned by the backend and assign to user
-    profile
+    Get profile data from response returned by social backend and use if to
+    populate user profile.
     """
     if backend in DATA_ADAPTERS:
         adapter_class = DATA_ADAPTERS[backend]
         try:
             adapter = adapter_class(profile, response)
             adapter.fetch_profile_data()
-        except Exception, e:
+        except Exception:
             # Errors while fetching profile data shouldn't be fatal.
             # Automatically populating user's profile is a nice thing to do, but
             # we don't want it to stop the registration process if it doesn't
             # work.
-            print >> sys.stderr, '***', e
-            raise
+            pass
 
         profile.save()
