@@ -25,7 +25,7 @@
                     {% url userena_umessages_detail message.from_user.username %}
                 {% endif %}
             "> 
-                <div class="avatar"><img src="{{ message.from_user.get_profile.get_mugshot_url }}" alt="
+                <div class="avatar"><img src="{{ message.to_user.get_profile.get_mugshot_url }}" alt="
                     {% if message.from_user == user %}
                                 {{ message.to_user }}
                              {% else %}
