@@ -43,6 +43,18 @@
                 {% endif %}
               {% endif %}
             </div>
+            
+            <div class="clear"></div><br/>
+            
+            {% if project.members.count != 0 %}
+                <div class="team-contact">
+                    {% with project.members.all|join:"+" as recipients %}
+                        <a href="{%  url userena_umessages_compose_to recipients %}">{% trans "Contact team" %}</a> 
+                    {% endwith %}
+                    <div class="on"></div>
+                    <div class="off"></div>
+                </div>
+            {% endif %}
 
             <div class="clear"></div>
 	    <br/>
@@ -126,6 +138,7 @@
             {% else %}
 
             <ul id="member_list">
+            
                 {% for member in project.detailed_members.all %}
                 <li class="grey_column_team_member member{{ member.id }}">
                     <div  style="position:relative; float:left; width:80px;">
@@ -139,6 +152,13 @@
                         {% if member.user.get_profile.country %}
                             <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
                         {% endif %}
+                       
+                        <div class="member-contact">
+                            <a href="{%  url userena_umessages_compose_to member.user.username %}">{% trans "Contact" %}</a>
+                            <div class="on"></div>
+                            <div class="off"></div>
+                        </div>
+                        
                     </div> 
                     
                     <div  style="position:relative; float:left; width:130px; margin-left:10px;">
@@ -164,7 +184,7 @@
                 {% endfor %}
             </ul>
         {% endif %}
-         </div>
+        </div>
      
         
         <div class="clear"></div>      
