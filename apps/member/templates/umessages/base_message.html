@@ -16,13 +16,17 @@
         <div class="container_18">
         
             <div class="grid_4 alpha">
-                <h1 class="title">{% trans 'My Messages' %}</h1>
+                <a href="{% url userena_umessages_list %}">
+                    <h1 class="title">{% trans 'My Messages' %}
+                        <img src="{{ STATIC_URL }}images/usermessages/my-messages-arrow.png" style="position:absolute; bottom:-4px; left:100px"/>
+                    </h1>
+                </a>
                 {% get_unread_message_count_for user as unread_message_count %}
                 
                 <a href="{% url userena_umessages_list %}">
                     <div class="nb_messages">
                         {% if unread_message_count == 0 %}
-                            {{ unread_message_count }}
+                            <em>{{ unread_message_count }}</em>
                         {% else %}
                             <strong>{{ unread_message_count }}</strong>
                         {% endif %}
@@ -35,7 +39,7 @@
         
             <div class="grid_14 omega">
                 
-                <div class="title_bar"><a href="{% url userena_umessages_compose %}" class="new_message">{% trans 'New Message' %}</a></div>
+                <div class="title_bar"><a href="{% url userena_umessages_compose %}" class="new_message" >{% trans 'New Message' %}<img src="{{ STATIC_URL }}images/usermessages/arrow.png" style="position:absolute; right:0px; top:0px;"/></a></div>
                
                 {% block usermessage_content %}
                 {% endblock %}  
