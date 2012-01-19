@@ -46,6 +46,16 @@
 					<a class="link" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
 
 				</form>
+                  <p> <a href="{% url begin backend='facebook' %}">Facebook</a> </p>
+                  <p> <a href="{% url begin backend='twitter' %}">Twitter</a> </p>
+                  <p> <a href="{% url begin backend='google-oauth2' %}">Google</a> </p>
+                  <p> <a href="{% url begin backend='linkedin' %}">LinkedIn</a> </p>
+                  <p> <form action="{% url begin backend='openid' %}"
+                    method="POST"><label for="openid_identifier">OpenID:</label>
+                    {% csrf_token %}
+                    <input type="text" name="openid_identifier" id="openid_identifier" />
+                    <button>Login</button>
+                  </form> </p>
 			</div>
 			
             <div class="left right">
