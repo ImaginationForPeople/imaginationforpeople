@@ -67,6 +67,7 @@ Version: 1.0
             float: left;
             height: 32px;
             background: url(../images/base/tab_m.png) repeat-x 0 0;
+            position:relative;
             
             a {
                 color: $blue;
@@ -78,6 +79,14 @@ Version: 1.0
             
             .sep {
                 color:#414141
+            }
+            
+            .message_count{
+                position:absolute;
+                right:8px;
+                top:0px;
+                text-align:center;
+                width:20px;
             }
             
             a.open, a.close {
