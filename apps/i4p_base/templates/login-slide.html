@@ -142,7 +142,7 @@
                 {% if unread_message_count != 0 %}
                 <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'Read my messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /></a><div class="message_count">{{ unread_message_count }}</div></li>
                 {% else %}
-                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'Read my messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a><div class="message_count">{{ unread_message_count }}</div></li>
+                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'Read my messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></li>
                 {% endif %}
                 
                 <li><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-view.png" /></a></li>
