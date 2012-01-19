@@ -745,6 +745,10 @@ form{
 
 .metadata_edit{
 	height:84px;
+    
+    /*TEMP*/
+    display:none;
+    visibility:hidden;
 }
 
 #project_photo_gallery {
@@ -887,6 +891,88 @@ form{
     }
 }
 
+
+
+/* --- Take action --- */
+
+.team-contact{
+    
+    background-repeat:no-repeat;
+    width:187px;
+    height:21px;
+    position:relative;
+    
+    a{
+        position:absolute;
+        z-index:10;
+        @include georgia(17px);
+        color:white;
+        top:0px;
+        left:30px;
+    }
+    
+    a:hover{
+        text-decoration:none;
+    }
+    
+    .on, .off{
+        width:187px;
+        height:21px;
+    }
+    
+    .on{
+        width:0px;
+        background-image:url("../images/project/team-contact-on.png");
+        position:absolute;
+        z-index:05;
+    }
+    
+    .off{
+        background-image:url("../images/project/team-contact-off.png");
+        position:absolute;
+        z-index:04;
+    }
+}
+
+.member-contact{
+    
+    background-repeat:no-repeat;
+    width:187px;
+    height:21px;
+    position:relative;
+    top:80px;
+    
+    a{
+        position:absolute;
+        z-index:10;
+        @include georgia(12px);
+        color:white;
+        top:2px;
+        left:25px;
+    }
+    
+    a:hover{
+        text-decoration:none;
+    }
+    
+    .on, .off{
+        width:80px;
+        height:18px;
+    }
+    
+    .on{
+        width:0px;
+        background-image:url("../images/project/contact-on.jpg");
+        position:absolute;
+        z-index:05;
+    }
+    
+    .off{
+        background-image:url("../images/project/contact-off.jpg");
+        position:absolute;
+        z-index:04;
+    }
+}
 
 
 
