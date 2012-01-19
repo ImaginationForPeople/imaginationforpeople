@@ -23,32 +23,41 @@
     h1.title{
         color:white;
         margin-top:0px;
-        background-color:$blue;
         text-transform:none;
         font-size:17px;
         text-align:center;
         padding-top:5px;
         padding-bottom:5px;
         @include shadow(4px, #181818);
+        background-image:url('../images/usermessages/my-messages-title.jpg'); 
+        background-color:transparent !important;
+        background-repeat:no-repeat;
+        padding-right:35px;
+        height:22px;
+    }
+    
+    h1.title:hover{
+        text-decoration:underline;
     }
     
     .title_bar{
         display:block;
-        background-color:#656566;
+        background-color:#686868;
         padding-right:10px;
         width:100%;
-        height:30px;
+        height:32px;
         margin-bottom:20px;
         @include shadow(4px, #181818);
     
         a.new_message{
-            width:210px;
+            height:32px;
             padding-top:5px;
             padding-bottom:5px;
             background-image:url('../images/usermessages/new_message.jpg'); 
             background-repeat:no-repeat;
             color:white;
             padding-left:50px;
+            padding-right:30px;
             position:absolute;
             top:0px;
             @include georgia(17px);
@@ -59,12 +68,21 @@
         background-color:#2b2b2b;
         padding:4px;
         color:white;
+        text-transform:uppercase;
         
         strong{
             background-color:$blue;
             padding-left:3px;
             padding-right:3px;
             color:white;
+        }
+        
+        em{
+            background-color:grey;
+            padding-left:3px;
+            padding-right:3px;
+            color:white;
+            font-style:normal;
         }
     }
     
@@ -87,11 +105,16 @@
                 
                 h1{
                     text-decoration:underline;
-                    margin-top:8px;
+                    margin-top:4px;
+                    font-size:14px;
                 }
             
                 a{
                     color:white;
+                }
+                
+                a:hover{
+                    text-decoration:none;
                 }
                 
                 p{
@@ -108,15 +131,31 @@
                     top:0px;
                     
                     img{
-                        width:97px;
-                        height:97px;
-                        margin:10px;
+                        width:105px;
+                        height:105px;
+                        margin:6px;
                     }
                 }
                 
                 .usermessage_body{
                    margin-left:135px;
+                   color: grey;
                 }
+                
+                .nb_news{
+                    background-color:$blue;
+                    position:absolute;
+                    right:5px;
+                    top:5px;
+                    padding:2px 6px 2px 6px;
+                    text-align:center;
+                    @include georgia(14px);
+                    color:white;
+                }
+        }
+        
+        .usermessage:hover{
+            background-image:url('../images/usermessages/message-bg-see-over.png');
         }
         
         .usermessage.unsee{
@@ -152,11 +191,13 @@
             
             textarea{
                 padding:5px;
+                height:100px;
             }
             
             input[type=submit]{
                 left:10px;
                 position:relative;
+                cursor:pointer;
             }
         }
 
@@ -200,7 +241,7 @@
                 }
             }
             
-            p.help, label[for=id_body]{
+            p.help, .helptext, label[for=id_body]{
                 display:none;
                 visibility:hidden;
             }
@@ -212,7 +253,14 @@
                 margin-right:2px;
                 @include georgia(14px);
                 color:white;
-                padding:4px;
+                padding:2px;
+                cursor:pointer;
+                padding-left:20px;
+                padding-right:20px;
+            }
+            
+            input[type=submit]:hover{
+                background-color:grey;
             }
             
             #id_to_on_deck>div>div{
@@ -244,6 +292,10 @@
 .ui-icon {
     background-image: url("../images/ui-icons_222222_256x240-white.png") !important;
     position:absolute;
-    right:0px;
+    right:5px;
     z-index:200;
+}
+
+.results_on_deck{
+    clear:both;
 }

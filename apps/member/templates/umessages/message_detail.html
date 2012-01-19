@@ -3,6 +3,7 @@
 
 {% block content_title %}<h2>Conversation with {{ recipient }}</h2>{% endblock %}
 
+
 {% block usermessage_content %}
     <ul id="usermessage_list">
         
@@ -11,7 +12,7 @@
         <div class="avatar"><img src="{{ message.sender.get_profile.get_mugshot_url }}" alt="{{ message.sender }}" /></div>
             
             <div class="usermessage_body">
-                <em>{% trans 'Received on' %} {{ message.sent_at }}</em>
+                <em>{{ message.sent_at }}</em>
                 <h1>{{ message.sender }}</h1>
                 <br /><br />
                 {{ message.body }}
