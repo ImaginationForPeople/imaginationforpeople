@@ -1,0 +1,235 @@
+@import "mixin.scss";
+
+/*------------ GENERALS ------------*/
+
+.categories {
+    display: none;
+    visibility: hidden;
+}
+
+
+.content{
+
+    a{
+        color:$blue;
+    }
+}
+
+
+/*------------ MESSAGES ------------*/
+
+.usermessages_content{
+
+    h1.title{
+        color:white;
+        margin-top:0px;
+        background-color:$blue;
+        text-transform:none;
+        font-size:17px;
+        text-align:center;
+        padding-top:5px;
+        padding-bottom:5px;
+        @include shadow(4px, #181818);
+    }
+    
+    .title_bar{
+        display:block;
+        background-color:#656566;
+        padding-right:10px;
+        width:100%;
+        height:30px;
+        margin-bottom:20px;
+        @include shadow(4px, #181818);
+    
+        a.new_message{
+            width:210px;
+            padding-top:5px;
+            padding-bottom:5px;
+            background-image:url('../images/usermessages/new_message.jpg'); 
+            background-repeat:no-repeat;
+            color:white;
+            padding-left:50px;
+            position:absolute;
+            top:0px;
+            @include georgia(17px);
+        }
+    }
+    
+    .nb_messages{
+        background-color:#2b2b2b;
+        padding:4px;
+        color:white;
+        
+        strong{
+            background-color:$blue;
+            padding-left:3px;
+            padding-right:3px;
+            color:white;
+        }
+    }
+    
+    #usermessage_list{
+
+        .usermessage{
+            width:100%;
+            height:107px;
+            float:left;
+            padding:5px;  
+            margin-bottom:10px;  
+            background-image:url('../images/usermessages/message-bg-see.jpg');
+            position:relative;
+            color:white;
+            
+                em{
+                    color:white;
+                    font-size:10px;
+                }
+                
+                h1{
+                    text-decoration:underline;
+                    margin-top:8px;
+                }
+            
+                a{
+                    color:white;
+                }
+                
+                p{
+                    color:grey;
+                }
+                
+                .avatar{
+                    width:127px;
+                    height:117px;
+                    background-image:url('../images/usermessages/avatar-bg.png');
+                    background-repeat:no-repeat;
+                    position:absolute;
+                    left:0px;
+                    top:0px;
+                    
+                    img{
+                        width:97px;
+                        height:97px;
+                        margin:10px;
+                    }
+                }
+                
+                .usermessage_body{
+                   margin-left:135px;
+                }
+        }
+        
+        .usermessage.unsee{
+            background-image:url('../images/usermessages/message-bg-unsee.jpg');
+            color:black;
+            
+            em{
+                color:black;
+            }
+            
+            a{
+                color:black;
+            }
+            
+            p{
+                color:black;
+            }
+            
+            .avatar{
+                background-image:url('../images/usermessages/avatar-bg2.png');
+            }
+        }
+        
+        #usermessage_compose{            
+            background-image:none;
+            padding:0px;
+            position:relative;
+            
+            .avatar{
+                display:none;
+                visibility:hidden;
+            }
+            
+            textarea{
+                padding:5px;
+            }
+            
+            input[type=submit]{
+                left:10px;
+                position:relative;
+            }
+        }
+
+    }
+    
+    #usermessage_compose{
+        
+        width:100%;
+        float:left;
+        padding:5px;  
+        margin-bottom:10px;  
+        background-image:url('../images/usermessages/message-bg-see.jpg');
+        position:relative;
+        color:white;
+        
+        form{
+            margin-left:135px;
+            
+            p{
+                float:left;
+                margin-bottom:5px;
+                width:100%;
+                position:relative;
+                
+                label{
+                    position:absolute;
+                    color:#403f3d;
+                    top:4px;
+                    left:5px;
+                    color:grey;
+                }
+                
+                
+                input[type=text]{
+                    padding-left:45px;
+                    width:92%;
+                }
+                
+                textarea{
+                    width:99%;
+                }
+            }
+            
+            input[type=submit]{
+                float:right;
+                background-color:#6b6b6b;
+                border:0px;
+                margin-right:2px;
+                @include georgia(14px);
+                color:white;
+                padding:4px;
+            }
+        }
+        
+        .avatar{
+            width:127px;
+            height:117px;
+            background-image:url('../images/usermessages/avatar-bg.png');
+            background-repeat:no-repeat;
+            position:absolute;
+            left:0px;
+            top:0px;
+            
+            img{
+                width:97px;
+                height:97px;
+                margin:10px;
+            }
+        }
+    }
+
+
+}
+
+
+

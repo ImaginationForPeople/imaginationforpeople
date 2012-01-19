@@ -1,1 +1,49 @@
 {% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+{% load umessages_tags %}
+
+{% block style %}
+  {{ block.super }}
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/usermessages.css" />
+  {% endcompress %}
+{% endblock %}
+
+{% block content %}
+    <div class="content usermessages_content"> 
+        <div class="container_18">
+        
+            <div class="grid_4 alpha">
+                <h1 class="title">{% trans 'My Messages' %}</h1>
+                {% get_unread_message_count_for user as unread_message_count %}
+                
+                <a href="{% url userena_umessages_list %}">
+                    <div class="nb_messages">
+                        {% if unread_message_count == 0 %}
+                            {{ unread_message_count }}
+                        {% else %}
+                            <strong>{{ unread_message_count }}</strong>
+                        {% endif %}
+                        
+                        {% trans 'Inbox' %}
+                    </div>
+                </a>
+                
+            </div>
+        
+            <div class="grid_14 omega">
+                
+                <div class="title_bar"><a href="{% url userena_umessages_compose %}" class="new_message">{% trans 'New Message' %}</a></div>
+               
+                {% block usermessage_content %}
+                {% endblock %}  
+            
+            </div>
+            
+            <div class="clear"></div>
+            
+        </div>
+    </div>
+{% endblock %}     
