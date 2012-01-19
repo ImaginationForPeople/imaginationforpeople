@@ -46,11 +46,16 @@
                     </h1>
                     
                     <br />
-                    <p>{{ message.latest_message|truncatewords:20 }} | {{ message.latest_message.sender }} ({{ unread_between_count }} new )</p>
+                    <p>{{ message.latest_message|truncatewords:20 }} | {{ message.latest_message.sender }}</p>
                 </div>
+                
+                {% if unread_between_count != 0 %}
+                    <div class="nb_news">{{ unread_between_count }} {% trans 'new' %}</div>
+                {% endif %} 
             </a>
+            
 
-            </li>
+        </li>
         {% endfor %}
     </ul>
 {% endblock %}
