@@ -267,14 +267,11 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 
 USERENA_DEFAULT_PRIVACY = 'open'
 
-# Social auth
+## Social auth
 SOCIAL_AUTH_USERNAME_FIXER = fix_username
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
                                  'user_work_history']
 GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
-
-
-USERENA_ACTIVATION_REQUIRED = False
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
