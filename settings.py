@@ -26,7 +26,6 @@ ADMINS = (
 MANAGERS = (
     ('IP Team', 'team@imaginationforpeople.org'),
 )
-MANAGERS += ADMINS
 
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
@@ -314,7 +313,7 @@ DEBUG_TOOLBAR_PANELS = (
 FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
-SERVER_EMAIL = 'noreply@imaginationforpeople.com'
+SERVER_EMAIL = 'noreply@imaginationforpeople.org'
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
