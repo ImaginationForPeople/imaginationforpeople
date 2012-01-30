@@ -86,8 +86,8 @@ class FacebookDataAdapter(DataAdapter):
         Get profile data from authentication response and assign it to user
         profile
         """
-        self.profile.website = self.response.get('website')
-        self.profile.facebook = self.response.get('link')
+        self.profile.website = self.response.get('website', '')
+        self.profile.facebook = self.response.get('link', '')
         self.fetch_country()
         self.fetch_picture()
 
@@ -145,7 +145,7 @@ class TwitterDataAdapter(DataAdapter):
         """
         self.set_twitter_url(self.response.get('screen_name'))
         self.fetch_picture()
-        self.profile.website = self.response.get('url')
+        self.profile.website = self.response.get('url', '')
         location = Location(address=self.response.get('location'))
         self.profile.location = location
 
