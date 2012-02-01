@@ -58,6 +58,11 @@
   font-weight: bold;
   font-style: italic;
 }
+.usermessages_content .title_bar div.mail_nav {
+  position: absolute;
+  right: -4px;
+  top: 6px;
+}
 .usermessages_content .nb_messages {
   background-color: #2b2b2b;
   padding: 4px;
@@ -123,11 +128,13 @@
   margin-left: 135px;
   color: grey;
 }
-.usermessages_content #usermessage_list .usermessage .nb_news {
-  background-color: #04add1;
+.usermessages_content #usermessage_list .usermessage .message_actions {
   position: absolute;
   right: 5px;
   top: 5px;
+}
+.usermessages_content #usermessage_list .usermessage .message_actions .nb_news {
+  background-color: #04add1;
   padding: 2px 6px 2px 6px;
   text-align: center;
   font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
@@ -135,6 +142,15 @@
   font-weight: bold;
   font-style: italic;
   color: white;
+  float: left;
+  margin-right: 5px;
+}
+.usermessages_content #usermessage_list .usermessage .message_actions form#delete_message {
+  float: left;
+}
+.usermessages_content #usermessage_list .usermessage .message_actions form#delete_message input[type=submit] {
+  background-color: grey;
+  border: 0px;
 }
 .usermessages_content #usermessage_list .usermessage:hover {
   background-image: url("../images/usermessages/message-bg-see-over.png");
@@ -164,7 +180,10 @@
   display: none;
   visibility: hidden;
 }
-.usermessages_content #usermessage_list #usermessage_compose textarea {
+.usermessages_content #usermessage_list #usermessage_compose p {
+  width: 628px !important;
+}
+.usermessages_content #usermessage_list #usermessage_compose p textarea {
   padding: 5px;
   height: 100px;
 }
@@ -190,20 +209,30 @@
   margin-bottom: 5px;
   width: 100%;
   position: relative;
+  overflow: hidden;
+  background-color: white;
 }
 .usermessages_content #usermessage_compose form p label {
-  position: absolute;
+  position: relative;
   color: #403f3d;
-  top: 4px;
-  left: 5px;
   color: grey;
+  float: left;
+  padding: 3px;
+  background-color: white;
 }
 .usermessages_content #usermessage_compose form p input[type=text] {
   padding-left: 45px;
-  width: 92%;
+  width: 100%;
+  position: absolute;
+  border: 1px solid white;
+  border-left: 0px;
+  padding: 3px;
+  padding-top: 1px;
+  line-height: 10px;
 }
 .usermessages_content #usermessage_compose form p textarea {
-  width: 99%;
+  width: 624px;
+  border: 1px solid white;
 }
 .usermessages_content #usermessage_compose form p.help, .usermessages_content #usermessage_compose form .helptext, .usermessages_content #usermessage_compose form label[for=id_body] {
   display: none;
@@ -223,6 +252,8 @@
   cursor: pointer;
   padding-left: 20px;
   padding-right: 20px;
+  position: relative;
+  right: -2px;
 }
 .usermessages_content #usermessage_compose form input[type=submit]:hover {
   background-color: grey;
@@ -254,4 +285,8 @@
 
 .results_on_deck {
   clear: both;
+}
+
+.ui-autocomplete {
+  width: 500px !important;
 }

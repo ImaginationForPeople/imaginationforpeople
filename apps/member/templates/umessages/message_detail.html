@@ -1,19 +1,35 @@
 {% extends 'umessages/base_message.html' %}
 {% load i18n %}
+{% load humanize %}
 
 {% block content_title %}<h2>Conversation with {{ recipient }}</h2>{% endblock %}
 
+{% block extra_head %}
+    <script type="text/javascript">
+          $(document).ready(function(){
+            $('html,body').animate({scrollTop: $("#form").offset().top}, 'slow');
+            K%Lvjdsgvdtrace ('plop');
+        });
+    </script>
+{% endblock %}
 
 {% block usermessage_content %}
+
     <ul id="usermessage_list">
         
         {% for message in message_list reversed %}
         <li class="usermessage">
-        <div class="avatar"><img src="{{ message.sender.get_profile.get_mugshot_url }}" alt="{{ message.sender }}" /></div>
+        <div class="avatar"><a href="{% url userena_profile_detail message.sender %}"><img src="{{ message.sender.get_profile.get_mugshot_url }}" alt="{{ message.sender }}" /></a></div>
             
             <div class="usermessage_body">
-                <em>{{ message.sent_at }}</em>
-                <h1>{{ message.sender }}</h1>
+                <em>{{ message.sent_at|timesince  }} {% trans 'ago...' %}</em>
+                <h1><a href="{% url userena_profile_detail message.sender %}">
+                    {% if message.sender.get_full_name %}
+                        {{ message.sender.get_full_name }}
+                    {% else %}
+                        {{ message.sender }}
+                    {% endif %}
+                </a></h1>
                 <br /><br />
                 {{ message.body }}
                 <br /><br />
@@ -24,7 +40,7 @@
         <div id="usermessage_compose">
 
         <div class="avatar"><img src="{{ user.get_profile.get_mugshot_url }}" alt="{{ message.to_user }}" /></div>
-          <form action="{% url userena_umessages_reply %}" method="post">
+          <form action="{% url userena_umessages_reply %}" id="form" method="post">
                 {% csrf_token %}
                 
                 <p>
@@ -35,7 +51,6 @@
             </form>
     
         </div>
-
         
     </ul>
     

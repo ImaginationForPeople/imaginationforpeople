@@ -62,6 +62,12 @@
             top:0px;
             @include georgia(17px);
         }
+        
+        div.mail_nav{
+            position:absolute;
+            right:-4px;
+            top:6px;
+        }
     }
     
     .nb_messages{
@@ -142,16 +148,32 @@
                    color: grey;
                 }
                 
-                .nb_news{
-                    background-color:$blue;
+                .message_actions{
                     position:absolute;
                     right:5px;
                     top:5px;
-                    padding:2px 6px 2px 6px;
-                    text-align:center;
-                    @include georgia(14px);
-                    color:white;
+                
+                    .nb_news{
+                        background-color:$blue;
+                        padding:2px 6px 2px 6px;
+                        text-align:center;
+                        @include georgia(14px);
+                        color:white;
+                        float:left;
+                        margin-right:5px;
+                    }  
+
+                    form#delete_message{
+                        float:left;
+                    
+                        input[type=submit]{
+                            background-color:grey;
+                            border:0px;
+                        }
+                    }
                 }
+                
+                
         }
         
         .usermessage:hover{
@@ -189,11 +211,16 @@
                 visibility:hidden;
             }
             
-            textarea{
-                padding:5px;
-                height:100px;
-            }
+            p{
+                width:628px !important;
             
+                textarea{
+                    padding:5px;
+                    height:100px;
+                }
+                
+            }
+                
             input[type=submit]{
                 left:10px;
                 position:relative;
@@ -221,23 +248,33 @@
                 margin-bottom:5px;
                 width:100%;
                 position:relative;
+                overflow:hidden;
+                background-color:white;
                 
                 label{
-                    position:absolute;
+                    position:relative;
                     color:#403f3d;
-                    top:4px;
-                    left:5px;
                     color:grey;
+                    float:left;
+                    padding:3px;
+                    background-color:white;
                 }
                 
                 
                 input[type=text]{
                     padding-left:45px;
-                    width:92%;
+                    width:100%;
+                    position:absolute;
+                    border:1px solid white;
+                    border-left:0px;
+                    padding:3px;
+                    padding-top:1px;
+                    line-height:10px;
                 }
                 
                 textarea{
-                    width:99%;
+                    width:624px;
+                    border:1px solid white;
                 }
             }
             
@@ -257,6 +294,8 @@
                 cursor:pointer;
                 padding-left:20px;
                 padding-right:20px;
+                position:relative;
+                right:-2px;
             }
             
             input[type=submit]:hover{
@@ -298,4 +337,8 @@
 
 .results_on_deck{
     clear:both;
+}
+
+.ui-autocomplete{
+    width:500px !important;
 }

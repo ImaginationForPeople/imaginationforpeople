@@ -39,8 +39,17 @@
         
             <div class="grid_14 omega">
                 
-                <div class="title_bar"><a href="{% url userena_umessages_compose %}" class="new_message" >{% trans 'New Message' %}<img src="{{ STATIC_URL }}images/usermessages/arrow.png" style="position:absolute; right:0px; top:0px;"/></a></div>
-               
+                <div class="title_bar">
+                   <a href="{% url userena_umessages_compose %}" class="new_message" >{% trans 'New Message' %}<img src="{{ STATIC_URL }}images/usermessages/arrow.png" style="position:absolute; right:0px; top:0px;"/></a>
+                   
+                   <!-- PREVIOUS / NEXT MESSAGE for DETAILLED MESSAGES PAGE -->
+                   <div class="mail_nav" style="display:none; visibility:hidden;">
+                       <a href="#"><img src="{{ STATIC_URL }}images/usermessages/mail_nav-left.jpg" width="21" height="21" alt="{% trans 'Previous Message' %}"></a>
+                       <a href="#"><img src="{{ STATIC_URL }}images/usermessages/mail_nav-right.jpg" width="21" height="21" alt="{% trans 'Next Message' %}"></a>
+                   </div>
+                   
+                </div>
+                
                 {% block usermessage_content %}
                 {% endblock %}  
             
