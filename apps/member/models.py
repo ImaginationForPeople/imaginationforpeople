@@ -76,7 +76,7 @@ def email_managers_on_account_activation(sender, user, **kwargs):
     mail_managers(subject=_(u'New user registered'), message=body)
         
 
-@receiver(socialauth_registered)
+@receiver(socialauth_registered, dispatch_uid="apps.member.models")
 def socialauth_registered_handler(sender, user, response, details, **kwargs):
     """
     Called when user registers for the first time using social auth
