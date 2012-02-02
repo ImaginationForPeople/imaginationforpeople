@@ -175,8 +175,9 @@ class GoogleDataAdapter(DataAdapter):
         self.user_info = simplejson.loads(profile_json)
 
     def fetch_profile_data(self):
-        self.profile.user.first_name = self.user_info.get('given_name')
-        self.profile.user.last_name = self.user_info.get('family_name')
+        self.profile.user.first_name = self.user_info.get('given_name', '')
+        self.profile.user.last_name = self.user_info.get('family_name', '')
+        self.profile.user.username = self.profile.user.first_name + self.profile.user.last_name
         if self.user_info.get('gender') == 'male':
             self.profile.gender = 'M'
         elif self.user_info.get('gender') == 'female':
