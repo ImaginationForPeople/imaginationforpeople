@@ -28,9 +28,9 @@
             "> 
                 <div class="avatar"><img src="
                     {% if message.from_user == user %}
-                        {{ message.from_user.get_profile.get_mugshot_url }}
-                     {% else %}
                         {{ message.to_user.get_profile.get_mugshot_url }}
+                     {% else %}
+                        {{ message.from_user.get_profile.get_mugshot_url }}
                     {% endif %}            
      
                 " alt="
