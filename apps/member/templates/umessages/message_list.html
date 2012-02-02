@@ -1,5 +1,6 @@
 {% extends 'umessages/base_message.html' %}
 {% load i18n umessages_tags %}
+{% load humanize %}
 
 {% block content_title %}<h2>Messages</h2>{% endblock %}
 
@@ -25,7 +26,14 @@
                     {% url userena_umessages_detail message.from_user.username %}
                 {% endif %}
             "> 
-                <div class="avatar"><img src="{{ message.from_user.get_profile.get_mugshot_url }}" alt="
+                <div class="avatar"><img src="
+                    {% if message.from_user == user %}
+                        {{ message.from_user.get_profile.get_mugshot_url }}
+                     {% else %}
+                        {{ message.to_user.get_profile.get_mugshot_url }}
+                    {% endif %}            
+     
+                " alt="
                     {% if message.from_user == user %}
                                 {{ message.to_user }}
                              {% else %}
@@ -35,27 +43,54 @@
                 
                 <div class="usermessage_body">
                     
-                    <em>{% trans 'Received on' %} {{ message.latest_message.sent_at }}</em>
+                    <em>{% trans 'Received on' %} {{ message.latest_message.sent_at|timesince  }}</em>
                     
                     <h1>
                         {% if message.from_user == user %}
-                            {{ message.to_user }}
+                            {% if message.to_user.get_full_name %}
+                                {{ message.to_user.get_full_name }}
+                            {% else %}
+                                {{ message.to_user }}
+                            {% endif %}
                          {% else %}
-                             {{ message.from_user }}
+                            {% if message.from_user.get_full_name %}
+                                {{ message.from_user.get_full_name }}
+                            {% else %}
+                                {{ message.from_user }}
+                            {% endif %}
                         {% endif %}
                     </h1>
                     
                     <br />
-                    <p>{{ message.latest_message|truncatewords:20 }} | {{ message.latest_message.sender }}</p>
+                    <p>
+                        {% if message.latest_message.sender == user %}
+                            <img src="{{ STATIC_URL }}images/usermessages/answer.png" width="8" height="7" />
+                        {% endif %}
+                        {{ message.latest_message|truncatewords:20 }} | {{ message.latest_message.sender }}
+                    </p>
                 </div>
                 
-                {% if unread_between_count != 0 %}
-                    <div class="nb_news">{{ unread_between_count }} {% trans 'new' %}</div>
-                {% endif %} 
             </a>
-            
+                
+            <div class="message_actions">
+                {% if unread_between_count != 0 %}
+                    <div class="nb_news">{{ unread_between_count }} {% trans 'new' %} </div>
+                {% endif %} 
+                
+                <!-- DELETE THREAD BUTTON - todo - give possibility to delete all thread, whith his related subemssages -->
+                {% comment %}
+                <form method="POST" action="{% url userena_umessages_remove %}" id="delete_message">
+                    {% csrf_token %}
+                    {% with  message.messagecontact_set.all|join:"," as submessages %}
+                        <input type="text" name="message_pks" value="[{{ submessages }}]" />
+                    {% endwith %}
+                    <input type="image" src="{{ STATIC_URL }}images/usermessages/delete.jpg" width="21" height="20" value="Delete" />
+                </form>
+                {% endcomment %}
+            </div>
 
         </li>
         {% endfor %}
     </ul>
+    
 {% endblock %}

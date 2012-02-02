@@ -907,7 +907,7 @@ form{
         z-index:10;
         @include georgia(17px);
         color:white;
-        top:0px;
+        top:-1px;
         left:30px;
     }
     
@@ -931,6 +931,24 @@ form{
         background-image:url("../images/project/team-contact-off.png");
         position:absolute;
         z-index:04;
+    }
+}
+
+#contact_team-infos{
+    
+    p{
+        position:relative;
+        float:right;
+        width:60%;
+        margin-top:0px;
+        font-size:10px;
+        line-height:18px;
+        top:-6px;
+        
+        img{
+            position:relative;
+            top:4px;
+        }
     }
 }
 
