@@ -21,6 +21,7 @@ ADMINS = (
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
     ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
+    ('Alex Marandon', 'alexmarandon@imaginationforpeople.org'),
 )
 
 MANAGERS = (
