@@ -58,10 +58,16 @@
   font-weight: bold;
   font-style: italic;
 }
+.usermessages_content .title_bar a.new_message:hover {
+  text-decoration: underline;
+}
 .usermessages_content .title_bar div.mail_nav {
   position: absolute;
   right: -4px;
   top: 6px;
+}
+.usermessages_content a:hover {
+  text-decoration: none;
 }
 .usermessages_content .nb_messages {
   background-color: #2b2b2b;
@@ -148,9 +154,10 @@
 .usermessages_content #usermessage_list .usermessage .message_actions form#delete_message {
   float: left;
 }
-.usermessages_content #usermessage_list .usermessage .message_actions form#delete_message input[type=submit] {
-  background-color: grey;
+.usermessages_content #usermessage_list .usermessage .message_actions form#delete_message input[type=image] {
+  background-color: #595959;
   border: 0px;
+  padding-top: 1px;
 }
 .usermessages_content #usermessage_list .usermessage:hover {
   background-image: url("../images/usermessages/message-bg-see-over.png");

@@ -43,7 +43,7 @@
                 
                 <div class="usermessage_body">
                     
-                    <em>{{ message.latest_message.sent_at|timesince  }} {% trans 'ago...' %}</em>
+                    <em>{% trans 'Received on' %} {{ message.latest_message.sent_at|timesince  }}</em>
                     
                     <h1>
                         {% if message.from_user == user %}
@@ -77,11 +77,16 @@
                     <div class="nb_news">{{ unread_between_count }} {% trans 'new' %} </div>
                 {% endif %} 
                 
+                <!-- DELETE THREAD BUTTON - todo - give possibility to delete all thread, whith his related subemssages -->
+                {% comment %}
                 <form method="POST" action="{% url userena_umessages_remove %}" id="delete_message">
                     {% csrf_token %}
-                    <input type="hidden" id="message_pks" />
-                    <input type="submit" value="Delete" />
-                </form> 
+                    {% with  message.messagecontact_set.all|join:"," as submessages %}
+                        <input type="text" name="message_pks" value="[{{ submessages }}]" />
+                    {% endwith %}
+                    <input type="image" src="{{ STATIC_URL }}images/usermessages/delete.jpg" width="21" height="20" value="Delete" />
+                </form>
+                {% endcomment %}
             </div>
 
         </li>

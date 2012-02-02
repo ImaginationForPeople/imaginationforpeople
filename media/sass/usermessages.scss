@@ -63,11 +63,19 @@
             @include georgia(17px);
         }
         
+        a.new_message:hover{
+            text-decoration:underline;
+        }
+        
         div.mail_nav{
             position:absolute;
             right:-4px;
             top:6px;
         }
+    }
+    
+    a:hover{
+        text-decoration:none;
     }
     
     .nb_messages{
@@ -166,9 +174,10 @@
                     form#delete_message{
                         float:left;
                     
-                        input[type=submit]{
-                            background-color:grey;
+                        input[type=image]{
+                            background-color:#595959;
                             border:0px;
+                            padding-top:1px;
                         }
                     }
                 }
