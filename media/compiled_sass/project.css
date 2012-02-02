@@ -771,7 +771,7 @@ form {
   font-weight: bold;
   font-style: italic;
   color: white;
-  top: 0px;
+  top: -1px;
   left: 30px;
 }
 .team-contact a:hover {
@@ -791,6 +791,20 @@ form {
   background-image: url("../images/project/team-contact-off.png");
   position: absolute;
   z-index: 04;
+}
+
+#contact_team-infos p {
+  position: relative;
+  float: right;
+  width: 60%;
+  margin-top: 0px;
+  font-size: 10px;
+  line-height: 18px;
+  top: -6px;
+}
+#contact_team-infos p img {
+  position: relative;
+  top: 4px;
 }
 
 .member-contact {
