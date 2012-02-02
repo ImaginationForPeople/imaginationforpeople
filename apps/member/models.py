@@ -151,15 +151,3 @@ def send_message_notification(sender, instance, **kwargs):
     send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [recipient])
 
 
-# XXX: userena should be enough
-# def assign_good_profile_perm(sender, instance, created, **kwargs):
-#     if created:
-#         user = instance.user
-#         assign('change_profile', user, instance)
-#         assign('change_user', user, user)
-
-# post_save.connect(assign_good_profile_perm, I4pProfile)
-
-# def init_good_profile_perm():
-#     for profile in I4pProfile.objects.all():
-#         assign_good_profile_perm(I4pProfile, profile, True)
