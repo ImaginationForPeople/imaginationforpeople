@@ -40,7 +40,7 @@ from userena.utils import get_protocol
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 
-from .utils import fix_username, find_username_from
+from .utils import fix_username
 from .social import fetch_profile_data
 
 
@@ -78,7 +78,8 @@ def email_managers_on_account_activation(sender, user, **kwargs):
     mail_managers(subject=_(u'New user registered'), message=body)
         
 
-@receiver(socialauth_registered, dispatch_uid="apps.member.models")
+@receiver(socialauth_registered,
+        dispatch_uid="apps.member.models.socialauth_registered_handler")
 def socialauth_registered_handler(sender, user, response, details, **kwargs):
     """
     Called when user registers for the first time using social auth
@@ -102,30 +103,21 @@ def socialauth_registered_handler(sender, user, response, details, **kwargs):
     return True
 
 
-@receiver(socialauth_registered, sender=LinkedinBackend)
+@receiver(socialauth_registered, sender=LinkedinBackend,
+        dispatch_uid="apps.member.models.linkedin_registered_handler")
 def linkedin_registered_handler(sender, user, response, details, **kwargs):
     """
     LinkedIn doesn't return a username so instead of letting
     django-social-auth generate a random username, we generate one
     based on first name and last name.
     """
-    username = find_username_from(response['first-name'], response['last-name'])
+    username = fix_username(response['first-name'] + response['last-name'])
     user.username = username
     user.save()
 
-@receiver(socialauth_registered, sender=GoogleOAuthBackend)
-def google_oauth_registered_handler(sender, user, response, details, **kwargs):
-    """
-    Google doesn't always return a username so instead of letting
-    django-social-auth generate a random username, we generate one
-    based on first name and last name.
-    """
-    username = find_username_from(response['first_name'], response['last_name'])
-    user.username = username
-    user.save()
-    
 
-@receiver(post_save, sender=MessageRecipient)
+@receiver(post_save, sender=MessageRecipient,
+        dispatch_uid="apps.member.models.send_message_notification")
 def send_message_notification(sender, instance, **kwargs):
     """
     Send email when user receives a new message. This email contains the full text
