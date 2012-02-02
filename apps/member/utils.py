@@ -26,3 +26,23 @@ def fix_username(original_name):
     """
     username = re.sub("[^a-zA-Z0-9]", "", remove_accents(original_name))
     return username
+
+def find_username_from(firstname, lastname):
+    """
+    Given a first name and a last name, find a free username
+    """
+    from django.contrib.auth.models import User
+
+    username = firstname + lastname
+    name, idx = username, 2
+    while True:
+        try:
+            name = fix_username(name)
+            User.objects.get(username__iexact=name)
+            name = username + str(idx)
+            idx += 1
+        except User.DoesNotExist:
+            username = name
+            break
+    return username
+ 

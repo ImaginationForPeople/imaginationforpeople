@@ -273,6 +273,7 @@ SOCIAL_AUTH_USERNAME_FIXER = fix_username
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
                                  'user_work_history']
 GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
+SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
