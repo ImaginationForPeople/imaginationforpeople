@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 # Import settings for the given site
 from site_settings import *
 
+from apps.member.utils import fix_username
+
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
@@ -19,12 +21,12 @@ ADMINS = (
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
     ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
+    ('Alex Marandon', 'alexmarandon@imaginationforpeople.org'),
 )
 
 MANAGERS = (
     ('IP Team', 'team@imaginationforpeople.org'),
 )
-MANAGERS += ADMINS
 
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
@@ -120,6 +122,11 @@ if DEBUG:
             )
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.contrib.linkedin.LinkedinBackend',
+    'social_auth.backends.OpenIDBackend',
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -185,6 +192,7 @@ INSTALLED_APPS = (
     'linaro_django_pagination',
     'template_utils',
     'simplegravatar',
+    'social_auth',
 
 
     #'grappelli',
@@ -260,7 +268,12 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 
 USERENA_DEFAULT_PRIVACY = 'open'
 
-USERENA_ACTIVATION_REQUIRED = False
+## Social auth
+SOCIAL_AUTH_USERNAME_FIXER = fix_username
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
+                                 'user_work_history']
+GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
+SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
@@ -299,7 +312,7 @@ DEBUG_TOOLBAR_PANELS = (
 FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
-SERVER_EMAIL = 'noreply@imaginationforpeople.com'
+SERVER_EMAIL = 'noreply@imaginationforpeople.org'
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
@@ -327,6 +340,7 @@ LOCALE_INDEPENDENT_PATHS = (
         re.compile('^/media/.*$'),
         re.compile('^/robots.txt$'),
         re.compile('^/sitemap.xml$'),
+        re.compile('^/member/complete/google-oauth2/?'),
 	)
 
 ## Flags
