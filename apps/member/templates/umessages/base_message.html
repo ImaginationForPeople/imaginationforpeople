@@ -42,6 +42,8 @@
                 <div class="title_bar">
                    <a href="{% url userena_umessages_compose %}" class="new_message" >{% trans 'New Message' %}<img src="{{ STATIC_URL }}images/usermessages/arrow.png" style="position:absolute; right:0px; top:0px;"/></a>
                    
+                   {% block discuss_beetween %}{% endblock %}  
+                   
                    <!-- PREVIOUS / NEXT MESSAGE for DETAILLED MESSAGES PAGE -->
                     {% comment %}
                     <div class="mail_nav">

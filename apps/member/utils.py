@@ -22,7 +22,19 @@ from apps.i4p_base.utils import remove_accents
 def fix_username(original_name):
     """
     Modify a username to comply with the site username policy, basically getting
-    rid of accents, spaces and special characters.
+    rid of accents, spaces and special characters and making sure there's no
+    duplicate, even with a different case.
     """
+    from django.contrib.auth.models import User
+
     username = re.sub("[^a-zA-Z0-9]", "", remove_accents(original_name))
+    name, idx = username, 2
+    while True:
+        try:
+            User.objects.get(username__iexact=name)
+            name = username + str(idx)
+            idx += 1
+        except User.DoesNotExist:
+            username = name
+            break
     return username

@@ -31,6 +31,7 @@ from social_auth.backends.google import GoogleOAuth2Backend
 from social_auth.backends.contrib.linkedin import LinkedinBackend
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
+from .utils import fix_username
 
 
 class DataAdapter(object):
@@ -86,8 +87,8 @@ class FacebookDataAdapter(DataAdapter):
         Get profile data from authentication response and assign it to user
         profile
         """
-        self.profile.website = self.response.get('website')
-        self.profile.facebook = self.response.get('link')
+        self.profile.website = self.response.get('website', '')
+        self.profile.facebook = self.response.get('link', '')
         self.fetch_country()
         self.fetch_picture()
 
@@ -145,7 +146,7 @@ class TwitterDataAdapter(DataAdapter):
         """
         self.set_twitter_url(self.response.get('screen_name'))
         self.fetch_picture()
-        self.profile.website = self.response.get('url')
+        self.profile.website = self.response.get('url', '')
         location = Location(address=self.response.get('location'))
         self.profile.location = location
 
@@ -175,13 +176,34 @@ class GoogleDataAdapter(DataAdapter):
         self.user_info = simplejson.loads(profile_json)
 
     def fetch_profile_data(self):
-        self.profile.user.first_name = self.user_info.get('given_name')
-        self.profile.user.last_name = self.user_info.get('family_name')
+        self.profile.user.first_name = self.user_info.get('given_name', '')
+        self.profile.user.last_name = self.user_info.get('family_name', '')
+        self.make_username_from(self.profile.user.first_name,
+                                self.profile.user.last_name)
         if self.user_info.get('gender') == 'male':
             self.profile.gender = 'M'
         elif self.user_info.get('gender') == 'female':
             self.profile.gender = 'F'
         self.fetch_picture()
+
+    def make_username_from(self, first_name, last_name):
+        """
+        Set a username from Google profile first name and last name
+        """
+        default_username = self.profile.user.username
+        fancy_username = first_name + last_name
+        if default_username.startswith(fancy_username.lower()):
+            # If default username already starts with a lowercase version of the
+            # username based on first name and last name, we replace it by its
+            # camel case counterpart. Example: if Google email is
+            # john.smith@gmail.com, default username could be johnsmith2 if
+            # there's already a JohnSmith, then we want the new fancy username
+            # to be JohnSmith2
+            self.profile.user.username = default_username.replace(
+                        fancy_username.lower(), fancy_username)
+        else:
+            self.profile.user.username = fix_username(fancy_username)
+
 
     @property
     def picture_url(self):

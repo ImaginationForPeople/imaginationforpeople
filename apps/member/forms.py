@@ -24,6 +24,7 @@ from userena.forms import SignupForm, EditProfileForm
 
 from .models import I4pProfile
 from .fields import UserMessageRecipientField
+from .utils import fix_username
 
 class I4PSignupForm(SignupForm):
     """

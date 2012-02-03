@@ -21,12 +21,12 @@ ADMINS = (
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
     ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
+    ('Alex Marandon', 'alexmarandon@imaginationforpeople.org'),
 )
 
 MANAGERS = (
     ('IP Team', 'team@imaginationforpeople.org'),
 )
-MANAGERS += ADMINS
 
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
@@ -268,14 +268,12 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 
 USERENA_DEFAULT_PRIVACY = 'open'
 
-# Social auth
+## Social auth
 SOCIAL_AUTH_USERNAME_FIXER = fix_username
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
                                  'user_work_history']
 GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
-
-
-USERENA_ACTIVATION_REQUIRED = False
+SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
@@ -314,7 +312,7 @@ DEBUG_TOOLBAR_PANELS = (
 FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
-SERVER_EMAIL = 'noreply@imaginationforpeople.com'
+SERVER_EMAIL = 'noreply@imaginationforpeople.org'
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
