@@ -22,7 +22,7 @@
             <div class="avatar"><a href="{% url userena_profile_detail message.sender %}"><img src="{{ message.sender.get_profile.get_mugshot_url }}" alt="{{ message.sender }}" /></a></div>
             
             <div class="usermessage_body">
-                <em>{% trans 'Received on' %} {{ message.sent_at|timesince  }}</em>
+                <em>{% blocktrans with message.sent_at|timesince as sent_ago %} {{ sent_ago }} ago...{% endblocktrans %}</em>
                 <h1><a href="{% url userena_profile_detail message.sender %}">
                     {% if message.sender.get_full_name %}
                         {{ message.sender.get_full_name }}

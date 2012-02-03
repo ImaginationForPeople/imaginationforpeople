@@ -28,9 +28,9 @@
             "> 
                 <div class="avatar"><img src="
                     {% if message.from_user == user %}
-                        {{ message.from_user.get_profile.get_mugshot_url }}
-                     {% else %}
                         {{ message.to_user.get_profile.get_mugshot_url }}
+                     {% else %}
+                        {{ message.from_user.get_profile.get_mugshot_url }}
                     {% endif %}            
      
                 " alt="
@@ -43,7 +43,7 @@
                 
                 <div class="usermessage_body">
                     
-                    <em>{% trans 'Received on' %} {{ message.latest_message.sent_at|timesince  }}</em>
+                    <em>{% blocktrans with message.latest_message.sent_at|timesince as sent_ago %} {{ sent_ago }} ago...{% endblocktrans %}</em>
                     
                     <h1>
                         {% if message.from_user == user %}

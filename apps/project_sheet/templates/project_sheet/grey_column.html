@@ -115,32 +115,32 @@
 
             <div class="clear"></div>
             
-            <div id="contact_team-infos">
-                <img src="{{ STATIC_URL }}images/project/contact_team-picto.jpg" alt="{% trans 'Contact team' %}" width="73" height="67" />
-                <p>
-                    {% blocktrans %}
-                        Use the messaging system to get in touch with the team 
-                        <img src="{{ STATIC_URL }}images/project/team_info-picto1.jpg" alt="Contact team" width="27" height="15" />
-                        or one of its member
-                        <img src="{{ STATIC_URL }}images/project/team_info-picto2.jpg" alt="Contact member" width="25" height="15" />
-                        .
-                    {% endblocktrans %}
-                </p>
-            </div>
-            
-            <div class="clear"></div>
-            
             {% if project.members.count != 0 %}
-                <div class="team-contact">
-                    {% with project.members.all|join:"+" as recipients %}
-                        <a href="{%  url userena_umessages_compose_to recipients %}">{% trans "Contact team" %}</a> 
-                    {% endwith %}
-                    <div class="on"></div>
-                    <div class="off"></div>
+                <div id="contact_team-infos">
+                    <img src="{{ STATIC_URL }}images/project/contact_team-picto.jpg" alt="{% trans 'Contact team' %}" width="73" height="67" />
+                    <p>
+                        {% blocktrans %}
+                            Use the messaging system to get in touch with the team 
+                            <img src="{{ STATIC_URL }}images/project/team_info-picto1.jpg" alt="Contact team" width="27" height="15" />
+                            or one of its member
+                            <img src="{{ STATIC_URL }}images/project/team_info-picto2.jpg" alt="Contact member" width="25" height="15" />
+                            .
+                        {% endblocktrans %}
+                    </p>
                 </div>
-            {% endif %}
+                
+                <div class="clear"></div>
+                
+                    <div class="team-contact">
+                        {% with project.members.all|join:"+" as recipients %}
+                            <a href="{%  url userena_umessages_compose_to recipients %}">{% trans "Contact team" %}</a> 
+                        {% endwith %}
+                        <div class="on"></div>
+                        <div class="off"></div>
+                    </div>
 
-            <div class="clear"></div>
+                <div class="clear"></div>
+            {% endif %}
 
 
             {% if project.members.all|length == 0 %}
