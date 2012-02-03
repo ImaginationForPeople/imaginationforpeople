@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 #   <vanessaner@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-01-19 10:01+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-03 15:09+0100\n"
 "PO-Revision-Date: 2012-01-19 09:02+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: fields.py:43
@@ -26,71 +26,71 @@ msgstr ""
 msgid "Recipient not found"
 msgstr ""
 
-#: forms.py:32
+#: forms.py:33
 msgid "First name"
 msgstr "Όνομα"
 
-#: forms.py:33
+#: forms.py:34
 msgid "Last name"
 msgstr "Επώνυμο"
 
-#: forms.py:69
+#: forms.py:70
 msgid "gender"
 msgstr "φύλο"
 
-#: models.py:50
+#: models.py:52
 msgid "male"
 msgstr "άντρας"
 
-#: models.py:51
+#: models.py:53
 msgid "female"
 msgstr "γυναίκα"
 
-#: models.py:55
+#: models.py:57
 msgid "motto"
 msgstr "αγαπημένή φράση"
 
-#: models.py:56
+#: models.py:58
 msgid "about"
 msgstr "Σχετικά με "
 
-#: models.py:57
+#: models.py:59
 msgid "birthday"
 msgstr "γενέθλια"
 
-#: models.py:58
+#: models.py:60
 msgid "website"
 msgstr "δικτυακός τόπος"
 
-#: models.py:59
+#: models.py:61
 msgid "linkedin"
 msgstr "LinkedIn"
 
-#: models.py:60
+#: models.py:62
 msgid "twitter"
 msgstr "Twitter"
 
-#: models.py:61
+#: models.py:63
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:62
+#: models.py:64
 msgid "address"
 msgstr "διεύθυνση"
 
-#: models.py:63
+#: models.py:65
 msgid "country"
 msgstr "χώρα"
 
-#: models.py:66
+#: models.py:68
 msgid "location"
 msgstr "τοποθεσία"
 
-#: models.py:76
+#: models.py:78
 msgid "New user registered"
 msgstr "Εγγράφηκε νέος χρήστης"
 
-#: models.py:147
+#: models.py:142
 #, python-format
 msgid "Message from %(sender)s"
 msgstr ""
@@ -99,30 +99,40 @@ msgstr ""
 msgid "Your profile has been updated."
 msgstr "Το προφίλ σας έχει ενημερωθεί."
 
-#: templates/umessages/base_message.html:19
+#: templates/umessages/base_message.html:20
 msgid "My Messages"
 msgstr ""
 
-#: templates/umessages/base_message.html:30
+#: templates/umessages/base_message.html:34
 msgid "Inbox"
 msgstr ""
 
-#: templates/umessages/base_message.html:38
+#: templates/umessages/base_message.html:43
 msgid "New Message"
 msgstr ""
 
-#: templates/umessages/message_detail.html:14
-#: templates/umessages/message_list.html:38
-msgid "Received on"
+#: templates/umessages/message_detail.html:17
+#, python-format
+msgid "Beetween %(contact)s"
 msgstr ""
 
-#: templates/umessages/message_detail.html:33
+#: templates/umessages/message_detail.html:29
+#: templates/umessages/message_list.html:46
+#, python-format
+msgid " %(sent_ago)s ago..."
+msgstr ""
+
+#: templates/umessages/message_detail.html:64
 #: templates/umessages/message_form.html:18
 msgid "Send"
 msgstr ""
 
 #: templates/umessages/message_form.html:4
 msgid "Compose"
+msgstr ""
+
+#: templates/umessages/message_list.html:77
+msgid "new"
 msgstr ""
 
 #: templates/userena/email_change_complete.html:4
@@ -338,15 +348,15 @@ msgid "Signin"
 msgstr "Είσοδος"
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:79
+#: templates/userena/signup_form.html:77
 msgid "Sign in"
 msgstr "Είσοδος"
 
-#: templates/userena/signin_form.html:54
+#: templates/userena/signin_form.html:53
 msgid "Not a member yet?"
 msgstr "Δεν είστε μέλος ακόμη;"
 
-#: templates/userena/signin_form.html:62 templates/userena/signup_form.html:20
+#: templates/userena/signin_form.html:61 templates/userena/signup_form.html:20
 #: templates/userena/signup_form.html:44
 msgid "Sign up"
 msgstr "Εγγραφή "
@@ -381,7 +391,7 @@ msgstr ""
 msgid "Signup"
 msgstr "Εγγραφή"
 
-#: templates/userena/signup_form.html:58
+#: templates/userena/signup_form.html:56
 msgid "Already a member?"
 msgstr "Είστε ήδη μέλος;"
 
@@ -410,5 +420,3 @@ msgstr "Σας ευχαριστούμε που χρησιμοποιείτε τη
 #: templates/userena/emails/confirmation_email_message_new.txt:13
 msgid "Sincerely"
 msgstr "Με εκτίμηση"
-
-

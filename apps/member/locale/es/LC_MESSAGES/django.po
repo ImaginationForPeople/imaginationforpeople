@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011.
 #   <maire.sylvain@gmail.com>, 2011.
@@ -10,15 +10,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-01-19 10:01+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-03 15:09+0100\n"
 "PO-Revision-Date: 2012-01-19 10:17+0000\n"
 "Last-Translator: simonsarazin <simonsarazin@imaginationforpeople.org>\n"
 "Language-Team: Spanish (Castilian) <ip-es@lists.imaginationforpeople.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: fields.py:43
@@ -29,71 +29,71 @@ msgstr "Destinatario desconocido"
 msgid "Recipient not found"
 msgstr "Recipiente desconocido"
 
-#: forms.py:32
+#: forms.py:33
 msgid "First name"
 msgstr "Nombre"
 
-#: forms.py:33
+#: forms.py:34
 msgid "Last name"
 msgstr "Apellidos"
 
-#: forms.py:69
+#: forms.py:70
 msgid "gender"
 msgstr "género"
 
-#: models.py:50
+#: models.py:52
 msgid "male"
 msgstr "masculino"
 
-#: models.py:51
+#: models.py:53
 msgid "female"
 msgstr "femenino"
 
-#: models.py:55
+#: models.py:57
 msgid "motto"
 msgstr "lema"
 
-#: models.py:56
+#: models.py:58
 msgid "about"
 msgstr "Acerca de mí"
 
-#: models.py:57
+#: models.py:59
 msgid "birthday"
 msgstr "fecha de nacimiento"
 
-#: models.py:58
+#: models.py:60
 msgid "website"
 msgstr "página web"
 
-#: models.py:59
+#: models.py:61
 msgid "linkedin"
 msgstr "LinkedIn"
 
-#: models.py:60
+#: models.py:62
 msgid "twitter"
 msgstr "twitter"
 
-#: models.py:61
+#: models.py:63
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:62
+#: models.py:64
 msgid "address"
 msgstr "dirección"
 
-#: models.py:63
+#: models.py:65
 msgid "country"
 msgstr "país"
 
-#: models.py:66
+#: models.py:68
 msgid "location"
 msgstr "ubicación"
 
-#: models.py:76
+#: models.py:78
 msgid "New user registered"
 msgstr "Nuevo usuario registrado"
 
-#: models.py:147
+#: models.py:142
 #, python-format
 msgid "Message from %(sender)s"
 msgstr "Mensaje de %(sender)s"
@@ -102,24 +102,30 @@ msgstr "Mensaje de %(sender)s"
 msgid "Your profile has been updated."
 msgstr "Su perfil ha sido actualizado."
 
-#: templates/umessages/base_message.html:19
+#: templates/umessages/base_message.html:20
 msgid "My Messages"
 msgstr "Mis mensajes"
 
-#: templates/umessages/base_message.html:30
+#: templates/umessages/base_message.html:34
 msgid "Inbox"
 msgstr "Mensajes"
 
-#: templates/umessages/base_message.html:38
+#: templates/umessages/base_message.html:43
 msgid "New Message"
 msgstr "Nuevo Mensaje"
 
-#: templates/umessages/message_detail.html:14
-#: templates/umessages/message_list.html:38
-msgid "Received on"
-msgstr "Recibido el"
+#: templates/umessages/message_detail.html:17
+#, python-format
+msgid "Beetween %(contact)s"
+msgstr ""
 
-#: templates/umessages/message_detail.html:33
+#: templates/umessages/message_detail.html:29
+#: templates/umessages/message_list.html:46
+#, python-format
+msgid " %(sent_ago)s ago..."
+msgstr ""
+
+#: templates/umessages/message_detail.html:64
 #: templates/umessages/message_form.html:18
 msgid "Send"
 msgstr "Enviar"
@@ -127,6 +133,10 @@ msgstr "Enviar"
 #: templates/umessages/message_form.html:4
 msgid "Compose"
 msgstr "Redactar"
+
+#: templates/umessages/message_list.html:77
+msgid "new"
+msgstr ""
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -331,23 +341,26 @@ msgid ""
 "\t\t"
 msgstr ""
 "\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span><span class=\"whitespace other\" title=\"Tab\">»</span>  Página %(page)s de %(num_pages)s\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span><span class=\"whitespace other\" title=\"Tab\">»</span>"
+"<span class=\"whitespace other\" title=\"Tab\">»</span><span class="
+"\"whitespace other\" title=\"Tab\">»</span>  Página %(page)s de "
+"%(num_pages)s\n"
+"<span class=\"whitespace other\" title=\"Tab\">»</span><span class="
+"\"whitespace other\" title=\"Tab\">»</span>"
 
 #: templates/userena/signin_form.html:4
 msgid "Signin"
 msgstr "Registrarse"
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:79
+#: templates/userena/signup_form.html:77
 msgid "Sign in"
 msgstr "Iniciar sesión"
 
-#: templates/userena/signin_form.html:54
+#: templates/userena/signin_form.html:53
 msgid "Not a member yet?"
 msgstr "¿Todavía no es miembro?"
 
-#: templates/userena/signin_form.html:62 templates/userena/signup_form.html:20
+#: templates/userena/signin_form.html:61 templates/userena/signup_form.html:20
 #: templates/userena/signup_form.html:44
 msgid "Sign up"
 msgstr "Registrarse"
@@ -381,7 +394,7 @@ msgstr ""
 msgid "Signup"
 msgstr "Registrarse"
 
-#: templates/userena/signup_form.html:58
+#: templates/userena/signup_form.html:56
 msgid "Already a member?"
 msgstr "¿Ya es miembro?"
 
@@ -398,8 +411,8 @@ msgstr "Solicitó cambiar su dirección de correo electrónico en %(site)s."
 #: templates/userena/emails/confirmation_email_message_new.txt:7
 msgid "Please confirm this email address by clicking on the link below:"
 msgstr ""
-"Por favor, confirme esta dirección de correo electrónico haciendo clic en el"
-" siguiente enlace:"
+"Por favor, confirme esta dirección de correo electrónico haciendo clic en el "
+"siguiente enlace:"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:11
 msgid "Thanks for using our site!"
@@ -409,4 +422,5 @@ msgstr "¡Gracias por usar nuestra página web!"
 msgid "Sincerely"
 msgstr "Atentamente"
 
-
+#~ msgid "Received on"
+#~ msgstr "Recibido el"

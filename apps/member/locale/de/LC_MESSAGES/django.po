@@ -1,20 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-01-19 10:01+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-03 15:09+0100\n"
 "PO-Revision-Date: 2012-01-19 09:02+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
-"Language-Team: German (http://www.transifex.net/projects/p/imaginationforpeople/team/de/)\n"
+"Language-Team: German (http://www.transifex.net/projects/p/"
+"imaginationforpeople/team/de/)\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: fields.py:43
@@ -25,71 +26,71 @@ msgstr ""
 msgid "Recipient not found"
 msgstr ""
 
-#: forms.py:32
+#: forms.py:33
 msgid "First name"
 msgstr ""
 
-#: forms.py:33
+#: forms.py:34
 msgid "Last name"
 msgstr ""
 
-#: forms.py:69
+#: forms.py:70
 msgid "gender"
 msgstr ""
 
-#: models.py:50
+#: models.py:52
 msgid "male"
 msgstr ""
 
-#: models.py:51
+#: models.py:53
 msgid "female"
 msgstr ""
 
-#: models.py:55
+#: models.py:57
 msgid "motto"
 msgstr ""
 
-#: models.py:56
+#: models.py:58
 msgid "about"
 msgstr ""
 
-#: models.py:57
+#: models.py:59
 msgid "birthday"
 msgstr ""
 
-#: models.py:58
+#: models.py:60
 msgid "website"
 msgstr ""
 
-#: models.py:59
+#: models.py:61
 msgid "linkedin"
 msgstr ""
 
-#: models.py:60
+#: models.py:62
 msgid "twitter"
 msgstr ""
 
-#: models.py:61
+#: models.py:63
 msgid "facebook"
 msgstr ""
 
-#: models.py:62
+#: models.py:64
 msgid "address"
 msgstr ""
 
-#: models.py:63
+#: models.py:65
 msgid "country"
 msgstr ""
 
-#: models.py:66
+#: models.py:68
 msgid "location"
 msgstr ""
 
-#: models.py:76
+#: models.py:78
 msgid "New user registered"
 msgstr ""
 
-#: models.py:147
+#: models.py:142
 #, python-format
 msgid "Message from %(sender)s"
 msgstr ""
@@ -98,30 +99,40 @@ msgstr ""
 msgid "Your profile has been updated."
 msgstr ""
 
-#: templates/umessages/base_message.html:19
+#: templates/umessages/base_message.html:20
 msgid "My Messages"
 msgstr ""
 
-#: templates/umessages/base_message.html:30
+#: templates/umessages/base_message.html:34
 msgid "Inbox"
 msgstr ""
 
-#: templates/umessages/base_message.html:38
+#: templates/umessages/base_message.html:43
 msgid "New Message"
 msgstr ""
 
-#: templates/umessages/message_detail.html:14
-#: templates/umessages/message_list.html:38
-msgid "Received on"
+#: templates/umessages/message_detail.html:17
+#, python-format
+msgid "Beetween %(contact)s"
 msgstr ""
 
-#: templates/umessages/message_detail.html:33
+#: templates/umessages/message_detail.html:29
+#: templates/umessages/message_list.html:46
+#, python-format
+msgid " %(sent_ago)s ago..."
+msgstr ""
+
+#: templates/umessages/message_detail.html:64
 #: templates/umessages/message_form.html:18
 msgid "Send"
 msgstr ""
 
 #: templates/umessages/message_form.html:4
 msgid "Compose"
+msgstr ""
+
+#: templates/umessages/message_list.html:77
+msgid "new"
 msgstr ""
 
 #: templates/userena/email_change_complete.html:4
@@ -325,15 +336,15 @@ msgid "Signin"
 msgstr ""
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:79
+#: templates/userena/signup_form.html:77
 msgid "Sign in"
 msgstr ""
 
-#: templates/userena/signin_form.html:54
+#: templates/userena/signin_form.html:53
 msgid "Not a member yet?"
 msgstr ""
 
-#: templates/userena/signin_form.html:62 templates/userena/signup_form.html:20
+#: templates/userena/signin_form.html:61 templates/userena/signup_form.html:20
 #: templates/userena/signup_form.html:44
 msgid "Sign up"
 msgstr ""
@@ -364,7 +375,7 @@ msgstr ""
 msgid "Signup"
 msgstr ""
 
-#: templates/userena/signup_form.html:58
+#: templates/userena/signup_form.html:56
 msgid "Already a member?"
 msgstr ""
 
@@ -389,5 +400,3 @@ msgstr ""
 #: templates/userena/emails/confirmation_email_message_new.txt:13
 msgid "Sincerely"
 msgstr ""
-
-

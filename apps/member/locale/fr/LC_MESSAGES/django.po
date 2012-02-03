@@ -1,21 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 #   <simonsarazin@imaginationforpeople.org>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-01-19 10:01+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-03 15:10+0100\n"
 "PO-Revision-Date: 2012-01-19 10:15+0000\n"
 "Last-Translator: simonsarazin <simonsarazin@imaginationforpeople.org>\n"
-"Language-Team: French (http://www.transifex.net/projects/p/imaginationforpeople/team/fr/)\n"
+"Language-Team: French (http://www.transifex.net/projects/p/"
+"imaginationforpeople/team/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
 #: fields.py:43
@@ -26,71 +27,71 @@ msgstr "Destinataire non trouvé"
 msgid "Recipient not found"
 msgstr "Destinataire non trouvé"
 
-#: forms.py:32
+#: forms.py:33
 msgid "First name"
 msgstr "Prénom"
 
-#: forms.py:33
+#: forms.py:34
 msgid "Last name"
 msgstr "Nom"
 
-#: forms.py:69
+#: forms.py:70
 msgid "gender"
 msgstr "sexe"
 
-#: models.py:50
+#: models.py:52
 msgid "male"
 msgstr "homme"
 
-#: models.py:51
+#: models.py:53
 msgid "female"
 msgstr "femme"
 
-#: models.py:55
+#: models.py:57
 msgid "motto"
 msgstr "devise"
 
-#: models.py:56
+#: models.py:58
 msgid "about"
 msgstr "A propos de moi"
 
-#: models.py:57
+#: models.py:59
 msgid "birthday"
 msgstr "Date de naissance"
 
-#: models.py:58
+#: models.py:60
 msgid "website"
 msgstr "site web"
 
-#: models.py:59
+#: models.py:61
 msgid "linkedin"
 msgstr "linkedIn"
 
-#: models.py:60
+#: models.py:62
 msgid "twitter"
 msgstr "twitter"
 
-#: models.py:61
+#: models.py:63
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:62
+#: models.py:64
 msgid "address"
 msgstr "adresse"
 
-#: models.py:63
+#: models.py:65
 msgid "country"
 msgstr "ville"
 
-#: models.py:66
+#: models.py:68
 msgid "location"
 msgstr "lieu"
 
-#: models.py:76
+#: models.py:78
 msgid "New user registered"
 msgstr "Nouvel utilisateur enregistré"
 
-#: models.py:147
+#: models.py:142
 #, python-format
 msgid "Message from %(sender)s"
 msgstr "Messages de %(sender)s"
@@ -99,24 +100,30 @@ msgstr "Messages de %(sender)s"
 msgid "Your profile has been updated."
 msgstr "Votre profil a été mis à jour."
 
-#: templates/umessages/base_message.html:19
+#: templates/umessages/base_message.html:20
 msgid "My Messages"
 msgstr "Mes messages"
 
-#: templates/umessages/base_message.html:30
+#: templates/umessages/base_message.html:34
 msgid "Inbox"
 msgstr "Messages"
 
-#: templates/umessages/base_message.html:38
+#: templates/umessages/base_message.html:43
 msgid "New Message"
 msgstr "Nouveau message"
 
-#: templates/umessages/message_detail.html:14
-#: templates/umessages/message_list.html:38
-msgid "Received on"
-msgstr "Reçu le"
+#: templates/umessages/message_detail.html:17
+#, python-format
+msgid "Beetween %(contact)s"
+msgstr ""
 
-#: templates/umessages/message_detail.html:33
+#: templates/umessages/message_detail.html:29
+#: templates/umessages/message_list.html:46
+#, python-format
+msgid " %(sent_ago)s ago..."
+msgstr ""
+
+#: templates/umessages/message_detail.html:64
 #: templates/umessages/message_form.html:18
 msgid "Send"
 msgstr "Envoyer"
@@ -124,6 +131,10 @@ msgstr "Envoyer"
 #: templates/umessages/message_form.html:4
 msgid "Compose"
 msgstr "Ecrire"
+
+#: templates/umessages/message_list.html:77
+msgid "new"
+msgstr ""
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -338,15 +349,15 @@ msgid "Signin"
 msgstr "Signin"
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:79
+#: templates/userena/signup_form.html:77
 msgid "Sign in"
 msgstr "Connexion"
 
-#: templates/userena/signin_form.html:54
+#: templates/userena/signin_form.html:53
 msgid "Not a member yet?"
 msgstr "Pas encore membre ?"
 
-#: templates/userena/signin_form.html:62 templates/userena/signup_form.html:20
+#: templates/userena/signin_form.html:61 templates/userena/signup_form.html:20
 #: templates/userena/signup_form.html:44
 msgid "Sign up"
 msgstr "Inscription"
@@ -379,7 +390,7 @@ msgstr ""
 msgid "Signup"
 msgstr "Inscription"
 
-#: templates/userena/signup_form.html:58
+#: templates/userena/signup_form.html:56
 msgid "Already a member?"
 msgstr "Déjà membre ?"
 
@@ -411,7 +422,9 @@ msgstr ""
 "--\n"
 "Equipe en charge du support et du développement de la plateforme IP\n"
 "http://twitter.com/ipvoices\n"
-"Email: team@imaginationforpeople.org - Web: http://www.imaginationforpeople.org/\n"
+"Email: team@imaginationforpeople.org - Web: http://www.imaginationforpeople."
+"org/\n"
 "--"
 
-
+#~ msgid "Received on"
+#~ msgstr "Reçu le"
