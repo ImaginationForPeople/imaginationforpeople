@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Luca Manlio De Lisi <lukefiltroman@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-03 15:10+0100\n"
-"PO-Revision-Date: 2012-01-19 09:02+0000\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2012-02-06 14:02+0100\n"
+"PO-Revision-Date: 2012-02-06 13:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Italian <ip-it@lists.imaginationforpeople.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: fields.py:43
@@ -113,7 +113,7 @@ msgstr ""
 
 #: templates/umessages/message_detail.html:17
 #, python-format
-msgid "Beetween %(contact)s"
+msgid "Between %(contact)s"
 msgstr ""
 
 #: templates/umessages/message_detail.html:29
@@ -345,17 +345,17 @@ msgstr ""
 msgid "Signin"
 msgstr "Connettiti"
 
-#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:77
+#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:46
+#: templates/userena/signup_form.html:82
 msgid "Sign in"
 msgstr "Connettiti"
 
-#: templates/userena/signin_form.html:53
+#: templates/userena/signin_form.html:58
 msgid "Not a member yet?"
 msgstr "Non sei ancora un membro?"
 
-#: templates/userena/signin_form.html:61 templates/userena/signup_form.html:20
-#: templates/userena/signup_form.html:44
+#: templates/userena/signin_form.html:66 templates/userena/signup_form.html:20
+#: templates/userena/signup_form.html:49
 msgid "Sign up"
 msgstr "Registrati"
 
@@ -387,28 +387,8 @@ msgstr ""
 msgid "Signup"
 msgstr "Registrati"
 
-#: templates/userena/signup_form.html:56
+#: templates/userena/signup_form.html:61
 msgid "Already a member?"
 msgstr "Già un membro?"
 
-#: templates/userena/emails/confirmation_email_message_new.txt:2
-#, python-format
-msgid "Dear %(username)s,"
-msgstr "Caro/a %(username)s,"
 
-#: templates/userena/emails/confirmation_email_message_new.txt:4
-#, python-format
-msgid "You requested a change of your email address at %(site)s."
-msgstr "Hai richiesto un cambio del tuo indirizzo email a %(site)s."
-
-#: templates/userena/emails/confirmation_email_message_new.txt:7
-msgid "Please confirm this email address by clicking on the link below:"
-msgstr "Conferma questo indirizzo email cliccando il link di seguito:"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:11
-msgid "Thanks for using our site!"
-msgstr "Grazie per l'utilizzo del nostro sito!"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:13
-msgid "Sincerely"
-msgstr "Sinceramente"

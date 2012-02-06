@@ -1,22 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
+# Guillaume  <glibersat@sigill.org>, 2012.
 #   <simonsarazin@imaginationforpeople.org>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-03 15:10+0100\n"
-"PO-Revision-Date: 2012-01-19 10:15+0000\n"
-"Last-Translator: simonsarazin <simonsarazin@imaginationforpeople.org>\n"
-"Language-Team: French (http://www.transifex.net/projects/p/"
-"imaginationforpeople/team/fr/)\n"
-"Language: fr\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2012-02-06 14:02+0100\n"
+"PO-Revision-Date: 2012-02-06 13:12+0000\n"
+"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"Language-Team: French (http://www.transifex.net/projects/p/imaginationforpeople/team/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 
 #: fields.py:43
@@ -114,14 +114,14 @@ msgstr "Nouveau message"
 
 #: templates/umessages/message_detail.html:17
 #, python-format
-msgid "Beetween %(contact)s"
-msgstr ""
+msgid "Between %(contact)s"
+msgstr "Entre %(contact)s"
 
 #: templates/umessages/message_detail.html:29
 #: templates/umessages/message_list.html:46
 #, python-format
 msgid " %(sent_ago)s ago..."
-msgstr ""
+msgstr "il y a %(sent_ago)s..."
 
 #: templates/umessages/message_detail.html:64
 #: templates/umessages/message_form.html:18
@@ -134,7 +134,7 @@ msgstr "Ecrire"
 
 #: templates/umessages/message_list.html:77
 msgid "new"
-msgstr ""
+msgstr "nouveau"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -168,7 +168,7 @@ msgstr "Retour à mon profil"
 
 #: templates/userena/email_confirm_complete.html:4
 msgid "Email changed!"
-msgstr "Email changé!"
+msgstr "Email changé !"
 
 #: templates/userena/email_confirm_complete.html:6
 #: templates/userena/email_confirm_complete.html:17
@@ -348,17 +348,17 @@ msgstr ""
 msgid "Signin"
 msgstr "Signin"
 
-#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:77
+#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:46
+#: templates/userena/signup_form.html:82
 msgid "Sign in"
 msgstr "Connexion"
 
-#: templates/userena/signin_form.html:53
+#: templates/userena/signin_form.html:58
 msgid "Not a member yet?"
 msgstr "Pas encore membre ?"
 
-#: templates/userena/signin_form.html:61 templates/userena/signup_form.html:20
-#: templates/userena/signup_form.html:44
+#: templates/userena/signin_form.html:66 templates/userena/signup_form.html:20
+#: templates/userena/signup_form.html:49
 msgid "Sign up"
 msgstr "Inscription"
 
@@ -390,41 +390,8 @@ msgstr ""
 msgid "Signup"
 msgstr "Inscription"
 
-#: templates/userena/signup_form.html:56
+#: templates/userena/signup_form.html:61
 msgid "Already a member?"
 msgstr "Déjà membre ?"
 
-#: templates/userena/emails/confirmation_email_message_new.txt:2
-#, python-format
-msgid "Dear %(username)s,"
-msgstr "Cher %(username)s,"
 
-#: templates/userena/emails/confirmation_email_message_new.txt:4
-#, python-format
-msgid "You requested a change of your email address at %(site)s."
-msgstr "Vous avez demandé un changement de votre adresse e-mail à %(site)s ."
-
-#: templates/userena/emails/confirmation_email_message_new.txt:7
-msgid "Please confirm this email address by clicking on the link below:"
-msgstr ""
-"S'il vous plaît, confirmer cette adresse email en cliquant sur le lien ci-"
-"dessous:"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:11
-msgid "Thanks for using our site!"
-msgstr "Merci d'utiliser notre site!"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:13
-msgid "Sincerely"
-msgstr ""
-"A très bientôt.\n"
-"\n"
-"--\n"
-"Equipe en charge du support et du développement de la plateforme IP\n"
-"http://twitter.com/ipvoices\n"
-"Email: team@imaginationforpeople.org - Web: http://www.imaginationforpeople."
-"org/\n"
-"--"
-
-#~ msgid "Received on"
-#~ msgstr "Reçu le"
