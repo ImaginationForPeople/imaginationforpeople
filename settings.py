@@ -10,19 +10,23 @@ from django.utils.translation import ugettext_lazy as _
 # Import settings for the given site
 from site_settings import *
 
+from apps.member.utils import fix_username
+
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.com'),
-    ('Guillaume Libersat', 'guillaume@fuzzyfrequency.com'),
-    ('Alban Tiberghien', 'alban.tiberghien@gmail.com'),
+    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
+    ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
+    ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
+    ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
+    ('Alex Marandon', 'alexmarandon@imaginationforpeople.org'),
 )
 
 MANAGERS = (
     ('IP Team', 'team@imaginationforpeople.org'),
 )
-MANAGERS += ADMINS
 
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
@@ -118,6 +122,11 @@ if DEBUG:
             )
 
 AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.twitter.TwitterBackend',
+    'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.google.GoogleOAuth2Backend',
+    'social_auth.backends.contrib.linkedin.LinkedinBackend',
+    'social_auth.backends.OpenIDBackend',
     'userena.backends.UserenaAuthenticationBackend',
     'guardian.backends.ObjectPermissionBackend',
     'django.contrib.auth.backends.ModelBackend',
@@ -154,12 +163,11 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # External Apps
     'localeurl',
-    'dajaxice',
-    'dajax',
     'south',
     'django_nose',
     'django_extensions',
     'userena',
+    'userena.contrib.umessages',
     'guardian',
     'nani',
     'honeypot',
@@ -184,6 +192,7 @@ INSTALLED_APPS = (
     'linaro_django_pagination',
     'template_utils',
     'simplegravatar',
+    'social_auth',
 
 
     #'grappelli',
@@ -229,6 +238,8 @@ INSTALLED_APPS = (
 AJAX_LOOKUP_CHANNELS = {
     'members' : ('apps.member.lookups', 'UserLookup'),
 }
+AJAX_SELECT_BOOTSTRAP = True
+AJAX_SELECT_INLINES = 'inline'
 
 
 OEMBED_PROVIDERS = {
@@ -257,7 +268,12 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 
 USERENA_DEFAULT_PRIVACY = 'open'
 
-USERENA_ACTIVATION_REQUIRED = False
+## Social auth
+SOCIAL_AUTH_USERNAME_FIXER = fix_username
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
+                                 'user_work_history']
+GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
+SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
@@ -296,11 +312,14 @@ DEBUG_TOOLBAR_PANELS = (
 FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
-SERVER_EMAIL = 'noreply@imaginationforpeople.com'
-DEFAULT_FROM_EMAIL = SERVER_EMAIL
-# Write emails to console if in development mode
-EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople] '
+SERVER_EMAIL = 'noreply@imaginationforpeople.org'
 
+DEFAULT_FROM_EMAIL = SERVER_EMAIL
+
+if not 'EMAIL_SUBJECT_PREFIX' in locals():
+    EMAIL_SUBJECT_PREFIX = '[ImaginationForPeople] '
+
+# Write emails to console if in development mode
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # else, use SMTP
@@ -310,26 +329,18 @@ else:
     EMAIL_PORT = 25
 
 
-
-### Dajax Ice
-DAJAXICE_MEDIA_PREFIX = "js/dajax"
-DAJAXICE_XMLHTTPREQUEST_JS_IMPORT = True
-DAJAXICE_JSON2_JS_IMPORT = True
-DAJAXICE_DEBUG = DEBUG
-
 ## LOG IN
 LOGIN_REDIRECT_URL = '/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
 
-## Ignore dajax ice path
 LOCALE_INDEPENDENT_PATHS = (
-	re.compile('^/js/dajax/.*$'),
         re.compile('^/static/.*$'),
         re.compile('^/admin/.*$'),
         re.compile('^/media/.*$'),
         re.compile('^/robots.txt$'),
         re.compile('^/sitemap.xml$'),
+        re.compile('^/member/complete/google-oauth2/?'),
 	)
 
 ## Flags

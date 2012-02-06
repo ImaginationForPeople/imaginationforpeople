@@ -18,19 +18,21 @@
 """
 Ajax views for handling project sheet creation and edition.
 """
+from django.contrib.auth.decorators import login_required
 from django.forms.models import modelform_factory
-from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, Http404
+from django.shortcuts import render_to_response
+from django.template.context import RequestContext
 from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
-from django.views.decorators.csrf import csrf_exempt
 
-from dajaxice.core import dajaxice_functions
+from honeypot.decorators import check_honeypot
 
 from honeypot.decorators import check_honeypot
 
 from .models import I4pProjectTranslation
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
+from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm
 from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
 
 TEXTFIELD_MAPPINGS = {
@@ -85,7 +87,6 @@ def project_textfield_load(request, project_slug=None):
 
 @check_honeypot(field_name='description')
 @require_POST
-@csrf_exempt
 def project_textfield_save(request, project_slug=None):
     """
     Edit a text field
@@ -128,6 +129,37 @@ def project_textfield_save(request, project_slug=None):
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
         return HttpResponseNotFound()
+
+
+@login_required
+def project_sheet_edit_status(request, slug):
+    """
+    Change the status (concept, work in progress, etc.) of a project.
+    """
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    # Status
+    project_status_form = I4pProjectStatusForm(request.POST,
+                                               instance=project_translation.project)
+
+    if request.method == 'POST' and project_status_form.is_valid():
+        project_status_form.save()
+        # Reload project_translation
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+        return render_to_response(template_name='project_sheet/project_status.html',
+                dictionary={'project_translation': project_translation},
+                context_instance=RequestContext(request))
+    else:
+        return HttpResponseBadRequest()
+
 
 
 def project_update_related(request, language_code, related_form, project_slug):
@@ -175,12 +207,5 @@ def project_update_related(request, language_code, related_form, project_slug):
 
         
     return simplejson.dumps({})
-
-
-# Dajax Registration
-dajaxice_functions.register(project_update_related)
-
-
-
 
 

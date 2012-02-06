@@ -27,11 +27,13 @@ django-tinymce==1.5.1a2
 -e git+https://github.com/smacker/django-filebrowser-no-grappelli-for-django13.git@17eee97ac7d58de76bef851b092625dcec8e5b2b#egg=django-filebrowser
 -e git+https://github.com/tstone/django-uploadify.git@5d9ba2f6ed0687d2c8d74eb2a57edc578d0ffb0a#egg=django_uploadify
 
+# Python < 2.7 compatibility
+ordereddict==1.1
 
 BeautifulSoup
 lxml
 html5lib
-django-ajax-selects
+django-ajax-selects==1.2.3
 django-ajaxcomments==0.2
 linaro-django-pagination==2.0.2
 
@@ -44,6 +46,7 @@ linaro-django-pagination==2.0.2
 
 -e git+https://github.com/ImaginationForPeople/django-oembed-works#egg=django-oembed-works
 django-userena==1.0.2
+django-social-auth==0.3.8
 
 -e git+https://github.com/jorgebastida/django-dajaxice.git@e99fae3bb78714c79e08cdb96dcdc85105b45038#egg=django-dajaxice
 -e git+https://github.com/jorgebastida/django-dajax.git@727b6e6ae85acc173ef8464c491acb8f1b9ff1f7#egg=django-dajax

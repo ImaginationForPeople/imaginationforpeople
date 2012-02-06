@@ -33,6 +33,9 @@
 	        {% trans "Anonymous" %}
 	      {% endif %}
             {% endif %}
+        {% if user.username != profile.user.username %}            
+            <a href="{% url userena_umessages_compose_to profile.user %}" id="profile_contact"></a>
+        {% endif %}
         </h1>
         
         <div id="profile_bar_middle">

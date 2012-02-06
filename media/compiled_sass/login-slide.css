@@ -86,6 +86,7 @@ Version: 1.0
   float: left;
   height: 32px;
   background: url(../images/base/tab_m.png) repeat-x 0 0;
+  position: relative;
 }
 .tab ul.login li a {
   color: #04add1;
@@ -95,6 +96,13 @@ Version: 1.0
 }
 .tab ul.login li .sep {
   color: #414141;
+}
+.tab ul.login li .message_count {
+  position: absolute;
+  right: 8px;
+  top: 0px;
+  text-align: center;
+  width: 20px;
 }
 .tab ul.login li a.open, .tab ul.login li a.close {
   height: 20px;

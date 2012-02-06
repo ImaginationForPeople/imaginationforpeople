@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-03 16:34+0100\n"
+"POT-Creation-Date: 2012-02-06 14:02+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,72 +17,121 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: forms.py:34
+#: fields.py:43
+msgid "Recipients not found"
+msgstr ""
+
+#: fields.py:45
+msgid "Recipient not found"
+msgstr ""
+
+#: forms.py:33
 msgid "First name"
 msgstr ""
 
-#: forms.py:35
+#: forms.py:34
 msgid "Last name"
 msgstr ""
 
-#: forms.py:71
+#: forms.py:70
 msgid "gender"
 msgstr ""
 
-#: models.py:37
+#: models.py:52
 msgid "male"
 msgstr ""
 
-#: models.py:38
+#: models.py:53
 msgid "female"
 msgstr ""
 
-#: models.py:42
+#: models.py:57
 msgid "motto"
 msgstr ""
 
-#: models.py:43
+#: models.py:58
 msgid "about"
 msgstr ""
 
-#: models.py:44
+#: models.py:59
 msgid "birthday"
 msgstr ""
 
-#: models.py:45
+#: models.py:60
 msgid "website"
 msgstr ""
 
-#: models.py:46
+#: models.py:61
 msgid "linkedin"
 msgstr ""
 
-#: models.py:47
+#: models.py:62
 msgid "twitter"
 msgstr ""
 
-#: models.py:48
+#: models.py:63
 msgid "facebook"
 msgstr ""
 
-#: models.py:49
+#: models.py:64
 msgid "address"
 msgstr ""
 
-#: models.py:50
+#: models.py:65
 msgid "country"
 msgstr ""
 
-#: models.py:53
+#: models.py:68
 msgid "location"
 msgstr ""
 
-#: models.py:62
+#: models.py:78
 msgid "New user registered"
 msgstr ""
 
-#: views.py:170
+#: models.py:142
+#, python-format
+msgid "Message from %(sender)s"
+msgstr ""
+
+#: views.py:144
 msgid "Your profile has been updated."
+msgstr ""
+
+#: templates/umessages/base_message.html:20
+msgid "My Messages"
+msgstr ""
+
+#: templates/umessages/base_message.html:34
+msgid "Inbox"
+msgstr ""
+
+#: templates/umessages/base_message.html:43
+msgid "New Message"
+msgstr ""
+
+#: templates/umessages/message_detail.html:17
+#, python-format
+msgid "Between %(contact)s"
+msgstr ""
+
+#: templates/umessages/message_detail.html:29
+#: templates/umessages/message_list.html:46
+#, python-format
+msgid " %(sent_ago)s ago..."
+msgstr ""
+
+#: templates/umessages/message_detail.html:64
+#: templates/umessages/message_form.html:18
+msgid "Send"
+msgstr ""
+
+#: templates/umessages/message_form.html:4
+msgid "Compose"
+msgstr ""
+
+#: templates/umessages/message_list.html:77
+msgid "new"
 msgstr ""
 
 #: templates/userena/email_change_complete.html:4
@@ -224,7 +273,7 @@ msgstr ""
 
 #: templates/userena/profile_detail.html:5
 #, python-format
-msgid "%(username)s's profile"
+msgid "%(username)s"
 msgstr ""
 
 #: templates/userena/profile_detail.html:15
@@ -285,17 +334,17 @@ msgstr ""
 msgid "Signin"
 msgstr ""
 
-#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:77
+#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:46
+#: templates/userena/signup_form.html:82
 msgid "Sign in"
 msgstr ""
 
-#: templates/userena/signin_form.html:54
+#: templates/userena/signin_form.html:58
 msgid "Not a member yet?"
 msgstr ""
 
-#: templates/userena/signin_form.html:62 templates/userena/signup_form.html:19
-#: templates/userena/signup_form.html:42
+#: templates/userena/signin_form.html:66 templates/userena/signup_form.html:20
+#: templates/userena/signup_form.html:49
 msgid "Sign up"
 msgstr ""
 
@@ -321,32 +370,10 @@ msgid ""
 "on our server. "
 msgstr ""
 
-#: templates/userena/signup_form.html:4
+#: templates/userena/signup_form.html:5
 msgid "Signup"
 msgstr ""
 
-#: templates/userena/signup_form.html:56
+#: templates/userena/signup_form.html:61
 msgid "Already a member?"
-msgstr ""
-
-#: templates/userena/emails/confirmation_email_message_new.txt:2
-#, python-format
-msgid "Dear %(username)s,"
-msgstr ""
-
-#: templates/userena/emails/confirmation_email_message_new.txt:4
-#, python-format
-msgid "You requested a change of your email address at %(site)s."
-msgstr ""
-
-#: templates/userena/emails/confirmation_email_message_new.txt:7
-msgid "Please confirm this email address by clicking on the link below:"
-msgstr ""
-
-#: templates/userena/emails/confirmation_email_message_new.txt:11
-msgid "Thanks for using our site!"
-msgstr ""
-
-#: templates/userena/emails/confirmation_email_message_new.txt:13
-msgid "Sincerely"
 msgstr ""

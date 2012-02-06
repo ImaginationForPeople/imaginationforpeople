@@ -1,6 +1,7 @@
 {% load i18n %}	
 {% load honeypot %}
 {% load localeurl_tags %}
+{% load umessages_tags %}               
 	
 <div id="toppanel">
 	<div id="panel">
@@ -46,6 +47,24 @@
 					<a class="link" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
 
 				</form>
+                
+                <!-- TEMP -->
+                <p style="float:left;"> <a href="{% url begin backend='facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
+                <p style="float:left;"> <a href="{% url begin backend='google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
+		{% comment %}
+                <p style="float:left;"> <a href="{% url begin backend='twitter' %}"><img src="{{ STATIC_URL }}images/picto-twitter.jpg" alt="Twitter" width="113" height="26" /></a> </p>
+                <div class="clear"></div>
+                <p style="float:left;"> <a href="{% url begin backend='linkedin' %}"><img src="{{ STATIC_URL }}images/picto-ln.jpg" alt="LinkedIn" width="113" height="26" /></a> </p>
+                <p> 
+                    <form action="{% url begin backend='openid' %}" method="POST"><label for="openid_identifier">OpenID:</label>
+                    {% csrf_token %}
+                    <input type="text" name="openid_identifier" id="openid_identifier" style="float:left;" />
+                    <button class="button" style="margin:0px 10px; top:5px;">Login</button>
+                    </form> 
+                </p>
+		{% endcomment %}
+
+
 			</div>
 			
             <div class="left right">
@@ -74,6 +93,7 @@
 			<input type="submit" name="submit" value="{% trans 'Register' %}" class="button" style="margin-left:0px;" /><div class="clear"></div>
 			
 		</form>
+        
 	    </div>
             
             {% else %}
@@ -126,6 +146,14 @@
                     <a id="close" style="display: none;" class="close link" href="#">{% trans "Close Panel" %}</a>			
                 </li>
             {% if user.is_authenticated %}
+            
+                {% get_unread_message_count_for user as unread_message_count %}
+                {% if unread_message_count != 0 %}
+                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /></a><div class="message_count">{{ unread_message_count }}</div></li>
+                {% else %}
+                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></li>
+                {% endif %}
+                
                 <li><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-view.png" /></a></li>
                 <li><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'Edit my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-edit.png" /></a></li>
                 <li><a href="{% url userena_signout %}?next={% url i4p-index %}" class="tipsed on" title="{% trans 'Log out' %}"><img src="{{ STATIC_URL }}images/base/panel-logout.png" /></a></li>

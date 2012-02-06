@@ -20,6 +20,11 @@
                             {% trans 'Sign up' %}
                         </h2>
                     </div>
+
+		    <div style="float: right; padding-right: 10px; margin-bottom: 5px">
+		      <p style="float:left;"> <a href="{% url begin backend='facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
+		      <p style="float:left;"> <a href="{% url begin backend='google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
+		    </div>
                 
                     <form action="" method="post" id="signup_form"  class="profile_edition">
                         {% csrf_token %}
@@ -43,7 +48,6 @@
                         <input type="submit" class="button" value="{% trans "Sign up" %}" />
                         <div class="clear"></div>
                         <br /><br /><br />
-                        {% comment %}<p class="forgot-password"><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>{% endcomment %}
                     </form>                
 
                  
@@ -76,8 +80,11 @@
                         <div class="clear"></div>
                         <input type="submit" class="button" value="{% trans "Sign in" %}" />
                         <div class="clear"></div>
-                        <br /><br /><br />
-                    </form>  
+                        <br /><br />
+                        <p class="forgot-password" style="text-align:right;"><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>
+                        <br />
+                    </form> 
+                    
                     
                 </div>
                 
