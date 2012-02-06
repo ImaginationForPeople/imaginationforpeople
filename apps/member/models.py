@@ -28,6 +28,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from django_countries import CountryField
 from guardian.shortcuts import assign
+from social_auth.backends.google import GoogleOAuthBackend
 from social_auth.backends.contrib.linkedin import LinkedinBackend
 from social_auth.signals import socialauth_registered
 from userena.managers import ASSIGNED_PERMISSIONS
@@ -38,8 +39,9 @@ from userena.contrib.umessages.models import MessageRecipient
 from userena.utils import get_protocol
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
-from apps.member.utils import fix_username
-from apps.member.social import fetch_profile_data
+
+from .utils import fix_username
+from .social import fetch_profile_data
 
 
 class I4pProfile(UserenaLanguageBaseProfile):
@@ -76,7 +78,8 @@ def email_managers_on_account_activation(sender, user, **kwargs):
     mail_managers(subject=_(u'New user registered'), message=body)
         
 
-@receiver(socialauth_registered)
+@receiver(socialauth_registered,
+        dispatch_uid="apps.member.models.socialauth_registered_handler")
 def socialauth_registered_handler(sender, user, response, details, **kwargs):
     """
     Called when user registers for the first time using social auth
@@ -100,29 +103,21 @@ def socialauth_registered_handler(sender, user, response, details, **kwargs):
     return True
 
 
-@receiver(socialauth_registered, sender=LinkedinBackend)
+@receiver(socialauth_registered, sender=LinkedinBackend,
+        dispatch_uid="apps.member.models.linkedin_registered_handler")
 def linkedin_registered_handler(sender, user, response, details, **kwargs):
     """
-    LinkedIn doesn't return a username so instead of letting django-social-auth
-    generate a random username, we generate one based on first name and last
-    name.
+    LinkedIn doesn't return a username so instead of letting
+    django-social-auth generate a random username, we generate one
+    based on first name and last name.
     """
-    username = response['first-name'] + response['last-name']
-    name, idx = username, 2
-    while True:
-        try:
-            name = fix_username(name)
-            User.objects.get(username__iexact=name)
-            name = username + str(idx)
-            idx += 1
-        except User.DoesNotExist:
-            username = name
-            break
+    username = fix_username(response['first-name'] + response['last-name'])
     user.username = username
     user.save()
 
 
-@receiver(post_save, sender=MessageRecipient)
+@receiver(post_save, sender=MessageRecipient,
+        dispatch_uid="apps.member.models.send_message_notification")
 def send_message_notification(sender, instance, **kwargs):
     """
     Send email when user receives a new message. This email contains the full text
@@ -151,15 +146,3 @@ def send_message_notification(sender, instance, **kwargs):
     send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [recipient])
 
 
-# XXX: userena should be enough
-# def assign_good_profile_perm(sender, instance, created, **kwargs):
-#     if created:
-#         user = instance.user
-#         assign('change_profile', user, instance)
-#         assign('change_user', user, user)
-
-# post_save.connect(assign_good_profile_perm, I4pProfile)
-
-# def init_good_profile_perm():
-#     for profile in I4pProfile.objects.all():
-#         assign_good_profile_perm(I4pProfile, profile, True)

@@ -3,90 +3,141 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011.
+# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011, 2012.
+# Guillaume  <glibersat@sigill.org>, 2012.
 #   <maire.sylvain@gmail.com>, 2011.
+#   <simonsarazin@imaginationforpeople.org>, 2012.
 # Slyan  <maire.sylvain@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2011-11-03 16:34+0100\n"
-"PO-Revision-Date: 2011-11-10 19:25+0000\n"
-"Last-Translator: picapg <carolinadelpilarperezgarrido@gmail.com>\n"
-"Language-Team: Spanish (Castilian) <communityes@lists.imaginationforpeople.org>\n"
+"POT-Creation-Date: 2012-02-06 14:02+0100\n"
+"PO-Revision-Date: 2012-02-06 13:14+0000\n"
+"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"Language-Team: Spanish (Castilian) <ip-es@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: forms.py:34
+#: fields.py:43
+msgid "Recipients not found"
+msgstr "Destinatarios desconocidos"
+
+#: fields.py:45
+msgid "Recipient not found"
+msgstr "Destinatario desconocido"
+
+#: forms.py:33
 msgid "First name"
 msgstr "Nombre"
 
-#: forms.py:35
+#: forms.py:34
 msgid "Last name"
 msgstr "Apellidos"
 
-#: forms.py:71
+#: forms.py:70
 msgid "gender"
 msgstr "género"
 
-#: models.py:37
+#: models.py:52
 msgid "male"
 msgstr "masculino"
 
-#: models.py:38
+#: models.py:53
 msgid "female"
 msgstr "femenino"
 
-#: models.py:42
+#: models.py:57
 msgid "motto"
 msgstr "lema"
 
-#: models.py:43
+#: models.py:58
 msgid "about"
 msgstr "Acerca de mí"
 
-#: models.py:44
+#: models.py:59
 msgid "birthday"
 msgstr "fecha de nacimiento"
 
-#: models.py:45
+#: models.py:60
 msgid "website"
 msgstr "página web"
 
-#: models.py:46
+#: models.py:61
 msgid "linkedin"
 msgstr "LinkedIn"
 
-#: models.py:47
+#: models.py:62
 msgid "twitter"
 msgstr "twitter"
 
-#: models.py:48
+#: models.py:63
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:49
+#: models.py:64
 msgid "address"
 msgstr "dirección"
 
-#: models.py:50
+#: models.py:65
 msgid "country"
 msgstr "país"
 
-#: models.py:53
+#: models.py:68
 msgid "location"
 msgstr "ubicación"
 
-#: models.py:62
+#: models.py:78
 msgid "New user registered"
 msgstr "Nuevo usuario registrado"
 
-#: views.py:170
+#: models.py:142
+#, python-format
+msgid "Message from %(sender)s"
+msgstr "Mensaje de %(sender)s"
+
+#: views.py:144
 msgid "Your profile has been updated."
 msgstr "Su perfil ha sido actualizado."
+
+#: templates/umessages/base_message.html:20
+msgid "My Messages"
+msgstr "Mis mensajes"
+
+#: templates/umessages/base_message.html:34
+msgid "Inbox"
+msgstr "Bandeja de entrada"
+
+#: templates/umessages/base_message.html:43
+msgid "New Message"
+msgstr "Nuevo mensaje"
+
+#: templates/umessages/message_detail.html:17
+#, python-format
+msgid "Between %(contact)s"
+msgstr "Entre %(contact)s"
+
+#: templates/umessages/message_detail.html:29
+#: templates/umessages/message_list.html:46
+#, python-format
+msgid " %(sent_ago)s ago..."
+msgstr "Hace %(sent_ago)s..."
+
+#: templates/umessages/message_detail.html:64
+#: templates/umessages/message_form.html:18
+msgid "Send"
+msgstr "Enviar"
+
+#: templates/umessages/message_form.html:4
+msgid "Compose"
+msgstr "Redactar"
+
+#: templates/umessages/message_list.html:77
+msgid "new"
+msgstr "nuevo"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -234,8 +285,8 @@ msgstr "Enviar contraseña"
 
 #: templates/userena/profile_detail.html:5
 #, python-format
-msgid "%(username)s's profile"
-msgstr "Perfil de %(username)s"
+msgid "%(username)s"
+msgstr "%(username)s"
 
 #: templates/userena/profile_detail.html:15
 msgid "<i>This member has no description...</i>"
@@ -298,17 +349,17 @@ msgstr ""
 msgid "Signin"
 msgstr "Registrarse"
 
-#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:77
+#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:46
+#: templates/userena/signup_form.html:82
 msgid "Sign in"
 msgstr "Iniciar sesión"
 
-#: templates/userena/signin_form.html:54
+#: templates/userena/signin_form.html:58
 msgid "Not a member yet?"
 msgstr "¿Todavía no es miembro?"
 
-#: templates/userena/signin_form.html:62 templates/userena/signup_form.html:19
-#: templates/userena/signup_form.html:42
+#: templates/userena/signin_form.html:66 templates/userena/signup_form.html:20
+#: templates/userena/signup_form.html:49
 msgid "Sign up"
 msgstr "Registrarse"
 
@@ -337,36 +388,12 @@ msgstr ""
 "Su información de registro quedará almacenada en nuestro servidor durante "
 "%(userena_activation_days)s días."
 
-#: templates/userena/signup_form.html:4
+#: templates/userena/signup_form.html:5
 msgid "Signup"
 msgstr "Registrarse"
 
-#: templates/userena/signup_form.html:56
+#: templates/userena/signup_form.html:61
 msgid "Already a member?"
 msgstr "¿Ya es miembro?"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:2
-#, python-format
-msgid "Dear %(username)s,"
-msgstr "Estimado/a %(username)s,"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:4
-#, python-format
-msgid "You requested a change of your email address at %(site)s."
-msgstr "Solicitó cambiar su dirección de correo electrónico en %(site)s."
-
-#: templates/userena/emails/confirmation_email_message_new.txt:7
-msgid "Please confirm this email address by clicking on the link below:"
-msgstr ""
-"Por favor, confirme esta dirección de correo electrónico haciendo clic en el"
-" siguiente enlace:"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:11
-msgid "Thanks for using our site!"
-msgstr "¡Gracias por usar nuestra página web!"
-
-#: templates/userena/emails/confirmation_email_message_new.txt:13
-msgid "Sincerely"
-msgstr "Atentamente"
 
 

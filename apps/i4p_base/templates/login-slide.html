@@ -50,9 +50,10 @@
                 
                 <!-- TEMP -->
                 <p style="float:left;"> <a href="{% url begin backend='facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
+                <p style="float:left;"> <a href="{% url begin backend='google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
+		{% comment %}
                 <p style="float:left;"> <a href="{% url begin backend='twitter' %}"><img src="{{ STATIC_URL }}images/picto-twitter.jpg" alt="Twitter" width="113" height="26" /></a> </p>
                 <div class="clear"></div>
-                <p style="float:left;"> <a href="{% url begin backend='google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
                 <p style="float:left;"> <a href="{% url begin backend='linkedin' %}"><img src="{{ STATIC_URL }}images/picto-ln.jpg" alt="LinkedIn" width="113" height="26" /></a> </p>
                 <p> 
                     <form action="{% url begin backend='openid' %}" method="POST"><label for="openid_identifier">OpenID:</label>
@@ -61,6 +62,7 @@
                     <button class="button" style="margin:0px 10px; top:5px;">Login</button>
                     </form> 
                 </p>
+		{% endcomment %}
 
 
 			</div>
