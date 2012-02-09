@@ -20,8 +20,8 @@
                     </div>
 
 		    <div style="float: right; padding-right: 10px; margin-bottom: 5px">
-		      <p style="float:left;"> <a href="{% url begin backend='facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
-		      <p style="float:left;"> <a href="{% url begin backend='google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
+		      <p style="float:left;"> <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
+		      <p style="float:left;"> <a href="{% url socialauth_begin 'google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
 		    </div>
 
                     <form action="" method="post" id="signin_form"  class="profile_edition">
