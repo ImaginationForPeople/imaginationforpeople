@@ -292,7 +292,7 @@
     $(document).ready(function() {
     {% tags_for_object project_translation as project_tags %}
 	var tags = $("#themes_tags").tagit({
-	    itemName: 'themes',
+	    itemName: 'themes'
 	});
 
 	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
