@@ -105,7 +105,6 @@ class FacebookDataAdapter(DataAdapter):
         Get profile data from authentication response and assign it to user
         profile
         """
-        print self.response
         self.profile.user.first_name = self.response.get('first_name', '')
         self.profile.user.last_name = self.response.get('last_name', '')
         self.make_username_from(self.profile.user.first_name,
