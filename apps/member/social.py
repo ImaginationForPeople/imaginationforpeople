@@ -66,6 +66,24 @@ class DataAdapter(object):
         twitter_url = 'http://twitter.com/' + screen_name
         self.profile.twitter = twitter_url
 
+    def make_username_from(self, first_name, last_name):
+        """
+        Set a username from profile first name and last name
+        """
+        default_username = self.profile.user.username
+        fancy_username = first_name.capitalize() + last_name.capitalize()
+        if default_username.startswith(fancy_username.lower()):
+            # If default username already starts with a lowercase version of the
+            # username based on first name and last name, we replace it by its
+            # camel case counterpart. Example: if Google email is
+            # john.smith@gmail.com, default username could be johnsmith2 if
+            # there's already a JohnSmith, then we want the new fancy username
+            # to be JohnSmith2
+            self.profile.user.username = default_username.replace(
+                        fancy_username.lower(), fancy_username)
+        else:
+            self.profile.user.username = fix_username(fancy_username)
+
 
 class FacebookDataAdapter(DataAdapter):
     """
@@ -87,6 +105,11 @@ class FacebookDataAdapter(DataAdapter):
         Get profile data from authentication response and assign it to user
         profile
         """
+        self.profile.user.first_name = self.response.get('first_name', '')
+        self.profile.user.last_name = self.response.get('last_name', '')
+        self.make_username_from(self.profile.user.first_name,
+                                self.profile.user.last_name)
+
         self.profile.website = self.response.get('website', '')
         self.profile.facebook = self.response.get('link', '')
         self.fetch_country()
@@ -185,25 +208,6 @@ class GoogleDataAdapter(DataAdapter):
         elif self.user_info.get('gender') == 'female':
             self.profile.gender = 'F'
         self.fetch_picture()
-
-    def make_username_from(self, first_name, last_name):
-        """
-        Set a username from Google profile first name and last name
-        """
-        default_username = self.profile.user.username
-        fancy_username = first_name + last_name
-        if default_username.startswith(fancy_username.lower()):
-            # If default username already starts with a lowercase version of the
-            # username based on first name and last name, we replace it by its
-            # camel case counterpart. Example: if Google email is
-            # john.smith@gmail.com, default username could be johnsmith2 if
-            # there's already a JohnSmith, then we want the new fancy username
-            # to be JohnSmith2
-            self.profile.user.username = default_username.replace(
-                        fancy_username.lower(), fancy_username)
-        else:
-            self.profile.user.username = fix_username(fancy_username)
-
 
     @property
     def picture_url(self):
