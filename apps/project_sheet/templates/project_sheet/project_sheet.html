@@ -68,6 +68,7 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tag-it.iecompat.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tinysort.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tagcloud.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.form.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-serializeobject.js"></script>
 
@@ -201,26 +202,12 @@
 
   <script type="text/javascript" defer="defer">
     // Related updates
-    function on_project_themes_updated(data) {
-        if ( data == Dajaxice.EXCEPTION ) { alert('error'); }
-        else {
-           $('#opened-sidebar').slideToggle();
-           location.reload();
-        } 
-
-
-    }
-
-    function project_update_related() {
-	themes_form = $('#themes-form').serializeObject(true);
-
-        Dajaxice.apps.project_sheet.project_update_related(on_project_themes_updated, {'language_code': '{{ LANGUAGE_CODE }}',
-                                                                                       'related_form': themes_form,
-                                                                                       'project_slug': '{{ project_translation.slug }}'}
-        );                                                          
-	return false;
-    }
-
+    $('#themes-form').ajaxForm({
+    	success: function(){
+            $('#opened-sidebar').slideToggle();
+            location.reload();
+        }
+    });
 
     /* Notification  area 
     Must be here because functions are used in inline_editing_save_callback
@@ -303,8 +290,9 @@
 
 
     $(document).ready(function() {
+    {% tags_for_object project_translation as project_tags %}
 	var tags = $("#themes_tags").tagit({
-	    itemName: 'themes'
+	    itemName: 'themes',
 	});
 
 	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
@@ -314,13 +302,13 @@
 	});
 
 	// restore tags in get
-        {% if project_translation %}
-          {% tags_for_object project_translation as project_tags %}
+	
+    {% if project_translation %}
+        {% tags_for_object project_translation as project_tags %}
         	{% for tag in project_tags %}
-	     $.fn.tagit.create_tag("{{ tag }}");
-	  {% endfor %}
-        {% endif %}
-
+        	$.fn.tagit.create_tag("{{ tag }}");
+	        {% endfor %}
+    {% endif %}
 
 
      /* FIXME: This needs to be factorized */

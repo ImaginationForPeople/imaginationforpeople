@@ -5,8 +5,8 @@
     
         <div class="title">{% trans 'related'|capfirst %}</div>
         
-        <form id="themes-form" method="POST">
-    
+        <form id="themes-form" method="POST" action={% url project_sheet-project_update_related project_translation.slug %}>{%csrf_token%}
+            <input type="hidden" name="language_code" value="{{ LANGUAGE_CODE }}" />
             <div class="grey_column_content_edition">
     
                 <div class="grey_column_objective_edition">                     
@@ -36,9 +36,8 @@
                 
                 <div class="clear"></div>
     
-                <a id="grey_column_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close &amp; discard'%}</a>
-                <a href="javascript:;" class="grey_column_save_close" onclick="javascript: return project_update_related();" id="grey_column_save_close">{% trans 'Save &amp; close'%}</a>
-            
+                <a id="sidebar_related_close" class="grey_column_close sidebar-close" href="javascript:;">{% trans 'Close &amp; discard'%}</a>
+                <input id="sidebar_team_submit" type="submit" alt="{% trans 'Save & close'%}" class="grey_column_save_close" title="{% trans 'Save & close'%}" value="{% trans 'Save & close'%}" />
             </div>
         
         </form>
