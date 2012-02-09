@@ -29,6 +29,8 @@ from django.views.decorators.http import require_POST
 
 from honeypot.decorators import check_honeypot
 
+from honeypot.decorators import check_honeypot
+
 from .models import I4pProjectTranslation
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm
 from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
