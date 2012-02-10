@@ -37,6 +37,9 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/translate/$', views.project_sheet_create_translation, name='project_sheet-translate'),
 
     url(r'^(?P<project_slug>[-\w]+)/edit/related/$', views.project_sheet_edit_related, name='project_sheet-instance-edit-related'),
+    #AJAX
+    url(r'^(?P<project_slug>[-\w]+)/update/related/$', ajax.project_update_related, name='project_sheet-project_update_related'),
+    
     url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
 
     url(r'^(?P<slug>[-\w]+)/$', views.project_sheet_show, name='project_sheet-show'),
