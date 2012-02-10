@@ -290,7 +290,6 @@
 
 
     $(document).ready(function() {
-    {% tags_for_object project_translation as project_tags %}
 	var tags = $("#themes_tags").tagit({
 	    itemName: 'themes'
 	});
@@ -673,10 +672,12 @@ data: '{{ project_status_choices|safe }}',
     <!-- GREY COLUMN - closed (default) -->
 	{% include "project_sheet/grey_column.html"%}
 
-	<!-- GREY COLUMN - RELATED - opened -->
-	{% include "project_sheet/sidebar_related.html"%}
-	
-	<!-- GREY COLUMN - TEAM - opened -->
-	{% include "project_sheet/sidebar_team.html"%}
+    {% if project_translation %}
+    	<!-- GREY COLUMN - RELATED - opened -->
+    	{% include "project_sheet/sidebar_related.html"%}
+    	
+    	<!-- GREY COLUMN - TEAM - opened -->
+    	{% include "project_sheet/sidebar_team.html"%}
+    {% endif %}
 
 {% endblock %}
