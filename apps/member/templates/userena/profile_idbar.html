@@ -20,24 +20,23 @@
                
     <div id="profile_bar"> 
         <h1>
-            {% if profile %}
-	      {% if profile.user.get_full_name %}
-                {{ profile.user.get_full_name }}
-	      {% else %}
-	        {% trans "Anonymous" %}
-	      {% endif %}
-            {% else %}
-	      {% if user.get_full_name %}
-                {{ user.get_full_name }}
-	      {% else %}
-	        {% trans "Anonymous" %}
-	      {% endif %}
-            {% endif %}
-        {% if user.username != profile.user.username %}            
-            <a href="{% url userena_umessages_compose_to profile.user %}" id="profile_contact"></a>
-        {% endif %}
+          {% if profile %}
+    	      {% if profile.user.get_full_name %}
+                    {{ profile.user.get_full_name }}
+    	      {% else %}
+    	        {% trans "Anonymous" %}
+    	      {% endif %}
+              {% if user.username != profile.user.username %}            
+                <a href="{% url userena_umessages_compose_to profile.user %}" id="profile_contact"></a>
+              {% endif %}
+         {% else %}
+    	      {% if user.get_full_name %}
+                    {{ user.get_full_name }}
+    	      {% else %}
+    	        {% trans "Anonymous" %}
+    	      {% endif %}
+          {% endif %}
         </h1>
-        
         <div id="profile_bar_middle">
 	  {% if profile %}
             {% if profile.motto %}
