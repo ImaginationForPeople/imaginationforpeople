@@ -1,21 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-02-06 14:02+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-13 16:22+0100\n"
 "PO-Revision-Date: 2012-02-06 13:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
-"Language-Team: Russian (http://www.transifex.net/projects/p/imaginationforpeople/team/ru/)\n"
+"Language-Team: Russian (http://www.transifex.net/projects/p/"
+"imaginationforpeople/team/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: fields.py:43
 msgid "Recipients not found"
@@ -360,7 +362,8 @@ msgstr ""
 
 #: templates/userena/signup_complete.html:23
 msgid ""
-"You have been send an e-mail with an activation link to the supplied email."
+"You have been sent an email with an activation link to the supplied email "
+"address."
 msgstr ""
 
 #: templates/userena/signup_complete.html:24
@@ -378,4 +381,24 @@ msgstr ""
 msgid "Already a member?"
 msgstr ""
 
+#: templates/userena/emails/confirmation_email_message_new.txt:2
+#, python-format
+msgid "Dear %(username)s,"
+msgstr ""
 
+#: templates/userena/emails/confirmation_email_message_new.txt:4
+#, python-format
+msgid "You requested a change of your email address at %(site)s."
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:7
+msgid "Please confirm this email address by clicking on the link below:"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:11
+msgid "Thanks for using our site!"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:13
+msgid "Sincerely"
+msgstr ""
