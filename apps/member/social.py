@@ -18,6 +18,7 @@
 import StringIO
 from urllib2 import urlopen
 import urlparse
+import re
 
 from django.conf import settings
 from django.core.files import File
@@ -160,6 +161,27 @@ class TwitterDataAdapter(DataAdapter):
     Email address is NOT available via Twitter API.
     """
 
+    def make_username(self):
+        """
+        Do our best to build a username that looks like a typical i4p username
+        using the 'name' field returned by Twitter.
+        """
+        name = self.response.get('name', '').strip()
+        space_regexp = re.compile("\s")
+        if space_regexp.search(name):
+            # If name looks like first name and last name
+            # try to make an i4p-style username
+            name_parts = space_regexp.split(name)
+            self.profile.user.first_name = name_parts[0]
+            self.profile.user.last_name = name_parts[-1]
+            self.make_username_from(
+                    self.profile.user.first_name,
+                    self.profile.user.last_name)
+        elif name:
+            # Otherwise just make a username from the name
+            self.profile.user.username = fix_username(name)
+        # If there's no name, username default to twitter username
+
     def fetch_profile_data(self):
         """
         Get profile data from authentication response and assign it to user
@@ -172,6 +194,7 @@ class TwitterDataAdapter(DataAdapter):
         self.profile.website = self.response.get('url', '')
         location = Location(address=self.response.get('location'))
         self.profile.location = location
+        self.make_username()
 
     @property
     def picture_url(self):
