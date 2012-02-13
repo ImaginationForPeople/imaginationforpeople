@@ -128,6 +128,11 @@ def send_message_notification(sender, instance, **kwargs):
     so when a Message is saved, it doesn't yet have a list of recipients.
     """
 
+    if not instance.user.email:
+        # Email can be missing for users registered with Twitter
+        # or LinkedIn
+        return
+
     params = {
         'sender': instance.message.sender.username,
         'body': instance.message.body,
