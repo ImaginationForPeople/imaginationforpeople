@@ -143,7 +143,7 @@ def send_message_notification(sender, instance, **kwargs):
     message = render_to_string('umessages/message_notification.txt', params)
     recipient = instance.user.email
 
-    # Resets the Content-Transfer-Encoding in email header
+    # XXX Resets the Content-Transfer-Encoding in email header
     # Avoids bad encoding of UTF-8 body
     # See https://code.djangoproject.com/ticket/3472
     from email import Charset
