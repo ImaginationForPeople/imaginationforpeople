@@ -1,7 +1,9 @@
-{{ sender }} has sent you a message.
-
-You can view it online at 
-{{ message_url }}
-
-
+{% load i18n %}
+{% blocktrans %}
+{{ sender }} has sent you a message:
+{% endblocktrans %}
 {{ body }}
+{% blocktrans %}
+You can view it online at:
+{{ message_url }}
+{% endblocktrans %}
