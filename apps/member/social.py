@@ -15,10 +15,10 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
 import StringIO
 from urllib2 import urlopen
 import urlparse
-import re
 
 from django.conf import settings
 from django.core.files import File
