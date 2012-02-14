@@ -151,8 +151,8 @@ class TwitterDataAdapter(DataAdapter):
     Populates user profile attributes using data fetched from Twitter.
 
     Tries to populate these fields:
-     - first_name (Twitter only has a "name" field, django-social-auth uses
-       the content of that field to populate user.first_name)
+     - first_name
+     - last_name
      - website
      - location
      - twitter (twitter profile URL)
