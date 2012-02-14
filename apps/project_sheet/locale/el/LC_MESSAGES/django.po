@@ -4,15 +4,15 @@
 # 
 # Translators:
 # Slyan  <maire.sylvain@gmail.com>, 2011.
-#   <vanessaner@gmail.com>, 2011.
+#   <vanessaner@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2011-11-03 16:34+0100\n"
-"PO-Revision-Date: 2011-11-12 19:40+0000\n"
-"Last-Translator: vaner <vanessaner@gmail.com>\n"
-"Language-Team: Greek <ipel@lists.imaginationforpeople.org>\n"
+"POT-Creation-Date: 2012-02-03 14:32+0100\n"
+"PO-Revision-Date: 2012-02-06 13:11+0000\n"
+"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -119,7 +119,7 @@ msgstr "Τίτλος Έργου"
 msgid "one line description"
 msgstr "Σύντομη περιγραφή"
 
-#: models.py:169 templates/project_sheet/project_sheet.html:532
+#: models.py:169 templates/project_sheet/project_sheet.html:575
 msgid "One line description"
 msgstr "Μια σύντομη περιγραφή"
 
@@ -216,15 +216,15 @@ msgstr "Σχόλια"
 #: templates/project_sheet/about_section.html:6
 #: templates/project_sheet/about_section.html:8
 #: templates/project_sheet/business_model_section.html:33
-#: templates/project_sheet/grey_column.html:48
+#: templates/project_sheet/grey_column.html:19
 #: templates/project_sheet/grey_column.html:163
-#: templates/project_sheet/grey_column.html:203
+#: templates/project_sheet/grey_column.html:210
 #: templates/project_sheet/partners_section.html:33
-#: templates/project_sheet/project_sheet.html:250
-#: templates/project_sheet/project_sheet.html:498
-#: templates/project_sheet/project_sheet.html:527
-#: templates/project_sheet/project_sheet.html:533
-#: templates/project_sheet/project_sheet.html:543
+#: templates/project_sheet/project_sheet.html:275
+#: templates/project_sheet/project_sheet.html:541
+#: templates/project_sheet/project_sheet.html:570
+#: templates/project_sheet/project_sheet.html:576
+#: templates/project_sheet/project_sheet.html:586
 #: templates/project_sheet/references_section.html:7
 #: templates/project_sheet/scalability_section.html:33
 #: templates/project_sheet/triggering_factor_section.html:33
@@ -237,12 +237,12 @@ msgstr "Επεξεργασία"
 #: templates/project_sheet/business_model_section.html:14
 #: templates/project_sheet/media_gallery.html:103
 #: templates/project_sheet/partners_section.html:14
-#: templates/project_sheet/project_sheet.html:315
-#: templates/project_sheet/project_sheet.html:333
-#: templates/project_sheet/project_sheet.html:354
-#: templates/project_sheet/project_sheet.html:488
-#: templates/project_sheet/project_sheet.html:519
-#: templates/project_sheet/project_sheet.html:595
+#: templates/project_sheet/project_sheet.html:340
+#: templates/project_sheet/project_sheet.html:363
+#: templates/project_sheet/project_sheet.html:397
+#: templates/project_sheet/project_sheet.html:531
+#: templates/project_sheet/project_sheet.html:562
+#: templates/project_sheet/project_sheet.html:638
 #: templates/project_sheet/scalability_section.html:14
 #: templates/project_sheet/triggering_factor_section.html:14
 #: templates/project_sheet/uniqueness_section.html:13
@@ -252,16 +252,16 @@ msgstr "Εντάξει"
 
 #: templates/project_sheet/about_section.html:22
 #: templates/project_sheet/business_model_section.html:15
-#: templates/project_sheet/grey_column.html:65
+#: templates/project_sheet/grey_column.html:36
 #: templates/project_sheet/media_gallery.html:46
 #: templates/project_sheet/media_gallery.html:104
 #: templates/project_sheet/partners_section.html:15
-#: templates/project_sheet/project_sheet.html:314
-#: templates/project_sheet/project_sheet.html:332
-#: templates/project_sheet/project_sheet.html:353
-#: templates/project_sheet/project_sheet.html:487
-#: templates/project_sheet/project_sheet.html:520
-#: templates/project_sheet/project_sheet.html:596
+#: templates/project_sheet/project_sheet.html:339
+#: templates/project_sheet/project_sheet.html:362
+#: templates/project_sheet/project_sheet.html:396
+#: templates/project_sheet/project_sheet.html:530
+#: templates/project_sheet/project_sheet.html:563
+#: templates/project_sheet/project_sheet.html:639
 #: templates/project_sheet/scalability_section.html:15
 #: templates/project_sheet/triggering_factor_section.html:15
 #: templates/project_sheet/uniqueness_section.html:14
@@ -306,37 +306,17 @@ msgstr "Ποιο είναι το επιχειρηματικό μοντέλο τ�
 msgid "This field is blank. Don’t forget to complete it! "
 msgstr "Αυτό το πεδίο είναι κενό. Μην ξεχάσετε να το ολοκληρώσετε!"
 
-#: templates/project_sheet/grey_column.html:13
-#: templates/project_sheet/project_id_card.html:29
-msgid "associated team"
-msgstr ""
-
-#: templates/project_sheet/grey_column.html:16
-#: templates/project_sheet/project_id_card.html:32
-msgid "in progress"
-msgstr "σε εξέλιξη"
-
-#: templates/project_sheet/grey_column.html:19
-#: templates/project_sheet/project_id_card.html:35
-msgid "popular"
-msgstr "δημοφιλής"
-
-#: templates/project_sheet/grey_column.html:22
-#: templates/project_sheet/project_id_card.html:38
-msgid "bestof"
-msgstr "Τα καλύτερα"
-
-#: templates/project_sheet/grey_column.html:49
-#: templates/project_sheet/grey_column.html:97
-#: templates/project_sheet/grey_column.html:203
+#: templates/project_sheet/grey_column.html:20
+#: templates/project_sheet/grey_column.html:68
+#: templates/project_sheet/grey_column.html:210
 msgid "edit"
 msgstr "Επεξεργασία"
 
-#: templates/project_sheet/grey_column.html:51
+#: templates/project_sheet/grey_column.html:22
 msgid "take action"
-msgstr ""
+msgstr "ανέλαβε δράση"
 
-#: templates/project_sheet/grey_column.html:71
+#: templates/project_sheet/grey_column.html:42
 msgid ""
 "This project has not claimed its needs yet. Please edit if you are aware of "
 "a requirement."
@@ -344,20 +324,20 @@ msgstr ""
 "Δεν έχουν οριστεί οι απαιτήσεις του έργου. Παρακαλείστε να τις συμπληρώσετε "
 "εφόσον τις γνωρίζετε."
 
-#: templates/project_sheet/grey_column.html:80
+#: templates/project_sheet/grey_column.html:51
 msgid "Spread the word:"
 msgstr "Διάδωσέ το:"
 
-#: templates/project_sheet/grey_column.html:102
+#: templates/project_sheet/grey_column.html:73
 #: templates/project_sheet/sidebar_related.html:6
 msgid "related"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:109
+#: templates/project_sheet/grey_column.html:80
 msgid "objectives:"
 msgstr "στόχοι:"
 
-#: templates/project_sheet/grey_column.html:122
+#: templates/project_sheet/grey_column.html:93
 msgid ""
 "Click here to set the <strong>categories</strong> and <strong>tags</strong> "
 "of this project."
@@ -365,24 +345,41 @@ msgstr ""
 "Κάντε κλικ εδώ για να ορίσετε τις <strong>κατηγορίες</strong> και τις "
 "<strong>ετικέτες</strong> του έργου αυτού."
 
-#: templates/project_sheet/grey_column.html:126
+#: templates/project_sheet/grey_column.html:97
 msgid "Tags:"
 msgstr "Ετικέτες:"
 
-#: templates/project_sheet/grey_column.html:141
+#: templates/project_sheet/grey_column.html:112
 msgid "Add a member"
 msgstr "Προσθέστε ένα μέλος"
 
-#: templates/project_sheet/grey_column.html:141
+#: templates/project_sheet/grey_column.html:112
 msgid "add"
 msgstr "Προσθήκη"
 
-#: templates/project_sheet/grey_column.html:142
+#: templates/project_sheet/grey_column.html:113
 #: templates/project_sheet/sidebar_team.html:6
 msgid "The team"
 msgstr "Η ομάδα"
 
-#: templates/project_sheet/grey_column.html:152
+#: templates/project_sheet/grey_column.html:120
+#: templates/project_sheet/grey_column.html:136
+msgid "Contact team"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:122
+#, python-format
+msgid ""
+"\n"
+"                            Use the messaging system to get in touch with the team \n"
+"                            <img src=\"%(STATIC_URL)simages/project/team_info-picto1.jpg\" alt=\"Contact team\" width=\"27\" height=\"15\" />\n"
+"                            or one of its member\n"
+"                            <img src=\"%(STATIC_URL)simages/project/team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" />\n"
+"                            .\n"
+"                        "
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:151
 msgid "There is no registered team members: please to fill this section !"
 msgstr ""
 "Δεν υπάρχουν εγγεγραμμένα μέλη της ομάδας: παρακαλούμε να συμπληρώσετε αυτό "
@@ -397,19 +394,23 @@ msgstr "Διαγραφή"
 msgid "delete"
 msgstr "διαγραφή"
 
-#: templates/project_sheet/grey_column.html:204
+#: templates/project_sheet/grey_column.html:173
+msgid "Contact"
+msgstr ""
+
+#: templates/project_sheet/grey_column.html:211
 msgid "Partners"
 msgstr "Συνεργάτες"
 
-#: templates/project_sheet/grey_column.html:231
+#: templates/project_sheet/grey_column.html:238
 msgid "This project has no known partners."
 msgstr "Το έργο αυτό δεν έχει γνωστούς συνεργάτες."
 
-#: templates/project_sheet/grey_column.html:258
+#: templates/project_sheet/grey_column.html:265
 msgid "Want to get started on your project sheet ?"
 msgstr "Θέλετε να ξεκινήσετε το δικό σας έργο;"
 
-#: templates/project_sheet/grey_column.html:259
+#: templates/project_sheet/grey_column.html:266
 msgid ""
 "Click on the field you want to edit, edit it, and save the changes. Once "
 "you’ve modified a field, your project sheet will be created."
@@ -427,7 +428,7 @@ msgid "DATETIME_FORMAT"
 msgstr ""
 
 #: templates/project_sheet/history.html:18
-#: templates/project_sheet/project_sheet.html:547
+#: templates/project_sheet/project_sheet.html:590
 msgid "by"
 msgstr ""
 
@@ -445,7 +446,7 @@ msgstr "και"
 
 #: templates/project_sheet/history.html:33
 msgid "\""
-msgstr ""
+msgstr "\""
 
 #: templates/project_sheet/media_gallery.html:7
 msgid "upload a media"
@@ -527,6 +528,26 @@ msgstr "Επεξεργασία πληροφοριών του « %(project_title)
 msgid "Update"
 msgstr "Ενημέρωση"
 
+#: templates/project_sheet/project_id_card.html:29
+#: templates/project_sheet/project_status.html:5
+msgid "associated team"
+msgstr ""
+
+#: templates/project_sheet/project_id_card.html:32
+#: templates/project_sheet/project_status.html:8
+msgid "in progress"
+msgstr "σε εξέλιξη"
+
+#: templates/project_sheet/project_id_card.html:35
+#: templates/project_sheet/project_status.html:11
+msgid "popular"
+msgstr "δημοφιλής"
+
+#: templates/project_sheet/project_id_card.html:38
+#: templates/project_sheet/project_status.html:14
+msgid "bestof"
+msgstr "Τα καλύτερα"
+
 #: templates/project_sheet/project_list.html:7
 msgid ""
 "These experiences have a positive social impact and create social goodwill. "
@@ -556,27 +577,27 @@ msgstr "προηγούμενο"
 msgid "next"
 msgstr "Επόμενη"
 
-#: templates/project_sheet/project_sheet.html:13
+#: templates/project_sheet/project_sheet.html:17
 msgid "start project"
 msgstr "έναρξη έργου"
 
-#: templates/project_sheet/project_sheet.html:125
+#: templates/project_sheet/project_sheet.html:131
 msgid "Type your message here and hit enter when done..."
 msgstr ""
 "Πληκτρολογήστε το μήνυμά σας εδώ και όταν ολοκληρώσετε επιλέξτε το "
 "Εισαγωγή..."
 
-#: templates/project_sheet/project_sheet.html:336
+#: templates/project_sheet/project_sheet.html:366
 msgid "This bloc is empty : don’t forget to fill it !"
-msgstr ""
+msgstr "Αυτή η ομάδα είναι κενή. Μην ξεχάσετε να την συμπληρώσετε!"
 
-#: templates/project_sheet/project_sheet.html:357
+#: templates/project_sheet/project_sheet.html:400
 #: templates/project_sheet/uniqueness_section.html:26
 #: templates/project_sheet/value_section.html:27
 msgid "This field is blank. Don’t forget to complete it!"
 msgstr "Αυτό το πεδίο είναι κενό. Μην ξεχάσετε να το συμπληρώσετε!"
 
-#: templates/project_sheet/project_sheet.html:460
+#: templates/project_sheet/project_sheet.html:503
 msgid ""
 "\n"
 "            Thank you for the interest you have shown in this project. <br />\n"
@@ -586,7 +607,7 @@ msgstr ""
 "\n"
 "Σας ευχαριστούμε για το ενδιαφέρον που έχετε δείξει σε αυτό το έργο. <br /> Θέλετε να <a class=\"login-slide-openner link\" href=\"#\">συνδεθείτε</a> ή να <a class=\"login-slide-openner link\" href=\"#\">εγγραφείτε</a> πριν από την επεξεργασία;"
 
-#: templates/project_sheet/project_sheet.html:468
+#: templates/project_sheet/project_sheet.html:511
 msgid ""
 "\n"
 "            This project sheet is a draft. \n"
@@ -595,30 +616,35 @@ msgid ""
 "\n"
 "            "
 msgstr ""
+"\n"
+"            Αυτο το φύλλο έργου είναι ένα προσχέδιο.\n"
+"          <br/> Μπορείτε να το εμπλουτήσετε πολύ εύκολα επιλέγοντας τα πεδία κειμένου που είναι ημιτελή. Θα έχετε τότε πρόσβαση στο πεδίο πληροφορίων του για να συμπληρώσετε το περιεχόμενο.\n"
+"            <br/> Γίνε συν-εκδότης αυτου του έργου με ένα κλικ.\n"
+"            "
 
-#: templates/project_sheet/project_sheet.html:503
+#: templates/project_sheet/project_sheet.html:546
 msgid "my project title"
 msgstr "τίτλος του έργου μου"
 
-#: templates/project_sheet/project_sheet.html:552
+#: templates/project_sheet/project_sheet.html:595
 msgid "anonymous"
 msgstr "ανώνυμος"
 
-#: templates/project_sheet/project_sheet.html:558
+#: templates/project_sheet/project_sheet.html:601
 msgid "Location:"
 msgstr "Τοποθεσία:"
 
-#: templates/project_sheet/project_sheet.html:571
-#: templates/project_sheet/project_sheet.html:579
+#: templates/project_sheet/project_sheet.html:614
+#: templates/project_sheet/project_sheet.html:622
 msgid "unknown"
 msgstr "άγνωστο"
 
-#: templates/project_sheet/project_sheet.html:577
-#: templates/project_sheet/project_sheet.html:579
+#: templates/project_sheet/project_sheet.html:620
+#: templates/project_sheet/project_sheet.html:622
 msgid "Website:"
 msgstr "Ιστότοπος:"
 
-#: templates/project_sheet/project_sheet.html:636
+#: templates/project_sheet/project_sheet.html:679
 #, python-format
 msgid ""
 "\n"

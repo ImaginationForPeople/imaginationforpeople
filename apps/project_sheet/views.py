@@ -18,7 +18,12 @@
 """
 Django Views for a Project Sheet
 """
-from collections import OrderedDict
+try:
+    from collections import OrderedDict
+except ImportError:
+    # Python < 2.7 compatibility
+    from ordereddict import OrderedDict
+
 import datetime
 
 from django.core.urlresolvers import reverse
@@ -88,7 +93,9 @@ def project_sheet_list(request):
             ordered_project_sheets = filtered_project_sheets.order_by('-modified')
             extra_context["order"] = "modification"
         else:
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', 'slug')
+            # By default, display the project listing using the following order: 
+            # best_of, random().
+            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
 
         if data.has_key('page'):
             del data["page"]

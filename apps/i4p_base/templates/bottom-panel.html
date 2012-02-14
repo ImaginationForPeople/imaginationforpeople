@@ -1,4 +1,5 @@
-  {% load i18n %}
+{% load i18n %}
+{% load cms_tags %}
   
   <div class="categories categories_project_page">        
     <div class="container_18">
@@ -169,8 +170,8 @@
                         {% blocktrans %}A community of imaginative citizens to detect and develop socially innovative projects.{% endblocktrans %}
                     </h1>
                     <p></p>
-                    <a href="/wiki/Manifesto{{ LANGUAGE_CODE }}">{% trans 'Read the manifesto &gt;' %}</a> 		    
-                    <a href="/wiki/AboutUs{{ LANGUAGE_CODE }}">{% trans 'About IP &gt;' %}</a> 	                    
+                    <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto &gt;' %}</a> 		    
+                    <a href="{% page_url 'about_us' %}">{% trans 'About IP &gt;' %}</a> 	                    
                 </div>	                    
                                     
             </div> 

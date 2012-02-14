@@ -1,5 +1,5 @@
 #-- encoding: utf-8 --
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls.defaults import patterns, url, include
 from django.contrib.auth import views as auth_views
 
 from honeypot.decorators import check_honeypot
@@ -11,6 +11,7 @@ from apps.member.forms import I4PSignupForm
 import views as member_views
 
 urlpatterns = patterns('',
+                       url(r'^', include('social_auth.urls')),
                        # Signup, signin and signout
                        url(r'^signup/$',
                            check_honeypot(member_views.signup),

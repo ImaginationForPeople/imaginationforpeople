@@ -123,9 +123,7 @@ def signin(request,
            redirect_signin_function=signin_redirect, 
            extra_context=None):
     """
-    Userena wrapper to signin a member. Also login the user on the
-    wiki (alpha.) by calling a remote view and grabbing the PHPSESSID
-    cookie.
+    Userena wrapper to signin a member.
     """
     extra_context = {'signup_form': I4PSignupForm()}
     
@@ -135,30 +133,6 @@ def signin(request,
                                     redirect_field_name=REDIRECT_FIELD_NAME,
                                     redirect_signin_function=signin_redirect,
                                     extra_context=extra_context)
-
-    if request.method == 'POST':
-        form = auth_form(request.POST)
-        if form.is_valid():
-            user = form.cleaned_data['identification']
-            password = form.cleaned_data['password']
-
-            # Temp fix to auth on Alpha
-            try:
-                conn = HTTPConnection('imaginationforpeople.org', timeout=5)
-                conn.request('GET', '/wiki/jrest/User/%s/%s' % (user, password))
-
-                res = conn.getresponse()
-                cookies = res.getheader("set-cookie")   
-                
-                if res.status == 200:
-                    name, value = cookies.split(";")[0].split("=")
-                    response.set_cookie(name, value=value, domain=".imaginationforpeople.org")
-
-            except Exception, e:
-                # We don't care if it was not possible to login the user on the wiki
-                mail_admins(subject='YesWiki login error',
-                            message="%s" % e)
-
     return response
 
 

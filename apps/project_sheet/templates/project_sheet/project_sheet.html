@@ -4,6 +4,7 @@
 {% load localeurl_tags %}
 {% load tagging_tags %}
 {% load compress %}
+{% load honeypot %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
 {% block title %}
@@ -26,6 +27,8 @@
   <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" type="text/css" media="screen" />
   <link rel="stylesheet" href="{{ STATIC_URL }}css/confirm.css" type="text/css" media="screen" />
+
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/ajax_select.css" type="text/css" media="screen" />
 
   
   <style type="text/css">
@@ -65,6 +68,7 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tag-it.iecompat.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tinysort.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tagcloud.js"></script>
+  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.form.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-serializeobject.js"></script>
 
@@ -92,6 +96,9 @@
   <script type="text/javascript" src="{{ STATIC_URL }}js/post-comment.js"></script>
   
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+
+  <!-- Autocomplete -->
+  <script type="text/javascript" src="{{ STATIC_URL }}js/ajax_select.js"></script>
 
   
   {% endcompress %}
@@ -169,6 +176,25 @@
         // Addthis
         addthis.init();
     });
+    
+
+    $('.team-contact a').mouseover(function() {
+        $('.team-contact .on').animate({ width: "187px" }, {duration : 180});
+     });
+     
+    $('.team-contact a').mouseout(function() {
+        $('.team-contact .on').animate({ width: "0px" }, {duration : 90});
+    });
+    
+    $('.member-contact a').mouseover(function() {
+        $(this).next('.on').animate({ width: "80px" }, {duration : 130});
+     });
+     
+    $('.member-contact a').mouseout(function() {
+        $(this).next('.on').animate({ width: "0px" }, {duration : 70});
+    });
+
+     
   </script>
 
 
@@ -176,26 +202,12 @@
 
   <script type="text/javascript" defer="defer">
     // Related updates
-    function on_project_themes_updated(data) {
-        if ( data == Dajaxice.EXCEPTION ) { alert('error'); }
-        else {
-           $('#opened-sidebar').slideToggle();
-           location.reload();
-        } 
-
-
-    }
-
-    function project_update_related() {
-	themes_form = $('#themes-form').serializeObject(true);
-
-        Dajaxice.apps.project_sheet.project_update_related(on_project_themes_updated, {'language_code': '{{ LANGUAGE_CODE }}',
-                                                                                       'related_form': themes_form,
-                                                                                       'project_slug': '{{ project_translation.slug }}'}
-        );                                                          
-	return false;
-    }
-
+    $('#themes-form').ajaxForm({
+    	success: function(){
+            $('#opened-sidebar').slideToggle();
+            location.reload();
+        }
+    });
 
     /* Notification  area 
     Must be here because functions are used in inline_editing_save_callback
@@ -289,13 +301,13 @@
 	});
 
 	// restore tags in get
-        {% if project_translation %}
-          {% tags_for_object project_translation as project_tags %}
+	
+    {% if project_translation %}
+        {% tags_for_object project_translation as project_tags %}
         	{% for tag in project_tags %}
-	     $.fn.tagit.create_tag("{{ tag }}");
-	  {% endfor %}
-        {% endif %}
-
+        	$.fn.tagit.create_tag("{{ tag }}");
+	        {% endfor %}
+    {% endif %}
 
 
      /* FIXME: This needs to be factorized */
@@ -322,14 +334,19 @@
 						tooltip: 'Double-click to edit',
 						loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
 						loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-						submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+                        submitdata: function(value, settings) {
+                          return {
+                            'language_code': '{{ LANGUAGE_CODE }}',
+                            'description': $('.project_description_txt input[name=description]').val()
+                          }
+                        },
 						dataType: 'json',
 						callback: inline_editing_save_callback,
 						indicator: 'Saving...',
 						type: 'growfield',
 						height: '40px',
 						width: '535px',
-						cancel: "<input title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                        cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}"  class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
 						submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
 						onblur: 'ignore',
 						cssclass: 'inline-edit',
@@ -351,14 +368,19 @@ data: '{{ project_status_choices|safe }}',
                                              tooltip: 'Double-click to edit',
                                              loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
 					     loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-					     submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
+                         submitdata: function(value, settings) {
+                           return {
+                             'language_code': '{{ LANGUAGE_CODE }}',
+                             'description': $('.project_details_body input[name=description]').val()
+                           }
+                         },
 					     dataType: 'json',
 					     callback: inline_editing_save_callback,
                          indicator: 'Saving...',
                          type: 'growfield',
                          height: '40px',
                          width: '690px',
-                         cancel: "<input title='{% trans 'Cancel'|capfirst %}' class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
+                         cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}" class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
                          submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
                          onblur: 'ignore',
                          cssclass: 'inline-edit',
@@ -650,10 +672,12 @@ data: '{{ project_status_choices|safe }}',
     <!-- GREY COLUMN - closed (default) -->
 	{% include "project_sheet/grey_column.html"%}
 
-	<!-- GREY COLUMN - RELATED - opened -->
-	{% include "project_sheet/sidebar_related.html"%}
-	
-	<!-- GREY COLUMN - TEAM - opened -->
-	{% include "project_sheet/sidebar_team.html"%}
+    {% if project_translation %}
+    	<!-- GREY COLUMN - RELATED - opened -->
+    	{% include "project_sheet/sidebar_related.html"%}
+    	
+    	<!-- GREY COLUMN - TEAM - opened -->
+    	{% include "project_sheet/sidebar_team.html"%}
+    {% endif %}
 
 {% endblock %}

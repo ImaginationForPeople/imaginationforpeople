@@ -15,17 +15,24 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from django.views.decorators.csrf import csrf_exempt
+from django.core.urlresolvers import reverse
+from tagging.models import Tag
 """
 Ajax views for handling project sheet creation and edition.
 """
 from django.contrib.auth.decorators import login_required
 from django.forms.models import modelform_factory
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template.context import RequestContext
 from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
+
+from honeypot.decorators import check_honeypot
+
+from honeypot.decorators import check_honeypot
 
 from .models import I4pProjectTranslation
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm
@@ -41,6 +48,7 @@ TEXTFIELD_MAPPINGS = {
     'project_business_model_txt': 'business_model_section',
     'project_translation_progress' : 'completion_progress',
     }
+
 
 def project_textfield_load(request, project_slug=None):
     """
@@ -70,7 +78,7 @@ def project_textfield_load(request, project_slug=None):
 
     # Get the text
     choices = project_translation._meta.get_field(TEXTFIELD_MAPPINGS[section]).choices
-    if choices : # it's possible because choices are Charfield
+    if choices:  #it's possible because choices are Charfield
         choice_dict = {}
         for key, value in choices:
             choice_dict[key] = u"%s" % value
@@ -81,6 +89,8 @@ def project_textfield_load(request, project_slug=None):
 
     return HttpResponse(resp)
 
+
+@check_honeypot(field_name='description')
 @require_POST
 def project_textfield_save(request, project_slug=None):
     """
@@ -95,7 +105,7 @@ def project_textfield_save(request, project_slug=None):
 
     project_translation = get_or_create_project_translation_by_slug(project_translation_slug=project_slug, 
                                                                     language_code=language_code)
-    
+
     # Check if we allow this field
     if not section in TEXTFIELD_MAPPINGS:
         return HttpResponseNotFound()
@@ -112,15 +122,15 @@ def project_textfield_save(request, project_slug=None):
         form.save()
         if project_translation._meta.get_field(fieldname).choices:
             text = getattr(project_translation, "get_%s_display" % fieldname)()
-            if fieldname == "completion_progress" :
+            if fieldname == "completion_progress":
                 response_dict["completion_progress"] = getattr(project_translation,fieldname)
         else:
             text = linebreaksbr(value)
-        
+
         response_dict.update({'text': text or '',
                               'redirect': project_slug is None,
                               'redirect_url': project_translation.get_absolute_url()})
-        
+
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
         return HttpResponseNotFound()
@@ -155,12 +165,13 @@ def project_sheet_edit_status(request, slug):
     else:
         return HttpResponseBadRequest()
 
-
-
-def project_update_related(request, language_code, related_form, project_slug):
+@require_POST
+def project_update_related(request, project_slug):
     """
     Update themes and objectives of a given project, in a given language
     """
+    language_code = request.POST['language_code']
+
     # Activate requested language
     translation.activate(language_code)
 
@@ -170,37 +181,17 @@ def project_update_related(request, language_code, related_form, project_slug):
 
     parent_project = project_translation.project
 
+    themes = ", ".join(request.POST.getlist('themes'))
+    project_translation.themes = themes
+    project_translation.save()
 
-    # Convert tags to string list, separated by comma
-    if not related_form.has_key('themes'):
-        related_form['themes'] = ""
-        
-    if isinstance(related_form['themes'], list):
-        related_form['themes'] = ", ".join(related_form['themes'])
-            
-    project_themes_form = I4pProjectThemesForm(related_form,
-                                               instance=project_translation)
-            
-    if project_themes_form.is_valid():
-        project_themes_form.save()
-
-
-    # Convert objectives to list if string or empty
-    if not related_form.has_key('objectives-form-objectives'):
-        related_form['objectives-form-objectives'] = []
-        
-    if not isinstance(related_form['objectives-form-objectives'], list):
-        related_form['objectives-form-objectives'] = related_form['objectives-form-objectives'].split(',')
-
-    project_objectives_form = I4pProjectObjectivesForm(related_form,
+    project_objectives_form = I4pProjectObjectivesForm(request.POST,
                                                        instance=parent_project,
                                                        prefix="objectives-form")
-
     if  project_objectives_form.is_valid():
         project_objectives_form.save()
 
-
-        
-    return simplejson.dumps({})
+    return redirect(reverse('project_sheet-show',
+                            kwargs={'slug': project_slug}))
 
 

@@ -1,16 +1,90 @@
 {% extends 'umessages/base_message.html' %}
 {% load i18n %}
+{% load humanize %}
 
 {% block content_title %}<h2>Conversation with {{ recipient }}</h2>{% endblock %}
 
-{% block content %}
+{% block extra_head %}
+    <script type="text/javascript">
+          $(document).ready(function(){
+            $('html,body').animate({scrollTop: $("#form").offset().top}, 'slow');
+            K%Lvjdsgvdtrace ('plop');
+        });
+    </script>
+{% endblock %}
 
-<ul>
-{% for message in message_list %}
-<li>
-  {{ message }}
-  <p>Received on {{ message.sent_at }}</p>
-</li>
-{% endfor %}
-</ul>
+{% block discuss_beetween %}
+    <p style="float:right; position:relative; top:8px;">{% blocktrans with message_list.0.messagecontact_set.all.0 as contact %}Between {{ contact }}{% endblocktrans %}</p>
+{% endblock %}  
+
+{% block usermessage_content %}
+
+    <ul id="usermessage_list">
+        
+        {% for message in message_list reversed %}
+        <li class="usermessage">
+            <div class="avatar"><a href="{% url userena_profile_detail message.sender %}"><img src="{{ message.sender.get_profile.get_mugshot_url }}" alt="{{ message.sender }}" /></a></div>
+            
+            <div class="usermessage_body">
+                <em>{% blocktrans with message.sent_at|timesince as sent_ago %} {{ sent_ago }} ago...{% endblocktrans %}</em>
+                <h1><a href="{% url userena_profile_detail message.sender %}">
+                    {% if message.sender.get_full_name %}
+                        {{ message.sender.get_full_name }}
+                    {% else %}
+                        {{ message.sender }}
+                    {% endif %}
+                </a></h1>
+                <br /><br />
+                {{ message.body|linebreaks }}
+                <br /><br /> 
+                
+                <!-- "IS MESSAGE READ ?" notification  -->
+                {% comment %}
+                    {% if is_read %}
+                        LU :)
+                    {% else %}
+                        PALU !
+                    {% endif %}
+                {% endcomment %}
+                
+            </div>           
+        </li>        
+        {% endfor %}
+        
+        <div id="usermessage_compose">
+
+            <div class="avatar"><a href="{% url userena_profile_detail user %}"><img src="{{ user.get_profile.get_mugshot_url }}" alt="{{ user.username }}" /></a></div>
+            <form action="{% url userena_umessages_reply %}" id="form" method="post">
+                {% csrf_token %}
+                <p>
+                    <input type="hidden" id="id_to" name="to" value="{{ recipient }}" />
+                    <textarea class="message" name="body" cols="40" rows="10" id="id_body"></textarea>
+                </p>
+                <input type="submit" name="send" value="{% trans 'Send' %}" />
+            </form>
+    
+        </div>
+        
+    </ul>
+    
+    <!-- PAGINATION - todo : correct api bug -->
+    {% comment %}
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endcomment %}
+    
+    
 {% endblock %}
