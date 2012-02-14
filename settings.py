@@ -107,7 +107,7 @@ MIDDLEWARE_CLASSES = (
     # Language selection based on profile
     'userena.middleware.UserenaLocaleMiddleware',
     # URL based language selection (eg. from top panel)
-    'apps.member.middleware.LocaleURLMiddleware',
+    'localeurl.middleware.LocaleURLMiddleware',
 
     'honeypot.middleware.HoneypotMiddleware',
 
@@ -286,6 +286,7 @@ HONEYPOT_FIELD_NAME = "homepage"
 # localeurl/monther-tongue
 PREFIX_DEFAULT_LOCALE = True
 LOCALEURL_USE_ACCEPT_LANGUAGE = True
+LOCALEURL_USE_SESSION = True
 
 # Userena
 ANONYMOUS_USER_ID = -1

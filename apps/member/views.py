@@ -133,6 +133,9 @@ def signin(request,
                                     redirect_field_name=REDIRECT_FIELD_NAME,
                                     redirect_signin_function=signin_redirect,
                                     extra_context=extra_context)
+    if request.user.is_authenticated():
+        profile = request.user.get_profile()
+        request.session['locale'] = profile.language
     return response
 
 
@@ -189,6 +192,7 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
             # Ensure the redirect URL locale prefix matches the profile locale
             _locale, path = strip_path(redirect_to)
             redirect_to = locale_url(path, locale=profile.language)
+            request.session['locale'] = profile.language
 
             return redirect(redirect_to)
 
