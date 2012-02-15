@@ -58,7 +58,7 @@ secret.
 
 Most services requires that you provide one or more URLs pointing to your
 site. In development you can't use the real site URL but you can make up one.  It
-doesn't need to be a based on a valid hostname but it needs to look valid, so
+doesn't need to be based on a valid hostname but it needs to look valid, so
 ``http://127.0.0.1:8000`` won't work but something like
 ``http://i4p-dev.com:8000`` will do. You'll need to configure your machine so
 that your site URL points to your local instance. On Unix systems you can do
@@ -80,10 +80,11 @@ enter a site URL: ``http://i4p-dev.com:8000``.
 Google
 ^^^^^^
 
-Google offers several authentication options. We use `OAuth2 <http://code.google.com/apis/accounts/docs/OAuth2.html>`_. Go to https://code.google.com/apis/console and create a new Client ID.
-Redirect URIs should contain
-``http://i4p-dev.com:8000/member/complete/google-oauth2/`` and JavaScript origins
-should contain ``https://i4p-dev.com``.
+Google offers several authentication options. We use 
+`OAuth2 <http://code.google.com/apis/accounts/docs/OAuth2.html>`_. Go to
+https://code.google.com/apis/console and create a new Client ID.  Redirect URIs
+should contain ``http://i4p-dev.com:8000/member/complete/google-oauth2/`` and
+JavaScript origins should contain ``https://i4p-dev.com``.
 
 Twitter
 ^^^^^^^
