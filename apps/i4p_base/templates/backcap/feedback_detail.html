@@ -187,26 +187,34 @@
 	  <ul id="feedback-comments-list">
 	    {% get_comment_list for feedback as feedback_comments %}
 	      {% for comment in feedback_comments %}
-		<li><a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> said :<div>{{ comment.comment|linebreaks }}</div></li>
+            {% if comment.user.get_full_name %}
+                <li><a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> {% trans "said:" %}<div>{{ comment.comment|linebreaks }}</div></li>
+            {% else %}
+                <li>{% trans "Anonymous" %} {% trans "said:" %}<div>{{ comment.comment|linebreaks }}</div></li>
+            {% endif %}
 	      {% endfor %}
 	  </ul>
 
 	  {% if not feedback.status == 'D' %}
-	    <hr/>
-	    <h5>{% trans "Post a new comment" %}</h5>
-	      {% get_comment_form for feedback as comment_form %}
-		<form id="feedback-comment" action="{% comment_form_target %}" method="post">
-		  {% csrf_token %}
-		  {{ comment_form.content_type }}
-		  {{ comment_form.timestamp }}
-		  {{ comment_form.object_pk }}
-		  {{ comment_form.security_hash }}
-		  {{ comment_form.comment }}
-		  
-		  <input type="submit" class="button nomargin" value="{% trans 'Post' %}"/>  
-		  <input type="hidden" name="next" value="{% url feedback-detail feedback.id %}" />
-		</form>
-		<div class="clear"></div>
+      
+        {% if not user.is_anonymous %}
+            <hr/>
+            <h5>{% trans "Post a new comment" %}</h5>
+              {% get_comment_form for feedback as comment_form %}
+            <form id="feedback-comment" action="{% comment_form_target %}" method="post">
+              {% csrf_token %}
+              {{ comment_form.content_type }}
+              {{ comment_form.timestamp }}
+              {{ comment_form.object_pk }}
+              {{ comment_form.security_hash }}
+              {{ comment_form.comment }}
+              
+              <input type="submit" class="button nomargin" value="{% trans 'Post' %}"/>  
+              <input type="hidden" name="next" value="{% url feedback-detail feedback.id %}" />
+            </form>
+            <div class="clear"></div>
+        {% endif %}
+         
               {% else %}
 		{% trans "Comments closed." %}
 	      {% endif %}
