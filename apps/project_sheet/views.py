@@ -74,9 +74,11 @@ def project_sheet_list(request):
         if 'language' in data:
             language_code = request.GET['language']
             fallback_language = None
+            extra_context['filter_language'] = language_code
         else:
             language_code = translation.get_language()
             fallback_language = 'en'
+            extra_context['filter_language'] = None
         project_sheet_ids = []
         for project in filtered_projects:
             try:

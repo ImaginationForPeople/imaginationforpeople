@@ -76,10 +76,16 @@
            <div id="langage-tool">				
                 <ul id="sample-menu-1" class="sf-menu">		
                     <li class="current">
-                        <a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ LANGUAGE_CODE }}.gif" title="{{ LANGUAGE_CODE }}" /> {{ LANGUAGE_CODE }}</a>
+                        {% if filter_language %}
+                        <a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ filter_language }}.gif" title="{{ filter_language }}" /> {{ filter_language }}</a>
+                        {% else %}
+                        <a href="#">{% trans 'Language' %}</a>
+                        {% endif %}
                         <ul>
                               {% for language in LANGUAGES %}
-                              <li><a href="{% url project_sheet-list %}?language={{ language.0 }}"><img src="{{ STATIC_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.0 }}</a>
+                                {% if filter_language != language.0 %}
+                                <li><a href="{% url project_sheet-list %}?language={{ language.0 }}"><img src="{{ STATIC_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.0 }}</a>
+                                {% endif %}
                               {% endfor %}	
 					
                         </ul>		
