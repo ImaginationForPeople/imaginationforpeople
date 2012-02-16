@@ -72,22 +72,19 @@
                 <li class="ui-corner-all {% ifequal order 'modification' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?{{orderparams}}&order=modification">{% trans "Last editions" %}</a></li>
             </ul>    
 
-            
-           <!--   
            <div id="langage-tool">				
                 <ul id="sample-menu-1" class="sf-menu">		
                     <li class="current">
                         <a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ LANGUAGE_CODE }}.gif" title="{{ LANGUAGE_CODE }}" /> {{ LANGUAGE_CODE }}</a>
                         <ul>
                               {% for language in LANGUAGES %}
-                              <li><a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.0 }}</a>
+                              <li><a href="{% url project_sheet-list %}?language={{ language.0 }}"><img src="{{ STATIC_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.0 }}</a>
                               {% endfor %}	
 					
                         </ul>		
                     </li>
                 </ul>					
             </div>
-             -->        
         </div>
 
     
