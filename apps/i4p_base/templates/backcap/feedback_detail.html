@@ -187,7 +187,18 @@
 	  <ul id="feedback-comments-list">
 	    {% get_comment_list for feedback as feedback_comments %}
 	      {% for comment in feedback_comments %}
-		<li><a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> said :<div>{{ comment.comment|linebreaks }}</div></li>
+          <li>
+          {% if comment.user %}
+          <a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a>
+          {% else %}
+            {# Handle the case of anomymous comments #}
+            {% if comment.user_url %} {# user_url is optional #}
+            <a class="link" href="{{ comment.user_url }}">{{ comment.user_name }}</a>
+            {% else %}
+            {{ comment.user_name }}
+            {% endif %}
+          {% endif %}
+          said :<div>{{ comment.comment|linebreaks }}</div></li>
 	      {% endfor %}
 	  </ul>
 
