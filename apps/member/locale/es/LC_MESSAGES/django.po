@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011, 2012.
 # Guillaume  <glibersat@sigill.org>, 2012.
@@ -11,15 +11,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-02-06 14:02+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-13 16:22+0100\n"
 "PO-Revision-Date: 2012-02-06 13:14+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Spanish (Castilian) <ip-es@lists.imaginationforpeople.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: fields.py:43
@@ -342,8 +342,11 @@ msgid ""
 "\t\t"
 msgstr ""
 "\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span><span class=\"whitespace other\" title=\"Tab\">»</span>  Página %(page)s de %(num_pages)s\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span><span class=\"whitespace other\" title=\"Tab\">»</span>"
+"<span class=\"whitespace other\" title=\"Tab\">»</span><span class="
+"\"whitespace other\" title=\"Tab\">»</span>  Página %(page)s de "
+"%(num_pages)s\n"
+"<span class=\"whitespace other\" title=\"Tab\">»</span><span class="
+"\"whitespace other\" title=\"Tab\">»</span>"
 
 #: templates/userena/signin_form.html:4
 msgid "Signin"
@@ -374,8 +377,10 @@ msgid "Thank you for signing up with us!"
 msgstr "¡Gracias por registrarse con nosotros!"
 
 #: templates/userena/signup_complete.html:23
+#, fuzzy
 msgid ""
-"You have been send an e-mail with an activation link to the supplied email."
+"You have been sent an email with an activation link to the supplied email "
+"address."
 msgstr ""
 "Se le ha enviado un correo electrónico con un enlace para activar su cuenta."
 
@@ -396,4 +401,25 @@ msgstr "Registrarse"
 msgid "Already a member?"
 msgstr "¿Ya es miembro?"
 
+#: templates/userena/emails/confirmation_email_message_new.txt:2
+#, fuzzy, python-format
+msgid "Dear %(username)s,"
+msgstr "%(username)s"
 
+#: templates/userena/emails/confirmation_email_message_new.txt:4
+#, python-format
+msgid "You requested a change of your email address at %(site)s."
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:7
+msgid "Please confirm this email address by clicking on the link below:"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:11
+#, fuzzy
+msgid "Thanks for using our site!"
+msgstr "¡Gracias por registrarse con nosotros!"
+
+#: templates/userena/emails/confirmation_email_message_new.txt:13
+msgid "Sincerely"
+msgstr ""

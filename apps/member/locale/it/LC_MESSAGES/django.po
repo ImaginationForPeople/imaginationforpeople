@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Luca Manlio De Lisi <lukefiltroman@gmail.com>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-02-06 14:02+0100\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-02-13 16:22+0100\n"
 "PO-Revision-Date: 2012-02-06 13:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Italian <ip-it@lists.imaginationforpeople.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: fields.py:43
@@ -371,7 +371,8 @@ msgstr "Grazie per esserti registrato con noi!"
 
 #: templates/userena/signup_complete.html:23
 msgid ""
-"You have been send an e-mail with an activation link to the supplied email."
+"You have been sent an email with an activation link to the supplied email "
+"address."
 msgstr "Un link di attivazione ti è stato inviato nell'email fornita."
 
 #: templates/userena/signup_complete.html:24
@@ -391,4 +392,25 @@ msgstr "Registrati"
 msgid "Already a member?"
 msgstr "Già un membro?"
 
+#: templates/userena/emails/confirmation_email_message_new.txt:2
+#, python-format
+msgid "Dear %(username)s,"
+msgstr ""
 
+#: templates/userena/emails/confirmation_email_message_new.txt:4
+#, python-format
+msgid "You requested a change of your email address at %(site)s."
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:7
+msgid "Please confirm this email address by clicking on the link below:"
+msgstr ""
+
+#: templates/userena/emails/confirmation_email_message_new.txt:11
+#, fuzzy
+msgid "Thanks for using our site!"
+msgstr "Grazie per esserti registrato con noi!"
+
+#: templates/userena/emails/confirmation_email_message_new.txt:13
+msgid "Sincerely"
+msgstr ""

@@ -14,6 +14,7 @@ Developer's Documentation
    setup_dev_env.rst
    testing.rst
    settings.rst
+   localization.rst
    api.rst
 
 Administrator's documentation

@@ -103,19 +103,6 @@ def socialauth_registered_handler(sender, user, response, details, **kwargs):
     return True
 
 
-@receiver(socialauth_registered, sender=LinkedinBackend,
-        dispatch_uid="apps.member.models.linkedin_registered_handler")
-def linkedin_registered_handler(sender, user, response, details, **kwargs):
-    """
-    LinkedIn doesn't return a username so instead of letting
-    django-social-auth generate a random username, we generate one
-    based on first name and last name.
-    """
-    username = fix_username(response['first-name'] + response['last-name'])
-    user.username = username
-    user.save()
-
-
 @receiver(post_save, sender=MessageRecipient,
         dispatch_uid="apps.member.models.send_message_notification")
 def send_message_notification(sender, instance, **kwargs):
@@ -127,6 +114,11 @@ def send_message_notification(sender, instance, **kwargs):
     saved because umessages first saves a message and then adds its recipients,
     so when a Message is saved, it doesn't yet have a list of recipients.
     """
+
+    if not instance.user.email:
+        # Email can be missing for users registered with Twitter
+        # or LinkedIn
+        return
 
     params = {
         'sender': instance.message.sender.username,
