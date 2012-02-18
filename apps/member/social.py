@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+import re
 import StringIO
 from urllib2 import urlopen
 import urlparse
@@ -150,8 +151,8 @@ class TwitterDataAdapter(DataAdapter):
     Populates user profile attributes using data fetched from Twitter.
 
     Tries to populate these fields:
-     - first_name (Twitter only has a "name" field, django-social-auth uses
-       the content of that field to populate user.first_name)
+     - first_name
+     - last_name
      - website
      - location
      - twitter (twitter profile URL)
@@ -159,6 +160,27 @@ class TwitterDataAdapter(DataAdapter):
 
     Email address is NOT available via Twitter API.
     """
+
+    def make_username(self):
+        """
+        Do our best to build a username that looks like a typical i4p username
+        using the 'name' field returned by Twitter.
+        """
+        name = self.response.get('name', '').strip()
+        space_regexp = re.compile("\s")
+        if space_regexp.search(name):
+            # If name looks like first name and last name
+            # try to make an i4p-style username
+            name_parts = space_regexp.split(name)
+            self.profile.user.first_name = name_parts[0]
+            self.profile.user.last_name = name_parts[-1]
+            self.make_username_from(
+                    self.profile.user.first_name,
+                    self.profile.user.last_name)
+        elif name:
+            # Otherwise just make a username from the name
+            self.profile.user.username = fix_username(name)
+        # If there's no name, username default to twitter username
 
     def fetch_profile_data(self):
         """
@@ -172,6 +194,7 @@ class TwitterDataAdapter(DataAdapter):
         self.profile.website = self.response.get('url', '')
         location = Location(address=self.response.get('location'))
         self.profile.location = location
+        self.make_username()
 
     @property
     def picture_url(self):
