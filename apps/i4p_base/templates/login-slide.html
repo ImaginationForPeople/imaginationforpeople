@@ -54,7 +54,6 @@
                 <p style="float:left;"> <a href="{% url socialauth_begin 'twitter' %}"><img src="{{ STATIC_URL }}images/picto-twitter.jpg" alt="Twitter" width="113" height="26" /></a> </p>
                 <p style="float:left;"> <a href="{% url socialauth_begin 'linkedin' %}"><img src="{{ STATIC_URL }}images/picto-ln.jpg" alt="LinkedIn" width="113" height="26" /></a> </p>
                 <div class="clear"></div>
-		{% comment %}
                 <p> 
                     <form action="{% url socialauth_begin 'openid' %}" method="POST"><label for="openid_identifier">OpenID:</label>
                     {% csrf_token %}
@@ -62,8 +61,6 @@
                     <button class="button" style="margin:0px 10px; top:5px;">Login</button>
                     </form> 
                 </p>
-		{% endcomment %}
-
 
 			</div>
 			

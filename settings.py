@@ -274,6 +274,8 @@ FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
                                  'user_work_history']
 GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
 SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
+# Catch social auth exceptions even in debug mode
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
