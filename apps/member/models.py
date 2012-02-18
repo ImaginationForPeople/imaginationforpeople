@@ -127,22 +127,26 @@ def send_message_notification(sender, instance, **kwargs):
     saved because umessages first saves a message and then adds its recipients,
     so when a Message is saved, it doesn't yet have a list of recipients.
     """
-
+    msg_sender = instance.message.sender
     params = {
-        'sender': instance.message.sender.username,
+        'sender': msg_sender.get_profile().get_full_name_or_username(),
         'body': instance.message.body,
         }
     message_url_path = reverse('userena_umessages_detail',
-                               kwargs={'username': params['sender']})
+                               kwargs={'username': msg_sender.username})
     params['message_url'] = "%s://%s%s" % (
             get_protocol(),
-            Site.objects.get_current(), 
+            Site.objects.get_current(),
             message_url_path)
 
-    subject = _(u'Message from %(sender)s') % params
+    subject = _(u'New message from %(sender)s on Imagination For People') % params
     message = render_to_string('umessages/message_notification.txt', params)
     recipient = instance.user.email
 
+    # XXX Resets the Content-Transfer-Encoding in email header
+    # Avoids bad encoding of UTF-8 body
+    # See https://code.djangoproject.com/ticket/3472
+    from email import Charset
+    Charset.add_charset('utf-8', Charset.SHORTEST, 'utf-8', 'utf-8')
+
     send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, [recipient])
-
-
