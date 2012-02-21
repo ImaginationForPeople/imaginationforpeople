@@ -66,6 +66,9 @@ this by adding an entry to ``/etc/hosts``::
 
     127.0.0.1   i4p-dev.com
 
+You can also use your zeroconf (avahi, bonjour) host, such as
+mymachine.local.
+
 In the subsequent sections we assume that the hostname pointing to your
 development machine is ``i4p-dev.com`` but you can use another hostname if you
 wish.
