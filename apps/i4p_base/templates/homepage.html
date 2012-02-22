@@ -48,7 +48,7 @@
 
 
   <div class="container_18">
-
+    
       <div id="preload">      	
     <div class="grid_18 alpha omega rotator" style="display: none">			
 
@@ -88,9 +88,15 @@
     </div>
     </div>
     
-    <div class="clear"></div>
+    <div id="skipintrodiv" class="removeafterpreload">
+        <a href="{% url project_sheet-list %}">{% trans "Skip intro" %}</a>
+    </div>
     
-  </div>		
+    <div class="clear"></div>
+  </div>
+
+    
+  		
 
  <script type='text/javascript'>
     QueryLoader.selectorPreload = "#preload";
