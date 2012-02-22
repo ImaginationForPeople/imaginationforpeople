@@ -170,6 +170,7 @@ var QueryLoader = {
 		}
 		
 		//The end animation, adjust to your likings
+		$('.removeafterpreload').hide();
 	    $(QueryLoader.loadAmt).hide();
 		$(QueryLoader.loadBar).animate({
 			height: height + "px",
