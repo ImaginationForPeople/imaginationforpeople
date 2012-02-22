@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-02-06 13:53+0100\n"
-"PO-Revision-Date: 2012-02-06 13:11+0000\n"
+"POT-Creation-Date: 2012-02-22 10:44-0500\n"
+"PO-Revision-Date: 2012-02-22 15:49+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
-"Language-Team: Russian (http://www.transifex.net/projects/p/imaginationforpeople/team/ru/)\n"
+"Language-Team: Russian (http://www.transifex.net/projects/p/imaginationforpeople/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -1238,6 +1238,10 @@ msgstr ""
 msgid "Discover this project &gt;"
 msgstr ""
 
+#: templates/homepage.html:92
+msgid "Skip intro"
+msgstr ""
+
 #: templates/login-slide.html:15
 msgid "Interface language"
 msgstr ""
@@ -1254,47 +1258,47 @@ msgstr ""
 msgid "Lost your password?"
 msgstr ""
 
-#: templates/login-slide.html:74
+#: templates/login-slide.html:70
 msgid "Not a member yet? Sign Up!"
 msgstr ""
 
-#: templates/login-slide.html:94
+#: templates/login-slide.html:90
 msgid "A password will be e-mailed to you."
 msgstr ""
 
-#: templates/login-slide.html:96 templates/login-slide.html.py:147
+#: templates/login-slide.html:92 templates/login-slide.html.py:143
 msgid "Register"
 msgstr ""
 
-#: templates/login-slide.html:107
+#: templates/login-slide.html:103
 msgid "My projects"
 msgstr ""
 
-#: templates/login-slide.html:126
+#: templates/login-slide.html:122
 msgid "You have no projects"
 msgstr ""
 
-#: templates/login-slide.html:147
+#: templates/login-slide.html:143 templates/backcap/feedback_detail.html:231
 msgid "Log In"
 msgstr ""
 
-#: templates/login-slide.html:149
+#: templates/login-slide.html:145
 msgid "Close Panel"
 msgstr ""
 
-#: templates/login-slide.html:155 templates/login-slide.html.py:157
+#: templates/login-slide.html:151 templates/login-slide.html.py:153
 msgid "My messages"
 msgstr ""
 
-#: templates/login-slide.html:160
+#: templates/login-slide.html:156
 msgid "View my profile"
 msgstr ""
 
-#: templates/login-slide.html:161
+#: templates/login-slide.html:157
 msgid "Edit my profile"
 msgstr ""
 
-#: templates/login-slide.html:162
+#: templates/login-slide.html:158
 msgid "Log out"
 msgstr ""
 
@@ -1314,16 +1318,16 @@ msgstr ""
 msgid "create a new translation"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:63
+#: templates/backcap/feedback_detail.html:76
 msgid "This issue is closed."
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:112
+#: templates/backcap/feedback_detail.html:125
 #: templates/backcap/feedback_list.html:137
 msgid "Assigned to"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:117
+#: templates/backcap/feedback_detail.html:130
 #, python-format
 msgid ""
 "\n"
@@ -1331,71 +1335,87 @@ msgid ""
 "                    "
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:135
+#: templates/backcap/feedback_detail.html:148
 msgid "is working on this. Poke him if you think it's taking too long !"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:143
+#: templates/backcap/feedback_detail.html:156
 msgid "This issue is a duplicate of"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:144
+#: templates/backcap/feedback_detail.html:157
 msgid "Please don't comment on this issue anymore."
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:150
+#: templates/backcap/feedback_detail.html:163
 msgid "Description:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:156
+#: templates/backcap/feedback_detail.html:169
 msgid "Followers:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:167
+#: templates/backcap/feedback_detail.html:180
 msgid "Unfollow"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:172
+#: templates/backcap/feedback_detail.html:185
 msgid "Follow"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:186
+#: templates/backcap/feedback_detail.html:199
 msgid "Comments:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:196
-msgid "Post a new comment"
+#: templates/backcap/feedback_detail.html:204
+msgid "said:"
 msgstr ""
 
 #: templates/backcap/feedback_detail.html:206
-msgid "Post"
+msgid "Anonymous said:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:211
-msgid "Comments closed."
-msgstr ""
-
-#: templates/backcap/feedback_detail.html:216
-msgid "This issue is"
-msgstr ""
-
-#: templates/backcap/feedback_detail.html:217
-msgid "Close issue"
-msgstr ""
-
-#: templates/backcap/feedback_detail.html:219
-msgid "Reported from:"
-msgstr ""
-
-#: templates/backcap/feedback_detail.html:224
-msgid "Edit"
+#: templates/backcap/feedback_detail.html:215
+msgid "Post a new comment"
 msgstr ""
 
 #: templates/backcap/feedback_detail.html:225
+msgid "Post"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:231
+msgid "You need to "
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:231
+msgid " to post a comment closed."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:235
+msgid "Comments closed."
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:240
+msgid "This issue is"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:241
+msgid "Close issue"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:243
+msgid "Reported from:"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:248
+msgid "Edit"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:249
 msgid "Ping observers"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:230
+#: templates/backcap/feedback_detail.html:254
 #: templates/backcap/feedback_new.html:70
 #: templates/backcap/feedback_tab.html:12
 msgid "See all feedbacks"
@@ -1613,5 +1633,3 @@ msgstr ""
 #: templates/pages/footer.html:24
 msgid "Get Involved"
 msgstr ""
-
-
