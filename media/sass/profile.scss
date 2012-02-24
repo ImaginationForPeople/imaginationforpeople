@@ -415,6 +415,29 @@
                 padding-right:2%;
             }
         }
+        
+        form.openid-form{
+            margin-top:10px;        
+            
+            label{
+                float:left;
+                position:relative;
+                top:4px;
+                margin-right:10px;
+            }
+            
+            input[type=text]{
+                background: none repeat scroll 0 0 #414141;
+                border: 1px solid #1A1A1A;
+                color: white;
+                width: 44%;
+            }
+            
+            .button{
+                top:1px !important;
+            }            
+        }
+        
     }
 }
 

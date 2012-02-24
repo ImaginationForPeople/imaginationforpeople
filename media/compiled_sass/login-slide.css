@@ -186,7 +186,7 @@ Version: 1.0
   padding: 0 15px;
 }
 #panel .panel_content .left {
-  min-height: 350px;
+  min-height: 220px;
   border-left: 1px solid #333;
 }
 #panel .panel_content .left:first-child {
@@ -329,4 +329,15 @@ Version: 1.0
   font-style: normal;
   font-weight: bold;
   height: 55px;
+}
+
+.social-panel p.social-login {
+  float: left;
+  margin: 0px !important;
+}
+.social-panel .openid-form {
+  float: left;
+}
+.social-panel #openid_identifier {
+  width: 165px !important;
 }

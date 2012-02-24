@@ -19,11 +19,6 @@
                         </h2>
                     </div>
 
-		    <div style="float: right; padding-right: 10px; margin-bottom: 5px">
-		      <p style="float:left;"> <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
-		      <p style="float:left;"> <a href="{% url socialauth_begin 'google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
-		    </div>
-
                     <form action="" method="post" id="signin_form"  class="profile_edition">
                         {% csrf_token %}
                             {{ form.non_field_errors }}
@@ -47,6 +42,12 @@
                         <br /><br /><br />
                         <p class="forgot-password"><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>
                     </form>                
+                    
+                    <br />
+                    <div class="separator"></div>
+                    
+                    {% include "userena/social-networks.html" %}
+
              
                 </div>
                 
