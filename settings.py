@@ -281,6 +281,15 @@ GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
 SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 # Catch social auth exceptions even in debug mode
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'apps.member.social.custom_associate_user', # Override default pipeline function
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details'
+)
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
