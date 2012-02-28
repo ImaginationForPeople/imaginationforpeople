@@ -135,7 +135,7 @@ def signin(request,
                                     extra_context=extra_context)
     if request.user.is_authenticated():
         profile = request.user.get_profile()
-        request.session['locale'] = profile.language
+        request.session['django_language'] = profile.language
     return response
 
 
@@ -192,7 +192,7 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
             # Ensure the redirect URL locale prefix matches the profile locale
             _locale, path = strip_path(redirect_to)
             redirect_to = locale_url(path, locale=profile.language)
-            request.session['locale'] = profile.language
+            request.session['django_language'] = profile.language
 
             return redirect(redirect_to)
 
