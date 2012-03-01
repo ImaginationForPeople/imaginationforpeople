@@ -52,8 +52,9 @@
             <div class="left right">
             
                 <h1 class="padlock">{% trans "You can also use" %}</h1>
+                {% with redirect_url=request.path %}
                 {% include "userena/social-networks.html" %}
-                
+                {% endwith %}
                 <div class="clear"></div>
                 <br /><br />
 
