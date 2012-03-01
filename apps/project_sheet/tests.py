@@ -282,6 +282,31 @@ class TestUtils(TestCase):
         self.assertEqual(new_translation.project, project)
 
 
+    def test_delete_last_translation(self):
+        """
+        Deleting all translations should delete the parent project
+        """
+        # Create new project
+        project = create_parent_project()
+        self.assertEqual(project.translations.count(), 0)
+        project_pk = project.pk
+
+        # Add translations
+        pt_translation = create_project_translation(language_code='pt',
+                                                           parent_project=project)
+        zh_translation = create_project_translation(language_code='zh',
+                                                           parent_project=project)
+        self.assertEqual(project.translations.count(), 2)
+
+        # Delete translations
+        pt_translation.delete()
+        zh_translation.delete()
+
+        # The project should be gone
+        self.assertEqual(I4pProject.objects.filter(pk=project_pk).count(), 0)
+
+
+
 
 class TestFilters(TestCase):
     fixtures = ["test_pjsheet"]
