@@ -293,9 +293,9 @@ class TestUtils(TestCase):
 
         # Add translations
         pt_translation = create_project_translation(language_code='pt',
-                                                           parent_project=project)
+                                                    parent_project=project)
         zh_translation = create_project_translation(language_code='zh',
-                                                           parent_project=project)
+                                                    parent_project=project)
         self.assertEqual(project.translations.count(), 2)
 
         # Delete translations
