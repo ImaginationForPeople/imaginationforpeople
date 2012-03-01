@@ -46,7 +46,9 @@
                     <br />
                     <div class="separator"></div>
                     
+                    {% with redirect_url=request.GET.next %}
                     {% include "userena/social-networks.html" %}
+                    {% endwith %}
 
              
                 </div>
