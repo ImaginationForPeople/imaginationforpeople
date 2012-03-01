@@ -21,11 +21,6 @@
                         </h2>
                     </div>
 
-		    <div style="float: right; padding-right: 10px; margin-bottom: 5px">
-		      <p style="float:left;"> <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
-		      <p style="float:left;"> <a href="{% url socialauth_begin 'google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
-		    </div>
-                
                     <form action="" method="post" id="signup_form"  class="profile_edition">
                         {% csrf_token %}
                             {{ form.non_field_errors }}
@@ -48,7 +43,12 @@
                         <input type="submit" class="button" value="{% trans "Sign up" %}" />
                         <div class="clear"></div>
                         <br /><br /><br />
-                    </form>                
+                    </form>  
+
+                    <br />
+                    <div class="separator"></div>
+                    
+                    {% include "userena/social-networks.html" %}                    
 
                  
                 </div>

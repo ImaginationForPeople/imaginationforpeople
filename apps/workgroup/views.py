@@ -74,12 +74,14 @@ class SubscribeView(View):
         cache_key = '%s-ml-members' % workgroup.slug
         cache.delete(cache_key)
 
-
         if workgroup.mailing_list:
             ml = workgroup.mailing_list
             try:
-                ml.subscribe(user.email, user.first_name, user.last_name)
-                
+                ml.subscribe(user.email,
+                             user.first_name,
+                             user.last_name,
+                             send_welcome_msg=True)
+
                 messages.success(request, _(u"You have been successfully subscribed to the"
                                             u"%(workgroup_name)s mailing list"
                                             u" (%(user_email)s)" % {'workgroup_name': workgroup.name,

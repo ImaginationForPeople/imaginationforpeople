@@ -1,4 +1,15 @@
 /* --Workgroups------- */
+.content {
+  background-image: none;
+  background-color: white;
+  color: black;
+}
+
+.separator {
+  background-image: none;
+  border-bottom: 1px solid #c2c2c2;
+}
+
 #workgroups_list li {
   background-color: white;
   width: 290px;
@@ -44,7 +55,7 @@
   background-image:none;
   background-color:white;
   */
-  background-image: url("../images/workgroups/workgroup_detail_bulles.png");
+  background-image: url("../images/workgroups/workgroup_bulles.jpg");
   background-repeat: no-repeat;
   background-position: right bottom;
 }
@@ -64,7 +75,7 @@
   font-style: italic;
 }
 #workgroup_detail .workgroup_desc {
-  color: #909090;
+  color: #333333;
   font-size: 11px;
 }
 #workgroup_detail h3 {

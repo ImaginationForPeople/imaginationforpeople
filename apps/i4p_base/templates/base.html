@@ -74,9 +74,18 @@
           var more = $('#feedback-tab textarea');
           more.hide();
           $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
-      });
-
+    
+      
+      	// Switch OpenID button to OpenID form in signin zone on click
+        $(".social-panel a.openid-button").click(function () {
+            $(".social-panel a.openid-button").hide();
+            $(".social-panel .openid-form").removeClass('hidden');
+        });	
+        
+    });
+        
     </script>
+
 
 
     

@@ -342,6 +342,24 @@
   text-align: right;
   padding-right: 2%;
 }
+#profile #sign-row-big form.openid-form, #profile #sign-row-tiny form.openid-form {
+  margin-top: 10px;
+}
+#profile #sign-row-big form.openid-form label, #profile #sign-row-tiny form.openid-form label {
+  float: left;
+  position: relative;
+  top: 4px;
+  margin-right: 10px;
+}
+#profile #sign-row-big form.openid-form input[type=text], #profile #sign-row-tiny form.openid-form input[type=text] {
+  background: none repeat scroll 0 0 #414141;
+  border: 1px solid #1A1A1A;
+  color: white;
+  width: 44%;
+}
+#profile #sign-row-big form.openid-form .button, #profile #sign-row-tiny form.openid-form .button {
+  top: 1px !important;
+}
 
 #profile.reset_password label {
   text-align: right;
