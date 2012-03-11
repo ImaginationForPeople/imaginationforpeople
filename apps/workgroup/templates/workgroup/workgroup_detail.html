@@ -8,13 +8,13 @@
     <div class="container_18 relative" id="workgroup_detail">
       <br/>
       <br/>
-      <h1><a href="/workgroup">{% trans "Workgroup" %}</a> &raquo; {{ workgroup.name }}</h1>
+      <h1 class="workgroup_title"><a href="/workgroup">{% trans "Workgroup" %}</a> &raquo; {{ workgroup.name }}</h1>
       <img class="language tipsed" alt="{{ workgroup.language }}" src="{{ STATIC_URL }}images/flags/{{ workgroup.language }}.gif" title="{{ workgroup.get_language_display }}" />
       
       <div class="separator"></div>
       
     {% if workgroup.mailing_list %}
-       <em>To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em> - [<a href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">Browse the Archives</a>]
+       <em class="workgroup_email">To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em><a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}"> - [Browse the Archives</a>]
 
            {% include "workgroup/subscribe_button.html" %}
 
