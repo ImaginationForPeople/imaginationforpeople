@@ -14,7 +14,7 @@
       <div class="separator"></div>
       
     {% if workgroup.mailing_list %}
-       <em class="workgroup_email">To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em><a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}"> - [Browse the Archives</a>]
+       <em class="workgroup_email">To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em><a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}"> - [Browse the Archives]</a>
 
            {% include "workgroup/subscribe_button.html" %}
 
@@ -30,7 +30,6 @@
       
         
       <h3>Group subscribers ({{ ml_member_list|add:ml_nonmember_list|length }})</h3>
-      
       <br /><br />
     
       {% if not request.user.is_anonymous %}
@@ -56,6 +55,25 @@
         <em>And {{ anonymous_count }} anonymous subscriber{{ anonymous_count|pluralize }}</em>
 	  {% endif %}
 	{% endwith %}
+	 <br /><br />
+	{%  if user.is_superuser %}
+	<h3>{% trans "Group subscribers and non IP members mail (admin):" %}</h3>
+	<br /><br />
+	  {% for ml_member in ml_nonmember_list %}
+      <p>{{ ml_member.email }} <p>
+      {% endfor %}
+      <br /><br />
+      {% endif %}
+      
+      {%  if user.is_superuser %}
+      <h3>{% trans "Group subscribers and IP members mail (admin):" %}</h3>
+      <br /><br />
+       
+      {% for ml_member in ml_member_list %}
+      <p>"{{ ml_member.first_name }}&nbsp;{{ ml_member.last_name }}" &#60;{{ ml_member.email }}&#62;</p>
+      {% endfor %}
+      {% endif %}
+      
       </div>
 
       {% endif %}
