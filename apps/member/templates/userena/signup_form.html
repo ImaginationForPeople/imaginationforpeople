@@ -42,12 +42,12 @@
                         <div class="clear"></div>
                         <input type="submit" class="button" value="{% trans "Sign up" %}" />
                         <div class="clear"></div>
-                        <br /><br /><br />
-                    </form>  
-
-                    <br />
-                    <div class="separator"></div>
-                    
+                        </form>  
+                        <br />
+                     
+                    <h3 class="login-info">
+						{% trans "You can also use" %}
+                    </h3>
                     {% include "userena/social-networks.html" %}                    
 
                  
@@ -81,7 +81,7 @@
                         <input type="submit" class="button" value="{% trans "Sign in" %}" />
                         <div class="clear"></div>
                         <br /><br />
-                        <p class="forgot-password" style="text-align:right;"><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>
+                        <p class="forgot-password" style="text-align:right;"><a class="link" href="{% url userena_password_reset %}" title="Lost your password?">Lost your password?</a></p>
                         <br />
                     </form> 
                     
