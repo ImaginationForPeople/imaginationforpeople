@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Simon Sarazin <simon.sarazin@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-02-22 10:44-0500\n"
-"PO-Revision-Date: 2012-02-22 15:49+0000\n"
+"POT-Creation-Date: 2012-03-19 13:58+0100\n"
+"PO-Revision-Date: 2012-03-19 12:59+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: German (http://www.transifex.net/projects/p/imaginationforpeople/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1013,7 +1014,7 @@ msgstr ""
 msgid "Thank you try again later."
 msgstr ""
 
-#: templates/base.html:13
+#: templates/base.html:14
 msgid ""
 "Imagination for People (IP) is a multilingual, Wikipedia-like open platform "
 "dedicated to disruptive social innovation. At a global scale, IP aims to "
@@ -1021,35 +1022,35 @@ msgid ""
 "challenges of living together."
 msgstr ""
 
-#: templates/base.html:14
+#: templates/base.html:15
 msgid "identify and support imaginative social projects"
 msgstr ""
 
-#: templates/base.html:57
+#: templates/base.html:58
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr ""
 
-#: templates/base.html:58
+#: templates/base.html:59
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
 msgstr ""
 
-#: templates/base.html:59
+#: templates/base.html:60
 msgid "Just click on the icons to get to the download page"
 msgstr ""
 
-#: templates/base.html:60
+#: templates/base.html:61
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
 msgstr ""
 
-#: templates/base.html:61
+#: templates/base.html:62
 msgid "Close This Window"
 msgstr ""
 
-#: templates/base.html:117 templates/backcap/feedback_detail.html:8
+#: templates/base.html:127 templates/backcap/feedback_detail.html:8
 msgid "Feedback"
 msgstr ""
 
@@ -1057,7 +1058,7 @@ msgstr ""
 msgid "Pin/Unpin the panel"
 msgstr ""
 
-#: templates/bottom-panel.html:16 templates/pages/footer.html:19
+#: templates/bottom-panel.html:16 templates/pages/footer.html:20
 msgid "About"
 msgstr ""
 
@@ -1206,24 +1207,24 @@ msgstr ""
 msgid "About IP &gt;"
 msgstr ""
 
-#: templates/header.html:27
+#: templates/header.html:27 templates/pages/header.html:10
 msgid "About us"
 msgstr ""
 
-#: templates/header.html:28
-msgid "Home"
-msgstr ""
-
-#: templates/header.html:29
+#: templates/header.html:28 templates/pages/header.html:11
 msgid "Projects"
 msgstr ""
 
-#: templates/header.html:31
+#: templates/header.html:30 templates/pages/header.html:13
 msgid "Add a project"
 msgstr ""
 
-#: templates/header.html:32
+#: templates/header.html:31 templates/pages/header.html:14
 msgid "Workgroups"
+msgstr ""
+
+#: templates/header.html:32 templates/pages/header.html:15
+msgid "Contribute"
 msgstr ""
 
 #: templates/homepage.html:56
@@ -1258,47 +1259,51 @@ msgstr ""
 msgid "Lost your password?"
 msgstr ""
 
-#: templates/login-slide.html:70
-msgid "Not a member yet? Sign Up!"
+#: templates/login-slide.html:55
+msgid "You can also use"
 msgstr ""
 
-#: templates/login-slide.html:90
-msgid "A password will be e-mailed to you."
+#: templates/login-slide.html:63
+msgid "Not a member yet ?"
 msgstr ""
 
-#: templates/login-slide.html:92 templates/login-slide.html.py:143
-msgid "Register"
+#: templates/login-slide.html:64
+msgid "Signup now !"
 msgstr ""
 
-#: templates/login-slide.html:103
+#: templates/login-slide.html:74
 msgid "My projects"
 msgstr ""
 
-#: templates/login-slide.html:122
+#: templates/login-slide.html:93
 msgid "You have no projects"
 msgstr ""
 
-#: templates/login-slide.html:143 templates/backcap/feedback_detail.html:231
+#: templates/login-slide.html:114 templates/backcap/feedback_detail.html:229
 msgid "Log In"
 msgstr ""
 
-#: templates/login-slide.html:145
+#: templates/login-slide.html:114
+msgid "Register"
+msgstr ""
+
+#: templates/login-slide.html:116
 msgid "Close Panel"
 msgstr ""
 
-#: templates/login-slide.html:151 templates/login-slide.html.py:153
+#: templates/login-slide.html:122 templates/login-slide.html.py:124
 msgid "My messages"
 msgstr ""
 
-#: templates/login-slide.html:156
+#: templates/login-slide.html:127
 msgid "View my profile"
 msgstr ""
 
-#: templates/login-slide.html:157
+#: templates/login-slide.html:128
 msgid "Edit my profile"
 msgstr ""
 
-#: templates/login-slide.html:158
+#: templates/login-slide.html:129
 msgid "Log out"
 msgstr ""
 
@@ -1318,16 +1323,16 @@ msgstr ""
 msgid "create a new translation"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:76
+#: templates/backcap/feedback_detail.html:74
 msgid "This issue is closed."
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:125
+#: templates/backcap/feedback_detail.html:123
 #: templates/backcap/feedback_list.html:137
 msgid "Assigned to"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:130
+#: templates/backcap/feedback_detail.html:128
 #, python-format
 msgid ""
 "\n"
@@ -1335,87 +1340,87 @@ msgid ""
 "                    "
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:148
+#: templates/backcap/feedback_detail.html:146
 msgid "is working on this. Poke him if you think it's taking too long !"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:156
+#: templates/backcap/feedback_detail.html:154
 msgid "This issue is a duplicate of"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:157
+#: templates/backcap/feedback_detail.html:155
 msgid "Please don't comment on this issue anymore."
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:163
+#: templates/backcap/feedback_detail.html:161
 msgid "Description:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:169
+#: templates/backcap/feedback_detail.html:167
 msgid "Followers:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:180
+#: templates/backcap/feedback_detail.html:178
 msgid "Unfollow"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:185
+#: templates/backcap/feedback_detail.html:183
 msgid "Follow"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:199
+#: templates/backcap/feedback_detail.html:197
 msgid "Comments:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:204
+#: templates/backcap/feedback_detail.html:202
 msgid "said:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:206
+#: templates/backcap/feedback_detail.html:204
 msgid "Anonymous said:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:215
+#: templates/backcap/feedback_detail.html:213
 msgid "Post a new comment"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:225
+#: templates/backcap/feedback_detail.html:223
 msgid "Post"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:231
+#: templates/backcap/feedback_detail.html:229
 msgid "You need to "
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:231
-msgid " to post a comment closed."
+#: templates/backcap/feedback_detail.html:229
+msgid " to post a comment."
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:235
+#: templates/backcap/feedback_detail.html:233
 msgid "Comments closed."
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:240
+#: templates/backcap/feedback_detail.html:238
 msgid "This issue is"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:241
+#: templates/backcap/feedback_detail.html:239
 msgid "Close issue"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:243
+#: templates/backcap/feedback_detail.html:241
 msgid "Reported from:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:248
+#: templates/backcap/feedback_detail.html:246
 msgid "Edit"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:249
+#: templates/backcap/feedback_detail.html:247
 msgid "Ping observers"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:254
+#: templates/backcap/feedback_detail.html:252
 #: templates/backcap/feedback_new.html:70
 #: templates/backcap/feedback_tab.html:12
 msgid "See all feedbacks"
@@ -1558,28 +1563,28 @@ msgstr ""
 msgid "citizen imagination"
 msgstr ""
 
-#: templates/pages/contrib.html:44 templates/pages/footer.html:25
+#: templates/pages/contrib.html:44 templates/pages/footer.html:26
 msgid "Translator"
 msgstr ""
 
-#: templates/pages/contrib.html:46 templates/pages/footer.html:26
+#: templates/pages/contrib.html:46 templates/pages/footer.html:27
 msgid "Developer"
 msgstr ""
 
-#: templates/pages/contrib.html:48 templates/pages/footer.html:27
+#: templates/pages/contrib.html:48 templates/pages/footer.html:28
 msgid "Designer"
 msgstr ""
 
-#: templates/pages/contrib.html:50 templates/pages/footer.html:28
+#: templates/pages/contrib.html:50 templates/pages/footer.html:29
 msgid "Writer"
 msgstr ""
 
-#: templates/pages/contrib.html:52 templates/pages/footer.html:29
-msgid "Seeder"
+#: templates/pages/contrib.html:52 templates/pages/footer.html:30
+msgid "Animator"
 msgstr ""
 
-#: templates/pages/contrib.html:54 templates/pages/footer.html:30
-msgid "Q&A"
+#: templates/pages/contrib.html:54 templates/pages/footer.html:31
+msgid "Imaginer"
 msgstr ""
 
 #: templates/pages/contrib.html:69
@@ -1598,38 +1603,26 @@ msgstr ""
 msgid "Latest activities"
 msgstr ""
 
-#: templates/pages/contrib.html:117
-msgid "Join the community"
-msgstr ""
-
-#: templates/pages/contrib.html:120
-msgid "Join us on IRC:"
-msgstr ""
-
-#: templates/pages/contrib.html:124
-msgid "or subscribe to the mailing list:"
-msgstr ""
-
-#: templates/pages/contrib.html:126
-msgid "Archives"
-msgstr ""
-
-#: templates/pages/contrib.html:130
+#: templates/pages/contrib.html:115
 msgid "Latest commits"
 msgstr ""
 
-#: templates/pages/contrib.html:143
-msgid "Blog / News"
+#: templates/pages/contrib.html:128
+msgid "Join the community"
+msgstr ""
+
+#: templates/pages/contrib.html:138
+msgid "News"
 msgstr ""
 
 #: templates/pages/flatpage.html:34
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr ""
 
-#: templates/pages/footer.html:12
+#: templates/pages/footer.html:13
 msgid "Network"
 msgstr ""
 
-#: templates/pages/footer.html:24
+#: templates/pages/footer.html:25
 msgid "Get Involved"
 msgstr ""
