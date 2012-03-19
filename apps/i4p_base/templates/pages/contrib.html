@@ -106,21 +106,21 @@
 	  <img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" />
 	</a>
 	</h1>
-
+   
 	{% cache 600 contrib_latest_activities %}
 	{% include_feed "https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity.atom?show_issues=1" 4 pages/feed_includes/latest_activities.html %}
 	{% endcache %}
-	
+	 <div class="clear"></div>
+     </br>
 	 <h1>{% trans "Latest commits" %}
 	     <a href="https://github.com/ImaginationForPeople/imaginationforpeople/commits/master.atom">
 	      <img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" />
 	     </a>
 	    </h1>
-
 	{% cache 600 github_latest_commits %}
 	{% include_feed "https://github.com/ImaginationForPeople/imaginationforpeople/commits/master.atom" 4 pages/feed_includes/latest_commits.html %}
 	{% endcache %}
-	
+	   
     </div>
 
     <div class="col col2">
@@ -145,7 +145,8 @@
 	{% cache 600 contrib_news %}
 	{% include_feed "http://imaginationforpeople.org/blog/?feed=rss2" 5 pages/feed_includes/news.html %}
 	{% endcache %}
-         {% placeholder "desc-right-bottom" %}
+   <div class="clear"></div><br />
+    {% placeholder "desc-right-bottom" %}
     </div>
 
     <div class="clear"></div>

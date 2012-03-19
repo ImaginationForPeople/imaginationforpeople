@@ -16,15 +16,13 @@
   height: 200px;
   padding: 8px;
   float: left;
-  -moz-box-shadow: 0px 0px 8px black;
   -webkit-box-shadow: 0px 0px 8px black;
-  -o-box-shadow: 0px 0px 8px black;
+  -moz-box-shadow: 0px 0px 8px black;
   box-shadow: 0px 0px 8px black;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   margin: 10px;
   overflow: hidden;
@@ -85,9 +83,8 @@
 }
 #workgroup_detail ul li img {
   border: 1px solid #F1E4D3;
-  -moz-box-shadow: 0px 0px 6px black;
   -webkit-box-shadow: 0px 0px 6px black;
-  -o-box-shadow: 0px 0px 6px black;
+  -moz-box-shadow: 0px 0px 6px black;
   box-shadow: 0px 0px 6px black;
   margin-left: 3px;
   margin-right: 3px;
@@ -111,4 +108,62 @@
   background-color: #eeeeee;
   border: 1px solid #bdbdbd;
   background-image: none;
+}
+#workgroup_detail .sidebar_box {
+  background-color: #FAFAFA;
+  border: 1px solid #CDCDCD;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: 0 0 3px #f3f3f3;
+  -webkit-box-shadow: 0 0 3px #f3f3f3;
+  -o-box-shadow: 0 0 3px #f3f3f3;
+  box-shadow: 0 0 3px #f3f3f3;
+  margin-bottom: 40px;
+  width: 150px;
+  padding: 4px 4px 20px 4px;
+}
+#workgroup_detail .sidebar_box h2 {
+  color: #333;
+  margin: 0 0 1em 0;
+  padding: 0.5em 0 0 0;
+  border-bottom: 1px solid #CCC;
+  clear: left;
+}
+#workgroup_detail .sidebar_box ul li {
+  list-style-type: disc;
+  display: list-item;
+  list-style-type: square;
+  list-style-image: none;
+  margin: 0 0 0em 1.5em;
+  color: #638C9C;
+}
+#workgroup_detail .sidebar_box .secedit {
+  display: none;
+}
+#workgroup_detail a.wikilink1 {
+  line-height: 1.5em !important;
+  color: #1985B5 !important;
+  font-weight: underline !important;
+  font-style: normal !important;
+  font-family: 'Lucida Grande', Verdana, Lucida, Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+}
+#workgroup_detail #sb_left_dev {
+  color: #333 !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  font-family: 'Lucida Grande', Verdana, Lucida, Helvetica, Arial, sans-serif !important;
+  font-size: 110% !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  font-weight: normal !important;
+  line-height: normal !important;
+  margin-left: 55px;
 }
