@@ -14,7 +14,7 @@ urlpatterns = patterns('',
                        url(r'^', include('social_auth.urls')),
                        # Signup, signin and signout
                        url(r'^signup/$',
-                           check_honeypot(userena_views.signup),
+                           check_honeypot(member_views.signup),
                            {'signup_form' : I4PSignupForm},
                            name='userena_signup'),
                        url(r'^signin/$',

@@ -27,7 +27,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.core.mail import mail_managers
 from django.db import models
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
@@ -294,6 +294,17 @@ def email_managers_when_a_member_joins_a_project(sender, instance, created, **kw
     if created:
         body = render_to_string('project_sheet/emails/member_joined_project.txt', {'project_member': instance})
         mail_managers(subject=_(u'A member has joined a project'), message=body)
+
+
+@receiver(post_delete, sender=I4pProjectTranslation, 
+          dispatch_uid='delete-parent-project-when-deleting-last-translation')
+def delete_parent_if_last_translation(sender, instance, **kwargs):
+    """
+    When the last translation of a project is deleted, delete the project.
+    """
+    project = instance.project
+    if project.translations.count() == 0:
+        project.delete()
 
 
 # Reversions

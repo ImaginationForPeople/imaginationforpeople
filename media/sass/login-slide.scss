@@ -120,6 +120,11 @@ Version: 1.0
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    
+    .social-login a {
+    margin-left:30px;
+    }
+
 }
 
 #panel {
@@ -179,7 +184,7 @@ Version: 1.0
         }
         
         .left{
-            min-height:350px;
+            min-height:220px;
             border-left: 1px solid #333;
         }
         
@@ -344,4 +349,20 @@ Version: 1.0
         font-weight: bold;
         height: 55px;
     }
+}
+
+.social-panel{
+    p.social-login{
+        float:left;
+        margin:0px !important;
+    }
+    
+    .openid-form{
+        float:left;
+    }
+    
+    #openid_identifier{
+        width:165px !important;
+    }
+
 }

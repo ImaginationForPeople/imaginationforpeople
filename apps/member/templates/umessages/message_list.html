@@ -90,6 +90,8 @@
             </div>
 
         </li>
+        {% empty %}
+        <label>{% trans "you haven't received any message yet"|capfirst %}</label>
         {% endfor %}
     </ul>
     

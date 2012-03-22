@@ -23,8 +23,8 @@
             {% if not user.is_authenticated %}
             
             <div class="left">
-                <form action="{% url userena_signin %}" class="clearfix" method="post" class="profile_edition">
-		  <h1 class="padlock">{% trans "Member Login" %}</h1>
+                <form action="{% url userena_signin %}?next={{ request.path }}" class="clearfix" method="post" class="profile_edition">
+		        <h1 class="padlock">{% trans "Member Login" %}</h1>
                     
                     {% csrf_token %}
                         {{ signin_form.non_field_errors }}
@@ -47,54 +47,23 @@
 					<a class="link" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
 
 				</form>
-                
-                <!-- TEMP -->
-                <p style="float:left;"> <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
-                <p style="float:left;"> <a href="{% url socialauth_begin 'google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
-                <p style="float:left;"> <a href="{% url socialauth_begin 'twitter' %}"><img src="{{ STATIC_URL }}images/picto-twitter.jpg" alt="Twitter" width="113" height="26" /></a> </p>
-                <p style="float:left;"> <a href="{% url socialauth_begin 'linkedin' %}"><img src="{{ STATIC_URL }}images/picto-ln.jpg" alt="LinkedIn" width="113" height="26" /></a> </p>
-                <div class="clear"></div>
-		{% comment %}
-                <p> 
-                    <form action="{% url socialauth_begin 'openid' %}" method="POST"><label for="openid_identifier">OpenID:</label>
-                    {% csrf_token %}
-                    <input type="text" name="openid_identifier" id="openid_identifier" style="float:left;" />
-                    <button class="button" style="margin:0px 10px; top:5px;">Login</button>
-                    </form> 
-                </p>
-		{% endcomment %}
-
-
 			</div>
 			
             <div class="left right">
-                <form action="{% url userena_signup %}" method="post" id="signup_form"  class="profile_edition">
-					<h1>{% trans "Not a member yet? Sign Up!" %}</h1>	
+            
+                <h1 class="padlock">{% trans "You can also use" %}</h1>
+                {% with redirect_url=request.path %}
+                {% include "userena/social-networks.html" %}
+                {% endwith %}
+                <div class="clear"></div>
+                <br /><br />
 
-                    {% csrf_token %}
-                        {{ signup_form.non_field_errors }}
-                        {% for field in signup_form %}
-                        {{ field.errors }}
-                        {% comment %} Displaying checkboxes differently {% endcomment %}
-                        {% if field.name == 'remember_me' %}
-                        <p class="checkbox">
-                            <label for="id_{{ field.name }}">{{ field }} {{ field.label|capfirst }}</label>
-                        </p>
-                        {% else %}
-                        <p>
-                            {{ field.label_tag }} 
-                            {{ field }}
-                        </p>
-                        {% endif %}
-                        {% endfor %}                   
-                        {% render_honeypot_field %}
-			<label>{% trans "A password will be e-mailed to you." %}</label> 
-			<div class="clear"></div><br />
-			<input type="submit" name="submit" value="{% trans 'Register' %}" class="button" style="margin-left:0px;" /><div class="clear"></div>
-			
-		</form>
-        
-	    </div>
+                <div style="position:absolute; bottom:27px;">
+                    <h1 class="padlock">{% trans "Not a member yet ?" %}</h1>
+                    <a class="link" href="{% url userena_signup %}">{% trans "Signup now !" %}</a>        
+                </div>
+                
+            </div>
             
             {% else %}
             

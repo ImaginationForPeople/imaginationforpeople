@@ -349,6 +349,14 @@
     @include shadow(4px, #262626);
     border:1px solid #676665;
     
+    .login-info a {
+    float:right;
+    }
+    
+    .social-panel{
+    float:right;
+    }
+    
     .separator h2{
         background-color:#292424;
     }
@@ -415,6 +423,29 @@
                 padding-right:2%;
             }
         }
+        
+        form.openid-form{
+            margin-top:10px;        
+            
+            label{
+                float:left;
+                position:relative;
+                top:4px;
+                margin-right:10px;
+            }
+            
+            input[type=text]{
+                background: none repeat scroll 0 0 #414141;
+                border: 1px solid #1A1A1A;
+                color: white;
+                width: 44%;
+            }
+            
+            .button{
+                top:1px !important;
+            }            
+        }
+        
     }
 }
 

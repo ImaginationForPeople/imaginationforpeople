@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-02-03 14:32+0100\n"
-"PO-Revision-Date: 2012-02-06 13:11+0000\n"
+"POT-Creation-Date: 2012-03-19 13:58+0100\n"
+"PO-Revision-Date: 2012-03-19 12:59+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Spanish (Castilian) <ip-es@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -119,7 +119,7 @@ msgstr "Título de mi proyecto"
 msgid "one line description"
 msgstr "descríbalo en una línea"
 
-#: models.py:169 templates/project_sheet/project_sheet.html:575
+#: models.py:169 templates/project_sheet/project_sheet.html:561
 msgid "One line description"
 msgstr "Descríbalo en una línea"
 
@@ -214,15 +214,15 @@ msgstr "Enviar comentario"
 #: templates/project_sheet/about_section.html:6
 #: templates/project_sheet/about_section.html:8
 #: templates/project_sheet/business_model_section.html:33
-#: templates/project_sheet/grey_column.html:19
-#: templates/project_sheet/grey_column.html:163
-#: templates/project_sheet/grey_column.html:210
+#: templates/project_sheet/grey_column.html:32
+#: templates/project_sheet/grey_column.html:175
+#: templates/project_sheet/grey_column.html:222
 #: templates/project_sheet/partners_section.html:33
-#: templates/project_sheet/project_sheet.html:275
-#: templates/project_sheet/project_sheet.html:541
-#: templates/project_sheet/project_sheet.html:570
-#: templates/project_sheet/project_sheet.html:576
-#: templates/project_sheet/project_sheet.html:586
+#: templates/project_sheet/project_sheet.html:262
+#: templates/project_sheet/project_sheet.html:527
+#: templates/project_sheet/project_sheet.html:556
+#: templates/project_sheet/project_sheet.html:562
+#: templates/project_sheet/project_sheet.html:572
 #: templates/project_sheet/references_section.html:7
 #: templates/project_sheet/scalability_section.html:33
 #: templates/project_sheet/triggering_factor_section.html:33
@@ -235,12 +235,12 @@ msgstr "Editar"
 #: templates/project_sheet/business_model_section.html:14
 #: templates/project_sheet/media_gallery.html:103
 #: templates/project_sheet/partners_section.html:14
-#: templates/project_sheet/project_sheet.html:340
-#: templates/project_sheet/project_sheet.html:363
-#: templates/project_sheet/project_sheet.html:397
-#: templates/project_sheet/project_sheet.html:531
-#: templates/project_sheet/project_sheet.html:562
-#: templates/project_sheet/project_sheet.html:638
+#: templates/project_sheet/project_sheet.html:327
+#: templates/project_sheet/project_sheet.html:350
+#: templates/project_sheet/project_sheet.html:384
+#: templates/project_sheet/project_sheet.html:517
+#: templates/project_sheet/project_sheet.html:548
+#: templates/project_sheet/project_sheet.html:624
 #: templates/project_sheet/scalability_section.html:14
 #: templates/project_sheet/triggering_factor_section.html:14
 #: templates/project_sheet/uniqueness_section.html:13
@@ -250,16 +250,16 @@ msgstr "Ok"
 
 #: templates/project_sheet/about_section.html:22
 #: templates/project_sheet/business_model_section.html:15
-#: templates/project_sheet/grey_column.html:36
+#: templates/project_sheet/grey_column.html:49
 #: templates/project_sheet/media_gallery.html:46
 #: templates/project_sheet/media_gallery.html:104
 #: templates/project_sheet/partners_section.html:15
-#: templates/project_sheet/project_sheet.html:339
-#: templates/project_sheet/project_sheet.html:362
-#: templates/project_sheet/project_sheet.html:396
-#: templates/project_sheet/project_sheet.html:530
-#: templates/project_sheet/project_sheet.html:563
-#: templates/project_sheet/project_sheet.html:639
+#: templates/project_sheet/project_sheet.html:326
+#: templates/project_sheet/project_sheet.html:349
+#: templates/project_sheet/project_sheet.html:383
+#: templates/project_sheet/project_sheet.html:516
+#: templates/project_sheet/project_sheet.html:549
+#: templates/project_sheet/project_sheet.html:625
 #: templates/project_sheet/scalability_section.html:15
 #: templates/project_sheet/triggering_factor_section.html:15
 #: templates/project_sheet/uniqueness_section.html:14
@@ -304,68 +304,64 @@ msgstr "¿Cuál es el modelo empresarial del proyecto"
 msgid "This field is blank. Don’t forget to complete it! "
 msgstr "Este campo está en blanco. ¡No olvide completarlo!"
 
-#: templates/project_sheet/grey_column.html:20
-#: templates/project_sheet/grey_column.html:68
-#: templates/project_sheet/grey_column.html:210
+#: templates/project_sheet/grey_column.html:33
+#: templates/project_sheet/grey_column.html:80
+#: templates/project_sheet/grey_column.html:222
 msgid "edit"
 msgstr "editar"
 
-#: templates/project_sheet/grey_column.html:22
+#: templates/project_sheet/grey_column.html:35
 msgid "take action"
 msgstr "Pasar a la acción"
 
-#: templates/project_sheet/grey_column.html:42
+#: templates/project_sheet/grey_column.html:55
 msgid ""
 "This project has not claimed its needs yet. Please edit if you are aware of "
 "a requirement."
-msgstr ""
-"Este proyecto no ha expresado necesidades concretas. Modifique este apartado"
-" si sabe cómo se podría ayudar al desarrollo de este proyecto."
+msgstr "Este proyecto no ha expresado necesidades concretas. Modifique este apartado si sabe cómo se podría ayudar al desarrollo de este proyecto."
 
-#: templates/project_sheet/grey_column.html:51
+#: templates/project_sheet/grey_column.html:63
 msgid "Spread the word:"
 msgstr "Correr la voz:"
 
-#: templates/project_sheet/grey_column.html:73
+#: templates/project_sheet/grey_column.html:85
 #: templates/project_sheet/sidebar_related.html:6
 msgid "related"
 msgstr "relacionado"
 
-#: templates/project_sheet/grey_column.html:80
+#: templates/project_sheet/grey_column.html:92
 msgid "objectives:"
 msgstr "Objetivos:"
 
-#: templates/project_sheet/grey_column.html:93
+#: templates/project_sheet/grey_column.html:105
 msgid ""
 "Click here to set the <strong>categories</strong> and <strong>tags</strong> "
 "of this project."
-msgstr ""
-"Haga clic aquí para establecer <strong>los objetivos</strong> y <strong>las "
-"etiquetas</strong> de este proyecto."
+msgstr "Haga clic aquí para establecer <strong>los objetivos</strong> y <strong>las etiquetas</strong> de este proyecto."
 
-#: templates/project_sheet/grey_column.html:97
+#: templates/project_sheet/grey_column.html:109
 msgid "Tags:"
 msgstr "Etiquetas:"
 
-#: templates/project_sheet/grey_column.html:112
+#: templates/project_sheet/grey_column.html:124
 msgid "Add a member"
 msgstr "Añadir un miembro"
 
-#: templates/project_sheet/grey_column.html:112
+#: templates/project_sheet/grey_column.html:124
 msgid "add"
 msgstr "añadir"
 
-#: templates/project_sheet/grey_column.html:113
+#: templates/project_sheet/grey_column.html:125
 #: templates/project_sheet/sidebar_team.html:6
 msgid "The team"
 msgstr "El equipo"
 
-#: templates/project_sheet/grey_column.html:120
-#: templates/project_sheet/grey_column.html:136
+#: templates/project_sheet/grey_column.html:132
+#: templates/project_sheet/grey_column.html:148
 msgid "Contact team"
 msgstr "Contactar con el equipo"
 
-#: templates/project_sheet/grey_column.html:122
+#: templates/project_sheet/grey_column.html:134
 #, python-format
 msgid ""
 "\n"
@@ -375,46 +371,42 @@ msgid ""
 "                            <img src=\"%(STATIC_URL)simages/project/team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" />\n"
 "                            .\n"
 "                        "
-msgstr ""
+msgstr "\n                            Utilice el sistema de mensajes para contactar con el equipo\n                            <img src=\"%(STATIC_URL)simages/project/team_info-picto1.jpg\" alt=\"Contact team\" width=\"27\" height=\"15\" />\n                            o con uno de sus miembros\n                            <img src=\"%(STATIC_URL)simages/project/team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" />\n                            .\n                        \n  "
 
-#: templates/project_sheet/grey_column.html:151
+#: templates/project_sheet/grey_column.html:163
 msgid "There is no registered team members: please to fill this section !"
-msgstr ""
-"No hay registrado ningún miembro en el equipo: ¡por favor rellene esta "
-"sección!"
+msgstr "No hay registrado ningún miembro en el equipo: ¡por favor rellene esta sección!"
 
-#: templates/project_sheet/grey_column.html:165
+#: templates/project_sheet/grey_column.html:177
 #: templates/project_sheet/media_gallery.html:59
 msgid "Delete"
 msgstr "Borrar"
 
-#: templates/project_sheet/grey_column.html:165
+#: templates/project_sheet/grey_column.html:177
 msgid "delete"
 msgstr "borrar"
 
-#: templates/project_sheet/grey_column.html:173
+#: templates/project_sheet/grey_column.html:185
 msgid "Contact"
 msgstr "Contacto"
 
-#: templates/project_sheet/grey_column.html:211
+#: templates/project_sheet/grey_column.html:223
 msgid "Partners"
 msgstr "Socios"
 
-#: templates/project_sheet/grey_column.html:238
+#: templates/project_sheet/grey_column.html:250
 msgid "This project has no known partners."
 msgstr "Este proyecto no tiene socios conocidos."
 
-#: templates/project_sheet/grey_column.html:265
+#: templates/project_sheet/grey_column.html:277
 msgid "Want to get started on your project sheet ?"
 msgstr "¿Cómo empezar una ficha de proyecto?"
 
-#: templates/project_sheet/grey_column.html:266
+#: templates/project_sheet/grey_column.html:278
 msgid ""
 "Click on the field you want to edit, edit it, and save the changes. Once "
 "you’ve modified a field, your project sheet will be created."
-msgstr ""
-"Haga clic en el campo que desee editar y, a continuación, guarde los "
-"cambios. Su proyecto se creará al modificar un campo."
+msgstr "Haga clic en el campo que desee editar y, a continuación, guarde los cambios. Su proyecto se creará al modificar un campo."
 
 #: templates/project_sheet/history.html:18
 msgid "Made on"
@@ -425,7 +417,7 @@ msgid "DATETIME_FORMAT"
 msgstr "DATETIME_FORMAT"
 
 #: templates/project_sheet/history.html:18
-#: templates/project_sheet/project_sheet.html:590
+#: templates/project_sheet/project_sheet.html:576
 msgid "by"
 msgstr "por"
 
@@ -496,8 +488,7 @@ msgstr "Licencia :"
 
 #: templates/project_sheet/media_gallery.html:142
 msgid "Sorry, video are temporary disabled on Internet Explorer"
-msgstr ""
-"Lo sentimos, el vídeo está temporalmente deshabilitado en Internet Explorer"
+msgstr "Lo sentimos, el vídeo está temporalmente deshabilitado en Internet Explorer"
 
 #: templates/project_sheet/media_gallery.html:174
 msgid "Yes"
@@ -518,9 +509,7 @@ msgstr "Más información"
 #: templates/project_sheet/project_edit_themes.html:9
 #, python-format
 msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
-msgstr ""
-"Modificar la información vinculada de "
-"&laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
+msgstr "Modificar la información vinculada de &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
 
 #: templates/project_sheet/project_edit_themes.html:17
 msgid "Update"
@@ -551,10 +540,7 @@ msgid ""
 "These experiences have a positive social impact and create social goodwill. "
 "they demonstrate a disruptive inventiveness and can be easily disseminated "
 "and scaled in other places or cultural contexts."
-msgstr ""
-"Estas experiencias tienen un impacto social positivo y fomentan la buena "
-"voluntad en la sociedad. Demuestran una imaginación rompedora y pueden ser "
-"difundidas y adaptadas con facilidad a cualquier lugar y contexto cultural."
+msgstr "Estas experiencias tienen un impacto social positivo y fomentan la buena voluntad en la sociedad. Demuestran una imaginación rompedora y pueden ser difundidas y adaptadas con facilidad a cualquier lugar y contexto cultural."
 
 #: templates/project_sheet/project_list.html:8
 msgid "Find project on Imagination for People"
@@ -582,80 +568,66 @@ msgstr "siguiente"
 msgid "start project"
 msgstr "iniciar proyecto"
 
-#: templates/project_sheet/project_sheet.html:131
+#: templates/project_sheet/project_sheet.html:132
 msgid "Type your message here and hit enter when done..."
 msgstr "Escriba su mensaje aquí y presione enter al acabar..."
 
-#: templates/project_sheet/project_sheet.html:366
+#: templates/project_sheet/project_sheet.html:353
 msgid "This bloc is empty : don’t forget to fill it !"
 msgstr "Este bloque está vacío: ¡no olvide rellenarlo!"
 
-#: templates/project_sheet/project_sheet.html:400
+#: templates/project_sheet/project_sheet.html:387
 #: templates/project_sheet/uniqueness_section.html:26
 #: templates/project_sheet/value_section.html:27
 msgid "This field is blank. Don’t forget to complete it!"
 msgstr "Este campo está en blanco. ¡No olvide completarlo!"
 
-#: templates/project_sheet/project_sheet.html:503
+#: templates/project_sheet/project_sheet.html:490
 msgid ""
 "\n"
 "            Thank you for the interest you have shown in this project. <br />\n"
 "            Don't you want to <a class=\"login-slide-openner link\" href=\"#\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign up</a> before editing?\n"
 "            "
-msgstr ""
-"\n"
-"            Le agradecemos el interés que ha mostrado en este proyecto.<br />\n"
-"            ¿No quiere<a class=\"login-slide-openner link\" href=\"#\">iniciar sesión</a> o <a class=\"login-slide-openner link\" href=\"#\">registrarse</a> antes de editar?\n"
-"            "
+msgstr "\n            Le agradecemos el interés que ha mostrado en este proyecto.<br />\n            ¿No quiere<a class=\"login-slide-openner link\" href=\"#\">iniciar sesión</a> o <a class=\"login-slide-openner link\" href=\"#\">registrarse</a> antes de editar?\n            "
 
-#: templates/project_sheet/project_sheet.html:511
+#: templates/project_sheet/project_sheet.html:498
 msgid ""
 "\n"
-"            This project sheet is a draft. \n"
+"            This project sheet is a draft. Become in one click a co-publisher of this project !\n"
 "            <br />You can enrich it very simply by clicking on text boxes which seem to be incomplete. You will then have access to a wiki field allowing you to write additional content.\n"
-"            <br />Become in one click a co-publisher of this project.\n"
-"\n"
+"\t\t\t<br />Please feel free to ask for help through <a class=\"link\" href=\"/feedback/list/\">feedback</a> or on <a class=\"link\" href=\"http://imaginationforpeople.org/conference/\">live chat</a>.\n"
 "            "
 msgstr ""
-"\n"
-"            Este proyecto es un borrador. \n"
-"            <br />Usted puede mejorarlo, de una manera muy sencilla, haciendo clic en aquellos apartados que considere incompletos. Accederá a un campo en el que podrá escribir contenido adicional.\n"
-"            <br />Conviértase, con un clic, en coeditor de este proyecto.\n"
-"\n"
-"            "
 
-#: templates/project_sheet/project_sheet.html:546
+#: templates/project_sheet/project_sheet.html:532
 msgid "my project title"
 msgstr "Título de mi proyecto"
 
-#: templates/project_sheet/project_sheet.html:595
+#: templates/project_sheet/project_sheet.html:581
 msgid "anonymous"
 msgstr "anónimo"
 
-#: templates/project_sheet/project_sheet.html:601
+#: templates/project_sheet/project_sheet.html:587
 msgid "Location:"
 msgstr "Ubicación:"
 
-#: templates/project_sheet/project_sheet.html:614
-#: templates/project_sheet/project_sheet.html:622
+#: templates/project_sheet/project_sheet.html:600
+#: templates/project_sheet/project_sheet.html:608
 msgid "unknown"
 msgstr "desconocido"
 
-#: templates/project_sheet/project_sheet.html:620
-#: templates/project_sheet/project_sheet.html:622
+#: templates/project_sheet/project_sheet.html:606
+#: templates/project_sheet/project_sheet.html:608
 msgid "Website:"
 msgstr "Sitio web:"
 
-#: templates/project_sheet/project_sheet.html:679
+#: templates/project_sheet/project_sheet.html:665
 #, python-format
 msgid ""
 "\n"
 "\t    This project sheet, except media, is licensed under the <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>\n"
 "\t  "
-msgstr ""
-"\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span>    Este projecto, a excepción del contenido multimedia, está bajo la licencia de <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span>  "
+msgstr "\n<span class=\"whitespace other\" title=\"Tab\">»</span>    Este projecto, a excepción del contenido multimedia, está bajo la licencia de <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>\n<span class=\"whitespace other\" title=\"Tab\">»</span>  "
 
 #: templates/project_sheet/references_section.html:7
 msgid "references"
@@ -670,6 +642,7 @@ msgid "Cancel & close"
 msgstr "Cancelar & cerrar"
 
 #: templates/project_sheet/references_section.html:33
+#: templates/project_sheet/sidebar_related.html:40
 #: templates/project_sheet/sidebar_team.html:17
 msgid "Save & close"
 msgstr "Guardar & cerrar"
@@ -690,10 +663,6 @@ msgstr "seleccione las etiquetas de la nube inferior"
 msgid "Close &amp; discard"
 msgstr "Cerrar &amp; descartar"
 
-#: templates/project_sheet/sidebar_related.html:40
-msgid "Save &amp; close"
-msgstr "Guardar &amp; cerrar"
-
 #: templates/project_sheet/sidebar_team.html:9
 msgid "Add a team member"
 msgstr "Añadir un miembro del equipo"
@@ -707,5 +676,3 @@ msgstr "Cerrar & descartar"
 #: templates/project_sheet/value_section.html:32
 msgid "What is the social value of this project"
 msgstr "¿Cuál es el valor social de este proyecto"
-
-
