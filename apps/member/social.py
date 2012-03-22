@@ -26,10 +26,11 @@ from django.utils import simplejson
 
 from easy_thumbnails.files import get_thumbnailer
 import oauth2
-from social_auth.backends.facebook import FacebookBackend
-from social_auth.backends.twitter import TwitterBackend
-from social_auth.backends.google import GoogleOAuth2Backend
 from social_auth.backends.contrib.linkedin import LinkedinBackend
+from social_auth.backends.facebook import FacebookBackend
+from social_auth.backends.google import GoogleOAuth2Backend
+from social_auth.backends.pipeline.social import associate_user
+from social_auth.backends.twitter import TwitterBackend
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 from .utils import fix_username
@@ -334,3 +335,12 @@ def fetch_profile_data(backend, profile, response):
             pass
 
         profile.save()
+
+
+def custom_associate_user(*args, **kwargs):
+    user = kwargs.get('user')
+    request = kwargs.get('request')
+    if user and request:
+        profile = user.get_profile()
+        request.session['django_language'] = profile.language
+    return associate_user(*args, **kwargs)

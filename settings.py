@@ -21,7 +21,6 @@ ADMINS = (
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
     ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
-    ('Alex Marandon', 'alexmarandon@imaginationforpeople.org'),
 )
 
 MANAGERS = (
@@ -99,9 +98,14 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-    'userena.middleware.UserenaLocaleMiddleware',
-
 #    'cms.middleware.multilingual.MultilingualURLMiddleware',
+
+    ## The order of these locale middleware classes matters
+    # Default django language selection, detects browser language preference
+    'django.middleware.locale.LocaleMiddleware',
+    # Language selection based on profile
+    'userena.middleware.UserenaLocaleMiddleware',
+    # URL based language selection (eg. from top panel)
     'localeurl.middleware.LocaleURLMiddleware',
 
     'honeypot.middleware.HoneypotMiddleware',
@@ -276,6 +280,15 @@ GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
 SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
 # Catch social auth exceptions even in debug mode
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.user.get_username',
+    'social_auth.backends.pipeline.user.create_user',
+    'apps.member.social.custom_associate_user', # Override default pipeline function
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details'
+)
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
@@ -283,6 +296,7 @@ HONEYPOT_FIELD_NAME = "homepage"
 # localeurl/monther-tongue
 PREFIX_DEFAULT_LOCALE = True
 LOCALEURL_USE_ACCEPT_LANGUAGE = True
+LOCALEURL_USE_SESSION = True
 
 # Userena
 ANONYMOUS_USER_ID = -1

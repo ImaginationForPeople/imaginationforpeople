@@ -1,9 +1,8 @@
-
 <div class="social-panel">
-    <p class="social-login"> <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
-    <p class="social-login"> <a href="{% url socialauth_begin 'google-oauth2' %}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
-    <p class="social-login"> <a href="{% url socialauth_begin 'twitter' %}"><img src="{{ STATIC_URL }}images/picto-twitter.jpg" alt="Twitter" width="113" height="26" /></a> </p>
-    <p class="social-login"> <a href="{% url socialauth_begin 'linkedin' %}"><img src="{{ STATIC_URL }}images/picto-ln.jpg" alt="LinkedIn" width="113" height="26" /></a> </p>
+    <p class="social-login"> <a href="{% url socialauth_begin 'facebook' %}?next={{ redirect_url }}"><img src="{{ STATIC_URL }}images/picto-fb.jpg" alt="Facebook" width="113" height="26" /></a> </p>
+    <p class="social-login"> <a href="{% url socialauth_begin 'google-oauth2' %}?next={{ redirect_url }}"><img src="{{ STATIC_URL }}images/picto-google.jpg" alt="Google +" width="113" height="26" /></a> </p>
+   <!-- <p class="social-login"> <a href="{% url socialauth_begin 'twitter' %}?next={{ redirect_url }}"><img src="{{ STATIC_URL }}images/picto-twitter.jpg" alt="Twitter" width="113" height="26" /></a> </p>
+    <p class="social-login"> <a href="{% url socialauth_begin 'linkedin' %}?next={{ redirect_url }}"><img src="{{ STATIC_URL }}images/picto-ln.jpg" alt="LinkedIn" width="113" height="26" /></a> </p> -->
     <p class="social-login"> <a href="javascript:;" class="openid-button"><img src="{{ STATIC_URL }}images/picto-openid.jpg" alt="OpenID" width="113" height="26" /></a> </p>
     
     <div class="clear"></div>
@@ -12,6 +11,7 @@
         <label for="openid_identifier">OpenID:</label>
         {% csrf_token %}
         <input type="text" name="openid_identifier" id="openid_identifier" style="float:left;" />
+        <input type="hidden" name="next" value="{{ redirect_url }}" />
         <button class="button" style="margin:0px 10px; top:5px;">Login</button>
     </form> 
 </div>

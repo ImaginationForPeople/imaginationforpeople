@@ -2,6 +2,19 @@
 {% load tagging_tags %}
 {% load localeurl_tags %}
 
+
+{% block extra_head %}
+    <script>
+    //Twitter reconfiguration for Addthis
+    var addthis_share = {
+        templates : {
+            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% locale_url project_translation.language_code project_sheet-show project_translation.slug %} (via @ipvoices)"
+        }
+    }
+    </script>
+{% endblock %}
+
+
 <div class="grid_5 omega grey_column">
 	<div class="grey_column_content">
      {% if project_translation %}
@@ -46,7 +59,6 @@
             
             <div class="clear"></div><br/>
             
-
             <div id="social-sharing" style="float:left; margin-bottom: 5px; height:20px; width: position:relative; width: 145px;">
 	      <span class="spread">{% trans "Spread the word:" %}</span>
                 <!-- AddThis Button BEGIN -->
@@ -58,8 +70,8 @@
                     <a class="addthis_button_compact"></a>
                     <a class="addthis_counter addthis_bubble_style"></a>
                 </div>
-                <!-- AddThis Button END -->
                 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+                <!-- AddThis Button END -->
             </div>
             
             <div class="clear"></div><br />
