@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-02-13 16:22+0100\n"
-"PO-Revision-Date: 2012-02-22 15:49+0000\n"
+"POT-Creation-Date: 2012-03-19 13:58+0100\n"
+"PO-Revision-Date: 2012-03-19 12:59+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -89,12 +89,12 @@ msgstr ""
 msgid "New user registered"
 msgstr ""
 
-#: models.py:142
+#: models.py:134
 #, python-format
-msgid "Message from %(sender)s"
+msgid "New message from %(sender)s on Imagination For People"
 msgstr ""
 
-#: views.py:144
+#: views.py:186
 msgid "Your profile has been updated."
 msgstr ""
 
@@ -132,6 +132,25 @@ msgstr ""
 
 #: templates/umessages/message_list.html:77
 msgid "new"
+msgstr ""
+
+#: templates/umessages/message_list.html:95
+msgid "you haven't received any message yet"
+msgstr ""
+
+#: templates/umessages/message_notification.txt:2
+#, python-format
+msgid ""
+"\n"
+"%(sender)s has sent you a message:\n"
+msgstr ""
+
+#: templates/umessages/message_notification.txt:6
+#, python-format
+msgid ""
+"\n"
+"You can view it online at:\n"
+"%(message_url)s\n"
 msgstr ""
 
 #: templates/userena/email_change_complete.html:4
@@ -310,7 +329,7 @@ msgid "Your avatar"
 msgstr ""
 
 #: templates/userena/profile_idbar.html:27
-#: templates/userena/profile_idbar.html:33
+#: templates/userena/profile_idbar.html:36
 msgid "Anonymous"
 msgstr ""
 
@@ -334,17 +353,21 @@ msgstr ""
 msgid "Signin"
 msgstr ""
 
-#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:46
+#: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
 #: templates/userena/signup_form.html:82
 msgid "Sign in"
 msgstr ""
 
-#: templates/userena/signin_form.html:58
+#: templates/userena/signin_form.html:44
+msgid "Lost your password?"
+msgstr ""
+
+#: templates/userena/signin_form.html:61
 msgid "Not a member yet?"
 msgstr ""
 
-#: templates/userena/signin_form.html:66 templates/userena/signup_form.html:20
-#: templates/userena/signup_form.html:49
+#: templates/userena/signin_form.html:69 templates/userena/signup_form.html:20
+#: templates/userena/signup_form.html:44
 msgid "Sign up"
 msgstr ""
 
@@ -373,6 +396,10 @@ msgstr ""
 
 #: templates/userena/signup_form.html:5
 msgid "Signup"
+msgstr ""
+
+#: templates/userena/signup_form.html:50
+msgid "You can also use"
 msgstr ""
 
 #: templates/userena/signup_form.html:61

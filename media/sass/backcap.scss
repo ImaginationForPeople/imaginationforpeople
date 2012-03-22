@@ -5,6 +5,10 @@
     min-height:250px;
 }
 
+.feedback-title{
+font-size:18px;
+}
+
 #feedback-text{
     font-size:11px;
     margin-bottom:10px;
@@ -107,6 +111,14 @@
         height: 20px;
     }
     
+    a {
+		color: #04ADD1;
+		font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+		font-weight: bold;
+		font-style: italic;
+		font-size: 12px;
+	}
+	
     .feedback-info {
       
         .type_Q, .type_P , .type_I {
@@ -251,12 +263,21 @@ div#feedback-sidebar {
 }
 
 
-#feedback-comments-list li div{
+#feedback-comments-list{
+	a {
+		color: #04ADD1;
+		font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+		font-weight: bold;
+		font-style: italic;
+		font-size: 12px;
+	}
+	
+	li div{
     margin-bottom:15px;
-    font-size:10px;
+    font-size:12px;
     color:#7F7E7E;
+	}
 }
-
 
 #feedback-new #id_text{
     width:100%;

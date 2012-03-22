@@ -95,15 +95,13 @@ img {
   font-style: normal;
   float: left;
   top: -1px;
-  -moz-box-shadow: 0px 0px 4px #a1a1a1;
   -webkit-box-shadow: 0px 0px 4px #a1a1a1;
-  -o-box-shadow: 0px 0px 4px #a1a1a1;
+  -moz-box-shadow: 0px 0px 4px #a1a1a1;
   box-shadow: 0px 0px 4px #a1a1a1;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 .button img, .redbutton img, .greenbutton img {
@@ -142,11 +140,10 @@ img {
   padding-right: 2px;
   top: 4px;
   font-style: normal;
-  -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
+  -moz-border-radius: 2px;
   -ms-border-radius: 2px;
-  -khtml-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -168,11 +165,10 @@ img {
   color: white;
   text-decoration: none;
   background-color: black;
-  -moz-border-radius: 2px;
   -webkit-border-radius: 2px;
-  -o-border-radius: 2px;
+  -moz-border-radius: 2px;
   -ms-border-radius: 2px;
-  -khtml-border-radius: 2px;
+  -o-border-radius: 2px;
   border-radius: 2px;
   position: absolute;
   right: 19px;
@@ -490,11 +486,10 @@ ul li {
 .newsletter {
   padding: 3px;
   padding-left: 10px;
-  -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
-  -o-border-radius: 5px;
+  -moz-border-radius: 5px;
   -ms-border-radius: 5px;
-  -khtml-border-radius: 5px;
+  -o-border-radius: 5px;
   border-radius: 5px;
   background-image: url("../images/base/tools-bg.png");
 }
@@ -548,11 +543,10 @@ ul li {
   font-size: 11px;
   margin-top: 3px;
   margin-bottom: 3px;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -605,6 +599,10 @@ ul li {
   border: 0px;
   position: relative;
   top: 4px;
+}
+.social-networks ul li {
+  float: left !important;
+  margin-left: 6px !important;
 }
 
 .rss img {

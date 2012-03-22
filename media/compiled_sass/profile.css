@@ -43,9 +43,8 @@
   width: 164px;
   height: 164px;
   border: 1px solid white;
-  -moz-box-shadow: 0px 0px 8px black;
   -webkit-box-shadow: 0px 0px 8px black;
-  -o-box-shadow: 0px 0px 8px black;
+  -moz-box-shadow: 0px 0px 8px black;
   box-shadow: 0px 0px 8px black;
 }
 #profile h1 {
@@ -198,11 +197,10 @@
 #profile_edit form p input, #profile_edit form p select, #profile_edit form p textarea {
   width: 350px;
   font-size: 12px;
-  -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
+  -moz-border-radius: 6px;
   -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
+  -o-border-radius: 6px;
   border-radius: 6px;
   border: 1px solid #8e8e8e;
   color: #737373;
@@ -243,11 +241,10 @@
   width: 150px;
   right: 10px;
   padding: 5px;
-  -moz-border-radius: 6px;
   -webkit-border-radius: 6px;
-  -o-border-radius: 6px;
+  -moz-border-radius: 6px;
   -ms-border-radius: 6px;
-  -khtml-border-radius: 6px;
+  -o-border-radius: 6px;
   border-radius: 6px;
 }
 #profile_edit form .button {
@@ -287,11 +284,16 @@
   padding: 1%;
   margin-right: 2%;
   background-color: #292424;
-  -moz-box-shadow: 0px 0px 4px #262626;
   -webkit-box-shadow: 0px 0px 4px #262626;
-  -o-box-shadow: 0px 0px 4px #262626;
+  -moz-box-shadow: 0px 0px 4px #262626;
   box-shadow: 0px 0px 4px #262626;
   border: 1px solid #676665;
+}
+#sign-row-big .login-info a {
+  float: right;
+}
+#sign-row-big .social-panel {
+  float: right;
 }
 #sign-row-big .separator h2 {
   background-color: #292424;
