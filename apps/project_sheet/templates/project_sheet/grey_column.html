@@ -4,6 +4,7 @@
 
 
 {% block extra_head %}
+    {% if project_translation %}
     <script>
     //Twitter reconfiguration for Addthis
     var addthis_share = {
@@ -12,6 +13,7 @@
         }
     }
     </script>
+    {% endif %}
 {% endblock %}
 
 
@@ -59,20 +61,16 @@
             
             <div class="clear"></div><br/>
             
-            <div id="social-sharing" style="float:left; margin-bottom: 5px; height:20px; width: position:relative; width: 145px;">
+	    <div id="social-sharing" style="float:left; margin-bottom: 5px; height:20px; width: position:relative; width:227px;">
 	      <span class="spread">{% trans "Spread the word:" %}</span>
-                <!-- AddThis Button BEGIN -->
-                <div class="addthis_toolbox addthis_default_style ">
-                    <a class="addthis_button_facebook"></a>
-                    <a class="addthis_button_twitter" tw:via="ipvoices"></a>
-                    <a class="addthis_button_google"></a>
-                    <a class="addthis_button_email"></a>
-                    <a class="addthis_button_compact"></a>
-                    <a class="addthis_counter addthis_bubble_style"></a>
-                </div>
-                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
-                <!-- AddThis Button END -->
-            </div>
+              <!-- AddThis Button BEGIN -->
+              <div class="addthis_toolbox addthis_default_style"> <style> .at300b iframe {width: 100px !important;} </style>
+		<a class="addthis_button_facebook_like" fb:like:layout="button_count" style="float:right;"></a>
+		<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
+	      </div>
+              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+              <!-- AddThis Button END -->
+	    </div>
             
             <div class="clear"></div><br />
             
