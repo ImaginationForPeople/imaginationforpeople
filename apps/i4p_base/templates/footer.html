@@ -1,22 +1,41 @@
-{% load i18n %}
-{% load menu_tags %}
+{% load i18n %}	
+<div id="footer-zone-top">
 
-<div class="footer">
-  <div class="container_18">
-    <div class="grid_18 alpha omega">
-     
+    <div id="footer" class="center container_18">
+        
+        <div class="grid_6 alpha"> 
+        BLABla<br />BLABla<br />BLABla<br />
+        </div>
+        
+        <div class="grid_7">
+        BLABla<br />BLABla<br />BLABla<br />
+        </div>
+        
+        <div class="grid_5 omega">
+        BLABla<br />BLABla<br />BLABla<br />
+        </div>
+        
+        <div class="clear"></div>
+        
+    </div>
     
-    <div class="social-networks">		
-        <ul>
-          <li><a href="http://www.facebook.com/imaginationforpeople.org"><img src="{{ STATIC_URL }}images/base/facebook-logo.jpg" alt="facebook" /></a></li>
-          <li><a href="http://twitter.com/ipvoices"><img src="{{ STATIC_URL }}images/base/twitter-logo.jpg"alt="twitter" /></a></li>
-        </ul>
+</div>
+
+
+<div id="footer-zone-bottom">
+
+    <div id="footer-bottom" class="center">
+       <center> 
+           <ul>
+                <li><a href="#">{% trans "Faq" %}</a></li>
+                <li><a href="#">{% trans "Raq" %}</a></li>
+                <li><a href="#">{% trans "Partenaires" %}</a></li>
+                <li><a href="#">{% trans "Mentions légales" %}</a></li>
+                <li><a href="#">{% trans "Conditions d'utilisation" %}</a></li>
+                <li><a href="#">{% trans "Manifeste" %}</a></li>
+                <li><a href="#">{% trans "Contact" %}</a></li>
+            </ul>
+        </center>
     </div>
-      
-     <ul>
-       {% show_menu_below_id "info" %}
-     </ul>
-          
-    </div>
-  </div>
+    
 </div>

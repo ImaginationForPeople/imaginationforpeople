@@ -105,7 +105,8 @@
         <div class="container_18">
             <ul class="login">
                 <li class="left">&nbsp;</li>
-                <li>{{ LANGUAGE_CODE|upper}}</li>
+                <li class="language">{{ LANGUAGE_CODE|upper}}</li>
+                <li class="middle">&nbsp;</li>                
                 <li id="toggle">
                 {% if user.is_authenticated %}	
                     <a id="open" class="open link" href="#">{{ user.username }}</a>
@@ -118,7 +119,7 @@
             
                 {% get_unread_message_count_for user as unread_message_count %}
                 {% if unread_message_count != 0 %}
-                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /></a><div class="message_count">{{ unread_message_count }}</div></li>
+                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /><div class="message_count" >{{ unread_message_count }}</div></a></li>
                 {% else %}
                 <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></li>
                 {% endif %}

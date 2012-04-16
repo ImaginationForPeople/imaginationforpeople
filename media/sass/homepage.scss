@@ -1,160 +1,177 @@
 @import "mixin.scss";
 
 
-#reset_filters {
-    display: none;
-    visibility: hidden;
-}
-
 body{
-    background-image:url("../images/home/home-bg.jpg");
-    background-position:top center;
+    background-color:#282828;
 }
 
-.nav-bg{
-    top:20px;
+a:hover{
+    text-decoration:none;
+}
+
+hr{
+    border:1px solid black !important;
+    border-bottom:1px solid #333333 !important;
+    background-image:none;
+}
+
+
+
+/*---- HEADER ----*/
+
+#blue_border{
+    border-top:3px solid $blue;
     position:relative;
+    z-index:2000;
 }
 
-#i4p_baseline{
-    z-index:100;
-    width:100%;
-    text-align:right;
-    float:right;
-    font-size:23px;
-    position:absolute;
-    right:0px;
-    top:5px;
-    color:white;
-}
-
-#for-picto{
-    position:absolute;
-    left:-5px;
-    z-index:90;
-    top:280px;
-}
-
-#projects_rotator_minis{
-    position:absolute;
-    background-color: black;
-    right:25px;
-    top:276px;
-    z-index:110;
-    width:210px;    
-    border:4px solid black;
+#header-zone{
+    background-color:$darkgrey;
     
-	@include border-radius(4px);
-    @include shadow(8px, #161616); 
-}
-
-#projects_rotator_minis{
-
-    li.selected img {
-        border:1px solid white;
-    }
-    
-    li:hover img {
-        border:1px solid $blue;
-    }
-    
-    li:last-child img {
-        border: 1px solid black;
-    }
-    
-    li{
-        float:left;
-        width:42px;
-        height:42px;
+    #header{
+        height:123px;
         position:relative;
         
-        img{
-            width:40px;
-            height:40px;
-            border:1px solid black;
+        .logo{
+            width:217px;
+            height:70px;
+            position:absolute;
+            top:25px;
         }
-    }
-    
-    .home-minis-plus:hover{
-        border:1px solid black;
-    }
-
-
-} 
-
-
-#mask{
-    position:absolute;
-    top:-36px;
-    z-index:20;
-}
-
-#mask-bg{
-    background-image:url('../images/home/mask-bg.jpg');
-    background-repeat:no-repeat;
-    position:relative;
-    top:73px;
-    width:979px;
-    height:353px;
-}
-
-
-#projects_rotator {
-
-    li{
-        position:absolute;
-        top:40px;
-        left:10px;
-        height:450px;
-        overflow:hidden;
         
-        img{
-            width:960px;
+        #menu{
+            position:relative;
+            float:right;
+            top:94px; 
+            margin-right:210px;            
+
+            a{
+                font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
+                font-size:15px;
+                text-transform:uppercase;
+                color:#c1c1c1;
+                margin-left: 15px;
+            }  
+
+            a:hover{
+                text-decoration:none;
+                color:white;
+            }            
         }
     }
+}
+
+
+/*---- Search box ----*/
+
+
+.search{
+    float:left;
+    background: url(../images/base/search_engine.jpg) no-repeat left 0;
+    height:22px;
+
+    input[type="text"] {
+        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+        font-style:italic;
+        background-color: transparent;
+        border: 0px solid #646464;
+        color: #7F7E7E;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 13px;
+        height: 19px;
+        padding: 1px;
+        padding-left: 4px;
+        text-indent: 0px;
+        width: 155px;
+    }
     
-    .project_desc{
-        position:absolute;
-        z-index:9;
-        width:350px;
-        right:0px;
-        bottom:90px;
-        padding:10px;
+    input[type="submit"]{
+        background-image:none;
+        background-color:transparent;
+        border:0px;
+        margin:0px;
+        width:32px;
+        float:right;
+    }
+}
+
+#header{
+    .search{
+        position:absolute!important;
+        bottom:10px !important;
+        right:0px!important;
+        padding:0px!important;
+    }
+}
+
+
+/*---- VIDEO ----*/
+
+#video-zone{
+    height:133px;
+    background-color:#e8e8e8;
+}
+
+/*---- FOCUS ----*/
+
+#focus-zone{
+  	background-image: url(../images/home/focus-bg.jpg);    
+    
+    #focus{
         background-color:black;
-        background-color:rgba(0,0,0,0.9);
-        text-align:right;  
-        
-        h1{
-            color:white;   
-            font-size:23px;
-        }
-        
-        h2{
-            color:#898989;    
-            font-size:13px;
-        }
-        
-        a:hover{
-            text-decoration:none;
-        }
-        
-        .link{
-            text-align:left;
-            float:left;
-        }
-        
-        .link:hover{
-            text-decoration:underline;
-        }
+        color:#737373;
     }
 }
 
+/*---- CONTENT ----*/
 
-#browse-picto{
-    background-image:url('../images/home/browse-picto.png');
-    width:91px;
-    height:46px;
-    position:absolute;
-    top:-55px;
-    left:160px;
+#content-zone{
+
+    #content{    
+        background: url(../images/home/content-bg.jpg) repeat-y right; 
+        padding:15px 0px;
+        
+        #left_col{
+            width:685px;
+            float:left;
+            position:relative;
+        }
+        
+        #right_col{
+            width:245px;
+            padding:0px 10px;
+            float:right;
+            position:relative;
+            color:$grey;
+            
+                span{
+                    font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+                    font-style:italic;
+                    font-size:11px;
+                }
+                
+                .homebox{
+                margin:10px 0px;
+                
+                    h1{
+                        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+                        font-size:14px;
+                        font-style:normal;
+                        margin:0px;
+                        padding:0px;
+                        position:relative;
+                        top:3px;
+                    }
+                    
+                    hr{
+                    margin:7px 0px;
+                    }
+                }
+                
+                #quick_project{
+                
+                    
+                }
+        }
+    }
 }

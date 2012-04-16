@@ -23,17 +23,17 @@ Version: 1.0
 /* Panel Tab/button */
 .tab {
   	background: url(../images/base/tab_b.png) repeat-x 0 0;
-	height: 32px;
+	height: 30px;
 	position: relative;
-    top: -2px;
-    z-index: 999;
+    top: -4px;
+    z-index: 800;
     
     ul.login {
         display: block;
         position: relative;
         clear: right;
         height: 32px;
-        right:0px;
+        right:-9px;
         width: auto;
         font-weight: bold;
         line-height: 30px;
@@ -50,24 +50,47 @@ Version: 1.0
             margin: 0;
             display: block;
             float: left;
+            position:relative;
+            top:4px;
         }
 
         li.left {
             background: url(../images/base/tab_l.png) no-repeat left 0;
+            width:28px;
         }
 
         li.right {
             background: url(../images/base/tab_r.png) no-repeat left 0;
         }
         
+        li.middle {
+            background: url(../images/base/tab_c.png) no-repeat left 0;
+            width:17px;
+        }
+        
+        li.language{
+            font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
+            font-size:14px;
+            padding:0px;
+            padding-top:2px;
+        }
+        
+        .close:hover{
+            background-color:transparent !important;
+        }
+
+        
         li {
             text-align: left;
             padding: 0 6px;
+            padding-top: 2px;
             display: block;
             float: left;
             height: 32px;
             background: url(../images/base/tab_m.png) repeat-x 0 0;
             position:relative;
+            position:relative;
+            top:4px;
             
             a {
                 color: $blue;
@@ -75,6 +98,7 @@ Version: 1.0
             
             a:hover {
                 color: white;
+                text-decoration:none;
             }
             
             .sep {
@@ -83,16 +107,18 @@ Version: 1.0
             
             .message_count{
                 position:absolute;
-                right:8px;
-                top:0px;
+                right:10px;
+                top:6px;
                 text-align:center;
                 width:20px;
+                color:white;
             }
             
             a.open, a.close {
                 height: 20px;
+                font-family: 'OpenSansBoldItalic', Arial, Helvetica, sans-serif;
                 line-height: 20px !important;
-                padding-left: 32px !important;
+                /*padding-left: 32px !important;*/
                 cursor: pointer;
                 display: block;
                 /*width: 100px;*/
@@ -101,10 +127,10 @@ Version: 1.0
                 font-size:11px;
             }
             
-            a.open {background: url(../images/base/bt_open.png) no-repeat left 0;}
-            a.close {background: url(../images/base/bt_close.png) no-repeat left 0;}
-            a:hover.open {background: url(../images/base/bt_open.png) no-repeat left -19px;}
-            a:hover.close {background: url(../images/base/bt_close.png) no-repeat left -19px;}
+            a.open {/*background: url(../images/base/bt_open.png) no-repeat left 0;*/}
+            a.close {/*background: url(../images/base/bt_close.png) no-repeat left 0;*/}
+            a:hover.open {/*background: url(../images/base/bt_open.png) no-repeat left -19px;*/}
+            a:hover.close {/*background: url(../images/base/bt_close.png) no-repeat left -19px;*/}
         }
     }
 }
@@ -125,7 +151,7 @@ Version: 1.0
 #panel {
 	width: 100%;
 	color: #999999;
-	background: #0f0f0f;
+	background-color: black;
 	overflow: hidden;
 	position: relative;
 	z-index: 9000;
@@ -290,7 +316,6 @@ Version: 1.0
     
     .project_card {
         @include shadow(12px, #181818);
-        background-color: black;
         border: 0 none !important;
         float: left;
         margin-bottom: 20px;

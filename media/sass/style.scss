@@ -1,4 +1,5 @@
 @import "mixin.scss";
+@import "fonts.scss";
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
@@ -51,7 +52,7 @@ body{
 }
 
 
-.centreur{	
+.centreur, .center{	
 	margin-left:auto;
 	margin-right:auto;
 	position:relative;
@@ -240,7 +241,7 @@ img{
         .menu{
             position:relative;
             float:right;
-            top:28px;   
+            top:34px;   
 
             a{
                 @include georgia(18px); 
@@ -441,37 +442,39 @@ ul{
 
 
 
-.search{
+.container_18{
 
-	height:40px;
-	position:relative;
-	float:right;
-    top:-1px;
-	padding-left:5px;
-    
-    input[type="text"]{
-        background-color:#211e1c;
-        color:#7F7E7E;
-        border:1px solid #646464;
-        font-family:Arial,Helvetica,sans-serif;
-        font-size:16px;
-        text-indent:5px;
-        height:19px;
-        width:220px;
-        padding:1px;
-    }
-    
-    input[type="submit"]{
-        background-image:url(../images/base/search.jpg);
-        height:23px;
-        width:23px;
-        background-repeat:no-repeat;
-        border:0px;
-        border-top:1px solid #646464;
-        border-bottom:1px solid #646464;
-        border-left:1px solid #646464;
+        .search{
+        height:40px;
         position:relative;
-        left:4px;
+        float:right;
+        top:-1px;
+        padding-left:5px;
+        
+        input[type="text"]{
+            background-color:#211e1c;
+            color:#7F7E7E;
+            border:1px solid #646464;
+            font-family:Arial,Helvetica,sans-serif;
+            font-size:16px;
+            text-indent:5px;
+            height:19px;
+            width:220px;
+            padding:1px;
+        }
+        
+        input[type="submit"]{
+            background-image:url(../images/base/search.jpg);
+            height:23px;
+            width:23px;
+            background-repeat:no-repeat;
+            border:0px;
+            border-top:1px solid #646464;
+            border-bottom:1px solid #646464;
+            border-left:1px solid #646464;
+            position:relative;
+            left:4px;
+        }
     }
 }
 
@@ -667,57 +670,59 @@ ul{
 
 /* --FOOTER---------------------------------------------------------------------------------------------------- */
 
-.footer{
-	width:100%;
-	color:#393939;
-	text-align:left;
-	font-size:12px;
-	height:12px;
-	padding-top:10px;
-	position:relative;
-	top:-30px;
+#footer-zone-top{
+    background-color:$darkgrey;
+    border-top:3px solid #0c0c0c;
 
-    ul{
-        margin-bottom:20px;
-    }	
-    
-    a{
-        @include georgia(12px); 	
-        color:#555555;
-        margin-right:20px;	
-    }
-    
-    a:hover{
-        color:white;
+
+    #footer{
+        padding: 20px 0px;
+        color:#b4b4b4;
+        background: url(../images/base/footer-bg.jpg) no-repeat center;
+
+        ul{
+        }	
+        
+        a{
+        }
+        
+        a:hover{
+        }
     }
 }
 
-
-
-
-.social-networks{
-
-    position:absolute;
-    right:0px;
-
-    a{
-        padding:10px;
-        background-color:#282828;
-        margin-right:3px;
-    }
+#footer-zone-bottom{
+    background-color:#050505;
+    padding: 8px 0px;
     
-    img{
-        border:0px;
-        position:relative;
-        top:4px;
+    #footer-bottom{
+        
+        ul{
+        
+            li{
+                margin:0px 25px;
+        
+                a{
+                    color:#4b4b4b;
+                }
+                
+                a:hover{
+                    color:white;
+                }
+            }
+        }
     }
 }
+    
+    
 
 
-.rss img{
-    position:relative; 
-    float:left; 
-    margin-left:5px; 
-    margin-right:5px; 
-    top:2px;
+
+    
+.rss img {
+    float: left;
+    margin-left: 5px;
+    margin-right: 5px;
+    position: relative;
+    top: 2px;
 }

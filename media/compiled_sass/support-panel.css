@@ -1,14 +1,11 @@
 a.trigger {
   position: absolute;
-  background: #88bbd4 url(images/plus.png) 6% 55% no-repeat;
-  text-decoration: none;
-  font-size: 16px;
-  letter-spacing: -1px;
-  font-family: verdana, helvetica, arial, sans-serif;
+  background: url(../images/feedback/feedback-button.png) no-repeat;
+  width: 34px;
+  height: 121px;
   color: #fff;
-  padding: 4px 12px 6px 24px;
-  font-weight: bold;
   z-index: 2;
+  top: 125px !important;
 }
 
 a.trigger.left {
@@ -32,11 +29,12 @@ a.trigger.right {
 }
 
 a.trigger:hover {
-  background-color: #59B;
+  /*background-color:#59B;*/
+  text-decoration: none;
 }
 
 a.active.trigger {
-  background: #666666 url(images/minus.png) 6% 55% no-repeat;
+  background: url(../images/feedback/feedback-button-off.png) no-repeat;
 }
 
 .feedback-panel {
@@ -71,7 +69,7 @@ a.active.trigger {
   background-color: #0C0C0C;
   border-bottom: 1px solid black;
   border-top: 1px solid #353535;
-  margin-top: 190px;
+  margin-top: 247px;
 }
 
 .feedback-panel p {
