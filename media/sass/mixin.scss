@@ -4,6 +4,7 @@
 $blue: #04ADD1;
 $darkgrey: #171717;
 $grey:#cdcdcd;
+$greyblack:#303030;
 
 
 @mixin georgia($font-size) {
@@ -16,4 +17,6 @@ $grey:#cdcdcd;
 
 @mixin shadow($size, $color) {
     @include single-box-shadow($color, 0px, 0px, $size);
+        behavior: url(/js/pie/PIE.htc);
+
 }

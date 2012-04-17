@@ -10,9 +10,10 @@ a:hover{
 }
 
 hr{
-    border:1px solid black !important;
+    border:1px solid #050505 !important;
     border-bottom:1px solid #333333 !important;
     background-image:none;
+    height:0px;
 }
 
 
@@ -71,15 +72,15 @@ hr{
     height:22px;
 
     input[type="text"] {
-        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
         font-style:italic;
         background-color: transparent;
         border: 0px solid #646464;
         color: #7F7E7E;
         font-family: Arial,Helvetica,sans-serif;
-        font-size: 13px;
+        font-size: 10px;
         height: 19px;
-        padding: 1px;
+        padding: 2px;
         padding-left: 4px;
         text-indent: 0px;
         width: 155px;
@@ -135,6 +136,91 @@ hr{
             width:685px;
             float:left;
             position:relative;
+            
+            .infoblock{
+                background-image: url('../images/home/infoblock-bg.jpg');
+                border-bottom:1px solid #aeaeae;
+                height:250px;
+            
+                img.image{
+                    border-right:3px solid $blue;
+                    float:left;
+                }
+                
+                .details{
+                    width:385px;
+                    height:230px;
+                    padding:10px 28px;
+                    padding-left:15px;
+                    float:right;
+                    position:relative;
+                    
+                    h2{
+                        margin:0px;
+                        color:$greyblack;
+                        text-shadow:1px 1px 0px white;
+                        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
+                        font-size:16px;
+                    }
+                    
+                    span.date{
+                        position:absolute;
+                        top:11px;
+                        right:33px;
+                        color:#737373;
+                        font-style:italic;
+                        font-size:11px;
+                    }
+                    
+                    .plus{
+                        position:absolute;
+                        top:0px;
+                        right:0px;
+                    }
+                    
+                    h1{
+                        margin:10px 0px;
+                        color:$greyblack;
+                        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
+                        font-size:20px;
+                        text-transform:uppercase;
+                        font-style:normal;
+                        font-weight:bold;
+                    }
+                    
+                    p.description{
+                        color:$greyblack
+                    }
+                    
+                    hr{
+                        border-top:1px solid #c1c1c1 !important;
+                        border-left:1px solid #c1c1c1 !important;
+                        border-right:1px solid #c1c1c1 !important;
+                        border-bottom:1px solid white !important;
+                        position:absolute;
+                        bottom:33px;
+                        width:385px;
+                    }
+                    
+                    ul.infotags{
+                        position:absolute;
+                        bottom:15px;
+                    
+                        li{
+                            background-color:#a7a7a7;
+                            padding:3px;
+                            color:white;
+                            font-style:italic;
+                        }
+                    }
+                    
+                    ul.info-share{
+                        position:absolute;
+                        bottom:12px;
+                        right:30px;
+                    }
+                }
+            }
         }
         
         #right_col{
@@ -148,10 +234,14 @@ hr{
                     font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
                     font-style:italic;
                     font-size:11px;
+                    margin:15px 0px;
+                    margin-top:5px;
+                    display:block;
                 }
                 
                 .homebox{
-                margin:10px 0px;
+                    margin:15px 0px;
+                    position:relative;
                 
                     h1{
                         font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
@@ -160,15 +250,167 @@ hr{
                         margin:0px;
                         padding:0px;
                         position:relative;
+                        text-transform:uppercase;
                         top:3px;
                     }
                     
                     hr{
                     margin:7px 0px;
                     }
+                    
+                    label{
+                        float:left;
+                    }
+                    
+                    input[type=text], input[type=password], textarea{
+                        background-color:#242424;
+                        color:#818181;
+                        border:1px solid #343434;
+                        margin: 3px 0px;
+                        width:98%;
+                        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+                        font-style:italic;
+                        font-size:10px;
+                        padding:2px;
+                        @include border-radius(4px); 
+                    }
+                    
+                    input[type=submit], button{
+                        font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+                        font-size:11px;
+                        padding:3px 6px;
+                        margin:0px;
+                        background-color:#303030;
+                        color:#737373;
+                        border:0px;
+                        cursor:pointer;     
+                        @include border-radius(4px);
+                    }
+                    
+                    input[type=submit]:hover, button:hover{
+                        color:black !important;
+                    }
+                    
+                    .close-button{
+                        position:absolute;
+                        top:0px;
+                        right:0px;
+                        cursor:pointer;
+                    }
+
                 }
                 
-                #quick_project{
+                #loginbox{
+                    background-color:#292929;
+                    background-image: url("../images/home/loginbox-bg.jpg");
+                    @include border-radius(4px);
+                    padding:10px;
+                    overflow:hidden;
+                    
+                    .loginlink{
+                        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+                        font-size:15px;
+                        text-transform:uppercase;
+                        color:$grey;
+                        margin:0px 4px;
+                        
+                        img{
+                            margin:0px 5px;
+                            position:relative;
+                            top:3px;
+                        }
+                    }
+                    
+                    .loginlink:first-child{
+                        color:$blue;
+                    }
+                    
+                    hr{
+                        border-top:1px solid #242424 !important;
+                        border-left:1px solid #242424 !important;
+                        border-right:1px solid #242424 !important;
+                        margin-top:10px;
+                    }
+                    
+                    ul{
+                        margin-top:8px;
+                    }
+
+                    
+                    form{
+                    
+                        label{                        
+                            display:none;
+                            visibility:hidden;
+                        }                   
+
+                        input[type=submit], button{
+                            background-image: url('../images/home/openid-button.jpg');
+                            color:white;
+                        }
+                    }
+                    
+                    #panels-slide{
+                        width:735px;
+                        height:80px;
+                        position:relative;
+                        left:-0px;
+                    
+                    
+                        .loginpanel{
+                            position:relative;
+                            width:225px;
+                            height:80px;                        
+                            margin-right:20px;
+                            float:left;
+                        }
+                        
+                        .panel2{
+                        
+                            input[type=text]{
+                                width:55%;
+                                padding:4px;
+                            }                      
+                        }  
+
+                        .panel3{
+                        
+                            input[type=text], input[type=password]{
+                                width:65%;
+                                padding:4px;
+                            } 
+
+                            label[for=id_remember_me]{
+                                display:block;
+                                visibility:visible;
+                                color:$blue;
+                                position:absolute;
+                                left:0px;
+                                bottom:0px;
+                                font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+                                font-size:9px;
+                            }
+                            
+                            input[type=submit]{
+                                position:absolute;
+                                right:20px;
+                                top:31px;
+                            }
+                            
+                            .link{
+                                position:absolute;
+                                right:0px;
+                                bottom:0px;
+                                font-size:9px;
+                                font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+                                font-style:normal;
+                                font-weight:normal;
+                            }
+                        }  
+                    }                    
+                }
+                
+                #quick_project{                
                 
                     
                 }

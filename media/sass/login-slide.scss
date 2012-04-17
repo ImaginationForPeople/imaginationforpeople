@@ -157,8 +157,17 @@ Version: 1.0
 	z-index: 9000;
 	display: none;
     
+    a.link{
+        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+        font-size:12px;
+        font-weight:normal;
+    }
+    
     h1 {
-        font-size: 18px;
+        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+        font-size:16px;
+        text-transform:uppercase;
+        font-style:normal;
         padding: 5px 0 10px;
         margin: 0;
         color: white;
@@ -194,19 +203,19 @@ Version: 1.0
         margin: 0 auto;
         padding-top: 15px;
         text-align: left;
-        font-size: 0.85em;
+        font-size: 9px;
         top:-2px;
         position:relative;
         
         .left, .left-logged {
-            width: 280px;
+            width: 290px;
             float: left;
             padding: 0 15px;
         }
         
         .left{
             min-height:220px;
-            border-left: 1px solid #333;
+            /*border-left: 1px solid #333;*/
         }
         
         .left:first-child {
@@ -225,21 +234,23 @@ Version: 1.0
         }
         
         label {
-            float: left;
-            padding-top: 8px;
-            clear: both;
-            width: 280px;
-            display: block;
+            display:none;
+            visibility:hidden;
+        }
+        
+        label [for=id_remember_me]{
+            display:block;
+            visibility:visible;
         }
         
         input[type=text], input[type=password]{
             border: 1px #1A1A1A solid;
-            background: #414141;
             margin-right: 5px;
             margin-top: 4px;
             width: 200px;
             color: white;
             height: 16px;
+            @include border-radius(4px); 
         }
         
         input:focus.field {

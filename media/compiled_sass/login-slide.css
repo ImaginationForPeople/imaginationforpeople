@@ -170,8 +170,16 @@ Version: 1.0
   z-index: 9000;
   display: none;
 }
+#panel a.link {
+  font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+}
 #panel h1 {
-  font-size: 18px;
+  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-style: normal;
   padding: 5px 0 10px;
   margin: 0;
   color: white;
@@ -198,18 +206,18 @@ Version: 1.0
   margin: 0 auto;
   padding-top: 15px;
   text-align: left;
-  font-size: 0.85em;
+  font-size: 9px;
   top: -2px;
   position: relative;
 }
 #panel .panel_content .left, #panel .panel_content .left-logged {
-  width: 280px;
+  width: 290px;
   float: left;
   padding: 0 15px;
 }
 #panel .panel_content .left {
   min-height: 220px;
-  border-left: 1px solid #333;
+  /*border-left: 1px solid #333;*/
 }
 #panel .panel_content .left:first-child {
   border-left: 0px solid #333;
@@ -224,20 +232,26 @@ Version: 1.0
   margin: 0 0 10px 0;
 }
 #panel .panel_content label {
-  float: left;
-  padding-top: 8px;
-  clear: both;
-  width: 280px;
+  display: none;
+  visibility: hidden;
+}
+#panel .panel_content label [for=id_remember_me] {
   display: block;
+  visibility: visible;
 }
 #panel .panel_content input[type=text], #panel .panel_content input[type=password] {
   border: 1px #1A1A1A solid;
-  background: #414141;
   margin-right: 5px;
   margin-top: 4px;
   width: 200px;
   color: white;
   height: 16px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
 }
 #panel .panel_content input:focus.field {
   background: #545454;
@@ -303,6 +317,7 @@ Version: 1.0
   -webkit-box-shadow: 0px 0px 12px #181818;
   -o-box-shadow: 0px 0px 12px #181818;
   box-shadow: 0px 0px 12px #181818;
+  behavior: url(/js/pie/PIE.htc);
   border: 0 none !important;
   float: left;
   margin-bottom: 20px;
