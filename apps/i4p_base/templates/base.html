@@ -82,6 +82,21 @@
             $(".social-panel .openid-form").removeClass('hidden');
         });	
         
+        
+        $('.social-login img').tipsy({html: true });
+        
+        
+      	// Text example for forms
+        $('.search input[type=text]').example('{% trans "Project search" %}');
+        
+        $('input[name=identification]').example('{% trans "Enter your login" %}');
+        $('input[name=password]').example('{% trans "Password" %}');
+        
+        $('input[name=openid_identifier]').example('{% trans "Enter your username" %}');
+        
+        $('#footer .newsletter input[type=text]').example('{% trans "Enter your email adress" %}');
+
+        
     });
         
     </script>

@@ -18,94 +18,6 @@ hr{
 
 
 
-/*---- HEADER ----*/
-
-#blue_border{
-    border-top:3px solid $blue;
-    position:relative;
-    z-index:2000;
-}
-
-#header-zone{
-    background-color:$darkgrey;
-    
-    #header{
-        height:123px;
-        position:relative;
-        
-        .logo{
-            width:217px;
-            height:70px;
-            position:absolute;
-            top:25px;
-        }
-        
-        #menu{
-            position:relative;
-            float:right;
-            top:94px; 
-            margin-right:210px;            
-
-            a{
-                font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
-                font-size:15px;
-                text-transform:uppercase;
-                color:#c1c1c1;
-                margin-left: 15px;
-            }  
-
-            a:hover{
-                text-decoration:none;
-                color:white;
-            }            
-        }
-    }
-}
-
-
-/*---- Search box ----*/
-
-
-.search{
-    float:left;
-    background: url(../images/base/search_engine.jpg) no-repeat left 0;
-    height:22px;
-
-    input[type="text"] {
-        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
-        font-style:italic;
-        background-color: transparent;
-        border: 0px solid #646464;
-        color: #7F7E7E;
-        font-family: Arial,Helvetica,sans-serif;
-        font-size: 10px;
-        height: 19px;
-        padding: 2px;
-        padding-left: 4px;
-        text-indent: 0px;
-        width: 155px;
-    }
-    
-    input[type="submit"]{
-        background-image:none;
-        background-color:transparent;
-        border:0px;
-        margin:0px;
-        width:32px;
-        float:right;
-    }
-}
-
-#header{
-    .search{
-        position:absolute!important;
-        bottom:10px !important;
-        right:0px!important;
-        padding:0px!important;
-    }
-}
-
-
 /*---- VIDEO ----*/
 
 #video-zone{
@@ -230,190 +142,260 @@ hr{
             position:relative;
             color:$grey;
             
-                span{
-                    font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
-                    font-style:italic;
-                    font-size:11px;
-                    margin:15px 0px;
-                    margin-top:5px;
-                    display:block;
+            span{
+                font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+                font-style:italic;
+                font-size:11px;
+                margin:15px 0px;
+                margin-top:5px;
+                display:block;
+            }
+            
+            .homebox{
+                margin:15px 0px;
+                position:relative;
+            
+                h1{
+                    font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+                    font-size:14px;
+                    font-style:normal;
+                    margin:0px;
+                    padding:0px;
+                    position:relative;
+                    text-transform:uppercase;
+                    top:3px;
                 }
                 
-                .homebox{
-                    margin:15px 0px;
-                    position:relative;
+                hr{
+                margin:7px 0px;
+                }
                 
-                    h1{
-                        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
-                        font-size:14px;
-                        font-style:normal;
-                        margin:0px;
-                        padding:0px;
+                label{
+                    float:left;
+                }
+                
+                input[type=text], input[type=password], textarea{
+                    background-color:#242424;
+                    color:#818181;
+                    border:1px solid #343434;
+                    margin: 3px 0px;
+                    width:98%;
+                    font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+                    font-style:italic;
+                    font-size:10px;
+                    padding:2px;
+                    @include border-radius(4px); 
+                }
+                
+                input[type=submit], button{
+                    font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+                    font-size:11px;
+                    padding:3px 6px;
+                    margin:0px;
+                    background-color:#303030;
+                    color:#737373;
+                    border:0px;
+                    cursor:pointer;     
+                    @include border-radius(4px);
+                }
+                
+                input[type=submit]:hover, button:hover{
+                    color:black !important;
+                }
+                
+                .close-button{
+                    position:absolute;
+                    top:0px;
+                    right:0px;
+                    cursor:pointer;
+                }
+
+            }
+            
+            #loginbox{
+                background-color:#292929;
+                background-image: url("../images/home/loginbox-bg.jpg");
+                @include border-radius(4px);
+                padding:10px;
+                overflow:hidden;
+                
+                .loginlink{
+                    font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+                    font-size:15px;
+                    text-transform:uppercase;
+                    color:$grey;
+                    margin:0px 4px;
+                    
+                    img{
+                        margin:0px 5px;
                         position:relative;
-                        text-transform:uppercase;
                         top:3px;
                     }
-                    
-                    hr{
-                    margin:7px 0px;
+                }
+                
+                .loginlink:first-child{
+                    color:$blue;
+                }
+                
+                hr{
+                    border-top:1px solid #242424 !important;
+                    border-left:1px solid #242424 !important;
+                    border-right:1px solid #242424 !important;
+                    margin-top:10px;
+                }
+                
+                ul{
+                    margin-top:8px;
+                }
+
+                
+                form{
+                
+                    label{                   
+                        display:none;
+                        visibility:hidden;
+                    }                   
+
+                    input[type=submit], button{
+                        background-image: url('../images/home/openid-button.jpg');
+                        color:white;
                     }
-                    
-                    label{
+                }
+                
+                #panels-slide{
+                    width:735px;
+                    height:80px;
+                    position:relative;
+                    left:-0px;
+                
+                
+                    .loginpanel{
+                        position:relative;
+                        width:225px;
+                        height:80px;                        
+                        margin-right:20px;
                         float:left;
                     }
                     
-                    input[type=text], input[type=password], textarea{
-                        background-color:#242424;
-                        color:#818181;
-                        border:1px solid #343434;
-                        margin: 3px 0px;
-                        width:98%;
-                        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
-                        font-style:italic;
-                        font-size:10px;
-                        padding:2px;
-                        @include border-radius(4px); 
-                    }
+                    .panel2{
                     
-                    input[type=submit], button{
-                        font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
-                        font-size:11px;
-                        padding:3px 6px;
-                        margin:0px;
-                        background-color:#303030;
-                        color:#737373;
-                        border:0px;
-                        cursor:pointer;     
-                        @include border-radius(4px);
-                    }
+                        input[type=text]{
+                            width:55%;
+                            padding:4px;
+                        }                      
+                    }  
+
+                    .panel3{
                     
-                    input[type=submit]:hover, button:hover{
-                        color:black !important;
-                    }
+                        input[type=text], input[type=password]{
+                            width:65%;
+                            padding:4px;
+                        } 
+
+                        label[for=id_remember_me]{
+                            display:block;
+                            visibility:visible;
+                            color:$blue;
+                            position:absolute;
+                            left:0px;
+                            bottom:0px;
+                            font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+                            font-size:9px;
+                        }
+                        
+                        input[type=submit]{
+                            position:absolute;
+                            right:20px;
+                            top:31px;
+                        }
+                        
+                        .link{
+                            position:absolute;
+                            right:0px;
+                            bottom:0px;
+                            font-size:9px;
+                            font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+                            font-style:normal;
+                            font-weight:normal;
+                        }
+                    }  
+                }
+                
+                .avatar{
+                    float:left;
+                    margin-right:15px;
+                }
+
+                ul.profile_actions{
+                    position:relative;
+                    margin:0px;
+
+                    li{
+                        position:relative;
                     
-                    .close-button{
+                        .message_count{
+                            color: white;
+                            position: absolute;
+                            right: 3px;
+                            text-align: center;
+                            top: -1px;
+                            width: 20px;
+                            font-weight: bold;
+                            font-size: 80%;
+                        }                        
+                    }
+                }
+            }
+            
+            #quick_project{                
+            
+                
+            }
+            
+            #newmembers{                
+            
+                li{
+                    margin:1px 2px;
+                    float:left;
+                    position:relative;
+                } 
+                
+                .big{
+                    
+                    .name{
+                        background:url('../images/base/membername.png') no-repeat;
                         position:absolute;
                         top:0px;
-                        right:0px;
-                        cursor:pointer;
-                    }
-
-                }
-                
-                #loginbox{
-                    background-color:#292929;
-                    background-image: url("../images/home/loginbox-bg.jpg");
-                    @include border-radius(4px);
-                    padding:10px;
-                    overflow:hidden;
-                    
-                    .loginlink{
-                        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
-                        font-size:15px;
-                        text-transform:uppercase;
-                        color:$grey;
-                        margin:0px 4px;
+                        left:0px;
+                        width:94px;
+                        height:94px;
                         
-                        img{
-                            margin:0px 5px;
-                            position:relative;
-                            top:3px;
+                        span{
+                            position:absolute;
+                            bottom:0px;
+                            left:0px;
+                            margin:5px;
                         }
                     }
-                    
-                    .loginlink:first-child{
-                        color:$blue;
-                    }
-                    
-                    hr{
-                        border-top:1px solid #242424 !important;
-                        border-left:1px solid #242424 !important;
-                        border-right:1px solid #242424 !important;
-                        margin-top:10px;
-                    }
-                    
-                    ul{
-                        margin-top:8px;
-                    }
-
-                    
-                    form{
-                    
-                        label{                        
-                            display:none;
-                            visibility:hidden;
-                        }                   
-
-                        input[type=submit], button{
-                            background-image: url('../images/home/openid-button.jpg');
-                            color:white;
-                        }
-                    }
-                    
-                    #panels-slide{
-                        width:735px;
-                        height:80px;
-                        position:relative;
-                        left:-0px;
-                    
-                    
-                        .loginpanel{
-                            position:relative;
-                            width:225px;
-                            height:80px;                        
-                            margin-right:20px;
-                            float:left;
-                        }
-                        
-                        .panel2{
-                        
-                            input[type=text]{
-                                width:55%;
-                                padding:4px;
-                            }                      
-                        }  
-
-                        .panel3{
-                        
-                            input[type=text], input[type=password]{
-                                width:65%;
-                                padding:4px;
-                            } 
-
-                            label[for=id_remember_me]{
-                                display:block;
-                                visibility:visible;
-                                color:$blue;
-                                position:absolute;
-                                left:0px;
-                                bottom:0px;
-                                font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
-                                font-size:9px;
-                            }
-                            
-                            input[type=submit]{
-                                position:absolute;
-                                right:20px;
-                                top:31px;
-                            }
-                            
-                            .link{
-                                position:absolute;
-                                right:0px;
-                                bottom:0px;
-                                font-size:9px;
-                                font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
-                                font-style:normal;
-                                font-weight:normal;
-                            }
-                        }  
-                    }                    
                 }
                 
-                #quick_project{                
-                
-                    
+                li.bottom-member1, li.bottom-member2{
+                    position:absolute;
+                    bottom:0px;
+                    left:0px;
                 }
+                
+                li.bottom-member2{
+                    left:49px;
+                }
+            }
+            
+            #fb-fanbox{
+                background-color:#292929;
+                background-image: url("../images/home/loginbox-bg.jpg");
+                @include border-radius(4px);
+                padding:10px;
+            }
         }
     }
 }

@@ -1,0 +1,27 @@
+{% load i18n %}  
+
+<div id="members" class="homebox">
+    <h1>{% trans "New projects members" %}</h1>
+    <hr />
+    <ul id="newmembers">
+    
+        <!-- last_members is a profile list -->
+        {% for member in last_members %}
+            {% if forloop.counter == 3 %}
+                <li class="big"><div class="name"><span>{{ member.get_full_name_or_username }}</span></div><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="94" height="94" /></a></li>
+            {% else %}
+                {% if forloop.counter == 6 %}
+                    <li class="bottom-member1"><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="45" height="45" /></a></li>
+                {% else %}
+                    {% if forloop.counter == 7 %}
+                        <li class="bottom-member2"><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="45" height="45" /></a></li>
+                    {% else %}
+                        <li><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="45" height="45" /></a></li>
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+       {% endfor  %}
+       
+    </ul>
+    <div class="clear"></div>
+</div>

@@ -17,6 +17,5 @@ $greyblack:#303030;
 
 @mixin shadow($size, $color) {
     @include single-box-shadow($color, 0px, 0px, $size);
-        behavior: url(/js/pie/PIE.htc);
-
+    behavior: url(static/js/pie/PIE.htc);
 }

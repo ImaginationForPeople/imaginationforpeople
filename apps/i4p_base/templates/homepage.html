@@ -1,6 +1,7 @@
 ﻿{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
+{% load cms_tags %}  
 
 {% block style %}
     {% compress css %}
@@ -25,56 +26,28 @@
     <script type="text/javascript">
     $(document).ready(function(){
     
-    <!-- Text example for forms -->
-    $('.search input[type=text]').example('{% trans "Project search" %}');
+        <!-- Text example for forms -->
+        $('#quick_project input[type=text]').example('{% trans "My project title" %}');
+        $('#quick_project textarea').example('{% trans "One line description" %}');
 
-    $('#quick_project input[type=text]').example('{% trans "My project title" %}');
-    $('#quick_project textarea').example('{% trans "One line description" %}');
-
-    $('.panel2 #openid_identifier').example('{% trans "Enter your username" %}');
-
-    $('input[name=identification]').example('{% trans "Enter your login" %}');
-    $('input[name=password]').example('{% trans "Password" %}');
-
-    
-    $("#loginbox .panel1 a#loginlink-subscribe").click(function () {
-        $("#panels-slide").stop().animate({left: '-490px'}, 500);
-    });	
-    
-    $("#loginbox .panel1 a.openid-button").click(function () {
-        $("#panels-slide").stop().animate({left: '-245px'}, 500);
-    });	
-    
-    $("#loginbox .loginpanel a.close-button").click(function () {
-        $("#panels-slide").stop().animate({left: '0px'}, 500);
-    });	
+        
+        <!-- Loginbox panels slide -->
+        $("#loginbox .panel1 a#loginlink-subscribe").click(function () {
+            $("#panels-slide").stop().animate({left: '-490px'}, 500);
+        });	
+        
+        $("#loginbox .panel1 a.openid-button").click(function () {
+            $("#panels-slide").stop().animate({left: '-245px'}, 500);
+        });	
+        
+        $("#loginbox .loginpanel a.close-button").click(function () {
+            $("#panels-slide").stop().animate({left: '0px'}, 500);
+        });	
       
     });
     </script>
   {% endcompress %}
 
-{% endblock %}
-
-
-{% block header %}
-    <div id="header-zone">
-        <div id="header" class="center">
-        
-            <div class="logo"><a href="{% url i4p-index %}"><img src="{{ STATIC_URL }}images/base/logo.png" alt="Imagination for People" width="214" height="70" border="0"/></a></div>
-            
-            <ul id="menu">
-                <li><a href="http://alpha.imaginationforpeople.org/wakka.php?wiki=vAboutUs{{ LANGUAGE_CODE }}" rel="noindex, nofollow">{% trans "About us" %}</a></li>
-                <li><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
-                <li><a href="/workgroup/">{% trans 'Workgroups' %}</a></li>
-                <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
-            </ul>
-                    <div class="clear"></div>
-
-            {% include "search.html" %}
-                    <div class="clear"></div>
-
-        </div>
-    </div>
 {% endblock %}
 
 
@@ -94,7 +67,13 @@
 
 {% endblock %}
 
-{% block content %}	
+{% block content %}
+
+    <!-- temp -->
+    {% if user.is_authenticated %}
+            {% cms_toolbar %}
+    {% endif %}
+        
 <div id="content-zone">
 
     <div id="content" class="center">
@@ -132,90 +111,21 @@
             {% include "search.html" %}            
             <div class="clear"></div><br />
             
-            <span>{% trans 'Vous voulez <strong>participer</strong>, <strong>partager</strong> vos idées ou <strong>inscrire votre projet</strong> ?' %}</span>
+            <span>
+                {% placeholder site_purpose or %}You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project{% endplaceholder %}
+            </span>
             
-            
-            <!-- Login Box -->
-            {% if not user.is_authenticated %}
-            <div id="loginbox" class="homebox">
-                <div id="panels-slide">
-                    <div class="loginpanel panel1">
-                        <center>
-                            <a href="javascript:;" class="loginlink" id="loginlink-subscribe"><img src="{{ STATIC_URL }}images/home/login-picto.jpg" alt="Facebook" width="19" height="19" />{% trans 'Connexion' %}</a>
-                            <a href="{% url userena_signup %}" class="loginlink">{% trans 'Inscription' %}<img src="{{ STATIC_URL }}images/home/subscribe-picto.jpg" alt="Facebook" width="19" height="19" /></a>
-                            <hr />
-                            <ul>
-                                <li class="social-login"> <a href="{% url socialauth_begin 'facebook' %}"><img src="{{ STATIC_URL }}images/home/social-fb.png" alt="Facebook" width="32" height="32" /></a> </li>
-                                <li class="social-login"> <a href="{% url socialauth_begin 'google-oauth2' %}"><img src="{{ STATIC_URL }}images/home/social-google.png" alt="Google +" width="32" height="32" /></a> </li>
-                                <li class="social-login"> <a href="{% url socialauth_begin 'twitter' %}"><img src="{{ STATIC_URL }}images/home/social-twitter.png" alt="Twitter" width="32" height="32" /></a> </li>
-                                <li class="social-login"> <a href="{% url socialauth_begin 'linkedin' %}"><img src="{{ STATIC_URL }}images/home/social-ln.png" alt="LinkedIn" width="32" height="32" /></a> </li>
-                                <li class="social-login"> <a href="javascript:;" class="openid-button"><img src="{{ STATIC_URL }}images/home/social-openid.png" alt="OpenID" width="32" height="32" /></a> </li>
-                            </ul>
-                        </center>   
-                    </div>
-                    
-                    <div class="loginpanel panel2">
-                        <a class="close-button"><img src="{{ STATIC_URL }}images/home/close.png" alt="{% trans 'close' %}" width="11" height="11" /></a>
-                        <br />
-                        <form action="{% url socialauth_begin 'openid' %}" method="POST" class="openid-form">
-                            <img src="{{ STATIC_URL }}images/home/openid-logo.jpg" alt="OpenID" width="79" height="29" />
-                            <br />
-                            {% csrf_token %}
-                            <input type="text" name="openid_identifier" id="openid_identifier" />&nbsp;
-                            <button>{% trans 'Login' %}</button>
-                        </form> 
-                    </div>
-                    
-                    <div class="loginpanel panel3">
-                        <a class="close-button"><img src="{{ STATIC_URL }}images/home/close.png" alt="{% trans 'close' %}" width="11" height="11" /></a>
-                        
-                        <form action="{% url userena_signin %}" class="clearfix" method="post" class="profile_edition">
-                        {% csrf_token %}
-                            {{ signin_form.non_field_errors }}
-                            {% for field in signin_form %}
-                            {{ field.errors }}
-                            {% if field.name == 'remember_me' %}
-                            <p class="checkbox">
-                                <label for="id_{{ field.name }}">{{ field }} {% trans "Remember me" %}</label>
-                            </p>
-                            {% else %}
-                            <p>
-                                {{ field.label_tag }} 
-                                {{ field }}
-                            </p>
-                            {% endif %}
-                            {% endfor %}
-                        <input type="submit" style="margin-left:0px;" value="{% trans 'Go !' %}" />
-                        <a class="link" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
+            <!-- Loginbox -->
+            {% include "home-blocks/loginbox.html" %}     
 
-                        </form>
-                    </div>
-                </div>
-                
-            </div>            
-            {% else %}
-            <div id="loginbox" class="homebox">
-            MOI
-            </div>            
-            {% endif %}
-            
-            
             <!-- Quick Project -->
-            <div id="quick_project" class="homebox">
-                <h1>{% trans 'Add your project' %}</h1>
-                <hr />
-                <form>
-                    <input type="text" />
-                    <textarea></textarea>
-                    <input type="submit" value="{% trans 'Valider' %}" />
-                </form>
-            </div>
+            {% include "home-blocks/quick_project.html" %}  
             
-            <div id="members" class="homebox">
-                <h1>{% trans "New project's members" %}</h1>
-                <hr />
-                <div></div>
-            </div>
+            <!-- Last members -->
+            {% include "home-blocks/last_members.html" %}     
+            
+            <!-- Facebook friendbox -->
+            {% include "home-blocks/fb-fanbox.html" %}     
             
         </div>
         

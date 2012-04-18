@@ -13,80 +13,6 @@ hr {
   height: 0px;
 }
 
-/*---- HEADER ----*/
-#blue_border {
-  border-top: 3px solid #04add1;
-  position: relative;
-  z-index: 2000;
-}
-
-#header-zone {
-  background-color: #171717;
-}
-#header-zone #header {
-  height: 123px;
-  position: relative;
-}
-#header-zone #header .logo {
-  width: 217px;
-  height: 70px;
-  position: absolute;
-  top: 25px;
-}
-#header-zone #header #menu {
-  position: relative;
-  float: right;
-  top: 94px;
-  margin-right: 210px;
-}
-#header-zone #header #menu a {
-  font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  text-transform: uppercase;
-  color: #c1c1c1;
-  margin-left: 15px;
-}
-#header-zone #header #menu a:hover {
-  text-decoration: none;
-  color: white;
-}
-
-/*---- Search box ----*/
-.search {
-  float: left;
-  background: url(../images/base/search_engine.jpg) no-repeat left 0;
-  height: 22px;
-}
-.search input[type="text"] {
-  font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
-  font-style: italic;
-  background-color: transparent;
-  border: 0px solid #646464;
-  color: #7F7E7E;
-  font-family: Arial,Helvetica,sans-serif;
-  font-size: 10px;
-  height: 19px;
-  padding: 2px;
-  padding-left: 4px;
-  text-indent: 0px;
-  width: 155px;
-}
-.search input[type="submit"] {
-  background-image: none;
-  background-color: transparent;
-  border: 0px;
-  margin: 0px;
-  width: 32px;
-  float: right;
-}
-
-#header .search {
-  position: absolute!important;
-  bottom: 10px !important;
-  right: 0px!important;
-  padding: 0px!important;
-}
-
 /*---- VIDEO ----*/
 #video-zone {
   height: 133px;
@@ -350,4 +276,63 @@ hr {
   font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
+}
+#content-zone #content #right_col #loginbox .avatar {
+  float: left;
+  margin-right: 15px;
+}
+#content-zone #content #right_col #loginbox ul.profile_actions {
+  position: relative;
+  margin: 0px;
+}
+#content-zone #content #right_col #loginbox ul.profile_actions li {
+  position: relative;
+}
+#content-zone #content #right_col #loginbox ul.profile_actions li .message_count {
+  color: white;
+  position: absolute;
+  right: 3px;
+  text-align: center;
+  top: -1px;
+  width: 20px;
+  font-weight: bold;
+  font-size: 80%;
+}
+#content-zone #content #right_col #newmembers li {
+  margin: 1px 2px;
+  float: left;
+  position: relative;
+}
+#content-zone #content #right_col #newmembers .big .name {
+  background: url("../images/base/membername.png") no-repeat;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 94px;
+  height: 94px;
+}
+#content-zone #content #right_col #newmembers .big .name span {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  margin: 5px;
+}
+#content-zone #content #right_col #newmembers li.bottom-member1, #content-zone #content #right_col #newmembers li.bottom-member2 {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+#content-zone #content #right_col #newmembers li.bottom-member2 {
+  left: 49px;
+}
+#content-zone #content #right_col #fb-fanbox {
+  background-color: #292929;
+  background-image: url("../images/home/loginbox-bg.jpg");
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  padding: 10px;
 }

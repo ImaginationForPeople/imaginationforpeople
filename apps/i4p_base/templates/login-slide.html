@@ -29,22 +29,22 @@
                     {% csrf_token %}
                         {{ signin_form.non_field_errors }}
                         {% for field in signin_form %}
-                        {{ field.errors }}
-                        {% comment %} Displaying checkboxes differently {% endcomment %}
-                        {% if field.name == 'remember_me' %}
-                        <p class="checkbox">
-                            <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-                        </p>
-                        {% else %}
-                        <p>
-                            {{ field.label_tag }} 
-                            {{ field }}
-                        </p>
-                        {% endif %}
+                            {{ field.errors }}
+                            {% comment %} Displaying checkboxes differently {% endcomment %}
+                            {% if field.name == 'remember_me' %}
+                            <p class="checkbox">
+                                <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                            </p>
+                            {% else %}
+                            <p>
+                                {{ field.label_tag }} 
+                                {{ field }}
+                            </p>
+                            {% endif %}
                         {% endfor %}
-                    <div class="clear"></div><br />
-                    <input type="submit" class="button" style="margin-left:0px;" value="{% trans 'Sign in' %}" />
-					<a class="link" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
+                    <div class="clear"></div>
+                    <input type="submit" id="top-signin" value="{% trans 'Sign in' %}" />
+					<a class="password_lost" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
 
 				</form>
 
@@ -72,7 +72,7 @@
             
                 <h1>{% trans "My projects" %}</h1>	
                 
-                {% for membership in user.project_memberships.all|slice:'4' %}
+                {% for membership in user.project_memberships.all|slice:'3' %}
                     
                 <a href="{{ membership.project.translations.all.0.get_absolute_url }}" class="project_card" title="{{ membership.project.translations.all.0.baseline }}">
                     <div class="project-photo">	

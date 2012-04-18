@@ -213,38 +213,45 @@ Version: 1.0
 #panel .panel_content .left, #panel .panel_content .left-logged {
   width: 290px;
   float: left;
-  padding: 0 15px;
+  padding: 0 10px;
 }
 #panel .panel_content .left {
   min-height: 220px;
+  position: relative;
   /*border-left: 1px solid #333;*/
 }
 #panel .panel_content .left:first-child {
   border-left: 0px solid #333;
 }
 #panel .panel_content .panel_projects {
-  width: 610px;
-  float: left;
+  width: 460px;
+  float: right;
   padding: 0 15px;
-  border-left: 1px solid #333;
 }
 #panel .panel_content form {
   margin: 0 0 10px 0;
+  position: relative;
 }
 #panel .panel_content label {
   display: none;
   visibility: hidden;
 }
-#panel .panel_content label [for=id_remember_me] {
-  display: block;
-  visibility: visible;
+#panel .panel_content label[for=id_remember_me] {
+  display: block !important;
+  visibility: visible !important;
+  font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  color: #04add1;
 }
 #panel .panel_content input[type=text], #panel .panel_content input[type=password] {
   border: 1px #1A1A1A solid;
   margin-right: 5px;
   margin-top: 4px;
-  width: 200px;
-  color: white;
+  width: 150px;
+  color: #3d3d3d;
+  font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  font-style: italic;
   height: 16px;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -253,8 +260,45 @@ Version: 1.0
   -khtml-border-radius: 4px;
   border-radius: 4px;
 }
+#panel .panel_content input[type=submit], #panel .panel_content button {
+  background-image: url("../images/home/openid-button.jpg");
+  color: white;
+  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-size: 11px;
+  padding: 2px 6px;
+  margin: 0px;
+  background-color: #303030;
+  border: 0px;
+  cursor: pointer;
+  position: relative;
+  top: -1px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+}
+#panel .panel_content input[type=submit]:hover, #panel .panel_content button:hover {
+  color: black !important;
+}
 #panel .panel_content input:focus.field {
   background: #545454;
+}
+#panel .panel_content #top-signin {
+  position: absolute;
+  margin: 0px !important;
+  left: 160px;
+  top: 72px;
+}
+#panel .panel_content .password_lost {
+  font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+  font-size: 10px;
+  color: #04add1;
+  margin-left: 22px;
+}
+#panel .panel_content .password_lost:hover {
+  color: white;
 }
 #panel .panel_content #interface_lang {
   position: relative;
@@ -313,11 +357,6 @@ Version: 1.0
   text-decoration: underline;
 }
 #panel .project_card {
-  -moz-box-shadow: 0px 0px 12px #181818;
-  -webkit-box-shadow: 0px 0px 12px #181818;
-  -o-box-shadow: 0px 0px 12px #181818;
-  box-shadow: 0px 0px 12px #181818;
-  behavior: url(/js/pie/PIE.htc);
   border: 0 none !important;
   float: left;
   margin-bottom: 20px;
