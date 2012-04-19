@@ -109,11 +109,11 @@
                 <li class="middle">&nbsp;</li>                
                 <li id="toggle">
                 {% if user.is_authenticated %}	
-                    <a id="open" class="open link" href="#">{{ user.username }}</a>
+                    <a id="open" class="open link" href="javascript:;">{{ user.username }}</a>
                 {% else %}
-                    <a id="open" class="open link" href="#">{% trans "Log In" %} | {% trans "Register" %}</a>
+                    <a id="open" class="open link" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
                 {% endif %}
-                    <a id="close" style="display: none;" class="close link" href="#">{% trans "Close Panel" %}</a>			
+                    <a id="close" style="display: none;" class="close link" href="javascript:;">{% trans "Close Panel" %}</a>			
                 </li>
             {% if user.is_authenticated %}
             

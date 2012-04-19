@@ -27,6 +27,114 @@ hr {
   background-color: black;
   color: #737373;
 }
+#focus-zone #focus #focus-menu {
+  height: 37px;
+  position: relative;
+}
+#focus-zone #focus #focus-menu ul.focus-filters {
+  float: left;
+  padding: 6px 0px;
+  padding-top: 10px;
+  position: relative;
+}
+#focus-zone #focus #focus-menu ul.focus-filters li {
+  position: relative;
+}
+#focus-zone #focus #focus-menu .allprojects {
+  float: right;
+}
+#focus-zone #focus #projects_slide {
+  height: 290px;
+  width: 977px;
+  overflow: hidden;
+}
+#focus-zone #focus #projects_slide .project_slider {
+  width: 2931px;
+}
+#focus-zone #focus #projects_slide .project_slider .focus_project {
+  position: relative;
+  float: left;
+  width: 195px;
+  height: 290px;
+  /*margin-right:1px;*/
+  /* hack for IE8 & 9 */
+}
+#focus-zone #focus #projects_slide .project_slider .focus_project .project_title_cover {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-image: url("../images/home/projectslide_cre.png");
+  width: 195px;
+  height: 290px;
+  z-index: 200px;
+}
+@media \0screen {
+  #focus-zone #focus #projects_slide .project_slider .focus_project .project_title_cover {
+    background-image: url("../images/home/projectslide_cre.gif");
+  }
+}
+#focus-zone #focus #projects_slide .project_slider .focus_project .project_photo {
+  width: 195px;
+  height: 290px;
+  background-color: #bdbdbd;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+#focus-zone #focus #projects_slide .project_slider .focus_project .project_photo table {
+  width: 110px;
+  height: 90px;
+  margin: 0px auto;
+  position: relative;
+  top: 75px;
+  text-align: center;
+}
+#focus-zone #focus #projects_slide .project_slider .focus_project .project_photo table span {
+  text-align: center;
+  position: relative;
+  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: white;
+  font-style: normal;
+  font-weight: normal;
+  color: #303030;
+  line-height: 20px;
+}
+#focus-zone #focus #focus-nav {
+  height: 37px;
+}
+#focus-zone #focus #focus-nav .previous, #focus-zone #focus #focus-nav .next {
+  position: relative;
+  top: 10px;
+}
+#focus-zone #focus #focus-nav .previous {
+  float: left;
+}
+#focus-zone #focus #focus-nav .next {
+  float: right;
+}
+#focus-zone #focus #focus-menu a, #focus-zone #focus #focus-nav a {
+  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-transform: uppercase;
+  color: #c1c1c1;
+  padding: 8px 10px;
+  padding-bottom: 5px;
+}
+#focus-zone #focus #focus-menu a:hover {
+  color: white;
+}
+#focus-zone #focus #focus-menu a.selected {
+  color: white;
+  border-bottom: 4px solid #04add1;
+}
+#focus-zone #focus #focus-nav a:hover {
+  color: white;
+}
+#focus-zone #focus .allprojects {
+  padding: 6px 0px;
+  padding-top: 10px;
+}
 
 /*---- CONTENT ----*/
 #content-zone #content {
@@ -40,7 +148,7 @@ hr {
 }
 #content-zone #content #left_col .infoblock {
   background-image: url("../images/home/infoblock-bg.jpg");
-  border-bottom: 1px solid #aeaeae;
+  margin-bottom: 20px;
   height: 250px;
 }
 #content-zone #content #left_col .infoblock img.image {
@@ -98,13 +206,14 @@ hr {
 }
 #content-zone #content #left_col .infoblock .details ul.infotags {
   position: absolute;
-  bottom: 15px;
+  bottom: 16px;
 }
 #content-zone #content #left_col .infoblock .details ul.infotags li {
   background-color: #a7a7a7;
   padding: 3px;
   color: white;
   font-style: italic;
+  font-size: 11px;
 }
 #content-zone #content #left_col .infoblock .details ul.info-share {
   position: absolute;
@@ -334,5 +443,6 @@ hr {
   -ms-border-radius: 4px;
   -khtml-border-radius: 4px;
   border-radius: 4px;
-  padding: 10px;
+  padding: 0px;
+  height: 85px !important;
 }

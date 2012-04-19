@@ -33,6 +33,136 @@ hr{
     #focus{
         background-color:black;
         color:#737373;
+        
+        #focus-menu{
+            height:37px;
+            position:relative;
+            
+            ul.focus-filters{
+                float:left;
+                padding:6px 0px;
+                padding-top:10px;
+                position:relative;
+
+                
+                li{
+                    position:relative;
+                }
+            }
+            
+            .allprojects{
+                float:right;
+            }
+        }
+        
+        #projects_slide{
+            height:290px;
+            width:977px;
+            overflow:hidden;
+        
+            .project_slider{
+                width:2931px;
+            
+                .focus_project{
+                    position:relative;
+                    float:left;
+                    width:195px;
+                    height:290px;
+                    /*margin-right:1px;*/
+                
+                    .project_title_cover{
+                        position:absolute;
+                        top:0px;
+                        left:0px;
+                        background-image:url('../images/home/projectslide_cre.png');
+                        width:195px;
+                        height:290px;
+                        z-index:200px;
+                    } 
+                   
+                    /* hack for IE8 & 9 */
+                    @media \0screen {
+                        .project_title_cover{
+                            background-image:url('../images/home/projectslide_cre.gif');
+                        }                    
+                    }
+
+                    .project_photo{
+                        width:195px;
+                        height:290px;
+                        background-color:#bdbdbd;
+                        background-position: center bottom;
+                        background-repeat: no-repeat;
+                    
+                        table{
+                            width:110px;
+                            height:90px;
+                            margin:0px auto;
+                            position:relative;
+                            top:75px;
+                            text-align:center;
+                            
+                            span{
+                                text-align:center;
+                                position:relative;
+                                font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+                                font-size:14px;
+                                text-transform:uppercase;
+                                background-color:white;
+                                font-style:normal;
+                                font-weight:normal;
+                                color:$greyblack;
+                                line-height:20px;
+                            }
+                        }
+                    }
+                } 
+            }
+        } 
+
+        #focus-nav{
+            height:37px;
+            
+            .previous, .next{
+                position:relative;
+                top:10px;
+            }
+            
+            .previous{
+                float:left;
+            }
+            
+            .next{
+                float:right;
+            }            
+        } 
+
+        #focus-menu a, #focus-nav a{
+            font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+            font-size:15px;
+            text-transform:uppercase;
+            color:$greymenu;
+            padding:8px 10px;
+            padding-bottom:5px;
+        }
+        
+        #focus-menu a:hover{
+            color:white;
+        }
+        
+        #focus-menu a.selected{
+            color:white;
+            border-bottom:4px solid $blue;
+        }
+        
+         #focus-nav a:hover{
+            color:white;
+        }
+        
+        .allprojects{
+            padding:6px 0px;
+            padding-top:10px;
+        }        
     }
 }
 
@@ -51,7 +181,7 @@ hr{
             
             .infoblock{
                 background-image: url('../images/home/infoblock-bg.jpg');
-                border-bottom:1px solid #aeaeae;
+                margin-bottom:20px;
                 height:250px;
             
                 img.image{
@@ -116,13 +246,14 @@ hr{
                     
                     ul.infotags{
                         position:absolute;
-                        bottom:15px;
+                        bottom:16px;
                     
                         li{
                             background-color:#a7a7a7;
                             padding:3px;
                             color:white;
                             font-style:italic;
+                            font-size:11px;
                         }
                     }
                     
@@ -394,7 +525,8 @@ hr{
                 background-color:#292929;
                 background-image: url("../images/home/loginbox-bg.jpg");
                 @include border-radius(4px);
-                padding:10px;
+                padding:0px;
+                height:85px !important;
             }
         }
     }
