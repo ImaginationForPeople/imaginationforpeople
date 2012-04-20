@@ -49,15 +49,15 @@
                 <div class="separatorv"></div>
                 <li><a id="redac-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-redac.jpg" width="159px" height="126px" alt="{% trans "Writer" %}" /><span>{% trans "Writer" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a id="ess-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-ess.jpg" width="159px" height="126px" alt="{% trans "Seeder" %}" /><span>{% trans "Seeder" %}</span></a></li>
+                <li><a id="ess-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-ess.jpg" width="159px" height="126px" alt="{% trans "Animator" %}" /><span>{% trans "Animator" %}</span></a></li>
                 <div class="separatorv"></div>
-                <li><a id="rapp-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-rap.jpg" width="159px" height="126px" alt="{% trans "Q&A" %}" /><span>{% trans "Q&A" %}</span></a></li>
-        </ul>  
-        
+                <li><a id="rapp-button" href="#"><img src="{{ STATIC_URL }}images/pages/contrib/job-rap.jpg" width="159px" height="126px" alt="{% trans "Imaginer" %}" /><span>{% trans "Imaginer" %}</span></a></li>
+        </ul>
+
         <div class="clear"></div>
-        
+
         <!-- Jobs details -->
-        <div class="details-block">                    
+        <div class="details-block">    
             <div class="details" id="trad">
                 <img src="{{ STATIC_URL }}images/pages/contrib/illus-trad.png" width="387px" height="167px" />
                 <div class="txt">{% placeholder "desc-trad" %}</div>
@@ -106,54 +106,50 @@
 	  <img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" />
 	</a>
 	</h1>
-
+   
 	{% cache 600 contrib_latest_activities %}
-	{% include_feed "https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity.atom?show_issues=1" 8 pages/feed_includes/latest_activities.html %}
+	{% include_feed "https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity.atom?show_issues=1" 4 pages/feed_includes/latest_activities.html %}
 	{% endcache %}
+	 <div class="clear"></div>
+     </br>
+	 <h1>{% trans "Latest commits" %}
+	     <a href="https://github.com/ImaginationForPeople/imaginationforpeople/commits/master.atom">
+	      <img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" />
+	     </a>
+	    </h1>
+	{% cache 600 github_latest_commits %}
+	{% include_feed "https://github.com/ImaginationForPeople/imaginationforpeople/commits/master.atom" 4 pages/feed_includes/latest_commits.html %}
+	{% endcache %}
+	   
     </div>
-    
+
     <div class="col col2">
-    
+
         <h1>{% trans "Join the community" %}</h1>
         <ul class="community">
-            <li>
-                <span>{% trans "Join us on IRC:" %}</span>
-                <p><a href="http://webchat.freenode.net/?channels=imaginationforpeople" target="_blank">#imaginationforpeople@irc.freenode.net</a></p>
-            </li>
-            <li>
-                <span>{% trans "or subscribe to the mailing list:" %}</span>
-                <p><a href="http://lists.imaginationforpeople.org/cgi-bin/mailman/listinfo/community" target="_blank">community@lists.imaginationforpeople.org</a></p>
-		[<a href="http://lists.imaginationforpeople.org/pipermail/dev/">{% trans "Archives" %}</a>]
-            </li>
+           {% placeholder "desc-join-us" %}
         </ul>
-        
-        <h1>{% trans "Latest commits" %}
-	  <a href="https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity?show_changesets=1">
-	    <img src="{{ STATIC_URL }}images/pages/contrib/arrow-ico.jpg" width="20px" height="21x" style="float:right;" />
-	  </a>
-	</h1>
+                   
+         <br /><br /><br />
 
-	{% cache 600 contrib_latest_commits %}
-	{% include_feed "https://dev.imaginationforpeople.org/redmine/projects/i4p-app/activity.atom?show_commits=1" 5 pages/feed_includes/latest_commits.html %}
-	{% endcache %}
-    
     </div>
-    
+
     <div class="col col3">
-        <h1>{% trans "Blog / News" %}
+		<h1>{% trans "News" %}
           <a href="http://imaginationforpeople.org/blog/?feed=rss2">
-	    <img src="{{ STATIC_URL }}images/pages/contrib/rss.jpg" width="20px" height="21x" alt="RSS" style="float:right;" />
-	  </a>
-	</h1>
-
+	       <img src="{{ STATIC_URL }}images/pages/contrib/rss.jpg" width="20px" height="21x" alt="RSS" style="float:right;" />
+	      </a>
+	    </h1>
+	    <br />
+	
 	{% cache 600 contrib_news %}
-	{% include_feed "http://imaginationforpeople.org/blog/?feed=rss2" 3 pages/feed_includes/news.html %}
+	{% include_feed "http://imaginationforpeople.org/blog/?feed=rss2" 5 pages/feed_includes/news.html %}
 	{% endcache %}
-
+   <div class="clear"></div><br />
+    {% placeholder "desc-right-bottom" %}
     </div>
-    
+
     <div class="clear"></div>
     <br /><br /><br />
-    
-    
+
 {% endblock %}

@@ -39,14 +39,16 @@
                         <div class="clear"></div>
                         <input type="submit" class="button" value="{% trans "Sign in" %}" />
                         <div class="clear"></div>
-                        <br /><br /><br />
-                        <p class="forgot-password"><a class="link" href="{% url userena_password_reset %}" title="Forgot your password?">Forgot your password?</a></p>
+                        <br /><br />
+                        <p class="login-info"><a class="link" href="{% url userena_password_reset %}" title="{% trans "Lost your password?" %}">{% trans "Lost your password?" %}</a></p>
                     </form>                
                     
                     <br />
                     <div class="separator"></div>
                     
+                    {% with redirect_url=request.GET.next %}
                     {% include "userena/social-networks.html" %}
+                    {% endwith %}
 
              
                 </div>
