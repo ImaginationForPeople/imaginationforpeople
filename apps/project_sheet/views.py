@@ -58,7 +58,6 @@ def project_sheet_list(request):
     """
     Display a listing of all projects
     """
-    language_code = translation.get_language()
 
     data = request.GET.copy()
 
@@ -72,13 +71,25 @@ def project_sheet_list(request):
         filtered_projects = filters.apply_to(queryset=I4pProject.objects.all(),
                                              model_class=I4pProject)
         # Second pass to select language
+        if 'language' in data:
+            language_code = request.GET['language']
+            fallback_language = None
+            extra_context['filter_language'] = language_code
+        else:
+            language_code = translation.get_language()
+            fallback_language = 'en'
+            extra_context['filter_language'] = None
         project_sheet_ids = []
         for project in filtered_projects:
-            project_sheet = get_project_translation_from_parent(project,
-                                                                language_code,
-                                                                fallback_language='en',
-                                                                fallback_any=True)
-            project_sheet_ids.append(project_sheet.id)
+            try:
+                project_sheet = get_project_translation_from_parent(
+                                        project,
+                                        language_code,
+                                        fallback_language=fallback_language,
+                                        fallback_any=True)
+                project_sheet_ids.append(project_sheet.id)
+            except I4pProjectTranslation.DoesNotExist:
+                pass
         i18n_project_sheets = I4pProjectTranslation.objects.filter(id__in=project_sheet_ids)
 
         # Third pass to filter sheet
