@@ -182,6 +182,7 @@ INSTALLED_APPS = (
     'oembed_works',
     'reversion',
     'django_countries',
+    'sorl.thumbnail',
     'easy_thumbnails',
     'licenses',
     'haystack',
