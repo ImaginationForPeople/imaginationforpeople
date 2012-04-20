@@ -72,6 +72,56 @@
             $("#focus-menu .focus-filters a").removeClass('selected');
             $(this).addClass('selected');
         });
+        
+        <!-- Project slider nav -->
+        $('.onglettest a').click(function(){
+            var url = $(this).attr('href');
+            $('#contenu_test').load(url);
+            return false;
+        });  
+        
+        <!-- AJAX Focus Zone -->
+        var sections = $("#focus-menu .focus-filters li");  
+        var loading = $("#loading");     
+        var content = $("#projects_slide"); 
+        
+        function showLoading(){  
+            loading  
+                .css({visibility:"visible"})  
+                .css({opacity:"1"})  
+                .css({display:"block"})  
+            ;  
+        }  
+        
+        //hide loading bar  
+        function hideLoading(){  
+            loading.fadeTo(1000, 0);  
+        }; 
+        
+        //Manage click events
+        sections.click(function(){
+            //show the loading bar
+            showLoading();
+            //load selected section
+            switch(this.id){
+                case "projects-discover":
+                    content.load("{% url slider_bestof %}", hideLoading);
+                    break;
+                case "projects-recents":
+                    content.load("", hideLoading);
+                    break;
+                case "projects-comments":
+                    content.load("", hideLoading);
+                    break;
+                case "projects-help":
+                    content.load("", hideLoading);
+                    break;
+                default:
+                    //hide loading bar if there is no selected section
+                    hideLoading();
+                    break;
+            }
+        });
 
       
     });
@@ -88,19 +138,13 @@
             {% placeholder video_zone or %}<img src="{{ STATIC_URL }}images/home/video.jpg" alt="Imagination for People" width="982" height="132"/>{% endplaceholder %}
         </div>
     </div>
-
+    
     {% include "home-blocks/focus-zone.html" %}     
 
 {% endblock %}
 
 {% block content %}
 
-    <!-- temp -->
-    {% if user.is_authenticated %}
-        {% cms_toolbar %}
-    {% endif %}
-    
-    
     <!-- Facebook Likebox init -->
     <div id="fb-root"></div>
     <script>

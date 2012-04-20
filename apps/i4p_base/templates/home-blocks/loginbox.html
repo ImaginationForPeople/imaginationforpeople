@@ -64,9 +64,9 @@
     <h1>{% trans 'Logged as:' %}</h1>
     <hr />
     
-    <img class="avatar" src="{{ user.get_profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" width="42" height="42" /> 
+    <a href="{% url userena_profile_detail request.user %}"><img class="avatar" src="{{ user.get_profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" width="42" height="42" /></a>
     
-    <a id="open" class="open link" href="#">{{ user.username }}</a>
+    <a class="link" href="{% url userena_profile_detail request.user %}">{{ user.username }}</a>
     <br />
     
     <ul class="profile_actions">

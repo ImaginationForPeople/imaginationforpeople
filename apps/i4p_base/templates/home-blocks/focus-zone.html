@@ -1,55 +1,40 @@
-{% load i18n %}  
+{% load i18n %} 
+{% load thumbnail %} 
+ 
 
 <div id="focus-zone">
     <div id="focus" class="center">
        
         <div id="focus-menu">
             <ul class="focus-filters">
-                <li><a href="javascript:;" class="selected">{% trans 'To discover' %}</a></li>
-                <li><a href="javascript:;">{% trans 'Recent projects' %}</a></li>
-                <li><a href="javascript:;">{% trans 'Most commented' %}</a></li>
-                <li><a href="javascript:;">{% trans "Call to action" %}</a></li>
+                <li id="projects-discover"><a href="javascript:;" class="selected">{% trans 'To discover' %}</a></li>
+                <!-- FIXME : Uncomment us when the views or ok to test Ajax dynamic loading -->
+                {% comment %}
+                <li id="projects-recents"><a href="javascript:;">{% trans 'Recent projects' %}</a></li>
+                <li id="projects-comments"><a href="javascript:;">{% trans 'Most commented' %}</a></li>
+                <li id="projects-help"><a href="javascript:;">{% trans "Call to action" %}</a></li>
+                {% endcomment %}
             </ul>            
             <div class="allprojects"><a href="{% url project_sheet-list %}">{% trans 'All projects >' %}</a></div>
         </div>
+        
+        <div id="loading">  
+            <img src="{{ STATIC_URL }}images/jquery/colorbox/loading.gif" alt="Loading..." />  
+        </div>
 
         <ul id="projects_slide">
-          
-            <!-- FIXME : View need to be changed : 15 projects maximum -->
-            {% for project_translation in project_translations %}
+         
+            <!-- AJAX ZONE -->
+            {% include "home-blocks/slider.html" %} 
             
-                {% if forloop.counter == 1 or forloop.counter == 6 or forloop.counter == 11 %}
-                <li class="project_slider"><ul>
-                {% endif %}
-                
-                    <li class="focus_project">
-                        <a href="{{ project_translation.get_absolute_url }}">
-                        
-                            <div class="project_title_cover"></div>
-                            
-                            {% if project_translation.project.pictures.all.0.original_image.url %}
-                            <div class="project_photo" style="background-image:url('{{ project_translation.project.pictures.all.0.original_image.url }}');">
-                            {% else %}
-                            <div class="project_photo" style="background-image:url('{{ STATIC_URL }}images/home/no-photo.jpg');">
-                            {% endif %}
-                                <table><tr><td><span>{{ project_translation.title }}</span></td></tr></table>
-                            </div>
-                            
-                        </a>
-                    </li>
-                
-                {% if forloop.counter == 5 or forloop.counter == 10 or forloop.counter == 15 or forloop.last  %}
-                </ul></li>
-                {% endif %}
            
-            {% endfor %} 
-           
+            
         </ul>  
-
+        
         <div id="focus-nav">
             <div class="previous"><a href="javascript:;">{% trans '< Previous' %}</a></div>
             <div class="next"><a href="javascript:;">{% trans 'Next >' %}</a></div>
-        </div>        
+        </div>   
        
     </div>
 </div>

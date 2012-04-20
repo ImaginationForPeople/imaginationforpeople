@@ -3,9 +3,12 @@
  <div id="quick_project" class="homebox">
     <h1>{% trans 'Add your project' %}</h1>
     <hr />
-    <form action="#">
-        <input type="text" />
-        <textarea></textarea>
+    
+    <!-- FIXME : Create the good view which permit to complete the title AND the baseline together at the same time  -->
+    <form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">
+        {% csrf_token %}
+        <input id="id_title" name="title" type="text" />
+        <textarea id="id_baseline" name="baseline"></textarea>
         <input type="submit" value="{% trans 'Valider' %}" />
     </form>
 </div>

@@ -26,6 +26,7 @@ hr {
 #focus-zone #focus {
   background-color: black;
   color: #737373;
+  position: relative;
 }
 #focus-zone #focus #focus-menu {
   height: 37px;
@@ -91,14 +92,34 @@ hr {
 #focus-zone #focus #projects_slide .project_slider .focus_project .project_photo table span {
   text-align: center;
   position: relative;
-  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
-  font-size: 14px;
+  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-size: 15px;
   text-transform: uppercase;
   background-color: white;
   font-style: normal;
   font-weight: normal;
   color: #303030;
   line-height: 20px;
+}
+#focus-zone #focus #projects_slide .project_slider .focus_project.addproject h1 {
+  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-style: normal;
+  position: absolute;
+  right: 0px;
+  top: 115px;
+  width: 50%;
+  margin-right: 15px;
+  color: white;
+  text-transform: uppercase;
+}
+#focus-zone #focus #loading {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  visibility: hidden;
+  z-index: 999;
+  top: 170px;
 }
 #focus-zone #focus #focus-nav {
   height: 37px;

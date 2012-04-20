@@ -690,6 +690,35 @@ ul{
                 float:right;
             }
         }
+        
+        .concept{
+            width:100%;
+            position:relative;
+            float:left;
+            margin-bottom:20px;
+            
+            img{
+                float:left;
+                margin-top:20px;
+            }
+            
+            .concept_detail{
+                width:250px;
+                float:right;
+                
+                h1{
+                    padding:5px 0px;
+                }
+                
+                p{
+                    margin-bottom:5px;
+                }
+            }
+        } 
+
+        .concept:hover{
+            color:white;
+        }        
     }
 }
 
