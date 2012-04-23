@@ -56,7 +56,7 @@
         
         
         <!-- Project slider init -->  
-        $('#projects_slide').anythingSlider({width:977, height:290,  easing: "swing", buildArrows: false, buildNavigation: false, autoPlay: true});
+        $('#projects_slide').anythingSlider({width:977, height:290,  easing: "swing", delay: 5000, animationTime: 1000, buildArrows: false, buildNavigation: false, autoPlay: true});
 
         $("#focus-nav .previous").click(function(){
             $('#projects_slide').data('AnythingSlider').goBack();
@@ -86,6 +86,7 @@
         var content = $("#projects_slide"); 
         
         function showLoading(){  
+            content.fadeOut()
             loading  
                 .css({visibility:"visible"})  
                 .css({opacity:"1"})  
@@ -95,7 +96,8 @@
         
         //hide loading bar  
         function hideLoading(){  
-            loading.fadeTo(1000, 0);  
+            loading.fadeTo(1000, 0);
+            content.fadeIn();
         }; 
         
         //Manage click events
@@ -105,13 +107,13 @@
             //load selected section
             switch(this.id){
                 case "projects-discover":
-                    content.load("{% url slider_bestof %}", hideLoading);
+                    content.load("{% url i4p-homepage-ajax-slider-bestof %}", hideLoading);
                     break;
                 case "projects-recents":
-                    content.load("", hideLoading);
+                    content.load("{% url i4p-homepage-ajax-slider-latest %}", hideLoading);
                     break;
                 case "projects-comments":
-                    content.load("", hideLoading);
+                    content.load("{% url i4p-homepage-ajax-slider-commented %}", hideLoading);
                     break;
                 case "projects-help":
                     content.load("", hideLoading);

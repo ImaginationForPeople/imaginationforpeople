@@ -8,12 +8,9 @@
         <div id="focus-menu">
             <ul class="focus-filters">
                 <li id="projects-discover"><a href="javascript:;" class="selected">{% trans 'To discover' %}</a></li>
-                <!-- FIXME : Uncomment us when the views or ok to test Ajax dynamic loading -->
-                {% comment %}
                 <li id="projects-recents"><a href="javascript:;">{% trans 'Recent projects' %}</a></li>
                 <li id="projects-comments"><a href="javascript:;">{% trans 'Most commented' %}</a></li>
-                <li id="projects-help"><a href="javascript:;">{% trans "Call to action" %}</a></li>
-                {% endcomment %}
+                {# <li id="projects-help"><a href="javascript:;">{% trans "Call to action" %}</a></li> #}
             </ul>            
             <div class="allprojects"><a href="{% url project_sheet-list %}">{% trans 'All projects >' %}</a></div>
         </div>

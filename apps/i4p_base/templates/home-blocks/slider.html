@@ -14,7 +14,6 @@
                     <div class="project_title_cover"></div>
                     
                     {% if project_translation.project.pictures.all %}
-                        <!-- FIXME Bug with site_media ? MEDIA_PREFIX ? TEMP -->
                         <div class="project_photo" style="background-image:url('{% thumbnail project_translation.project.pictures.all.0.original_image.url '195x290' quality=80 crop %}');">
                     {% else %}
                     <div class="project_photo" style="background-image:url('{{ STATIC_URL }}images/home/no-photo.jpg');">
