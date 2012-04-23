@@ -17,6 +17,7 @@
 #
 # -*- coding: utf-8 -*-
 
+from django.contrib.auth.models import User
 from django.http import QueryDict
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -33,10 +34,14 @@ def homepage(request):
     project_translations = get_project_translations_from_parents(project_sheets,
                                                                  language_code=translation.get_language()
                                                                  )
+
+    latest_members = User.objects.filter(is_active=True).order_by('-date_joined')[:7]
+    
     data = request.GET
 
     context = {'project_sheets': project_sheets,
                'project_translations': project_translations,
+               'last_members': latest_members,
                'about_tab_selected' : True}
 
     filter_forms, extra_context = build_filters_and_context(data)
