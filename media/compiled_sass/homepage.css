@@ -49,9 +49,6 @@ hr {
   width: 977px;
   overflow: hidden;
 }
-#focus-zone #focus #projects_slide .project_slider {
-  width: 2931px;
-}
 #focus-zone #focus #projects_slide .project_slider .focus_project {
   position: relative;
   float: left;
@@ -432,6 +429,13 @@ hr {
   margin: 1px 2px;
   float: left;
   position: relative;
+  background-color: #bdbdbd;
+  height: 45px;
+  width: 45px;
+}
+#content-zone #content #right_col #newmembers .big {
+  width: 94px;
+  height: 94px;
 }
 #content-zone #content #right_col #newmembers .big .name {
   background: url("../images/base/membername.png") no-repeat;
@@ -440,12 +444,16 @@ hr {
   left: 0px;
   width: 94px;
   height: 94px;
+  color: #cdcdcd;
 }
 #content-zone #content #right_col #newmembers .big .name span {
   position: absolute;
   bottom: 0px;
   left: 0px;
   margin: 5px;
+}
+#content-zone #content #right_col #newmembers .big:hover .name {
+  color: white;
 }
 #content-zone #content #right_col #newmembers li.bottom-member1, #content-zone #content #right_col #newmembers li.bottom-member2 {
   position: absolute;

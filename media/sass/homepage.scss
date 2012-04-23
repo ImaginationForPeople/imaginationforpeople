@@ -62,7 +62,6 @@ hr{
             overflow:hidden;
         
             .project_slider{
-                width:2931px;
             
                 .focus_project{
                     position:relative;
@@ -91,7 +90,7 @@ hr{
                     .project_photo{
                         width:195px;
                         height:290px;
-                        background-color:#bdbdbd;
+                        background-color:$normalgrey;
                         background-position: center bottom;
                         background-repeat: no-repeat;
                     
@@ -515,9 +514,14 @@ hr{
                     margin:1px 2px;
                     float:left;
                     position:relative;
+                    background-color:$normalgrey;
+                    height:45px;
+                    width:45px;
                 } 
                 
                 .big{
+                    width:94px;
+                    height:94px;                
                     
                     .name{
                         background:url('../images/base/membername.png') no-repeat;
@@ -526,6 +530,7 @@ hr{
                         left:0px;
                         width:94px;
                         height:94px;
+                        color:$grey;
                         
                         span{
                             position:absolute;
@@ -534,6 +539,11 @@ hr{
                             margin:5px;
                         }
                     }
+                    
+                }
+                
+                .big:hover .name{
+                    color:white;
                 }
                 
                 li.bottom-member1, li.bottom-member2{

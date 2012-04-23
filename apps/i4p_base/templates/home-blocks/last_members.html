@@ -8,15 +8,15 @@
         <!-- last_members is a profile list -->
         {% for member in last_members %}
             {% if forloop.counter == 3 %}
-                <li class="big"><div class="name"><span>{{ member.get_full_name_or_username }}</span></div><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="94" height="94" /></a></li>
+                <li class="big"><a href="{% url userena_profile_detail member.username  %}"><div class="name"><span>{{ member.get_full_name }}</span></div><img src="{{ member.get_profile.get_mugshot_url }}"  alt="{{ member.get_full_name }}" title="{{ member.get_full_name }}" width="94" height="94" /></a></li>
             {% else %}
                 {% if forloop.counter == 6 %}
-                    <li class="bottom-member1"><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="45" height="45" /></a></li>
+                    <li class="bottom-member1"><a href="{% url userena_profile_detail member.username  %}"><img src="{{ member.get_profile.get_mugshot_url }}"  alt="{{ member.get_full_name }}" title="{{ member.get_full_name }}" width="45" height="45" /></a></li>
                 {% else %}
                     {% if forloop.counter == 7 %}
-                        <li class="bottom-member2"><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="45" height="45" /></a></li>
+                        <li class="bottom-member2"><a href="{% url userena_profile_detail member.username  %}"><img src="{{ member.get_profile.get_mugshot_url }}"  alt="{{ member.get_full_name }}" title="{{ member.get_full_name }}" width="45" height="45" /></a></li>
                     {% else %}
-                        <li><a href="{% url userena_profile_detail member.user.username  %}"><img src="{{ member.get_mugshot_url }}"  alt="{{ member.get_full_name_or_username }}" title="{{ member.get_full_name_or_username }}" width="45" height="45" /></a></li>
+                        <li><a href="{% url userena_profile_detail member.username  %}"><img src="{{ member.get_profile.get_mugshot_url }}"  alt="{{ member.get_full_name }}" title="{{ member.get_full_name }}" width="45" height="45" /></a></li>
                     {% endif %}
                 {% endif %}
             {% endif %}
