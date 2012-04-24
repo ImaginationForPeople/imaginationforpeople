@@ -43,6 +43,9 @@ from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
 from tagging.fields import TagField
 
+from django.contrib.sites.models import Site
+from django.contrib.sites.managers import CurrentSiteManager
+
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
 
@@ -110,7 +113,16 @@ class I4pProject(models.Model):
                                     )
 
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
-
+    
+    # dynamicsites
+    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), verbose_name=_("sites"))
+    on_site = CurrentSiteManager()
+    from south.modelsinspector import add_ignored_fields
+    add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
+    add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
+    
+    
+    
     def __unicode__(self):
         res = u"Parent project %d" % self.id
         if self.translations.all().count():
