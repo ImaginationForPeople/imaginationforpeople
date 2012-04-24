@@ -186,6 +186,7 @@ INSTALLED_APPS = (
     'oembed_works',
     'reversion',
     'django_countries',
+    'sorl.thumbnail',
     'easy_thumbnails',
     'licenses',
     'haystack',
@@ -388,6 +389,7 @@ STATICFILES_DIRS = (
     ('js', os.path.join(MEDIA_ROOT, 'js')),
     ('css', os.path.join(MEDIA_ROOT, 'css')),
     ('css', os.path.join(MEDIA_ROOT, 'compiled_sass')),
+    ('fonts', os.path.join(MEDIA_ROOT, 'fonts')),
     ('images', os.path.join(MEDIA_ROOT, 'images')),
 )
 
