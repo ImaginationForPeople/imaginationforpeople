@@ -49,7 +49,7 @@ def homepage(request):
     context.update(extra_context)
 
 
-    return render_to_response(template_name='homepage.html',
+    return render_to_response(template_name='montreal/homepage.html',
                               dictionary=context,
                               context_instance=RequestContext(request)
                               )

@@ -148,12 +148,14 @@
 
 {% endblock %}
 
-
+{% block header %}
+    {% include "montreal/header.html" %}  
+{% endblock %}
 
 {% block nav %}
     <div id="video-zone">
         <div id="video" class="center">        
-            {% placeholder video_zone or %}<img src="{{ STATIC_URL }}images/home/video.jpg" alt="Imagination for People" width="982" height="132"/>{% endplaceholder %}
+            <img src="{{ STATIC_URL }}images/montreal/video.jpg" alt="Imagination for People" width="982" height="132"/>
         </div>
     </div>
     
@@ -182,9 +184,9 @@
         
         <div id="left_col">
         
-            {% include "home-blocks/infoblock.html" %}     
-            
-            {% placeholder banners %}
+            <a href="#"><img src="{{ STATIC_URL }}images/montreal/ban_innov.jpg" alt="Découvrez les projets d'innovation sociale" width="685" height="211"/></a>
+            <br /><br />
+            <a href="#"><img src="{{ STATIC_URL }}images/montreal/ban_culture.jpg" alt="Découvrez les projets culturels" width="685" height="211"/></a>
             
         </div>
         
@@ -196,7 +198,7 @@
             {% endcomment %}
             
             <span>
-                {% placeholder site_purpose or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
+               {% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}
             </span>
             
             <!-- Loginbox -->
@@ -209,7 +211,7 @@
             {% include "home-blocks/last_members.html" %}     
             
             <!-- Facebook friendbox -->
-            {% include "home-blocks/fb-fanbox.html" %}     
+            {% include "montreal/home-blocks/fb-fanbox.html" %}     
             
         </div>
         
@@ -220,4 +222,8 @@
     <div class="clear"></div>
 
     </div>	
+{% endblock %}
+
+{% block footer %}
+    {% include "montreal/footer.html" %}  
 {% endblock %}
