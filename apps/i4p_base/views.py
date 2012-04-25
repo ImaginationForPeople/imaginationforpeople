@@ -29,7 +29,7 @@ def homepage(request):
     """
     I4P Homepage
     """
-    project_sheets = I4pProject.objects.filter(best_of=True).order_by('?')[:14]
+    project_sheets = I4pProject.on_site.filter(best_of=True).order_by('?')[:14]
     project_translations = get_project_translations_from_parents(project_sheets,
                                                                  language_code=translation.get_language()
                                                                  )

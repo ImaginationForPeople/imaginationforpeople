@@ -186,7 +186,6 @@ INSTALLED_APPS = (
     'oembed_works',
     'reversion',
     'django_countries',
-    'sorl.thumbnail',
     'easy_thumbnails',
     'licenses',
     'haystack',
@@ -219,6 +218,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.syndication',
+    'django.contrib.redirects',
 
     'emencia.django.newsletter',
     'cms',
@@ -441,12 +441,5 @@ CMS_TEMPLATES = (
 
 APPEND_SLASH = False
 
-# Dynamicsites
-SITES_DIR = os.path.join(os.path.dirname(__file__), 'sites')
-DEFAULT_HOST = 'example.com'
-HOSTNAME_REDIRECTS = {
-# examples useful for testing dynamicsites
-# see site_settings.ENV_HOSTNAMES
-  'example.com':         'www.example.com',
-  'other.example2.com':        'www.example2.com',
-}
+## Dynamicsites
+SITES_DIR = os.path.join(PROJECT_ROOT, 'sites')

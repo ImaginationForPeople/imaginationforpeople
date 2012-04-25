@@ -4,7 +4,6 @@ south==0.7.3
 
 django-extensions==0.6
 
-sorl-thumbnail==11.12
 -e hg+https://bitbucket.org/carljm/django-localeurl@48e3391e31975300ef9dddb1cb9d61cabe8b045e#egg=django-localeurl
 django-countries==1.0.5
 
@@ -65,6 +64,8 @@ feedparser==5.0.1
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
 django-simplegravatar==0.2
 
+-e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
+
 # Testing tools
 coverage<3.4
 lettuce==0.1.27
@@ -78,5 +79,3 @@ werkzeug
 django-debug-toolbar
 sphinx
 dozer==0.1
-
--e hg+https://bitbucket.org/andrewnelis/django-dynamicsites#egg=django-dynamicsites
