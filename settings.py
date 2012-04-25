@@ -75,9 +75,13 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
 # Cache
+if DEBUG:
+    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
+else:
+    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': CACHE_BACKEND,
     }
 }
 
