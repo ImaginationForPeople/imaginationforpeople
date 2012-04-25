@@ -55,9 +55,7 @@
         });
         
         
-        <!-- Project slider init -->  
-        $('#projects_slide').anythingSlider({width:977, height:290,  easing: "swing", delay: 5000, animationTime: 1000, buildArrows: false, buildNavigation: false, autoPlay: true});
-
+        <!-- Project slider buttons -->  
         $("#focus-nav .previous").click(function(){
             $('#projects_slide').data('AnythingSlider').goBack();
         });
@@ -99,7 +97,7 @@
             loading.fadeTo(1000, 0);
             content.fadeIn();
             
-            //Slider reset after AJAX loading
+            //Slider initialization after AJAX loading
             $('#projects_slide').anythingSlider({width:977, height:290,  easing: "swing", delay: 5000, animationTime: 1000, buildArrows: false, buildNavigation: false, autoPlay: true});
              
             //Projects rollover reset
@@ -140,6 +138,10 @@
                     break;
             }
         });
+        
+        //Load bestof projects slider by default
+        showLoading();
+        content.load("{% url i4p-homepage-ajax-slider-bestof %}", hideLoading);
 
       
     });
