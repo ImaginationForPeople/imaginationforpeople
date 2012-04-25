@@ -69,9 +69,9 @@ def project_sheet_list(request):
 
     if filters.is_valid():
         # First pass to filter project
-        filtered_projects = filters.apply_to(queryset=I4pProject.objects.all(),
+        filtered_projects = filters.apply_to(queryset=I4pProject.on_site.all(),
                                              model_class=I4pProject)
-        # Second pass to select language
+        # Second pass to select language and site
         project_sheet_ids = []
         for project in filtered_projects:
             project_sheet = get_project_translation_from_parent(project,

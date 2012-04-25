@@ -55,8 +55,6 @@ LANGUAGES = (
   ('zh', u'中文'),
 )
 
-SITE_ID = 1
-
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -93,6 +91,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    
+    'dynamicsites.middleware.DynamicSitesMiddleware',
 
     'linaro_django_pagination.middleware.PaginationMiddleware',
 
@@ -150,6 +150,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'cms.context_processors.media',
     'sekizai.context_processors.sekizai',
+    
+    'dynamicsites.context_processors.current_site',
 )
 
 
@@ -162,10 +164,12 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'apps/member/templates'),
     os.path.join(PROJECT_PATH, 'apps/i4p_base/templates'),
     os.path.join(PROJECT_PATH, 'apps/project_sheet/templates'),
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
     # External Apps
+    'dynamicsites',
     'localeurl',
     'south',
     'django_nose',
@@ -309,7 +313,8 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 ### Debug-tool-bar
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.18')
 DEBUG_TOOLBAR_CONFIG = {
-    'INTERCEPT_REDIRECTS': False,
+    # useful for testing dynamicsites
+    'INTERCEPT_REDIRECTS': True,
 }
 
 DEBUG_TOOLBAR_PANELS = (
@@ -435,3 +440,13 @@ CMS_TEMPLATES = (
 )
 
 APPEND_SLASH = False
+
+# Dynamicsites
+SITES_DIR = os.path.join(os.path.dirname(__file__), 'sites')
+DEFAULT_HOST = 'example.com'
+HOSTNAME_REDIRECTS = {
+# examples useful for testing dynamicsites
+# see site_settings.ENV_HOSTNAMES
+  'example.com':         'www.example.com',
+  'other.example2.com':        'www.example2.com',
+}
