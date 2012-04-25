@@ -44,7 +44,6 @@ hr{
                 padding:6px 0px;
                 padding-top:10px;
                 position:relative;
-
                 
                 li{
                     position:relative;
@@ -137,12 +136,14 @@ hr{
         }
 
         #loading{
-            width:100%;
+            width:32px;
+            height:32px;
             position:absolute;
             text-align: center; 
             visibility: hidden;
             z-index:999;
             top:170px;
+            left:460px;
         }        
 
         #focus-nav{
@@ -305,6 +306,14 @@ hr{
                 margin:15px 0px;
                 margin-top:5px;
                 display:block;
+                
+                a{
+                    color:$grey;
+                }
+                
+                a:hover{
+                    color:white;
+                }
             }
             
             .homebox{

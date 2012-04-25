@@ -105,15 +105,18 @@
         <div class="container_18">
             <ul class="login">
                 <li class="left">&nbsp;</li>
-                <li class="language">{{ LANGUAGE_CODE|upper}}</li>
+                <li class="language toggle">
+                    <a class="open-panel" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
+                    <a class="close-panel" style="display: none;" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
+                </li>
                 <li class="middle">&nbsp;</li>                
-                <li id="toggle">
+                <li class="toggle">
                 {% if user.is_authenticated %}	
-                    <a id="open" class="open link" href="javascript:;">{{ user.username }}</a>
+                    <a class="open link open-panel" href="javascript:;">{{ user.username }}</a>
                 {% else %}
-                    <a id="open" class="open link" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
+                    <a class="open link open-panel" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
                 {% endif %}
-                    <a id="close" style="display: none;" class="close link" href="javascript:;">{% trans "Close Panel" %}</a>			
+                    <a style="display: none;" class="close link close-panel" href="javascript:;">{% trans "Close Panel" %}</a>			
                 </li>
             {% if user.is_authenticated %}
             

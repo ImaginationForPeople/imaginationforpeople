@@ -87,10 +87,13 @@ Version: 1.0
   width: 17px;
 }
 .tab ul.login li.language {
-  font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
   font-size: 14px;
   padding: 0px;
   padding-top: 2px;
+}
+.tab ul.login li.language a {
+  font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
+  color: white;
 }
 .tab ul.login .close:hover {
   background-color: transparent !important;
@@ -125,7 +128,7 @@ Version: 1.0
   width: 20px;
   color: white;
 }
-.tab ul.login li a.open, .tab ul.login li a.close {
+.tab ul.login li a.open.link, .tab ul.login li a.close.link {
   height: 20px;
   font-family: 'OpenSansBoldItalic', Arial, Helvetica, sans-serif;
   line-height: 20px !important;
