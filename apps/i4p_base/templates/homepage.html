@@ -197,7 +197,10 @@
             {% endcomment %}
             
             <span>
-                {% placeholder site_purpose or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
+	      {% url project-sheet-add as register_url %}
+	      {% blocktrans %}
+	      You can <strong><a href="{{ register_url }}">register</a></strong> your project, <strong>share</strong> your ideas and <strong>contribute</strong> to the community.
+	      {% endblocktrans %}
             </span>
             
             <!-- Loginbox -->

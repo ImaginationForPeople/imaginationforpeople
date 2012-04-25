@@ -5,8 +5,7 @@
         
             <div class="logo">
                 <a href="{% url i4p-index %}">
-                    {% placeholder logo or %}<div class="logo"><a href="{% url i4p-index %}"><img src="{{ STATIC_URL }}images/base/logo_{{ site.id }}.png" alt="{{ site.name }}" border="0"/></a></div>
-{% endplaceholder %}
+                    <div class="logo"><a href="{% url i4p-index %}"><img src="{{ STATIC_URL }}images/{{ site.folder_name }}/logo.png" alt="{{ site.name }}" border="0"/></a></div>
                 </a>
             </div>
             

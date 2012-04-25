@@ -30,6 +30,9 @@ MANAGERS = (
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
 
+## Dynamicsites
+SITES_DIR = os.path.join(PROJECT_ROOT, 'sites')
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -380,6 +383,9 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    
+    # For dynamic sites
+    'sites.finders.SiteDirectoriesFinder',
 
     # Compressor finder
     'compressor.finders.CompressorFinder',
@@ -397,9 +403,6 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
     )
-
-## Grappelli
-GRAPPELLI_ADMIN_TITLE = "Imagination For People"
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -441,5 +444,3 @@ CMS_TEMPLATES = (
 
 APPEND_SLASH = False
 
-## Dynamicsites
-SITES_DIR = os.path.join(PROJECT_ROOT, 'sites')

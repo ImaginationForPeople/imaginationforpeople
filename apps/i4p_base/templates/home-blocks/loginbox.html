@@ -61,12 +61,12 @@
 </div>            
 {% else %}
 <div id="loginbox" class="homebox">
-    <h1>{% trans 'Logged as:' %}</h1>
+    <h1>{% trans 'Logged in as:' %}</h1>
     <hr />
     
     <a href="{% url userena_profile_detail request.user %}"><img class="avatar" src="{{ user.get_profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" width="42" height="42" /></a>
     
-    <a class="link" href="{% url userena_profile_detail request.user %}">{{ user.username }}</a>
+    <a class="link" href="{% url userena_profile_detail request.user %}">{% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %}</a>
     <br />
     
     <ul class="profile_actions">
