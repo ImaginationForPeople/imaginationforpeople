@@ -5,7 +5,8 @@
     {% for project_translation in project_translations %}
 
         {% if forloop.counter == 1 or forloop.counter == 6 or forloop.counter == 11 %}
-        <li class="project_slider"><ul>
+        <li class="project_slider">
+	  <ul>
         {% endif %}
         
             <li class="focus_project">
@@ -25,15 +26,22 @@
             </li>
         
         {% if forloop.counter == 5 or forloop.counter == 10  %}
-        </ul></li>
+          </ul>
+	</li>
         {% endif %}
         
         {% if forloop.counter == 14 or forloop.last %}
-            <li class="focus_project addproject"><a href="{% url project_sheet-start %}"><h1>{% trans 'Add a project' %}</h1><img src="{{ STATIC_URL }}images/home/addproject.jpg" width="195" height="290" /></a></li></ul></li>
+            <li class="focus_project addproject"><a href="{% url project_sheet-start %}"><h1>{% trans 'Add a project' %}</h1><img src="{{ STATIC_URL }}images/home/addproject.jpg" width="195" height="290" /></a></li>
+	   </ul>
+         </li>
         {% endif %}
         
     {% empty %}
-        <li class="focus_project addproject"><a href="{% url project_sheet-start %}"><h1>{% trans 'Add a project' %}</h1><img src="{{ STATIC_URL }}images/home/addproject.jpg" width="195" height="290" /></a></li></ul></li>
+        <li class="project_slider">
+	  <ul>
+	    <li class="focus_project addproject"><a href="{% url project_sheet-start %}"><h1>{% trans 'Add a project' %}</h1><img src="{{ STATIC_URL }}images/home/addproject.jpg" width="195" height="290" /></a>
+	   </li>
+	</ul></li>
     {% endfor %}   
     
     

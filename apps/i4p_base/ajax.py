@@ -27,7 +27,7 @@ def slider_bestof(request):
     Get the "count" bestof projects at random
     """
     return _slider_make_response(request,
-                                 queryset=I4pProject.objects.filter(best_of=True).order_by('?'))
+                                 queryset=I4pProject.on_site.filter(best_of=True).order_by('?'))
 
 
 
@@ -38,7 +38,7 @@ def slider_latest(request):
     Get the "count" latests projects, sorted by creation time
     """
     return _slider_make_response(request,
-                                 queryset=I4pProject.objects.order_by('-created'))
+                                 queryset=I4pProject.on_site.order_by('-created'))
 
 
 @require_GET
