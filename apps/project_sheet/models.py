@@ -52,6 +52,10 @@ from apps.i4p_base.models import Location
 # Add Introspector for south: django-licenses field
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
 
+QUESTIONS = (
+    ('Q1', _('What is your name?')),
+)
+
 class ProjectReference(models.Model):
     """
     A reference, such as a book or URL, for a Project Sheet
@@ -116,6 +120,7 @@ class I4pProject(models.Model):
     
     # dynamicsites
     site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), verbose_name=_("sites"))
+    objects = models.Manager()
     on_site = CurrentSiteManager()
     from south.modelsinspector import add_ignored_fields
     add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
@@ -143,6 +148,49 @@ class I4pProject(models.Model):
                                                                   fallback_any=True)
 
         return project_translation.get_absolute_url()
+
+
+class Topic(models.Model):
+    label = models.CharField("Label", max_length=512)
+    language_code = models.CharField(_('language'),
+                                     max_length=6,
+                                     choices=settings.LANGUAGES)
+    def __unicode__(self):
+        return '%s: %s' % (self.label, self.language_code)
+
+class SiteTopic(models.Model):
+    site = models.ForeignKey(Site, related_name='site_topics')
+    topic = models.ForeignKey(Topic, related_name='site_topics')
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = (('site', 'topic'),)
+    
+    def __unicode__(self):
+        return '%s & %s' % (self.site, self.topic) 
+
+class Question(models.Model):
+    """
+    A project question
+    """
+    topic = models.ForeignKey(Topic, related_name="questions")
+    content = models.CharField(_("Content"), max_length=512)
+    weight = models.IntegerField(_("Weight"), default=0)
+    
+    def __unicode__(self):
+        return '%s' % (self.content, )
+            
+class Answer(models.Model):
+    question = models.ForeignKey(Question, related_name="answers")
+    project = models.ForeignKey(I4pProject, related_name="answers")
+    content = models.TextField(_("Content"))
+    class Meta:
+        unique_together = (("question", "project"), )
+        
+    def __unicode__(self):
+        return 'Answer to: [%s]' % (self.question ,)
+
+
 
 class I4pProjectTranslation(models.Model):
     """
@@ -182,12 +230,6 @@ class I4pProjectTranslation(models.Model):
                                 )
 
     about_section = models.TextField(_("about the project"), null=True, blank=True)
-    uniqueness_section = models.TextField(_("in what ways is this project unique and creative"), null=True, blank=True)
-    value_section = models.TextField(_("what is the social value of this project"), null=True, blank=True)
-    scalability_section = models.TextField(_("what is the potential of this project to expand and develop"), null=True, blank=True)
-
-    triggering_factor_section = models.TextField(_("what was the triggering factor of this project"), null=True, blank=True)
-    business_model_section = models.TextField(_("what is the business model of the project"), null=True, blank=True)
     partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
     callto_section = models.TextField(_("Help request"), null=True, blank=True)
     
@@ -322,7 +364,7 @@ def delete_parent_if_last_translation(sender, instance, **kwargs):
 # Reversions
 VERSIONNED_FIELDS = {
     I4pProject : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
-    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'uniqueness_section', 'value_section', 'scalability_section', 'themes', 'completion_progress']
+    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'themes', 'completion_progress']
 }
 
 for model, fields in VERSIONNED_FIELDS.iteritems():
