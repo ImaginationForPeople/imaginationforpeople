@@ -25,6 +25,8 @@ import os
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
+from django.contrib.sites.managers import CurrentSiteManager
 from django.core.mail import mail_managers
 from django.db import models
 from django.db.models.signals import post_save, post_delete
@@ -41,10 +43,8 @@ from nani.models import TranslatableModel, TranslatedFields
 import reversion
 from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
+from south.modelsinspector import add_ignored_fields
 from tagging.fields import TagField
-
-from django.contrib.sites.models import Site
-from django.contrib.sites.managers import CurrentSiteManager
 
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
@@ -122,7 +122,7 @@ class I4pProject(models.Model):
     site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), verbose_name=_("sites"))
     objects = models.Manager()
     on_site = CurrentSiteManager()
-    from south.modelsinspector import add_ignored_fields
+    
     add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
     add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
     

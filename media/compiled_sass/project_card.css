@@ -19,9 +19,11 @@
   text-align: right;
   width: 137px;
   border: 0px !important;
-  -webkit-box-shadow: 0px 0px 12px #181818;
   -moz-box-shadow: 0px 0px 12px #181818;
+  -webkit-box-shadow: 0px 0px 12px #181818;
+  -o-box-shadow: 0px 0px 12px #181818;
   box-shadow: 0px 0px 12px #181818;
+  behavior: url(static/js/pie/PIE.htc);
 }
 .project_card .project-photo {
   position: relative;

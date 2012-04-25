@@ -26,11 +26,15 @@ FACEBOOK_API_SECRET = "TO_COMPLETE"
 GOOGLE_OAUTH2_CLIENT_ID = "TO_COMPLETE"
 GOOGLE_OAUTH2_CLIENT_SECRET = "TO_COMPLETE"
 
-# Dynamicsites
-ENV_HOSTNAMES = {
-# examples useful for testing dynamicsites
-# see settings.HOSTNAME_REDIRECTS
+## Dynamicsites
+DEFAULT_HOST = 'imaginationforpeople.org'
+HOSTNAME_REDIRECTS = {
     'example.dev':           'example.com',
     'example2.dev':          'example2.com',
     'other.example2.dev':    'other.example2.com',
+}
+
+# Use this for developement aliases
+ENV_HOSTNAMES = {
+  'localhost': 'imaginationforpeople.org',
 }

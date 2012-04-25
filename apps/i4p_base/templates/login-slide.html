@@ -29,22 +29,22 @@
                     {% csrf_token %}
                         {{ signin_form.non_field_errors }}
                         {% for field in signin_form %}
-                        {{ field.errors }}
-                        {% comment %} Displaying checkboxes differently {% endcomment %}
-                        {% if field.name == 'remember_me' %}
-                        <p class="checkbox">
-                            <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-                        </p>
-                        {% else %}
-                        <p>
-                            {{ field.label_tag }} 
-                            {{ field }}
-                        </p>
-                        {% endif %}
+                            {{ field.errors }}
+                            {% comment %} Displaying checkboxes differently {% endcomment %}
+                            {% if field.name == 'remember_me' %}
+                            <p class="checkbox">
+                                <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                            </p>
+                            {% else %}
+                            <p>
+                                {{ field.label_tag }} 
+                                {{ field }}
+                            </p>
+                            {% endif %}
                         {% endfor %}
-                    <div class="clear"></div><br />
-                    <input type="submit" class="button" style="margin-left:0px;" value="{% trans 'Sign in' %}" />
-					<a class="link" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
+                    <div class="clear"></div>
+                    <input type="submit" id="top-signin" value="{% trans 'Sign in' %}" />
+					<a class="password_lost" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
 
 				</form>
 			</div>
@@ -53,7 +53,7 @@
             
                 <h1 class="padlock">{% trans "You can also use" %}</h1>
                 {% with redirect_url=request.path %}
-                {% include "userena/social-networks.html" %}
+                    {% include "userena/social-networks.html" %}
                 {% endwith %}
                 <div class="clear"></div>
                 <br /><br />
@@ -72,7 +72,7 @@
             
                 <h1>{% trans "My projects" %}</h1>	
                 
-                {% for membership in user.project_memberships.all|slice:'4' %}
+                {% for membership in user.project_memberships.all|slice:'3' %}
                     
                 <a href="{{ membership.project.translations.all.0.get_absolute_url }}" class="project_card" title="{{ membership.project.translations.all.0.baseline }}">
                     <div class="project-photo">	
@@ -105,20 +105,21 @@
         <div class="container_18">
             <ul class="login">
                 <li class="left">&nbsp;</li>
-                <li>{{ LANGUAGE_CODE|upper}}</li>
+                <li class="language">{{ LANGUAGE_CODE|upper}}</li>
+                <li class="middle">&nbsp;</li>                
                 <li id="toggle">
                 {% if user.is_authenticated %}	
-                    <a id="open" class="open link" href="#">{{ user.username }}</a>
+                    <a id="open" class="open link" href="javascript:;">{{ user.username }}</a>
                 {% else %}
-                    <a id="open" class="open link" href="#">{% trans "Log In" %} | {% trans "Register" %}</a>
+                    <a id="open" class="open link" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
                 {% endif %}
-                    <a id="close" style="display: none;" class="close link" href="#">{% trans "Close Panel" %}</a>			
+                    <a id="close" style="display: none;" class="close link" href="javascript:;">{% trans "Close Panel" %}</a>			
                 </li>
             {% if user.is_authenticated %}
             
                 {% get_unread_message_count_for user as unread_message_count %}
                 {% if unread_message_count != 0 %}
-                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /></a><div class="message_count">{{ unread_message_count }}</div></li>
+                <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /><div class="message_count" >{{ unread_message_count }}</div></a></li>
                 {% else %}
                 <li><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></li>
                 {% endif %}

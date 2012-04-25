@@ -34,7 +34,7 @@ def create_parent_project():
     """
     Create a parent project
     """
-    return I4pProject.objects.create()
+    return I4pProject.on_site.create()
 
 def get_project_translation_by_slug(project_translation_slug, language_code):
     """

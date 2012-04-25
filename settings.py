@@ -30,6 +30,9 @@ MANAGERS = (
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
 
+## Dynamicsites
+SITES_DIR = os.path.join(PROJECT_ROOT, 'sites')
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -72,9 +75,13 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
 # Cache
+if DEBUG:
+    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
+else:
+    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': CACHE_BACKEND,
     }
 }
 
@@ -186,7 +193,6 @@ INSTALLED_APPS = (
     'oembed_works',
     'reversion',
     'django_countries',
-    'sorl.thumbnail',
     'easy_thumbnails',
     'licenses',
     'haystack',
@@ -219,6 +225,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.syndication',
+    'django.contrib.redirects',
 
     'emencia.django.newsletter',
     'cms',
@@ -380,6 +387,9 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    
+    # For dynamic sites
+    'sites.finders.SiteDirectoriesFinder',
 
     # Compressor finder
     'compressor.finders.CompressorFinder',
@@ -397,9 +407,6 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
     )
-
-## Grappelli
-GRAPPELLI_ADMIN_TITLE = "Imagination For People"
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -441,12 +448,3 @@ CMS_TEMPLATES = (
 
 APPEND_SLASH = False
 
-# Dynamicsites
-SITES_DIR = os.path.join(os.path.dirname(__file__), 'sites')
-DEFAULT_HOST = 'example.com'
-HOSTNAME_REDIRECTS = {
-# examples useful for testing dynamicsites
-# see site_settings.ENV_HOSTNAMES
-  'example.com':         'www.example.com',
-  'other.example2.com':        'www.example2.com',
-}
