@@ -96,6 +96,19 @@
         $('input[name=openid_identifier]').example('{% trans "Enter your username" %}');
         
         $('#footer .newsletter input[type=text]').example('{% trans "Enter your email adress" %}');
+        
+        //Show new project style popup when user click on add a project
+        $('a.addproject_button').click(function(){
+            var url = $(this).attr('href');
+            $("#new_project_style_popup_zone").removeClass("hidden");
+            return false;
+        });
+        
+        
+        // Close button for new project style popup
+        $("#new_project_style_popup_zone #new_project_style_popup .close-button").click(function () {
+            $("#new_project_style_popup_zone").addClass("hidden");
+        });	
 
         
     });
@@ -131,7 +144,13 @@
     
     <div class="global">   
     
-      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}			  
+      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}	
+
+      {% block newproject_popup %} 
+          <div id="new_project_style_popup_zone" class="hidden">
+              {% include "newproject/newproject_popup.html" %} 
+          </div>
+      {% endblock %}      
       
       {% block header %} {% include "header.html" %} {% endblock %}			
       <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->

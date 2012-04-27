@@ -1,0 +1,19 @@
+{% load i18n %}	
+{% load cms_tags %}	
+
+<div id="new_project_style_popup">
+
+    <a class="close-button">
+        <img width="11" height="11" alt="close" src="{{ STATIC_URL }}images/home/close.png">
+    </a>
+
+    <center>
+        <h1>{% trans 'Select your type of project' %}</h1>
+        <hr />
+        <div id="project_type">
+            <a href="#" class="social_innov"><span>{% trans 'social innovation' %}</span></a>
+            <a href="#" class="cultural"><span>{% trans 'cultural projects' %}</span></a>
+        </div>
+    </center>
+</div>
+    

@@ -106,6 +106,13 @@
             }).mouseleave(function(){
                 $(this).find(".project_title_cover").fadeIn(250)
             });
+            
+            //Show new project style popup when user click on add a project
+            $('a.addproject_button').click(function(){
+                var url = $(this).attr('href');
+                $("#new_project_style_popup_zone").removeClass("hidden");
+                return false;
+            });
         }; 
         
         //Manage click events
@@ -142,6 +149,8 @@
         //Load bestof projects slider by default
         showLoading();
         content.load("{% url i4p-homepage-ajax-slider-bestof %}", hideLoading);
+        $('#projects_slide').anythingSlider(1); // Reset to first slide
+                    $('#projects_slide').data('AnythingSlider').startStop(true);
       
     });
     </script>

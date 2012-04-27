@@ -499,6 +499,112 @@ ul{
 
 
 
+/*---- New project style popup ----*/
+
+#new_project_style_popup_zone{
+    width:100%;
+    height:1000px;
+    background-image:url('../images/base/black.png');
+    position:fixed;
+    z-index:800;
+}
+
+#new_project_style_popup{
+    width:286px;
+    height:152px;
+    margin-top:160px;
+    margin-left:auto;
+    margin-right:auto;
+    padding:5px;
+    padding-top:10px;
+    position:relative;
+    background-image:url('../images/base/newproject_popup-bg.png');
+    
+    .close-button{
+        position:absolute;
+        top:15px;
+        right:15px;
+        z-index:800;
+        cursor:pointer;
+    }
+    
+    h1{
+        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+        font-size:16px;
+        font-style:normal;
+        text-transform:uppercase;
+        position:relative;
+        top:5px;    
+    }
+    
+    hr{
+        border-top:1px dotted white !important;
+        border-bottom:0px dotted white !important;
+        width:92%;
+    }
+    
+    #project_type{
+    
+        a{
+            width:142px;
+            height:99px;
+            position:relative;
+            float:left;
+            
+            span{
+                width:100%;
+                position:absolute;
+                bottom:5px;
+                left:0px;
+                color:$normalgrey;
+                font-family: "OpenSansBoldItalic", Arial, Helvetica, sans-serif;
+                font-size:12px;
+            }
+        }
+        
+        a.social_innov{
+            background-image:url('../images/base/project_type-innov.png');
+        }
+        
+        a.cultural{
+            background-image:url('../images/base/project_type-culturel.png');
+        }
+        
+        a.social_innov:hover{
+            background-image:url('../images/base/project_type-innov-on.png');
+        }
+        
+        a.cultural:hover{
+            background-image:url('../images/base/project_type-culturel-on.png');
+        }
+        
+        a:hover span{
+            color:white;
+        }
+    }
+}
+
+
+/*---- New project style popup ----*/
+
+#new_project_style_page{
+    padding:50px 0px;
+    padding-bottom:250px;
+
+    #new_project_style_popup{
+        margin-top:10px;
+        
+        a.close-button{
+            display:none;
+            visibility:hidden;
+        }
+        
+        a:hover{
+            text-decoration:none;
+        }
+    }
+}
+
 
 /* Contenu global-------------------------------------------------------------------------------------------------- */
 
