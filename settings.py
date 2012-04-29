@@ -321,7 +321,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.18')
 DEBUG_TOOLBAR_CONFIG = {
     # useful for testing dynamicsites
-    'INTERCEPT_REDIRECTS': True,
+    'INTERCEPT_REDIRECTS': False,
 }
 
 DEBUG_TOOLBAR_PANELS = (

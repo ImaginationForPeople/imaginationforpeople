@@ -29,6 +29,7 @@ import datetime
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
 from django.db.models import Q
 from django.forms.models import modelform_factory
 from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
@@ -42,7 +43,7 @@ from django.views.generic import TemplateView
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation
+from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, Question, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
@@ -124,9 +125,12 @@ def project_sheet_show(request, slug, add_media=False):
     """
     language_code = translation.get_language()
 
+    site = Site.objects.get_current()
+        
     project_translation = get_object_or_404(I4pProjectTranslation,
                                             slug=slug,
-                                            language_code=language_code)
+                                            language_code=language_code,
+                                            project__site=site)
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
@@ -144,9 +148,16 @@ def project_sheet_show(request, slug, add_media=False):
 
     project_status_choices = OrderedDict((k, unicode(v)) 
                                          for k, v in I4pProject.STATUS_CHOICES)
+
+    project = project_translation.project
+                
+    topics = Topic.objects.filter(site_topics__site=site, language_code=language_code)
+
     project_status_choices['selected'] = project_translation.project.status
 
-    context = {'project': project_translation.project,
+    context = {
+        'topics': topics,
+        'project': project,
                'project_translation': project_translation,
                'project_themes_form': project_themes_form,
                'project_objectives_form': project_objectives_form,
@@ -194,7 +205,8 @@ def project_sheet_create_translation(request, project_slug):
 
     requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
                                                                                   language_code=requested_language_code,
-                                                                                  default_title=current_project_translation.title)
+                                                                                  default_title=current_project_translation.title,
+                                                                                  site=site)
 
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     return redirect(chlocale(url, requested_language_code))
