@@ -1,0 +1,34 @@
+{% load i18n %} 
+{% load thumbnail %} 
+ 
+
+<div id="focus-zone">
+    <div id="focus" class="center">
+       
+        <div id="focus-menu">
+            <ul class="focus-filters">
+                <li id="projects-discover"><a href="javascript:;" class="selected">{% trans 'To discover' %}</a></li>
+                <li id="projects-recents"><a href="javascript:;">{% trans 'Recent projects' %}</a></li>
+                <li id="projects-comments"><a href="javascript:;">{% trans 'Most commented' %}</a></li>
+                {# <li id="projects-help"><a href="javascript:;">{% trans "Call to action" %}</a></li> #}
+            </ul>            
+            <div class="allprojects"><a href="{% url project_sheet-list %}">{% trans 'All projects >' %}</a></div>
+        </div>
+        
+        <div id="loading">  
+            <img src="{{ STATIC_URL }}images/jquery/colorbox/loading.gif" alt="Loading..." />  
+        </div>
+
+        <ul id="projects_slide">
+         
+            <!-- AJAX ZONE -->          
+            
+        </ul>  
+        
+        <div id="focus-nav">
+            <div class="previous"><a href="javascript:;">{% trans '< Previous' %}</a></div>
+            <div class="next"><a href="javascript:;">{% trans 'Next >' %}</a></div>
+        </div>   
+       
+    </div>
+</div>

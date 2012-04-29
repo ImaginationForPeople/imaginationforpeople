@@ -140,7 +140,7 @@ class TestUtils(TestCase):
 
 
     def test_get_project_translations_from_parents(self):
-        projects = I4pProject.objects.all()
+        projects = I4pProject.on_site.all()
 
         # Get ONLY translations in french. All projects have a french
         # translation so it has to work.
@@ -303,7 +303,7 @@ class TestUtils(TestCase):
         zh_translation.delete()
 
         # The project should be gone
-        self.assertEqual(I4pProject.objects.filter(pk=project_pk).count(), 0)
+        self.assertEqual(I4pProject.on_site.filter(pk=project_pk).count(), 0)
 
 
 
@@ -374,7 +374,7 @@ class TestFilters(TestCase):
 
             self.assertTrue(members_filter.is_valid())
             filters = FilterSet([members_filter])
-            results = filters.apply_to(queryset=I4pProject.objects.all())
+            results = filters.apply_to(queryset=I4pProject.on_site.all())
             for res in results.values_list('id', flat=True):
                 self.assertTrue(res in member_case[2], "%s not in %s" % (res, member_case[2]))
 

@@ -6,13 +6,16 @@
   padding: 3px;
   padding-top: 5px;
   padding-bottom: 5px;
-  -webkit-box-shadow: 0px 0px 4px black;
   -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
-  -webkit-border-radius: 4px;
+  behavior: url(static/js/pie/PIE.htc);
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
   position: absolute;
   right: 0px;
@@ -25,9 +28,11 @@
   top: 1px;
   margin-left: 3px;
   margin-right: 4px;
-  -webkit-box-shadow: 0px 0px 4px black;
   -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
+  behavior: url(static/js/pie/PIE.htc);
 }
 
 #projectlist_sort_buttons {
@@ -102,10 +107,11 @@
 
 .filters_box {
   background-color: #0e0e0e;
-  -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
+  -webkit-border-radius: 3px;
   -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -khtml-border-radius: 3px;
   border-radius: 3px;
   margin-bottom: 10px;
 }
@@ -357,16 +363,20 @@
 }
 .catchy h1 {
   font-size: 25px;
-  -webkit-box-shadow: 0px 0px 2px #181818;
   -moz-box-shadow: 0px 0px 2px #181818;
+  -webkit-box-shadow: 0px 0px 2px #181818;
+  -o-box-shadow: 0px 0px 2px #181818;
   box-shadow: 0px 0px 2px #181818;
+  behavior: url(static/js/pie/PIE.htc);
 }
 .catchy .edito {
   font-size: 18px;
   padding-right: 20px;
-  -webkit-box-shadow: 0px 0px 2px #181818;
   -moz-box-shadow: 0px 0px 2px #181818;
+  -webkit-box-shadow: 0px 0px 2px #181818;
+  -o-box-shadow: 0px 0px 2px #181818;
   box-shadow: 0px 0px 2px #181818;
+  behavior: url(static/js/pie/PIE.htc);
   text-align: left;
 }
 
@@ -381,9 +391,11 @@
   margin-right: 15px;
   padding-bottom: 3px;
   float: right;
-  -webkit-box-shadow: 0px 0px 2px #181818;
   -moz-box-shadow: 0px 0px 2px #181818;
+  -webkit-box-shadow: 0px 0px 2px #181818;
+  -o-box-shadow: 0px 0px 2px #181818;
   box-shadow: 0px 0px 2px #181818;
+  behavior: url(static/js/pie/PIE.htc);
 }
 
 .manifesto-link:hover {
