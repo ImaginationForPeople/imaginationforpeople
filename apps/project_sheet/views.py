@@ -125,9 +125,12 @@ def project_sheet_show(request, slug, add_media=False):
     """
     language_code = translation.get_language()
 
+    site = Site.objects.get_current()
+        
     project_translation = get_object_or_404(I4pProjectTranslation,
                                             slug=slug,
-                                            language_code=language_code)
+                                            language_code=language_code,
+                                            project__site=site)
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
@@ -147,9 +150,7 @@ def project_sheet_show(request, slug, add_media=False):
                                          for k, v in I4pProject.STATUS_CHOICES)
 
     project = project_translation.project
-    
-    site = Site.objects.get_current()
-    
+                
     topics = Topic.objects.filter(site_topics__site=site, language_code=language_code)
 
     project_status_choices['selected'] = project_translation.project.status

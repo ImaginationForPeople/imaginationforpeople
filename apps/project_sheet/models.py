@@ -52,10 +52,6 @@ from apps.i4p_base.models import Location
 # Add Introspector for south: django-licenses field
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
 
-QUESTIONS = (
-    ('Q1', _('What is your name?')),
-)
-
 class ProjectReference(models.Model):
     """
     A reference, such as a book or URL, for a Project Sheet
