@@ -151,7 +151,7 @@ def project_sheet_show(request, slug, add_media=False):
 
     project = project_translation.project
                 
-    topics = Topic.objects.filter(site_topics__site=site, language_code=language_code)
+    topics = Topic.objects.filter(site_topics__site=site)
 
     project_status_choices['selected'] = project_translation.project.status
 
