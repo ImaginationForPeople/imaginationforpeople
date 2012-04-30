@@ -46,13 +46,13 @@ class I4pProjectAdmin(VersionAdmin):
         )
 
 class QuestionAdmin(nani_admin.TranslatableAdmin):
-    pass
+    list_display = ('topic', 'weight',)
 
 class TopicAdmin(nani_admin.TranslatableAdmin):
-    pass
+    list_display = ('__str__', 'all_translations')
 
-class SiteTopicAdmin(nani_admin.TranslatableAdmin):
-    pass
+class SiteTopicAdmin(VersionAdmin):
+    list_display = ('topic', 'order', 'site')
 
 class AnswerAdmin(nani_admin.TranslatableAdmin):
     pass

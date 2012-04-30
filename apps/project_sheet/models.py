@@ -177,7 +177,7 @@ class Question(TranslatableModel):
     )
     
     def __unicode__(self):
-        return self.safe_translation_getter('name', 'Content: %s' % self.pk)
+        return self.safe_translation_getter('name', str(self.pk))
             
 class Answer(TranslatableModel):
     question = models.ForeignKey(Question, related_name="answers")
