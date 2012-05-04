@@ -8,6 +8,7 @@
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
     
     <meta name="keywords" content="{% block meta_keywords %}Imagin:nation for people, i4p, social, innovation sociale{% endblock %}" /> 
     <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
@@ -82,6 +83,21 @@
             $(".social-panel .openid-form").removeClass('hidden');
         });	
         
+        
+        $('.social-login img').tipsy({html: true });
+        
+        
+      	// Text example for forms
+        $('.search input[type=text]').example('{% trans "Project search" %}');
+        
+        $('input[name=identification]').example('{% trans "Enter your login" %}');
+        $('input[name=password]').example('{% trans "Password" %}');
+        
+        $('input[name=openid_identifier]').example('{% trans "Enter your username" %}');
+        
+        $('#footer .newsletter input[type=text]').example('{% trans "Enter your email adress" %}');
+
+        
     });
         
     </script>
@@ -123,7 +139,7 @@
       
       {% if user.is_authenticated %}
       <div>
-	<a href="#" id="feedback-trigger" class="trigger right">{% trans "Feedback" %}</a>
+	<a href="#" id="feedback-trigger" class="trigger right">&nbsp;</a>
 	<div id="feedback" class="feedback-panel right">
 	  {% include 'backcap/feedback_tab.html' %}
 	</div>

@@ -66,7 +66,7 @@ class SubscribeView(View):
     Subscribe a user to the mailing list
     """
     @method_decorator(login_required)
-    def post(self, request, workgroup_slug):
+    def get(self, request, workgroup_slug):
         workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)
         user = request.user
 
@@ -91,7 +91,7 @@ class SubscribeView(View):
             except Exception, e:
                 messages.error(request, _(u"You couldn't be subscribed to this workgroup:%s" % unicode(e.message, encoding=ml.encoding)))
 
-        next_url = request.POST.get('next_url', None)
+        next_url = request.GET.get('next_url', None)
         if next_url:
             return redirect(next_url)
         else:
@@ -103,7 +103,7 @@ class UnsubscribeView(View):
     Subscribe a user to the mailing list
     """
     @method_decorator(login_required)
-    def post(self, request, workgroup_slug):
+    def get(self, request, workgroup_slug):
         workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)
         user = request.user
 
@@ -125,7 +125,7 @@ class UnsubscribeView(View):
             except Exception, e:
                 messages.error(request, _(u"You couldn't be unsubscribed from this workgroup:%s" % e.message))
 
-        next_url = request.POST.get('next_url', None)
+        next_url = request.GET.get('next_url', None)
         if next_url:
             return redirect(next_url)
         else:

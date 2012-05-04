@@ -22,6 +22,7 @@ from reversion.models import Version
 
 from django.contrib.contenttypes.models import ContentType
 from django.db import DatabaseError
+from django.contrib.sites.models import Site
 
 from tagging.models import Tag
 
@@ -34,7 +35,10 @@ def create_parent_project():
     """
     Create a parent project
     """
-    return I4pProject.objects.create()
+    project = I4pProject.objects.create()
+    site = Site.objects.get_current().id
+    project.site.add(site)
+    return project 
 
 def get_project_translation_by_slug(project_translation_slug, language_code):
     """
@@ -88,7 +92,7 @@ def create_project_translation(language_code, parent_project=None, default_title
     """
     Create a translation of a project.
     If needed, create a parent project.
-    """
+    """    
     if not parent_project:
         parent_project = create_parent_project()
 

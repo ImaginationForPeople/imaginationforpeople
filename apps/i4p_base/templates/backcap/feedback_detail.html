@@ -54,18 +54,16 @@
 {% endblock %}
 
 
-{% block content %}	
-	
-	<div class="content">        
+{% block content %}
+
+	<div class="content">
 		<div class="container_18">
-			<div class="grid_18 alpha omega">			
-			
-				<div class="block-content">  
+			<div class="grid_18 alpha omega">
+				<div class="block-content">
 
 
-                
   <div id="text">
-    <h1><a class="link" href="{% url feedback-list %}">Feedbacks</a> &raquo; {{ feedback.title|capfirst }}</h1>
+    <h1><a class="link feedback-title" href="{% url feedback-list %}">Feedbacks</a> &raquo; {{ feedback.title|capfirst }}</h1>
 
     <div class="grid_18 alpha omega">
 
@@ -159,10 +157,10 @@
 	    </strong>
 	  </p>
 	{% endif %}
-	
-	<p><strong>{% trans "Description:" %}<br /><br/></strong><div class="feedback-description"> {{ feedback.text|linebreaks }}</div></p>
+
+	<p><strong>{% trans "Description:" %}<br /><br/></strong><div class="feedback-description"> {{ feedback.text|urlize|linebreaks }}</div></p>
       </div>
-      
+
       <div class="grid_5 omega">
 	<!-- following -->
 	  <div>
@@ -201,7 +199,7 @@
 	    {% get_comment_list for feedback as feedback_comments %}
 	      {% for comment in feedback_comments %}
             {% if comment.user %}
-                <li><a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> {% trans "said:" %}<div>{{ comment.comment|linebreaks }}</div></li>
+                <li><a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> {% trans "said:" %}<div>{{ comment.comment|urlize|linebreaks }}</div></li>
             {% else %}
                 <li>{% trans "Anonymous said:" %}<div>{{ comment.comment|linebreaks }}</div></li>
             {% endif %}
@@ -228,15 +226,15 @@
             <div class="clear"></div>
         {% else %}
             <hr />
-            {% trans "You need to " %}<a id="login-open" class="open link" href="#">{% trans "Log In" %}</a>{% trans " to post a comment closed." %}   
+            {% trans "You need to " %}<a id="login-open" class="open link" href="#">{% trans "Log In" %}</a>{% trans " to post a comment." %}   
         {% endif %}
-         
+
               {% else %}
 		{% trans "Comments closed." %}
 	      {% endif %}
-	      
+
 	      <hr/>
-	      
+
 	      <p>{% trans "This issue is" %} {{ feedback.get_status_display|lower }}.
 	      <a href="{% url feedback-close feedback.id %}" class="button none"><span><span class="icon"></span>{% trans "Close issue" %}</span></a>
 	      <br /><br />

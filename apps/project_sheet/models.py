@@ -25,6 +25,8 @@ import os
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
+from django.contrib.sites.managers import CurrentSiteManager
 from django.core.mail import mail_managers
 from django.db import models
 from django.db.models.signals import post_save, post_delete
@@ -41,6 +43,7 @@ from nani.models import TranslatableModel, TranslatedFields
 import reversion
 from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
+from south.modelsinspector import add_ignored_fields
 from tagging.fields import TagField
 
 from apps.member.models import I4pProfile
@@ -110,7 +113,17 @@ class I4pProject(models.Model):
                                     )
 
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
-
+    
+    # dynamicsites
+    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), verbose_name=_("sites"))
+    objects = models.Manager()
+    on_site = CurrentSiteManager()
+    
+    add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
+    add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
+    
+    
+    
     def __unicode__(self):
         res = u"Parent project %d" % self.id
         if self.translations.all().count():
@@ -131,6 +144,54 @@ class I4pProject(models.Model):
                                                                   fallback_any=True)
 
         return project_translation.get_absolute_url()
+
+
+class Topic(TranslatableModel):
+    untranslated_name = models.CharField(_("Untranslated name"), max_length=128, default='New topic')
+    translations = TranslatedFields(
+        label = models.CharField("Label", max_length=512)
+    )
+
+    def __unicode__(self):
+        return self.untranslated_name
+
+class SiteTopic(models.Model):
+    site = models.ForeignKey(Site, related_name='site_topics')
+    topic = models.ForeignKey(Topic, related_name='site_topics')
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = (('site', 'topic'),)
+    
+    def __unicode__(self):
+        return '%s & %s' % (self.site, self.topic) 
+
+class Question(TranslatableModel):
+    """
+    A project question
+    """
+    topic = models.ForeignKey(Topic, related_name="questions")
+    weight = models.IntegerField(_("Weight"), default=0)
+    translations = TranslatedFields(
+        content = models.CharField(_("Content"), max_length=512)
+    )
+    
+    def __unicode__(self):
+        return self.safe_translation_getter('name', str(self.pk))
+            
+class Answer(TranslatableModel):
+    question = models.ForeignKey(Question, related_name="answers")
+    project = models.ForeignKey(I4pProject, related_name="answers")
+    translations = TranslatedFields(
+        content = models.TextField(_("Content"))
+    )
+    class Meta:
+        unique_together = (("question", "project"), )
+        
+    def __unicode__(self):
+        return 'Answer to: [%s]' % (self.question ,)
+
+
 
 class I4pProjectTranslation(models.Model):
     """
@@ -170,12 +231,6 @@ class I4pProjectTranslation(models.Model):
                                 )
 
     about_section = models.TextField(_("about the project"), null=True, blank=True)
-    uniqueness_section = models.TextField(_("in what ways is this project unique and creative"), null=True, blank=True)
-    value_section = models.TextField(_("what is the social value of this project"), null=True, blank=True)
-    scalability_section = models.TextField(_("what is the potential of this project to expand and develop"), null=True, blank=True)
-
-    triggering_factor_section = models.TextField(_("what was the triggering factor of this project"), null=True, blank=True)
-    business_model_section = models.TextField(_("what is the business model of the project"), null=True, blank=True)
     partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
     callto_section = models.TextField(_("Help request"), null=True, blank=True)
     
@@ -310,7 +365,7 @@ def delete_parent_if_last_translation(sender, instance, **kwargs):
 # Reversions
 VERSIONNED_FIELDS = {
     I4pProject : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
-    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'uniqueness_section', 'value_section', 'scalability_section', 'themes', 'completion_progress']
+    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'themes', 'completion_progress']
 }
 
 for model, fields in VERSIONNED_FIELDS.iteritems():

@@ -4,7 +4,7 @@ south==0.7.3
 
 django-extensions==0.6
 
-django-localeurl==1.4
+-e hg+https://bitbucket.org/carljm/django-localeurl@48e3391e31975300ef9dddb1cb9d61cabe8b045e#egg=django-localeurl
 django-countries==1.0.5
 
 django-tagging==0.3.1
@@ -37,7 +37,7 @@ django-ajax-selects==1.2.3
 django-ajaxcomments==0.2
 linaro-django-pagination==2.0.2
 
--e git://github.com/Fantomas42/emencia-django-newsletter.git@42224a9659fef5f4d28fc8ee70a085592c2ca7c4#egg=emencia.django.newsletter
+-e git://github.com/ImaginationForPeople/emencia-django-newsletter.git@master#egg=emencia.django.newsletter
 
 -e git+https://github.com/jezdez/django_compressor.git@8c7961d2eb778edce2f1e101121629b96f93aba5#egg=django_compressor
 
@@ -63,6 +63,8 @@ django-social-auth==0.6.6
 feedparser==5.0.1
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
 django-simplegravatar==0.2
+
+-e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
 # Testing tools
 coverage<3.4

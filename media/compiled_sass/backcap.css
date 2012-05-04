@@ -2,6 +2,10 @@
   min-height: 250px;
 }
 
+.feedback-title {
+  font-size: 18px;
+}
+
 #feedback-text {
   font-size: 11px;
   margin-bottom: 10px;
@@ -16,6 +20,7 @@
   -webkit-box-shadow: 0px 0px 4px black;
   -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
+  behavior: url(static/js/pie/PIE.htc);
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
@@ -36,6 +41,7 @@
   -webkit-box-shadow: 0px 0px 4px black;
   -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
+  behavior: url(static/js/pie/PIE.htc);
 }
 
 #feedback_infos {
@@ -66,6 +72,7 @@
   -webkit-box-shadow: 0px 0px 4px black;
   -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
+  behavior: url(static/js/pie/PIE.htc);
   margin-left: 2px;
   margin-right: 2px;
   left: 1px;
@@ -83,6 +90,7 @@
   -webkit-box-shadow: 0px 0px 4px black;
   -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
+  behavior: url(static/js/pie/PIE.htc);
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
@@ -109,6 +117,13 @@
   border: 1px solid #666;
   width: 20px;
   height: 20px;
+}
+.feedback-entry a {
+  color: #04ADD1;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 12px;
 }
 .feedback-entry .feedback-info .type_Q, .feedback-entry .feedback-info .type_P, .feedback-entry .feedback-info .type_I {
   padding: 3px;
@@ -207,6 +222,7 @@ div#feedback-sidebar {
   -webkit-box-shadow: 0px 0px 4px black;
   -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
+  behavior: url(static/js/pie/PIE.htc);
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
@@ -225,9 +241,16 @@ div#feedback-sidebar {
   float: right;
 }
 
+#feedback-comments-list a {
+  color: #04ADD1;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 12px;
+}
 #feedback-comments-list li div {
   margin-bottom: 15px;
-  font-size: 10px;
+  font-size: 12px;
   color: #7F7E7E;
 }
 

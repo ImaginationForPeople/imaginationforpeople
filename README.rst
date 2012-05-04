@@ -18,7 +18,7 @@ Either:
  * Fork this repository ;
  * Say hi on the mailing list:
    http://lists.imaginationforpeople.org/cgi-bin/mailman/listinfo/dev
- * Come and chat on IRC at #imaginationforpeople@irc.freenode.net
+ * Come and chat on Jabber at #ip@conference.imaginationforpeople.org
 
 Licenses
 --------

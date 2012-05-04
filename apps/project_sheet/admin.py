@@ -28,22 +28,47 @@ from .models import I4pProject, I4pProjectTranslation, Objective
 from .models import ProjectVideo, ProjectPicture, ProjectMember
 from apps.partner.models import Partner
 
-from .models import I4pProject, I4pProjectTranslation
+from .models import I4pProject, I4pProjectTranslation, Topic, Question, Answer, SiteTopic
 from .models import ProjectVideo, ProjectPicture, ProjectMember
+
 
 class PartnerInline(admin.TabularInline):
     model = Partner.projects.through
     extra = 1
 
+class TranslationInline(admin.StackedInline):
+    model = I4pProjectTranslation
+
 class I4pProjectAdmin(VersionAdmin):
     inlines = (
         PartnerInline,
+        TranslationInline,
         )
+
+class QuestionAdmin(nani_admin.TranslatableAdmin):
+    list_display = ('topic', 'weight',)
+
+class TopicAdmin(nani_admin.TranslatableAdmin):
+    list_display = ('__str__', 'all_translations')
+
+class SiteTopicAdmin(VersionAdmin):
+    list_display = ('topic', 'order', 'site')
+
+class AnswerAdmin(nani_admin.TranslatableAdmin):
+    pass
 
 class ObjectiveAdmin(nani_admin.TranslatableAdmin):
     list_display = ('__str__', 'all_translations')
 
 admin.site.register(I4pProject, I4pProjectAdmin)
+
+admin.site.register(Topic, TopicAdmin)
+
+admin.site.register(Question, QuestionAdmin)
+
+admin.site.register(Answer, AnswerAdmin)
+
+admin.site.register(SiteTopic, SiteTopicAdmin)
 
 admin.site.register(Objective, ObjectiveAdmin)
 

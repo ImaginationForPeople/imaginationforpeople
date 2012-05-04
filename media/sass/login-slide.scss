@@ -20,20 +20,21 @@ Version: 1.0
 .clearfix {height: 1%;}
 .clearfix {display: block;}
 
+
 /* Panel Tab/button */
 .tab {
   	background: url(../images/base/tab_b.png) repeat-x 0 0;
-	height: 32px;
+	height: 30px;
 	position: relative;
-    top: -2px;
-    z-index: 999;
+    top: -4px;
+    z-index: 800;
     
     ul.login {
         display: block;
         position: relative;
         clear: right;
         height: 32px;
-        right:0px;
+        right:-9px;
         width: auto;
         font-weight: bold;
         line-height: 30px;
@@ -50,24 +51,47 @@ Version: 1.0
             margin: 0;
             display: block;
             float: left;
+            position:relative;
+            top:4px;
         }
 
         li.left {
             background: url(../images/base/tab_l.png) no-repeat left 0;
+            width:28px;
         }
 
         li.right {
             background: url(../images/base/tab_r.png) no-repeat left 0;
         }
         
+        li.middle {
+            background: url(../images/base/tab_c.png) no-repeat left 0;
+            width:17px;
+        }
+        
+        li.language{
+            font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
+            font-size:14px;
+            padding:0px;
+            padding-top:2px;
+        }
+        
+        .close:hover{
+            background-color:transparent !important;
+        }
+
+        
         li {
             text-align: left;
             padding: 0 6px;
+            padding-top: 2px;
             display: block;
             float: left;
             height: 32px;
             background: url(../images/base/tab_m.png) repeat-x 0 0;
             position:relative;
+            position:relative;
+            top:4px;
             
             a {
                 color: $blue;
@@ -75,6 +99,7 @@ Version: 1.0
             
             a:hover {
                 color: white;
+                text-decoration:none;
             }
             
             .sep {
@@ -83,16 +108,18 @@ Version: 1.0
             
             .message_count{
                 position:absolute;
-                right:8px;
-                top:0px;
+                right:10px;
+                top:6px;
                 text-align:center;
                 width:20px;
+                color:white;
             }
             
             a.open, a.close {
                 height: 20px;
+                font-family: 'OpenSansBoldItalic', Arial, Helvetica, sans-serif;
                 line-height: 20px !important;
-                padding-left: 32px !important;
+                /*padding-left: 32px !important;*/
                 cursor: pointer;
                 display: block;
                 /*width: 100px;*/
@@ -101,10 +128,10 @@ Version: 1.0
                 font-size:11px;
             }
             
-            a.open {background: url(../images/base/bt_open.png) no-repeat left 0;}
-            a.close {background: url(../images/base/bt_close.png) no-repeat left 0;}
-            a:hover.open {background: url(../images/base/bt_open.png) no-repeat left -19px;}
-            a:hover.close {background: url(../images/base/bt_close.png) no-repeat left -19px;}
+            a.open {/*background: url(../images/base/bt_open.png) no-repeat left 0;*/}
+            a.close {/*background: url(../images/base/bt_close.png) no-repeat left 0;*/}
+            a:hover.open {/*background: url(../images/base/bt_open.png) no-repeat left -19px;*/}
+            a:hover.close {/*background: url(../images/base/bt_close.png) no-repeat left -19px;*/}
         }
     }
 }
@@ -120,19 +147,33 @@ Version: 1.0
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    
+    .social-login a {
+    
+    }
+
 }
 
 #panel {
 	width: 100%;
 	color: #999999;
-	background: #0f0f0f;
+	background-color: black;
 	overflow: hidden;
 	position: relative;
 	z-index: 9000;
 	display: none;
     
+    a.link{
+        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+        font-size:12px;
+        font-weight:normal;
+    }
+    
     h1 {
-        font-size: 18px;
+        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+        font-size:16px;
+        text-transform:uppercase;
+        font-style:normal;
         padding: 5px 0 10px;
         margin: 0;
         color: white;
@@ -168,19 +209,20 @@ Version: 1.0
         margin: 0 auto;
         padding-top: 15px;
         text-align: left;
-        font-size: 0.85em;
+        font-size: 9px;
         top:-2px;
         position:relative;
         
         .left, .left-logged {
-            width: 280px;
+            width: 290px;
             float: left;
-            padding: 0 15px;
+            padding: 0 10px;
         }
         
         .left{
             min-height:220px;
-            border-left: 1px solid #333;
+            position:relative;
+            /*border-left: 1px solid #333;*/
         }
         
         .left:first-child {
@@ -188,36 +230,81 @@ Version: 1.0
         }
         
         .panel_projects{
-            width:610px;
-            float: left;
+            width:460px;
+            float: right;
             padding: 0 15px;
-            border-left: 1px solid #333;
         }
         
-        form {
+        form{
             margin: 0 0 10px 0;
+            position:relative;
         }
         
-        label {
-            float: left;
-            padding-top: 8px;
-            clear: both;
-            width: 280px;
-            display: block;
+        label{
+            display:none;
+            visibility:hidden;
+        }
+        
+        label[for=id_remember_me]{
+            display:block !important;
+            visibility:visible !important;
+            font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+            font-size:10px;
+            color:$blue;
         }
         
         input[type=text], input[type=password]{
             border: 1px #1A1A1A solid;
-            background: #414141;
             margin-right: 5px;
             margin-top: 4px;
-            width: 200px;
-            color: white;
+            width: 150px;
+            color: #3d3d3d;
+            font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+            font-size:11px;
+            font-style:italic;
             height: 16px;
+            @include border-radius(4px); 
+        }
+        
+        input[type=submit], button{
+            background-image: url('../images/home/openid-button.jpg');
+            color:white;
+            font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+            font-size:11px;
+            padding:2px 6px;
+            margin:0px;
+            background-color:#303030;
+            border:0px;
+            cursor:pointer;     
+            position:relative;
+            top:-1px;
+            @include border-radius(4px);
+        }
+        
+        input[type=submit]:hover, button:hover{
+            color:black !important;
         }
         
         input:focus.field {
             background: #545454;
+        }
+        
+        #top-signin{
+            position:absolute;
+            margin:0px !important;
+            left:160px;
+            top:72px;
+        }
+        
+        .password_lost{
+            font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+            font-size:10px;
+            color:$blue;
+            margin-left:22px;
+        }
+        
+        .password_lost:hover{
+            color:white;
         }
         
         #interface_lang  {
@@ -289,8 +376,6 @@ Version: 1.0
     }
     
     .project_card {
-        @include shadow(12px, #181818);
-        background-color: black;
         border: 0 none !important;
         float: left;
         margin-bottom: 20px;

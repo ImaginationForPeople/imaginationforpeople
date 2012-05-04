@@ -1,22 +1,129 @@
-{% load i18n %}
-{% load menu_tags %}
+{% load i18n %}	
+{% load cms_tags %}	
+{% load menu_tags %}	
 
-<div class="footer">
-  <div class="container_18">
-    <div class="grid_18 alpha omega">
-     
+<div id="footer-zone-top">
+
+    <div id="footer" class="center container_18">
+        
+        <div class="grid_5 alpha"> 
+            <a href="{% url i4p-index %}">
+                {% placeholder footer-logo or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="Imagination for People" width="197" height="68" />{% endplaceholder %}
+            </a>
+            
+            <br /><br />
+            <div class="baseline">
+                {% placeholder baseline or %}A community of imaginative citizens to detect and develop socially innovative projects.{% endplaceholder %}
+            </div>
+            <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto' %}</a> | <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
+            
+            <br /><br /><br />
+            
+            <h1>{% trans 'Follow us' %}</h1>
+            <ul>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-fb.png" alt="Facebook" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Facebook</strong>" /></a> </li>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-gplus.png" alt="Google +" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Google+</strong>" /></a> </li>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-twitter.png" alt="Twitter" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Twitter</strong>" /></a> </li>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-it.png" alt="Scoop it !" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Scoopt it!</strong>" /></a> </li>
+            </ul>
+            
+            <br />
+            
+        </div>
+        
+        <div class="grid_1">&nbsp;</div>
+        
+        <div class="grid_6">
+        
+            <div class="concept">
+                <img src="{{ STATIC_URL }}images/base/projet-picto.png" alt="{% trans 'Projects' %}" width="52" height="52" />
+                <div class="concept_detail">
+                    <h1>{% trans 'Projects' %}</h1>
+                    <p>{% trans 'Explore and contribute to social projects around the world.' %}</p>
+                    <a href="{% url project_sheet-list %}">{% trans 'Projects' %}</a> | <a href="{% url project_sheet-start %}">{% trans 'Add a project' %}</a>
+                </div>
+            </div>
+            
+            <div class="concept">
+                <img src="{{ STATIC_URL }}images/base/groupes-picto.png" alt="{% trans 'Groupes' %}" width="52" height="52" />
+                <div class="concept_detail">
+                    <h1>{% trans 'Groupes' %}</h1>
+                    <p>{% trans 'Connect with a community of citizens from over 30 countries.' %}</p>
+                    <a href="{% url userena_profile_list %}">{% trans 'The community' %}</a> | <a href="{% url userena_signup %}">{% trans 'Join the community' %}</a>
+                </div>
+            </div>
+            
+            <div class="concept">
+                <img src="{{ STATIC_URL }}images/base/ressources-picto.png" alt="{% trans 'Ressources' %}" width="52" height="52" />
+                <div class="concept_detail">
+                    <h1>{% trans 'Ressources' %}</h1>
+                    <p>{% trans 'Discover the latest tools, methods and debates in the world of social innovation.' %}</p>
+                    <a href="#">{% trans 'Ressources (WIP)' %}</a>
+                </div>
+            </div>
+
+
+        
+        </div>
+        
+        <div class="grid_1">&nbsp;</div>
+        
+        <div class="grid_5 omega">
+            <p class="licences">
+            {% placeholder licences or %}<strong>Imaginationforpeople.org</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.{% endplaceholder %}
+            </p>
+            
+            <br />
+            <img src="{{ STATIC_URL }}images/base/licences-logo.png" alt="Creative Commons | AGPL" width="188" height="42" />
+            <br /><br />
+            <h1>{% trans 'Contribute' %}</h1>
+            <div class="left contrib-links">
+                <a href="/contribute/">{% trans 'Translator' %}</a><br />
+                <a href="/contribute/">{% trans 'Developer' %}</a><br />
+                <a href="/contribute/">{% trans 'Designer' %}</a><br />
+            </div>
+            
+            <div class="right contrib-links">
+                <a href="/contribute/">{% trans 'Writer' %}</a><br />
+                <a href="/contribute/">{% trans 'Seeder' %}</a><br />
+                <a href="/contribute/">{% trans 'Q&A' %}</a><br />
+            </div>
+            
+            <div class="clear"></div><br />
+
+            <h1>{% trans 'Newsletter' %}</h1>
+            <form action="#" class="newsletter">
+                <input type="submit" value="&nbsp;">
+                <input type="text" maxlength="100" name="text" id="id_text" class="example">
+            </form>
+        </div>
+        
+        <div class="clear"></div>
+        
+    </div>
     
-    <div class="social-networks">		
-        <ul>
-          <li><a href="http://www.facebook.com/imaginationforpeople.org"><img src="{{ STATIC_URL }}images/base/facebook-logo.jpg" alt="facebook" /></a></li>
-          <li><a href="http://twitter.com/ipvoices"><img src="{{ STATIC_URL }}images/base/twitter-logo.jpg"alt="twitter" /></a></li>
-        </ul>
+</div>
+
+
+<div id="footer-zone-bottom">
+
+    <div id="footer-bottom" class="center">
+       <center> 
+           <ul>
+                {% comment %}
+                <li><a href="/wiki/FAQ{{ LANGUAGE_CODE }}">{% trans "Faq" %}</a></li>
+                <li><a href="/wiki/RAQ{{ LANGUAGE_CODE }}">{% trans "Raq" %}</a></li>
+                <li><a href="#">{% trans "Partners" %}</a></li>
+                <li><a href="/wiki/LegalNotice{{ LANGUAGE_CODE }}">{% trans "Legal notice" %}</a></li>
+                <li><a href="/wiki/TermsOfUse{{ LANGUAGE_CODE }}">{% trans "Terms of use" %}</a></li>
+                <li><a href="{% page_url 'manifesto' %}">{% trans "Manifesto" %}</a></li>
+                <li><a href="#">{% trans "Contact" %}</a></li>
+                {% endcomment %}
+                
+                {% show_menu_below_id "info" %}
+                
+            </ul>
+        </center>
     </div>
-      
-     <ul>
-       {% show_menu_below_id "info" %}
-     </ul>
-          
-    </div>
-  </div>
+    
 </div>
