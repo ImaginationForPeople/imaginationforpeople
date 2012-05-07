@@ -177,7 +177,7 @@ class Question(TranslatableModel):
     )
     
     def __unicode__(self):
-        return self.safe_translation_getter('name', str(self.pk))
+        return self.safe_translation_getter('content', str(self.pk))
             
 class Answer(TranslatableModel):
     question = models.ForeignKey(Question, related_name="answers")
@@ -189,9 +189,10 @@ class Answer(TranslatableModel):
         unique_together = (("question", "project"), )
         
     def __unicode__(self):
-        return 'Answer to: [%s]' % (self.question ,)
+        return 'Answer to: [%s]' % (self.question,)
 
-
+    def get_content():
+        return self.safe_translation_getter('content')
 
 class I4pProjectTranslation(models.Model):
     """

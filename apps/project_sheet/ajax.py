@@ -34,18 +34,16 @@ from honeypot.decorators import check_honeypot
 
 from honeypot.decorators import check_honeypot
 
-from .models import I4pProjectTranslation
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm
+from dajax.core import Dajax
+from dajaxice.decorators import dajaxice_register
+
+from .models import I4pProjectTranslation, Answer
+from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm, AnswerForm
 from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
-    'project_uniqueness_txt': 'uniqueness_section',
-    'project_value_txt': 'value_section',
-    'project_scalability_txt': 'scalability_section',
-    'project_triggering_factor_txt': 'triggering_factor_section',
     'project_partners_txt': 'partners_section',
-    'project_business_model_txt': 'business_model_section',
     'project_translation_progress' : 'completion_progress',
     }
 
@@ -88,6 +86,12 @@ def project_textfield_load(request, project_slug=None):
         resp = getattr(project_translation, TEXTFIELD_MAPPINGS[section]) or ''
 
     return HttpResponse(resp)
+
+@dajaxice_register
+def answer_textfield_load(request, form):
+    dajax = Dajax()
+    form = AnswerForm(form)
+    
 
 
 @check_honeypot(field_name='description')
