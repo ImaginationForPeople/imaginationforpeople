@@ -12,13 +12,9 @@ PROJECT_AUTHORIZED_FIELDS = "|".join([
     'title',
     'baseline',
     'about_section',
-    'uniqueness_section',
-    'value_section',
-    'scalability_section',
-    'triggering_factor_section',
-    'business_model_section',
     'partners_section',
-    'callto_section'
+    'callto_section',
+    'answer_content'
 ])
 
 urlpatterns = patterns('',

@@ -22,12 +22,13 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms.models import modelformset_factory
 
-from ajax_select.fields import AutoCompleteSelectField
+from nani.forms import TranslatableModelForm
 
+from ajax_select.fields import AutoCompleteSelectField
 
 from apps.i4p_base.models import Location
 
-from .models import I4pProject, I4pProjectTranslation, ProjectReference, ProjectMember
+from .models import I4pProject, I4pProjectTranslation, ProjectReference, ProjectMember, Answer
 
 class I4pProjectThemesForm(forms.ModelForm):
     """
@@ -112,3 +113,8 @@ ProjectMemberFormSet = modelformset_factory(ProjectMember,
                                             can_delete=True, 
                                             fields=('role', 'comment')
                                             )
+
+class AnswerForm(TranslatableModelForm):
+    class Meta:
+        model = Answer
+        fields = ('content',)
