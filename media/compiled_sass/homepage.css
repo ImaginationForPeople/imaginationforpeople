@@ -111,12 +111,14 @@ hr {
   text-transform: uppercase;
 }
 #focus-zone #focus #loading {
-  width: 100%;
+  width: 32px;
+  height: 32px;
   position: absolute;
   text-align: center;
   visibility: hidden;
   z-index: 999;
   top: 170px;
+  left: 460px;
 }
 #focus-zone #focus #focus-nav {
   height: 37px;
@@ -252,6 +254,12 @@ hr {
   margin: 15px 0px;
   margin-top: 5px;
   display: block;
+}
+#content-zone #content #right_col span a {
+  color: #cdcdcd;
+}
+#content-zone #content #right_col span a:hover {
+  color: white;
 }
 #content-zone #content #right_col .homebox {
   margin: 15px 0px;
