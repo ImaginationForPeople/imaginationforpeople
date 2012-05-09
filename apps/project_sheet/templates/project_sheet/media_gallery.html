@@ -55,8 +55,10 @@
 				<div id="media_buttons">
 					<a href="{% url project_sheet-instance-add-media project_translation.slug %}" class="button nomargin"><img title="{% trans 'Add'|capfirst %}" src="{{ STATIC_URL }}images/base/add.png" alt="+" /></a>
 					<a href="#" id="media_metadata_button" class="button nomargin"><img title="{% trans 'Metadata - Click to edit'|capfirst %}" src="{{ STATIC_URL }}images/base/infos.png" alt="?" /></a>
-                    {% if user.is_authenticated %}
-					<input id='del_media' type="image" class="button redbutton nomargin" title="{% trans 'Delete'|capfirst %}" src="{{ STATIC_URL }}images/base/trash.png" alt="X" />
+					{% if user.is_authenticated %}
+                    <input id='del_media' type="image" class="button redbutton nomargin" title="{% trans 'Delete'|capfirst %}" src="{{ STATIC_URL }}images/base/trash.png" alt="X" />
+                    {% else %}
+					<a href="#" id="del_media_inactive" class="button nomargin" style="background-color:#c4c4c4;"><img title="{% trans 'Delete'|capfirst %}" src="{{ STATIC_URL }}images/base/trash.png" alt="X" /></a>
                     {% endif %}
 				</div>
 				
