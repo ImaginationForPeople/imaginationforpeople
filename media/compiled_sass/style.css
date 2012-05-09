@@ -276,16 +276,68 @@ ul li {
   top: 94px;
   margin-right: 210px;
 }
-#header-zone #header #menu a {
+#header-zone #header #menu li {
+  padding: 13px 5px;
+  margin-left: 4px;
+}
+#header-zone #header #menu li a {
   font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   color: #c1c1c1;
-  margin-left: 15px;
 }
-#header-zone #header #menu a:hover {
+#header-zone #header #menu li a:hover {
   text-decoration: none;
   color: white;
+}
+
+/*---- Projects hover menu ----*/
+#projects-hover-menu-zone {
+  background-color: #0f0f0f;
+  width: 100%;
+  position: absolute;
+  z-index: 50;
+}
+#projects-hover-menu-zone #projects-hover-menu {
+  color: white;
+  margin: 20px auto;
+}
+#projects-hover-menu-zone #projects-hover-menu a {
+  color: white;
+}
+#projects-hover-menu-zone #projects-hover-menu #filters_links ul li {
+  display: list-item;
+  padding: 4px 0px;
+}
+#projects-hover-menu-zone #projects-hover-menu #filters_links ul li a {
+  font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: white;
+  padding: 3px;
+}
+#projects-hover-menu-zone #projects-hover-menu #filters_links ul li a:hover {
+  color: black;
+  background-color: white;
+}
+#projects-hover-menu-zone #projects-hover-menu h2 {
+  font-family: "OpenSansBold", Arial, Helvetica, sans-serif !important;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 4px 0px;
+}
+#projects-hover-menu-zone #projects-hover-menu hr {
+  margin: 3px 0px;
+}
+#projects-hover-menu-zone #projects-hover-menu ul.projects_lists li {
+  display: list-item;
+  padding: 4px 0px;
+}
+#projects-hover-menu-zone #projects-hover-menu ul.projects_lists li:hover {
+  background-color: white;
+}
+#projects-hover-menu-zone #projects-hover-menu ul.projects_lists li:hover a {
+  color: black;
 }
 
 /*---- Search box ----*/

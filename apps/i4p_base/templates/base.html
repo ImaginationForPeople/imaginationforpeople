@@ -109,6 +109,48 @@
         $("#new_project_style_popup_zone #new_project_style_popup .close-button").click(function () {
             $("#new_project_style_popup_zone").addClass("hidden");
         });	
+        
+        
+        // Opening of "projects hover menu"
+        $("#header #projects_list_button").hover(function(){
+            $(this).css('background-color', '#0f0f0f');
+            $('#projects-hover-menu-zone').stop().animate({height : '200'}, "fast");
+        }).mouseleave(function(){
+  
+            var hover_on = false;
+            var hover_count = 0;
+
+            $("#projects-hover-menu-zone").mouseover(function() {
+                hover_on = true;
+            });
+
+            $("#projects-hover-menu-zone").mouseout(function() {
+                hover_on = false;
+                setTimeout(myMouseOut, hover_count);
+            });
+            
+            $("#header #projects_list_button").mouseover(function(){
+                hover_on = true;
+            });
+            
+            $("#header #projects_list_button").mouseout(function(){
+                hover_on = false;
+                setTimeout(myMouseOut, hover_count);
+            });
+
+            function myMouseOut() {
+                if (hover_on) {
+                
+                }else{
+                    $(this).parent('li').css('background-color', 'transparent');
+                    $('#projects-hover-menu-zone').animate({height : '0'}, 100);
+                }
+            }
+
+
+
+   
+        });
 
         
     });
