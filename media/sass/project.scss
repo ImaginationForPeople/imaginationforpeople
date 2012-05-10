@@ -706,10 +706,13 @@ form{
         top:10px;
         z-index:1500;
         
+        #del_media_inactive{
+            background-color:#c4c4c4;
+        }
+        
         #del_media_inactive:hover{
             background-image:none !important;
             border:1px solid #BDBDBD !important;
-            cursor:default !important;
         }
     }
 }

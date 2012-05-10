@@ -614,10 +614,12 @@ form {
   top: 10px;
   z-index: 1500;
 }
+#project_photo_gallery #media_buttons #del_media_inactive {
+  background-color: #c4c4c4;
+}
 #project_photo_gallery #media_buttons #del_media_inactive:hover {
   background-image: none !important;
   border: 1px solid #BDBDBD !important;
-  cursor: default !important;
 }
 
 .metadata {
