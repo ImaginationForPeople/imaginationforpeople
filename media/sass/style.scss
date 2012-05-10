@@ -291,6 +291,7 @@ ul{
             ul li{            
                 display:list-item;
                 padding:4px 0px;
+                margin:2px 0px;
             
                 a{
                     font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
@@ -304,6 +305,11 @@ ul{
                     color:black;
                     background-color:white;
                 } 
+            }
+            
+            ul li#allprojects_button a{
+                background-image:url('../images/base/allprojects_button-bg.jpg');
+                @include border-radius(4px); 
             }
         }
     
@@ -323,6 +329,7 @@ ul{
             li{
                 display:list-item;
                 padding:4px 0px;
+                font-size:11px;
             }
             
             li:hover{
@@ -825,6 +832,10 @@ ul{
         
             font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
             font-size:12px;
+        }
+        
+        .contrib-links.right{
+            margin-right:60px;
         }
         
         .contrib-links a{

@@ -29,8 +29,8 @@
         
             <div class="grid_6 alpha" id="filters_links">
                 <ul>
-                    <li><a href="#">{% trans 'All the projects' %}</a></li>
-                    <li><a href="#">{% trans 'Add a project' %}</a></li>
+                    <li id="allprojects_button"><a href="#">{% trans 'All the projects' %}</a></li>
+                    <li><a href="{% url project_sheet-start %}">{% trans 'Add a project' %}</a></li>
                     <li><a href="#">{% trans 'All the tags' %}</a></li>
                     <li><a href="#">{% trans 'Grid view' %}</a></li>
                     <li><a href="#">{% trans 'Map view' %}</a></li>

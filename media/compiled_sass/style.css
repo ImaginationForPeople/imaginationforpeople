@@ -308,6 +308,7 @@ ul li {
 #projects-hover-menu-zone #projects-hover-menu #filters_links ul li {
   display: list-item;
   padding: 4px 0px;
+  margin: 2px 0px;
 }
 #projects-hover-menu-zone #projects-hover-menu #filters_links ul li a {
   font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
@@ -319,6 +320,15 @@ ul li {
 #projects-hover-menu-zone #projects-hover-menu #filters_links ul li a:hover {
   color: black;
   background-color: white;
+}
+#projects-hover-menu-zone #projects-hover-menu #filters_links ul li#allprojects_button a {
+  background-image: url("../images/base/allprojects_button-bg.jpg");
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
 }
 #projects-hover-menu-zone #projects-hover-menu h2 {
   font-family: "OpenSansBold", Arial, Helvetica, sans-serif !important;
@@ -332,6 +342,7 @@ ul li {
 #projects-hover-menu-zone #projects-hover-menu ul.projects_lists li {
   display: list-item;
   padding: 4px 0px;
+  font-size: 11px;
 }
 #projects-hover-menu-zone #projects-hover-menu ul.projects_lists li:hover {
   background-color: white;
@@ -735,6 +746,9 @@ ul li {
 #footer-zone-top #footer .licences, #footer-zone-top #footer .licenses p {
   font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
   font-size: 12px;
+}
+#footer-zone-top #footer .contrib-links.right {
+  margin-right: 60px;
 }
 #footer-zone-top #footer .contrib-links a {
   font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
