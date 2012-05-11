@@ -72,7 +72,8 @@ class Topic(TranslatableModel):
     """
     untranslated_name = models.CharField(_("Untranslated name"), max_length=128, default='New topic')
     slug = AutoSlugField(populate_from="untranslated_name",
-                         always_update=True)
+                         always_update=True,
+                         unique=True)
     translations = TranslatedFields(
         label = models.CharField("Label", max_length=512)
     )

@@ -26,18 +26,23 @@ from django.contrib.sites.models import Site
 
 from tagging.models import Tag
 
-from .models import I4pProject, I4pProjectTranslation, VERSIONNED_FIELDS
+from .models import I4pProject, I4pProjectTranslation, SiteTopic, VERSIONNED_FIELDS
 from .filters import BestOfFilterForm, NameBaselineFilterForm, TopicFilterForm
 from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectLocationFilterForm
 from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilterForm
 
-def create_parent_project():
+def create_parent_project(topic_slug):
     """
     Create a parent project
     """
     project = I4pProject.objects.create()
+
     site = Site.objects.get_current().id
     project.site.add(site)
+
+    topic = SiteTopic.objects.get(topic__slug=topic_slug, site=site)
+    project.topics.add(topic)
+
     return project 
 
 def get_project_translation_by_slug(project_translation_slug, language_code):
@@ -88,14 +93,10 @@ def get_project_translations_from_parents(parents_qs, language_code, fallback_la
             ]
 
 
-def create_project_translation(language_code, parent_project=None, default_title=None):
+def create_project_translation(language_code, parent_project, default_title=None):
     """
     Create a translation of a project.
-    If needed, create a parent project.
-    """    
-    if not parent_project:
-        parent_project = create_parent_project()
-
+    """
     try:
         I4pProjectTranslation.objects.get(project=parent_project,
                                           language_code=language_code)
@@ -114,7 +115,7 @@ def create_project_translation(language_code, parent_project=None, default_title
     return project_translation
 
 
-def get_or_create_project_translation_by_slug(project_translation_slug, language_code, parent_project=None, default_title=None):
+def get_or_create_project_translation_by_slug(project_translation_slug, language_code, parent_project, default_title=None):
     """
     Create a project translation for the given language_code with the
     given slug.
