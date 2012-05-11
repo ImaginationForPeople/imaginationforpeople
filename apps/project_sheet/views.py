@@ -140,7 +140,7 @@ class ProjectTopicSelectView(TemplateView):
     """
     Before starting a project, one needs to pick a topic
     """
-    template_name = 'project_sheet/topic_select.html'
+    template_name = 'project_sheet/topic_select_fragment.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProjectTopicSelectView, self).get_context_data(**kwargs)

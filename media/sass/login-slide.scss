@@ -165,7 +165,7 @@ Version: 1.0
 	overflow: hidden;
 	position: relative;
 	z-index: 9000;
-	display: none;
+    height:0px;
     
     a.link{
         font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
@@ -267,6 +267,7 @@ Version: 1.0
             font-size:11px;
             font-style:italic;
             height: 16px;
+            padding-left:4px;
             @include border-radius(4px); 
         }
         

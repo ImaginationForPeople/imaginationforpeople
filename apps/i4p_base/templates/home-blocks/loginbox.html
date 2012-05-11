@@ -20,17 +20,6 @@
             </center>   
         </div>
         
-        <div class="loginpanel panel2">
-            <a class="close-button"><img src="{{ STATIC_URL }}images/home/close.png" alt="{% trans 'close' %}" width="11" height="11" /></a>
-            <br />
-            <form action="{% url socialauth_begin 'openid' %}" method="POST" class="openid-form">
-                <img src="{{ STATIC_URL }}images/home/openid-logo.jpg" alt="OpenID" width="79" height="29" />
-                <br />
-                {% csrf_token %}
-                <input type="text" name="openid_identifier" id="openid_identifier" />&nbsp;
-                <button>{% trans 'Login' %}</button>
-            </form> 
-        </div>
         
         <div class="loginpanel panel3">
             <a class="close-button"><img src="{{ STATIC_URL }}images/home/close.png" alt="{% trans 'close' %}" width="11" height="11" /></a>
@@ -56,6 +45,21 @@
 
             </form>
         </div>
+        
+        
+        <div class="loginpanel panel2">
+            <a class="close-button"><img src="{{ STATIC_URL }}images/home/close.png" alt="{% trans 'close' %}" width="11" height="11" /></a>
+            <br />
+            <form action="{% url socialauth_begin 'openid' %}" method="POST" class="openid-form">
+                <img src="{{ STATIC_URL }}images/home/openid-logo.jpg" alt="OpenID" width="79" height="29" />
+                <br />
+                {% csrf_token %}
+                <input type="text" name="openid_identifier" id="openid_identifier" />&nbsp;
+                <button>{% trans 'Login' %}</button>
+            </form> 
+        </div>
+        
+        
     </div>
     
 </div>            

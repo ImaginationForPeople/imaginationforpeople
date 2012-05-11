@@ -142,8 +142,8 @@ hr{
             text-align: center; 
             visibility: hidden;
             z-index:999;
-            top:170px;
-            left:460px;
+            top:160px;
+            left:470px;
         }        
 
         #focus-nav{
@@ -344,7 +344,7 @@ hr{
                     border:1px solid #343434;
                     margin: 3px 0px;
                     width:98%;
-                    font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+                    font-family: "OpenSans", Arial, Helvetica, sans-serif;
                     font-size:10px;
                     padding:2px;
                     @include border-radius(4px); 
@@ -494,7 +494,9 @@ hr{
                     margin:0px;
 
                     li{
+                        float:left;
                         position:relative;
+                        margin-right:3px;
                     
                         .message_count{
                             color: white;
