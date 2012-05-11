@@ -640,7 +640,6 @@ data: '{{ project_status_choices|safe }}',
 
 	<!-- PROJECT DETAILS  (Answers to Questions) -->
 	{% for topic in topics %}
-	<h1>Topic Label: {{topic.label}}</h1>
 	<div class="project_details">
 	        {% for q in topic.questions.all %}
     	        {% if answer_form %}

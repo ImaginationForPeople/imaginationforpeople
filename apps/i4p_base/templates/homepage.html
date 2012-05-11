@@ -18,8 +18,6 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider.js" ></script>
@@ -105,13 +103,6 @@
                 $(this).find(".project_title_cover").fadeOut()
             }).mouseleave(function(){
                 $(this).find(".project_title_cover").fadeIn(250)
-            });
-            
-            //Show new project style popup when user click on add a project
-            $('a.addproject_button').click(function(){
-                var url = $(this).attr('href');
-                $("#new_project_style_popup_zone").removeClass("hidden");
-                return false;
             });
         }; 
         

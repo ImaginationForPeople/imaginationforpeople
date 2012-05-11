@@ -18,7 +18,8 @@ PROJECT_AUTHORIZED_FIELDS = "|".join([
 ])
 
 urlpatterns = patterns('',
-    url(r'^add/$', direct_to_template, {'template' : 'project_sheet/project_sheet.html'}, name='project_sheet-start'),
+    url(r'^add/$', views.ProjectTopicSelectView.as_view(), name='project_sheet-start'),
+    url(r'^add/(?P<topic_slug>[-\w]+)/$', views.ProjectStartView.as_view(), name='project_sheet-start'),
     url(r'^list/$', views.project_sheet_list, name='project_sheet-list'),
     url(r'^recent-changes/$', views.ProjectRecentChangesView.as_view(), name='project_sheet-recent-changes'),
 

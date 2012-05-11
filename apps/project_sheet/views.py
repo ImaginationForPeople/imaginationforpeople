@@ -43,7 +43,7 @@ from django.views.generic import TemplateView
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, Question, Topic
+from .models import I4pProjectTranslation, ProjectPicture, ProjectVideo, Question, SiteTopic, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
@@ -118,6 +118,40 @@ def project_sheet_list(request):
                        allow_empty=True,
                        template_object_name='project_translation',
                        extra_context=extra_context)
+
+class ProjectStartView(TemplateView):
+    """
+    When one starts a project, after having selected a topic
+    """
+    template_name = 'project_sheet/project_sheet.html'
+
+    def get_context_data(self, topic_slug, **kwargs):
+        context = super(ProjectStartView, self).get_context_data(**kwargs)
+
+        topic = get_object_or_404(Topic,
+                                  slug=topic_slug)
+
+        context['topics'] = [topic]
+
+        return context
+
+
+class ProjectTopicSelectView(TemplateView):
+    """
+    Before starting a project, one needs to pick a topic
+    """
+    template_name = 'project_sheet/topic_select.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectTopicSelectView, self).get_context_data(**kwargs)
+
+        site = Site.objects.get_current()
+        site_topics = SiteTopic.objects.filter(site=site)
+
+        context['site_topics'] = site_topics
+
+        return context
+
 
 def project_sheet_show(request, slug, add_media=False):
     """

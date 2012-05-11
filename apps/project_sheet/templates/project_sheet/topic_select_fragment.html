@@ -11,8 +11,12 @@
         <h1>{% trans 'Select your type of project' %}</h1>
         <hr />
         <div id="project_type">
-            <a href="#" class="social_innov"><span>{% trans 'social innovation' %}</span></a>
-            <a href="#" class="cultural"><span>{% trans 'cultural projects' %}</span></a>
+	  {% for site_topic in site_topics %}
+            <a href="{% url project_sheet-start site_topic.topic.slug %}">
+	      <img src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ site_topic.topic.slug }}.png" />
+	      <span>{{ site_topic.topic.label }}</span>
+	    </a>
+	  {% endfor %}
         </div>
     </center>
 </div>

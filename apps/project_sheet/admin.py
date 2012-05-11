@@ -19,18 +19,16 @@
 Django Admin for a Project Sheet
 """
 from django.contrib import admin
-from nani import admin as nani_admin
 
+from nani import admin as nani_admin
 from oembed_works.models import StoredOEmbedResponse
 from reversion.admin import VersionAdmin
 
-from .models import I4pProject, I4pProjectTranslation, Objective
-from .models import ProjectVideo, ProjectPicture, ProjectMember
 from apps.partner.models import Partner
 
-from .models import I4pProject, I4pProjectTranslation, Topic, Question, Answer, SiteTopic
+from .models import I4pProject, I4pProjectTranslation, Objective
 from .models import ProjectVideo, ProjectPicture, ProjectMember
-
+from .models import Topic, Question, Answer, SiteTopic
 
 class PartnerInline(admin.TabularInline):
     model = Partner.projects.through

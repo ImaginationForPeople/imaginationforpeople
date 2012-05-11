@@ -42,6 +42,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
     {% endcompress %}
 
 
@@ -75,7 +76,7 @@
           var more = $('#feedback-tab textarea');
           more.hide();
           $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
-    
+
       
       	// Switch OpenID button to OpenID form in signin zone on click
         $(".social-panel a.openid-button").click(function () {
@@ -96,14 +97,14 @@
         $('input[name=openid_identifier]').example('{% trans "Enter your username" %}');
         
         $('#footer .newsletter input[type=text]').example('{% trans "Enter your email adress" %}');
-        
-        //Show new project style popup when user click on add a project
-        $('a.addproject_button').click(function(){
-            var url = $(this).attr('href');
-            $("#new_project_style_popup_zone").removeClass("hidden");
-            return false;
-        });
-        
+
+          //Show new project style popup when user click on add a project
+          $('a.addproject_button').click(function(){
+              var url = $(this).attr('href');
+              $("#new_project_style_popup_zone").removeClass("hidden");
+              return false;
+           });
+
         
         // Close button for new project style popup
         $("#new_project_style_popup_zone #new_project_style_popup .close-button").click(function () {
@@ -148,7 +149,6 @@
 
       {% block newproject_popup %} 
           <div id="new_project_style_popup_zone" class="hidden">
-              {% include "newproject/newproject_popup.html" %} 
           </div>
       {% endblock %}      
       
