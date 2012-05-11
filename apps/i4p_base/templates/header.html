@@ -11,7 +11,7 @@
             
             <ul id="menu">
                 <li><a href="http://alpha.imaginationforpeople.org/wakka.php?wiki=vAboutUs{{ LANGUAGE_CODE }}" rel="noindex, nofollow">{% trans "About us" %}</a></li>
-                <li><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
+                <li id="projects_list_button"><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
                 <li><a class="addproject_button" href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
                 <li><a href="/workgroup/">{% trans 'Workgroups' %}</a></li>
                 <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
@@ -21,5 +21,60 @@
             {% include "search.html" %}
             <div class="clear"></div>
 
+        </div>
+    </div>
+    
+    <div id="projects-hover-menu-zone" style="height:0px; overflow:hidden;">
+        <div id="projects-hover-menu" class="center container_18">
+        
+            <div class="grid_6 alpha" id="filters_links">
+                <ul>
+                    <li id="allprojects_button"><a href="#">{% trans 'All the projects' %}</a></li>
+                    <li><a href="{% url project_sheet-start %}">{% trans 'Add a project' %}</a></li>
+                    <li><a href="#">{% trans 'All the tags' %}</a></li>
+                    <li><a href="#">{% trans 'Grid view' %}</a></li>
+                    <li><a href="#">{% trans 'Map view' %}</a></li>
+                    <li><a href="#">{% trans 'My favorites' %}</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_4">
+                <h2>Découvrir des projets</h2>
+                <hr />
+                <ul class="projects_lists">
+                    <li><a href="#">Blabla</a></li>
+                    <li><a href="#">ploshad revolutsii kitai gorod kurskaya bulvar</a></li>
+                    <li><a href="#">Blublu</a></li>
+                    <li><a href="#">Un projet avec un très très long titre</a></li>
+                    <li><a href="#">Un titre plus court</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_4">
+                <h2>Découvrir des projets</h2>
+                <hr />
+                <ul class="projects_lists">
+                    <li><a href="#">Blabla</a></li>
+                    <li><a href="#">ploshad gorod kurskaya</a></li>
+                    <li><a href="#">Un projet avec un très très long titre</a></li>
+                    <li><a href="#">Un titre plus court</a></li>
+                    <li><a href="#">Coin</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_4 omega">
+                <h2>Découvrir des projets</h2>
+                <hr />
+                <ul class="projects_lists">
+                    <li><a href="#">ploshad revolutsii kitai gorod kurskaya bulvar</a></li>
+                    <li><a href="#">Blublu</a></li>
+                    <li><a href="#">Blabla</a></li>
+                    <li><a href="#">Un projet avec un long titre</a></li>
+                    <li><a href="#">Un titre court</a></li>
+                </ul>
+            </div>
+            
+            <div class="clear"></div>
+        
         </div>
     </div>

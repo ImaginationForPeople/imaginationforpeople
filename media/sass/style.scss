@@ -247,22 +247,100 @@ ul{
             position:relative;
             float:right;
             top:94px; 
-            margin-right:210px;            
+            margin-right:210px;  
 
-            a{
-                font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
-                font-size:15px;
-                text-transform:uppercase;
-                color:$greymenu;
-                margin-left: 15px;
-            }  
+            li{
+                padding:13px 5px;
+                margin-left: 4px;
 
-            a:hover{
-                text-decoration:none;
-                color:white;
+                a{
+                    font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
+                    font-size:15px;
+                    text-transform:uppercase;
+                    color:$greymenu;
+                }  
+
+                a:hover{
+                    text-decoration:none;
+                    color:white;
+                }  
             }            
         }
     }
+}
+
+
+/*---- Projects hover menu ----*/
+
+#projects-hover-menu-zone{
+    background-color:#0f0f0f;
+    width:100%;
+    position:absolute;
+    z-index:50;
+
+    #projects-hover-menu{
+        color:white;
+        margin:20px auto;
+        
+        a{
+            color:white;
+        }
+
+        #filters_links{
+
+            ul li{            
+                display:list-item;
+                padding:4px 0px;
+                margin:2px 0px;
+            
+                a{
+                    font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
+                    font-size:12px;
+                    text-transform:uppercase;
+                    color:white;
+                    padding:3px;
+                }
+                
+                a:hover{
+                    color:black;
+                    background-color:white;
+                } 
+            }
+            
+            ul li#allprojects_button a{
+                background-image:url('../images/base/allprojects_button-bg.jpg');
+                @include border-radius(4px); 
+            }
+        }
+    
+       h2{
+            font-family: "OpenSansBold", Arial, Helvetica, sans-serif !important;
+            font-size:12px;
+            text-transform:uppercase;
+            margin:4px 0px;
+        }
+        
+        hr{
+            margin:3px 0px;
+        }  
+        
+        ul.projects_lists{
+            
+            li{
+                display:list-item;
+                padding:4px 0px;
+                font-size:11px;
+            }
+            
+            li:hover{
+                background-color:white;
+                
+                a{
+                    color:black;
+                }
+            }
+        }  
+    }    
 }
 
 
@@ -276,7 +354,6 @@ ul{
 
     input[type="text"] {
         font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
-        font-style:italic;
         background-color: transparent;
         border: 0px solid #646464;
         color: #7F7E7E;
@@ -756,6 +833,10 @@ ul{
             font-size:12px;
         }
         
+        .contrib-links.right{
+            margin-right:60px;
+        }
+        
         .contrib-links a{
             font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
             font-size:12px;
@@ -774,7 +855,6 @@ ul{
 
             input[type="text"] {
                 font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
-                font-style:italic;
                 background-color: transparent;
                 border: 0px solid #646464;
                 color: #7F7E7E;
