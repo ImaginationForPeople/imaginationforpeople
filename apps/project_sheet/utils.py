@@ -27,9 +27,9 @@ from django.contrib.sites.models import Site
 from tagging.models import Tag
 
 from .models import I4pProject, I4pProjectTranslation, VERSIONNED_FIELDS
-from .filters import BestOfFilter, NameBaselineFilter
-from .filters import ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter
-from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilter
+from .filters import BestOfFilterForm, NameBaselineFilterForm, TopicFilterForm
+from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectLocationFilterForm
+from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilterForm
 
 def create_parent_project():
     """
@@ -163,14 +163,15 @@ def build_filters_and_context(request_data):
     """
 
     filter_forms = {
+        'topic_filter' : TopicFilterForm(request_data),
         'themes_filter' : ThemesFilterForm(request_data),
-        'location_filter' : ProjectLocationFilter(request_data),
-        'best_of_filter' : BestOfFilter(request_data),
-        'status_filter' : ProjectStatusFilter(request_data),
+        'location_filter' : ProjectLocationFilterForm(request_data),
+        'best_of_filter' : BestOfFilterForm(request_data),
+        'status_filter' : ProjectStatusFilterForm(request_data),
         'members_filter' : WithMembersFilterForm(request_data),
-        'progress_filter' : ProjectProgressFilter(request_data),
-        'project_sheet_search_form' : NameBaselineFilter(request_data),
-        'objective_filter' : ProjectObjectiveFilter(request_data)
+        'progress_filter' : ProjectProgressFilterForm(request_data),
+        'project_sheet_search_form' : NameBaselineFilterForm(request_data),
+        'objective_filter' : ProjectObjectiveFilterForm(request_data)
     }
 
     project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
