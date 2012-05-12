@@ -43,7 +43,7 @@ from django.views.generic import TemplateView
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, Question, Topic
+from .models import Answer, ProjectPicture, ProjectVideo, I4pProjectTranslation, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
@@ -150,8 +150,14 @@ def project_sheet_show(request, slug, add_media=False):
                                          for k, v in I4pProject.STATUS_CHOICES)
 
     project = project_translation.project
-                
-    topics = Topic.objects.filter(site_topics__site=site)
+    topics = []
+
+    for topic in Topic.objects.filter(site_topics__site=site):
+        questions = []
+        for question in topic.questions.all():
+            answers = Answer.objects.filter(project=project, question=question)
+            questions.append([question, answers and answers[0] or None])
+        topics.append([topic, questions])
 
     project_status_choices['selected'] = project_translation.project.status
 
@@ -192,6 +198,7 @@ def project_sheet_create_translation(request, project_slug):
     Given a language and a slug, create a translation for a new language
     """
     current_language_code = translation.get_language()
+    site = Site.objects.get_current()
 
     requested_language_code = request.POST.get("requested_language", None)
     if None:

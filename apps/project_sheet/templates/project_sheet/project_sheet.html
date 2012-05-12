@@ -639,10 +639,10 @@ data: '{{ project_status_choices|safe }}',
 	
 
 	<!-- PROJECT DETAILS  (Answers to Questions) -->
-	{% for topic in topics %}
+	{% for topic, questions in topics %}
 	<h1>Topic Label: {{topic.label}}</h1>
 	<div class="project_details">
-	        {% for q in topic.questions.all %}
+	        {% for q, a in questions %}
     	        {% if answer_form %}
                 	<!-- PARAGRAPH - edit mode -->
                 	<div id="question-{{q.id}}" class="project_details_title_edit">
@@ -663,11 +663,11 @@ data: '{{ project_status_choices|safe }}',
                 			<h2>{{ q.content|capfirst }}</h2>
                 			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'answer_content' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
                 		</div>
-                		{% if answer.content %}
+                		{% if a.content %}
                 			<!-- PARAGRAPH - filled -->
-                			<p id="answer_txt" class="project_details_body">{{ answer.get_content|linebreaksbr }}</p>
+                            <p id="answer-{{q.id}}" class="project_details_body">{{ a.content|linebreaksbr }}</p>
                 		{% else %}
-                			<p id="answer_txt" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}</p>
+                        <p id="answer-{{q.id}}" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}</p>
                 		{% endif %}
                 	{% else %}
                 		<!-- PARAGRAPH - empty -->
