@@ -42,8 +42,8 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
     {% endcompress %}
-
 
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
@@ -75,7 +75,7 @@
           var more = $('#feedback-tab textarea');
           more.hide();
           $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
-    
+
       
       	// Switch OpenID button to OpenID form in signin zone on click
         $(".social-panel a.openid-button").click(function () {
@@ -96,6 +96,71 @@
         $('input[name=openid_identifier]').example('{% trans "Enter your username" %}');
         
         $('#footer .newsletter input[type=text]').example('{% trans "Enter your email adress" %}');
+
+          //Show new project style popup when user click on add a project
+          $('a.addproject_button').click(function(){
+              var url = $(this).attr('href');
+              $("#new_project_style_popup_zone").removeClass("hidden");
+              return false;
+           });
+
+        
+        // Close button for new project style popup
+        $("#new_project_style_popup_zone #new_project_style_popup .close-button").click(function () {
+            $("#new_project_style_popup_zone").addClass("hidden");
+        });	
+        
+        
+        // Opening of "projects hover menu"
+        $("#header #projects_list_button").hover(function(){
+            $(this).css('background-color', '#0f0f0f');
+            $('#projects-hover-menu-zone').stop().animate({height : '200'}, "fast");
+        }).mouseleave(function(){
+  
+            var hover_on = false;
+            var hover_count = 150;
+            
+            setTimeout(myMouseOut, hover_count);
+
+            $("#projects-hover-menu-zone").mouseover(function() {
+                hover_on = true;
+            });
+
+            $("#projects-hover-menu-zone").mouseout(function() {
+                hover_on = false;
+                setTimeout(myMouseOut, hover_count);
+            });
+            
+            $("#header #projects_list_button").mouseover(function(){
+                hover_on = true;
+            });
+            
+            $("#header #projects_list_button").mouseout(function(){
+                hover_on = false;
+                setTimeout(myMouseOut, hover_count);
+            });
+
+            function myMouseOut() {
+                if (hover_on) {
+                
+                }else{
+                    $("#header #projects_list_button").css('background-color', 'transparent');
+                    $('#projects-hover-menu-zone').stop().animate({height : '0'}, 100);
+                }
+            }
+   
+        });
+        
+        
+        // Rollover for social networks links
+        $("li.social-login a img").hover(function(){
+            $(this).attr('src', $(this).attr('src').replace('.png', '-on.png'));
+            //$(this).stop().rotate({animateTo:360});
+
+        }).mouseleave(function(){
+            $(this).attr('src', $(this).attr('src').replace('-on-on.png', '.png'));
+            //$(this).stop().rotate({animateTo:0});
+        });	
 
         
     });
@@ -131,7 +196,12 @@
     
     <div class="global">   
     
-      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}			  
+      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}	
+
+      {% block newproject_popup %} 
+          <div id="new_project_style_popup_zone" class="hidden">
+          </div>
+      {% endblock %}      
       
       {% block header %} {% include "header.html" %} {% endblock %}			
       <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->

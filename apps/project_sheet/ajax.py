@@ -40,7 +40,7 @@ import nani
 
 from .models import I4pProjectTranslation, Answer, Question
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm, AnswerForm
-from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug
+from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug, create_parent_project
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -56,7 +56,7 @@ MODELFIELD_MAPPINGS = {
     'project_business_model_txt': 'business_model_section',
     }
 
-_ANS_RE = re.compile(r'^answer-(\d+)$')
+_ANSWER_RE = re.compile(r'^answer-(\d+)$')
 
 
 def project_textfield_load(request, project_slug=None):
@@ -80,7 +80,7 @@ def project_textfield_load(request, project_slug=None):
         return _textfield_load(language_code, project_slug, section)
 
     # Or check if it's an answer to a question
-    question = _ANS_RE.search(id)
+    question = _ANSWER_RE.search(id)
     if question:
         return _answer_load(language_code, project_slug,
                             question.groups()[0])
@@ -140,8 +140,8 @@ def project_textfield_save(request, project_slug=None):
     # Activate requested language
     translation.activate(language_code)
 
-    project_translation = get_or_create_project_translation_by_slug(project_translation_slug=project_slug, 
-                                                                    language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_slug,
+                                                          language_code)
 
     # Check if we allow this field
     section = id
@@ -150,7 +150,7 @@ def project_textfield_save(request, project_slug=None):
                                project_translation, section, value)
 
     # Check if it's an answer to a question
-    question = _ANS_RE.search(id)
+    question = _ANSWER_RE.search(id)
     if question:
         return _answer_save(language_code, project_slug, project_translation,
                             question.groups()[0], value)

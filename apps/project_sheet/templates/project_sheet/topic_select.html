@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}	
+{% load cms_tags %}	
+
+{% block style %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+{% endblock %}
+
+
+{% block nav %} 
+{% endblock %}  
+
+
+{% block newproject_popup %} 
+{% endblock %}   
+   
+
+{% block content %} 
+  <div id="new_project_style_page">
+      {% include "project_sheet/topic_select_fragment.html" %} 
+  </div>
+{% endblock %}      
+
