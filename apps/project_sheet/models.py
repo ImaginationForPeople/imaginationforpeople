@@ -203,8 +203,6 @@ class Answer(TranslatableModel):
     def __unicode__(self):
         return 'Answer to: [%s]' % (self.question,)
 
-    def get_content():
-        return self.safe_translation_getter('content')
 
 class I4pProjectTranslation(models.Model):
     """
