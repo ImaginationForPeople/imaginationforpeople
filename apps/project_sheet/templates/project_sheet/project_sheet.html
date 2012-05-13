@@ -510,7 +510,7 @@ data: '{{ project_status_choices|safe }}',
       {% if project_translation %}
 	<form id="title" action="{% url  project_sheet-instance-edit-field project_translation.slug 'title' %}" method="post">{% csrf_token %}
       {% else %}
-	<form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">{% csrf_token %}
+	<form id="title" action="{% url project_sheet-edit-field topic.slug 'title' %}" method="post">{% csrf_token %}
       {% endif %}
       {{title_form.title}}
       <input id="project_title_cancel" type="reset" onclick="history.back()" value="&nbsp;" alt="X" title="{% trans 'Cancel'|capfirst %}"  />
@@ -528,7 +528,7 @@ data: '{{ project_status_choices|safe }}',
 	  </div>
 	{% else %}
 	  <!-- PROJECT TITLE - empty -->
-	  <a href="{% url project_sheet-edit-field 'title' %}">
+	  <a href="{% url project_sheet-edit-field topic.slug 'title' %}">
 	    <div id="project_title_edit_inactive">{% trans 'my project title'|capfirst %}</div>
 	  </a>
 	{% endif %}
@@ -542,7 +542,7 @@ data: '{{ project_status_choices|safe }}',
 
 	<form id="baseline" action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% else %}
-	<form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
+	<form id="baseline" action="{% url project_sheet-edit-field topic.slug 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
 	{% endif %}
 	{{ baseline_form.baseline }}
 	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />
@@ -559,7 +559,7 @@ data: '{{ project_status_choices|safe }}',
 	    <!--  BASELINE - empty -->
 	    <div class="project_baseline_edition_inactive">
 	      <p>{% trans "One line description"|capfirst %}</p>
-	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
 	    </div>
 	  {% endif %}
 	{% endif %}					
@@ -629,8 +629,9 @@ data: '{{ project_status_choices|safe }}',
 	
 	
 	
-	
-	{% include "project_sheet/media_gallery.html"%}
+        {% if project_translation %}
+        	{% include "project_sheet/media_gallery.html"%}
+	{% endif %}
 	
 	<!-- PROJECT DESCRIPTION -->
 	<div class="project_description">
@@ -638,34 +639,49 @@ data: '{{ project_status_choices|safe }}',
 	</div>					
 	
 
-	<!-- PROJECT DETAILS -->
-	{% for topic in topics %}
-	<h1>Label: {{topic.label}}</h1>
+	<!-- PROJECT DETAILS  (Answers to Questions) -->
+	{% for topic, questions in topics %}
 	<div class="project_details">
-	        {% for q in topic.questions.all %}
-        	{% if project_translation %}
-        		<div id="question-{{q.id}}" class="project_details_title_edit">
-        			<h2>{{ q.content|capfirst }}</h2>
-        			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-        		</div>
-        		{% if project_translation.uniqueness_section %}
-        			<!-- PARAGRAPH - filled -->
-        			<p id="project_uniqueness_txt" class="project_details_body">{{ project_translation.uniqueness_section|linebreaksbr }}</p>
-        		{% else %}
-        			<p id="project_uniqueness_txt" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}</p>
-        		{% endif %}
-        	{% else %}
-        		<!-- PARAGRAPH - empty -->
-        		<div id="uniqueness_section" class="project_details_title_edit">
-        			<h2>{% trans "in what ways is this project unique and creative"|capfirst %}?</h2>
-        			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-        		</div>
-        		<p id="project_uniqueness_txt" class="project_details_body empty"></p>
-        	{% endif %}
-        	{% endfor %}
+	        {% for q, a in questions %}
+    	        {% if answer_form %}
+                	<!-- PARAGRAPH - edit mode -->
+                	<div id="question-{{q.id}}" class="project_details_title_edit">
+                		<h2>{{ q.content|capfirst }}</h2>
+                	</div>
+                		{% if project_instance %}
+                			<form class="project_details_body_edit" action="{% url project_sheet-instance-edit-field project_instance.slug 'answer_content' %}" method="post">{% csrf_token %}
+                		{% else %}
+                			<form class="project_details_body_edit" action="{% url project_sheet-edit-field topic.slug 'answer_content' %}" method="post">{% csrf_token %}
+                		{% endif %}
+                			{{answer_form.content}}
+                			<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />	
+                			<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
+                	</form>
+                {% else %}
+                	{% if project_translation %}
+                		<div id="question-{{q.id}}" class="project_details_title_edit">
+                			<h2>{{ q.content|capfirst }}</h2>
+                			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'answer_content' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+                		</div>
+                		{% if a.content %}
+                			<!-- PARAGRAPH - filled -->
+                            <p id="answer-{{q.id}}" class="project_details_body">{{ a.content|linebreaksbr }}</p>
+                		{% else %}
+                        <p id="answer-{{q.id}}" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}</p>
+                		{% endif %}
+                	{% else %}
+                		<!-- PARAGRAPH - empty -->
+                		<div id="question-{{q.id}}" class="project_details_title_edit">
+                			<h2>{{ q.content|capfirst }}</h2>
+                			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'answer_content' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+                		</div>
+                		<p id="answer_txt" class="project_details_body empty"></p>
+                	{% endif %}
+                {% endif %}
+	    {% endfor %}
 	</div>
-
 	{% endfor %}
+
 
 	
 	<div class="clear"></div>

@@ -21,10 +21,10 @@
             
             <h1>{% trans 'Follow us' %}</h1>
             <ul>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-fb.png" alt="Facebook" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Facebook</strong>" /></a> </li>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-gplus.png" alt="Google +" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Google+</strong>" /></a> </li>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-twitter.png" alt="Twitter" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Twitter</strong>" /></a> </li>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-it.png" alt="Scoop it !" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Scoopt it!</strong>" /></a> </li>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-fb.png" alt="Facebook" width="31" height="31" class="tipsed on" title="{% trans 'Connect with' %} <strong>Facebook</strong>" /></a> </li>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-gplus.png" alt="Google +" width="31" height="31" class="tipsed on" title="{% trans 'Connect with' %} <strong>Google+</strong>" /></a> </li>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-twitter.png" alt="Twitter" width="31" height="31" class="tipsed on" title="{% trans 'Connect with' %} <strong>Twitter</strong>" /></a> </li>
+                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-it.png" alt="Scoop it !" width="31" height="31" class="tipsed on" title="{% trans 'Connect with' %} <strong>Scoopt it!</strong>" /></a> </li>
             </ul>
             
             <br />
@@ -40,7 +40,7 @@
                 <div class="concept_detail">
                     <h1>{% trans 'Projects' %}</h1>
                     <p>{% trans 'Explore and contribute to social projects around the world.' %}</p>
-                    <a href="{% url project_sheet-list %}">{% trans 'Projects' %}</a> | <a href="{% url project_sheet-start %}">{% trans 'Add a project' %}</a>
+                    <a href="{% url project_sheet-list %}">{% trans 'Projects' %}</a> | <a href="{% url project_sheet-start %}" class="addproject_button">{% trans 'Add a project' %}</a>
                 </div>
             </div>
             

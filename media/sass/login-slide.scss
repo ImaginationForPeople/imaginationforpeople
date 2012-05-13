@@ -70,10 +70,14 @@ Version: 1.0
         }
         
         li.language{
-            font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
             font-size:14px;
             padding:0px;
             padding-top:2px;
+            
+            a{
+                font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
+                color:white;
+            }
         }
         
         .close:hover{
@@ -115,7 +119,7 @@ Version: 1.0
                 color:white;
             }
             
-            a.open, a.close {
+            a.open.link, a.close.link {
                 height: 20px;
                 font-family: 'OpenSansBoldItalic', Arial, Helvetica, sans-serif;
                 line-height: 20px !important;

@@ -19,26 +19,20 @@
 Django Admin for a Project Sheet
 """
 from django.contrib import admin
-from nani import admin as nani_admin
 
+from nani import admin as nani_admin
 from oembed_works.models import StoredOEmbedResponse
 from reversion.admin import VersionAdmin
 
-from .models import I4pProject, I4pProjectTranslation, Objective
-from .models import ProjectVideo, ProjectPicture, ProjectMember
 from apps.partner.models import Partner
 
-from .models import I4pProject, I4pProjectTranslation, Topic, Question, Answer, SiteTopic
+from .models import I4pProject, I4pProjectTranslation, Objective
 from .models import ProjectVideo, ProjectPicture, ProjectMember
-
+from .models import Topic, Question, Answer, SiteTopic
 
 class PartnerInline(admin.TabularInline):
     model = Partner.projects.through
     extra = 1
-
-
-class SiteTopicAdmin(VersionAdmin):
-    list_display = ('topic', 'order', 'site')
 
 class TranslationInline(admin.StackedInline):
     model = I4pProjectTranslation
@@ -49,15 +43,16 @@ class I4pProjectAdmin(VersionAdmin):
         TranslationInline,
         )
 
-class QuestionInline(admin.StackedInline):
-    model = Question
+class QuestionAdmin(nani_admin.TranslatableAdmin):
+    list_display = ('topic', 'weight',)
 
-class TopicAdmin(VersionAdmin):
-    inlines = (
-        QuestionInline,
-        )
+class TopicAdmin(nani_admin.TranslatableAdmin):
+    list_display = ('__str__', 'all_translations')
 
-class AnswerAdmin(VersionAdmin):
+class SiteTopicAdmin(VersionAdmin):
+    list_display = ('topic', 'order', 'site')
+
+class AnswerAdmin(nani_admin.TranslatableAdmin):
     pass
 
 class ObjectiveAdmin(nani_admin.TranslatableAdmin):
@@ -66,6 +61,8 @@ class ObjectiveAdmin(nani_admin.TranslatableAdmin):
 admin.site.register(I4pProject, I4pProjectAdmin)
 
 admin.site.register(Topic, TopicAdmin)
+
+admin.site.register(Question, QuestionAdmin)
 
 admin.site.register(Answer, AnswerAdmin)
 

@@ -43,14 +43,14 @@ from django.views.generic import TemplateView
 from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from .models import ProjectPicture, ProjectVideo, I4pProjectTranslation, Question, Topic
+from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
-from .forms import ProjectReferenceFormSet, ProjectMemberForm
+from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm
 from .utils import build_filters_and_context
-from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug
+from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
 from .utils import get_project_project_translation_recent_changes, fields_diff
 
@@ -119,6 +119,40 @@ def project_sheet_list(request):
                        template_object_name='project_translation',
                        extra_context=extra_context)
 
+class ProjectStartView(TemplateView):
+    """
+    When one starts a project, after having selected a topic
+    """
+    template_name = 'project_sheet/project_sheet.html'
+
+    def get_context_data(self, topic_slug, **kwargs):
+        context = super(ProjectStartView, self).get_context_data(**kwargs)
+
+        topic = get_object_or_404(Topic,
+                                  slug=topic_slug)
+
+        context['topic'] = topic
+
+        return context
+
+
+class ProjectTopicSelectView(TemplateView):
+    """
+    Before starting a project, one needs to pick a topic
+    """
+    template_name = 'project_sheet/topic_select.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProjectTopicSelectView, self).get_context_data(**kwargs)
+
+        site = Site.objects.get_current()
+        site_topics = SiteTopic.objects.filter(site=site)
+
+        context['site_topics'] = site_topics
+
+        return context
+
+
 def project_sheet_show(request, slug, add_media=False):
     """
     Display a project sheet
@@ -150,8 +184,14 @@ def project_sheet_show(request, slug, add_media=False):
                                          for k, v in I4pProject.STATUS_CHOICES)
 
     project = project_translation.project
-                
-    topics = Topic.objects.filter(site_topics__site=site, language_code=language_code)
+    topics = []
+
+    for topic in Topic.objects.filter(site_topics=project.topics.all()):
+        questions = []
+        for question in topic.questions.all():
+            answers = Answer.objects.filter(project=project, question=question)
+            questions.append([question, answers and answers[0] or None])
+        topics.append([topic, questions])
 
     project_status_choices['selected'] = project_translation.project.status
 
@@ -192,6 +232,7 @@ def project_sheet_create_translation(request, project_slug):
     Given a language and a slug, create a translation for a new language
     """
     current_language_code = translation.get_language()
+    site = Site.objects.get_current()
 
     requested_language_code = request.POST.get("requested_language", None)
     if None:
@@ -205,8 +246,7 @@ def project_sheet_create_translation(request, project_slug):
 
     requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
                                                                                   language_code=requested_language_code,
-                                                                                  default_title=current_project_translation.title,
-                                                                                  site=site)
+                                                                                  default_title=current_project_translation.title)
 
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     return redirect(chlocale(url, requested_language_code))
@@ -242,18 +282,30 @@ def project_sheet_edit_location(request, slug):
 
 
 
-def project_sheet_edit_field(request, field, slug=None):
+def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
     """
     Edit a translatable field of a project (such as baseline)
     """
     language_code = translation.get_language()
+
+    if topic_slug:
+        topic = get_object_or_404(Topic,
+                                  slug=topic_slug)
 
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(field,))
     context = {}
 
     project_translation = None
     if request.method == 'POST':
-        project_translation = get_or_create_project_translation_by_slug(slug, language_code)
+        try:
+            project_translation = get_project_translation_by_slug(slug, language_code)
+        except I4pProjectTranslation.DoesNotExist:
+            # Create parent project, then translation
+            parent_project = create_parent_project(topic_slug)
+            project_translation = get_or_create_project_translation_by_slug(slug,
+                                                                            parent_project=parent_project,
+                                                                            language_code=language_code)
+        
         form = FieldForm(request.POST, request.FILES, instance=project_translation)
         if form.is_valid():
             form.save()
@@ -273,9 +325,12 @@ def project_sheet_edit_field(request, field, slug=None):
         context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
         context['project_member_form'] = ProjectMemberForm()
         context['project_location_form'] = I4pProjectLocationForm(instance=project_translation.project.location)
+        context['answer_form'] = AnswerForm()
         context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
         context['project_tab'] = True
         context['project'] = project_translation.project
+    else:
+        context['topic'] = topic
 
     context["%s_form" % field] = form
     return render_to_response(template_name="project_sheet/project_sheet.html",
@@ -357,8 +412,8 @@ def project_sheet_add_picture(request, slug=None):
                                                                    'author',
                                                                    'source'))
 
-    project_translation = get_or_create_project_translation_by_slug(project_translation_slug=slug,
-                                                                    language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                          language_code=language_code)
 
     if request.method == 'POST':
         picture_form = ProjectPictureForm(request.POST, request.FILES)
@@ -395,8 +450,8 @@ def project_sheet_add_video(request, slug=None):
 
     ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
 
-    project_translation = get_or_create_project_translation_by_slug(project_translation_slug=slug,
-                                                                    language_code=language_code)
+    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                          language_code=language_code)
 
     if request.method == 'POST':
         video_form = ProjectVideoForm(request.POST)
