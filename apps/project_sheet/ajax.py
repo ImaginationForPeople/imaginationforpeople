@@ -164,7 +164,10 @@ def _answer_save(language_code, project_slug, project_translation, question, val
 
     if value:
         try:
-            answer = Answer.objects.get(project=project, question=question)
+            answer = Answer.objects.untranslated().get(project=project,
+                                                       question=question)
+            if not language_code in answer.get_available_languages():
+                answer.translate(language_code)
         except Answer.DoesNotExist:
             answer = Answer.objects.create(project=project, question=question)
         answer.content = value
