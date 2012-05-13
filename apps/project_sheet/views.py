@@ -246,8 +246,7 @@ def project_sheet_create_translation(request, project_slug):
 
     requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
                                                                                   language_code=requested_language_code,
-                                                                                  default_title=current_project_translation.title,
-                                                                                  site=site)
+                                                                                  default_title=current_project_translation.title)
 
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     return redirect(chlocale(url, requested_language_code))
