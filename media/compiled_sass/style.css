@@ -561,15 +561,21 @@ ul li {
   -khtml-border-radius: 4px;
   border-radius: 4px;
 }
-#new_project_style_popup .topic_picto {
+#new_project_style_popup #project_type {
+  display: inline-block;
+}
+#new_project_style_popup #project_type .topic_picto {
   width: 142px;
   height: 99px;
   margin: 5px;
   float: left;
 }
-#new_project_style_popup .topic_picto div {
+#new_project_style_popup #project_type .topic_picto div {
   width: 142px;
   height: 99px;
+}
+#new_project_style_popup #project_type .topic_picto a:hover {
+  text-decoration: none;
 }
 #new_project_style_popup .close-button {
   position: absolute;
@@ -625,7 +631,7 @@ ul li {
 /*---- New project style popup ----*/
 #new_project_style_page {
   padding: 50px 0px;
-  padding-bottom: 250px;
+  padding-bottom: 60px;
 }
 #new_project_style_page #new_project_style_popup {
   margin-top: 10px;

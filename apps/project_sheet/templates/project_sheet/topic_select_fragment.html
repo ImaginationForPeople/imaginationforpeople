@@ -1,44 +1,42 @@
-{% load i18n %}	
-{% load cms_tags %}	
+<div id="topic_popup_all">
+
+    <script type="text/javascript">
+        // Rollover for topics selection popup
+        $("#project_type .topic_picto").hover(function(){
+            $(this).find('img').attr('src', $(this).find('img').attr('src').replace('.png', '-on.png'));
+        }).mouseleave(function(){
+            $(this).find('img').attr('src', $(this).find('img').attr('src').replace('-on-on.png', '.png'));
+        });
+
+        // Close button for new project topic popup
+        $("#new_project_style_popup .close-button").click(function () {
+            $("#new_project_style_popup_zone").addClass("hidden");
+        });		
+    </script>
 
 
-<script type="text/javascript">
-$(document).ready(function(){
+    <div id="new_project_style_popup">
 
-    // Rollover for topics selection popup
-    $("#project_type .topic_picto").hover(function(){
-        $(this).find('img').attr('src', $(this).find('img').attr('src').replace('.png', '-on.png'));
-    }).mouseleave(function(){
-        $(this).find('img').attr('src', $(this).find('img').attr('src').replace('-on-on.png', '.png'));
-    });
-
-    // Close button for new project topic popup
-    $("#new_project_style_popup_zone #new_project_style_popup .close-button").click(function () {
-        $("#new_project_style_popup_zone").addClass("hidden");
-    });		
-    
-});
-</script>
-
-
-<div id="new_project_style_popup">
-
-    <a class="close-button">
-        <img width="11" height="11" alt="close" src="{{ STATIC_URL }}images/home/close.png">
-    </a>
-
-    <center>
-        <h1>{% trans 'Select your type of project' %}</h1>
-        <hr />
-        <div id="project_type">
-	  {% for site_topic in site_topics %}
-        <a class="topic_picto" href="{% url project_sheet-start site_topic.topic.slug %}">
-            <img src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ site_topic.topic.slug }}.png" />
-            <span>{{ site_topic.topic.label }}</span>
+        <a class="close-button">
+            <img width="11" height="11" alt="close" src="{{ STATIC_URL }}images/home/close.png">
         </a>
-	  {% endfor %}
-        <div class="clear"></div>
-        </div>
-    </center>
-</div>
+
+            <center>
+                <h1>{% trans 'Select your type of project' %}</h1>
+                <hr />  
+            
+                <ul id="project_type">
+                  {% for site_topic in site_topics %}
+                    <li class="topic_picto">
+                        <a href="{% url project_sheet-start site_topic.topic.slug %}">
+                            <img src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ site_topic.topic.slug }}.png" />
+                            <span>{{ site_topic.topic.label }}</span>
+                        </a>
+                    </li>
+                  {% endfor %}
+                <div class="clear"></div>
+                </ul>
+            </center>
+    </div>
     
+</div>
