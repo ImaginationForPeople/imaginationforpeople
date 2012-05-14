@@ -115,7 +115,7 @@
         $('a.addproject_button').click(function(){
             var url = $(this).attr('href');
             
-            popup_content.load("{% url project_sheet-start %}");
+            popup_content.load("{% url project_sheet-start %} #topic_popup_all");
             $("#new_project_style_popup_zone").removeClass("hidden");
             return false;
         });

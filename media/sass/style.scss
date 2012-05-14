@@ -603,17 +603,25 @@ ul{
     border:1px solid #9b9b9b;
     @include border-radius(4px);
     
-    .topic_picto{
-        width:142px;
-        height:99px;
-        margin:5px;
-        float:left;
+    #project_type{
+        display:inline-block;
         
-        div{
+        .topic_picto{
             width:142px;
             height:99px;
+            margin:5px;
+            float:left;
+            
+            div{
+                width:142px;
+                height:99px;
+            }
+            
+            a:hover{
+                text-decoration:none;
+            }
         }
-    }
+    }    
     
     .close-button{
         position:absolute;
@@ -684,7 +692,7 @@ ul{
 
 #new_project_style_page{
     padding:50px 0px;
-    padding-bottom:250px;
+    padding-bottom:60px;
 
     #new_project_style_popup{
         margin-top:10px;

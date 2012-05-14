@@ -76,7 +76,7 @@
         var content = $("#projects_slide"); 
         
         function showLoading(){  
-            content.fadeOut()
+            content.fadeOut(150);
             loading  
                 .css({visibility:"visible"})  
                 .css({opacity:"1"})  
@@ -86,9 +86,9 @@
         
         //hide loading bar  
         function hideLoading(){  
-            loading.fadeTo(1000, 0);
+            loading.fadeTo(800, 0);
             content.fadeIn();
-            
+
             //Slider initialization after AJAX loading
             $('#projects_slide').anythingSlider({width:977, height:290,  easing: "swing", delay: 5000, animationTime: 1000, buildArrows: false, buildNavigation: false, autoPlay: true});
              
@@ -104,6 +104,7 @@
         sections.click(function(){
             //show the loading bar
             showLoading();
+
             //load selected section
             switch(this.id){
                 case "projects-discover":
