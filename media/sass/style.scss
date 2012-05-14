@@ -276,7 +276,7 @@ ul{
     background-color:#0f0f0f;
     width:100%;
     position:absolute;
-    z-index:50;
+    z-index:900;
 
     #projects-hover-menu{
         color:white;
@@ -284,6 +284,10 @@ ul{
         
         a{
             color:white;
+        }
+        
+        a:hover{
+            text-decoration:none;
         }
 
         #filters_links{
@@ -353,7 +357,7 @@ ul{
     height:22px;
 
     input[type="text"] {
-        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
+        font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
         background-color: transparent;
         border: 0px solid #646464;
         color: #7F7E7E;
@@ -361,7 +365,7 @@ ul{
         font-size: 10px;
         height: 19px;
         padding: 2px;
-        padding-left: 4px;
+        padding-left: 6px;
         text-indent: 0px;
         width: 155px;
     }
@@ -380,7 +384,7 @@ ul{
     .search{
         position:absolute!important;
         bottom:10px !important;
-        right:0px!important;
+        right:-2px!important;
         padding:0px!important;
     }
 }
@@ -583,19 +587,33 @@ ul{
     height:1000px;
     background-image:url('../images/base/black.png');
     position:fixed;
-    z-index:800;
+    z-index:9000;
 }
 
 #new_project_style_popup{
-    width:286px;
-    height:152px;
+    width:620px;
     margin-top:160px;
     margin-left:auto;
     margin-right:auto;
     padding:5px;
     padding-top:10px;
+    padding-bottom:20px;
     position:relative;
     background-image:url('../images/base/newproject_popup-bg.png');
+    border:1px solid #9b9b9b;
+    @include border-radius(4px);
+    
+    .topic_picto{
+        width:142px;
+        height:99px;
+        margin:5px;
+        float:left;
+        
+        div{
+            width:142px;
+            height:99px;
+        }
+    }
     
     .close-button{
         position:absolute;
@@ -854,7 +872,7 @@ ul{
             height:22px;
 
             input[type="text"] {
-                font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
+                font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
                 background-color: transparent;
                 border: 0px solid #646464;
                 color: #7F7E7E;

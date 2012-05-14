@@ -58,7 +58,7 @@
                 <div class="clear"></div>
                 <br /><br />
 
-                <div style="position:absolute; bottom:27px;">
+                <div style="position:absolute; bottom:70px;">
                     <h1 class="padlock">{% trans "Not a member yet ?" %}</h1>
                     <a class="link" href="{% url userena_signup %}">{% trans "Signup now !" %}</a>        
                 </div>
@@ -107,7 +107,7 @@
                 <li class="left">&nbsp;</li>
                 <li class="language toggle">
                     <a class="open-panel" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
-                    <a class="close-panel" style="display: none;" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
+                    <!--<a class="close-panel" style="display: none;" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>-->
                 </li>
                 <li class="middle">&nbsp;</li>                
                 <li class="toggle">
@@ -116,7 +116,7 @@
                 {% else %}
                     <a class="open link open-panel" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
                 {% endif %}
-                    <a style="display: none;" class="close link close-panel" href="javascript:;">{% trans "Close Panel" %}</a>			
+                    <!--<a style="display: none;" class="close link close-panel" href="javascript:;">{% trans "Close Panel" %}</a>-->
                 </li>
             {% if user.is_authenticated %}
             

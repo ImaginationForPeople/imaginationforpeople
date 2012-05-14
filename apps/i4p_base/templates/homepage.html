@@ -33,11 +33,11 @@
         
         <!-- Loginbox panels slide -->
         $("#loginbox .panel1 a#loginlink-subscribe").click(function () {
-            $("#panels-slide").stop().animate({left: '-490px'}, 500);
+            $("#panels-slide").stop().animate({left: '-245px'}, 500);
         });	
         
         $("#loginbox .panel1 a.openid-button").click(function () {
-            $("#panels-slide").stop().animate({left: '-245px'}, 500);
+            $("#panels-slide").stop().animate({left: '-490px'}, 500);
         });	
         
         $("#loginbox .loginpanel a.close-button").click(function () {
@@ -69,13 +69,7 @@
             $(this).addClass('selected');
         });
         
-        <!-- Project slider nav -->
-        $('.onglettest a').click(function(){
-            var url = $(this).attr('href');
-            $('#contenu_test').load(url);
-            return false;
-        });  
-        
+       
         <!-- AJAX Focus Zone -->
         var sections = $("#focus-menu .focus-filters li");  
         var loading = $("#loading");     
@@ -204,7 +198,10 @@
             {% include "home-blocks/loginbox.html" %}     
 
             <!-- Quick Project -->
-            {% include "home-blocks/quick_project.html" %}  
+            <!-- FIXME -->
+            {% comment %}
+            {% include "home-blocks/quick_project.html" %} 
+            {% endcomment %}            
             
             <!-- Last members -->
             {% include "home-blocks/last_members.html" %}     
