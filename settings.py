@@ -396,11 +396,11 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    ('js', os.path.join(MEDIA_ROOT, 'js')),
-    ('css', os.path.join(MEDIA_ROOT, 'css')),
-    ('css', os.path.join(MEDIA_ROOT, 'compiled_sass')),
-    ('fonts', os.path.join(MEDIA_ROOT, 'fonts')),
-    ('images', os.path.join(MEDIA_ROOT, 'images')),
+    ('js', os.path.join(STATIC_ROOT, 'js')),
+    ('css', os.path.join(STATIC_ROOT, 'css')),
+    ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
+    ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
+    ('images', os.path.join(STATIC_ROOT, 'images')),
 )
 
 COMPRESS_CSS_FILTERS = (
