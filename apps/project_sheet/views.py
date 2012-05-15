@@ -136,6 +136,39 @@ class ProjectStartView(TemplateView):
         return context
 
 
+from tagging.models import TaggedItem, Tag
+from tagging.utils import get_tag
+import tagging.views
+
+
+
+class TagPageView(TemplateView):
+    template_name = 'project_sheet/tagpage.html'
+
+    def get_context_data(self, tag, **kwargs):
+        context = super(TagPageView, self).get_context_data(**kwargs)
+
+        site = Site.objects.get_current()
+
+        tag_instance = get_tag(tag)
+        if tag_instance is None:
+            raise Http404(_('No Tag found matching "%s".') % tag)
+
+        context['tag'] = tag        
+        context['related_tags'] = Tag.objects.related_for_model(tag_instance, 
+                                                                I4pProjectTranslation,
+                                                                counts=True)
+
+        # Get project sheets tagged with this tag
+        # XXX: site=site may not be correct
+        context['project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(project__site=site),
+                                                                         tag_instance)
+
+
+
+        return context
+
+
 class ProjectTopicSelectView(TemplateView):
     """
     Before starting a project, one needs to pick a topic

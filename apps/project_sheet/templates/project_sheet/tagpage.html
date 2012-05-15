@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% load compress %}
+
+{% block style %}
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
+  {% endcompress %}
+
+{% endblock %}
+
+{% block nav %}
+{% endblock %}
+
+{% block content %}
+<div class="container_18" style="height: 800px">
+  <div class="grid_12 alpha omega">
+  <h1>Projects tagged with "{{ tag }}"</h1>
+  <p>
+    Social innovation refers to new strategies, concepts, ideas and organizations that meet social needs of all kinds - from working conditions and education to community development and health - and that extend and strengthen civil society.
+
+The term has overlapping meanings. It can be used to refer to social processes of innovation, such as open source methods and techniques. Alternatively it refers to innovations which have a social purpose - like microcredit or distance learning. The concept can also be related to social entrepreneurship (entrepreneurship is not necessarily innovative, but it can be a means of innovation) and it also overlaps with innovation in public policy and governance. Social innovation can take place within government, the for-profit sector, the nonprofit sector (also known as the third sector), or in the spaces between them. Research has focused on the types of platforms needed to facilitate such cross-sector collaborative social innovation. Social innovation is gaining visibility within academia.[<a href="#">edit</a>]
+  </p>
+
+  </div>
+
+  <div class="clear"></div>
+
+  <br/>
+  <p>
+  <strong>Related tags</strong>
+  {% for tag in related_tags %}
+  <a href="{% url project_sheet-tag-page tag %}">{{ tag.name }}</a>({{ tag.count }})
+  {% endfor %}
+  </p>
+
+  <hr>
+
+  <h2>Random projects</h2>
+  {% for project_translation in project_translations %}
+  {% include "project_sheet/project_id_card.html" %}
+  {% endfor %}
+  <br/>
+  [<a href="#">See more</a>]
+</div>
+{% endblock %}
