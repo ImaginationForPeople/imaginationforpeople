@@ -111,7 +111,6 @@ form{
 	padding-bottom:5px;
 	text-indent:10px;
 	line-height:24px;
-	margin-bottom:49px;
 }
 
 .project_baseline_edition{
@@ -161,7 +160,7 @@ form{
 	background-color:white;
     @include georgia(17px);
 	position:relative;
-	width:90%;
+	width:87%;
 	border:0px;
 	height:20px;
 	line-height:20px;
@@ -194,8 +193,8 @@ form{
 	font-family : Tahoma, Verdana, Arial, Sans-serif;
 	font-size:12px;
 	color:#898989;
-	margin-top:35px;
-	margin-bottom:20px;
+	margin-top:5px;
+	margin-bottom:5px;
 	position:relative;
     
     .location img{
@@ -233,8 +232,8 @@ form{
 	font-family : Tahoma, Verdana, Arial, Sans-serif;
 	font-size:12px;
 	color:#898989;
-	margin-top:35px;
-	margin-bottom:20px;
+	margin-top:5px;
+	margin-bottom:5px;
 	position:relative;
 	padding:4px;
     
@@ -618,6 +617,18 @@ form{
 	background-position:right bottom;
 	background-repeat:no-repeat;
 	background-color:#5A5959;
+}
+
+#project_generals_infoblock{
+    width:90%; 
+    padding-left:10%;
+    position:relative;
+    
+    .project_topic_mini{
+        position:absolute;
+        top:10px;
+        left:5px;
+    }
 }
 
 .project_baseline{
