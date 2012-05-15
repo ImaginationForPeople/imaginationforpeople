@@ -510,7 +510,7 @@ data: '{{ project_status_choices|safe }}',
       {% if project_translation %}
 	<form id="title" action="{% url  project_sheet-instance-edit-field project_translation.slug 'title' %}" method="post">{% csrf_token %}
       {% else %}
-	<form id="title" action="{% url project_sheet-edit-field 'title' %}" method="post">{% csrf_token %}
+	<form id="title" action="{% url project_sheet-edit-field topic.slug 'title' %}" method="post">{% csrf_token %}
       {% endif %}
       {{title_form.title}}
       <input id="project_title_cancel" type="reset" onclick="history.back()" value="&nbsp;" alt="X" title="{% trans 'Cancel'|capfirst %}"  />
@@ -528,109 +528,122 @@ data: '{{ project_status_choices|safe }}',
 	  </div>
 	{% else %}
 	  <!-- PROJECT TITLE - empty -->
-	  <a href="{% url project_sheet-edit-field 'title' %}">
+	  <a href="{% url project_sheet-edit-field topic.slug 'title' %}">
 	    <div id="project_title_edit_inactive">{% trans 'my project title'|capfirst %}</div>
 	  </a>
 	{% endif %}
       {% endif %}
       
-
-      <!-- BASELINE -->
-      {% if baseline_form %}
-	<!-- BASELINE - edition mode-->
-	{% if project_translation %}
-
-	<form id="baseline" action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
-	{% else %}
-	<form id="baseline" action="{% url project_sheet-edit-field 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
-	{% endif %}
-	{{ baseline_form.baseline }}
-	<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />
-    <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>
-	</form>
-	{% else %}
-	  {% if project_translation %}
-	    <!-- BASELINE - filled-->
-	    <div class="project_baseline focus">
-	      <p>{{ project_translation.baseline }}</p>
-	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-	    </div>
-	  {% else %}
-	    <!--  BASELINE - empty -->
-	    <div class="project_baseline_edition_inactive">
-	      <p>{% trans "One line description"|capfirst %}</p>
-	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
-	    </div>
-	  {% endif %}
-	{% endif %}					
-	
-	<!-- PROJECT INFOS - existing project - viewable version -->
-	<div id="project_infos_block">
-	  {% if project_translation %} 
-	  
-		<!-- edition of the full information block  -->
-		<a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a>
-
-		<!-- add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section) 
-		<div class="creation_date">
-	    Created {{ project_translation.created }} {% trans 'by' %} 
-	    <i>
-	      {% if project.author %}
-		{{ project.author.get_full_name_or_username }}
-	      {% else %}
-		{% trans 'anonymous'|capfirst %}
-	      {% endif %}
-	    </i>
-	    ({{ project.ip_addr }})
-	    </div> -->
-	    
-		<div class="location">{% trans "Location:" %}
-		{% if project_translation.project.location %}
-			<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-			{% if project_translation.project.location.address %}
-            {{ project_translation.project.location.address }} -
-            {% endif %}
-	    {% if project_translation.project.location.country %}
-			  <img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
-			  {% endif %}
-			{% if project_translation.project.location.lat %}
-			<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
-			{% endif %}
-		{% else %}
-			<em>{% trans 'unknown'|capfirst %}</em>
-		{% endif %}
-		</div>
-		
-		<!-- Website -->
-		{% if project_translation.project.website %}
-		  <div class="website">{% trans "Website:" %} <a href="{{ project.website }}" target="_blank" rel="nofollow">{{ project_translation.project.website }}</a></div>
-		{% else %}
-            {% trans "Website:" %} <em>{% trans 'unknown'|capfirst %}</em>
+    {% if project_translation %}
+    <div id="project_generals_infoblock">
+    {% endif %}
+    
+        {% if project_translation.project.topics.all.0 %}
+        <img class="project_topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-picto.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
         {% endif %}
-	   
-		
-	  {% endif %}
-	</div>
-	
-	{% if project_translation %} 
-	<!-- PROJECT INFOS - editing version -->
-	<div id="project_infos_block_edit">
-	  <form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
-	    {% csrf_token %}
+      
+        <!-- BASELINE -->
+          {% if baseline_form %}
+        <!-- BASELINE - edition mode-->
+        {% if project_translation %}
 
-	    {{ project_info_form.as_p }}
- 	    {{ project_location_form.as_p }}
-	    <div class="clear"></div>
-	    <input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />							
-	    <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
-	  </form>	
+        <form id="baseline" action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
+        {% else %}
+        <form id="baseline" action="{% url project_sheet-edit-field topic.slug 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
+        {% endif %}
+        {{ baseline_form.baseline }}
+        <input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />
+        <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>
+        </form>
+        {% else %}
+          {% if project_translation %}
+            <!-- BASELINE - filled-->
+            <div class="project_baseline focus">
+              <p>{{ project_translation.baseline }}</p>
+              <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+            </div>
+          {% else %}
+            <!--  BASELINE - empty -->
+            <div class="project_baseline_edition_inactive">
+              <p>{% trans "One line description"|capfirst %}</p>
+              <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+            </div>
+          {% endif %}
+        {% endif %}	
+
+        <div class="clear"></div>        
+        
+        <!-- PROJECT INFOS - existing project - viewable version -->
+        <div id="project_infos_block">
+          {% if project_translation %} 
+          
+            <!-- edition of the full information block  -->
+            <a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a>
+
+            <!-- add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section) 
+            <div class="creation_date">
+            Created {{ project_translation.created }} {% trans 'by' %} 
+            <i>
+              {% if project.author %}
+            {{ project.author.get_full_name_or_username }}
+              {% else %}
+            {% trans 'anonymous'|capfirst %}
+              {% endif %}
+            </i>
+            ({{ project.ip_addr }})
+            </div> -->
+            
+            <div class="location">{% trans "Location:" %}
+            {% if project_translation.project.location %}
+                <!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
+                {% if project_translation.project.location.address %}
+                {{ project_translation.project.location.address }} -
+                {% endif %}
+            {% if project_translation.project.location.country %}
+                  <img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
+                  {% endif %}
+                {% if project_translation.project.location.lat %}
+                <img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
+                {% endif %}
+            {% else %}
+                <em>{% trans 'unknown'|capfirst %}</em>
+            {% endif %}
+            </div>
+            
+            <!-- Website -->
+            {% if project_translation.project.website %}
+              <div class="website">{% trans "Website:" %} <a href="{{ project.website }}" target="_blank" rel="nofollow">{{ project_translation.project.website }}</a></div>
+            {% else %}
+                {% trans "Website:" %} <em>{% trans 'unknown'|capfirst %}</em>
+            {% endif %}
+           
+            
+          {% endif %}
+        
+        {% if project_translation %}
+        </div>
+        {% endif %}
+        
+        {% if project_translation %} 
+        <!-- PROJECT INFOS - editing version -->
+        <div id="project_infos_block_edit">
+          <form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
+            {% csrf_token %}
+
+            {{ project_info_form.as_p }}
+            {{ project_location_form.as_p }}
+            <div class="clear"></div>
+            <input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />							
+            <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
+          </form>	
+        </div>
+        {% endif %}
+	
 	</div>
+	
+        {% if project_translation %}
+        	{% include "project_sheet/media_gallery.html"%}
 	{% endif %}
-	
-	
-	
-	
-	{% include "project_sheet/media_gallery.html"%}
 	
 	<!-- PROJECT DESCRIPTION -->
 	<div class="project_description">
@@ -638,34 +651,49 @@ data: '{{ project_status_choices|safe }}',
 	</div>					
 	
 
-	<!-- PROJECT DETAILS -->
-	{% for topic in topics %}
-	<h1>Label: {{topic.label}}</h1>
+	<!-- PROJECT DETAILS  (Answers to Questions) -->
+	{% for topic, questions in topics %}
 	<div class="project_details">
-	        {% for q in topic.questions.all %}
-        	{% if project_translation %}
-        		<div id="question-{{q.id}}" class="project_details_title_edit">
-        			<h2>{{ q.content|capfirst }}</h2>
-        			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'about_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-        		</div>
-        		{% if project_translation.uniqueness_section %}
-        			<!-- PARAGRAPH - filled -->
-        			<p id="project_uniqueness_txt" class="project_details_body">{{ project_translation.uniqueness_section|linebreaksbr }}</p>
-        		{% else %}
-        			<p id="project_uniqueness_txt" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}</p>
-        		{% endif %}
-        	{% else %}
-        		<!-- PARAGRAPH - empty -->
-        		<div id="uniqueness_section" class="project_details_title_edit">
-        			<h2>{% trans "in what ways is this project unique and creative"|capfirst %}?</h2>
-        			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field 'uniqueness_section' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-        		</div>
-        		<p id="project_uniqueness_txt" class="project_details_body empty"></p>
-        	{% endif %}
-        	{% endfor %}
+	        {% for q, a in questions %}
+    	        {% if answer_form %}
+                	<!-- PARAGRAPH - edit mode -->
+                	<div id="question-{{q.id}}" class="project_details_title_edit">
+                		<h2>{{ q.content|capfirst }}</h2>
+                	</div>
+                		{% if project_instance %}
+                			<form class="project_details_body_edit" action="{% url project_sheet-instance-edit-field project_instance.slug 'answer_content' %}" method="post">{% csrf_token %}
+                		{% else %}
+                			<form class="project_details_body_edit" action="{% url project_sheet-edit-field topic.slug 'answer_content' %}" method="post">{% csrf_token %}
+                		{% endif %}
+                			{{answer_form.content}}
+                			<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />	
+                			<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
+                	</form>
+                {% else %}
+                	{% if project_translation %}
+                		<div id="question-{{q.id}}" class="project_details_title_edit">
+                			<h2>{{ q.content|capfirst }}</h2>
+                			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'answer_content' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+                		</div>
+                		{% if a.content %}
+                			<!-- PARAGRAPH - filled -->
+                            <p id="answer-{{q.id}}" class="project_details_body">{{ a.content|linebreaksbr }}</p>
+                		{% else %}
+                        <p id="answer-{{q.id}}" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}</p>
+                		{% endif %}
+                	{% else %}
+                		<!-- PARAGRAPH - empty -->
+                		<div id="question-{{q.id}}" class="project_details_title_edit">
+                			<h2>{{ q.content|capfirst }}</h2>
+                			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'answer_content' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+                		</div>
+                		<p id="answer_txt" class="project_details_body empty"></p>
+                	{% endif %}
+                {% endif %}
+	    {% endfor %}
 	</div>
-
 	{% endfor %}
+
 
 	
 	<div class="clear"></div>

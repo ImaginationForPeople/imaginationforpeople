@@ -15,15 +15,15 @@
             <div class="allprojects"><a href="{% url project_sheet-list %}">{% trans 'All projects >' %}</a></div>
         </div>
         
-        <div id="loading">  
-            <img src="{{ STATIC_URL }}images/jquery/colorbox/loading.gif" alt="Loading..." />  
-        </div>
-
         <ul id="projects_slide">
          
             <!-- AJAX ZONE -->          
             
         </ul>  
+        
+        <div id="loading">  
+            <img src="{{ STATIC_URL }}images/jquery/colorbox/loading.gif" alt="Loading..." />  
+        </div>
         
         <div id="focus-nav">
             <div class="previous"><a href="javascript:;">{% trans '< Previous' %}</a></div>

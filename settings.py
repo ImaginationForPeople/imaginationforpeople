@@ -331,7 +331,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    # 'debug_toolbar.panels.sql.SQLDebugPanel',
+    #'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )
@@ -396,11 +396,11 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    ('js', os.path.join(MEDIA_ROOT, 'js')),
-    ('css', os.path.join(MEDIA_ROOT, 'css')),
-    ('css', os.path.join(MEDIA_ROOT, 'compiled_sass')),
-    ('fonts', os.path.join(MEDIA_ROOT, 'fonts')),
-    ('images', os.path.join(MEDIA_ROOT, 'images')),
+    ('js', os.path.join(STATIC_ROOT, 'js')),
+    ('css', os.path.join(STATIC_ROOT, 'css')),
+    ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
+    ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
+    ('images', os.path.join(STATIC_ROOT, 'images')),
 )
 
 COMPRESS_CSS_FILTERS = (

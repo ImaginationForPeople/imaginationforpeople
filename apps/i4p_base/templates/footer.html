@@ -1,19 +1,31 @@
 {% load i18n %}	
 {% load cms_tags %}	
 {% load menu_tags %}	
-
+</div>
 <div id="footer-zone-top">
 
     <div id="footer" class="center container_18">
         
         <div class="grid_5 alpha"> 
             <a href="{% url i4p-index %}">
+                
+                <!-- FIXME PLACEHOLDERS -->
+                <img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="Imagination for People" width="197" height="68" />
+                {% comment %}
                 {% placeholder footer-logo or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="Imagination for People" width="197" height="68" />{% endplaceholder %}
+                {% endcomment %}
+                
             </a>
             
             <br /><br />
             <div class="baseline">
+            
+                <!-- FIXME PLACEHOLDERS -->
+                A community of imaginative citizens to detect and develop socially innovative projects.
+                {% comment %}
                 {% placeholder baseline or %}A community of imaginative citizens to detect and develop socially innovative projects.{% endplaceholder %}
+                {% endcomment %}
+                
             </div>
             <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto' %}</a> | <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
             
@@ -21,10 +33,10 @@
             
             <h1>{% trans 'Follow us' %}</h1>
             <ul>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-fb.png" alt="Facebook" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Facebook</strong>" /></a> </li>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-gplus.png" alt="Google +" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Google+</strong>" /></a> </li>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-twitter.png" alt="Twitter" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Twitter</strong>" /></a> </li>
-                <li class="social-login"> <a href="#"><img src="{{ STATIC_URL }}images/base/social-it.png" alt="Scoop it !" width="32" height="32" class="tipsed on" title="{% trans 'Connect with' %} <strong>Scoopt it!</strong>" /></a> </li>
+                <li class="social-login"> <a href="https://www.facebook.com/imaginationforpeople.org"><img src="{{ STATIC_URL }}images/base/social-fb.png" alt="Facebook" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Facebook</strong>" /></a> </li>
+                <li class="social-login"> <a href="https://plus.google.com/100737503407974547401#100737503407974547401/posts"><img src="{{ STATIC_URL }}images/base/social-gplus.png" alt="Google +" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Google+</strong>" /></a> </li>
+                <li class="social-login"> <a href="http://twitter.com/#!/IPvoices"><img src="{{ STATIC_URL }}images/base/social-twitter.png" alt="Twitter" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Twitter</strong>" /></a> </li>
+                <li class="social-login"> <a href="http://www.scoop.it/t/imagination-for-people/"><img src="{{ STATIC_URL }}images/base/social-it.png" alt="Scoop it !" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Scoopt it!</strong>" /></a> </li>
             </ul>
             
             <br />
@@ -40,7 +52,7 @@
                 <div class="concept_detail">
                     <h1>{% trans 'Projects' %}</h1>
                     <p>{% trans 'Explore and contribute to social projects around the world.' %}</p>
-                    <a href="{% url project_sheet-list %}">{% trans 'Projects' %}</a> | <a href="{% url project_sheet-start %}">{% trans 'Add a project' %}</a>
+                    <a href="{% url project_sheet-list %}">{% trans 'Projects' %}</a> | <a href="{% url project_sheet-start %}" class="addproject_button">{% trans 'Add a project' %}</a>
                 </div>
             </div>
             
@@ -70,8 +82,14 @@
         
         <div class="grid_5 omega">
             <p class="licences">
+            
+            <!-- FIXME PLACEHOLDERS -->
+            <strong>Imaginationforpeople.org</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.
+            {% comment %}
             {% placeholder licences or %}<strong>Imaginationforpeople.org</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.{% endplaceholder %}
-            </p>
+            {% endcomment %}
+
+          </p>
             
             <br />
             <img src="{{ STATIC_URL }}images/base/licences-logo.png" alt="Creative Commons | AGPL" width="188" height="42" />

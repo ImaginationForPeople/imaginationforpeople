@@ -66,6 +66,34 @@ class Objective(TranslatableModel):
     def __unicode__(self):
         return self.safe_translation_getter('name', 'Objective: %s' % self.pk)
 
+class Topic(TranslatableModel):
+    """
+    A topic is a project type, aka. Template.
+    """
+    untranslated_name = models.CharField(_("Untranslated name"), max_length=128, default='New topic')
+    slug = AutoSlugField(populate_from="untranslated_name",
+                         always_update=True,
+                         unique=True)
+    translations = TranslatedFields(
+        label = models.CharField("Label", max_length=512)
+    )
+
+    def __unicode__(self):
+        return self.untranslated_name
+
+class SiteTopic(models.Model):
+    """
+    Topics allowed on a given site
+    """
+    site = models.ForeignKey(Site, related_name='site_topics')
+    topic = models.ForeignKey(Topic, related_name='site_topics')
+    order = models.IntegerField(default=0)
+
+    class Meta:
+        unique_together = (('site', 'topic'),)
+    
+    def __unicode__(self):
+        return '%s & %s' % (self.site, self.topic) 
 
 class I4pProject(models.Model):
     """
@@ -113,9 +141,13 @@ class I4pProject(models.Model):
                                     )
 
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
-    
+
+    topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'))
+
     # dynamicsites
-    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), verbose_name=_("sites"))
+    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), 
+                                  verbose_name=_("sites"),
+                                  related_name='projects')
     objects = models.Manager()
     on_site = CurrentSiteManager()
     
@@ -146,46 +178,32 @@ class I4pProject(models.Model):
         return project_translation.get_absolute_url()
 
 
-class Topic(models.Model):
-    label = models.CharField("Label", max_length=512)
-    language_code = models.CharField(_('language'),
-                                     max_length=6,
-                                     choices=settings.LANGUAGES)
-    def __unicode__(self):
-        return '%s: %s' % (self.label, self.language_code)
 
-class SiteTopic(models.Model):
-    site = models.ForeignKey(Site, related_name='site_topics')
-    topic = models.ForeignKey(Topic, related_name='site_topics')
-    order = models.IntegerField(default=0)
 
-    class Meta:
-        unique_together = (('site', 'topic'),)
-    
-    def __unicode__(self):
-        return '%s & %s' % (self.site, self.topic) 
-
-class Question(models.Model):
+class Question(TranslatableModel):
     """
     A project question
     """
     topic = models.ForeignKey(Topic, related_name="questions")
-    content = models.CharField(_("Content"), max_length=512)
     weight = models.IntegerField(_("Weight"), default=0)
+    translations = TranslatedFields(
+        content = models.CharField(_("Content"), max_length=512)
+    )
     
     def __unicode__(self):
-        return '%s' % (self.content, )
+        return self.safe_translation_getter('content', str(self.pk))
             
-class Answer(models.Model):
+class Answer(TranslatableModel):
     question = models.ForeignKey(Question, related_name="answers")
     project = models.ForeignKey(I4pProject, related_name="answers")
-    content = models.TextField(_("Content"))
+    translations = TranslatedFields(
+        content = models.TextField(_("Content"))
+    )
     class Meta:
         unique_together = (("question", "project"), )
         
     def __unicode__(self):
-        return 'Answer to: [%s]' % (self.question ,)
-
+        return 'Answer to: [%s]' % (self.question,)
 
 
 class I4pProjectTranslation(models.Model):

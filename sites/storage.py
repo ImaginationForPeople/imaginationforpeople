@@ -17,10 +17,13 @@ class SiteStaticStorage(FileSystemStorage):
         """
         # site is the actual site module
         self.site_module = site
-        mod = import_module(self.site_module)
-        mod_path = os.path.dirname(mod.__file__)
-        location = os.path.join(mod_path, self.source_dir)
-        super(SiteStaticStorage, self).__init__(location, *args, **kwargs)
+        if not site == "":
+            mod = import_module(self.site_module)
+            mod_path = os.path.dirname(mod.__file__)
+            location = os.path.join(mod_path, self.source_dir)
+            super(SiteStaticStorage, self).__init__(location, *args, **kwargs)
+        else:
+            super(SiteStaticStorage, self).__init__(*args, **kwargs)            
 
 
 
