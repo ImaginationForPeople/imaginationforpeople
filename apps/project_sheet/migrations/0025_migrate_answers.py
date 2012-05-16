@@ -48,16 +48,14 @@ class Migration(SchemaMigration):
         db.execute('ALTER TABLE django_site ADD COLUMN folder_name VARCHAR(255)')
         db.execute('ALTER TABLE django_site ADD COLUMN subdomains VARCHAR(255)')
 
-        # Create a default site
+        # Get the default site
         site = Site.objects.get(domain='imaginationforpeople.org')
-        # site = Site(domain='imaginationforpeople.org',
-                    # name='Imagination for People')
-        # site.save()
 
         # Create a topic
         topic = ps.Topic(untranslated_name='Social Innovation')
         topic.translate('en')
         topic.label = 'Social Innovation'
+        topic.save()
         topic.translate('fr')
         topic.label = 'Innovation sociale'
         topic.save()
@@ -72,12 +70,11 @@ class Migration(SchemaMigration):
             for language, text in translations.items():
                 questions[name].translate(language)
                 questions[name].content = text
-            questions[name].save()
+                questions[name].save()
 
         # Assign preexisting site data to the
         # default site and topic and migrate all answers
         for project in ps.I4pProject.objects.all():
-            # import pudb; pudb.set_trace()
             project.site.add(site)
             project.topics.add(site_topic)
             project.save()
