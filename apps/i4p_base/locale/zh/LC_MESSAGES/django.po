@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-03-19 13:58+0100\n"
-"PO-Revision-Date: 2012-03-19 12:59+0000\n"
+"POT-Creation-Date: 2012-05-14 11:00+0200\n"
+"PO-Revision-Date: 2012-05-14 09:01+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Chinese <communityzh@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -1049,8 +1049,24 @@ msgstr ""
 msgid "Close This Window"
 msgstr ""
 
-#: templates/base.html:127 templates/backcap/feedback_detail.html:8
-msgid "Feedback"
+#: templates/base.html:102
+msgid "Project search"
+msgstr ""
+
+#: templates/base.html:104
+msgid "Enter your login"
+msgstr ""
+
+#: templates/base.html:105
+msgid "Password"
+msgstr ""
+
+#: templates/base.html:107
+msgid "Enter your username"
+msgstr ""
+
+#: templates/base.html:109
+msgid "Enter your email adress"
 msgstr ""
 
 #: templates/bottom-panel.html:11
@@ -1138,7 +1154,7 @@ msgstr ""
 msgid "projects"
 msgstr ""
 
-#: templates/bottom-panel.html:147
+#: templates/bottom-panel.html:147 templates/footer.html:56
 msgid "Explore and contribute to social projects around the world."
 msgstr ""
 
@@ -1154,11 +1170,11 @@ msgstr ""
 msgid "community"
 msgstr ""
 
-#: templates/bottom-panel.html:154
+#: templates/bottom-panel.html:154 templates/footer.html:65
 msgid "Connect with a community of citizens from over 30 countries."
 msgstr ""
 
-#: templates/bottom-panel.html:155
+#: templates/bottom-panel.html:155 templates/footer.html:66
 msgid "The community"
 msgstr ""
 
@@ -1206,40 +1222,134 @@ msgstr ""
 msgid "About IP &gt;"
 msgstr ""
 
-#: templates/header.html:27 templates/pages/header.html:10
-msgid "About us"
+#: templates/footer.html:32
+msgid "Read the manifesto"
 msgstr ""
 
-#: templates/header.html:28 templates/pages/header.html:11
+#: templates/footer.html:32
+msgid "About IP"
+msgstr ""
+
+#: templates/footer.html:36
+msgid "Follow us"
+msgstr ""
+
+#: templates/footer.html:38 templates/footer.html.py:39
+#: templates/footer.html:40 templates/footer.html.py:41
+msgid "Follow us on"
+msgstr ""
+
+#: templates/footer.html:53 templates/footer.html.py:55
+#: templates/footer.html:57 templates/header.html:14
+#: templates/pages/header.html:11
 msgid "Projects"
 msgstr ""
 
-#: templates/header.html:30 templates/pages/header.html:13
+#: templates/footer.html:57 templates/header.html:15
+#: templates/header.html.py:33 templates/home-blocks/slider.html:36
+#: templates/home-blocks/slider.html:49 templates/pages/header.html:13
 msgid "Add a project"
 msgstr ""
 
-#: templates/header.html:31 templates/pages/header.html:14
-msgid "Workgroups"
+#: templates/footer.html:62 templates/footer.html.py:64
+msgid "Groupes"
 msgstr ""
 
-#: templates/header.html:32 templates/pages/header.html:15
+#: templates/footer.html:66 templates/pages/contrib.html:128
+msgid "Join the community"
+msgstr ""
+
+#: templates/footer.html:71 templates/footer.html.py:73
+msgid "Ressources"
+msgstr ""
+
+#: templates/footer.html:74
+msgid ""
+"Discover the latest tools, methods and debates in the world of social "
+"innovation."
+msgstr ""
+
+#: templates/footer.html:75
+msgid "Ressources (WIP)"
+msgstr ""
+
+#: templates/footer.html:100 templates/header.html:17
+#: templates/pages/header.html:15
 msgid "Contribute"
 msgstr ""
 
-#: templates/homepage.html:56
-msgid "Detect and support <br/> imaginative social projects"
+#: templates/footer.html:102 templates/pages/contrib.html:44
+#: templates/pages/footer.html:26
+msgid "Translator"
 msgstr ""
 
-#: templates/homepage.html:65
-msgid "Discover more projects"
+#: templates/footer.html:103 templates/pages/contrib.html:46
+#: templates/pages/footer.html:27
+msgid "Developer"
 msgstr ""
 
-#: templates/homepage.html:77
-msgid "Discover this project &gt;"
+#: templates/footer.html:104 templates/pages/contrib.html:48
+#: templates/pages/footer.html:28
+msgid "Designer"
 msgstr ""
 
-#: templates/homepage.html:92
-msgid "Skip intro"
+#: templates/footer.html:108 templates/pages/contrib.html:50
+#: templates/pages/footer.html:29
+msgid "Writer"
+msgstr ""
+
+#: templates/footer.html:109
+msgid "Seeder"
+msgstr ""
+
+#: templates/footer.html:110
+msgid "Q&A"
+msgstr ""
+
+#: templates/footer.html:115
+msgid "Newsletter"
+msgstr ""
+
+#: templates/header.html:13 templates/pages/header.html:10
+msgid "About us"
+msgstr ""
+
+#: templates/header.html:16 templates/pages/header.html:14
+msgid "Workgroups"
+msgstr ""
+
+#: templates/header.html:32
+msgid "All the projects"
+msgstr ""
+
+#: templates/header.html:34
+msgid "All the tags"
+msgstr ""
+
+#: templates/header.html:35
+msgid "Grid view"
+msgstr ""
+
+#: templates/header.html:36
+msgid "Map view"
+msgstr ""
+
+#: templates/header.html:37
+msgid "My favorites"
+msgstr ""
+
+#: templates/homepage.html:30
+msgid "My project title"
+msgstr ""
+
+#: templates/homepage.html:31
+msgid "One line description"
+msgstr ""
+
+#: templates/homepage.html:195
+msgid ""
+"You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
+"<strong>register</strong> your project"
 msgstr ""
 
 #: templates/login-slide.html:15
@@ -1254,7 +1364,7 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/login-slide.html:48
+#: templates/login-slide.html:48 templates/home-blocks/loginbox.html:44
 msgid "Lost your password?"
 msgstr ""
 
@@ -1278,31 +1388,33 @@ msgstr ""
 msgid "You have no projects"
 msgstr ""
 
-#: templates/login-slide.html:114 templates/backcap/feedback_detail.html:229
+#: templates/login-slide.html:118 templates/backcap/feedback_detail.html:229
 msgid "Log In"
 msgstr ""
 
-#: templates/login-slide.html:114
+#: templates/login-slide.html:118
 msgid "Register"
 msgstr ""
 
-#: templates/login-slide.html:116
+#: templates/login-slide.html:120
 msgid "Close Panel"
 msgstr ""
 
-#: templates/login-slide.html:122 templates/login-slide.html.py:124
+#: templates/login-slide.html:126 templates/login-slide.html.py:128
+#: templates/home-blocks/loginbox.html:79
+#: templates/home-blocks/loginbox.html:81
 msgid "My messages"
 msgstr ""
 
-#: templates/login-slide.html:127
+#: templates/login-slide.html:131 templates/home-blocks/loginbox.html:84
 msgid "View my profile"
 msgstr ""
 
-#: templates/login-slide.html:128
+#: templates/login-slide.html:132 templates/home-blocks/loginbox.html:85
 msgid "Edit my profile"
 msgstr ""
 
-#: templates/login-slide.html:129
+#: templates/login-slide.html:133 templates/home-blocks/loginbox.html:86
 msgid "Log out"
 msgstr ""
 
@@ -1320,6 +1432,10 @@ msgstr ""
 
 #: templates/nav.html:67
 msgid "create a new translation"
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:8
+msgid "Feedback"
 msgstr ""
 
 #: templates/backcap/feedback_detail.html:74
@@ -1554,28 +1670,89 @@ msgstr "发送"
 msgid "Edit Feedback"
 msgstr ""
 
+#: templates/home-blocks/focus-zone.html:10
+msgid "To discover"
+msgstr ""
+
+#: templates/home-blocks/focus-zone.html:11
+msgid "Recent projects"
+msgstr ""
+
+#: templates/home-blocks/focus-zone.html:12
+msgid "Most commented"
+msgstr ""
+
+#: templates/home-blocks/focus-zone.html:15
+msgid "All projects >"
+msgstr ""
+
+#: templates/home-blocks/focus-zone.html:29
+msgid "< Previous"
+msgstr ""
+
+#: templates/home-blocks/focus-zone.html:30
+msgid "Next >"
+msgstr ""
+
+#: templates/home-blocks/last_members.html:4
+msgid "New members"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:10
+msgid "Connexion"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:11
+msgid "Inscription"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:14
+#: templates/home-blocks/loginbox.html:15
+#: templates/home-blocks/loginbox.html:16
+#: templates/home-blocks/loginbox.html:17
+#: templates/home-blocks/loginbox.html:18
+msgid "Connect with"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:25
+#: templates/home-blocks/loginbox.html:51
+msgid "close"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:34
+msgid "Remember me"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:43
+msgid "Go !"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:58
+msgid "Login"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:68
+msgid "Logged in as:"
+msgstr ""
+
+#: templates/home-blocks/loginbox.html:71
+msgid "Your avatar"
+msgstr ""
+
+#: templates/home-blocks/quick_project.html:4
+msgid "Add your project"
+msgstr ""
+
+#: templates/home-blocks/quick_project.html:12
+msgid "Add"
+msgstr ""
+
 #: templates/pages/contrib.html:32
 msgid "A community dedicated to"
 msgstr ""
 
 #: templates/pages/contrib.html:33
 msgid "citizen imagination"
-msgstr ""
-
-#: templates/pages/contrib.html:44 templates/pages/footer.html:26
-msgid "Translator"
-msgstr ""
-
-#: templates/pages/contrib.html:46 templates/pages/footer.html:27
-msgid "Developer"
-msgstr ""
-
-#: templates/pages/contrib.html:48 templates/pages/footer.html:28
-msgid "Designer"
-msgstr ""
-
-#: templates/pages/contrib.html:50 templates/pages/footer.html:29
-msgid "Writer"
 msgstr ""
 
 #: templates/pages/contrib.html:52 templates/pages/footer.html:30
@@ -1604,10 +1781,6 @@ msgstr ""
 
 #: templates/pages/contrib.html:115
 msgid "Latest commits"
-msgstr ""
-
-#: templates/pages/contrib.html:128
-msgid "Join the community"
 msgstr ""
 
 #: templates/pages/contrib.html:138

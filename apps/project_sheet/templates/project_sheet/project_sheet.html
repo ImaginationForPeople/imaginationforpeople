@@ -539,7 +539,7 @@ data: '{{ project_status_choices|safe }}',
     {% endif %}
     
         {% if project_translation.project.topics.all.0 %}
-        <img class="project_topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-picto.png" alt="{{ project_translation.project.topics.all.0.topic.untranslated_name }}" />
+        <img class="project_topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-picto.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
         {% endif %}
       
         <!-- BASELINE -->

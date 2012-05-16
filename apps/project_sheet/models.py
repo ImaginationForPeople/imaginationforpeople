@@ -145,7 +145,9 @@ class I4pProject(models.Model):
     topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'))
 
     # dynamicsites
-    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), verbose_name=_("sites"))
+    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), 
+                                  verbose_name=_("sites"),
+                                  related_name='projects')
     objects = models.Manager()
     on_site = CurrentSiteManager()
     
