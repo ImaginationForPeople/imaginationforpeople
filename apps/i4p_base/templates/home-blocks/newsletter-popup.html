@@ -1,0 +1,23 @@
+{% load i18n %} 
+
+<div id="newsletter_popup" class="newsletter">
+    <h1>{% trans 'Newsletter' %}</h1>
+    
+    <a class="close-button">
+        <img width="11" height="11" src="{{ STATIC_URL }}images/home/close.png" alt="close">
+    </a>
+    
+    <hr />
+    
+    <img class="newsletter_picto" src="{{ STATIC_URL }}images/base/newsletter-picto.png" alt="Newsletter" width="46" height="33"/>
+    <p>{% trans 'Subscribe to the newsletter and receive the latest news.' %}</p>
+    
+    <div class="clear"></div><br />
+    
+    <form action="#" class="newsletter">
+        <input type="text" maxlength="100" name="text" id="id_text" class="example">
+        <br />
+        <input type="submit" value="{% trans 'Subscribe' %}">
+    </form>
+    
+</div>
