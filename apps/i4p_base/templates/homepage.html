@@ -36,11 +36,11 @@
             $("#panels-slide").stop().animate({left: '-245px'}, 500);
         });	
         
-        $("#loginbox .panel1 a.openid-button").click(function () {
+        $("#loginbox .panel1 a.openid-button").click(function (){
             $("#panels-slide").stop().animate({left: '-490px'}, 500);
         });	
         
-        $("#loginbox .loginpanel a.close-button").click(function () {
+        $("#loginbox .loginpanel a.close-button").click(function (){
             $("#panels-slide").stop().animate({left: '0px'}, 500);
         });	
         
@@ -136,7 +136,12 @@
         showLoading();
         content.load("{% url i4p-homepage-ajax-slider-bestof %}", hideLoading);
         $('#projects_slide').anythingSlider(1); // Reset to first slide
-                    $('#projects_slide').data('AnythingSlider').startStop(true);
+        
+        
+        // Close button for newsletter popup
+        $("#newsletter_popup .close-button").click(function (){
+            $("#newsletter_popup").addClass("hidden");
+        });	
       
     });
     </script>
@@ -178,12 +183,17 @@
         
         <div id="left_col">
         
+            <!-- 2 last news -->
             {% include "home-blocks/infoblock.html" %}     
             
             {% placeholder banners %}
             
+            {% include "home-blocks/blog-box.html" %} 
+            
+            {% include "home-blocks/twitter-box.html" %}   
+
         </div>
-        
+         
         <div id="right_col">
             
             {% comment %}
@@ -201,14 +211,17 @@
             <!-- Quick Project -->
             <!-- FIXME -->
             {% comment %}
-            {% include "home-blocks/quick_project.html" %} 
+                {% include "home-blocks/quick_project.html" %} 
             {% endcomment %}            
             
             <!-- Last members -->
             {% include "home-blocks/last_members.html" %}     
             
             <!-- Facebook friendbox -->
-            {% include "home-blocks/fb-fanbox.html" %}     
+            {% include "home-blocks/fb-fanbox.html" %}    
+
+            <!-- Newsletter popup -->
+            {% include "home-blocks/newsletter-popup.html" %}            
             
         </div>
         
