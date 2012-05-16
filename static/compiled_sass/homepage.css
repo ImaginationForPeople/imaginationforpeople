@@ -231,14 +231,69 @@ hr {
 #content-zone #content #left_col .infoblock .details ul.infotags li {
   background-color: #a7a7a7;
   padding: 3px;
-  color: white;
   font-style: italic;
   font-size: 11px;
+}
+#content-zone #content #left_col .infoblock .details ul.infotags li a {
+  color: white;
 }
 #content-zone #content #left_col .infoblock .details ul.info-share {
   position: absolute;
   bottom: 12px;
   right: 30px;
+}
+#content-zone #content #left_col #blog_box, #content-zone #content #left_col #twitter_box {
+  background-image: url("../images/home/infoblock-bg.jpg");
+  float: left;
+  height: 290px;
+  overflow: hidden;
+}
+#content-zone #content #left_col #blog_box h1, #content-zone #content #left_col #twitter_box h1 {
+  padding: 8px;
+  background-color: #c1c1c1;
+  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
+  font-size: 16px;
+  font-style: normal;
+  text-transform: uppercase;
+  text-shadow: 1px 1px #f3f3f3;
+  color: #303030;
+  border-top: 3px solid #04add1;
+}
+#content-zone #content #left_col #blog_box ul, #content-zone #content #left_col #twitter_box ul {
+  margin: 8px;
+  margin-top: 3px;
+}
+#content-zone #content #left_col #blog_box ul li, #content-zone #content #left_col #twitter_box ul li {
+  padding: 5px 0px;
+  border-bottom: 1px dotted #c1c1c1;
+  float: left;
+}
+#content-zone #content #left_col #blog_box ul li img, #content-zone #content #left_col #twitter_box ul li img {
+  float: left;
+  margin-right: 10px;
+}
+#content-zone #content #left_col #blog_box ul li p, #content-zone #content #left_col #twitter_box ul li p {
+  font-size: 10px;
+  color: #303030;
+}
+#content-zone #content #left_col #blog_box ul li p span.date, #content-zone #content #left_col #twitter_box ul li p span.date {
+  color: grey;
+  clear: both;
+  font-size: 9px;
+}
+#content-zone #content #left_col #blog_box {
+  width: 54.5%;
+  margin-right: 1.5%;
+}
+#content-zone #content #left_col #twitter_box {
+  width: 42.5%;
+  margin-left: 1.5%;
+}
+#content-zone #content #left_col #twitter_box h1 {
+  padding-left: 40px;
+  background-image: url("../images/home/twitter-logo.jpg");
+  background-repeat: no-repeat;
+  background-position: 5px 2px;
 }
 #content-zone #content #right_col {
   width: 245px;
@@ -482,4 +537,82 @@ hr {
   border-radius: 4px;
   padding: 0px;
   height: 85px !important;
+}
+#content-zone #content #right_col #newsletter_popup {
+  background-image: url("../images/home/newsletter-popup-bg.png");
+  padding: 10px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  border: 1px solid #9b9b9b;
+  position: absolute;
+  width: 245px;
+  top: 215px;
+  right: 40px;
+  z-index: 300;
+  -moz-box-shadow: 0px 0px 8px black;
+  -webkit-box-shadow: 0px 0px 8px black;
+  -o-box-shadow: 0px 0px 8px black;
+  box-shadow: 0px 0px 8px black;
+  behavior: url(static/js/pie/PIE.htc);
+}
+#content-zone #content #right_col #newsletter_popup h1 {
+  font-size: 17px;
+  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-style: normal;
+  color: white;
+  margin: 0px;
+}
+#content-zone #content #right_col #newsletter_popup .close-button {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+}
+#content-zone #content #right_col #newsletter_popup hr {
+  border: 1px dotted #9b9b9b;
+  border-style: dotted !important;
+  background-image: none;
+  margin-top: 5px;
+}
+#content-zone #content #right_col #newsletter_popup img.newsletter_picto {
+  float: left;
+  margin-right: 10px;
+}
+#content-zone #content #right_col #newsletter_popup p {
+  font-size: 11px;
+}
+#content-zone #content #right_col #newsletter_popup form input[type=text] {
+  width: 100%;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  border: 0px;
+  color: #7F7E7E;
+  font-family: "OpenSans",Arial,Helvetica,sans-serif !important;
+  font-size: 10px;
+  padding: 3px 0px;
+}
+#content-zone #content #right_col #newsletter_popup form input[type=submit] {
+  width: 100%;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #04add1;
+  border: 0px;
+  margin-top: 5px;
+  color: white;
+  background: url(../images/base/minibutton_blue.jpg);
+}
+#content-zone #content #right_col #newsletter_popup form input[type=submit]:hover {
+  background: url(../images/base/minibutton_green.jpg);
 }
