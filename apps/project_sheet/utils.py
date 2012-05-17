@@ -124,8 +124,6 @@ def get_or_create_project_translation_by_slug(project_translation_slug, language
     the same language with a different slug can lead to duplicate
     projects.
     When possible, use the "_from_parent" version instead.
-
-    It can create the parent project if needed.
     """
     try:
         project_translation = get_project_translation_by_slug(project_translation_slug, language_code)

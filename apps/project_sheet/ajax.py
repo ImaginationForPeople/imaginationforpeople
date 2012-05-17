@@ -93,9 +93,8 @@ def _textfield_load(language_code, project_slug, section):
     translation.activate(language_code)
 
     # get the project translation and its base
-    pcrit = dict(project_translation_slug=project_slug,
-                 language_code=language_code)
-    project_translation = get_project_translation_by_slug(pcrit)
+    project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                          language_code=language_code)
 
     # Get the text
     choices = project_translation._meta.get_field(TEXTFIELD_MAPPINGS[section]).choices
