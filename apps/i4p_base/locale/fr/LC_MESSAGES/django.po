@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Translators:
 #   <maire.sylvain@gmail.com>, 2011.
 #   <simonsarazin@imaginationforpeople.org>, 2012.
 # Simon Sarazin <simon.sarazin@gmail.com>, 2012.
@@ -10,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-05-14 11:00+0200\n"
-"PO-Revision-Date: 2012-05-14 09:01+0000\n"
+"POT-Creation-Date: 2012-05-17 15:21+0200\n"
+"PO-Revision-Date: 2012-05-17 13:41+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: French (http://www.transifex.net/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1054,23 +1055,23 @@ msgstr "Ferme Cette Fenêtre"
 
 #: templates/base.html:102
 msgid "Project search"
-msgstr ""
+msgstr "Recherche de projet"
 
 #: templates/base.html:104
 msgid "Enter your login"
-msgstr ""
+msgstr "Enter son login"
 
 #: templates/base.html:105
 msgid "Password"
-msgstr ""
+msgstr "Mot de passe"
 
 #: templates/base.html:107
 msgid "Enter your username"
-msgstr ""
+msgstr "Entrer son nom d'utilisateur"
 
 #: templates/base.html:109
 msgid "Enter your email adress"
-msgstr ""
+msgstr "Entrer son adresse mail"
 
 #: templates/bottom-panel.html:11
 msgid "Pin/Unpin the panel"
@@ -1227,20 +1228,20 @@ msgstr "À propos d'IP &gt;"
 
 #: templates/footer.html:32
 msgid "Read the manifesto"
-msgstr ""
+msgstr "Lire le manifeste"
 
 #: templates/footer.html:32
 msgid "About IP"
-msgstr ""
+msgstr "À propos"
 
 #: templates/footer.html:36
 msgid "Follow us"
-msgstr ""
+msgstr "Nous suivre"
 
 #: templates/footer.html:38 templates/footer.html.py:39
 #: templates/footer.html:40 templates/footer.html.py:41
 msgid "Follow us on"
-msgstr ""
+msgstr "Nous suivre sur"
 
 #: templates/footer.html:53 templates/footer.html.py:55
 #: templates/footer.html:57 templates/header.html:14
@@ -1256,7 +1257,7 @@ msgstr "Ajouter un projet"
 
 #: templates/footer.html:62 templates/footer.html.py:64
 msgid "Groupes"
-msgstr ""
+msgstr "Groupes"
 
 #: templates/footer.html:66 templates/pages/contrib.html:128
 msgid "Join the community"
@@ -1264,17 +1265,17 @@ msgstr "Rejoignez la communauté"
 
 #: templates/footer.html:71 templates/footer.html.py:73
 msgid "Ressources"
-msgstr ""
+msgstr "Ressources"
 
 #: templates/footer.html:74
 msgid ""
 "Discover the latest tools, methods and debates in the world of social "
 "innovation."
-msgstr ""
+msgstr "Découvrir les derniers outils, méthodes et débats dans le monde de l'innovation sociale."
 
 #: templates/footer.html:75
 msgid "Ressources (WIP)"
-msgstr ""
+msgstr "Ressources (WIP)"
 
 #: templates/footer.html:100 templates/header.html:17
 #: templates/pages/header.html:15
@@ -1303,15 +1304,15 @@ msgstr "Rédacteur"
 
 #: templates/footer.html:109
 msgid "Seeder"
-msgstr ""
+msgstr "Essaimeur"
 
 #: templates/footer.html:110
 msgid "Q&A"
-msgstr ""
+msgstr "Q&A"
 
-#: templates/footer.html:115
+#: templates/footer.html:115 templates/home-blocks/newsletter-popup.html:4
 msgid "Newsletter"
-msgstr ""
+msgstr "Newsletter"
 
 #: templates/header.html:13 templates/pages/header.html:10
 msgid "About us"
@@ -1323,37 +1324,37 @@ msgstr "Groupes de travail"
 
 #: templates/header.html:32
 msgid "All the projects"
-msgstr ""
-
-#: templates/header.html:34
-msgid "All the tags"
-msgstr ""
+msgstr "Tous les projets"
 
 #: templates/header.html:35
-msgid "Grid view"
-msgstr ""
+msgid "All the tags"
+msgstr "Tous les tags"
 
 #: templates/header.html:36
-msgid "Map view"
-msgstr ""
+msgid "Grid view"
+msgstr "Vue par projets"
 
 #: templates/header.html:37
+msgid "Map view"
+msgstr "Vue cartographique"
+
+#: templates/header.html:38
 msgid "My favorites"
-msgstr ""
+msgstr "Mes favoris"
 
 #: templates/homepage.html:30
 msgid "My project title"
-msgstr ""
+msgstr "Le titre du projet"
 
 #: templates/homepage.html:31
 msgid "One line description"
-msgstr ""
+msgstr "Description en une ligne"
 
-#: templates/homepage.html:195
+#: templates/homepage.html:206
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
-msgstr ""
+msgstr "Vous pouvez<strong>contribuer</strong>, <strong>partager</strong> vos idées,  <strong>inscrire</strong> votre projet"
 
 #: templates/login-slide.html:15
 msgid "Interface language"
@@ -1673,41 +1674,51 @@ msgstr "Envoyer"
 msgid "Edit Feedback"
 msgstr "Modifier la demande"
 
+#: templates/home-blocks/blog-box.html:4
+msgid "Last posts on blog"
+msgstr ""
+
 #: templates/home-blocks/focus-zone.html:10
 msgid "To discover"
-msgstr ""
+msgstr "Découvrir plus de projets"
 
 #: templates/home-blocks/focus-zone.html:11
 msgid "Recent projects"
-msgstr ""
+msgstr "Derniers projets"
 
 #: templates/home-blocks/focus-zone.html:12
 msgid "Most commented"
-msgstr ""
+msgstr "Plus commentés"
 
 #: templates/home-blocks/focus-zone.html:15
 msgid "All projects >"
-msgstr ""
+msgstr "Tous les projets >"
 
 #: templates/home-blocks/focus-zone.html:29
 msgid "< Previous"
-msgstr ""
+msgstr "< Précédent"
 
 #: templates/home-blocks/focus-zone.html:30
 msgid "Next >"
+msgstr "Suivant >"
+
+#: templates/home-blocks/infoblock.html:19
+#: templates/home-blocks/infoblock.html:20
+#: templates/home-blocks/infoblock.html:21
+msgid "Share on"
 msgstr ""
 
 #: templates/home-blocks/last_members.html:4
 msgid "New members"
-msgstr ""
+msgstr "Nouveaux membres"
 
 #: templates/home-blocks/loginbox.html:10
 msgid "Connexion"
-msgstr ""
+msgstr "Connexion"
 
 #: templates/home-blocks/loginbox.html:11
 msgid "Inscription"
-msgstr ""
+msgstr "Inscription"
 
 #: templates/home-blocks/loginbox.html:14
 #: templates/home-blocks/loginbox.html:15
@@ -1715,39 +1726,51 @@ msgstr ""
 #: templates/home-blocks/loginbox.html:17
 #: templates/home-blocks/loginbox.html:18
 msgid "Connect with"
-msgstr ""
+msgstr "Se connecter avec"
 
 #: templates/home-blocks/loginbox.html:25
 #: templates/home-blocks/loginbox.html:51
 msgid "close"
-msgstr ""
+msgstr "fermer"
 
 #: templates/home-blocks/loginbox.html:34
 msgid "Remember me"
-msgstr ""
+msgstr "Se souvenir de moi"
 
 #: templates/home-blocks/loginbox.html:43
 msgid "Go !"
-msgstr ""
+msgstr "Go !"
 
 #: templates/home-blocks/loginbox.html:58
 msgid "Login"
-msgstr ""
+msgstr "Connexion"
 
 #: templates/home-blocks/loginbox.html:68
 msgid "Logged in as:"
-msgstr ""
+msgstr "Connecté en tant que :"
 
 #: templates/home-blocks/loginbox.html:71
 msgid "Your avatar"
+msgstr "Votre avatar"
+
+#: templates/home-blocks/newsletter-popup.html:13
+msgid "Subscribe to the newsletter and receive the latest news."
+msgstr ""
+
+#: templates/home-blocks/newsletter-popup.html:20
+msgid "Subscribe"
 msgstr ""
 
 #: templates/home-blocks/quick_project.html:4
 msgid "Add your project"
-msgstr ""
+msgstr "Ajouter votre projet"
 
 #: templates/home-blocks/quick_project.html:12
 msgid "Add"
+msgstr "Ajouter"
+
+#: templates/home-blocks/twitter-box.html:4
+msgid "Twitter"
 msgstr ""
 
 #: templates/pages/contrib.html:32

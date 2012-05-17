@@ -5,6 +5,7 @@ from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_GET
+from django.views.decorators.vary import vary_on_headers
 
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translations_from_parents
@@ -22,6 +23,7 @@ def _slider_make_response(request, queryset):
     
 @require_GET
 @cache_page(60 * 5)
+@vary_on_headers('Host')
 def slider_bestof(request):
     """
     Get the "count" bestof projects at random
@@ -48,11 +50,13 @@ def slider_most_commented(request):
     Get the most commented projects
     """
     count = int(request.GET.get('count', 14))
+    site = Site.objects.get_current()
     
     i4pprojecttranslation_type = ContentType.objects.get_for_model(I4pProjectTranslation)
     comment_model = comments.get_model()
 
     req = comment_model.objects.filter(content_type__pk=i4pprojecttranslation_type.id).values('object_pk').annotate(comment_count=Count('object_pk')).order_by("-comment_count")
+    site.projects.filter(id__in=qs)
     project_translations = I4pProjectTranslation.objects.filter(id__in=[x['object_pk'] for x in req])
     
     return render_to_response(template_name='home-blocks/slider.html',
