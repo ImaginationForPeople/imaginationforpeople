@@ -35,6 +35,7 @@ def slider_bestof(request):
 
 @require_GET
 @cache_page(60 * 5)
+@vary_on_headers('Host')
 def slider_latest(request):
     """
     Get the "count" latests projects, sorted by creation time
@@ -45,6 +46,7 @@ def slider_latest(request):
 
 @require_GET
 @cache_page(60 * 5)
+@vary_on_headers('Host')
 def slider_most_commented(request):
     """
     Get the most commented projects
