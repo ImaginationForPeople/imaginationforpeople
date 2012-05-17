@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
+from django.utils import translation
 from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_GET
 from django.views.decorators.vary import vary_on_headers
@@ -54,13 +55,15 @@ def slider_most_commented(request):
     """
     count = int(request.GET.get('count', 14))
     site = Site.objects.get_current()
+    current_language_code = translation.get_language()
     
     i4pprojecttranslation_type = ContentType.objects.get_for_model(I4pProjectTranslation)
     comment_model = comments.get_model()
 
     req = comment_model.objects.filter(content_type__pk=i4pprojecttranslation_type.id).values('object_pk').annotate(comment_count=Count('object_pk')).order_by("-comment_count")
-    site.projects.filter(id__in=qs)
-    project_translations = I4pProjectTranslation.objects.filter(id__in=[x['object_pk'] for x in req])
+    parent_projects = site.projects.filter(id__in=[x.id for x in req])
+    project_translations = get_project_translations_from_parents(parents_qs=parent_projects,
+                                                                 language_code=current_language_code)
     
     return render_to_response(template_name='home-blocks/slider.html',
                               dictionary={'project_translations': project_translations},
