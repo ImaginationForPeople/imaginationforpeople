@@ -43,6 +43,7 @@ class I4pProjectAdmin(VersionAdmin):
         TranslationInline,
         )
     list_display = ('__unicode__', 'status', 'best_of', 'created')
+    date_hierarchy = 'created'
     list_filter = ['site']
 
 class QuestionAdmin(nani_admin.TranslatableAdmin):
