@@ -16,6 +16,7 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 # -*- coding: utf-8 -*-
+import random
 
 from django.contrib.auth.models import User
 from django.http import QueryDict
@@ -35,7 +36,8 @@ def homepage(request):
                                                                  language_code=translation.get_language()
                                                                  )
 
-    latest_members = User.objects.filter(is_active=True).order_by('-date_joined')[:7]
+    latest_members = list(User.objects.filter(is_active=True).order_by('-date_joined')[:7])
+    random.shuffle(latest_members)
     
     data = request.GET
 
