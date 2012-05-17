@@ -22,6 +22,7 @@ hr {
 /*---- FOCUS ----*/
 #focus-zone {
   background-image: url(../images/home/focus-bg.jpg);
+  height: 364px;
 }
 #focus-zone #focus {
   background-color: black;
@@ -119,6 +120,17 @@ hr {
   z-index: 999;
   top: 160px;
   left: 470px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -o-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -khtml-border-radius: 20px;
+  border-radius: 20px;
+  background-color: black;
+}
+#focus-zone #focus #loading img {
+  position: relative;
+  top: 9px;
 }
 #focus-zone #focus #focus-nav {
   height: 37px;
@@ -538,7 +550,9 @@ hr {
   padding: 0px;
   height: 85px !important;
 }
-#content-zone #content #right_col #newsletter_popup {
+
+/*--- NEWSLETTER POPUP ----*/
+#newsletter_popup {
   background-image: url("../images/home/newsletter-popup-bg.png");
   padding: 10px;
   -moz-border-radius: 4px;
@@ -548,9 +562,9 @@ hr {
   -khtml-border-radius: 4px;
   border-radius: 4px;
   border: 1px solid #9b9b9b;
-  position: absolute;
+  position: fixed;
   width: 245px;
-  top: 215px;
+  bottom: 50px;
   right: 40px;
   z-index: 300;
   -moz-box-shadow: 0px 0px 8px black;
@@ -559,33 +573,34 @@ hr {
   box-shadow: 0px 0px 8px black;
   behavior: url(static/js/pie/PIE.htc);
 }
-#content-zone #content #right_col #newsletter_popup h1 {
+#newsletter_popup h1 {
   font-size: 17px;
   font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
   font-style: normal;
   color: white;
   margin: 0px;
 }
-#content-zone #content #right_col #newsletter_popup .close-button {
+#newsletter_popup .close-button {
   position: absolute;
   top: 15px;
   right: 10px;
   cursor: pointer;
 }
-#content-zone #content #right_col #newsletter_popup hr {
+#newsletter_popup hr {
   border: 1px dotted #9b9b9b;
   border-style: dotted !important;
   background-image: none;
   margin-top: 5px;
 }
-#content-zone #content #right_col #newsletter_popup img.newsletter_picto {
+#newsletter_popup img.newsletter_picto {
   float: left;
   margin-right: 10px;
 }
-#content-zone #content #right_col #newsletter_popup p {
+#newsletter_popup p {
   font-size: 11px;
+  color: white;
 }
-#content-zone #content #right_col #newsletter_popup form input[type=text] {
+#newsletter_popup form input[type=text] {
   width: 100%;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -599,7 +614,7 @@ hr {
   font-size: 10px;
   padding: 3px 0px;
 }
-#content-zone #content #right_col #newsletter_popup form input[type=submit] {
+#newsletter_popup form input[type=submit] {
   width: 100%;
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -613,6 +628,6 @@ hr {
   color: white;
   background: url(../images/base/minibutton_blue.jpg);
 }
-#content-zone #content #right_col #newsletter_popup form input[type=submit]:hover {
+#newsletter_popup form input[type=submit]:hover {
   background: url(../images/base/minibutton_green.jpg);
 }
