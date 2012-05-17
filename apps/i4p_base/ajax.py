@@ -61,7 +61,7 @@ def slider_most_commented(request):
     comment_model = comments.get_model()
 
     req = comment_model.objects.filter(content_type__pk=i4pprojecttranslation_type.id).values('object_pk').annotate(comment_count=Count('object_pk')).order_by("-comment_count")
-    parent_projects = site.projects.filter(id__in=[x.id for x in req])
+    parent_projects = site.projects.filter(id__in=[x['object_pk'] for x in req])
     project_translations = get_project_translations_from_parents(parents_qs=parent_projects,
                                                                  language_code=current_language_code)
     
