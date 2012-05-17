@@ -222,7 +222,10 @@ class TopicFilterForm(FilterForm):
         if model_class == I4pProject:
             val = self.cleaned_data.get("topics")
             if val:
-                qs = qs.filter(topics=val)
+                site = Site.objects.get_current()
+                sitetopic = SiteTopic.objects.get(id=val,
+                                                  site=site)
+                qs = sitetopic.projects.filter(id__in=qs)
         return qs
 
     def __init__(self, *args, **kwargs):

@@ -142,7 +142,8 @@ class I4pProject(models.Model):
 
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
 
-    topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'))
+    topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'),
+                                    related_name='projects')
 
     # dynamicsites
     site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), 
