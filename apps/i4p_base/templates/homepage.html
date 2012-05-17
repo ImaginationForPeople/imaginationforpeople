@@ -18,132 +18,91 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
-
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider.js" ></script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/homepage/boxes.js" ></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/homepage/slider.js" ></script>
 
 
     <script type="text/javascript">
     $(document).ready(function(){
-
+    
     // Text example for forms
         $('#quick_project input[name=title]').example('{% trans "My project title" %}');
         $('#quick_project input[name=baseline]').example('{% trans "One line description" %}');
+        
+        
+    // AJAX Focus Zone 
+    var sections = $("#focus-menu .focus-filters li");  
+    var loading = $("#loading");     
+    var content = $("#projects_slide"); 
 
-        
-    // Loginbox panels slide
-        $("#loginbox .panel1 a#loginlink-subscribe").click(function () {
-            $("#panels-slide").stop().animate({left: '-245px'}, 500);
-        });	
-        
-        $("#loginbox .panel1 a.openid-button").click(function (){
-            $("#panels-slide").stop().animate({left: '-490px'}, 500);
-        });	
-        
-        $("#loginbox .loginpanel a.close-button").click(function (){
-            $("#panels-slide").stop().animate({left: '0px'}, 500);
-        });	
-        
-        
-      // Rollover on project item 
+    function showLoading(){  
+
+        loading  
+            .css({visibility:"visible"})  
+            .css({opacity:"1"})  
+            .css({display:"block"})  
+        ;  
+    }  
+
+    //hide loading bar  
+    function hideLoading(){  
+        loading.fadeTo(800, 0);
+        content.fadeIn();
+
+        //Slider initialization after AJAX loading
+        $('#projects_slide').anythingSlider({width:977, height:290,  easing: "swing", delay: 5000, animationTime: 1000, buildArrows: false, buildNavigation: false, autoPlay: true, startPanel: 1});
+         
+        //Projects rollover reset
         $("#projects_slide ul .focus_project").hover(function(){
-            $(this).find(".project_title_cover").fadeOut()
+            $(this).find(".project_title_cover").fadeOut(150);
         }).mouseleave(function(){
-            $(this).find(".project_title_cover").fadeIn(250)
+            $(this).find(".project_title_cover").fadeIn(0);
         });
+    };   
         
-        
-        // Project slider buttons  
-        $("#focus-nav .previous").click(function(){
-            $('#projects_slide').data('AnythingSlider').goBack();
-        });
-        
-        $("#focus-nav .next").click(function(){
-            $('#projects_slide').data('AnythingSlider').goForward();
-        });
-        
-        
-        // Project slider nav
-        $("#focus-menu .focus-filters a").click(function(){
-            $("#focus-menu .focus-filters a").removeClass('selected');
-            $(this).addClass('selected');
-        });
-        
-       
-        // AJAX Focus Zone 
-        var sections = $("#focus-menu .focus-filters li");  
-        var loading = $("#loading");     
-        var content = $("#projects_slide"); 
-        
-        function showLoading(){  
-            content.fadeOut(150);
-            loading  
-                .css({visibility:"visible"})  
-                .css({opacity:"1"})  
-                .css({display:"block"})  
-            ;  
-        }  
-        
-        //hide loading bar  
-        function hideLoading(){  
-            loading.fadeTo(800, 0);
-            content.fadeIn();
 
-            //Slider initialization after AJAX loading
-            $('#projects_slide').anythingSlider({width:977, height:290,  easing: "swing", delay: 5000, animationTime: 1000, buildArrows: false, buildNavigation: false, autoPlay: true});
-             
-            //Projects rollover reset
-            $("#projects_slide ul .focus_project").hover(function(){
-                $(this).find(".project_title_cover").fadeOut()
-            }).mouseleave(function(){
-                $(this).find(".project_title_cover").fadeIn(250)
-            });
-        }; 
-        
-        //Manage click events
-        sections.click(function(){
-            //show the loading bar
-            showLoading();
+        //Projects slider manage click events
+    sections.click(function(){
+        //show the loading bar
+        showLoading();
 
-            //load selected section
-            switch(this.id){
-                case "projects-discover":
-                    content.load("{% url i4p-homepage-ajax-slider-bestof %}", hideLoading);
-                    $('#projects_slide').anythingSlider(1); // Reset to first slide
-                    $('#projects_slide').data('AnythingSlider').startStop(true);
-                    break;
-                case "projects-recents":
-                    content.load("{% url i4p-homepage-ajax-slider-latest %}", hideLoading);
-                    $('#projects_slide').anythingSlider(1); // Reset to first slide
-                    $('#projects_slide').data('AnythingSlider').startStop(true);
-                    break;
-                case "projects-comments":
-                    content.load("{% url i4p-homepage-ajax-slider-commented %}", hideLoading);
-                    $('#projects_slide').anythingSlider(1); // Reset to first slide
-                    $('#projects_slide').data('AnythingSlider').startStop(true);
-                    break;
-                case "projects-help":
-                    content.load("", hideLoading);
-                    break;
-                default:
-                    //hide loading bar if there is no selected section
-                    hideLoading();
-                    break;
-            }
+        //load selected section
+        switch(this.id){
+            case "projects-discover":
+                content.load("{% url i4p-homepage-ajax-slider-bestof %}", hideLoading);
+                $('#projects_slide').anythingSlider(1); // Reset to first slide
+                $('#projects_slide').data('AnythingSlider').startStop(true);
+                break;
+            case "projects-recents":
+                content.load("{% url i4p-homepage-ajax-slider-latest %}", hideLoading);
+                $('#projects_slide').anythingSlider(1); // Reset to first slide
+                $('#projects_slide').data('AnythingSlider').startStop(true);
+                break;
+            case "projects-comments":
+                content.load("{% url i4p-homepage-ajax-slider-commented %}", hideLoading);
+                $('#projects_slide').data('AnythingSlider').startStop(true);
+                break;
+            case "projects-help":
+                content.load("", hideLoading);
+                break;
+            default:
+                //hide loading bar if there is no selected section
+                hideLoading();
+                break;
+            }        
         });
-        
+
         //Load bestof projects slider by default
         showLoading();
         content.load("{% url i4p-homepage-ajax-slider-bestof %}", hideLoading);
-        $('#projects_slide').anythingSlider(1); // Reset to first slide
-        
-        
-        // Close button for newsletter popup
-        $("#newsletter_popup .close-button").click(function (){
-            $("#newsletter_popup").addClass("hidden");
-        });	
-      
+        $('#projects_slide').data('AnythingSlider').startStop(true);
+    
     });
+
+
+
     </script>
     {% endcompress %}
 
@@ -164,17 +123,21 @@
 
 {% block content %}
 
-    <!-- Facebook Likebox init -->
-    <div id="fb-root"></div>
-    <script>
-        (function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
+<!-- Facebook Likebox init -->
+<div id="fb-root"></div>
+<script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+    <!-- Newsletter popup -->
+{% include "home-blocks/newsletter-popup.html" %}            
 
         
 <div id="content-zone">
@@ -219,9 +182,6 @@
             
             <!-- Facebook friendbox -->
             {% include "home-blocks/fb-fanbox.html" %}    
-
-            <!-- Newsletter popup -->
-            {% include "home-blocks/newsletter-popup.html" %}            
             
         </div>
         
