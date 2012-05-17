@@ -28,7 +28,8 @@ hr{
 /*---- FOCUS ----*/
 
 #focus-zone{
-  	background-image: url(../images/home/focus-bg.jpg);    
+  	background-image: url(../images/home/focus-bg.jpg); 
+    height:364px;
     
     #focus{
         background-color:black;
@@ -144,6 +145,13 @@ hr{
             z-index:999;
             top:160px;
             left:470px;
+            @include border-radius(20px);
+            background-color:black;
+            
+            img{
+                position:relative;
+                top:9px;
+            }
         }        
 
         #focus-nav{
@@ -193,6 +201,7 @@ hr{
 }
 
 /*---- CONTENT ----*/
+
 
 #content-zone{
 
@@ -639,79 +648,84 @@ hr{
                 @include border-radius(4px);
                 padding:0px;
                 height:85px !important;
-            }
-            
-            #newsletter_popup{
-                background-image: url("../images/home/newsletter-popup-bg.png");
-                padding:10px;
-                @include border-radius(4px);
-                border:1px solid #9b9b9b;
-                
-                position:absolute;
-                width:245px;
-                top:215px;
-                right:40px;
-                z-index:300;
-                @include shadow(8px, black);
-                
-                h1{
-                    font-size:17px;
-                    font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
-                    font-style:normal;
-                    color:white;
-                    margin:0px;
-                }
-                
-                .close-button{
-                    position:absolute;
-                    top:15px;
-                    right:10px;
-                    cursor:pointer;
-                }
-                
-                hr{
-                    border:1px dotted #9b9b9b;
-                    border-style: dotted !important;
-                    background-image:none;
-                    margin-top:5px;
-                }
-            
-                img.newsletter_picto{
-                    float:left;
-                    margin-right:10px;
-                }
-                
-                p{
-                    font-size:11px;
-                }
-                
-                form{
-                
-                    input[type=text]{
-                        width:100%;
-                        @include border-radius(4px);
-                        border:0px;
-                        color: #7F7E7E;
-                        font-family: "OpenSans",Arial,Helvetica,sans-serif !important;
-                        font-size: 10px;
-                        padding:3px 0px;
-                    }
-                    
-                    input[type=submit]{
-                        width:100%;
-                        @include border-radius(4px);
-                        background-color:$blue;
-                        border:0px;
-                        margin-top:5px;
-                        color:white;
-                        background:url(../images/base/minibutton_blue.jpg);
-                    }
-                    
-                    input[type=submit]:hover{
-                        background:url(../images/base/minibutton_green.jpg);
-                    }
-                }
-            }
+            }            
+        }
+    }
+}
+
+
+/*--- NEWSLETTER POPUP ----*/
+
+
+#newsletter_popup{
+    background-image: url("../images/home/newsletter-popup-bg.png");
+    padding:10px;
+    @include border-radius(4px);
+    border:1px solid #9b9b9b;
+    
+    position:fixed;
+    width:245px;
+    bottom:50px;
+    right:40px;
+    z-index:300;
+    @include shadow(8px, black);
+    
+    h1{
+        font-size:17px;
+        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+        font-style:normal;
+        color:white;
+        margin:0px;
+    }
+    
+    .close-button{
+        position:absolute;
+        top:15px;
+        right:10px;
+        cursor:pointer;
+    }
+    
+    hr{
+        border:1px dotted #9b9b9b;
+        border-style: dotted !important;
+        background-image:none;
+        margin-top:5px;
+    }
+
+    img.newsletter_picto{
+        float:left;
+        margin-right:10px;
+    }
+    
+    p{
+        font-size:11px;
+        color:white;
+    }
+    
+    form{
+    
+        input[type=text]{
+            width:100%;
+            @include border-radius(4px);
+            border:0px;
+            color: #7F7E7E;
+            font-family: "OpenSans",Arial,Helvetica,sans-serif !important;
+            font-size: 10px;
+            padding:3px 0px;
+        }
+        
+        input[type=submit]{
+            width:100%;
+            @include border-radius(4px);
+            background-color:$blue;
+            border:0px;
+            margin-top:5px;
+            color:white;
+            background:url(../images/base/minibutton_blue.jpg);
+        }
+        
+        input[type=submit]:hover{
+            background:url(../images/base/minibutton_green.jpg);
         }
     }
 }
