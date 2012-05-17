@@ -42,6 +42,8 @@ class I4pProjectAdmin(VersionAdmin):
         PartnerInline,
         TranslationInline,
         )
+    list_display = ('__unicode__', 'status', 'best_of', 'created')
+    list_filter = ['site']
 
 class QuestionAdmin(nani_admin.TranslatableAdmin):
     list_display = ('topic', 'weight',)
