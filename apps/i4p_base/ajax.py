@@ -1,6 +1,7 @@
 from django.db.models import Count
 from django.contrib import comments
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.views.decorators.cache import cache_page
