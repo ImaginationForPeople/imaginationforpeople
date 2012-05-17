@@ -43,6 +43,8 @@
     <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     {% endcompress %}
 
     <!-- for i18n -->
@@ -50,51 +52,18 @@
 
     <script type="text/javascript">
       $(document).ready(function(){
-          $.reject({reject: {msie5: true,
-			    msie6: true,
-			    msie7: true
-			    },
-		   imagePath: '{{ STATIC_URL}}images/browsers/',
-		   header: "{% trans "Did you know that your Internet Browser is out of date?" %}",
-		   paragraph1: "{% trans "Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below." %}",
-		   paragraph2: "{% trans "Just click on the icons to get to the download page" %}",
-		   closeMessage: "{% trans "By closing this window you acknowledge that your experience on this website may be degraded" %}",
-		   closeLink: "{% trans "Close This Window" %}"
-	 });
-     
-     
-    // Login Slide opening
-    $("#toppanel .open-panel").click(function(){
-        $('#toppanel #panel').stop().animate({height : '190'}, "fast");
-    });
-    
-    $("#toppanel").mouseleave(function(){
-        $('#toppanel #panel').stop().animate({height : '0'}, 100);
-    });
-    
-		    
-	 $('.tipsed').tipsy({gravity: $.fn.tipsy.autoNS, delayIn: 300});
-
-         // Support panel
-	  $('#feedback').slidePanel({
-	      triggerName: '#feedback-trigger',
-	      position: 'fixed',
-	      triggerTopPos: '150px',
-	      panelTopPos: '0px',
-	      ajax: false
-	  });
-          var more = $('#feedback-tab textarea');
-          more.hide();
-          $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
-
-      
-      	// Switch OpenID button to OpenID form in signin zone on click
-        $(".social-panel a.openid-button").click(function () {
-            $(".social-panel a.openid-button").hide();
-            $(".social-panel .openid-form").removeClass('hidden');
-        });	
-        
-        
+            $.reject({reject: {msie5: true,
+                msie6: true,
+                msie7: true
+                },
+            imagePath: '{{ STATIC_URL}}images/browsers/',
+            header: "{% trans "Did you know that your Internet Browser is out of date?" %}",
+            paragraph1: "{% trans "Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below." %}",
+            paragraph2: "{% trans "Just click on the icons to get to the download page" %}",
+            closeMessage: "{% trans "By closing this window you acknowledge that your experience on this website may be degraded" %}",
+            closeLink: "{% trans "Close This Window" %}"
+        });
+            
         $('.social-login img').tipsy({html: true });
         
         
@@ -119,47 +88,6 @@
             $("#new_project_style_popup_zone").removeClass("hidden");
             $.getScript("{{ STATIC_URL }}js/project_sheet/topics_select_popup.js");
             return false;
-        });
-        
-        
-        // Opening of "projects hover menu"
-        $("#header #projects_list_button").hover(function(){
-            $(this).css('background-color', '#0f0f0f');
-            $('#projects-hover-menu-zone').stop().animate({height : '200'}, "fast");
-        }).mouseleave(function(){
-  
-            var hover_on = false;
-            var hover_count = 150;
-            
-            setTimeout(myMouseOut, hover_count);
-
-            $("#projects-hover-menu-zone").mouseover(function() {
-                hover_on = true;
-            });
-
-            $("#projects-hover-menu-zone").mouseout(function() {
-                hover_on = false;
-                setTimeout(myMouseOut, hover_count);
-            });
-            
-            $("#header #projects_list_button").mouseover(function(){
-                hover_on = true;
-            });
-            
-            $("#header #projects_list_button").mouseout(function(){
-                hover_on = false;
-                setTimeout(myMouseOut, hover_count);
-            });
-
-            function myMouseOut() {
-                if (hover_on) {
-                
-                }else{
-                    $("#header #projects_list_button").css('background-color', 'transparent');
-                    $('#projects-hover-menu-zone').stop().animate({height : '0'}, 100);
-                }
-            }
-   
         });
         
         
