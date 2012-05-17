@@ -26,13 +26,13 @@
     <script type="text/javascript">
     $(document).ready(function(){
 
-        <!-- Text example for forms -->
+    // Text example for forms
         $('#quick_project input[name=title]').example('{% trans "My project title" %}');
         $('#quick_project input[name=baseline]').example('{% trans "One line description" %}');
 
         
-        <!-- Loginbox panels slide -->
-        $("#loginbox .panel1 a#loginlink-subscribe").click(function (){
+    // Loginbox panels slide
+        $("#loginbox .panel1 a#loginlink-subscribe").click(function () {
             $("#panels-slide").stop().animate({left: '-245px'}, 500);
         });	
         
@@ -45,7 +45,7 @@
         });	
         
         
-        <!-- Rollover on project item -->            
+      // Rollover on project item 
         $("#projects_slide ul .focus_project").hover(function(){
             $(this).find(".project_title_cover").fadeOut()
         }).mouseleave(function(){
@@ -53,7 +53,7 @@
         });
         
         
-        <!-- Project slider buttons -->  
+        // Project slider buttons  
         $("#focus-nav .previous").click(function(){
             $('#projects_slide').data('AnythingSlider').goBack();
         });
@@ -63,14 +63,14 @@
         });
         
         
-        <!-- Project slider nav -->
+        // Project slider nav
         $("#focus-menu .focus-filters a").click(function(){
             $("#focus-menu .focus-filters a").removeClass('selected');
             $(this).addClass('selected');
         });
         
        
-        <!-- AJAX Focus Zone -->
+        // AJAX Focus Zone 
         var sections = $("#focus-menu .focus-filters li");  
         var loading = $("#loading");     
         var content = $("#projects_slide"); 

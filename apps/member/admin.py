@@ -24,7 +24,10 @@ from .models import I4pProfile
 class I4pProfileAdmin(admin.ModelAdmin):
     model = I4pProfile
 
-    list_display = ('user', 'language',)
+    list_display = ('user', 'language', 'gender', 'country')
+
+    search_fields = ['user__username', 'user__first_name', 'user__last_name', 'user__email']
+    list_filter = ['language', 'gender', 'country']
 
     def make_mailing_list(self, request, queryset):
         from emencia.django.newsletter.models import Contact
