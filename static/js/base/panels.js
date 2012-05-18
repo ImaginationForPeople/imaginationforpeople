@@ -6,31 +6,40 @@ $(document).ready(function(){
         $('#toppanel #panel').stop().animate({height : '190'}, "fast");
     });
     
-    $("#toppanel").mouseleave(function(){
-        $('#toppanel #panel').stop().animate({height : '0'}, 100);
+    // Login Slide closing
+    $("#toppanel").mouseleave(function(){    
+        $(document).mousemove(function(e){
+            if(e.pageY > 222){
+                $('#toppanel #panel').stop().animate({height : '0'}, 100);
+            } 
+        }); 
+
+        
     });
     
 		    
-	 $('.tipsed').tipsy({gravity: $.fn.tipsy.autoNS, delayIn: 300});
+    $('.tipsed').tipsy({gravity: $.fn.tipsy.autoNS, delayIn: 300});
 
-         // Support panel
-	  $('#feedback').slidePanel({
-	      triggerName: '#feedback-trigger',
-	      position: 'fixed',
-	      triggerTopPos: '150px',
-	      panelTopPos: '0px',
-	      ajax: false
-	  });
-          var more = $('#feedback-tab textarea');
-          more.hide();
-          $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
+    // Support panel
+    $('#feedback').slidePanel({
+        triggerName: '#feedback-trigger',
+        position: 'fixed',
+        triggerTopPos: '150px',
+        panelTopPos: '0px',
+        ajax: false
+    });
+    
+    // Feedback tab
+    var more = $('#feedback-tab textarea');
+    more.hide();
+    $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
 
-      
-      	// Switch OpenID button to OpenID form in signin zone on click
-        $(".social-panel a.openid-button").click(function () {
-            $(".social-panel a.openid-button").hide();
-            $(".social-panel .openid-form").removeClass('hidden');
-        });	
+
+    // Switch OpenID button to OpenID form in signin zone on click
+    $(".social-panel a.openid-button").click(function () {
+        $(".social-panel a.openid-button").hide();
+        $(".social-panel .openid-form").removeClass('hidden');
+    });	
         
 
     // Opening of "projects hover menu"
