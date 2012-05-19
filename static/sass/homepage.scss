@@ -23,6 +23,63 @@ hr{
 #video-zone{
     height:133px;
     background-color:#e8e8e8;
+    position:relative;
+    
+    h1.what_is{
+        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+        font-size:32px;
+        position:absolute;
+        top:40px;
+        left:0px;
+        width:255px; 
+        color:$greyblack;
+        z-index:60;
+        text-align:right;
+        font-style:normal;
+        text-transform:uppercase;
+    }
+    
+    #project_block, #network_block{
+        width:180px;
+        position:absolute;
+        bottom:30px;
+        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+        font-size:13px;
+        text-transform:uppercase;
+        z-index:60;
+        
+        h1{
+            font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+            font-size:19px;
+            text-shadow: 1px 1px white;
+            font-style:normal;
+            font-weight:normal;
+            color:$greyblack;
+        }
+        
+        a{
+            font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+            color:black;
+        }
+    }
+    
+    #project_block{
+        left:375px;
+    }
+    
+    #network_block{
+        left:615px;
+    }
+    
+    .baseline{
+        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+        font-size:15px;
+        position:absolute;
+        right:0px;
+        bottom:30px;
+        width:180px;
+        text-align:right;
+    }
 }
 
 /*---- FOCUS ----*/
@@ -122,11 +179,11 @@ hr{
                     
                     h1{
                         font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
-                        font-size:24px;
+                        font-size:23px;
                         font-style:normal;
                         position:absolute;
                         right:0px;
-                        top:115px;
+                        top:119px;
                         width:50%; 
                         margin-right:15px;
                         color:white;
@@ -265,10 +322,26 @@ hr{
                         font-weight:bold;
                     }
                     
-                    p.description{
-                        color:$greyblack
-                    }
+                    .description{
                     
+                        p{
+                            color:$greyblack;
+                        }
+                        
+                        ul{
+                            padding-left:20px;
+                            color:$greyblack;
+                            margin-bottom:10px;
+
+                            li{
+                                float:none;
+                                list-style-image:url('../images/base/blue_tick.png');
+                                display: list-item;
+                                margin:5px 0px;
+                            }
+                        }                    
+                    }
+                
                     hr{
                         border-top:1px solid #c1c1c1 !important;
                         border-left:1px solid #c1c1c1 !important;
