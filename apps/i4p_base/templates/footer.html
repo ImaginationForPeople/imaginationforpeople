@@ -21,7 +21,7 @@
             <div class="baseline">
             
                 <!-- FIXME PLACEHOLDERS -->
-                A community of imaginative citizens to detect and develop socially innovative projects.
+                {% trans "A community of imaginative citizens to detect and develop socially innovative projects." %}
                 {% comment %}
                 {% placeholder baseline or %}A community of imaginative citizens to detect and develop socially innovative projects.{% endplaceholder %}
                 {% endcomment %}
@@ -57,9 +57,9 @@
             </div>
             
             <div class="concept">
-                <img src="{{ STATIC_URL }}images/base/groupes-picto.png" alt="{% trans 'Groupes' %}" width="52" height="52" />
+                <img src="{{ STATIC_URL }}images/base/groupes-picto.png" alt="{% trans 'Groups' %}" width="52" height="52" />
                 <div class="concept_detail">
-                    <h1>{% trans 'Groupes' %}</h1>
+                    <h1>{% trans 'Groups' %}</h1>
                     <p>{% trans 'Connect with a community of citizens from over 30 countries.' %}</p>
                     <a href="{% url userena_profile_list %}">{% trans 'The community' %}</a> | <a href="{% url userena_signup %}">{% trans 'Join the community' %}</a>
                 </div>
