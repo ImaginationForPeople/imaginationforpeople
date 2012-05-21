@@ -330,7 +330,8 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
         context['project_tab'] = True
         context['project'] = project_translation.project
     else:
-        context['topic'] = topic
+	if topic_slug:
+	    context['topic'] = topic
 
     context["%s_form" % field] = form
     return render_to_response(template_name="project_sheet/project_sheet.html",
