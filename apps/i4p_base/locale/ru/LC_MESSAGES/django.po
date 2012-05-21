@@ -1,22 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-05-21 15:13+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-05-21 18:30+0200\n"
 "PO-Revision-Date: 2012-05-21 13:14+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
-"Language-Team: Russian (http://www.transifex.net/projects/p/imaginationforpeople/language/ru/)\n"
+"Language-Team: Russian (http://www.transifex.net/projects/p/"
+"imaginationforpeople/language/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: models.py:26
 msgid "Afghanistan"
@@ -1247,8 +1249,8 @@ msgid "Projects"
 msgstr ""
 
 #: templates/footer.html:57 templates/header.html:15
-#: templates/hover-menus.html:10 templates/home-blocks/slider.html:36
-#: templates/home-blocks/slider.html:49 templates/pages/header.html:13
+#: templates/home-blocks/slider.html:36 templates/home-blocks/slider.html:49
+#: templates/pages/header.html:13
 msgid "Add a project"
 msgstr ""
 
@@ -1282,8 +1284,7 @@ msgid ""
 "Commons</strong>."
 msgstr ""
 
-#: templates/footer.html:100 templates/header.html:17
-#: templates/pages/header.html:15
+#: templates/footer.html:100 templates/pages/header.html:15
 msgid "Contribute"
 msgstr ""
 
@@ -1323,7 +1324,7 @@ msgstr ""
 msgid "Workgroups"
 msgstr ""
 
-#: templates/header.html:18
+#: templates/header.html:21
 msgid "IP MEDIA"
 msgstr ""
 
@@ -1355,42 +1356,59 @@ msgstr ""
 msgid " Detect and develop socially innovative projects."
 msgstr ""
 
-#: templates/homepage.html:188
+#: templates/homepage.html:176
+msgid ""
+"\n"
+"                <p>\n"
+"                    As a project leader, please describe your initiative and "
+"make use of the first functionalities of this platform: \n"
+"                </p>\n"
+"                <ul>\n"
+"                    <li>Create a display page for your project, to provide a "
+"summary explanation of your initiative and to allow others to discover your "
+"project</li>\n"
+"                    <li>Use the internal messaging system to connect with "
+"other people interested in your project</li>\n"
+"                    <li>Publically express your project development needs "
+"and thus, potentially connect with people who can fill these needs</li>\n"
+"                    <li>Share your project on other social networks</li>\n"
+"                </ul>                \n"
+"                <p>\n"
+"                    Very soon, new functionalities will be added that will "
+"help speed up the development of your projects. \n"
+"                </p>\n"
+"                "
+msgstr ""
+
+#: templates/homepage.html:198
+msgid "Innovative Projects development accelerator in Montreal"
+msgstr ""
+
+#: templates/homepage.html:201
+msgid ""
+"\n"
+"                    <p>\n"
+"                        The mission of the Montreal Creative site is to "
+"showcase the talent, innovative spirit and creativity of all organizations "
+"that sparked out of Montreal.             \n"
+"                    </p>\n"
+"                    <ul>\n"
+"                        <li>World famous for its <strong>cultural richness "
+"and for the talent of its entrepreneurs and creators</strong></li>\n"
+"                        <li>A member of the UNESCO network of Creative "
+"Cities that awarded Montreal the status of a UNESCO City of Design</li>\n"
+"                        <li>A vibrant community with <strong>social "
+"innovation and civic creativity</strong> at its core</li>\n"
+"                        <li>A <strong>booming</strong> creative economy</"
+"li>\n"
+"                    </ul>\n"
+"                    "
+msgstr ""
+
+#: templates/homepage.html:247
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
-msgstr ""
-
-#: templates/hover-menus.html:9
-msgid "All the projects"
-msgstr ""
-
-#: templates/hover-menus.html:12
-msgid "All the tags"
-msgstr ""
-
-#: templates/hover-menus.html:13
-msgid "Grid view"
-msgstr ""
-
-#: templates/hover-menus.html:14
-msgid "Map view"
-msgstr ""
-
-#: templates/hover-menus.html:15
-msgid "My favorites"
-msgstr ""
-
-#: templates/hover-menus.html:21
-msgid "Discover projects"
-msgstr ""
-
-#: templates/hover-menus.html:33
-msgid "Last projects"
-msgstr ""
-
-#: templates/hover-menus.html:45
-msgid "Call to action"
 msgstr ""
 
 #: templates/login-slide.html:15
@@ -1591,8 +1609,7 @@ msgid "Feedbacks"
 msgstr ""
 
 #: templates/backcap/feedback_list.html:61
-msgid ""
-"This is all the feedbacks submitted by you, the users. Thanks for that."
+msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr ""
 
 #: templates/backcap/feedback_list.html:73

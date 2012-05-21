@@ -42,7 +42,7 @@ hr{
     #project_block, #network_block{
         width:180px;
         position:absolute;
-        bottom:30px;
+        top:30px;
         font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
         font-size:13px;
         text-transform:uppercase;
@@ -313,10 +313,10 @@ hr{
                     }
                     
                     h1{
-                        margin:10px 0px;
+                        margin:7px 0px;
                         color:$greyblack;
                         font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
-                        font-size:19px;
+                        font-size:18px;
                         text-transform:uppercase;
                         font-style:normal;
                         font-weight:bold;
@@ -326,6 +326,7 @@ hr{
                     
                         p{
                             color:$greyblack;
+                            margin-bottom:8px;
                         }
                         
                         ul{
@@ -337,7 +338,7 @@ hr{
                                 float:none;
                                 list-style-image:url('../images/base/blue_tick.png');
                                 display: list-item;
-                                margin:5px 0px;
+                                margin:4px 0px;
                             }
                         }                    
                     }

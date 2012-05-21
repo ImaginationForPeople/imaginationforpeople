@@ -77,7 +77,7 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
 
     env.gitrepo = "/var/repositories/imaginationforpeople.git"
-    env.gitbranch = "develop"
+    env.gitbranch = "release/multisite"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'

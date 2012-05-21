@@ -1,3 +1,5 @@
+$(document).ready(function(){ 
+
 // Rollover for topics selection popup
     $("#project_type .topic_picto").hover(function(){
         $(this).find('img').attr('src', $(this).find('img').attr('src').replace('.png', '-on.png'));
@@ -9,3 +11,5 @@
     $("#new_project_style_popup .close-button").click(function () {
         $("#new_project_style_popup_zone").addClass("hidden");
     });	
+    
+});	

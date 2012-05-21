@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-05-21 15:13+0200\n"
-"PO-Revision-Date: 2012-05-21 13:14+0000\n"
-"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"POT-Creation-Date: 2012-05-21 18:30+0200\n"
+"PO-Revision-Date: 2012-05-21 16:40+0000\n"
+"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.net/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1251,8 +1251,8 @@ msgid "Projects"
 msgstr "Projets"
 
 #: templates/footer.html:57 templates/header.html:15
-#: templates/hover-menus.html:10 templates/home-blocks/slider.html:36
-#: templates/home-blocks/slider.html:49 templates/pages/header.html:13
+#: templates/home-blocks/slider.html:36 templates/home-blocks/slider.html:49
+#: templates/pages/header.html:13
 msgid "Add a project"
 msgstr "Ajouter un projet"
 
@@ -1286,8 +1286,7 @@ msgid ""
 "Commons</strong>."
 msgstr "<strong>Imaginationforpeople.org</strong> est propulsée par un ensemble de composantes libres sous licences <strong>AGPL</strong> et <strong>Creative Commons</strong>. "
 
-#: templates/footer.html:100 templates/header.html:17
-#: templates/pages/header.html:15
+#: templates/footer.html:100 templates/pages/header.html:15
 msgid "Contribute"
 msgstr "Contribuer"
 
@@ -1327,7 +1326,7 @@ msgstr "À propos"
 msgid "Workgroups"
 msgstr "Groupes de travail"
 
-#: templates/header.html:18
+#: templates/header.html:21
 msgid "IP MEDIA"
 msgstr ""
 
@@ -1341,7 +1340,7 @@ msgstr "Description en une ligne"
 
 #: templates/homepage.html:120
 msgid " What is it ?"
-msgstr "C'est quoi ?"
+msgstr "Qu'est-ce que c'est ?"
 
 #: templates/homepage.html:123
 msgid "Explore and contribute"
@@ -1359,43 +1358,48 @@ msgstr "Rejoignez une communauté de citoyens de plus de 30 pays."
 msgid " Detect and develop socially innovative projects."
 msgstr "Une communauté de citoyens créatifs pour repérer et soutenir les projets d'innovation sociale."
 
-#: templates/homepage.html:188
+#: templates/homepage.html:176
+msgid ""
+"\n"
+"                <p>\n"
+"                    As a project leader, please describe your initiative and make use of the first functionalities of this platform: \n"
+"                </p>\n"
+"                <ul>\n"
+"                    <li>Create a display page for your project, to provide a summary explanation of your initiative and to allow others to discover your project</li>\n"
+"                    <li>Use the internal messaging system to connect with other people interested in your project</li>\n"
+"                    <li>Publically express your project development needs and thus, potentially connect with people who can fill these needs</li>\n"
+"                    <li>Share your project on other social networks</li>\n"
+"                </ul>                \n"
+"                <p>\n"
+"                    Very soon, new functionalities will be added that will help speed up the development of your projects. \n"
+"                </p>\n"
+"                "
+msgstr "\n                <p>\n                   En tant que porteur de projet, décrivez votre initiative, et bénéficiez des premières fonctionnalités : \n                </p>\n                <ul>\n                    <li>Disposez d'une page vitrine de votre projet, utile pour expliquer de manière synthétique votre initiative et pour permettre à des personnes de la découvrir.</li>\n                    <li>Profitez du système de messagerie pour entrer en lien avec des personnes intéressées par votre projet.</li>\n                    <li>Exprimez publiquement les besoins que vous avez pour mieux développer votre projet.</li>\n                    <li>Utilisez les outils de partage sur les réseaux sociaux pour mieux diffuser votre projet.</li>\n                </ul>                \n                <p>\n                    Très vite, de nouvelles fonctionnalités plus avancées vont apparaître sur le site, qui vous permettront d'accélérer le développement de vos projets. \n                </p>\n                "
+
+#: templates/homepage.html:198
+msgid "Innovative Projects development accelerator in Montreal"
+msgstr "Plateforme de développement de projets innovants à Montréal"
+
+#: templates/homepage.html:201
+msgid ""
+"\n"
+"                    <p>\n"
+"                        The mission of the Montreal Creative site is to showcase the talent, innovative spirit and creativity of all organizations that sparked out of Montreal.             \n"
+"                    </p>\n"
+"                    <ul>\n"
+"                        <li>World famous for its <strong>cultural richness and for the talent of its entrepreneurs and creators</strong></li>\n"
+"                        <li>A member of the UNESCO network of Creative Cities that awarded Montreal the status of a UNESCO City of Design</li>\n"
+"                        <li>A vibrant community with <strong>social innovation and civic creativity</strong> at its core</li>\n"
+"                        <li>A <strong>booming</strong> creative economy</li>\n"
+"                    </ul>\n"
+"                    "
+msgstr "\n                    <p>\n                        Le site Montréal créative s’est donné la mission de mettre en vitrine le talent, l’innovation et la créativité des organisations qui ont choisi Montréal comme pôle de développement.              \n                    </p>\n                    <ul>\n                        <li>Reconnue mondialement pour sa <strong>richesse culturelle et le talent de ses créateurs</strong></li>\n                        <li>Membre du Réseau des villes créatives de l’UNESCO comme ville de design</li>\n                        <li>Un milieu vibrant où foisonnent <strong> l’innovation sociale et la créativité citoyenne </strong></li>\n                        <li>Où l’économie créative est <strong>en plein essor</strong></li>\n                    </ul>\n                    "
+
+#: templates/homepage.html:247
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
-msgstr "Vous pouvez<strong>contribuer</strong>, <strong>partager</strong> vos idées,  <strong>inscrire</strong> votre projet"
-
-#: templates/hover-menus.html:9
-msgid "All the projects"
-msgstr "Tous les projets"
-
-#: templates/hover-menus.html:12
-msgid "All the tags"
-msgstr "Tous les tags"
-
-#: templates/hover-menus.html:13
-msgid "Grid view"
-msgstr "Vue par projets"
-
-#: templates/hover-menus.html:14
-msgid "Map view"
-msgstr "Vue cartographique"
-
-#: templates/hover-menus.html:15
-msgid "My favorites"
-msgstr "Mes favoris"
-
-#: templates/hover-menus.html:21
-msgid "Discover projects"
-msgstr "Derniers projets"
-
-#: templates/hover-menus.html:33
-msgid "Last projects"
-msgstr "projets"
-
-#: templates/hover-menus.html:45
-msgid "Call to action"
-msgstr "Appel à l'aide"
+msgstr "Vous pouvez <strong>contribuer</strong>, <strong>partager</strong> vos idées,  <strong>inscrire</strong> votre projet"
 
 #: templates/login-slide.html:15
 msgid "Interface language"
@@ -1867,6 +1871,27 @@ msgstr "Nébuleuse"
 #: templates/pages/footer.html:25
 msgid "Get Involved"
 msgstr "Contribuez"
+
+#~ msgid "All the projects"
+#~ msgstr "All the projects"
+
+#~ msgid "All the tags"
+#~ msgstr "All the tags"
+
+#~ msgid "Grid view"
+#~ msgstr "Grid view"
+
+#~ msgid "Map view"
+#~ msgstr "Map view"
+
+#~ msgid "My favorites"
+#~ msgstr "My favorites"
+
+#~ msgid "Discover projects"
+#~ msgstr "Recent projects"
+
+#~ msgid "Last projects"
+#~ msgstr "projects"
 
 #~ msgid "Ressources (WIP)"
 #~ msgstr "Ressources (WIP)"

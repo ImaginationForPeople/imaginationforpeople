@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load menu_tags %}
 
+    {% comment %}
     <div id="projects-hover-menu-zone" style="height:0px; overflow:hidden;">
         <div class="center container_18 hover-menu">
         
@@ -57,6 +58,7 @@
         
         </div>
     </div>
+    {% endcomment %}
     
     
     <div id="about-hover-menu-zone" style="height:0px; overflow:hidden;">
@@ -64,7 +66,7 @@
         
            <center> 
                <ul>
-                    {% show_menu %}
+                    {% show_menu_below_id "info" %}
                 </ul>
             </center>
             
