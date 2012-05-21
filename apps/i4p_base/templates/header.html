@@ -14,8 +14,10 @@
                 <li id="projects_list_button"><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
                 <li><a class="addproject_button" href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
                 <li><a href="/workgroup/">{% trans 'Workgroups' %}</a></li>
-                <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
-                <li><a href="http://ip-media.imaginationforpeople.org/">{% trans "IP MEDIA" %}</a></li>
+                {% comment %}
+                    <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
+                {% endcomment %}
+                <li><a href="{% page_url 'ipmedia' %}">{% trans "IP MEDIA" %}</a></li>
             </ul>
             
             <div class="clear"></div>

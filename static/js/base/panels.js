@@ -86,7 +86,7 @@ $(document).ready(function(){
     };
     
     //Initialization for header's "hover menus"
-    hovermenu("#header #projects_list_button", '#projects-hover-menu-zone', '200');
+    //hovermenu("#header #projects_list_button", '#projects-hover-menu-zone', '200');
     hovermenu("#header #about_button", '#about-hover-menu-zone', '50');
     
 });
