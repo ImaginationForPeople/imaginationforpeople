@@ -1,24 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-19 22:17+0200\n"
-"PO-Revision-Date: 2012-05-19 18:32+0000\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2012-05-21 15:13+0200\n"
+"PO-Revision-Date: 2012-05-21 13:14+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
-"Language-Team: Russian (http://www.transifex.net/projects/p/"
-"imaginationforpeople/language/ru/)\n"
-"Language: ru\n"
+"Language-Team: Russian (http://www.transifex.net/projects/p/imaginationforpeople/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
 #: models.py:26
 msgid "Afghanistan"
@@ -1249,7 +1247,7 @@ msgid "Projects"
 msgstr ""
 
 #: templates/footer.html:57 templates/header.html:15
-#: templates/header.html.py:33 templates/home-blocks/slider.html:36
+#: templates/hover-menus.html:10 templates/home-blocks/slider.html:36
 #: templates/home-blocks/slider.html:49 templates/pages/header.html:13
 msgid "Add a project"
 msgstr ""
@@ -1317,10 +1315,6 @@ msgstr ""
 msgid "Q&A"
 msgstr ""
 
-#: templates/footer.html:115 templates/home-blocks/newsletter-popup.html:4
-msgid "Newsletter"
-msgstr ""
-
 #: templates/header.html:13 templates/pages/header.html:10
 msgid "About us"
 msgstr ""
@@ -1329,36 +1323,8 @@ msgstr ""
 msgid "Workgroups"
 msgstr ""
 
-#: templates/header.html:32
-msgid "All the projects"
-msgstr ""
-
-#: templates/header.html:35
-msgid "All the tags"
-msgstr ""
-
-#: templates/header.html:36
-msgid "Grid view"
-msgstr ""
-
-#: templates/header.html:37
-msgid "Map view"
-msgstr ""
-
-#: templates/header.html:38
-msgid "My favorites"
-msgstr ""
-
-#: templates/header.html:44
-msgid "Discover projects"
-msgstr ""
-
-#: templates/header.html:56
-msgid "Last projects"
-msgstr ""
-
-#: templates/header.html:68
-msgid "Call to action"
+#: templates/header.html:18
+msgid "IP MEDIA"
 msgstr ""
 
 #: templates/homepage.html:31
@@ -1389,10 +1355,42 @@ msgstr ""
 msgid " Detect and develop socially innovative projects."
 msgstr ""
 
-#: templates/homepage.html:187
+#: templates/homepage.html:188
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
+msgstr ""
+
+#: templates/hover-menus.html:9
+msgid "All the projects"
+msgstr ""
+
+#: templates/hover-menus.html:12
+msgid "All the tags"
+msgstr ""
+
+#: templates/hover-menus.html:13
+msgid "Grid view"
+msgstr ""
+
+#: templates/hover-menus.html:14
+msgid "Map view"
+msgstr ""
+
+#: templates/hover-menus.html:15
+msgid "My favorites"
+msgstr ""
+
+#: templates/hover-menus.html:21
+msgid "Discover projects"
+msgstr ""
+
+#: templates/hover-menus.html:33
+msgid "Last projects"
+msgstr ""
+
+#: templates/hover-menus.html:45
+msgid "Call to action"
 msgstr ""
 
 #: templates/login-slide.html:15
@@ -1407,7 +1405,7 @@ msgstr ""
 msgid "Sign in"
 msgstr ""
 
-#: templates/login-slide.html:48 templates/home-blocks/loginbox.html:44
+#: templates/login-slide.html:48 templates/home-blocks/loginbox.html:47
 msgid "Lost your password?"
 msgstr ""
 
@@ -1444,20 +1442,20 @@ msgid "Close Panel"
 msgstr ""
 
 #: templates/login-slide.html:126 templates/login-slide.html.py:128
-#: templates/home-blocks/loginbox.html:79
-#: templates/home-blocks/loginbox.html:81
+#: templates/home-blocks/loginbox.html:82
+#: templates/home-blocks/loginbox.html:84
 msgid "My messages"
 msgstr ""
 
-#: templates/login-slide.html:131 templates/home-blocks/loginbox.html:84
+#: templates/login-slide.html:131 templates/home-blocks/loginbox.html:87
 msgid "View my profile"
 msgstr ""
 
-#: templates/login-slide.html:132 templates/home-blocks/loginbox.html:85
+#: templates/login-slide.html:132 templates/home-blocks/loginbox.html:88
 msgid "Edit my profile"
 msgstr ""
 
-#: templates/login-slide.html:133 templates/home-blocks/loginbox.html:86
+#: templates/login-slide.html:133 templates/home-blocks/loginbox.html:89
 msgid "Log out"
 msgstr ""
 
@@ -1593,7 +1591,8 @@ msgid "Feedbacks"
 msgstr ""
 
 #: templates/backcap/feedback_list.html:61
-msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
+msgid ""
+"This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr ""
 
 #: templates/backcap/feedback_list.html:73
@@ -1760,35 +1759,37 @@ msgstr ""
 
 #: templates/home-blocks/loginbox.html:14
 #: templates/home-blocks/loginbox.html:15
-#: templates/home-blocks/loginbox.html:16
-#: templates/home-blocks/loginbox.html:17
-#: templates/home-blocks/loginbox.html:18
+#: templates/home-blocks/loginbox.html:21
 msgid "Connect with"
 msgstr ""
 
-#: templates/home-blocks/loginbox.html:25
-#: templates/home-blocks/loginbox.html:51
+#: templates/home-blocks/loginbox.html:28
+#: templates/home-blocks/loginbox.html:54
 msgid "close"
 msgstr ""
 
-#: templates/home-blocks/loginbox.html:34
+#: templates/home-blocks/loginbox.html:37
 msgid "Remember me"
 msgstr ""
 
-#: templates/home-blocks/loginbox.html:43
+#: templates/home-blocks/loginbox.html:46
 msgid "Go !"
 msgstr ""
 
-#: templates/home-blocks/loginbox.html:58
+#: templates/home-blocks/loginbox.html:61
 msgid "Login"
 msgstr ""
 
-#: templates/home-blocks/loginbox.html:68
+#: templates/home-blocks/loginbox.html:71
 msgid "Logged in as:"
 msgstr ""
 
-#: templates/home-blocks/loginbox.html:71
+#: templates/home-blocks/loginbox.html:74
 msgid "Your avatar"
+msgstr ""
+
+#: templates/home-blocks/newsletter-popup.html:4
+msgid "Newsletter"
 msgstr ""
 
 #: templates/home-blocks/newsletter-popup.html:13
@@ -1862,3 +1863,6 @@ msgstr ""
 #: templates/pages/footer.html:25
 msgid "Get Involved"
 msgstr ""
+
+#~ msgid "Ressources (WIP)"
+#~ msgstr "Ressources (WIP)"

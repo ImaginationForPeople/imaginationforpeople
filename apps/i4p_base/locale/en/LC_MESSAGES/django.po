@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-19 22:17+0200\n"
+"POT-Creation-Date: 2012-05-21 15:13+0200\n"
 "PO-Revision-Date: 2012-05-14 09:01+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1258,7 +1258,7 @@ msgid "Projects"
 msgstr "Projects"
 
 #: templates/footer.html:57 templates/header.html:15
-#: templates/header.html.py:33 templates/home-blocks/slider.html:36
+#: templates/hover-menus.html:10 templates/home-blocks/slider.html:36
 #: templates/home-blocks/slider.html:49 templates/pages/header.html:13
 msgid "Add a project"
 msgstr "Add a project"
@@ -1330,10 +1330,6 @@ msgstr "Seeder"
 msgid "Q&A"
 msgstr "Q&A"
 
-#: templates/footer.html:115 templates/home-blocks/newsletter-popup.html:4
-msgid "Newsletter"
-msgstr "Newsletter"
-
 #: templates/header.html:13 templates/pages/header.html:10
 msgid "About us"
 msgstr "About us"
@@ -1342,38 +1338,8 @@ msgstr "About us"
 msgid "Workgroups"
 msgstr "Workgroups"
 
-#: templates/header.html:32
-msgid "All the projects"
-msgstr "All the projects"
-
-#: templates/header.html:35
-msgid "All the tags"
-msgstr "All the tags"
-
-#: templates/header.html:36
-msgid "Grid view"
-msgstr "Grid view"
-
-#: templates/header.html:37
-msgid "Map view"
-msgstr "Map view"
-
-#: templates/header.html:38
-msgid "My favorites"
-msgstr "My favorites"
-
-#: templates/header.html:44
-#, fuzzy
-msgid "Discover projects"
-msgstr "Recent projects"
-
-#: templates/header.html:56
-#, fuzzy
-msgid "Last projects"
-msgstr "projects"
-
-#: templates/header.html:68
-msgid "Call to action"
+#: templates/header.html:18
+msgid "IP MEDIA"
 msgstr ""
 
 #: templates/homepage.html:31
@@ -1408,13 +1374,47 @@ msgstr ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
 
-#: templates/homepage.html:187
+#: templates/homepage.html:188
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
 msgstr ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
+
+#: templates/hover-menus.html:9
+msgid "All the projects"
+msgstr "All the projects"
+
+#: templates/hover-menus.html:12
+msgid "All the tags"
+msgstr "All the tags"
+
+#: templates/hover-menus.html:13
+msgid "Grid view"
+msgstr "Grid view"
+
+#: templates/hover-menus.html:14
+msgid "Map view"
+msgstr "Map view"
+
+#: templates/hover-menus.html:15
+msgid "My favorites"
+msgstr "My favorites"
+
+#: templates/hover-menus.html:21
+#, fuzzy
+msgid "Discover projects"
+msgstr "Recent projects"
+
+#: templates/hover-menus.html:33
+#, fuzzy
+msgid "Last projects"
+msgstr "projects"
+
+#: templates/hover-menus.html:45
+msgid "Call to action"
+msgstr ""
 
 #: templates/login-slide.html:15
 msgid "Interface language"
@@ -1428,7 +1428,7 @@ msgstr "Member Login"
 msgid "Sign in"
 msgstr "Sign in"
 
-#: templates/login-slide.html:48 templates/home-blocks/loginbox.html:44
+#: templates/login-slide.html:48 templates/home-blocks/loginbox.html:47
 msgid "Lost your password?"
 msgstr "Lost your password?"
 
@@ -1465,20 +1465,20 @@ msgid "Close Panel"
 msgstr "Close Panel"
 
 #: templates/login-slide.html:126 templates/login-slide.html.py:128
-#: templates/home-blocks/loginbox.html:79
-#: templates/home-blocks/loginbox.html:81
+#: templates/home-blocks/loginbox.html:82
+#: templates/home-blocks/loginbox.html:84
 msgid "My messages"
 msgstr "My messages"
 
-#: templates/login-slide.html:131 templates/home-blocks/loginbox.html:84
+#: templates/login-slide.html:131 templates/home-blocks/loginbox.html:87
 msgid "View my profile"
 msgstr "View my profile"
 
-#: templates/login-slide.html:132 templates/home-blocks/loginbox.html:85
+#: templates/login-slide.html:132 templates/home-blocks/loginbox.html:88
 msgid "Edit my profile"
 msgstr "Edit my profile"
 
-#: templates/login-slide.html:133 templates/home-blocks/loginbox.html:86
+#: templates/login-slide.html:133 templates/home-blocks/loginbox.html:89
 msgid "Log out"
 msgstr "Log out"
 
@@ -1795,36 +1795,38 @@ msgstr "Inscription"
 
 #: templates/home-blocks/loginbox.html:14
 #: templates/home-blocks/loginbox.html:15
-#: templates/home-blocks/loginbox.html:16
-#: templates/home-blocks/loginbox.html:17
-#: templates/home-blocks/loginbox.html:18
+#: templates/home-blocks/loginbox.html:21
 msgid "Connect with"
 msgstr "Connect with"
 
-#: templates/home-blocks/loginbox.html:25
-#: templates/home-blocks/loginbox.html:51
+#: templates/home-blocks/loginbox.html:28
+#: templates/home-blocks/loginbox.html:54
 msgid "close"
 msgstr "close"
 
-#: templates/home-blocks/loginbox.html:34
+#: templates/home-blocks/loginbox.html:37
 msgid "Remember me"
 msgstr "Remember me"
 
-#: templates/home-blocks/loginbox.html:43
+#: templates/home-blocks/loginbox.html:46
 msgid "Go !"
 msgstr "Go !"
 
-#: templates/home-blocks/loginbox.html:58
+#: templates/home-blocks/loginbox.html:61
 msgid "Login"
 msgstr "Login"
 
-#: templates/home-blocks/loginbox.html:68
+#: templates/home-blocks/loginbox.html:71
 msgid "Logged in as:"
 msgstr "Logged in as:"
 
-#: templates/home-blocks/loginbox.html:71
+#: templates/home-blocks/loginbox.html:74
 msgid "Your avatar"
 msgstr "Your avatar"
+
+#: templates/home-blocks/newsletter-popup.html:4
+msgid "Newsletter"
+msgstr "Newsletter"
 
 #: templates/home-blocks/newsletter-popup.html:13
 msgid "Subscribe to the newsletter and receive the latest news."
