@@ -292,39 +292,40 @@ ul li {
 }
 
 /*---- Projects hover menu ----*/
-#projects-hover-menu-zone {
+#projects-hover-menu-zone, #about-hover-menu-zone {
   background-color: #0f0f0f;
   width: 100%;
   position: absolute;
   z-index: 900;
 }
-#projects-hover-menu-zone #projects-hover-menu {
+#projects-hover-menu-zone .hover-menu, #about-hover-menu-zone .hover-menu {
   color: white;
   margin: 20px auto;
 }
-#projects-hover-menu-zone #projects-hover-menu a {
+#projects-hover-menu-zone .hover-menu a, #about-hover-menu-zone .hover-menu a {
   color: white;
 }
-#projects-hover-menu-zone #projects-hover-menu a:hover {
+#projects-hover-menu-zone .hover-menu a:hover, #about-hover-menu-zone .hover-menu a:hover {
   text-decoration: none;
 }
-#projects-hover-menu-zone #projects-hover-menu #filters_links ul li {
+
+#projects-hover-menu-zone .hover-menu #filters_links ul li {
   display: list-item;
   padding: 4px 0px;
   margin: 2px 0px;
 }
-#projects-hover-menu-zone #projects-hover-menu #filters_links ul li a {
+#projects-hover-menu-zone .hover-menu #filters_links ul li a {
   font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
   font-size: 12px;
   text-transform: uppercase;
   color: white;
   padding: 3px;
 }
-#projects-hover-menu-zone #projects-hover-menu #filters_links ul li a:hover {
+#projects-hover-menu-zone .hover-menu #filters_links ul li a:hover {
   color: black;
   background-color: white;
 }
-#projects-hover-menu-zone #projects-hover-menu #filters_links ul li#allprojects_button a {
+#projects-hover-menu-zone .hover-menu #filters_links ul li#allprojects_button a {
   background-image: url("../images/base/allprojects_button-bg.jpg");
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -333,24 +334,35 @@ ul li {
   -khtml-border-radius: 4px;
   border-radius: 4px;
 }
-#projects-hover-menu-zone #projects-hover-menu h2 {
+#projects-hover-menu-zone .hover-menu h2 {
   font-family: "OpenSansBold", Arial, Helvetica, sans-serif !important;
   font-size: 12px;
   text-transform: uppercase;
   margin: 4px 0px;
 }
-#projects-hover-menu-zone #projects-hover-menu hr {
+#projects-hover-menu-zone .hover-menu hr {
   margin: 3px 0px;
 }
-#projects-hover-menu-zone #projects-hover-menu ul.projects_lists li {
+#projects-hover-menu-zone .hover-menu ul.projects_lists li {
   display: list-item;
   padding: 4px 0px;
   font-size: 11px;
 }
-#projects-hover-menu-zone #projects-hover-menu ul.projects_lists li:hover {
+#projects-hover-menu-zone .hover-menu ul.projects_lists li:hover {
   background-color: white;
 }
-#projects-hover-menu-zone #projects-hover-menu ul.projects_lists li:hover a {
+#projects-hover-menu-zone .hover-menu ul.projects_lists li:hover a {
+  color: black;
+}
+
+#about-hover-menu-zone .hover-menu ul li {
+  margin: 0px 5px;
+  padding: 3px 5px;
+}
+#about-hover-menu-zone .hover-menu ul li:hover {
+  background-color: white;
+}
+#about-hover-menu-zone .hover-menu ul li:hover a {
   color: black;
 }
 
@@ -392,14 +404,15 @@ ul li {
 /* -- Filters -- */
 .categories {
   width: 100%;
-  background-image: url(../images/base/menu-bg.png);
+  /*background-image:url(../images/base/menu-bg.png);*/
   height: 37px;
   position: relative;
-  top: -37px;
+  /*top:-37px;*/
   padding: 0px;
   margin: 0px;
   background-repeat: repeat-x;
   border-top: 1px solid #676665;
+  background-color: black;
 }
 .categories .menu .search {
   float: right;
@@ -660,7 +673,7 @@ ul li {
   position: relative;
   padding: 0px;
   margin: 0px;
-  top: -37px;
+  /*top:-37px;*/
   padding-top: 20px;
   padding-bottom: 20px;
 }

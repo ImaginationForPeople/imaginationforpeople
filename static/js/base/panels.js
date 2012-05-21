@@ -42,45 +42,51 @@ $(document).ready(function(){
     });	
         
 
-    // Opening of "projects hover menu"
-        $("#header #projects_list_button").hover(function(){
-        $(this).css('background-color', '#0f0f0f');
-        $('#projects-hover-menu-zone').stop().animate({height : '200'}, "fast");
-    }).mouseleave(function(){
+    // Function opening of header's "hover menu"     
+     function hovermenu(menu_item, hovermenu_zone, hovermenu_size){
 
-        var hover_on = false;
-        var hover_count = 150;
-        
-        setTimeout(myMouseOut, hover_count);
+        $(menu_item).find("a").hover(function(){
+            $(this).parent("li").css('background-color', '#0f0f0f');
+            $(hovermenu_zone).stop().animate({height : hovermenu_size}, "fast");
+        }).mouseleave(function(){
 
-        $("#projects-hover-menu-zone").mouseover(function() {
-            hover_on = true;
-        });
-
-        $("#projects-hover-menu-zone").mouseout(function() {
-            hover_on = false;
-            setTimeout(myMouseOut, hover_count);
-        });
-        
-        $("#header #projects_list_button").mouseover(function(){
-            hover_on = true;
-        });
-        
-        $("#header #projects_list_button").mouseout(function(){
-            hover_on = false;
-            setTimeout(myMouseOut, hover_count);
-        });
-
-        function myMouseOut() {
-            if (hover_on) {
+            var hover_on = false;
+            var hover_count = 150;
             
-            }else{
-                $("#header #projects_list_button").css('background-color', 'transparent');
-                $('#projects-hover-menu-zone').stop().animate({height : '0'}, 100);
+            setTimeout(myMouseOut, hover_count);
+
+            $(hovermenu_zone).mouseover(function() {
+                hover_on = true;
+            });
+
+            $(hovermenu_zone).mouseout(function() {
+                hover_on = false;
+                setTimeout(myMouseOut, hover_count);
+            });
+            
+            $(menu_item).mouseover(function(){
+                hover_on = true;
+            });
+            
+            $(menu_item).mouseout(function(){
+                hover_on = false;
+                setTimeout(myMouseOut, hover_count);
+            });
+
+            function myMouseOut() {
+                if (hover_on) {
+                
+                }else{
+                    $(menu_item).css('background-color', 'transparent');
+                    $(hovermenu_zone).stop().animate({height : '0'}, 100);
+                }
             }
-        }
 
-    });
-
-
+        });
+    };
+    
+    //Initialization for header's "hover menus"
+    hovermenu("#header #projects_list_button", '#projects-hover-menu-zone', '200');
+    hovermenu("#header #about_button", '#about-hover-menu-zone', '50');
+    
 });
