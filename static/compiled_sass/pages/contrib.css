@@ -1,0 +1,406 @@
+body {
+  background-color: white;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+img {
+  border: 0px;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}
+
+.clear {
+  display: none;
+  visibility: hidden;
+  clear: both;
+}
+
+.centrer {
+  /*
+  height: auto !important;
+  margin: 0 auto -29px;
+  min-height: 100%;
+  */
+  width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+hr {
+  border-bottom: 1px solid #969696;
+}
+
+a {
+  text-decoration: underline;
+  color: #951B81;
+}
+
+.clear {
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
+.separatorv {
+  background-image: url(../../images/pages/contrib/separator-v.jpg);
+  background-repeat: no-repeat;
+  width: 2px;
+  height: 132px;
+  float: left;
+  position: relative;
+  background-position: left -25px;
+}
+
+/* --HEADER---------------------------------------------------------------------------------------------------- */
+#header {
+  background-image: url(../../images/pages/contrib/header-bg.jpg);
+  background-repeat: repeat-x;
+  width: 100%;
+  height: 116px;
+  color: #a6a6a6;
+  background-position: center;
+  position: relative;
+  margin-top: -25px;
+}
+#header #stain-top {
+  background-image: url(../../images/pages/contrib/tache-top.png);
+  background-repeat: repeat-x;
+  width: 316px;
+  height: 48px;
+  background-position: center;
+  position: absolute;
+  bottom: -48px;
+  left: 0px;
+}
+#header #logo {
+  position: relative;
+  float: left;
+  top: 30px;
+}
+
+ul#menu {
+  list-style-type: inline;
+  margin: 0px;
+  height: 18px;
+  position: relative;
+  right: 15px;
+  bottom: 0px;
+  float: right;
+  top: 80px;
+}
+ul#menu li {
+  margin-left: 20px;
+  float: left;
+  /*pour IE*/
+  list-style-type: none;
+  position: relative;
+}
+ul#menu li ul {
+  position: absolute;
+  padding: 10px;
+  background-color: #951B81;
+  z-index: 100;
+  width: auto;
+  margin-top: 10px;
+}
+ul#menu li ul li {
+  float: none;
+  margin: 0px;
+  font-size: 13px;
+}
+ul#menu li ul li:hover {
+  background-color: #c473ad;
+}
+ul#menu a {
+  text-decoration: none;
+  color: #8e8e8e;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+}
+ul#menu a img {
+  border: 0px solid black;
+}
+ul#menu a:hover {
+  color: #5f5f5f;
+}
+
+ul#menu > li:hover {
+  height: 27px;
+}
+
+/* --ZONES DE CONTENUS---------------------------------------------------------------------------------------------------- */
+.content {
+  color: #818181;
+  position: relative;
+  margin: 12px;
+}
+
+/* --CONTENT---------------------------------------------------------------------------------------------------- */
+.col1, .col2 {
+  width: 340px;
+  float: left;
+  margin-right: 20px;
+}
+
+.col3 {
+  float: left;
+  width: 255px;
+}
+
+.col h1 {
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 22px;
+  font-weight: bold;
+  font-style: italic;
+  border-bottom: 1px solid #dadada;
+}
+.col ul {
+  margin: 0px;
+  padding: 0px;
+  float: left;
+  width: 100%;
+}
+.col ul li {
+  margin: 0px;
+  padding: 0px;
+  list-style-type: none;
+  padding-top: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dadada;
+  font-size: 10px;
+}
+.col ul li img {
+  float: left;
+  margin-right: 10px;
+  position: relative;
+  top: 0px;
+  border: 1px solid #dadada;
+}
+.col ul li p, .col ul li a {
+  color: #0090be;
+  font-weight: normal;
+}
+.col ul li a:hover {
+  color: #00ade4;
+}
+.col ul li.even {
+  background-color: #f5f5f5;
+}
+.col ul.community li {
+  border-bottom: 0px solid #dadada;
+  padding-top: 4px;
+  padding-bottom: 5px;
+}
+
+.content #tagline {
+  position: relative;
+}
+.content #tagline span#tagline1, .content #tagline span#tagline2 {
+  color: #00b1d2;
+  font-size: 35px;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.5) -1px 0, rgba(0, 0, 0, 0.3) 0 -1px, rgba(255, 255, 255, 0.5) 0 1px, rgba(0, 0, 0, 0.3) -1px -2px;
+  position: absolute;
+}
+.content #tagline span#tagline1 {
+  top: 15px;
+  left: 55px;
+}
+.content #tagline span#tagline2 {
+  bottom: 20px;
+  right: 340px;
+}
+.content h2 {
+  font-size: 15px;
+  color: #818181;
+  font-weight: normal;
+  font-style: italic;
+}
+.content a {
+  color: #00b1d0;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+#jobs_block {
+  background-color: #fafafa;
+  border: 1px solid #cdcdcd;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -o-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: 0px 0px 3px #f3f3f3;
+  -webkit-box-shadow: 0px 0px 3px #f3f3f3;
+  -o-box-shadow: 0px 0px 3px #f3f3f3;
+  box-shadow: 0px 0px 3px #f3f3f3;
+  behavior: url(static/js/pie/PIE.htc);
+  margin-top: 30px;
+}
+#jobs_block ul#jobs {
+  position: relative;
+  padding: 0px;
+  margin-left: 5px;
+}
+#jobs_block ul#jobs li {
+  float: left;
+  /*pour IE*/
+  list-style-type: none;
+  padding-bottom: 10px;
+  position: relative;
+}
+#jobs_block ul#jobs li span {
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  position: absolute;
+  bottom: 15px;
+  left: 0px;
+  width: 100%;
+  z-index: 50;
+}
+#jobs_block ul#jobs li:hover {
+  background-image: url(../../images/pages/contrib/arrow.jpg);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+}
+#jobs_block .details-block {
+  height: 167px;
+}
+#jobs_block .details {
+  width: 100%;
+  height: 167px;
+  border-top: 1px solid #cdcdcd;
+  position: absolute;
+}
+#jobs_block .details img {
+  float: left;
+}
+#jobs_block .details div.txt {
+  color: #8e8e8e;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 20px;
+  padding-left: 50px;
+  width: 510px;
+  float: left;
+}
+#jobs_block .details a.button {
+  position: absolute;
+  right: 20px;
+  bottom: 15px;
+  background-image: url(../../images/pages/contrib/button.jpg);
+  background-repeat: repeat-x;
+  height: 25px;
+  line-height: 25px;
+  padding: 2px;
+  padding-right: 15px;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+}
+#jobs_block .details a.button img {
+  position: relative;
+  top: 0px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* --FOOTER---------------------------------------------------------------------------------------------------- */
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+#footer {
+  background-color: #f3f3f3;
+  border-top: 1px solid #dadada;
+  width: 100%;
+  color: #818181;
+  text-align: center;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 11px;
+}
+#footer #stain-top {
+  background-image: url(../../images/pages/contrib/tache-bottom.png);
+  background-repeat: repeat-x;
+  width: 443px;
+  height: 38px;
+  background-position: center;
+  position: absolute;
+  top: -38px;
+  right: 0px;
+}
+#footer .separatorv {
+  left: 20px;
+}
+#footer a {
+  color: #818181;
+  text-decoration: none;
+}
+#footer a:hover {
+  color: #5f5f5f;
+}
+#footer img {
+  position: relative;
+  top: 8px;
+}
+#footer #links {
+  width: 670px;
+  float: right;
+  padding-top: 10px;
+}
+#footer #links ul {
+  width: 180px;
+  float: left;
+  margin-left: 20px;
+  padding: 0px;
+  text-align: left;
+  padding-left: 20px;
+}
+#footer #links ul li {
+  list-style-type: none;
+  font-size: 14px;
+}
+#footer #links ul h1 {
+  color: #0090be;
+  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+#footer {
+  margin: 0 auto;
+  position: relative;
+}
+
+#footer {
+  height: 150px;
+}

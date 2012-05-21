@@ -48,8 +48,8 @@ linaro-django-pagination==2.0.2
 django-userena==1.0.2
 django-social-auth==0.6.6
 
--e git+https://github.com/jorgebastida/django-dajaxice.git@e99fae3bb78714c79e08cdb96dcdc85105b45038#egg=django-dajaxice
--e git+https://github.com/jorgebastida/django-dajax.git@727b6e6ae85acc173ef8464c491acb8f1b9ff1f7#egg=django-dajax
+-e git+https://github.com/jorgebastida/django-dajaxice.git@d5a70654fbcd7241fbdfaf5a89fea2746cd25369#egg=django-dajaxice
+-e git+https://github.com/jorgebastida/django-dajax.git@510a6c3e267ce7b2a5423a7e8bcca191956247ed#egg=django-dajax
 
 -e git+https://github.com/SpreadBand/django-backcap.git@79c6494d4d05587f4699947987b12d4a9322efdc#egg=django-backcap
 
@@ -63,6 +63,8 @@ django-social-auth==0.6.6
 feedparser==5.0.1
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
 django-simplegravatar==0.2
+
+-e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
 # Testing tools
 coverage<3.4

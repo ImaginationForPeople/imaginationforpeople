@@ -1,0 +1,76 @@
+{% load i18n %}
+{% load menu_tags %}
+
+    {% comment %}
+    <div id="projects-hover-menu-zone" style="height:0px; overflow:hidden;">
+        <div class="center container_18 hover-menu">
+        
+            <div class="grid_6 alpha" id="filters_links">
+                <ul>
+                    <li id="allprojects_button"><a href="{% url project_sheet-list %}">{% trans 'All the projects' %}</a></li>
+                    <li><a href="{% url project_sheet-start %}">{% trans 'Add a project' %}</a></li>
+                    <!--
+                    <li><a href="#">{% trans 'All the tags' %}</a></li>
+                    <li><a href="#">{% trans 'Grid view' %}</a></li>
+                    <li><a href="#">{% trans 'Map view' %}</a></li>
+                    <li><a href="#">{% trans 'My favorites' %}</a></li>
+                    -->
+                </ul>
+            </div>
+            
+            <div class="grid_4">
+                <h2>{% trans 'Discover projects' %}</h2>
+                <hr />
+                <ul class="projects_lists">
+                    <li><a href="#">Blabla</a></li>
+                    <li><a href="#">ploshad revolutsii kitai gorod kurskaya bulvar</a></li>
+                    <li><a href="#">Blublu</a></li>
+                    <li><a href="#">Un projet avec un très très long titre</a></li>
+                    <li><a href="#">Un titre plus court</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_4">
+                <h2>{% trans 'Last projects' %}</h2>
+                <hr />
+                <ul class="projects_lists">
+                    <li><a href="#">Blabla</a></li>
+                    <li><a href="#">ploshad gorod kurskaya</a></li>
+                    <li><a href="#">Un projet avec un très très long titre</a></li>
+                    <li><a href="#">Un titre plus court</a></li>
+                    <li><a href="#">Coin</a></li>
+                </ul>
+            </div>
+            
+            <div class="grid_4 omega">
+                <h2>{% trans 'Call to action' %}</h2>
+                <hr />
+                <ul class="projects_lists">
+                    <li><a href="#">ploshad revolutsii kitai gorod kurskaya bulvar</a></li>
+                    <li><a href="#">Blublu</a></li>
+                    <li><a href="#">Blabla</a></li>
+                    <li><a href="#">Un projet avec un long titre</a></li>
+                    <li><a href="#">Un titre court</a></li>
+                </ul>
+            </div>
+            
+            <div class="clear"></div>
+        
+        </div>
+    </div>
+    {% endcomment %}
+    
+    
+    <div id="about-hover-menu-zone" style="height:0px; overflow:hidden;">
+        <div class="center container_18 hover-menu">
+        
+           <center> 
+               <ul>
+                    {% show_menu_below_id "info" %}
+                </ul>
+            </center>
+            
+            <div class="clear"></div>
+        
+        </div>
+    </div>

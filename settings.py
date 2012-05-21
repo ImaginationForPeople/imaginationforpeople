@@ -30,6 +30,9 @@ MANAGERS = (
 ## Project path
 PROJECT_PATH = os.path.abspath('%s' % os.path.dirname(__file__))
 
+## Dynamicsites
+SITES_DIR = os.path.join(PROJECT_ROOT, 'sites')
+
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
@@ -55,8 +58,6 @@ LANGUAGES = (
   ('zh', u'中文'),
 )
 
-SITE_ID = 1
-
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -74,9 +75,13 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
 # Cache
+if DEBUG:
+    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
+else:
+    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'BACKEND': CACHE_BACKEND,
     }
 }
 
@@ -93,6 +98,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    
+    'dynamicsites.middleware.DynamicSitesMiddleware',
 
     'linaro_django_pagination.middleware.PaginationMiddleware',
 
@@ -150,6 +157,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 
     'cms.context_processors.media',
     'sekizai.context_processors.sekizai',
+    
+    'dynamicsites.context_processors.current_site',
 )
 
 
@@ -162,10 +171,12 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_PATH, 'apps/member/templates'),
     os.path.join(PROJECT_PATH, 'apps/i4p_base/templates'),
     os.path.join(PROJECT_PATH, 'apps/project_sheet/templates'),
+    os.path.join(PROJECT_PATH, 'templates'),
 )
 
 INSTALLED_APPS = (
     # External Apps
+    'dynamicsites',
     'localeurl',
     'south',
     'django_nose',
@@ -214,6 +225,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.syndication',
+    'django.contrib.redirects',
 
     'emencia.django.newsletter',
     'cms',
@@ -308,6 +320,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 ### Debug-tool-bar
 INTERNAL_IPS = ('127.0.0.1', '192.168.0.18')
 DEBUG_TOOLBAR_CONFIG = {
+    # useful for testing dynamicsites
     'INTERCEPT_REDIRECTS': False,
 }
 
@@ -318,7 +331,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    # 'debug_toolbar.panels.sql.SQLDebugPanel',
+    #'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )
@@ -374,25 +387,26 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    
+    # For dynamic sites
+    'sites.finders.SiteDirectoriesFinder',
 
     # Compressor finder
     'compressor.finders.CompressorFinder',
 )
 
 STATICFILES_DIRS = (
-    ('js', os.path.join(MEDIA_ROOT, 'js')),
-    ('css', os.path.join(MEDIA_ROOT, 'css')),
-    ('css', os.path.join(MEDIA_ROOT, 'compiled_sass')),
-    ('images', os.path.join(MEDIA_ROOT, 'images')),
+    ('js', os.path.join(STATIC_ROOT, 'js')),
+    ('css', os.path.join(STATIC_ROOT, 'css')),
+    ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
+    ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
+    ('images', os.path.join(STATIC_ROOT, 'images')),
 )
 
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
     )
-
-## Grappelli
-GRAPPELLI_ADMIN_TITLE = "Imagination For People"
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -433,3 +447,4 @@ CMS_TEMPLATES = (
 )
 
 APPEND_SLASH = False
+

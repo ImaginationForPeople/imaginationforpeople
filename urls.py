@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple import direct_to_template, redirect_to
 
+from dynamicsites.views import site_info
 from userena.contrib.umessages import views as messages_views
 
 from apps.member.forms import AutoCompleteComposeForm
@@ -71,10 +72,12 @@ urlpatterns += patterns('',
 ## Static Media
 if settings.DEBUG:
     urlpatterns += patterns('',
-      (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+      (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+      (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
+      url(r'^site-info$', site_info),
     )
 
-urlpatterns += staticfiles_urlpatterns()
+    # urlpatterns += staticfiles_urlpatterns()
 
 ## CMS
 urlpatterns += patterns('',

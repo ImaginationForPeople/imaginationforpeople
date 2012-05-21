@@ -16,7 +16,9 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 # -*- coding: utf-8 -*-
+import random
 
+from django.contrib.auth.models import User
 from django.http import QueryDict
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
@@ -29,14 +31,19 @@ def homepage(request):
     """
     I4P Homepage
     """
-    project_sheets = I4pProject.objects.filter(best_of=True).order_by('?')[:14]
+    project_sheets = I4pProject.on_site.filter(best_of=True).order_by('?')[:14]
     project_translations = get_project_translations_from_parents(project_sheets,
                                                                  language_code=translation.get_language()
                                                                  )
+
+    latest_members = list(User.objects.filter(is_active=True).order_by('-date_joined')[:7])
+    random.shuffle(latest_members)
+    
     data = request.GET
 
     context = {'project_sheets': project_sheets,
                'project_translations': project_translations,
+               'last_members': latest_members,
                'about_tab_selected' : True}
 
     filter_forms, extra_context = build_filters_and_context(data)
