@@ -89,7 +89,14 @@
             
             popup_content.load("{% url project_sheet-start %} #new_project_style_popup");
             $("#new_project_style_popup_zone").removeClass("hidden");
-            $.getScript("{{ STATIC_URL }}js/project_sheet/topics_select_popup.js");
+            $.getScript("{{ STATIC_URL }}js/project_sheet/topics_select_popup.js").done(function(script, textStatus) {
+              console.log('Chargement script JS réussi');
+
+            }).fail(function(jqxhr, settings, exception) {
+              console.log('Le .js ne se charge pas.');
+
+            });  
+
             return false;
         });
         
