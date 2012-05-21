@@ -272,13 +272,13 @@ ul{
 
 /*---- Projects hover menu ----*/
 
-#projects-hover-menu-zone{
+#projects-hover-menu-zone, #about-hover-menu-zone{
     background-color:#0f0f0f;
     width:100%;
     position:absolute;
     z-index:900;
 
-    #projects-hover-menu{
+    .hover-menu{
         color:white;
         margin:20px auto;
         
@@ -289,7 +289,13 @@ ul{
         a:hover{
             text-decoration:none;
         }
+    }
+}
 
+#projects-hover-menu-zone{
+
+    .hover-menu{
+    
         #filters_links{
 
             ul li{            
@@ -347,6 +353,28 @@ ul{
     }    
 }
 
+#about-hover-menu-zone{
+
+    .hover-menu{
+        
+        ul {
+        
+            li{
+                margin:0px 5px;
+                padding:3px 5px;
+            }
+            
+            li:hover{
+                background-color:white;
+                
+                a{
+                    color:black;
+                }
+            }
+        }
+    }    
+}
+
 
 /*---- Search box ----*/
 
@@ -396,14 +424,15 @@ ul{
 .categories{
 
 	width:100%;
-	background-image:url(../images/base/menu-bg.png);
+	/*background-image:url(../images/base/menu-bg.png);*/
 	height:37px;	
 	position:relative;
-	top:-37px;	
+	/*top:-37px;*/	
 	padding:0px;
 	margin:0px;
 	background-repeat:repeat-x;	
 	border-top:1px solid #676665;    
+    background-color:black;
     
     .menu{
     
@@ -729,7 +758,7 @@ ul{
 	position:relative;
 	padding:0px;
 	margin:0px;
-	top:-37px;	
+	/*top:-37px;*/
 	padding-top:20px;
 	padding-bottom:20px;
 }
