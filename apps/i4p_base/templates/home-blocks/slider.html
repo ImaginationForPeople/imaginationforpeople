@@ -19,7 +19,7 @@
                     {% else %}
                     <div class="project_photo" style="background-image:url('{{ STATIC_URL }}images/home/no-photo.jpg');">
                     {% endif %}
-                        <table><tr><td><span>{{ project_translation.title|slice:":40" }}</span></td></tr></table>
+                        <table><tr><td><span><a href="{{ project_translation.get_absolute_url }}">{{ project_translation.title|slice:":40" }}</a></span></td></tr></table>
                     </div>
                     
                 </a>
