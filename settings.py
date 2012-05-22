@@ -285,19 +285,19 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 USERENA_DEFAULT_PRIVACY = 'open'
 
 ## Social auth
-SOCIAL_AUTH_USERNAME_FIXER = fix_username
+# SOCIAL_AUTH_USERNAME_FIXER = fix_username
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
                                  'user_work_history']
 GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
-SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
+
 # Catch social auth exceptions even in debug mode
-SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_RAISE_EXCEPTIONS = DEBUG
 SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.social_auth_user',
     'social_auth.backends.pipeline.associate.associate_by_email',
     'social_auth.backends.pipeline.user.get_username',
-    'social_auth.backends.pipeline.user.create_user',
-    'apps.member.social.custom_associate_user', # Override default pipeline function
+    'apps.member.social.create_user',
+    'apps.member.social.associate_user', # Override default pipeline function
     'social_auth.backends.pipeline.social.load_extra_data',
     'social_auth.backends.pipeline.user.update_user_details'
 )
