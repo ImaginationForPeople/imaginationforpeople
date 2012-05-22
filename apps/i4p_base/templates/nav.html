@@ -31,12 +31,11 @@
 					<ul>
                         {% if project_translation %}
 						<li><div class="categ-button first"><a href="{% url project_sheet-show project_translation.slug %}" {% if project_tab %}class="selected"{% endif %}>{% trans "Project" %}</a></div></li>
-						<li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}" {% if history_tab %}class="selected"{% endif %}>{% trans "History" %}</a></div></li>
-						<!--
-						<li><div class="categ-button"><a href="#">Filters</a></div></li>
-						<li><div class="categ-button"><a href="#">Help</a></div></li>
-						<li><div class="categ-button2"><a href="#"><span class="georgia">My</span> imagination for people</a></div></li>
-						-->
+						
+                        {% comment %}
+                            <li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}" {% if history_tab %}class="selected"{% endif %}>{% trans "History" %}</a></div></li>
+                        {% endcomment %}
+                        
                        {% else %}
                         <li><div class="categ-button first"><a href="#" class="selected">{% trans "Project" %}</a></div></li>
                        {% endif %}
