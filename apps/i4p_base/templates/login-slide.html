@@ -129,6 +129,9 @@
                 
                 <li><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-view.png" /></a></li>
                 <li><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'Edit my profile' %}"><img src="{{ STATIC_URL }}images/base/panel-edit.png" /></a></li>
+                {% if user.is_staff %}
+                <li><a href="/admin/" class="tipsed on" title="{% trans 'Administration' %}"><img src="{{ STATIC_URL }}images/base/admin.png" /></a></li>
+                {% endif %}
                 <li><a href="{% url userena_signout %}?next={% url i4p-index %}" class="tipsed on" title="{% trans 'Log out' %}"><img src="{{ STATIC_URL }}images/base/panel-logout.png" /></a></li>
             {% endif %}
 
