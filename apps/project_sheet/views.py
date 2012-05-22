@@ -188,7 +188,7 @@ def project_sheet_show(request, slug, add_media=False):
 
     for topic in Topic.objects.filter(site_topics=project.topics.all()):
         questions = []
-        for question in topic.questions.all():
+        for question in topic.questions.all().order_by('weight'):
             answers = Answer.objects.filter(project=project, question=question)
             questions.append([question, answers and answers[0] or None])
         topics.append([topic, questions])
