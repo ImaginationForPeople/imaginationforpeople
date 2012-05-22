@@ -248,17 +248,6 @@ class I4pProjectTranslation(models.Model):
     partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
     callto_section = models.TextField(_("Help request"), null=True, blank=True)
 
-    # TODO: remove the next 5 fields after migration 0025 has been applied to
-    # prod. Why? Because the 'orm' object provided in migration scripts has no
-    # translation functionality (which we need in 0025), so we must use the
-    # real models with these 5 fields in order to successfully migrate answers.
-    uniqueness_section = models.TextField(_("in what ways is this project unique and creative"), null=True, blank=True)
-    value_section = models.TextField(_("what is the social value of this project"), null=True, blank=True)
-    scalability_section = models.TextField(_("what is the potential of this project to expand and develop"), null=True, blank=True)
-    triggering_factor_section = models.TextField(_("what was the triggering factor of this project"), null=True, blank=True)
-    business_model_section = models.TextField(_("what is the business model of the project"), null=True, blank=True)
-    # End TODO
-
     themes = TagField(_("Themes of the project"), null=True, blank=True)
 
     # @models.permalink
