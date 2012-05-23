@@ -343,7 +343,8 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
                                   slug=topic_slug)
     else:
         get_object_or_404(I4pProjectTranslation,
-                          slug=slug)
+                          slug=slug,
+                          language_code=language_code)
 
     
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(field,))
