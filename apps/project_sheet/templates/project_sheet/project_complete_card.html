@@ -1,5 +1,4 @@
-{% load i18n %}
-{% load localeurl_tags %}
+{% load i18nurls i18n %}
 
 {% include "project_sheet/project_id_card.html" %}
 
@@ -17,7 +16,9 @@
     {% endif %}
   </div>
   
-  <a href="{% locale_url project_translation.language_code project_sheet-show project_translation.slug %}">{% trans "More info" %} &gt;</a>
+{% language project_translation.language_code %}
+  <a href="{% url project_sheet-show project_translation.slug %}">{% trans "More info" %} &gt;</a>
+{% endlanguage %}
   
 </div>
 	

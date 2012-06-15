@@ -1,10 +1,11 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.views.generic.simple import direct_to_template, redirect_to
+from django.views.generic.simple import redirect_to
+
 
 from dynamicsites.views import site_info
+from i18nurls.i18n import i18n_patterns # XXX: update when moving to dj1.4
 from userena.contrib.umessages import views as messages_views
 
 from apps.member.forms import AutoCompleteComposeForm
@@ -22,8 +23,8 @@ sitemaps = {
     'projects': I4pProjectTranslationSitemap(),
     }
 
-urlpatterns = patterns('',
-    url(r'^', include('apps.i4p_base.urls')),
+urlpatterns = i18n_patterns('',
+#    url(r'^', include('apps.i4p_base.urls')),
 
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),
@@ -48,24 +49,20 @@ urlpatterns = patterns('',
     
     (r'^ajax_select/', include('ajax_select.urls')),
 
-    # Static pages
-    url(r'^beta/', redirect_to, {'url': '/', 'permanent': True}),
-    url(r'^normal_index$', redirect_to, {'url': '/', 'permanent': True}),
-    
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
-    url('^robots\.txt$', include('robots.urls')),
-
-    (r'^tinymce/', include('tinymce.urls')),
-    (r'^uploadify/', include('uploadify.urls')),
-
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
 )
 
-## Javascript i18n catalog
+## Non localized urls
 urlpatterns += patterns('',
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+
+    (r'^tinymce/', include('tinymce.urls')),
+    (r'^uploadify/', include('uploadify.urls')),
+
+    url('^robots\.txt$', include('robots.urls')),
     (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
 )
 
@@ -77,9 +74,7 @@ if settings.DEBUG:
       url(r'^site-info$', site_info),
     )
 
-    # urlpatterns += staticfiles_urlpatterns()
-
 ## CMS
-urlpatterns += patterns('',
+urlpatterns += i18n_patterns('',
                         url(r'^', include('cms.urls'))
                         )

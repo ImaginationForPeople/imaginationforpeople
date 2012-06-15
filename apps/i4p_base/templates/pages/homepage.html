@@ -135,12 +135,12 @@
         </div>
     </div>
     
-    {% include "home-blocks/focus-zone.html" %}     
+    {% include "pages/home-blocks/focus-zone.html" %}     
 
 {% endblock %}
 
 {% block content %}
-
+    {% cms_toolbar %}
 <!-- Facebook Likebox init -->
 <div id="fb-root"></div>
 <script>
@@ -155,7 +155,7 @@
 
 {% comment %}
 <!-- Newsletter popup -->
-{% include "home-blocks/newsletter-popup.html" %}            
+{% include "pages/home-blocks/newsletter-popup.html" %}            
 {% endcomment %}
 
         
@@ -172,7 +172,8 @@
     <div class="infoblock">
         <a href="{% url project_sheet-start %}"><img class="image" src="{{ STATIC_URL }}images/ip-illus.jpg" alt="Titre du projet" width="250" height="250"/></a>
         <div class="details">
-            <div class="description"> 
+          <div class="description"> 
+	    {% placeholder 'freetext' %}
                 {% blocktrans %}
                 <p>
                     As a project leader, please describe your initiative and make use of the first functionalities of this platform: 
@@ -221,14 +222,14 @@
         
             {% comment %}
 
-                <!-- 2 last news -->
-                {% include "home-blocks/infoblock.html" %}     
+                <!-- 2 latest news -->
+                {% include "pages/home-blocks/infoblock.html" %}     
                 
                 {% placeholder banners %}
             
-                {% include "home-blocks/blog-box.html" %} 
+                {% include "pages/home-blocks/blog-box.html" %} 
                 
-                {% include "home-blocks/twitter-box.html" %} 
+                {% include "pages/home-blocks/twitter-box.html" %} 
                 
             {% endcomment %}
 
@@ -246,19 +247,19 @@
             </span>
             
             <!-- Loginbox -->
-            {% include "home-blocks/loginbox.html" %}     
+            {% include "pages/home-blocks/loginbox.html" %}     
 
             <!-- Quick Project -->
             <!-- FIXME -->
             {% comment %}
-                {% include "home-blocks/quick_project.html" %} 
+                {% include "pages/home-blocks/quick_project.html" %} 
             {% endcomment %}            
             
             <!-- Last members -->
-            {% include "home-blocks/last_members.html" %}     
+            {% include "pages/home-blocks/last_members.html" %}     
             
             <!-- Facebook friendbox -->
-            {% include "home-blocks/fb-fanbox.html" %}    
+            {% include "pages/home-blocks/fb-fanbox.html" %}    
             
         </div>
         

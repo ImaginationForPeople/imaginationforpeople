@@ -1,7 +1,9 @@
 {% load i18n %}
-{% load localeurl_tags %}
+{% load i18nurls %}
 
-<a href="{% locale_url project_translation.language_code project_sheet-show project_translation.slug %}" class="project_card"  title="{{ project_translation.baseline}}">
+{% language project_translation.language_code %}
+<a href="{% url project_sheet-show project_translation.slug %}" class="project_card"  title="{{ project_translation.baseline}}">
+{% endlanguage %}
   
     <div class="project-photo">	
     {% if project_translation.project.pictures.all|length > 0 %}

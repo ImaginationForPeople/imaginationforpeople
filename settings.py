@@ -105,15 +105,12 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-#    'cms.middleware.multilingual.MultilingualURLMiddleware',
-
     ## The order of these locale middleware classes matters
-    # Default django language selection, detects browser language preference
-    'django.middleware.locale.LocaleMiddleware',
     # Language selection based on profile
-    'userena.middleware.UserenaLocaleMiddleware',
     # URL based language selection (eg. from top panel)
-    'localeurl.middleware.LocaleURLMiddleware',
+    # We don't use django cms one, for compatibility reasons
+    'i18nurls.middleware.LocaleMiddleware',
+    'userena.middleware.UserenaLocaleMiddleware',
 
     'honeypot.middleware.HoneypotMiddleware',
 
@@ -177,7 +174,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # External Apps
     'dynamicsites',
-    'localeurl',
+    #'localeurl',
     'south',
     'django_nose',
     'django_extensions',
@@ -186,6 +183,7 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
+    'i18nurls',
 
     'tinymce',
     'tagging',
@@ -305,11 +303,6 @@ SOCIAL_AUTH_PIPELINE = (
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
 
-# localeurl/monther-tongue
-PREFIX_DEFAULT_LOCALE = True
-LOCALEURL_USE_ACCEPT_LANGUAGE = True
-LOCALEURL_USE_SESSION = True
-
 # Userena
 ANONYMOUS_USER_ID = -1
 AUTH_PROFILE_MODULE = 'member.I4pProfile'
@@ -364,11 +357,6 @@ USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
 
 LOCALE_INDEPENDENT_PATHS = (
-        re.compile('^/static/.*$'),
-        re.compile('^/admin/.*$'),
-        re.compile('^/media/.*$'),
-        re.compile('^/robots.txt$'),
-        re.compile('^/sitemap.xml$'),
         re.compile('^/member/complete/google-oauth2/?'),
 	)
 
@@ -431,7 +419,7 @@ TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
                           'convert_urls': False,
                           'plugins': "contextmenu",
                           'width': '90%',
-                          'height': '500px'}
+                          'height': '300px'}
 TINYMCE_FILEBROWSER = True
 FILEBROWSER_USE_UPLOADIFY = False
 
@@ -442,9 +430,10 @@ DEFAULT_HEADER_SENDER = "Imagination For People Newsletter <contact@imaginationf
 CMS_PERMISSION = True
 
 CMS_TEMPLATES = (
+  ('pages/homepage.html', _('Homepage')),
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
 )
 
-APPEND_SLASH = False
+# APPEND_SLASH = True
 

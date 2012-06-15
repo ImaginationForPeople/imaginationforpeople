@@ -19,7 +19,6 @@
 import random
 
 from django.contrib.auth.models import User
-from django.http import QueryDict
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils import translation
@@ -51,7 +50,7 @@ def homepage(request):
     context.update(extra_context)
 
 
-    return render_to_response(template_name='homepage.html',
+    return render_to_response(template_name='pages/homepage.html',
                               dictionary=context,
                               context_instance=RequestContext(request)
                               )

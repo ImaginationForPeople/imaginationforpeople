@@ -1,7 +1,6 @@
 {% load i18n %}
+{% load i18nurls %}
 {% load tagging_tags %}
-{% load localeurl_tags %}
-
 
 {% block extra_head %}
     {% if project_translation %}
@@ -9,7 +8,7 @@
     //Twitter reconfiguration for Addthis
     var addthis_share = {
         templates : {
-            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% locale_url project_translation.language_code project_sheet-show project_translation.slug %} (via @ipvoices)"
+            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
         }
     }
     </script>
