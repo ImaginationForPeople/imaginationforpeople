@@ -356,6 +356,7 @@ LOGIN_REDIRECT_URL = '/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
 
+# XXX To be removed as soon as google login is confirmed working
 LOCALE_INDEPENDENT_PATHS = (
         re.compile('^/member/complete/google-oauth2/?'),
 	)
@@ -435,5 +436,5 @@ CMS_TEMPLATES = (
   ('pages/contrib.html', _('Contribution page')),
 )
 
-# APPEND_SLASH = True
+APPEND_SLASH = True
 

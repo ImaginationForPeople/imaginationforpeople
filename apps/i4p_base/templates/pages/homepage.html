@@ -162,59 +162,28 @@
 <div id="content-zone">
 
     <div id="content" class="center">
-        
         <div id="left_col">
-        
-        
-        
-        <!-- TEMP!!! -->
-        
-    <div class="infoblock">
-        <a href="{% url project_sheet-start %}"><img class="image" src="{{ STATIC_URL }}images/ip-illus.jpg" alt="Titre du projet" width="250" height="250"/></a>
-        <div class="details">
-          <div class="description"> 
-	    {% placeholder 'freetext' %}
-                {% blocktrans %}
-                <p>
-                    As a project leader, please describe your initiative and make use of the first functionalities of this platform: 
-                </p>
-                <ul>
-                    <li>Create a display page for your project, to provide a summary explanation of your initiative and to allow others to discover your project</li>
-                    <li>Use the internal messaging system to connect with other people interested in your project</li>
-                    <li>Publically express your project development needs and thus, potentially connect with people who can fill these needs</li>
-                    <li>Share your project on other social networks</li>
-                </ul>                
-                <p>
-                    Very soon, new functionalities will be added that will help speed up the development of your projects. 
-                </p>
-                {% endblocktrans %}
-            </div>            
-        </div>
-        <div class="clear"></div>
-    </div>    
 
-    <div class="infoblock">
-            <a href="http://montrealcreative.org/"><img class="image" src="{{ STATIC_URL }}images/montreal-illus.jpg" alt="Titre du projet" width="250" height="250"/></a>
+	  <div class="infoblock">
+	    <div class="image">
+	      {% placeholder "Homepage Info Picture 1" %}
+	    </div>
             <div class="details">
-                <a href="http://montrealcreative.org/"><h1>{% trans "Launching of Montreal's accelerator of innovative projects" %}</h1></a>
-                
-                <div class="description"> 
-                    {% blocktrans %}
-                    <p>
-                        The mission of the Montreal Creative site is to showcase the talent, innovative spirit and creativity of all organizations that sparked out of Montreal.             
-                    </p>
-                    <ul>
-                        <li>World famous for its <strong>cultural richness and for the talent of its entrepreneurs and creators</strong></li>
-                        <li>A member of the UNESCO network of Creative Cities that awarded Montreal the status of a UNESCO City of Design</li>
-                        <li>A vibrant community with <strong>social innovation and civic creativity</strong> at its core</li>
-                        <li>A <strong>booming</strong> creative economy</li>
-                    </ul>
-                    {% endblocktrans %}
-                </div>
-                
+	      {% placeholder "Homepage Info Text 1" %}
             </div>
-            <div class="clear"></div>
-        </div>         
+	  </div>
+          <div class="clear"></div>
+
+	<div class="infoblock">
+	    <div class="image">
+	      {% placeholder "Homepage Info Picture 2" %}
+	    </div>
+            <div class="details">
+	      {% placeholder "Homepage Info 2" %}
+            </div>
+	</div>
+        <div class="clear"></div>
+
         
         
         <!-- /TEMP!!! -->
