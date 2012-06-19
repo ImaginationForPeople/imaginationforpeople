@@ -237,6 +237,8 @@ INSTALLED_APPS = (
     'cms.plugins.teaser',
     'cms.plugins.snippet',
 
+    'cmsplugin_facebook',
+
     # Internal Apps
     'apps.i4p_base',
     'apps.member',
