@@ -316,58 +316,15 @@ hr {
   bottom: 12px;
   right: 30px;
 }
-#content-zone #content #left_col #blog_box, #content-zone #content #left_col #twitter_box {
-  background-image: url("../images/home/infoblock-bg.jpg");
-  float: left;
-  height: 290px;
-  overflow: hidden;
-}
-#content-zone #content #left_col #blog_box h1, #content-zone #content #left_col #twitter_box h1 {
-  padding: 8px;
-  background-color: #c1c1c1;
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
-  font-size: 16px;
-  font-style: normal;
-  text-transform: uppercase;
-  text-shadow: 1px 1px #f3f3f3;
-  color: #303030;
-  border-top: 3px solid #04add1;
-}
-#content-zone #content #left_col #blog_box ul, #content-zone #content #left_col #twitter_box ul {
-  margin: 8px;
-  margin-top: 3px;
-}
-#content-zone #content #left_col #blog_box ul li, #content-zone #content #left_col #twitter_box ul li {
-  padding: 5px 0px;
-  border-bottom: 1px dotted #c1c1c1;
-  float: left;
-}
-#content-zone #content #left_col #blog_box ul li img, #content-zone #content #left_col #twitter_box ul li img {
-  float: left;
-  margin-right: 10px;
-}
-#content-zone #content #left_col #blog_box ul li p, #content-zone #content #left_col #twitter_box ul li p {
-  font-size: 10px;
-  color: #303030;
-}
-#content-zone #content #left_col #blog_box ul li p span.date, #content-zone #content #left_col #twitter_box ul li p span.date {
-  color: grey;
-  clear: both;
-  font-size: 9px;
-}
-#content-zone #content #left_col #blog_box {
+#content-zone #content #left_col #blog_box_zone {
   width: 54.5%;
   margin-right: 1.5%;
+  float: left;
 }
-#content-zone #content #left_col #twitter_box {
+#content-zone #content #left_col #twitter_box_zone {
   width: 42.5%;
   margin-left: 1.5%;
-}
-#content-zone #content #left_col #twitter_box h1 {
-  padding-left: 40px;
-  background-image: url("../images/home/twitter-logo.jpg");
-  background-repeat: no-repeat;
-  background-position: 5px 2px;
+  float: right;
 }
 #content-zone #content #right_col {
   width: 245px;
@@ -600,7 +557,7 @@ hr {
 #content-zone #content #right_col #newmembers li.bottom-member2 {
   left: 49px;
 }
-#content-zone #content #right_col #fb-fanbox {
+#content-zone #content #right_col .fb-like-box {
   background-color: #292929;
   background-image: url("../images/home/loginbox-bg.jpg");
   -moz-border-radius: 4px;
@@ -611,6 +568,8 @@ hr {
   border-radius: 4px;
   padding: 0px;
   height: 85px !important;
+  width: 100%;
+  margin-bottom: 18px;
 }
 
 /*--- NEWSLETTER POPUP ----*/
