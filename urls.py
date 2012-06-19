@@ -24,6 +24,17 @@ sitemaps = {
     }
 
 urlpatterns = i18n_patterns('',
+                            )
+
+## Static Media
+if settings.DEBUG:
+    urlpatterns += patterns('',
+      (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+      (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
+      url(r'^site-info$', site_info),
+    )
+
+urlpatterns += i18n_patterns('',
 #    url(r'^', include('apps.i4p_base.urls')),
 
     url(r'^comment/', include('django.contrib.comments.urls')),
@@ -49,6 +60,8 @@ urlpatterns = i18n_patterns('',
     
     (r'^ajax_select/', include('ajax_select.urls')),
 
+    (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
+
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
@@ -63,16 +76,8 @@ urlpatterns += patterns('',
     (r'^uploadify/', include('uploadify.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
-    (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
 )
 
-## Static Media
-if settings.DEBUG:
-    urlpatterns += patterns('',
-      (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-      (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
-      url(r'^site-info$', site_info),
-    )
 
 ## CMS
 urlpatterns += i18n_patterns('',

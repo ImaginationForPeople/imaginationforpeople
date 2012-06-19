@@ -19,7 +19,7 @@ def _slider_make_response(request, queryset):
     project_translations = get_project_translations_from_parents(parents_qs=queryset[:count],
                                                                  language_code=request.LANGUAGE_CODE)
     
-    return render_to_response(template_name='home-blocks/slider.html',
+    return render_to_response(template_name='pages/home-blocks/slider.html',
                               dictionary={'project_translations': project_translations},
                               context_instance=RequestContext(request))
     
@@ -65,7 +65,7 @@ def slider_most_commented(request):
     project_translations = get_project_translations_from_parents(parents_qs=parent_projects,
                                                                  language_code=current_language_code)
     
-    return render_to_response(template_name='home-blocks/slider.html',
+    return render_to_response(template_name='pages/home-blocks/slider.html',
                               dictionary={'project_translations': project_translations},
                               context_instance=RequestContext(request))
 
