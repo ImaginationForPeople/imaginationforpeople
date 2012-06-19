@@ -4,13 +4,10 @@
 import os
 import re
 import sys
-import socket
 from django.utils.translation import ugettext_lazy as _
 
 # Import settings for the given site
 from site_settings import *
-
-from apps.member.utils import fix_username
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
@@ -283,7 +280,6 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 USERENA_DEFAULT_PRIVACY = 'open'
 
 ## Social auth
-# SOCIAL_AUTH_USERNAME_FIXER = fix_username
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
                                  'user_work_history']
 GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
@@ -437,4 +433,3 @@ CMS_TEMPLATES = (
 )
 
 APPEND_SLASH = True
-

@@ -37,6 +37,7 @@ def homepage(request):
 
     latest_members = list(User.objects.filter(is_active=True).order_by('-date_joined')[:7])
     random.shuffle(latest_members)
+
     
     data = request.GET
 
