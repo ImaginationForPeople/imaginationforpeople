@@ -143,18 +143,8 @@
 {% endblock %}
 
 {% block content %}
+
     {% cms_toolbar %}
-<!-- Facebook Likebox init -->
-<div id="fb-root"></div>
-<script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 
 {% comment %}
 <!-- Newsletter popup -->
@@ -170,10 +160,10 @@
             <!-- TEMP!!! -->
             <div class="infoblock">
                 <div class="image">
-                  {% placeholder "Homepage Info Picture 1" %}
+                  {% placeholder "Infoblock Picture 1" %}
                 </div>
                 <div class="details">
-                    {% placeholder "Homepage Info Text 1" %}
+                    {% placeholder "Infoblock Text 1" %}
                 </div>
             </div>
             
@@ -181,10 +171,10 @@
 
             <div class="infoblock">
                 <div class="image">
-                  {% placeholder "Homepage Info Picture 2" %}
+                  {% placeholder "Infoblock Picture 2" %}
                 </div>
                 <div class="details">
-                    {% placeholder "Homepage Info 2" %}
+                    {% placeholder "Infoblock 2" %}
                 </div>
             </div>
             
@@ -203,16 +193,15 @@
                 {% include "pages/home-blocks/blog-box.html" %} 
                 
             {% endcomment %}
-
+            
             
             <div id="blog_box_zone">
-                {% placeholder "Blog Zone" %}
+                {% placeholder "Feed Zone 1" %}
             </div>
                 
             <div id="twitter_box_zone">
-                {% placeholder "Twitter Zone" %}
+                {% placeholder "Feed Zone 2" %}
             </div>
-
             
 
         </div>

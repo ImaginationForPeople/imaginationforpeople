@@ -233,9 +233,11 @@ hr {
   margin-bottom: 20px;
   height: 250px;
 }
-#content-zone #content #left_col .infoblock img.image {
+#content-zone #content #left_col .infoblock .image {
   border-right: 3px solid #04add1;
   float: left;
+  width: 250px;
+  height: 250px;
 }
 #content-zone #content #left_col .infoblock .details {
   width: 385px;
@@ -651,4 +653,38 @@ hr {
 }
 #newsletter_popup form input[type=submit]:hover {
   background: url(../images/base/minibutton_green.jpg);
+}
+
+/*--- CMS edition fixes ----*/
+.cms_placeholder-title {
+  color: #666666 !important;
+  text-transform: none !important;
+  font-weight: bold !important;
+  font: 13px "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  margin-top: 3px !important;
+}
+.cms_placeholder-title a {
+  color: #666666 !important;
+  cursor: default;
+  font-weight: bold !important;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+}
+
+.cms_toolbar-btn {
+  font-style: normal !important;
+}
+.cms_toolbar-btn span {
+  margin: 0px !important;
+  font: 13px "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  text-transform: none !important;
+}
+
+.cms_placeholder-subnav span {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  text-transform: none !important;
+}
+.cms_placeholder-subnav li a {
+  color: #666666 !important;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  text-transform: none !important;
 }
