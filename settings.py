@@ -447,4 +447,5 @@ CMS_TEMPLATES = (
 )
 
 APPEND_SLASH = False
+APPEND_SLASH = True
 
