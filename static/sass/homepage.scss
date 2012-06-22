@@ -276,9 +276,11 @@ hr{
                 margin-bottom:20px;
                 height:250px;
             
-                img.image{
+                .image{
                     border-right:3px solid $blue;
                     float:left;
+                    width:250px;
+                    height:250px;
                 }
                 
                 .details{
@@ -377,69 +379,19 @@ hr{
                 }
             }
             
-            #blog_box, #twitter_box{
-                background-image: url('../images/home/infoblock-bg.jpg');
-                float:left;
-                height:290px;
-                overflow:hidden;
-                
-                h1{
-                    padding:8px;
-                    background-color:$greymenu;
-                    font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
-                    font-size:16px;
-                    font-style:normal;
-                    text-transform:uppercase;
-                    text-shadow:1px 1px #f3f3f3;
-                    color:$greyblack;
-                    border-top:3px solid $blue;
-                }
-                
-                ul{
-                    margin:8px;
-                    margin-top:3px;
-                    
-                    li{
-                        padding:5px 0px;
-                        border-bottom:1px dotted $greymenu;
-                        float:left;
-                        
-                        img{
-                            float:left;
-                            margin-right:10px;
-                        }
-                        
-                        p{
-                            font-size:10px;
-                            color:$greyblack;
-                            
-                            span.date{
-                                color:grey;
-                                clear:both;
-                                font-size:9px;
-                            }
-
-                        }
-                    }
-                }
-            }
-            
-            #blog_box{
+            #blog_box_zone{
                 width:54.5%;
                 margin-right:1.5%;
+                float:left;
             }
             
-            #twitter_box{
+            #twitter_box_zone{
                 width:42.5%;
                 margin-left:1.5%;
-                
-                h1{
-                    padding-left:40px;
-                    background-image:url('../images/home/twitter-logo.jpg');
-                    background-repeat:no-repeat;
-                    background-position:5px 2px;
-                }
+                float:right;
             }
+
+            
         }
         
         #right_col{
@@ -716,12 +668,14 @@ hr{
                 }
             }
             
-            #fb-fanbox{
+            .fb-like-box{
                 background-color:#292929;
                 background-image: url("../images/home/loginbox-bg.jpg");
                 @include border-radius(4px);
                 padding:0px;
                 height:85px !important;
+                width:100%;
+                margin-bottom:18px;
             }            
         }
     }
@@ -801,5 +755,47 @@ hr{
         input[type=submit]:hover{
             background:url(../images/base/minibutton_green.jpg);
         }
+    }
+}
+
+
+/*--- CMS edition fixes ----*/
+
+.cms_placeholder-title{
+    color:#666666 !important;
+    text-transform: none !important;
+    font-weight:bold !important;
+    font: 13px "Helvetica Neue",Helvetica,Arial,sans-serif !important;    
+    margin-top:3px !important;
+     
+    a{
+        color:#666666 !important;
+        cursor:default;
+        font-weight:bold !important;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;    
+    }
+}
+
+.cms_toolbar-btn{
+    font-style:normal !important;
+
+    span{
+        margin:0px !important;
+        font: 13px "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+        text-transform: none !important;
+    }
+}
+
+.cms_placeholder-subnav{
+    
+    span{
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
+        text-transform:none !important;
+    }
+
+    li a{
+        color: #666666 !important;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;   
+        text-transform: none !important;
     }
 }

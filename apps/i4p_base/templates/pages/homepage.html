@@ -130,9 +130,9 @@
             </div>
             
             <div class="baseline">
-	      {% placeholder baseline or %}
-	      "{% trans ' Detect and develop socially innovative projects.' %}"
-	      {% endplaceholder %}
+                {% placeholder baseline or %}
+                    "{% trans ' Detect and develop socially innovative projects.' %}"
+                {% endplaceholder %}
             </div>
             <img src="{{ STATIC_URL }}images/home/video.jpg" alt="video" width="982" height="132"/>
         </div>
@@ -143,18 +143,8 @@
 {% endblock %}
 
 {% block content %}
+
     {% cms_toolbar %}
-<!-- Facebook Likebox init -->
-<div id="fb-root"></div>
-<script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
 
 {% comment %}
 <!-- Newsletter popup -->
@@ -166,30 +156,30 @@
 
     <div id="content" class="center">
         <div id="left_col">
-
-	  <div class="infoblock">
-	    <div class="image">
-	      {% placeholder "Homepage Info Picture 1" %}
-	    </div>
-            <div class="details">
-	      {% placeholder "Homepage Info Text 1" %}
-            </div>
-	  </div>
-          <div class="clear"></div>
-
-	<div class="infoblock">
-	    <div class="image">
-	      {% placeholder "Homepage Info Picture 2" %}
-	    </div>
-            <div class="details">
-	      {% placeholder "Homepage Info 2" %}
-            </div>
-	</div>
-        <div class="clear"></div>
-
         
-        
-        <!-- /TEMP!!! -->
+            <!-- TEMP!!! -->
+            <div class="infoblock">
+                <div class="image">
+                  {% placeholder "Infoblock Picture 1" %}
+                </div>
+                <div class="details">
+                    {% placeholder "Infoblock Text 1" %}
+                </div>
+            </div>
+            
+            <div class="clear"></div>
+
+            <div class="infoblock">
+                <div class="image">
+                  {% placeholder "Infoblock Picture 2" %}
+                </div>
+                <div class="details">
+                    {% placeholder "Infoblock 2" %}
+                </div>
+            </div>
+            
+            <div class="clear"></div>        
+            <!-- /TEMP!!! -->
         
         
             {% comment %}
@@ -199,11 +189,20 @@
                 
                 {% placeholder banners %}
             
+                <!-- Même principe que le template du plugin Twitter : charger avec Senkizai un css specifique qui @import "twittblogboxes.scss"; -->
                 {% include "pages/home-blocks/blog-box.html" %} 
                 
-                {% include "pages/home-blocks/twitter-box.html" %} 
-                
             {% endcomment %}
+            
+            
+            <div id="blog_box_zone">
+                {% placeholder "Feed Zone 1" %}
+            </div>
+                
+            <div id="twitter_box_zone">
+                {% placeholder "Feed Zone 2" %}
+            </div>
+            
 
         </div>
          
@@ -229,11 +228,9 @@
             
             <!-- Last members -->
             {% include "pages/home-blocks/last_members.html" %}     
-            
-            <!-- Facebook friendbox -->
-            {% include "pages/home-blocks/fb-fanbox.html" %}    
 
-	    {% placeholder "Homepage Column" %}
+            
+            {% placeholder "Homepage Column" %}
             
         </div>
         
