@@ -444,7 +444,9 @@ CMS_PERMISSION = True
 CMS_TEMPLATES = (
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
+  ('pages/onemenu.html', _('One menu page')),
 )
 
-APPEND_SLASH = False
+CMS_SOFTROOT = True
+APPEND_SLASH = True
 
