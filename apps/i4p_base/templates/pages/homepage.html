@@ -114,18 +114,19 @@
 
 
 {% block nav %}
+    {% cms_toolbar %}
     <div id="video-zone">
         <div id="video" class="center"> 
 
             <h1 class="what_is">{% trans ' What is it ?' %}</h1>
 
             <div id="project_block">
-                <h1>{% trans 'Explore and contribute' %}</h1>
+                <h1><a href="{% url project_sheet-list %}">{% trans 'Explore and contribute' %}</a></h1>
                 {% trans 'to social and cultural projects' %}
             </div>
             
             <div id="network_block">
-                <h1>{% trans 'Join the community' %}</h1>
+                <h1><a href="{% url userena_signup %}">{% trans 'Join the community' %}</a></h1>
                 {% trans 'of citizens from more 30 countries' %}
             </div>
             
@@ -143,8 +144,6 @@
 {% endblock %}
 
 {% block content %}
-
-    {% cms_toolbar %}
 
 {% comment %}
 <!-- Newsletter popup -->
