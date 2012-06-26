@@ -188,8 +188,8 @@ def fields_diff(previous_version, current_version, versionned_fields):
     Diff between two model fields
     """
     fields = []
-    previous_field_dict = previous_version.get_field_dict()
-    current_field_dict = current_version.get_field_dict()
+    previous_field_dict = previous_version.field_dict
+    current_field_dict = current_version.field_dict
     for field, value in current_field_dict.iteritems():
         if field in versionned_fields:
             if field in previous_field_dict:
