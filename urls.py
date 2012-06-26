@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.views.generic.simple import redirect_to
 
 
 from dynamicsites.views import site_info
-from i18nurls.i18n import i18n_patterns # XXX: update when moving to dj1.4
+#from i18nurls.i18n import i18n_patterns # XXX: update when moving to dj1.4
 from userena.contrib.umessages import views as messages_views
 
 from apps.member.forms import AutoCompleteComposeForm
@@ -67,7 +68,7 @@ urlpatterns += i18n_patterns('',
         'ajax_select.views.add_popup',
         name = 'add_popup'
     ),
-
+                             
     (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
 
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
@@ -85,7 +86,6 @@ urlpatterns += patterns('',
 
     url('^robots\.txt$', include('robots.urls')),
 )
-
 
 ## CMS
 urlpatterns += i18n_patterns('',

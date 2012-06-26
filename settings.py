@@ -106,7 +106,9 @@ MIDDLEWARE_CLASSES = (
     # Language selection based on profile
     # URL based language selection (eg. from top panel)
     # We don't use django cms one, for compatibility reasons
-    'i18nurls.middleware.LocaleMiddleware',
+    # 'i18nurls.middleware.LocaleMiddleware',
+    # 'cms.middleware.multilingual.MultilingualURLMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'userena.middleware.UserenaLocaleMiddleware',
 
     'honeypot.middleware.HoneypotMiddleware',
@@ -171,7 +173,6 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # External Apps
     'dynamicsites',
-    #'localeurl',
     'south',
     'django_nose',
     'django_extensions',
@@ -180,7 +181,7 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
-    'i18nurls',
+#    'i18nurls',
 
     'tinymce',
     'tagging',
