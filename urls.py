@@ -70,11 +70,6 @@ urlpatterns += i18n_patterns('',
     ),
                              
     (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
-
-    url(r'^admin/filebrowser/', include('filebrowser.urls')),
-
-    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    (r'^admin/', include(admin.site.urls)),
 )
 
 ## Non localized urls
@@ -85,6 +80,11 @@ urlpatterns += patterns('',
     (r'^uploadify/', include('uploadify.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
+
+    url(r'^admin/filebrowser/', include('filebrowser.urls')),
+
+    (r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^admin/', include(admin.site.urls)),
 )
 
 ## CMS
