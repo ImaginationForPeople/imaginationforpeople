@@ -114,123 +114,94 @@
 
 
 {% block nav %}
+    {% cms_toolbar %}
     <div id="video-zone">
         <div id="video" class="center"> 
 
             <h1 class="what_is">{% trans ' What is it ?' %}</h1>
 
             <div id="project_block">
-                <h1>{% trans 'Explore and contribute' %}</h1>
+                <h1><a href="{% url project_sheet-list %}">{% trans 'Explore and contribute' %}</a></h1>
                 {% trans 'to social and cultural projects' %}
             </div>
             
             <div id="network_block">
-                <h1>{% trans 'Join the community' %}</h1>
+                <h1><a href="{% url userena_signup %}">{% trans 'Join the community' %}</a></h1>
                 {% trans 'of citizens from more 30 countries' %}
             </div>
             
-            <div class="baseline">"{% trans ' Detect and develop socially innovative projects.' %}"</div>
-        
-            <img src="{{ STATIC_URL }}images/home/video.jpg" alt="Imagination for People" width="982" height="132"/>
+            <div class="baseline">
+                {% placeholder baseline or %}
+                    "{% trans ' Detect and develop socially innovative projects.' %}"
+                {% endplaceholder %}
+            </div>
+            <img src="{{ STATIC_URL }}images/home/video.jpg" alt="video" width="982" height="132"/>
         </div>
     </div>
     
-    {% include "home-blocks/focus-zone.html" %}     
+    {% include "pages/home-blocks/focus-zone.html" %}     
 
 {% endblock %}
 
 {% block content %}
 
-<!-- Facebook Likebox init -->
-<div id="fb-root"></div>
-<script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
 {% comment %}
 <!-- Newsletter popup -->
-{% include "home-blocks/newsletter-popup.html" %}            
+{% include "pages/home-blocks/newsletter-popup.html" %}            
 {% endcomment %}
 
         
 <div id="content-zone">
 
     <div id="content" class="center">
-        
         <div id="left_col">
         
-        
-        
-        <!-- TEMP!!! -->
-        
-    <div class="infoblock">
-        <a href="{% url project_sheet-start %}"><img class="image" src="{{ STATIC_URL }}images/ip-illus.jpg" alt="Titre du projet" width="250" height="250"/></a>
-        <div class="details">
-            <div class="description"> 
-                {% blocktrans %}
-                <p>
-                    As a project leader, please describe your initiative and make use of the first functionalities of this platform: 
-                </p>
-                <ul>
-                    <li>Create a display page for your project, to provide a summary explanation of your initiative and to allow others to discover your project</li>
-                    <li>Use the internal messaging system to connect with other people interested in your project</li>
-                    <li>Publically express your project development needs and thus, potentially connect with people who can fill these needs</li>
-                    <li>Share your project on other social networks</li>
-                </ul>                
-                <p>
-                    Very soon, new functionalities will be added that will help speed up the development of your projects. 
-                </p>
-                {% endblocktrans %}
-            </div>            
-        </div>
-        <div class="clear"></div>
-    </div>    
-
-    <div class="infoblock">
-            <a href="http://montrealcreative.org/"><img class="image" src="{{ STATIC_URL }}images/montreal-illus.jpg" alt="Titre du projet" width="250" height="250"/></a>
-            <div class="details">
-                <a href="http://montrealcreative.org/"><h1>{% trans "Launching of Montreal's accelerator of innovative projects" %}</h1></a>
-                
-                <div class="description"> 
-                    {% blocktrans %}
-                    <p>
-                        The mission of the Montreal Creative site is to showcase the talent, innovative spirit and creativity of all organizations that sparked out of Montreal.             
-                    </p>
-                    <ul>
-                        <li>World famous for its <strong>cultural richness and for the talent of its entrepreneurs and creators</strong></li>
-                        <li>A member of the UNESCO network of Creative Cities that awarded Montreal the status of a UNESCO City of Design</li>
-                        <li>A vibrant community with <strong>social innovation and civic creativity</strong> at its core</li>
-                        <li>A <strong>booming</strong> creative economy</li>
-                    </ul>
-                    {% endblocktrans %}
+            <!-- TEMP!!! -->
+            <div class="infoblock">
+                <div class="image">
+                  {% placeholder "Infoblock Picture 1" %}
                 </div>
-                
+                <div class="details">
+                    {% placeholder "Infoblock Text 1" %}
+                </div>
             </div>
+            
             <div class="clear"></div>
-        </div>         
-        
-        
-        <!-- /TEMP!!! -->
+
+            <div class="infoblock">
+                <div class="image">
+                  {% placeholder "Infoblock Picture 2" %}
+                </div>
+                <div class="details">
+                    {% placeholder "Infoblock 2" %}
+                </div>
+            </div>
+            
+            <div class="clear"></div>        
+            <!-- /TEMP!!! -->
         
         
             {% comment %}
 
-                <!-- 2 last news -->
-                {% include "home-blocks/infoblock.html" %}     
+                <!-- 2 latest news -->
+                {% include "pages/home-blocks/infoblock.html" %}     
                 
                 {% placeholder banners %}
             
-                {% include "home-blocks/blog-box.html" %} 
-                
-                {% include "home-blocks/twitter-box.html" %} 
+                <!-- Même principe que le template du plugin Twitter : charger avec Senkizai un css specifique qui @import "twittblogboxes.scss"; -->
+                {% include "pages/home-blocks/blog-box.html" %} 
                 
             {% endcomment %}
+            
+            
+            <div id="blog_box_zone">
+                {% placeholder "Feed Zone 1" %}
+            </div>
+                
+            <div id="twitter_box_zone">
+                {% placeholder "Feed Zone 2" %}
+            </div>
+            
 
         </div>
          
@@ -242,23 +213,23 @@
             {% endcomment %}
             
             <span>
-                {% placeholder site_purpose or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
+                {% placeholder "Site Purpose" or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
             </span>
             
             <!-- Loginbox -->
-            {% include "home-blocks/loginbox.html" %}     
+            {% include "pages/home-blocks/loginbox.html" %}     
 
             <!-- Quick Project -->
             <!-- FIXME -->
             {% comment %}
-                {% include "home-blocks/quick_project.html" %} 
+                {% include "pages/home-blocks/quick_project.html" %} 
             {% endcomment %}            
             
             <!-- Last members -->
-            {% include "home-blocks/last_members.html" %}     
+            {% include "pages/home-blocks/last_members.html" %}     
+
             
-            <!-- Facebook friendbox -->
-            {% include "home-blocks/fb-fanbox.html" %}    
+            {% placeholder "Homepage Column" %}
             
         </div>
         
