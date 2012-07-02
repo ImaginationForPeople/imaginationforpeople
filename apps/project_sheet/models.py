@@ -38,7 +38,6 @@ from django.utils import translation
 from autoslug.fields import AutoSlugField
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
-from localeurl.models import reverse
 from nani.models import TranslatableModel, TranslatedFields
 import reversion
 from reversion.models import Version

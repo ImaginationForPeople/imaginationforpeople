@@ -68,8 +68,9 @@ urlpatterns += i18n_patterns('',
         'ajax_select.views.add_popup',
         name = 'add_popup'
     ),
+
+    (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),                             
                              
-    (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
 )
 
 ## Non localized urls
@@ -80,7 +81,7 @@ urlpatterns += patterns('',
     (r'^uploadify/', include('uploadify.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
-
+                        
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
