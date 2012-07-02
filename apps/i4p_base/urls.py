@@ -1,11 +1,10 @@
 #-- encoding: utf-8 --
 from django.conf.urls.defaults import patterns, url
-from django.conf.urls.i18n import i18n_patterns
 
 import views
 import ajax
 
-urlpatterns = i18n_patterns('',
+urlpatterns = patterns('',
     url(r'^$', views.homepage, name='i4p-index'),
     url(r'^homepage/ajax/slider/bestof/$', ajax.slider_bestof, name='i4p-homepage-ajax-slider-bestof'),
     url(r'^homepage/ajax/slider/latest/$', ajax.slider_latest, name='i4p-homepage-ajax-slider-latest'),
