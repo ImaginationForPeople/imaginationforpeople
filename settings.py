@@ -107,7 +107,7 @@ MIDDLEWARE_CLASSES = (
     # URL based language selection (eg. from top panel)
     # We don't use django cms one, for compatibility reasons
     'django.middleware.locale.LocaleMiddleware',
-    'userena.middleware.UserenaLocaleMiddleware',
+    #'userena.middleware.UserenaLocaleMiddleware',
 
     'honeypot.middleware.HoneypotMiddleware',
 
