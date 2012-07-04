@@ -251,7 +251,7 @@ def project_sheet_create_translation(request, project_slug):
     translation.activate(requested_language_code)
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     translation.activate(current_language)
-    return url
+    return redirect(url)
 
 def project_sheet_edit_location(request, slug):
     language_code = translation.get_language()
