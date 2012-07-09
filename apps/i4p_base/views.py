@@ -16,9 +16,9 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 # -*- coding: utf-8 -*-
+import random
 
 from django.contrib.auth.models import User
-from django.http import QueryDict
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils import translation
@@ -35,7 +35,9 @@ def homepage(request):
                                                                  language_code=translation.get_language()
                                                                  )
 
-    latest_members = User.objects.filter(is_active=True).order_by('-date_joined')[:7]
+    latest_members = list(User.objects.filter(is_active=True).order_by('-date_joined')[:7])
+    random.shuffle(latest_members)
+
     
     data = request.GET
 
@@ -49,7 +51,7 @@ def homepage(request):
     context.update(extra_context)
 
 
-    return render_to_response(template_name='homepage.html',
+    return render_to_response(template_name='pages/homepage.html',
                               dictionary=context,
                               context_instance=RequestContext(request)
                               )

@@ -1,0 +1,26 @@
+{% load i18n %}	
+{% load cms_tags %}	
+
+    <div id="new_project_style_popup">
+
+        <a class="close-button">
+            <img width="11" height="11" alt="close" src="{{ STATIC_URL }}images/home/close.png">
+        </a>
+
+            <center>
+                <h1>{% trans 'Select your type of project' %}</h1>
+                <hr />  
+            
+                <ul id="project_type">
+                  {% for site_topic in site_topics %}
+                    <li class="topic_picto">
+                        <a href="{% url project_sheet-start site_topic.topic.slug %}">
+                            <img src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ site_topic.topic.slug }}.png" />
+                            <span>{{ site_topic.topic.label }}</span>
+                        </a>
+                    </li>
+                  {% endfor %}
+                <div class="clear"></div>
+                </ul>
+            </center>
+    </div>

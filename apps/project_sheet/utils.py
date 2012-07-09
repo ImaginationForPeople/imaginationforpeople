@@ -22,19 +22,28 @@ from reversion.models import Version
 
 from django.contrib.contenttypes.models import ContentType
 from django.db import DatabaseError
+from django.contrib.sites.models import Site
 
 from tagging.models import Tag
 
-from .models import I4pProject, I4pProjectTranslation, VERSIONNED_FIELDS
-from .filters import BestOfFilter, NameBaselineFilter
-from .filters import ProjectStatusFilter, ProjectProgressFilter, ProjectLocationFilter
-from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilter
+from .models import I4pProject, I4pProjectTranslation, SiteTopic, VERSIONNED_FIELDS
+from .filters import BestOfFilterForm, NameBaselineFilterForm, TopicFilterForm
+from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectLocationFilterForm
+from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilterForm
 
-def create_parent_project():
+def create_parent_project(topic_slug):
     """
     Create a parent project
     """
-    return I4pProject.on_site.create()
+    project = I4pProject.objects.create()
+
+    site = Site.objects.get_current().id
+    project.site.add(site)
+
+    topic = SiteTopic.objects.get(topic__slug=topic_slug, site=site)
+    project.topics.add(topic)
+
+    return project 
 
 def get_project_translation_by_slug(project_translation_slug, language_code):
     """
@@ -84,14 +93,10 @@ def get_project_translations_from_parents(parents_qs, language_code, fallback_la
             ]
 
 
-def create_project_translation(language_code, parent_project=None, default_title=None):
+def create_project_translation(language_code, parent_project, default_title=None):
     """
     Create a translation of a project.
-    If needed, create a parent project.
     """
-    if not parent_project:
-        parent_project = create_parent_project()
-
     try:
         I4pProjectTranslation.objects.get(project=parent_project,
                                           language_code=language_code)
@@ -110,7 +115,7 @@ def create_project_translation(language_code, parent_project=None, default_title
     return project_translation
 
 
-def get_or_create_project_translation_by_slug(project_translation_slug, language_code, parent_project=None, default_title=None):
+def get_or_create_project_translation_by_slug(project_translation_slug, language_code, parent_project, default_title=None):
     """
     Create a project translation for the given language_code with the
     given slug.
@@ -119,8 +124,6 @@ def get_or_create_project_translation_by_slug(project_translation_slug, language
     the same language with a different slug can lead to duplicate
     projects.
     When possible, use the "_from_parent" version instead.
-
-    It can create the parent project if needed.
     """
     try:
         project_translation = get_project_translation_by_slug(project_translation_slug, language_code)
@@ -159,14 +162,15 @@ def build_filters_and_context(request_data):
     """
 
     filter_forms = {
+        'topic_filter' : TopicFilterForm(request_data),
         'themes_filter' : ThemesFilterForm(request_data),
-        'location_filter' : ProjectLocationFilter(request_data),
-        'best_of_filter' : BestOfFilter(request_data),
-        'status_filter' : ProjectStatusFilter(request_data),
+        'location_filter' : ProjectLocationFilterForm(request_data),
+        'best_of_filter' : BestOfFilterForm(request_data),
+        'status_filter' : ProjectStatusFilterForm(request_data),
         'members_filter' : WithMembersFilterForm(request_data),
-        'progress_filter' : ProjectProgressFilter(request_data),
-        'project_sheet_search_form' : NameBaselineFilter(request_data),
-        'objective_filter' : ProjectObjectiveFilter(request_data)
+        'progress_filter' : ProjectProgressFilterForm(request_data),
+        'project_sheet_search_form' : NameBaselineFilterForm(request_data),
+        'objective_filter' : ProjectObjectiveFilterForm(request_data)
     }
 
     project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
@@ -184,8 +188,8 @@ def fields_diff(previous_version, current_version, versionned_fields):
     Diff between two model fields
     """
     fields = []
-    previous_field_dict = previous_version.get_field_dict()
-    current_field_dict = current_version.get_field_dict()
+    previous_field_dict = previous_version.field_dict
+    current_field_dict = current_version.field_dict
     for field, value in current_field_dict.iteritems():
         if field in versionned_fields:
             if field in previous_field_dict:

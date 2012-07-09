@@ -15,11 +15,11 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from .filters import NameBaselineFilter
+from .filters import NameBaselineFilterForm
 
 def project_search_forms(request):
     additions = {
-        'project_sheet_search_form': NameBaselineFilter(),
+        'project_sheet_search_form': NameBaselineFilterForm(),
     }
     return additions
 

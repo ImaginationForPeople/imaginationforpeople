@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Niki Lambropoulos <nikilambropoulos@yahoo.co.uk>, 2012.
 #   <vanessaner@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-03-19 13:58+0100\n"
-"PO-Revision-Date: 2012-03-19 12:59+0000\n"
+"POT-Creation-Date: 2012-05-14 09:59+0200\n"
+"PO-Revision-Date: 2012-05-14 08:02+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -93,7 +94,7 @@ msgstr "Εγγράφηκε νέος χρήστης"
 #: models.py:134
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
-msgstr ""
+msgstr "Νέο μήνυμα από %(sender)s στο Imagination For People"
 
 #: views.py:186
 msgid "Your profile has been updated."
@@ -114,13 +115,13 @@ msgstr "Νέο Μήνυμα"
 #: templates/umessages/message_detail.html:17
 #, python-format
 msgid "Between %(contact)s"
-msgstr ""
+msgstr "Ανάμεσα %(contact)s"
 
 #: templates/umessages/message_detail.html:29
 #: templates/umessages/message_list.html:46
 #, python-format
 msgid " %(sent_ago)s ago..."
-msgstr ""
+msgstr " %(sent_ago)s πριν..."
 
 #: templates/umessages/message_detail.html:64
 #: templates/umessages/message_form.html:18
@@ -133,18 +134,18 @@ msgstr "Δημιουργία"
 
 #: templates/umessages/message_list.html:77
 msgid "new"
-msgstr ""
+msgstr "νέο"
 
 #: templates/umessages/message_list.html:95
 msgid "you haven't received any message yet"
-msgstr ""
+msgstr "δεν έχετε λάβει ακόμη κανένα μήνυμα"
 
 #: templates/umessages/message_notification.txt:2
 #, python-format
 msgid ""
 "\n"
 "%(sender)s has sent you a message:\n"
-msgstr ""
+msgstr "\n⏎\n%(sender)s σου έστειλε ένα μήνυμα:⏎\n"
 
 #: templates/umessages/message_notification.txt:6
 #, python-format
@@ -152,7 +153,7 @@ msgid ""
 "\n"
 "You can view it online at:\n"
 "%(message_url)s\n"
-msgstr ""
+msgstr "\n⏎\nΜπορείτε να to δείτε στην ηλεκτρονική διεύθυνση:⏎\n%(message_url)s⏎\n"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -314,15 +315,15 @@ msgstr "Αυτός ο χρήστης δεν έχει κανένα έργο ακ�
 
 #: templates/userena/profile_detail.html:46
 msgid "My contributions"
-msgstr ""
+msgstr "ΟΙ συνεισφορές μου"
 
 #: templates/userena/profile_detail.html:48
 msgid "Her/His contributions"
-msgstr ""
+msgstr "Οι συνεισφορές της/του"
 
 #: templates/userena/profile_detail.html:58
 msgid "No contributions yet."
-msgstr ""
+msgstr "Ακόμα δεν υπάρχει καμία συμβολή."
 
 #: templates/userena/profile_idbar.html:15
 #: templates/userena/profile_idbar.html:17
@@ -361,7 +362,7 @@ msgstr "Είσοδος"
 
 #: templates/userena/signin_form.html:44
 msgid "Lost your password?"
-msgstr ""
+msgstr "Ξεχάσατε τον κωδικό σας;"
 
 #: templates/userena/signin_form.html:61
 msgid "Not a member yet?"
@@ -386,7 +387,7 @@ msgstr "Σας ευχαριστούμε για την εγγραφή σας!"
 msgid ""
 "You have been sent an email with an activation link to the supplied email "
 "address."
-msgstr ""
+msgstr "Σας έχει αποσταλεί ένα e-mail με έναν σύνδεσμο ενεργοποίησης για την παρεχόμενη διεύθυνση ηλεκτρονικού ταχυδρομείου."
 
 #: templates/userena/signup_complete.html:24
 #, python-format
@@ -401,30 +402,38 @@ msgstr "Εγγραφή"
 
 #: templates/userena/signup_form.html:50
 msgid "You can also use"
-msgstr ""
+msgstr "Μπορείτε επίσης να χρησιμοποιήσετε"
 
 #: templates/userena/signup_form.html:61
 msgid "Already a member?"
 msgstr "Είστε ήδη μέλος;"
 
+#: templates/userena/social-networks.html:4
+#: templates/userena/social-networks.html:5
+#: templates/userena/social-networks.html:6
+#: templates/userena/social-networks.html:7
+#: templates/userena/social-networks.html:8
+msgid "Connect with"
+msgstr ""
+
 #: templates/userena/emails/confirmation_email_message_new.txt:2
 #, python-format
 msgid "Dear %(username)s,"
-msgstr ""
+msgstr "Αγαπητή/έ %(username)s,"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:4
 #, python-format
 msgid "You requested a change of your email address at %(site)s."
-msgstr ""
+msgstr "Ζητήσατε μια αλλαγή της διεύθυνσης e-mail σας στο %(site)s."
 
 #: templates/userena/emails/confirmation_email_message_new.txt:7
 msgid "Please confirm this email address by clicking on the link below:"
-msgstr ""
+msgstr "Επιβεβαιώστε αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου κάνοντας κλικ στον παρακάτω σύνδεσμο:"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:11
 msgid "Thanks for using our site!"
-msgstr ""
+msgstr "Σας ευχαριστούμε που χρησιμοποιείτε την ιστοσελίδα μας!"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:13
 msgid "Sincerely"
-msgstr ""
+msgstr "Με εκτίμηση"

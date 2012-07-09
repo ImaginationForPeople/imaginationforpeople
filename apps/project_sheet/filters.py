@@ -21,6 +21,7 @@ Filter framework
 from itertools import chain
 
 from django import forms
+from django.contrib.sites.models import Site
 from django.db.models import Q
 from django.forms.widgets import SelectMultiple, CheckboxInput
 from django.utils.encoding import force_unicode
@@ -30,10 +31,11 @@ from django.utils.translation import ugettext as _
 
 from tagging.models import TaggedItem, Tag
 
+from apps.i4p_base.models import I4P_COUNTRIES
 from apps.project_sheet.models import ProjectMember, Objective
 
-from .models import I4pProjectTranslation, I4pProject
-from apps.i4p_base.models import I4P_COUNTRIES
+from .models import I4pProjectTranslation, I4pProject, SiteTopic
+
 ORDER_CHOICES = (
      ('lte', '<='),
      ('gte', '>=')
@@ -160,7 +162,7 @@ class MyCheckboxSelectMultiple(SelectMultiple):
         return id_
     id_for_label = classmethod(id_for_label)
 
-class ProjectStatusFilter(FilterForm):
+class ProjectStatusFilterForm(FilterForm):
     """
     Implements a filter on I4pProject status
     """
@@ -187,7 +189,7 @@ class ProjectStatusFilter(FilterForm):
         super(FilterForm, self).__init__(*args, **kwargs)
         self.fields['status'].widget.attrs['class'] = 'styled'
 
-class BestOfFilter(FilterForm):
+class BestOfFilterForm(FilterForm):
     """
     Implements a filter on I4pProject best of
     """
@@ -207,14 +209,38 @@ class BestOfFilter(FilterForm):
         self.fields['best_of'].widget.attrs['class'] = 'styled'
 
 
-class ProjectProgressFilter(FilterForm):
+class TopicFilterForm(FilterForm):
+    """
+    Implements a filter on I4pProject topics
+    """
+    topics = forms.ModelMultipleChoiceField(required=False,
+                                            queryset=SiteTopic.objects.all())
+                                            
+
+    def apply_to(self, queryset, model_class):
+        qs = queryset
+        if model_class == I4pProject:
+            val = self.cleaned_data.get("topics")
+            if val:
+                site = Site.objects.get_current()
+                sitetopic = SiteTopic.objects.get(id=val,
+                                                  site=site)
+                qs = sitetopic.projects.filter(id__in=qs)
+        return qs
+
+    def __init__(self, *args, **kwargs):
+        super(FilterForm, self).__init__(*args, **kwargs)
+        self.fields['topics'].queryset = SiteTopic.objects.filter(site=Site.objects.get_current())
+
+
+class ProjectProgressFilterForm(FilterForm):
     """
     Implements a filter on I4pProjectTranslation progression
     """
 
     progress = forms.TypedMultipleChoiceField(required=False, coerce=str,
-                                            choices=I4pProjectTranslation.PROGRESS_CHOICES,
-                                            widget=MyCheckboxSelectMultiple)
+                                              choices=I4pProjectTranslation.PROGRESS_CHOICES,
+                                              widget=MyCheckboxSelectMultiple)
 
     def apply_to(self, queryset, model_class):
         qs = queryset
@@ -253,7 +279,7 @@ def current_countries():
                 break
     return result
 
-class ProjectLocationFilter(FilterForm):
+class ProjectLocationFilterForm(FilterForm):
     """
     Implements a filter on I4pProject location
     """
@@ -281,7 +307,7 @@ class ProjectLocationFilter(FilterForm):
         return qs
 
 
-class ProjectObjectiveFilter(FilterForm):
+class ProjectObjectiveFilterForm(FilterForm):
     """
     Implements a filter on I4pProject objective
     """
@@ -296,7 +322,7 @@ class ProjectObjectiveFilter(FilterForm):
                 qs = qs.filter(objectives__in=[d.id for d in data])
         return qs
 
-class NameBaselineFilter(FilterForm):
+class NameBaselineFilterForm(FilterForm):
     """
     Simulates a full-text search in either the baseline or the title.
     """

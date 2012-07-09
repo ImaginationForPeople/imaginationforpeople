@@ -1,7 +1,8 @@
 {% load i18n %}
-{% load localeurl_tags %}
 
-<a href="{% locale_url project_translation.language_code project_sheet-show project_translation.slug %}" class="project_card"  title="{{ project_translation.baseline}}">
+{% language project_translation.language_code %}
+<a href="{% url project_sheet-show project_translation.slug %}" class="project_card"  title="{{ project_translation.baseline}}">
+{% endlanguage %}
   
     <div class="project-photo">	
     {% if project_translation.project.pictures.all|length > 0 %}
@@ -46,7 +47,12 @@
         {% else %}
 
         {% endif %}
-    </div>				
+    </div>	
+    
+    {% if project_translation.project.topics.all.0 %}
+    <img class="project_topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
+    {% endif %}
+    
   </div>
   <div class="clear"></div>
   

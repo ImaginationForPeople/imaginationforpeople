@@ -79,26 +79,16 @@ def email_managers_on_account_activation(sender, user, **kwargs):
         
 
 @receiver(socialauth_registered,
-        dispatch_uid="apps.member.models.socialauth_registered_handler")
+          dispatch_uid='apps.member.models.socialauth_registered_handler')
 def socialauth_registered_handler(sender, user, response, details, **kwargs):
     """
     Called when user registers for the first time using social auth
     """
     # Create user profile
-    profile_model = get_profile_model()
-    new_profile = profile_model(user=user)
-    new_profile.save()
-
-    # Give permissions to view and change profile
-    for perm in ASSIGNED_PERMISSIONS['profile']:
-        assign(perm[0], user, new_profile)
-
-    # Give permissions to view and change itself
-    for perm in ASSIGNED_PERMISSIONS['user']:
-        assign(perm[0], user, user)
+    profile = user.get_profile()
 
     # Try to get profile details
-    fetch_profile_data(sender, new_profile, response)
+    fetch_profile_data(sender, profile, response)
 
     return True
 

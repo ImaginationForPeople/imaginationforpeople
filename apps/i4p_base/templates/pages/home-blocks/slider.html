@@ -1,0 +1,59 @@
+{% load i18n %} 
+{% load thumbnail %}
+
+    <!-- AJAX ZONE -->
+    {% for project_translation in project_translations %}
+
+        {% if forloop.counter == 1 or forloop.counter == 6 or forloop.counter == 11 %}
+        <li class="project_slider">
+	  <ul>
+        {% endif %}
+        
+            <li class="focus_project">
+                <a href="{{ project_translation.get_absolute_url }}">
+                
+                    <div class="project_title_cover"></div>
+                    
+                    {% if project_translation.project.pictures.all %}
+                        <div class="project_photo" style="background-image:url('{% thumbnail project_translation.project.pictures.all.0.original_image.name '195x290' upscale=1 quality=80 crop %}');">
+                    {% else %}
+                    <div class="project_photo" style="background-image:url('{{ STATIC_URL }}images/home/no-photo.jpg');">
+                    {% endif %}
+                        <table><tr><td><span><a href="{{ project_translation.get_absolute_url }}">{{ project_translation.title|slice:":40" }}</a></span></td></tr></table>
+                    </div>
+                    
+                </a>
+            </li>
+        
+        {% if forloop.counter == 5 or forloop.counter == 10  %}
+          </ul>
+	</li>
+        {% endif %}
+        
+        {% if forloop.counter == 14 or forloop.last %}
+            <li class="focus_project addproject">
+               <div> <a href="{% url project_sheet-start %}" class="addproject_button">
+                    <h1>{% trans 'Add a project' %}</h1>
+                    <img src="{{ STATIC_URL }}images/home/addproject.jpg" width="195" height="290" />
+                </a></div>
+            </li>
+        </ul>
+    </li>
+        {% endif %}
+        
+    {% empty %}
+        <li class="project_slider">
+            <ul>
+                <li class="focus_project addproject">
+                    <a href="{% url project_sheet-start %}" class="addproject_button">
+                        <h1>{% trans 'Add a project' %}</h1>
+                        <img src="{{ STATIC_URL }}images/home/addproject.jpg" width="195" height="290" />
+                    </a>                
+                </li>
+            </ul>
+        </li>
+    {% endfor %}   
+    
+    
+
+

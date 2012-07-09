@@ -1,24 +1,31 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
+# Translators:
+# Guillaume  <glibersat@sigill.org>, 2012.
 #   <maire.sylvain@gmail.com>, 2011.
 #   <simonsarazin@imaginationforpeople.org>, 2012.
 # Simon Sarazin <simon.sarazin@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-03-19 13:58+0100\n"
-"PO-Revision-Date: 2012-03-19 12:59+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-06-15 14:03+0200\n"
+"PO-Revision-Date: 2012-05-21 17:37+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
-"Language-Team: French (http://www.transifex.net/projects/p/imaginationforpeople/language/fr/)\n"
+"Language-Team: French (http://www.transifex.net/projects/p/"
+"imaginationforpeople/language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
+
+#: cms_app.py:6
+msgid "I4PBase App"
+msgstr ""
 
 #: models.py:26
 msgid "Afghanistan"
@@ -1022,39 +1029,64 @@ msgid ""
 "dedicated to disruptive social innovation. At a global scale, IP aims to "
 "detect, publicize, amplify and adapt creative solutions to the new "
 "challenges of living together."
-msgstr "Imagination for People est une plateforme Web multilingue dédiée à l’Imagination Citoyenne. Cet espace d'échanges vise à identifier et à faire émerger, à l’échelle mondiale, des expériences inédites en matière d’innovation sociale. "
+msgstr ""
+"Imagination for People est une plateforme Web multilingue dédiée à "
+"l’Imagination Citoyenne. Cet espace d'échanges vise à identifier et à faire "
+"émerger, à l’échelle mondiale, des expériences inédites en matière "
+"d’innovation sociale. "
 
 #: templates/base.html:15
 msgid "identify and support imaginative social projects"
 msgstr "repérer et soutenir les projets sociaux créatifs"
 
-#: templates/base.html:58
+#: templates/base.html:62
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Saviez-vous que votre navigateur n'est plus à jour ?"
 
-#: templates/base.html:59
+#: templates/base.html:63
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
-msgstr "Votre navigateur est obsolète, et pourrait ne pas être compatible avec ce site internet. Une liste des navigateurs les plus populaires se trouve ci-dessous."
+msgstr ""
+"Votre navigateur est obsolète, et pourrait ne pas être compatible avec ce "
+"site internet. Une liste des navigateurs les plus populaires se trouve ci-"
+"dessous."
 
-#: templates/base.html:60
+#: templates/base.html:64
 msgid "Just click on the icons to get to the download page"
 msgstr "Cliquez sur les images pour aller à la page de téléchargement"
 
-#: templates/base.html:61
+#: templates/base.html:65
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
-msgstr "En fermant cette fenêtre, vous êtes informés que la navigation sur le site pourrait être dégradée."
+msgstr ""
+"En fermant cette fenêtre, vous êtes informés que la navigation sur le site "
+"pourrait être dégradée."
 
-#: templates/base.html:62
+#: templates/base.html:66
 msgid "Close This Window"
 msgstr "Ferme Cette Fenêtre"
 
-#: templates/base.html:127 templates/backcap/feedback_detail.html:8
-msgid "Feedback"
-msgstr "Feedback"
+#: templates/base.html:74
+msgid "Project search"
+msgstr "Recherche de projet"
+
+#: templates/base.html:76
+msgid "Enter your login"
+msgstr "Enter son login"
+
+#: templates/base.html:77
+msgid "Password"
+msgstr "Mot de passe"
+
+#: templates/base.html:79
+msgid "Enter your username"
+msgstr "Entrer son nom d'utilisateur"
+
+#: templates/base.html:81
+msgid "Enter your email adress"
+msgstr "Entrer son adresse mail"
 
 #: templates/bottom-panel.html:11
 msgid "Pin/Unpin the panel"
@@ -1141,7 +1173,7 @@ msgstr "Statut du projet"
 msgid "projects"
 msgstr "projets"
 
-#: templates/bottom-panel.html:147
+#: templates/bottom-panel.html:147 templates/footer.html:56
 msgid "Explore and contribute to social projects around the world."
 msgstr "Explorez et contribuez aux projets sociaux à l'échelle internationale."
 
@@ -1157,13 +1189,17 @@ msgstr "Ajouter un projet &gt;"
 msgid "community"
 msgstr "communauté"
 
-#: templates/bottom-panel.html:154
+#: templates/bottom-panel.html:154 templates/footer.html:65
 msgid "Connect with a community of citizens from over 30 countries."
 msgstr "Rejoignez une communauté de citoyens de plus de 30 pays."
 
-#: templates/bottom-panel.html:155
+#: templates/bottom-panel.html:155 templates/footer.html:66
 msgid "The community"
-msgstr "La communauté\n <a class=\"tipsed\" href=\"http://imaginationforpeople.org/fr/workgroup/\" title=\"Prenez part à nos différents groupes travaillant sur des thématiques particulières. Cet outil est en version alpha\">Rejoindre les groupes &gt;</a>"
+msgstr ""
+"La communauté | <a class=\"tipsed\" href=\"http://imaginationforpeople.org/"
+"fr/workgroup/\" title=\"Prenez part à nos différents groupes travaillant sur "
+"des thématiques particulières. Cet outil est en version alpha\">Rejoindre "
+"les groupes</a>"
 
 #: templates/bottom-panel.html:156
 msgid "The community &gt;"
@@ -1181,7 +1217,8 @@ msgstr "ressources"
 msgid ""
 "Discover the latest tools, methods and debates in the world of social "
 "innovation"
-msgstr "Découvrir les derniers outils, méthodes et débats sur l'innovation sociale"
+msgstr ""
+"Découvrir les derniers outils, méthodes et débats sur l'innovation sociale"
 
 #: templates/bottom-panel.html:163
 msgid "Work-in-Progress"
@@ -1195,11 +1232,13 @@ msgstr "Ressources (WIP)"
 msgid "Join a group &gt;"
 msgstr "Joindre un groupe &gt;"
 
-#: templates/bottom-panel.html:170
+#: templates/bottom-panel.html:170 templates/footer.html:25
 msgid ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
-msgstr "Une communauté de citoyens créatifs pour repérer et soutenir les projets d'innovation sociale."
+msgstr ""
+"Une communauté de citoyens créatifs pour repérer et soutenir les projets "
+"d'innovation sociale."
 
 #: templates/bottom-panel.html:173
 msgid "Read the manifesto &gt;"
@@ -1209,41 +1248,238 @@ msgstr "Lire le manifeste &gt;"
 msgid "About IP &gt;"
 msgstr "À propos d'IP &gt;"
 
-#: templates/header.html:27 templates/pages/header.html:10
-msgid "About us"
+#: templates/footer.html:32
+msgid "Read the manifesto"
+msgstr "Lire le manifeste"
+
+#: templates/footer.html:32
+msgid "About IP"
 msgstr "À propos"
 
-#: templates/header.html:28 templates/pages/header.html:11
+#: templates/footer.html:36
+msgid "Follow us"
+msgstr "Nous suivre"
+
+#: templates/footer.html:38 templates/footer.html.py:39
+#: templates/footer.html:40 templates/footer.html.py:41
+msgid "Follow us on"
+msgstr "Nous suivre sur"
+
+#: templates/footer.html:53 templates/footer.html.py:55
+#: templates/footer.html:57 templates/header.html:14
+#: templates/pages/header.html:11
 msgid "Projects"
 msgstr "Projets"
 
-#: templates/header.html:30 templates/pages/header.html:13
+#: templates/footer.html:57 templates/header.html:15
+#: templates/home-blocks/slider.html:36 templates/home-blocks/slider.html:49
+#: templates/pages/header.html:13
 msgid "Add a project"
 msgstr "Ajouter un projet"
 
-#: templates/header.html:31 templates/pages/header.html:14
-msgid "Workgroups"
-msgstr "Groupes de travail"
+#: templates/footer.html:62 templates/footer.html.py:64
+msgid "Groups"
+msgstr "Groups"
 
-#: templates/header.html:32 templates/pages/header.html:15
+#: templates/footer.html:66 templates/homepage.html:128
+#: templates/pages/contrib.html:128
+msgid "Join the community"
+msgstr "Rejoignez la communauté"
+
+#: templates/footer.html:71
+msgid "Ressources"
+msgstr "Ressources"
+
+#: templates/footer.html:73 templates/footer.html.py:75
+msgid "Resources"
+msgstr "Ressources"
+
+#: templates/footer.html:74
+msgid ""
+"Discover the latest tools, methods and debates in the world of social "
+"innovation."
+msgstr ""
+"Découvrir les derniers outils, méthodes et débats dans le monde de "
+"l'innovation sociale."
+
+#: templates/footer.html:89
+msgid ""
+"<strong>Imaginationforpeople.org</strong> is powered by a set of free "
+"components licensed under <strong>AGPL</strong> and <strong>Creative "
+"Commons</strong>."
+msgstr ""
+"<strong>Imaginationforpeople.org</strong> est propulsée par un ensemble de "
+"composantes libres sous licences <strong>AGPL</strong> et <strong>Creative "
+"Commons</strong>. "
+
+#: templates/footer.html:100 templates/pages/header.html:15
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: templates/homepage.html:56
-msgid "Detect and support <br/> imaginative social projects"
-msgstr "Repérer et soutenir <br/> les projets sociaux créatifs"
+#: templates/footer.html:102 templates/pages/contrib.html:44
+#: templates/pages/footer.html:26
+msgid "Translator"
+msgstr "Traducteur"
 
-#: templates/homepage.html:65
-msgid "Discover more projects"
-msgstr "Découvrir plus de projets"
+#: templates/footer.html:103 templates/pages/contrib.html:46
+#: templates/pages/footer.html:27
+msgid "Developer"
+msgstr "Développeur"
 
-#: templates/homepage.html:77
-msgid "Discover this project &gt;"
-msgstr "Découvrir ce projet &gt;"
+#: templates/footer.html:104 templates/pages/contrib.html:48
+#: templates/pages/footer.html:28
+msgid "Designer"
+msgstr "Graphiste"
 
-#: templates/homepage.html:92
-msgid "Skip intro"
-msgstr "Passer l'introduction"
+#: templates/footer.html:108 templates/pages/contrib.html:50
+#: templates/pages/footer.html:29
+msgid "Writer"
+msgstr "Rédacteur"
+
+#: templates/footer.html:109
+msgid "Seeder"
+msgstr "Essaimeur"
+
+#: templates/footer.html:110
+msgid "Q&A"
+msgstr "Q&A"
+
+#: templates/header.html:13 templates/pages/header.html:10
+msgid "About us"
+msgstr "À propos"
+
+#: templates/header.html:16 templates/pages/header.html:14
+msgid "Workgroups"
+msgstr "Groupes de travail"
+
+#: templates/header.html:21
+msgid "IP MEDIA"
+msgstr ""
+
+#: templates/homepage.html:31
+msgid "My project title"
+msgstr "Le titre du projet"
+
+#: templates/homepage.html:32
+msgid "One line description"
+msgstr "Description en une ligne"
+
+#: templates/homepage.html:120
+msgid " What is it ?"
+msgstr "Qu'est-ce que c'est ?"
+
+#: templates/homepage.html:123
+msgid "Explore and contribute"
+msgstr "Explorer et contribuer"
+
+#: templates/homepage.html:124
+msgid "to social and cultural projects"
+msgstr "à des projets sociaux et culturels"
+
+#: templates/homepage.html:129
+msgid "of citizens from more 30 countries"
+msgstr "Rejoignez une communauté de citoyens de plus de 30 pays."
+
+#: templates/homepage.html:132
+msgid " Detect and develop socially innovative projects."
+msgstr ""
+"Une communauté de citoyens créatifs pour repérer et soutenir les projets "
+"d'innovation sociale."
+
+#: templates/homepage.html:176
+msgid ""
+"\n"
+"                <p>\n"
+"                    As a project leader, please describe your initiative and "
+"make use of the first functionalities of this platform: \n"
+"                </p>\n"
+"                <ul>\n"
+"                    <li>Create a display page for your project, to provide a "
+"summary explanation of your initiative and to allow others to discover your "
+"project</li>\n"
+"                    <li>Use the internal messaging system to connect with "
+"other people interested in your project</li>\n"
+"                    <li>Publically express your project development needs "
+"and thus, potentially connect with people who can fill these needs</li>\n"
+"                    <li>Share your project on other social networks</li>\n"
+"                </ul>                \n"
+"                <p>\n"
+"                    Very soon, new functionalities will be added that will "
+"help speed up the development of your projects. \n"
+"                </p>\n"
+"                "
+msgstr ""
+"\n"
+"                <p>\n"
+"                   En tant que porteur de projet, décrivez votre initiative, "
+"et bénéficiez des premières fonctionnalités : \n"
+"                </p>\n"
+"                <ul>\n"
+"                    <li>Disposez d'une page vitrine de votre projet, utile "
+"pour expliquer de manière synthétique votre initiative.</li>\n"
+"                    <li>Profitez du système de messagerie pour entrer en "
+"lien avec des personnes intéressées par votre projet.</li>\n"
+"                    <li>Exprimez publiquement les besoins que vous avez pour "
+"mieux développer votre projet.</li>\n"
+"                    <li>Utilisez les outils de partage sur les réseaux "
+"sociaux pour mieux diffuser votre projet.</li>\n"
+"                </ul>                \n"
+"                <p>\n"
+"                    Très vite, de nouvelles fonctionnalités plus avancées "
+"vont apparaître sur le site, qui vous permettront d'accélérer le "
+"développement de vos projets. \n"
+"                </p>\n"
+"                "
+
+#: templates/homepage.html:198
+msgid "Launching of Montreal's accelerator of innovative projects"
+msgstr "Lancement de l'accélérateur de projets innovants de Montréal."
+
+#: templates/homepage.html:201
+msgid ""
+"\n"
+"                    <p>\n"
+"                        The mission of the Montreal Creative site is to "
+"showcase the talent, innovative spirit and creativity of all organizations "
+"that sparked out of Montreal.             \n"
+"                    </p>\n"
+"                    <ul>\n"
+"                        <li>World famous for its <strong>cultural richness "
+"and for the talent of its entrepreneurs and creators</strong></li>\n"
+"                        <li>A member of the UNESCO network of Creative "
+"Cities that awarded Montreal the status of a UNESCO City of Design</li>\n"
+"                        <li>A vibrant community with <strong>social "
+"innovation and civic creativity</strong> at its core</li>\n"
+"                        <li>A <strong>booming</strong> creative economy</"
+"li>\n"
+"                    </ul>\n"
+"                    "
+msgstr ""
+"\n"
+"                    <p>\n"
+"                        Le site Montréal créative s’est donné la mission de "
+"mettre en vitrine le talent, l’innovation et la créativité des organisations "
+"qui ont choisi Montréal comme pôle de développement.              \n"
+"                    </p>\n"
+"                    <ul>\n"
+"                        <li>Reconnue mondialement pour sa <strong>richesse "
+"culturelle et le talent de ses créateurs</strong> ;</li>\n"
+"                        <li>Membre du Réseau des villes créatives de "
+"l’UNESCO comme ville de design ;</li>\n"
+"                        <li>Un milieu vibrant où foisonnent <strong> "
+"l’innovation sociale et la créativité citoyenne ; </strong></li>\n"
+"                        <li>Où l’économie créative est <strong>en plein "
+"essor.</strong></li>\n"
+"                    </ul>\n"
+"                    "
+
+#: templates/homepage.html:247
+msgid ""
+"You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
+"<strong>register</strong> your project"
+msgstr ""
+"Vous pouvez <strong>contribuer</strong>, <strong>partager</strong> vos "
+"idées,  <strong>inscrire</strong> votre projet"
 
 #: templates/login-slide.html:15
 msgid "Interface language"
@@ -1257,7 +1493,7 @@ msgstr "Connexion "
 msgid "Sign in"
 msgstr "Connexion"
 
-#: templates/login-slide.html:48
+#: templates/login-slide.html:48 templates/home-blocks/loginbox.html:47
 msgid "Lost your password?"
 msgstr "Mot de passe oublié?"
 
@@ -1281,41 +1517,43 @@ msgstr "Mes projets"
 msgid "You have no projects"
 msgstr "Vous n'avez pas de projets"
 
-#: templates/login-slide.html:114 templates/backcap/feedback_detail.html:229
+#: templates/login-slide.html:118 templates/backcap/feedback_detail.html:229
 msgid "Log In"
 msgstr "Se connecter"
 
-#: templates/login-slide.html:114
+#: templates/login-slide.html:118
 msgid "Register"
 msgstr "S'inscrire"
 
-#: templates/login-slide.html:116
+#: templates/login-slide.html:120
 msgid "Close Panel"
 msgstr "Fermer le panneau"
 
-#: templates/login-slide.html:122 templates/login-slide.html.py:124
+#: templates/login-slide.html:126 templates/login-slide.html.py:128
+#: templates/home-blocks/loginbox.html:82
+#: templates/home-blocks/loginbox.html:84
 msgid "My messages"
 msgstr "Mes messages"
 
-#: templates/login-slide.html:127
+#: templates/login-slide.html:131 templates/home-blocks/loginbox.html:87
 msgid "View my profile"
 msgstr "Afficher mon profil"
 
-#: templates/login-slide.html:128
+#: templates/login-slide.html:132 templates/home-blocks/loginbox.html:88
 msgid "Edit my profile"
 msgstr "Editer mon profil"
 
-#: templates/login-slide.html:129
+#: templates/login-slide.html:134
+msgid "Administration"
+msgstr ""
+
+#: templates/login-slide.html:136 templates/home-blocks/loginbox.html:89
 msgid "Log out"
 msgstr "Se déconnecter"
 
 #: templates/nav.html:33 templates/nav.html.py:41
 msgid "Project"
 msgstr "Projet"
-
-#: templates/nav.html:34
-msgid "History"
-msgstr "Historique"
 
 #: templates/nav.html:56
 msgid "other languages"
@@ -1324,6 +1562,10 @@ msgstr "Autres langues"
 #: templates/nav.html:67
 msgid "create a new translation"
 msgstr "Créer une nouvelle traduction"
+
+#: templates/backcap/feedback_detail.html:8
+msgid "Feedback"
+msgstr "Feedback"
 
 #: templates/backcap/feedback_detail.html:74
 msgid "This issue is closed."
@@ -1340,11 +1582,15 @@ msgid ""
 "\n"
 "                    Posted %(since)s ago by\n"
 "                    "
-msgstr "\nPosté il y a %(since)s par"
+msgstr ""
+"\n"
+"Posté il y a %(since)s par"
 
 #: templates/backcap/feedback_detail.html:146
 msgid "is working on this. Poke him if you think it's taking too long !"
-msgstr "travaille sur cette demande. Envoyez une petite alerte si vous pensez que cela devient urgent !"
+msgstr ""
+"travaille sur cette demande. Envoyez une petite alerte si vous pensez que "
+"cela devient urgent !"
 
 #: templates/backcap/feedback_detail.html:154
 msgid "This issue is a duplicate of"
@@ -1396,7 +1642,7 @@ msgstr "Vous avez besoin de"
 
 #: templates/backcap/feedback_detail.html:229
 msgid " to post a comment."
-msgstr ""
+msgstr "poster un commentaire."
 
 #: templates/backcap/feedback_detail.html:233
 msgid "Comments closed."
@@ -1437,8 +1683,7 @@ msgid "Feedbacks"
 msgstr "Commentaires"
 
 #: templates/backcap/feedback_list.html:61
-msgid ""
-"This is all the feedbacks submitted by you, the users. Thanks for that."
+msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr "Remarques soumises par nous tous, utilisateurs. Merci pour cela."
 
 #: templates/backcap/feedback_list.html:73
@@ -1446,13 +1691,18 @@ msgid ""
 "If you think one of these entries is important for you, then <strong>click "
 "on the '+' button</strong>. If you disagree or think this is not important "
 "at all, then <strong>click on '-'</strong>."
-msgstr "Si vous pensez que l'une de ces entrées est importante pour vous, <strong>cliquez sur le bouton '+'.</strong>. Si vous êtes en désaccord ou pensez que ce n'est pas important du tout,  <strong>cliquez sur '-'.</strong>"
+msgstr ""
+"Si vous pensez que l'une de ces entrées est importante pour vous, "
+"<strong>cliquez sur le bouton '+'.</strong>. Si vous êtes en désaccord ou "
+"pensez que ce n'est pas important du tout,  <strong>cliquez sur '-'.</strong>"
 
 #: templates/backcap/feedback_list.html:77
 msgid ""
 "The <strong>highest the score</strong> an issue will get, the "
 "<strong>earlier we'll work on</strong> it."
-msgstr "Plus <strong>le score d'une question est haut </strong>  plus <strong>tôt nous allons travailler dessus.</strong>"
+msgstr ""
+"Plus <strong>le score d'une question est haut </strong>  plus <strong>tôt "
+"nous allons travailler dessus.</strong>"
 
 #: templates/backcap/feedback_list.html:83
 msgid "New feedback"
@@ -1477,7 +1727,9 @@ msgid ""
 "\n"
 "                                                Posted %(since)s ago by\n"
 "                                                "
-msgstr "\nPosté il y a %(since)s par"
+msgstr ""
+"\n"
+"Posté il y a %(since)s par"
 
 #: templates/backcap/feedback_list.html:152
 msgid "There's no feedback yet."
@@ -1535,7 +1787,9 @@ msgstr "Laisser une demande"
 msgid ""
 "We are very eager you leave feedback to help us improve the website, thank "
 "you !"
-msgstr "Nous sommes tous désireux d'avoir des retours pour aider à améliorer le site,  merci !"
+msgstr ""
+"Nous sommes tous désireux d'avoir des retours pour aider à améliorer le "
+"site,  merci !"
 
 #: templates/backcap/feedback_new_form.html:6
 msgid "I have a:"
@@ -1557,6 +1811,107 @@ msgstr "Envoyer"
 msgid "Edit Feedback"
 msgstr "Modifier la demande"
 
+#: templates/home-blocks/blog-box.html:4
+msgid "Last posts on blog"
+msgstr "Derniers billets du blog"
+
+#: templates/home-blocks/focus-zone.html:10
+msgid "To discover"
+msgstr "Découvrir plus de projets"
+
+#: templates/home-blocks/focus-zone.html:11
+msgid "Recent projects"
+msgstr "Derniers projets"
+
+#: templates/home-blocks/focus-zone.html:12
+msgid "Most commented"
+msgstr "Plus commentés"
+
+#: templates/home-blocks/focus-zone.html:15
+msgid "All projects >"
+msgstr "Tous les projets >"
+
+#: templates/home-blocks/focus-zone.html:29
+msgid "< Previous"
+msgstr "< Précédent"
+
+#: templates/home-blocks/focus-zone.html:30
+msgid "Next >"
+msgstr "Suivant >"
+
+#: templates/home-blocks/infoblock.html:19
+#: templates/home-blocks/infoblock.html:20
+#: templates/home-blocks/infoblock.html:21
+msgid "Share on"
+msgstr "Partager sur"
+
+#: templates/home-blocks/last_members.html:4
+msgid "New members"
+msgstr "Nouveaux membres"
+
+#: templates/home-blocks/loginbox.html:10
+msgid "Connexion"
+msgstr "Connexion"
+
+#: templates/home-blocks/loginbox.html:11
+msgid "Inscription"
+msgstr "Inscription"
+
+#: templates/home-blocks/loginbox.html:14
+#: templates/home-blocks/loginbox.html:15
+#: templates/home-blocks/loginbox.html:21
+msgid "Connect with"
+msgstr "Se connecter avec"
+
+#: templates/home-blocks/loginbox.html:28
+#: templates/home-blocks/loginbox.html:54
+msgid "close"
+msgstr "fermer"
+
+#: templates/home-blocks/loginbox.html:37
+msgid "Remember me"
+msgstr "Se souvenir de moi"
+
+#: templates/home-blocks/loginbox.html:46
+msgid "Go !"
+msgstr "Go !"
+
+#: templates/home-blocks/loginbox.html:61
+msgid "Login"
+msgstr "Connexion"
+
+#: templates/home-blocks/loginbox.html:71
+msgid "Logged in as:"
+msgstr "Connecté en tant que :"
+
+#: templates/home-blocks/loginbox.html:74
+msgid "Your avatar"
+msgstr "Votre avatar"
+
+#: templates/home-blocks/newsletter-popup.html:4
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: templates/home-blocks/newsletter-popup.html:13
+msgid "Subscribe to the newsletter and receive the latest news."
+msgstr "Abonnez-vous à l'infolettre et recevez les dernières nouvelles."
+
+#: templates/home-blocks/newsletter-popup.html:20
+msgid "Subscribe"
+msgstr "S'abonner"
+
+#: templates/home-blocks/quick_project.html:4
+msgid "Add your project"
+msgstr "Ajouter votre projet"
+
+#: templates/home-blocks/quick_project.html:12
+msgid "Add"
+msgstr "Ajouter"
+
+#: templates/home-blocks/twitter-box.html:4
+msgid "Twitter"
+msgstr "Twitter"
+
 #: templates/pages/contrib.html:32
 msgid "A community dedicated to"
 msgstr "Une communauté dédiée à"
@@ -1564,22 +1919,6 @@ msgstr "Une communauté dédiée à"
 #: templates/pages/contrib.html:33
 msgid "citizen imagination"
 msgstr "l'imagination citoyenne"
-
-#: templates/pages/contrib.html:44 templates/pages/footer.html:26
-msgid "Translator"
-msgstr "Traducteur"
-
-#: templates/pages/contrib.html:46 templates/pages/footer.html:27
-msgid "Developer"
-msgstr "Développeur"
-
-#: templates/pages/contrib.html:48 templates/pages/footer.html:28
-msgid "Designer"
-msgstr "Graphiste"
-
-#: templates/pages/contrib.html:50 templates/pages/footer.html:29
-msgid "Writer"
-msgstr "Rédacteur"
 
 #: templates/pages/contrib.html:52 templates/pages/footer.html:30
 msgid "Animator"
@@ -1609,17 +1948,14 @@ msgstr "Dernière activité"
 msgid "Latest commits"
 msgstr "Dernières modifications"
 
-#: templates/pages/contrib.html:128
-msgid "Join the community"
-msgstr "Rejoignez la communauté"
-
 #: templates/pages/contrib.html:138
 msgid "News"
 msgstr "Actualités"
 
 #: templates/pages/flatpage.html:34
 msgid "There is no content yet. Switch to edit mode and add a widget."
-msgstr "Il n'y a pas encore de contenu. Passez en mode édition et ajoutez un élément."
+msgstr ""
+"Il n'y a pas encore de contenu. Passez en mode édition et ajoutez un élément."
 
 #: templates/pages/footer.html:13
 msgid "Network"
@@ -1628,3 +1964,30 @@ msgstr "Nébuleuse"
 #: templates/pages/footer.html:25
 msgid "Get Involved"
 msgstr "Contribuez"
+
+#~ msgid "History"
+#~ msgstr "Historique"
+
+#~ msgid "All the projects"
+#~ msgstr "All the projects"
+
+#~ msgid "All the tags"
+#~ msgstr "All the tags"
+
+#~ msgid "Grid view"
+#~ msgstr "Grid view"
+
+#~ msgid "Map view"
+#~ msgstr "Map view"
+
+#~ msgid "My favorites"
+#~ msgstr "My favorites"
+
+#~ msgid "Discover projects"
+#~ msgstr "Recent projects"
+
+#~ msgid "Last projects"
+#~ msgstr "projects"
+
+#~ msgid "Ressources (WIP)"
+#~ msgstr "Ressources (WIP)"

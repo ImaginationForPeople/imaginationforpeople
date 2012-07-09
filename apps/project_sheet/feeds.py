@@ -19,10 +19,10 @@ import datetime
 
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.syndication.views import Feed
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.utils import translation
 
-from localeurl.models import reverse
 from reversion.models import Version
 
 from .models import I4pProject, I4pProjectTranslation
@@ -57,7 +57,8 @@ class LatestChangesFeed(Feed):
         return item['revision'].date_created
 
     def item_link(self, item):
-        return reverse('project_sheet-show', kwargs={'slug': item['slug'], 'locale': item['language_code']})
+        translation.activate(item['language_code'])
+        return reverse('project_sheet-show', kwargs={'slug': item['slug']})
 
     def link(self):
         return reverse('project_sheet-recent-changes')
