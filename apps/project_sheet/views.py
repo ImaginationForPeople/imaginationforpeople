@@ -40,7 +40,6 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
-from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
 from .filters import FilterSet
@@ -248,8 +247,11 @@ def project_sheet_create_translation(request, project_slug):
                                                                                   language_code=requested_language_code,
                                                                                   default_title=current_project_translation.title)
 
+    current_language = translation.get_language()
+    translation.activate(requested_language_code)
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
-    return redirect(chlocale(url, requested_language_code))
+    translation.activate(current_language)
+    return redirect(url)
 
 def project_sheet_edit_location(request, slug):
     language_code = translation.get_language()
