@@ -25,14 +25,12 @@ from cms.models.pluginmodel import CMSPlugin
 from .models import WorkGroupCMS, WorkGroup
 from .utils import get_ml_members
 
-class WorkGroupPlugin(CMSPluginBase):
+class BaseWorkGroupPlugin(CMSPluginBase):
     """
     Workgroup (Un)subscribe button for the CMS
     """
     model = WorkGroupCMS
-    name = _("WorkGroup (un)subscribe button")
-    render_template = "workgroup/cms_subscribe_button.html"
-
+   
     def render(self, context, instance, placeholder):
         workgroup = instance.workgroup
         members = get_ml_members(workgroup)
@@ -54,4 +52,21 @@ class WorkGroupPlugin(CMSPluginBase):
     def __unicode__(self):
         return u"Workgroup %s" % self.workgroup.slug
 
+class WorkGroupPlugin(BaseWorkGroupPlugin):
+    """
+    Workgroup (Un)subscribe button for the CMS
+    """
+    name = _("WorkGroup (un)subscribe button")
+    render_template = "workgroup/cms_subscribe_button.html"
+    
 plugin_pool.register_plugin(WorkGroupPlugin)
+
+
+class SubscribersWorkGroupPlugin(BaseWorkGroupPlugin):
+    """
+    Workgroup (Un)subscribe button for the CMS
+    """
+    name = _("WorkGroup subscribers list")
+    render_template = "workgroup/cms_workgroup_subscribers.html"
+
+plugin_pool.register_plugin(SubscribersWorkGroupPlugin)
