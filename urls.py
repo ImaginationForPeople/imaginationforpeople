@@ -44,6 +44,12 @@ urlpatterns += i18n_patterns('',
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
+    url(r'^forum/', include('apps.forum.urls')),
+    
+    (r'%s' % settings.ASKBOT_URL, include('apps.forum.urls')),
+    (r'^forum/settings/', include('askbot.deps.livesettings.urls')),
+    (r'^followit/', include('followit.urls')),
+    (r'^cache/', include('keyedcache.urls')),
 
     # Configure umessages compose view so that it uses recipient autocompletion
     url(r'^messages/compose/$',

@@ -4,6 +4,9 @@
 import os
 import re
 import sys
+import site
+import askbot
+
 from django.utils.translation import ugettext_lazy as _
 
 # Import settings for the given site
@@ -11,6 +14,9 @@ from site_settings import *
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
+
+ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
+site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 ADMINS = (
     ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
@@ -72,20 +78,22 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
 # Cache
-if DEBUG:
-    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
-else:
-    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
+CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache' #DummyCache does not work with livesettings
+CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
+CACHE_PREFIX ='askbot'
+CACHE_TIMEOUT = 6000
+    
 CACHES = {
     'default': {
         'BACKEND': CACHE_BACKEND,
-    }
+    },
 }
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
+#	'askbot.skins.loaders.filesystem_load_template_source',
 #     'django.template.loaders.eggs.Loader',
 )
 
@@ -114,6 +122,23 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
+
+	#below is askbot stuff for this tuple
+    'askbot.middleware.anon_user.ConnectToSessionMessagesMiddleware',
+    'askbot.middleware.forum_mode.ForumModeMiddleware',
+    'askbot.middleware.cancel.CancelActionMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+
+    'askbot.middleware.view_log.ViewLogMiddleware',
+    'askbot.middleware.spaceless.SpacelessMiddleware',
+    
+    'askbot.middleware.anon_user.ConnectToSessionMessagesMiddleware',
+    'askbot.middleware.forum_mode.ForumModeMiddleware',
+    'askbot.middleware.cancel.CancelActionMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+    'askbot.middleware.view_log.ViewLogMiddleware',
+    'askbot.middleware.spaceless.SpacelessMiddleware',
+    
 )
 
 if DEBUG:
@@ -144,7 +169,10 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     'backcap.context_processors.backcap_forms',
-
+    
+    'askbot.context.application_settings',
+    'askbot.user_messages.context_processors.user_messages',#must be before auth
+    
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
     'apps.member.context_processors.member_forms',
@@ -239,11 +267,19 @@ INSTALLED_APPS = (
     'cmsplugin_facebook',
 
     # Internal Apps
+    'apps.forum',
     'apps.i4p_base',
     'apps.member',
     'apps.project_sheet',
     'apps.partner',
     'apps.workgroup',
+    
+    'askbot',
+    'askbot.deps.livesettings',
+    'keyedcache',
+    'djcelery',
+    'djkombu',
+    'followit',
 )
 
 # django-ajax_select
@@ -303,6 +339,7 @@ HONEYPOT_FIELD_NAME = "homepage"
 # Userena
 ANONYMOUS_USER_ID = -1
 AUTH_PROFILE_MODULE = 'member.I4pProfile'
+USERENA_MUGSHOT_GRAVATAR = True
 
 ### Nose test runner
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -352,6 +389,7 @@ else:
 LOGIN_REDIRECT_URL = '/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
+LOGOUT_URL = "/member/signout/"
 
 # XXX To be removed as soon as google login is confirmed working
 LOCALE_INDEPENDENT_PATHS = (
@@ -387,6 +425,8 @@ STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
     ('images', os.path.join(STATIC_ROOT, 'images')),
+    os.path.join(ASKBOT_ROOT, 'skins'),
+    os.path.join(PROJECT_PATH, 'apps/forum/templates/forum/skin/'),
 )
 
 COMPRESS_CSS_FILTERS = (
@@ -436,3 +476,19 @@ CMS_TEMPLATES = (
 
 CMS_SOFTROOT = True
 APPEND_SLASH = True
+
+## Askbot
+ASKBOT_URL = 'forum/' 
+ASKBOT_STARTUP_CHECK = False
+ALLOW_UNICODE_SLUGS = False
+ASKBOT_USE_STACKEXCHANGE_URLS = False 
+RECAPTCHA_USE_SSL = True
+
+ASKBOT_EXTRA_SKINS_DIR = os.path.join(PROJECT_PATH, 'apps/forum/templates/forum/skin')
+
+#Celery Settings
+BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"
+CELERY_ALWAYS_EAGER = True
+
+import djcelery
+djcelery.setup_loader()

@@ -1,0 +1,28 @@
+{%from "macros.html" import gravatar %}
+<div class="userList">
+    <table class="list-table">
+        <tr>
+            <td class="list-td">
+                {% for profile in profiles %}
+                <div class="user">
+                    <ul>
+                            <li class="thumb">{{ gravatar(profile, 32) }}</li>
+                            <li><a href="{% url user_profile profile.user.id, profile.user.username %}{% if profile_section %}?sort={{profile_section}}{% endif %}">{{profile.user.username|escape}}</a>{{ user_country_flag(profile.user) }}</li>
+                            <li>{{ 
+                                    user_score_and_badge_summary(
+                                        profile.user, 
+                                        karma_mode = karma_mode,
+                                        badges_mode = badges_mode
+                                    )
+                                }}</li>
+                        </ul>
+                </div>
+                    {% if loop.index is divisibleby 7 %}
+            </td>
+            <td>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>   
+    </table>
+</div>

@@ -1,0 +1,20 @@
+<a 
+  id="navTags"
+  href="{% url tags %}"
+  {% if active_tab == 'tags' %}class="on"{% endif %}
+>{% trans %}tags{% endtrans %}</a>
+{% if settings.GROUPS_ENABLED %}
+<a
+  id="navGroups"
+  href="{% url groups %}"
+  {% if active_tab == 'groups' %}class="on"{% endif %}
+>{% trans %}groups{% endtrans %}
+</a>
+{% endif %}
+{% if settings.BADGES_MODE == 'public' %}
+<a 
+  id="navBadges"
+  href="{% url badges %}"
+  {% if active_tab == 'badges' %}class="on"{% endif %}
+>{% trans %}badges{% endtrans %}</a>
+{% endif %}

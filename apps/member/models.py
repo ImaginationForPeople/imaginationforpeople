@@ -26,25 +26,20 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from askbot.models.profile import AskbotBaseProfile
 from django_countries import CountryField
-from guardian.shortcuts import assign
-from social_auth.backends.google import GoogleOAuthBackend
-from social_auth.backends.contrib.linkedin import LinkedinBackend
 from social_auth.signals import socialauth_registered
-from userena.managers import ASSIGNED_PERMISSIONS
 from userena.models import UserenaLanguageBaseProfile
 from userena.signals import activation_complete
-from userena.utils import get_profile_model
 from userena.contrib.umessages.models import MessageRecipient
 from userena.utils import get_protocol
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 
-from .utils import fix_username
 from .social import fetch_profile_data
 
 
-class I4pProfile(UserenaLanguageBaseProfile):
+class I4pProfile(UserenaLanguageBaseProfile, AskbotBaseProfile):
     """
     Userena Profile with language switch
     """

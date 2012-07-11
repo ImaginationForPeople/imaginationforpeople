@@ -1,0 +1,99 @@
+{% extends "user_profile/user.html" %}
+{% import "macros.html" as macros %}
+{% block before_css %}
+    <link href="{{'/bootstrap/css/bootstrap.css'|media}}" rel="stylesheet" type="text/css" />
+{% endblock %}
+<!-- user_responses.html -->
+{#
+This template accepts a list of response list
+they are a generalized form of any response and 
+
+The following properties of response object are used:
+timestamp - when it happened
+user - user who gave response (database object)
+response_type - type of response
+response_url - link to the question
+response_title - title of the question
+response_snippet - abbreviated content of the response
+inbox_section - forum|flags
+#}
+{% block profilesection %}
+    {% trans %}inbox{% endtrans %}
+{% endblock %}
+{% block usercontent %}
+    <div style="padding-top:5px;font-size:13px;">
+    {% set re_count = request.user.new_response_count +
+            request.user.seen_response_count
+    %}
+    {% if moderation_items %}
+        {% set flag_count = moderation_items['new_count'] +
+                            moderation_items['seen_count']
+        %}
+    {% else %}
+        {% set flag_count = 0 %}
+    {% endif %}
+    {% if re_count > 0 and flag_count > 0 %}
+    <div id="re_sections">
+        {% trans %}Sections:{% endtrans %}
+        <a href="{{request.user.get_absolute_url()}}?sort=inbox&section=forum"
+            {% if inbox_section == 'forum' %}class="on"{% endif %}
+        >
+            {% trans %}forum responses ({{re_count}}){% endtrans -%}
+        </a> |
+        <a href="{{request.user.get_absolute_url()}}?sort=inbox&section=flags"
+            {% if inbox_section == 'flags' %}class="on"{% endif %}
+        >
+            {% trans %}flagged items ({{flag_count}}){% endtrans %}
+        </a>
+    </div>
+    {% endif %}
+    <div id="re_tools">
+        <strong>{% trans %}select:{% endtrans %}</strong>
+        <a id="sel_all">{% trans %}all{% endtrans %}</a> |
+        <a id="sel_seen">{% trans %}seen{% endtrans %}</a> |
+        <a id="sel_new">{% trans %}new{% endtrans %}</a> |
+        <a id="sel_none">{% trans %}none{% endtrans %}</a><br />
+        <div class="btn-group">
+        {% if inbox_section == 'forum' %}
+            <a class="btn" id="re_mark_seen">{% trans %}mark as seen{% endtrans %}</a>
+            <a class="btn" id="re_mark_new">{% trans %}mark as new{% endtrans %}</a>
+            <a class="btn" id="re_dismiss">{% trans %}dismiss{% endtrans %}</a>
+        {% else %}
+            <a class="btn" id="re_remove_flag">{% trans %}remove flags/approve{% endtrans %}</a>
+            <a  
+                class="btn"
+                id="re_delete_post"
+            >{% trans %}delete post{% endtrans %}</a>
+        {% endif %}
+        </div>
+    </div>
+    {% include "user_profile/reject_post_dialog.html" %}
+    <div id="responses">
+    {% for response in responses %}
+        <div class="response-parent">
+            <p class="headline">
+                <strong>"{{ response.response_title.strip()|escape}}"</strong>
+            </p>
+            {{ macros.inbox_post_snippet(response, inbox_section) }}
+            {% for nested_response in response.nested_responses %}
+                {{ macros.inbox_post_snippet(nested_response, inbox_section) }}
+            {%endfor%}
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+{% endblock %}
+{% block userjs %}
+    <script type="text/javascript">
+        var askbot = askbot || {};
+        askbot['urls'] = askbot['urls'] || {};
+        askbot['urls']['manageInbox'] = '{% url manage_inbox %}';
+        askbot['urls']['save_post_reject_reason'] = '{% url save_post_reject_reason %}';
+        askbot['urls']['delete_post_reject_reason'] = '{% url delete_post_reject_reason %}';
+        $(document).ready(function(){
+            setup_inbox();
+        });
+    </script>
+    <script type="text/javascript" src="{{'/bootstrap/js/bootstrap.js'|media}}" />
+<!-- end user_responses.html -->
+{% endblock %}
