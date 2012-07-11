@@ -34,7 +34,7 @@
 					{% placeholder "menu_workgroups" or %}  
 					<h2>{% page_attribute "page_title" request.current_page.id %}</h2>
 					<ul>             
-						<li><a href=" /{% page_attribute "page_title" request.current_page.get_root.reverse_id %}/{% page_attribute "slug" request.current_page.id %}/">{% page_attribute "page_title" request.current_page.id %}</a>
+						<li><a href="{% page_url request.current_page.id %}">{% page_attribute "page_title" request.current_page.id %}</a> 
 							<ul>{% show_menu_below_id request.current_page.reverse_id 0 100 100 100 %}</ul>
 						</li>
 					</ul>
@@ -44,7 +44,7 @@
 				{% placeholder "menu_workgroups" inherit or %}
 					<h2>{% page_attribute "page_title" request.current_page.parent.id %}</h2>
 					<ul>             
-						<li><a href=" /{% page_attribute "page_title" request.current_page.get_root.reverse_id %}/{% page_attribute "slug" request.current_page.parent.id %}/">{% page_attribute "page_title" request.current_page.parent.id %}</a>
+						<li><a href="{% page_url request.current_page.parent.id %}">{% page_attribute "page_title" request.current_page.parent.id %}</a>
 							<ul>{% show_menu_below_id request.current_page.parent.reverse_id 0 100 100 100 %}</ul>
 						</li>
 					</ul>
