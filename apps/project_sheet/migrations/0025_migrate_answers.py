@@ -45,9 +45,17 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
 
         # Patch up Sites for django-dynamicsites
-        db.execute('ALTER TABLE django_site ADD COLUMN folder_name VARCHAR(255)')
-        db.execute('ALTER TABLE django_site ADD COLUMN subdomains VARCHAR(255)')
-
+        from django.db import connection, transaction, DatabaseError
+        cursor = connection.cursor()
+        try:
+            cursor.execute("SELECT folder_name FROM django_site")
+        except DatabaseError:
+            db.execute('ALTER TABLE django_site ADD COLUMN folder_name VARCHAR(255)')
+        try:
+            cursor.execute("SELECT subdomains FROM django_site")
+        except DatabaseError:
+            db.execute('ALTER TABLE django_site ADD COLUMN subdomains VARCHAR(255)')
+ 
         # Get the default site
         site = Site.objects.get(domain='imaginationforpeople.org')
 
