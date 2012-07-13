@@ -57,7 +57,7 @@ class Migration(SchemaMigration):
             db.execute('ALTER TABLE django_site ADD COLUMN subdomains VARCHAR(255)')
  
         # Get the default site
-        site = Site.objects.get(domain='imaginationforpeople.org')
+        site = Site.objects.get(id=1)
 
         # Create a topic
         topic = ps.Topic(untranslated_name='Social Innovation')
