@@ -1,0 +1,9 @@
+{% load sekizai_tags %}
+{% addtoblock "css" %}<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />{% endaddtoblock %}
+<div id="projects_list">
+{% for project_translation in tag %}
+	<div class="colonne grid_6">
+	{% include "project_sheet/project_complete_card.html" %}
+	</div>
+{% endfor %}
+</div>
