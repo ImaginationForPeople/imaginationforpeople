@@ -61,9 +61,16 @@ class WorkGroup(models.Model):
     
 
 from cms.models.pluginmodel import CMSPlugin
+from apps.project_sheet.models import Objective
 
 class WorkGroupCMS(CMSPlugin):
     workgroup = models.ForeignKey(WorkGroup)
 
     def copy_relations(self, oldinstance):
         self.workgroup = oldinstance.workgroup
+
+class TagCMS(CMSPlugin):
+    tag = models.ForeignKey(Objective)
+    
+    def copy_relations(self, oldinstance):
+        self.tag = oldinstance.tag
