@@ -26,7 +26,7 @@ from cms.models.pluginmodel import CMSPlugin
 from .models import WorkGroupCMS, WorkGroup, TagCMS
 from .utils import get_ml_members
 
-from apps.project_sheet.models import I4pProject
+from apps.project_sheet.models import I4pProjectTranslation
 
 class BaseWorkGroupPlugin(CMSPluginBase):
     """
@@ -80,7 +80,7 @@ class SubscribersWorkGroupPlugin(BaseWorkGroupPlugin):
 
 plugin_pool.register_plugin(SubscribersWorkGroupPlugin)
 
-from apps.project_sheet.utils import get_project_translation_from_parent
+from tagging.models import TaggedItem
 
 class ProjectsForTagPlugin(CMSPluginBase):
     """
@@ -91,15 +91,7 @@ class ProjectsForTagPlugin(CMSPluginBase):
     model = TagCMS
     
     def render(self, context, instance, placeholder):
-        language_code = translation.get_language()
-        projects = I4pProject.objects.filter(objectives=instance.tag.id)
-        i18n_projects = []
-        
-        for project in projects:
-            i18n_project = get_project_translation_from_parent(project, language_code, fallback_language="en", fallback_any="True")
-            i18n_projects.append(i18n_project)
-            
-        context["tag"] = i18n_projects
+        context["tag"] = TaggedItem.objects.get_by_model(I4pProjectTranslation, instance.tag)
 
         return context
 
