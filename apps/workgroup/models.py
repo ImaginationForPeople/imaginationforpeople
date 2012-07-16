@@ -61,7 +61,7 @@ class WorkGroup(models.Model):
     
 
 from cms.models.pluginmodel import CMSPlugin
-from apps.project_sheet.models import Objective
+from utils import gen_tag_list
 
 class WorkGroupCMS(CMSPlugin):
     workgroup = models.ForeignKey(WorkGroup)
@@ -70,7 +70,7 @@ class WorkGroupCMS(CMSPlugin):
         self.workgroup = oldinstance.workgroup
 
 class TagCMS(CMSPlugin):
-    tag = models.ForeignKey(Objective)
-    
+    tag = models.CharField(_('Tag'), choices=gen_tag_list(), max_length=50) 
+        
     def copy_relations(self, oldinstance):
         self.tag = oldinstance.tag
