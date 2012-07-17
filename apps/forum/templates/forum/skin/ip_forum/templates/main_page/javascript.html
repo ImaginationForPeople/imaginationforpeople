@@ -9,10 +9,12 @@
         Hilite.exact = false;
         Hilite.elementid = "question-list";
         Hilite.debug_referrer = location.href;
+        {#
         {% if update_avatar_data == True %}
-            var today = new Date();{#add timestamp to prevent browser caching #}
+            var today = new Date();
             $.getJSON('{% url user_update_has_custom_avatar %}?t=' + today.getTime());
         {% endif %}
+        #}
     });
 
     askbot['urls']['mark_interesting_tag'] = '{% url mark_interesting_tag %}';

@@ -3,8 +3,10 @@
 <table class="user-info-table">
     <tr>
         <td style="vertical-align:top;text-align:center;">
+            
             <div class='avatar'>
                 {{ macros.gravatar(view_user, 128) }}
+                {#
                 {% if request.user == view_user %}
                     <p><a 
                         {% if support_custom_avatars %}
@@ -18,8 +20,9 @@
                         href="{% url avatar_delete %}"
                         >{% trans %}remove{% endtrans %}</a>
                     </p>
-                    {% endif %}
+                    {% endif %}  
                 {% endif %}
+                #} 
             </div>
             {% if can_show_karma %}
                 <div class="scoreNumber">{{view_user.reputation|intcomma}}</div>
