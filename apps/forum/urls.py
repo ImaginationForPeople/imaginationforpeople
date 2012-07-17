@@ -225,10 +225,21 @@ urlpatterns = patterns('',
         name = 'subscribe_for_tags'
     ),
     url(
+        r'^%s$' % _('users/'),
+        views.users.show_users, 
+        name='users'
+    ),
+    url(
         r'^%s%s(?P<group_id>\d+)/(?P<group_slug>.*)/$' % (_('users/'), _('by-group/')),
         views.users.show_users, 
         kwargs = {'by_group': True},
         name = 'users_by_group'
+    ),
+    #todo: rename as user_edit, b/c that's how template is named
+    url(
+        r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('edit/')),
+        views.users.edit_user,
+        name ='edit_user'
     ),
     url(
         r'^%s(?P<id>\d+)/(?P<slug>.+)/%s$' % (
@@ -249,6 +260,11 @@ urlpatterns = patterns('',
         views.users.groups,
         name='groups'
     ),
+#    url(
+#        r'^%s$' % _('users/update_has_custom_avatar/'),
+#        views.users.update_has_custom_avatar,
+#        name='user_update_has_custom_avatar'
+#    ),
     url(
         r'^%s$' % _('badges/'),
         views.meta.badges,
