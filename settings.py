@@ -93,8 +93,6 @@ CACHES = {
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#	'askbot.skins.loaders.filesystem_load_template_source',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -425,8 +423,6 @@ STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
     ('images', os.path.join(STATIC_ROOT, 'images')),
-    os.path.join(ASKBOT_ROOT, 'skins'),
-    os.path.join(PROJECT_PATH, 'apps/forum/templates/forum/skin/'),
 )
 
 COMPRESS_CSS_FILTERS = (
@@ -484,7 +480,7 @@ ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
 RECAPTCHA_USE_SSL = True
 
-ASKBOT_EXTRA_SKINS_DIR = os.path.join(PROJECT_PATH, 'apps/forum/templates/forum/skin')
+ASKBOT_EXTRA_SKINS_DIR = os.path.join(PROJECT_PATH, 'apps/forum/templates/')
 
 #Celery Settings
 BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"

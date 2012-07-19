@@ -12,7 +12,7 @@ from askbot.sitemap import QuestionsSitemap
 from askbot.skins.utils import update_media_revision
 
 admin.autodiscover()
-update_media_revision()#needs to be run once, so put it here
+#update_media_revision()#needs to be run once, so put it here
 
 if getattr(settings, "ASKBOT_TRANSLATE_URL", False):
     from django.utils.translation import ugettext as _
