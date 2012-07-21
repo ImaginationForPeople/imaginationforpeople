@@ -82,6 +82,24 @@ def stagenv():
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
 
+def devenv():
+    """
+    Developpement environment, must be run from the virtualenv path
+    """
+    commonenv()
+    env.wsginame = "dev.wsgi"
+    env.urlhost = "localhost"
+    #env.user = "webapp"
+    #env.home = "webapp"
+    require('venvname', provided_by=('commonenv',))
+    env.hosts = ['localhost']
+
+    env.gitrepo = "../"
+    env.gitbranch = "develop"
+
+    env.venvbasepath = os.path.join("./")
+    env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
+
 
 ## Virtualenv
 def build_virtualenv():
@@ -326,22 +344,21 @@ def mirror_prod_to_staging():
         sudo('chown www-data -R mugshots uploads cache')
         sudo('chmod u+rw -R mugshots uploads cache')
     
-def dump_database():
-    assert(env.wsginame == 'prod.wsgi')
-    run('pg_dump -Uimaginationforpeople imaginationforpeople > ~/i4p_db_%s.sql' % time.strftime('%Y%m%d'))
-
 def get_database():
-    dump_database()
+    assert(env.wsginame == 'prod.wsgi')
     with cd(os.path.join('/home', env.home)):
         filename = 'i4p_db_%s.sql' % time.strftime('%Y%m%d')
         compressed_filename = '%s.bz2' % filename
-        run('bzip2 -9 -c %s > %s' % (filename, compressed_filename))
+        run('pg_dump -Uimaginationforpeople imaginationforpeople | bzip2 -9  > %s' % (compressed_filename))
         get(compressed_filename, 'current_database.sql.bz2')
 
 def restore_database():
-    assert(env.wsginame == 'staging.wsgi')
-    put('current_database.sql.bz2', 'current_database.sql.bz2')
-    run('bunzip2 -c current_database.sql.bz2 > current_database.sql')
-    sudo('sudo su - postgres -c "dropdb imaginationforpeople"')
+    assert(env.wsginame == 'staging.wsgi' or env.wsginame == 'dev.wsgi')
+    if(env.wsginame != 'dev.wsgi'):
+        put('current_database.sql.bz2', 'current_database.sql.bz2')
+    with settings(
+        warn_only=True
+    ):
+        sudo('sudo su - postgres -c "dropdb imaginationforpeople"')
     sudo('sudo su - postgres -c "createdb -E UNICODE -Ttemplate0 -Oimaginationforpeople imaginationforpeople"')
-    run('psql -Uimaginationforpeople imaginationforpeople < ~/current_database.sql')
+    run('bunzip2 -c current_database.sql.bz2 | psql -Uimaginationforpeople imaginationforpeople')
