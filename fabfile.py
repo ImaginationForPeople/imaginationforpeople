@@ -343,7 +343,11 @@ def mirror_prod_to_staging():
 
         sudo('chown www-data -R mugshots uploads cache')
         sudo('chmod u+rw -R mugshots uploads cache')
-    
+
+def dump_database():
+    assert(env.wsginame == 'prod.wsgi')
+    run('pg_dump -Uimaginationforpeople imaginationforpeople > ~/i4p_db_%s.sql' % time.strftime('%Y%m%d'))
+
 def get_database():
     assert(env.wsginame == 'prod.wsgi')
     with cd(os.path.join('/home', env.home)):
