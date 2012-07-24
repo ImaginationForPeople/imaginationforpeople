@@ -1,4 +1,4 @@
-#-- encoding: utf-8 --
+# -*- encoding: utf-8 -*-
 #
 # This file is part of I4P.
 #
@@ -15,17 +15,18 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-# -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User
+
 from piston.handler import BaseHandler
+
 from apps.project_sheet.models import Answer, I4pProject, I4pProjectTranslation, Location, Objective, ProjectPicture, ProjectReference, ProjectVideo, Topic
 
 class I4pProjectTranslationHandler(BaseHandler):
-    '''
+    """
     Handler used to display informations about a project sheet.
     Use "project_id" GET parameter.
-    '''
+    """
     allowed_methods = ('GET',)
     model = I4pProjectTranslation
     project_id = 0
@@ -48,7 +49,10 @@ class I4pProjectHandler(BaseHandler):
         for topic in Topic.objects.filter(site_topics=model.topics.all()):
             for question in topic.questions.all().order_by('weight'):
                 answers = Answer.objects.filter(project=model.id, question=question)
-                questions.append({"question":question.content, "answer":answers and answers[0].content or None})
+                questions.append({
+                    "question": question.content,
+                    "answer": answers and answers[0].content or None
+                })
                 
         return questions
     
