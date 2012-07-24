@@ -36,7 +36,6 @@ class I4pProjectTranslationHandler(BaseHandler):
         # TODO: Check if class attributes doesn't have problems with threads on production
         self.__class__.project_id = project_id
         return I4pProjectTranslation.objects.get(pk=project_id)
-        return None
     
 class I4pProjectHandler(BaseHandler):
     model = I4pProject
@@ -45,7 +44,6 @@ class I4pProjectHandler(BaseHandler):
     @classmethod
     def questions(cls, model):
         questions = []
-        print model.topics.all()
         for topic in Topic.objects.filter(site_topics=model.topics.all()):
             for question in topic.questions.all().order_by('weight'):
                 answers = Answer.objects.filter(project=model.id, question=question)
