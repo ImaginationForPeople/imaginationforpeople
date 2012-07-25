@@ -16,11 +16,11 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-from django.contrib.auth.models import User
+from django.conf import settings
 
 from piston.handler import BaseHandler
 
-from apps.project_sheet.models import Answer, I4pProject, I4pProjectTranslation, Location, Objective, ProjectPicture, ProjectReference, ProjectVideo, Topic
+from apps.project_sheet.models import Answer, I4pProjectTranslation, Topic
 
 class I4pProjectTranslationHandler(BaseHandler):
     """
@@ -29,17 +29,84 @@ class I4pProjectTranslationHandler(BaseHandler):
     """
     allowed_methods = ('GET',)
     model = I4pProjectTranslation
-    project_id = 0
-    fields = ('about_section', 'baseline', 'callto_section', 'completion_progress', 'partners_section', 'project', 'themes', 'title')
     
-    def read(self, request, project_id):
+    def read(self, request, project_id=None):
         # TODO: Check if class attributes doesn't have problems with threads on production
-        self.__class__.project_id = project_id
-        return I4pProjectTranslation.objects.get(pk=project_id)
+        if project_id is None:
+            language_code = request.GET.get('lang', 'en')
+            if language_code not in dict(settings.LANGUAGES) :
+                language_code = "en"
+            page = int(request.GET.get('page', 1)) - 1
+            self.__class__.fields = (
+              'title',
+              'baseline',
+              ('project',(
+                  ('location',(
+                      'id',
+                      'country'
+                  )),
+                  'best_of',
+                  'status',
+                  ('pictures',(
+                      'id',
+                      'thumb'
+                  ))
+              )),
+            )
+            # TODO: "pagination" in raw, change it to django standard 
+            return I4pProjectTranslation.objects.filter(language_code=language_code)[page*10:page*10+10]
+        else:
+            self.__class__.fields = (
+              'about_section',
+              'baseline',
+              'callto_section',
+              'completion_progress',
+              'partners_section',
+              ('project',(
+                  'id',
+                  ('location',(
+                      'address',
+                      'country'
+                  )),
+                  ('members',(
+                      'fullname',
+                      'username'
+                  )),
+                  ('objectives',(
+                      'id',
+                      'name'
+                  )),
+                  ('pictures',(
+                      'author',
+                      'created',
+                      'desc',
+                      'license',
+                      'source', 
+                      'url'
+                  )),
+                  'questions',
+                  ('references',(
+                      'id',
+                      'desc'
+                  )),
+                  ('videos',(
+                      'id',
+                      'video_url'
+                  )),
+                  'website'
+              )),
+              'themes',
+              'title'
+            )
+            return I4pProjectTranslation.objects.get(pk=project_id)
     
-class I4pProjectHandler(BaseHandler):
-    model = I4pProject
-    fields = ('id', 'location', 'members', 'objectives',  'pictures', 'questions', 'references', 'videos', 'website')
+    @classmethod
+    def fullname(cls, model):
+        return model.get_full_name()
+    
+    @classmethod
+    def url(cls, model):
+        return model.display.url
     
     @classmethod
     def questions(cls, model):
@@ -54,34 +121,6 @@ class I4pProjectHandler(BaseHandler):
                 
         return questions
     
-class LocationHandler(BaseHandler):
-    model = Location
-    fields = ('address', 'country')
-    
-class ObjectiveHandler(BaseHandler):
-    model = Objective
-    fields = ('id', 'name')
-
-class ProjectPicture(BaseHandler):
-    model = ProjectPicture
-    fields = ('author', 'created', 'desc', 'license', 'source', 'url')
-    
     @classmethod
-    def url(cls, model):
-        return model.display.url
-
-class ProjectReferenceHandler(BaseHandler):
-    model = ProjectReference
-    fields = ('id', 'desc')
-
-class ProjectVideoHandler(BaseHandler):
-    model = ProjectVideo
-    fields = ('id', 'video_url')
-
-class UserHandler(BaseHandler):
-    model = User
-    fields = ('fullname', 'username')
-    
-    @classmethod
-    def fullname(cls, model):
-        return model.get_full_name() or None
+    def thumb(cls, model):
+        return model.thumbnail_image.url
