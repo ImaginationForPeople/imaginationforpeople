@@ -27,6 +27,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.sites.models import Site
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
@@ -67,6 +68,7 @@ def signup(request, signup_form,
         if form.is_valid():
             user = form.save()
             profile = user.get_profile()
+            # Language
             profile.language = request.LANGUAGE_CODE
             profile.save()
 
