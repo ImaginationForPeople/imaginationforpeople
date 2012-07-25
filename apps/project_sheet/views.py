@@ -24,8 +24,10 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-import datetime
+from datetime import datetime
 
+from django.conf import settings
+from django.db import connection, transaction
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -93,6 +95,16 @@ def project_sheet_list(request):
             ordered_project_sheets = filtered_project_sheets.order_by('-modified')
             extra_context["order"] = "modification"
         else:
+            # The random ordering below did not give stable pagination, for postgres, this will give a pseudo-random order than changes every day.
+            if(connection.settings_dict['ENGINE']=='django.db.backends.postgresql_psycopg2'):
+                cursor = connection.cursor()
+                # Use day of the year to seed postgres's random number generator. 
+                # Not ideal (the random function may be used in other contexts, 
+                # but it's the best I could come up with without major surgery
+                # django's order_by function nor retrieving all the records
+                cursor.execute("SELECT setseed( %s ) ;", [float(datetime.now().strftime('%j'))/366])
+                transaction.commit_unless_managed()
+    
             # By default, display the project listing using the following order: 
             # best_of, random().
             ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
