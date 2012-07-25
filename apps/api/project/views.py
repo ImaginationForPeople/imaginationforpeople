@@ -20,7 +20,7 @@ from django.conf import settings
 
 from piston.handler import BaseHandler
 
-from apps.project_sheet.models import Answer, I4pProjectTranslation, Topic
+from apps.project_sheet.models import Answer, I4pProject, I4pProjectTranslation, Topic
 
 class I4pProjectTranslationHandler(BaseHandler):
     """
@@ -54,7 +54,21 @@ class I4pProjectTranslationHandler(BaseHandler):
               )),
             )
             # TODO: "pagination" in raw, change it to django standard 
-            return I4pProjectTranslation.objects.filter(language_code=language_code)[page*10:page*10+10]
+            projects = I4pProject.objects.all()[page*10:page*10+10]
+            list_projects = []
+            for project in projects:
+                i18n_project = I4pProjectTranslation.objects.filter(project=project, language_code=language_code)
+                if i18n_project.count() == 0:
+                    i18n_project = I4pProjectTranslation.objects.filter(project=project, language_code="en")
+                    if i18n_project.count() == 0:
+                        i18n_project = None
+                    else:
+                        i18n_project = i18n_project[0]
+                else:
+                    i18n_project = i18n_project[0]
+                if i18n_project is not None:
+                    list_projects.append(i18n_project)
+            return list_projects
         else:
             self.__class__.fields = (
               'about_section',
