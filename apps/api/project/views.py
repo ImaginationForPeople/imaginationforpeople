@@ -20,7 +20,7 @@ from django.conf import settings
 
 from piston.handler import BaseHandler
 
-from apps.project_sheet.models import Answer, I4pProject, I4pProjectTranslation, Topic
+from apps.project_sheet.models import Answer, Objective, I4pProject, I4pProjectTranslation, Topic
 from apps.project_sheet.utils import get_project_translations_from_parents
 
 class I4pProjectTranslationHandler(BaseHandler):
@@ -30,6 +30,7 @@ class I4pProjectTranslationHandler(BaseHandler):
     """
     allowed_methods = ('GET',)
     model = I4pProjectTranslation
+    project = None
     
     def read(self, request, project_id=None):
         # TODO: Check if class attributes doesn't have problems with threads on production
@@ -59,6 +60,7 @@ class I4pProjectTranslationHandler(BaseHandler):
             list_projects = get_project_translations_from_parents(projects, language_code, "en", True)
             return list_projects
         else:
+            self.__class__.project = I4pProjectTranslation.objects.get(pk=project_id)
             self.__class__.fields = (
               'about_section',
               'baseline',
@@ -75,10 +77,7 @@ class I4pProjectTranslationHandler(BaseHandler):
                       'fullname',
                       'username'
                   )),
-                  ('objectives',(
-                      'id',
-                      'name'
-                  )),
+                  'objective',
                   ('pictures',(
                       'author',
                       'created',
@@ -101,7 +100,7 @@ class I4pProjectTranslationHandler(BaseHandler):
               'themes',
               'title'
             )
-            return I4pProjectTranslation.objects.get(pk=project_id)
+            return self.__class__.project
     
     @classmethod
     def fullname(cls, model):
@@ -115,8 +114,8 @@ class I4pProjectTranslationHandler(BaseHandler):
     def questions(cls, model):
         questions = []
         for topic in Topic.objects.filter(site_topics=model.topics.all()):
-            for question in topic.questions.all().order_by('weight'):
-                answers = Answer.objects.filter(project=model.id, question=question)
+            for question in topic.questions.language(I4pProjectTranslationHandler.project.language_code).all().order_by('weight'):
+                answers = Answer.objects.language(I4pProjectTranslationHandler.project.language_code).filter(project=model.id, question=question)
                 questions.append({
                     "question": question.content,
                     "answer": answers and answers[0].content or None
@@ -127,3 +126,12 @@ class I4pProjectTranslationHandler(BaseHandler):
     @classmethod
     def thumb(cls, model):
         return model.thumbnail_image.url
+    
+    # To get correct language for translated models
+    @classmethod
+    def objective(cls, model):
+        objectives = model.objectives.language(I4pProjectTranslationHandler.project.language_code).all()
+        objectives_list = []
+        for objective in objectives:
+            objectives_list.append({"name": objective.name})
+        return objectives_list
