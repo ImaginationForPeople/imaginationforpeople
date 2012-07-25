@@ -290,6 +290,13 @@ def install_builddeps():
     print(cyan('Installing compilers and required libraries'))
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev ruby-compass libfssm-ruby')
 
+def install_devdeps():
+    """
+    Will install commonly needed developpement dependencies.
+    """
+    print(cyan('Installing required developpement tools'))
+    sudo('ruby-compass libfssm-ruby')
+
 def meta_full_bootstrap():
     """
     For use on new, empty environnements
@@ -301,6 +308,8 @@ def meta_full_bootstrap():
     install_builddeps()
 
     deploy_bootstrap()
+    if(env.wsginame == 'dev.wsgi'):
+        install_devdeps();
 
     configure_webservers()
     reload_webservers()
