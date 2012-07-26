@@ -52,20 +52,28 @@ class I4pProfile(UserenaLanguageBaseProfile, AskbotBaseProfile):
     motto = models.TextField(_("motto"), null=True, blank=True)
     about = models.TextField(_("about"), null=True, blank=True)
     birthday = models.DateField(_("birthday"), null=True, blank=True)
-    website = models.URLField(verbose_name=_('website'), verify_exists=True, max_length=200, blank=True)
-    linkedin = models.URLField(verbose_name=_('linkedin'), verify_exists=True, max_length=200, blank=True)
-    twitter = models.URLField(verbose_name=_('twitter'), verify_exists=True, max_length=200, blank=True)
-    facebook = models.URLField(verbose_name=_('facebook'), verify_exists=True, max_length=200, blank=True)
+    website = models.URLField(verbose_name=_('website'), max_length=200, blank=True)
+    linkedin = models.URLField(verbose_name=_('linkedin'),  max_length=200, blank=True)
+    twitter = models.URLField(verbose_name=_('twitter'), max_length=200, blank=True)
+    facebook = models.URLField(verbose_name=_('facebook'), max_length=200, blank=True)
     address = models.TextField(_("address"), null=True, blank=True)
     country = CountryField(_("country"), null=True, blank=True, choices=I4P_COUNTRIES)
 
-    #FIXME:  USELESS ???
+    registration_site = models.ForeignKey(Site, verbose_name=_("registration site"), default=1)
+
+    # FIXME:  USELESS ???
     location = models.OneToOneField(Location, verbose_name=_('location'), null=True, blank=True)
     
     @models.permalink
     def get_absolute_url(self):
         return ('userena_profile_detail', [self.user.username])
 
+
+@receiver(post_save, sender=I4pProfile, dispatch_uid='set-registration-site-on-profile')
+def set_registration_site_on_profile(sender, instance, created, **kwargs):
+    if created:
+        instance.registration_site = Site.objects.get_current()
+        instance.save()
 
 @receiver(activation_complete, dispatch_uid='email-on-new-user')
 def email_managers_on_account_activation(sender, user, **kwargs):

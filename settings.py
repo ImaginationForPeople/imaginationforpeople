@@ -488,3 +488,6 @@ CELERY_ALWAYS_EAGER = True
 
 import djcelery
 djcelery.setup_loader()
+
+NANI_TABLE_NAME_SEPARATOR = ''
+
