@@ -131,7 +131,4 @@ class I4pProjectTranslationHandler(BaseHandler):
     @classmethod
     def objective(cls, anI4pProject):
         objectives = anI4pProject.objectives.language(I4pProjectTranslationHandler.project.language_code).all()
-        objectives_list = []
-        for objective in objectives:
-            objectives_list.append({"name": objective.name})
-        return objectives_list
+        return [{"name": objective.name} for objective in objectives]
