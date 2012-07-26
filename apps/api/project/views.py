@@ -103,19 +103,19 @@ class I4pProjectTranslationHandler(BaseHandler):
             return self.__class__.project
     
     @classmethod
-    def fullname(cls, model):
-        return model.get_full_name()
+    def fullname(cls, anUser):
+        return anUser.get_full_name()
     
     @classmethod
-    def url(cls, model):
-        return model.display.url
+    def url(cls, anImageModel):
+        return anImageModel.display.url
     
     @classmethod
-    def questions(cls, model):
+    def questions(cls, anI4pProject):
         questions = []
-        for topic in Topic.objects.filter(site_topics=model.topics.all()):
+        for topic in Topic.objects.filter(site_topics=anI4pProject.topics.all()):
             for question in topic.questions.language(I4pProjectTranslationHandler.project.language_code).all().order_by('weight'):
-                answers = Answer.objects.language(I4pProjectTranslationHandler.project.language_code).filter(project=model.id, question=question)
+                answers = Answer.objects.language(I4pProjectTranslationHandler.project.language_code).filter(project=anI4pProject.id, question=question)
                 questions.append({
                     "question": question.content,
                     "answer": answers and answers[0].content or None
@@ -124,13 +124,13 @@ class I4pProjectTranslationHandler(BaseHandler):
         return questions
     
     @classmethod
-    def thumb(cls, model):
-        return model.thumbnail_image.url
+    def thumb(cls, anImageModel):
+        return anImageModel.thumbnail_image.url
     
     # To get correct language for translated models
     @classmethod
-    def objective(cls, model):
-        objectives = model.objectives.language(I4pProjectTranslationHandler.project.language_code).all()
+    def objective(cls, anI4pProject):
+        objectives = anI4pProject.objectives.language(I4pProjectTranslationHandler.project.language_code).all()
         objectives_list = []
         for objective in objectives:
             objectives_list.append({"name": objective.name})
