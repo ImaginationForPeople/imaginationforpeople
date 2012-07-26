@@ -95,19 +95,17 @@ def project_sheet_list(request):
             ordered_project_sheets = filtered_project_sheets.order_by('-modified')
             extra_context["order"] = "modification"
         else:
-            # The random ordering below did not give stable pagination, for postgres, this will give a pseudo-random order than changes every day.
-            if(connection.settings_dict['ENGINE']=='django.db.backends.postgresql_psycopg2'):
-                cursor = connection.cursor()
-                # Use day of the year to seed postgres's random number generator. 
-                # Not ideal (the random function may be used in other contexts, 
-                # but it's the best I could come up with without major surgery
-                # django's order_by function nor retrieving all the records
-                cursor.execute("SELECT setseed( %s ) ;", [float(datetime.now().strftime('%j'))/366])
-                transaction.commit_unless_managed()
-    
             # By default, display the project listing using the following order: 
             # best_of, random().
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
+            # We need the ordering to be stable within a user session session.
+            # As a hashing function, use a hopefully portable pure SQL
+            # implementation (using only basic sql operators) of 
+            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
+            # Here the number of buckets (m) is determined by the day of the
+            # year
+            day_of_year = int(datetime.now().strftime('%j'))
+            pseudo_random_field = "project_id * (project_id + 3) %% {:d}".format(day_of_year)
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
