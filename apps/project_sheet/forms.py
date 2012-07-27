@@ -22,9 +22,8 @@ from django import forms
 from django.contrib.auth.models import User
 from django.forms.models import modelformset_factory
 
-from nani.forms import TranslatableModelForm
-
 from ajax_select.fields import AutoCompleteSelectField
+from nani.forms import TranslatableModelForm
 
 from apps.i4p_base.models import Location
 
