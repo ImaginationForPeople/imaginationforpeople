@@ -18,6 +18,7 @@
     askbot['urls']['set_tag_filter_strategy'] = '{% url "set_tag_filter_strategy" %}';
     askbot['urls']['questions'] = '{% url "questions" %}';
     askbot['urls']['question_url_template'] = scriptUrl + '{{'question/'|transurl}}{{ "{{QuestionID}}/" }}';
+});
 </script>
 <script type='text/javascript' src='{{"/js/editor.js"|static_url}}'></script>
 {% if request.user.is_authenticated() %}

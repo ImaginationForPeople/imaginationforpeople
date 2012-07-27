@@ -8,13 +8,13 @@
                 {{ macros.gravatar(view_user, 128) }}
                 {#
                 {% if request.user == view_user %}
-                    <p><a 
+                    {#<p><a 
                         {% if support_custom_avatars %}
                             href="{% url avatar_change %}"
                         {% else %}
                             href="{% url faq %}#gravatar"
                         {% endif %}
-                    >{% trans %}change picture{% endtrans %}</a></p>
+                    >{% trans %}change picture{% endtrans %}</a></p>#}
                     {% if support_custom_avatars %}
                     <p><a 
                         href="{% url avatar_delete %}"
