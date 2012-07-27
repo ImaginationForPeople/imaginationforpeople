@@ -56,7 +56,9 @@
 								  {% for translation in project_translation.project.translations.all %}
 								  <!-- FIXME - if possible, the title and the text next the flag must been the full language name, and NOT the abreviation ! -->
 								  <li>
+								    {% language translation.language_code %}
 								    <a href="{% url project_sheet-show translation.slug %}"><img src="{{ STATIC_URL }}images/flags/{{ translation.language_code }}.gif" title="{{ translation.language_code }}" />{{ translation.language_code }}</a>
+								    {% endlanguage %}
 								    {% endfor %}		
 								    
 								  </li>
