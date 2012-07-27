@@ -29,7 +29,7 @@ sitemaps = {
 
 APP_PATH = os.path.dirname(__file__)
 urlpatterns = patterns('',
-    url(r'^$', views.readers.index, name='index'),
+    url(r'^$', views.readers.index, name='forum-index'),
     url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}, name='sitemap'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('edit/')), views.writers.edit_answer, name='edit_answer'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('revisions/')), views.readers.revisions, kwargs = {'post_type': 'answer'}, name='answer_revisions'),
@@ -246,15 +246,15 @@ urlpatterns = patterns('',
             _('users/'),
             _('subscriptions/'),
         ),
-        views.users.user,
+        views.users.user_profile,
         kwargs = {'tab_name': 'email_subscriptions'},
         name = 'user_subscriptions'
     ),
-    url(
-        r'^%s(?P<id>\d+)/(?P<slug>.+)/$' % _('users/'),
-        views.users.user,
-        name='user_profile'
-    ),
+#    url(
+#        r'^%s(?P<id>\d+)/(?P<slug>.+)/$' % _('users/'),
+#        views.users.user_profile,
+#        name='user_profile'
+#    ),
     url(
         r'^%s$' % _('groups/'),
         views.users.groups,

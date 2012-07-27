@@ -46,7 +46,7 @@
             {% if question.is_anonymous %}
                 <span class="anonymous">{{ thread.last_activity_by.get_anonymous_name() }}</span>
             {% else %}
-                <a href="{% url user_profile thread.last_activity_by.id, thread.last_activity_by.username %}">{{thread.last_activity_by.username|escape}}</a> {{ user_country_flag(thread.last_activity_by) }}
+                <a href="{{ thread.last_activity_by.get_profile().get_absolute_url() }}">{{thread.last_activity_by.username|escape}}</a> {{ user_country_flag(thread.last_activity_by) }}
                 {#{user_score_and_badge_summary(thread.last_activity_by)}#}
             {% endif %}
         </div>

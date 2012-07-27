@@ -7,7 +7,7 @@
                 <div class="user">
                     <ul>
                             <li class="thumb">{{ gravatar(profile, 32) }}</li>
-                            <li><a href="{% url user_profile profile.user.id, profile.user.username %}{% if profile_section %}?sort={{profile_section}}{% endif %}">{{profile.user.username|escape}}</a>{{ user_country_flag(profile.user) }}</li>
+                            <li><a href="{{ url profile.get_absolute_url() }}">{{profile.user.username|escape}}</a>{{ user_country_flag(profile.user) }}</li>
                             <li>{{ 
                                     user_score_and_badge_summary(
                                         profile.user, 

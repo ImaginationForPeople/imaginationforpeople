@@ -26,7 +26,6 @@
 body {
   background: #FFF;
   font-size: 14px;
-  line-height: 150%;
   margin: 0;
   padding: 0;
   color: #000;
@@ -964,15 +963,13 @@ ul#searchTags {
   font-family: 'Open Sans Condensed', Arial, sans-serif;
 }
 .short-summary .counts .item-count {
-  padding: 0px 5px 0px 5px;
-  font-size: 25px;
+  font-size: 20px;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
 }
 .short-summary .counts .votes div,
 .short-summary .counts .views div,
 .short-summary .counts .answers div,
 .short-summary .counts .favorites div {
-  margin-top: 3px;
   font-size: 14px;
   line-height: 14px;
   color: #646464;
@@ -1432,14 +1429,15 @@ ul#related-tags li {
 .question-page .wmd-container,
 .edit-question-page .wmd-container,
 .edit-answer-page .wmd-container {
-  width: 723px;
+  float: left;
+  width: 100%;
+  
 }
 .ask-page #editor,
 .question-page #editor,
 .edit-question-page #editor,
 .edit-answer-page #editor {
-  width: 710px;
-  padding: 6px;
+  width: 100%;
 }
 #editor {
   /* adjustment for editor preview */
@@ -1576,6 +1574,7 @@ ul#related-tags li {
   font-size: 15px;
   width: 130px;
   background-position: center left;
+  background-color: transparent;
   margin-left: 0px !important;
 }
 .question-page p.rss a {
@@ -2639,11 +2638,7 @@ a:hover.medal {
   margin-right: 10px;
 }
 .karma-details {
-  float: right;
-  width: 450px;
-  height: 250px;
-  overflow-y: auto;
-  word-wrap: break-word;
+  margin-top: 20px;
 }
 .karma-details p {
   margin-bottom: 10px;
@@ -3380,13 +3375,7 @@ p.signup_p {
 .userList {
   font-size: 13px;
 }
-img.flag {
-  border: 1px solid #eee;
-  vertical-align: text-top;
-}
-.main-page img.flag {
-  vertical-align: text-bottom;
-}
+
 /* Pretty printing styles. Used with prettify.js. */
 a.edit {
   padding-left: 3px;

@@ -416,7 +416,7 @@ RejectPostDialog.prototype.decorate = function(element){
         this.resetInputs();
     }
 
-    $(this._element).find('.dropdown-toggle').dropdown();
+    //$(this._element).find('.dropdown-toggle').dropdown();
 
     var select_box = new SelectBox();
     select_box.decorate($(this._selector.find('.select-box')));

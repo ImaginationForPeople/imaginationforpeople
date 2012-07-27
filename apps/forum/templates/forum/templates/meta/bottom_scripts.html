@@ -9,7 +9,7 @@
 </div>
 <script type="text/javascript">
     var i18nLang = '{{settings.LANGUAGE_CODE}}';
-    var scriptUrl = "{% url index %}"
+    var scriptUrl = "{% url forum-index %}"
     var askbotSkin = '{{settings.ASKBOT_DEFAULT_SKIN}}';
     var enableMathJax = {% if settings.ENABLE_MATHJAX %}true{% else %}false{% endif %};
     askbot['urls']['mark_read_message'] = '{% url "read_message" %}';
@@ -20,14 +20,7 @@
     askbot['urls']['user_signin'] = '{{ settings.LOGIN_URL }}';
     askbot['settings']['static_url'] = '{{ settings.STATIC_URL }}';
 </script>
-<script 
-    type="text/javascript"
-    {% if settings.DEBUG %}
-        src="{{"/js/jquery-1.7.2.min.js"|static_url}}"
-    {% else %}
-        src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"
-    {% endif %}
-></script>
+<script type='text/javascript' src="{{"/js/jquery.timeago.js"|static_url }}"></script>
 <!-- History.js --> 
 <script type='text/javascript' src="{{"/js/jquery.history.js"|static_url }}"></script>
 <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
@@ -42,44 +35,46 @@
     </script>
 {% endif %}
 <script type="text/javascript">
-{% if active_tab != "tags" and active_tab != "users" %}
     $(document).ready(function(){
-        if (Modernizr.history) {
-          // history management works!
-        } else {
-          // no history support :(
-          //hash = unescape(window.location.hash).replace('#','').split("?")[0]
-          hash = History.unescapeHash(window.location.hash).replace('#','').split("?")[0]
-          if (hash.substring(0,11)==askbot['urls']['questions']){
-            url = hash
-          }else{
-            url = askbot['urls']['questions']+hash
-          }
-          if (hash !== ''){
-              window.location = 'http://'+window.location.host+url
-          }
-        }
-
-        // focus input on the search bar endcomment
-        {% if active_tab != "ask" %}
-            $('#keywords').focus();
-        {% else %}
-            $('#id_title').focus();
+        {% if active_tab == 'questions' %}
+            if (Modernizr.history) {
+                // history management works!
+            } else {
+                // no history support :(
+                //hash = unescape(window.location.hash).replace('#','').split("?")[0]
+                {# todo: fix this evil code!!! #}
+                var hash = History.unescapeHash(window.location.hash).replace('#','').split("?")[0];
+                var questions_url = askbot['urls']['questions'];
+                if (hash.substring(0, questions_url.length) === questions_url) {
+                    var url = hash;
+                } else {
+                    var url = questions_url + hash;
+                }
+                if (hash !== '' && hash !== undefined && url !== undefined){
+                    {# was this causing strange redirects in IE??? #}
+                    window.location = 'http://' + window.location.host + url;
+                }
+            }
         {% endif %}
-        animateHashes();
+        // focus input on the search bar endcomment
+        {% if active_tab in ('users', 'questions', 'tags') %}
+            $('#keywords').focus();
+        {% elif active_tab == 'ask' %}
+            $('#id_title').focus();
+        {% else %}
+            animateHashes();
+        {% endif %}
+        
+        $('abbr.timeago').timeago();
+        
+        {% if user_messages %}
+            $('#validate_email_alert').click(function(){notify.close(true)})
+            notify.show();
+        {% endif %}
     });
-{% endif %}
-{% if user_messages %}
-    $('#validate_email_alert').click(function(){notify.close(true)})
-    notify.show();
-{% endif %}
-    $('abbr.timeago').timeago();
 </script>
 {% if settings.USE_CUSTOM_JS %}
-<script 
-    src="{% url "custom_js"%}?v={{ settings.MEDIA_RESOURCE_REVISION }}"
-    type="text/javascript"
-></script>
+<script src="{% url "custom_js"%}?v={{ settings.MEDIA_RESOURCE_REVISION }}"type="text/javascript"></script>
 {% endif %}
 {% if settings.GOOGLE_ANALYTICS_KEY %}
 <script type="text/javascript">

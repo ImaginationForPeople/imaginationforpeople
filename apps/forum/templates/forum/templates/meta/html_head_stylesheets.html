@@ -1,10 +1,4 @@
-{% if settings.ASKBOT_CSS_DEVEL == False %}
-
-<link href="{{"/style/style.css"|static_url }}" rel="stylesheet" type="text/css" />
-{% else %}
-<link href="{{"/style/style.less"|static_url }}" rel="stylesheet/less" type="text/css" />
-<script type="text/javascript" src="{{"/js/less.min.js"|static_url}}"></script>
-{% endif %}
+<link href="{{"/style/forum_style.css"|static_url }}" rel="stylesheet" type="text/css" />
 {% if settings.USE_LOCAL_FONTS %}
     {% include "meta/fonts.html" %}
 {% else %}

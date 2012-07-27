@@ -1,12 +1,9 @@
-{% extends "user_profile/user.html" %}
 {% import "macros.html" as macros %}
 {% import "user_profile/macros.html" as user_profile_macros %}
 <!-- user_stats.html -->
-{% block profilesection %}
-    {% trans %}overview{% endtrans %}
-{% endblock %}
-{% block usercontent %}
+    {% if settings.USER_DISPLAY_INFO %}
     {% include "user_profile/user_info.html" %}
+    {% endif %}
     {% if settings.GROUPS_ENABLED %}
     <div id="user-groups">
         <h2>{% trans 
@@ -28,7 +25,9 @@
     {% spaceless %}
         <h2>{% trans counter=question_count %}<span class="count">{{counter}}</span> Question{% pluralize %}<span class="count">{{counter}}</span> Questions{% endtrans %}</h2>
     {% endspaceless %}
+    {% with user_questions as questions %}
     {% include "user_profile/users_questions.html" %}
+    {% endwith %}
     <a name="answers"></a>
     {% spaceless %}
         <h2 style="clear:both;"><span class="count">{{ top_answer_count }}</span> {% trans counter=top_answer_count %}Answer{% pluralize %}Answers{% endtrans %}</h2>
@@ -161,22 +160,4 @@
         </table>
     </div>
     {% endif %}
-{% endblock %}
-{% block endjs %}
-    {{ super() }}
-    <script type="text/javascript">
-        askbot['urls']['join_or_leave_group'] = '{% url join_or_leave_group %}';
-        $(document).ready(function(){
-            setup_badge_details_toggle();
-            $.each($('.group-join-btn'), function(idx, elem){
-                var group_join_btn = new GroupJoinButton();
-                group_join_btn.decorate($(elem));
-            });
-        });
-    </script>
-    <script type='text/javascript' src='{{"/js/tag_selector.js"|static_url}}'></script>
-	<script type="text/javascript">
-	askbot['urls']['questions'] = '{% url "questions" %}';
-	</script>
-{% endblock %}
 <!-- end user_stats.html -->

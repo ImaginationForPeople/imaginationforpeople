@@ -1,10 +1,5 @@
-{% extends "user_profile/user.html" %}
 {% import "macros.html" as macros %}
 <!-- user_network.html -->
-{% block profileseciton %}
-    {% trans %}network{% endtrans %}
-{% endblock %}
-{% block usercontent %}
     {% if followed_users or followers %}
         {% if followers %}
             <h2>{% trans count=followers|length %}Followed by {{count}} person{% pluralize count %}Followed by {{count}} people{% endtrans %}</h2>
@@ -35,5 +30,4 @@
             <p>{% trans username = view_user.username|escape %}{{username}}'s network is empty{% endtrans %}</p>
         {% endif %}
     {% endif %}
-{% endblock %}
 <!-- end user_network.html -->

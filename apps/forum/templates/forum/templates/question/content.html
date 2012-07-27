@@ -3,11 +3,6 @@
 {# ==== BEGIN: question/question_card.html ==== #}
 {% include "question/question_card.html" %}
 {# ==== END: question/question_card.html ==== #}
-{% if thread.closed %}
-    {# ==== START: question/closed_question_info.html ==== #}
-    {% include "question/closed_question_info.html" %}
-    {# ==== END: question/closed_question_info.html ==== #}
-{% endif %}
 
 {% if answers %}
     <div class="clean"></div>
@@ -30,8 +25,21 @@
 {% endif %}
 
 {# ==== START: question/new_answer_form.html ==== #}
-{% include "question/new_answer_form.html" %}
-{# ==== END: question/new_answer_form.html ==== #}
-{% if request.user == question.author %}{# this is outside the form on purpose #}
-    <input type="button" class="submit after-editor answer-own-question" id="fmanswer_button"  value="{% trans %}Answer Your Own Question{% endtrans %}"/>
-{%endif%}
+{# buttons below cannot be cached yet #}
+{% if user_already_gave_answer %}
+    <a
+        class="submit"
+        href="{% url "edit_answer" previous_answer.id %}"
+    >{% trans %}Edit Your Previous Answer{% endtrans %}</a>
+    <span>{% trans %}(only one answer per question is allowed){% endtrans %}</span>
+{% else %}
+    {% include "question/new_answer_form.html" %}
+{% endif %}
+{% if question.closed == False and request.user == question.author %}{# this is outside the form on purpose #}
+<input 
+  type="button"
+  class="submit after-editor answer-own-question"
+  id="fmanswer_button"
+  value="{% trans %}Answer Your Own Question{% endtrans %}"
+/>
+{% endif %}

@@ -29,7 +29,7 @@
     <div class="face">
     {{ gravatar(response.user, 48) }}
     </div>
-    <a style="font-size:12px" href="{{ response.user.get_absolute_url() }}">{{ response.user.username|escape }}</a>
+    <a style="font-size:12px" href="{{ response.user.get_profile().get_absolute_url() }}">{{ response.user.username|escape }}</a>
     <a style="text-decoration:none;" href="{{ response.response_url }}">
          {{ response.response_type }}
          ({{ timeago(response.timestamp) }}):<br/>
@@ -70,7 +70,7 @@
         <p>{{ user.get_anonymous_name() }}</p>
     {% else %}
         {{ gravatar(user, 32) }}
-        {{ user.get_profile_link()}}{{ user_country_flag(user) }}<br/>
+        <a href="{{ user.get_profile().get_absolute_url()}}">{{ user.username}}</a>{{ user_country_flag(user) }}<br/>
         {{ user_score_and_badge_summary(user, karma_mode = karma_mode, badges_mode = badges_mode) }}<br/>
         {{ user_website_link(user) }}
     {% endif %}
@@ -560,17 +560,11 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- endmacro -%}
 
 {%- macro user_country_flag(user) -%}
-    {% if user.country and user.show_country %}
+    {% if user.get_profile().country %}
         <img class="flag" 
-            src="{{ ('/images/flags/' ~ user.country.code|lower ~ '.gif')|static_url }}"
-            alt="{% trans 
-                    country=user.country.name 
-                    %}flag of {{country}}{% 
-                endtrans %}"
-            title="{% trans 
-                    country=user.country.name, 
-                    person=user.username|escape %}{{person}} is from {{country}}{%
-                 endtrans %}"
+            src="{{user.get_profile().country.flag}}"
+            alt="{% trans country=user.get_profile().country.name %}Flag of {{country}}{% endtrans %}"
+            title="{% trans country=user.country.name, person=user.username|escape %}{{person}} is from {{country}}{% endtrans %}"
         />
     {% endif %}
 {%- endmacro -%}
@@ -597,16 +591,15 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- endmacro -%}
 
 {#todo: rename this to avatar #}
-{%- macro gravatar(user, size) -%}
+{%- macro gravatar(profile, size) -%}
 {% spaceless %}
-<a style="text-decoration:none"
-    href="{{ user.get_absolute_url() }}"
-><img class="gravatar" 
+<a style="text-decoration:none" href="{{ profile.get_absolute_url() }}">
+<img class="gravatar" 
     width="{{size}}" height="{{size}}"
-    src="{{ user.get_mugshot_url() }}"
-    title="{{user.username|escape}}" 
-    alt="{% trans username=user.username|escape %}{{username}} gravatar image{% endtrans %}" 
-/></a>
+    src="{{ profile.get_mugshot_url() }}"
+    title="{{profile.user.username|escape}}" 
+    alt="{% trans username=profile.user.username|escape %}{{username}} gravatar image{% endtrans %}" /
+></a>
 {% endspaceless %}
 {%- endmacro -%}
 
@@ -703,7 +696,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 
 {%- macro inbox_link(user) -%}
     {% if user.new_response_count > 0 or user.seen_response_count > 0 %}
-    <a id='ab-responses' href="{{user.get_absolute_url()}}?sort=inbox&section=forum">
+    <a id='ab-responses' href="{{user.get_profile().get_absolute_url()}}?sort=inbox&section=forum">
         <img 
             alt="{% trans username=user.username|escape %}responses for {{username}}{% endtrans %}"
             {% if user.new_response_count > 0 %}
@@ -721,7 +714,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- macro moderation_items_link(user, moderation_items) -%}
     {% if moderation_items %}
         <a id="ab-responses"
-            href="{{user.get_absolute_url()}}?sort=inbox&section=flags"
+            href="{{user.get_profile().get_absolute_url()}}?sort=inbox&section=flags"
         >
         {% if moderation_items['new_count'] > 0 %}
             <img src="{{'/images/dialog-warning.png'|static_url}}"

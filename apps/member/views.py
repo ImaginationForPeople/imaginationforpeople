@@ -28,7 +28,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.sites.models import Site
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
 from django.views.generic.simple import direct_to_template
@@ -47,6 +47,8 @@ from apps.project_sheet.utils import get_project_translations_from_parents
 from apps.project_sheet.models import I4pProjectTranslation
 
 from .forms import I4PEditProfileForm, I4PSignupForm
+
+from askbot.views.users import user_profile as askbot_user_profile
 
 @secure_required
 def signup(request, signup_form,
@@ -94,6 +96,8 @@ def profile_detail(request, username):
     If not possible, fall back to english, and if not available, first language.
     """
     user = get_object_or_404(User, username__iexact=username)
+    
+    
 
     project_translation_list = get_project_translations_from_parents(user.projects.all().distinct()[:3],
                                                                      language_code=translation.get_language()
@@ -105,11 +109,17 @@ def profile_detail(request, username):
     version_ids = [int(id["object_id"]) for id in Version.objects.filter(content_type=project_translation_ct, revision__user=user).values('object_id').distinct()[:30]]
     project_contrib_list = I4pProjectTranslation.objects.filter(id__in=version_ids)
 
+    askbot_profile = askbot_user_profile(request, user.id, content_only=True)
+    if isinstance(askbot_profile, HttpResponse):
+        #we are in the case whuen user has modified its email subscriptions or moderation
+        return askbot_profile
+    
     return userena_views.profile_detail(request,
                                         username,
                                         template_name='userena/profile_detail.html',
                                         extra_context={'project_translation_list': project_translation_list,
-                                                       'project_contrib_list' : project_contrib_list}
+                                                       'project_contrib_list' : project_contrib_list,
+                                                       'askbot_profile' : askbot_profile}
                                         )
 
 
