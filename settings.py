@@ -169,7 +169,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'backcap.context_processors.backcap_forms',
     
     'askbot.context.application_settings',
-    'askbot.user_messages.context_processors.user_messages',#must be before auth
     
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
