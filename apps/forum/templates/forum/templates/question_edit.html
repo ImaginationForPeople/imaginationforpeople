@@ -20,7 +20,8 @@
                     form,
                     post_type='question',
                     edit_title=True,
-                    mandatory_tags = mandatory_tags
+                    mandatory_tags = mandatory_tags,
+                    user = request.user
                 )
     }}
     <div class="after-editor">
@@ -45,14 +46,14 @@
 
 {% block endjs %}
     {% include "meta/editor_data.html" %}
-    <script type='text/javascript' src='{{"/js/editor.js"|std_media }}'></script>
+    <script type='text/javascript' src='{{"/js/editor.js"|static_url }}'></script>
     {% if mandatory_tags %}
         {% include "meta/mandatory_tags_js.html" %}
     {% endif %}
-    <script type='text/javascript' src='{{"/js/jquery.validate.min.js"|std_media}}'></script>
-    <script type='text/javascript' src='{{"/js/post.js"|std_media}}'></script>
-    <script type='text/javascript' src='{{"/js/wmd/showdown.js"|std_media}}'></script>
-    <script type='text/javascript' src='{{"/js/wmd/wmd.js"|std_media}}'></script>
+    <script type='text/javascript' src='{{"/js/jquery.validate.min.js"|static_url}}'></script>
+    <script type='text/javascript' src='{{"/js/post.js"|static_url}}'></script>
+    <script type='text/javascript' src='{{"/js/wmd/showdown.js"|static_url}}'></script>
+    <script type='text/javascript' src='{{"/js/wmd/wmd.js"|static_url}}'></script>
     <script type="text/javascript">
     {% if settings.ENABLE_MATHJAX or settings.MARKUP_CODE_FRIENDLY %}
         var codeFriendlyMarkdown = true;

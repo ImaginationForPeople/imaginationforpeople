@@ -2484,7 +2484,6 @@ if(!Attacklab.wmd)
 		Attacklab.loadEnv();
 
 	};
-	
 	Attacklab.wmd();
 	Attacklab.wmdBase();
 	Attacklab.Util.startEditor();

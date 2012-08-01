@@ -8,27 +8,8 @@
 <script type="text/javascript" src='{{"/js/post.js"|static_url}}'></script>
 
 <script type="text/javascript">
-    var askbot = askbot || {};
-    askbot['urls'] = askbot['urls'] || {};
-    askbot['data'] = askbot['data'] || {};
-    
-    {% if not request.user.is_anonymous()%} 
-    var viewUserID = {{request.user.id}};
-    askbot['data']['viewUserName'] = '{{ request.user.username|escape }}';
-    askbot['data']['viewUserId'] = {{request.user.id}};
-    {%endif%}
-    
-    askbot['urls']['manageInbox'] = '{% url manage_inbox %}';
-    askbot['urls']['save_post_reject_reason'] = '{% url save_post_reject_reason %}';
-    askbot['urls']['delete_post_reject_reason'] = '{% url delete_post_reject_reason %}';
-    askbot['urls']['edit_group_membership'] = '{% url edit_group_membership %}';
-    askbot['urls']['get_groups_list'] = '{% url get_groups_list %}';
-    askbot['urls']['join_or_leave_group'] = '{% url join_or_leave_group %}';
-    askbot['urls']['questions'] = '{% url "questions" %}';
-    
     $(document).ready(function(){
-        
-        $("div.tabBar.tabBar-profile div.tabsC").idTabs();
+        $("div.tabBar.tabBar-profile .tabsC").idTabs();
 
         $.each($('.group-join-btn'), function(idx, elem){
             var group_join_btn = new GroupJoinButton();
@@ -57,11 +38,8 @@
                 $('#id_user_status_info').hide('slow');
             }
         });
-        
     });
 </script>
-
-<script type="text/javascript" src='{{"/js/user.js"|static_url}}'></script>
 <script type="text/javascript" >
 <!-- must stay after the previous initialization ... -->
 $(document).ready(function(){

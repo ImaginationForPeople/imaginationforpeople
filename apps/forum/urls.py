@@ -59,6 +59,11 @@ urlpatterns = patterns('',
         name = 'api_get_questions'
     ),
     url(
+        r'^get-users-info/',
+        views.commands.get_users_info,
+        name='get_users_info'
+    ),
+    url(
         r'^%s%s$' % (_('questions/'), _('ask/')), 
         views.writers.ask, 
         name='ask'
@@ -236,11 +241,11 @@ urlpatterns = patterns('',
         name = 'users_by_group'
     ),
     #todo: rename as user_edit, b/c that's how template is named
-    url(
-        r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('edit/')),
-        views.users.edit_user,
-        name ='edit_user'
-    ),
+#    url(
+#        r'^%s(?P<id>\d+)/%s$' % (_('users/'), _('edit/')),
+#        views.users.edit_user,
+#        name ='edit_user'
+#    ),
     url(
         r'^%s(?P<id>\d+)/(?P<slug>.+)/%s$' % (
             _('users/'),
@@ -274,11 +279,6 @@ urlpatterns = patterns('',
         r'^%s(?P<id>\d+)//*' % _('badges/'),
         views.meta.badge,
         name='badge'
-    ),
-    url(#ajax only
-        r'^%s%s$' % (_('messages/'), _('markread/')),
-        views.commands.read_message,
-        name='read_message'
     ),
     url(#ajax only
         r'^manage-inbox/$',

@@ -1,4 +1,4 @@
-{% from "macros.html" import timeago %}
+{% import "macros.html" as macros %}
 {% if settings.SIDEBAR_QUESTION_HEADER %}
 <div class="box">
     {{ settings.SIDEBAR_QUESTION_HEADER }}
@@ -6,16 +6,16 @@
 {% endif %}
 <div class="box vote-buttons">
     <h2 >{% trans %}Question tools{% endtrans %}</h2>
+    {{ macros.follow_user_toggle(visitor=request.user, subject=question.author) }}
+    <div class="clearfix"></div>
     {% if favorited %}
-        <a class="button followed" 
-            alt="{% trans %}click to unfollow this question{% endtrans %}">
-            <div>{% trans %}Following{% endtrans %}</div>
-            <div class='unfollow'>{% trans %}Unfollow{% endtrans %}</div>
+        <a class="button followed" alt="{% trans %}click to unfollow this question{% endtrans %}">
+            <div>{% trans %}Following this question{% endtrans %}</div>
+            <div class='unfollow'>{% trans %}Unfollow this question{% endtrans %}</div>
         </a>
     {% else %}
-        <a class="button followed"
-            alt="{% trans %}click to follow this question{% endtrans %}">
-            {%trans %}Follow{%endtrans%}
+        <a class="button followed" alt="{% trans %}click to follow this question{% endtrans %}">
+            {%trans %}Follow this question{%endtrans%}
         </a>
     {% endif %}
     <div class="clearfix"></div>
@@ -47,7 +47,7 @@
     <div class="clearfix"></div>
     <h2>{% trans %}Stats{% endtrans %}</h2>
     <p>
-        {% trans %}Asked{% endtrans %}: <strong>{{ timeago(question.added_at) }}</strong>
+        {% trans %}Asked{% endtrans %}: <strong>{{ macros.timeago(question.added_at) }}</strong>
     </p>
     <p> 
         {% trans %}Seen{% endtrans %}: <strong>{{ thread.view_count|intcomma }} {% trans %}times{% endtrans %}</strong>

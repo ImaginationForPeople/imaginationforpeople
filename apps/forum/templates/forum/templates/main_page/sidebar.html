@@ -6,6 +6,10 @@
 </div>
 {% endif %}
 
+<div id="metaNav" class="box" style="width: 100%; float: none;">
+    {% include "widgets/meta_nav.html" %}
+</div>
+
 {% if contributors and settings.SIDEBAR_MAIN_SHOW_AVATARS %}
     {% include "widgets/contributors.html" %}
 {% endif %}

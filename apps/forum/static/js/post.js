@@ -544,6 +544,7 @@ var Vote = function(){
 
     var submit = function(object, voteType, callback) {
         //this function submits votes
+    	
         $.ajax({
             type: "POST",
             cache: false,
@@ -1297,6 +1298,7 @@ EditCommentForm.prototype.detach = function(){
 };
 
 EditCommentForm.prototype.createDom = function(){
+	
     this._element = $('<form></form>');
     this._element.attr('class', 'post-comments');
 
@@ -1376,7 +1378,6 @@ EditCommentForm.prototype.focus = function(hard){
 };
 
 EditCommentForm.prototype.getSaveHandler = function(){
-
     var me = this;
     return function(){
         var text = me._textarea.val();
@@ -2408,6 +2409,33 @@ $(document).ready(function() {
     });
     questionRetagger.init();
     socialSharing.init();
+
+    var proxyUserNameInput = $('#id_post_author_username');
+    var proxyUserEmailInput = $('#id_post_author_email');
+    if (proxyUserNameInput.length === 1) {
+        var tip = new TippedInput();
+        tip.decorate(proxyUserNameInput);
+
+        var userSelectHandler = function(data) {
+            proxyUserEmailInput.val(data['data'][0]);
+        };
+
+        var fakeUserAc = new AutoCompleter({
+            url: askbot['urls']['get_users_info'],
+            preloadData: true,
+            minChars: 1,
+            useCache: true,
+            matchInside: true,
+            maxCacheLength: 100,
+            delay: 10,
+            onItemSelect: userSelectHandler
+        });
+        fakeUserAc.decorate(proxyUserNameInput);
+    }
+    if (proxyUserEmailInput.length === 1) {
+        var tip = new TippedInput();
+        tip.decorate(proxyUserEmailInput);
+    }
 });
 
 

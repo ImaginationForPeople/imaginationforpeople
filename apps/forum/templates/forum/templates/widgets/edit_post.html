@@ -18,7 +18,7 @@
 {% if post_type == 'question' %}
     <div class="form-item">
         {% if tags_are_required %}
-            <label for=id_tags">
+            <label for="id_tags">
             {% if mandatory_tags %}
                 <strong>{% trans %}tags{% endtrans %}</strong>
                 {% trans %}, one of these is required{% endtrans %}
@@ -54,6 +54,7 @@
         <div class="form-error" >{{ post_form.summary.errors }}</div>
     </div>
 {% endif %}
+
 <div class="preview-toggle">
     <span 
         id="pre-collapse" 
@@ -63,3 +64,41 @@
     </span>
 </div>
 <div id="previewer" class="wmd-preview"></div>
+
+{% if user and user.is_authenticated() and user.is_administrator() %}
+    {# admin can post answers or questions on behalf of anyone. #}
+    <table class="proxy-user-info">
+        <tbody>
+            <tr><td colspan="2">
+                <label>
+                    {% trans %}To post on behalf of someone else, enter user name <strong>and</strong> email below.{% endtrans %}
+                </label>
+            </td></tr>
+            <tr>
+                <td>
+                    <div class="form-item">
+                        {{ post_form.post_author_username }}
+                        <!--input 
+                            id="id_post_author_username"
+                            name="post_author_username" 
+                            value="{% trans %}User name:{% endtrans %}"
+                        /-->
+                    </div>
+                    <div class="form-item">
+                        {{ post_form.post_author_email }}
+                        <!--input 
+                            id="id_post_author_email"
+                            name="post_author_email" 
+                            value="{% trans %}Email address:{% endtrans %}"
+                        /-->
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span class="form-error">{{ post_form.post_author_username.errors }}</span>
+                    <span class="form-error">{{ post_form.post_author_email.errors }}</span>
+                </td>
+        </tbody>
+    </table>
+{% endif %}

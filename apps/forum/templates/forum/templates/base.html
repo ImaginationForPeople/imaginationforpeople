@@ -11,15 +11,7 @@
     <meta name="description" content="{% block meta_desc %}{% endblock %}" /> 
     <title>{% block title %}{% endblock %}</title>
 
-    {% block before_css %}{% endblock %}
-    {% include "meta/html_head_stylesheets.html" %}
-    {% block forestyle %}{% endblock %}
-    {% include "meta/html_head_javascript.html" %}
-    {% block forejs %}{% endblock %}
-    {% if settings.USE_CUSTOM_HTML_HEAD %}
-        {{ settings.CUSTOM_HTML_HEAD }}
-    {% endif %}
-    
+   
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
@@ -51,6 +43,12 @@
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
     
+    {% block before_css %}{% endblock %}
+    {% include "meta/html_head_stylesheets.html" %}
+    {% block forestyle %}{% endblock %}
+    {% include "meta/html_head_javascript.html" %}
+    {% block forejs %}{% endblock %}
+    
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -61,11 +59,11 @@
                 msie7: true
                 },
             imagePath: "{{ STATIC_URL}}images/browsers/",
-            header: "{% trans %}'Did you know that your Internet Browser is out of date?'|escapejs{% endtrans %}",
-            paragraph1: "{% trans %}'Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below.'|escapejs{% endtrans %}",
-            paragraph2: "{% trans %}'Just click on the icons to get to the download page'|escapejs{% endtrans %}",
-            closeMessage: "{% trans %}'By closing this window you acknowledge that your experience on this website may be degraded'|escapejs{% endtrans %}",
-            closeLink: "{% trans %}'Close This Window'|escapejs{% endtrans %}"
+            header: "{% trans %}Did you know that your Internet Browser is out of date?{% endtrans %}",
+            paragraph1: "{% trans %}Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below.{% endtrans %}",
+            paragraph2: "{% trans %}Just click on the icons to get to the download page{% endtrans %}",
+            closeMessage: "{% trans %}By closing this window you acknowledge that your experience on this website may be degraded{% endtrans %}",
+            closeLink: "{% trans %}Close This Window{% endtrans %}"
         });
             
             
@@ -73,14 +71,14 @@
         
         
         // Text example for forms
-        $(".search input[type=text]").example("{% trans %}'Project search'|escapejs{% endtrans %}");
+        $(".search input[type=text]").example("{% trans %}Project search{% endtrans %}");
         
-        $("input[name=identification]").example("{% trans %}'Enter your login'|escapejs{% endtrans %}");
-        $("input[name=password]").example("{% trans %}'Password'|escapejs{% endtrans %}");
+        $("input[name=identification]").example("{% trans %}Enter your login{% endtrans %}");
+        $("input[name=password]").example("{% trans %}Password{% endtrans %}");
         
-        $("input[name=openid_identifier]").example("{% trans %}'Enter your username'|escapejs{% endtrans %}");
+        $("input[name=openid_identifier]").example("{% trans %}Enter your username{% endtrans %}");
         
-        $(".newsletter input[type=text]").example("{% trans %}'Enter your email adress'|escapejs{% endtrans %}");
+        $(".newsletter input[type=text]").example("{% trans %}Enter your email adress{% endtrans %}");
 
         
         //Show new project topic popup when user click on add a project

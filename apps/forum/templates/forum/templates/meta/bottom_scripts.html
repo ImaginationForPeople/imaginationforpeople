@@ -8,23 +8,13 @@
   </noscript>
 </div>
 <script type="text/javascript">
-    var i18nLang = '{{settings.LANGUAGE_CODE}}';
-    var scriptUrl = "{% url forum-index %}"
-    var askbotSkin = '{{settings.ASKBOT_DEFAULT_SKIN}}';
-    var enableMathJax = {% if settings.ENABLE_MATHJAX %}true{% else %}false{% endif %};
-    askbot['urls']['mark_read_message'] = '{% url "read_message" %}';
-    askbot['urls']['get_tags_by_wildcard'] = '{% url "get_tags_by_wildcard" %}';
-    askbot['urls']['get_tag_list'] = '{% url "get_tag_list" %}';
-    askbot['urls']['follow_user'] = '/followit/follow/user/{{'{{'}}userId{{'}}'}}/';
-    askbot['urls']['unfollow_user'] = '/followit/unfollow/user/{{'{{'}}userId{{'}}'}}/';
-    askbot['urls']['user_signin'] = '{{ settings.LOGIN_URL }}';
-    askbot['settings']['static_url'] = '{{ settings.STATIC_URL }}';
 </script>
 <script type='text/javascript' src="{{"/js/jquery.timeago.js"|static_url }}"></script>
 <!-- History.js --> 
 <script type='text/javascript' src="{{"/js/jquery.history.js"|static_url }}"></script>
 <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
-<script type='text/javascript' src="{{"/js/utils.js"|static_url }}"></script>
+<script type="text/javascript" src="{{"/js/user.js"|static_url}}"></script>
+
 {% if settings.ENABLE_MATHJAX %}
     <script type='text/javascript' src="{{settings.MATHJAX_BASE_URL}}/MathJax.js">
         MathJax.Hub.Config({

@@ -6,23 +6,6 @@
     >{% if icon == False %}{% if site_label %}{{ site_label }}{% else %}{{ site }}{% endif %}{% endif %}</a>
 {%- endmacro -%}
 
-{%- macro follow_toggle(follow, name, alias, id) -%}
-    {# follow - boolean; name - object type name; alias - e.g. users name; id - object id #}
-    <div 
-        class="follow-toggle follow-user-toggle" 
-        id="follow-{{ name|escape }}-{{ id }}"
-    >
-        {% if follow %}
-        <div class="follow">{% trans %}follow {{alias}}{% endtrans %}</div>
-        {% else %}
-        <div class="unfollow">
-          <div class="unfollow-red">{% trans %}unfollow {{alias}}{% endtrans %}</div>
-          <div class="unfollow-green">{% trans %}following {{alias}}{% endtrans %}</div>
-        </div>
-        {% endif %}
-    </div>
-{%- endmacro -%}
-
 {%- macro inbox_post_snippet(response, inbox_section) -%}
 <div id="re_{{response.id}}" class="re{% if response.is_new %} new highlight{% else %} seen{% endif %}">
     <input type="checkbox" />
@@ -348,7 +331,10 @@ for the purposes of the AJAX comment editor #}
         askbot['data']['{{widget_id}}'] = {
             truncated: {% if post.comment_count > max_comments %}true{% else %}false{% endif %}
         };
-        askbot['functions']['renderAddCommentButton']('{{post.id}}',{{remaining_comment_count}});
+        askbot['functions']['renderAddCommentButton'](
+                                                '{{post.id}}',
+                                                {{remaining_comment_count}}
+                                            );
     </script>
 {%- endmacro -%}
 
@@ -493,7 +479,8 @@ for the purposes of the AJAX comment editor #}
                 post_form,
                 post_type = None,
                 mandatory_tags = None,
-                edit_title = False
+                edit_title = False,
+                user = None
             )
 -%}
 {%include "widgets/edit_post.html" %}
@@ -503,7 +490,7 @@ for the purposes of the AJAX comment editor #}
     var tagAc = new AutoCompleter({
             url: '{% url "get_tag_list" %}',
             preloadData: true,
-            minChars: 1,
+            minChars: 3,
             useCache: true,
             matchInside: true,
             maxCacheLength: 100,
@@ -527,8 +514,8 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- macro follow_toggle(follow, name, alias, id) -%}
     {# follow - boolean; name - object type name; alias - e.g. users name; id - object id #}
     <div 
-        class="follow-toggle" 
-        id="follow-{{ name }}-{{ id }}"
+        class="follow-toggle follow-user-toggle" 
+        id="follow-{{ name|escape }}-{{ id }}"
     >
         {% if follow %}
         <div class="follow">{% trans %}follow {{alias}}{% endtrans %}</div>
@@ -541,7 +528,7 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
     </div>
 {%- endmacro -%}
 
-{%- macro follow_user_toggle(visitor = None, subject = None) -%}
+{%- macro follow_user_toggle(visitor=None, subject=None) -%}
     {% if visitor.is_anonymous() %}
         {{ follow_toggle(True, 'user', subject.username|escape, subject.id) }}
     {% else %}
@@ -552,6 +539,12 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
                 {{ follow_toggle(True, 'user', subject.username|escape, subject.id) }}
             {% endif %}
         {% endif %}
+         <script>
+         askbot['urls']['follow_user'] = "{% url 'follow_object' 'user', subject.id%}";
+         askbot['urls']['unfollow_user'] = "{% url 'unfollow_object' 'user', subject.id%}";
+         askbot['data']['viewUserName'] = '{{ subject.username|escape }}';
+         askbot['data']['viewUserId'] = {{subject.id}};
+        </script>
     {% endif %}
 {%- endmacro -%}
 

@@ -362,7 +362,7 @@ function pickedTags(){
             var ac = new AutoCompleter({
                 url: askbot['urls']['get_tag_list'],
                 preloadData: true,
-                minChars: 1,
+                minChars: 3,
                 useCache: true,
                 matchInside: true,
                 maxCacheLength: 100,

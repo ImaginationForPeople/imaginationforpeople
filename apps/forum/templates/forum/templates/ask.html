@@ -28,7 +28,6 @@
         {% include "meta/mandatory_tags_js.html" %}
     {% endif %}
     <script type='text/javascript'>
-        askbot['urls']['api_get_questions'] = '{% url api_get_questions %}';
         {% if settings.ENABLE_MATHJAX or settings.MARKUP_CODE_FRIENDLY %}
             var codeFriendlyMarkdown = true;
         {% else %}

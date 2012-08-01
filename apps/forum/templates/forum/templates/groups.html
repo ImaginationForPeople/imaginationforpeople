@@ -38,7 +38,6 @@
     <script src='{{"/js/post.js"|static_url}}' type='text/javascript'></script>
     {% if request.user.is_authenticated() %}
     <script type="text/javascript">
-        askbot['urls']['join_or_leave_group'] = '{% url join_or_leave_group %}';
         $.each($('.group-join-btn'), function(idx, elem){
             var group_join_btn = new GroupJoinButton();
             group_join_btn.decorate($(elem));

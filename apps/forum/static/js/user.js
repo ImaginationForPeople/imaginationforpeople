@@ -544,8 +544,10 @@ FollowUser.prototype.decorate = function(element){
 };
 
 FollowUser.prototype.go = function(){
+	var pleaseLogin = " <a href='" + askbot['urls']['user_signin'] + '?next=' + window.location.href+ "'>"+ gettext('please login') + "</a>";
+	
     if (askbot['data']['userIsAuthenticated'] === false){
-        var message = gettext('Please <a href="%(signin_url)s">signin</a> to follow %(username)s');
+        var message = gettext('anonymous users cannot follow other user') + pleaseLogin;;
         var message_data = {
             signin_url: askbot['urls']['user_signin'] + '?next=' + window.location.href,
             username: this._user_name

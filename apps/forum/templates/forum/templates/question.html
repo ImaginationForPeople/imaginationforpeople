@@ -49,37 +49,24 @@
                     }
                 }
             }
-            
             function render_post_controls(post_id){
                 if (data['userIsAdminOrMod']){
                     return;//all functions on
                 }
-                
-                if (data['userIsAuthenticated'] == false){
-                    return; //normally there is no control
-                }
-                
-                /*if (post_id in data['user_posts']){
+                if (post_id in data['user_posts']){
                     //todo: remove edit button from older comments
                     return;//same here
-                }*/
-                
-                if (//maybe remove "delete" button
-                    data['userReputation'] < {{settings.MIN_REP_TO_DELETE_OTHERS_COMMENTS}}
-                ) {
+                }
+                if (data['userReputation'] < {{settings.MIN_REP_TO_DELETE_OTHERS_COMMENTS}}){
                     var delete_btn = document.getElementById('post-' + post_id + '-delete');
                     delete_btn.parentNode.removeChild(delete_btn);
                 }
-                if (//maybe remove "edit" button
-                    data['userReputation'] < {{settings.MIN_REP_TO_EDIT_OTHERS_POSTS}}
-                ){
+                if (data['userReputation'] < {{settings.MIN_REP_TO_EDIT_OTHERS_POSTS}}){
                     var edit_btn = document.getElementById('post-' + post_id + '-edit')
                     edit_btn.parentNode.removeChild(edit_btn);
                 }
-                if (//maybe remove retag button
-                    data['userReputation'] < {{settings.MIN_REP_TO_RETAG_OTHERS_QUESTIONS}}
-                ){
-                    var retag_btn = document.getElementById('retag');
+                var retag_btn = document.getElementById('retag');
+                if (data['userReputation'] < {{settings.MIN_REP_TO_RETAG_OTHERS_QUESTIONS}} && retag_btn){
                     retag_btn.parentNode.removeChild(retag_btn);
                 }
             }
@@ -88,7 +75,7 @@
                 {% if user_can_post_comment %}
                     can_add = true;
                 {% else %}
-                    if (data['user_posts'] && post_id in data['user_posts']){
+                    if (post_id in data['user_posts']){
                         can_add = true;
                     }
                 {% endif %}
@@ -168,7 +155,7 @@
 {% endblock %}
 {% block endjs %}
     {% include "question/javascript.html" %}
-    {#
+    
     <script type="text/javascript">
         var messages = askbot['messages'];
         messages['upvote_question'] = gettext(
@@ -184,6 +171,6 @@
             "I don't like this answer (click again to cancel)"
         );
     </script>
-    #}
+    
 {% endblock %}
 
