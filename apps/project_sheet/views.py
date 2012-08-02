@@ -606,8 +606,6 @@ def project_sheet_history(request, project_slug):
     """
     Show the history of a project member
     """
-    # FIXME Remove this asap
-    raise Http404
     language_code = translation.get_language()
 
     # get the project translation and its base
