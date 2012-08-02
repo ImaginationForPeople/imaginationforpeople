@@ -19,6 +19,8 @@ from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
+from tagging.models import TaggedItem
+
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
@@ -79,8 +81,6 @@ class SubscribersWorkGroupPlugin(BaseWorkGroupPlugin):
         return u"Workgroup Subscribers %s" % self.workgroup.slug
 
 plugin_pool.register_plugin(SubscribersWorkGroupPlugin)
-
-from tagging.models import TaggedItem
 
 class ProjectsForTagPlugin(CMSPluginBase):
     """
