@@ -8,24 +8,27 @@
 {% block forestyle %}
     <link rel="canonical" href="{{settings.APP_URL|strip_path}}{{question.get_absolute_url()}}" />
     <link rel="stylesheet" type="text/css" href="{{'/js/wmd/wmd.css'|static_url}}" />
+    <script type='text/javascript' src="{{'/js/wmd/showdown.js'|static_url }}"></script>
+    <script type='text/javascript' src="{{'/js/wmd/wmd.js'|static_url }}"></script>
 {% endblock %}
 {% block forejs %}
     <script type="text/javascript">
         //below is pure cross-browser javascript, no jQuery
         (function(){
-            var data = askbot['data'];
+        	var data = askbot['data'];
+            var posts = {};
+            var votes = {};
             if (data['userIsAuthenticated']){
-                var votes = {};
                 {% for post_id in user_votes %}
                     votes['{{post_id}}'] = {{user_votes[post_id]}};
                 {% endfor %}
-                data['user_votes'] = votes;
-                var posts = {};
+
                 {% for post_id in user_post_id_list %}
                     posts['{{post_id}}'] = 1;
-                {% endfor %}
-                data['user_posts'] = posts;
+                {% endfor %}  
             }
+            data['user_posts'] = posts;
+            data['user_votes'] = votes;
 
             function render_vote_buttons(post_type, post_id){
                 var upvote_btn = document.getElementById(post_type + '-img-upvote-' + post_id);

@@ -134,8 +134,6 @@ MIDDLEWARE_CLASSES = (
     'askbot.middleware.forum_mode.ForumModeMiddleware',
     'askbot.middleware.cancel.CancelActionMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
-    'askbot.middleware.view_log.ViewLogMiddleware',
-    'askbot.middleware.spaceless.SpacelessMiddleware',
     
 )
 
@@ -167,9 +165,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     'backcap.context_processors.backcap_forms',
-    
-    'askbot.context.application_settings',
-    
+        
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
     'apps.member.context_processors.member_forms',
@@ -178,6 +174,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sekizai.context_processors.sekizai',
     
     'dynamicsites.context_processors.current_site',
+    
+    'askbot.context.application_settings',
 )
 
 

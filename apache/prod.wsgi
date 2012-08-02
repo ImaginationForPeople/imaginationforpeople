@@ -13,3 +13,6 @@ sys.path.append('/home/www/virtualenvs/imaginationforpeople.org/imaginationforpe
 
 import django.core.handlers.wsgi
 application = django.core.handlers.wsgi.WSGIHandler()
+
+import djcelery
+djcelery.setup_loader()
