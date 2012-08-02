@@ -1,0 +1,11 @@
+{% load thumbnail %}
+
+{% if picture.url %}<a href="{{ picture.url }}">{% endif %}
+{% ifequal placeholder "Infoblock Picture 1" %}
+    <img src="{% thumbnail picture.image 250x250 upscale=1 crop=1 %}"{% if picture.alt %} alt="{{ picture.alt }}"{% endif %} />
+{% endifequal %}
+{% ifequal placeholder "Infoblock Picture 2" %}
+    <img src="{% thumbnail picture.image 250x250 upscale=1 crop=1 %}"{% if picture.alt %} alt="{{ picture.alt }}"{% endif %} />
+{% endifequal %}
+
+{% if picture.url %}</a>{% endif %}

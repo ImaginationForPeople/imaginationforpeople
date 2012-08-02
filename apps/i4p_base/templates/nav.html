@@ -1,6 +1,4 @@
 {% load i18n %}
-{% load localeurl_tags %}
-
 
 {% block nav %}	
 	
@@ -31,12 +29,9 @@
 					<ul>
                         {% if project_translation %}
 						<li><div class="categ-button first"><a href="{% url project_sheet-show project_translation.slug %}" {% if project_tab %}class="selected"{% endif %}>{% trans "Project" %}</a></div></li>
-						<li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}" {% if history_tab %}class="selected"{% endif %}>{% trans "History" %}</a></div></li>
-						<!--
-						<li><div class="categ-button"><a href="#">Filters</a></div></li>
-						<li><div class="categ-button"><a href="#">Help</a></div></li>
-						<li><div class="categ-button2"><a href="#"><span class="georgia">My</span> imagination for people</a></div></li>
-						-->
+						
+                            <li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}" {% if history_tab %}class="selected"{% endif %}>{% trans "History" %}</a></div></li>
+                        
                        {% else %}
                         <li><div class="categ-button first"><a href="#" class="selected">{% trans "Project" %}</a></div></li>
                        {% endif %}
@@ -59,7 +54,9 @@
 								  {% for translation in project_translation.project.translations.all %}
 								  <!-- FIXME - if possible, the title and the text next the flag must been the full language name, and NOT the abreviation ! -->
 								  <li>
-								    <a href="{% locale_url translation.language_code project_sheet-show translation.slug %}"><img src="{{ STATIC_URL }}images/flags/{{ translation.language_code }}.gif" title="{{ translation.language_code }}" />{{ translation.language_code }}</a>
+								    {% language translation.language_code %}
+								    <a href="{% url project_sheet-show translation.slug %}"><img src="{{ STATIC_URL }}images/flags/{{ translation.language_code }}.gif" title="{{ translation.language_code }}" />{{ translation.language_code }}</a>
+								    {% endlanguage %}
 								    {% endfor %}		
 								    
 								  </li>

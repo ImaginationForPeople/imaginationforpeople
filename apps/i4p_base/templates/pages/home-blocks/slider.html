@@ -15,11 +15,11 @@
                     <div class="project_title_cover"></div>
                     
                     {% if project_translation.project.pictures.all %}
-                        <div class="project_photo" style="background-image:url('{% thumbnail project_translation.project.pictures.all.0.original_image.url '195x290' quality=80 crop %}');">
+                        <div class="project_photo" style="background-image:url('{% thumbnail project_translation.project.pictures.all.0.original_image.name '195x290' upscale=1 quality=80 crop %}');">
                     {% else %}
                     <div class="project_photo" style="background-image:url('{{ STATIC_URL }}images/home/no-photo.jpg');">
                     {% endif %}
-                        <table><tr><td><span>{{ project_translation.title }}</span></td></tr></table>
+                        <table><tr><td><span><a href="{{ project_translation.get_absolute_url }}">{{ project_translation.title|slice:":40" }}</a></span></td></tr></table>
                     </div>
                     
                 </a>

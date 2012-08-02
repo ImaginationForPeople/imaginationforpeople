@@ -7,28 +7,27 @@
     <div id="footer" class="center container_18">
         
         <div class="grid_5 alpha"> 
-            <a href="{% url i4p-index %}">
-                
-                <!-- FIXME PLACEHOLDERS -->
-                <img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="Imagination for People" width="197" height="68" />
-                {% comment %}
-                {% placeholder footer-logo or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="Imagination for People" width="197" height="68" />{% endplaceholder %}
-                {% endcomment %}
-                
+            <a href="{% page_url 'homepage' %}">
+
+	      {% if request.current_page.is_home  %}
+                {% placeholder "footer logo" or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="{{ site.name }}" width="197" height="68" />{% endplaceholder %}                
+	      {% else %}
+	        {% show_placeholder "footer logo" "homepage" %}
+              {% endif %}
             </a>
             
             <br /><br />
             <div class="baseline">
-            
-                <!-- FIXME PLACEHOLDERS -->
-                A community of imaginative citizens to detect and develop socially innovative projects.
-                {% comment %}
-                {% placeholder baseline or %}A community of imaginative citizens to detect and develop socially innovative projects.{% endplaceholder %}
-                {% endcomment %}
-                
+	      {% if request.current_page.is_home  %}
+                {% placeholder "footer-baseline" or %}{% trans "A community of imaginative citizens to detect and develop socially innovative projects." %}{% endplaceholder %}
+	      {% else %}
+	        {% show_placeholder "footer-baseline" "homepage" %}
+	      {% endif %}
             </div>
+
+	      {% if request.current_page.is_home  %}
+                {% placeholder "footer-follow" or %}
             <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto' %}</a> | <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
-            
             <br /><br /><br />
             
             <h1>{% trans 'Follow us' %}</h1>
@@ -40,13 +39,20 @@
             </ul>
             
             <br />
+	    {% endplaceholder %}
+	      {% else %}
+	        {% show_placeholder "footer-follow" "homepage" %}
+	      {% endif %}
+
             
         </div>
         
         <div class="grid_1">&nbsp;</div>
         
         <div class="grid_6">
-        
+
+      {% if request.current_page.is_home  %}
+	  {% placeholder "footer-resources" or %}
             <div class="concept">
                 <img src="{{ STATIC_URL }}images/base/projet-picto.png" alt="{% trans 'Projects' %}" width="52" height="52" />
                 <div class="concept_detail">
@@ -57,9 +63,9 @@
             </div>
             
             <div class="concept">
-                <img src="{{ STATIC_URL }}images/base/groupes-picto.png" alt="{% trans 'Groupes' %}" width="52" height="52" />
+                <img src="{{ STATIC_URL }}images/base/groupes-picto.png" alt="{% trans 'Groups' %}" width="52" height="52" />
                 <div class="concept_detail">
-                    <h1>{% trans 'Groupes' %}</h1>
+                    <h1>{% trans 'Groups' %}</h1>
                     <p>{% trans 'Connect with a community of citizens from over 30 countries.' %}</p>
                     <a href="{% url userena_profile_list %}">{% trans 'The community' %}</a> | <a href="{% url userena_signup %}">{% trans 'Join the community' %}</a>
                 </div>
@@ -68,13 +74,14 @@
             <div class="concept">
                 <img src="{{ STATIC_URL }}images/base/ressources-picto.png" alt="{% trans 'Ressources' %}" width="52" height="52" />
                 <div class="concept_detail">
-                    <h1>{% trans 'Ressources' %}</h1>
+                    <h1>{% trans 'Resources' %}</h1>
                     <p>{% trans 'Discover the latest tools, methods and debates in the world of social innovation.' %}</p>
-                    <a href="#">{% trans 'Ressources (WIP)' %}</a>
+                    <a href="#">{% trans 'Resources' %}</a>
                 </div>
             </div>
-
-
+       {% endplaceholder %}
+	    {% show_placeholder "footer-baseline" "homepage" %}
+       {% endif %}
         
         </div>
         
@@ -83,17 +90,16 @@
         <div class="grid_5 omega">
             <p class="licences">
             
-            <!-- FIXME PLACEHOLDERS -->
-            <strong>Imaginationforpeople.org</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.
-            {% comment %}
-            {% placeholder licences or %}<strong>Imaginationforpeople.org</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.{% endplaceholder %}
-            {% endcomment %}
-
+            {% blocktrans with site.name as url %} "<strong>{{ url }}</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
+	    {% endblocktrans %}
           </p>
             
             <br />
             <img src="{{ STATIC_URL }}images/base/licences-logo.png" alt="Creative Commons | AGPL" width="188" height="42" />
             <br /><br />
+
+      {% if request.current_page.is_home  %}
+	    {% placeholder "footer-contribute" or %}
             <h1>{% trans 'Contribute' %}</h1>
             <div class="left contrib-links">
                 <a href="/contribute/">{% trans 'Translator' %}</a><br />
@@ -106,14 +112,20 @@
                 <a href="/contribute/">{% trans 'Seeder' %}</a><br />
                 <a href="/contribute/">{% trans 'Q&A' %}</a><br />
             </div>
-            
-            <div class="clear"></div><br />
+       {% endplaceholder %}
+	    {% show_placeholder "footer-contribute" "homepage" %}
+       {% endif %}
 
-            <h1>{% trans 'Newsletter' %}</h1>
-            <form action="#" class="newsletter">
-                <input type="submit" value="&nbsp;">
-                <input type="text" maxlength="100" name="text" id="id_text" class="example">
-            </form>
+            <div class="clear"></div><br />
+            
+            {% comment %}
+                <h1>{% trans 'Newsletter' %}</h1>
+                <form action="#" class="newsletter">
+                    <input type="submit" value="&nbsp;">
+                    <input type="text" maxlength="100" name="text" id="id_text" class="example">
+                </form>            
+            {% endcomment %}
+
         </div>
         
         <div class="clear"></div>

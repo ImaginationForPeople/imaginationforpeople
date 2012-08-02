@@ -40,15 +40,14 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
-from localeurl.templatetags.localeurl_tags import chlocale
 from reversion.models import Version
 
-from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
-from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
 from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm
+from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
+from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS, Question
 from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -221,7 +220,7 @@ def project_sheet_show(request, slug, add_media=False):
 
     for topic in Topic.objects.filter(site_topics=project.topics.all()):
         questions = []
-        for question in topic.questions.all():
+        for question in topic.questions.all().order_by('weight'):
             answers = Answer.objects.filter(project=project, question=question)
             questions.append([question, answers and answers[0] or None])
         topics.append([topic, questions])
@@ -275,14 +274,17 @@ def project_sheet_create_translation(request, project_slug):
         current_project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
                                                                       language_code=current_language_code)
     except I4pProjectTranslation.DoesNotExist:
-        return Http404()
+        return Http404
 
     requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
                                                                                   language_code=requested_language_code,
                                                                                   default_title=current_project_translation.title)
 
+    current_language = translation.get_language()
+    translation.activate(requested_language_code)
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
-    return redirect(chlocale(url, requested_language_code))
+    translation.activate(current_language)
+    return redirect(url)
 
 def project_sheet_edit_location(request, slug):
     language_code = translation.get_language()
@@ -313,7 +315,51 @@ def project_sheet_edit_location(request, slug):
 
     return redirect(project_translation)
 
+def project_sheet_edit_question(request, slug, question_id):
+    """
+    Edit a question for a given project sheet translation 
 
+    FIXME: Not sure if this is secure. Question may be assigned to
+    projects that doesn't link to them.
+    """
+    language_code = translation.get_language()
+
+    # Get project
+    try:
+        project_translation = get_project_translation_by_slug(slug, language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    # Get question
+    question = get_object_or_404(Question, id=question_id)
+
+    # Lookup the answer. If does not exist, create it.
+    try:
+        answer = Answer.objects.untranslated().get(project=project_translation.project,
+                                                   question=question)
+        if not language_code in answer.get_available_languages():
+            answer.translate(language_code)
+    except Answer.DoesNotExist:
+        answer = Answer.objects.create(project=project_translation.project, question=question)
+    answer.save()
+
+    answer_form = AnswerForm(request.POST, instance=answer)
+
+    if request.method == 'POST':
+        if answer_form.is_valid():
+            answer = answer_form.save()
+            return redirect(project_translation)
+
+    context = {}
+    context['answer_form'] = answer_form
+    context['question_id'] = question_id
+    context['project_slug'] = slug
+
+    return render_to_response(template_name="project_sheet/project_edit_question.html",
+                              dictionary=context,
+                              context_instance=RequestContext(request))
+
+    
 
 def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
     """
@@ -325,6 +371,7 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
         topic = get_object_or_404(Topic,
                                   slug=topic_slug)
 
+    
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(field,))
     context = {}
 
@@ -362,7 +409,7 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
         context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
         context['project_tab'] = True
         context['project'] = project_translation.project
-    else:
+    elif topic_slug:
         context['topic'] = topic
 
     context["%s_form" % field] = form

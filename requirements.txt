@@ -1,21 +1,25 @@
-django==1.3.1
+django==1.4
 psycopg2==2.4.1
-south==0.7.3
+south==0.7.5
 
 django-extensions==0.6
 
--e hg+https://bitbucket.org/carljm/django-localeurl@48e3391e31975300ef9dddb1cb9d61cabe8b045e#egg=django-localeurl
 django-countries==1.0.5
 
 django-tagging==0.3.1
 django-autoslug==1.4.1
--e git+https://github.com/ImaginationForPeople/django-cms.git@master#egg=django-cms
 
+# Django cms 2.3rc2.post0
+-e git+https://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
+
+#Migration failed on recent postgres.  Use our own branch in the meantime
+#-e git+https://github.com/CommOnEcoute/cmsplugin_facebook.git@8416f8506eb77ed9954dc12aa1f4b6eebe68d39c#egg=cmsplugin-facebook
+-e git://github.com/ImaginationForPeople/cmsplugin_facebook.git@2f8c199fd1884b8ebc7eb7fffdb7a93f274af73e#egg=cmsplugin-facebook
 django-imagekit==0.3.6
 Pillow==1.7.4
 
-whoosh==1.1.1
-django-haystack==1.1.0
+whoosh==1.8.4
+django-haystack==1.2.7
 
 django-voting==0.1
 django-annoying==0.7.4
@@ -41,19 +45,20 @@ linaro-django-pagination==2.0.2
 
 -e git+https://github.com/jezdez/django_compressor.git@8c7961d2eb778edce2f1e101121629b96f93aba5#egg=django_compressor
 
--e git+https://github.com/jtauber/django-notification.git@555b506a3e225d476d17939d8b43f853fd0226ec#egg=django-notification
+#-e git+https://github.com/jtauber/django-notification.git@555b506a3e225d476d17939d8b43f853fd0226ec#egg=django-notification
+-e git+https://github.com/liberation/django-notification.git@75867589ad63078cba8271d228920a66a02833b0#egg=django-notification
 -e hg+https://bitbucket.org/atiberghien/django-licenses@365f65fa7148312372783af370e37f80bd3787d5#egg=django-licenses
 
 -e git+https://github.com/ImaginationForPeople/django-oembed-works#egg=django-oembed-works
 django-userena==1.0.2
-django-social-auth==0.6.6
+django-social-auth==0.6.9
 
 -e git+https://github.com/jorgebastida/django-dajaxice.git@d5a70654fbcd7241fbdfaf5a89fea2746cd25369#egg=django-dajaxice
 -e git+https://github.com/jorgebastida/django-dajax.git@510a6c3e267ce7b2a5423a7e8bcca191956247ed#egg=django-dajax
 
 -e git+https://github.com/SpreadBand/django-backcap.git@79c6494d4d05587f4699947987b12d4a9322efdc#egg=django-backcap
 
--e git+https://github.com/etianen/django-reversion.git@a373e8acae497da7b6e69cf53b6c1ae02e798776#egg=django-reversion
+django-reversion==1.6.1
 
 -e git+https://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
 

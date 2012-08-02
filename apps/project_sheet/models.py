@@ -27,6 +27,7 @@ from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
+from django.core.urlresolvers import reverse
 from django.core.mail import mail_managers
 from django.db import models
 from django.db.models.signals import post_save, post_delete
@@ -38,7 +39,6 @@ from django.utils import translation
 from autoslug.fields import AutoSlugField
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
-from localeurl.models import reverse
 from nani.models import TranslatableModel, TranslatedFields
 import reversion
 from reversion.models import Version
@@ -142,7 +142,8 @@ class I4pProject(models.Model):
 
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
 
-    topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'))
+    topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'),
+                                    related_name='projects')
 
     # dynamicsites
     site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), 
@@ -246,13 +247,16 @@ class I4pProjectTranslation(models.Model):
     about_section = models.TextField(_("about the project"), null=True, blank=True)
     partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
     callto_section = models.TextField(_("Help request"), null=True, blank=True)
-    
 
     themes = TagField(_("Themes of the project"), null=True, blank=True)
 
     # @models.permalink
     def get_absolute_url(self):
-        return reverse('project_sheet-show', kwargs={'slug': self.slug, 'locale':self.language_code})
+        current_language = translation.get_language()
+        translation.activate(self.language_code)
+        url = reverse('project_sheet-show', kwargs={'slug': self.slug})
+        translation.activate(current_language)
+        return url
 
 
     def __unicode__(self):

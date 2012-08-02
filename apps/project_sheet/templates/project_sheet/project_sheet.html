@@ -1,7 +1,6 @@
 ﻿{% extends "project_sheet/project_base.html" %}
 
 {% load i18n %}
-{% load localeurl_tags %}
 {% load tagging_tags %}
 {% load compress %}
 {% load honeypot %}
@@ -16,7 +15,7 @@
     {% else %}
         {% trans 'start project'|capfirst %}
     {% endif %}
-    | Imagination for People
+    | {{ site.name }}
 {% endblock %}
 
 {% block style %}
@@ -661,7 +660,7 @@ data: '{{ project_status_choices|safe }}',
                 		<h2>{{ q.content|capfirst }}</h2>
                 	</div>
                 		{% if project_instance %}
-                			<form class="project_details_body_edit" action="{% url project_sheet-instance-edit-field project_instance.slug 'answer_content' %}" method="post">{% csrf_token %}
+                			<form class="project_details_body_edit" action="{% url project_sheet-instance-edit-question project_instance.slug q.id %}" method="post">{% csrf_token %}
                 		{% else %}
                 			<form class="project_details_body_edit" action="{% url project_sheet-edit-field topic.slug 'answer_content' %}" method="post">{% csrf_token %}
                 		{% endif %}
@@ -673,7 +672,7 @@ data: '{{ project_status_choices|safe }}',
                 	{% if project_translation %}
                 		<div id="question-{{q.id}}" class="project_details_title_edit">
                 			<h2>{{ q.content|capfirst }}</h2>
-                			<a href="{% url project_sheet-instance-edit-field project_translation.slug 'answer_content' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+                			<a href="{% url project_sheet-instance-edit-question project_translation.slug q.id %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
                 		</div>
                 		{% if a.content %}
                 			<!-- PARAGRAPH - filled -->

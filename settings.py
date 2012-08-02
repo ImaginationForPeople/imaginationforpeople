@@ -4,13 +4,10 @@
 import os
 import re
 import sys
-import socket
 from django.utils.translation import ugettext_lazy as _
 
 # Import settings for the given site
 from site_settings import *
-
-from apps.member.utils import fix_username
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
@@ -105,15 +102,12 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-#    'cms.middleware.multilingual.MultilingualURLMiddleware',
-
     ## The order of these locale middleware classes matters
-    # Default django language selection, detects browser language preference
-    'django.middleware.locale.LocaleMiddleware',
     # Language selection based on profile
-    'userena.middleware.UserenaLocaleMiddleware',
     # URL based language selection (eg. from top panel)
-    'localeurl.middleware.LocaleURLMiddleware',
+    # We don't use django cms one, for compatibility reasons
+    'django.middleware.locale.LocaleMiddleware',
+    #'userena.middleware.UserenaLocaleMiddleware',
 
     'honeypot.middleware.HoneypotMiddleware',
 
@@ -177,7 +171,6 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     # External Apps
     'dynamicsites',
-    'localeurl',
     'south',
     'django_nose',
     'django_extensions',
@@ -242,6 +235,8 @@ INSTALLED_APPS = (
     'cms.plugins.teaser',
     'cms.plugins.snippet',
 
+    'cmsplugin_facebook',
+
     # Internal Apps
     'apps.i4p_base',
     'apps.member',
@@ -285,30 +280,24 @@ USERENA_MUGSHOT_PATH = 'mugshots/'
 USERENA_DEFAULT_PRIVACY = 'open'
 
 ## Social auth
-SOCIAL_AUTH_USERNAME_FIXER = fix_username
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_location', 'user_website',
                                  'user_work_history']
 GOOGLE_OAUTH_EXTRA_SCOPE = ['https://www.googleapis.com/auth/userinfo.profile']
-SOCIAL_AUTH_ASSOCIATE_BY_MAIL = True
+
 # Catch social auth exceptions even in debug mode
-SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+SOCIAL_AUTH_RAISE_EXCEPTIONS = DEBUG
 SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.social_auth_user',
     'social_auth.backends.pipeline.associate.associate_by_email',
     'social_auth.backends.pipeline.user.get_username',
-    'social_auth.backends.pipeline.user.create_user',
-    'apps.member.social.custom_associate_user', # Override default pipeline function
+    'apps.member.social.create_user',
+    'apps.member.social.associate_user', # Override default pipeline function
     'social_auth.backends.pipeline.social.load_extra_data',
     'social_auth.backends.pipeline.user.update_user_details'
 )
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
-
-# localeurl/monther-tongue
-PREFIX_DEFAULT_LOCALE = True
-LOCALEURL_USE_ACCEPT_LANGUAGE = True
-LOCALEURL_USE_SESSION = True
 
 # Userena
 ANONYMOUS_USER_ID = -1
@@ -363,12 +352,8 @@ LOGIN_REDIRECT_URL = '/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
 
+# XXX To be removed as soon as google login is confirmed working
 LOCALE_INDEPENDENT_PATHS = (
-        re.compile('^/static/.*$'),
-        re.compile('^/admin/.*$'),
-        re.compile('^/media/.*$'),
-        re.compile('^/robots.txt$'),
-        re.compile('^/sitemap.xml$'),
         re.compile('^/member/complete/google-oauth2/?'),
 	)
 
@@ -408,11 +393,6 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.cssmin.CSSMinFilter'
     )
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-
 ### COMPRESOR
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
@@ -431,7 +411,7 @@ TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
                           'convert_urls': False,
                           'plugins': "contextmenu",
                           'width': '90%',
-                          'height': '500px'}
+                          'height': '300px'}
 TINYMCE_FILEBROWSER = True
 FILEBROWSER_USE_UPLOADIFY = False
 
@@ -442,9 +422,13 @@ DEFAULT_HEADER_SENDER = "Imagination For People Newsletter <contact@imaginationf
 CMS_PERMISSION = True
 
 CMS_TEMPLATES = (
+  ('pages/homepage.html', _('Homepage')),
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
+  ('pages/onemenu.html', _('One menu page')),
 )
 
-APPEND_SLASH = False
+CMS_SOFTROOT = True
+APPEND_SLASH = True
 
+NANI_TABLE_NAME_SEPARATOR = ''

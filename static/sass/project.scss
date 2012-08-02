@@ -1,6 +1,11 @@
 @import "mixin.scss";
 
 
+.categories .menu{
+    position:relative;
+    top:-30px;
+}
+
 /* ----------Project Body - CREATION + EDITION ----------- */
 
 form{
@@ -502,7 +507,7 @@ form{
 	width:100%;
 	float:left;
 	padding-bottom:3px;
-    height: 19px;
+    position:relative;
     
     h2{
         margin:0px;
@@ -517,6 +522,7 @@ form{
         top:-1px;
         right:-15px;
         float:right;
+        position:absolute;
     }
 }
 
@@ -715,7 +721,7 @@ form{
         position:absolute;
         right:7px;
         top:10px;
-        z-index:1500;
+        z-index:250;
         
         #del_media_inactive{
             background-color:#c4c4c4;
@@ -732,7 +738,7 @@ form{
 .metadata{
 	position:absolute;
 	left:0px;
-	z-index:1000;
+	z-index:200;
 	padding:10px;
 	background-image:url("../images/base/black.png");
 	width:683px;
@@ -1645,7 +1651,11 @@ ul#themes_tags li.tagit-choice {
 
 
 .search {
-    float:left;
+    float:right;
+    
+    form{
+        width:auto;
+    }
 }
 
 

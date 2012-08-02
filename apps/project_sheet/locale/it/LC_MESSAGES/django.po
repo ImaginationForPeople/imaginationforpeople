@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-14 11:00+0200\n"
-"PO-Revision-Date: 2012-03-19 12:59+0000\n"
+"POT-Creation-Date: 2012-05-21 15:14+0200\n"
+"PO-Revision-Date: 2012-05-19 18:32+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Italian <ip-it@lists.imaginationforpeople.org>\n"
 "Language: it\n"
@@ -30,11 +30,11 @@ msgstr "Con i leader connessi"
 msgid "Without associated leaders"
 msgstr "Senza i leader connessi"
 
-#: filters.py:266
+#: filters.py:269
 msgid "World"
 msgstr "Mondo"
 
-#: models.py:59 models.py:307
+#: models.py:59 models.py:320
 msgid "description"
 msgstr "descrizione"
 
@@ -62,7 +62,7 @@ msgstr "In sviluppo"
 msgid "Mature"
 msgstr "Maturo"
 
-#: models.py:109 models.py:308
+#: models.py:109 models.py:321
 msgid "author"
 msgstr "autore"
 
@@ -74,7 +74,7 @@ msgstr "membri"
 msgid "best of"
 msgstr "meglio di"
 
-#: models.py:120 models.py:306
+#: models.py:120 models.py:319
 msgid "creation date"
 msgstr "data creazione"
 
@@ -86,7 +86,7 @@ msgstr "obiettivi"
 msgid "website"
 msgstr "sito internet"
 
-#: models.py:131 models.py:231
+#: models.py:131 models.py:234
 msgid "status"
 msgstr "stato"
 
@@ -102,90 +102,115 @@ msgstr "località"
 msgid "topics"
 msgstr ""
 
-#: models.py:148
+#: models.py:149
 msgid "The sites that the project sheet is accessible at."
 msgstr ""
 
-#: models.py:148
-#, fuzzy
+#: models.py:150
 msgid "sites"
-msgstr "sito internet"
+msgstr ""
 
-#: models.py:186
+#: models.py:189
 msgid "Weight"
 msgstr ""
 
-#: models.py:188 models.py:198
+#: models.py:191 models.py:201
 msgid "Content"
 msgstr ""
 
-#: models.py:213
+#: models.py:216
 msgid "In edition"
 msgstr "In edizione"
 
-#: models.py:214
+#: models.py:217
 msgid "Complete"
 msgstr "Completo"
 
-#: models.py:221
+#: models.py:224
 msgid "language"
 msgstr "linguaggio"
 
-#: models.py:225
+#: models.py:228
 msgid "title"
 msgstr "titolo"
 
-#: models.py:226
+#: models.py:229
 msgid "My Project Title"
 msgstr "Titolo del Mio Progetto"
 
-#: models.py:237
+#: models.py:240
 msgid "one line description"
 msgstr "descrizione a una linea"
 
-#: models.py:241 templates/project_sheet/project_sheet.html:561
+#: models.py:244 templates/project_sheet/project_sheet.html:568
 msgid "One line description"
 msgstr "Descrizione a una linea"
 
-#: models.py:244 templates/project_sheet/about_section.html:3
+#: models.py:247 templates/project_sheet/about_section.html:3
 msgid "about the project"
 msgstr "sul progetto"
 
-#: models.py:245 templates/project_sheet/partners_section.html:6
+#: models.py:248 templates/project_sheet/partners_section.html:6
 #: templates/project_sheet/partners_section.html:20
 #: templates/project_sheet/partners_section.html:32
 msgid "who are the partners of this project"
 msgstr "chi sono partner di questo progetto"
 
-#: models.py:246
+#: models.py:249
 msgid "Help request"
 msgstr "Richiesta d'aiuto"
 
-#: models.py:249
+#: models.py:255 templates/project_sheet/uniqueness_section.html:5
+#: templates/project_sheet/uniqueness_section.html:19
+#: templates/project_sheet/uniqueness_section.html:31
+msgid "in what ways is this project unique and creative"
+msgstr "in che modi il progetto è unico e creativo"
+
+#: models.py:256
+msgid "what is the social value of this project"
+msgstr ""
+
+#: models.py:257 templates/project_sheet/scalability_section.html:6
+#: templates/project_sheet/scalability_section.html:20
+#: templates/project_sheet/scalability_section.html:32
+msgid "what is the potential of this project to expand and develop"
+msgstr "qual è il potenziale di questo progetto di espandersi e svilupparsi"
+
+#: models.py:258 templates/project_sheet/triggering_factor_section.html:6
+#: templates/project_sheet/triggering_factor_section.html:20
+#: templates/project_sheet/triggering_factor_section.html:32
+msgid "what was the triggering factor of this project"
+msgstr "qual è stato il fattore scatenante del progetto"
+
+#: models.py:259
+msgid "what is the business model of the project"
+msgstr ""
+
+#: models.py:262
 msgid "Themes of the project"
 msgstr "Temi del progetto"
 
-#: models.py:309
+#: models.py:322
 msgid "source"
 msgstr "fonte"
 
-#: models.py:310
+#: models.py:323
 msgid "license"
 msgstr "licenza"
 
-#: models.py:338
+#: models.py:351
 msgid "role"
 msgstr "ruolo"
 
-#: models.py:343
+#: models.py:356
 msgid "comment"
 msgstr "commento"
 
-#: models.py:356
+#: models.py:369
 msgid "New project/translation added"
 msgstr "Nuovo progetto/traduzione aggiunta"
 
-#: models.py:362
+#: models.py:375
 msgid "A member has joined a project"
 msgstr "Un membro si è unito al progetto"
 
@@ -218,10 +243,10 @@ msgstr "Posta un commento"
 #: templates/project_sheet/partners_section.html:33
 #: templates/project_sheet/project_sheet.html:262
 #: templates/project_sheet/project_sheet.html:527
-#: templates/project_sheet/project_sheet.html:556
-#: templates/project_sheet/project_sheet.html:562
-#: templates/project_sheet/project_sheet.html:572
-#: templates/project_sheet/project_sheet.html:676
+#: templates/project_sheet/project_sheet.html:563
+#: templates/project_sheet/project_sheet.html:569
+#: templates/project_sheet/project_sheet.html:581
+#: templates/project_sheet/project_sheet.html:688
 #: templates/project_sheet/references_section.html:7
 #: templates/project_sheet/scalability_section.html:33
 #: templates/project_sheet/triggering_factor_section.html:33
@@ -238,9 +263,9 @@ msgstr "Modifica"
 #: templates/project_sheet/project_sheet.html:350
 #: templates/project_sheet/project_sheet.html:384
 #: templates/project_sheet/project_sheet.html:517
-#: templates/project_sheet/project_sheet.html:548
-#: templates/project_sheet/project_sheet.html:624
-#: templates/project_sheet/project_sheet.html:657
+#: templates/project_sheet/project_sheet.html:555
+#: templates/project_sheet/project_sheet.html:636
+#: templates/project_sheet/project_sheet.html:669
 #: templates/project_sheet/scalability_section.html:14
 #: templates/project_sheet/triggering_factor_section.html:14
 #: templates/project_sheet/uniqueness_section.html:13
@@ -258,9 +283,9 @@ msgstr "Ok"
 #: templates/project_sheet/project_sheet.html:349
 #: templates/project_sheet/project_sheet.html:383
 #: templates/project_sheet/project_sheet.html:516
-#: templates/project_sheet/project_sheet.html:549
-#: templates/project_sheet/project_sheet.html:625
-#: templates/project_sheet/project_sheet.html:658
+#: templates/project_sheet/project_sheet.html:556
+#: templates/project_sheet/project_sheet.html:637
+#: templates/project_sheet/project_sheet.html:670
 #: templates/project_sheet/scalability_section.html:15
 #: templates/project_sheet/triggering_factor_section.html:15
 #: templates/project_sheet/uniqueness_section.html:14
@@ -428,7 +453,7 @@ msgid "DATETIME_FORMAT"
 msgstr "DATETIME_FORMAT"
 
 #: templates/project_sheet/history.html:18
-#: templates/project_sheet/project_sheet.html:576
+#: templates/project_sheet/project_sheet.html:585
 msgid "by"
 msgstr "da"
 
@@ -559,8 +584,8 @@ msgstr ""
 "diffusa ed adattata in altri posti o contesti culturali."
 
 #: templates/project_sheet/project_list.html:8
-msgid "Find project on Imagination for People"
-msgstr "Trova progetto su Imagination for People"
+msgid "Find projects on "
+msgstr ""
 
 #: templates/project_sheet/project_list.html:71
 msgid "Last projects"
@@ -593,7 +618,7 @@ msgid "This bloc is empty : don’t forget to fill it !"
 msgstr "Questo blocco è vuoto: non dimenticare di riempirlo!"
 
 #: templates/project_sheet/project_sheet.html:387
-#: templates/project_sheet/project_sheet.html:670
+#: templates/project_sheet/project_sheet.html:682
 #: templates/project_sheet/uniqueness_section.html:26
 #: templates/project_sheet/value_section.html:27
 msgid "This field is blank. Don’t forget to complete it!"
@@ -633,25 +658,25 @@ msgstr ""
 msgid "my project title"
 msgstr "titolo del mio progetto"
 
-#: templates/project_sheet/project_sheet.html:581
+#: templates/project_sheet/project_sheet.html:590
 msgid "anonymous"
 msgstr "anonimo"
 
-#: templates/project_sheet/project_sheet.html:587
+#: templates/project_sheet/project_sheet.html:596
 msgid "Location:"
 msgstr "Località:"
 
-#: templates/project_sheet/project_sheet.html:600
-#: templates/project_sheet/project_sheet.html:608
+#: templates/project_sheet/project_sheet.html:609
+#: templates/project_sheet/project_sheet.html:617
 msgid "unknown"
 msgstr "sconosciuto/a"
 
-#: templates/project_sheet/project_sheet.html:606
-#: templates/project_sheet/project_sheet.html:608
+#: templates/project_sheet/project_sheet.html:615
+#: templates/project_sheet/project_sheet.html:617
 msgid "Website:"
 msgstr "Sito internet:"
 
-#: templates/project_sheet/project_sheet.html:698
+#: templates/project_sheet/project_sheet.html:710
 #, python-format
 msgid ""
 "\n"
@@ -689,12 +714,6 @@ msgstr "Cancella & chiudi"
 msgid "Save & close"
 msgstr "Salva & chiudi"
 
-#: templates/project_sheet/scalability_section.html:6
-#: templates/project_sheet/scalability_section.html:20
-#: templates/project_sheet/scalability_section.html:32
-msgid "what is the potential of this project to expand and develop"
-msgstr "qual è il potenziale di questo progetto di espandersi e svilupparsi"
-
 #: templates/project_sheet/sidebar_related.html:14
 msgid "Objectives:"
 msgstr "Obiettivi:"
@@ -719,31 +738,12 @@ msgstr "Aggiungi un membro del team"
 msgid "Close & discard"
 msgstr "Chiudi & scarta"
 
-#: templates/project_sheet/topic_select_fragment.html:31
-#, fuzzy
+#: templates/project_sheet/topic_select_fragment.html:11
 msgid "Select your type of project"
-msgstr "Temi del progetto"
-
-#: templates/project_sheet/triggering_factor_section.html:6
-#: templates/project_sheet/triggering_factor_section.html:20
-#: templates/project_sheet/triggering_factor_section.html:32
-msgid "what was the triggering factor of this project"
-msgstr "qual è stato il fattore scatenante del progetto"
-
-#: templates/project_sheet/uniqueness_section.html:5
-#: templates/project_sheet/uniqueness_section.html:19
-#: templates/project_sheet/uniqueness_section.html:31
-msgid "in what ways is this project unique and creative"
-msgstr "in che modi il progetto è unico e creativo"
+msgstr ""
 
 #: templates/project_sheet/value_section.html:6
 #: templates/project_sheet/value_section.html:20
 #: templates/project_sheet/value_section.html:32
 msgid "What is the social value of this project"
 msgstr "Qual è il valore sociale di questo progetto"
-
-#~ msgid "what is the social value of this project"
-#~ msgstr "qual è il valore sociale di questo progetto"
-
-#~ msgid "what is the business model of the project"
-#~ msgstr "qual è il modello di business del progetto"

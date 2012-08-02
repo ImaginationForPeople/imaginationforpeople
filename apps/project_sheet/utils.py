@@ -124,8 +124,6 @@ def get_or_create_project_translation_by_slug(project_translation_slug, language
     the same language with a different slug can lead to duplicate
     projects.
     When possible, use the "_from_parent" version instead.
-
-    It can create the parent project if needed.
     """
     try:
         project_translation = get_project_translation_by_slug(project_translation_slug, language_code)
@@ -190,8 +188,8 @@ def fields_diff(previous_version, current_version, versionned_fields):
     Diff between two model fields
     """
     fields = []
-    previous_field_dict = previous_version.get_field_dict()
-    current_field_dict = current_version.get_field_dict()
+    previous_field_dict = previous_version.field_dict
+    current_field_dict = current_version.field_dict
     for field, value in current_field_dict.iteritems():
         if field in versionned_fields:
             if field in previous_field_dict:

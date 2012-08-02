@@ -12,7 +12,7 @@
     
     <meta name="keywords" content="{% block meta_keywords %}Imagin:nation for people, i4p, social, innovation sociale{% endblock %}" /> 
     <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
-    <title>{% block title %}Imagination for People | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
+    <title>{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
 
     {% compress css %}
@@ -33,7 +33,6 @@
     {% render_block "css" %}	
 
 
-    {% render_block "js" %}
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
@@ -43,132 +42,68 @@
     <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     {% endcompress %}
 
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
+    {% render_block "js" %}
+
     <script type="text/javascript">
       $(document).ready(function(){
-          $.reject({reject: {msie5: true,
-			    msie6: true,
-			    msie7: true
-			    },
-		   imagePath: '{{ STATIC_URL}}images/browsers/',
-		   header: "{% trans "Did you know that your Internet Browser is out of date?" %}",
-		   paragraph1: "{% trans "Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below." %}",
-		   paragraph2: "{% trans "Just click on the icons to get to the download page" %}",
-		   closeMessage: "{% trans "By closing this window you acknowledge that your experience on this website may be degraded" %}",
-		   closeLink: "{% trans "Close This Window" %}"
-	 });
-     
-     
-    // Login Slide opening
-    $("#toppanel .open-panel").click(function(){
-        $('#toppanel #panel').stop().animate({height : '190'}, "fast");
-    });
-    
-    $("#toppanel").mouseleave(function(){
-        $('#toppanel #panel').stop().animate({height : '0'}, 100);
-    });
-    
-		    
-	 $('.tipsed').tipsy({gravity: $.fn.tipsy.autoNS, delayIn: 300});
-
-         // Support panel
-	  $('#feedback').slidePanel({
-	      triggerName: '#feedback-trigger',
-	      position: 'fixed',
-	      triggerTopPos: '150px',
-	      panelTopPos: '0px',
-	      ajax: false
-	  });
-          var more = $('#feedback-tab textarea');
-          more.hide();
-          $('#feedback-tab #subject a.link').click(function() { more.fadeIn('fast'); });
-
       
-      	// Switch OpenID button to OpenID form in signin zone on click
-        $(".social-panel a.openid-button").click(function () {
-            $(".social-panel a.openid-button").hide();
-            $(".social-panel .openid-form").removeClass('hidden');
-        });	
-        
-        
-        $('.social-login img').tipsy({html: true });
+        // Reject for old browsers
+        $.reject({reject: {msie5: true,
+                msie6: true,
+                msie7: true
+                },
+            imagePath: "{{ STATIC_URL}}images/browsers/",
+            header: "{% trans 'Did you know that your Internet Browser is out of date?'|escapejs %}",
+            paragraph1: "{% trans 'Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below.'|escapejs %}",
+            paragraph2: "{% trans 'Just click on the icons to get to the download page'|escapejs %}",
+            closeMessage: "{% trans 'By closing this window you acknowledge that your experience on this website may be degraded'|escapejs %}",
+            closeLink: "{% trans 'Close This Window'|escapejs %}"
+        });
+            
+            
+        $(".social-login img").tipsy({html: true });
         
         
       	// Text example for forms
-        $('.search input[type=text]').example('{% trans "Project search" %}');
+        $(".search input[type=text]").example("{% trans 'Project search'|escapejs %}");
         
-        $('input[name=identification]').example('{% trans "Enter your login" %}');
-        $('input[name=password]').example('{% trans "Password" %}');
+        $("input[name=identification]").example("{% trans 'Enter your login'|escapejs %}");
+        $("input[name=password]").example("{% trans 'Password'|escapejs %}");
         
-        $('input[name=openid_identifier]').example('{% trans "Enter your username" %}');
+        $("input[name=openid_identifier]").example("{% trans 'Enter your username'|escapejs %}");
         
-        $('#footer .newsletter input[type=text]').example('{% trans "Enter your email adress" %}');
+        $(".newsletter input[type=text]").example("{% trans 'Enter your email adress'|escapejs %}");
 
         
         //Show new project topic popup when user click on add a project
         var popup_content = $("#new_project_style_popup_zone"); 
 
-        $('a.addproject_button').click(function(){
-            var url = $(this).attr('href');
+        
+        /*
+        $("a.addproject_button").click(function(){
+            var url = $(this).attr("href");
             
             popup_content.load("{% url project_sheet-start %} #new_project_style_popup");
-            $("#new_project_style_popup_zone").removeClass("hidden");
+            popup_content.removeClass("hidden");
             $.getScript("{{ STATIC_URL }}js/project_sheet/topics_select_popup.js");
             return false;
         });
-        
-        
-        // Opening of "projects hover menu"
-        $("#header #projects_list_button").hover(function(){
-            $(this).css('background-color', '#0f0f0f');
-            $('#projects-hover-menu-zone').stop().animate({height : '200'}, "fast");
-        }).mouseleave(function(){
-  
-            var hover_on = false;
-            var hover_count = 150;
-            
-            setTimeout(myMouseOut, hover_count);
-
-            $("#projects-hover-menu-zone").mouseover(function() {
-                hover_on = true;
-            });
-
-            $("#projects-hover-menu-zone").mouseout(function() {
-                hover_on = false;
-                setTimeout(myMouseOut, hover_count);
-            });
-            
-            $("#header #projects_list_button").mouseover(function(){
-                hover_on = true;
-            });
-            
-            $("#header #projects_list_button").mouseout(function(){
-                hover_on = false;
-                setTimeout(myMouseOut, hover_count);
-            });
-
-            function myMouseOut() {
-                if (hover_on) {
-                
-                }else{
-                    $("#header #projects_list_button").css('background-color', 'transparent');
-                    $('#projects-hover-menu-zone').stop().animate({height : '0'}, 100);
-                }
-            }
-   
-        });
+        */
         
         
         // Rollover for social networks links
         $("li.social-login a img").hover(function(){
-            $(this).attr('src', $(this).attr('src').replace('.png', '-on.png'));
+            $(this).attr("src", $(this).attr("src").replace(".png", "-on.png"));
             //$(this).stop().rotate({animateTo:360});
         }).mouseleave(function(){
-            $(this).attr('src', $(this).attr('src').replace('-on-on.png', '.png'));
+            $(this).attr("src", $(this).attr("src").replace("-on-on.png", ".png"));
             //$(this).stop().rotate({animateTo:0});
         });	
         
@@ -177,22 +112,22 @@
         
     </script>
 
-
-
     
     {% block extra_head %}{% endblock %}
+    
+    {% include "sites_specs.html" %}
     
     {% if not debug %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-21778007-2']);
-      _gaq.push(['_setDomainName', 'imaginationforpeople.org']);
-      _gaq.push(['_trackPageview']);
+      _gaq.push(["_setAccount", "UA-21778007-2"]);
+      _gaq.push(["_setDomainName", "imaginationforpeople.org"]);
+      _gaq.push(["_trackPageview"]);
    
      (function() {
-       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+        ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+       var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
       })();
     </script>
     {% endif %}

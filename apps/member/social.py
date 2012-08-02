@@ -29,8 +29,10 @@ import oauth2
 from social_auth.backends.contrib.linkedin import LinkedinBackend
 from social_auth.backends.facebook import FacebookBackend
 from social_auth.backends.google import GoogleOAuth2Backend
-from social_auth.backends.pipeline.social import associate_user
+import social_auth.backends.pipeline.user
+import social_auth.backends.pipeline.social
 from social_auth.backends.twitter import TwitterBackend
+from userena.models import UserenaSignup
 
 from apps.i4p_base.models import Location, I4P_COUNTRIES
 from .utils import fix_username
@@ -336,11 +338,28 @@ def fetch_profile_data(backend, profile, response):
 
         profile.save()
 
+def create_user(backend, details, response, uid, username, user=None, *args,
+                **kwargs):
+    """Create user. Depends on get_username pipeline."""
+    if user:
+        return {'user': user}
+    if not username:
+        return None
 
-def custom_associate_user(*args, **kwargs):
+    email = details.get('email')
+    return {
+        'user': UserenaSignup.objects.create_user(username=username, email=email, password=None, active=True, send_email=False),
+        'is_new': True
+    }
+
+
+
+def associate_user(*args, **kwargs):
     user = kwargs.get('user')
     request = kwargs.get('request')
+
     if user and request:
         profile = user.get_profile()
         request.session['django_language'] = profile.language
-    return associate_user(*args, **kwargs)
+
+    return social_auth.backends.pipeline.social.associate_user(*args, **kwargs)

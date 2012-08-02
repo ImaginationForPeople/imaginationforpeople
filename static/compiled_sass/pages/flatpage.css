@@ -1,35 +1,51 @@
-a {
+.content {
+  padding: 1em;
+}
+.content a {
   color: #04add1;
 }
-
-h1 {
+.content h1 {
   font-size: 20px;
   margin-top: 10px;
   margin-bottom: 15px;
   border-bottom: 1px solid grey;
 }
-
-h2 {
+.content h2 {
   font-size: 15px;
 }
-
-h3 {
+.content h3 {
   font-size: 10px;
 }
-
-p {
+.content p {
   font-size: 12px;
   text-align: justify;
   line-height: 17px;
-  margin-left: 30px;
-  margin-right: 30px;
+  /*
+  margin-left:30px;
+  margin-right:30px;
+  */
+  margin: 10px 0px;
 }
-
-hr {
+.content hr {
   margin-top: 20px;
   margin-bottom: 20px;
-  background-image: url("../images/base/separator.jpg");
+  background-image: url("../../images/base/separator.jpg");
   background-repeat: repeat-x;
   border: 0px;
   height: 2px;
+}
+.content ul, .content ol {
+  margin: 0;
+  margin-left: 2em;
+  padding: 0.2em;
+}
+.content ol > li {
+  display: list-item;
+  margin-left: 20px;
+  list-style-type: decimal;
+}
+.content ul > li {
+  display: list-item;
+  margin-left: 20px;
+  list-style-type: square;
 }

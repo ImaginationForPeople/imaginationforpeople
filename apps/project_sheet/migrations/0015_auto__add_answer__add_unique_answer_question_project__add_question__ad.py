@@ -44,20 +44,25 @@ class Migration(SchemaMigration):
         ))
         db.create_unique('project_sheet_i4pproject_topics', ['i4pproject_id', 'topic_id'])
 
-        # Deleting field 'I4pProjectTranslation.uniqueness_section'
-        db.delete_column('project_sheet_i4pprojecttranslation', 'uniqueness_section')
+        # Deactivated, same as 0024
+        # # Deleting field 'I4pProjectTranslation.uniqueness_section'
+        # db.delete_column('project_sheet_i4pprojecttranslation', 'uniqueness_section')
 
-        # Deleting field 'I4pProjectTranslation.business_model_section'
-        db.delete_column('project_sheet_i4pprojecttranslation', 'business_model_section')
+        # Deactivated, same as 0024
+        # # Deleting field 'I4pProjectTranslation.business_model_section'
+        # db.delete_column('project_sheet_i4pprojecttranslation', 'business_model_section')
 
-        # Deleting field 'I4pProjectTranslation.scalability_section'
-        db.delete_column('project_sheet_i4pprojecttranslation', 'scalability_section')
+        # Deactivated, same as 0024
+        # # Deleting field 'I4pProjectTranslation.scalability_section'
+        # db.delete_column('project_sheet_i4pprojecttranslation', 'scalability_section')
 
-        # Deleting field 'I4pProjectTranslation.value_section'
-        db.delete_column('project_sheet_i4pprojecttranslation', 'value_section')
+        # Deactivated, same as 0024
+        # # Deleting field 'I4pProjectTranslation.value_section'
+        # db.delete_column('project_sheet_i4pprojecttranslation', 'value_section')
 
-        # Deleting field 'I4pProjectTranslation.triggering_factor_section'
-        db.delete_column('project_sheet_i4pprojecttranslation', 'triggering_factor_section')
+        # Deactivated, same as 0024
+        # # Deleting field 'I4pProjectTranslation.triggering_factor_section'
+        # db.delete_column('project_sheet_i4pprojecttranslation', 'triggering_factor_section')
 
         # Removing M2M table for field site on 'I4pProjectTranslation'
         db.delete_table('project_sheet_i4pprojecttranslation_site')
@@ -80,20 +85,25 @@ class Migration(SchemaMigration):
         # Removing M2M table for field topics on 'I4pProject'
         db.delete_table('project_sheet_i4pproject_topics')
 
-        # Adding field 'I4pProjectTranslation.uniqueness_section'
-        db.add_column('project_sheet_i4pprojecttranslation', 'uniqueness_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
+        # Deactivated, same as 0024
+        # # Adding field 'I4pProjectTranslation.uniqueness_section'
+        # db.add_column('project_sheet_i4pprojecttranslation', 'uniqueness_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
 
-        # Adding field 'I4pProjectTranslation.business_model_section'
-        db.add_column('project_sheet_i4pprojecttranslation', 'business_model_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
+        # Deactivated, same as 0024
+        # # Adding field 'I4pProjectTranslation.business_model_section'
+        # db.add_column('project_sheet_i4pprojecttranslation', 'business_model_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
 
-        # Adding field 'I4pProjectTranslation.scalability_section'
-        db.add_column('project_sheet_i4pprojecttranslation', 'scalability_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
+        # Deactivated, same as 0024
+        # # Adding field 'I4pProjectTranslation.scalability_section'
+        # db.add_column('project_sheet_i4pprojecttranslation', 'scalability_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
 
-        # Adding field 'I4pProjectTranslation.value_section'
-        db.add_column('project_sheet_i4pprojecttranslation', 'value_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
+        # Deactivated, same as 0024
+        # # Adding field 'I4pProjectTranslation.value_section'
+        # db.add_column('project_sheet_i4pprojecttranslation', 'value_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
 
-        # Adding field 'I4pProjectTranslation.triggering_factor_section'
-        db.add_column('project_sheet_i4pprojecttranslation', 'triggering_factor_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
+        # Deactivated, same as 0024
+        # # Adding field 'I4pProjectTranslation.triggering_factor_section'
+        # db.add_column('project_sheet_i4pprojecttranslation', 'triggering_factor_section', self.gf('django.db.models.fields.TextField')(null=True, blank=True), keep_default=False)
 
         # Adding M2M table for field site on 'I4pProjectTranslation'
         db.create_table('project_sheet_i4pprojecttranslation_site', (
