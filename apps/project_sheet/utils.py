@@ -253,6 +253,11 @@ def get_project_project_translation_recent_changes(queryset):
 
     return history
 
-
-
-
+'''def gen_tag_list():
+    tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
+    tags_return = []
+    for tag in tags:
+        tagtoadd = (tag.name, tag)
+        tags_return.append(tagtoadd)
+        
+    return tags_return'''

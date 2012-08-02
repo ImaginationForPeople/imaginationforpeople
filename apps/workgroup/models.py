@@ -24,8 +24,6 @@ from cms.models.pluginmodel import CMSPlugin
 
 from django_mailman.models import List
 
-from .utils import gen_tag_list
-
 class WorkGroup(models.Model):
     """
     A workgroup in a given language, for a given thematic.
@@ -66,9 +64,3 @@ class WorkGroupCMS(CMSPlugin):
 
     def copy_relations(self, oldinstance):
         self.workgroup = oldinstance.workgroup
-
-class TagCMS(CMSPlugin):
-    tag = models.CharField(_('Tag'), choices=gen_tag_list(), max_length=50) 
-        
-    def copy_relations(self, oldinstance):
-        self.tag = oldinstance.tag

@@ -19,16 +19,12 @@ from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 
-from tagging.models import TaggedItem
-
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from cms.models.pluginmodel import CMSPlugin
 
-from .models import WorkGroupCMS, WorkGroup, TagCMS
+from .models import WorkGroupCMS, WorkGroup
 from .utils import get_ml_members
-
-from apps.project_sheet.models import I4pProjectTranslation
 
 class BaseWorkGroupPlugin(CMSPluginBase):
     """
@@ -81,21 +77,3 @@ class SubscribersWorkGroupPlugin(BaseWorkGroupPlugin):
         return u"Workgroup Subscribers %s" % self.workgroup.slug
 
 plugin_pool.register_plugin(SubscribersWorkGroupPlugin)
-
-class ProjectsForTagPlugin(CMSPluginBase):
-    """
-    List of all projects associated to a tag
-    """
-    name = _("Projects for a tag")
-    render_template = "workgroup/projects_for_tag.html"
-    model = TagCMS
-    
-    def render(self, context, instance, placeholder):
-        context["tag"] = TaggedItem.objects.get_by_model(I4pProjectTranslation, instance.tag)
-
-        return context
-
-    def __unicode__(self):
-        return u"Tag"
-
-plugin_pool.register_plugin(ProjectsForTagPlugin)
