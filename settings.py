@@ -122,18 +122,13 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.toolbar.ToolbarMiddleware',
 
 	#below is askbot stuff for this tuple
+    'askbot.middleware.view_log.ViewLogMiddleware',
     'askbot.middleware.anon_user.ConnectToSessionMessagesMiddleware',
     'askbot.middleware.forum_mode.ForumModeMiddleware',
     'askbot.middleware.cancel.CancelActionMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
 
-    'askbot.middleware.view_log.ViewLogMiddleware',
-    'askbot.middleware.spaceless.SpacelessMiddleware',
     
-    'askbot.middleware.anon_user.ConnectToSessionMessagesMiddleware',
-    'askbot.middleware.forum_mode.ForumModeMiddleware',
-    'askbot.middleware.cancel.CancelActionMiddleware',
-    'django.middleware.transaction.TransactionMiddleware',
     
 )
 
