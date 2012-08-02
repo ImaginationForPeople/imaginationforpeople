@@ -43,6 +43,7 @@ urlpatterns += i18n_patterns('',
     url(r'^workgroup/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
+    url(r'^wiki/', include('wiki.urls', namespace='wiki')),
     url(r'^feedback/', include('backcap.urls')),
 
     # Configure umessages compose view so that it uses recipient autocompletion

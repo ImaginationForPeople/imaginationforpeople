@@ -202,7 +202,8 @@ INSTALLED_APPS = (
     'simplegravatar',
     'social_auth',
 
-
+    'django_notify',
+    'wiki',
     #'grappelli',
     'filebrowser',
 

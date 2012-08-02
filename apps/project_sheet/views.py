@@ -23,7 +23,7 @@ try:
 except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
-
+    
 import datetime
 
 from django.core.urlresolvers import reverse
@@ -36,11 +36,14 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.utils import translation, simplejson
+from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
 from reversion.models import Version
+from tagging.models import TaggedItem, Tag
+from tagging.utils import get_tag
 
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
@@ -135,11 +138,8 @@ class ProjectStartView(TemplateView):
         return context
 
 
-from tagging.models import TaggedItem, Tag
-from tagging.utils import get_tag
-import tagging.views
-
-
+from wiki.models import Article, ArticleForObject
+from wiki.models import URLPath
 
 class TagPageView(TemplateView):
     template_name = 'project_sheet/tagpage.html'
@@ -153,7 +153,24 @@ class TagPageView(TemplateView):
         if tag_instance is None:
             raise Http404(_('No Tag found matching "%s".') % tag)
 
-        context['tag'] = tag        
+        try:
+            article_path = URLPath.get_by_path(tag)
+            article = Article.get_for_object(tag_instance)
+        except ArticleForObject.DoesNotExist:
+            root_path = URLPath.root()
+            
+            article_path = URLPath.create_article(
+                parent=root_path,
+                slug=tag,
+                site=site,
+                title=tag
+            )
+            article = article_path.article
+            article.add_object_relation(tag_instance)
+
+        context['article'] = article
+        context['article_path'] = article_path
+        context['tag'] = tag_instance
         context['related_tags'] = Tag.objects.related_for_model(tag_instance, 
                                                                 I4pProjectTranslation,
                                                                 counts=True)
