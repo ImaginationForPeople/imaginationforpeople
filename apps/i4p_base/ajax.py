@@ -1,7 +1,10 @@
-from django.db.models import Count
+import json
+
 from django.contrib import comments
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
+from django.db.models import Count
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils import translation
@@ -9,10 +12,10 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_GET
 from django.views.decorators.vary import vary_on_headers
 
+from haystack.query import SearchQuerySet
+
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translations_from_parents
-
-
 
 def _slider_make_response(request, queryset):
     count = int(request.GET.get('count', 14))
@@ -70,9 +73,12 @@ def slider_most_commented(request):
                               context_instance=RequestContext(request))
 
 
+def globalsearch_autocomplete(request):
+    from django.core import serializers
 
+    results = SearchQuerySet().models(I4pProjectTranslation).autocomplete(content_auto=request.GET.get('q', ''))
+    data = serializers.serialize("json", [r.object for r in results[:5]], ensure_ascii=False, fields=('name', 'baseline'))
 
-
-
+    return HttpResponse(data, content_type='application/json')
 
 

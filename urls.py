@@ -18,6 +18,8 @@ handler404 = 'django.views.defaults.page_not_found'
 ## Admin
 admin.autodiscover()
 
+import apps.i4p_base.ajax
+
 ## Sitemaps
 sitemaps = {
     'projects': I4pProjectTranslationSitemap(),
@@ -44,7 +46,10 @@ urlpatterns += i18n_patterns('',
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
-
+    url(r'^search/', include('haystack.urls')),
+    url(r'^ajax/search$', apps.i4p_base.ajax.globalsearch_autocomplete, name='i4p-globalsearch-complete'),
+                             
+                             
     # Configure umessages compose view so that it uses recipient autocompletion
     url(r'^messages/compose/$',
         messages_views.message_compose,
