@@ -179,7 +179,6 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
-#    'i18nurls',
 
     'tinymce',
     'tagging',
