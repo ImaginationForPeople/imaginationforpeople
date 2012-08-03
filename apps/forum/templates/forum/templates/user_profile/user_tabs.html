@@ -11,13 +11,11 @@
         </a>
         {% endif %}
         
-        {#
         {% if user_follow_feature_on %}
         <a id="network" {% if tab_name=="network" %}class="on"{% endif %} title="{% trans %}followers and followed users{% endtrans %}" href="#network_tab">
             <span>{% trans %}network{% endtrans %}</span>
         </a>
         {% endif %}
-        #}
        
         {% if can_show_karma %}
         <a id="reputation" {% if tab_name=="reputation" %}class="on"{% endif %} title="{% trans %}Graph of user karma{% endtrans %}" href="#reputation_tab">
