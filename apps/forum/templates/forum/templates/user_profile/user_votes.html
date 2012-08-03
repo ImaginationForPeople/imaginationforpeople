@@ -11,10 +11,15 @@
         {% endif %}
         </div>
         <div style="float:left;overflow:hidden;width:750px">
-            {% if vote.answer_id==0 %}
-            <span class="question-title-link"><a href="{% url question vote.question_id %}{{ vote.title|slugify }}">{{ vote.title|escape }}</a></span>
+            {% set post_title = vote.voted_post.thread.title %}
+            {% if vote.voted_post.is_question() %}
+            <span class="question-title-link">
+                <a href="{% url question vote.voted_post.id %}{{ post_title|slugify }}">{{ post_title|escape }}</a>
+            </span>
             {% else %}
-            <span class="answer-title-link" ><a href="{% url question vote.question_id %}{{ vote.title|slugify }}#{{ vote.answer_id }}">{{ vote.title|escape}}</a></span>
+            <span class="answer-title-link">
+                <a href="{% url question vote.voted_post.thread._question_post().id %}{{ post_title|slugify }}#{{ vote.voted_post.id }}">{{ post_title|escape}}$
+            </span>
             {% endif %}
             <div style="height:5px"></div>
         </div>
