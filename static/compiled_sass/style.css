@@ -367,15 +367,85 @@ ul li {
 }
 
 /*---- Search box ----*/
-.search {
+#searchbox {
   float: left;
   background: url(../images/base/search_engine.png) no-repeat left 0;
   height: 22px;
+  width: 195px;
+  position: absolute!important;
+  bottom: 10px !important;
+  right: -2px !important;
+  padding: 0px!important;
 }
-.search input[type="text"] {
+#searchbox form {
+  position: relative;
+}
+#searchbox .loading {
+  background: url(../images/base/loading.gif) no-repeat;
+  background-position: bottom 4px right 6px;
+  background-origin: padding-box;
+}
+#searchbox .q-suggestions-template {
+  display: none;
+}
+#searchbox #q-suggestions {
+  font-family: "OpenSansSemiBold", Arial, Helvetica, sans-serif;
+  display: none;
+  background-color: #e5e5e5;
+  z-index: 500;
+  position: absolute;
+  right: 0px;
+  margin-top: 9px;
+  width: 263px;
+  padding: 5px;
+  -moz-box-shadow: 0px 4px 4px #181818;
+  -webkit-box-shadow: 0px 4px 4px #181818;
+  -o-box-shadow: 0px 4px 4px #181818;
+  box-shadow: 0px 4px 4px #181818;
+  behavior: url(static/js/pie/PIE.htc);
+}
+#searchbox #q-suggestions > li {
+  margin-bottom: 10px;
+}
+#searchbox #q-suggestions > li:last-child {
+  margin-bottom: 0px;
+}
+#searchbox #q-suggestions ul.project span {
+  text-transform: uppercase;
+}
+#searchbox #q-suggestions ul.project li {
+  height: 20px;
+  overflow: hidden;
+  display: list-item;
+  padding: 5px 5px;
+}
+#searchbox #q-suggestions ul.project li a {
+  display: block;
+  color: #7f7f7f;
+}
+#searchbox #q-suggestions ul.project li a img {
+  margin-right: 5px;
+}
+#searchbox #q-suggestions ul.project li a span {
+  position: relative;
+  top: -6px;
+}
+#searchbox #q-suggestions ul.project li:hover {
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  border-radius: 4px;
+  background-color: white;
+}
+#searchbox #q-suggestions ul.project li:hover a {
+  text-decoration: none;
+}
+#searchbox input[type="text"] {
   font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
   background-color: transparent;
-  border: 0px solid #646464;
+  border: 0px solid #eeeeee;
   color: #7F7E7E;
   font-family: Arial,Helvetica,sans-serif;
   font-size: 10px;
@@ -385,20 +455,13 @@ ul li {
   text-indent: 0px;
   width: 155px;
 }
-.search input[type="submit"] {
+#searchbox input[type="submit"] {
   background-image: none;
   background-color: transparent;
   border: 0px;
   margin: 0px;
   width: 32px;
   float: right;
-}
-
-#header .search {
-  position: absolute!important;
-  bottom: 10px !important;
-  right: -2px !important;
-  padding: 0px!important;
 }
 
 /* -- Filters -- */

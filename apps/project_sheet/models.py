@@ -155,7 +155,14 @@ class I4pProject(models.Model):
     add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
     add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
     
-    
+    def get_primary_picture(self):
+        """
+        Return the first picture, if available
+        """
+        if len(self.pictures.all()):
+            return self.pictures.all()[0]
+        else:
+            return None
     
     def __unicode__(self):
         res = u"Parent project %d" % self.id

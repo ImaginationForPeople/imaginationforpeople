@@ -179,7 +179,7 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
-
+    'serializers',
     'tinymce',
     'tagging',
     'imagekit',
@@ -439,3 +439,5 @@ CMS_SOFTROOT = True
 APPEND_SLASH = True
 
 NANI_TABLE_NAME_SEPARATOR = ''
+
+

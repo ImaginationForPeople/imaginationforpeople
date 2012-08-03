@@ -42,6 +42,10 @@
     <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-throttle-debounce.js"></script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pure.js"></script>
     
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     {% endcompress %}
@@ -73,6 +77,34 @@
         
       	// Text example for forms
         $(".search input[type=text]").example("{% trans 'Project search'|escapejs %}");
+
+        var directives = { 'ul.project li': { 'project <- context': { 'img@src': 'project.image', 'a span': function(arg) { return arg.item.title.substring(0, 30); }, 'a@href': 'project.get_absolute_url' } } };
+        var q_template = $("#searchbox .q-suggestions-template").compile(directives);
+        var searchinput = $('#searchbox input[type=text]').bind('keyup', $.debounce(250, function() {
+
+      if( $(this).val().length == 0) {
+      // Hide the q-suggestions box
+        $('#q-suggestions').hide();
+      } else {
+        // Show the AJAX Spinner
+        searchinput.addClass('loading');
+
+        $.ajax({
+            url: '{% url i4p-globalsearch-complete %}',
+            data: {"q": $(this).val() },
+            success: function(data) {
+                $("#q-suggestions ul").render(data, q_template)
+                $("#q-suggestions").show();
+                $("#q-suggestions ul").show();
+
+                // Hide the AJAX Spinner
+               searchinput.removeClass('loading');
+            }
+        });
+    }
+}));
+
+
         
         $("input[name=identification]").example("{% trans 'Enter your login'|escapejs %}");
         $("input[name=password]").example("{% trans 'Password'|escapejs %}");

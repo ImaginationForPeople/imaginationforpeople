@@ -379,15 +379,98 @@ ul{
 /*---- Search box ----*/
 
 
-.search{
+#searchbox {
+    $field_width: 155px;
+    $button_width: 32px;
+    $total_width: $field_width + $button_width + 8px;
+
     float:left;
     background: url(../images/base/search_engine.png) no-repeat left 0;
     height:22px;
+    width: $total_width;
+
+    position:absolute!important;
+    bottom:10px !important;
+    right:-2px!important;
+    padding:0px!important;
+
+    form {
+        position: relative;
+    }
+
+    .loading {
+	background: url(../images/base/loading.gif) no-repeat;
+	background-position: bottom 4px right 6px;
+	background-origin: padding-box;
+      }
+
+
+    .q-suggestions-template {
+	display: none;
+    }
+
+    #q-suggestions {
+        font-family: "OpenSansSemiBold", Arial, Helvetica, sans-serif;
+        display: none;
+        background-color: $lightgrey;
+        z-index: 500;
+        position: absolute;
+	right: 0px;
+	margin-top: 9px;
+	width: $total_width - 12px + 80px;;
+	padding: 5px;
+	@include shadow(4px, #181818, 4px);
+
+	> li {
+	   margin-bottom: 10px;
+	}
+
+	> li:last-child {
+	   margin-bottom: 0px;	
+	}
+	
+	ul.project {
+
+	   span {
+	    text-transform: uppercase;
+	   }
+
+	   li {
+	    height: 20px;
+	    overflow: hidden;
+	    display: list-item;
+	    padding: 5px 5px;
+
+	    a {
+	    display: block;
+	      color: darken($lightgrey, 40%);
+	      
+	      img {
+	      	  margin-right: 5px;
+		  }
+
+		    span {
+		  position: relative;
+		  top: -6px;
+		  }
+              }	
+	   }
+
+	   li:hover {
+	   	    @include border-radius(4px);
+	   	    background-color: lighten($lightgrey, 40%);
+
+		    a {
+		       text-decoration: none;
+		    }
+	   }
+	}
+    }
 
     input[type="text"] {
         font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
         background-color: transparent;
-        border: 0px solid #646464;
+        border: 0px solid #eeeeee;
         color: #7F7E7E;
         font-family: Arial,Helvetica,sans-serif;
         font-size: 10px;
@@ -395,7 +478,7 @@ ul{
         padding: 2px;
         padding-left: 6px;
         text-indent: 0px;
-        width: 155px;
+        width: $field_width;
     }
     
     input[type="submit"]{
@@ -403,19 +486,11 @@ ul{
         background-color:transparent;
         border:0px;
         margin:0px;
-        width:32px;
+        width: $button_width;
         float:right;
     }
 }
 
-#header{
-    .search{
-        position:absolute!important;
-        bottom:10px !important;
-        right:-2px!important;
-        padding:0px!important;
-    }
-}
 
 
 

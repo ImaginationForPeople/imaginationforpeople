@@ -1,5 +1,3 @@
-import json
-
 from django.contrib import comments
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
@@ -13,6 +11,7 @@ from django.views.decorators.http import require_GET
 from django.views.decorators.vary import vary_on_headers
 
 from haystack.query import SearchQuerySet
+from serializers import ModelSerializer, Field
 
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translations_from_parents
@@ -73,11 +72,26 @@ def slider_most_commented(request):
                               context_instance=RequestContext(request))
 
 
-def globalsearch_autocomplete(request):
-    from django.core import serializers
+class ProjectSerializer(ModelSerializer):
+    class Meta:
+        fields = ('title', 'get_absolute_url', 'image')
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
+    image = Field(source='*', convert=lambda obj: obj.project.get_primary_picture().mosaic_tile.url)
 
-    results = SearchQuerySet().models(I4pProjectTranslation).autocomplete(content_auto=request.GET.get('q', ''))
-    data = serializers.serialize("json", [r.object for r in results[:5]], ensure_ascii=False, fields=('name', 'baseline'))
+
+def globalsearch_autocomplete(request):
+    """
+    Suggest results while typing in the search bar
+    """
+    current_language_code = translation.get_language()
+
+    question = request.GET.get('q', '')
+    
+    project_translations = SearchQuerySet().models(I4pProjectTranslation).filter(language_code=current_language_code).autocomplete(content_auto=question)
+
+        
+    serializer = ProjectSerializer(depth=0, indent=4*' ')
+    data = serializer.serialize([r.object for r in project_translations[:3]], format='json')
 
     return HttpResponse(data, content_type='application/json')
 

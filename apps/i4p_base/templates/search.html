@@ -1,10 +1,26 @@
 {% load i18n %}
         
-    <div class="search">
+
+    <div id="searchbox">
         
-        <form action="{% url project_sheet-list %}">
+        <form action="{% url project_sheet-list %}" autocomplete="off">
             <input type="submit" value="&nbsp;" />
             {{ project_sheet_search_form.text }}
         </form>
-        
+
+	<div id="q-suggestions">
+	  <ul></ul>
+	</div>
+
+	<!-- pure template -->
+	<ul class="q-suggestions-template">
+	  <li>
+	    <ul class="project">
+	      <span>{% trans "Projects" %}</span>
+	      <li><a href="javascript:void(0)"><img width="20px" height="20px" src="http://localhost:8001/static/images/base/licences-logo.png"/><span></span></a></li>
+	    </ul>
+	  </li>
+	</ul>
+
+        <div class="clear"></div>
     </div>
