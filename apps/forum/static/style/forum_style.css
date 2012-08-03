@@ -280,7 +280,7 @@ body.user-messages {
   float: left;*/
   color: #656565;
   font-family: 'Open Sans Condensed',Arial,sans-serif;
-  font-size: 18px !important;
+  font-size: 17px !important;
   padding: 0px 0px 0px 35px;
   height: 25px;
   line-height: 25px;
@@ -596,7 +596,6 @@ body.anon #searchBar .searchInputCancelable {
 .box .inputs #ignoredTagInput,
 .box .inputs #subscribedTagInput,
 .box .inputs #ab-tag-search {
-  width: 152px;
   border: #c9c9b5 1px solid;
   height: 25px;
 }
@@ -642,6 +641,10 @@ body.anon #searchBar .searchInputCancelable {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
+  padding-right: 0px; 
+  padding-left: 0px; 
+  margin-top: 0px; 
+  margin-left: 1px;
 }
 .box .inputs #interestingTagAdd:hover,
 .box .inputs #ignoredTagAdd:hover,
@@ -2485,7 +2488,6 @@ ul#related-tags li {
 }
 /* tags page */
 .tabBar-tags {
-  width: 270px;
   margin-bottom: 15px;
 }
 /* badges page */
