@@ -1,25 +1,28 @@
 {% load i18n %}
-
-{% include "project_sheet/project_id_card.html" %}
-
-<div class="project_infos">
-  
-  {% if project_translation.baseline %}
-    <div class="project_infos_baseline" title="{{ project_translation.baseline}}">{{ project_translation.baseline|truncatewords:8 }}</div>
-  {% endif %}		
-  
-  <div class="project_infos_description" title="{{ project_translation.about_section }}">
-    {% if project_translation.about_section %}
-      {{ project_translation.about_section|truncatewords:37 }}
-    {% else %}
-      {% trans "There is no description for this project" %}
-    {% endif %}
-  </div>
-  
-{% language project_translation.language_code %}
-  <a href="{% url project_sheet-show project_translation.slug %}">{% trans "More info" %} &gt;</a>
-{% endlanguage %}
-  
-</div>
-	
-	
+<div class="project_list_project">
+  <a href="{% url project_sheet-show project_translation.slug %}" class="project_list_project"  title="{{ project_translation.baseline}}">
+    {% include "project_sheet/project_id_card.html" %}
+    
+    <div class="project_infos">
+      
+      {% if project_translation.baseline %}
+        <div class="project_infos_baseline" title="{{ project_translation.baseline}}">{{ project_translation.baseline|truncatewords:8 }}</div>
+      {% endif %}		
+      
+      <div class="project_infos_description" title="{{ project_translation.about_section }}">
+        {% if project_translation.about_section %}
+          {{ project_translation.about_section|truncatewords:40 }}
+        {% else %}
+          {% trans "There is no description for this project" %}
+        {% endif %}
+      </div>
+      
+      {% comment %}
+    {% language project_translation.language_code %}
+      <a href="{% url project_sheet-show project_translation.slug %}">{% trans "More info" %} &gt;</a>
+    {% endlanguage %}
+      {% endcomment %}
+    </div>
+    <div class="clear"></div>
+  </a>
+</div>	
