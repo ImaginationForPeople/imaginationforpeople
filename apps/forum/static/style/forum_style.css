@@ -436,9 +436,7 @@ body.user-messages {
 #searchBar .cancelSearchBtn:hover {
   color: #d84040;
 }
-body.anon #searchBar {
-  width: 500px;
-}
+
 body.anon #searchBar .searchInput {
   width: 440px;
 }
@@ -598,6 +596,7 @@ body.anon #searchBar .searchInputCancelable {
 .box .inputs #ab-tag-search {
   border: #c9c9b5 1px solid;
   height: 25px;
+  width: 140px;
 }
 .box .inputs #ab-tag-search {
   width: 138px;
@@ -803,7 +802,7 @@ body.anon #searchBar .searchInputCancelable {
   margin-top: 3px;
   float: right;
   font-family: Georgia, serif;
-  font-size: 16px;
+  font-size: 14px;
   /*border-radius: 5px;*/
   -ms-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -3024,13 +3023,7 @@ span.form-error {
   background-color: #FFFE9B;
   padding: 2px;
 }
-.question-title-link a {
-  font-weight: bold;
-  color: #0077CC;
-}
-.answer-title-link a {
-  color: #333;
-}
+
 /* todo: make these more semantic */
 .post-type-1 a {
   font-weight: bold;
