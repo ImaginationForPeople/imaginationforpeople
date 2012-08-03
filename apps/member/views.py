@@ -1,3 +1,4 @@
+from django.utils.safestring import mark_safe
 
 #-- encoding: utf-8 --
 #
@@ -111,7 +112,7 @@ def profile_detail(request, username):
 
     askbot_profile = askbot_user_profile(request, user.id, content_only=True)
     if isinstance(askbot_profile, HttpResponse):
-        #we are in the case whuen user has modified its email subscriptions or moderation
+        #we are in the case when user has modified its email subscriptions or moderation
         return askbot_profile
     
     return userena_views.profile_detail(request,
