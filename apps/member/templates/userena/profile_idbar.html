@@ -21,7 +21,11 @@
     <div id="profile_bar"> 
         <h1>
           {% if profile %}
-              {{ profile.get_full_name_or_username }}
+    	      {% if profile.user.get_full_name %}
+                    {{ profile.user.get_full_name }}
+    	      {% else %}
+    	        {% trans "Anonymous" %}
+    	      {% endif %}
               {% if user.username != profile.user.username %}            
                 <a href="{% url userena_umessages_compose_to profile.user %}" id="profile_contact"></a>
               {% endif %}
@@ -29,7 +33,7 @@
     	      {% if user.get_full_name %}
                     {{ user.get_full_name }}
     	      {% else %}
-    	        {{ user.username }}
+    	        {% trans "Anonymous" %}
     	      {% endif %}
           {% endif %}
         </h1>
