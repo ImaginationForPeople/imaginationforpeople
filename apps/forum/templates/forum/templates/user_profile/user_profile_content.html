@@ -1,5 +1,5 @@
-{% spaceless %}
 {% include "user_profile/user_tabs.html" %}
+
 <div id="stats_tab">
     {% include "user_profile/user_stats.html" %}
 </div>
@@ -10,11 +10,13 @@
 </div>
 {% endif %}
 
+{#
 {% if user_follow_feature_on %}
 <div id="network_tab">
     {% include "user_profile/user_network.html" %}
 </div>
 {% endif %}
+#}
 
 {% if can_show_karma %}
 <div id="reputation_tab">
@@ -50,4 +52,3 @@
     {% include "user_profile/user_moderate.html" %}
 </div>
 {% endif %}
-{% endspaceless %}

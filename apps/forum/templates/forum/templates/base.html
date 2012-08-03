@@ -20,6 +20,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     
+    {% block before_css %}{% endblock %}
+    {% include "meta/html_head_stylesheets.html" %}
 
     {% block style %}
       
@@ -42,9 +44,6 @@
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
-    
-    {% block before_css %}{% endblock %}
-    {% include "meta/html_head_stylesheets.html" %}
     {% block forestyle %}{% endblock %}
     {% include "meta/html_head_javascript.html" %}
     {% block forejs %}{% endblock %}

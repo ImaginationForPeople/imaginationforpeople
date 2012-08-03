@@ -1,20 +1,3 @@
-{# most, if not all javascripts should go here
-   this template is included at the very bottow of the
-   main template "base.html"
-#}
-<div id="no-javascript">
-  <noscript class="noscript">
-    {% trans app_name = settings.APP_SHORT_NAME %}Please note: {{app_name}} requires javascript to work properly, please enable javascript in your browser, <a href="{{noscript_url}}">here is how</a>{% endtrans %}
-  </noscript>
-</div>
-<script type="text/javascript">
-</script>
-<script type='text/javascript' src="{{"/js/jquery.timeago.js"|static_url }}"></script>
-<!-- History.js --> 
-<script type='text/javascript' src="{{"/js/jquery.history.js"|static_url }}"></script>
-<script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
-<script type="text/javascript" src="{{"/js/user.js"|static_url}}"></script>
-
 {% if settings.ENABLE_MATHJAX %}
     <script type='text/javascript' src="{{settings.MATHJAX_BASE_URL}}/MathJax.js">
         MathJax.Hub.Config({

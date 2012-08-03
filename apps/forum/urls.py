@@ -334,11 +334,5 @@ urlpatterns = patterns('',
         },
         name = 'custom_js'
     ),
-    url(
-        r'^jsi18n/$',
-        'django.views.i18n.javascript_catalog',
-        {'domain': 'djangojs','packages': ('askbot',)},
-        name = 'askbot_jsi18n'
-    ),
     url(r'^%s(?P<id>\d+)/' % _('question/'), views.readers.question, name='question'),
 )

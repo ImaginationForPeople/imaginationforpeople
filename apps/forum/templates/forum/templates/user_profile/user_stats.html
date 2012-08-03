@@ -22,16 +22,12 @@
     </div>
     {% endif %}
     <a name="questions"></a>
-    {% spaceless %}
-        <h2>{% trans counter=question_count %}<span class="count">{{counter}}</span> Question{% pluralize %}<span class="count">{{counter}}</span> Questions{% endtrans %}</h2>
-    {% endspaceless %}
+    <h2>{% trans counter=question_count %}<span class="count">{{counter}}</span> Question{% pluralize %}<span class="count">{{counter}}</span> Questions{% endtrans %}</h2>
     {% with user_questions as questions %}
     {% include "user_profile/users_questions.html" %}
     {% endwith %}
     <a name="answers"></a>
-    {% spaceless %}
         <h2 style="clear:both;"><span class="count">{{ top_answer_count }}</span> {% trans counter=top_answer_count %}Answer{% pluralize %}Answers{% endtrans %}</h2>
-    {% endspaceless %}
     <div class="user-stats-table">
         {% for top_answer in top_answers %}
         <div class="answer-summary">
@@ -43,9 +39,7 @@
                 </span>
             </a>
             <div class="answer-link">
-                {% spaceless %}
                 <a href="{% url question top_answer.thread._question_post().id %}{{ top_answer.thread.title|slugify }}#{{top_answer.id}}">{{ top_answer.thread.title|escape }}</a>
-                {% endspaceless %}
                 {% if top_answer.comment_count > 0 %}
                 <span>
                     {% trans comment_count=top_answer.comment_count %}({{ comment_count }} comment){% pluralize %}the answer has been commented {{ comment_count }} times{% endtrans %}
@@ -57,9 +51,7 @@
     </div>
     <br/>
     <a name="votes"></a>
-    {% spaceless %}
-        <h2>{% trans cnt=total_votes %}<span class="count">{{cnt}}</span> Vote{% pluralize %}<span class="count">{{cnt}}</span> Votes {% endtrans %}</h2>
-    {% endspaceless %}
+    <h2>{% trans cnt=total_votes %}<span class="count">{{cnt}}</span> Vote{% pluralize %}<span class="count">{{cnt}}</span> Votes {% endtrans %}</h2>
     <div class="user-stats-table">
         <table>
             <tr>
@@ -76,9 +68,7 @@
         </table>
     </div>
     <a name="tags"></a>
-    {% spaceless %}
-        <h2>{% trans counter=user_tags|length %}<span class="count">{{counter}}</span> Tag{% pluralize %}<span class="count">{{counter}}</span> Tags{% endtrans %}</h2>
-    {% endspaceless %}
+    <h2>{% trans counter=user_tags|length %}<span class="count">{{counter}}</span> Tag{% pluralize %}<span class="count">{{counter}}</span> Tags{% endtrans %}</h2>
     <div class="user-stats-table">
         <table class="tags">
             <tr>
@@ -121,9 +111,7 @@
     {% endif %}
     {% if settings.BADGES_MODE == 'public' %}
     <a name="badges"></a>
-    {% spaceless %}
     <h2>{% trans counter=total_badges %}<span class="count">{{counter}}</span> Badge{% pluralize %}<span class="count">{{counter}}</span> Badges{% endtrans %}</h2>
-    {% endspaceless %}
     <div class="user-stats-table badges">
         <table>
             <tr>
