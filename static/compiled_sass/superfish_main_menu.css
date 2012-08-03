@@ -159,16 +159,15 @@ li:hover > .sf-sub-indicator, li.sfHover > .sf-sub-indicator {
 }
 
 /*** IP specific stuff ***/
-#menu {
-  display: none;
-}
-
 .sf-main-menu {
   position: relative;
   float: right;
   top: 82px;
   margin-right: 210px;
   margin-bottom: 0;
+}
+.sf-main-menu > li {
+  background: transparent;
 }
 .sf-main-menu > li a {
   font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
