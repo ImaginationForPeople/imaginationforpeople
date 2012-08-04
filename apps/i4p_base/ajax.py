@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import comments
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
@@ -76,7 +77,15 @@ class ProjectSerializer(ModelSerializer):
     class Meta:
         fields = ('title', 'get_absolute_url', 'image')
     get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
-    image = Field(source='*', convert=lambda obj: obj.project.get_primary_picture().mosaic_tile.url)
+    image = Field(source='*', convert=lambda obj: ProjectSerializer.get_mosaic(obj))
+
+    @staticmethod
+    def get_mosaic(obj):
+        p = obj.project.get_primary_picture()
+        if p:
+            return p.mosaic_tile.url
+        else:
+            return settings.STATIC_URL + "images/home/picto-projects.jpg"
 
 
 def globalsearch_autocomplete(request):
