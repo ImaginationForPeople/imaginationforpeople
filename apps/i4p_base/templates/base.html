@@ -80,6 +80,10 @@
 
         var directives = { 'ul.project li': { 'project <- context': { 'img@src': 'project.image', 'a span': function(arg) { return arg.item.title.substring(0, 30); }, 'a@href': 'project.get_absolute_url' } } };
         var q_template = $("#searchbox .q-suggestions-template").compile(directives);
+        $(document).click(function() {
+		$('#q-suggestions').hide();
+       });
+
         var searchinput = $('#searchbox input[type=text]').bind('keyup', $.debounce(250, function() {
 
       if( $(this).val().length == 0) {

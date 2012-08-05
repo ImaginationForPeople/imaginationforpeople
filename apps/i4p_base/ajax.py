@@ -14,8 +14,10 @@ from django.views.decorators.vary import vary_on_headers
 from haystack.query import SearchQuerySet
 from serializers import ModelSerializer, Field
 
+from apps.member.models import I4pProfile
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translations_from_parents
+from apps.workgroup.models import WorkGroup
 
 def _slider_make_response(request, queryset):
     count = int(request.GET.get('count', 14))
@@ -74,6 +76,9 @@ def slider_most_commented(request):
 
 
 class ProjectSerializer(ModelSerializer):
+    """
+    A serializer for the I4PProject Models
+    """
     class Meta:
         fields = ('title', 'get_absolute_url', 'image')
     get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
@@ -87,6 +92,24 @@ class ProjectSerializer(ModelSerializer):
         else:
             return settings.STATIC_URL + "images/home/picto-projects.jpg"
 
+class WorkGroupSerializer(ModelSerializer):
+    """
+    A serializer for the WorkGroup Models
+    """
+    class Meta:
+        fields = ('title', 'get_absolute_url', 'image')
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
+    image = Field(source='*', convert=lambda obj: WorkGroupSerializer.get_mosaic(obj))
+
+class I4pProfileSerializer(ModelSerializer):
+    """
+    A serializer for the I4pProfile Models
+    """
+    class Meta:
+        fields = ('title', 'get_absolute_url', 'image')
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
+    image = Field(source='*', convert=lambda obj: I4pProfileSerializer.get_mosaic(obj))
+
 
 def globalsearch_autocomplete(request):
     """
@@ -95,13 +118,33 @@ def globalsearch_autocomplete(request):
     current_language_code = translation.get_language()
 
     question = request.GET.get('q', '')
+
+    # matches
+    matches = SearchQuerySet().models(
+        I4pProjectTranslation, I4pProfile, WorkGroup
+    ).filter(
+        language_code=current_language_code
+    ).autocomplete(content_auto=question)
+
+    # Sort data
+    projects = [r for r in matches if r.model == I4pProjectTranslation]
+    workgroups = [r for r in matches if r.model == WorkGroup]
+    profiles = [r for r in matches if r.model == I4pProfile]
     
-    project_translations = SearchQuerySet().models(I4pProjectTranslation).filter(language_code=current_language_code).autocomplete(content_auto=question)
+    project_serializer = ProjectSerializer(depth=0)
+    project_data = project_serializer.serialize([r.object for r in projects[:3]], format='json')
 
-        
-    serializer = ProjectSerializer(depth=0, indent=4*' ')
-    data = serializer.serialize([r.object for r in project_translations[:3]], format='json')
+    #workgroup_serializer = WorkGroupSerializer(depth=0)
+    #workgroup_data = workgroup_serializer.serialize([r.object for r in workgroups[:3]], format='json')    
 
+    #profile_serializer = I4pProfileSerializer(depth=0)
+    #profile_data = profile_serializer.serialize([r.object for r in profiles[:3]], format='json')
+
+
+    print "jdjspsjosjd"
+    
+    data = project_data
+    
     return HttpResponse(data, content_type='application/json')
 
 
