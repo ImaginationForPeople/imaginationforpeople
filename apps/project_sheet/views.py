@@ -188,11 +188,11 @@ class TagPageView(TemplateView):
         # Get project sheets tagged with this tag
         # XXX: site=site may not be correct
         # 4 Random projects with at least one picture
-        context['picture_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
+        context['picture_project_translations'] = list(TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
             language_code=current_language_code,            
             project__site=site,
             project__pictures__isnull=False
-        ), tag_instance).order_by('?')[:4]
+        ), tag_instance).order_by('?')[:4])
         
 
         # Mature projects
