@@ -97,20 +97,30 @@ class WorkGroupSerializer(ModelSerializer):
     A serializer for the WorkGroup Models
     """
     class Meta:
-        fields = ('title', 'get_absolute_url', 'image')
+        fields = ('name', 'get_absolute_url')
     get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
-    image = Field(source='*', convert=lambda obj: WorkGroupSerializer.get_mosaic(obj))
 
 class I4pProfileSerializer(ModelSerializer):
     """
     A serializer for the I4pProfile Models
     """
     class Meta:
-        fields = ('title', 'get_absolute_url', 'image')
+        fields = ('get_full_name_or_username', 'get_absolute_url', 'mugshot')
     get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
-    image = Field(source='*', convert=lambda obj: I4pProfileSerializer.get_mosaic(obj))
+    get_full_name_or_username = Field(source='*', convert=lambda obj: obj.get_full_name_or_username())    
+    mugshot = Field(source='*', convert=lambda obj: I4pProfileSerializer.get_mugshot(obj))
 
+    @staticmethod
+    def get_mugshot(obj):
+        try:
+            return obj.mugshot.url
+        except:
+            return settings.STATIC_URL + "images/home/picto-community.jpg"
+            
 
+@require_GET
+@cache_page(60 * 60 * 12) # 12 Hours
+@vary_on_headers('Host')
 def globalsearch_autocomplete(request):
     """
     Suggest results while typing in the search bar
@@ -119,31 +129,31 @@ def globalsearch_autocomplete(request):
 
     question = request.GET.get('q', '')
 
-    # matches
-    matches = SearchQuerySet().models(
-        I4pProjectTranslation, I4pProfile, WorkGroup
-    ).filter(
+    # Don't allow question under 3 characters
+    if len(question) < 3:
+        return HttpResponse("", content_type='application/json')
+
+    # matches. XXX: Need to filter based on 'Site'
+    projects = SearchQuerySet().models(I4pProjectTranslation).filter(
         language_code=current_language_code
     ).autocomplete(content_auto=question)
 
-    # Sort data
-    projects = [r for r in matches if r.model == I4pProjectTranslation]
-    workgroups = [r for r in matches if r.model == WorkGroup]
-    profiles = [r for r in matches if r.model == I4pProfile]
+    workgroups = SearchQuerySet().models(WorkGroup).filter(
+        language_code=current_language_code
+    ).autocomplete(content_auto=question)
     
+    profiles = SearchQuerySet().models(I4pProfile).autocomplete(content_auto=question)
+
     project_serializer = ProjectSerializer(depth=0)
-    project_data = project_serializer.serialize([r.object for r in projects[:3]], format='json')
+    project_data = project_serializer.serialize([r.object for r in projects[:3] if r != None], format='json')
 
-    #workgroup_serializer = WorkGroupSerializer(depth=0)
-    #workgroup_data = workgroup_serializer.serialize([r.object for r in workgroups[:3]], format='json')    
+    workgroup_serializer = WorkGroupSerializer(depth=0)
+    workgroup_data = workgroup_serializer.serialize([r.object for r in workgroups[:3] if r != None], format='json')    
 
-    #profile_serializer = I4pProfileSerializer(depth=0)
-    #profile_data = profile_serializer.serialize([r.object for r in profiles[:3]], format='json')
+    profile_serializer = I4pProfileSerializer(depth=0)
+    profile_data = profile_serializer.serialize([r.object for r in profiles[:3] if r != None], format='json')
 
-
-    print "jdjspsjosjd"
-    
-    data = project_data
+    data = '{"projects": %s, "workgroups": %s, "profiles": %s}' % (project_data, workgroup_data, profile_data)
     
     return HttpResponse(data, content_type='application/json')
 

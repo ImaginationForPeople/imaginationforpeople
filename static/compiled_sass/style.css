@@ -410,27 +410,27 @@ ul li {
 #searchbox #q-suggestions > li:last-child {
   margin-bottom: 0px;
 }
-#searchbox #q-suggestions ul.project span {
+#searchbox #q-suggestions li.projects span, #searchbox #q-suggestions li.workgroups span, #searchbox #q-suggestions li.profiles span {
   text-transform: uppercase;
 }
-#searchbox #q-suggestions ul.project li {
+#searchbox #q-suggestions li.projects li, #searchbox #q-suggestions li.workgroups li, #searchbox #q-suggestions li.profiles li {
   height: 20px;
   overflow: hidden;
   display: list-item;
   padding: 5px 5px;
 }
-#searchbox #q-suggestions ul.project li a {
+#searchbox #q-suggestions li.projects li a, #searchbox #q-suggestions li.workgroups li a, #searchbox #q-suggestions li.profiles li a {
   display: block;
   color: #7f7f7f;
 }
-#searchbox #q-suggestions ul.project li a img {
+#searchbox #q-suggestions li.projects li a img, #searchbox #q-suggestions li.workgroups li a img, #searchbox #q-suggestions li.profiles li a img {
   margin-right: 5px;
 }
-#searchbox #q-suggestions ul.project li a span {
+#searchbox #q-suggestions li.projects li a span, #searchbox #q-suggestions li.workgroups li a span, #searchbox #q-suggestions li.profiles li a span {
   position: relative;
   top: -6px;
 }
-#searchbox #q-suggestions ul.project li:hover {
+#searchbox #q-suggestions li.projects li:hover, #searchbox #q-suggestions li.workgroups li:hover, #searchbox #q-suggestions li.profiles li:hover {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -o-border-radius: 4px;
@@ -439,7 +439,7 @@ ul li {
   border-radius: 4px;
   background-color: white;
 }
-#searchbox #q-suggestions ul.project li:hover a {
+#searchbox #q-suggestions li.projects li:hover a, #searchbox #q-suggestions li.workgroups li:hover a, #searchbox #q-suggestions li.profiles li:hover a {
   text-decoration: none;
 }
 #searchbox input[type="text"] {
