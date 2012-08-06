@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container_18" style="height: 800px">
+<div class="container_18" style="height: 1500px">
   <div class="grid_12 alpha omega">
   <h1>Projects tagged with "{{ tag }}"</h1>
 
@@ -29,6 +29,17 @@
 
   <div class="clear"></div>
 
+
+  <h2>Pictured</h2>
+  <img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
+  <a href="{{ picture_project_translations.1.get_absolute_url }}"><img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/></a>
+  <a href="{{ picture_project_translations.2.get_absolute_url }}"><img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/></a>
+  <a href="{{ picture_project_translations.3.get_absolute_url }}"><img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/></a>
+  <br/>
+  [<a href="#">See more</a>]
+
+  <div class="clear"></div>
+
   <br/>
   <p>
   <strong>Related tags</strong>
@@ -39,11 +50,51 @@
 
   <hr>
 
-  <h2>Random projects</h2>
-  {% for project_translation in project_translations %}
+  <h2>Mature projects</h2>
+  {% for project_translation in mature_project_translations %}
   {% include "project_sheet/project_id_card.html" %}
   {% endfor %}
   <br/>
   [<a href="#">See more</a>]
+
+  <div class="clear"></div>
+
+  <h2>Starting projects</h2>
+  {% for project_translation in starting_project_translations %}
+  {% include "project_sheet/project_id_card.html" %}
+  {% endfor %}
+  <br/>
+  [<a href="#">See more</a>]
+
+  <div class="clear"></div>
+
+  <h2>New project sheets</h2>
+  {% for project_translation in new_project_translations %}
+  {% include "project_sheet/project_id_card.html" %}
+  {% endfor %}
+  <br/>
+  [<a href="#">See more</a>]
+
+  <div class="clear"></div>
+
+  <h2>Latest modifications</h2>
+  {% for project_translation in modified_project_translations %}
+  {% include "project_sheet/project_id_card.html" %}
+  {% endfor %}
+  <br/>
+  [<a href="#">See more</a>]
+
+  <div class="clear"></div>
+
+
+  <h2>People</h2>
+  <ul>
+    {% for p in people %}
+    <li>{{ p.user.get_profile.get_full_name_or_username }} - {{ p.project }}<br/></li>
+    {% endfor %}
+  </ul>
+  <br/>
+
+
 </div>
 {% endblock %}
