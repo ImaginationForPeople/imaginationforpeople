@@ -34,6 +34,15 @@ body{
 /* --MENU------- */
 
 
+#header .sf-main-menu{
+    li ul li a {
+        color: white !important;
+    }
+    > li > a > .sf-sub-indicator{
+         background: url("../images/arrows-000000.png") no-repeat -10px -100px;
+         }
+}
+
 .nav-white{
 	background-image:url(../images/base/nav-white-bg.png);	
 	height:150px;
