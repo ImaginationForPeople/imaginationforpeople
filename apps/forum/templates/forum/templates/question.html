@@ -7,9 +7,12 @@
 {% block keywords %}{{thread.tagname_meta_generator()}}{% endblock %}
 {% block forestyle %}
     <link rel="canonical" href="{{settings.APP_URL|strip_path}}{{question.get_absolute_url()}}" />
+    
+    {% if not user_already_gave_answer %}
     <link rel="stylesheet" type="text/css" href="{{'/js/wmd/wmd.css'|static_url}}" />
     <script type='text/javascript' src="{{'/js/wmd/showdown.js'|static_url }}"></script>
     <script type='text/javascript' src="{{'/js/wmd/wmd.js'|static_url }}"></script>
+    {% endif %}
 {% endblock %}
 {% block forejs %}
     <script type="text/javascript">
