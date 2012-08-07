@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load cms_tags %}
+{% load pagination_tags %}
   
   <div class="categories categories_project_page">        
     <div class="container_18">
@@ -13,12 +14,15 @@
         <div class="menu">
           
             <ul>
-                <li><div class="categ-button first"><a href="#about" class="{%if about_tab_selected %}selected{% endif %}">{% trans "About"|capfirst %}</a></div></li>
-                <li><div class="categ-button"><a href="#filters" class="{%if filters_tab_selected %}selected{% endif %}">{% trans "Filters"|capfirst %}</a></div></li>
+                <li><div class="categ-button"><a href="#filters" class="{%if filters_tab_selected %}selected{% endif %}">{% trans "Filter results"|capfirst %}</a></div></li>
                 <li><div class="categ-button hidden"><a href="{% url feedback-list %}">{% trans "Help" %}</a></div></li>
             </ul>
-          
+
+            {% comment %}
             {% include "search.html" %}
+            {% endcomment %}
+            {% autopaginate project_translation_list 12 %}
+            {% paginate using "project_sheet/project_list_pagination.html" %}
               
               
             <div class="toolbox">
@@ -123,67 +127,15 @@
                                 <h4>{% trans "Project Status" %}</h4>
                                 <div class="filters-progress">
                                     {{status_filter.status}}
-                                </div>                            
-                              
+                                </div>
+                                </script>
                                
                             </div>
                         </div>                    
                     </div>         
                 
           </form>
-        </div>
-        
-        
-        
-        <!-- About -->
-        <div id="about" class="categ-panel"> 
-
-            <div class="block-content">  			
-
-                <br />
-                 
-                <div class="colonne grid_4 alpha">
-                    <h1><img src="{{ STATIC_URL }}images/home/picto-projects.jpg" />{% trans 'projects'|capfirst %}</h1>						
-                    <p>{% blocktrans %}Explore and contribute to social projects around the world.{% endblocktrans %}</p>
-                    <a href="{% url project_sheet-list %}">{% trans 'Projects &gt;' %}</a> 						
-                    <a href="{% url project_sheet-start %}">{% trans 'Add a new project &gt;' %}</a> 						
-                </div>
-                
-                <div class="colonne grid_4">						
-                    <h1><img src="{{ STATIC_URL }}images/home/picto-community.jpg" />{% trans 'community'|capfirst %}</h1>						
-                    <p>{% blocktrans %}Connect with a community of citizens from over 30 countries.{% endblocktrans %}</p>
-                    <a href="{% url userena_profile_list %}">{% trans 'The community' %}</a>
-                    <!-- <a href="#">{% trans 'The community &gt;' %}</a> 		       -->
-                    <!-- <a href="{% url userena_signup %}">{% trans 'Join the community &gt;' %}</a> 		       -->
-	                </div>
-                
-                <div class="colonne grid_4">
-                    <h1><img src="{{ STATIC_URL }}images/home/picto-ressources.jpg" />{% trans 'resources'|capfirst %}</h1>						
-                    <p>{% blocktrans %}Discover the latest tools, methods and debates in the world of social innovation{% endblocktrans %}.</p>											
-                    <a class="tipsed" href="#" title="{% trans "Work-in-Progress" %}">{% trans 'Resources (WIP)' %}</a>
-
-                    <!-- <a href="#">{% trans 'Join a group &gt;' %}</a> 		     -->
-                </div>	
-
-                <div class="colonne grid_6 omega">
-                    <h1>
-                        {% blocktrans %}A community of imaginative citizens to detect and develop socially innovative projects.{% endblocktrans %}
-                    </h1>
-                    <p></p>
-                    <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto &gt;' %}</a> 		    
-                    <a href="{% page_url 'about_us' %}">{% trans 'About IP &gt;' %}</a> 	                    
-                </div>	                    
-                                    
-            </div> 
-
-        </div>
-        
-                  
-        
-        
-        
-        <div class="clear"></div>
-	    
+        </div>	    
 	  </div>
 	</div>
       

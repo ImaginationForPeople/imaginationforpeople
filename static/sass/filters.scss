@@ -81,10 +81,13 @@
 
 
 .categories_project_page{
-	position:fixed !important;
+    position:relative !important;
+    overflow:hidden;
     top:auto;
-	bottom:0px;
+    bottom:0px;
     z-index:200;
+    margin-left:8px;
+    margin-right:7px;
 }
 
 
@@ -294,6 +297,10 @@
             text-align:center;
             margin:0px !important;
             margin-bottom:15px !important;            
+            input {
+                width:90px;
+                height: 20px;
+                }
         }
         
         li.selected p{
@@ -357,8 +364,17 @@
     filter:alpha(opacity=0); 
     cursor:pointer;
 }
+.categories .menu {
+    text-align: center;
+}
+.categories .menu .pagination {
+    display: inline-block;
 
-
+    margin-bottom: 0;
+    a {
+        display: inline;
+    }
+}
 
 #reset_filters{
     position:relative;
@@ -498,6 +514,7 @@
     height:24px;
     position:absolute;
     top:7px;
+    margin-left:8px;
 }
 
 #lock-picto.on{

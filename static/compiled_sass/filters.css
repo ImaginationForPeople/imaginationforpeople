@@ -75,10 +75,13 @@
 
 /*---- Filters ----*/
 .categories_project_page {
-  position: fixed !important;
+  position: relative !important;
+  overflow: hidden;
   top: auto;
   bottom: 0px;
   z-index: 200;
+  margin-left: 8px;
+  margin-right: 7px;
 }
 
 .categories {
@@ -258,6 +261,10 @@
   margin: 0px !important;
   margin-bottom: 15px !important;
 }
+.filters-progress ul li input {
+  width: 90px;
+  height: 20px;
+}
 .filters-progress ul li.selected p {
   color: white;
 }
@@ -308,6 +315,18 @@
   opacity: 0;
   filter: alpha(opacity=0);
   cursor: pointer;
+}
+
+.categories .menu {
+  text-align: center;
+}
+
+.categories .menu .pagination {
+  display: inline-block;
+  margin-bottom: 0;
+}
+.categories .menu .pagination a {
+  display: inline;
 }
 
 #reset_filters {
@@ -427,6 +446,7 @@
   height: 24px;
   position: absolute;
   top: 7px;
+  margin-left: 8px;
 }
 
 #lock-picto.on {
