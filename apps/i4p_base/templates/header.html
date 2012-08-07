@@ -9,24 +9,27 @@
                 </a>
             </div>
             
+            {% include "menu.html" %}
+            {% comment %}
             <ul id="menu">
                 <li id="about_button"><a href="javascript:;">{% trans "About us" %}</a></li>
                 <li id="projects_list_button"><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
                 <li><a class="addproject_button" href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
                 <li><a class="" href="{% url forum-index %}">{% trans "forum"|capfirst %}</a></li>
                 <li><a href="/workgroup/">{% trans 'Workgroups' %}</a></li>
-                {% comment %}
+
                     <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
-                {% endcomment %}
+                
                 <li><a href="{% page_url 'ipmedia' %}">{% trans "IP MEDIA" %}</a></li>
                 <li><a href="/blog/?lang={{ LANGUAGE_CODE }}">Blog</a></li>
             </ul>
-            
+            {% endcomment %}
             <div class="clear"></div>
             {% include "search.html" %}
             <div class="clear"></div>
 
         </div>
+
     </div>
-    
-    {% include "hover-menus.html" %}
+
+

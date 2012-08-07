@@ -30,9 +30,7 @@
                         {% if project_translation %}
 						<li><div class="categ-button first"><a href="{% url project_sheet-show project_translation.slug %}" {% if project_tab %}class="selected"{% endif %}>{% trans "Project" %}</a></div></li>
 						
-                        {% comment %}
                             <li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}" {% if history_tab %}class="selected"{% endif %}>{% trans "History" %}</a></div></li>
-                        {% endcomment %}
                         
                        {% else %}
                         <li><div class="categ-button first"><a href="#" class="selected">{% trans "Project" %}</a></div></li>

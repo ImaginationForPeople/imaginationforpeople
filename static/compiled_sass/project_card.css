@@ -6,18 +6,52 @@
   float: left;
 }
 
-.project_card {
-  margin-right: 20px;
-  margin-bottom: 25px;
+.project_list_project {
+  margin-bottom: 1em;
+}
+.project_list_project a {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #bdbdbd;
+  border: 1px solid transparent;
+  margin: 0;
+  padding: 0;
+}
+.project_list_project a:hover {
+  border: 1px solid #848484;
+  text-decoration: none;
+  color: #bdbdbd;
+}
+.project_list_project .project_infos_title {
+  display: table;
+  width: 100%;
+  background-color: black;
+}
+.project_list_project .project_infos_title h2 {
+  height: 3em;
+  display: table-cell;
+  vertical-align: middle;
+  width: 100%;
+  padding: 0 0.5em;
+  font-size: 15px;
+  font-family: Tahoma, Verdana, Arial, Sans-serif;
+  font-weight: bold;
+  font-style: normal;
+  line-height: 90%;
+  color: #c2c2c2;
+  text-align: left;
+}
+.project_list_project .project_card {
   float: left;
   position: relative;
   background-color: black;
   border: 0px;
   padding: 0px;
   border: 0px;
-  top: 5px;
   text-align: right;
   width: 137px;
+  height: 190px;
   border: 0px !important;
   -moz-box-shadow: 0px 0px 12px #181818;
   -webkit-box-shadow: 0px 0px 12px #181818;
@@ -25,9 +59,7 @@
   box-shadow: 0px 0px 12px #181818;
   behavior: url(static/js/pie/PIE.htc);
 }
-.project_card .project-photo {
-  position: relative;
-  top: -5px;
+.project_list_project .project_card .project-photo {
   width: 100%;
   height: 71px;
   background-color: #BDBDBD;
@@ -35,24 +67,22 @@
   background-position: center center;
   background-repeat: no-repeat;
 }
-.project_card .project-photo img {
+.project_list_project .project_card .project-photo img {
   width: 100%;
   height: 71px;
 }
-.project_card img, .project_card a {
+.project_list_project .project_card img, .project_list_project .project_card a {
   border: 0px;
   padding: 0px;
 }
-
-.project_card:hover {
+.project_list_project .project_card:hover {
   text-decoration: none;
 }
-
-.project_card_progress {
+.project_list_project .project_card_progress {
   height: 20px;
   position: relative;
 }
-.project_card_progress p {
+.project_list_project .project_card_progress p {
   font-size: 10px;
   color: white;
   font-style: normal;
@@ -65,15 +95,14 @@
   margin: 0px;
   padding: 0px;
 }
-.project_card_progress img {
+.project_list_project .project_card_progress img {
   position: relative;
   width: 131px;
   height: 15px;
   top: 3px;
   left: -3px;
 }
-
-.project_card_pictos {
+.project_list_project .project_card_pictos {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 11px;
   color: #7d3b09;
@@ -83,56 +112,42 @@
   font-weight: normal;
   margin-right: 2px;
 }
-.project_card_pictos ul, .project_card_pictos ul li {
+.project_list_project .project_card_pictos ul, .project_list_project .project_card_pictos ul li {
   margin: 0px;
   padding: 0px;
 }
-
-.project_card_content {
+.project_list_project .project_card_content {
   position: relative;
   padding-left: 7px;
   margin-right: 7px;
   margin-bottom: 5px;
-  height: 125px;
+  height: 91px;
 }
-.project_card_content .project_topic_mini {
+.project_list_project .project_card_content .project_topic_mini {
   position: absolute;
   bottom: -5px;
   right: -5px;
 }
-
-.project_card_infos li {
+.project_list_project .project_card_infos li {
   display: block;
   list-style-type: none;
   font-size: 11px;
   color: #a4a4a3;
   text-decoration: none;
 }
-
-.project_infos {
-  width: 50%;
+.project_list_project .project_infos {
+  width: 170px;
+  margin-left: auto;
+  margin-right: auto;
   float: right;
   position: relative;
-  height: 234px;
+  height: 190px;
 }
-.project_infos a {
+.project_list_project .project_infos a {
   position: absolute;
   bottom: 0px;
 }
-
-.project_infos_title {
-  font-size: 15px;
-  font-family: Tahoma, Verdana, Arial, Sans-serif;
-  font-weight: bold;
-  font-style: normal;
-  color: #c2c2c2;
-  position: absolute;
-  bottom: 0px;
-  margin-bottom: 22px;
-  text-align: left;
-}
-
-.project_infos_location {
+.project_list_project .project_infos_location {
   font-size: 11px;
   font-family: Tahoma, Verdana, Arial, Sans-serif;
   font-weight: normal;
@@ -142,17 +157,14 @@
   bottom: 0px;
   text-align: left;
 }
-
-.project_infos_baseline {
+.project_list_project .project_infos_baseline {
   font-size: 11px;
   font-family: Tahoma, Verdana, Arial, Sans-serif;
   font-weight: bold;
   font-style: normal;
   color: #c2c2c2;
-  height: 55px;
 }
-
-.project_infos_description {
+.project_list_project .project_infos_description {
   font-size: 10px;
   margin-bottom: 27px;
 }
