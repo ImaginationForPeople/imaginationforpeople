@@ -58,7 +58,7 @@
 
 {% block content %}
 
-
+  {% autopaginate project_translation_list 12 %}
   <div class="content">
     <div class="container_18 relative">
     {% include "filter-panel.html" %}
@@ -107,7 +107,6 @@
 	<div class="clear"></div>
 	
 	<div>
-      {% autopaginate project_translation_list 12 %}
 	  {% paginate using "project_sheet/project_list_pagination.html" %}
 	</div>
 
