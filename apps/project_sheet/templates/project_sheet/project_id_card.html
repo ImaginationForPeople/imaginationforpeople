@@ -1,9 +1,7 @@
 {% load i18n %}
 
   <div class="project_infos_title"><h2>{{ project_translation.title }}</h2></div>
-  {% language project_translation.language_code %}
   <div class="project_card" >
-  {% endlanguage %}
       <div class="project-photo">	
       {% if project_translation.project.pictures.all|length > 0 %}
           <img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
