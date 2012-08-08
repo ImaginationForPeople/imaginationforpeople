@@ -61,16 +61,16 @@
 
   <div class="content">
     <div class="container_18 relative">
-    
+    {% include "filter-panel.html" %}
         <!-- Projects sorting -->
         <div id="projectlist_sort" >
                       
-            <a href="{% url project_sheet-new-projects-rss %}" class="rss"><img src="{{ STATIC_URL }}images/base/picto_rss.gif" alt="{% trans 'RSS Feed' %}" /></a>
-
+            {% trans 'Order by:'%}
             <ul id="projectlist_sort_buttons">
-                <li class="ui-corner-all {% ifequal order 'creation' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?{{orderparams}}&order=creation">{% trans "Last projects" %}</a></li>
-                <li class="ui-corner-all {% ifequal order 'modification' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?{{orderparams}}&order=modification">{% trans "Last editions" %}</a></li>
+                <li class="ui-corner-all {% ifequal order 'creation' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?{{orderparams}}&order=creation">{% trans "Newest projects" %}</a></li>
+                <li class="ui-corner-all {% ifequal order 'modification' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?{{orderparams}}&order=modification">{% trans "Recent changes" %}</a></li>
             </ul>    
+            <a href="{% url project_sheet-new-projects-rss %}" class="rss"><img src="{{ STATIC_URL }}images/base/picto_rss.gif" alt="{% trans 'RSS Feed' %}" /></a>
 
             
            <!--   
@@ -90,12 +90,6 @@
              -->        
         </div>
 
-    
-   
-	<div style="position:relative; top:25px; height:35px;">
-	  {% autopaginate project_translation_list 12 %}
-	  {% paginate using "project_sheet/project_list_pagination.html" %}
-	</div>
       
 	<div id="projects_list">
 	  {% for project_translation in project_translation_list %}
@@ -113,6 +107,7 @@
 	<div class="clear"></div>
 	
 	<div>
+      {% autopaginate project_translation_list 12 %}
 	  {% paginate using "project_sheet/project_list_pagination.html" %}
 	</div>
 
@@ -123,4 +118,4 @@
   
 {% endblock %}
 
-{% block footer %} {% include "bottom-panel.html" %} {% endblock %}
+{% block footer %}  {% endblock %}
