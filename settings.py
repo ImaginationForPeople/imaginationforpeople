@@ -427,7 +427,7 @@ CMS_TEMPLATES = (
   ('pages/contrib.html', _('Contribution page')),
   ('pages/onemenu.html', _('One menu page')),
 )
-
+CMS_REDIRECTS = True
 CMS_SOFTROOT = True
 APPEND_SLASH = True
 

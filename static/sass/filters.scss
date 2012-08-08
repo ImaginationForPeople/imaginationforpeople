@@ -5,24 +5,26 @@
 
 #projectlist_sort {
     background-color: #0c0c0c;
-    border-top:1px solid #353535;
-    border-bottom:1px solid black;
+    //border-top:1px solid #353535;
+    //border-bottom:1px solid black;
     padding:3px;
     padding-top:5px;
     padding-bottom:5px;
     
-    @include shadow(4px, black); 
-	@include border-radius(4px);
+    //@include shadow(4px, black); 
+	//@include border-radius(4px);
     position:absolute;
     right:0px;
-    top:0px;
+    top:3px;
     
     h4{
         margin-top:8px;
     }
-    
+    .rss {
+        display: inline-block;
+    }
     .button{
-        top:1px;
+        top:4px;
         margin-left:3px;
         margin-right:4px;
         @include shadow(4px, black); 
@@ -31,8 +33,8 @@
 
 
 #projectlist_sort_buttons{
-    display:block;
-    float:left;
+    display:inline-block;
+
     
     .filter-on a.button {
         background-image:url("../images/base/minibutton_red.jpg");
@@ -81,10 +83,12 @@
 
 
 .categories_project_page{
-	position:fixed !important;
+    position:relative !important;
+    overflow:hidden;
     top:auto;
-	bottom:0px;
-    z-index:200;
+    bottom:0px;
+    margin-left:8px;
+    margin-right:7px;
 }
 
 
@@ -294,6 +298,10 @@
             text-align:center;
             margin:0px !important;
             margin-bottom:15px !important;            
+            input {
+                width:90px;
+                height: 20px;
+                }
         }
         
         li.selected p{
@@ -357,8 +365,17 @@
     filter:alpha(opacity=0); 
     cursor:pointer;
 }
+.categories .menu {
+    text-align: center;
+}
+.categories .menu .pagination {
+    display: inline-block;
 
-
+    margin-bottom: 0;
+    a {
+        display: inline;
+    }
+}
 
 #reset_filters{
     position:relative;
@@ -498,6 +515,7 @@
     height:24px;
     position:absolute;
     top:7px;
+    margin-left:8px;
 }
 
 #lock-picto.on{
