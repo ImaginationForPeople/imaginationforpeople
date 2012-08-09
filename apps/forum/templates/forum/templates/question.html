@@ -7,17 +7,11 @@
 {% block keywords %}{{thread.tagname_meta_generator()}}{% endblock %}
 {% block forestyle %}
     <link rel="canonical" href="{{settings.APP_URL|strip_path}}{{question.get_absolute_url()}}" />
-    
-    {% if not user_already_gave_answer %}
-    <link rel="stylesheet" type="text/css" href="{{'/js/wmd/wmd.css'|static_url}}" />
-    <script type='text/javascript' src="{{'/js/wmd/showdown.js'|static_url }}"></script>
-    <script type='text/javascript' src="{{'/js/wmd/wmd.js'|static_url }}"></script>
-    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{{"/js/wmd/wmd.css"|static_url}}" />
 {% endblock %}
 {% block forejs %}
     <script type="text/javascript">
         //below is pure cross-browser javascript, no jQuery
-        (function(){
         	var data = askbot['data'];
             var posts = {};
             var votes = {};
@@ -141,7 +135,6 @@
             askbot['functions']['renderPostControls'] = render_post_controls;
             askbot['functions']['renderAddCommentButton'] = render_add_comment_button;
             askbot['functions']['renderAddAnswerButton'] = render_add_answer_button;
-        })();
     </script>
 {% endblock %}
 {% block content %}

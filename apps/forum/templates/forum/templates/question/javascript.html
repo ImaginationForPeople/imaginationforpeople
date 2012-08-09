@@ -1,45 +1,25 @@
-{% if not thread.closed %}
-    <script type='text/javascript' src='{{"/js/editor.js"|static_url}}'></script>
-    <script type='text/javascript'>
-        {% if settings.ENABLE_MATHJAX or settings.MARKUP_CODE_FRIENDLY %}
-        var codeFriendlyMarkdown = true;
-        {% else %}
-        var codeFriendlyMarkdown = false;
-        {% endif %}
-        var maxCommentLength = {{settings.MAX_COMMENT_LENGTH}};
-        {% if settings.SAVE_COMMENT_ON_ENTER %}
-            askbot['settings']['saveCommentOnEnter'] = true;
-        {% else %}
-            askbot['settings']['saveCommentOnEnter'] = false;
-        {% endif %}
-    </script>
- <!--    
-    <script type='text/javascript' src='{{"/js/wmd/showdown.js"|static_url}}'></script>
-    <script type='text/javascript' src='{{"/js/wmd/wmd.js"|static_url}}'></script>
- -->
-{% endif %}
-<script type='text/javascript' src='{{"/js/jquery.validate.min.js"|static_url}}'></script>
-<script type='text/javascript' src='{{"/js/post.js"|static_url}}'></script>
 <script type="text/javascript">
+    {% if not thread.closed %}
+        var maxCommentLength = {{settings.MAX_COMMENT_LENGTH}};
+    {% if settings.SAVE_COMMENT_ON_ENTER %}
+        askbot['settings']['saveCommentOnEnter'] = true;
+    {% else %}
+        askbot['settings']['saveCommentOnEnter'] = false;
+    {% endif %}
+    {% endif %}
     // define reputation needs for comments
     var repNeededForComments = 50;
+    
     $().ready(function(){
         {% if request.user.is_authenticated() %}
         $('#question-subscribe-updates:checked').attr({'checked': 'checked'})
         {%endif%}
-        $("#nav_questions").attr('className',"on");
+        
         var answer_sort_tab = "{{ tab_id }}";
         $("#" + answer_sort_tab).attr('className',"on");
         
         Vote.init({{ question.id }}, '{{ thread.title|slugify }}', '{{ question.author_id }}','{{ request.user.id }}');
-        
-        {% if not thread.closed and request.user.is_authenticated %}
-        if($('#editor').length){
-        	initEditor();
-        }
-        {% endif %}
-        
-        lanai.highlightSyntax();
+
         $('#btLogin').bind('click', function(){
         	window.location.href='{{ settings.LOGIN_URL }}'; 
         });
@@ -70,29 +50,6 @@
             $(id_value).css('backgroundColor', previous_color);
         });
       }
-    }
-
-    
-    function initEditor(){
-        $('#editor').TextAreaResizer();
-        //highlight code synctax when editor has new text
-        $("#editor").typeWatch({highlight: false, wait: 3000,
-                         captureLength: 5, callback: lanai.highlightSyntax});
-                         
-        var display = true;
-        var txt = "[{% trans %}hide preview{% endtrans %}]";
-        $('#pre-collapse').text(txt);
-        $('#pre-collapse').bind('click', function(){
-            txt = display ? "[{% trans %}show preview{% endtrans %}]" : "[{% trans %}hide preview{% endtrans %}]";
-            display = !display;
-            $('#previewer').toggle();
-            $('#pre-collapse').text(txt);
-        });
-        setupFormValidation(
-            $("#fmanswer"),
-            CPValidator.getAnswerFormRules(),
-            CPValidator.getAnswerFormMessages()
-        );
     }
 </script>
 {% include "meta/editor_data.html" %}

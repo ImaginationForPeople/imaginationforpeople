@@ -34,7 +34,6 @@
     </table>
 {% endblock %}
 {% block endjs %}
-    <script type='text/javascript' src='{{"/js/jquery.validate.min.js"|static_url}}'></script>
     <script src='{{"/js/post.js"|static_url}}' type='text/javascript'></script>
     {% if request.user.is_authenticated() %}
     <script type="text/javascript">

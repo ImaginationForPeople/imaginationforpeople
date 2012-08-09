@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/superfish_main_menu.css" />
     
     {% block before_css %}{% endblock %}
     {% include "meta/html_head_stylesheets.html" %}
@@ -40,6 +41,7 @@
     
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
 
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
@@ -142,8 +144,6 @@
           
           
           {% include "widgets/system_messages.html" %}
-          {% include "debug_header.html" %}
-          {% include "custom_header.html" ignore missing %}
     
             {% if settings.CUSTOM_HEADER|trim != '' %}
             <div id="custom-header">

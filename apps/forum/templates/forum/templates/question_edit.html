@@ -46,54 +46,5 @@
 
 {% block endjs %}
     {% include "meta/editor_data.html" %}
-    <script type='text/javascript' src='{{"/js/editor.js"|static_url }}'></script>
-    {% if mandatory_tags %}
-        {% include "meta/mandatory_tags_js.html" %}
-    {% endif %}
-    <script type='text/javascript' src='{{"/js/jquery.validate.min.js"|static_url}}'></script>
-    <script type='text/javascript' src='{{"/js/post.js"|static_url}}'></script>
-    <script type='text/javascript' src='{{"/js/wmd/showdown.js"|static_url}}'></script>
-    <script type='text/javascript' src='{{"/js/wmd/wmd.js"|static_url}}'></script>
-    <script type="text/javascript">
-    {% if settings.ENABLE_MATHJAX or settings.MARKUP_CODE_FRIENDLY %}
-        var codeFriendlyMarkdown = true;
-    {% else %}
-        var codeFriendlyMarkdown = false;
-    {% endif %}
-    //todo move javascript out
-    $().ready(function(){
-        $("#nav_questions").attr('className',"on");
-        $('#editor').TextAreaResizer();
-        
-        //highlight code synctax when editor has new text
-        $("#editor").typeWatch({highlight: false, wait: 3000,
-                         captureLength: 5, callback: lanai.highlightSyntax});
-                         
-        //toggle preview of editor
-        var display = true;
-        var txt = "[{% trans %}hide preview{% endtrans %}]";
-        $('#pre-collapse').text(txt);
-        $('#pre-collapse').bind('click', function(){
-            txt = display ? "[{% trans %}show preview{% endtrans %}]" : "[{% trans %}hide preview{% endtrans %}]";
-            display = !display;
-            $('#previewer').toggle();
-            $('#pre-collapse').text(txt);
-        });
-        
-        {{ macros.tag_autocomplete_js(id = '#id_tags') }}
-        
-        setupFormValidation(
-                    $("#fmedit"),
-                    CPValidator.getQuestionFormRules(),
-                    CPValidator.getQuestionFormMessages()
-        );
-
-        $('#id_revision').unbind().change(function(){
-            $("#select_revision").click();
-        });
-        lanai.highlightSyntax();
-        
-    });
-    </script>
 {% endblock %}
 <!-- end question_edit.html -->

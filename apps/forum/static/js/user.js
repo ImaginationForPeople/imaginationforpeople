@@ -836,7 +836,7 @@ UserGroupsEditor.prototype.decorate = function(element){
     //todo - add group deleters
 };
 
-(function(){
+$(document).ready(function() {
     var fbtn = $('.follow-user-toggle');
     if (fbtn.length === 1){
         var follow_user = new FollowUser();
@@ -853,4 +853,4 @@ UserGroupsEditor.prototype.decorate = function(element){
     } else {
         $('#add-group').remove();
     }
-})();
+});
