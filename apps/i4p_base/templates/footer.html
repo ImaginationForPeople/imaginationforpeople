@@ -10,7 +10,7 @@
             <a href="{% page_url 'homepage' %}">
 
 	      {% if request.current_page.is_home  %}
-                {% placeholder "footer logo" or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="{{ site.name }}" width="197" height="68" />{% endplaceholder %}                
+                {% placeholder "footer logo" inherit or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="{{ site.name }}" width="197" height="68" />{% endplaceholder %}                
 	      {% else %}
 	        {% show_placeholder "footer logo" "homepage" %}
               {% endif %}
@@ -24,7 +24,7 @@
             </div>
 
 	      {% if request.current_page.is_home  %}
-                {% placeholder "footer-follow" or %}
+                {% placeholder "footer-follow" inherit or %}
             <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto' %}</a> | <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
             <h1>{% trans 'Follow us' %}</h1>
             <ul>
@@ -43,38 +43,12 @@
         
         <div class="grid_6">
 
-      {% if request.current_page.is_home  %}
-	   {% placeholder "footer-resources" or %}
-            <div class="concept">
-                <img src="{{ STATIC_URL }}images/base/projet-picto.png" alt="{% trans 'Projects' %}" width="52" height="52" />
-                <div class="concept_detail">
-                    <h1>{% trans 'Projects' %}</h1>
-                    <p>{% trans 'Explore and contribute to social projects around the world.' %}</p>
-                    <a href="{% url project_sheet-list %}">{% trans 'Projects' %}</a> | <a href="{% url project_sheet-start %}" class="addproject_button">{% trans 'Add a project' %}</a>
-                </div>
-            </div>
-            
-            <div class="concept">
-                <img src="{{ STATIC_URL }}images/base/groupes-picto.png" alt="{% trans 'Groups' %}" width="52" height="52" />
-                <div class="concept_detail">
-                    <h1>{% trans 'Groups' %}</h1>
-                    <p>{% trans 'Connect with a community of citizens from over 30 countries.' %}</p>
-                    <a href="{% url userena_profile_list %}">{% trans 'The community' %}</a> | <a href="{% url userena_signup %}">{% trans 'Join the community' %}</a>
-                </div>
-            </div>
-            
-            <div class="concept">
-                <img src="{{ STATIC_URL }}images/base/ressources-picto.png" alt="{% trans 'Ressources' %}" width="52" height="52" />
-                <div class="concept_detail">
-                    <h1>{% trans 'Resources' %}</h1>
-                    <p>{% trans 'Discover the latest tools, methods and debates in the world of social innovation.' %}</p>
-                    <a href="#">{% trans 'Resources' %}</a>
-                </div>
-            </div>
-        {% endplaceholder %}
-       {% else %}
-	    {% show_placeholder "footer-resources" "homepage" %}
-       {% endif %}
+        {% if request.current_page.is_home  %}
+            {% placeholder "footer-resources" or %}
+            {% endplaceholder %}
+        {% else %}
+            {% show_placeholder "footer-resources" "homepage" %}
+        {% endif %}
         
         </div>
         
