@@ -7,6 +7,10 @@
 <script type="text/javascript" src='{{"/js/post.js"|static_url}}'></script>
 
 <script type="text/javascript">
+
+    askbot['data']['viewUserName'] = '{{ view_user.username|escape }}';
+    askbot['data']['viewUserId'] = {{view_user.id}};
+
     $(document).ready(function(){
         $("div.tabBar.tabBar-profile .tabsC").idTabs();
 

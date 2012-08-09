@@ -6,12 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
     <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
-    
-    <meta name="keywords" content="{% block meta_keywords %}{% endblock %}" /> 
-    <meta name="description" content="{% block meta_desc %}{% endblock %}" /> 
-    <title>{% block title %}{% endblock %}</title>
 
-   
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
@@ -30,6 +25,7 @@
       
     {% endblock %}  
 
+
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
@@ -40,7 +36,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
     
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
-    
+    		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
 
     <!-- for i18n -->
@@ -145,11 +141,7 @@
           
           {% include "widgets/system_messages.html" %}
     
-            {% if settings.CUSTOM_HEADER|trim != '' %}
-            <div id="custom-header">
-                {{settings.CUSTOM_HEADER}}
-            </div>
-            {% endif %}
+
             {% include "widgets/secondary_header.html" %} {# Scope selector, search input and ask button #}
             {% if settings.ENABLE_LEADING_SIDEBAR %}
             <div id="leading-sidebar">

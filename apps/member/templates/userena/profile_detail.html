@@ -82,7 +82,7 @@
 {% block inline_js %}
 {{ block.super }}
 {% include_jinja "meta/bottom_scripts.html" request %}
-{% with view_user=user%}
+{% with view_user=profile.user%}
 {% include_jinja "user_profile/user_profile_scripts.html" request%}
 {%endwith %}
 <script type="text/javascript">

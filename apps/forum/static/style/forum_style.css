@@ -137,9 +137,6 @@ blockquote {
 * html .paginator {
   height: 1;
   overflow: visible;
-}
-+ html .clearfix,
-+ html .paginator {
   min-height: 1%;
 }
 .clearfix:after,
@@ -386,18 +383,17 @@ body.user-messages {
 #searchBar .searchInput,
 #searchBar .searchInputCancelable {
   font-size: 26px;
-  height: 39px;
+  height: 36px;
   font-weight: 300;
   background: #FFF;
   border: 0px;
   color: #484848;
-  padding-left: 10px;
   padding-top: 1px;
   font-family: Arial;
   vertical-align: top;
 }
 #searchBar .searchInput {
-  width: 340px;
+  width: 342px;
 }
 #searchBar .searchInputCancelable {
   width: 305px;
@@ -592,6 +588,7 @@ body.user-messages {
   border: #c9c9b5 1px solid;
   height: 25px;
   width: 140px;
+  margin-bottom: 0px;
 }
 .box .inputs #ab-tag-search {
   width: 138px;
@@ -635,9 +632,9 @@ body.user-messages {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
-  padding-right: 0px; 
+  /*padding-right: 0px; 
   padding-left: 0px; 
-  margin-top: 0px; 
+  margin-top: 0px; */
   margin-left: 1px;
 }
 .box .inputs #interestingTagAdd:hover,
@@ -841,8 +838,8 @@ body.user-messages {
 .tabsA .label,
 .tabsC .label {
   float: left;
-  color: #646464;
-  margin: 4px 5px 0px 8px;
+  /*color: #646464;*/
+  margin: 7px 6px 0 8px;
 }
 .main-page .tabsA .label {
   margin-left: 8px;
@@ -1314,7 +1311,7 @@ ul#related-tags li {
   margin: 0px;
   padding: 0px 0 0 5px;
   border: #cce6ec 3px solid;
-  width: 100%;
+  width: 99%;
 }
 .ask-page div#question-list,
 .edit-question-page div#question-list {
@@ -1442,7 +1439,7 @@ ul#related-tags li {
   -webkit-box-shadow: 1px 1px 2px #636363;
   -moz-box-shadow: 1px 1px 2px #636363;
   box-shadow: 1px 1px 2px #636363;
-  margin-right: 7px;
+  margin-right: 30px;
 }
 #fmanswer input.submit:hover,
 .ask-page input.submit:hover,
@@ -1481,7 +1478,7 @@ ul#related-tags li {
 .question-page #editor,
 .edit-question-page #editor,
 .edit-answer-page #editor {
-  width: 100%;
+  width: 99%;
 }
 #editor {
   /* adjustment for editor preview */
@@ -2173,6 +2170,7 @@ ul#related-tags li {
 }
 .question-page #fmanswer label {
   font-size: 13px;
+  display: inline;
 }
 .question-page .message {
   padding: 5px;
@@ -2241,9 +2239,10 @@ ul#related-tags li {
 .user-profile-page form {
   margin-bottom: 15px;
 }
+
 .openid-signin input[type="text"],
 .meta input[type="text"],
-.users-page input[type="text"],
+/*.users-page input[type="text"],*/
 .user-profile-edit-page input[type="text"],
 .user-profile-page input[type="text"],
 .openid-signin input[type="password"],
