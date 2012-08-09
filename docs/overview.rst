@@ -9,7 +9,7 @@ be used to build **social innovation** platforms.
 `I4P` is following an open process for its development and is licensed
 under free software licences (mainly `AGPL v3`_, `BSD`_ and `Creative
 Commons`_). Everyone is welcomed to use, distribute and contribute to
-it as long as you give you enhancements back.
+it as long as you give your enhancements back.
 
 Project sheets
 ==============
