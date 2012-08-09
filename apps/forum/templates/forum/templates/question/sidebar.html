@@ -27,7 +27,13 @@
     </div>
     <div class="notify-sidebar">
         {%if request.user.is_authenticated() %}
-        <input type="checkbox" id="question-subscribe-sidebar"/>
+        <input 
+            type="checkbox"
+            id="question-subscribe-sidebar"
+            {% if thread.is_followed_by(request.user) %}
+                checked="checked"
+            {% endif %}
+        />
         <label for="question-subscribe-sidebar">{% trans %}email the updates{% endtrans %}</label>
         {%else%}
         <input type="checkbox" id="question-subscribe-sidebar"/>
