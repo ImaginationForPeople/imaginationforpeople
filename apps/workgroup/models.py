@@ -20,6 +20,7 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
+from cms.models.pluginmodel import CMSPlugin
 
 from django_mailman.models import List
 
@@ -57,10 +58,6 @@ class WorkGroup(models.Model):
     @models.permalink
     def get_absolute_url(self):
         return ('workgroup-detail', (self.slug,))
-
-    
-
-from cms.models.pluginmodel import CMSPlugin
 
 class WorkGroupCMS(CMSPlugin):
     workgroup = models.ForeignKey(WorkGroup)

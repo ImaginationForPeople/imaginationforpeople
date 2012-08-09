@@ -37,6 +37,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 
 from autoslug.fields import AutoSlugField
+from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
 from nani.models import TranslatableModel, TranslatedFields
@@ -45,6 +46,7 @@ from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
 from south.modelsinspector import add_ignored_fields
 from tagging.fields import TagField
+from tagging.models import Tag
 
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
@@ -389,3 +391,8 @@ for model, fields in VERSIONNED_FIELDS.iteritems():
     if not reversion.is_registered(model):
         reversion.register(model, fields=fields)
 
+class TagCMS(CMSPlugin):
+    tag = models.ForeignKey(Tag) #models.CharField(_('Tag'), choices=gen_tag_list(), max_length=50) 
+        
+    def copy_relations(self, oldinstance):
+        self.tag = oldinstance.tag

@@ -44,7 +44,7 @@
         <div class="grid_6">
 
       {% if request.current_page.is_home  %}
-	  {% placeholder "footer-resources" or %}
+	   {% placeholder "footer-resources" or %}
             <div class="concept">
                 <img src="{{ STATIC_URL }}images/base/projet-picto.png" alt="{% trans 'Projects' %}" width="52" height="52" />
                 <div class="concept_detail">
@@ -71,8 +71,9 @@
                     <a href="#">{% trans 'Resources' %}</a>
                 </div>
             </div>
-       {% endplaceholder %}
-	    {% show_placeholder "footer-baseline" "homepage" %}
+        {% endplaceholder %}
+       {% else %}
+	    {% show_placeholder "footer-resources" "homepage" %}
        {% endif %}
         
         </div>
