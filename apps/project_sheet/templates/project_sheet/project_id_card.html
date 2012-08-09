@@ -1,9 +1,7 @@
 {% load i18n %}
 
   <div class="project_infos_title"><h2>{{ project_translation.title }}</h2></div>
-  {% language project_translation.language_code %}
   <div class="project_card" >
-  {% endlanguage %}
       <div class="project-photo">	
       {% if project_translation.project.pictures.all|length > 0 %}
           <img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
@@ -47,10 +45,11 @@
   
           {% endif %}
       </div>	
-      
-      {% if project_translation.project.topics.all.0 %}
-      <img class="project_topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
-      {% endif %}
+      {% comment %}
+         {% if project_translation.project.topics.all.0 %}
+         <img class="project_topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
+         {% endif %}
+      {% endcomment %}
       
     </div>
     <div class="clear"></div>

@@ -6,4 +6,7 @@ Application APIs
 
    i4p_base.rst
    member.rst
+   partner.rst
    project_sheet.rst
+   workgroup.rst
+
