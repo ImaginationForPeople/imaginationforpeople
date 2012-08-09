@@ -254,7 +254,11 @@ class I4pProjectTranslation(models.Model):
 
     # @models.permalink
     def get_absolute_url(self):
-        return reverse('project_sheet-show', kwargs={'slug': self.slug, 'locale':self.language_code})
+        current_language = translation.get_language()
+        translation.activate(self.language_code)
+        url = reverse('project_sheet-show', kwargs={'slug': self.slug})
+        translation.activate(current_language)
+        return url
 
 
     def __unicode__(self):

@@ -2,128 +2,104 @@
 Setting-up a development environment
 ====================================
 
-Database
-========
+Bootstrapping an environment
+============================
 
-Once you've created a database for the project (such as 'imaginationforpeople'),
-edit site_settings.py and make sure your database connection parameters are
-correct. Then you need to initialize your database with these commands::
+First, you need to setup an isolated developement environment for the
+python apps using virtualenv_::
 
-    python manage.py syncdb
-    python manage.py migrate
+  virtualenv --no-site-packages imaginationforpeople.org
+
+Since we rely on a few Ruby_ tools, you need to add the following
+lines to your ``bin/activate`` script to be able to use gems_::
+
+  export GEM_HOME="$VIRTUAL_ENV/gems"
+  export GEM_PATH=""
+  export PATH="$PATH:$GEM_HOME/bin"
+
+Then, enters the environment::
+
+  cd imaginationforpeople.org && source bin/activate
+
+Your prompt should update to something like (note the prefix)::
+
+  (i4p-env)glibersat@carpe:~/Source/i4p-env/imaginationforpeople/
+
+**Note**: For the next steps, you need to be in an activated environment.
+
+
+Getting the code
+================
+
+Once you're in your virtualenv directory, use::
+
+  git clone https://github.com/ImaginationForPeople/imaginationforpeople.git
+  cd imaginationforpeople
+  git branch --track develop origin/develop
+  git checkout develop
+
+then, change directory to ``imaginationforpeople`` and fetch the dependencies using::
+
+  pip install -U -r requirements.txt
+
+*It may be the right to fetch a cup of coffee! :-)*
+
+Populating the Database
+=======================
+
+You need to configure a database server (PostGreSQL_ is recommended,
+see how to configure it in the :ref:`Database server configuration`
+section) and create a database for the project (such as
+'imaginationforpeople').
+
+Make sure you have configured your ``site_settings.py`` (see
+:ref:`Application Configuration`) and make sure your database
+connection parameters are correct. Then you need to initialize your
+database with these commands::
+
+    python manage.py syncdb --all
+    python manage.py migrate --fake
     python manage.py check_permissions
 
-Compass
-=======
 
-Installing
-----------
+Feeding initial data
+====================
 
-Add this at the end of your "bin/activate" script::
+While we'd like the app to work out of the box, a few maual steps are still needed.
 
-    export GEM_HOME="$VIRTUAL_ENV/gems"
-    export GEM_PATH=""
-    export PATH="$PATH:$GEM_HOME/bin"
+Site declaration
+----------------
 
-then, source it again and run::
+You need to declare at least one website that matches your site's
+production name. This simplest way is to go through a python shell::
 
-      gem install compass rb-inotify
-
-
-Running
--------
-
-To allow CSS (re)generation, use the following command while modifying
-CSSes::
-
-   compass watch media/
-
-To run a one-time compilation, use::
-
-   compass compile media
-
-Social authentication
-=====================
-
-This section describes how to setup your instance of the application to support
-authentication against social services.
-
-Services configuration
-----------------------
-
-For each supported authentication service, you need an account with that service
-and you need to use that account to create and configure an *application* using
-their web interface. Each service will provide you with a pair of ID/Key and
-secret.
-
-Most services requires that you provide one or more URLs pointing to your
-site. In development you can't use the real site URL but you can make up one.  It
-doesn't need to be based on a valid hostname but it needs to look valid, so
-``http://127.0.0.1:8000`` won't work but something like
-``http://i4p-dev.com:8000`` will do. You'll need to configure your machine so
-that your site URL points to your local instance. On Unix systems you can do
-this by adding an entry to ``/etc/hosts``::
-
-    127.0.0.1   i4p-dev.com
-
-You can also use your zeroconf (avahi, bonjour) host, such as
-mymachine.local.
-
-In the subsequent sections we assume that the hostname pointing to your
-development machine is ``i4p-dev.com`` but you can use another hostname if you
-wish.
+  ./manage.py shell_plus
+  site = Site.objects.get(id=1)
+  site.domain = "imaginationforpeople.org"
+  site.save()
+  exit()
 
 
-Facebook
-^^^^^^^^
+Default CMS templates
+---------------------
 
-Go to https://developers.facebook.com/ and create a new app. You'll need to
-enter a site URL: ``http://i4p-dev.com:8000``.
+We still have a few hardcoded templates that refer to specific CMS
+pages. Therefore, you need to create them so the url lookups work.
 
-Google
-^^^^^^
+The following pages are required: **homepage**, **about_us**, **manifesto** and
+**ipmedia**.
 
-Google offers several authentication options. We use 
-`OAuth2 <http://code.google.com/apis/accounts/docs/OAuth2.html>`_. Go to
-https://code.google.com/apis/console and create a new Client ID.  Redirect URIs
-should contain ``http://i4p-dev.com:8000/member/complete/google-oauth2/`` and
-JavaScript origins should contain ``https://i4p-dev.com``.
+So, for each of these names, do the following:
 
-Twitter
-^^^^^^^
+#. Create a page
+#. Edit it and in *Advanced parameters*, set the **id** to its name (i.e. *homepage*)
+#. If this is the **homepage**, select "I4PBase App" as **Application**
+#. Go back to the page listing and check *published*
 
-Go to https://dev.twitter.com/k and create a new app. Your callback URL should
-be ``http://i4p-dev.com:8000/``.
-
-LinkedIn
-^^^^^^^^
-
-Go to https://www.linkedin.com/secure/developer and add a new application. 
-
-OpenID
-^^^^^^
-
-No configuration is required for basic OpenID authentication.
-
-Local configuration
--------------------
-
-Then you need to enter an ID/Key and secret pair for each authentication service
-in ``site_settings.py`` (remember that you should never store this file into
-version control).
+Once you're done, restart the server.
 
 
-.. code-block:: python
-
-    # Social auth
-    FACEBOOK_APP_ID              = 'XXXXXXXXX'
-    FACEBOOK_API_SECRET          = 'XXXXXXXXXXXXXXXXXXXXXXXXXXX'
-
-    TWITTER_CONSUMER_KEY         = 'XXXXXXXXXXXX'
-    TWITTER_CONSUMER_SECRET      = 'XXXXXXXXXXXXXXXXXXXX'
-
-    GOOGLE_OAUTH2_CLIENT_KEY     = 'XXXXXXXX.apps.googleusercontent.com'
-    GOOGLE_OAUTH2_CLIENT_SECRET  = 'XXXXXXXXXXXXXXX'
-
-    LINKEDIN_CONSUMER_KEY        = 'XXXXXXXX'
-    LINKEDIN_CONSUMER_SECRET     = 'XXXXXXXXXXXX'
+.. _virtualenv: http://www.virtualenv.org/
+.. _Ruby: http://www.ruby-lang.org/
+.. _gems: http://rubygems.org/
+.. _PostGreSQL: http://www.postgresql.org/

@@ -15,8 +15,6 @@
 	        {% show_placeholder "footer logo" "homepage" %}
               {% endif %}
             </a>
-            
-            <br /><br />
             <div class="baseline">
 	      {% if request.current_page.is_home  %}
                 {% placeholder "footer-baseline" or %}{% trans "A community of imaginative citizens to detect and develop socially innovative projects." %}{% endplaceholder %}
@@ -28,8 +26,6 @@
 	      {% if request.current_page.is_home  %}
                 {% placeholder "footer-follow" or %}
             <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto' %}</a> | <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
-            <br /><br /><br />
-            
             <h1>{% trans 'Follow us' %}</h1>
             <ul>
                 <li class="social-login"> <a href="https://www.facebook.com/imaginationforpeople.org"><img src="{{ STATIC_URL }}images/base/social-fb.png" alt="Facebook" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Facebook</strong>" /></a> </li>
@@ -37,14 +33,10 @@
                 <li class="social-login"> <a href="http://twitter.com/#!/IPvoices"><img src="{{ STATIC_URL }}images/base/social-twitter.png" alt="Twitter" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Twitter</strong>" /></a> </li>
                 <li class="social-login"> <a href="http://www.scoop.it/t/imagination-for-people/"><img src="{{ STATIC_URL }}images/base/social-it.png" alt="Scoop it !" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Scoopt it!</strong>" /></a> </li>
             </ul>
-            
-            <br />
 	    {% endplaceholder %}
 	      {% else %}
 	        {% show_placeholder "footer-follow" "homepage" %}
 	      {% endif %}
-
-            
         </div>
         
         <div class="grid_1">&nbsp;</div>
@@ -91,34 +83,11 @@
         <div class="grid_5 omega">
             <p class="licences">
             
-            {% blocktrans with site.name as url %} "<strong>{{ url }}</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
-	    {% endblocktrans %}
-          </p>
-            
-            <br />
-            <img src="{{ STATIC_URL }}images/base/licences-logo.png" alt="Creative Commons | AGPL" width="188" height="42" />
-            <br /><br />
-
-      {% if request.current_page.is_home  %}
-	    {% placeholder "footer-contribute" or %}
-            <h1>{% trans 'Contribute' %}</h1>
-            <div class="left contrib-links">
-                <a href="/contribute/">{% trans 'Translator' %}</a><br />
-                <a href="/contribute/">{% trans 'Developer' %}</a><br />
-                <a href="/contribute/">{% trans 'Designer' %}</a><br />
-            </div>
-            
-            <div class="right contrib-links">
-                <a href="/contribute/">{% trans 'Writer' %}</a><br />
-                <a href="/contribute/">{% trans 'Seeder' %}</a><br />
-                <a href="/contribute/">{% trans 'Q&A' %}</a><br />
-            </div>
-		{% endplaceholder %}
-      {% else %}
-	    {% show_placeholder "footer-contribute" "homepage" %}
-      {% endif %}
-
-            <div class="clear"></div><br />
+                {% blocktrans with site.name as url %}
+                    "<strong>{{ url }}</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
+	            {% endblocktrans %}
+                <img src="{{ STATIC_URL }}images/base/licences-logo.png" alt="Creative Commons | AGPL" width="188" height="42" />
+            </p>
             
             {% comment %}
                 <h1>{% trans 'Newsletter' %}</h1>
