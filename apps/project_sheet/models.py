@@ -51,8 +51,6 @@ from tagging.models import Tag
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
 
-#from .utils import gen_tag_list
-
 # Add Introspector for south: django-licenses field
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
 
