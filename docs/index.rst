@@ -9,11 +9,15 @@ I4P documentation
 Overview
 --------
 
+*Discover I4P*
+
 .. toctree::
    :maxdepth: 2
 
+   overview.rst
 
-**Developer**'s Documentation
+
+**Developer**'s documentation
 -----------------------------
 
 *If you want to contribute, this is your starting point.*
