@@ -24,8 +24,10 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-import datetime
+from datetime import datetime
 
+from django.conf import settings
+from django.db import connection, transaction
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -95,7 +97,15 @@ def project_sheet_list(request):
         else:
             # By default, display the project listing using the following order: 
             # best_of, random().
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
+            # We need the ordering to be stable within a user session session.
+            # As a hashing function, use a hopefully portable pure SQL
+            # implementation (using only basic sql operators) of 
+            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
+            # Here the number of buckets (m) is determined by the day of the
+            # year
+            day_of_year = int(datetime.now().strftime('%j'))
+            pseudo_random_field = "(project_id * (project_id + 3)) %% {:d}".format(day_of_year)
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
