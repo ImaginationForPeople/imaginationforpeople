@@ -302,15 +302,18 @@ def project_sheet_edit_question(request, slug, question_id):
 
     # Lookup the answer. If does not exist, create it.
     try:
-        answer = Answer.objects.untranslated().get(project=project_translation.project,
-                                                   question=question)
-        if not language_code in answer.get_available_languages():
-            answer.translate(language_code)
+        untrans_answer = Answer.objects.untranslated().get(project=project_translation.project,
+                                                           question=question)
+        if not language_code in untrans_answer.get_available_languages():
+            untrans_answer.translate(language_code)
+            untrans_answer.save()
     except Answer.DoesNotExist:
         answer = Answer.objects.create(project=project_translation.project, question=question)
-    answer.save()
 
-    answer_form = AnswerForm(request.POST, instance=answer)
+    answer = Answer.objects.get(project=project_translation.project,
+                                question=question)
+
+    answer_form = AnswerForm(request.POST or None, instance=answer)
 
     if request.method == 'POST':
         if answer_form.is_valid():
@@ -331,12 +334,19 @@ def project_sheet_edit_question(request, slug, question_id):
 def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
     """
     Edit a translatable field of a project (such as baseline)
+
+    FIXME This view is used for both project creation and
+    editing. Should be splitted.
     """
     language_code = translation.get_language()
 
     if topic_slug:
         topic = get_object_or_404(Topic,
                                   slug=topic_slug)
+    else:
+        get_object_or_404(I4pProjectTranslation,
+                          slug=slug,
+                          language_code=language_code)
 
     
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(field,))
