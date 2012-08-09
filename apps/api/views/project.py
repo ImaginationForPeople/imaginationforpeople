@@ -67,10 +67,11 @@ class I4pProjectTranslationHandler(BaseHandler):
               'about_section',
               'baseline',
               'callto_section',
-              'completion_progress',
               'partners_section',
               ('project',(
                   'id',
+                  'best_of',
+                  'status',
                   ('location',(
                       'address',
                       'country'
@@ -85,7 +86,8 @@ class I4pProjectTranslationHandler(BaseHandler):
                       'created',
                       'desc',
                       'license',
-                      'source', 
+                      'source',
+                      'thumb',
                       'url'
                   )),
                   'questions',
