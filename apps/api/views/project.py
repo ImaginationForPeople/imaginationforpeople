@@ -40,6 +40,7 @@ class I4pProjectTranslationHandler(BaseHandler):
                 language_code = "en"
             page = int(request.GET.get('page', 1)) - 1
             self.__class__.fields = (
+              'id',
               'title',
               'baseline',
               ('project',(
@@ -62,6 +63,7 @@ class I4pProjectTranslationHandler(BaseHandler):
         else:
             self.__class__.project = I4pProjectTranslation.objects.get(pk=project_id)
             self.__class__.fields = (
+              'id',
               'about_section',
               'baseline',
               'callto_section',
