@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-07 14:21-0400\n"
+"POT-Creation-Date: 2012-08-10 18:23-0400\n"
 "PO-Revision-Date: 2012-05-21 13:14+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
@@ -1100,72 +1100,72 @@ msgstr "Φίλτρα"
 msgid "Help"
 msgstr "Βοήθεια"
 
-#: templates/filter-panel.html:30
+#: templates/filter-panel.html:29
 msgid "Project view"
 msgstr "Προεπισκόπηση έργου"
 
-#: templates/filter-panel.html:55
+#: templates/filter-panel.html:54
 msgid "Clear filters"
 msgstr "Καθαρισμός φίλτρων"
 
-#: templates/filter-panel.html:61
+#: templates/filter-panel.html:60
 msgid "Tags"
 msgstr "Ετικέτες"
 
-#: templates/filter-panel.html:62 templates/filter-panel.html.py:83
+#: templates/filter-panel.html:61 templates/filter-panel.html.py:82
 msgid "invert"
 msgstr "αντιστρέψτε"
 
-#: templates/filter-panel.html:65
+#: templates/filter-panel.html:64
 #, python-format
 msgid "%(count)s project sheets"
 msgstr "%(count)s φύλλα έργου"
 
-#: templates/filter-panel.html:77
+#: templates/filter-panel.html:76
 msgid "Location"
 msgstr "Τοποθεσία"
 
-#: templates/filter-panel.html:82
+#: templates/filter-panel.html:81
 msgid "Categories"
 msgstr "Κατηγορίες"
 
-#: templates/filter-panel.html:92
+#: templates/filter-panel.html:91
 msgid "Sheet Status"
 msgstr "Κατάσταση σελίδας"
 
-#: templates/filter-panel.html:96
+#: templates/filter-panel.html:95
 msgid "Best-of"
 msgstr "Τα καλύτερα"
 
-#: templates/filter-panel.html:97
+#: templates/filter-panel.html:96
 msgid "Popular project"
 msgstr "Δημοφιλές έργο"
 
-#: templates/filter-panel.html:100
+#: templates/filter-panel.html:99
 msgid "best-of"
 msgstr "best-of"
 
-#: templates/filter-panel.html:107
+#: templates/filter-panel.html:106
 msgid "progression"
 msgstr "εξέλιξη"
 
-#: templates/filter-panel.html:114
+#: templates/filter-panel.html:113
 msgid "Associated team"
 msgstr "Συνεργαζόμενη ομάδα"
 
-#: templates/filter-panel.html:115
+#: templates/filter-panel.html:114
 msgid "Orphan project"
 msgstr "ορφανό έργο"
 
-#: templates/filter-panel.html:118
+#: templates/filter-panel.html:117
 msgid "team"
 msgstr "ομάδα"
 
-#: templates/filter-panel.html:128
+#: templates/filter-panel.html:127
 msgid "Project Status"
 msgstr "Κατάσταση Έργου"
 
-#: templates/footer.html:22
+#: templates/footer.html:20
 msgid ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
@@ -1173,107 +1173,31 @@ msgstr ""
 "Μια κοινότητα με οραματιστές πολίτες που ανακαλύπτουν και αναπτύσσουν "
 "καινοτόμα κοινωνικά έργα."
 
-#: templates/footer.html:30
+#: templates/footer.html:28
 msgid "Read the manifesto"
 msgstr ""
 
-#: templates/footer.html:30
+#: templates/footer.html:28
 msgid "About IP"
 msgstr ""
 
-#: templates/footer.html:33
+#: templates/footer.html:29
 msgid "Follow us"
 msgstr ""
 
-#: templates/footer.html:35 templates/footer.html.py:36
-#: templates/footer.html:37 templates/footer.html.py:38
+#: templates/footer.html:31 templates/footer.html.py:32
+#: templates/footer.html:33 templates/footer.html.py:34
 msgid "Follow us on"
 msgstr ""
 
-#: templates/footer.html:57 templates/footer.html.py:59
-#: templates/footer.html:61 templates/pages/header.html:11
-msgid "Projects"
-msgstr "Έργα"
-
-#: templates/footer.html:60
-msgid "Explore and contribute to social projects around the world."
-msgstr "Εξερεύνησε και βοήθησε σε κοινωνικά έργα σε όλο τον κόσμο."
-
-#: templates/footer.html:61 templates/pages/header.html:13
-#: templates/pages/home-blocks/slider.html:36
-#: templates/pages/home-blocks/slider.html:49
-msgid "Add a project"
-msgstr "Προσθέστε ένα έργο"
-
-#: templates/footer.html:66 templates/footer.html.py:68
-msgid "Groups"
-msgstr ""
-
-#: templates/footer.html:69
-msgid "Connect with a community of citizens from over 30 countries."
-msgstr "Συνδέσου με μια κοινότητα πολιτών από 30 χώρες."
-
-#: templates/footer.html:70
-msgid "The community"
-msgstr "Η κοινότητα"
-
-#: templates/footer.html:70 templates/pages/contrib.html:128
-#: templates/pages/homepage.html:129
-msgid "Join the community"
-msgstr "Γίνετε μέλος της κοινότητας"
-
-#: templates/footer.html:75
-msgid "Ressources"
-msgstr ""
-
-#: templates/footer.html:77 templates/footer.html.py:79
-msgid "Resources"
-msgstr ""
-
-#: templates/footer.html:78
-msgid ""
-"Discover the latest tools, methods and debates in the world of social "
-"innovation."
-msgstr ""
-
-#: templates/footer.html:93
+#: templates/footer.html:89
 #, python-format
 msgid ""
-" \"<strong>%(url)s</strong> is powered by a set of free components licensed "
-"under <strong>AGPL</strong> and <strong>Creative Commons</strong>.\"\n"
-"\t    "
-msgstr ""
-
-#: templates/footer.html:103 templates/pages/header.html:15
-msgid "Contribute"
-msgstr "Πάρε μέρος"
-
-#: templates/footer.html:105 templates/pages/contrib.html:44
-#: templates/pages/footer.html:25
-msgid "Translator"
-msgstr "Μεταφραστής"
-
-#: templates/footer.html:106 templates/pages/contrib.html:46
-#: templates/pages/footer.html:26
-msgid "Developer"
-msgstr "Προγραμματιστής"
-
-#: templates/footer.html:107 templates/pages/contrib.html:48
-#: templates/pages/footer.html:27
-msgid "Designer"
-msgstr "Σχεδιαστής"
-
-#: templates/footer.html:111 templates/pages/contrib.html:50
-#: templates/pages/footer.html:28
-msgid "Writer"
-msgstr "Συγγραφέας"
-
-#: templates/footer.html:112
-msgid "Seeder"
-msgstr ""
-
-#: templates/footer.html:113
-msgid "Q&A"
+"\n"
+"                    \"<strong>%(url)s</strong> is powered by a set of free "
+"components licensed under <strong>AGPL</strong> and <strong>Creative "
+"Commons</strong>.\"\n"
+"\t            "
 msgstr ""
 
 #: templates/login-slide.html:17
@@ -1644,6 +1568,22 @@ msgstr "Μια κοινότητα αφιερωμένη σε"
 msgid "citizen imagination"
 msgstr "φαντασία και δημιουργικότητα πολιτών"
 
+#: templates/pages/contrib.html:44 templates/pages/footer.html:25
+msgid "Translator"
+msgstr "Μεταφραστής"
+
+#: templates/pages/contrib.html:46 templates/pages/footer.html:26
+msgid "Developer"
+msgstr "Προγραμματιστής"
+
+#: templates/pages/contrib.html:48 templates/pages/footer.html:27
+msgid "Designer"
+msgstr "Σχεδιαστής"
+
+#: templates/pages/contrib.html:50 templates/pages/footer.html:28
+msgid "Writer"
+msgstr "Συγγραφέας"
+
 #: templates/pages/contrib.html:52 templates/pages/footer.html:29
 msgid "Animator"
 msgstr "Υποκινητής"
@@ -1672,6 +1612,10 @@ msgstr "Τελευταίες δραστηριότητες"
 msgid "Latest commits"
 msgstr "Τελευταίες δεσμεύσεις"
 
+#: templates/pages/contrib.html:128 templates/pages/homepage.html:129
+msgid "Join the community"
+msgstr "Γίνετε μέλος της κοινότητας"
+
 #: templates/pages/contrib.html:138
 msgid "News"
 msgstr "Νέα"
@@ -1698,9 +1642,22 @@ msgstr "Πάρε μέρος"
 msgid "About us"
 msgstr "Σχετικά με μας"
 
+#: templates/pages/header.html:11
+msgid "Projects"
+msgstr "Έργα"
+
+#: templates/pages/header.html:13 templates/pages/home-blocks/slider.html:36
+#: templates/pages/home-blocks/slider.html:49
+msgid "Add a project"
+msgstr "Προσθέστε ένα έργο"
+
 #: templates/pages/header.html:14
 msgid "Workgroups"
 msgstr "Ομάδες εργασίας"
+
+#: templates/pages/header.html:15
+msgid "Contribute"
+msgstr "Πάρε μέρος"
 
 #: templates/pages/homepage.html:31
 msgid "My project title"
@@ -1832,6 +1789,15 @@ msgstr ""
 #: templates/pages/home-blocks/quick_project.html:12
 msgid "Add"
 msgstr ""
+
+#~ msgid "Explore and contribute to social projects around the world."
+#~ msgstr "Εξερεύνησε και βοήθησε σε κοινωνικά έργα σε όλο τον κόσμο."
+
+#~ msgid "Connect with a community of citizens from over 30 countries."
+#~ msgstr "Συνδέσου με μια κοινότητα πολιτών από 30 χώρες."
+
+#~ msgid "The community"
+#~ msgstr "Η κοινότητα"
 
 #~ msgid "projects"
 #~ msgstr "έργα"

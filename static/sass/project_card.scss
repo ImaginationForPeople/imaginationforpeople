@@ -23,6 +23,9 @@
 		border: 1px solid transparent;
 		margin:0;
 		padding:0;
+		padding-right:5px;
+		@include shadow(8px, #181818);
+		@include border-radius(8px);
 	}
 	a:hover {
 		border: 1px solid #848484;
@@ -34,7 +37,7 @@
 	.project_infos_title{
 		display: table;
 		width:100%;
-		background-color:black;
+		#background-color:black;
 		h2 {
 			height: 3em;
 			display: table-cell;
@@ -161,7 +164,7 @@
 	
 	
 	.project_infos{
-		width:170px;	
+		width:165px;	
 		margin-left:auto;
 		margin-right:auto;
 		float:right;

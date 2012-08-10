@@ -434,6 +434,7 @@ CMS_TEMPLATES = (
   ('pages/onemenu.html', _('One menu page')),
 )
 CMS_REDIRECTS = True
+CMS_HIDE_UNTRANSLATED = False
 CMS_SOFTROOT = True
 APPEND_SLASH = True
 
