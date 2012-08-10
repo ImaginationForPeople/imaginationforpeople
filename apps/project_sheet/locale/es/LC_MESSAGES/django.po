@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-07 14:21-0400\n"
+"POT-Creation-Date: 2012-08-10 18:11-0400\n"
 "PO-Revision-Date: 2012-05-19 18:32+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Spanish (Castilian) <ip-es@lists.imaginationforpeople.org>\n"
@@ -269,7 +269,7 @@ msgid "Latest 20 days changes"
 msgstr "Cambios de los últimos 20 días"
 
 #: templates/project_sheet/all_recent_changes.html:27
-#: templates/project_sheet/project_list.html:68
+#: templates/project_sheet/project_list.html:73
 msgid "RSS Feed"
 msgstr "Fuente RSS"
 
@@ -506,7 +506,7 @@ msgstr "¿Quiénes son los socios de este proyecto"
 msgid "This field is blank. Don’t forget to complete it! "
 msgstr "Este campo está en blanco. ¡No olvide completarlo!"
 
-#: templates/project_sheet/project_complete_card.html:17
+#: templates/project_sheet/project_complete_card.html:18
 msgid "There is no description for this project"
 msgstr "Este proyecto no tiene descripción"
 
@@ -521,22 +521,22 @@ msgstr ""
 msgid "Update"
 msgstr "Actualizar"
 
-#: templates/project_sheet/project_id_card.html:30
+#: templates/project_sheet/project_id_card.html:28
 #: templates/project_sheet/project_status.html:5
 msgid "associated team"
 msgstr "equipo asociado"
 
-#: templates/project_sheet/project_id_card.html:33
+#: templates/project_sheet/project_id_card.html:31
 #: templates/project_sheet/project_status.html:8
 msgid "in progress"
 msgstr "en progreso"
 
-#: templates/project_sheet/project_id_card.html:36
+#: templates/project_sheet/project_id_card.html:34
 #: templates/project_sheet/project_status.html:11
 msgid "popular"
 msgstr "popular"
 
-#: templates/project_sheet/project_id_card.html:39
+#: templates/project_sheet/project_id_card.html:37
 #: templates/project_sheet/project_status.html:14
 msgid "bestof"
 msgstr "lo mejor de"
@@ -555,13 +555,18 @@ msgstr ""
 msgid "Find projects on "
 msgstr ""
 
-#: templates/project_sheet/project_list.html:71
-msgid "Last projects"
+#: templates/project_sheet/project_list.html:68
+msgid "Order by:"
+msgstr ""
+
+#: templates/project_sheet/project_list.html:70
+#, fuzzy
+msgid "Newest projects"
 msgstr "Últimos proyectos"
 
-#: templates/project_sheet/project_list.html:72
-msgid "Last editions"
-msgstr "Últimas ediciones"
+#: templates/project_sheet/project_list.html:71
+msgid "Recent changes"
+msgstr ""
 
 #: templates/project_sheet/project_list_pagination.html:9
 #: templates/project_sheet/project_list_pagination.html:12
@@ -716,6 +721,9 @@ msgstr ""
 #: templates/project_sheet/value_section.html:32
 msgid "What is the social value of this project"
 msgstr "¿Cuál es el valor social de este proyecto"
+
+#~ msgid "Last editions"
+#~ msgstr "Últimas ediciones"
 
 #~ msgid "in what ways is this project unique and creative"
 #~ msgstr "¿De qué manera este proyecto es único y creativo"
