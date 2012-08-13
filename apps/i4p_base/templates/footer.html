@@ -10,7 +10,7 @@
             <a href="{% page_url 'homepage' %}">
 
 	      {% if request.current_page.is_home  %}
-                {% placeholder "footer logo" or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="{{ site.name }}" width="197" height="68" />{% endplaceholder %}                
+                {% placeholder "footer logo" inherit or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="{{ site.name }}" width="197" height="68" />{% endplaceholder %}                
 	      {% else %}
 	        {% show_placeholder "footer logo" "homepage" %}
               {% endif %}
@@ -24,7 +24,7 @@
             </div>
 
 	      {% if request.current_page.is_home  %}
-                {% placeholder "footer-follow" or %}
+                {% placeholder "footer-follow" inherit or %}
             <a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto' %}</a> | <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
             <h1>{% trans 'Follow us' %}</h1>
             <ul>
@@ -45,6 +45,7 @@
 
       {% if request.current_page.is_home  %}
 	  {% placeholder "footer-resources" or %}
+      {% comment %}
             <div class="concept">
                 <img src="{{ STATIC_URL }}images/base/projet-picto.png" alt="{% trans 'Projects' %}" width="52" height="52" />
                 <div class="concept_detail">
@@ -71,7 +72,9 @@
                     <a href="#">{% trans 'Resources' %}</a>
                 </div>
             </div>
+       {% endcomment %}
        {% endplaceholder %}
+
 	    {% show_placeholder "footer-baseline" "homepage" %}
        {% endif %}
         
