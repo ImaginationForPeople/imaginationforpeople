@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
 # Luca Manlio De Lisi <lukefiltroman@gmail.com>, 2011.
@@ -9,15 +9,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-10 18:52-0400\n"
-"PO-Revision-Date: 2012-05-21 17:36+0000\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2012-08-13 13:45+0200\n"
+"PO-Revision-Date: 2012-08-13 11:46+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Italian <ip-it@lists.imaginationforpeople.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: cms_app.py:6
@@ -1026,11 +1026,7 @@ msgid ""
 "dedicated to disruptive social innovation. At a global scale, IP aims to "
 "detect, publicize, amplify and adapt creative solutions to the new "
 "challenges of living together."
-msgstr ""
-"Imagination for People (IP) è una piattaforma web multilingue dedicata alla "
-"fantasia cittadina. Su scala mondiale, IP mira a scovare, pubblicizzare, "
-"amplificare ed adattare esperienze inedite che riguardano l’innovazione "
-"sociale."
+msgstr "Imagination for People (IP) è una piattaforma web multilingue dedicata alla fantasia cittadina. Su scala mondiale, IP mira a scovare, pubblicizzare, amplificare ed adattare esperienze inedite che riguardano l’innovazione sociale."
 
 #: templates/base.html:15
 msgid "identify and support imaginative social projects"
@@ -1044,10 +1040,7 @@ msgstr "Sai che il tuo browser internet non è aggiornato?"
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
-msgstr ""
-"Il tuo browser internet non è aggiornato, e potrebbe non essere compatibile "
-"con il nostro sito. Una lista dei browser internet più diffusi si trova di "
-"seguito."
+msgstr "Il tuo browser internet non è aggiornato, e potrebbe non essere compatibile con il nostro sito. Una lista dei browser internet più diffusi si trova di seguito."
 
 #: templates/base.html:68
 msgid "Just click on the icons to get to the download page"
@@ -1057,9 +1050,7 @@ msgstr "Clicca sulle icone per andare alla pagina di download"
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
-msgstr ""
-"Chiudendo questa finestra sei a conoscenza che la tua esperienza su questo "
-"sito potrebbe essere degradata."
+msgstr "Chiudendo questa finestra sei a conoscenza che la tua esperienza su questo sito potrebbe essere degradata."
 
 #: templates/base.html:70
 msgid "Close This Window"
@@ -1090,9 +1081,8 @@ msgid "Pin/Unpin the panel"
 msgstr "Blocca/Sblocca pannello"
 
 #: templates/filter-panel.html:17
-#, fuzzy
 msgid "Filter results"
-msgstr "Filtri"
+msgstr ""
 
 #: templates/filter-panel.html:18
 msgid "Help"
@@ -1167,9 +1157,7 @@ msgstr "Stato progetto"
 msgid ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
-msgstr ""
-"Una comunità di cittadini fantasiosi per scovare e sviluppare progetti "
-"innovativi."
+msgstr "Una comunità di cittadini fantasiosi per scovare e sviluppare progetti innovativi."
 
 #: templates/footer.html:28
 msgid "Read the manifesto"
@@ -1192,9 +1180,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                    \"<strong>%(url)s</strong> is powered by a set of free "
-"components licensed under <strong>AGPL</strong> and <strong>Creative "
-"Commons</strong>.\"\n"
+"                    \"<strong>%(url)s</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.\"\n"
 "\t            "
 msgstr ""
 
@@ -1268,15 +1254,19 @@ msgstr ""
 msgid "Log out"
 msgstr "Disconnettiti"
 
-#: templates/nav.html:31 templates/nav.html.py:39
+#: templates/nav.html:31 templates/nav.html.py:36
 msgid "Project"
 msgstr "Progetto"
 
-#: templates/nav.html:54
+#: templates/nav.html:33
+msgid "History"
+msgstr "Storia"
+
+#: templates/nav.html:51
 msgid "other languages"
 msgstr "altre lingue"
 
-#: templates/nav.html:67
+#: templates/nav.html:64
 msgid "create a new translation"
 msgstr "crea una nuova traduzione"
 
@@ -1299,15 +1289,11 @@ msgid ""
 "\n"
 "                    Posted %(since)s ago by\n"
 "                    "
-msgstr ""
-"\n"
-"Postato %(since)s fa da\n"
-" "
+msgstr "\nPostato %(since)s fa da\n "
 
 #: templates/backcap/feedback_detail.html:146
 msgid "is working on this. Poke him if you think it's taking too long !"
-msgstr ""
-"sta lavorandoci sopra. Attizzalo/a se pensi che ci stia mettendo troppo!"
+msgstr "sta lavorandoci sopra. Attizzalo/a se pensi che ci stia mettendo troppo!"
 
 #: templates/backcap/feedback_detail.html:154
 msgid "This issue is a duplicate of"
@@ -1400,7 +1386,8 @@ msgid "Feedbacks"
 msgstr "Feedback"
 
 #: templates/backcap/feedback_list.html:61
-msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
+msgid ""
+"This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr "Questi sono tutti i feedback inviati da voi, gli utenti. Grazie."
 
 #: templates/backcap/feedback_list.html:73
@@ -1408,18 +1395,13 @@ msgid ""
 "If you think one of these entries is important for you, then <strong>click "
 "on the '+' button</strong>. If you disagree or think this is not important "
 "at all, then <strong>click on '-'</strong>."
-msgstr ""
-"Se pensi che una di queste voci è importante, <strong>clicca sul pulsante "
-"'+'</strong>. Se non sei d'accordo o credi che non sia per niente "
-"importante, <strong>clicca sul pulsante '-'</strong>."
+msgstr "Se pensi che una di queste voci è importante, <strong>clicca sul pulsante '+'</strong>. Se non sei d'accordo o credi che non sia per niente importante, <strong>clicca sul pulsante '-'</strong>."
 
 #: templates/backcap/feedback_list.html:77
 msgid ""
 "The <strong>highest the score</strong> an issue will get, the "
 "<strong>earlier we'll work on</strong> it."
-msgstr ""
-"Il <strong>punteggio più alto</strong> che riceverà un problema, determinerà "
-"quanto <strong>velocemente ci lavoreremo sopra</strong>."
+msgstr "Il <strong>punteggio più alto</strong> che riceverà un problema, determinerà quanto <strong>velocemente ci lavoreremo sopra</strong>."
 
 #: templates/backcap/feedback_list.html:83
 msgid "New feedback"
@@ -1444,10 +1426,7 @@ msgid ""
 "\n"
 "                                                Posted %(since)s ago by\n"
 "                                                "
-msgstr ""
-"\n"
-"Postato %(since)s fa da\n"
-" "
+msgstr "\nPostato %(since)s fa da\n "
 
 #: templates/backcap/feedback_list.html:152
 msgid "There's no feedback yet."
@@ -1505,9 +1484,7 @@ msgstr "Lascia feedback"
 msgid ""
 "We are very eager you leave feedback to help us improve the website, thank "
 "you !"
-msgstr ""
-"Siamo impazienti di ricevere vostri feedback per aiutarci a migliorare il "
-"sito, grazie!"
+msgstr "Siamo impazienti di ricevere vostri feedback per aiutarci a migliorare il sito, grazie!"
 
 #: templates/backcap/feedback_new_form.html:6
 msgid "I have a:"
@@ -1619,8 +1596,7 @@ msgstr ""
 
 #: templates/pages/flatpage.html:34
 msgid "There is no content yet. Switch to edit mode and add a widget."
-msgstr ""
-"Non c'è ancora contenuto. Passa alla modalità modifica e aggiungi un widget."
+msgstr "Non c'è ancora contenuto. Passa alla modalità modifica e aggiungi un widget."
 
 #: templates/pages/footer.html:12
 msgid "Network"
@@ -1787,59 +1763,78 @@ msgid "Add"
 msgstr ""
 
 #~ msgid "Explore and contribute to social projects around the world."
-#~ msgstr "Esplora e contribuisci a progetti speciali intorno al mondo."
+#~ msgstr "Explore and contribute to social projects around the world."
+
+#~ msgid "Groups"
+#~ msgstr "Groupes"
 
 #~ msgid "Connect with a community of citizens from over 30 countries."
-#~ msgstr "Connettiti con una comunità di cittadini da oltre 30 paesi."
+#~ msgstr "Connect with a community of citizens from over 30 countries."
 
 #~ msgid "The community"
-#~ msgstr "La comunità"
+#~ msgstr "The community"
+
+#~ msgid "Ressources"
+#~ msgstr "Ressources"
+
+#~ msgid "Resources"
+#~ msgstr "Ressources"
+
+#~ msgid ""
+#~ "Discover the latest tools, methods and debates in the world of social "
+#~ "innovation."
+#~ msgstr ""
+#~ "Discover the latest tools, methods and debates in the world of social "
+#~ "innovation."
+
+#~ msgid "Seeder"
+#~ msgstr "Seeder"
+
+#~ msgid "Q&A"
+#~ msgstr "Q&A"
 
 #~ msgid "projects"
-#~ msgstr "progetti"
+#~ msgstr "projects"
 
 #~ msgid "Projects &gt;"
-#~ msgstr "Progetti &gt;"
+#~ msgstr "Projects &gt;"
 
 #~ msgid "Add a new project &gt;"
-#~ msgstr "Aggiungi un nuovo progetto &gt;"
+#~ msgstr "Add a new project &gt;"
 
 #~ msgid "community"
-#~ msgstr "comunità"
+#~ msgstr "community"
 
 #~ msgid "The community &gt;"
-#~ msgstr "La comunità &gt;"
+#~ msgstr "The community &gt;"
 
 #~ msgid "Join the community &gt;"
-#~ msgstr "Entra nella comunità &gt;"
+#~ msgstr "Join the community &gt;"
 
 #~ msgid "resources"
-#~ msgstr "risorse"
+#~ msgstr "resources"
 
 #~ msgid ""
 #~ "Discover the latest tools, methods and debates in the world of social "
 #~ "innovation"
 #~ msgstr ""
-#~ "Scopri gli ultimi strumenti, metodi e dibattiti nel mondo "
-#~ "dell'innovazione sociale"
+#~ "Discover the latest tools, methods and debates in the world of social "
+#~ "innovation"
 
 #~ msgid "Work-in-Progress"
-#~ msgstr "Lavori in corso"
+#~ msgstr "Work-in-Progress"
 
 #~ msgid "Resources (WIP)"
-#~ msgstr "Risorse (WIP)"
+#~ msgstr "Resources (WIP)"
 
 #~ msgid "Join a group &gt;"
-#~ msgstr "Entra in un gruppo &gt;"
+#~ msgstr "Join a group &gt;"
 
 #~ msgid "Read the manifesto &gt;"
-#~ msgstr "Leggi il manifesto &gt;"
+#~ msgstr "Read the manifesto &gt;"
 
 #~ msgid "About IP &gt;"
-#~ msgstr "Informazioni sull'IP &gt;"
-
-#~ msgid "History"
-#~ msgstr "Storia"
+#~ msgstr "About IP &gt;"
 
 #~ msgid "All the projects"
 #~ msgstr "All the projects"
