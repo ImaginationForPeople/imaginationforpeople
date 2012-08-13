@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block content %}
-<div class="container_18" style="height: 1500px">
+<div class="container_18" style="height: 2500px">
   <div class="grid_12 alpha omega">
   <h1>Projects tagged with "{{ tag }}"</h1>
 
@@ -96,7 +96,7 @@
   <h2>People</h2>
   <ul>
     {% for p in people %}
-    <li>{{ p.user.get_profile.get_full_name_or_username }} - {{ p.project }}<br/></li>
+    <li><img src="{{ p.user.get_profile.get_mugshot_url }}" width="40px"/> <a href="{{ p.user.get_profile.get_absolute_url }}">{{ p.user.get_profile.get_full_name_or_username }}</a> - <a href="{{ p.project.get_absolute_url }}">{{ p.project }}</a><br/></li>
     {% endfor %}
   </ul>
   <br/>

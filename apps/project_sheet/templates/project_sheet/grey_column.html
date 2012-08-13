@@ -105,7 +105,7 @@
                 <label>{% trans 'Tags:'|capfirst %}</label>
                 <ul id="cloudtag_list">
                     {% for tag in taglist %}
-                        <li><a href="{% url project_sheet-tag-page tag.name %}">{{ tag.name }}</a>{% if not forloop.last %},{% endif%}</li> 
+                        <li><a href="{% url tags:tag-view tag.name %}">{{ tag.name }}</a>{% if not forloop.last %},{% endif%}</li> 
                     {% endfor %}
                 </ul>
             </div>

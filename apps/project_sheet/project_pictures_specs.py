@@ -56,7 +56,7 @@ class AlphaGradient(ImageProcessor):
     @classmethod
     def process(cls, img, fmt, obj):
         if img.mode == 'RGBA':
-            img.convert('RGB')
+            img = img.convert('RGB')
             
         width, height = img.size
         # create a vertical gradient...
