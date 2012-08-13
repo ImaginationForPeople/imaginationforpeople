@@ -244,6 +244,7 @@ INSTALLED_APPS = (
     'apps.project_sheet',
     'apps.partner',
     'apps.workgroup',
+    'apps.tags',
 )
 
 # django-ajax_select

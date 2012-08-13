@@ -43,6 +43,7 @@ urlpatterns += i18n_patterns('',
     url(r'^workgroup/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
+    url(r'^tags/', include('apps.tags.urls', namespace='tags')),
     url(r'^wiki/', include('wiki.urls', namespace='wiki')),
     url(r'^feedback/', include('backcap.urls')),
 

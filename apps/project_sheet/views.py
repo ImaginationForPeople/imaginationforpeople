@@ -25,7 +25,6 @@ except ImportError:
     from ordereddict import OrderedDict
 
 from datetime import datetime, timedelta
-from operator import attrgetter
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -37,15 +36,11 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.utils import translation, simplejson
-from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
 from reversion.models import Version
-from tagging.managers import ModelTaggedItemManager
-from tagging.models import TaggedItem, Tag
-from tagging.utils import get_tag
 
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
@@ -146,107 +141,6 @@ class ProjectStartView(TemplateView):
         context['topic'] = topic
 
         return context
-
-
-from wiki.models import Article, ArticleForObject
-from wiki.models import URLPath
-
-class TagPageView(TemplateView):
-    template_name = 'project_sheet/tagpage.html'
-
-    def get_context_data(self, tag, **kwargs):
-        context = super(TagPageView, self).get_context_data(**kwargs)
-
-        site = Site.objects.get_current()
-        current_language_code = translation.get_language()
-
-        tag_instance = get_tag(tag)
-        if tag_instance is None:
-            raise Http404(_('No Tag found matching "%s".') % tag)
-
-        try:
-            article = Article.get_for_object(tag_instance)
-        except ArticleForObject.DoesNotExist:
-            root_path = URLPath.root()
-            
-            article_path = URLPath.create_article(
-                parent=root_path,
-                slug=tag,
-                site=site,
-                title=tag
-            )
-            article = article_path.article
-            article.add_object_relation(tag_instance)
-
-        context['article'] = article
-        # context['article_path'] = article_path
-
-        # XXX: site not taken in account        
-        context['tag'] = tag_instance
-        context['related_tags'] = list(
-            reversed(
-                sorted(Tag.objects.related_for_model(tag_instance, 
-                                                     I4pProjectTranslation,
-                                                     counts=True),
-                       key=attrgetter('count'),
-                   )
-            )
-        )[:15]
-
-        # Get project sheets tagged with this tag
-        # XXX: site=site may not be correct
-        # 4 Random projects with at least one picture
-        context['picture_project_translations'] = list(TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
-            language_code=current_language_code,            
-            project__site=site,
-            project__pictures__isnull=False
-        ), tag_instance).order_by('?')[:4])
-        
-
-        # Mature projects
-        context['mature_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
-            language_code=current_language_code,
-            project__site=site,
-            project__status__in=('WIP', 'END')
-        ),
-            tag_instance).order_by('?')[:4]
-
-        # Starting projects
-        context['starting_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
-            language_code=current_language_code,            
-            project__site=site,
-            project__status__in=('IDEA', 'BEGIN')
-        ), tag_instance).order_by('?')[:4]
-
-        # New projects
-        context['new_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
-            language_code=current_language_code,            
-            project__site=site,
-        ), tag_instance).order_by('-project__created')[:4]
-
-        # Latest modifications
-        context['modified_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
-            language_code=current_language_code,            
-            project__site=site,
-        ), tag_instance).order_by('-modified')[:4]
-
-        # Related people
-        project_translations = ModelTaggedItemManager().with_any([tag_instance.name],
-                                                                 I4pProjectTranslation.objects.filter(
-                                                                     language_code=current_language_code,
-                                                                     project__site=site,
-                                                                 )
-                                                             )
-        projects = [p.project for p in project_translations]
-        
-        context['people'] = ProjectMember.objects.filter(
-            project__in=projects
-        ).order_by('?')[:6]
-
-        # XXX Need to remove duplicates
-
-        return context
-
 
 class ProjectTopicSelectView(TemplateView):
     """

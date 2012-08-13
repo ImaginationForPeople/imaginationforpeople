@@ -21,7 +21,7 @@
 
   <p>
     {% wiki_render article %} 
-    <a href="{% url wiki:edit_url article_path %}">[edit]</a>
+    <a href="{% url tags:wiki-edit tag %}">[edit]</a>
 
   </p>
 
@@ -47,7 +47,7 @@
   <p>
   <strong>Related tags</strong>
   {% for tag in related_tags %}
-  <a href="{% url project_sheet-tag-page tag %}">{{ tag.name }}</a>({{ tag.count }})
+  <a href="{% url tags:tag-view tag %}">{{ tag.name }}</a>({{ tag.count }})
   {% endfor %}
   </p>
 

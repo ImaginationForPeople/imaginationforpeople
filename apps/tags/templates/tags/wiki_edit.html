@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load wiki_tags i18n %}
+{% load url from future %}
+
+{% block pagetitle %}{% trans "Edit" %}: {{ article.current_revision.title }}{% endblock %}
+
+{% block content %}
+
+<div class="container_18" style="height: 1500px">
+
+<form method="POST" class="form-horizontal">
+  {% include "wiki/includes/editor.html" %}
+  <div class="form-actions">
+        <span class="icon-eye-open"></span>
+      <button type="submit" name="cancel" value="0" class="btn btn-large btn-primary" onclick="this.form.target=''; window.location='{% url 'tags:tag-view' tag_instance %}'">
+	{% trans "Cancel edit" %}
+      </button>
+      <button type="submit" name="save" value="1" class="btn btn-large btn-primary" onclick="this.form.target=''; this.form.action='{% url 'tags:wiki-edit' tag_instance %}'">
+        <span class="icon-ok"></span>
+        {% trans "Save changes" %}
+      </button>
+      
+  </div>
+  <div class="modal hide fade" id="previewModal" style="width: 80%; min-height: 500px; margin-left: -40%;">
+    <div class="modal-body">
+      <iframe name="previewWindow" style="width: 100%; min-height: 400px; border: 0;" frameborder="0"></iframe>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn btn-large" data-dismiss="modal">
+        <span class="icon-circle-arrow-left"></span>
+        {% trans "Back to editor" %}
+      </a>
+      <button type="submit" name="save" value="1" class="btn btn-large btn-primary" onclick="this.form.target=''; this.form.action='{% url 'wiki:edit' path=urlpath.path article_id=article.id %}'">
+        <span class="icon-ok"></span>
+        {% trans "Save changes" %}
+      </button>
+    </div>
+  </div>
+     
+</form>
+
+</div>
+
+{% endblock %}
+

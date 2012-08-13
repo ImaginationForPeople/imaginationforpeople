@@ -1,7 +1,5 @@
 #-- encoding: utf-8 --
 from django.conf.urls.defaults import patterns, url
-from django.views.decorators.cache import cache_page
-from django.views.generic.simple import direct_to_template
 
 from . import views
 from . import ajax
@@ -21,7 +19,6 @@ urlpatterns = patterns('',
     url(r'^add/(?P<topic_slug>[-\w]+)/$', views.ProjectStartView.as_view(), name='project_sheet-start'),
     url(r'^list/$', views.project_sheet_list, name='project_sheet-list'),
     url(r'^recent-changes/$', views.ProjectRecentChangesView.as_view(), name='project_sheet-recent-changes'),
-    url(r'^tag/(?P<tag>[\s\w\d-]+)$', views.TagPageView.as_view(), name='project_sheet-tag-page'),
 
     url(r'^edit/(?P<topic_slug>[-\w]+)/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/location/$', views.project_sheet_edit_location, name='project_sheet-instance-edit-location'),
