@@ -306,7 +306,7 @@ def install_builddeps():
     Will install commonly needed build deps for pip django virtualenvs.
     """
     print(cyan('Installing compilers and required libraries'))
-    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev ruby-compass libfssm-ruby')
+    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
 def install_devdeps():
     """
