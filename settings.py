@@ -368,9 +368,12 @@ HAYSTACK_CONNECTIONS = {
         'STORAGE': 'file',
         'POST_LIMIT': 128 * 1024 * 1024,
         'INCLUDE_SPELLING': True,
-        'BATCH_SIZE': 100,
+        'BATCH_SIZE': 500,
     },
 }
+
+HAYSTAC_ITERATOR_LOAD_PER_QUERY = 99999999
+
 
 ### STATIC FILES
 STATIC_URL = '/static/'

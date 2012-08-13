@@ -6,6 +6,7 @@ class WorkGroupIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, model_attr='name')
     description = indexes.CharField(model_attr='description')
     language_code = indexes.CharField(model_attr='language')
+    visible = indexes.BooleanField(model_attr='visible')    
     
     content_auto = indexes.EdgeNgramField(model_attr='name')
 

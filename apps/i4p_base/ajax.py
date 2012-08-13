@@ -139,7 +139,8 @@ def globalsearch_autocomplete(request):
     ).autocomplete(content_auto=question)
 
     workgroups = SearchQuerySet().models(WorkGroup).filter(
-        language_code=current_language_code
+        language_code=current_language_code,
+        visible=True
     ).autocomplete(content_auto=question)
     
     profiles = SearchQuerySet().models(I4pProfile).autocomplete(content_auto=question)
