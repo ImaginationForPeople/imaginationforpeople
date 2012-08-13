@@ -54,7 +54,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html: db_graphs
+html: db_graphs transifex
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."

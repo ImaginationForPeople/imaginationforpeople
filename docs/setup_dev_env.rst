@@ -6,12 +6,15 @@ Bootstrapping an environment
 ============================
 
 First, you need to setup an isolated developement environment for the
-python apps using virtualenv_::
+python apps using virtualenv_. If you don't have virtualenv_, you can
+install it using your package manager such as *apt* if you're on
+debian::
 
+  apt-get install virtualenv
   virtualenv --no-site-packages imaginationforpeople.org
 
 Since we rely on a few Ruby_ tools, you need to add the following
-lines to your ``bin/activate`` script to be able to use gems_::
+lines to your :file:`bin/activate` script to be able to use gems_::
 
   export GEM_HOME="$VIRTUAL_ENV/gems"
   export GEM_PATH=""
@@ -38,7 +41,8 @@ Once you're in your virtualenv directory, use::
   git branch --track develop origin/develop
   git checkout develop
 
-then, change directory to ``imaginationforpeople`` and fetch the dependencies using::
+then, change directory to :file:`imaginationforpeople` and fetch the
+dependencies using::
 
   pip install -U -r requirements.txt
 
@@ -48,18 +52,25 @@ Populating the Database
 =======================
 
 You need to configure a database server (PostGreSQL_ is recommended,
-see how to configure it in the :ref:`Database server configuration`
+see how to configure it in the :ref:`database-server-configuration`
 section) and create a database for the project (such as
 'imaginationforpeople').
 
-Make sure you have configured your ``site_settings.py`` (see
-:ref:`Application Configuration`) and make sure your database
-connection parameters are correct. Then you need to initialize your
-database with these commands::
+.. warning::
+
+   If you haven't configured your :file:`site_settings.py` yet, jump
+   to :ref:`application-configuration` before going on.
+
+Then you need to initialize your database with these commands::
 
     python manage.py syncdb --all
     python manage.py migrate --fake
     python manage.py check_permissions
+
+Django will prompt for a user creation, this is always a good idea to say *yes*::
+
+     You just installed Django's auth system, which means you don't have any superusers defined.
+     Would you like to create one now? (yes/no): **yes**
 
 
 Feeding initial data
@@ -85,6 +96,15 @@ Default CMS templates
 
 We still have a few hardcoded templates that refer to specific CMS
 pages. Therefore, you need to create them so the url lookups work.
+
+First, run the server using::
+
+  ./manage.py runserver
+
+Then login to the admin panel (http://localhost:8000/admin/) using the
+user you've just created.
+
+Scroll down to the :guilabel:`Cms` section and click :guilabel:`Add`.
 
 The following pages are required: **homepage**, **about_us**, **manifesto** and
 **ipmedia**.

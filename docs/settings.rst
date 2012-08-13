@@ -1,18 +1,38 @@
+.. _application-configuration:
+
 Application Configuration
 #########################
 
 Before running the app, you need to configure it through the
-``site_settings.py`` file. While some of theses settings are easy to
-understand, some others are not that trivial. This section is here to
-guide through the laters.
+:file:`site_settings.py` file. While some of theses settings are easy
+to understand, some others are not that trivial. This section is here
+to guide through the laters.
 
 If this is the first time you're configuring this app, you should
-start by copying ``site_settings.py.sample`` to ``site_settings.py``.
+start by copying :file:`site_settings.py.sample` to
+:file:`site_settings.py`.
 
 Basic settings
 ==============
 
-TODO
+Database
+--------
+
+You need to define at least an :keyword:`ENGINE`, :keyword:`NAME` and
+:keyword:`USER` for the database to be configured. For a typical
+PostGreSQL configuration, that would look like this::
+
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+          'NAME': 'imaginationforpeople', # Or path to database file if using sqlite3.
+          'USER': 'imaginationforpeople', # Not used with sqlite3.
+          'PASSWORD': 'plop', # Not used with sqlite3.
+          'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
+          'PORT': '', # Set to empty string for default. Not used with sqlite3.
+      }
+  }
+
 
 Social authentication
 =====================
