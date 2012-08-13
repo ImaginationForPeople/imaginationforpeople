@@ -2,13 +2,13 @@
 
 {% load compress %}
 {% load wiki_tags %}
+{% load i18n %}
 
 {% block style %}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
   {% endcompress %}
-
 {% endblock %}
 
 {% block nav %}
@@ -56,7 +56,10 @@
   <h2>Mature projects</h2>
   {% for project_translation in mature_project_translations %}
   {% include "project_sheet/project_id_card.html" %}
+  {% empty %}
+  {% trans "No projects" %}
   {% endfor %}
+
   <br/>
   [<a href="#">See more</a>]
 
