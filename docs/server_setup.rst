@@ -59,6 +59,8 @@ Ngnix
 Static files are handled by Nginx.
 
 
+.. _database-server-configuration:
+
 Database server configuration
 *****************************
 
@@ -69,7 +71,7 @@ Postgresql
 Access control
 ==============
 
-From the file '/etc/postgresql/8.4/main/pg_hba.conf', update the
+From the file :file:`/etc/postgresql/8.4/main/pg_hba.conf`, update the
 following line::
 
   # "local" is for Unix domain socket connections only

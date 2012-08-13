@@ -252,7 +252,3 @@ def get_project_project_translation_recent_changes(queryset):
             history.append(infos)
 
     return history
-
-
-
-

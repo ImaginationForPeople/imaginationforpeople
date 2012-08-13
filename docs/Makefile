@@ -14,7 +14,7 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 .PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
 
-APPS=project_sheet i4p_base member
+APPS=i4p_base member partner project_sheet workgroup
 
 db_graphs:
 	@echo "Generating DB graphs"
@@ -22,6 +22,14 @@ db_graphs:
 	@for app in $(APPS) ; do \
 		echo "\t* " $$app; \
 		../manage.py graph_models $$app -o images/"$$app"_models.png ; \
+	done
+
+transifex:
+	@echo "Getting pictures from transifex"
+	@test -x images || mkdir images
+	for app in $(APPS) ; do \
+		echo "\t* " $$module; \
+		wget https://www.transifex.com/projects/p/imaginationforpeople/resource/"$$app"/chart/image_png -O images/transifex_"$$app".png ; \
 	done
 
 help:
@@ -46,7 +54,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html: db_graphs
+html: db_graphs transifex
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."

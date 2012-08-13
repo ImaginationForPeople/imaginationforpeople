@@ -429,7 +429,11 @@ CMS_TEMPLATES = (
   ('pages/onemenu.html', _('One menu page')),
 )
 
+CMS_REDIRECTS = True
+CMS_HIDE_UNTRANSLATED = False
 CMS_SOFTROOT = True
+CMS_SEO_FIELDS = True
+
 APPEND_SLASH = True
 
 NANI_TABLE_NAME_SEPARATOR = ''
