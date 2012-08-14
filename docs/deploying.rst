@@ -25,6 +25,8 @@ Available commands:
    * *update_requirements* :      update external dependencies on remote host
    * *venvcmd* :
 
+TODO: update!
+
 Basic usage
 -----------
 
@@ -39,7 +41,7 @@ Parts:
 
 
 Examples
----------------
+--------
 
 Full environnement bootstrap and app bootstrap on staging env
 (Requires a debian lenny environnement with a webapp user and python

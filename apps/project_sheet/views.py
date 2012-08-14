@@ -24,8 +24,10 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-import datetime
+from datetime import datetime
 
+from django.conf import settings
+from django.db import connection, transaction
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -95,7 +97,15 @@ def project_sheet_list(request):
         else:
             # By default, display the project listing using the following order: 
             # best_of, random().
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
+            # We need the ordering to be stable within a user session session.
+            # As a hashing function, use a hopefully portable pure SQL
+            # implementation (using only basic sql operators) of 
+            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
+            # Here the number of buckets (m) is determined by the day of the
+            # year
+            day_of_year = int(datetime.now().strftime('%j'))
+            pseudo_random_field = "(project_id * (project_id + 3)) %% {:d}".format(day_of_year)
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
@@ -302,15 +312,18 @@ def project_sheet_edit_question(request, slug, question_id):
 
     # Lookup the answer. If does not exist, create it.
     try:
-        answer = Answer.objects.untranslated().get(project=project_translation.project,
-                                                   question=question)
-        if not language_code in answer.get_available_languages():
-            answer.translate(language_code)
+        untrans_answer = Answer.objects.untranslated().get(project=project_translation.project,
+                                                           question=question)
+        if not language_code in untrans_answer.get_available_languages():
+            untrans_answer.translate(language_code)
+            untrans_answer.save()
     except Answer.DoesNotExist:
         answer = Answer.objects.create(project=project_translation.project, question=question)
-    answer.save()
 
-    answer_form = AnswerForm(request.POST, instance=answer)
+    answer = Answer.objects.get(project=project_translation.project,
+                                question=question)
+
+    answer_form = AnswerForm(request.POST or None, instance=answer)
 
     if request.method == 'POST':
         if answer_form.is_valid():
@@ -331,12 +344,19 @@ def project_sheet_edit_question(request, slug, question_id):
 def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
     """
     Edit a translatable field of a project (such as baseline)
+
+    FIXME This view is used for both project creation and
+    editing. Should be splitted.
     """
     language_code = translation.get_language()
 
     if topic_slug:
         topic = get_object_or_404(Topic,
                                   slug=topic_slug)
+    else:
+        get_object_or_404(I4pProjectTranslation,
+                          slug=slug,
+                          language_code=language_code)
 
     
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(field,))

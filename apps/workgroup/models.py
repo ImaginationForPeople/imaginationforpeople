@@ -59,7 +59,6 @@ class WorkGroup(models.Model):
         return ('workgroup-detail', (self.slug,))
 
 
-
 class WorkGroupCMS(CMSPlugin):
     workgroup = models.ForeignKey(WorkGroup)
 

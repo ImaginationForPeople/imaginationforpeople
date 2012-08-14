@@ -16,9 +16,6 @@
   text-transform: uppercase;
   font-size: 13px;
 }
-.left-menu li {
-  list-style-type: square;
-}
 .left-menu ul li {
   list-style-type: square;
   margin-left: 19px;
@@ -55,11 +52,12 @@
   font-style: normal;
   font-weight: bold;
   margin: 7px 0px;
-  color: #5A5959 !important;
-  margin-left: 10px;
+  color: #5A5959;
 }
 .content h2 {
   font-size: 15px;
+  font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
+  color: #5a5959;
 }
 .content h3 {
   font-size: 10px;
@@ -78,4 +76,22 @@
   background-repeat: repeat-x;
   border: 0px;
   height: 2px;
+}
+
+#wg-ml-subscriber-list li {
+  list-style-type: none;
+  margin-left: 0px;
+  display: inline;
+}
+
+.container_18 .grid_6 {
+  width: 235px;
+}
+
+.project_infos {
+  width: 33% !important;
+}
+
+.project_infos_baseline {
+  color: #424242 !important;
 }
