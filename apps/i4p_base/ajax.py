@@ -119,7 +119,7 @@ class I4pProfileSerializer(ModelSerializer):
             
 
 @require_GET
-@cache_page(60 * 60 * 12) # 12 Hours
+#@cache_page(60 * 60 * 12) # 12 Hours
 @vary_on_headers('Host')
 def globalsearch_autocomplete(request):
     """
@@ -140,9 +140,9 @@ def globalsearch_autocomplete(request):
 
     workgroups = SearchQuerySet().models(WorkGroup).filter(
         language_code=current_language_code,
-        visible=True
+        visible=True,
     ).autocomplete(content_auto=question)
-    
+
     profiles = SearchQuerySet().models(I4pProfile).autocomplete(content_auto=question)
 
     project_serializer = ProjectSerializer(depth=0)

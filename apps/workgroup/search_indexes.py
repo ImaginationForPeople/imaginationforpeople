@@ -10,6 +10,13 @@ class WorkGroupIndex(indexes.SearchIndex, indexes.Indexable):
     
     content_auto = indexes.EdgeNgramField(model_attr='name')
 
+    # Fix for whoosh that messes with boolean types
+    # See https://github.com/toastdriven/django-haystack/issues/382
+    def prepare_visible(self, obj):
+        if not obj.visible:
+            return ''
+        return 'True'
+    
     def get_model(self):
         return WorkGroup
 
