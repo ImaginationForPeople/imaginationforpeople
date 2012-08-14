@@ -90,8 +90,14 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+        ## The order of these locale middleware classes matters
+    # Language selection based on profile
+    # URL based language selection (eg. from top panel)
+    # We don't use django cms one, for compatibility reasons
+    'django.middleware.locale.LocaleMiddleware',
+    #'userena.middleware.UserenaLocaleMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -102,12 +108,7 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-    ## The order of these locale middleware classes matters
-    # Language selection based on profile
-    # URL based language selection (eg. from top panel)
-    # We don't use django cms one, for compatibility reasons
-    'django.middleware.locale.LocaleMiddleware',
-    #'userena.middleware.UserenaLocaleMiddleware',
+
 
     'honeypot.middleware.HoneypotMiddleware',
 
