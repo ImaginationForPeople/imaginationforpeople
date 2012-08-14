@@ -11,6 +11,7 @@ from userena.contrib.umessages import views as messages_views
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
 
+
 # For server errors
 handler500 = 'django.views.defaults.server_error'
 handler404 = 'django.views.defaults.page_not_found'
@@ -18,7 +19,10 @@ handler404 = 'django.views.defaults.page_not_found'
 ## Admin
 admin.autodiscover()
 
+import haystack.views
+
 import apps.i4p_base.ajax
+import apps.i4p_base.views
 
 ## Sitemaps
 sitemaps = {
@@ -46,7 +50,8 @@ urlpatterns += i18n_patterns('',
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^feedback/', include('backcap.urls')),
-    url(r'^search/', include('haystack.urls')),
+                             
+    url(r'^search/', haystack.views.basic_search, name='i4p-search'),
     url(r'^ajax/search$', apps.i4p_base.ajax.globalsearch_autocomplete, name='i4p-globalsearch-complete'),
                              
                              

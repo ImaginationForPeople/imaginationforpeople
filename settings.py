@@ -146,7 +146,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'backcap.context_processors.backcap_forms',
 
     'django.core.context_processors.static',
-    'apps.project_sheet.context_processors.project_search_forms',
+    'apps.i4p_base.context_processors.search_form',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',

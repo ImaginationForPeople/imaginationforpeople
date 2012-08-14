@@ -3,9 +3,9 @@
 
     <div id="searchbox">
         
-        <form action="{% url project_sheet-list %}" autocomplete="off">
+        <form method="get" action="{% url i4p-search %}" autocomplete="off">
             <input type="submit" value="&nbsp;" />
-            {{ project_sheet_search_form.text }}
+            {{ search_form.q }}
         </form>
 
 	<div id="q-suggestions">

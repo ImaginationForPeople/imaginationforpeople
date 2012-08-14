@@ -3,7 +3,7 @@ from haystack import indexes
 from .models import I4pProjectTranslation
 
 class I4pProjectTranslationIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, model_attr='title')
+    text = indexes.CharField(document=True, use_template=True)
     baseline = indexes.CharField(model_attr='baseline')
     language_code = indexes.CharField(model_attr='language_code')
     content_auto = indexes.EdgeNgramField(model_attr='title')
