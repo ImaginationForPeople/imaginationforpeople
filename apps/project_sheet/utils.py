@@ -21,6 +21,7 @@ Toolkit for a project sheet management
 from reversion.models import Version
 
 from django.contrib.contenttypes.models import ContentType
+from django.conf import settings
 from django.db import DatabaseError
 from django.contrib.sites.models import Site
 
@@ -51,6 +52,28 @@ def get_project_translation_by_slug(project_translation_slug, language_code):
     """
     return I4pProjectTranslation.objects.get(language_code=language_code,
                                              slug=project_translation_slug)
+
+def get_project_translation_by_any_translation_slug(project_translation_slug, prefered_language_code, site):
+    """
+    Get a translation of a given project, looking at slugs in any language
+    """
+    try:
+        project_translation = I4pProjectTranslation.objects.get(slug=project_translation_slug,
+                                            language_code=prefered_language_code,
+                                            project__site=site)
+        return project_translation
+    except I4pProjectTranslation.DoesNotExist:
+        for lang_code, lang_name in settings.LANGUAGES:
+             if (lang_code != prefered_language_code):
+                 try:
+                     project_translation = I4pProjectTranslation.objects.get(slug=project_translation_slug,
+                                                language_code=lang_code,
+                                                project__site=site)
+                     project_best_translation = get_project_translation_from_parent(project_translation.project, prefered_language_code, fallback_language=settings.LANGUAGE_CODE, fallback_any=True)
+                     return project_best_translation
+                 except I4pProjectTranslation.DoesNotExist:
+                     pass
+    raise I4pProjectTranslation.DoesNotExist
 
 
 def get_project_translation_from_parent(parent, language_code, fallback_language=None, fallback_any=False):
