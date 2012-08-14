@@ -1,0 +1,102 @@
+
+$colorDarkGrey: #282828;
+$colorLightBlue: #0aaece;
+$colorWhite: #f8f8f8;
+$colorMedGrey: #c9c9c9;
+$colorMedDarkGrey: #535353;
+
+$sizeTitle: 20px;
+
+@mixin vertical_gradient($_colorTop, $_colorBottom) {
+    background-image: linear-gradient(top, $_colorTop 0%, $_colorBottom 100%);
+    background-image: -o-linear-gradient(top, $_colorTop 0%, $_colorBottom 100%);
+    background-image: -moz-linear-gradient(top, $_colorTop 0%, $_colorBottom 100%);
+    background-image: -webkit-linear-gradient(top, $_colorTop 0%, $_colorBottom 100%);
+    background-image: -ms-linear-gradient(top, $_colorTop 0%, $_colorBottom 100%);
+
+    background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, $_colorTop),
+	color-stop(1, $_colorBottom)
+    );
+}
+
+body {
+    background-color: $colorWhite;
+}
+
+#header-zone {
+    background-color: $colorDarkGrey;
+}
+
+#content-zone {
+    background-color: white;
+
+    border-top: 3px solid $colorLightBlue;
+}
+
+#tag-description-zone {
+    @include vertical_gradient($colorDarkGrey, black);
+
+    position: relative;
+    top: -1em;
+    height: 4em;
+
+    background-color: black;
+    border-radius: 3px;
+    box-shadow: .15em .25em .25em rgba(0,0,0,0.5);
+
+    .tag-icon {
+	outline: 2px solid red;
+	background-color: white;
+    }
+
+    .tag-title {
+	color: white;
+	font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
+	font-size: $sizeTitle;
+	font-style: normal;
+	text-transform: uppercase;
+    }
+
+    .tag-description {
+	color: white;
+	font-style: italic;
+
+	.button {
+	    float: right;
+	    display: none;
+	}
+
+	&:hover {
+	    .button {
+		display: visible;
+	    }
+	}
+    }
+}
+
+#tags-related {
+    p {
+	font-weight: bold;
+	color: white;
+	background-color: $colorMedDarkGrey;
+    }
+
+    ul {
+	display: inline;
+	list-style: none;
+
+	li {
+	    display: inline;
+	    background-color: $colorMedGrey;
+
+	    a {
+		color: $colorMedDarkGrey;
+	    }
+	}
+    }
+}
+
