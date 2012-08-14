@@ -221,6 +221,7 @@ INSTALLED_APPS = (
     'django.contrib.redirects',
 
     'emencia.django.newsletter',
+    'emencia.django.newsletter.cmsplugin_newsletter',    
     'cms',
     'mptt',
     'menus',
