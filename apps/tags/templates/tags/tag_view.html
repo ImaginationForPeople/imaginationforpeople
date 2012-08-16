@@ -18,21 +18,27 @@
 {% block content %}
 <div id="content-zone">
     <div class="container_18">
+	<!-- FIXME: (design) does tag description continue infinitely on the left side ? -->
 	<div id="tag-description-zone" class="grid_12 alpha omega" >
 
-	    <!-- FIXME: add icon -->
+	    <!-- FIXME: explain how the header images should react ... -->
+
+	    <!-- FIXME: (design) missing big icon for tag -->
 	    <div class="tag-icon grid_3">FIXME: missing icon</div>
 	    <h1 class="grid_8 tag-title">{{ tag }}</h1>
 
 	    <p class="prefix_3 grid_8 tag-description">
 		{% wiki_render article %} 
-		FIXME: blabla
+		<!-- FIXME: : editing tag content is buggy ? how to test ? -->
 		<a href="{% url tags:wiki-edit tag %}" class="button"><img src="/static/images/base/edit.png" alt="edit" /></a>
 	    </p>
+	    <!-- FIXME: (design) missing right arrow for tag description -->
 
 	</div>
 
 	<div class="clear"></div>
+
+	<-- FIXME : how to edit pictures + text ? an exemple with real content somewhere -->
 
 	<h2>Pictured</h2>
 	<a href="{{ picture_project_translations.0.get_absolute_url }}"><img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/></a>
@@ -45,10 +51,12 @@
 	<br/>
 	[<a href="#">See more</a>]
 
+	<!-- FIXME: sprite for horizontal shaded line required -->
 	<div class="clear"></div>
 
 	<br/>
 
+	<!-- FIXME: small icon for tag required -->
 	<div id="#tags-related">
 	    <p>Related tags</p>
 	    <ul>
@@ -58,8 +66,13 @@
 	    </ul>
 	</div>
 
+	<!-- FIXME: where is the blue button / tag link for "follow this topic" ? -->
+
 	<hr>
 
+	<!-- FIXME: (design) is the blue thing on project card a hover ? -->
+
+	<!-- FIXME: (design) missing right arrow icon for "voir tous" -->
 	<h2>Mature projects</h2>
 
 	{% for project_translation in mature_project_translations %}
