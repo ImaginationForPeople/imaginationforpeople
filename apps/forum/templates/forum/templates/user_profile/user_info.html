@@ -40,11 +40,6 @@
                         <a href="{% url edit_user view_user.id %}">
                             {% trans %}update profile{% endtrans %}
                         </a>
-                        {% if settings.USE_ASKBOT_LOGIN_SYSTEM and request.user == view_user and settings.ALLOW_ADD_REMOVE_LOGIN_METHODS %}
-                            | <a href="{{ settings.LOGIN_URL }}?next={{ settings.LOGIN_URL }}">
-                                {% trans %}manage login methods{% endtrans %}
-                            </a>
-                        {% endif %}
                     </td>
                 </tr>  
                 {% endif %}

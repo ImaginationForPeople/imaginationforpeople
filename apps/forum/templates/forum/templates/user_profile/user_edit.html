@@ -37,28 +37,11 @@
                 </tr>
                 <tr>
                 <td>{% trans %}Screen Name{% endtrans %}:</td>
-                <td>
-                {% if settings.EDITABLE_SCREEN_NAME %}
-                    {{ form.username }}
-                    <span class="form-error"> {{ form.username.errors }} </span></td>
-                {% else %}
-                    {{ view_user.username|escape }}
-                {% endif %}
-                </td>
+                <td>{{ view_user.username|escape }}</td>
                 </tr>
                 <tr>
-                    <td>
-                        {{ form.email.label_tag() }}:
-                    </td>
-                    <td>
-                        {% if settings.EDITABLE_EMAIL %}
-                            {{ form.email }}
-                            <span class="form-error">{{ form.email.errors }}</span>
-                        {% else %}
-                            {{ view_user.email }}
-                            {% trans %}(cannot be changed){% endtrans %}
-                        {% endif %}
-                    </td>
+                    <td>{{ form.email.label_tag() }}:</td>
+                    <td>{{ view_user.email }}</td>
                 </tr>
                 <tr>
                     <td>{{ form.realname.label_tag() }}:</td>
