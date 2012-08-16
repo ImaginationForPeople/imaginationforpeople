@@ -54,6 +54,7 @@ from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
 from .utils import get_project_project_translation_recent_changes, fields_diff
+from .utils import get_project_translation_by_any_translation_slug
 
 
 def project_sheet_list(request):
@@ -170,10 +171,19 @@ def project_sheet_show(request, slug, add_media=False):
 
     site = Site.objects.get_current()
         
-    project_translation = get_object_or_404(I4pProjectTranslation,
+    try:
+        project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=slug,
+                                            prefered_language_code=language_code,
+                                            site=site)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+    if(project_translation.language_code != language_code):
+        return redirect(project_translation, permanent=False)
+        """project_translation = get_object_or_404(I4pProjectTranslation,
                                             slug=slug,
                                             language_code=language_code,
                                             project__site=site)
+                                            """
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,

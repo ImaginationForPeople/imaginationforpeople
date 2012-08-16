@@ -90,24 +90,27 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    
     'dynamicsites.middleware.DynamicSitesMiddleware',
-
-    'linaro_django_pagination.middleware.PaginationMiddleware',
-
-    'reversion.middleware.RevisionMiddleware',
-
-    ## The order of these locale middleware classes matters
+     ## The order of these locale middleware classes matters
     # Language selection based on profile
     # URL based language selection (eg. from top panel)
     # We don't use django cms one, for compatibility reasons
     'django.middleware.locale.LocaleMiddleware',
+    # CommonMiddleware MUST come after LocaleMiddleware, otherwise, 
+    # url matching will not work properly
+    'django.middleware.common.CommonMiddleware',
     #'userena.middleware.UserenaLocaleMiddleware',
+    'linaro_django_pagination.middleware.PaginationMiddleware',
+
+    'reversion.middleware.RevisionMiddleware',
+
+
 
     'honeypot.middleware.HoneypotMiddleware',
 
