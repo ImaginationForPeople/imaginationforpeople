@@ -6,7 +6,7 @@
 
 {% block style %}
 {% compress css %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
+<!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" /> -->
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
 {% endcompress %}
@@ -16,40 +16,54 @@
 {% endblock %}
 
 {% block content %}
-<div id="content-zone">
-    <div class="container_18">
-	<!-- FIXME: (design) does tag description continue infinitely on the left side ? -->
-	<div id="tag-description-zone" class="grid_12 alpha omega" >
+<div id="subheader-zone" class="clearfix">
+    <div id="pictured-zone">
+	<div class="container_18">
+	    <!-- FIXME : how to edit pictures + text ? an exemple with real content somewhere -->
 
-	    <!-- FIXME: explain how the header images should react ... -->
+	    <a href="{{ picture_project_translations.0.get_absolute_url }}" class="prefix_1 grid_13 alpha tag-header">
+		<img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
+	    </a>
 
-	    <!-- FIXME: (design) missing big icon for tag -->
-	    <div class="tag-icon grid_3">FIXME: missing icon</div>
-	    <h1 class="grid_8 tag-title">{{ tag }}</h1>
+	    <div class="grid_4 omega pano-header-block">
+		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_4 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/>
+		</a>
 
-	    <p class="prefix_3 grid_8 tag-description">
-		{% wiki_render article %} 
-		<!-- FIXME: : editing tag content is buggy ? how to test ? -->
-		<a href="{% url tags:wiki-edit tag %}" class="button"><img src="/static/images/base/edit.png" alt="edit" /></a>
-	    </p>
-	    <!-- FIXME: (design) missing right arrow for tag description -->
+		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_4 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/></a>
 
+		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_4 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/></a>
+		<br/>
+		[<a href="#">See more</a>]
+	    </div>
 	</div>
+    </div>
 
-	<div class="clear"></div>
+    <div id="description-zone" >
+	<div class="container_18">
+	    <div class="grid_3 alpha icon-tag-big"></div>
+	    <div class="grid_8 omega tag-description-column">
+		<h1 class="grid_8 alpha omega tag-title">{{ tag }}</h1>
 
-	<-- FIXME : how to edit pictures + text ? an exemple with real content somewhere -->
+		<p class="grid_8 alpha omega tag-description">
+		    {% wiki_render article %} 
+		    FIXME : exemple text to remove when wiki will be available again...
+		    <a href="{% url tags:wiki-edit tag %}" class="button"><img src="/static/images/base/edit.png" alt="edit" /></a>
+		</p>
 
-	<h2>Pictured</h2>
-	<a href="{{ picture_project_translations.0.get_absolute_url }}"><img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/></a>
+		<!-- FIXME: (design) missing right arrow for tag description -->
+	    </div>
+	</div>
+    </div>
+</div>
 
-	<a href="{{ picture_project_translations.1.get_absolute_url }}"><img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/></a>
+<div id="content-zone">
+    <!-- FIXME: (design) does tag description continue infinitely on the left side ? -->
 
-	<a href="{{ picture_project_translations.2.get_absolute_url }}"><img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/></a>
-
-	<a href="{{ picture_project_translations.3.get_absolute_url }}"><img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/></a>
-	<br/>
-	[<a href="#">See more</a>]
+    <div class="container_18">
+	<!-- <hr class="shaded-separator" /> -->
 
 	<!-- FIXME: sprite for horizontal shaded line required -->
 	<div class="clear"></div>
