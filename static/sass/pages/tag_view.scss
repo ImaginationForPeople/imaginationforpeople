@@ -1,0 +1,153 @@
+@import "../mixin.scss";
+
+$colorDarkGrey: #282828;
+$colorLightBlue: #0aaece;
+$colorWhite: #f8f8f8;
+$colorMedGrey: #c9c9c9;
+$colorMedDarkGrey: #535353;
+
+$sizeTitle: 20px;
+
+$sizeShadowSmall: 2px;
+
+$sizeBorderSmall: 4px;
+
+$sizeRadiusSmall: 4px;
+
+@mixin shadow_bottomleft {
+    box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
+}
+
+body {
+    background-color: $colorWhite;
+}
+
+#header-zone {
+    background-color: $colorDarkGrey;
+}
+
+#subheader-zone {
+    background-color: white;
+}
+
+#pictured-zone {
+    background-color: black;
+    height: 232px;
+    border-bottom: $sizeBorderSmall solid $colorLightBlue;
+
+    img {
+	width: 100%;
+	height: auto;
+    }
+
+    .tag-header {
+	// FIXME: add an inset shadow, if needed
+	position: relative;
+	z-index: 0;
+    }
+
+    .pano-spacer {
+	height: 2em;
+    }
+
+    .pano-header-block {
+	margin-top: 4em;
+    }
+
+    .pano-header {
+	margin-bottom: 1em;
+	@include border-radius($sizeRadiusSmall);
+	@include shadow_bottomleft;
+
+	img {
+	    @include border-radius($sizeRadiusSmall);
+	}
+    }
+}
+
+#content-zone {
+    clear: both;
+    background-color: white;
+}
+
+#description-zone {
+    @include vertical_gradient($colorDarkGrey, black);
+    @include shadow_bottomleft;
+    border-radius: 0 $sizeRadiusSmall $sizeRadiusSmall 0;
+
+    // position: relative;
+    // z-index: 1;
+    float: left;
+    margin-top: -10em;
+    padding: 0;
+    width: 55%;
+    position: relative;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    min-height: 6em;
+
+    .icon-tag-big {
+	display: block;
+	margin: 0;
+	padding: 0;
+	min-height: 5em;
+	min-width: 5em;
+	background-image: url(../../images/tags/icon-tag-white-big.png);
+	background-repeat: no-repeat;
+	background-position: 80px center;
+    }
+
+    .tag-title {
+	color: white;
+	font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
+	font-size: $sizeTitle;
+	font-style: normal;
+	text-transform: uppercase;
+
+    }
+
+    .tag-description {
+	color: white;
+	font-style: italic;
+
+	.button {
+	    margin-top: 1em;
+	    margin-left: 1em;
+	    float: right;
+	}
+    }
+}
+
+#tags-related {
+    p {
+	font-weight: bold;
+	color: white;
+	background-color: $colorMedDarkGrey;
+    }
+
+    ul {
+	display: inline;
+	list-style: none;
+
+	li {
+	    display: inline;
+	    background-color: $colorMedGrey;
+
+	    a {
+		color: $colorMedDarkGrey;
+	    }
+	}
+    }
+}
+
+hr.shaded-separator {
+    display: block;
+    position: relative;
+    border: 0;
+    width: 100%;
+    height: 10px;
+    top: -7px;
+    background-image: url(../../images/base/horizontal-separator.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+}

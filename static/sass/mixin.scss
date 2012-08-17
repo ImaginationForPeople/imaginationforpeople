@@ -1,6 +1,10 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 
+/**
+ * Colors
+ */
+
 $blue: #04ADD1;
 $darkgrey: #171717;
 $grey:#cdcdcd;
@@ -8,6 +12,16 @@ $greyblack:#303030;
 $greymenu:#c1c1c1;
 $normalgrey:#BDBDBD;
 
+
+/**
+ *  Font sizes
+ */
+
+
+
+/**
+ *  Mixins
+ */
 
 @mixin georgia($font-size) {
     font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
@@ -20,4 +34,21 @@ $normalgrey:#BDBDBD;
 @mixin shadow($size, $color) {
     @include single-box-shadow($color, 0px, 0px, $size);
     behavior: url(static/js/pie/PIE.htc);
+}
+
+
+@mixin vertical_gradient($colorTop, $colorBottom) {
+    background-image: linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -o-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -moz-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -webkit-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -ms-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+
+    background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, $colorTop),
+	color-stop(1, $colorBottom)
+    );
 }

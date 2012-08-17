@@ -5,102 +5,138 @@
 {% load i18n %}
 
 {% block style %}
-  {% compress css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
-  {% endcompress %}
+{% compress css %}
+<!-- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" /> -->
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
+{% endcompress %}
 {% endblock %}
 
 {% block nav %}
 {% endblock %}
 
 {% block content %}
-<div class="container_18" style="height: 2500px">
-  <div class="grid_12 alpha omega">
-  <h1>Projects tagged with "{{ tag }}"</h1>
+<div id="subheader-zone" class="clearfix">
+    <div id="pictured-zone">
+	<div class="container_18">
+	    <!-- FIXME : how to edit pictures + text ? an exemple with real content somewhere -->
 
-  <p>
-    {% wiki_render article %} 
-    <a href="{% url tags:wiki-edit tag %}">[edit]</a>
+	    <a href="{{ picture_project_translations.0.get_absolute_url }}" class="prefix_1 grid_13 alpha tag-header">
+		<img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
+	    </a>
 
-  </p>
+	    <div class="grid_4 omega pano-header-block">
+		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_4 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/>
+		</a>
 
-  </div>
+		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_4 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/></a>
 
-  <div class="clear"></div>
+		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_4 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/></a>
+		<br/>
+		[<a href="#">See more</a>]
+	    </div>
+	</div>
+    </div>
+
+    <div id="description-zone" >
+	<div class="container_18">
+	    <div class="grid_3 alpha icon-tag-big"></div>
+	    <div class="grid_8 omega tag-description-column">
+		<h1 class="grid_8 alpha omega tag-title">{{ tag }}</h1>
+
+		<p class="grid_8 alpha omega tag-description">
+		    {% wiki_render article %} 
+		    FIXME : exemple text to remove when wiki will be available again...
+		    <a href="{% url tags:wiki-edit tag %}" class="button"><img src="/static/images/base/edit.png" alt="edit" /></a>
+		</p>
+
+		<!-- FIXME: (design) missing right arrow for tag description -->
+	    </div>
+	</div>
+    </div>
+</div>
+
+<div id="content-zone">
+    <!-- FIXME: (design) does tag description continue infinitely on the left side ? -->
+
+    <div class="container_18">
+	<!-- <hr class="shaded-separator" /> -->
+
+	<!-- FIXME: sprite for horizontal shaded line required -->
+	<div class="clear"></div>
+
+	<br/>
+
+	<!-- FIXME: small icon for tag required -->
+	<div id="#tags-related">
+	    <p>Related tags</p>
+	    <ul>
+		{% for tag in related_tags %}
+		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }}</a>({{ tag.count }})</li>
+		{% endfor %}
+	    </ul>
+	</div>
+
+	<!-- FIXME: where is the blue button / tag link for "follow this topic" ? -->
+
+	<hr>
+
+	<!-- FIXME: (design) is the blue thing on project card a hover ? -->
+
+	<!-- FIXME: (design) missing right arrow icon for "voir tous" -->
+	<h2>Mature projects</h2>
+
+	{% for project_translation in mature_project_translations %}
+	{% include "project_sheet/project_id_card.html" %}
+	{% empty %}
+	{% trans "No projects" %}
+	{% endfor %}
+
+	<br/>
+	[<a href="#">See more</a>]
+
+	<div class="clear"></div>
+
+	<h2>Starting projects</h2>
+	{% for project_translation in starting_project_translations %}
+	{% include "project_sheet/project_id_card.html" %}
+	{% endfor %}
+	<br/>
+	[<a href="#">See more</a>]
+
+	<div class="clear"></div>
+
+	<h2>New project sheets</h2>
+	{% for project_translation in new_project_translations %}
+	{% include "project_sheet/project_id_card.html" %}
+	{% endfor %}
+	<br/>
+	[<a href="#">See more</a>]
+
+	<div class="clear"></div>
+
+	<h2>Latest modifications</h2>
+	{% for project_translation in modified_project_translations %}
+	{% include "project_sheet/project_id_card.html" %}
+	{% endfor %}
+	<br/>
+	[<a href="#">See more</a>]
+
+	<div class="clear"></div>
 
 
-  <h2>Pictured</h2>
-  <a href="{{ picture_project_translations.0.get_absolute_url }}"><img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/></a>
-
-  <a href="{{ picture_project_translations.1.get_absolute_url }}"><img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/></a>
-
-  <a href="{{ picture_project_translations.2.get_absolute_url }}"><img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/></a>
-
-  <a href="{{ picture_project_translations.3.get_absolute_url }}"><img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/></a>
-  <br/>
-  [<a href="#">See more</a>]
-
-  <div class="clear"></div>
-
-  <br/>
-  <p>
-  <strong>Related tags</strong>
-  {% for tag in related_tags %}
-  <a href="{% url tags:tag-view tag %}">{{ tag.name }}</a>({{ tag.count }})
-  {% endfor %}
-  </p>
-
-  <hr>
-
-  <h2>Mature projects</h2>
-  {% for project_translation in mature_project_translations %}
-  {% include "project_sheet/project_id_card.html" %}
-  {% empty %}
-  {% trans "No projects" %}
-  {% endfor %}
-
-  <br/>
-  [<a href="#">See more</a>]
-
-  <div class="clear"></div>
-
-  <h2>Starting projects</h2>
-  {% for project_translation in starting_project_translations %}
-  {% include "project_sheet/project_id_card.html" %}
-  {% endfor %}
-  <br/>
-  [<a href="#">See more</a>]
-
-  <div class="clear"></div>
-
-  <h2>New project sheets</h2>
-  {% for project_translation in new_project_translations %}
-  {% include "project_sheet/project_id_card.html" %}
-  {% endfor %}
-  <br/>
-  [<a href="#">See more</a>]
-
-  <div class="clear"></div>
-
-  <h2>Latest modifications</h2>
-  {% for project_translation in modified_project_translations %}
-  {% include "project_sheet/project_id_card.html" %}
-  {% endfor %}
-  <br/>
-  [<a href="#">See more</a>]
-
-  <div class="clear"></div>
+	<h2>People</h2>
+	<ul>
+	    {% for p in people %}
+	    <li><img src="{{ p.user.get_profile.get_mugshot_url }}" width="40px"/> <a href="{{ p.user.get_profile.get_absolute_url }}">{{ p.user.get_profile.get_full_name_or_username }}</a> - <a href="{{ p.project.get_absolute_url }}">{{ p.project }}</a><br/></li>
+	    {% endfor %}
+	</ul>
+	<br/>
 
 
-  <h2>People</h2>
-  <ul>
-    {% for p in people %}
-    <li><img src="{{ p.user.get_profile.get_mugshot_url }}" width="40px"/> <a href="{{ p.user.get_profile.get_absolute_url }}">{{ p.user.get_profile.get_full_name_or_username }}</a> - <a href="{{ p.project.get_absolute_url }}">{{ p.project }}</a><br/></li>
-    {% endfor %}
-  </ul>
-  <br/>
-
-
+    </div>
 </div>
 {% endblock %}
