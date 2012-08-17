@@ -10,7 +10,6 @@ from fabric.operations import put, get
 from fabric.api import *
 from fabric.colors import cyan
 from fabric.contrib.files import *
-from fabric.contrib import django
 
 def reloadapp():
     """
@@ -90,6 +89,7 @@ def stagenv():
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
 
+
 @task
 def devenv():
     """
@@ -122,12 +122,18 @@ def build_virtualenv():
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
 
-def update_requirements():
+def update_requirements(force=False):
     """
     update external dependencies on remote host
     """
     print(cyan('Updating requirements using PIP'))
-    run("yes w | pip install -E %(venvfullpath)s --use-mirrors -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env)
+    run('pip install -E %(venvfullpath)s -U pip' % env)
+    
+    if force:
+        cmd = "pip install -E %(venvfullpath)s -I -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+    else:
+        cmd = "pip install -E %(venvfullpath)s -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+    run("yes w | %s" % cmd)
 
 
 ## Django
@@ -200,13 +206,17 @@ def clone_repository():
     Clone repository and remove the exsiting one if necessary
     """
     print(cyan('Cloning Git repository'))
+
     with cd(env.venvfullpath):
         # Remove dir if necessary
-        if exist("%(projectname)s" % env):
-            run("rm -rf %(projectname)s" % env)
+        if exists("%(projectname)s" % env):
+            sudo("rm -rf %(projectname)s" % env)
 
         # Clone
-        run("git clone --branch %(gitbranch) %(gitrepo)s %(projectname)s" % env)
+        run("git clone --branch {0} {1} {2}".format(env.gitbranch,
+                                                    env.gitrepo,
+                                                    env.projectname)
+        )
     
             
 def updatemaincode():
@@ -225,7 +235,7 @@ def app_install():
     (Re)install app to target server
     """
     execute(clone_repository)
-    execute(update_requirements)
+    execute(update_requirements, force=True)
     execute(compile_messages)
     execute(app_db_install)
     execute(collect_static_files)
@@ -238,7 +248,7 @@ def app_fullupdate():
     Full Update: maincode and dependencies
     """
     execute(updatemaincode)
-    execute(update_requirements)
+    execute(update_requirements, force=True)
     execute(compile_messages)
     execute(app_db_update)
     execute(collect_static_files)
@@ -447,8 +457,8 @@ def database_restore():
 
     remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
     
-    #if(env.wsginame != 'dev.wsgi'):
-    #    put('current_database.sql.bz2', remote_db_path)
+    if(env.wsginame != 'dev.wsgi'):
+        put('current_database.sql.bz2', remote_db_path)
 
     execute(webservers_stop)
     
