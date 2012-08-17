@@ -486,11 +486,11 @@ LOGGING = {
             'handlers': ['console'],
             'propagate': False,
         },
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
+        #'django.request': {
+        #    'handlers': ['mail_admins'],
+        #    'level': 'ERROR',
+        #    'propagate': True,
+        #},
         'raven': {
             'level': 'DEBUG',
             'handlers': ['console'],
