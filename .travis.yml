@@ -8,4 +8,4 @@ script:
 before_script:
   - psql -c 'create database imaginationforpeople;' -U postgres
   - cp site_settings.py.tests site_settings.py
-  - ./manage.py syncdb --all --noinput
+
