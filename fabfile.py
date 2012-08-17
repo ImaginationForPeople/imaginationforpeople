@@ -409,8 +409,8 @@ def mirror_prod_media():
 
     # Files
     with cd(os.path.join(env.venvfullpath, env.projectname)):
-        sudo('rm -rf media/*')
-        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/* media/')
+        sudo('rm -rf media')
+        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/ .')
 
         sudo('chown www-data -R media')
         sudo('chmod u+rw -R media')
