@@ -105,7 +105,7 @@ def project_sheet_list(request):
             # Here the number of buckets (m) is determined by the day of the
             # year
             day_of_year = int(datetime.now().strftime('%j'))
-            pseudo_random_field = "(project_id * (project_id + 3)) %% {:d}".format(day_of_year)
+            pseudo_random_field = "(project_id * (project_id + 3)) %% {0:d}".format(day_of_year)
             ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
