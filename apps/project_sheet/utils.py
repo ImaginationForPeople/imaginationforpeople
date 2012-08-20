@@ -18,8 +18,6 @@
 """
 Toolkit for a project sheet management
 """
-from reversion.models import Version
-
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.db import DatabaseError
@@ -143,7 +141,7 @@ def get_or_create_project_translation_by_slug(project_translation_slug, language
     Create a project translation for the given language_code with the
     given slug.
 
-    This version does not need a parent. Beware: using it twice for
+    This version does need a parent. Beware: using it twice for
     the same language with a different slug can lead to duplicate
     projects.
     When possible, use the "_from_parent" version instead.
