@@ -10,7 +10,9 @@ believe in imagination for the common good.
 This software is the technical platform of the IP project. You can
 find it at http://imaginationforpeople.org
 
-{<img src="https://secure.travis-ci.org/ImaginationForPeople/imaginationforpeople.png" alt="Build Status" />}[http://travis-ci.org/ImaginationForPeople/imaginationforpeople]
+.. image:: https://secure.travis-ci.org/ImaginationForPeople/imaginationforpeople.png
+   :alt: Build Status
+   :target: http://travis-ci.org/ImaginationForPeople/imaginationforpeople
 
 Contributing
 ------------
