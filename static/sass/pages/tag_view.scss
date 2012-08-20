@@ -323,24 +323,37 @@ hr.shaded-separator {
 	@include box-shadow-bottomleft;
 	@include border-radius($sizeRadiusSmall);
 	background-color: red;
-	//background-image: url(../../images/base/background-dots.png);
-	//background-repeat: repeat;
-	//background-position: top left;
+
+
+
 
 	.project_infos_title {
+	    @include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
+	    @include transition(all .5s ease);
 	    position: relative;
 	    height: 94px; //height of picture
 
-	    h2 {
+	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+	    background-repeat: no-repeat, repeat;
+	    background-position: 100px 200px, top left;
+	    background-size: 25px 25px, auto;
+
+	    z-index: 1;
+
+	    .title {
 		position: absolute;
 		font-size: 1em;
 		bottom: 10px;
-		margin: 10px;
+		margin-left: 10px;
+		margin-right: 10px;
 		color: black;
 		text-transform: uppercase;
 		background-color: white;
-		z-index: 1;
+		z-index: 2;
+	    }
 
+	    .description {
+		visibility: hidden;
 	    }
 	}
 
@@ -376,11 +389,26 @@ hr.shaded-separator {
 	}
 
 	.project_card_content {
+	    @include border-box;
+	    @include border-radius(0 0 $sizeRadiusSmall $sizeRadiusSmall);
 	    position: absolute;
-	    top: 130px;
+	    bottom: 0px;
+	    height: 30px;
 	    left: 0;
+	    width: 100%;
 	    color: white;
 	    background-color: black;
+	    padding-left: 10px;
+
+	    .project_card_pictos {
+		display: none;
+		visibility: hidden;
+	    }
+
+	    .flag {
+		float: left;
+		margin-right: 5px;
+	    }
 	}
 
 	.project-photo {
@@ -391,12 +419,44 @@ hr.shaded-separator {
 	    width: 150px;
 	    height: 94px;
 
+
 	    img {
-		// @include border-radius($sizeRadiusSmall);
+		@include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
 		width: inherit;
-		height: 94px;
+		height: inherit;
+
 	    }
 	}
-    }
+
+	&:hover {
+
+	    .project_infos_title {
+		height: 150px;
+
+		background-color: $colorLightBlue;
+		background-image: url(../../images/tags/icon-arrow-white-big.png);
+		background-position: 100px 100px;
+		background-repeat: repeat-none;
+
+		.title {
+		    visibility: hidden;
+		}
+
+		.description {
+		    position: absolute;
+		    top: 30px;
+		    padding: 10px;
+		    visibility: visible;
+		    text-decoration: none;
+		    font-style: normal;
+		    color: white;
+		    z-index: 7;
+		}
+
+	    }
+
+	} // hover
+
+    } // project
 }
 
