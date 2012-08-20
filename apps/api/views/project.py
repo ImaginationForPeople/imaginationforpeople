@@ -117,7 +117,7 @@ class I4pProjectTranslationHandler(BaseHandler):
     @classmethod
     def questions(cls, anI4pProject):
         questions = []
-        for topic in Topic.objects.filter(site_topics=anI4pProject.topics.all()):
+        for topic in Topic.objects.language(I4pProjectTranslationHandler.project.language_code).filter(site_topics=anI4pProject.topics.all()):
             for question in topic.questions.language(I4pProjectTranslationHandler.project.language_code).all().order_by('weight'):
                 answers = Answer.objects.language(I4pProjectTranslationHandler.project.language_code).filter(project=anI4pProject.id, question=question)
                 questions.append({
