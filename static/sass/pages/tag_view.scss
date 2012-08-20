@@ -14,6 +14,13 @@ $sizeBorderSmall: 4px;
 
 $sizeRadiusSmall: 4px;
 
+// box model that includes padding widthin width
+@mixin border-box {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
 @mixin shadow_bottomleft {
     box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
 }
@@ -28,39 +35,115 @@ body {
 
 #subheader-zone {
     background-color: white;
+    position: relative; // make children element 'absolute' positionning relative to this elment
 }
 
 #pictured-zone {
     background-color: black;
-    height: 232px;
+    height: 214px; // 232px for grid_13 , 214px for grid_12
     border-bottom: $sizeBorderSmall solid $colorLightBlue;
 
-    img {
-	width: 100%;
-	height: auto;
-    }
 
     .tag-header {
 	// FIXME: add an inset shadow, if needed
 	position: relative;
-	z-index: 0;
-    }
 
-    .pano-spacer {
-	height: 2em;
+	a {
+	    img {
+		width: 100%;
+		height: auto;
+		border: none;
+	    }
+	}
+
+	.credit {
+	    position: absolute;
+	    top: 145px;
+	    left: 10px;
+	    color: white;
+	    font-style: italic;
+	}
     }
 
     .pano-header-block {
-	margin-top: 4em;
+	margin-top: 20px;
     }
 
     .pano-header {
-	margin-bottom: 1em;
+	position: relative; // make children position absolute but relative to this
+	height: 81px; // 81px for grid_5 , 64px for grid_4
+	width: inherit;
+	margin-bottom: 10px;
 	@include border-radius($sizeRadiusSmall);
 	@include shadow_bottomleft;
 
 	img {
 	    @include border-radius($sizeRadiusSmall);
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    width: inherit;
+	    height: inherit;
+	}
+
+
+	.project-information {
+	    @include border-radius($sizeRadiusSmall);
+	    @include border-box;
+	    position: absolute; // yet relative to parent
+	    top: 0;
+	    left: 0;
+	    width: inherit;
+	    height: inherit;
+	    visibility: hidden;
+	    padding: 10px;
+	    background: rgba(0,0,255,0.5);
+	    color: white;
+	    text-overflow: ellipsis;
+	    overflow: hidden;
+
+	    .title {
+		display: block;
+		position: absolute;
+		font-weight: bold;
+		text-transform: uppercase;
+		visibility: visible;
+		background-color: white;
+		color: black;
+		bottom: 10px;
+		padding-left: 1em;
+		padding-right: 1em;
+	    }
+
+	    .description {
+		display: block;
+	    }
+	}
+
+	&:hover .project-information {
+	    @include border-box;
+	    position: absolute; // yet relative to parent
+	    top: 0;
+	    left: 0;
+	    padding: 10px;
+	    padding-right: 70px;
+	    visibility: visible;
+	    background-color: rgba($colorLightBlue,0.7);
+	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+	    background-repeat: no-repeat, repeat;
+	    background-position: 200px center, top left;
+	    color: white;
+
+	    .title {
+		position: static;
+		color: white;
+		background: none;
+		padding: 0;
+		margin-bottom: 0.5em;
+	    }
+
+	    .description {
+	    }
 	}
     }
 }
@@ -77,14 +160,14 @@ body {
 
     // position: relative;
     // z-index: 1;
-    float: left;
-    margin-top: -10em;
+    position: absolute;
+    top: 170px;
+    left: 0px;
     padding: 0;
     width: 55%;
-    position: relative;
     padding-top: 1em;
     padding-bottom: 1em;
-    min-height: 6em;
+    min-height: 90px;
 
     .icon-tag-big {
 	display: block;
@@ -115,6 +198,13 @@ body {
 	    margin-left: 1em;
 	    float: right;
 	}
+    }
+
+    .readmore {
+	content: "";
+	width: 5em;
+	height: 5em;
+	background: red;
     }
 }
 
