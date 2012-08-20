@@ -40,7 +40,7 @@ body {
 
 #pictured-zone {
     background-color: black;
-    height: 214px; // 232px for grid_13 , 214px for grid_12
+    height: 253px; // 232px for grid_13 , 214px for grid_12
     border-bottom: $sizeBorderSmall solid $colorLightBlue;
 
 
@@ -95,12 +95,15 @@ body {
 	    left: 0;
 	    width: inherit;
 	    height: inherit;
-	    visibility: hidden;
 	    padding: 10px;
-	    background: rgba(0,0,255,0.5);
 	    color: white;
 	    text-overflow: ellipsis;
 	    overflow: hidden;
+	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+	    background-repeat: no-repeat, repeat;
+	    background-position: 400px center, top left;
+	    transition: all .5s ease;
+	    -moz-transition: all .5s ease;
 
 	    .title {
 		display: block;
@@ -116,7 +119,7 @@ body {
 	    }
 
 	    .description {
-		display: block;
+		visibility: hidden;
 	    }
 	}
 
@@ -129,8 +132,8 @@ body {
 	    padding-right: 70px;
 	    visibility: visible;
 	    background-color: rgba($colorLightBlue,0.7);
-	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
-	    background-repeat: no-repeat, repeat;
+	    // background-image: url(../../images/tags/icon-arrow-white-big.png);
+	    // background-repeat: no-repeat;
 	    background-position: 200px center, top left;
 	    color: white;
 
@@ -143,6 +146,7 @@ body {
 	    }
 
 	    .description {
+		    visibility: visible;
 	    }
 	}
     }
@@ -261,10 +265,13 @@ body {
 			}
 
 			&:first-child:before {
+				display: inline;
 				border-left: none;
 			}
 
 			&:before {
+				@include border-box;
+				display: inline;
 				position: absolute;
 				content:"";
 				top: 0;
