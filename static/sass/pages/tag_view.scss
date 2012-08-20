@@ -14,15 +14,11 @@ $sizeBorderSmall: 4px;
 
 $sizeRadiusSmall: 4px;
 
-// box model that includes padding widthin width
-@mixin border-box {
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-}
-
-@mixin shadow_bottomleft {
-    box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
+@mixin transition( $effect ) {
+    transition: $effect;
+    -moz-transition: $effect;
+    -webkit-transition: $effect;
+    -o-transition: $effect;
 }
 
 body {
@@ -40,7 +36,7 @@ body {
 
 #pictured-zone {
     background-color: black;
-    height: 214px; // 232px for grid_13 , 214px for grid_12
+    height: 253px; // 232px for grid_13 , 214px for grid_12
     border-bottom: $sizeBorderSmall solid $colorLightBlue;
 
 
@@ -75,7 +71,7 @@ body {
 	width: inherit;
 	margin-bottom: 10px;
 	@include border-radius($sizeRadiusSmall);
-	@include shadow_bottomleft;
+	@include box-shadow-bottomleft;
 
 	img {
 	    @include border-radius($sizeRadiusSmall);
@@ -95,12 +91,14 @@ body {
 	    left: 0;
 	    width: inherit;
 	    height: inherit;
-	    visibility: hidden;
 	    padding: 10px;
-	    background: rgba(0,0,255,0.5);
 	    color: white;
 	    text-overflow: ellipsis;
 	    overflow: hidden;
+	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+	    background-repeat: no-repeat, repeat;
+	    background-position: 400px center, top left;
+	    @include transition( all .5s ease );
 
 	    .title {
 		display: block;
@@ -116,7 +114,7 @@ body {
 	    }
 
 	    .description {
-		display: block;
+		visibility: hidden;
 	    }
 	}
 
@@ -129,8 +127,8 @@ body {
 	    padding-right: 70px;
 	    visibility: visible;
 	    background-color: rgba($colorLightBlue,0.7);
-	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
-	    background-repeat: no-repeat, repeat;
+	    // background-image: url(../../images/tags/icon-arrow-white-big.png);
+	    // background-repeat: no-repeat;
 	    background-position: 200px center, top left;
 	    color: white;
 
@@ -143,6 +141,7 @@ body {
 	    }
 
 	    .description {
+		visibility: visible;
 	    }
 	}
     }
@@ -154,143 +153,150 @@ body {
 }
 
 #description-zone {
-	@include vertical_gradient($colorDarkGrey, black);
-	@include shadow_bottomleft;
-	border-radius: 0 $sizeRadiusSmall $sizeRadiusSmall 0;
+    @include background-vertical-gradient($colorDarkGrey, black);
+    @include box-shadow-bottomleft;
+    border-radius: 0 $sizeRadiusSmall $sizeRadiusSmall 0;
 
-	// position: relative;
-	// z-index: 1;
-	position: absolute;
-	top: 170px;
-	left: 0px;
+    // position: relative;
+    // z-index: 1;
+    position: absolute;
+    top: 170px;
+    left: 0px;
+    padding: 0;
+    width: 55%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    min-height: 90px;
+
+    .icon-tag-big {
+	display: block;
+	margin: 0;
 	padding: 0;
-	width: 55%;
-	padding-top: 1em;
-	padding-bottom: 1em;
-	min-height: 90px;
+	min-height: 5em;
+	min-width: 5em;
+	background-image: url(../../images/tags/icon-tag-white-big.png);
+	background-repeat: no-repeat;
+	background-position: 80px center;
+    }
 
-	.icon-tag-big {
-		display: block;
-		margin: 0;
-		padding: 0;
-		min-height: 5em;
-		min-width: 5em;
-		background-image: url(../../images/tags/icon-tag-white-big.png);
-		background-repeat: no-repeat;
-		background-position: 80px center;
+    .tag-title {
+	color: white;
+	font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
+	font-size: $sizeTitle;
+	font-style: normal;
+	text-transform: uppercase;
+
+    }
+
+    .tag-description {
+	color: white;
+	font-style: italic;
+
+	.button {
+	    margin-top: 1em;
+	    margin-left: 1em;
+	    float: right;
+	}
+    }
+
+    .readmore {
+	@include border-radius($sizeRadiusSmall);
+	@include background-vertical-gradient($colorDarkGrey, black);
+	@include box-shadow-bottomleft;
+	position: absolute;
+	top: 25px;
+	right: -25px;
+	display: block;
+	width: 50px;
+	height: 50px;
+
+	&:hover {
+	    right: -30px;
 	}
 
-	.tag-title {
-		color: white;
-		font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
-		font-size: $sizeTitle;
-		font-style: normal;
-		text-transform: uppercase;
-
+	a {
+	    display: block;
+	    width: 100%;
+	    height: 100%;
+	    background-image: url(../../images/tags/icon-arrow-blue-big.png);
+	    background-position: center center;
+	    background-repeat: no-repeat;
 	}
-
-	.tag-description {
-		color: white;
-		font-style: italic;
-
-		.button {
-			margin-top: 1em;
-			margin-left: 1em;
-			float: right;
-		}
-	}
-
-	.readmore {
-		@include border-radius($sizeRadiusSmall);
-		@include vertical_gradient($colorDarkGrey, black);
-		@include shadow_bottomleft;
-		position: absolute;
-		top: 25px;
-		right: -25px;
-		display: block;
-		width: 50px;
-		height: 50px;
-
-		a {
-			display: block;
-			width: 100%;
-			height: 100%;
-			background-image: url(../../images/tags/icon-arrow-blue-big.png);
-			background-position: center center;
-			background-repeat: no-repeat;
-		}
-	}
+    }
 }
 
 
 #tags-related {
-	line-height: 1.5em;
+    line-height: 1.5em;
 
-	h2 {
-		// FIXME: add tag icon
+    h2 {
+	// FIXME: add tag icon
+	font-size: 100%;
+	font-weight: normal;
+	display: inline;
+	color: white;
+	background-color: $colorMedDarkGrey;
+	padding-left: .5em;
+	padding-right: .5em;
+	margin-right: .25em;
+    }
+
+    ul {
+	display: inline;
+	list-style: none;
+
+	li {
+	    display: inline;
+	    background-color: $colorMedGrey;
+	    color: $colorMedDarkGrey;
+	    margin-right: .5em;
+	    height: 1em;
+	    padding-left: .5em;
+	    padding-right: .5em;
+	    font-style: italic;
+
+	    position: relative;
+
+	    a {
 		font-size: 100%;
-		font-weight: normal;
+		color: inherit;
+		margin-right: 0.2em;
+	    }
+
+	    &:first-child:before {
 		display: inline;
-		color: white;
-		background-color: $colorMedDarkGrey;
-		padding-left: .5em;
-		padding-right: .5em;
-		margin-right: .25em;
+		border-left: none;
+	    }
+
+	    &:before {
+		@include border-box;
+		display: inline;
+		position: absolute;
+		content:"";
+		top: 0;
+		width: 0;
+		height: 0;
+		left: -.45em;
+		border-left: .5em solid transparent;
+		border-top: .62em solid $colorMedGrey;
+		border-bottom: .63em solid $colorMedGrey;
+	    }
+
+	    &:after {
+		@include border-box;
+		position: absolute;
+		content:"";
+		top: 0;
+		right: -.45em;
+		width: 0;
+		height: 0;
+		border-left: .5em solid $colorMedGrey;
+		border-top: .62em solid transparent;
+		border-bottom: .63em solid transparent;
+	    }
 	}
 
-	ul {
-		display: inline;
-		list-style: none;
-
-		li {
-			display: inline;
-			background-color: $colorMedGrey;
-			color: $colorMedDarkGrey;
-			margin-right: .5em;
-			height: 1em;
-			padding-left: .5em;
-			padding-right: .5em;
-			font-style: italic;
-
-			position: relative;
-
-			a {
-				font-size: 100%;
-				color: inherit;
-				margin-right: 0.2em;
-			}
-
-			&:first-child:before {
-				border-left: none;
-			}
-
-			&:before {
-				position: absolute;
-				content:"";
-				top: 0;
-				width: 0;
-				height: 0;
-				left: -.45em;
-				border-left: .5em solid transparent;
-				border-top: .62em solid $colorMedGrey;
-				border-bottom: .63em solid $colorMedGrey;
-			}
-
-			&:after {
-				@include border-box;
-				position: absolute;
-				content:"";
-				top: 0;
-				right: -.45em;
-				width: 0;
-				height: 0;
-				border-left: .5em solid $colorMedGrey;
-				border-top: .62em solid transparent;
-				border-bottom: .63em solid transparent;
-			}
-		}
-
-	}
+    }
 }
 
 hr.shaded-separator {
@@ -304,3 +310,93 @@ hr.shaded-separator {
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+.project-list {
+    h2 {
+	text-transform: uppercase;
+    }
+
+    .project {
+	height: 150px;
+	position: relative;
+
+	@include box-shadow-bottomleft;
+	@include border-radius($sizeRadiusSmall);
+	background-color: red;
+	//background-image: url(../../images/base/background-dots.png);
+	//background-repeat: repeat;
+	//background-position: top left;
+
+	.project_infos_title {
+	    position: relative;
+	    height: 94px; //height of picture
+
+	    h2 {
+		position: absolute;
+		font-size: 1em;
+		bottom: 10px;
+		margin: 10px;
+		color: black;
+		text-transform: uppercase;
+		background-color: white;
+		z-index: 1;
+
+	    }
+	}
+
+	.project_card {
+	    width: inherit;
+	}
+
+	.project_card_progress {
+	    position: absolute;
+	    top: 90px;
+	    left: 0;
+	    width: 100%;
+	    height: 40px;
+	    color: white;
+	    padding-top: 10px;
+	    background-image: url(../../images/project/front-uprounded-rectangle.png);
+
+	    img {
+		display: block;
+		margin-left: 5px;
+		margin-right: auto;
+		width: 70%;
+		height: auto;
+	    }
+
+	    p {
+		position: absolute;
+		top: 10px;
+		right: 50px;
+		font-style: italic;
+		font-size: 80%;
+	    }
+	}
+
+	.project_card_content {
+	    position: absolute;
+	    top: 130px;
+	    left: 0;
+	    color: white;
+	    background-color: black;
+	}
+
+	.project-photo {
+	    position: absolute;
+	    top: 0px;
+	    left: 0px;
+	    // FIXME: set inherit & auto
+	    width: 150px;
+	    height: 94px;
+
+	    img {
+		// @include border-radius($sizeRadiusSmall);
+		width: inherit;
+		height: 94px;
+	    }
+	}
+    }
+}
+
