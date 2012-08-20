@@ -18,9 +18,7 @@
 
 import re
 
-from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
-from tagging.models import Tag
 """
 Ajax views for handling project sheet creation and edition.
 """
@@ -35,8 +33,6 @@ from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
 
 from honeypot.decorators import check_honeypot
-
-import nani
 
 from .models import I4pProjectTranslation, Answer, Question
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm, AnswerForm

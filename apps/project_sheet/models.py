@@ -40,7 +40,7 @@ from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
-from nani.models import TranslatableModel, TranslatedFields
+from hvad.models import TranslatableModel, TranslatedFields
 import reversion
 from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
@@ -206,7 +206,7 @@ class Answer(TranslatableModel):
         unique_together = (("question", "project"), )
         
     def __unicode__(self):
-        return 'Answer to: [%s]' % (self.question,)
+        return 'Answer to: [%s] (Project %s)' % (self.question, self.project)
 
 
 class I4pProjectTranslation(models.Model):
