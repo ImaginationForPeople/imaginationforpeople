@@ -12,15 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-10 18:23-0400\n"
+"POT-Creation-Date: 2012-08-20 11:48+0200\n"
 "PO-Revision-Date: 2012-08-10 18:25-0400\n"
 "Last-Translator: Benoit Grégoire <benoitg@coeus.ca>\n"
 "Language-Team: French <kde-i18n-doc@kde.org>\n"
-"imaginationforpeople/language/fr/)\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"imaginationforpeople/language/fr/)\n"
 "Plural-Forms: nplurals=2; plural=(n > 1)\n"
 "X-Generator: Lokalize 1.5\n"
 
@@ -1036,7 +1036,7 @@ msgstr ""
 "émerger, à l’échelle mondiale, des expériences inédites en matière "
 "d’innovation sociale. "
 
-#: templates/base.html:15
+#: templates/base.html:15 templates/pages/homepage.html:17
 msgid "identify and support imaginative social projects"
 msgstr "repérer et soutenir les projets sociaux créatifs"
 
@@ -1191,7 +1191,7 @@ msgstr "Nous suivre"
 msgid "Follow us on"
 msgstr "Nous suivre sur"
 
-#: templates/footer.html:89
+#: templates/footer.html:98
 #, python-format
 msgid ""
 "\n"
@@ -1200,9 +1200,8 @@ msgid ""
 "Commons</strong>.\"\n"
 "\t            "
 msgstr ""
-"<strong>%(url)s</strong> est propulsée par un ensemble de "
-"composantes libres sous licences <strong>AGPL</strong> et <strong>Creative "
-"Commons</strong>. "
+"<strong>%(url)s</strong> est propulsée par un ensemble de composantes libres "
+"sous licences <strong>AGPL</strong> et <strong>Creative Commons</strong>. "
 
 #: templates/login-slide.html:17
 msgid "Interface language"
@@ -1274,15 +1273,19 @@ msgstr "Administration"
 msgid "Log out"
 msgstr "Se déconnecter"
 
-#: templates/nav.html:31 templates/nav.html.py:39
+#: templates/nav.html:31 templates/nav.html.py:36
 msgid "Project"
 msgstr "Projet"
 
-#: templates/nav.html:54
+#: templates/nav.html:33
+msgid "History"
+msgstr "Historique"
+
+#: templates/nav.html:51
 msgid "other languages"
 msgstr "Autres langues"
 
-#: templates/nav.html:67
+#: templates/nav.html:64
 msgid "create a new translation"
 msgstr "Créer une nouvelle traduction"
 
@@ -1615,7 +1618,7 @@ msgstr "Dernière activité"
 msgid "Latest commits"
 msgstr "Dernières modifications"
 
-#: templates/pages/contrib.html:128 templates/pages/homepage.html:129
+#: templates/pages/contrib.html:128 templates/pages/homepage.html:135
 msgid "Join the community"
 msgstr "Rejoignez la communauté"
 
@@ -1661,43 +1664,47 @@ msgstr "Groupes de travail"
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: templates/pages/homepage.html:31
+#: templates/pages/homepage.html:37
 msgid "My project title"
 msgstr "Le titre du projet"
 
-#: templates/pages/homepage.html:32
+#: templates/pages/homepage.html:38
 msgid "One line description"
 msgstr "Description en une ligne"
 
-#: templates/pages/homepage.html:121
+#: templates/pages/homepage.html:127
 msgid " What is it ?"
 msgstr "Qu'est-ce que c'est ?"
 
-#: templates/pages/homepage.html:124
+#: templates/pages/homepage.html:130
 msgid "Explore and contribute"
 msgstr "Explorer et contribuer"
 
-#: templates/pages/homepage.html:125
+#: templates/pages/homepage.html:131
 msgid "to social and cultural projects"
 msgstr "à des projets sociaux et culturels"
 
-#: templates/pages/homepage.html:130
+#: templates/pages/homepage.html:136
 msgid "of citizens from more 30 countries"
 msgstr "Rejoignez une communauté de citoyens de plus de 30 pays."
 
-#: templates/pages/homepage.html:135
+#: templates/pages/homepage.html:141
 msgid " Detect and develop socially innovative projects."
 msgstr ""
 "Une communauté de citoyens créatifs pour repérer et soutenir les projets "
 "d'innovation sociale."
 
-#: templates/pages/homepage.html:218
+#: templates/pages/homepage.html:224
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
 msgstr ""
 "Vous pouvez <strong>contribuer</strong>, <strong>partager</strong> vos "
 "idées,  <strong>inscrire</strong> votre projet"
+
+#: templates/pages/onemenu.html:34
+msgid "MENU"
+msgstr ""
 
 #: templates/pages/home-blocks/blog-box.html:4
 msgid "Last posts on blog"
@@ -1960,9 +1967,6 @@ msgstr "Ajouter"
 #~ "essor.</strong></li>\n"
 #~ "                    </ul>\n"
 #~ "                    "
-
-#~ msgid "History"
-#~ msgstr "Historique"
 
 #~ msgid "All the projects"
 #~ msgstr "All the projects"
