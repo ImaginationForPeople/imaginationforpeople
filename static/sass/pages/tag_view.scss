@@ -201,15 +201,30 @@ body {
     }
 
     .readmore {
-	content: "";
-	width: 5em;
-	height: 5em;
-	background: red;
+	@include border-radius($sizeRadiusSmall);
+	@include vertical_gradient($colorDarkGrey, black);
+	@include shadow_bottomleft;
+        position: absolute;
+	top: 25px;
+	right: -25px;
+        display: block;
+	width: 50px;
+	height: 50px;
+
+	a {
+		display: block;
+		width: 100%;
+		height: 100%;
+		background-image: url(../../images/tags/icon-arrow-blue-big.png);
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
     }
 }
 
 #tags-related {
-    p {
+    h2 {
+	    text-size: 100%;
 	font-weight: bold;
 	color: white;
 	background-color: $colorMedDarkGrey;

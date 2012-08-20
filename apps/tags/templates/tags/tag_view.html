@@ -75,7 +75,9 @@
 	    </div>
 	</div>
 	<!-- FIXME: (design) missing right arrow for tag description. Is it the wiki-edit button ?-->
-	<a href="#" class="readmore"></a>
+	<div class="readmore">
+		<a href="#"></a>
+	</div>
     </div>
 </div>
 
@@ -92,7 +94,7 @@
 
 	<!-- FIXME: small icon for tag required -->
 	<div id="#tags-related">
-	    <p>Related tags</p>
+	    <h2>Related tags</h2>
 	    <ul>
 		{% for tag in related_tags %}
 		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }}</a>({{ tag.count }})</li>
