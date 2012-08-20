@@ -21,22 +21,41 @@
 	<div class="container_18">
 	    <!-- FIXME : how to edit pictures + text ? an exemple with real content somewhere -->
 
-	    <a href="{{ picture_project_translations.0.get_absolute_url }}" class="prefix_1 grid_13 alpha tag-header">
+	    <a href="{{ picture_project_translations.0.get_absolute_url }}" class="prefix_1 grid_12 alpha tag-header">
 		<img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
+		<p class="credit">
+		    {% blocktrans %}Picture of project FIXME: {{ picture_project_translations.0.title }}.{% endblocktrans %}
+		</p>
 	    </a>
 
-	    <div class="grid_4 omega pano-header-block">
-		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_4 alpha omega pano-header">
+	    <div class="grid_5 omega pano-header-block">
+		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 alpha omega pano-header">
 		    <img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/>
+		    <div class="project-information">
+			<p class="title">{{ picture_project_translations.1.title }}</p>
+			<p class="description">{{ picture_project_translations.1.baseline }}</p>
+		    </div>
 		</a>
 
-		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_4 alpha omega pano-header">
-		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/></a>
+		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/>
+		    <div class="project-information">
+			<p class="title">{{ picture_project_translations.2.title }}</p>
+			<p class="description">{{ picture_project_translations.2.baseline }}</p>
+		    </div>
+		</a>
 
-		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_4 alpha omega pano-header">
-		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/></a>
+		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 alpha omega pano-header">
+		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/>
+		    <div class="project-information">
+			<p class="title">{{ picture_project_translations.3.title }}</p>
+			<p class="description">{{ picture_project_translations.3.baseline }}</p>
+		    </div>
+		</a>
 		<br/>
+		<!-- FIXME: this link is not visible in the graphic template 
 		[<a href="#">See more</a>]
+		-->
 	    </div>
 	</div>
     </div>
@@ -53,9 +72,10 @@
 		    <a href="{% url tags:wiki-edit tag %}" class="button"><img src="/static/images/base/edit.png" alt="edit" /></a>
 		</p>
 
-		<!-- FIXME: (design) missing right arrow for tag description -->
 	    </div>
 	</div>
+	<!-- FIXME: (design) missing right arrow for tag description. Is it the wiki-edit button ?-->
+	<a href="#" class="readmore"></a>
     </div>
 </div>
 
