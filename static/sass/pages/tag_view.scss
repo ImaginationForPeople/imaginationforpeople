@@ -154,95 +154,143 @@ body {
 }
 
 #description-zone {
-    @include vertical_gradient($colorDarkGrey, black);
-    @include shadow_bottomleft;
-    border-radius: 0 $sizeRadiusSmall $sizeRadiusSmall 0;
-
-    // position: relative;
-    // z-index: 1;
-    position: absolute;
-    top: 170px;
-    left: 0px;
-    padding: 0;
-    width: 55%;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    min-height: 90px;
-
-    .icon-tag-big {
-	display: block;
-	margin: 0;
-	padding: 0;
-	min-height: 5em;
-	min-width: 5em;
-	background-image: url(../../images/tags/icon-tag-white-big.png);
-	background-repeat: no-repeat;
-	background-position: 80px center;
-    }
-
-    .tag-title {
-	color: white;
-	font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
-	font-size: $sizeTitle;
-	font-style: normal;
-	text-transform: uppercase;
-
-    }
-
-    .tag-description {
-	color: white;
-	font-style: italic;
-
-	.button {
-	    margin-top: 1em;
-	    margin-left: 1em;
-	    float: right;
-	}
-    }
-
-    .readmore {
-	@include border-radius($sizeRadiusSmall);
 	@include vertical_gradient($colorDarkGrey, black);
 	@include shadow_bottomleft;
-        position: absolute;
-	top: 25px;
-	right: -25px;
-        display: block;
-	width: 50px;
-	height: 50px;
+	border-radius: 0 $sizeRadiusSmall $sizeRadiusSmall 0;
 
-	a {
+	// position: relative;
+	// z-index: 1;
+	position: absolute;
+	top: 170px;
+	left: 0px;
+	padding: 0;
+	width: 55%;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	min-height: 90px;
+
+	.icon-tag-big {
 		display: block;
-		width: 100%;
-		height: 100%;
-		background-image: url(../../images/tags/icon-arrow-blue-big.png);
-		background-position: center center;
+		margin: 0;
+		padding: 0;
+		min-height: 5em;
+		min-width: 5em;
+		background-image: url(../../images/tags/icon-tag-white-big.png);
 		background-repeat: no-repeat;
+		background-position: 80px center;
 	}
-    }
+
+	.tag-title {
+		color: white;
+		font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
+		font-size: $sizeTitle;
+		font-style: normal;
+		text-transform: uppercase;
+
+	}
+
+	.tag-description {
+		color: white;
+		font-style: italic;
+
+		.button {
+			margin-top: 1em;
+			margin-left: 1em;
+			float: right;
+		}
+	}
+
+	.readmore {
+		@include border-radius($sizeRadiusSmall);
+		@include vertical_gradient($colorDarkGrey, black);
+		@include shadow_bottomleft;
+		position: absolute;
+		top: 25px;
+		right: -25px;
+		display: block;
+		width: 50px;
+		height: 50px;
+
+		a {
+			display: block;
+			width: 100%;
+			height: 100%;
+			background-image: url(../../images/tags/icon-arrow-blue-big.png);
+			background-position: center center;
+			background-repeat: no-repeat;
+		}
+	}
 }
 
+
 #tags-related {
-    h2 {
-	    text-size: 100%;
-	font-weight: bold;
-	color: white;
-	background-color: $colorMedDarkGrey;
-    }
+	line-height: 1.5em;
 
-    ul {
-	display: inline;
-	list-style: none;
-
-	li {
-	    display: inline;
-	    background-color: $colorMedGrey;
-
-	    a {
-		color: $colorMedDarkGrey;
-	    }
+	h2 {
+		// FIXME: add tag icon
+		font-size: 100%;
+		font-weight: normal;
+		display: inline;
+		color: white;
+		background-color: $colorMedDarkGrey;
+		padding-left: .5em;
+		padding-right: .5em;
+		margin-right: .25em;
 	}
-    }
+
+	ul {
+		display: inline;
+		list-style: none;
+
+		li {
+			display: inline;
+			background-color: $colorMedGrey;
+			color: $colorMedDarkGrey;
+			margin-right: .5em;
+			height: 1em;
+			padding-left: .5em;
+			padding-right: .5em;
+			font-style: italic;
+
+			position: relative;
+
+			a {
+				font-size: 100%;
+				color: inherit;
+				margin-right: 0.2em;
+			}
+
+			&:first-child:before {
+				border-left: none;
+			}
+
+			&:before {
+				position: absolute;
+				content:"";
+				top: 0;
+				width: 0;
+				height: 0;
+				left: -.45em;
+				border-left: .5em solid transparent;
+				border-top: .62em solid $colorMedGrey;
+				border-bottom: .63em solid $colorMedGrey;
+			}
+
+			&:after {
+				@include border-box;
+				position: absolute;
+				content:"";
+				top: 0;
+				right: -.45em;
+				width: 0;
+				height: 0;
+				border-left: .5em solid $colorMedGrey;
+				border-top: .62em solid transparent;
+				border-bottom: .63em solid transparent;
+			}
+		}
+
+	}
 }
 
 hr.shaded-separator {
