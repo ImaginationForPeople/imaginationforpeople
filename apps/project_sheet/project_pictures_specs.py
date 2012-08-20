@@ -105,7 +105,7 @@ class ResizeBig169(processors.Resize):
     """
     Resizing processor providing a big 16/9
     """
-    width = 762
+    width = 730
     height = 253
     crop = True
     upscale = True
@@ -114,8 +114,8 @@ class ResizeSmall169(processors.Resize):
     """
     Resizing processor providing a small 16/9
     """
-    width = 290
-    height = 90
+    width = 296
+    height = 85
     crop = True   
     upscale = True
 
