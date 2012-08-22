@@ -163,17 +163,35 @@ def collect_static_files():
     print(cyan('Collecting static files'))
     venvcmd('./manage.py collectstatic --noinput')
 
+@task
+def make_messages():
+    """
+    Run *.po file generation for translation
+    """
+    appspath=env.venvfullpath + '/' + env.projectname + '/' + "apps"
+    with cd(appspath):
+        apps = run('ls -d */').split(None)
+    cmd = "django-admin.py makemessages -a -e html,txt"
+    print(cyan('Generating .po files for the following apps: %s' % apps))
+    for app in apps:
+        appsubdir = 'apps/%s' % app
+        if exists(appspath + '/' + app + '/' + '/locale'):
+            print(cyan('\t * %s' % appsubdir))
+            venvcmd(cmd, subdir=appsubdir)
+
+@task
 def compile_messages():
     """
-    Run compile messages and reload the app
+    Run compile *.mo file from *.po
     """
-    apps = venvcmd('ls -d */', subdir="apps").split("\n")
+    appspath=env.venvfullpath + '/' + env.projectname + '/' + "apps"
+    with cd(appspath):
+        apps = run('ls -d */').split(None)
     cmd = "django-admin.py compilemessages -v0"
     print(cyan('Compiling i18 messages for the following apps: %s' % apps))
     for app in apps:
         appsubdir = 'apps/%s' % app
-        cwd = venvcmd('pwd', subdir=appsubdir)
-        if exists(cwd + '/locale'):
+        if exists(appspath + '/' + app + '/' + '/locale'):
             print(cyan('\t * %s' % appsubdir))
             venvcmd(cmd, subdir=appsubdir)
 
