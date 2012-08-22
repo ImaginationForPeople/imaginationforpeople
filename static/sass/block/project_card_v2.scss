@@ -1,0 +1,245 @@
+@import "../mixin.scss";
+@import "../constants.scss";
+
+
+.project-list {
+    position: relative;
+
+    h2 {
+	text-transform: uppercase;
+    }
+
+    .seemore {
+	position: absolute;
+	line-height: 110%;
+	top: 0;
+	right: 0;
+	color: black;
+	text-decoration: none;
+
+
+	&:after {
+	    font-weight: bold;
+	    margin-left: 5px;
+	    content: ">";
+
+	}
+    }
+
+
+
+    .project {
+	@include box-shadow-bottomleft;
+	@include border-radius($sizeRadiusSmall);
+	height: 150px;
+	position: relative;
+	// background-color: red; // FIXME: for debugging purpose only
+
+	.summary {
+	    @include border-radius($sizeRadiusSmall);
+	    @include transition(all .5s ease);
+	    position: relative;
+	    height: 150px;
+
+	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+	    background-repeat: no-repeat, repeat;
+	    background-position: 200px 110px, top left;
+	    background-size: 25px 25px, auto;
+
+	    z-index: 1;
+
+	    .title {
+		@include transition(all .5s ease);
+		position: absolute;
+		font-size: 1em;
+		bottom: 60px;
+		margin-left: 10px;
+		margin-right: 10px;
+		color: black;
+		text-transform: uppercase;
+		background-color: white;
+		z-index: 2;
+		opacity: 1;
+	    }
+
+	    .description {
+		opacity: 0;
+		visibility: hidden;
+		height: 50px;
+		overflow: hidden;
+		// FIXME: maybe add text ellipsis ?
+	    }
+
+	    &:before { // the SEE THE PROJECT label
+		display: block;
+		position: absolute;
+		content: attr(data-action-1);
+		text-transform: uppercase;
+		font-weight: bold;
+		text-decoration: none;
+		visibility: hidden;
+		top: 105px;
+		left: 10px;
+		font-size: 80%;
+		width: 65%;
+		opacity: 0;
+		color: white;
+	    }
+	}
+
+	.card {
+	}
+
+	.progress {
+	    @include transition(all .5s ease);
+	    position: absolute;
+	    top: 90px;
+	    left: 0;
+	    width: 100%;
+	    height: 30px;
+	    color: white;
+	    text-shadow: 0 0 $sizeRadiusSmall black;
+	    padding-top: 10px;
+	    background-image: url(../../images/project/front-uprounded-rectangle.png);
+	    opacity: 1;
+	    z-index: 2;
+
+	    img {
+		display: block;
+		margin-left: 5px;
+		margin-right: auto;
+		width: 70%;
+		height: auto;
+	    }
+
+	    p {
+		position: absolute;
+		top: 10px;
+		right: 50px;
+		font-style: italic;
+		font-size: 80%;
+	    }
+	}
+
+	.content {
+	    @include border-box;
+	    @include border-radius(0 0 $sizeRadiusSmall $sizeRadiusSmall);
+	    @include transition(all .5s ease);
+	    position: absolute;
+	    bottom: 0px;
+	    height: 30px;
+	    left: 0;
+	    width: 100%;
+	    color: white;
+	    background-color: black;
+	    padding-left: 10px;
+	    opacity: 1;
+	    z-index: 1;
+
+	    .location {
+		font-size: 80%;
+	    }
+
+	    .flag {
+		float: left;
+		margin-right: 5px;
+	    }
+
+	    .pictos {
+		display: none;
+		visibility: hidden;
+	    }
+
+	}
+
+	.photo {
+	    @include border-radius($sizeRadiusSmall);
+	    overflow: hidden;
+	    position: absolute;
+
+	    top: 0px;
+	    left: 0px;
+	    // FIXME: set inherit & auto
+	    width: 150px;
+	    height: 150px;
+
+
+	    img {
+		@include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
+		width: auto;
+		height: 100%;
+
+	    }
+
+	    &:after {
+		@include transition(all .5s ease);
+		opacity: 1;
+		content: "";
+		position: absolute;
+		top: inherit;
+		left: inherit;
+		width: inherit;
+		height: inherit;
+
+		// FIXME: add icon for project type
+		background-image: url(../../images/project/card-top-handler.png);
+		background-repeat: no-repeat;
+		background-position: top center;
+		z-index: 25;
+	    }
+
+	}
+
+	&:hover {
+
+	    .summary {
+		height: 150px;
+
+		background-color: rgba($colorLightBlue,0.7);
+		background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+		background-repeat: no-repeat, repeat;
+		background-position: 100px 110px, 0 0;
+
+		.title {
+		    visibility: hidden;
+		    opacity: 0;
+		}
+
+		.description {
+		    position: absolute;
+		    top: 30px;
+		    padding: 10px;
+		    visibility: visible;
+		    text-decoration: none;
+		    font-style: normal;
+		    color: white;
+		    z-index: 7;
+		    opacity: 1;
+		}
+
+		&:before { // the SEE THE PROJECT label
+		    visibility: visible;
+		    opacity: 1;
+		}
+
+	    }
+
+	    .progress {
+		opacity: 0;
+	    }
+
+	    .content {
+		opacity: 0;
+	    }
+
+	    .photo {
+		&:after {
+		    opacity: 0;
+		}
+	    }
+
+	} // hover
+
+    } // project
+}
+
