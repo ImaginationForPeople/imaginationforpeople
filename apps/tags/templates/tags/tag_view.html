@@ -88,7 +88,6 @@
 
     <div class="container_18"> <!-- .container_18 -->
 	<!-- FIXME: sprite for horizontal shaded line required -->
-	<!-- <hr class="shaded-separator" /> -->
 
 	<div class="grid_12" >
 	    <!-- FIXME: small icon for tag required -->
@@ -101,9 +100,8 @@
 		</ul>
 	    </div> <!-- #tags-related -->
 
-	    <!-- FIXME: where is the blue button / tag link for "follow this topic" ? -->
 
-	    <hr>
+	    <!-- FIXME: where is the blue button / tag link for "follow this topic" ? -->
 
 	    <!-- FIXME: (design) is the blue thing on project card a hover ? -->
 
@@ -113,7 +111,7 @@
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in mature_project_translations %}
 		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#" title="{% trans "See the project" %}">
+		    href="#" >
 		    {% include "block/project_card_v2.html" %}
 		</a>
 		{% empty %}
@@ -121,6 +119,7 @@
 		{% endfor %}
 	    </div> <!-- .project-list -->
 
+	    <hr class="shaded-separator" />
 
 
 	    <div class="project-list clearfix">
@@ -128,7 +127,7 @@
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in starting_project_translations %}
 		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#" title="{% trans "See the project" %}">
+		    href="#">
 		    {% include "block/project_card_v2.html" %}
 		</a>
 		{% empty %}
@@ -136,13 +135,14 @@
 		{% endfor %}
 	    </div>
 
+	    <hr class="shaded-separator" />
 
 	    <div class="project-list clearfix">
 		<h2>New project sheets</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in new_project_translations %}
 		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#" title="{% trans "See the project" %}">
+		    href="#">
 		    {% include "block/project_card_v2.html" %}
 		</a>
 		{% empty %}
@@ -153,12 +153,14 @@
 	    <!-- FIXME : missing information about project category "innovation sociale" or other -->
 	    <!-- FIXME : missing information about favorited projects -->
 
+	    <hr class="shaded-separator" />
+
 	    <div class="project-list clearfix">
 		<h2>Latest modifications</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in modified_project_translations %}
 		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#" title="{% trans "See the project" %}">
+		    href="#">
 		    {% include "block/project_card_v2.html" %}
 		</a>
 		{% empty %}

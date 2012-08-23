@@ -1,8 +1,22 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project_translation : I4pProjectTranslation
+
+{% endcomment %}
 {% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
 
 <div class="summary" data-action-1="{% trans "See the project" %}" />
 	<h2 class="title">{{ project_translation.title }}</h2>
-	<p class="description">{{ project_translation.baseline }}</p>
+	<p class="description">
+		{% if project_translation.baseline|slice:"-1" != "." %}
+		{{ project_translation.baseline|add:'.'|truncatechars:70 }}
+		{% endif %}
+		{%comment%}{{ project_translation.baseline|truncatechars:70 }{%endcomment%}
+	</p>
 </div>
 
 <div class="card" >
@@ -13,56 +27,36 @@
 	</div>
 
 	<div class="progress">
-		<img class="progressbar"
-			{% ifequal project_translation.project.status "IDEA" %}
-			src="{{ STATIC_URL }}images/project/progress25.jpg" 
-			{% endifequal %}
-			{% ifequal project_translation.project.status "BEGIN" %}
-			src="{{ STATIC_URL }}images/project/progress50.jpg" 
-			{% endifequal %}
-			{% ifequal project_translation.project.status "WIP" %}
-			src="{{ STATIC_URL }}images/project/progress75.jpg" 
-			{% endifequal %}
-			{% ifequal project_translation.project.status "END" %}
-			src="{{ STATIC_URL }}images/project/progress100.jpg" 
-			{% endifequal %}
-			alt="{{project_translation.project.status}}"
-		/>
-		<p class="status">{{ project_translation.project.get_status_display }}</p>
+		<p class="status progressbar-{{project_translation.project.status|lower }}">{{ project_translation.project.get_status_display }}</p>
 	</div>
 
-
-	<div class="content">
-		<div class="pictos">
-			{% if project_translation.project.members.count > 0 %}
-			<img src="{{ STATIC_URL }}images/project/picto-team.jpg" alt="{% trans 'associated team' %}" title="{% trans 'associated team' %}"/>
-			{% endif %}
-			{% ifequal project_translation.completion_progress "EDIT" %}
-			<img src="{{ STATIC_URL }}images/project/picto-editing.jpg" alt="{% trans 'in progress' %}" title="{% trans 'in progress' %}"/>
-			{% endifequal  %}
-			{% if project_translation.project.popular %}
-			<img src="{{ STATIC_URL }}images/project/picto-popular.jpg" alt="{% trans 'popular' %}" title="{% trans 'popular' %}"/>
-			{% endif %}
-			{% if project_translation.project.best_of %}
-			<img src="{{ STATIC_URL }}images/project/picto-bestof.jpg" alt="{% trans 'bestof' %}" title="{% trans 'bestof' %}"/>
-			{% endif %}
-		</div>
-
-		<div class="location">
-			{% if project_translation.project.location.country %}
-			{{project_translation.project.location.get_country_display|truncatewords:2|capfirst}}
-			<img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.get_country_display }}" alt="{{ project_translation.project.location.get_country_display }}"/>
-			{% else %}
-
-			{% endif %}
-		</div>	
-
-		{% comment %}
-		{% if project_translation.project.topics.all.0 %}
-		<img class="topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
+	<!-- FIXME: replace with an elegant CSS theme instead of an hardcoded image -->
+	<div class="pictos">
+		{% if project_translation.project.members.count > 0 %}
+		<div class="picto-team"></div>
 		{% endif %}
-		{% endcomment %}
-
+		{% ifequal project_translation.completion_progress "EDIT" %}
+		<div class="picto-editing"></div>
+		{% endifequal  %}
+		{% if project_translation.project.best_of %}
+		<div class="picto-bestof"></div>
+		{% endif %}
 	</div>
+
+	<div class="location">
+		{% if project_translation.project.location.country %}
+		{{project_translation.project.location.get_country_display|truncatewords:2|capfirst}}
+		<img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.get_country_display }}" alt="{{ project_translation.project.location.get_country_display }}"/>
+		{% else %}
+
+		{% endif %}
+	</div>	
+
+	{% if project_translation.project.topics.all.0 %}
+	<!-- FIXME: replace with an elegant CSS theme instead of an hardcoded image -->
+	<div class="topic topic-{{ project_translation.project.topics.all.0.topic.slug }}">
+		<img src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
+	</div>
+	{% endif %}
 </div>
 
