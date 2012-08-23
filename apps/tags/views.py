@@ -21,9 +21,9 @@ class TagEditWikiView(Edit):
     template_name = 'tags/wiki_edit.html'
 
     def dispatch(self, request, tag, *args, **kwargs):
-        self.tag = get_tag(tag)
+        self.tag = get_tag(tag)        
         article = Article.get_for_object(self.tag)
-        return super(Edit, self).dispatch(request, article, *args, **kwargs)
+        return super(TagEditWikiView, self).dispatch(request, article_id=article.id, *args, **kwargs)
 
     def get_success_url(self):
         return redirect('tags:tag-view', self.tag)

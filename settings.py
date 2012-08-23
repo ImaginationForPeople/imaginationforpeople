@@ -204,6 +204,7 @@ INSTALLED_APPS = (
 
     'django_notify',
     'wiki',
+    'wiki.plugins.notifications',
     #'grappelli',
     'filebrowser',
 
