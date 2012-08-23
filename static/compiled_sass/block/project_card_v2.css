@@ -7,8 +7,49 @@
 /**
  *  Mixins
  */
+.progressbar-sprite, .progressbar-begin, .progressbar-end, .progressbar-idea, .progressbar-wip {
+  background: url('../../compiled_images/project/progressbar.png') no-repeat;
+}
+
+.progressbar-begin {
+  background-position: 0 -30px;
+}
+
+.progressbar-end {
+  background-position: 0 0;
+}
+
+.progressbar-idea {
+  background-position: 0 -45px;
+}
+
+.progressbar-wip {
+  background-position: 0 -15px;
+}
+
+.picto-sprite, .picto-bestof, .picto-editing, .picto-popular, .picto-team {
+  background: url('../../compiled_images/project/picto.png') no-repeat;
+}
+
+.picto-bestof {
+  background-position: 0 -30px;
+}
+
+.picto-editing {
+  background-position: 0 -15px;
+}
+
+.picto-popular {
+  background-position: 0 0;
+}
+
+.picto-team {
+  background-position: 0 -49px;
+}
+
 .project-list {
   position: relative;
+  margin-bottom: 20px;
 }
 .project-list h2 {
   text-transform: uppercase;
@@ -52,7 +93,7 @@
   background-repeat: no-repeat, repeat;
   background-position: 200px 110px, top left;
   background-size: 25px 25px, auto;
-  z-index: 1;
+  z-index: 2;
 }
 .project-list .project .summary .title {
   transition: all 0.5s ease;
@@ -69,6 +110,8 @@
   background-color: white;
   z-index: 2;
   opacity: 1;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .project-list .project .summary .description {
   opacity: 0;
@@ -100,65 +143,111 @@
   top: 90px;
   left: 0;
   width: 100%;
-  height: 30px;
+  height: 25px;
   color: white;
   text-shadow: 0 0 4px black;
   padding-top: 10px;
   background-image: url(../../images/project/front-uprounded-rectangle.png);
   opacity: 1;
-  z-index: 2;
+  z-index: 3;
 }
-.project-list .project .progress img {
+.project-list .project .progress .status {
   display: block;
-  margin-left: 5px;
-  margin-right: auto;
-  width: 70%;
-  height: auto;
-}
-.project-list .project .progress p {
   position: absolute;
-  top: 10px;
-  right: 50px;
+  width: 100px;
+  top: 15px;
+  left: 5px;
   font-style: italic;
   font-size: 80%;
+  background-size: 100px 60px;
+  text-align: right;
+  padding-right: 10px;
 }
-.project-list .project .content {
+.project-list .project .location {
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  -o-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
   -moz-box-sizing: border-box;
   /* Firefox, other Gecko */
   box-sizing: border-box;
   /* Opera/IE 8+ */
-  -webkit-border-radius: 0 0 4px 4px;
-  -moz-border-radius: 0 0 4px 4px;
-  -ms-border-radius: 0 0 4px 4px;
-  -o-border-radius: 0 0 4px 4px;
-  border-radius: 0 0 4px 4px;
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   position: absolute;
-  bottom: 0px;
-  height: 30px;
-  left: 0;
-  width: 100%;
-  color: white;
-  background-color: black;
-  padding-left: 10px;
-  opacity: 1;
-  z-index: 1;
-}
-.project-list .project .content .location {
+  top: 125px;
   font-size: 80%;
+  width: 100%;
+  height: 25px;
+  background: black;
+  padding-left: 10px;
+  z-index: 3;
+  opacity: 1;
 }
-.project-list .project .content .flag {
+.project-list .project .location .flag {
   float: left;
   margin-right: 5px;
 }
-.project-list .project .content .pictos {
-  display: none;
-  visibility: hidden;
+.project-list .project .pictos {
+  position: absolute;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+.project-list .project .pictos .picto-team {
+  position: absolute;
+  top: 105px;
+  right: 25px;
+  width: 15px;
+  height: 15px;
+}
+.project-list .project .pictos .picto-editing {
+  position: absolute;
+  top: 105px;
+  right: 10px;
+  width: 15px;
+  height: 15px;
+}
+.project-list .project .pictos .picto-bestof {
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: 5px;
+  width: 11px;
+  height: 19px;
+}
+.project-list .project .topic {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  background-image: url(../../images/project/card-top-handler.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  opacity: 1;
+  z-index: 4;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.project-list .project .topic img {
+  position: absolute;
+  top: 0px;
+  left: 60px;
 }
 .project-list .project .photo {
   -webkit-border-radius: 4px;
@@ -168,10 +257,11 @@
   border-radius: 4px;
   overflow: hidden;
   position: absolute;
+  z-index: 1;
   top: 0px;
   left: 0px;
-  width: 150px;
-  height: 150px;
+  width: 100%;
+  height: 100%;
 }
 .project-list .project .photo img {
   -webkit-border-radius: 4px 4px 0 0;
@@ -181,23 +271,7 @@
   border-radius: 4px 4px 0 0;
   width: auto;
   height: 100%;
-}
-.project-list .project .photo:after {
-  transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-  opacity: 1;
-  content: "";
-  position: absolute;
-  top: inherit;
-  left: inherit;
-  width: inherit;
-  height: inherit;
-  background-image: url(../../images/project/card-top-handler.png);
-  background-repeat: no-repeat;
-  background-position: top center;
-  z-index: 25;
+  margin-left: -50%;
 }
 .project-list .project:hover .summary {
   height: 150px;
@@ -225,12 +299,18 @@
   visibility: visible;
   opacity: 1;
 }
+.project-list .project:hover .location {
+  opacity: 0;
+}
 .project-list .project:hover .progress {
   opacity: 0;
 }
-.project-list .project:hover .content {
+.project-list .project:hover .photo:after {
   opacity: 0;
 }
-.project-list .project:hover .photo:after {
+.project-list .project:hover .topic {
+  opacity: 0;
+}
+.project-list .project:hover .pictos {
   opacity: 0;
 }
