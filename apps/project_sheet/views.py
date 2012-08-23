@@ -26,8 +26,6 @@ except ImportError:
 
 from datetime import datetime
 
-from django.conf import settings
-from django.db import connection, transaction
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -48,8 +46,8 @@ from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
 from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm
-from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
-from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS, Question
+from .models import Answer, ProjectPicture, ProjectVideo, SiteTopic, Topic
+from .models import ProjectMember, I4pProject, I4pProjectTranslation, VERSIONNED_FIELDS, Question
 from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -67,7 +65,7 @@ def project_sheet_list(request):
 
     filter_forms_dict, extra_context = build_filters_and_context(data)
 
-    ordered_project_sheets = I4pProjectTranslation.objects.none()
+    ordered_project_sheets = I4pProject.objects.none()
     filters = FilterSet(filter_forms_dict.values())
 
     if filters.is_valid():
@@ -106,13 +104,14 @@ def project_sheet_list(request):
             # year
             day_of_year = int(datetime.now().strftime('%j'))
             pseudo_random_field = "(project_id * (project_id + 3)) %% {0:d}".format(day_of_year)
-            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field},
+                                                                   order_by=['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
         extra_context["getparams"] = data.urlencode()
-        extra_context["orderparams"] = extra_context["getparams"]\
-                                        .replace("order=creation", "")\
+        extra_context["orderparams"] = extra_context["getparams"] \
+                                        .replace("order=creation", "") \
                                         .replace("order=modification", "")
 
         extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].cleaned_data["themes"]]
@@ -173,9 +172,9 @@ def project_sheet_show(request, slug, add_media=False):
         
     try:
         project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=slug,
-                                            prefered_language_code=language_code,
-                                            site=site)
-    except I4pProjectTranslation.DoesNotExist:
+                                                                              prefered_language_code=language_code,
+                                                                              site=site)
+    except I4pProject.DoesNotExist:
         raise Http404
 
     if project_translation.language_code != language_code:
@@ -183,22 +182,22 @@ def project_sheet_show(request, slug, add_media=False):
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
-                                           instance=project_translation.project)
+                                           instance=project_translation.master)
     if request.method == 'POST' and project_info_form.is_valid():
         project_info_form.save()
 
     project_themes_form = I4pProjectThemesForm(instance=project_translation)
-    project_objectives_form = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
+    project_objectives_form = I4pProjectObjectivesForm(instance=project_translation.master, prefix="objectives-form")
     project_member_form = ProjectMemberForm()
     #project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
-    project_location_form = I4pProjectLocationForm(instance=project_translation.project.location)
+    project_location_form = I4pProjectLocationForm(instance=project_translation.master.location)
 
-    reference_formset = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
+    reference_formset = ProjectReferenceFormSet(queryset=project_translation.master.references.all())
 
     project_status_choices = OrderedDict((k, unicode(v)) 
                                          for k, v in I4pProject.STATUS_CHOICES)
 
-    project = project_translation.project
+    project = project_translation.master
     topics = []
 
     for topic in Topic.objects.filter(site_topics=project.topics.all()):
@@ -208,7 +207,7 @@ def project_sheet_show(request, slug, add_media=False):
             questions.append([question, answers and answers[0] or None])
         topics.append([topic, questions])
 
-    project_status_choices['selected'] = project_translation.project.status
+    project_status_choices['selected'] = project_translation.master.status
 
     context = {
         'topics': topics,
@@ -259,7 +258,7 @@ def project_sheet_create_translation(request, project_slug):
     except I4pProjectTranslation.DoesNotExist:
         return Http404
 
-    requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
+    requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.master,
                                                                                   language_code=requested_language_code,
                                                                                   default_title=current_project_translation.title)
 
@@ -281,20 +280,20 @@ def project_sheet_edit_location(request, slug):
 
     # Location
     project_location_form = I4pProjectLocationForm(request.POST,
-                                                   instance=project_translation.project.location)
+                                                   instance=project_translation.master.location)
 
     # Website
     project_info_form = I4pProjectInfoForm(request.POST,
-                                           instance=project_translation.project)
+                                           instance=project_translation.master)
 
     if request.method == 'POST' and project_info_form.is_valid():
         info = project_info_form.save()
 
     if request.method == 'POST' and project_location_form.is_valid():
         location = project_location_form.save()
-        if not project_translation.project.location:
-            project_translation.project.location = location
-            project_translation.project.save()
+        if not project_translation.master.location:
+            project_translation.master.location = location
+            project_translation.master.save()
 
     return redirect(project_translation)
 
@@ -318,15 +317,15 @@ def project_sheet_edit_question(request, slug, question_id):
 
     # Lookup the answer. If does not exist, create it.
     try:
-        untrans_answer = Answer.objects.untranslated().get(project=project_translation.project,
+        untrans_answer = Answer.objects.untranslated().get(project=project_translation.master,
                                                            question=question)
         if not language_code in untrans_answer.get_available_languages():
             untrans_answer.translate(language_code)
             untrans_answer.save()
     except Answer.DoesNotExist:
-        answer = Answer.objects.create(project=project_translation.project, question=question)
+        answer = Answer.objects.create(project=project_translation.master, question=question)
 
-    answer = Answer.objects.get(project=project_translation.project,
+    answer = Answer.objects.get(project=project_translation.master,
                                 question=question)
 
     answer_form = AnswerForm(request.POST or None, instance=answer)
@@ -393,15 +392,15 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
             form = FieldForm()
 
     if project_translation:
-        context['project_info_form'] = I4pProjectInfoForm(instance=project_translation.project)
+        context['project_info_form'] = I4pProjectInfoForm(instance=project_translation.master)
         context['project_themes_form'] = I4pProjectThemesForm(instance=project_translation)
-        context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
+        context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.master, prefix="objectives-form")
         context['project_member_form'] = ProjectMemberForm()
-        context['project_location_form'] = I4pProjectLocationForm(instance=project_translation.project.location)
+        context['project_location_form'] = I4pProjectLocationForm(instance=project_translation.master.location)
         context['answer_form'] = AnswerForm()
-        context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
+        context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.master.references.all())
         context['project_tab'] = True
-        context['project'] = project_translation.project
+        context['project'] = project_translation.master
     elif topic_slug:
         context['topic'] = topic
 
@@ -425,7 +424,7 @@ def project_sheet_edit_related(request, project_slug):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     project_sheet_themes_form = I4pProjectThemesForm(request.POST or None,
                                                      instance=project_translation)
@@ -492,7 +491,7 @@ def project_sheet_add_picture(request, slug=None):
         picture_form = ProjectPictureForm(request.POST, request.FILES)
         if picture_form.is_valid():
             picture = picture_form.save(commit=False)
-            picture.project = project_translation.project
+            picture.project = project_translation.master
             picture.save()
 
     return redirect(project_translation)
@@ -510,7 +509,7 @@ def project_sheet_del_picture(request, slug, pic_id):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    picture = ProjectPicture.objects.filter(project=project_translation.project, id=pic_id)
+    picture = ProjectPicture.objects.filter(project=project_translation.master, id=pic_id)
     picture.delete()
 
     return redirect(project_translation)
@@ -530,7 +529,7 @@ def project_sheet_add_video(request, slug=None):
         video_form = ProjectVideoForm(request.POST)
         if video_form.is_valid():
             video = video_form.save(commit=False)
-            video.project = project_translation.project
+            video.project = project_translation.master
             video.save()
 
     return redirect(project_translation)
@@ -548,7 +547,7 @@ def project_sheet_del_video(request, slug, vid_id):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    video = ProjectVideo.objects.filter(project=project_translation.project, id=vid_id)
+    video = ProjectVideo.objects.filter(project=project_translation.master, id=vid_id)
     video.delete()
 
     return redirect(project_translation)
@@ -568,7 +567,7 @@ def project_sheet_edit_references(request, project_slug):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     reference_formset = ProjectReferenceFormSet(request.POST, queryset=parent_project.references.all())
 
@@ -598,7 +597,7 @@ def project_sheet_member_add(request, project_slug):
         project_member_form = ProjectMemberForm(request.POST)
         if project_member_form.is_valid():
             project_member = project_member_form.save(commit=False)
-            project_member.project = project_translation.project
+            project_member.project = project_translation.master
             project_member.save()
 
     return redirect(project_translation)
@@ -617,7 +616,7 @@ def project_sheet_member_delete(request, project_slug, username):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     project_member = get_object_or_404(ProjectMember,
                                        user__username=username,
@@ -641,7 +640,7 @@ def project_sheet_history(request, project_slug):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     #versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
 
