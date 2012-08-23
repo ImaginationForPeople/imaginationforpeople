@@ -7,6 +7,9 @@ sass_dir = "sass"
 images_dir = "images"
 javascripts_dir = "js"
 
+relative_assets = true
+generated_images_dir = "compiled_images"
+
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
 
