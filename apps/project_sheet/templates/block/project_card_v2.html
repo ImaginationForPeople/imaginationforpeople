@@ -1,0 +1,68 @@
+{% load i18n %}
+
+<div class="summary" data-action-1="{% trans "See the project" %}" />
+	<h2 class="title">{{ project_translation.title }}</h2>
+	<p class="description">{{ project_translation.baseline }}</p>
+</div>
+
+<div class="card" >
+	<div class="photo">	
+		{% if project_translation.project.pictures.all|length > 0 %}
+		<img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
+		{% endif %}
+	</div>
+
+	<div class="progress">
+		<img class="progressbar"
+			{% ifequal project_translation.project.status "IDEA" %}
+			src="{{ STATIC_URL }}images/project/progress25.jpg" 
+			{% endifequal %}
+			{% ifequal project_translation.project.status "BEGIN" %}
+			src="{{ STATIC_URL }}images/project/progress50.jpg" 
+			{% endifequal %}
+			{% ifequal project_translation.project.status "WIP" %}
+			src="{{ STATIC_URL }}images/project/progress75.jpg" 
+			{% endifequal %}
+			{% ifequal project_translation.project.status "END" %}
+			src="{{ STATIC_URL }}images/project/progress100.jpg" 
+			{% endifequal %}
+			alt="{{project_translation.project.status}}"
+		/>
+		<p class="status">{{ project_translation.project.get_status_display }}</p>
+	</div>
+
+
+	<div class="content">
+		<div class="pictos">
+			{% if project_translation.project.members.count > 0 %}
+			<img src="{{ STATIC_URL }}images/project/picto-team.jpg" alt="{% trans 'associated team' %}" title="{% trans 'associated team' %}"/>
+			{% endif %}
+			{% ifequal project_translation.completion_progress "EDIT" %}
+			<img src="{{ STATIC_URL }}images/project/picto-editing.jpg" alt="{% trans 'in progress' %}" title="{% trans 'in progress' %}"/>
+			{% endifequal  %}
+			{% if project_translation.project.popular %}
+			<img src="{{ STATIC_URL }}images/project/picto-popular.jpg" alt="{% trans 'popular' %}" title="{% trans 'popular' %}"/>
+			{% endif %}
+			{% if project_translation.project.best_of %}
+			<img src="{{ STATIC_URL }}images/project/picto-bestof.jpg" alt="{% trans 'bestof' %}" title="{% trans 'bestof' %}"/>
+			{% endif %}
+		</div>
+
+		<div class="location">
+			{% if project_translation.project.location.country %}
+			{{project_translation.project.location.get_country_display|truncatewords:2|capfirst}}
+			<img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.get_country_display }}" alt="{{ project_translation.project.location.get_country_display }}"/>
+			{% else %}
+
+			{% endif %}
+		</div>	
+
+		{% comment %}
+		{% if project_translation.project.topics.all.0 %}
+		<img class="topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
+		{% endif %}
+		{% endcomment %}
+
+	</div>
+</div>
+

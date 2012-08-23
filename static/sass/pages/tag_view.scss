@@ -1,25 +1,5 @@
 @import "../mixin.scss";
-
-$colorDarkGrey: #282828;
-$colorLightBlue: #0aaece;
-$colorWhite: #f8f8f8;
-$colorMedGrey: #c9c9c9;
-$colorMedDarkGrey: #535353;
-
-$sizeTitle: 20px;
-
-$sizeShadowSmall: 2px;
-
-$sizeBorderSmall: 4px;
-
-$sizeRadiusSmall: 4px;
-
-@mixin transition( $effect ) {
-    transition: $effect;
-    -moz-transition: $effect;
-    -webkit-transition: $effect;
-    -o-transition: $effect;
-}
+@import "../constants.scss";
 
 body {
     background-color: $colorWhite;
@@ -114,7 +94,7 @@ body {
 	    }
 
 	    .description {
-		visibility: hidden;
+		opacity: 0;
 	    }
 	}
 
@@ -141,7 +121,7 @@ body {
 	    }
 
 	    .description {
-		visibility: visible;
+		opacity: 1;
 	    }
 	}
     }
@@ -309,154 +289,5 @@ hr.shaded-separator {
     background-image: url(../../images/base/horizontal-separator.png);
     background-repeat: no-repeat;
     background-position: center center;
-}
-
-.project-list {
-    h2 {
-	text-transform: uppercase;
-    }
-
-    .project {
-	height: 150px;
-	position: relative;
-
-	@include box-shadow-bottomleft;
-	@include border-radius($sizeRadiusSmall);
-	background-color: red;
-
-
-
-
-	.project_infos_title {
-	    @include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
-	    @include transition(all .5s ease);
-	    position: relative;
-	    height: 94px; //height of picture
-
-	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
-	    background-repeat: no-repeat, repeat;
-	    background-position: 100px 200px, top left;
-	    background-size: 25px 25px, auto;
-
-	    z-index: 1;
-
-	    .title {
-		position: absolute;
-		font-size: 1em;
-		bottom: 10px;
-		margin-left: 10px;
-		margin-right: 10px;
-		color: black;
-		text-transform: uppercase;
-		background-color: white;
-		z-index: 2;
-	    }
-
-	    .description {
-		visibility: hidden;
-	    }
-	}
-
-	.project_card {
-	    width: inherit;
-	}
-
-	.project_card_progress {
-	    position: absolute;
-	    top: 90px;
-	    left: 0;
-	    width: 100%;
-	    height: 40px;
-	    color: white;
-	    padding-top: 10px;
-	    background-image: url(../../images/project/front-uprounded-rectangle.png);
-
-	    img {
-		display: block;
-		margin-left: 5px;
-		margin-right: auto;
-		width: 70%;
-		height: auto;
-	    }
-
-	    p {
-		position: absolute;
-		top: 10px;
-		right: 50px;
-		font-style: italic;
-		font-size: 80%;
-	    }
-	}
-
-	.project_card_content {
-	    @include border-box;
-	    @include border-radius(0 0 $sizeRadiusSmall $sizeRadiusSmall);
-	    position: absolute;
-	    bottom: 0px;
-	    height: 30px;
-	    left: 0;
-	    width: 100%;
-	    color: white;
-	    background-color: black;
-	    padding-left: 10px;
-
-	    .project_card_pictos {
-		display: none;
-		visibility: hidden;
-	    }
-
-	    .flag {
-		float: left;
-		margin-right: 5px;
-	    }
-	}
-
-	.project-photo {
-	    position: absolute;
-	    top: 0px;
-	    left: 0px;
-	    // FIXME: set inherit & auto
-	    width: 150px;
-	    height: 94px;
-
-
-	    img {
-		@include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
-		width: inherit;
-		height: inherit;
-
-	    }
-	}
-
-	&:hover {
-
-	    .project_infos_title {
-		height: 150px;
-
-		background-color: $colorLightBlue;
-		background-image: url(../../images/tags/icon-arrow-white-big.png);
-		background-position: 100px 100px;
-		background-repeat: repeat-none;
-
-		.title {
-		    visibility: hidden;
-		}
-
-		.description {
-		    position: absolute;
-		    top: 30px;
-		    padding: 10px;
-		    visibility: visible;
-		    text-decoration: none;
-		    font-style: normal;
-		    color: white;
-		    z-index: 7;
-		}
-
-	    }
-
-	} // hover
-
-    } // project
 }
 

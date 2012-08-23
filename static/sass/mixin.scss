@@ -26,8 +26,8 @@ $normalgrey:#BDBDBD;
 @mixin georgia($font-size) {
     font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
     font-size:$font-size;
-	font-weight:bold;
-	font-style:italic;
+    font-weight:bold;
+    font-style:italic;
 }
 
 
@@ -64,3 +64,10 @@ $normalgrey:#BDBDBD;
     box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
 }
 
+
+@mixin transition( $effect ) {
+    transition: $effect;
+    -moz-transition: $effect;
+    -webkit-transition: $effect;
+    -o-transition: $effect;
+}

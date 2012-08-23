@@ -17,29 +17,37 @@ body {
 
 #subheader-zone {
   background-color: white;
+  position: relative;
 }
 
 #pictured-zone {
   background-color: black;
-  height: 232px;
+  height: 253px;
   border-bottom: 4px solid #0aaece;
-}
-#pictured-zone img {
-  width: 100%;
-  height: auto;
 }
 #pictured-zone .tag-header {
   position: relative;
-  z-index: 0;
 }
-#pictured-zone .pano-spacer {
-  height: 2em;
+#pictured-zone .tag-header a img {
+  width: 100%;
+  height: auto;
+  border: none;
+}
+#pictured-zone .tag-header .credit {
+  position: absolute;
+  top: 145px;
+  left: 10px;
+  color: white;
+  font-style: italic;
 }
 #pictured-zone .pano-header-block {
-  margin-top: 4em;
+  margin-top: 20px;
 }
 #pictured-zone .pano-header {
-  margin-bottom: 1em;
+  position: relative;
+  height: 81px;
+  width: inherit;
+  margin-bottom: 10px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -53,6 +61,82 @@ body {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+}
+#pictured-zone .pano-header .project-information {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  padding: 10px;
+  color: white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+  background-repeat: no-repeat, repeat;
+  background-position: 400px center, top left;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+}
+#pictured-zone .pano-header .project-information .title {
+  display: block;
+  position: absolute;
+  font-weight: bold;
+  text-transform: uppercase;
+  visibility: visible;
+  background-color: white;
+  color: black;
+  bottom: 10px;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+#pictured-zone .pano-header .project-information .description {
+  opacity: 0;
+}
+#pictured-zone .pano-header:hover .project-information {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  padding-right: 70px;
+  visibility: visible;
+  background-color: rgba(10, 174, 206, 0.7);
+  background-position: 200px center, top left;
+  color: white;
+}
+#pictured-zone .pano-header:hover .project-information .title {
+  position: static;
+  color: white;
+  background: none;
+  padding: 0;
+  margin-bottom: 0.5em;
+}
+#pictured-zone .pano-header:hover .project-information .description {
+  opacity: 1;
 }
 
 #content-zone {
@@ -69,14 +153,14 @@ body {
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #282828), color-stop(1, black));
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   border-radius: 0 4px 4px 0;
-  float: left;
-  margin-top: -10em;
+  position: absolute;
+  top: 170px;
+  left: 0px;
   padding: 0;
   width: 55%;
-  position: relative;
   padding-top: 1em;
   padding-bottom: 1em;
-  min-height: 6em;
+  min-height: 90px;
 }
 #description-zone .icon-tag-big {
   display: block;
@@ -104,11 +188,50 @@ body {
   margin-left: 1em;
   float: right;
 }
+#description-zone .readmore {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background-image: linear-gradient(top, #282828 0%, #000000 100%);
+  background-image: -o-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -moz-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -webkit-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -ms-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #282828), color-stop(1, black));
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 25px;
+  right: -25px;
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+#description-zone .readmore:hover {
+  right: -30px;
+}
+#description-zone .readmore a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(../../images/tags/icon-arrow-blue-big.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+}
 
-#tags-related p {
-  font-weight: bold;
+#tags-related {
+  line-height: 1.5em;
+}
+#tags-related h2 {
+  font-size: 100%;
+  font-weight: normal;
+  display: inline;
   color: white;
   background-color: #535353;
+  padding-left: .5em;
+  padding-right: .5em;
+  margin-right: .25em;
 }
 #tags-related ul {
   display: inline;
@@ -117,9 +240,57 @@ body {
 #tags-related ul li {
   display: inline;
   background-color: #c9c9c9;
+  color: #535353;
+  margin-right: .5em;
+  height: 1em;
+  padding-left: .5em;
+  padding-right: .5em;
+  font-style: italic;
+  position: relative;
 }
 #tags-related ul li a {
-  color: #535353;
+  font-size: 100%;
+  color: inherit;
+  margin-right: 0.2em;
+}
+#tags-related ul li:first-child:before {
+  display: inline;
+  border-left: none;
+}
+#tags-related ul li:before {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  display: inline;
+  position: absolute;
+  content: "";
+  top: 0;
+  width: 0;
+  height: 0;
+  left: -0.45em;
+  border-left: .5em solid transparent;
+  border-top: 0.62em solid #c9c9c9;
+  border-bottom: 0.63em solid #c9c9c9;
+}
+#tags-related ul li:after {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  position: absolute;
+  content: "";
+  top: 0;
+  right: -0.45em;
+  width: 0;
+  height: 0;
+  border-left: 0.5em solid #c9c9c9;
+  border-top: .62em solid transparent;
+  border-bottom: .63em solid transparent;
 }
 
 hr.shaded-separator {

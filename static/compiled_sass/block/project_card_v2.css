@@ -1,0 +1,236 @@
+/**
+ * Colors
+ */
+/**
+ *  Font sizes
+ */
+/**
+ *  Mixins
+ */
+.project-list {
+  position: relative;
+}
+.project-list h2 {
+  text-transform: uppercase;
+}
+.project-list .seemore {
+  position: absolute;
+  line-height: 110%;
+  top: 0;
+  right: 0;
+  color: black;
+  text-decoration: none;
+}
+.project-list .seemore:after {
+  font-weight: bold;
+  margin-left: 5px;
+  content: ">";
+}
+.project-list .project {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  height: 150px;
+  position: relative;
+}
+.project-list .project .summary {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: relative;
+  height: 150px;
+  background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+  background-repeat: no-repeat, repeat;
+  background-position: 200px 110px, top left;
+  background-size: 25px 25px, auto;
+  z-index: 1;
+}
+.project-list .project .summary .title {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  font-size: 1em;
+  bottom: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: black;
+  text-transform: uppercase;
+  background-color: white;
+  z-index: 2;
+  opacity: 1;
+}
+.project-list .project .summary .description {
+  opacity: 0;
+  visibility: hidden;
+  height: 50px;
+  overflow: hidden;
+}
+.project-list .project .summary:before {
+  display: block;
+  position: absolute;
+  content: attr(data-action-1);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  visibility: hidden;
+  top: 105px;
+  left: 10px;
+  font-size: 80%;
+  width: 65%;
+  opacity: 0;
+  color: white;
+}
+.project-list .project .progress {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  height: 30px;
+  color: white;
+  text-shadow: 0 0 4px black;
+  padding-top: 10px;
+  background-image: url(../../images/project/front-uprounded-rectangle.png);
+  opacity: 1;
+  z-index: 2;
+}
+.project-list .project .progress img {
+  display: block;
+  margin-left: 5px;
+  margin-right: auto;
+  width: 70%;
+  height: auto;
+}
+.project-list .project .progress p {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  font-style: italic;
+  font-size: 80%;
+}
+.project-list .project .content {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  -o-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  bottom: 0px;
+  height: 30px;
+  left: 0;
+  width: 100%;
+  color: white;
+  background-color: black;
+  padding-left: 10px;
+  opacity: 1;
+  z-index: 1;
+}
+.project-list .project .content .location {
+  font-size: 80%;
+}
+.project-list .project .content .flag {
+  float: left;
+  margin-right: 5px;
+}
+.project-list .project .content .pictos {
+  display: none;
+  visibility: hidden;
+}
+.project-list .project .photo {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 150px;
+  height: 150px;
+}
+.project-list .project .photo img {
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  -ms-border-radius: 4px 4px 0 0;
+  -o-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  width: auto;
+  height: 100%;
+}
+.project-list .project .photo:after {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  opacity: 1;
+  content: "";
+  position: absolute;
+  top: inherit;
+  left: inherit;
+  width: inherit;
+  height: inherit;
+  background-image: url(../../images/project/card-top-handler.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  z-index: 25;
+}
+.project-list .project:hover .summary {
+  height: 150px;
+  background-color: rgba(10, 174, 206, 0.7);
+  background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+  background-repeat: no-repeat, repeat;
+  background-position: 100px 110px, 0 0;
+}
+.project-list .project:hover .summary .title {
+  visibility: hidden;
+  opacity: 0;
+}
+.project-list .project:hover .summary .description {
+  position: absolute;
+  top: 30px;
+  padding: 10px;
+  visibility: visible;
+  text-decoration: none;
+  font-style: normal;
+  color: white;
+  z-index: 7;
+  opacity: 1;
+}
+.project-list .project:hover .summary:before {
+  visibility: visible;
+  opacity: 1;
+}
+.project-list .project:hover .progress {
+  opacity: 0;
+}
+.project-list .project:hover .content {
+  opacity: 0;
+}
+.project-list .project:hover .photo:after {
+  opacity: 0;
+}
