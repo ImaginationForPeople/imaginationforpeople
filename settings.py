@@ -388,6 +388,7 @@ STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
     ('images', os.path.join(STATIC_ROOT, 'images')),
+    ('images', os.path.join(STATIC_ROOT, 'compiled_images')),
 )
 
 COMPRESS_CSS_FILTERS = (
