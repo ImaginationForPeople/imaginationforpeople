@@ -9,6 +9,7 @@
 
 <!-- FIXME : move the the project_card block -->
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/block/project_card_v2.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/block/person_card_v2.css" />
 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
 {% endcompress %}
@@ -31,7 +32,7 @@
 	    </a>
 
 	    <div class="grid_5 omega pano-header-block">
-		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 alpha omega pano-header">
+		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 omega pano-header">
 		    <img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.1.title }}</p>
@@ -39,7 +40,7 @@
 		    </div>
 		</a>
 
-		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 alpha omega pano-header">
+		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 omega pano-header">
 		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.2.title }}</p>
@@ -47,7 +48,7 @@
 		    </div>
 		</a>
 
-		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 alpha omega pano-header">
+		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 omega pano-header">
 		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.3.title }}</p>
@@ -171,16 +172,18 @@
 	</div> <!-- .grid_12 -->
 
 	<div class="prefix_1 grid_5 omega" >
-	    <h2>People</h2>
-	    <ul>
-		{% for p in people %}
-		<li>
-		    <img src="{{ p.user.get_profile.get_mugshot_url }}" width="40px"/> 
-		    <a href="{{ p.user.get_profile.get_absolute_url }}">{{ p.user.get_profile.get_full_name_or_username }}</a> - 
-		    <a href="{{ p.project.get_absolute_url }}">{{ p.project }}</a><br/>
-		</li>
-		{% endfor %}
-	    </ul>
+	    <div class="people-list">
+		<h2>People</h2>
+		<!-- FIXME: must show people count in "more" -->
+		<a href="#" class="seemore">{% trans "See more" %}</a>
+		<ul>
+		    {% for p in people %}
+		    <li class="clearfix">
+			{% include "block/person_card_v2.html" with person=p %}
+		    </li>
+		    {% endfor %}
+		</ul>
+	    </div>
 	</div> <!-- .grid_6 -->
 
     </div> <!-- .container_18 -->
