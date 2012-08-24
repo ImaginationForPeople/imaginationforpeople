@@ -290,3 +290,14 @@ hr.shaded-separator {
     background-size: cover;
 }
 
+.tag-follow-button {
+    display: block;
+    @include background-vertical-gradient(#4abae9, #3990b4);
+    @include border-radius($sizeRadiusSmall);
+    border: 4px solid #c7e4ea;
+    color: white;
+    padding: 1em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+}
