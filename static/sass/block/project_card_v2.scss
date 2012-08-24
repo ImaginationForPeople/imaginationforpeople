@@ -48,7 +48,6 @@ $sprite-sprite-dimensions: true;
 	@include border-radius($sizeRadiusSmall);
 	height: 150px;
 	position: relative;
-	// background-color: red; // FIXME: for debugging purpose only
 
 	.summary {
 	    @include border-radius($sizeRadiusSmall);
@@ -84,7 +83,6 @@ $sprite-sprite-dimensions: true;
 		visibility: hidden;
 		height: 50px;
 		overflow: hidden;
-		// FIXME: maybe add text ellipsis ?
 	    }
 
 	    &:before { // the SEE THE PROJECT label
@@ -195,6 +193,7 @@ $sprite-sprite-dimensions: true;
 	    background-image: url(../../images/project/card-top-handler.png);
 	    background-repeat: no-repeat;
 	    background-position: top center;
+	    background-opacity: 1;
 	    opacity: 1;
 	    z-index: 4;
 	    position: absolute;
@@ -202,11 +201,25 @@ $sprite-sprite-dimensions: true;
 	    left: 0;
 	    width: 100%;
 	    height: 100%;
+	    overflow: hidden;
 
 	    img {
 		position: absolute;
 		top: 0px;
 		left: 60px;
+	    }
+
+	    .description {
+		@include transition(all .5s ease);
+		position: absolute;
+		// FIXME: add left-size icon
+		top: -20px;
+		padding: 10px;
+		text-align: center;
+		font-weight: bold;
+		color: white;
+		opacity: 0;
+		visibility: hidden;
 	    }
 	}
 
@@ -218,7 +231,6 @@ $sprite-sprite-dimensions: true;
 
 	    top: 0px;
 	    left: 0px;
-	    // FIXME: set inherit & auto
 	    width: 100%;
 	    height: 100%;
 
@@ -281,7 +293,18 @@ $sprite-sprite-dimensions: true;
 	    }
 
 	    .topic {
-		opacity: 0;
+		background-position: center -100px;
+
+		img {
+		    opacity: 0;
+		    visibility: hidden;
+		}
+
+		.description {
+		    top: 0px;
+		    opacity: 1;
+		    visibility: visible;
+		}
 	    }
 
 	    .pictos {

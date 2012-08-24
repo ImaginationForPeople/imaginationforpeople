@@ -56,6 +56,7 @@ Parameters for this block
 	<!-- FIXME: replace with an elegant CSS theme instead of an hardcoded image -->
 	<div class="topic topic-{{ project_translation.project.topics.all.0.topic.slug }}">
 		<img src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
+		<p class="description">{{ project_translation.project.topics.all.0.topic.label }}</p>
 	</div>
 	{% endif %}
 </div>
