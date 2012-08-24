@@ -300,4 +300,9 @@ hr.shaded-separator {
     font-weight: bold;
     margin-bottom: 1em;
     text-transform: uppercase;
+
+    &:hover {
+	@include background-vertical-gradient(darken(#4abae9,5%), lighten(#3990b4,5%));
+	border: 4px solid darken(#c7e4ea,5%);
+    }
 }
