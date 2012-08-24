@@ -210,30 +210,47 @@ body {
     line-height: 1.5em;
 
     h2 {
+	@include border-radius($sizeRadiusSmall 0 0 $sizeRadiusSmall);
 	// FIXME: add tag icon
-	font-size: 100%;
+	background-image: url(../../images/tags/icon-tag-white-small.png);
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	font-size: 12px;
+	height: 16px;
 	font-weight: normal;
 	display: inline;
 	color: white;
+	float: left;
 	background-color: $colorMedDarkGrey;
-	padding-left: .5em;
+	padding-left: 20px;
 	padding-right: .5em;
+	margin: 0;
 	margin-right: .25em;
+
     }
 
     ul {
-	display: inline;
+	display: block;
 	list-style: none;
 
+	&:after {
+	    content: "";
+	    clear: both;
+	    margin-bottom: 2em;
+	}
+
 	li {
-	    display: inline;
+	    display: block;
+	    float: left;
 	    background-color: $colorMedGrey;
 	    color: $colorMedDarkGrey;
-	    margin-right: .5em;
-	    height: 1em;
-	    padding-left: .5em;
-	    padding-right: .5em;
+	    margin-bottom: 4px;
+	    margin-right: 8px;
+	    height: 16px;
+	    padding-left: 5px;
+	    padding-right: 5px;
 	    font-style: italic;
+	    font-size: 12px;
 
 	    position: relative;
 
@@ -256,10 +273,10 @@ body {
 		top: 0;
 		width: 0;
 		height: 0;
-		left: -.45em;
-		border-left: .5em solid transparent;
-		border-top: .62em solid $colorMedGrey;
-		border-bottom: .63em solid $colorMedGrey;
+		left: -5px;
+		border-left: 5px solid transparent;
+		border-top: 8px solid $colorMedGrey;
+		border-bottom: 8px solid $colorMedGrey;
 	    }
 
 	    &:after {
@@ -267,12 +284,12 @@ body {
 		position: absolute;
 		content:"";
 		top: 0;
-		right: -.45em;
+		right: -5px;
 		width: 0;
 		height: 0;
-		border-left: .5em solid $colorMedGrey;
-		border-top: .62em solid transparent;
-		border-bottom: .63em solid transparent;
+		border-left: 5px solid $colorMedGrey;
+		border-top: 8px solid transparent;
+		border-bottom: 8px solid transparent;
 	    }
 	}
 
@@ -290,3 +307,20 @@ hr.shaded-separator {
     background-size: cover;
 }
 
+.tag-follow-button {
+    display: block;
+    @include background-vertical-gradient(#4abae9, #3990b4);
+    @include border-radius($sizeRadiusSmall);
+    border: 4px solid #c7e4ea;
+    color: white;
+    padding: 1em;
+    font-weight: bold;
+    margin-bottom: 1em;
+    text-transform: uppercase;
+
+    &:hover {
+	@include transition( all .5s ease );
+	@include background-vertical-gradient(darken(#4abae9,5%), lighten(#3990b4,5%));
+	border: 4px solid darken(#c7e4ea,5%);
+    }
+}

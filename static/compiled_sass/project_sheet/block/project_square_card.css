@@ -8,7 +8,7 @@
  *  Mixins
  */
 .progressbar-sprite, .progressbar-begin, .progressbar-end, .progressbar-idea, .progressbar-wip {
-  background: url('../../compiled_images/project/progressbar.png') no-repeat;
+  background: url('../../../compiled_images/project/progressbar.png') no-repeat;
 }
 
 .progressbar-begin {
@@ -36,7 +36,7 @@
 }
 
 .picto-sprite, .picto-bestof, .picto-editing, .picto-popular, .picto-team {
-  background: url('../../compiled_images/project/picto.png') no-repeat;
+  background: url('../../../compiled_images/project/picto.png') no-repeat;
 }
 
 .picto-bestof {
@@ -66,6 +66,7 @@
 .project-list {
   position: relative;
   margin-bottom: 20px;
+  padding: 0;
 }
 .project-list h2 {
   text-transform: uppercase;
@@ -105,7 +106,7 @@
   -o-transition: all 0.5s ease;
   position: relative;
   height: 150px;
-  background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+  background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-dots.png);
   background-repeat: no-repeat, repeat;
   background-position: 200px 110px, top left;
   background-size: 25px 25px, auto;
@@ -163,7 +164,7 @@
   color: white;
   text-shadow: 0 0 4px black;
   padding-top: 10px;
-  background-image: url(../../images/project/front-uprounded-rectangle.png);
+  background-image: url(../../../images/project/front-uprounded-rectangle.png);
   opacity: 1;
   z-index: 3;
 }
@@ -243,7 +244,7 @@
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  background-image: url(../../images/project/card-top-handler.png);
+  background-image: url(../../../images/project/card-top-handler.png);
   background-repeat: no-repeat;
   background-position: top center;
   background-opacity: 1;
@@ -306,7 +307,7 @@
 .project-list .project.square-card:hover .summary {
   height: 150px;
   background-color: rgba(10, 174, 206, 0.7);
-  background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+  background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-dots.png);
   background-repeat: no-repeat, repeat;
   background-position: 100px 110px, 0 0;
 }

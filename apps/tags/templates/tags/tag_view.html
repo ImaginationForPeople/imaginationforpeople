@@ -8,8 +8,8 @@
 {% compress css %}
 
 <!-- FIXME : move the the project_card block -->
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/block/project_card_v2.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/block/person_card_v2.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_square_card.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_wide_card.css" />
 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
 {% endcompress %}
@@ -32,7 +32,8 @@
 	    </a>
 
 	    <div class="grid_5 omega pano-header-block">
-		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 omega pano-header">
+		
+		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 alpha omega pano-header">
 		    <img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.1.title }}</p>
@@ -40,7 +41,7 @@
 		    </div>
 		</a>
 
-		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 omega pano-header">
+		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 alpha omega pano-header">
 		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.2.title }}</p>
@@ -48,7 +49,7 @@
 		    </div>
 		</a>
 
-		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 omega pano-header">
+		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 alpha omega pano-header">
 		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.3.title }}</p>
@@ -90,9 +91,9 @@
     <div class="container_18"> <!-- .container_18 -->
 	<!-- FIXME: sprite for horizontal shaded line required -->
 
-	<div class="grid_12" >
+	<div class="grid_12 alpha" >
 	    <!-- FIXME: small icon for tag required -->
-	    <div id="tags-related">
+	    <div id="tags-related" class="clearfix">
 		<h2>Related tags</h2>
 		<ul>
 		    {% for tag in related_tags %}
@@ -102,18 +103,15 @@
 	    </div> <!-- #tags-related -->
 
 
-	    <!-- FIXME: where is the blue button / tag link for "follow this topic" ? -->
-
-	    <!-- FIXME: (design) is the blue thing on project card a hover ? -->
 
 	    <!-- FIXME: (design) missing right arrow icon for "voir tous" -->
 	    <div class="project-list clearfix">
 		<h2>Mature projects</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in mature_project_translations %}
-		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
+		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#" >
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -127,9 +125,9 @@
 		<h2>Starting projects</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in starting_project_translations %}
-		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
+		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#">
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -142,9 +140,9 @@
 		<h2>New project sheets</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in new_project_translations %}
-		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
+		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#">
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -160,9 +158,9 @@
 		<h2>Latest modifications</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in modified_project_translations %}
-		<a class="project grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
+		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#">
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -172,6 +170,12 @@
 	</div> <!-- .grid_12 -->
 
 	<div class="prefix_1 grid_5 omega" >
+	    <!-- FIXME: where is the blue button / tag link for "follow this topic" ? -->
+	    <!-- FIXME: (design) is the blue thing on project card a hover ? -->
+	    <div class="tag-follow-button">
+		<p>{% trans "Follow this topic" %}</p>
+	    </div>
+
 	    <div class="people-list">
 		<h2>People</h2>
 		<!-- FIXME: must show people count in "more" -->
@@ -179,10 +183,18 @@
 		<ul>
 		    {% for p in people %}
 		    <li class="clearfix">
-			{% include "block/person_card_v2.html" with person=p %}
+			{% include "project_sheet/block/person_wide_card.html" with person=p %}
 		    </li>
 		    {% endfor %}
 		</ul>
+	    </div>
+
+	    <div class="project-list">
+		<li class="project">
+		</li>
+
+		<li class="project">
+		</li>
 	    </div>
 	</div> <!-- .grid_6 -->
 
