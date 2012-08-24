@@ -1,6 +1,15 @@
 @import "../mixin.scss";
 @import "../constants.scss";
 
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for progressbar
+$flag-sprite-dimensions: true;
+@import "flag/*.png"; // */
+@include all-flag-sprites;
+
+
 .people-list {
     @include border-radius($sizeRadiusSmall);
     @include border-box;
@@ -34,13 +43,14 @@
 }
 
 .person {
+    position: relative;
     @include border-box;
     @include transition(all .5s ease);
     width: 100%;
     padding: 5px;
 
     * {
-	margin-left: 45px;
+	margin-left: 50px;
     }
 
     .avatar {
@@ -48,6 +58,7 @@
 	height: 40px;
 	float: left;
 	margin: 0;
+	border: 1px solid $colorMedGrey;
     }
 
     .fullname {
@@ -68,6 +79,14 @@
 	    display: block;
 	    font-weight: normal;
 	}
+    }
+
+    .country {
+	position: absolute;
+	display: block;
+	margin: 0;
+	top: 35px;
+	left: 30px;
     }
 
     &:hover {

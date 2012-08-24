@@ -13,4 +13,5 @@ Parameters for this block
 	<img class="avatar" src="{{ person.user.get_profile.get_mugshot_url }}" />
 	<a class="fullname" href="{{ person.user.get_profile.get_absolute_url }}">{{ person.user.get_profile.get_full_name_or_username }}</a>
 	<a class="project" href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project }}</a>
+	<div class="country flag-{{ person.user.get_profile.country|lower }}"></div>
 </div>
