@@ -10,17 +10,20 @@ $flag-sprite-dimensions: true;
 @include all-flag-sprites;
 
 
-.people-list {
+.people-list.wide-flat{
     @include border-radius($sizeRadiusSmall);
     @include border-box;
     border: 1px solid darken($colorLightGrey,2%);
 
     padding: 5px;
     background-color: $colorLightGrey;
+    margin-bottom: 12px;
 
     h2 {
 	font-size: 120%;
 	text-transform: uppercase;
+	margin-top: 5px;
+	margin-bottom: 5px;
     }
 
     .seemore {
@@ -42,7 +45,7 @@ $flag-sprite-dimensions: true;
     }
 }
 
-.person {
+.person.wide-flat {
     position: relative;
     @include border-box;
     @include transition(all .5s ease);
@@ -58,7 +61,7 @@ $flag-sprite-dimensions: true;
 	height: 40px;
 	float: left;
 	margin: 0;
-	border: 1px solid $colorMedGrey;
+	border: 1px solid $colorMedLightGrey;
     }
 
     .fullname {
