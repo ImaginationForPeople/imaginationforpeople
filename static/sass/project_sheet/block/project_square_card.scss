@@ -7,13 +7,13 @@ $sprite-layout: smart;
 // create sprites for progressbar
 $progressbar-sprite-dimensions: true;
 @import "project/progressbar/*.png"; // */
-@include all-progressbar-sprites;
+@include all-progressbar-sprites(true);
 
 // @import "project/topic/*.png"; // */
 
 $picto-sprite-dimensions: true;
 @import "project/picto/*.png"; // */
-@include all-picto-sprites;
+@include all-picto-sprites(true);
 
 
 .project-list.square-card {
