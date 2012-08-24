@@ -8,8 +8,8 @@
 {% compress css %}
 
 <!-- FIXME : move the the project_card block -->
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/block/project_card_v2.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/block/person_card_v2.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_square_card.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_wide_card.css" />
 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
 {% endcompress %}
@@ -33,7 +33,7 @@
 
 	    <div class="grid_5 omega pano-header-block">
 		
-		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 omega pano-header">
+		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 alpha omega pano-header">
 		    <img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.1.title }}</p>
@@ -41,7 +41,7 @@
 		    </div>
 		</a>
 
-		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 omega pano-header">
+		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 alpha omega pano-header">
 		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.2.title }}</p>
@@ -49,7 +49,7 @@
 		    </div>
 		</a>
 
-		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 omega pano-header">
+		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 alpha omega pano-header">
 		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/>
 		    <div class="project-information">
 			<p class="title">{{ picture_project_translations.3.title }}</p>
@@ -91,7 +91,7 @@
     <div class="container_18"> <!-- .container_18 -->
 	<!-- FIXME: sprite for horizontal shaded line required -->
 
-	<div class="grid_12" >
+	<div class="grid_12 alpha" >
 	    <!-- FIXME: small icon for tag required -->
 	    <div id="tags-related" class="clearfix">
 		<h2>Related tags</h2>
@@ -111,7 +111,7 @@
 		{% for project_translation in mature_project_translations %}
 		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#" >
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -127,7 +127,7 @@
 		{% for project_translation in starting_project_translations %}
 		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#">
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -142,7 +142,7 @@
 		{% for project_translation in new_project_translations %}
 		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#">
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -160,7 +160,7 @@
 		{% for project_translation in modified_project_translations %}
 		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 		    href="#">
-		    {% include "block/project_card_v2.html" %}
+		    {% include "project_sheet/block/project_square_card.html" %}
 		</a>
 		{% empty %}
 		{% trans "No projects" %}
@@ -183,7 +183,7 @@
 		<ul>
 		    {% for p in people %}
 		    <li class="clearfix">
-			{% include "block/person_card_v2.html" with person=p %}
+			{% include "project_sheet/block/person_wide_card.html" with person=p %}
 		    </li>
 		    {% endfor %}
 		</ul>

@@ -1,0 +1,357 @@
+/**
+ * Colors
+ */
+/**
+ *  Font sizes
+ */
+/**
+ *  Mixins
+ */
+.progressbar-sprite, .progressbar-begin, .progressbar-end, .progressbar-idea, .progressbar-wip {
+  background: url('../../../compiled_images/project/progressbar.png') no-repeat;
+}
+
+.progressbar-begin {
+  background-position: 0 -30px;
+  height: 15px;
+  width: 131px;
+}
+
+.progressbar-end {
+  background-position: 0 0;
+  height: 15px;
+  width: 131px;
+}
+
+.progressbar-idea {
+  background-position: 0 -45px;
+  height: 15px;
+  width: 131px;
+}
+
+.progressbar-wip {
+  background-position: 0 -15px;
+  height: 15px;
+  width: 131px;
+}
+
+.picto-sprite, .picto-bestof, .picto-editing, .picto-popular, .picto-team {
+  background: url('../../../compiled_images/project/picto.png') no-repeat;
+}
+
+.picto-bestof {
+  background-position: 0 -30px;
+  height: 19px;
+  width: 11px;
+}
+
+.picto-editing {
+  background-position: 0 -15px;
+  height: 15px;
+  width: 15px;
+}
+
+.picto-popular {
+  background-position: 0 0;
+  height: 15px;
+  width: 15px;
+}
+
+.picto-team {
+  background-position: 0 -49px;
+  height: 15px;
+  width: 15px;
+}
+
+.project-list {
+  position: relative;
+  margin-bottom: 20px;
+  padding: 0;
+}
+.project-list h2 {
+  text-transform: uppercase;
+}
+.project-list .seemore {
+  position: absolute;
+  line-height: 110%;
+  top: 0;
+  right: 0;
+  color: black;
+  text-decoration: none;
+}
+.project-list .seemore:after {
+  font-weight: bold;
+  margin-left: 5px;
+  content: ">";
+}
+.project-list .project.square-card {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  height: 150px;
+  position: relative;
+}
+.project-list .project.square-card .summary {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: relative;
+  height: 150px;
+  background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-dots.png);
+  background-repeat: no-repeat, repeat;
+  background-position: 200px 110px, top left;
+  background-size: 25px 25px, auto;
+  z-index: 2;
+}
+.project-list .project.square-card .summary .title {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  font-size: 1em;
+  bottom: 60px;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: black;
+  text-transform: uppercase;
+  background-color: white;
+  z-index: 2;
+  opacity: 1;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.project-list .project.square-card .summary .description {
+  opacity: 0;
+  visibility: hidden;
+  height: 50px;
+  overflow: hidden;
+}
+.project-list .project.square-card .summary:before {
+  display: block;
+  position: absolute;
+  content: attr(data-action-1);
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: none;
+  visibility: hidden;
+  top: 105px;
+  left: 10px;
+  font-size: 80%;
+  width: 65%;
+  opacity: 0;
+  color: white;
+}
+.project-list .project.square-card .progress {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  height: 25px;
+  color: white;
+  text-shadow: 0 0 4px black;
+  padding-top: 10px;
+  background-image: url(../../../images/project/front-uprounded-rectangle.png);
+  opacity: 1;
+  z-index: 3;
+}
+.project-list .project.square-card .progress .status {
+  display: block;
+  position: absolute;
+  width: 100px;
+  top: 15px;
+  left: 5px;
+  font-style: italic;
+  font-size: 80%;
+  background-size: 100px 60px;
+  text-align: right;
+  padding-right: 10px;
+}
+.project-list .project.square-card .location {
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  -ms-border-radius: 0 0 4px 4px;
+  -o-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  top: 125px;
+  font-size: 80%;
+  width: 100%;
+  height: 25px;
+  background: black;
+  padding-left: 10px;
+  z-index: 3;
+  opacity: 1;
+}
+.project-list .project.square-card .location .flag {
+  float: left;
+  margin-right: 5px;
+}
+.project-list .project.square-card .pictos {
+  position: absolute;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+.project-list .project.square-card .pictos .picto-team {
+  position: absolute;
+  top: 105px;
+  right: 25px;
+}
+.project-list .project.square-card .pictos .picto-editing {
+  position: absolute;
+  top: 105px;
+  right: 10px;
+}
+.project-list .project.square-card .pictos .picto-bestof {
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: 5px;
+}
+.project-list .project.square-card .topic {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  background-image: url(../../../images/project/card-top-handler.png);
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-opacity: 1;
+  opacity: 1;
+  z-index: 4;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.project-list .project.square-card .topic img {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  top: 0px;
+  left: 60px;
+}
+.project-list .project.square-card .topic .description {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  position: absolute;
+  top: -20px;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+  opacity: 0;
+  visibility: hidden;
+}
+.project-list .project.square-card .photo {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+}
+.project-list .project.square-card .photo img {
+  -webkit-border-radius: 4px 4px 0 0;
+  -moz-border-radius: 4px 4px 0 0;
+  -ms-border-radius: 4px 4px 0 0;
+  -o-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
+  width: auto;
+  height: 100%;
+  margin-left: -50%;
+}
+.project-list .project.square-card:hover .summary {
+  height: 150px;
+  background-color: rgba(10, 174, 206, 0.7);
+  background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-dots.png);
+  background-repeat: no-repeat, repeat;
+  background-position: 100px 110px, 0 0;
+}
+.project-list .project.square-card:hover .summary .title {
+  visibility: hidden;
+  opacity: 0;
+}
+.project-list .project.square-card:hover .summary .description {
+  position: absolute;
+  top: 30px;
+  padding: 10px;
+  visibility: visible;
+  text-decoration: none;
+  font-style: normal;
+  color: white;
+  z-index: 7;
+  opacity: 1;
+}
+.project-list .project.square-card:hover .summary:before {
+  visibility: visible;
+  opacity: 1;
+}
+.project-list .project.square-card:hover .location {
+  opacity: 0;
+}
+.project-list .project.square-card:hover .progress {
+  opacity: 0;
+}
+.project-list .project.square-card:hover .photo:after {
+  opacity: 0;
+}
+.project-list .project.square-card:hover .topic {
+  background-position: center -100px;
+}
+.project-list .project.square-card:hover .topic img {
+  top: -100px;
+  opacity: 0;
+  visibility: hidden;
+}
+.project-list .project.square-card:hover .topic .description {
+  top: 0px;
+  opacity: 1;
+  visibility: visible;
+}
+.project-list .project.square-card:hover .pictos {
+  opacity: 0;
+}

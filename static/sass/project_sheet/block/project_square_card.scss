@@ -1,5 +1,5 @@
-@import "../mixin.scss";
-@import "../constants.scss";
+@import "../../mixin.scss";
+@import "../../constants.scss";
 
 $sprite-layout: smart;
 @import "compass/utilities/sprites/base";
@@ -19,7 +19,7 @@ $picto-sprite-dimensions: true;
 .project-list {
     position: relative;
     margin-bottom: 20px;
-
+    padding: 0;
 
     h2 {
 	text-transform: uppercase;
@@ -56,7 +56,7 @@ $picto-sprite-dimensions: true;
 	    position: relative;
 	    height: 150px;
 
-	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+	    background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-dots.png);
 	    background-repeat: no-repeat, repeat;
 	    background-position: 200px 110px, top left;
 	    background-size: 25px 25px, auto;
@@ -113,7 +113,7 @@ $picto-sprite-dimensions: true;
 	    color: white;
 	    text-shadow: 0 0 $sizeRadiusSmall black;
 	    padding-top: 10px;
-	    background-image: url(../../images/project/front-uprounded-rectangle.png);
+	    background-image: url(../../../images/project/front-uprounded-rectangle.png);
 	    opacity: 1;
 	    z-index: 3;
 
@@ -184,7 +184,7 @@ $picto-sprite-dimensions: true;
 
 	.topic {
 	    @include transition(all .5s ease);
-	    background-image: url(../../images/project/card-top-handler.png);
+	    background-image: url(../../../images/project/card-top-handler.png);
 	    background-repeat: no-repeat;
 	    background-position: top center;
 	    background-opacity: 1;
@@ -245,7 +245,7 @@ $picto-sprite-dimensions: true;
 		height: 150px;
 
 		background-color: rgba($colorLightBlue,0.7);
-		background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+		background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-dots.png);
 		background-repeat: no-repeat, repeat;
 		background-position: 100px 110px, 0 0;
 
