@@ -13,18 +13,26 @@
 
 .progressbar-begin {
   background-position: 0 -30px;
+  height: 15px;
+  width: 131px;
 }
 
 .progressbar-end {
   background-position: 0 0;
+  height: 15px;
+  width: 131px;
 }
 
 .progressbar-idea {
   background-position: 0 -45px;
+  height: 15px;
+  width: 131px;
 }
 
 .progressbar-wip {
   background-position: 0 -15px;
+  height: 15px;
+  width: 131px;
 }
 
 .picto-sprite, .picto-bestof, .picto-editing, .picto-popular, .picto-team {
@@ -33,18 +41,26 @@
 
 .picto-bestof {
   background-position: 0 -30px;
+  height: 19px;
+  width: 11px;
 }
 
 .picto-editing {
   background-position: 0 -15px;
+  height: 15px;
+  width: 15px;
 }
 
 .picto-popular {
   background-position: 0 0;
+  height: 15px;
+  width: 15px;
 }
 
 .picto-team {
   background-position: 0 -49px;
+  height: 15px;
+  width: 15px;
 }
 
 .project-list {
@@ -210,23 +226,17 @@
   position: absolute;
   top: 105px;
   right: 25px;
-  width: 15px;
-  height: 15px;
 }
 .project-list .project .pictos .picto-editing {
   position: absolute;
   top: 105px;
   right: 10px;
-  width: 15px;
-  height: 15px;
 }
 .project-list .project .pictos .picto-bestof {
   display: block;
   position: absolute;
   top: -2px;
   left: 5px;
-  width: 11px;
-  height: 19px;
 }
 .project-list .project .topic {
   transition: all 0.5s ease;
@@ -247,6 +257,10 @@
   overflow: hidden;
 }
 .project-list .project .topic img {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
   position: absolute;
   top: 0px;
   left: 60px;
@@ -328,6 +342,7 @@
   background-position: center -100px;
 }
 .project-list .project:hover .topic img {
+  top: -100px;
   opacity: 0;
   visibility: hidden;
 }

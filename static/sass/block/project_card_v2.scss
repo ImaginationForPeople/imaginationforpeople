@@ -2,15 +2,16 @@
 @import "../constants.scss";
 
 $sprite-layout: smart;
-$sprite-sprite-dimensions: true;
 @import "compass/utilities/sprites/base";
 
 // create sprites for progressbar
+$progressbar-sprite-dimensions: true;
 @import "project/progressbar/*.png"; // */
 @include all-progressbar-sprites;
 
 // @import "project/topic/*.png"; // */
 
+$picto-sprite-dimensions: true;
 @import "project/picto/*.png"; // */
 @include all-picto-sprites;
 
@@ -165,16 +166,12 @@ $sprite-sprite-dimensions: true;
 		position: absolute;
 		top: 105px;
 		right: 25px;
-		width: picto-sprite-width(editing);
-		height: picto-sprite-height(editing);
 	    }
 
 	    .picto-editing {
 		position: absolute;
 		top: 105px;
 		right: 10px;
-		width: picto-sprite-width(editing);
-		height: picto-sprite-height(editing);
 	    }
 
 	    .picto-bestof {
@@ -182,9 +179,6 @@ $sprite-sprite-dimensions: true;
 		position: absolute;
 		top: -2px;
 		left: 5px;
-		width: picto-sprite-width(bestof);
-		height: picto-sprite-height(bestof);
-		
 	    }
 	}
 
@@ -204,6 +198,7 @@ $sprite-sprite-dimensions: true;
 	    overflow: hidden;
 
 	    img {
+		@include transition(all .5s ease);
 		position: absolute;
 		top: 0px;
 		left: 60px;
@@ -296,6 +291,7 @@ $sprite-sprite-dimensions: true;
 		background-position: center -100px;
 
 		img {
+		    top: -100px;
 		    opacity: 0;
 		    visibility: hidden;
 		}
