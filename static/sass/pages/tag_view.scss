@@ -75,7 +75,7 @@ body {
 	    color: white;
 	    text-overflow: ellipsis;
 	    overflow: hidden;
-	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
+	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-black-dots.png);
 	    background-repeat: no-repeat, repeat;
 	    background-position: 400px center, top left;
 	    @include transition( all .5s ease );
@@ -162,7 +162,7 @@ body {
     .tag-title {
 	color: white;
 	font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
-	font-size: $sizeTitle;
+	font-size: $sizeTextBig;
 	font-style: normal;
 	text-transform: uppercase;
 
@@ -208,6 +208,8 @@ body {
 
 #tags-related {
     line-height: 1.5em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 
     h2 {
 	@include border-radius($sizeRadiusSmall 0 0 $sizeRadiusSmall);
@@ -236,13 +238,12 @@ body {
 	&:after {
 	    content: "";
 	    clear: both;
-	    margin-bottom: 2em;
 	}
 
 	li {
 	    display: block;
 	    float: left;
-	    background-color: $colorMedGrey;
+	    background-color: $colorMedLightGrey;
 	    color: $colorMedDarkGrey;
 	    margin-bottom: 4px;
 	    margin-right: 8px;
@@ -275,8 +276,8 @@ body {
 		height: 0;
 		left: -5px;
 		border-left: 5px solid transparent;
-		border-top: 8px solid $colorMedGrey;
-		border-bottom: 8px solid $colorMedGrey;
+		border-top: 8px solid $colorMedLightGrey;
+		border-bottom: 8px solid $colorMedLightGrey;
 	    }
 
 	    &:after {
@@ -287,7 +288,7 @@ body {
 		right: -5px;
 		width: 0;
 		height: 0;
-		border-left: 5px solid $colorMedGrey;
+		border-left: 5px solid $colorMedLightGrey;
 		border-top: 8px solid transparent;
 		border-bottom: 8px solid transparent;
 	    }
@@ -315,12 +316,42 @@ hr.shaded-separator {
     color: white;
     padding: 1em;
     font-weight: bold;
-    margin-bottom: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
     text-transform: uppercase;
 
     &:hover {
 	@include transition( all .5s ease );
 	@include background-vertical-gradient(darken(#4abae9,5%), lighten(#3990b4,5%));
 	border: 4px solid darken(#c7e4ea,5%);
+    }
+}
+
+.tag-add-button {
+    @include border-radius($sizeRadiusSmall);
+    @include transition( all .5s ease );
+    display: block;
+    background-color: $colorLightBlue;
+
+    box-shadow: inset 0 0 0 $colorLightBlue;
+    background-image: url(../../images/tags/icon-plus-white-big.png),
+	url(../../images/base/background-white-dots.png);
+
+    background-opacity: 1, 1, 0;
+    background-repeat: no-repeat, repeat;
+    background-position: 190px center, top left;
+
+    padding: 10px;
+    padding-right: 65px;
+
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 2em;
+
+    &:hover {
+	text-decoration: none;
+	background-color: darken($colorLightBlue,5%);
     }
 }

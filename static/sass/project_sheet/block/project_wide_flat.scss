@@ -1,0 +1,61 @@
+@import "../../mixin.scss";
+@import "../../constants.scss";
+
+.project-list.wide-flat {
+    @include border-radius($sizeRadiusSmall);
+    @include border-box;
+    position: relative;
+    padding: 5px;
+
+    border: 1px solid darken($colorLightGrey,2%);
+    background-color: $colorLightGrey;
+    margin-bottom: 12px;
+
+    h2 {
+	text-transform: uppercase;
+	font-size: 18px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+    }
+
+    ul {
+	list-style: none;
+    }
+}
+
+.project.wide-flat {
+    @include border-radius($sizeRadiusSmall);
+    @include transition(all .5s ease);
+    margin-bottom: 3px;
+    background-color: $colorMedGrey;
+
+    background-image: url(../../../images/tags/icon-arrow-white-big.png);
+    background-repeat: no-repeat;
+    background-position: 400px center;
+    background-size: 25px 25px;
+
+    display: block;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 47px;
+    overflow: hidden;
+
+    .title {
+	@include transition(all .5s ease);
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+    }
+
+    .description {
+	@include transition(all .5s ease);
+	color: white;
+    }
+
+    &:hover {
+	padding-right: 40px;
+	background-color: $colorLightBlue;
+	background-position: 200px center;
+    }
+}

@@ -9,7 +9,8 @@
 
 <!-- FIXME : move the the project_card block -->
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_square_card.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_wide_card.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_wide_flat.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_wide_flat.css" />
 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
 {% endcompress %}
@@ -105,7 +106,7 @@
 
 
 	    <!-- FIXME: (design) missing right arrow icon for "voir tous" -->
-	    <div class="project-list clearfix">
+	    <div class="project-list square-card clearfix">
 		<h2>Mature projects</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in mature_project_translations %}
@@ -121,7 +122,7 @@
 	    <hr class="shaded-separator" />
 
 
-	    <div class="project-list clearfix">
+	    <div class="project-list square-card clearfix">
 		<h2>Starting projects</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in starting_project_translations %}
@@ -136,7 +137,7 @@
 
 	    <hr class="shaded-separator" />
 
-	    <div class="project-list clearfix">
+	    <div class="project-list square-card clearfix">
 		<h2>New project sheets</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in new_project_translations %}
@@ -154,7 +155,7 @@
 
 	    <hr class="shaded-separator" />
 
-	    <div class="project-list clearfix">
+	    <div class="project-list square-card clearfix">
 		<h2>Latest modifications</h2>
 		<a href="#" class="seemore">See more</a>
 		{% for project_translation in modified_project_translations %}
@@ -172,30 +173,50 @@
 	<div class="prefix_1 grid_5 omega" >
 	    <!-- FIXME: where is the blue button / tag link for "follow this topic" ? -->
 	    <!-- FIXME: (design) is the blue thing on project card a hover ? -->
-	    <div class="tag-follow-button">
-		<p>{% trans "Follow this topic" %}</p>
-	    </div>
+	    <a class="tag-follow-button">
+		{% trans "Follow this topic" %}
+	    </a>
 
-	    <div class="people-list">
-		<h2>People</h2>
+	    <div class="people-list wide-flat">
+		<h2>{% trans "People" %} </h2>
 		<!-- FIXME: must show people count in "more" -->
 		<a href="#" class="seemore">{% trans "See more" %}</a>
 		<ul>
 		    {% for p in people %}
 		    <li class="clearfix">
-			{% include "project_sheet/block/person_wide_card.html" with person=p %}
+			{% include "project_sheet/block/person_wide_flat.html" with person=p %}
 		    </li>
 		    {% endfor %}
 		</ul>
 	    </div>
 
-	    <div class="project-list">
-		<li class="project">
-		</li>
+	    <!-- FIXME: remove hardcoded data -->
+	    <div class="project-list wide-flat">
+		<h2>{% trans "New project sheets" %} </h2>
+		<!-- FIXME: must show people count in "more" -->
+		<a href="#" class="seemore">{% trans "See more" %}</a>
+		<ul>
+		    <li class="project wide-flat">
+			<p class="title">The Docks Numériques</p>
+			<p class="description">Dijon’s first coworking space</p>
+		    </li>
 
-		<li class="project">
-		</li>
+		    <li class="project wide-flat">
+			<p class="title">Reconnect</p>
+			<p class="description">Landlines for socially excluded persons</p>
+		    </li>
+
+		    <li class="project wide-flat">
+			<p class="title">CoEthik</p>
+			<p class="description">Ethical and collective advice for Social Solidarity Economy organizations</p>
+		    </li>
+		</ul>
 	    </div>
+
+	    <a class="tag-add-button">
+		{% trans "Add a project in this category" %}
+	    </a>
+
 	</div> <!-- .grid_6 -->
 
     </div> <!-- .container_18 -->
