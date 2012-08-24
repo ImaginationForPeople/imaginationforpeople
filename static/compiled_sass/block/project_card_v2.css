@@ -83,7 +83,7 @@
   margin-left: 5px;
   content: ">";
 }
-.project-list .project {
+.project-list .project.square-card {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -93,7 +93,7 @@
   height: 150px;
   position: relative;
 }
-.project-list .project .summary {
+.project-list .project.square-card .summary {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -111,7 +111,7 @@
   background-size: 25px 25px, auto;
   z-index: 2;
 }
-.project-list .project .summary .title {
+.project-list .project.square-card .summary .title {
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -129,13 +129,13 @@
   padding-left: 5px;
   padding-right: 5px;
 }
-.project-list .project .summary .description {
+.project-list .project.square-card .summary .description {
   opacity: 0;
   visibility: hidden;
   height: 50px;
   overflow: hidden;
 }
-.project-list .project .summary:before {
+.project-list .project.square-card .summary:before {
   display: block;
   position: absolute;
   content: attr(data-action-1);
@@ -150,7 +150,7 @@
   opacity: 0;
   color: white;
 }
-.project-list .project .progress {
+.project-list .project.square-card .progress {
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -167,7 +167,7 @@
   opacity: 1;
   z-index: 3;
 }
-.project-list .project .progress .status {
+.project-list .project.square-card .progress .status {
   display: block;
   position: absolute;
   width: 100px;
@@ -179,7 +179,7 @@
   text-align: right;
   padding-right: 10px;
 }
-.project-list .project .location {
+.project-list .project.square-card .location {
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
   -ms-border-radius: 0 0 4px 4px;
@@ -205,11 +205,11 @@
   z-index: 3;
   opacity: 1;
 }
-.project-list .project .location .flag {
+.project-list .project.square-card .location .flag {
   float: left;
   margin-right: 5px;
 }
-.project-list .project .pictos {
+.project-list .project.square-card .pictos {
   position: absolute;
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
@@ -222,23 +222,23 @@
   height: 100%;
   opacity: 1;
 }
-.project-list .project .pictos .picto-team {
+.project-list .project.square-card .pictos .picto-team {
   position: absolute;
   top: 105px;
   right: 25px;
 }
-.project-list .project .pictos .picto-editing {
+.project-list .project.square-card .pictos .picto-editing {
   position: absolute;
   top: 105px;
   right: 10px;
 }
-.project-list .project .pictos .picto-bestof {
+.project-list .project.square-card .pictos .picto-bestof {
   display: block;
   position: absolute;
   top: -2px;
   left: 5px;
 }
-.project-list .project .topic {
+.project-list .project.square-card .topic {
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -256,7 +256,7 @@
   height: 100%;
   overflow: hidden;
 }
-.project-list .project .topic img {
+.project-list .project.square-card .topic img {
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -265,7 +265,7 @@
   top: 0px;
   left: 60px;
 }
-.project-list .project .topic .description {
+.project-list .project.square-card .topic .description {
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
@@ -279,7 +279,7 @@
   opacity: 0;
   visibility: hidden;
 }
-.project-list .project .photo {
+.project-list .project.square-card .photo {
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -293,7 +293,7 @@
   width: 100%;
   height: 100%;
 }
-.project-list .project .photo img {
+.project-list .project.square-card .photo img {
   -webkit-border-radius: 4px 4px 0 0;
   -moz-border-radius: 4px 4px 0 0;
   -ms-border-radius: 4px 4px 0 0;
@@ -303,18 +303,18 @@
   height: 100%;
   margin-left: -50%;
 }
-.project-list .project:hover .summary {
+.project-list .project.square-card:hover .summary {
   height: 150px;
   background-color: rgba(10, 174, 206, 0.7);
   background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-dots.png);
   background-repeat: no-repeat, repeat;
   background-position: 100px 110px, 0 0;
 }
-.project-list .project:hover .summary .title {
+.project-list .project.square-card:hover .summary .title {
   visibility: hidden;
   opacity: 0;
 }
-.project-list .project:hover .summary .description {
+.project-list .project.square-card:hover .summary .description {
   position: absolute;
   top: 30px;
   padding: 10px;
@@ -325,32 +325,32 @@
   z-index: 7;
   opacity: 1;
 }
-.project-list .project:hover .summary:before {
+.project-list .project.square-card:hover .summary:before {
   visibility: visible;
   opacity: 1;
 }
-.project-list .project:hover .location {
+.project-list .project.square-card:hover .location {
   opacity: 0;
 }
-.project-list .project:hover .progress {
+.project-list .project.square-card:hover .progress {
   opacity: 0;
 }
-.project-list .project:hover .photo:after {
+.project-list .project.square-card:hover .photo:after {
   opacity: 0;
 }
-.project-list .project:hover .topic {
+.project-list .project.square-card:hover .topic {
   background-position: center -100px;
 }
-.project-list .project:hover .topic img {
+.project-list .project.square-card:hover .topic img {
   top: -100px;
   opacity: 0;
   visibility: hidden;
 }
-.project-list .project:hover .topic .description {
+.project-list .project.square-card:hover .topic .description {
   top: 0px;
   opacity: 1;
   visibility: visible;
 }
-.project-list .project:hover .pictos {
+.project-list .project.square-card:hover .pictos {
   opacity: 0;
 }
