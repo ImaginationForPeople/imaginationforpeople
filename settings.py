@@ -265,6 +265,7 @@ INSTALLED_APPS = (
     
     'askbot',
     'askbot.deps.livesettings',
+    'longerusername',
     'keyedcache',
     'djcelery',
     'djkombu',
@@ -466,7 +467,7 @@ ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
 RECAPTCHA_USE_SSL = True
 
-ASKBOT_EXTRA_SKINS_DIR = os.path.join(PROJECT_PATH, 'apps/forum/templates/')
+ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 
 #Celery Settings
 BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"

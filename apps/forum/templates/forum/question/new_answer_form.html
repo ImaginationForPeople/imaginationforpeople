@@ -1,6 +1,5 @@
 <form
         id="fmanswer"
-        {% if user == question.author %}style="display:none"{% endif %}
         action="{% url answer question.id %}"
         method="post"
         >{% csrf_token %}
