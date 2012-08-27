@@ -10,6 +10,8 @@ believe in imagination for the common good.
 This software is the technical platform of the IP project. You can
 find it at http://imaginationforpeople.org
 
+You can find the full documentation at: http://i4p.readthedocs.org/en/develop/
+
 .. image:: https://secure.travis-ci.org/ImaginationForPeople/imaginationforpeople.png?branch=master
    :alt: Build Status
    :target: http://travis-ci.org/ImaginationForPeople/imaginationforpeople
