@@ -116,8 +116,6 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-
-
     'honeypot.middleware.HoneypotMiddleware',
 
     'cms.middleware.page.CurrentPageMiddleware',
@@ -482,7 +480,10 @@ ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 
 #Celery Settings
 BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"
-CELERY_ALWAYS_EAGER = True
+#If CELERY_ALWAYS_EAGER is True, all tasks will be executed locally by blocking until the task returns. 
+#tasks will be executed locally instead of being sent to the queue.
+CELERY_ALWAYS_EAGER = DEBUG
+
 
 import djcelery
 djcelery.setup_loader()
