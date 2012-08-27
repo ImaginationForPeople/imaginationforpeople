@@ -13,10 +13,10 @@ it as long as you give your enhancements back.
 
 Project sheets
 ==============
-Add new project or edit a project easily, adding answers to questions, project status, photos, videos, references, place, team members.
-Admin project sheets : edit questions, categories, best-of or completed projects.
-Comment on a project and share project on facebook or twitter.
-RSS and email alert including new project sheet and modifications.
+* Add new project or edit a project easily, adding answers to questions, project status, photos, videos, references, place, team members.
+* Admin project sheets : edit questions, categories, best-of or completed projects.
+* Comment on a project and share project on facebook or twitter.
+* RSS and email alert including new project sheet and modifications.
 
 Community
 =========
