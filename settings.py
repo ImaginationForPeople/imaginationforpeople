@@ -470,13 +470,13 @@ CMS_SEO_FIELDS = True
 
 APPEND_SLASH = True
 
+RECAPTCHA_USE_SSL = True
+
 ## Askbot
 ASKBOT_URL = 'forum/' 
 ASKBOT_STARTUP_CHECK = False
 ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
-RECAPTCHA_USE_SSL = True
-
 ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 
 #Celery Settings
