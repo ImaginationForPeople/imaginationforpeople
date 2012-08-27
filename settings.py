@@ -78,8 +78,9 @@ SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
 # Cache
 CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache' #DummyCache does not work with livesettings
+CACHE_PREFIX ='imaginationforpeople'
+
 CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
-CACHE_PREFIX ='askbot'
 CACHE_TIMEOUT = 6000
     
 CACHES = {
