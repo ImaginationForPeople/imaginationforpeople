@@ -21,12 +21,12 @@ from django.contrib.sites.models import Site
 from django.core.mail import mail_managers, send_mail
 from django.core.urlresolvers import reverse
 from django.db import models
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
-from askbot.models.profile import AskbotBaseProfile, make_admin_if_first_user, add_missing_subscriptions
+from askbot.models.profile import AskbotBaseProfile, add_missing_subscriptions
 from django_countries import CountryField
 from social_auth.signals import socialauth_registered
 from userena.models import UserenaLanguageBaseProfile
@@ -68,9 +68,8 @@ class I4pProfile(UserenaLanguageBaseProfile, AskbotBaseProfile):
     def get_absolute_url(self):
         return ('userena_profile_detail', [self.user.username])
 
-pre_save.connect(make_admin_if_first_user, sender=I4pProfile)
 post_save.connect(add_missing_subscriptions, sender=I4pProfile)
-    
+
 @receiver(post_save, sender=I4pProfile, dispatch_uid='set-registration-site-on-profile')
 def set_registration_site_on_profile(sender, instance, created, **kwargs):
     if created:

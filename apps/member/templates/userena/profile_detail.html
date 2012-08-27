@@ -1,13 +1,10 @@
 {% extends "userena/profile_base.html" %}
-{% load i18n extra_tags %}
+{% load i18n %}
 
 {% block meta_desc %}{% endblock %}
 {% block title %}{% blocktrans with profile.user.username as username %}{{ username }}{% endblocktrans %} | Imagination for People{% endblock %}
 
- {% block extra_head %}
- {% include_jinja "meta/html_head_stylesheets.html" request %}
- {% include_jinja "meta/html_head_javascript.html" request %}
- {% endblock %}
+
 
 {% block profile_content %}
 	
@@ -18,76 +15,49 @@
             <p>{% trans '<i>This member has no description...</i>' %}</p>
           {% endif %}                    
 	</div>
-	<div class="clear"></div>
-    
-    <div id="profile_menu" class="tabBar tabBar-profile"><!-- from askbot template -->
-        <div class="tabsC">
-        <a href="#projectsheets_tab">{% trans 'project sheet'%}</a>
-        <a href="#forum_tab">{% trans 'forum' %}</a>
-        </div>
-    </div>
-    <div class="clear"></div>
-    
-    <div id= "projectsheets_tab">
-    	<div id="profile_projects">                
-    	  <div class="separator">
-    	    <h2>
-    	      {% if user.username == profile.user.username %}
-                    {% trans 'My projects' %}
-                  {% else %}
-                    {% trans 'Her/His projects' %}
-                  {% endif %}
-    	    </h2>
-    	  </div>
-    	  
-    	  {% for project_translation in project_translation_list %}	  
-                <div class="colonne grid_6">
-    	      {% include "project_sheet/project_complete_card.html" %}			
-    	    </div>
-    	  {% empty %}
-    	  {% trans "This user does not have any project yet." %}
-              {% endfor %}
-    	  
-    	</div>
-    	
-    	<div id="profile_projects">                
-    	  <div class="separator">
-    	    <h2>
-    	    	{% if user.username == profile.user.username %}
-                    {% trans 'My contributions' %}
-                  {% else %}
-                    {% trans 'Her/His contributions' %}
-                  {% endif %}
-    	    </h2>
-    	  </div>
-    	    
-    	  {% for project_translation in project_contrib_list %}   
-                <div class="colonne grid_6">
-    	      {% include "project_sheet/project_complete_card.html" %}          
-    	    </div>
-    	  {% empty %}
-    	  {% trans "No contributions yet." %}
-              {% endfor %}
-                
-        </div>
-        <div class="clear"></div>
-    </div>
-    <div class="clear"></div>
-                  
-    <div id="forum_tab">                
-        {{askbot_profile|safe}}
-    </div>
-{% endblock %}
+	
+	<div id="profile_projects">                
+	  <div class="separator">
+	    <h2>
+	      {% if user.username == profile.user.username %}
+                {% trans 'My projects' %}
+              {% else %}
+                {% trans 'Her/His projects' %}
+              {% endif %}
+	    </h2>
+	  </div>
+	  
+	  {% for project_translation in project_translation_list %}	  
+            <div class="colonne grid_6">
+	      {% include "project_sheet/project_complete_card.html" %}			
+	    </div>
+	  {% empty %}
+	  {% trans "This user does not have any project yet." %}
+          {% endfor %}
+	  
+	</div>
 
-{% block inline_js %}
-{{ block.super }}
-{% include_jinja "meta/bottom_scripts.html" request %}
-{% with view_user=profile.user%}
-{% include_jinja "user_profile/user_profile_scripts.html" request%}
-{%endwith %}
-<script type="text/javascript">
-    for (url_name in askbot['urls']){
-        askbot['urls'][url_name] = cleanUrl(askbot['urls'][url_name]);
-    }
-</script>
+	<div class="clear"></div>
+	
+	<div id="profile_projects">                
+	  <div class="separator">
+	    <h2>
+	    	{% if user.username == profile.user.username %}
+                {% trans 'My contributions' %}
+              {% else %}
+                {% trans 'Her/His contributions' %}
+              {% endif %}
+	    </h2>
+	  </div>
+	    
+	  {% for project_translation in project_contrib_list %}   
+            <div class="colonne grid_6">
+	      {% include "project_sheet/project_complete_card.html" %}          
+	    </div>
+	  {% empty %}
+	  {% trans "No contributions yet." %}
+          {% endfor %}
+            
+	  </div>
+
 {% endblock %}
