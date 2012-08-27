@@ -260,6 +260,14 @@ INSTALLED_APPS = (
 
     'cmsplugin_facebook',
 
+    'askbot',
+    'askbot.deps.livesettings',
+    'longerusername',
+    'keyedcache',
+    'djcelery',
+    'djkombu',
+    'followit',
+
     # Internal Apps
     'apps.forum',
     'apps.i4p_base',
@@ -268,13 +276,6 @@ INSTALLED_APPS = (
     'apps.partner',
     'apps.workgroup',
     
-    'askbot',
-    'askbot.deps.livesettings',
-    'longerusername',
-    'keyedcache',
-    'djcelery',
-    'djkombu',
-    'followit',
 )
 
 # django-ajax_select
