@@ -17,7 +17,6 @@ ADMINS = (
     ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
-    ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
 )
 
 MANAGERS = (
@@ -117,6 +116,8 @@ MIDDLEWARE_CLASSES = (
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
+
+    'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
 )
 
 if DEBUG:
@@ -182,7 +183,8 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
-#    'i18nurls',
+
+    'raven.contrib.django',
 
     'tinymce',
     'tagging',
@@ -397,11 +399,6 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.cssmin.CSSMinFilter'
     )
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
-
 ### COMPRESOR
 COMPRESS_ROOT = STATIC_ROOT
 COMPRESS_URL = STATIC_URL
@@ -442,3 +439,67 @@ CMS_SOFTROOT = True
 APPEND_SLASH = True
 
 NANI_TABLE_NAME_SEPARATOR = ''
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry'],
+    },
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    
+    'handlers': {
+ 	# Uncomment this if you don't use sentry
+        #'mail_admins': {
+        #    'level': 'ERROR',
+        #    'filters': ['require_debug_false'],
+        #    'class': 'django.utils.log.AdminEmailHandler'
+        #},
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.handlers.SentryHandler',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        #'django.request': {
+        #    'handlers': ['mail_admins'],
+        #    'level': 'ERROR',
+        #    'propagate': True,
+        #},
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
+}

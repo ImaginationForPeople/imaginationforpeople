@@ -4,7 +4,6 @@ south==0.7.5
 
 django-extensions==0.6
 
--e git+https://github.com/brocaar/django-i18nurls.git@1dbe0c47f8ce12657b346442a3533598e9e32cb3#egg=django-i18nurls
 django-countries==1.0.5
 
 django-tagging==0.3.1
@@ -13,7 +12,9 @@ django-autoslug==1.4.1
 # Django cms 2.3rc2.post0
 -e git+https://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
 
--e git+https://github.com/CommOnEcoute/cmsplugin_facebook.git@8416f8506eb77ed9954dc12aa1f4b6eebe68d39c#egg=cmsplugin-facebook
+#Migration failed on recent postgres.  Use our own branch in the meantime
+#-e git+https://github.com/CommOnEcoute/cmsplugin_facebook.git@8416f8506eb77ed9954dc12aa1f4b6eebe68d39c#egg=cmsplugin-facebook
+-e git://github.com/ImaginationForPeople/cmsplugin_facebook.git@2f8c199fd1884b8ebc7eb7fffdb7a93f274af73e#egg=cmsplugin-facebook
 django-imagekit==0.3.6
 Pillow==1.7.4
 
@@ -55,14 +56,16 @@ django-social-auth==0.6.9
 -e git+https://github.com/jorgebastida/django-dajaxice.git@d5a70654fbcd7241fbdfaf5a89fea2746cd25369#egg=django-dajaxice
 -e git+https://github.com/jorgebastida/django-dajax.git@510a6c3e267ce7b2a5423a7e8bcca191956247ed#egg=django-dajax
 
--e git+https://github.com/SpreadBand/django-backcap.git@79c6494d4d05587f4699947987b12d4a9322efdc#egg=django-backcap
+-e git+https://github.com/SpreadBand/django-backcap.git@b5cda24429cc3a9cfc3d58c4c7da12433dfc486d#egg=django-backcap
 
 django-reversion==1.6.1
 
 -e git+https://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
 
+# For Sentry
+raven==2.0.3
 
--e git+https://github.com/ojii/django-nani.git#egg=django-nani
+-e git+https://github.com/ojii/django-nani.git@bb47153e05b46b775658887f214a486412fe25a5#egg=django-nani
 
 feedparser==5.0.1
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils

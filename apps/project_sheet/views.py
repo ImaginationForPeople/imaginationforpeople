@@ -24,7 +24,7 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-import datetime
+from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -96,7 +96,15 @@ def project_sheet_list(request):
         else:
             # By default, display the project listing using the following order: 
             # best_of, random().
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
+            # We need the ordering to be stable within a user session session.
+            # As a hashing function, use a hopefully portable pure SQL
+            # implementation (using only basic sql operators) of 
+            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
+            # Here the number of buckets (m) is determined by the day of the
+            # year
+            day_of_year = int(datetime.now().strftime('%j'))
+            pseudo_random_field = "(project_id * (project_id + 3)) %% {0:d}".format(day_of_year)
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
@@ -626,8 +634,6 @@ def project_sheet_history(request, project_slug):
     """
     Show the history of a project member
     """
-    # FIXME Remove this asap
-    raise Http404
     language_code = translation.get_language()
 
     # get the project translation and its base
@@ -681,7 +687,7 @@ class ProjectRecentChangesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
 
-        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=30)
+        twenty_days_ago = datetime.now() - timedelta(days=30)
 
         project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
         parent_project_ct = ContentType.objects.get_for_model(I4pProject)

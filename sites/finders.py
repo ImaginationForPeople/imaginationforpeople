@@ -27,7 +27,7 @@ class SiteDirectoriesFinder(BaseFinder):
 
         # Look up sites from the database
         if sites is None:
-            sites = [site.folder_name for site in Site.objects.all() if site.folder_name is not None]
+            sites = [site.folder_name for site in Site.objects.all() if site.folder_name not in (None, '')]
 
         for site in sites:
             site_storage = self.storage_class(site)
