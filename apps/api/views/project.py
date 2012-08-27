@@ -56,9 +56,16 @@ class I4pProjectTranslationHandler(BaseHandler):
                   ))
               )),
             )
-            # TODO: "pagination" in raw, change it to django standard 
-            projects = I4pProject.objects.all()[page*10:page*10+10]
-            list_projects = get_project_translations_from_parents(projects, language_code, "en", True)
+            best_projects = I4pProject.objects.filter(best_of=True)
+            localized_best_projects = get_project_translations_from_parents(best_projects, language_code, "en", True)
+            
+            latest_projects = I4pProject.objects.order_by('-created')[:10]
+            localized_latest_projects = get_project_translations_from_parents(latest_projects, language_code, "en", True)
+            
+            list_projects = {
+                "best_projects": localized_best_projects,
+                "latest_projects": localized_latest_projects
+            }
             return list_projects
         else:
             self.__class__.project = I4pProjectTranslation.objects.get(pk=project_id)
