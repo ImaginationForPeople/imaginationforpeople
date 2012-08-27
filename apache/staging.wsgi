@@ -16,6 +16,3 @@ import django.core.handlers.wsgi
 from dozer import Dozer
 application = django.core.handlers.wsgi.WSGIHandler()
 application = Dozer(application)
-
-import djcelery
-djcelery.setup_loader()
