@@ -64,16 +64,16 @@ Open to the world
 Multilingual to the core
 ========================
 A multilingual platform (actually 8 languages activated).
-* Everyone can help translate the global interface using Transifex that allows you to easily organize site translations.
-* Each project can be translated easily, using collaborative editing project interface.
-* Each CMS page or project question is multilingual
+ * Everyone can help translate the global interface using Transifex that allows you to easily organize site translations.
+ * Each project can be translated easily, using collaborative editing project interface.
+ * Each CMS page or project question is multilingual
 
 Everything is multisite
 =======================
 I4P is multisite. 
-* Mutiple domain names can use the same platform, each one with his own projects, members, menu, pages. 
-* Each domain name can have his own design using templates.
-* Maintenance is easy as they're is only one webplatform to maintain and host.
+ * Mutiple domain names can use the same platform, each one with his own projects, members, menu, pages. 
+ * Each domain name can have his own design using templates.
+ * Maintenance is easy as they're is only one webplatform to maintain and host.
 
 Pluggable
 =========
