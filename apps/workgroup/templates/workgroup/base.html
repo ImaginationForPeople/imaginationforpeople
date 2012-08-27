@@ -11,6 +11,7 @@
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup.css" />
+  {% render_block "css" %}
   {% endcompress %}
 {% endblock %}
 

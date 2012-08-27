@@ -18,30 +18,34 @@
 """
 Example on how to use tests for TDD
 """
+from django.contrib.sites.models import Site
 from django.db import DatabaseError
 from django.http import QueryDict
 from django.test import TestCase
 
-from apps.project_sheet.models import I4pProject, I4pProjectTranslation
+from apps.project_sheet.models import I4pProject, I4pProjectTranslation, Topic, SiteTopic
 
 from .utils import create_parent_project, get_project_translation_by_slug
 from .utils import get_project_translation_from_parent, get_project_translations_from_parents
 from .utils import create_project_translation, get_or_create_project_translation_by_slug
 from .utils import get_or_create_project_translation_from_parent
-from .filters import ThemesFilterForm, FilterSet, WithMembersFilterForm
+from .filters import FilterSet, WithMembersFilterForm
 
 
 class TestUtils(TestCase):
     fixtures = ["test_pjsheet"]
 
     def setUp(self):
-        pass
+        # Create a site topic
+        site = Site.objects.get_current()
+        topic = Topic.objects.create(untranslated_name='my topic', label='my topic')
+        SiteTopic.objects.create(topic=topic, site=site)
 
     def tearDown(self):
         pass
 
     def test_create_parent_project(self):
-        project = create_parent_project()
+        project = create_parent_project(topic_slug='my-topic')
         self.assertTrue(project.pk > 0)
 
 
@@ -149,8 +153,16 @@ class TestUtils(TestCase):
                                                              fallback_language=None,
                                                              fallback_any=False)
 
-
-        # Get translations in language 'kk'. This language does not exist.
+        # Try to get translations in language 'kk', that does not
+        # exist, but on an empty queryset. Shouldn't raise an error.
+        empty = get_project_translations_from_parents(parents_qs=I4pProject.objects.none(),
+                                                      language_code='kk',
+                                                      fallback_language=None,
+                                                      fallback_any=False)
+        self.assertEqual(len(empty), 0)
+        
+        # Try to get translations in language 'kk' of a non empty
+        # queryset. This language does not exist.
         self.assertRaises(I4pProjectTranslation.DoesNotExist,
                           get_project_translations_from_parents,
                           parents_qs=projects,
@@ -163,7 +175,7 @@ class TestUtils(TestCase):
         self.assertRaises(I4pProjectTranslation.DoesNotExist,
                           get_project_translations_from_parents,
                           parents_qs=projects,
-                          language_code='kk',
+                          language_code='zh',
                           fallback_language=None,
                           fallback_any=False)
 
@@ -183,33 +195,6 @@ class TestUtils(TestCase):
 
 
     def test_create_project_translation(self):
-        ## Tests with no parent project
-
-        # Create a new project sheet in french with a slug
-        project_translation = create_project_translation(language_code='fr',
-                                                         parent_project=None,
-                                                         default_title='new-project')
-
-        self.assertEqual(project_translation.slug, 'new-project')
-        self.assertTrue(project_translation.pk > 0)
-
-        # Try to create it again, the slug and model should be different
-        second_project_translation = create_project_translation(language_code='fr',
-                                                                parent_project=None,
-                                                                default_title='new-project')
-
-        self.assertTrue(project_translation.pk > 0)
-        self.assertNotEqual(project_translation.slug, second_project_translation.slug)
-        self.assertEqual(second_project_translation.slug, 'new-project-2')
-
-        self.assertNotEqual(project_translation.pk, second_project_translation.pk)
-
-        # Create a project translation but with no given slug
-        project_translation = create_project_translation(language_code='fr',
-                                                         parent_project=None)
-
-        self.assertTrue(project_translation.pk > 0)
-
         ## Tests with parent project
         project_translation = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
                                                               language_code='fr')
@@ -242,7 +227,9 @@ class TestUtils(TestCase):
 
         # Request to get or create a translation that already exists.
         requested_translation = get_or_create_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
-                                                                          language_code='fr')
+                                                                          language_code='fr',
+                                                                          parent_project=project
+        )
 
         self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'fr']), 1)
         self.assertEqual(requested_translation, project_translation)
@@ -287,7 +274,7 @@ class TestUtils(TestCase):
         Deleting all translations should delete the parent project
         """
         # Create new project
-        project = create_parent_project()
+        project = create_parent_project(topic_slug='my-topic')
         self.assertEqual(project.translations.count(), 0)
         project_pk = project.pk
 

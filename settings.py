@@ -23,7 +23,6 @@ ADMINS = (
     ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
-    ('Vincent Charrier', 'vincentcharrier@imaginationforpeople.org'),
 )
 
 MANAGERS = (
@@ -96,24 +95,27 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    
     'dynamicsites.middleware.DynamicSitesMiddleware',
-
-    'linaro_django_pagination.middleware.PaginationMiddleware',
-
-    'reversion.middleware.RevisionMiddleware',
-
-    ## The order of these locale middleware classes matters
+     ## The order of these locale middleware classes matters
     # Language selection based on profile
     # URL based language selection (eg. from top panel)
     # We don't use django cms one, for compatibility reasons
     'django.middleware.locale.LocaleMiddleware',
+    # CommonMiddleware MUST come after LocaleMiddleware, otherwise, 
+    # url matching will not work properly
+    'django.middleware.common.CommonMiddleware',
     #'userena.middleware.UserenaLocaleMiddleware',
+    'linaro_django_pagination.middleware.PaginationMiddleware',
+
+    'reversion.middleware.RevisionMiddleware',
+
+
 
     'honeypot.middleware.HoneypotMiddleware',
 
@@ -128,8 +130,8 @@ MIDDLEWARE_CLASSES = (
     'askbot.middleware.cancel.CancelActionMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
 
-    
-    
+    'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
+
 )
 
 if DEBUG:
@@ -198,6 +200,8 @@ INSTALLED_APPS = (
     'nani',
     'honeypot',
 
+    'raven.contrib.django',
+
     'tinymce',
     'tagging',
     'imagekit',
@@ -239,6 +243,7 @@ INSTALLED_APPS = (
     'django.contrib.redirects',
 
     'emencia.django.newsletter',
+    'emencia.django.newsletter.cmsplugin_newsletter',    
     'cms',
     'mptt',
     'menus',
@@ -456,8 +461,12 @@ CMS_TEMPLATES = (
   ('pages/contrib.html', _('Contribution page')),
   ('pages/onemenu.html', _('One menu page')),
 )
+
 CMS_REDIRECTS = True
+CMS_HIDE_UNTRANSLATED = False
 CMS_SOFTROOT = True
+CMS_SEO_FIELDS = True
+
 APPEND_SLASH = True
 
 ## Askbot
@@ -481,32 +490,63 @@ NANI_TABLE_NAME_SEPARATOR = ''
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
+    
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+
+    'root': {
+        'level': 'WARNING',
+        'handlers': ['sentry'],
+    },
     'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
         'simple': {
-            'format': '%(levelname)s %(asctime)s %(message)s'
+            'format': '%(levelname)s %(message)s'
         },
     },
+    
     'handlers': {
-        'console':{
-            'level':'DEBUG',
-            'class':'logging.StreamHandler',
-            'formatter': 'simple'
+ 	# Uncomment this if you don't use sentry
+        #'mail_admins': {
+        #    'level': 'ERROR',
+        #    'filters': ['require_debug_false'],
+        #    'class': 'django.utils.log.AdminEmailHandler'
+        #},
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.contrib.django.handlers.SentryHandler',
         },
-        'mail_admins': {
-            'level': 'INFO',
-            'class': 'django.utils.log.AdminEmailHandler',
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
         }
     },
     'loggers': {
-        'debug': {
-            'handlers' : ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-        'django.request': {
-            'handlers': ['mail_admins'],
+        'django.db.backends': {
             'level': 'ERROR',
-            'propagate': True,
+            'handlers': ['console'],
+            'propagate': False,
         },
-    }
+        #'django.request': {
+        #    'handlers': ['mail_admins'],
+        #    'level': 'ERROR',
+        #    'propagate': True,
+        #},
+        'raven': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+        'sentry.errors': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+            'propagate': False,
+        },
+    },
 }

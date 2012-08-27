@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-07 14:21-0400\n"
+"POT-Creation-Date: 2012-08-20 11:48+0200\n"
 "PO-Revision-Date: 2012-05-19 18:32+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Russian (http://www.transifex.net/projects/p/"
@@ -18,6 +18,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: cms_plugins.py:33
+msgid "Projects for a tag"
+msgstr ""
 
 #: filters.py:79
 msgid "Themes contain"
@@ -35,155 +39,155 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: models.py:59 models.py:313
+#: models.py:61 models.py:315
 msgid "description"
 msgstr ""
 
-#: models.py:59
+#: models.py:61
 msgid "Insert your reference here (URL, books, etc)"
 msgstr ""
 
-#: models.py:73
+#: models.py:75
 msgid "Untranslated name"
 msgstr ""
 
-#: models.py:104
+#: models.py:106
 msgid "Concept"
 msgstr ""
 
-#: models.py:105
+#: models.py:107
 msgid "Starting"
 msgstr ""
 
-#: models.py:106
+#: models.py:108
 msgid "In development"
 msgstr ""
 
-#: models.py:107
+#: models.py:109
 msgid "Mature"
 msgstr ""
 
-#: models.py:109 models.py:314
+#: models.py:111 models.py:316
 msgid "author"
 msgstr ""
 
-#: models.py:113
+#: models.py:115
 msgid "members"
 msgstr ""
 
-#: models.py:118
+#: models.py:120
 msgid "best of"
 msgstr ""
 
-#: models.py:120 models.py:312
+#: models.py:122 models.py:314
 msgid "creation date"
 msgstr ""
 
-#: models.py:123
+#: models.py:125
 msgid "objectives"
 msgstr ""
 
-#: models.py:125
+#: models.py:127
 msgid "website"
 msgstr ""
 
-#: models.py:131 models.py:234
+#: models.py:133 models.py:236
 msgid "status"
 msgstr ""
 
-#: models.py:135
+#: models.py:137
 msgid "project leader information"
 msgstr ""
 
-#: models.py:139
+#: models.py:141
 msgid "location"
 msgstr ""
 
-#: models.py:145
+#: models.py:147
 msgid "topics"
 msgstr ""
 
-#: models.py:149
+#: models.py:151
 msgid "The sites that the project sheet is accessible at."
 msgstr ""
 
-#: models.py:150
+#: models.py:152
 msgid "sites"
 msgstr ""
 
-#: models.py:189
+#: models.py:191
 msgid "Weight"
 msgstr ""
 
-#: models.py:191 models.py:201
+#: models.py:193 models.py:203
 msgid "Content"
 msgstr ""
 
-#: models.py:216
+#: models.py:218
 msgid "In edition"
 msgstr ""
 
-#: models.py:217
+#: models.py:219
 msgid "Complete"
 msgstr ""
 
-#: models.py:224
+#: models.py:226
 msgid "language"
 msgstr ""
 
-#: models.py:228
+#: models.py:230
 msgid "title"
 msgstr ""
 
-#: models.py:229
+#: models.py:231
 msgid "My Project Title"
 msgstr ""
 
-#: models.py:240
+#: models.py:242
 msgid "one line description"
 msgstr ""
 
-#: models.py:244 templates/project_sheet/project_sheet.html:567
+#: models.py:246 templates/project_sheet/project_sheet.html:567
 msgid "One line description"
 msgstr ""
 
-#: models.py:247 templates/project_sheet/about_section.html:3
+#: models.py:249 templates/project_sheet/about_section.html:3
 msgid "about the project"
 msgstr ""
 
-#: models.py:248 templates/project_sheet/partners_section.html:20
+#: models.py:250 templates/project_sheet/partners_section.html:20
 msgid "who are the partners of this project"
 msgstr ""
 
-#: models.py:249
+#: models.py:251
 msgid "Help request"
 msgstr ""
 
-#: models.py:251
+#: models.py:253
 msgid "Themes of the project"
 msgstr ""
 
-#: models.py:315
+#: models.py:317
 msgid "source"
 msgstr ""
 
-#: models.py:316
+#: models.py:318
 msgid "license"
 msgstr ""
 
-#: models.py:344
+#: models.py:346
 msgid "role"
 msgstr ""
 
-#: models.py:349
+#: models.py:351
 msgid "comment"
 msgstr ""
 
-#: models.py:362
+#: models.py:364
 msgid "New project/translation added"
 msgstr ""
 
-#: models.py:368
+#: models.py:370
 msgid "A member has joined a project"
 msgstr ""
 
@@ -269,7 +273,7 @@ msgid "Latest 20 days changes"
 msgstr ""
 
 #: templates/project_sheet/all_recent_changes.html:27
-#: templates/project_sheet/project_list.html:68
+#: templates/project_sheet/project_list.html:73
 msgid "RSS Feed"
 msgstr ""
 
@@ -485,7 +489,7 @@ msgstr ""
 msgid "This field is blank. Don’t forget to complete it! "
 msgstr ""
 
-#: templates/project_sheet/project_complete_card.html:17
+#: templates/project_sheet/project_complete_card.html:18
 msgid "There is no description for this project"
 msgstr ""
 
@@ -498,22 +502,22 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:30
+#: templates/project_sheet/project_id_card.html:28
 #: templates/project_sheet/project_status.html:5
 msgid "associated team"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:33
+#: templates/project_sheet/project_id_card.html:31
 #: templates/project_sheet/project_status.html:8
 msgid "in progress"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:36
+#: templates/project_sheet/project_id_card.html:34
 #: templates/project_sheet/project_status.html:11
 msgid "popular"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:39
+#: templates/project_sheet/project_id_card.html:37
 #: templates/project_sheet/project_status.html:14
 msgid "bestof"
 msgstr ""
@@ -529,12 +533,16 @@ msgstr ""
 msgid "Find projects on "
 msgstr ""
 
-#: templates/project_sheet/project_list.html:71
-msgid "Last projects"
+#: templates/project_sheet/project_list.html:68
+msgid "Order by:"
 msgstr ""
 
-#: templates/project_sheet/project_list.html:72
-msgid "Last editions"
+#: templates/project_sheet/project_list.html:70
+msgid "Newest projects"
+msgstr ""
+
+#: templates/project_sheet/project_list.html:71
+msgid "Recent changes"
 msgstr ""
 
 #: templates/project_sheet/project_list_pagination.html:9

@@ -24,8 +24,10 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-import datetime
+from datetime import datetime
 
+from django.conf import settings
+from django.db import connection, transaction
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -52,6 +54,7 @@ from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
 from .utils import get_project_project_translation_recent_changes, fields_diff
+from .utils import get_project_translation_by_any_translation_slug
 
 
 def project_sheet_list(request):
@@ -95,7 +98,15 @@ def project_sheet_list(request):
         else:
             # By default, display the project listing using the following order: 
             # best_of, random().
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
+            # We need the ordering to be stable within a user session session.
+            # As a hashing function, use a hopefully portable pure SQL
+            # implementation (using only basic sql operators) of 
+            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
+            # Here the number of buckets (m) is determined by the day of the
+            # year
+            day_of_year = int(datetime.now().strftime('%j'))
+            pseudo_random_field = "(project_id * (project_id + 3)) %% {0:d}".format(day_of_year)
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
@@ -160,10 +171,15 @@ def project_sheet_show(request, slug, add_media=False):
 
     site = Site.objects.get_current()
         
-    project_translation = get_object_or_404(I4pProjectTranslation,
-                                            slug=slug,
-                                            language_code=language_code,
-                                            project__site=site)
+    try:
+        project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=slug,
+                                            prefered_language_code=language_code,
+                                            site=site)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    if project_translation.language_code != language_code:
+        return redirect(project_translation, permanent=False)
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,

@@ -40,11 +40,11 @@ Running
 To allow CSS (re)generation, use the following command while modifying
 CSSes::
 
-   compass watch media/
+   compass watch static/
 
 To run a one-time compilation, use::
 
-   compass compile media
+   compass compile static
 
 
 .. _Compass: http://compass-style.org/
