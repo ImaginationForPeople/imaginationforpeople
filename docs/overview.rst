@@ -23,13 +23,15 @@ Community
 
 Search Engine
 =========
- Find all type of information on the web platform :
+Find all type of information on the web platform :
+
  * Flters (best-of projects, tags, categories, project status) 
  * Search engine with complex features (Autocomplete, Faceting, Rich Content Extraction, Highlighting)
 
 Forum
 =====
- I4P enables focused discussions in the structured Question and Answer format :
+I4P enables focused discussions in the structured Question and Answer format :
+
  * All questions and answers are editable - so they can be improved. 
  * Comments under questions and answers allow free follow-up discussions.
  * Entire history of edits is preserved and can be seen at any time.
@@ -56,14 +58,16 @@ Open to the world
 
 Multilingual to the core
 ========================
- A multilingual platform (actually 8 languages activated).
+A multilingual platform (actually 8 languages activated).
+
  * Everyone can help translate the global interface using Transifex that allows you to easily organize site translations.
  * Each project can be translated easily, using collaborative editing project interface.
  * Each CMS page or project question is multilingual
 
 Everything is multisite
 =======================
- I4P is multisite. 
+I4P is multisite. 
+
  * Mutiple domain names can use the same platform, each one with his own projects, members, menu, pages. 
  * Each domain name can have his own design using templates.
  * Maintenance is easy as they're is only one webplatform to maintain and host.
