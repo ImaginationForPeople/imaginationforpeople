@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
     <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
     
-    <meta name="keywords" content="{% block meta_keywords %}Imagin:nation for people, i4p, social, innovation sociale{% endblock %}" /> 
+    <meta name="keywords" content="{% block meta_keywords %}Imagination for people, i4p, social, innovation sociale{% endblock %}" /> 
     <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
     <title>{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
@@ -23,6 +23,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/superfish_main_menu.css" />
     {% endcompress %}
 
     {% block style %}
@@ -44,6 +45,8 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
     
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
+    		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
     {% endcompress %}
 
     <!-- for i18n -->

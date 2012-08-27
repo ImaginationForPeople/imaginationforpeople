@@ -1,0 +1,51 @@
+{% load i18n %}
+ 
+ {% if workgroup.mailing_list %}
+      
+        
+      <h2>{% trans "Group subscribers" %} ({{ ml_member_list|add:ml_nonmember_list|length }})</h2>
+   
+      {% if not request.user.is_anonymous %}
+        {% if not request.user in ml_member_list %}
+	    <em>{% trans "You are not susbcribed to this Mailing List" %}</em>
+        {% else %}
+          <em>{% trans "You are susbcribed to this Mailing List" %}</em>
+         {% endif %}
+      {% endif %}
+
+      <br/><br />
+
+      {# Subscriber list #}
+      <div id="wg-ml-subscriber-list">
+	<ul>
+	  {% for member in ml_member_list %}
+	    <li><a href="{% url userena_profile_detail member.username %}"><img class="tipsed"  {% if request.user == member %}{% endif %} title="{{ member.first_name }} {{ member.last_name }}" src="{{ member.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+	  {% endfor %}
+	</ul>
+	{% with ml_nonmember_list|length as anonymous_count %}
+	  {% if anonymous_count > 0 %}
+	    <br />
+        <em>{% blocktrans with pluralize=anonymous_count|pluralize %}And {{ anonymous_count }} anonymous subscriber{{ pluralize }}{% endblocktrans %}</em>
+	  {% endif %}
+	{% endwith %}
+	{%  if user.is_superuser %}
+	<h2>{% trans "Group subscribers and non IP members mail (admin):" %}</h2>
+	
+	  {% for ml_member in ml_nonmember_list %}
+      <p>{{ ml_member.email }} <p>
+      {% endfor %}
+      <br /><br />
+      {% endif %}
+      
+      {%  if user.is_superuser %}
+      <h2>{% trans "Group subscribers and IP members mail (admin):" %}</h2>
+
+       
+      {% for ml_member in ml_member_list %}
+      <p>"{{ ml_member.first_name }}&nbsp;{{ ml_member.last_name }}" &#60;{{ ml_member.email }}&#62;</p>
+      {% endfor %}
+      {% endif %}
+      
+      </div>
+
+      {% endif %}
