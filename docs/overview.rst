@@ -52,8 +52,8 @@ Members of the workgroups or platform users will have access applications allowi
 Easy editorial content
 ======================
 * The Content Management System (CMS) allows you to create and manage simplified pages and manage templates to create pages adapted to your needs (Example : home page is completely modifiable).
-Advanced admin management system to give access by group or user for every website aspect.
-Automatic menu based on CMS pages.
+* Advanced admin management system to give access by group or user for every website aspect.
+* Automatic menu based on CMS pages.
 
 Open to the world
 =================
@@ -70,8 +70,10 @@ A multilingual platform (actually 8 languages activated).
 
 Everything is multisite
 =======================
-I4P is multisite. Mutiple domain names can use the same platform, each one with his own projects, members, menu, pages. Each domain name can have his own design using templates.
-Maintenance is easy as they're is only one webplatform to maintain and host.
+I4P is multisite. 
+* Mutiple domain names can use the same platform, each one with his own projects, members, menu, pages. 
+* Each domain name can have his own design using templates.
+* Maintenance is easy as they're is only one webplatform to maintain and host.
 
 Pluggable
 =========
