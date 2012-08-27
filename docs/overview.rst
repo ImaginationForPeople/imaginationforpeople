@@ -22,7 +22,7 @@ Community
 * Feedback system that everyone can monitor. Use feedback module to resolve all community problems or questions.
 
 Search Engine
-=========
+=============
 Find all type of information on the web platform :
 
  * Flters (best-of projects, tags, categories, project status) 
