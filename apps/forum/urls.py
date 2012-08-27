@@ -21,9 +21,6 @@ feeds = {
     'rss': RssLastestQuestionsFeed,
     'question':RssIndividualQuestionFeed
 }
-sitemaps = {
-    'questions': QuestionsSitemap
-}
 
 APP_PATH = os.path.dirname(__file__)
 urlpatterns = patterns('',
@@ -31,9 +28,7 @@ urlpatterns = patterns('',
     (r'^settings/', include('askbot.deps.livesettings.urls')),
     (r'^followit/', include('followit.urls')),
     (r'^cache/', include('keyedcache.urls')),
-    
-    
-    url(r'^sitemap.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}, name='sitemap'),
+
     url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('edit/')), views.writers.edit_answer, name='edit_answer'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('revisions/')), views.readers.revisions, kwargs = {'post_type': 'answer'}, name='answer_revisions'),
 
