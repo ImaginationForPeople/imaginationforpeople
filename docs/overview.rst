@@ -35,38 +35,38 @@ Find all type of information on the web platform :
 Forum
 =====
 I4P enables focused discussions in the structured Question and Answer format. 
- * All questions and answers are editable - so they can be improved. 
- * Comments under questions and answers allow free follow-up discussions.
- * Entire history of edits is preserved and can be seen at any time.
- * Reputation system and Voting enabled.
+* All questions and answers are editable - so they can be improved. 
+* Comments under questions and answers allow free follow-up discussions.
+* Entire history of edits is preserved and can be seen at any time.
+* Reputation system and Voting enabled.
 
 I4P also enables "call to action" system on project sheet, so that project team can ask for help and be supported by helpers at a start-up phase (concept / start-up / first growth) through different types of calls.
 
 Groups of Interests
 ===================
- * Integrated system that allows discussion groups via mailing lists (Mailman), see signups.
- * In 2013, I4P will provide tools and an online collaborative animated workgroup interface whose goal is to produce resources by several hundred people (methodologies, guides, FAQ’s, how to’s, etc.) or resolve shared social issues.
+* Integrated system that allows discussion groups via mailing lists (Mailman), see signups.
+* In 2013, I4P will provide tools and an online collaborative animated workgroup interface whose goal is to produce resources by several hundred people (methodologies, guides, FAQ’s, how to’s, etc.) or resolve shared social issues.
 These resources, project contributions or descriptions will be implemented thanks to an organizational methodology specifically structured in stages and with an orchestrator, administrator and, if needed, mapmaker. 
 Members of the workgroups or platform users will have access applications allowing them to co-write in real-time points of view, reports and collective summaries. Finally, the tool allows the created knowledge to be represented visually with Mindmaps, Visual Maps or standard mapping elements.
 
 Easy editorial content
 ======================
- * The Content Management System (CMS) allows you to create and manage simplified pages and manage templates to create pages adapted to your needs (Example : home page is completely modifiable).
+* The Content Management System (CMS) allows you to create and manage simplified pages and manage templates to create pages adapted to your needs (Example : home page is completely modifiable).
 Advanced admin management system to give access by group or user for every website aspect.
 Automatic menu based on CMS pages.
 
 Open to the world
 =================
- * Open API so people can search all I4P information (members, project sheets, groups)
- * Android application using API to search and list projects (V1). 
- * Project Sheet widget to share project on your own website.
+* Open API so people can search all I4P information (members, project sheets, groups)
+* Android application using API to search and list projects (V1). 
+* Project Sheet widget to share project on your own website.
 
 Multilingual to the core
 ========================
 A multilingual platform (actually 8 languages activated).
- * Everyone can help translate the global interface using Transifex that allows you to easily organize site translations.
- * Each project can be translated easily, using collaborative editing project interface.
- * Each CMS page or project question is multilingual
+* Everyone can help translate the global interface using Transifex that allows you to easily organize site translations.
+* Each project can be translated easily, using collaborative editing project interface.
+* Each CMS page or project question is multilingual
 
 Everything is multisite
 =======================
