@@ -13,7 +13,7 @@ Parameters for this block
 	<h2>{{ taglist_title }}</h2>
 	<ul>
 		{% for tag in taglist_tags %}
-		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }}</a>({{ tag.count }})</li>
+		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }} ({{ tag.count }})</a></li>
 		{% endfor %}
 	</ul>
 </div> <!-- #tags-related -->
