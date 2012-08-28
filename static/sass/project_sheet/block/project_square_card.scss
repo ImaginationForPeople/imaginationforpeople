@@ -59,7 +59,12 @@ $topic-sprite-dimensions: true;
 	.title {
 	    @include transition(all .5s ease);
 	    position: absolute;
-	    font-size: 1em;
+
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextBig;
+	    font-stretch: condensed;
+	    font-weight: bold;
+
 	    bottom: 60px;
 	    margin-left: 10px;
 	    margin-right: 10px;
@@ -74,6 +79,9 @@ $topic-sprite-dimensions: true;
 
 	.description {
 	    opacity: 0;
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextSmall;
+	    font-style: italic;
 	    visibility: hidden;
 	    height: 50px;
 	    overflow: hidden;
@@ -84,7 +92,11 @@ $topic-sprite-dimensions: true;
 	    position: absolute;
 	    content: attr(data-action-1);
 	    text-transform: uppercase;
+
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextNormal;
 	    font-weight: bold;
+
 	    text-decoration: none;
 	    visibility: hidden;
 	    top: 105px;
@@ -98,6 +110,8 @@ $topic-sprite-dimensions: true;
 
     .progress {
 	@include transition(all .5s ease);
+	font-family: $fontOpenSans;
+	font-size: $sizeTextTiny;
 	position: absolute;
 	top: 90px;
 	left: 0;
@@ -117,7 +131,6 @@ $topic-sprite-dimensions: true;
 	    top: 15px;
 	    left: 5px;
 	    font-style: italic;
-	    font-size: 80%;
 	    background-size: 100px 60px; // resize progressbar icon
 	    text-align: right;
 	    padding-right: 10px;
@@ -130,7 +143,9 @@ $topic-sprite-dimensions: true;
 	@include transition(all .5s ease);
 	position: absolute;
 	top: 125px;
-	font-size: 80%;
+	color: white;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextTiny;
 	width: 100%;
 	height: 25px;
 	background: black;
@@ -204,6 +219,8 @@ $topic-sprite-dimensions: true;
 	    top: -20px;
 	    padding: 10px;
 	    text-align: center;
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextTiny;
 	    font-weight: bold;
 	    color: white;
 	    opacity: 0;
@@ -253,7 +270,6 @@ $topic-sprite-dimensions: true;
 		padding: 10px;
 		visibility: visible;
 		text-decoration: none;
-		font-style: normal;
 		color: white;
 		z-index: 7;
 		opacity: 1;
