@@ -77,16 +77,22 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
 # Cache
-CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache' #DummyCache does not work with livesettings
 CACHE_PREFIX ='imaginationforpeople'
 
-CACHE_MIDDLEWARE_ANONYMOUS_ONLY = True
-CACHE_TIMEOUT = 6000
-    
+# Cache
+if DEBUG:
+    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
+else:
+    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
 CACHES = {
     'default': {
         'BACKEND': CACHE_BACKEND,
     },
+    'askbot': {
+        #XXX: DO NOT CHANGE THIS SETTING
+       'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache',
+    }
+          
 }
 
 # List of callables that know how to import templates from various sources.
