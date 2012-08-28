@@ -7,6 +7,7 @@ css_dir = "compiled_sass"
 sass_dir = "sass"
 images_dir = "images"
 javascripts_dir = "js"
+fonts_dir = "fonts"
 
 generated_images_dir = "compiled_images"
 sprite_load_path = "sprites"
