@@ -54,8 +54,8 @@ Parameters for this block
 
 	{% if project_translation.project.topics.all.0 %}
 	<!-- FIXME: replace with an elegant CSS theme instead of an hardcoded image -->
-	<div class="topic topic-{{ project_translation.project.topics.all.0.topic.slug }}">
-		<img src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-mini.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
+	<div class="topic">
+		<div class="illustration topic-{{ project_translation.project.topics.all.0.topic.slug }}-small" title="{{ project_translation.project.topics.all.0.topic.label }}"></div>
 		<p class="description">{{ project_translation.project.topics.all.0.topic.label }}</p>
 	</div>
 	{% endif %}
