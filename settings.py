@@ -5,7 +5,9 @@ import os
 import re
 import sys
 import site
+
 import askbot
+import djcelery
 
 from django.utils.translation import ugettext_lazy as _
 
@@ -484,14 +486,13 @@ ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
 ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 
-#Celery Settings
+## Celery Settings
+# TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge
 BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"
-#If CELERY_ALWAYS_EAGER is True, all tasks will be executed locally by blocking until the task returns. 
-#tasks will be executed locally instead of being sent to the queue.
+# If this is True, all tasks will be executed locally by blocking until the task returns. 
+# tasks will be executed locally instead of being sent to the queue.
 CELERY_ALWAYS_EAGER = DEBUG
 
-
-import djcelery
 djcelery.setup_loader()
 
 NANI_TABLE_NAME_SEPARATOR = ''
