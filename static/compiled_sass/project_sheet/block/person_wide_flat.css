@@ -1,6 +1,20 @@
 /**
  *  Mixins
  */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
 /**
  * Old Colors (obsolete, please use new color naming scheme instead)
  */
@@ -1527,6 +1541,20 @@
   margin-bottom: 12px;
   /**
    *  Mixins
+   */
+  /***
+   * IMPORTANT : CONSTANTS NAMING SCHEME
+   *
+   * The naming scheme is simple, your constants name must follow this rule :
+   * "<typename>[<Targetname>]<Attributename>"
+   * 
+   * - <typename> could be "color", "size", "font", etc.
+   *
+   * - <targetname> is optional and could be any targetable CSS objects or
+   *   properties like "text", "border", etc. 
+   *
+   * - <attributename> is a meaningful description of your constant, like "Blue",
+   *   "LightBlue", "Small", "Huge", etc.
    */
   /**
    * Old Colors (obsolete, please use new color naming scheme instead)
