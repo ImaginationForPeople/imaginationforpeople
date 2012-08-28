@@ -1,4 +1,5 @@
 @import "mixin.scss";
+@import "constants.scss";
 
 
 /*
@@ -98,7 +99,7 @@ Version: 1.0
             top:4px;
             
             a {
-                color: $blue;
+                color: $colorLightBlue;
             }
             
             a:hover {
@@ -255,7 +256,7 @@ Version: 1.0
             visibility:visible !important;
             font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
             font-size:10px;
-            color:$blue;
+            color: $colorLightBlue;
         }
         
         input[type=text], input[type=password]{
@@ -304,7 +305,7 @@ Version: 1.0
         .password_lost{
             font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
             font-size:10px;
-            color:$blue;
+            color: $colorLightBlue;
             margin-left:22px;
         }
         
