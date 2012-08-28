@@ -14,6 +14,7 @@ $flag-sprite-dimensions: true;
     @include border-radius($sizeRadiusSmall);
     @include border-box;
     border: 1px solid darken($colorLightGrey,2%);
+    position: relative;
 
     padding: 5px;
     background-color: $colorLightGrey;
@@ -26,15 +27,7 @@ $flag-sprite-dimensions: true;
 	margin-bottom: 5px;
     }
 
-    .seemore {
-	display: block;
-	color: black;
-	margin-bottom: 10px;
-
-	&:after {
-	    content: " >";
-	}
-    }
+    @import "../../common/block/seemore.scss";
     
     ul {
 	list-style: none;

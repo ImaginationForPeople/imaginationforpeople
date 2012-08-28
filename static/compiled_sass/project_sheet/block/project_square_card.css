@@ -46,13 +46,13 @@
 }
 
 .picto-editing {
-  background-position: 0 -15px;
+  background-position: 0 0;
   height: 15px;
   width: 15px;
 }
 
 .picto-popular {
-  background-position: 0 0;
+  background-position: 0 -15px;
   height: 15px;
   width: 15px;
 }
@@ -63,27 +63,57 @@
   width: 15px;
 }
 
+.topic-sprite, .topic-social-innovation-big, .topic-social-innovation-small {
+  background: url('../../../compiled_images/project/topic.png') no-repeat;
+}
+
+.topic-social-innovation-big {
+  background-position: 0 0;
+  height: 60px;
+  width: 60px;
+}
+
+.topic-social-innovation-small {
+  background-position: 0 -60px;
+  height: 20px;
+  width: 20px;
+}
+
 .project-list.square-card {
   position: relative;
   margin-bottom: 20px;
   padding: 0;
+  padding-top: 5px;
+  /**
+   * Colors
+   */
+  /**
+   *  Font sizes
+   */
+  /**
+   *  Mixins
+   */
 }
 .project-list.square-card h2 {
+  margin-top: 5px;
   text-transform: uppercase;
   font-size: 18px;
 }
 .project-list.square-card .seemore {
   position: absolute;
-  line-height: 110%;
+  display: block;
+  color: black;
+  right: 5px;
   top: 0;
   right: 0;
-  color: black;
   text-decoration: none;
+  margin-top: 10px;
+  margin-right: 5px;
 }
 .project-list.square-card .seemore:after {
-  font-weight: bold;
   margin-left: 5px;
   content: ">";
+  font-weight: bold;
 }
 
 .project.square-card {
@@ -259,14 +289,14 @@
   height: 100%;
   overflow: hidden;
 }
-.project.square-card .topic img {
+.project.square-card .topic .illustration {
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   position: absolute;
-  top: 0px;
-  left: 60px;
+  top: 2px;
+  left: 65px;
 }
 .project.square-card .topic .description {
   transition: all 0.5s ease;
@@ -344,7 +374,7 @@
 .project.square-card:hover .topic {
   background-position: center -100px;
 }
-.project.square-card:hover .topic img {
+.project.square-card:hover .topic .illustration {
   top: -100px;
   opacity: 0;
   visibility: hidden;

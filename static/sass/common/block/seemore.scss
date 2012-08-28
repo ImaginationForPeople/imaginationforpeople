@@ -1,0 +1,20 @@
+@import "../../mixin.scss";
+@import "../../constants.scss";
+
+.seemore {
+    position: absolute;
+    display: block;
+    color: black;
+    right: 5px;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    margin-top: 10px;
+    margin-right: 5px;
+
+    &:after {
+	margin-left: 5px;
+	content: ">";
+	font-weight: bold;
+    }
+}
