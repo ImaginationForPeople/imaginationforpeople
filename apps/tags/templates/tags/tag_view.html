@@ -82,14 +82,8 @@
     <div class="container_18"> <!-- .container_18 -->
 
 	<div class="grid_12 alpha" >
-	    <div id="tags-related" class="clearfix">
-		<h2>Related tags</h2>
-		<ul>
-		    {% for tag in related_tags %}
-		    <li><a href="{% url tags:tag-view tag %}">{{ tag.name }}</a>({{ tag.count }})</li>
-		    {% endfor %}
-		</ul>
-	    </div> <!-- #tags-related -->
+
+	    {% include "tags/block/related_tags.html" %}
 
 	    <div class="project-list square-card clearfix">
 		<h2>Mature projects</h2>
