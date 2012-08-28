@@ -309,9 +309,10 @@ hr.shaded-separator {
 }
 
 .tag-follow-button {
-    display: block;
     @include background-vertical-gradient(#4abae9, #3990b4);
     @include border-radius($sizeRadiusSmall);
+    @include transition( all .5s ease );
+    display: block;
     border: 4px solid #c7e4ea;
     color: white;
     padding: 1em;
@@ -321,9 +322,9 @@ hr.shaded-separator {
     text-transform: uppercase;
 
     &:hover {
-	@include transition( all .5s ease );
-	@include background-vertical-gradient(darken(#4abae9,5%), lighten(#3990b4,5%));
+	@include background-vertical-gradient(darken(#4abae9,5%), darken(#3990b4,5%));
 	border: 4px solid darken(#c7e4ea,5%);
+	text-decoration: none;
     }
 }
 
