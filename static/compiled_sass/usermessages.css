@@ -1,308 +1,93 @@
-/**
- * Colors
- */
-/**
- *  Font sizes
- */
-/**
- *  Mixins
- */
-/*------------ GENERALS ------------*/
-.categories {
-  display: none;
-  visibility: hidden;
-}
+/*
+Syntax error: Undefined variable: "$blue".
+        on line 14 of /home/warbrain/src/_Gnuside/i4p/imaginationforpeople/static/sass/usermessages.scss
 
-.content a {
-  color: #04add1;
-}
-
-/*------------ MESSAGES ------------*/
-.usermessages_content h1.title {
-  color: white;
-  margin-top: 0px;
-  text-transform: none;
-  font-size: 17px;
-  text-align: center;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  -webkit-box-shadow: 0px 0px 4px #181818;
-  -moz-box-shadow: 0px 0px 4px #181818;
-  box-shadow: 0px 0px 4px #181818;
-  behavior: url(static/js/pie/PIE.htc);
-  background-image: url("../images/usermessages/my-messages-title.jpg");
-  background-color: transparent !important;
-  background-repeat: no-repeat;
-  padding-right: 35px;
-  height: 22px;
-}
-.usermessages_content h1.title:hover {
-  text-decoration: underline;
-}
-.usermessages_content .title_bar {
-  display: block;
-  background-color: #686868;
-  padding-right: 10px;
-  width: 100%;
-  height: 32px;
-  margin-bottom: 20px;
-  -webkit-box-shadow: 0px 0px 4px #181818;
-  -moz-box-shadow: 0px 0px 4px #181818;
-  box-shadow: 0px 0px 4px #181818;
-  behavior: url(static/js/pie/PIE.htc);
-}
-.usermessages_content .title_bar a.new_message {
-  height: 32px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  background-image: url("../images/usermessages/new_message.jpg");
-  background-repeat: no-repeat;
-  color: white;
-  padding-left: 50px;
-  padding-right: 30px;
-  position: absolute;
-  top: 0px;
-  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
-  font-size: 17px;
-  font-weight: bold;
-  font-style: italic;
-}
-.usermessages_content .title_bar a.new_message:hover {
-  text-decoration: underline;
-}
-.usermessages_content .title_bar div.mail_nav {
-  position: absolute;
-  right: -4px;
-  top: 6px;
-}
-.usermessages_content a:hover {
-  text-decoration: none;
-}
-.usermessages_content .nb_messages {
-  background-color: #2b2b2b;
-  padding: 4px;
-  color: white;
-  text-transform: uppercase;
-}
-.usermessages_content .nb_messages strong {
-  background-color: #04add1;
-  padding-left: 3px;
-  padding-right: 3px;
-  color: white;
-}
-.usermessages_content .nb_messages em {
-  background-color: grey;
-  padding-left: 3px;
-  padding-right: 3px;
-  color: white;
-  font-style: normal;
-}
-.usermessages_content #usermessage_list .usermessage {
-  width: 100%;
-  min-height: 107px;
-  float: left;
-  padding: 5px;
-  margin-bottom: 10px;
-  background-image: url("../images/usermessages/message-bg-see.jpg");
-  position: relative;
-  color: white;
-}
-.usermessages_content #usermessage_list .usermessage em {
-  color: white;
-  font-size: 10px;
-}
-.usermessages_content #usermessage_list .usermessage h1 {
-  text-decoration: underline;
-  margin-top: 4px;
-  font-size: 14px;
-}
-.usermessages_content #usermessage_list .usermessage a {
-  color: white;
-}
-.usermessages_content #usermessage_list .usermessage a:hover {
-  text-decoration: none;
-}
-.usermessages_content #usermessage_list .usermessage p {
-  color: grey;
-}
-.usermessages_content #usermessage_list .usermessage .avatar {
-  width: 127px;
-  height: 117px;
-  background-image: url("../images/usermessages/avatar-bg.png");
-  background-repeat: no-repeat;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.usermessages_content #usermessage_list .usermessage .avatar img {
-  width: 105px;
-  height: 105px;
-  margin: 6px;
-}
-.usermessages_content #usermessage_list .usermessage .usermessage_body {
-  margin-left: 135px;
-  color: grey;
-}
-.usermessages_content #usermessage_list .usermessage .message_actions {
-  position: absolute;
-  right: 5px;
-  top: 5px;
-}
-.usermessages_content #usermessage_list .usermessage .message_actions .nb_news {
-  background-color: #04add1;
-  padding: 2px 6px 2px 6px;
-  text-align: center;
-  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  color: white;
-  float: left;
-  margin-right: 5px;
-}
-.usermessages_content #usermessage_list .usermessage .message_actions form#delete_message {
-  float: left;
-}
-.usermessages_content #usermessage_list .usermessage .message_actions form#delete_message input[type=image] {
-  background-color: #595959;
-  border: 0px;
-  padding-top: 1px;
-}
-.usermessages_content #usermessage_list .usermessage:hover {
-  background-image: url("../images/usermessages/message-bg-see-over.png");
-}
-.usermessages_content #usermessage_list .usermessage.unsee {
-  background-image: url("../images/usermessages/message-bg-unsee.jpg");
-  color: black;
-}
-.usermessages_content #usermessage_list .usermessage.unsee em {
-  color: black;
-}
-.usermessages_content #usermessage_list .usermessage.unsee a {
-  color: black;
-}
-.usermessages_content #usermessage_list .usermessage.unsee p {
-  color: black;
-}
-.usermessages_content #usermessage_list .usermessage.unsee .avatar {
-  background-image: url("../images/usermessages/avatar-bg2.png");
-}
-.usermessages_content #usermessage_list #usermessage_compose {
-  background-image: none;
-  padding: 0px;
-  position: relative;
-}
-.usermessages_content #usermessage_list #usermessage_compose .avatar {
-  display: none;
-  visibility: hidden;
-}
-.usermessages_content #usermessage_list #usermessage_compose p {
-  width: 628px !important;
-}
-.usermessages_content #usermessage_list #usermessage_compose p textarea {
-  padding: 5px;
-  height: 100px;
-}
-.usermessages_content #usermessage_list #usermessage_compose input[type=submit] {
-  left: 10px;
-  position: relative;
-  cursor: pointer;
-}
-.usermessages_content #usermessage_compose {
-  width: 100%;
-  float: left;
-  padding: 5px;
-  margin-bottom: 10px;
-  background-image: url("../images/usermessages/message-bg-see.jpg");
-  position: relative;
-  color: white;
-}
-.usermessages_content #usermessage_compose form {
-  margin-left: 135px;
-}
-.usermessages_content #usermessage_compose form p {
-  float: left;
-  margin-bottom: 5px;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-  background-color: white;
-}
-.usermessages_content #usermessage_compose form p label {
-  position: relative;
-  color: #403f3d;
-  color: grey;
-  float: left;
-  padding: 3px;
-  background-color: white;
-}
-.usermessages_content #usermessage_compose form p input[type=text] {
-  padding-left: 45px;
-  width: 100%;
-  position: absolute;
-  border: 1px solid white;
-  border-left: 0px;
-  padding: 3px;
-  padding-top: 1px;
-  line-height: 10px;
-}
-.usermessages_content #usermessage_compose form p textarea {
-  width: 624px;
-  border: 1px solid white;
-}
-.usermessages_content #usermessage_compose form p.help, .usermessages_content #usermessage_compose form .helptext, .usermessages_content #usermessage_compose form label[for=id_body] {
-  display: none;
-  visibility: hidden;
-}
-.usermessages_content #usermessage_compose form input[type=submit] {
-  float: right;
-  background-color: #6b6b6b;
-  border: 0px;
-  margin-right: 2px;
-  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  color: white;
-  padding: 2px;
-  cursor: pointer;
-  padding-left: 20px;
-  padding-right: 20px;
-  position: relative;
-  right: -2px;
-}
-.usermessages_content #usermessage_compose form input[type=submit]:hover {
-  background-color: grey;
-}
-.usermessages_content #usermessage_compose form #id_to_on_deck > div > div {
-  margin-left: 45px;
-}
-.usermessages_content #usermessage_compose .avatar {
-  width: 127px;
-  height: 117px;
-  background-image: url("../images/usermessages/avatar-bg.png");
-  background-repeat: no-repeat;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-}
-.usermessages_content #usermessage_compose .avatar img {
-  width: 97px;
-  height: 97px;
-  margin: 10px;
-}
-
-.ui-icon {
-  background-image: url("../images/ui-icons_222222_256x240-white.png") !important;
-  position: absolute;
-  right: 5px;
-  z-index: 200;
-}
-
-.results_on_deck {
-  clear: both;
-}
-
-.ui-autocomplete {
-  width: 500px !important;
-}
+Backtrace:
+/home/warbrain/src/_Gnuside/i4p/imaginationforpeople/static/sass/usermessages.scss:14
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/script/variable.rb:49:in `_perform'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/script/node.rb:40:in `perform'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:294:in `visit_prop'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `block in visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:316:in `visit_rule'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `block in visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:316:in `visit_rule'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `block in visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `map'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:53:in `visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:107:in `block in visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:119:in `with_environment'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:106:in `visit_children'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `block in visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:126:in `visit_root'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/base.rb:37:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:98:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/visitors/perform.rb:7:in `visit'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/tree/root_node.rb:20:in `render'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/engine.rb:315:in `_render'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/sass-3.2.1/lib/sass/engine.rb:262:in `render'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:140:in `block (2 levels) in compile'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:139:in `block in compile'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/logger.rb:45:in `red'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:138:in `compile'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:118:in `compile_if_required'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:103:in `block (2 levels) in run'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `each'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:101:in `block in run'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:126:in `timed'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/compiler.rb:100:in `run'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:147:in `recompile'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/path.rb:73:in `call'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/path.rb:73:in `run_callback'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/path.rb:55:in `callback_action'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/path.rb:35:in `update'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/state/directory.rb:39:in `block in modified'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/state/directory.rb:37:in `each'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/state/directory.rb:37:in `modified'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/state/directory.rb:18:in `refresh'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/backends/inotify.rb:12:in `block in add_handler'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/notifier.rb:200:in `call'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/notifier.rb:200:in `block in watch'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/watcher.rb:41:in `[]'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/watcher.rb:41:in `callback!'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/event.rb:128:in `callback!'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/notifier.rb:233:in `block in process'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/notifier.rb:233:in `each'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/notifier.rb:233:in `process'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/rb-inotify-0.8.8/lib/rb-inotify/notifier.rb:216:in `run'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/backends/inotify.rb:20:in `run'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm/monitor.rb:26:in `run'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/fssm-0.2.9/lib/fssm.rb:70:in `monitor'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/commands/watch_project.rb:87:in `perform'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/commands/base.rb:18:in `execute'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/commands/project_base.rb:19:in `execute'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/lib/compass/exec/sub_command_ui.rb:15:in `run!'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/bin/compass:30:in `block in <top (required)>'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/bin/compass:44:in `call'
+/home/warbrain/.rbenv/versions/1.9.3-p194/lib/ruby/gems/1.9.1/gems/compass-0.12.2/bin/compass:44:in `<top (required)>'
+/home/warbrain/.rbenv/versions/1.9.3-p194/bin/compass:23:in `load'
+/home/warbrain/.rbenv/versions/1.9.3-p194/bin/compass:23:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Syntax error: Undefined variable: \"$blue\".\A         on line 14 of /home/warbrain/src/_Gnuside/i4p/imaginationforpeople/static/sass/usermessages.scss"; }

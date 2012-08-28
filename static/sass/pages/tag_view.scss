@@ -161,7 +161,7 @@ body {
 
     .tag-title {
 	color: white;
-	font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
+	font-family: "OpenSansBold_obsolete", Arial,Helvetica, sans-serif;
 	font-size: $sizeTextBig;
 	font-style: normal;
 	text-transform: uppercase;
@@ -206,96 +206,6 @@ body {
 }
 
 
-#tags-related {
-    line-height: 1.5em;
-    margin-top: 2em;
-    margin-bottom: 2em;
-
-    h2 {
-	@include border-radius($sizeRadiusSmall 0 0 $sizeRadiusSmall);
-	// FIXME: add tag icon
-	background-image: url(../../images/tags/icon-tag-white-small.png);
-	background-position: 5px center;
-	background-repeat: no-repeat;
-	font-size: 12px;
-	height: 16px;
-	font-weight: normal;
-	display: inline;
-	color: white;
-	float: left;
-	background-color: $colorMedDarkGrey;
-	padding-left: 20px;
-	padding-right: .5em;
-	margin: 0;
-	margin-right: .25em;
-
-    }
-
-    ul {
-	display: block;
-	list-style: none;
-
-	&:after {
-	    content: "";
-	    clear: both;
-	}
-
-	li {
-	    display: block;
-	    float: left;
-	    background-color: $colorMedLightGrey;
-	    color: $colorMedDarkGrey;
-	    margin-bottom: 4px;
-	    margin-right: 8px;
-	    height: 16px;
-	    padding-left: 5px;
-	    padding-right: 5px;
-	    font-style: italic;
-	    font-size: 12px;
-
-	    position: relative;
-
-	    a {
-		font-size: 100%;
-		color: inherit;
-		margin-right: 0.2em;
-	    }
-
-	    &:first-child:before {
-		display: inline;
-		border-left: none;
-	    }
-
-	    &:before {
-		@include border-box;
-		display: inline;
-		position: absolute;
-		content:"";
-		top: 0;
-		width: 0;
-		height: 0;
-		left: -5px;
-		border-left: 5px solid transparent;
-		border-top: 8px solid $colorMedLightGrey;
-		border-bottom: 8px solid $colorMedLightGrey;
-	    }
-
-	    &:after {
-		@include border-box;
-		position: absolute;
-		content:"";
-		top: 0;
-		right: -5px;
-		width: 0;
-		height: 0;
-		border-left: 5px solid $colorMedLightGrey;
-		border-top: 8px solid transparent;
-		border-bottom: 8px solid transparent;
-	    }
-	}
-
-    }
-}
 
 hr.shaded-separator {
     display: block;

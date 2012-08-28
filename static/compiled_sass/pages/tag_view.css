@@ -1,11 +1,14 @@
 /**
- * Colors
- */
-/**
- *  Font sizes
- */
-/**
  *  Mixins
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
  */
 body {
   background-color: #f8f8f8;
@@ -23,7 +26,7 @@ body {
 #pictured-zone {
   background-color: black;
   height: 253px;
-  border-bottom: 4px solid #0aaece;
+  border-bottom: 4px solid #04add1;
 }
 #pictured-zone .tag-header {
   position: relative;
@@ -124,7 +127,7 @@ body {
   padding: 10px;
   padding-right: 70px;
   visibility: visible;
-  background-color: rgba(10, 174, 206, 0.7);
+  background-color: rgba(4, 173, 209, 0.7);
   background-position: 200px center, top left;
   color: white;
 }
@@ -175,7 +178,7 @@ body {
 #description-zone .tag-title {
   color: white;
   font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
-  font-size: 20px;
+  font-size: 1.17em;
   font-style: normal;
   text-transform: uppercase;
 }
@@ -218,99 +221,6 @@ body {
   background-image: url(../../images/tags/icon-arrow-blue-big.png);
   background-position: center center;
   background-repeat: no-repeat;
-}
-
-#tags-related {
-  line-height: 1.5em;
-  margin-top: 2em;
-  margin-bottom: 2em;
-}
-#tags-related h2 {
-  -webkit-border-radius: 4px 0 0 4px;
-  -moz-border-radius: 4px 0 0 4px;
-  -ms-border-radius: 4px 0 0 4px;
-  -o-border-radius: 4px 0 0 4px;
-  border-radius: 4px 0 0 4px;
-  background-image: url(../../images/tags/icon-tag-white-small.png);
-  background-position: 5px center;
-  background-repeat: no-repeat;
-  font-size: 12px;
-  height: 16px;
-  font-weight: normal;
-  display: inline;
-  color: white;
-  float: left;
-  background-color: #535353;
-  padding-left: 20px;
-  padding-right: .5em;
-  margin: 0;
-  margin-right: .25em;
-}
-#tags-related ul {
-  display: block;
-  list-style: none;
-}
-#tags-related ul:after {
-  content: "";
-  clear: both;
-}
-#tags-related ul li {
-  display: block;
-  float: left;
-  background-color: #c9c9c9;
-  color: #535353;
-  margin-bottom: 4px;
-  margin-right: 8px;
-  height: 16px;
-  padding-left: 5px;
-  padding-right: 5px;
-  font-style: italic;
-  font-size: 12px;
-  position: relative;
-}
-#tags-related ul li a {
-  font-size: 100%;
-  color: inherit;
-  margin-right: 0.2em;
-}
-#tags-related ul li:first-child:before {
-  display: inline;
-  border-left: none;
-}
-#tags-related ul li:before {
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  display: inline;
-  position: absolute;
-  content: "";
-  top: 0;
-  width: 0;
-  height: 0;
-  left: -5px;
-  border-left: 5px solid transparent;
-  border-top: 8px solid #c9c9c9;
-  border-bottom: 8px solid #c9c9c9;
-}
-#tags-related ul li:after {
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  position: absolute;
-  content: "";
-  top: 0;
-  right: -5px;
-  width: 0;
-  height: 0;
-  border-left: 5px solid #c9c9c9;
-  border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
 }
 
 hr.shaded-separator {
@@ -371,8 +281,8 @@ hr.shaded-separator {
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
   display: block;
-  background-color: #0aaece;
-  box-shadow: inset 0 0 0 #0aaece;
+  background-color: #04add1;
+  box-shadow: inset 0 0 0 #04add1;
   background-image: url(../../images/tags/icon-plus-white-big.png), url(../../images/base/background-white-dots.png);
   background-opacity: 1, 1, 0;
   background-repeat: no-repeat, repeat;
@@ -387,5 +297,5 @@ hr.shaded-separator {
 }
 .tag-add-button:hover {
   text-decoration: none;
-  background-color: #0999b6;
+  background-color: #0498b8;
 }

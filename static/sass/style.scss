@@ -1,5 +1,6 @@
 @import "mixin.scss";
 @import "fonts.scss";
+@import "constants.scss";
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
@@ -215,7 +216,7 @@ ul{
 
 
 .social-login strong{
-    color:$blue !important;
+    color: $colorLightBlue !important;
 }
 
 
@@ -224,7 +225,7 @@ ul{
 /*---- HEADER ----*/
 
 #blue_border{
-    border-top:3px solid $blue;
+    border-top:3px solid $colorLightBlue;
     position:relative;
     z-index:2000;
 }
@@ -280,7 +281,7 @@ ul{
 		margin:2px 0px;
 
 		a{
-		    font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
+		    font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif !important;
 		    font-size:12px;
 		    text-transform:uppercase;
 		    color:white;
@@ -300,7 +301,7 @@ ul{
 	}
 
 	h2{
-	    font-family: "OpenSansBold", Arial, Helvetica, sans-serif !important;
+	    font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif !important;
 	    font-size:12px;
 	    text-transform:uppercase;
 	    margin:4px 0px;
@@ -361,7 +362,7 @@ ul{
     height:22px;
 
     input[type="text"] {
-	font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
+	font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif !important;
 	background-color: transparent;
 	border: 0px solid #646464;
 	color: $greymenu;
@@ -637,7 +638,7 @@ ul{
     }
 
     h1{
-	font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+	font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
 	font-size:16px;
 	font-style:normal;
 	text-transform:uppercase;
@@ -665,7 +666,7 @@ ul{
 		bottom:5px;
 		left:0px;
 		color:$normalgrey;
-		font-family: "OpenSansBoldItalic", Arial, Helvetica, sans-serif;
+		font-family: "OpenSansBoldItalic_obsolete", Arial, Helvetica, sans-serif;
 		font-size:12px;
 	    }
 	}
@@ -766,7 +767,7 @@ ul{
 
     a{
 	@include georgia(12px); 
-	color:$blue;
+	color: $colorLightBlue;
 
 	padding-top:5px;
 	padding-bottom:3px;
@@ -830,7 +831,7 @@ font-style:italic;
 	background: url(../images/base/footer-bg.jpg) no-repeat center;
 
 	h1{
-	    font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+	    font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
 	    font-size:16px;
 	    text-transform:uppercase;
 	    font-style:normal;
@@ -840,16 +841,16 @@ font-style:italic;
 	}
 
 	.baseline{
-	    font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+	    font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
 	    font-size:15px;
 	    text-transform:uppercase;
 	    margin-bottom:10px;
 	}
 
 	a{
-	    font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+	    font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
 	    font-size:12px;
-	    color:$blue;
+	    color: $colorLightBlue;
 	}
 
 	a:hover{
@@ -858,7 +859,7 @@ font-style:italic;
 
 	.licences, .licenses p{
 
-	    font-family: "OpenSansItalic", Arial, Helvetica, sans-serif !important;
+	    font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif !important;
 	    font-size:12px;
 	}
 
@@ -867,7 +868,7 @@ font-style:italic;
 	}
 
 	.contrib-links a{
-	    font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
+	    font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif !important;
 	    font-size:12px;
 	    color:#737373;
 	    text-transform:uppercase;
@@ -883,7 +884,7 @@ font-style:italic;
 	    height:22px;
 
 	    input[type="text"] {
-		font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
+		font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif !important;
 		background-color: transparent;
 		border: 0px solid #646464;
 		color: #7F7E7E;
