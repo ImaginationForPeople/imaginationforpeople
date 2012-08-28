@@ -19,6 +19,7 @@
 from django.conf import settings
 
 from piston.handler import BaseHandler
+from piston.utils import throttle
 
 from apps.project_sheet.models import Answer, Objective, I4pProject, I4pProjectTranslation, Topic
 from apps.project_sheet.utils import get_project_translations_from_parents
@@ -32,6 +33,7 @@ class I4pProjectTranslationHandler(BaseHandler):
     model = I4pProjectTranslation
     project = None
     
+    @throttle(30, 1)
     def read(self, request, project_id=None):
         # TODO: Check if class attributes doesn't have problems with threads on production
         if project_id is None:
