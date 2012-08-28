@@ -24,6 +24,9 @@
 /**
  * text sizes
  */
+/**
+ * font piles
+ */
 .flag-sprite, .flag-ad, .flag-ae, .flag-af, .flag-ag, .flag-ai, .flag-al, .flag-am, .flag-an, .flag-ao, .flag-ar, .flag-as, .flag-at, .flag-au, .flag-aw, .flag-ax, .flag-az, .flag-ba, .flag-bb, .flag-bd, .flag-be, .flag-bf, .flag-bg, .flag-bh, .flag-bi, .flag-bj, .flag-bm, .flag-bn, .flag-bo, .flag-br, .flag-bs, .flag-bt, .flag-bv, .flag-bw, .flag-by, .flag-bz, .flag-ca, .flag-catalonia, .flag-cc, .flag-cd, .flag-cf, .flag-cg, .flag-ch, .flag-ci, .flag-ck, .flag-cl, .flag-cm, .flag-cn, .flag-co, .flag-cr, .flag-cs, .flag-cu, .flag-cv, .flag-cx, .flag-cy, .flag-cz, .flag-de, .flag-dj, .flag-dk, .flag-dm, .flag-do, .flag-dz, .flag-ec, .flag-ee, .flag-eg, .flag-eh, .flag-el, .flag-en, .flag-england, .flag-er, .flag-es, .flag-et, .flag-europeanunion, .flag-fam, .flag-fi, .flag-fj, .flag-fk, .flag-fm, .flag-fo, .flag-fr, .flag-ga, .flag-gb, .flag-gd, .flag-ge, .flag-gf, .flag-gh, .flag-gi, .flag-gl, .flag-gm, .flag-gn, .flag-gp, .flag-gq, .flag-gs, .flag-gt, .flag-gu, .flag-gw, .flag-gy, .flag-hk, .flag-hm, .flag-hn, .flag-hr, .flag-ht, .flag-hu, .flag-id, .flag-ie, .flag-il, .flag-in, .flag-io, .flag-iq, .flag-ir, .flag-is, .flag-it, .flag-jm, .flag-jo, .flag-jp, .flag-ke, .flag-kg, .flag-kh, .flag-ki, .flag-km, .flag-kn, .flag-kp, .flag-kr, .flag-kw, .flag-ky, .flag-kz, .flag-la, .flag-lb, .flag-lc, .flag-li, .flag-lk, .flag-lr, .flag-ls, .flag-lt, .flag-lu, .flag-lv, .flag-ly, .flag-ma, .flag-mc, .flag-md, .flag-me, .flag-mg, .flag-mh, .flag-mk, .flag-ml, .flag-mm, .flag-mn, .flag-mo, .flag-mp, .flag-mq, .flag-mr, .flag-ms, .flag-mt, .flag-mu, .flag-mv, .flag-mw, .flag-mx, .flag-my, .flag-mz, .flag-na, .flag-nc, .flag-ne, .flag-nf, .flag-ng, .flag-ni, .flag-nl, .flag-no, .flag-np, .flag-nr, .flag-nu, .flag-nz, .flag-om, .flag-pa, .flag-pe, .flag-pf, .flag-pg, .flag-ph, .flag-pk, .flag-pl, .flag-pm, .flag-pn, .flag-pr, .flag-ps, .flag-pt, .flag-pw, .flag-py, .flag-qa, .flag-re, .flag-ro, .flag-rs, .flag-ru, .flag-rw, .flag-sa, .flag-sb, .flag-sc, .flag-scotland, .flag-sd, .flag-se, .flag-sg, .flag-sh, .flag-si, .flag-sj, .flag-sk, .flag-sl, .flag-sm, .flag-sn, .flag-so, .flag-sr, .flag-st, .flag-sv, .flag-sy, .flag-sz, .flag-tc, .flag-td, .flag-tf, .flag-tg, .flag-th, .flag-tj, .flag-tk, .flag-tl, .flag-tm, .flag-tn, .flag-to, .flag-tr, .flag-tt, .flag-tv, .flag-tw, .flag-tz, .flag-ua, .flag-ug, .flag-um, .flag-us, .flag-uy, .flag-uz, .flag-va, .flag-vc, .flag-ve, .flag-vg, .flag-vi, .flag-vn, .flag-vu, .flag-wales, .flag-wf, .flag-ws, .flag-ye, .flag-yt, .flag-za, .flag-zh, .flag-zm, .flag-zw {
   background: url('../../../compiled_images/flag.png') no-repeat;
 }
@@ -1565,14 +1568,119 @@
   /**
    * text sizes
    */
+  /**
+   * font piles
+   */
+  @font-face {
+    font-family: 'OpenSansBold_obsolete';
+    src: url('../../../fonts/opensans-bold-webfont.eot');
+    src: url('../../../fonts/opensans-bold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bold-webfont.woff') format("woff"), url('../../../fonts/opensans-bold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bold-webfont.svg#OpenSansBold') format("svg");
+    font-weight: bold;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSansBoldItalic_obsolete';
+    src: url('../../../fonts/opensans-bolditalic-webfont.eot');
+    src: url('../../../fonts/opensans-bolditalic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bolditalic-webfont.woff') format("woff"), url('../../../fonts/opensans-bolditalic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bolditalic-webfont.svg#OpenSansBoldItalic') format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSansCondensedBold_obsolete';
+    src: url('../../../fonts/opensans-condbold-webfont.eot');
+    src: url('../../../fonts/opensans-condbold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-condbold-webfont.woff') format("woff"), url('../../../fonts/opensans-condbold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-condbold-webfont.svg#OpenSansCondensedBold') format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSansRegular_obsolete';
+    src: url('../../../fonts/opensans-regular-webfont.eot');
+    src: url('../../../fonts/opensans-regular-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-regular-webfont.woff') format("woff"), url('../../../fonts/opensans-regular-webfont.ttf') format("truetype"), url('../../../fonts/opensans-regular-webfont.svg#OpenSansRegular') format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSansItalic_obsolete';
+    src: url('../../../fonts/opensans-italic-webfont.eot');
+    src: url('../../../fonts/opensans-italic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-italic-webfont.woff') format("woff"), url('../../../fonts/opensans-italic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-italic-webfont.svg#OpenSansItalic') format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSansSemibold_obsolete';
+    src: url('../../../fonts/opensans-semibold-webfont.eot');
+    src: url('../../../fonts/opensans-semibold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-semibold-webfont.woff') format("woff"), url('../../../fonts/opensans-semibold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-semibold-webfont.svg#') format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSans';
+    src: url('../../../fonts/opensans-bold-webfont.eot');
+    src: url('../../../fonts/opensans-bold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bold-webfont.woff') format("woff"), url('../../../fonts/opensans-bold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bold-webfont.svg#OpenSansBold') format("svg");
+    font-weight: bold;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSans';
+    src: url('../../../fonts/opensans-bolditalic-webfont.eot');
+    src: url('../../../fonts/opensans-bolditalic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bolditalic-webfont.woff') format("woff"), url('../../../fonts/opensans-bolditalic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bolditalic-webfont.svg#OpenSansBoldItalic') format("svg");
+    font-weight: bold;
+    font-style: italic;
+}
+
+  @font-face {
+    font-family: 'OpenSans';
+    src: url('../../../fonts/opensans-condbold-webfont.eot');
+    src: url('../../../fonts/opensans-condbold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-condbold-webfont.woff') format("woff"), url('../../../fonts/opensans-condbold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-condbold-webfont.svg#OpenSansCondensedBold') format("svg");
+    font-weight: bold;
+    font-stretch: condensed;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSans';
+    src: url('../../../fonts/opensans-regular-webfont.eot');
+    src: url('../../../fonts/opensans-regular-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-regular-webfont.woff') format("woff"), url('../../../fonts/opensans-regular-webfont.ttf') format("truetype"), url('../../../fonts/opensans-regular-webfont.svg#OpenSansRegular') format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+  @font-face {
+    font-family: 'OpenSans';
+    src: url('../../../fonts/opensans-italic-webfont.eot');
+    src: url('../../../fonts/opensans-italic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-italic-webfont.woff') format("woff"), url('../../../fonts/opensans-italic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-italic-webfont.svg#OpenSansItalic') format("svg");
+    font-weight: normal;
+    font-style: italic;
+}
+
+  @font-face {
+    font-family: 'OpenSans';
+    src: url('../../../fonts/opensans-semibold-webfont.eot');
+    src: url('../../../fonts/opensans-semibold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-semibold-webfont.woff') format("woff"), url('../../../fonts/opensans-semibold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-semibold-webfont.svg#') format("svg");
+    font-weight: 600;
+    font-style: normal;
+}
+
 }
 .people-list.wide-flat h2 {
-  font-size: 120%;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1.33em;
+  font-stretch: condensed;
+  font-weight: bold;
   text-transform: uppercase;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 .people-list.wide-flat .seemore {
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 0.83em;
   position: absolute;
   display: block;
   color: black;
@@ -1623,12 +1731,16 @@
 .person.wide-flat .fullname {
   display: block;
   color: black;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1em;
   font-weight: bold;
   font-style: italic;
 }
 .person.wide-flat .project {
   display: block;
   color: black;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1em;
   font-weight: bold;
 }
 .person.wide-flat .project:before {
