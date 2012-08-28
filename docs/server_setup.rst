@@ -106,5 +106,19 @@ then clone the app::
 
 	web@i4p-prod:~/virtualenvs$ cd imaginationforpeople.org/
 	web@i4p-prod:~/virtualenvs/imaginationforpeople.org$ git clone ssh://webapp@code.imaginationforpeople.com/var/repositories/imaginationforpeople.git
+
+
+
+Forum setup
+***********
+
+Askbot (forum next-gen) is installed by default. 
+
+Two background jobs are required:
+
+* the email sender daemon that is a cron job. The script to schedule is *cron/askbot-cron* :
+* and the celery daemon that can be launched with ``./manage.py celeryd --purge``
+    
+        
 	
 

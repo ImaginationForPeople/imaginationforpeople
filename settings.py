@@ -480,7 +480,7 @@ APPEND_SLASH = True
 RECAPTCHA_USE_SSL = True
 
 ## Askbot
-ASKBOT_URL = 'forum/' 
+ASKBOT_URL = 'forum' # without leading and trailing slashes
 ASKBOT_STARTUP_CHECK = False
 ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
