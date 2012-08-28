@@ -263,11 +263,15 @@ hr.shaded-separator {
     background-repeat: no-repeat, repeat;
     background-position: 190px center, top left;
 
-    padding: 10px;
-    padding-right: 65px;
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 75px;
 
-    font-size: 18px;
+    font-size: $sizeTextBig;
+    font-family: $fontOpenSans;
+    font-stretch: condensed;
     font-weight: bold;
+
     text-transform: uppercase;
     color: white;
     margin-bottom: 2em;
