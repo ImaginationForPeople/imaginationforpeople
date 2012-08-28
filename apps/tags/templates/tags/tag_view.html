@@ -11,6 +11,8 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_wide_flat.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_wide_flat.css" />
 
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/tag_list.css" />
+
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
 {% endcompress %}
 {% endblock %}
@@ -83,7 +85,9 @@
 
 	<div class="grid_12 alpha" >
 
-	    {% include "tags/block/related_tags.html" %}
+	    <div id="tags-related">
+		{% include "tags/block/tag_list.html" with taglist_title="Related tags" taglist_tags=related_tags %}
+	    </div>
 
 	    <div class="project-list square-card clearfix">
 		<h2>Mature projects</h2>
