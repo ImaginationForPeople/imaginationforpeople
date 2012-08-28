@@ -24,12 +24,40 @@
   border: 1px solid #ededed;
   background-color: #f2f2f2;
   margin-bottom: 12px;
+  /**
+   * Colors
+   */
+  /**
+   *  Font sizes
+   */
+  /**
+   *  Mixins
+   */
 }
 .project-list.wide-flat h2 {
   text-transform: uppercase;
   font-size: 18px;
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
+}
+.project-list.wide-flat .seemore {
+  position: absolute;
+  display: block;
+  color: black;
+  right: 5px;
+  top: 0;
+  right: 0;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-right: 5px;
+}
+.project-list.wide-flat .seemore:after {
+  margin-left: 5px;
+  content: ">";
+  font-weight: bold;
+}
+.project-list.wide-flat .seemore {
+  top: 25px;
 }
 .project-list.wide-flat ul {
   list-style: none;
