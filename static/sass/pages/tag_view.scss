@@ -83,6 +83,9 @@ body {
 	    .title {
 		display: block;
 		position: absolute;
+		font-family: $fontOpenSans;
+		font-size: $sizeTextBig;
+		font-stretch: condensed;
 		font-weight: bold;
 		text-transform: uppercase;
 		visibility: visible;
@@ -94,6 +97,10 @@ body {
 	    }
 
 	    .description {
+		padding-right: 70px;
+		font-family: $fontOpenSans;
+		font-size: $sizeTextNormal;
+		font-style: italic;
 		opacity: 0;
 	    }
 	}
@@ -104,7 +111,6 @@ body {
 	    top: 0;
 	    left: 0;
 	    padding: 10px;
-	    padding-right: 70px;
 	    visibility: visible;
 	    background-color: rgba($colorLightBlue,0.7);
 	    // background-image: url(../../images/tags/icon-arrow-white-big.png);
@@ -113,6 +119,7 @@ body {
 	    color: white;
 
 	    .title {
+		margin-right: 70px;
 		position: static;
 		color: white;
 		background: none;
