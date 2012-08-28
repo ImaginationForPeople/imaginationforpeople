@@ -23,11 +23,28 @@ $(document).ready(function(){
         $("#filter_form").submit();
     });
     
-    $(".filters_box input.styled").change(function(){
+    $(".filters_box input.styled").change(function(event){
     	blockPanel();
         $("#filter_form").submit();
     });
     
+    $(".filters-progress input").click(function(event){
+        event.stopPropagation();
+    });
+    $('.filters-progress > ul > li')
+    .css('cursor', 'pointer')
+    .click(
+      function(event){
+          var checkBoxes = $(this).find('input');
+          checkBoxes.attr("checked", !checkBoxes.attr("checked"));
+          blockPanel();
+          event.stopPropagation();
+          $("#filter_form").submit();
+          //checkBoxes.trigger('click');
+
+
+      }
+    );
     $(".tag_link").click(function(){
     	blockPanel();
         var val = $("#id_themes").val();
