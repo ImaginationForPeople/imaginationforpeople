@@ -247,7 +247,7 @@ hr{
         
         #focus-menu a.selected{
             color:white;
-            border-bottom:4px solid $blue;
+            border-bottom:4px solid  $colorLightBlue;
         }
         
          #focus-nav a:hover{
@@ -281,7 +281,7 @@ hr{
                 height:250px;
             
                 .image{
-                    border-right:3px solid $blue;
+                    border-right:3px solid  $colorLightBlue;
                     float:left;
                     width:250px;
                     height:250px;
@@ -503,7 +503,7 @@ hr{
                 }
                 
                 .loginlink:first-child{
-                    color:$blue;
+                    color: $colorLightBlue;
                 }
                 
                 hr{
@@ -564,7 +564,7 @@ hr{
                         label[for=id_remember_me]{
                             display:block;
                             visibility:visible;
-                            color:$blue;
+                            color: $colorLightBlue;
                             position:absolute;
                             left:0px;
                             bottom:0px;
@@ -749,7 +749,7 @@ hr{
         input[type=submit]{
             width:100%;
             @include border-radius(4px);
-            background-color:$blue;
+            background-color: $colorLightBlue;
             border:0px;
             margin-top:5px;
             color:white;
