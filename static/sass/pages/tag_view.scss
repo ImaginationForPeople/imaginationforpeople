@@ -77,7 +77,7 @@ body {
 	    color: white;
 	    text-overflow: ellipsis;
 	    overflow: hidden;
-	    background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-black-dots.png);
+	    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-50.png");
 	    background-repeat: no-repeat, repeat;
 	    background-position: 400px center, top left;
 	    @include transition( all .5s ease );
@@ -115,8 +115,7 @@ body {
 	    padding: 10px;
 	    visibility: visible;
 	    background-color: rgba($colorLightBlue,0.7);
-	    // background-image: url(../../images/tags/icon-arrow-white-big.png);
-	    // background-repeat: no-repeat;
+	    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-12.png");
 	    background-position: 200px center, top left;
 	    color: white;
 
@@ -163,7 +162,7 @@ body {
 	padding: 0;
 	min-height: 5em;
 	min-width: 5em;
-	background-image: url(../../images/tags/icon-tag-white-big.png);
+	background-image: image-url("tags/icon-tag-white-big.png");
 	background-repeat: no-repeat;
 	background-position: 80px center;
     }
@@ -209,7 +208,7 @@ body {
 	    display: block;
 	    width: 100%;
 	    height: 100%;
-	    background-image: url(../../images/tags/icon-arrow-blue-big.png);
+	    background-image: image-url("tags/icon-arrow-blue-big.png");
 	    background-position: center center;
 	    background-repeat: no-repeat;
 	}
@@ -223,7 +222,7 @@ hr.shaded-separator {
     border: 0;
     width: 100%;
     height: 10px;
-    background-image: url(../../images/base/horizontal-separator.png);
+    background-image: image-url("base/horizontal-separator.png");
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -256,8 +255,7 @@ hr.shaded-separator {
     background-color: $colorLightBlue;
 
     box-shadow: inset 0 0 0 $colorLightBlue;
-    background-image: url(../../images/tags/icon-plus-white-big.png),
-	url(../../images/base/background-white-dots.png);
+    background-image: image-url("tags/icon-plus-white-big.png"), image-url("base/background-white-dots.png");
 
     background-opacity: 1, 1, 0;
     background-repeat: no-repeat, repeat;
