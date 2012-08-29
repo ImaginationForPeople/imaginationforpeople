@@ -1,4 +1,5 @@
 @import "mixin.scss";
+@import "constants.scss";
 
 
 .categories .menu{
@@ -1673,7 +1674,7 @@ ul#themes_tags li.tagit-choice {
         @include shadow(4px, black); 
         padding:10px;
         color:white;
-        border:2px solid $blue;
+        border:2px solid  $colorLightBlue;
         margin-bottom: 10px;
 
         

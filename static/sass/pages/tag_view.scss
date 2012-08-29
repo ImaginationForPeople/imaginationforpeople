@@ -1,0 +1,196 @@
+@import "../mixin.scss";
+@import "../constants.scss";
+
+body {
+    background-color: $colorWhite;
+}
+
+#header-zone {
+    background-color: $colorDarkGrey;
+}
+
+#subheader-zone {
+    background-color: white;
+    position: relative; // make children element 'absolute' positionning relative to this elment
+}
+
+#pictured-zone {
+    background-color: black;
+    height: 253px; // 232px for grid_13 , 214px for grid_12
+    border-bottom: $sizeBorderSmall solid $colorLightBlue;
+
+
+    .tag-header {
+	position: relative;
+
+	a {
+	    img {
+		width: 100%;
+		height: auto;
+		border: none;
+	    }
+	}
+
+	.credit {
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextTiny;
+	    font-style: italic;
+	    position: absolute;
+	    top: 145px;
+	    left: 10px;
+	    color: white;
+	}
+    }
+
+    .project-list.wide-card {
+	margin-top: 20px;
+    }
+
+
+}
+
+#content-zone {
+    clear: both;
+    background-color: white;
+    margin-bottom: 2em;
+}
+
+#description-zone {
+    @include background-vertical-gradient($colorDarkGrey, black);
+    @include box-shadow-bottomleft;
+    border-radius: 0 $sizeRadiusSmall $sizeRadiusSmall 0;
+
+    // position: relative;
+    // z-index: 1;
+    position: absolute;
+    top: 170px;
+    left: 0px;
+    padding: 0;
+    width: 55%;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    min-height: 90px;
+
+    .icon-tag-big {
+	display: block;
+	margin: 0;
+	padding: 0;
+	min-height: 5em;
+	min-width: 5em;
+	background-image: image-url("tags/icon-tag-white-big.png");
+	background-repeat: no-repeat;
+	background-position: 80px center;
+    }
+
+    .tag-title {
+	color: white;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextHuge;
+	font-style: normal;
+	text-transform: uppercase;
+	margin-bottom: 0.5rem;
+    }
+
+    .tag-description {
+	color: white;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextNormal;
+	font-style: italic;
+
+	.button {
+	    margin-top: 1em;
+	    margin-left: 1em;
+	    float: right;
+	}
+    }
+
+    .readmore {
+	@include border-radius($sizeRadiusSmall);
+	@include background-vertical-gradient($colorDarkGrey, black);
+	@include box-shadow-bottomleft;
+	position: absolute;
+	top: 25px;
+	right: -25px;
+	display: block;
+	width: 50px;
+	height: 50px;
+
+	&:hover {
+	    right: -30px;
+	}
+
+	a {
+	    display: block;
+	    width: 100%;
+	    height: 100%;
+	    background-image: image-url("tags/icon-arrow-blue-big.png");
+	    background-position: center center;
+	    background-repeat: no-repeat;
+	}
+    }
+}
+
+
+
+hr.shaded-separator {
+    display: block;
+    border: 0;
+    width: 100%;
+    height: 10px;
+    background-image: image-url("base/horizontal-separator.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+.tag-follow-button {
+    @include background-vertical-gradient(#4abae9, #3990b4);
+    @include border-radius($sizeRadiusSmall);
+    @include transition( all .5s ease );
+    display: block;
+    border: 4px solid #c7e4ea;
+    color: white;
+    padding: 1em;
+    font-weight: bold;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-transform: uppercase;
+
+    &:hover {
+	@include background-vertical-gradient(darken(#4abae9,5%), darken(#3990b4,5%));
+	border: 4px solid darken(#c7e4ea,5%);
+	text-decoration: none;
+    }
+}
+
+.tag-add-button {
+    @include border-radius($sizeRadiusSmall);
+    @include transition( all .5s ease );
+    display: block;
+    background-color: $colorLightBlue;
+
+    box-shadow: inset 0 0 0 $colorLightBlue;
+    background-image: image-url("tags/icon-plus-white-big.png"), image-url("base/background-white-dots.png");
+
+    background-opacity: 1, 1, 0;
+    background-repeat: no-repeat, repeat;
+    background-position: 190px center, top left;
+
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 75px;
+
+    font-size: $sizeTextBig;
+    font-family: $fontOpenSans;
+    font-stretch: condensed;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 2em;
+
+    &:hover {
+	text-decoration: none;
+	background-color: darken($colorLightBlue,5%);
+    }
+}

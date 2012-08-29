@@ -1,3 +1,32 @@
+/**
+ *  Mixins
+ */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
 /* --Projects Cards-- */
 #projects_list {
   position: relative;
@@ -18,30 +47,26 @@
   margin: 0;
   padding: 0;
   padding-right: 5px;
-  -moz-box-shadow: 0px 0px 8px #181818;
   -webkit-box-shadow: 0px 0px 8px #181818;
-  -o-box-shadow: 0px 0px 8px #181818;
+  -moz-box-shadow: 0px 0px 8px #181818;
   box-shadow: 0px 0px 8px #181818;
   behavior: url(static/js/pie/PIE.htc);
-  -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  -o-border-radius: 8px;
+  -moz-border-radius: 8px;
   -ms-border-radius: 8px;
-  -khtml-border-radius: 8px;
+  -o-border-radius: 8px;
   border-radius: 8px;
 }
 .project_list_project a:hover {
   border: 1px solid #848484;
-  -moz-box-shadow: 0px 0px 8px #848484;
   -webkit-box-shadow: 0px 0px 8px #848484;
-  -o-box-shadow: 0px 0px 8px #848484;
+  -moz-box-shadow: 0px 0px 8px #848484;
   box-shadow: 0px 0px 8px #848484;
   behavior: url(static/js/pie/PIE.htc);
-  -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  -o-border-radius: 8px;
+  -moz-border-radius: 8px;
   -ms-border-radius: 8px;
-  -khtml-border-radius: 8px;
+  -o-border-radius: 8px;
   border-radius: 8px;
   text-decoration: none;
   color: #bdbdbd;
@@ -76,9 +101,8 @@
   width: 137px;
   height: 190px;
   border: 0px !important;
-  -moz-box-shadow: 0px 0px 12px #181818;
   -webkit-box-shadow: 0px 0px 12px #181818;
-  -o-box-shadow: 0px 0px 12px #181818;
+  -moz-box-shadow: 0px 0px 12px #181818;
   box-shadow: 0px 0px 12px #181818;
   behavior: url(static/js/pie/PIE.htc);
 }

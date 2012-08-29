@@ -1,3 +1,32 @@
+/**
+ *  Mixins
+ */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
 body {
   background-color: #282828;
 }
@@ -20,7 +49,7 @@ hr {
   position: relative;
 }
 #video-zone h1.what_is {
-  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
   font-size: 32px;
   position: absolute;
   top: 40px;
@@ -36,13 +65,13 @@ hr {
   width: 180px;
   position: absolute;
   top: 30px;
-  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
   font-size: 13px;
   text-transform: uppercase;
   z-index: 60;
 }
 #video-zone #project_block h1, #video-zone #network_block h1 {
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 19px;
   text-shadow: 1px 1px white;
   font-style: normal;
@@ -50,7 +79,7 @@ hr {
   color: #303030;
 }
 #video-zone #project_block a, #video-zone #network_block a {
-  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
   color: black;
 }
 #video-zone #project_block {
@@ -60,7 +89,7 @@ hr {
   left: 615px;
 }
 #video-zone .baseline {
-  font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
   font-size: 15px;
   position: absolute;
   right: 0px;
@@ -140,7 +169,7 @@ hr {
 #focus-zone #focus #projects_slide .project_slider .focus_project .project_photo table span {
   text-align: center;
   position: relative;
-  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   background-color: white;
@@ -153,7 +182,7 @@ hr {
   color: #303030;
 }
 #focus-zone #focus #projects_slide .project_slider .focus_project.addproject h1 {
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 23px;
   font-style: normal;
   position: absolute;
@@ -173,11 +202,10 @@ hr {
   z-index: 999;
   top: 160px;
   left: 470px;
-  -moz-border-radius: 20px;
   -webkit-border-radius: 20px;
-  -o-border-radius: 20px;
+  -moz-border-radius: 20px;
   -ms-border-radius: 20px;
-  -khtml-border-radius: 20px;
+  -o-border-radius: 20px;
   border-radius: 20px;
   background-color: black;
 }
@@ -199,7 +227,7 @@ hr {
   float: right;
 }
 #focus-zone #focus #focus-menu a, #focus-zone #focus #focus-nav a {
-  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   color: #c1c1c1;
@@ -254,7 +282,7 @@ hr {
   margin: 0px;
   color: #303030;
   text-shadow: 1px 1px 0px white;
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif !important;
   font-size: 16px;
 }
 #content-zone #content #left_col .infoblock .details span.date {
@@ -273,7 +301,7 @@ hr {
 #content-zone #content #left_col .infoblock .details h1 {
   margin: 7px 0px;
   color: #303030;
-  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
+  font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif !important;
   font-size: 17px;
   text-transform: uppercase;
   font-style: normal;
@@ -339,7 +367,7 @@ hr {
   color: #cdcdcd;
 }
 #content-zone #content #right_col span {
-  font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
   font-size: 11px;
   margin: 15px 0px;
   margin-top: 5px;
@@ -356,7 +384,7 @@ hr {
   position: relative;
 }
 #content-zone #content #right_col .homebox h1 {
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-style: normal;
   margin: 0px;
@@ -377,18 +405,17 @@ hr {
   border: 1px solid #343434;
   margin: 3px 0px;
   width: 98%;
-  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif;
   font-size: 10px;
   padding: 2px;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 #content-zone #content #right_col .homebox input[type=submit], #content-zone #content #right_col .homebox button {
-  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 11px;
   padding: 3px 6px;
   margin: 0px;
@@ -396,11 +423,10 @@ hr {
   color: #737373;
   border: 0px;
   cursor: pointer;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 #content-zone #content #right_col .homebox input[type=submit]:hover, #content-zone #content #right_col .homebox button:hover {
@@ -415,17 +441,16 @@ hr {
 #content-zone #content #right_col #loginbox {
   background-color: #292929;
   background-image: url("../images/home/loginbox-bg.jpg");
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   padding: 10px;
   overflow: hidden;
 }
 #content-zone #content #right_col #loginbox .loginlink {
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 15px;
   text-transform: uppercase;
   color: #cdcdcd;
@@ -484,7 +509,7 @@ hr {
   position: absolute;
   left: 0px;
   bottom: 0px;
-  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
   font-size: 9px;
 }
 #content-zone #content #right_col #loginbox #panels-slide .panel3 input[type=submit] {
@@ -497,7 +522,7 @@ hr {
   right: 0px;
   bottom: 0px;
   font-size: 9px;
-  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
 }
@@ -565,11 +590,10 @@ hr {
 #content-zone #content #right_col .fb-like-box {
   background-color: #292929;
   background-image: url("../images/home/loginbox-bg.jpg");
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   padding: 0px;
   height: 85px !important;
@@ -581,11 +605,10 @@ hr {
 #newsletter_popup {
   background-image: url("../images/home/newsletter-popup-bg.png");
   padding: 10px;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   border: 1px solid #9b9b9b;
   position: fixed;
@@ -593,15 +616,14 @@ hr {
   bottom: 50px;
   right: 40px;
   z-index: 300;
-  -moz-box-shadow: 0px 0px 8px black;
   -webkit-box-shadow: 0px 0px 8px black;
-  -o-box-shadow: 0px 0px 8px black;
+  -moz-box-shadow: 0px 0px 8px black;
   box-shadow: 0px 0px 8px black;
   behavior: url(static/js/pie/PIE.htc);
 }
 #newsletter_popup h1 {
   font-size: 17px;
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
   font-style: normal;
   color: white;
   margin: 0px;
@@ -628,25 +650,23 @@ hr {
 }
 #newsletter_popup form input[type=text] {
   width: 100%;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   border: 0px;
   color: #7F7E7E;
-  font-family: "OpenSans",Arial,Helvetica,sans-serif !important;
+  font-family: "OpenSans_obsolete",Arial,Helvetica,sans-serif !important;
   font-size: 10px;
   padding: 3px 0px;
 }
 #newsletter_popup form input[type=submit] {
   width: 100%;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
   background-color: #04add1;
   border: 0px;

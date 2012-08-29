@@ -143,7 +143,6 @@ class ProjectStartView(TemplateView):
 
         return context
 
-
 class ProjectTopicSelectView(TemplateView):
     """
     Before starting a project, one needs to pick a topic

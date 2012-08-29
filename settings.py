@@ -208,7 +208,9 @@ INSTALLED_APPS = (
     'simplegravatar',
     'social_auth',
 
-
+    'django_notify',
+    'wiki',
+    'wiki.plugins.notifications',
     #'grappelli',
     'filebrowser',
 
@@ -250,6 +252,7 @@ INSTALLED_APPS = (
     'apps.project_sheet',
     'apps.partner',
     'apps.workgroup',
+    'apps.tags',
 )
 
 # django-ajax_select
@@ -393,6 +396,7 @@ STATICFILES_DIRS = (
     ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
     ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
     ('images', os.path.join(STATIC_ROOT, 'images')),
+    ('compiled_images', os.path.join(STATIC_ROOT, 'compiled_images')),
 )
 
 COMPRESS_CSS_FILTERS = (
