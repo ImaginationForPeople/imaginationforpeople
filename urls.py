@@ -7,6 +7,9 @@ from django.contrib import admin
 from dynamicsites.views import site_info
 #from i18nurls.i18n import i18n_patterns # XXX: update when moving to dj1.4
 from userena.contrib.umessages import views as messages_views
+from django_notify.urls import get_pattern as get_notify_pattern
+from wiki.urls import get_pattern as get_wiki_pattern
+
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
@@ -58,7 +61,11 @@ urlpatterns += i18n_patterns('',
     url(r'^messages/', include('userena.contrib.umessages.urls')),
 
     (r'^newsletters/', include('emencia.django.newsletter.urls')),
-    
+
+    # Wiki
+    (r'^notify/', get_notify_pattern()),
+    (r'^wiki/', get_wiki_pattern()),
+                             
     #(r'^ajax_select/', include('ajax_select.urls')),
 	url(r'^ajax_lookup/(?P<channel>[-\w]+)/$',
 		'ajax_select.views.ajax_lookup',

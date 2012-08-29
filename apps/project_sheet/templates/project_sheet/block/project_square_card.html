@@ -11,14 +11,21 @@ Parameters for this block
 <a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 	href="{{ project_translation.get_absolute_url }}" >
 
-	<div class="summary" data-action-1="{% trans "See the project" %}" />
-		<h2 class="title"><span>{{ project_translation.title }}</span></h2>
-		<p class="description">
-			{% if project_translation.baseline|slice:"-1" != "." %}
-			{{ project_translation.baseline|add:'.'|truncatechars:70 }}
-			{% endif %}
-			{%comment%}{{ project_translation.baseline|truncatechars:70 }{%endcomment%}
-		</p>
+<div class="summary" data-action-1="{% trans "See the project" %}" />
+	<h2 class="title">{{ project_translation.title|truncatechars:50 }}</h2>
+	<p class="description">
+		{% if project_translation.baseline|slice:"-1" != "." %}
+		{{ project_translation.baseline|add:'.'|truncatechars:70 }}
+		{% endif %}
+		{%comment%}{{ project_translation.baseline|truncatechars:70 }{%endcomment%}
+	</p>
+</div>
+
+<div class="card" >
+	<div class="photo">	
+		{% if project_translation.project.pictures.all|length > 0 %}
+		<img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
+		{% endif %}
 	</div>
 
 	<div class="card" >

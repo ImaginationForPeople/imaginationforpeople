@@ -22,16 +22,22 @@
 {% block nav %}
 {% endblock %}
 
+{% block title %}{% blocktrans with tag=tag|capfirst %}{{ tag }} - thematic community | Imagination For People{% endblocktrans %}{% endblock %}
+
+{% block meta_desc %}
+{{ article.render|striptags|truncatewords:20 }}
+{% endblock %}
+
 {% block content %}
 <div id="subheader-zone" class="clearfix">
     <div id="pictured-zone">
 	<div class="container_18">
-	    <a href="{{ picture_project_translations.0.get_absolute_url }}" class="prefix_1 grid_12 alpha tag-header">
+	    <p class="prefix_1 grid_12 alpha tag-header">
 		<img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
 		<p class="credit">
 		    {% blocktrans %}Picture of project FIXME-BAD-TRANSLATION: {{ picture_project_translations.0.title }}.{% endblocktrans %}
 		</p>
-	    </a>
+	    </p>
 
 	    <div class="grid_5 omega project-list wide-card">
 		{% for project_translation in picture_project_translations %}
@@ -51,9 +57,8 @@
 		<h1 class="grid_8 alpha omega tag-title">{{ tag }}</h1>
 
 		<p class="grid_8 alpha omega tag-description">
-		    {% wiki_render article %} 
-		    FIXME : exemple text to remove when wiki will be available again...
-		    <a href="{% url tags:wiki-edit tag %}" class="button"><img src="/static/images/base/edit.png" alt="edit" /></a>
+		    {{ article.render|striptags }}
+		    [<a href="{% url tags:wiki-edit tag %}">{% trans "edit" %}</a>]
 		</p>
 
 	    </div>
@@ -72,7 +77,7 @@
 	    </div>
 
 	    <div class="project-list square-card clearfix">
-		<h2>Mature projects</h2>
+		<h2>{% trans "Mature projects" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in mature_project_translations %}
 		    {% include "project_sheet/block/project_square_card.html" %}
@@ -85,7 +90,7 @@
 
 
 	    <div class="project-list square-card clearfix">
-		<h2>Starting projects</h2>
+		<h2>{% trans "Starting projects" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in starting_project_translations %}
 		    {% include "project_sheet/block/project_square_card.html" %}
@@ -97,7 +102,7 @@
 	    <hr class="shaded-separator" />
 
 	    <div class="project-list square-card clearfix">
-		<h2>New project sheets</h2>
+		<h2>{% trans "New project sheets" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in new_project_translations %}
 		    {% include "project_sheet/block/project_square_card.html" %}
@@ -110,7 +115,7 @@
 	    <hr class="shaded-separator" />
 
 	    <div class="project-list square-card clearfix">
-		<h2>Latest modifications</h2>
+		<h2>{% trans "Latest modifications" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in modified_project_translations %}
 		    {% include "project_sheet/block/project_square_card.html" %}
@@ -122,9 +127,11 @@
 	</div> <!-- .grid_12 -->
 
 	<div class="prefix_1 grid_5 omega" >
+	    {% comment %}
 	    <a class="tag-follow-button" href="#FIXME-BAD-URL">
 		{% trans "Follow this topic" %}
 	    </a>
+	    {% endcomment %}
 
 	    <div class="people-list wide-flat">
 		<h2>{% trans "People" %} </h2>
