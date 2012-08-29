@@ -8,6 +8,8 @@ Parameters for this block
 {% endcomment %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
+<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
+	href="{{ project_translation.get_absolute_url }}" >
 
 <div class="summary" data-action-1="{% trans "See the project" %}" />
 	<h2 class="title">{{ project_translation.title|truncatechars:50 }}</h2>
@@ -26,38 +28,44 @@ Parameters for this block
 		{% endif %}
 	</div>
 
-	<div class="progress">
-		<p class="status progressbar-{{project_translation.project.status|lower }}">{{ project_translation.project.get_status_display }}</p>
+	<div class="card" >
+		<div class="photo">	
+			{% if project_translation.project.pictures.all|length > 0 %}
+			<img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
+			{% endif %}
+		</div>
+
+		<div class="progress">
+			<p class="status progressbar-{{project_translation.project.status|lower }}">{{ project_translation.project.get_status_display }}</p>
+		</div>
+
+		<div class="pictos">
+			{% if project_translation.project.members.count > 0 %}
+			<div class="picto-team"></div>
+			{% endif %}
+			{% ifequal project_translation.completion_progress "EDIT" %}
+			<div class="picto-editing"></div>
+			{% endifequal  %}
+			{% if project_translation.project.best_of %}
+			<div class="picto-bestof"></div>
+			{% endif %}
+		</div>
+
+		<div class="location">
+			{% if project_translation.project.location.country %}
+			{{project_translation.project.location.get_country_display|truncatewords:2|capfirst}}
+			<img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.get_country_display }}" alt="{{ project_translation.project.location.get_country_display }}"/>
+			{% else %}
+
+			{% endif %}
+		</div>	
+
+		{% if project_translation.project.topics.all.0 %}
+		<div class="topic">
+			<div class="illustration topic-{{ project_translation.project.topics.all.0.topic.slug }}-small" title="{{ project_translation.project.topics.all.0.topic.label }}"></div>
+			<p class="description">{{ project_translation.project.topics.all.0.topic.label }}</p>
+		</div>
+		{% endif %}
 	</div>
 
-	<!-- FIXME: replace with an elegant CSS theme instead of an hardcoded image -->
-	<div class="pictos">
-		{% if project_translation.project.members.count > 0 %}
-		<div class="picto-team"></div>
-		{% endif %}
-		{% ifequal project_translation.completion_progress "EDIT" %}
-		<div class="picto-editing"></div>
-		{% endifequal  %}
-		{% if project_translation.project.best_of %}
-		<div class="picto-bestof"></div>
-		{% endif %}
-	</div>
-
-	<div class="location">
-		{% if project_translation.project.location.country %}
-		{{project_translation.project.location.get_country_display|truncatewords:2|capfirst}}
-		<img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.get_country_display }}" alt="{{ project_translation.project.location.get_country_display }}"/>
-		{% else %}
-
-		{% endif %}
-	</div>	
-
-	{% if project_translation.project.topics.all.0 %}
-	<!-- FIXME: replace with an elegant CSS theme instead of an hardcoded image -->
-	<div class="topic">
-		<div class="illustration topic-{{ project_translation.project.topics.all.0.topic.slug }}-small" title="{{ project_translation.project.topics.all.0.topic.label }}"></div>
-		<p class="description">{{ project_translation.project.topics.all.0.topic.label }}</p>
-	</div>
-	{% endif %}
-</div>
-
+</a>
