@@ -9,8 +9,7 @@
 
     h2 {
 	@include border-radius($sizeRadiusSmall 0 0 $sizeRadiusSmall);
-	// FIXME: add tag icon
-	background-image: url(../../../images/tags/icon-tag-white-small.png);
+	background-image: image-url("tags/icon-tag-white-small.png");
 	background-position: 5px center;
 	background-repeat: no-repeat;
 	height: 16px;
@@ -32,6 +31,7 @@
     ul {
 	display: block;
 	list-style: none;
+	margin-left: 0.5em;
 
 	&:after {
 	    content: "";

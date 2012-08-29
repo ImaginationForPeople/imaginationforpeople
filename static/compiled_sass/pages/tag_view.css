@@ -62,115 +62,14 @@ body {
   left: 10px;
   color: white;
 }
-#pictured-zone .pano-header-block {
+#pictured-zone .project-list.wide-card {
   margin-top: 20px;
-}
-#pictured-zone .pano-header {
-  position: relative;
-  height: 81px;
-  width: inherit;
-  margin-bottom: 10px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-}
-#pictured-zone .pano-header img {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: inherit;
-}
-#pictured-zone .pano-header .project-information {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: inherit;
-  padding: 10px;
-  color: white;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  background-image: url(../../images/tags/icon-arrow-white-big.png), url(../../images/base/background-black-dots.png);
-  background-repeat: no-repeat, repeat;
-  background-position: 400px center, top left;
-  transition: all 0.5s ease;
-  -moz-transition: all 0.5s ease;
-  -webkit-transition: all 0.5s ease;
-  -o-transition: all 0.5s ease;
-}
-#pictured-zone .pano-header .project-information .title {
-  display: block;
-  position: absolute;
-  font-family: "OpenSans", Arial, Helvetica, sans-serif;
-  font-size: 1.17em;
-  font-stretch: condensed;
-  font-weight: bold;
-  text-transform: uppercase;
-  visibility: visible;
-  background-color: white;
-  color: black;
-  bottom: 10px;
-  padding-left: 1em;
-  padding-right: 1em;
-}
-#pictured-zone .pano-header .project-information .description {
-  padding-right: 70px;
-  font-family: "OpenSans", Arial, Helvetica, sans-serif;
-  font-size: 1em;
-  font-style: italic;
-  opacity: 0;
-}
-#pictured-zone .pano-header:hover .project-information {
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  visibility: visible;
-  background-color: rgba(4, 173, 209, 0.7);
-  background-position: 200px center, top left;
-  color: white;
-}
-#pictured-zone .pano-header:hover .project-information .title {
-  margin-right: 70px;
-  position: static;
-  color: white;
-  background: none;
-  padding: 0;
-  margin-bottom: 0.5em;
-}
-#pictured-zone .pano-header:hover .project-information .description {
-  opacity: 1;
 }
 
 #content-zone {
   clear: both;
   background-color: white;
+  margin-bottom: 2em;
 }
 
 #description-zone {
@@ -197,7 +96,7 @@ body {
   padding: 0;
   min-height: 5em;
   min-width: 5em;
-  background-image: url(../../images/tags/icon-tag-white-big.png);
+  background-image: url('../../images/tags/icon-tag-white-big.png?1345126918');
   background-repeat: no-repeat;
   background-position: 80px center;
 }
@@ -247,7 +146,7 @@ body {
   display: block;
   width: 100%;
   height: 100%;
-  background-image: url(../../images/tags/icon-arrow-blue-big.png);
+  background-image: url('../../images/tags/icon-arrow-blue-big.png?1345459835');
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -257,7 +156,7 @@ hr.shaded-separator {
   border: 0;
   width: 100%;
   height: 10px;
-  background-image: url(../../images/base/horizontal-separator.png);
+  background-image: url('../../images/base/horizontal-separator.png?1345135879');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -312,7 +211,7 @@ hr.shaded-separator {
   display: block;
   background-color: #04add1;
   box-shadow: inset 0 0 0 #04add1;
-  background-image: url(../../images/tags/icon-plus-white-big.png), url(../../images/base/background-white-dots.png);
+  background-image: url('../../images/tags/icon-plus-white-big.png?1345824128'), url('../../images/base/background-white-dots.png?1345824215');
   background-opacity: 1, 1, 0;
   background-repeat: no-repeat, repeat;
   background-position: 190px center, top left;

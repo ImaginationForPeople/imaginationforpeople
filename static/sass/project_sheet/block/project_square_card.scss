@@ -49,7 +49,7 @@ $topic-sprite-dimensions: true;
 	position: relative;
 	height: 150px;
 
-	background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-black-dots.png);
+	background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-50.png");
 	background-repeat: no-repeat, repeat;
 	background-position: 200px 110px, top left;
 	background-size: 25px 25px, auto;
@@ -64,17 +64,21 @@ $topic-sprite-dimensions: true;
 	    font-size: $sizeTextBig;
 	    font-stretch: condensed;
 	    font-weight: bold;
+	    line-height: $sizeTextBig * 1.2;
 
-	    bottom: 60px;
+	    bottom: 55px;
 	    margin-left: 10px;
 	    margin-right: 10px;
 	    color: black;
 	    text-transform: uppercase;
-	    background-color: white;
 	    z-index: 2;
 	    opacity: 1;
 	    padding-left: 5px;
 	    padding-right: 5px;
+
+	    span {
+		background-color: white;
+	    }
 	}
 
 	.description {
@@ -120,7 +124,7 @@ $topic-sprite-dimensions: true;
 	color: white;
 	text-shadow: 0 0 $sizeRadiusSmall black;
 	padding-top: 10px;
-	background-image: url(../../../images/project/front-uprounded-rectangle.png);
+	background-image: image-url("project/front-uprounded-rectangle.png");
 	opacity: 1;
 	z-index: 3;
 
@@ -192,7 +196,7 @@ $topic-sprite-dimensions: true;
 
     .topic {
 	@include transition(all .5s ease);
-	background-image: url(../../../images/project/card-top-handler.png);
+	background-image: image-url("project/card-top-handler.png");
 	background-repeat: no-repeat;
 	background-position: top center;
 	background-opacity: 1;
@@ -255,8 +259,8 @@ $topic-sprite-dimensions: true;
 	    height: 150px;
 
 	    background-color: rgba($colorLightBlue,0.7);
-	    background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-black-dots.png);
-	    background-repeat: no-repeat, repeat;
+	    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-12.png");
+	    background-repeat: no-repeat , repeat;
 	    background-position: 100px 110px, 0 0;
 
 	    .title {
