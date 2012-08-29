@@ -93,10 +93,7 @@
 		<h2>Mature projects</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in mature_project_translations %}
-		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#FIXME-BAD-URL" >
 		    {% include "project_sheet/block/project_square_card.html" %}
-		</a>
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -109,10 +106,7 @@
 		<h2>Starting projects</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in starting_project_translations %}
-		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#FIXME-BAD-URL">
 		    {% include "project_sheet/block/project_square_card.html" %}
-		</a>
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -124,10 +118,7 @@
 		<h2>New project sheets</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in new_project_translations %}
-		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#FIXME-BAD-URL">
 		    {% include "project_sheet/block/project_square_card.html" %}
-		</a>
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -140,10 +131,7 @@
 		<h2>Latest modifications</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in modified_project_translations %}
-		<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-		    href="#FIXME-BAD-URL">
 		    {% include "project_sheet/block/project_square_card.html" %}
-		</a>
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
