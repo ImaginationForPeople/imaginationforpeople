@@ -80,7 +80,7 @@
 		<h2>{% trans "Mature projects" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in mature_project_translations %}
-		    {% include "project_sheet/block/project_square_card.html" %}
+		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -93,7 +93,7 @@
 		<h2>{% trans "Starting projects" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in starting_project_translations %}
-		    {% include "project_sheet/block/project_square_card.html" %}
+		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -105,7 +105,7 @@
 		<h2>{% trans "New project sheets" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in new_project_translations %}
-		    {% include "project_sheet/block/project_square_card.html" %}
+		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -118,7 +118,7 @@
 		<h2>{% trans "Latest modifications" %}</h2>
 		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
 		{% for project_translation in modified_project_translations %}
-		    {% include "project_sheet/block/project_square_card.html" %}
+		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
