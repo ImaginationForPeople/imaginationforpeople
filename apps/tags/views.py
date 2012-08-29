@@ -6,6 +6,8 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from django.views.generic import TemplateView
 
 from tagging.managers import ModelTaggedItemManager
@@ -36,6 +38,10 @@ class TagEditWikiView(Edit):
 class TagPageView(TemplateView):
     template_name = 'tags/tag_view.html'
 
+    @method_decorator(cache_page(60*60)) # One hour
+    def dispatch(self, *args, **kwargs):
+        return super(TagPageView, self).dispatch(*args, **kwargs)
+    
     def get_context_data(self, tag, **kwargs):
         context = super(TagPageView, self).get_context_data(**kwargs)
 
