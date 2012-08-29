@@ -10,7 +10,7 @@ Parameters for this block
 {% load word_boundary_aware_truncate_chars %}
 
 <div class="summary" data-action-1="{% trans "See the project" %}" />
-	<h2 class="title">{{ project_translation.title }}</h2>
+	<h2 class="title">{{ project_translation.title|truncatechars:50 }}</h2>
 	<p class="description">
 		{% if project_translation.baseline|slice:"-1" != "." %}
 		{{ project_translation.baseline|add:'.'|truncatechars:70 }}
