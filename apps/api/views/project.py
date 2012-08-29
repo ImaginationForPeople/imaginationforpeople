@@ -32,7 +32,7 @@ class I4pProjectTranslationHandler(BaseHandler):
     model = I4pProjectTranslation
     project = None
     
-    @throttle(30, 1)
+    @throttle(settings.API_THROTTLE_REQUEST_COUNT, settings.API_THROTTLE_REQUEST_TIMEFRAME)
     def read(self, request, project_id=None):
         """Display informations about projects
         
