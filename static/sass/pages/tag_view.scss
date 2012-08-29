@@ -21,7 +21,6 @@ body {
 
 
     .tag-header {
-	// FIXME: add an inset shadow, if needed
 	position: relative;
 
 	a {
@@ -89,13 +88,17 @@ body {
 		font-size: $sizeTextBig;
 		font-stretch: condensed;
 		font-weight: bold;
+		line-height: $sizeTextBig * 1.2;
 		text-transform: uppercase;
 		visibility: visible;
-		background-color: white;
 		color: black;
 		bottom: 10px;
 		padding-left: 1em;
 		padding-right: 1em;
+
+		span {
+		    background-color: white;
+		}
 	    }
 
 	    .description {
@@ -126,6 +129,10 @@ body {
 		background: none;
 		padding: 0;
 		margin-bottom: 0.5em;
+
+		span {
+		    background-color: transparent;
+		}
 	    }
 
 	    .description {
