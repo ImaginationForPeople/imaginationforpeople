@@ -1,6 +1,20 @@
 /**
  *  Mixins
  */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
 /**
  * Old Colors (obsolete, please use new color naming scheme instead)
  */
@@ -9,6 +23,9 @@
  */
 /**
  * text sizes
+ */
+/**
+ * font piles
  */
 body {
   background-color: #f8f8f8;
@@ -37,11 +54,13 @@ body {
   border: none;
 }
 #pictured-zone .tag-header .credit {
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 0.83em;
+  font-style: italic;
   position: absolute;
   top: 145px;
   left: 10px;
   color: white;
-  font-style: italic;
 }
 #pictured-zone .pano-header-block {
   margin-top: 20px;
@@ -102,6 +121,9 @@ body {
 #pictured-zone .pano-header .project-information .title {
   display: block;
   position: absolute;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1.17em;
+  font-stretch: condensed;
   font-weight: bold;
   text-transform: uppercase;
   visibility: visible;
@@ -112,6 +134,10 @@ body {
   padding-right: 1em;
 }
 #pictured-zone .pano-header .project-information .description {
+  padding-right: 70px;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  font-style: italic;
   opacity: 0;
 }
 #pictured-zone .pano-header:hover .project-information {
@@ -125,13 +151,13 @@ body {
   top: 0;
   left: 0;
   padding: 10px;
-  padding-right: 70px;
   visibility: visible;
   background-color: rgba(4, 173, 209, 0.7);
   background-position: 200px center, top left;
   color: white;
 }
 #pictured-zone .pano-header:hover .project-information .title {
+  margin-right: 70px;
   position: static;
   color: white;
   background: none;
@@ -177,13 +203,16 @@ body {
 }
 #description-zone .tag-title {
   color: white;
-  font-family: "OpenSansBold", Arial,Helvetica, sans-serif;
-  font-size: 1.17em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 2.33em;
   font-style: normal;
   text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 #description-zone .tag-description {
   color: white;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1em;
   font-style: italic;
 }
 #description-zone .tag-description .button {
@@ -287,9 +316,12 @@ hr.shaded-separator {
   background-opacity: 1, 1, 0;
   background-repeat: no-repeat, repeat;
   background-position: 190px center, top left;
-  padding: 10px;
-  padding-right: 65px;
-  font-size: 18px;
+  padding: 15px;
+  padding-left: 10px;
+  padding-right: 75px;
+  font-size: 1.17em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
   font-weight: bold;
   text-transform: uppercase;
   color: white;

@@ -1,5 +1,6 @@
 @import "../../mixin.scss";
 @import "../../constants.scss";
+@import "../../fonts.scss";
 
 .tag-list {
     line-height: 1.5em;
@@ -9,12 +10,14 @@
     h2 {
 	@include border-radius($sizeRadiusSmall 0 0 $sizeRadiusSmall);
 	// FIXME: add tag icon
-	background-image: url(../../images/tags/icon-tag-white-small.png);
+	background-image: url(../../../images/tags/icon-tag-white-small.png);
 	background-position: 5px center;
 	background-repeat: no-repeat;
-	font-size: 12px;
 	height: 16px;
-	font-weight: normal;
+	font-family: $fontOpenSans;
+	font-weight: bold;
+	font-style: italic;
+	font-size: $sizeTextSmall;
 	display: inline;
 	color: white;
 	float: left;
@@ -48,7 +51,9 @@
 	    padding-left: 5px;
 	    padding-right: 5px;
 	    font-style: italic;
-	    font-size: 12px;
+	    font-weight: bold;
+	    font-size: $sizeTextSmall;
+	    font-family: $fontOpenSans;
 
 	    position: relative;
 

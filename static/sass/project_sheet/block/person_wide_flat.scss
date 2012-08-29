@@ -11,6 +11,7 @@ $flag-sprite-dimensions: true;
 
 
 .people-list.wide-flat{
+
     @include border-radius($sizeRadiusSmall);
     @include border-box;
     border: 1px solid darken($colorLightGrey,2%);
@@ -21,7 +22,10 @@ $flag-sprite-dimensions: true;
     margin-bottom: 12px;
 
     h2 {
-	font-size: 120%;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextLarge;
+	font-stretch: condensed;
+	font-weight: bold;
 	text-transform: uppercase;
 	margin-top: 5px;
 	margin-bottom: 5px;
@@ -60,6 +64,8 @@ $flag-sprite-dimensions: true;
     .fullname {
 	display: block;
 	color: black;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextNormal;
 	font-weight: bold;
 	font-style: italic;
     }
@@ -67,6 +73,8 @@ $flag-sprite-dimensions: true;
     .project {
 	display: block;
 	color: black;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextNormal;
 	font-weight: bold;
 
 	&:before {

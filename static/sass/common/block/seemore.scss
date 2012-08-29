@@ -1,7 +1,11 @@
 @import "../../mixin.scss";
 @import "../../constants.scss";
+@import "../../fonts.scss";
 
 .seemore {
+    font-family: $fontOpenSans;
+    font-size: $sizeTextTiny;
+
     position: absolute;
     display: block;
     color: black;

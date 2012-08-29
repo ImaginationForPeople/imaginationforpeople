@@ -1,6 +1,20 @@
 /**
  *  Mixins
  */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
 /**
  * Old Colors (obsolete, please use new color naming scheme instead)
  */
@@ -9,6 +23,9 @@
  */
 /**
  * text sizes
+ */
+/**
+ * font piles
  */
 /*
 Name: Sliding Login Panel with jQuery 1.3.2
@@ -104,7 +121,7 @@ Version: 1.0
   padding-top: 2px;
 }
 .tab ul.login li.language a {
-  font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
+  font-family: 'OpenSansCondensedBold_obsolete', Arial, Helvetica, sans-serif;
   color: white;
 }
 .tab ul.login .close:hover {
@@ -142,7 +159,7 @@ Version: 1.0
 }
 .tab ul.login li a.open.link, .tab ul.login li a.close.link {
   height: 20px;
-  font-family: 'OpenSansBoldItalic', Arial, Helvetica, sans-serif;
+  font-family: 'OpenSansBoldItalic_obsolete', Arial, Helvetica, sans-serif;
   line-height: 20px !important;
   /*padding-left: 32px !important;*/
   cursor: pointer;
@@ -187,12 +204,12 @@ Version: 1.0
   height: 0px;
 }
 #panel a.link {
-  font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-weight: normal;
 }
 #panel h1 {
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 16px;
   text-transform: uppercase;
   font-style: normal;
@@ -255,7 +272,7 @@ Version: 1.0
 #panel .panel_content label[for=id_remember_me] {
   display: block !important;
   visibility: visible !important;
-  font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+  font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
   font-size: 10px;
   color: #04add1;
 }
@@ -265,7 +282,7 @@ Version: 1.0
   margin-top: 4px;
   width: 150px;
   color: #3d3d3d;
-  font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
   font-size: 11px;
   height: 16px;
   padding-left: 4px;
@@ -278,7 +295,7 @@ Version: 1.0
 #panel .panel_content input[type=submit], #panel .panel_content button {
   background-image: url("../images/home/openid-button.jpg");
   color: white;
-  font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 11px;
   padding: 2px 6px;
   margin: 0px;
@@ -306,7 +323,7 @@ Version: 1.0
   top: 72px;
 }
 #panel .panel_content .password_lost {
-  font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+  font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
   font-size: 10px;
   color: #04add1;
   margin-left: 22px;
