@@ -26,8 +26,7 @@ from apps.project_sheet.utils import get_project_translations_from_parents
 
 class I4pProjectTranslationHandler(BaseHandler):
     """
-    Handler used to display informations about a project sheet.
-    Use "project_id" GET parameter.
+    Play with projects sheets.
     """
     allowed_methods = ('GET',)
     model = I4pProjectTranslation
@@ -35,6 +34,18 @@ class I4pProjectTranslationHandler(BaseHandler):
     
     @throttle(30, 1)
     def read(self, request, project_id=None):
+        """Display informations about projects
+        
+        :param project_id: the id of the project to display
+        :type project_id: int
+        
+        :get lang: Used to force a language
+        :type lang: str
+        :default lang: en
+        
+        Displays best and latest projects without argument
+        Add a project id to get all data about a project
+        """
         # TODO: Check if class attributes doesn't have problems with threads on production
         if project_id is None:
             language_code = request.GET.get('lang', 'en')
