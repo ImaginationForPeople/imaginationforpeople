@@ -140,24 +140,13 @@
 		<!-- FIXME: must show people count in "more" -->
 		<a href="#FIXME-BAD-URL" class="seemore">{% trans "See more" %}</a>
 		<ul>
-		    <li class="project wide-flat">
-			<p class="title">The Docks Numériques</p>
-			<p class="description">Dijon’s first coworking space</p>
-		    </li>
-
-		    <li class="project wide-flat">
-			<p class="title">Reconnect</p>
-			<p class="description">Landlines for socially excluded persons</p>
-		    </li>
-
-		    <li class="project wide-flat">
-			<p class="title">CoEthik</p>
-			<p class="description">Ethical and collective advice for Social Solidarity Economy organizations</p>
-		    </li>
+		    {% for p in new_project_translations %}
+		      {% include "project_sheet/block/project_wide_flat.html" with project_translation=p %}
+		    {% endfor %}
 		</ul>
 	    </div>
 
-	    <a class="tag-add-button" href="#FIXME-BAD-URL">
+	    <a class="tag-add-button" href="{% url project_sheet-start %}">
 		{% trans "Add a project in this category" %}
 	    </a>
 
