@@ -68,7 +68,7 @@
 </div> <!-- #subheader-zone -->
 
 <div id="content-zone">
-    <div class="container_18"> <!-- .container_18 -->
+    <div class="container_18 clearfix"> <!-- .container_18 -->
 
 	<div class="grid_12 alpha" >
 
@@ -98,19 +98,6 @@
 		{% trans "No projects" %}
 		{% endfor %}
 	    </div>
-
-	    <hr class="shaded-separator" />
-
-	    <div class="project-list square-card clearfix">
-		<h2>{% trans "New project sheets" %}</h2>
-		<a href="#FIXME-BAD-URL" class="seemore">See more</a>
-		{% for project_translation in new_project_translations %}
-		{% include "project_sheet/block/project_square_card.html" %}
-		{% empty %}
-		{% trans "No projects" %}
-		{% endfor %}
-	    </div>
-
 
 	    <hr class="shaded-separator" />
 
