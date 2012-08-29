@@ -108,7 +108,7 @@ class TagPageView(TemplateView):
             project__site=current_site,
             project__pictures__isnull=False
         ).distinct(), tag_instance).distinct()
-        context['picture_project_translations'] = [random.choice(hilighted_projects) for i in range(4)]
+        context['picture_project_translations'] = random.sample(hilighted_projects, 4)
 
 
         # Mature projects
@@ -116,16 +116,16 @@ class TagPageView(TemplateView):
             language_code=current_language_code,
             project__site=current_site,
             project__status__in=('WIP', 'END')
-        ).distinct(), tag_instance)
-        context['mature_project_translations'] = [random.choice(mature_project_translations) for i in range(4)]        
+        ).distinct(), tag_instance).distinct()
+        context['mature_project_translations'] = random.sample(mature_project_translations, 4)
 
         # Starting projects
         starting_project_translations = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
             language_code=current_language_code,            
             project__site=current_site,
             project__status__in=('IDEA', 'BEGIN')
-        ).distinct(), tag_instance)
-        context['starting_project_translations'] = [random.choice(starting_project_translations) for i in range(4)]
+        ).distinct(), tag_instance).distinct()
+        context['starting_project_translations'] = random.sample(starting_project_translations, 4)
          
         # New projects
         context['new_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
