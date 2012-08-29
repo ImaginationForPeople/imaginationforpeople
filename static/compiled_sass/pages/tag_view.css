@@ -125,13 +125,16 @@ body {
   font-size: 1.17em;
   font-stretch: condensed;
   font-weight: bold;
+  line-height: 1.404em;
   text-transform: uppercase;
   visibility: visible;
-  background-color: white;
   color: black;
   bottom: 10px;
   padding-left: 1em;
   padding-right: 1em;
+}
+#pictured-zone .pano-header .project-information .title span {
+  background-color: white;
 }
 #pictured-zone .pano-header .project-information .description {
   padding-right: 70px;
@@ -164,6 +167,9 @@ body {
   background: none;
   padding: 0;
   margin-bottom: 0.5em;
+}
+#pictured-zone .pano-header:hover .project-information .title span {
+  background-color: transparent;
 }
 #pictured-zone .pano-header:hover .project-information .description {
   opacity: 1;
