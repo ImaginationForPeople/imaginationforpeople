@@ -376,7 +376,7 @@
   -o-transition: all 0.5s ease;
   position: relative;
   height: 150px;
-  background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-black-dots.png);
+  background-image: url('../../../images/tags/icon-arrow-white-big.png?1345213440'), url('../../../images/base/background-black-dots-opacity-50.png?1346236933');
   background-repeat: no-repeat, repeat;
   background-position: 200px 110px, top left;
   background-size: 25px 25px, auto;
@@ -392,16 +392,19 @@
   font-size: 1.17em;
   font-stretch: condensed;
   font-weight: bold;
+  line-height: 1.404em;
   bottom: 60px;
   margin-left: 10px;
   margin-right: 10px;
   color: black;
   text-transform: uppercase;
-  background-color: white;
   z-index: 2;
   opacity: 1;
   padding-left: 5px;
   padding-right: 5px;
+}
+.project.square-card .summary .title span {
+  background-color: white;
 }
 .project.square-card .summary .description {
   opacity: 0;
@@ -444,7 +447,7 @@
   color: white;
   text-shadow: 0 0 4px black;
   padding-top: 10px;
-  background-image: url(../../../images/project/front-uprounded-rectangle.png);
+  background-image: url('../../../images/project/front-uprounded-rectangle.png?1345483005');
   opacity: 1;
   z-index: 3;
 }
@@ -525,7 +528,7 @@
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  background-image: url(../../../images/project/card-top-handler.png);
+  background-image: url('../../../images/project/card-top-handler.png?1345455610');
   background-repeat: no-repeat;
   background-position: top center;
   background-opacity: 1;
@@ -590,8 +593,8 @@
 .project.square-card:hover .summary {
   height: 150px;
   background-color: rgba(4, 173, 209, 0.7);
-  background-image: url(../../../images/tags/icon-arrow-white-big.png), url(../../../images/base/background-black-dots.png);
-  background-repeat: no-repeat, repeat;
+  background-image: url('../../../images/tags/icon-arrow-white-big.png?1345213440'), url('../../../images/base/background-black-dots-opacity-12.png?1346236966');
+  background-repeat: no-repeat , repeat;
   background-position: 100px 110px, 0 0;
 }
 .project.square-card:hover .summary .title {
