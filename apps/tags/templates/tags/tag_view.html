@@ -8,7 +8,9 @@
 {% compress css %}
 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_square_card.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_wide_card.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_wide_flat.css" />
+
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_wide_flat.css" />
 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/tag_list.css" />
@@ -31,32 +33,13 @@
 		</p>
 	    </a>
 
-	    <div class="grid_5 omega pano-header-block">
-		
-		<a href="{{ picture_project_translations.1.get_absolute_url }}" class="grid_5 alpha omega pano-header">
-		    <img src="{{ picture_project_translations.1.project.pictures.all.0.small_pano_header.url }}"/>
-		    <div class="project-information">
-			<p class="title"><span>{{ picture_project_translations.1.title }}</span></p>
-			<p class="description">{{ picture_project_translations.1.baseline }}</p>
-		    </div>
-		</a>
-
-		<a href="{{ picture_project_translations.2.get_absolute_url }}" class="grid_5 alpha omega pano-header">
-		    <img src="{{ picture_project_translations.2.project.pictures.all.0.small_pano_header.url }}"/>
-		    <div class="project-information">
-			<p class="title"><span>{{ picture_project_translations.2.title }}</span></p>
-			<p class="description">{{ picture_project_translations.2.baseline }}</p>
-		    </div>
-		</a>
-
-		<a href="{{ picture_project_translations.3.get_absolute_url }}" class="grid_5 alpha omega pano-header">
-		    <img src="{{ picture_project_translations.3.project.pictures.all.0.small_pano_header.url }}"/>
-		    <div class="project-information">
-			<p class="title"><span>{{ picture_project_translations.3.title }}</span></p>
-			<p class="description">{{ picture_project_translations.3.baseline }}</p>
-		    </div>
-		</a>
-		<br/>
+	    <div class="grid_5 omega project-list wide-card">
+		{% for project_translation in picture_project_translations %}
+		{% if forloop.first %}
+		{% else %}
+		{% include "project_sheet/block/project_wide_card.html" %}
+		{% endif %}
+		{% endfor %}
 	    </div>
 	</div>
     </div>
@@ -75,7 +58,6 @@
 
 	    </div>
 	</div>
-	<!-- FIXME: (design) missing right arrow for tag description. Is it the wiki-edit button ?-->
 	<div class="readmore"><a href="#FIXME-BAD-URL"></a></div>
     </div>
 </div> <!-- #subheader-zone -->

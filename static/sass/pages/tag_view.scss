@@ -42,104 +42,11 @@ body {
 	}
     }
 
-    .pano-header-block {
+    .project-list.wide-card {
 	margin-top: 20px;
     }
 
-    .pano-header {
-	position: relative; // make children position absolute but relative to this
-	height: 81px; // 81px for grid_5 , 64px for grid_4
-	width: inherit;
-	margin-bottom: 10px;
-	@include border-radius($sizeRadiusSmall);
-	@include box-shadow-bottomleft;
 
-	img {
-	    @include border-radius($sizeRadiusSmall);
-	    position: absolute;
-	    top: 0;
-	    left: 0;
-	    width: inherit;
-	    height: inherit;
-	}
-
-
-	.project-information {
-	    @include border-radius($sizeRadiusSmall);
-	    @include border-box;
-	    position: absolute; // yet relative to parent
-	    top: 0;
-	    left: 0;
-	    width: inherit;
-	    height: inherit;
-	    padding: 10px;
-	    color: white;
-	    text-overflow: ellipsis;
-	    overflow: hidden;
-	    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-50.png");
-	    background-repeat: no-repeat, repeat;
-	    background-position: 400px center, top left;
-	    @include transition( all .5s ease );
-
-	    .title {
-		display: block;
-		position: absolute;
-		font-family: $fontOpenSans;
-		font-size: $sizeTextBig;
-		font-stretch: condensed;
-		font-weight: bold;
-		line-height: $sizeTextBig * 1.2;
-		text-transform: uppercase;
-		visibility: visible;
-		color: black;
-		bottom: 10px;
-		padding-left: 1em;
-		padding-right: 1em;
-
-		span {
-		    background-color: white;
-		}
-	    }
-
-	    .description {
-		padding-right: 70px;
-		font-family: $fontOpenSans;
-		font-size: $sizeTextNormal;
-		font-style: italic;
-		opacity: 0;
-	    }
-	}
-
-	&:hover .project-information {
-	    @include border-box;
-	    position: absolute; // yet relative to parent
-	    top: 0;
-	    left: 0;
-	    padding: 10px;
-	    visibility: visible;
-	    background-color: rgba($colorLightBlue,0.7);
-	    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-12.png");
-	    background-position: 200px center, top left;
-	    color: white;
-
-	    .title {
-		margin-right: 70px;
-		position: static;
-		color: white;
-		background: none;
-		padding: 0;
-		margin-bottom: 0.5em;
-
-		span {
-		    background-color: transparent;
-		}
-	    }
-
-	    .description {
-		opacity: 1;
-	    }
-	}
-    }
 }
 
 #content-zone {
