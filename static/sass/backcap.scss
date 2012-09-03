@@ -1,4 +1,5 @@
 @import "mixin.scss";
+@import "constants.scss";
 
 
 .content-feedback {
@@ -6,7 +7,7 @@
 }
 
 .feedback-title{
-font-size:18px;
+    font-size:18px;
 }
 
 #feedback-text{
@@ -308,7 +309,7 @@ div#feedback-sidebar {
             font-weight:bold;
             position:relative;
             top:3px;
-            color:$blue;
+            color: $colorLightBlue;
         }
         
         .helptext{

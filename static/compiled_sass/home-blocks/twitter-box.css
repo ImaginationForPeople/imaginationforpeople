@@ -1,3 +1,35 @@
+/**
+ *  Mixins
+ */
+/**
+ *  Mixins
+ */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
 .twittblogbox {
   float: left;
   width: 100%;
@@ -8,7 +40,7 @@
 .twittblogbox h1 {
   padding: 8px;
   background-color: #c1c1c1;
-  font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
+  font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif !important;
   font-size: 16px;
   font-style: normal;
   text-transform: uppercase;

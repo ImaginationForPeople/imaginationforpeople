@@ -24,10 +24,8 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
-from django.conf import settings
-from django.db import connection, transaction
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -144,7 +142,6 @@ class ProjectStartView(TemplateView):
         context['topic'] = topic
 
         return context
-
 
 class ProjectTopicSelectView(TemplateView):
     """
@@ -685,7 +682,7 @@ class ProjectRecentChangesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
 
-        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=30)
+        twenty_days_ago = datetime.now() - timedelta(days=30)
 
         project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
         parent_project_ct = ContentType.objects.get_for_model(I4pProject)

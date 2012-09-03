@@ -1,4 +1,5 @@
 @import "mixin.scss";
+@import "constants.scss";
 
 .twittblogbox{
     float:left;
@@ -10,12 +11,12 @@
     h1{
         padding:8px;
         background-color:$greymenu;
-        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
+        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif !important;
         font-size:16px;
         font-style:normal;
         text-transform:uppercase;
         text-shadow:1px 1px #f3f3f3;
-        border-top:3px solid $blue;
+        border-top:3px solid  $colorLightBlue;
         padding-left:40px;
         background-repeat:no-repeat;
         background-position:5px 2px;
@@ -49,7 +50,7 @@
             }
             
             a{
-                color:$blue;
+                color: $colorLightBlue;
             }
             
             a:hover{
@@ -113,7 +114,7 @@
                 }
                 
                 a{
-                    color:$blue !important;
+                    color: $colorLightBlue !important;
                 }
             }
         }

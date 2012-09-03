@@ -1,0 +1,18 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project_translation : I4pProjectTranslation
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+
+<a href="{{ project_translation.get_absolute_url }}" class="grid_5 alpha omega project wide-card">
+	<img src="{{ project_translation.project.pictures.all.0.small_pano_header.url }}"/>
+	<div class="project-information">
+		<p class="title"><span>{{ project_translation.title }}</span></p>
+		<p class="description">{{ project_translation.baseline }}</p>
+	</div>
+</a>

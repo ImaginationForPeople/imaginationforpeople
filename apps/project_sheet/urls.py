@@ -1,7 +1,5 @@
 #-- encoding: utf-8 --
 from django.conf.urls.defaults import patterns, url
-from django.views.decorators.cache import cache_page
-from django.views.generic.simple import direct_to_template
 
 from . import views
 from . import ajax
@@ -54,6 +52,7 @@ urlpatterns = patterns('',
 
     url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
     url(r'^(?P<project_slug>[-\w]+)/member/add/$', views.project_sheet_member_add, name='project_sheet-instance-add-member'),
+
 
     # Ajax views
     url(r'^start/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),

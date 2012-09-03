@@ -1,3 +1,32 @@
+/**
+ *  Mixins
+ */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
 .nav-white {
   background-color: black;
   height: 0px !important;
@@ -11,7 +40,7 @@
 }
 
 .left-menu {
-  font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 12px;
   text-transform: uppercase;
   font-size: 13px;
@@ -22,7 +51,7 @@
   display: list-item;
 }
 .left-menu h1 {
-  font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 17px;
   text-transform: uppercase;
   font-style: normal;
@@ -46,7 +75,7 @@
 }
 .content h1 {
   border-bottom: 1px solid grey;
-  font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
   font-size: 17px;
   text-transform: uppercase;
   font-style: normal;
@@ -56,7 +85,7 @@
 }
 .content h2 {
   font-size: 15px;
-  font-family: "OpenSansSemibold", Arial, Helvetica, sans-serif;
+  font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
   color: #5a5959;
 }
 .content h3 {

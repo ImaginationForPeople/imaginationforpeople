@@ -1,0 +1,19 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* taglist_title : the title of tag list
+* taglist_tags : a list of tags
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+<div class="tag-list clearfix">
+	<h2>{{ taglist_title }}</h2>
+	<ul>
+		{% for tag in taglist_tags %}
+		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }} ({{ tag.count }})</a></li>
+		{% endfor %}
+	</ul>
+</div> <!-- #tags-related -->
