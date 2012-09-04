@@ -6,7 +6,7 @@
 build
 src
 lib
-media/
+media
 *.mo
 *,cover
 #*.py
@@ -23,3 +23,6 @@ pip-log.txt
 .settings
 docs/_build/*
 media/*
+vendor/bundle
+.bundle
+Gemfile.lock

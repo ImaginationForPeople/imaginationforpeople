@@ -13,7 +13,8 @@ Parameters for this block
 	<h2>{{ taglist_title }}</h2>
 	<ul>
 		{% for tag in taglist_tags %}
-		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }} ({{ tag.count }})</a></li>
+		<!-- FIXME: how do we get tag count on non-tag pages ? -->
+		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }}{% if tag.count %} ({{ tag.count }}){% endif %}</a></li>
 		{% endfor %}
 	</ul>
 </div> <!-- #tags-related -->
