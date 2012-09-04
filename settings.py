@@ -243,6 +243,7 @@ INSTALLED_APPS = (
     'cms.plugins.snippet',
 
     'cmsplugin_facebook',
+    'cmsplugin_iframe',
 
     # Internal Apps
     'apps.i4p_base',
