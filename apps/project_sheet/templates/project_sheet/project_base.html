@@ -11,7 +11,7 @@
 
 <!-- blocks -->
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/tag_list.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_wide_fancy.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_fancy_wide.css" />
 <style>
 
     #langage-tool { visibility: hidden; display: none; }
@@ -39,13 +39,13 @@
 	    <div class="project-members clearfix">
 	    <!-- FIXME: use dynamic data for member list -->
 	    <h2>{% trans "Contributors" %}</h2>
-	    {% include "project_sheet/block/member_wide_fancy.html" %}
+	    {% include "project_sheet/block/member_fancy_wide.html" %}
 	    </div>
 	    
 	    <div class="project-related clearfix">
 	    <!-- FIXME: use dynamic data for member list -->
 	    <h2>{% trans "Related projects" %}</h2>
-	    {% include "project_sheet/block/card_wide_fancy.html" %}
+	    {% include "project_sheet/block/cardlist_fancy_wide.html" %}
 	    </div>
 
 	    <div class="project-gallery clearfix">

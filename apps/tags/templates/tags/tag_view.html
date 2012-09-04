@@ -39,14 +39,9 @@
 		</p>
 	    </p>
 
-	    <div class="grid_5 omega project-list wide-card">
-		{% for project_translation in picture_project_translations %}
-		{% if forloop.first %}
-		{% else %}
-		{% include "project_sheet/block/card_fancy_wide.html" %}
-		{% endif %}
-		{% endfor %}
-	    </div>
+	    {% with project_translation_list=picture_project_translations %}
+	    {% include "project_sheet/block/cardlist_fancy_wide.html" %}
+	    {% endwith %}
 	</div>
     </div>
 

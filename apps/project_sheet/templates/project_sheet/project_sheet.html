@@ -8,43 +8,56 @@
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
 
 {% block title %}
-    {% if project_translation.title %}
-        {{project_translation.title|capfirst}} 
-	{% if project_translation.baseline %}
-	: {{ project_translation.baseline }}
-	{% endif %}
-    {% else %}
-        {% trans 'start project'|capfirst %}
-    {% endif %}
-    | {{ site.name }}
+{% if project_translation.title %}
+{{project_translation.title|capfirst}} 
+{% if project_translation.baseline %}
+: {{ project_translation.baseline }}
+{% endif %}
+{% else %}
+{% trans 'start project'|capfirst %}
+{% endif %}
+| {{ site.name }}
 {% endblock %}
-
-{% block style %}
-  {{ block.super }}
-  {% compress css %}
-
-
-  {% endcompress %}
-{% endblock %}
-
-{% block extra_head %}
-  {{ block.super }}
-  {% compress js %}
-  
-  {% endcompress %}
-{% endblock %}
-
 
 
 {% block project_content %}	
 
+
+<div class="project-about">
+    <h2>{% trans "About the project" %}</h2>
+    <p>
+    {{ project_translation.about_section|linebreaksbr }}
+    </p>
+
     {% if project_translation %}
-	{% tags_for_object project_translation as project_tags %}
-	{% with taglist_title="Tags" %}
-	{% with taglist_tags=project_tags %}
-	{% include "tags/block/tag_list.html" %}
-	{% endwith %}
-	{% endwith %}
+    {% tags_for_object project_translation as project_tags %}
+    {% with taglist_title="Tags" %}
+    {% with taglist_tags=project_tags %}
+    {% include "tags/block/tag_list.html" %}
+    {% endwith %}
+    {% endwith %}
     {% endif %}
+</div>
+
+<div class="project-details">
+    {% for topic, questions in topics %}
+	{% for q, a in questions %}
+	<h2 id="question-{{q.id}}" class="detail-question">
+	    {{ q.content|capfirst }}
+	</h2>
+	<p id="answer-{{q.id}}" class="detail-answer">
+	    {{ a.content|linebreaksbr }}
+	</p>
+	{% endfor %}
+    {% endfor %}
+</div>
+
+<div class="project-references">
+    <h2>{% trans "References" %}</h2>
+</div>
+
+<div class="project-comments">
+    <h2>{% trans "Comments" %}</h2>
+</div>
 
 {% endblock %}
