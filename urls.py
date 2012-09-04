@@ -2,7 +2,6 @@ from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
-from django.views.generic.simple import redirect_to
 
 
 from dynamicsites.views import site_info
@@ -68,8 +67,9 @@ urlpatterns += i18n_patterns('',
         'ajax_select.views.add_popup',
         name = 'add_popup'
     ),
+
+    (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),                             
                              
-    (r'^jsi18n/(?P<packages>\S+?)/$', 'django.views.i18n.javascript_catalog'),
 )
 
 ## Non localized urls
@@ -80,7 +80,7 @@ urlpatterns += patterns('',
     (r'^uploadify/', include('uploadify.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
-
+                        
     url(r'^admin/filebrowser/', include('filebrowser.urls')),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),

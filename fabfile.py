@@ -11,7 +11,6 @@ from fabric.api import *
 from fabric.colors import cyan
 from fabric.contrib.files import *
 
-
 def reloadapp():
     """
     Touch the wsgi
@@ -26,7 +25,9 @@ def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
 
     with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
         return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user, pty=pty)
-    
+
+def venv_prefix():
+    return 'source %(venvfullpath)s/bin/activate' % env
 
 def printenv():
     """
@@ -41,13 +42,19 @@ def commonenv():
     """
     env.venvname = "imaginationforpeople.org"
     env.projectname = "imaginationforpeople"
+
+    env.db_user = 'imaginationforpeople'
+    env.db_name = 'imaginationforpeople'
+    env.dbdumps_dir = os.path.join(tempfile.gettempdir(), '%s_dumps' % env.projectname)
+    
     env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
     env.gitbranch = "master"
 
 
+@task
 def prodenv():
     """
-    production environment - Will need some work when moving to seperate server
+    [ENVIRONMENT] Production
     """
     commonenv()
     env.venvname = "imaginationforpeople.org"
@@ -63,10 +70,10 @@ def prodenv():
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
     
-    
+@task    
 def stagenv():
     """
-    Stagging environment
+    [ENVIRONMENT] Staging
     """
     commonenv()
     env.wsginame = "staging.wsgi"
@@ -75,11 +82,31 @@ def stagenv():
     env.home = "webapp"
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['i4p-dev.imaginationforpeople.org']
-
-    env.gitrepo = "/var/repositories/imaginationforpeople.git"
-    env.gitbranch = "develop"
+    
+    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
+    env.gitbranch = "release/o-nine"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
+    env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
+
+
+@task
+def devenv():
+    """
+    [ENVIRONMENT] Developpement (must be run from the virtualenv path)
+    """
+    commonenv()
+    env.wsginame = "dev.wsgi"
+    env.urlhost = "localhost"
+    #env.user = "webapp"
+    #env.home = "webapp"
+    require('venvname', provided_by=('commonenv',))
+    env.hosts = ['localhost']
+
+    env.gitrepo = "../"
+    env.gitbranch = "develop"
+
+    env.venvbasepath = os.path.join("./")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
 
 
@@ -95,27 +122,36 @@ def build_virtualenv():
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
 
-def update_requirements():
+def update_requirements(force=False):
     """
     update external dependencies on remote host
     """
     print(cyan('Updating requirements using PIP'))
-    run("yes w | pip install -E %(venvfullpath)s -Ur %(venvfullpath)s/%(projectname)s/requirements.txt" % env)
+    run('pip install -E %(venvfullpath)s -U pip' % env)
+    
+    if force:
+        cmd = "pip install -E %(venvfullpath)s -I -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+    else:
+        cmd = "pip install -E %(venvfullpath)s -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+    run("yes w | %s" % cmd)
 
-def fixperms():
-    """
-    fix permissions
-    """
-    with cd(env.venvfullpath):
-        # sudo('chown :www-data -R %(projectname)s && chmod g+rw -R %(projectname)s' % env)
-        # FIXME: This SUCKS
-        pass
 
 ## Django
-def syncdb():
-    print(cyan('Synching Django database'))
+def app_db_update():
+    """
+    Migrates database using south
+    """
+    print(cyan('Migrating Django database'))
     venvcmd('./manage.py syncdb --noinput')
     venvcmd('./manage.py migrate')
+
+def app_db_install():
+    """
+    Install db the first time and fake migrations
+    """
+    print(cyan('Installing Django database'))
+    venvcmd('./manage.py syncdb --all --noinput')
+    venvcmd('./manage.py migrate --fake')
 
 
 def collect_static_files():
@@ -138,8 +174,6 @@ def compile_messages():
         if exists(cwd + '/locale'):
             print(cyan('\t * %s' % appsubdir))
             venvcmd(cmd, subdir=appsubdir)
-    fixperms()
-    reloadapp()
 
 def tests():
     """
@@ -151,60 +185,87 @@ def tests():
     print(cyan('Running BDD tests'))
     venvcmd('./manage.py harvest --verbosity=2')
 
-
-def deploy_bootstrap():
-    """
-    Deploy the project the first time.
-    """
-    build_virtualenv()
-
-    print(cyan('Cloning Git repository'))
-    with cd(env.venvfullpath):
-        run("git clone %(gitrepo)s %(projectname)s" % env)
-        with cd("%(projectname)s" % env):
-            run("git fetch origin %s" % env.gitbranch)
-
-    fullupdate()
-
+def fixperms():
     # Fix perms
     with cd(env.venvfullpath):
         with cd("%(projectname)s" % env):
             run('mkdir media/uploads media/cache static/CACHE media/mugshots -p')
             sudo('chown www-data -R media/uploads media/cache media/mugshots static/CACHE')
-
-def _updatemaincode():
+    
+@task
+def bootstrap_venv():
     """
-    Private : we don't want people updating the code without running
-    tests
+    Create the virtualenv and install the app
+    """
+    execute(build_virtualenv)
+    execute(app_install)
+    execute(fixperms)
+
+def clone_repository():
+    """
+    Clone repository and remove the exsiting one if necessary
+    """
+    print(cyan('Cloning Git repository'))
+
+    with cd(env.venvfullpath):
+        # Remove dir if necessary
+        if exists("%(projectname)s" % env):
+            sudo("rm -rf %(projectname)s" % env)
+
+        # Clone
+        run("git clone --branch {0} {1} {2}".format(env.gitbranch,
+                                                    env.gitrepo,
+                                                    env.projectname)
+        )
+    
+            
+def updatemaincode():
+    """
+    Update code and/or switch branch
     """
     print(cyan('Updating Git repository'))
-    with cd(env.venvfullpath + '/%(projectname)s/' % env):
+    with cd(os.path.join(env.venvfullpath, '%(projectname)s' % env)):
         run('git fetch')
         run('git checkout %s' % env.gitbranch)
         run('git pull origin %s' % env.gitbranch)
-    
-def fullupdate():
-    """
-    Full Update the maincode and the deps
-    """
-    _updatemaincode()
-    update_requirements()
-    compile_messages()
-    syncdb()
-    collect_static_files()
-    # tests()
-    reloadapp()
 
-def update():
+@task
+def app_install():
     """
-    Fast Update : project maincode
+    (Re)install app to target server
     """
-    _updatemaincode()
-    compile_messages()
-    syncdb()
-    collect_static_files()
+    execute(clone_repository)
+    execute(update_requirements, force=True)
+    execute(compile_messages)
+    execute(app_db_install)
+    execute(collect_static_files)
     # tests()
-    reloadapp()
+    execute(reloadapp)
+    
+@task
+def app_fullupdate():
+    """
+    Full Update: maincode and dependencies
+    """
+    execute(updatemaincode)
+    execute(update_requirements, force=True)
+    execute(compile_messages)
+    execute(app_db_update)
+    execute(collect_static_files)
+    # tests()
+    execute(reloadapp)
+
+@task
+def app_update():
+    """
+    Fast Update: don't update requirements
+    """
+    execute(updatemaincode)
+    execute(compile_messages)
+    execute(app_db_update)
+    execute(collect_static_files)
+    # tests()
+    execute(reloadapp)
 
 ## Webserver
 def configure_webservers():
@@ -224,7 +285,7 @@ def configure_webservers():
         sudo('ln -sf ../sites-available/%s .' % env.urlhost)
 
     # Fix log dir
-    check_or_install_logdir()
+    execute(check_or_install_logdir)
 
     
 def install_webservers():
@@ -235,7 +296,7 @@ def install_webservers():
     sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
     sudo('apt-get install nginx -y')
 
-def reload_webservers():
+def webservers_reload():
     """
     Reload the webserver stack.
     """
@@ -246,6 +307,27 @@ def reload_webservers():
     # Nginx
     print(cyan("Reloading nginx"))
     sudo('/etc/init.d/nginx restart')
+
+def webservers_stop():
+    """
+    Stop all webservers
+    """
+    # Apache
+    sudo('/etc/init.d/apache2 stop')
+
+    # Nginx
+    sudo('/etc/init.d/nginx stop')    
+
+def webservers_start():
+    """
+    Start all webservers
+    """
+    # Apache
+    sudo('/etc/init.d/apache2 start')
+
+    # Nginx
+    sudo('/etc/init.d/nginx start')
+
     
 def check_or_install_logdir():
     """
@@ -290,58 +372,109 @@ def install_builddeps():
     print(cyan('Installing compilers and required libraries'))
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
-def meta_full_bootstrap():
+def install_devdeps():
     """
-    For use on new, empty environnements
+    Will install commonly needed developpement dependencies.
+    """
+    print(cyan('Installing required developpement tools'))
+    sudo('ruby-compass libfssm-ruby')
+
+@task
+def bootstrap_full():
+    """
+    Install system tools, create venv and install app
     """
     sudo('apt-get update')
-    install_basetools()
-    install_database_server()
-    install_webservers()
-    install_builddeps()
+    
+    execute(install_basetools)
+    execute(install_database_server)
+    execute(install_webservers)
+    execute(install_builddeps)
 
-    deploy_bootstrap()
+    execute(deploy_bootstrap)
+    
+    if(env.wsginame == 'dev.wsgi'):
+        execute(install_devdeps);
 
-    configure_webservers()
-    reload_webservers()
+    execute(configure_webservers)
+    execute(webservers_reload)
 
 
-def mirror_prod_to_staging():
+@task
+def mirror_prod_media():
     """
-    Mirror the content of the production server to the staging one
+    Mirror the production media (pictures, ...) the target server
     """
-    assert(env.wsginame == 'staging.wsgi')
+    assert(env.wsginame in ('staging.wsgi',))
 
     # Files
-    with cd(os.path.join(env.venvfullpath, env.projectname, 'media')):
-        sudo('rm -rf mugshots')
-        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/mugshots .')
+    with cd(os.path.join(env.venvfullpath, env.projectname)):
+        sudo('rm -rf media')
+        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/ .')
 
-        sudo('rm -rf uploads')
-        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/uploads .')
+        sudo('chown www-data -R media')
+        sudo('chmod u+rw -R media')
 
-        sudo('rm -rf cache')
-        run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/cache .')
+@task
+def database_dump():
+    """
+    Dumps the database on remote site
+    """
+    if not exists(env.dbdumps_dir):
+        run('mkdir -m700 %s' % env.dbdumps_dir)
 
-        sudo('chown www-data -R mugshots uploads cache')
-        sudo('chmod u+rw -R mugshots uploads cache')
+    filename = 'db_%s.sql' % time.strftime('%Y%m%d')
+    compressed_filename = '%s.bz2' % filename
+    absolute_path = os.path.join(env.dbdumps_dir, compressed_filename)
+
+    # Dump
+    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+        run('grep "DATABASE" -A 8 site_settings.py')
+        run('pg_dump -U%s %s | bzip2 -9 > %s' % (env.db_user,
+                                                 env.db_name,
+                                                 absolute_path)
+            )
+
+    # Make symlink to latest
+    with cd(env.dbdumps_dir):
+        run('ln -sf %s current_database.sql.bz2' % compressed_filename)
+
+
+@task
+def database_download():
+    """
+    Dumps and downloads the database from the target server
+    """
+    execute(database_dump)
+    get(os.path.join(env.dbdumps_dir, 'current_database.sql.bz2'), 'current_database.sql.bz2')
+
+@task    
+def database_restore():
+    """
+    Restores the database to the remote server
+    """
+    assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
+
+    remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
     
-def dump_database():
-    assert(env.wsginame == 'prod.wsgi')
-    run('pg_dump -Uimaginationforpeople imaginationforpeople > ~/i4p_db_%s.sql' % time.strftime('%Y%m%d'))
+    if(env.wsginame != 'dev.wsgi'):
+        put('current_database.sql.bz2', remote_db_path)
 
-def get_database():
-    dump_database()
-    with cd(os.path.join('/home', env.home)):
-        filename = 'i4p_db_%s.sql' % time.strftime('%Y%m%d')
-        compressed_filename = '%s.bz2' % filename
-        run('bzip2 -9 -c %s > %s' % (filename, compressed_filename))
-        get(compressed_filename, 'current_database.sql.bz2')
+    execute(webservers_stop)
+    
+    # Drop db
+    with settings(warn_only=True):
+        sudo('su - postgres -c "dropdb imaginationforpeople"')
 
-def restore_database():
-    assert(env.wsginame == 'staging.wsgi')
-    put('current_database.sql.bz2', 'current_database.sql.bz2')
-    run('bunzip2 -c current_database.sql.bz2 > current_database.sql')
-    sudo('sudo su - postgres -c "dropdb imaginationforpeople"')
-    sudo('sudo su - postgres -c "createdb -E UNICODE -Ttemplate0 -Oimaginationforpeople imaginationforpeople"')
-    run('psql -Uimaginationforpeople imaginationforpeople < ~/current_database.sql')
+    # Create db
+    sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
+
+    # Restore data
+    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+        run('grep "DATABASE" -A 8 site_settings.py')
+        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path,
+                                              env.db_user,
+                                              env.db_name)
+        )
+
+    execute(webservers_start)

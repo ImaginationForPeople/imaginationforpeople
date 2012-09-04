@@ -18,6 +18,7 @@ DATABASES = {
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
+# If you're using a dev server, just use '/site_media/'
 MEDIA_URL = 'http://imaginationforpeople.org/site_media/'
 
 FACEBOOK_APP_ID = "TO_COMPLETE"
@@ -38,3 +39,8 @@ HOSTNAME_REDIRECTS = {
 ENV_HOSTNAMES = {
   'localhost': 'imaginationforpeople.org',
 }
+
+# If you need error reporting via Raven, configure this
+# RAVEN_CONFIG = {
+#     'dsn': 'http://public:secret@example.com/1',
+# }
