@@ -84,7 +84,7 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
     env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
-    env.gitbranch = "release/o-nine"
+    env.gitbranch = "release/tucker"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
