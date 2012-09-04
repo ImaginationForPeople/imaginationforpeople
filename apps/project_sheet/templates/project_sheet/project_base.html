@@ -3,23 +3,68 @@
 {% load compress %}
 
 {% block style %}
-  {{ block.super }}
-  {% compress css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project.css" />
-  {% endcompress %}
+{% compress css %}
+<!-- base CSS -->
+<!-- FIXME: integrate boostrap grid -->
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
+
+
+<!-- blocks -->
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/tag_list.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_wide_fancy.css" />
+<style>
+
+    #langage-tool { visibility: hidden; display: none; }
+</style>
+{% endcompress %}
 {% endblock %}
 
 {% block content %}	
+{% with gridsystem='bootstrap' %}
 
-	
-  <div class="content">        
-    <div class="container_18">
-      <div class="grid_18 alpha omega">	
-        {% block project_content %}{% endblock %}
-      </div>
+
+<!-- FIXME: integrate project_content -->
+<!-- FIXME: integrate project_sidebar -->
+
+<div class="container">        
+    <div class="row">
+	<div class="span9 project-main">
+	    {% block project_content %}{% endblock %}
+
+	    FIXME: EOF DESCRIPTION
+	</div> <!-- .project-description -->
+
+	<div class="span3 project-sidebar">	
+
+	    <div class="project-members clearfix">
+	    <!-- FIXME: use dynamic data for member list -->
+	    <h2>{% trans "Contributors" %}</h2>
+	    {% include "project_sheet/block/member_wide_fancy.html" %}
+	    </div>
+	    
+	    <div class="project-related clearfix">
+	    <!-- FIXME: use dynamic data for member list -->
+	    <h2>{% trans "Related projects" %}</h2>
+	    {% include "project_sheet/block/card_wide_fancy.html" %}
+	    </div>
+
+	    <div class="project-gallery clearfix">
+	    <!-- FIXME: use dynamic data for member list -->
+	    <h2>{% trans "Gallery" %}</h2>
+	    GALLERY
+	    </div>
+
+	    <div class="project-partners clearfix">
+	    <!-- FIXME: use dynamic data for member list -->
+	    <h2>{% trans "Partners" %}</h2>
+	    PARTNERS
+	    </div>
+	    FIXME: EOF SIDEBAR
+	</div> <!-- .project-sidebar -->
     </div>
     <div class="clear"></div>
-  </div>
+</div>
 
 
+{% endwith %}
 {% endblock %}
