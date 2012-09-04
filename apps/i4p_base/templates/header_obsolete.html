@@ -1,26 +1,15 @@
 {% load i18n %}
 {% load cms_tags %}
-{% load menu_tags %}
-{% load honeypot %}
-{% load umessages_tags %}               
-{% load i4p_tags %}
     <div id="header-zone">
-        <div id="header" class="container">
-            <div id="header-bar">
-                <div class="logo">
-                    <a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/{% if site.folder_name %}{{ site.folder_name }}/{% endif %}/logo.png" alt="{{ site.name }}" border="0"/></a>
-                </div>
-            
-                 {% include "menu.html" %}
+        <div id="header" class="center">
+        
+            <div class="logo">
+                <a href="{% page_url 'homepage' %}">
+                    <div class="logo"><a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/{% if site.folder_name %}{{ site.folder_name }}/{% endif %}logo.png" alt="{{ site.name }}" border="0"/></a></div>
+                </a>
             </div>
-            <ul id="interface_lang">
-                {% get_available_languages as languages %}
-                {% for lang_code, lang_name in languages %}
-                    {% language lang_code %}
-                        <li><a href="{{ request.path|chlocale:lang_code }}" title="{{ lang_name }}">{{ lang_name }}</a></li>
-                    {% endlanguage %}
-                {% endfor %}
-            </ul>
+            
+            {% include "menu_obsolete.html" %}
             {% comment %}
             <ul id="menu">
                 <li id="about_button"><a href="javascript:;">{% trans "About us" %}</a></li>

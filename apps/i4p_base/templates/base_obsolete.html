@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
@@ -16,7 +16,7 @@
 
 
     {% compress css %}
-    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />-->
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
@@ -144,14 +144,14 @@
     
     <div class="global">   
     
-      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}	
+      {% block login-slide %} {% include "login-slide_obsolete.html" %} {% endblock %}	
 
       {% block newproject_popup %} 
         <div id="new_project_style_popup_zone" class="hidden">
         </div>
       {% endblock %}      
       
-      {% block header %} {% include "header.html" %} {% endblock %}			
+      {% block header %} {% include "header_obsolete.html" %} {% endblock %}			
       <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->
       {% block nav %} {% include "nav.html" %} {% endblock %}
       
@@ -168,7 +168,7 @@
       {% block content %}{% endblock %}
 
 
-      {% block footer %} {% include "footer.html" %} {% endblock %}
+      {% block footer %} {% include "footer_obsolete.html" %} {% endblock %}
 
 
     </div>

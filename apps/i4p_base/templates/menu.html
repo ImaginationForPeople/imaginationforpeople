@@ -2,20 +2,12 @@
 Superfish menu implementation
 {% endcomment %}
 
+{% load cms_tags %}
 {% load i18n %}
 {% load menu_tags %}
 
-<script type="text/javascript">
-    // initialise plugins
-    jQuery(function(){
-        jQuery('ul.sf-main-menu').superfish({
-
-            disableHI: true
-        });
-    });
-</script>
-
-<ul class="sf-main-menu">
+<ul id="header-menu">
+	<li><a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/base/home.png" alt="{{ site.name }}" border="0"/></a></li>
 {% show_menu 0 100 100 100 %}
 </ul>
 
