@@ -7,11 +7,11 @@
 {% block style %}
 {% compress css %}
 
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_square_card.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_wide_card.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_wide_flat.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_fancy_square.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_fancy_wide.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_flat_wide.css" />
 
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_wide_flat.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_flat_wide.css" />
 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/tag_list.css" />
 
@@ -43,7 +43,7 @@
 		{% for project_translation in picture_project_translations %}
 		{% if forloop.first %}
 		{% else %}
-		{% include "project_sheet/block/card_wide_fancy.html" %}
+		{% include "project_sheet/block/card_fancy_wide.html" %}
 		{% endif %}
 		{% endfor %}
 	    </div>
@@ -80,7 +80,7 @@
 		<h2>{% trans "Mature projects" %}</h2>
 		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in mature_project_translations %}
-		{% include "project_sheet/block/card_square_fancy.html" %}
+		{% include "project_sheet/block/card_fancy_square.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -93,7 +93,7 @@
 		<h2>{% trans "Starting projects" %}</h2>
 		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in starting_project_translations %}
-		{% include "project_sheet/block/card_square_fancy.html" %}
+		{% include "project_sheet/block/card_fancy_square.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -105,7 +105,7 @@
 		<h2>{% trans "Latest modifications" %}</h2>
 		<a href="{% url project_sheet-list %}?order=modification&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in modified_project_translations %}
-		{% include "project_sheet/block/card_square_fancy.html" %}
+		{% include "project_sheet/block/card_fancy_square.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -127,7 +127,7 @@
 		<ul>
 		    {% for p in people %}
 		    <li class="clearfix">
-			{% include "project_sheet/block/person_wide_flat.html" with person=p %}
+			{% include "project_sheet/block/person_flat_wide.html" with person=p %}
 		    </li>
 		    {% endfor %}
 		</ul>
@@ -139,7 +139,7 @@
 		<a href="{% url project_sheet-list %}?order=creation&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
 		<ul>
 		    {% for p in new_project_translations %}
-		      {% include "project_sheet/block/card_wide_flat.html" with project_translation=p %}
+		      {% include "project_sheet/block/card_flat_wide.html" with project_translation=p %}
 		    {% endfor %}
 		</ul>
 	    </div>
