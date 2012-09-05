@@ -107,7 +107,7 @@
 		
 #projects_list {
 				.grid_6 {
-					width: 235px !important;
+					width: 235px;
 					}
 				}
 		
@@ -127,6 +127,9 @@ color: #5A5959 !important;
 		a 	{
 		box-shadow: none !important;
 			}
+		a:hover {
+		border-color: white !important;
+				}
 		}
 
 .project_infos_description {

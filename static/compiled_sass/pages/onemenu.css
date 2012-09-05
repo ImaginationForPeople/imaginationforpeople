@@ -85,7 +85,7 @@
 }
 
 #projects_list .grid_6 {
-  width: 235px !important;
+  width: 235px;
 }
 
 .project_infos {
@@ -102,6 +102,9 @@
 
 .project_list_project a {
   box-shadow: none !important;
+}
+.project_list_project a:hover {
+  border-color: white !important;
 }
 
 .project_infos_description {
