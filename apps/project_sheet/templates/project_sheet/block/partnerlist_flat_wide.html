@@ -1,0 +1,38 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* partner_list : FIXME datatype
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+
+
+	{% if project.partners.all|length %}
+	<ul id="partners-list">
+		{% for partner in project.partners.all %}
+
+		<div class="clear"></div>
+
+		<li class="grey_column_team_partner">
+			<a href="{% url partner-detail partner.slug %}">
+				<img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}" alt="{{ partner.name }}" />
+			</a>  
+
+			<h2>
+				<a href="{% url partner-detail partner.slug %}">{{ partner.name }}</a>             
+			</h2>
+
+			{{ partner.description|linebreaks }}
+		</li>
+		{% endfor %}
+	</ul>     
+	{% endif %}
+
+	<!-- FIXME: quelle différence entre les deux blocs ? comment on voit le contenu ? -->
+	{% if not project.partners.all|length and not project_translation.partners_section %}
+	{% trans "This project has no known partners." %}
+	{% endif %}
+
