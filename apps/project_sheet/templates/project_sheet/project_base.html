@@ -50,8 +50,11 @@
 
 	    <div class="project-gallery clearfix">
 	    <!-- FIXME: use dynamic data for member list -->
-	    <h2>{% trans "Gallery" %}</h2>
-	    GALLERY
+
+	    <div class="project-list square-card clearfix">
+		<h2>{% trans "Gallery" %}</h2>
+		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		{% include "project_sheet/block/gallery_fancy.html" %}
 	    </div>
 
 	    <div class="project-partners clearfix">
