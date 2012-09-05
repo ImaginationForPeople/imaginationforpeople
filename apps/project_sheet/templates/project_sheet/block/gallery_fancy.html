@@ -1,0 +1,32 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+FIXME: use picture list instead of project_translation
+
+* project_translation : I4pProjectTranslation
+
+{% endcomment %}
+{% load i18n %}
+<div class="project-gallery">
+	<ul>
+		{% for project_picture in project_translation.project.pictures.all %}
+		{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
+		{% if forloop.counter0 < 4 %}
+		<li>
+			<img 
+			class="picture
+			{% if project_translation.project.pictures.all|length < 3 %}
+			{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
+			big
+			{% else %}
+			{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
+			{% if forloop.counter0|divisibleby:"3" %}big{% else %}small{% endif %}
+			{% endif %}
+			" src="{{project_picture.display.url}}" alt="">
+		</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+</div>
