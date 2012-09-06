@@ -84,7 +84,7 @@
 		{% include "tags/block/tag_list.html" with taglist_title="Related tags" taglist_tags=related_tags %}
 	    </div>
 
-	    <div class="project-list square-card clearfix">
+	    <div class="project-list fancy square clearfix">
 		<h2>{% trans "Mature projects" %}</h2>
 		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END&status=WIP" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in mature_project_translations %}
@@ -97,7 +97,7 @@
 	    <hr class="shaded-separator" />
 
 
-	    <div class="project-list square-card clearfix">
+	    <div class="project-list fancy square clearfix">
 		<h2>{% trans "Starting projects" %}</h2>
 		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA&status=BEGIN" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in starting_project_translations %}
@@ -109,7 +109,7 @@
 
 	    <hr class="shaded-separator" />
 
-	    <div class="project-list square-card clearfix">
+	    <div class="project-list fancy square clearfix">
 		<h2>{% trans "Latest modifications" %}</h2>
 		<a href="{% url project_sheet-list %}?order=modification&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in modified_project_translations %}

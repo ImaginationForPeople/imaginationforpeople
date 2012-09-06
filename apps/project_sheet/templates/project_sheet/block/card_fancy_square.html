@@ -8,7 +8,7 @@ Parameters for this block
 {% endcomment %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
-<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
+<a class="project square fancy grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 	href="{{ project_translation.get_absolute_url }}" >
 
 	<div class="summary" data-action-1="{% trans "See the project" %}" />
