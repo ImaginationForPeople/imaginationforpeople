@@ -9,6 +9,15 @@ Parameters for this block
 {% endcomment %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/tag_list.css" />
+{% endaddtoblock %}
+
 <div class="tag-list clearfix">
 	<h2>{{ taglist_title }}</h2>
 	<ul>
