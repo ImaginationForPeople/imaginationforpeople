@@ -84,7 +84,10 @@
   display: inline;
 }
 
-.container_18 .grid_6 {
+#projects_list {
+  margin-top: -28px !important;
+}
+#projects_list .grid_6 {
   width: 235px;
 }
 
@@ -104,7 +107,7 @@
   box-shadow: none !important;
 }
 .project_list_project a:hover {
-  border: none !important;
+  border-color: white !important;
 }
 
 .project_infos_description {
@@ -112,5 +115,5 @@
 }
 
 .step-links a {
-  color: #5A5959;
+  color: #5A5959 !important;
 }
