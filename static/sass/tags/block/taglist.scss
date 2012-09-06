@@ -1,6 +1,6 @@
-@import "../../mixin.scss";
-@import "../../constants.scss";
-@import "../../fonts.scss";
+@import "i4p-mixins";
+@import "i4p-constants";
+@import "i4p-fonts";
 
 .tag-list {
     line-height: 1.5em;
@@ -25,7 +25,7 @@
 	padding-right: .5em;
 	margin: 0;
 	margin-right: .25em;
-	line-height: $sizeTextSmall * 1.4;
+	line-height: $sizeTextSmall * 1.6;
     }
 
     ul {
@@ -50,12 +50,26 @@
 	    font-style: italic;
 	    font-weight: bold;
 	    height: 16px;
-	    line-height: $sizeTextSmall * 1.4;
+	    line-height: $sizeTextSmall * 1.6;
 	    margin-bottom: 4px;
 	    margin-right: 8px;
 	    padding-left: 5px;
 	    padding-right: 5px;
 	    position: relative;
+
+	    &.edit {
+		background-color: $colorMedDarkGrey;
+		color: white;
+
+		&:before {
+		    border-bottom-color: $colorMedDarkGrey;
+		    border-top-color: $colorMedDarkGrey;
+		}
+
+		&:after {
+		    border-left-color: $colorMedDarkGrey;
+		}
+	    }
 
 	    a {
 		@include transition(all .5s ease);

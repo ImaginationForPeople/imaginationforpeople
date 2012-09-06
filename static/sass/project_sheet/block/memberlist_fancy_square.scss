@@ -1,6 +1,7 @@
-@import "../../mixin.scss";
-@import "../../constants.scss";
-@import "../../fonts.scss";
+@import "i4p-mixins";
+@import "i4p-constants";
+@import "i4p-fonts";
+
 
 $sprite-layout: smart;
 @import "compass/utilities/sprites/base";
@@ -21,7 +22,7 @@ $topic-sprite-dimensions: true;
 @include all-topic-sprites(true);
 
 // FIXME: move block rules elsewhere
-.member-block.square.fancy {
+.member-block {
     position: relative;
     margin-bottom: 20px;
     padding: 0;
@@ -39,15 +40,20 @@ $topic-sprite-dimensions: true;
 }
 
 .member-list.square.fancy {
-    ul {
+    @include bootstrap-clearfix;
+    @include border-radius($sizeRadiusSmall);
+    outline: 1px solid $colorMedGrey;
+
+    input {
+	display: none;
+    }
+
+    .view {
 	list-style: none;
     }
 
-    .member.square.fancy {
-	display: block;
-	width: 40px;
-	height: 40px;
-	float: left;
+    .active {
     }
+
 }
 
