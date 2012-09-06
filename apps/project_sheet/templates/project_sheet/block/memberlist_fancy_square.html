@@ -9,10 +9,10 @@ Parameters for this block
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
 
-<div class="members-list wide fancy">
+<div class="member-list square fancy">
 	<ul>
 		{% for member in project.detailed_members.all %}
-		<li class="grey_column_team_member member{{ member.id }}">
+		<li id="member-{{ member.id }}" class="member square fancy">
 			<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" width="80" height="80"/>
 		</li> 
 		{% endfor %}

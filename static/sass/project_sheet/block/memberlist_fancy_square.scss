@@ -1,0 +1,53 @@
+@import "../../mixin.scss";
+@import "../../constants.scss";
+@import "../../fonts.scss";
+
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for progressbar
+$progressbar-sprite-dimensions: true;
+@import "project/progressbar/*.png"; // */
+@include all-progressbar-sprites(true);
+
+// @import "project/topic/*.png"; // */
+
+$picto-sprite-dimensions: true;
+@import "project/picto/*.png"; // */
+@include all-picto-sprites(true);
+
+$topic-sprite-dimensions: true;
+@import "project/topic/*.png"; // */
+@include all-topic-sprites(true);
+
+// FIXME: move block rules elsewhere
+.member-block.square.fancy {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 0;
+    padding-top: 5px;
+
+    h2 {
+	margin-top: 5px;
+	text-transform: uppercase;
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+    }
+
+    @import "../../common/block/seemore.scss";
+}
+
+.member-list.square.fancy {
+    ul {
+	list-style: none;
+    }
+
+    .member.square.fancy {
+	display: block;
+	width: 40px;
+	height: 40px;
+	float: left;
+    }
+}
+
