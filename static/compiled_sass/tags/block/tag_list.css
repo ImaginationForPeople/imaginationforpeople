@@ -151,6 +151,7 @@
   padding-right: .5em;
   margin: 0;
   margin-right: .25em;
+  line-height: 1.288em;
 }
 .tag-list ul {
   display: block;
@@ -166,19 +167,20 @@
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  display: block;
-  float: left;
   background-color: #c9c9c9;
   color: #535353;
-  margin-bottom: 4px;
-  margin-right: 8px;
-  height: 16px;
-  padding-left: 5px;
-  padding-right: 5px;
+  display: block;
+  float: left;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 0.92em;
   font-style: italic;
   font-weight: bold;
-  font-size: 0.92em;
-  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  height: 16px;
+  line-height: 1.288em;
+  margin-bottom: 4px;
+  margin-right: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
   position: relative;
 }
 .tag-list ul li a {
@@ -186,14 +188,14 @@
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  font-size: 100%;
   color: inherit;
+  font-size: 100%;
   margin-right: 0.2em;
   text-decoration: none;
 }
 .tag-list ul li:first-child:before {
-  display: inline;
   border-left: none;
+  display: inline;
 }
 .tag-list ul li:before {
   -webkit-box-sizing: border-box;
@@ -206,16 +208,16 @@
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  display: inline;
-  position: absolute;
-  content: "";
-  top: 0;
-  width: 0;
-  height: 0;
-  left: -5px;
+  border-bottom: 8px solid #c9c9c9;
   border-left: 5px solid transparent;
   border-top: 8px solid #c9c9c9;
-  border-bottom: 8px solid #c9c9c9;
+  content: "";
+  display: inline;
+  height: 0;
+  left: -5px;
+  position: absolute;
+  top: 0;
+  width: 0;
 }
 .tag-list ul li:after {
   -webkit-box-sizing: border-box;
@@ -228,23 +230,23 @@
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-  position: absolute;
-  content: "";
-  top: 0;
-  right: -5px;
-  width: 0;
-  height: 0;
+  border-bottom: 8px solid transparent;
   border-left: 5px solid #c9c9c9;
   border-top: 8px solid transparent;
-  border-bottom: 8px solid transparent;
+  content: "";
+  height: 0;
+  position: absolute;
+  right: -5px;
+  top: 0;
+  width: 0;
 }
 .tag-list ul li:hover {
   background-color: #8e8e8e;
   color: #f2f2f2;
 }
 .tag-list ul li:hover:before {
-  border-top-color: #8e8e8e;
   border-bottom-color: #8e8e8e;
+  border-top-color: #8e8e8e;
 }
 .tag-list ul li:hover:after {
   border-left-color: #8e8e8e;
