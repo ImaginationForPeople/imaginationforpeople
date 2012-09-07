@@ -236,7 +236,7 @@ INSTALLED_APPS = (
     'sekizai',
     
     'zinnia',
-#    'cmsplugin_zinnia',
+    'cmsplugin_zinnia',
     
     'cms.plugins.text',
     'cms.plugins.link',
