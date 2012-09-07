@@ -1,5 +1,74 @@
 // FIXME: switch to make responsive
-// @import "compass_twitter_bootstrap_responsive";
-@import "compass_twitter_bootstrap";
+@import "i4p-mixins";
+@import "i4p-constants";
 
+.project-sidebar {
+    width: inherit;
+}
+
+.member-block {
+    width: inherit;
+}
+
+#langage-tool { visibility: hidden; display: none; }
+
+
+
+.project-about {
+    h2 {
+	margin-bottom: 1em;
+    }
+
+    p {
+	// FIXME: add background quote signs
+	@include border-box;
+	padding-left: 2rem;
+	position: relative;
+	margin-bottom: 2em;
+
+	&:before {
+	    margin: 0;
+	    padding: 0;
+	    color: $colorLightGrey;
+	    content: '\201D';
+	    font-size: 12rem;
+	    font-weight: bold;
+	    position: absolute;
+	    right: 0;
+	    top: 3rem;
+	    z-index: -1;
+	}
+
+	&:after {
+	    margin: 0;
+	    padding: 0;
+	    color: $colorLightGrey;
+	    content: '\201C';
+	    font-weight: bold;
+	    font-size: 12rem;
+	    left: -1rem;
+	    bottom: -3rem;
+	    position: absolute;
+	    z-index: -1;
+	}
+    }
+}
+
+.project-details {
+    .detail-question {
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	span {
+	    padding-left: .5em;
+	    padding-right: .5em;
+	    background-color: $colorMedDarkGrey;
+	    color: white;
+	}
+    }
+
+    .detail-answer {
+	padding-left: 2rem;
+    }
+}
 
