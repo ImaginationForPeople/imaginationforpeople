@@ -4682,8 +4682,7 @@ a.label:hover, a.badge:hover {
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  display: block;
-  float: left;
+  display: inline-block;
   margin-right: 5px;
 }
 .member.square.fancy img {
@@ -4697,4 +4696,7 @@ a.label:hover, a.badge:hover {
   height: 50px;
   overflow: hidden;
   border: 1px solid #8e8e8e;
+}
+.member.square.fancy .details {
+  display: none;
 }

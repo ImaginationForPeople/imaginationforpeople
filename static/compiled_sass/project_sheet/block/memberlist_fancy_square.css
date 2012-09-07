@@ -9077,24 +9077,66 @@ a.label:hover, a.badge:hover {
 }
 
 .member-list.square.fancy {
+  width: inherit;
+}
+.member-list.square.fancy input {
+  display: none;
+}
+.member-list.square.fancy .view {
   *zoom: 1;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  list-style: none;
   outline: 1px solid #8e8e8e;
+  padding: 5px;
+  display: block;
+  white-space: no-wrap;
+  height: 60px;
+  width: inherit;
+  overflow: hidden;
+  width: 1000%;
 }
-.member-list.square.fancy:before, .member-list.square.fancy:after {
+.member-list.square.fancy .view:before, .member-list.square.fancy .view:after {
   display: table;
   content: "";
 }
-.member-list.square.fancy:after {
+.member-list.square.fancy .view:after {
   clear: both;
 }
-.member-list.square.fancy input {
-  display: none;
+.member-list.square.fancy .active {
+  display: block;
+  text-align: center;
+  margin: 10px;
 }
-.member-list.square.fancy .view {
-  list-style: none;
+.member-list.square.fancy .active label {
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  border-radius: 5px 5px 5px 5px;
+  background-color: #535353;
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+}
+.member-list.square.fancy #slide-0:checked ~ .active label:nth-child(1),
+.member-list.square.fancy #slide-1:checked ~ .active label:nth-child(2),
+.member-list.square.fancy #slide-2:checked ~ .active label:nth-child(3),
+.member-list.square.fancy #slide-3:checked ~ .active label:nth-child(4),
+.member-list.square.fancy #slide-4:checked ~ .active label:nth-child(5),
+.member-list.square.fancy #slide-5:checked ~ .active label:nth-child(6),
+.member-list.square.fancy #slide-6:checked ~ .active label:nth-child(7),
+.member-list.square.fancy #slide-7:checked ~ .active label:nth-child(8),
+.member-list.square.fancy #slide-8:checked ~ .active label:nth-child(9),
+.member-list.square.fancy #slide-9:checked ~ .active label:nth-child(10) {
+  background-color: #04add1;
 }
