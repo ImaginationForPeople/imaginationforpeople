@@ -40,19 +40,54 @@ $topic-sprite-dimensions: true;
 }
 
 .member-list.square.fancy {
-    @include bootstrap-clearfix;
-    @include border-radius($sizeRadiusSmall);
-    outline: 1px solid $colorMedGrey;
+    width: inherit;
 
     input {
 	display: none;
     }
 
     .view {
+	@include bootstrap-clearfix;
+	@include border-radius($sizeRadiusSmall);
+	@include border-box;
 	list-style: none;
+	outline: 1px solid $colorMedGrey;
+	padding: 5px;
+	display: block;
+	white-space: no-wrap;	
+	height: 60px;
+	width: inherit;
+	overflow: hidden;
+	width: 1000%;
     }
 
     .active {
+	display: block;
+	text-align: center;
+	margin: 10px;
+
+	label {
+	    @include transition(all .5s ease);
+	    border-radius: 5px 5px 5px 5px;
+	    background-color: $colorMedDarkGrey;
+	    display: inline-block;
+	    height: 10px;
+	    width: 10px;
+	}
+    }
+
+    #slide-0:checked ~ .active label:nth-child(1),
+    #slide-1:checked ~ .active label:nth-child(2),
+    #slide-2:checked ~ .active label:nth-child(3),
+    #slide-3:checked ~ .active label:nth-child(4),
+    #slide-4:checked ~ .active label:nth-child(5),
+    #slide-5:checked ~ .active label:nth-child(6),
+    #slide-6:checked ~ .active label:nth-child(7),
+    #slide-7:checked ~ .active label:nth-child(8),
+    #slide-8:checked ~ .active label:nth-child(9),
+    #slide-9:checked ~ .active label:nth-child(10),
+    {
+	background-color: $colorLightBlue;
     }
 
 }

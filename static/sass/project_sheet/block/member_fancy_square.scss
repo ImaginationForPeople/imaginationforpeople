@@ -3,8 +3,8 @@
 
 .member.square.fancy {
     @include border-radius($sizeRadiusSmall);
-    display: block;
-    float: left;
+
+    display: inline-block;
     margin-right: 5px;
 
     img {
