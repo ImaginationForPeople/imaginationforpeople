@@ -36,6 +36,11 @@ if settings.DEBUG:
       (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
       url(r'^site-info$', site_info),
     )
+##Zinia (blog)
+urlpatterns += i18n_patterns('',
+                        url(r'^weblog/', include('zinnia.urls')),
+                        url(r'^comments/', include('django.contrib.comments.urls'))
+                        )
 
 urlpatterns += i18n_patterns('',
 #    url(r'^', include('apps.i4p_base.urls')),

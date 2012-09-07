@@ -232,14 +232,16 @@ ul li {
   font-style: normal;
   float: left;
   top: -1px;
-  -webkit-box-shadow: 0px 0px 4px #a1a1a1;
   -moz-box-shadow: 0px 0px 4px #a1a1a1;
+  -webkit-box-shadow: 0px 0px 4px #a1a1a1;
+  -o-box-shadow: 0px 0px 4px #a1a1a1;
   box-shadow: 0px 0px 4px #a1a1a1;
   behavior: url(static/js/pie/PIE.htc);
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 .button img, .redbutton img, .greenbutton img {
@@ -278,10 +280,11 @@ ul li {
   padding-right: 2px;
   top: 4px;
   font-style: normal;
-  -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
+  -webkit-border-radius: 2px;
   -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
   border-radius: 2px;
 }
 
@@ -303,10 +306,11 @@ ul li {
   color: white;
   text-decoration: none;
   background-color: black;
-  -webkit-border-radius: 2px;
   -moz-border-radius: 2px;
-  -ms-border-radius: 2px;
+  -webkit-border-radius: 2px;
   -o-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -khtml-border-radius: 2px;
   border-radius: 2px;
   position: absolute;
   right: 19px;
@@ -380,10 +384,11 @@ ul li {
 }
 #projects-hover-menu-zone .hover-menu #filters_links ul li#allprojects_button a {
   background-image: url("../images/base/allprojects_button-bg.jpg");
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 #projects-hover-menu-zone .hover-menu h2 {
@@ -619,10 +624,11 @@ ul li {
   position: relative;
   background-image: url("../images/base/newproject_popup-bg.png");
   border: 1px solid #9b9b9b;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 #new_project_style_popup #project_type {
@@ -781,10 +787,11 @@ ul li {
   font-size: 11px;
   margin-top: 3px;
   margin-bottom: 3px;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 

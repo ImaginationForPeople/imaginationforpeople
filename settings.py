@@ -234,6 +234,10 @@ INSTALLED_APPS = (
     'mptt',
     'menus',
     'sekizai',
+    
+    'zinnia',
+#    'cmsplugin_zinnia',
+    
     'cms.plugins.text',
     'cms.plugins.link',
     'cms.plugins.file',
