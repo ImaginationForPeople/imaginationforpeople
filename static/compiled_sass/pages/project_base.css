@@ -4689,6 +4689,115 @@ a.label:hover, a.badge:hover {
   display: none;
 }
 
+.project-menubar {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  background-color: #f2f2f2;
+  clear: both;
+  height: 2.4rem;
+  margin-bottom: 3rem;
+}
+.project-menubar ul {
+  list-style: none;
+  margin: 0;
+}
+.project-menubar li {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  margin: 0;
+  display: block;
+  float: left;
+  border-left: 1px solid white;
+  border-right: 1px solid #c9c9c9;
+  position: relative;
+  font-size: 0.92em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
+  text-transform: uppercase;
+  padding: 0;
+  height: 2.4rem;
+  border-collapse: collapse;
+}
+.project-menubar li a {
+  display: block;
+  padding: .7rem;
+  padding-left: .7rem;
+  padding-right: .7rem;
+  color: #8e8e8e;
+  font-weight: bold;
+}
+.project-menubar li:hover {
+  background-color: #c9c9c9;
+  border-color: #c9c9c9;
+}
+.project-menubar li:hover a {
+  color: white;
+  text-decoration: none;
+}
+.project-menubar li.right {
+  float: right;
+  border: none;
+}
+.project-menubar li.active {
+  background-image: linear-gradient(top, #04add1 0%, #378cc2 100%);
+  background-image: -o-linear-gradient(top, #04add1 0%, #378cc2 100%);
+  background-image: -moz-linear-gradient(top, #04add1 0%, #378cc2 100%);
+  background-image: -webkit-linear-gradient(top, #04add1 0%, #378cc2 100%);
+  background-image: -ms-linear-gradient(top, #04add1 0%, #378cc2 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #04add1), color-stop(1, #378cc2));
+  position: relative;
+  border-right-color: #378cc2;
+}
+.project-menubar li.active a {
+  color: white;
+}
+.project-menubar li.active:before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  width: 0;
+  height: 0;
+  margin-left: -10px;
+  border-left: 10px solid transparent;
+  border-top: 10px solid #378cc2;
+  border-right: 10px solid transparent;
+}
+.project-menubar li.active:hover {
+  background-image: none;
+  background-color: #8e8e8e;
+  border-color: #8e8e8e;
+}
+.project-menubar li.active:hover a {
+  color: white;
+}
+.project-menubar li.active:hover:before {
+  border-top-color: #8e8e8e;
+}
+
+.project-toolbar {
+  -webkit-border-radius: 0 4px 4px 0;
+  -moz-border-radius: 0 4px 4px 0;
+  -ms-border-radius: 0 4px 4px 0;
+  -o-border-radius: 0 4px 4px 0;
+  border-radius: 0 4px 4px 0;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  background-color: #282828;
+  display: block;
+  height: 120px;
+  position: fixed;
+  top: 20%;
+  width: 40px;
+}
+
 .project-about h2 {
   margin-bottom: 1em;
 }
@@ -4740,4 +4849,11 @@ a.label:hover, a.badge:hover {
 }
 .project-details .detail-answer {
   padding-left: 2rem;
+}
+
+.project-references .references-links ul li {
+  display: block;
+}
+.project-references .references-documents ul li {
+  display: block;
 }
