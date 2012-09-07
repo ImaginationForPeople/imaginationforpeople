@@ -23,41 +23,90 @@
 {% block project_content %}	
 
 
-<div class="project-about">
-    <h2>{% trans "About the project" %}</h2>
-    <p>
-    {{ project_translation.about_section|linebreaksbr }}
-    </p>
+<div class="container">        
+    <div class="row">
+	<div class="span9 project-main">
 
-    {% if project_translation %}
-    {% tags_for_object project_translation as project_tags %}
-    {% with taglist_title="Tags" %}
-    {% with taglist_tags=project_tags %}
-    {% include "tags/block/tag_list.html" %}
-    {% endwith %}
-    {% endwith %}
-    {% endif %}
-</div>
+	    <div class="project-about">
+		<h2><span>{% trans "About the project" %}</span></h2>
 
-<div class="project-details">
-    {% for topic, questions in topics %}
-	{% for q, a in questions %}
-	<h2 id="question-{{q.id}}" class="detail-question">
-	    {{ q.content|capfirst }}
-	</h2>
-	<p id="answer-{{q.id}}" class="detail-answer">
-	    {{ a.content|linebreaksbr }}
-	</p>
-	{% endfor %}
-    {% endfor %}
-</div>
+		{% comment %} PROJECT ABOUT SECTION {% endcomment %}
+		<p>
+		    {{ project_translation.about_section|linebreaksbr }}
+		</p>
 
-<div class="project-references">
-    <h2>{% trans "References" %}</h2>
-</div>
+		{% comment %} PROJECT TAGS {% endcomment %}
+		{% if project_translation %}
+		{% tags_for_object project_translation as project_tags %}
+		{% with taglist_title="Themes" %}
+		{% with taglist_tags=project_tags %}
+		{% with taglist_is_editable=1 %}
+		{% with taglist_edit_action="#FIXME-BADURL" %}
+		{% include "tags/block/taglist.html" %}
+		{% endwith %}
+		{% endwith %}
+		{% endwith %}
+		{% endwith %}
+		{% endif %}
+	    </div>
 
-<div class="project-comments">
-    <h2>{% trans "Comments" %}</h2>
-</div>
+	    <div class="project-details">
+		{% for topic, questions in topics %}
+		{% for q, a in questions %}
+		<h2 id="question-{{q.id}}" class="detail-question">
+		    <span>{{ q.content|capfirst }}</span>
+		</h2>
+		<p id="answer-{{q.id}}" class="detail-answer">
+		    {{ a.content|linebreaksbr }}
+		</p>
+		{% endfor %}
+		{% endfor %}
+	    </div>
 
-{% endblock %}
+	    <div class="project-references">
+		<h2>{% trans "References" %}</h2>
+	    </div>
+
+	    <div class="project-comments">
+		<h2>{% trans "Comments" %}</h2>
+	    </div>
+
+
+	</div> <!-- .project-description -->
+
+	<div class="span3 project-sidebar">	
+
+	    <div class="project-members member-block">
+		<!-- FIXME: use dynamic data for member list -->
+		<h2>{% trans "Contributors"|capfirst %}</h2>
+		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		{% include "project_sheet/block/memberlist_fancy_square.html" %}
+	    </div>
+
+	    <div class="project-related clearfix">
+		<!-- FIXME: use dynamic data for related project list -->
+		<h2>{% trans "Related projects"|capfirst %}</h2>
+		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		{% include "project_sheet/block/cardlist_fancy_wide.html" %}
+	    </div>
+
+	    <div class="project-gallery clearfix">
+		<!-- FIXME: use dynamic data for gallery -->
+
+		<div class="project-list square fancy clearfix">
+		    <h2>{% trans "Gallery"|capfirst %}</h2>
+		    <a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		    {% include "project_sheet/block/gallery_fancy.html" %}
+		</div>
+
+		<div class="project-partners partner-block clearfix">
+		    <!-- FIXME: use dynamic data for member list -->
+		    <h2>{% trans "Partners"|capfirst %}</h2>
+		    {% include "project_sheet/block/partnerlist_flat_wide.html" %}
+		</div>
+	    </div> <!-- .project-sidebar -->
+	</div>
+	<div class="clear"></div>
+    </div>
+
+    {% endblock %}
