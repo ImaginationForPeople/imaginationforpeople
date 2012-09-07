@@ -7,7 +7,7 @@ Superfish menu implementation
 {% load menu_tags %}
 
 <ul id="header-menu">
-	<li><a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/base/home.png" alt="{{ site.name }}" border="0"/></a></li>
-{% show_menu 0 100 100 100 %}
+	<li><a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/base/home.png" alt="{% trans "Home" %}" border="0"/></a></li>
+	{% show_menu 0 100 100 100 %}
 </ul>
 
