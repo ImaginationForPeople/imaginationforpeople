@@ -25,8 +25,7 @@
 
 <div class="container">        
     <div class="row">
-	<div class="span9 project-main">
-
+	<div class="span8 project-main">
 	    <div class="project-about">
 		<h2><span>{% trans "About the project" %}</span></h2>
 
@@ -48,7 +47,7 @@
 		{% endwith %}
 		{% endwith %}
 		{% endif %}
-	    </div>
+	    </div> <!-- .project-about -->
 
 	    <div class="project-details">
 		{% for topic, questions in topics %}
@@ -61,20 +60,84 @@
 		</p>
 		{% endfor %}
 		{% endfor %}
-	    </div>
+	    </div> <!-- .project-details -->
+
+	    <hr class="shaded-separator" />
 
 	    <div class="project-references">
 		<h2>{% trans "References" %}</h2>
-	    </div>
+
+		<div class="row">
+		    <div class="references-links link-list span4" >
+			<ul>
+			    <li><a href="#">Article sur classicnews</a></li>
+			    <li><a href="#">Article sur classicnews</a></li>
+			    <li><a href="#">Article sur classicnews</a></li>
+			    <li><a href="#">Article sur classicnews</a></li>
+			    <li><a href="#">Article sur rue89</a></li>
+			    <li><a href="#">Article sur classicnews</a></li>
+			</ul>
+
+			<a href="#FIXME-BADURL">{% trans "Add a link" %}</a>
+		    </div> <!-- .references-links link-list -->
+
+		    <div class="references-documents document-list span4" >
+			<ul>
+			    <li><a href="#">Cahier des charges</a></li>
+			    <li><a href="#">Business plan</a></li>
+			    <li><a href="#">Présentation du projet</a></li>
+			    <li><a href="#">Communiqué de presse</a></li>
+			</ul>
+
+			<a href="#FIXME-BADURL">{% trans "Add a link" %}</a>
+		    </div> <!-- .references-documents document-list -->
+		</div> <!-- .row -->
+
+	    </div> <!-- .project-references -->
 
 	    <div class="project-comments">
 		<h2>{% trans "Comments" %}</h2>
-	    </div>
 
+		<div class="row">
+		    <div class="comment-list span5">
+			<ul>
+			    <li class="comment">
+				<div class="header">
+				    <span class="author">Simon Sarazin</span>
+				    <span class="postdate">Oct. 28, 2011</span>
+				</div>
+				<div class="content">
+				    Lorem ipsum dolor sit amet, consectetur apiscing elit, sed do eiusmod...
+				</div>
+			    </li>
+			    <li class="comment">
+				<div class="header">
+				    <span class="author">Simon Sarazin</span>
+				    <span class="postdate">Oct. 28, 2011</span>
+				</div>
+				<div class="content">
+				    Lorem ipsum dolor sit amet, consectetur apiscing elit, sed do eiusmod...
+				</div>
+			    </li>
+			</ul>
+			<!-- FIXME: missing see the XX comments -->
+			<!-- FIXME: missing add your comment -->
+		    </div>
 
-	</div> <!-- .project-description -->
+		    <div class="comment-discuss span3">
+			<h3>{% trans "Discuss or comment this project with other people" %}</h3>
+			<a href="">{% trans "go to the discussion" %}</a>
+		    </div>
 
-	<div class="span3 project-sidebar">	
+		    <div class="comment-ask span3">
+			<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
+			<a href="">{% trans "go to the help calls" %}</a>
+		    </div>
+		</div>
+	    </div> <!-- .project-comments -->
+	</div> <!-- .project-main -->
+
+	<div class="span4 project-sidebar">	
 
 	    <div class="project-members member-block">
 		<!-- FIXME: use dynamic data for member list -->
@@ -104,9 +167,9 @@
 		    <h2>{% trans "Partners"|capfirst %}</h2>
 		    {% include "project_sheet/block/partnerlist_flat_wide.html" %}
 		</div>
-	    </div> <!-- .project-sidebar -->
-	</div>
-	<div class="clear"></div>
+	    </div> <!-- .project-gallery -->
+	</div> <!-- .project-sidebar -->
     </div>
+</div>
 
-    {% endblock %}
+{% endblock %}
