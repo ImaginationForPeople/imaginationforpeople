@@ -68,6 +68,10 @@ class I4PEditProfileForm(EditProfileForm):
                                widget=forms.RadioSelect,
                                required=False,
                                label=_("gender"))
+    class Meta:
+        model = I4pProfile
+        exclude = ('registration_site',
+                   'user',)
 
 
 class AutoCompleteComposeForm(ComposeForm):
