@@ -1,0 +1,34 @@
+{% load i18n %}
+{% load cms_tags %}
+    <div id="header-zone">
+        <div id="header" class="center">
+        
+            <div class="logo">
+                <a href="{% page_url 'homepage' %}">
+                    <div class="logo"><a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/{% if site.folder_name %}{{ site.folder_name }}/{% endif %}logo.png" alt="{{ site.name }}" border="0"/></a></div>
+                </a>
+            </div>
+            
+            {% include "menu_obsolete.html" %}
+            {% comment %}
+            <ul id="menu">
+                <li id="about_button"><a href="javascript:;">{% trans "About us" %}</a></li>
+                <li id="projects_list_button"><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
+                <li><a class="addproject_button" href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
+                <li><a href="/workgroup/">{% trans 'Workgroups' %}</a></li>
+
+                    <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
+                
+                <li><a href="{% page_url 'ipmedia' %}">{% trans "IP MEDIA" %}</a></li>
+                <li><a href="/blog/?lang={{ LANGUAGE_CODE }}">Blog</a></li>
+            </ul>
+            {% endcomment %}
+            <div class="clear"></div>
+            {% include "search.html" %}
+            <div class="clear"></div>
+
+        </div>
+
+    </div>
+
+

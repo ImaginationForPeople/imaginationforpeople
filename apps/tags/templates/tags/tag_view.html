@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_obsolete.html" %}
 
 {% load compress %}
 {% load wiki_tags %}
@@ -33,9 +33,14 @@
 		</p>
 	    </p>
 
-	    {% with project_translation_list=picture_project_translations %}
-	    {% include "project_sheet/block/cardlist_fancy_wide.html" %}
-	    {% endwith %}
+	    <div class="grid_5 omega project-list wide-card">
+		{% for project_translation in picture_project_translations %}
+		{% if forloop.first %}
+		{% else %}
+		{% include "project_sheet/block/project_wide_card.html" %}
+		{% endif %}
+		{% endfor %}
+	    </div>
 	</div>
     </div>
 
@@ -79,7 +84,7 @@
 		<h2>{% trans "Mature projects" %}</h2>
 		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END&status=WIP" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in mature_project_translations %}
-		{% include "project_sheet/block/card_fancy_square.html" %}
+		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -92,7 +97,7 @@
 		<h2>{% trans "Starting projects" %}</h2>
 		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA&status=BEGIN" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in starting_project_translations %}
-		{% include "project_sheet/block/card_fancy_square.html" %}
+		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -104,7 +109,7 @@
 		<h2>{% trans "Latest modifications" %}</h2>
 		<a href="{% url project_sheet-list %}?order=modification&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in modified_project_translations %}
-		{% include "project_sheet/block/card_fancy_square.html" %}
+		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
 		{% trans "No projects" %}
 		{% endfor %}
@@ -140,7 +145,7 @@
 		<a href="{% url project_sheet-list %}?order=creation&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
 		<ul>
 		    {% for p in new_project_translations %}
-		      {% include "project_sheet/block/card_flat_wide.html" with project_translation=p %}
+		      {% include "project_sheet/block/project_wide_flat.html" with project_translation=p %}
 		    {% endfor %}
 		</ul>
 	    </div>
