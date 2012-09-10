@@ -15,6 +15,20 @@
 {% with gridsystem='bootstrap' %}
 
 
+<div class="project-subheader">
+    <div class="container">
+	<div class="row">
+	    <div class="span8 subheader">
+		<h1 class="title">{{ project_translation.title }}</h1>
+		<div class="description">{{ project_translation.baseline }}</div>
+	    </div>
+	    <div class="span4 infobox">
+		INFOBOX
+	    </div>
+	</div>
+    </div>
+</div>
+
 <div class="project-menubar">
     <div class="container">
 	<div class="row">
@@ -35,6 +49,7 @@
 </div> <!-- .project-menubar -->
 
 <div class="project-toolbar">
+    Fixed
 </div>
 
 {% block project_content %}{% endblock %}

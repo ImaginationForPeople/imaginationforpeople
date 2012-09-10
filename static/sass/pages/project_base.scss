@@ -13,6 +13,24 @@
 #langage-tool { visibility: hidden; display: none; }
 
 
+.project-subheader {
+    background-color: black;
+    clear: both;
+    height: 304px;
+    position: relative;
+
+    .infocard {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	color: white;
+
+	.title {
+
+	}
+    }
+}
+
 .project-menubar {
     @include border-box;
     background-color: $colorLightGrey;
@@ -118,15 +136,20 @@
 .project-about {
     h2 {
 	margin-bottom: 1em;
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+	font-weight: bold;
+	text-transform: uppercase;
     }
 
     p {
-	// FIXME: add background quote signs
 	@include border-box;
 	padding-left: 2rem;
 	position: relative;
 	margin-bottom: 2em;
 
+	// background quote sign
 	&:before {
 	    margin: 0;
 	    padding: 0;
@@ -140,6 +163,7 @@
 	    z-index: -1;
 	}
 
+	// background quote sign
 	&:after {
 	    margin: 0;
 	    padding: 0;
@@ -156,6 +180,14 @@
 }
 
 .project-details {
+    h2 {
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+	font-weight: bold;
+	text-transform: uppercase;
+    }
+
     .detail-question {
 	margin-top: 1em;
 	margin-bottom: 1em;
@@ -174,6 +206,22 @@
 }
 
 .project-references {
+    h2 {
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+	font-weight: bold;
+	text-transform: uppercase;
+    }
+
+    h3 {
+	font-size: $sizeTextBig;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+	font-weight: bold;
+	text-transform: uppercase;
+    }
+
     .references-links {
 	ul li {
 	    display: block;
