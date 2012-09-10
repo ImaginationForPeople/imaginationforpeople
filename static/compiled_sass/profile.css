@@ -181,6 +181,17 @@
 #profile_edit .menu ul li img:first-child {
   top: 3px;
 }
+#profile_edit form .overall_errorlist {
+  border: 3px solid red;
+  margin: 5px 20px;
+  padding: 5px 5px 10px 5px;
+  width: 500px;
+}
+#profile_edit form .overall_errorlist ul.errorlist {
+  display: inline;
+  position: relative;
+  right: auto;
+}
 #profile_edit form ul.errorlist + p input, #profile_edit form .errorlist + p select, #profile_edit form .errorlist + p textarea {
   border: 1px solid red;
   background-color: #ef464f;
