@@ -4689,6 +4689,19 @@ a.label:hover, a.badge:hover {
   display: none;
 }
 
+.project-subheader {
+  background-color: black;
+  clear: both;
+  height: 304px;
+  position: relative;
+}
+.project-subheader .infocard {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  color: white;
+}
+
 .project-menubar {
   -webkit-box-sizing: border-box;
   /* Safari/Chrome, other WebKit */
@@ -4800,6 +4813,11 @@ a.label:hover, a.badge:hover {
 
 .project-about h2 {
   margin-bottom: 1em;
+  font-size: 1.33em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 .project-about p {
   -webkit-box-sizing: border-box;
@@ -4837,6 +4855,13 @@ a.label:hover, a.badge:hover {
   z-index: -1;
 }
 
+.project-details h2 {
+  font-size: 1.33em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .project-details .detail-question {
   margin-top: 1em;
   margin-bottom: 1em;
@@ -4851,6 +4876,20 @@ a.label:hover, a.badge:hover {
   padding-left: 2rem;
 }
 
+.project-references h2 {
+  font-size: 1.33em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.project-references h3 {
+  font-size: 1.17em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-stretch: condensed;
+  font-weight: bold;
+  text-transform: uppercase;
+}
 .project-references .references-links ul li {
   display: block;
 }
