@@ -114,7 +114,7 @@ class TagPageView(TemplateView):
             project__site=current_site,
             project__pictures__isnull=False
         ).distinct(), tag_instance).distinct()
-        context['picture_project_translations'] = random.sample(hilighted_projects, 4)
+        context['picture_project_translations'] = random.sample(hilighted_projects, min(4, len(hilighted_projects)))
 
 
         # Mature projects
@@ -123,7 +123,7 @@ class TagPageView(TemplateView):
             project__site=current_site,
             project__status__in=('WIP', 'END')
         ).distinct(), tag_instance).distinct()
-        context['mature_project_translations'] = random.sample(mature_project_translations, 4)
+        context['mature_project_translations'] = random.sample(mature_project_translations, min(4, len(mature_project_translations)))
 
         # Starting projects
         starting_project_translations = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
@@ -131,7 +131,7 @@ class TagPageView(TemplateView):
             project__site=current_site,
             project__status__in=('IDEA', 'BEGIN')
         ).distinct(), tag_instance).distinct()
-        context['starting_project_translations'] = random.sample(starting_project_translations, 4)
+        context['starting_project_translations'] = random.sample(starting_project_translations, min(4, len(starting_project_translations)))
          
         # New projects
         context['new_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
@@ -157,8 +157,6 @@ class TagPageView(TemplateView):
         context['people'] = ProjectMember.objects.filter(
             project__in=projects
         ).order_by('?')[:6]
-
-        # XXX Need to remove duplicates
 
         return context
 

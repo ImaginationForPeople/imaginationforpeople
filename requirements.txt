@@ -18,6 +18,9 @@ django-autoslug==1.4.1
 #Migration failed on recent postgres.  Use our own branch in the meantime
 #-e git+https://github.com/CommOnEcoute/cmsplugin_facebook.git@8416f8506eb77ed9954dc12aa1f4b6eebe68d39c#egg=cmsplugin-facebook
 -e git://github.com/ImaginationForPeople/cmsplugin_facebook.git@2f8c199fd1884b8ebc7eb7fffdb7a93f274af73e#egg=cmsplugin-facebook
+
+-e git://github.com/divio/cmsplugin-iframe.git@8427d128d8bdadc276ce19b433f46792b8b3a0d8#egg=cmsplugin-iframe
+
 django-imagekit==0.3.6
 Pillow==1.7.4
 
@@ -37,6 +40,8 @@ django-tinymce==1.5.1a2
 # Python < 2.7 compatibility
 ordereddict==1.1
 
+django-sekizai==0.6.1
+
 BeautifulSoup
 lxml
 html5lib
@@ -46,7 +51,7 @@ linaro-django-pagination==2.0.2
 
 -e git://github.com/ImaginationForPeople/emencia-django-newsletter.git@master#egg=emencia.django.newsletter
 
--e git+https://github.com/jezdez/django_compressor.git@8c7961d2eb778edce2f1e101121629b96f93aba5#egg=django_compressor
+django_compressor==1.2
 
 #-e git+https://github.com/jtauber/django-notification.git@555b506a3e225d476d17939d8b43f853fd0226ec#egg=django-notification
 -e git+https://github.com/liberation/django-notification.git@75867589ad63078cba8271d228920a66a02833b0#egg=django-notification

@@ -8,7 +8,16 @@ Parameters for this block
 {% endcomment %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
-<a class="project square-card grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_sheet/block/card_fancy_square.css" />
+{% endaddtoblock %}
+
+<a class="project square fancy grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
 	href="{{ project_translation.get_absolute_url }}" >
 
 	<div class="summary" data-action-1="{% trans "See the project" %}" />

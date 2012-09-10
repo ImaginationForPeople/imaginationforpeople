@@ -8,6 +8,14 @@ Parameters for this block
 {% endcomment %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/person_flat_wide.css" />
+{% endaddtoblock %}
 
 <div class="person wide-flat">
 	<a href="{{ person.user.get_profile.get_absolute_url }}"><img class="avatar" src="{{ person.user.get_profile.get_mugshot_url }}" /></a>

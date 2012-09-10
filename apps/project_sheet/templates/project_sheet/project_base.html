@@ -5,17 +5,7 @@
 {% block style %}
 {% compress css %}
 <!-- base CSS -->
-<!-- FIXME: integrate boostrap grid -->
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
-
-
-<!-- blocks -->
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/tag_list.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_fancy_wide.css" />
-<style>
-
-    #langage-tool { visibility: hidden; display: none; }
-</style>
 {% endcompress %}
 {% endblock %}
 
@@ -23,52 +13,44 @@
 {% with gridsystem='bootstrap' %}
 
 
-<!-- FIXME: integrate project_content -->
-<!-- FIXME: integrate project_sidebar -->
-
-<div class="container">        
-    <div class="row">
-	<div class="span9 project-main">
-	    {% block project_content %}{% endblock %}
-
-	    FIXME: EOF DESCRIPTION
-	</div> <!-- .project-description -->
-
-	<div class="span3 project-sidebar">	
-
-	    <div class="project-members clearfix">
-	    <!-- FIXME: use dynamic data for member list -->
-	    <h2>{% trans "Contributors"|capfirst %}</h2>
-	    <a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
-	    {% include "project_sheet/block/memberlist_fancy_square.html" %}
+<div class="project-subheader">
+    <div class="container">
+	<div class="row">
+	    <div class="span8 subheader">
+		<h1 class="title">{{ project_translation.title }}</h1>
+		<div class="description">{{ project_translation.baseline }}</div>
 	    </div>
-	    
-	    <div class="project-related clearfix">
-	    <!-- FIXME: use dynamic data for related project list -->
-	    <h2>{% trans "Related projects"|capfirst %}</h2>
-	    <a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
-	    {% include "project_sheet/block/cardlist_fancy_wide.html" %}
+	    <div class="span4 infobox">
+		INFOBOX
 	    </div>
-
-	    <div class="project-gallery clearfix">
-	    <!-- FIXME: use dynamic data for gallery -->
-
-	    <div class="project-list square-card clearfix">
-		<h2>{% trans "Gallery"|capfirst %}</h2>
-		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
-		{% include "project_sheet/block/gallery_fancy.html" %}
-	    </div>
-
-	    <div class="project-partners partner-block clearfix">
-	    <!-- FIXME: use dynamic data for member list -->
-	    <h2>{% trans "Partners"|capfirst %}</h2>
-	    {% include "project_sheet/block/partnerlist_flat_wide.html" %}
-	    </div>
-	</div> <!-- .project-sidebar -->
+	</div>
     </div>
-    <div class="clear"></div>
 </div>
 
+<div class="project-menubar">
+    <div class="container">
+	<div class="row">
+	<ul class="span8">
+	    <li class="active"><a href="#FIXME-BADURL">{% trans "Project" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Gallery" %}</a></li>
+	    <li class="right"><a href="#FIXME-BADURL">z</a></li>
+	    <li class="right"><a href="#FIXME-BADURL">y</a></li>
+	    <li class="right"><a href="#FIXME-BADURL">x</a></li>
+	    <li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
+	    <li class="right"><a href="#FIXME-BADURL">{% trans "Share" %}</a></li>
+	</ul>
+    </div>
+    </div>
+</div> <!-- .project-menubar -->
+
+<div class="project-toolbar">
+    Fixed
+</div>
+
+{% block project_content %}{% endblock %}
 
 {% endwith %}
 {% endblock %}

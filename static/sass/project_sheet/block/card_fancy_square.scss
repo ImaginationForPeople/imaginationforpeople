@@ -1,6 +1,6 @@
-@import "../../mixin.scss";
-@import "../../constants.scss";
-@import "../../fonts.scss";
+@import "i4p-mixins";
+@import "i4p-constants";
+@import "i4p-fonts";
 
 $sprite-layout: smart;
 @import "compass/utilities/sprites/base";
@@ -20,7 +20,7 @@ $topic-sprite-dimensions: true;
 @import "project/topic/*.png"; // */
 @include all-topic-sprites(true);
 
-.project-list.square-card {
+.project-list.square.fancy {
     position: relative;
     margin-bottom: 20px;
     padding: 0;
@@ -37,7 +37,7 @@ $topic-sprite-dimensions: true;
     @import "../../common/block/seemore.scss";
 }
 
-.project.square-card {
+.project.square.fancy {
     @include box-shadow-bottomleft;
     @include border-radius($sizeRadiusSmall);
     height: 150px;

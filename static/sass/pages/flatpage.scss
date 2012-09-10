@@ -1,5 +1,5 @@
-@import "mixin.scss";
-@import "constants.scss";
+@import "i4p-mixins";
+@import "i4p-constants";
 
 .content{
     padding:1em;
@@ -37,7 +37,7 @@
     hr{
         margin-top:20px;
         margin-bottom:20px;
-        background-image:url("../../images/base/separator.jpg");
+        background-image: image-url("base/separator.jpg");
         background-repeat:repeat-x;
         border:0px;
         height:2px;
