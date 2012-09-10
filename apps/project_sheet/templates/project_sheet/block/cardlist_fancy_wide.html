@@ -15,9 +15,6 @@ Parameters for this block
 	{% if gridsystem == "bootstrap" %}{% else %}grid_5 omega{% endif %}
    	project-list wide-card">
 	{% for project_translation in project_translation_list %}
-	{% if forloop.first %}
-	{% else %}
 	{% include "project_sheet/block/card_fancy_wide.html" %}
-	{% endif %}
 	{% endfor %}
 </div>
