@@ -421,13 +421,20 @@ BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
 
 
 ## TINYMCE
-TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
+TINYMCE_DEFAULT_CONFIG = {
+                          'theme': "advanced",
+                          'plugins': 'contextmenu,table,template,blockquote,paste',
                           'relative_urls': False,
                           'remove_script_host': 0,
                           'convert_urls': False,
-                          'plugins': "contextmenu",
                           'width': '90%',
-                          'height': '300px'}
+                          'height': '300px',
+                          'theme_advanced_blockformats' : 'p,div,h1,h2,h3,h4,h5,h6,blockquote,dt,dd',
+                          'theme_advanced_buttons1_add' : 'fontsizeselect,fontselect,formatselect,forecolor', 
+                          'theme_advanced_buttons2_add' : 'blockquote,pasteword', 
+                          'theme_advanced_buttons3_add' : 'tablecontrols,template',     
+                          'template_external_list_url' : '/admin/tinymce/templates/',   
+                          }
 TINYMCE_FILEBROWSER = True
 FILEBROWSER_USE_UPLOADIFY = False
 
