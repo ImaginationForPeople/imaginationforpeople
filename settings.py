@@ -227,10 +227,15 @@ INSTALLED_APPS = (
     'django.contrib.redirects',
 
     'emencia.django.newsletter',
+    'emencia.django.newsletter.cmsplugin_newsletter',    
     'cms',
     'mptt',
     'menus',
     'sekizai',
+    
+    'zinnia',
+    'cmsplugin_zinnia',
+    
     'cms.plugins.text',
     'cms.plugins.link',
     'cms.plugins.file',
@@ -240,9 +245,9 @@ INSTALLED_APPS = (
     'cms.plugins.twitter',
     'cms.plugins.teaser',
     'cms.plugins.snippet',
-
     'cmsplugin_facebook',
     'cmsplugin_iframe',
+    'cmsplugin_contact',
 
     # Internal Apps
     'apps.i4p_base',
@@ -441,9 +446,12 @@ CMS_TEMPLATES = (
   ('pages/contrib.html', _('Contribution page')),
   ('pages/onemenu.html', _('One menu page')),
 )
+
 CMS_REDIRECTS = True
 CMS_HIDE_UNTRANSLATED = False
 CMS_SOFTROOT = True
+CMS_SEO_FIELDS = True
+
 APPEND_SLASH = True
 
 NANI_TABLE_NAME_SEPARATOR = ''

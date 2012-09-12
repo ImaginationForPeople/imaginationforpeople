@@ -18,6 +18,8 @@ django-autoslug==1.4.1
 
 -e git://github.com/divio/cmsplugin-iframe.git@8427d128d8bdadc276ce19b433f46792b8b3a0d8#egg=cmsplugin-iframe
 
+cmsplugin-contact==1.0.0
+    
 django-imagekit==0.3.6
 Pillow==1.7.4
 
@@ -76,6 +78,10 @@ django-simplegravatar==0.2
 
 -e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
+# Zinnia blog
+-e git://github.com/Fantomas42/django-blog-zinnia.git@v0.11.2#egg=django-blog-zinnia
+-e git://github.com/Fantomas42/cmsplugin-zinnia.git@v0.3#egg=cmsplugin-zinnia
+    
 # Testing tools
 coverage<3.4
 lettuce==0.1.27

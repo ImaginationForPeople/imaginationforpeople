@@ -20,6 +20,8 @@ Available commands:
     * *stagenv*:            [ENVIRONMENT] Staging
 
 
+TODO: update!
+
 Basic usage
 -----------
 
@@ -34,7 +36,7 @@ Parts:
 
 
 Examples
----------------
+--------
 
 Full environnement bootstrap and app bootstrap on staging env
 (Requires a debian lenny environnement with a webapp user and python

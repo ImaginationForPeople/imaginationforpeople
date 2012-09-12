@@ -11,15 +11,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-08-13 13:45+0200\n"
-"PO-Revision-Date: 2012-08-13 11:46+0000\n"
+"POT-Creation-Date: 2012-09-05 16:35+0200\n"
+"PO-Revision-Date: 2012-09-05 14:39+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: el\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cms_app.py:6
 msgid "I4PBase App"
@@ -1029,7 +1029,7 @@ msgid ""
 "challenges of living together."
 msgstr "Δημιουργία για τον Κόσμο (ΔΚ) (Imagination for People, ΙΡ) είναι μια πολύγλωσση, η συνεργατική και ανοιχτή πλατφόρμα αφιερωμένη στη ριζική κοινωνική καινοτομία. Σε παγκόσμια κλίμακα, η ΦΚ/IP αποσκοπεί στη διάγνωση, τη δημοσιοποίηση, την ενίσχυση και στην προσαρμογή δημιουργικών λύσεων στις νέες προκλήσεις της κοινής ζωής μας."
 
-#: templates/base.html:15
+#: templates/base.html:15 templates/pages/homepage.html:17
 msgid "identify and support imaginative social projects"
 msgstr "προσδιορίσει και να υποστηρίξει δημιουργικά κοινωνικά έργα"
 
@@ -1177,7 +1177,7 @@ msgstr ""
 msgid "Follow us on"
 msgstr ""
 
-#: templates/footer.html:89
+#: templates/footer.html:60
 #, python-format
 msgid ""
 "\n"
@@ -1535,63 +1535,55 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: templates/pages/contrib.html:32
+#: templates/pages/contrib.html:45
 msgid "A community dedicated to"
 msgstr "Μια κοινότητα αφιερωμένη σε"
 
-#: templates/pages/contrib.html:33
+#: templates/pages/contrib.html:46
 msgid "citizen imagination"
 msgstr "φαντασία και δημιουργικότητα πολιτών"
 
-#: templates/pages/contrib.html:44 templates/pages/footer.html:25
+#: templates/pages/contrib.html:57
 msgid "Translator"
 msgstr "Μεταφραστής"
 
-#: templates/pages/contrib.html:46 templates/pages/footer.html:26
+#: templates/pages/contrib.html:59
 msgid "Developer"
 msgstr "Προγραμματιστής"
 
-#: templates/pages/contrib.html:48 templates/pages/footer.html:27
+#: templates/pages/contrib.html:61
 msgid "Designer"
 msgstr "Σχεδιαστής"
 
-#: templates/pages/contrib.html:50 templates/pages/footer.html:28
+#: templates/pages/contrib.html:63
 msgid "Writer"
 msgstr "Συγγραφέας"
 
-#: templates/pages/contrib.html:52 templates/pages/footer.html:29
+#: templates/pages/contrib.html:65
 msgid "Animator"
 msgstr "Υποκινητής"
 
-#: templates/pages/contrib.html:54 templates/pages/footer.html:30
-msgid "Imaginer"
-msgstr "Δημιουργός ιδεών"
+#: templates/pages/contrib.html:67
+msgid "Imagine"
+msgstr ""
 
-#: templates/pages/contrib.html:69
-msgid "Get the code"
-msgstr "Παραλαβή κώδικα"
-
-#: templates/pages/contrib.html:90
-msgid "Report a bug"
-msgstr "Αναφορά σφάλματος"
-
-#: templates/pages/contrib.html:96
+#: templates/pages/contrib.html:107
 msgid "Une communauté dédiée à l'imagination citoyenne"
 msgstr "Μια κοινότητα αφιερωμένη στη φαντασία και δημιουργικότητα των πολιτών"
 
-#: templates/pages/contrib.html:104
+#: templates/pages/contrib.html:115
 msgid "Latest activities"
 msgstr "Τελευταίες δραστηριότητες"
 
-#: templates/pages/contrib.html:115
+#: templates/pages/contrib.html:126
 msgid "Latest commits"
 msgstr "Τελευταίες δεσμεύσεις"
 
-#: templates/pages/contrib.html:128 templates/pages/homepage.html:129
+#: templates/pages/contrib.html:139 templates/pages/homepage.html:135
 msgid "Join the community"
 msgstr "Γίνετε μέλος της κοινότητας"
 
-#: templates/pages/contrib.html:138
+#: templates/pages/contrib.html:149
 msgid "News"
 msgstr "Νέα"
 
@@ -1599,71 +1591,42 @@ msgstr "Νέα"
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr "Δεν υπάρχει ακόμα περιεχόμενο. Αλλάξτε σε κατάσταση επεξεργασίας και προσθέστε ένα widget."
 
-#: templates/pages/footer.html:12
-msgid "Network"
-msgstr "Δίκτυο"
-
-#: templates/pages/footer.html:19
-msgid "About"
-msgstr "Σχετικά"
-
-#: templates/pages/footer.html:24
-msgid "Get Involved"
-msgstr "Πάρε μέρος"
-
-#: templates/pages/header.html:10
-msgid "About us"
-msgstr "Σχετικά με μας"
-
-#: templates/pages/header.html:11
-msgid "Projects"
-msgstr "Έργα"
-
-#: templates/pages/header.html:13 templates/pages/home-blocks/slider.html:36
-#: templates/pages/home-blocks/slider.html:49
-msgid "Add a project"
-msgstr "Προσθέστε ένα έργο"
-
-#: templates/pages/header.html:14
-msgid "Workgroups"
-msgstr "Ομάδες εργασίας"
-
-#: templates/pages/header.html:15
-msgid "Contribute"
-msgstr "Πάρε μέρος"
-
-#: templates/pages/homepage.html:31
+#: templates/pages/homepage.html:37
 msgid "My project title"
 msgstr ""
 
-#: templates/pages/homepage.html:32
+#: templates/pages/homepage.html:38
 msgid "One line description"
 msgstr ""
 
-#: templates/pages/homepage.html:121
+#: templates/pages/homepage.html:127
 msgid " What is it ?"
 msgstr ""
 
-#: templates/pages/homepage.html:124
+#: templates/pages/homepage.html:130
 msgid "Explore and contribute"
 msgstr ""
 
-#: templates/pages/homepage.html:125
+#: templates/pages/homepage.html:131
 msgid "to social and cultural projects"
 msgstr ""
 
-#: templates/pages/homepage.html:130
+#: templates/pages/homepage.html:136
 msgid "of citizens from more 30 countries"
 msgstr ""
 
-#: templates/pages/homepage.html:135
+#: templates/pages/homepage.html:141
 msgid " Detect and develop socially innovative projects."
 msgstr ""
 
-#: templates/pages/homepage.html:218
+#: templates/pages/homepage.html:224
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
+msgstr ""
+
+#: templates/pages/onemenu.html:34
+msgid "MENU"
 msgstr ""
 
 #: templates/pages/home-blocks/blog-box.html:4
@@ -1762,6 +1725,38 @@ msgstr ""
 #: templates/pages/home-blocks/quick_project.html:12
 msgid "Add"
 msgstr ""
+
+#: templates/pages/home-blocks/slider.html:36
+#: templates/pages/home-blocks/slider.html:49
+msgid "Add a project"
+msgstr "Προσθέστε ένα έργο"
+
+#~ msgid "Get the code"
+#~ msgstr "Get the code"
+
+#~ msgid "Report a bug"
+#~ msgstr "Report a bug"
+
+#~ msgid "Network"
+#~ msgstr "Network"
+
+#~ msgid "About"
+#~ msgstr "About"
+
+#~ msgid "Get Involved"
+#~ msgstr "Get Involved"
+
+#~ msgid "About us"
+#~ msgstr "About us"
+
+#~ msgid "Projects"
+#~ msgstr "Projects"
+
+#~ msgid "Workgroups"
+#~ msgstr "Workgroups"
+
+#~ msgid "Contribute"
+#~ msgstr "Contribute"
 
 #~ msgid "Explore and contribute to social projects around the world."
 #~ msgstr "Explore and contribute to social projects around the world."

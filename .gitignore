@@ -2,6 +2,7 @@
 .pydevproject
 *.db
 *.pyc
+*~
 build
 src
 lib
@@ -12,6 +13,7 @@ media/cache
 #*.py
 .#*
 #*.html
+\#*\#
 media/.sass-cache
 i4p_index/
 *.swp
@@ -19,4 +21,5 @@ i4p_index/
 site_settings.py
 pip-log.txt
 .settings
-
+docs/_build/*
+media/*

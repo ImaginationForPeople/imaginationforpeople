@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-13 13:45+0200\n"
+"POT-Creation-Date: 2012-09-05 16:35+0200\n"
 "PO-Revision-Date: 2012-05-14 09:01+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1029,7 +1029,7 @@ msgstr ""
 "detect, publicize, amplify and adapt creative solutions to the new "
 "challenges of living together."
 
-#: templates/base.html:15
+#: templates/base.html:15 templates/pages/homepage.html:17
 msgid "identify and support imaginative social projects"
 msgstr "identify and support imaginative social projects"
 
@@ -1184,7 +1184,7 @@ msgstr "Follow us"
 msgid "Follow us on"
 msgstr "Follow us on"
 
-#: templates/footer.html:89
+#: templates/footer.html:60
 #, python-format
 msgid ""
 "\n"
@@ -1558,63 +1558,56 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: templates/pages/contrib.html:32
+#: templates/pages/contrib.html:45
 msgid "A community dedicated to"
 msgstr "A community dedicated to"
 
-#: templates/pages/contrib.html:33
+#: templates/pages/contrib.html:46
 msgid "citizen imagination"
 msgstr "citizen imagination"
 
-#: templates/pages/contrib.html:44 templates/pages/footer.html:25
+#: templates/pages/contrib.html:57
 msgid "Translator"
 msgstr "Translator"
 
-#: templates/pages/contrib.html:46 templates/pages/footer.html:26
+#: templates/pages/contrib.html:59
 msgid "Developer"
 msgstr "Developer"
 
-#: templates/pages/contrib.html:48 templates/pages/footer.html:27
+#: templates/pages/contrib.html:61
 msgid "Designer"
 msgstr "Designer"
 
-#: templates/pages/contrib.html:50 templates/pages/footer.html:28
+#: templates/pages/contrib.html:63
 msgid "Writer"
 msgstr "Writer"
 
-#: templates/pages/contrib.html:52 templates/pages/footer.html:29
+#: templates/pages/contrib.html:65
 msgid "Animator"
 msgstr "Animator"
 
-#: templates/pages/contrib.html:54 templates/pages/footer.html:30
-msgid "Imaginer"
+#: templates/pages/contrib.html:67
+#, fuzzy
+msgid "Imagine"
 msgstr "Imaginer"
 
-#: templates/pages/contrib.html:69
-msgid "Get the code"
-msgstr "Get the code"
-
-#: templates/pages/contrib.html:90
-msgid "Report a bug"
-msgstr "Report a bug"
-
-#: templates/pages/contrib.html:96
+#: templates/pages/contrib.html:107
 msgid "Une communauté dédiée à l'imagination citoyenne"
 msgstr "Une communauté dédiée à l'imagination citoyenne"
 
-#: templates/pages/contrib.html:104
+#: templates/pages/contrib.html:115
 msgid "Latest activities"
 msgstr "Latest activities"
 
-#: templates/pages/contrib.html:115
+#: templates/pages/contrib.html:126
 msgid "Latest commits"
 msgstr "Latest commits"
 
-#: templates/pages/contrib.html:128 templates/pages/homepage.html:129
+#: templates/pages/contrib.html:139 templates/pages/homepage.html:135
 msgid "Join the community"
 msgstr "Join the community"
 
-#: templates/pages/contrib.html:138
+#: templates/pages/contrib.html:149
 msgid "News"
 msgstr "News"
 
@@ -1622,78 +1615,49 @@ msgstr "News"
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr "There is no content yet. Switch to edit mode and add a widget."
 
-#: templates/pages/footer.html:12
-msgid "Network"
-msgstr "Network"
-
-#: templates/pages/footer.html:19
-msgid "About"
-msgstr "About"
-
-#: templates/pages/footer.html:24
-msgid "Get Involved"
-msgstr "Get Involved"
-
-#: templates/pages/header.html:10
-msgid "About us"
-msgstr "About us"
-
-#: templates/pages/header.html:11
-msgid "Projects"
-msgstr "Projects"
-
-#: templates/pages/header.html:13 templates/pages/home-blocks/slider.html:36
-#: templates/pages/home-blocks/slider.html:49
-msgid "Add a project"
-msgstr "Add a project"
-
-#: templates/pages/header.html:14
-msgid "Workgroups"
-msgstr "Workgroups"
-
-#: templates/pages/header.html:15
-msgid "Contribute"
-msgstr "Contribute"
-
-#: templates/pages/homepage.html:31
+#: templates/pages/homepage.html:37
 msgid "My project title"
 msgstr "My project title"
 
-#: templates/pages/homepage.html:32
+#: templates/pages/homepage.html:38
 msgid "One line description"
 msgstr "One line description"
 
-#: templates/pages/homepage.html:121
+#: templates/pages/homepage.html:127
 msgid " What is it ?"
 msgstr ""
 
-#: templates/pages/homepage.html:124
+#: templates/pages/homepage.html:130
 msgid "Explore and contribute"
 msgstr ""
 
-#: templates/pages/homepage.html:125
+#: templates/pages/homepage.html:131
 msgid "to social and cultural projects"
 msgstr ""
 
-#: templates/pages/homepage.html:130
+#: templates/pages/homepage.html:136
 #, fuzzy
 msgid "of citizens from more 30 countries"
 msgstr "Connect with a community of citizens from over 30 countries."
 
-#: templates/pages/homepage.html:135
+#: templates/pages/homepage.html:141
 #, fuzzy
 msgid " Detect and develop socially innovative projects."
 msgstr ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
 
-#: templates/pages/homepage.html:218
+#: templates/pages/homepage.html:224
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
 msgstr ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"
+
+#: templates/pages/onemenu.html:34
+msgid "MENU"
+msgstr ""
 
 #: templates/pages/home-blocks/blog-box.html:4
 msgid "Last posts on blog"
@@ -1791,6 +1755,38 @@ msgstr "Add your project"
 #: templates/pages/home-blocks/quick_project.html:12
 msgid "Add"
 msgstr "Add"
+
+#: templates/pages/home-blocks/slider.html:36
+#: templates/pages/home-blocks/slider.html:49
+msgid "Add a project"
+msgstr "Add a project"
+
+#~ msgid "Get the code"
+#~ msgstr "Get the code"
+
+#~ msgid "Report a bug"
+#~ msgstr "Report a bug"
+
+#~ msgid "Network"
+#~ msgstr "Network"
+
+#~ msgid "About"
+#~ msgstr "About"
+
+#~ msgid "Get Involved"
+#~ msgstr "Get Involved"
+
+#~ msgid "About us"
+#~ msgstr "About us"
+
+#~ msgid "Projects"
+#~ msgstr "Projects"
+
+#~ msgid "Workgroups"
+#~ msgstr "Workgroups"
+
+#~ msgid "Contribute"
+#~ msgstr "Contribute"
 
 #~ msgid "Explore and contribute to social projects around the world."
 #~ msgstr "Explore and contribute to social projects around the world."

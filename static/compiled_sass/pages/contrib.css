@@ -97,6 +97,8 @@ a {
   padding-bottom: 12px;
   border-bottom: 1px solid #dadada;
   font-size: 10px;
+  float: left;
+  width: 100%;
 }
 .col ul li img {
   float: left;
@@ -154,15 +156,13 @@ a {
 #jobs_block {
   background-color: #fafafa;
   border: 1px solid #cdcdcd;
-  -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
-  -o-border-radius: 8px;
+  -moz-border-radius: 8px;
   -ms-border-radius: 8px;
-  -khtml-border-radius: 8px;
+  -o-border-radius: 8px;
   border-radius: 8px;
-  -moz-box-shadow: 0px 0px 3px #f3f3f3;
   -webkit-box-shadow: 0px 0px 3px #f3f3f3;
-  -o-box-shadow: 0px 0px 3px #f3f3f3;
+  -moz-box-shadow: 0px 0px 3px #f3f3f3;
   box-shadow: 0px 0px 3px #f3f3f3;
   behavior: url(static/js/pie/PIE.htc);
   margin-top: 30px;
@@ -233,11 +233,10 @@ a {
   font-size: 18px;
   font-weight: bold;
   font-style: italic;
-  -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
-  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
   -ms-border-radius: 4px;
-  -khtml-border-radius: 4px;
+  -o-border-radius: 4px;
   border-radius: 4px;
 }
 #jobs_block .details a.button img {
@@ -245,80 +244,4 @@ a {
   top: 0px;
   margin-left: 10px;
   margin-right: 10px;
-}
-
-/* --FOOTER---------------------------------------------------------------------------------------------------- */
-* {
-  margin: 0;
-}
-
-html, body {
-  height: 100%;
-}
-
-#footer-zone-top {
-  background-color: #f3f3f3;
-  border-top: 1px solid #dadada;
-}
-#footer-zone-top #footer {
-  background-color: #f3f3f3;
-  background: None;
-  color: #818181;
-  text-align: center;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  font-size: 11px;
-}
-#footer-zone-top #footer #stain-top {
-  background-image: url(../../images/pages/contrib/tache-bottom.png);
-  background-repeat: repeat-x;
-  width: 443px;
-  height: 38px;
-  background-position: center;
-  position: absolute;
-  top: -38px;
-  right: 0px;
-}
-#footer-zone-top #footer .separatorv {
-  left: 20px;
-}
-#footer-zone-top #footer a {
-  color: #818181;
-  text-decoration: none;
-}
-#footer-zone-top #footer a:hover {
-  color: #5f5f5f;
-}
-#footer-zone-top #footer img {
-  position: relative;
-  top: 8px;
-}
-#footer-zone-top #footer #links {
-  width: 670px;
-  float: right;
-  padding-top: 10px;
-}
-#footer-zone-top #footer #links ul {
-  width: 180px;
-  float: left;
-  margin-left: 20px;
-  padding: 0px;
-  text-align: left;
-  padding-left: 20px;
-}
-#footer-zone-top #footer #links ul li {
-  list-style-type: none;
-  font-size: 14px;
-}
-#footer-zone-top #footer #links ul h1 {
-  color: #0090be;
-  font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
-  font-size: 20px;
-  font-weight: bold;
-  font-style: italic;
-  margin-bottom: 10px;
-}
-
-#footer-zone-bottom {
-  background-color: #f3f3f3;
 }

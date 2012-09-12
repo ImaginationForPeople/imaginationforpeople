@@ -62,7 +62,7 @@ def get_project_translation_by_any_translation_slug(project_translation_slug, pr
         return project_translation
     except I4pProjectTranslation.DoesNotExist:
         for lang_code, lang_name in settings.LANGUAGES:
-             if (lang_code != prefered_language_code):
+             if lang_code != prefered_language_code:
                  try:
                      project_translation = I4pProjectTranslation.objects.get(slug=project_translation_slug,
                                                 language_code=lang_code,
@@ -273,7 +273,3 @@ def get_project_project_translation_recent_changes(queryset):
             history.append(infos)
 
     return history
-
-
-
-

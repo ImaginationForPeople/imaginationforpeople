@@ -11,6 +11,12 @@
     {% endcompress %}
 {% endblock %}
 
+
+    {% block meta_keywords %}{% page_attribute meta_description %}{% endblock %}
+    {% block meta_desc %}{% page_attribute meta_keywords %}{% endblock %}" /> 
+    {% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}
+
+
 {% block extra_head %}
   {{ block.super }}
   
@@ -155,7 +161,7 @@
 
     <div id="content" class="center">
         <div id="left_col">
-        
+        {% placeholder "Left column" %}
             <!-- TEMP!!! -->
             <div class="infoblock">
                 <div class="image">

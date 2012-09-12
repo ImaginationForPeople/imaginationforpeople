@@ -175,13 +175,9 @@ def project_sheet_show(request, slug, add_media=False):
                                             site=site)
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
-    if(project_translation.language_code != language_code):
+
+    if project_translation.language_code != language_code:
         return redirect(project_translation, permanent=False)
-        """project_translation = get_object_or_404(I4pProjectTranslation,
-                                            slug=slug,
-                                            language_code=language_code,
-                                            project__site=site)
-                                            """
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
