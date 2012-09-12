@@ -1,96 +1,109 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# 
+# Translators:
+# Luca Manlio De Lisi <lukefiltroman@gmail.com>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-13 13:46+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Project-Id-Version: Imagination For People\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2012-09-05 16:38+0200\n"
+"PO-Revision-Date: 2012-09-05 14:39+0000\n"
+"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"Language-Team: Italian <ip-it@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cms_plugins.py:33
+#: cms_plugins.py:60
 msgid "WorkGroup (un)subscribe button"
+msgstr "Pulsante di sottoscrizione(cancellazione) gruppo di lavoro"
+
+#: cms_plugins.py:73
+msgid "WorkGroup subscribers list"
 msgstr ""
 
-#: models.py:33
+#: models.py:34
 msgid "name"
-msgstr ""
+msgstr "nome"
 
-#: models.py:36
+#: models.py:37
 msgid "spoken language"
-msgstr ""
+msgstr "lingua parlata"
 
-#: models.py:40
+#: models.py:41
 msgid "Description"
-msgstr ""
+msgstr "Descrizione"
 
-#: models.py:48
+#: models.py:49
 msgid "visible"
-msgstr ""
+msgstr "visibile"
 
 #: views.py:85
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
-msgstr ""
+msgstr "Sei appena stato iscritto con successo alla mailing list (%(user_email)s) del gruppo %(workgroup_name)s"
 
 #: views.py:92
 #, python-format
 msgid "You couldn't be subscribed to this workgroup:%s"
-msgstr ""
+msgstr "Non puoi essere iscritto a questo gruppo di lavoro:%s"
 
 #: views.py:119
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
-msgstr ""
+msgstr "Sei stato cancellato con successo dalla mailing list (%(user_email)s) del gruppo %(workgroup_name)s"
 
 #: views.py:126
 #, python-format
 msgid "You couldn't be unsubscribed from this workgroup:%s"
-msgstr ""
+msgstr "Non puoi essere cancellato da questo gruppo di lavoro:%s"
 
 #: templates/workgroup/base.html:8
 #: templates/workgroup/workgroup_detail.html:11
 msgid "Workgroup"
-msgstr ""
+msgstr "Gruppo di lavoro"
 
 #: templates/workgroup/subscribe_button.html:5
 msgid "Subscribe"
-msgstr ""
+msgstr "Sottoscrivi"
 
 #: templates/workgroup/subscribe_button.html:11
 msgid "Unsubscribe"
-msgstr ""
-
-#: templates/workgroup/workgroup_detail.html:37
-msgid "You are not susbcribed to this Mailing List"
-msgstr ""
-
-#: templates/workgroup/workgroup_detail.html:39
-msgid "You are susbcribed to this Mailing List"
-msgstr ""
-
-#: templates/workgroup/workgroup_detail.html:60
-msgid "Group subscribers and non IP members mail (admin):"
-msgstr ""
-
-#: templates/workgroup/workgroup_detail.html:69
-msgid "Group subscribers and IP members mail (admin):"
-msgstr ""
+msgstr "Cancellati"
 
 #: templates/workgroup/workgroup_list.html:10
 msgid "Workgroups"
+msgstr "Gruppi di lavoro"
+
+#: templates/workgroup/workgroup_subscribers.html:6
+msgid "Group subscribers"
+msgstr ""
+
+#: templates/workgroup/workgroup_subscribers.html:10
+msgid "You are not susbcribed to this Mailing List"
+msgstr "Non sei iscritto a questa Mailing List"
+
+#: templates/workgroup/workgroup_subscribers.html:12
+msgid "You are susbcribed to this Mailing List"
+msgstr "Sei iscritto a questa Mailing List"
+
+#: templates/workgroup/workgroup_subscribers.html:28
+#, python-format
+msgid "And %(anonymous_count)s anonymous subscriber%(pluralize)s"
+msgstr ""
+
+#: templates/workgroup/workgroup_subscribers.html:32
+msgid "Group subscribers and non IP members mail (admin):"
+msgstr ""
+
+#: templates/workgroup/workgroup_subscribers.html:41
+msgid "Group subscribers and IP members mail (admin):"
 msgstr ""
