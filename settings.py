@@ -4,6 +4,11 @@
 import os
 import re
 import sys
+import site
+
+import askbot
+import djcelery
+
 from django.utils.translation import ugettext_lazy as _
 
 # Import settings for the given site
@@ -11,6 +16,9 @@ from site_settings import *
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
+
+ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
+site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 ADMINS = (
     ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
@@ -71,6 +79,9 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 
 # Cache
+CACHE_PREFIX ='imaginationforpeople'
+
+# Cache
 if DEBUG:
     CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
 else:
@@ -78,14 +89,18 @@ else:
 CACHES = {
     'default': {
         'BACKEND': CACHE_BACKEND,
+    },
+    'askbot': {
+        #XXX: DO NOT CHANGE THIS SETTING
+       'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache',
     }
+          
 }
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,15 +124,21 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-
-
     'honeypot.middleware.HoneypotMiddleware',
 
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
     'cms.middleware.toolbar.ToolbarMiddleware',
 
+	#below is askbot stuff for this tuple
+    'askbot.middleware.view_log.ViewLogMiddleware',
+    'askbot.middleware.anon_user.ConnectToSessionMessagesMiddleware',
+    'askbot.middleware.forum_mode.ForumModeMiddleware',
+    'askbot.middleware.cancel.CancelActionMiddleware',
+    'django.middleware.transaction.TransactionMiddleware',
+
     'raven.contrib.django.middleware.SentryResponseErrorIdMiddleware',
+
 )
 
 if DEBUG:
@@ -148,7 +169,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     "django.core.context_processors.request",
     'backcap.context_processors.backcap_forms',
-
+        
     'django.core.context_processors.static',
     'apps.project_sheet.context_processors.project_search_forms',
     'apps.member.context_processors.member_forms',
@@ -157,6 +178,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'sekizai.context_processors.sekizai',
     
     'dynamicsites.context_processors.current_site',
+    
+    'askbot.context.application_settings',
 )
 
 
@@ -247,11 +270,20 @@ INSTALLED_APPS = (
     'cms.plugins.twitter',
     'cms.plugins.teaser',
     'cms.plugins.snippet',
-
     'cmsplugin_facebook',
     'cmsplugin_iframe',
+    'cmsplugin_contact',
+
+    'askbot',
+    'askbot.deps.livesettings',
+    'longerusername',
+    'keyedcache',
+    'djcelery',
+    'djkombu',
+    'followit',
 
     # Internal Apps
+    'apps.forum',
     'apps.i4p_base',
     'apps.member',
     'apps.project_sheet',
@@ -317,6 +349,7 @@ HONEYPOT_FIELD_NAME = "homepage"
 # Userena
 ANONYMOUS_USER_ID = -1
 AUTH_PROFILE_MODULE = 'member.I4pProfile'
+USERENA_MUGSHOT_GRAVATAR = True
 
 ### Nose test runner
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
@@ -366,6 +399,7 @@ else:
 LOGIN_REDIRECT_URL = '/'
 USERENA_SIGNIN_REDIRECT_URL = '/'
 LOGIN_URL = "/member/signin/"
+LOGOUT_URL = "/member/signout/"
 
 # XXX To be removed as soon as google login is confirmed working
 LOCALE_INDEPENDENT_PATHS = (
@@ -421,13 +455,20 @@ BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
 
 
 ## TINYMCE
-TINYMCE_DEFAULT_CONFIG = {'theme': "advanced",
+TINYMCE_DEFAULT_CONFIG = {
+                          'theme': "advanced",
+                          'plugins': 'contextmenu,table,template,blockquote,paste',
                           'relative_urls': False,
                           'remove_script_host': 0,
                           'convert_urls': False,
-                          'plugins': "contextmenu",
                           'width': '90%',
-                          'height': '300px'}
+                          'height': '300px',
+                          'theme_advanced_blockformats' : 'p,div,h1,h2,h3,h4,h5,h6,blockquote,dt,dd',
+                          'theme_advanced_buttons1_add' : 'fontsizeselect,fontselect,formatselect,forecolor', 
+                          'theme_advanced_buttons2_add' : 'blockquote,pasteword', 
+                          'theme_advanced_buttons3_add' : 'tablecontrols,template',     
+                          'template_external_list_url' : '/admin/tinymce/templates/',   
+                          }
 TINYMCE_FILEBROWSER = True
 FILEBROWSER_USE_UPLOADIFY = False
 
@@ -450,6 +491,24 @@ CMS_SOFTROOT = True
 CMS_SEO_FIELDS = True
 
 APPEND_SLASH = True
+
+RECAPTCHA_USE_SSL = True
+
+## Askbot
+ASKBOT_URL = 'forum' # without leading and trailing slashes
+ASKBOT_STARTUP_CHECK = False
+ALLOW_UNICODE_SLUGS = False
+ASKBOT_USE_STACKEXCHANGE_URLS = False 
+ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
+
+## Celery Settings
+# TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge
+BROKER_TRANSPORT = "djkombu.transport.DatabaseTransport"
+# If this is True, all tasks will be executed locally by blocking until the task returns. 
+# tasks will be executed locally instead of being sent to the queue.
+CELERY_ALWAYS_EAGER = DEBUG
+
+djcelery.setup_loader()
 
 NANI_TABLE_NAME_SEPARATOR = ''
 

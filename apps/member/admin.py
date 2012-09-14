@@ -24,11 +24,13 @@ from .models import I4pProfile
 class I4pProfileAdmin(admin.ModelAdmin):
     model = I4pProfile
 
-    list_display = ('user', 'language', 'gender', 'country', 'registration_site')
+    def date_joined(self, obj):
+        return obj.user.date_joined
 
-    search_fields = ['user__username', 'user__first_name', 'user__last_name', 'user__email']
-    list_filter = ['language', 'registration_site', 'gender', 'country']
-
+    list_display = ('user', 'language', 'gender', 'country', 'registration_site', 'date_joined')
+    search_fields = ['user__username', 'user__date_joined' ,'user__first_name', 'user__last_name', 'user__email']
+    list_filter = ['language', 'user__date_joined', 'registration_site', 'gender', 'country']
+    
     def make_mailing_list(self, request, queryset):
         from emencia.django.newsletter.models import Contact
         from emencia.django.newsletter.models import MailingList

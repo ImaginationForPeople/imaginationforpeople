@@ -4762,7 +4762,10 @@ a.label:hover, a.badge:hover {
   display: inline;
 }
 
-.container_18 .grid_6 {
+#projects_list {
+  margin-top: -28px !important;
+}
+#projects_list .grid_6 {
   width: 235px;
 }
 
@@ -4772,4 +4775,23 @@ a.label:hover, a.badge:hover {
 
 .project_infos_baseline {
   color: #424242 !important;
+}
+
+.project_infos_title h2 {
+  color: #5A5959 !important;
+}
+
+.project_list_project a {
+  box-shadow: none !important;
+}
+.project_list_project a:hover {
+  border-color: white !important;
+}
+
+.project_infos_description {
+  display: none;
+}
+
+.step-links a {
+  color: #5A5959 !important;
 }
