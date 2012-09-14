@@ -3,6 +3,7 @@
 {% load compress %}
 {% load wiki_tags %}
 {% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
 
 {% block style %}
 {% compress css %}
@@ -29,13 +30,15 @@
 {% endblock %}
 
 {% block content %}
+
+{% if picture_project_translations|length > 0 %}
 <div id="subheader-zone" class="clearfix">
     <div id="pictured-zone">
 	<div class="container_18">
 	    <p class="prefix_1 grid_12 alpha tag-header">
 		<img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
 		<p class="credit">
-		    {% blocktrans %}Picture of project FIXME-BAD-TRANSLATION: {{ picture_project_translations.0.title }}.{% endblocktrans %}
+		    {% blocktrans %}Picture of project: {{ picture_project_translations.0.title }}.{% endblocktrans %}
 		</p>
 	    </p>
 
@@ -50,6 +53,7 @@
 	</div>
     </div>
 
+
     <div id="description-zone" >
 	<div class="container_18">
 	    <div class="grid_3 alpha icon-tag-big"></div>
@@ -57,28 +61,37 @@
 		<h1 class="grid_8 alpha omega tag-title">{{ tag }}</h1>
 
 		<p class="grid_8 alpha omega tag-description">
-		    {{ article.render|striptags }}
+		    {{ article.render|striptags|truncatechars:300 }}
 		    [<a href="{% url tags:wiki-edit tag %}">{% trans "edit" %}</a>]
 		</p>
-
 	    </div>
 	</div>
 	<div class="readmore"><a href="#FIXME-BAD-URL"></a></div>
     </div>
 </div> <!-- #subheader-zone -->
+{% endif %}
 
 <div id="content-zone">
     <div class="container_18 clearfix"> <!-- .container_18 -->
 
 	<div class="grid_12 alpha" >
+	    {% if picture_project_translations|length == 0 %}
+	    <div>
+		<h1 class="grid_12 alpha omega tag-title">{{ tag }}</h1>
 
+		<p class="grid_12 alpha omega tag-description">
+		    {{ article.render|striptags|truncatechars:300 }}
+		    [<a href="{% url tags:wiki-edit tag %}">{% trans "edit" %}</a>|<a href="#">{% trans "read" %}</a>]
+		</p>
+	    </div>
+	    {% endif %}
 	    <div id="tags-related">
 		{% include "tags/block/tag_list.html" with taglist_title="Related tags" taglist_tags=related_tags %}
 	    </div>
 
 	    <div class="project-list square-card clearfix">
 		<h2>{% trans "Mature projects" %}</h2>
-		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END" class="seemore">{% trans "See more" %}</a>
+		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END&status=WIP" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in mature_project_translations %}
 		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
@@ -91,7 +104,7 @@
 
 	    <div class="project-list square-card clearfix">
 		<h2>{% trans "Starting projects" %}</h2>
-		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA" class="seemore">{% trans "See more" %}</a>
+		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA&status=BEGIN" class="seemore">{% trans "See more" %}</a>
 		{% for project_translation in starting_project_translations %}
 		{% include "project_sheet/block/project_square_card.html" %}
 		{% empty %}
@@ -129,6 +142,8 @@
 		    <li class="clearfix">
 			{% include "project_sheet/block/person_wide_flat.html" with person=p %}
 		    </li>
+		    {% empty %}
+		        {% trans "Be the first to appear here by joining a project!" %}
 		    {% endfor %}
 		</ul>
 	    </div>

@@ -278,6 +278,9 @@ hr {
   float: right;
   position: relative;
 }
+#content-zone #content #left_col .infoblock .details a {
+  color: #04ADD1;
+}
 #content-zone #content #left_col .infoblock .details h2 {
   margin: 0px;
   color: #303030;
@@ -710,4 +713,76 @@ hr {
   color: #666666 !important;
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;
   text-transform: none !important;
+}
+
+/* cmsplugin-zinnia */
+.hentry {
+  margin: 10px 0px;
+  padding: 5px 0px;
+  background-color: #f2f2f2;
+  border-left: 3px solid #04add1;
+  color: #282828;
+}
+.hentry a {
+  color: #04add1;
+}
+.hentry > .entry-header {
+  margin-left: 10px;
+}
+.hentry > .entry-header .entry-info {
+  font-size: 70%;
+  color: #8e8e8e;
+}
+.hentry > .entry-footer {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 70%;
+  display: none;
+}
+.hentry > .continue-reading {
+  margin: 8px 0px;
+}
+.hentry .entry-info {
+  margin: 5px 5px;
+  text-align: right;
+  display: none;
+}
+.hentry .entry-content p {
+  margin: 8px 0px;
+}
+.hentry .entry-content img {
+  float: left;
+  max-width: 250px;
+  height: auto;
+  margin-right: 1em;
+  /* -(margin left + border) */
+  margin-left: -13px;
+  border-top: 3px solid #04add1;
+  border-right: 3px solid #04add1;
+  border-bottom: 3px solid #04add1;
+}
+.hentry > .entry-body {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.hentry h2 {
+  margin: 0px 0px;
+  color: #282828;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: bold;
+  text-shadow: 1px 1px 0px #8e8e8e;
+}
+.hentry ul {
+  padding-left: 10px;
+  color: #282828;
+  margin-bottom: 10px;
+}
+.hentry ul li {
+  float: none;
+  list-style-image: url("../images/base/blue_tick.png");
+  display: list-item;
+  margin: 4px 0px;
 }

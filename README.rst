@@ -13,6 +13,7 @@ find it at http://imaginationforpeople.org
 You can find the full documentation at: http://i4p.readthedocs.org/en/develop/
 
    image:: https://secure.travis-ci.org/ImaginationForPeople/imaginationforpeople.png
+
    :alt: Build Status
    :target: http://travis-ci.org/ImaginationForPeople/imaginationforpeople
 

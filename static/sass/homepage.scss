@@ -296,6 +296,10 @@ hr{
                     float:right;
                     position:relative;
                     
+					a {
+						color: #04ADD1;
+					}
+					
                     h2{
                         margin:0px;
                         color:$greyblack;
@@ -303,7 +307,7 @@ hr{
                         font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif !important;
                         font-size:16px;
                     }
-                    
+
                     span.date{
                         position:absolute;
                         top:11px;
@@ -803,4 +807,83 @@ hr{
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;   
         text-transform: none !important;
     }
+}
+
+/* cmsplugin-zinnia */
+.hentry {
+    margin: 10px 0px;
+    padding: 5px 0px;
+    background-color: $colorLightGrey;
+    border-left: 3px solid $colorLightBlue;
+    color:$colorDarkGrey;
+    
+    a {
+    color: $colorLightBlue;
+    }
+    > .entry-header {
+        margin-left: 10px;
+        .entry-info {
+            font-size: 70%;
+            color:$colorMedGrey;
+        }
+    }
+    > .entry-footer {
+        margin-left: 10px;
+        margin-top: 10px;
+        font-size: 70%;
+        display: none;
+    }
+    > .continue-reading {
+        margin: 8px 0px;
+    }
+    .entry-info {
+        margin: 5px 5px;
+        text-align: right;
+                display: none;
+    }
+    .entry-content {
+        p {
+            margin: 8px 0px;
+        }
+        img {
+            float: left;
+            max-width: 250px;
+            height: auto;
+            margin-right: 1em;
+            /* -(margin left + border) */
+            margin-left: -13px;
+            border-top: 3px solid $colorLightBlue;
+            border-right: 3px solid $colorLightBlue;
+            border-bottom: 3px solid $colorLightBlue;
+        }
+    }
+        > .entry-body {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+                    h2{
+                        margin:0px 0px;
+                        color:$colorDarkGrey;
+                        font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
+                        font-size:17px;
+                        text-transform:uppercase;
+                        font-style:normal;
+                        font-weight:bold;
+                        text-shadow:1px 1px 0px $colorMedGrey;
+                    }
+
+                        
+                        ul{
+                            padding-left:10px;
+                            color:$colorDarkGrey;
+                            margin-bottom:10px;
+
+                            li{
+                                float:none;
+                                list-style-image:url('../images/base/blue_tick.png');
+                                display: list-item;
+                                margin:4px 0px;
+                            }
+                        }                    
+                    
 }
