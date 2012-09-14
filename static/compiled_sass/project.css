@@ -4718,10 +4718,11 @@ form {
   font-size: 28px;
   font-weight: bold;
   font-style: italic;
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
+  -webkit-border-radius: 0px;
   -o-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -khtml-border-radius: 0px;
   border-radius: 0px;
 }
 
@@ -4763,10 +4764,11 @@ form {
   background-image: url("../images/project/project_title_edit.jpg");
   background-position: right bottom;
   background-repeat: no-repeat;
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
+  -webkit-border-radius: 0px;
   -o-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -khtml-border-radius: 0px;
   border-radius: 0px;
   font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
   font-size: 28px;
@@ -5015,10 +5017,11 @@ form {
   color: white;
   padding: 3px 4px;
   width: 350px;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 #forms_files select {
@@ -5031,10 +5034,11 @@ form {
   background-color: #CCC8C8;
   border: 1px solid #CCC8C8;
   color: white;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 #forms_files .media_movie_upload label {
@@ -5073,8 +5077,9 @@ form {
   top: -25px;
   right: -73px;
   margin-right: 3px;
-  -webkit-box-shadow: 0px 0px 4px #424242;
   -moz-box-shadow: 0px 0px 4px #424242;
+  -webkit-box-shadow: 0px 0px 4px #424242;
+  -o-box-shadow: 0px 0px 4px #424242;
   box-shadow: 0px 0px 4px #424242;
   behavior: url(static/js/pie/PIE.htc);
 }
@@ -5198,10 +5203,11 @@ form {
   font-size: 25px;
   font-weight: bold;
   font-style: italic;
-  -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
-  -ms-border-radius: 0px;
+  -webkit-border-radius: 0px;
   -o-border-radius: 0px;
+  -ms-border-radius: 0px;
+  -khtml-border-radius: 0px;
   border-radius: 0px;
   border: 0px;
   padding-top: 13px;
@@ -5419,13 +5425,15 @@ form {
 #project_status {
   background-color: black;
   width: 65%;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 0px 0px 4px black;
   -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
   behavior: url(static/js/pie/PIE.htc);
   padding: 5px;
@@ -5585,10 +5593,11 @@ form {
   padding-left: 4px;
   padding-right: 4px;
   width: 300px;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -5746,7 +5755,7 @@ form {
   margin-top: 5px;
 }
 
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
+@media screen and (-webkit-min-device-pixel-ratio:0) {
   .grey_column_team_member_edit form p input[type=file] {
     width: 214px;
   }
@@ -5807,10 +5816,11 @@ ul#themes_tags li.tagit-choice:first-letter {
 ul#themes_tags li.tagit-choice {
   background-color: #CCC8C8;
   padding: 5px;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
   font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
   font-size: 14px;
@@ -5828,10 +5838,11 @@ ul#themes_tags li.tagit-choice {
   padding: 10px;
   width: 730px;
   margin-bottom: 15px;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
 }
 
@@ -5949,10 +5960,11 @@ ul#themes_tags li.tagit-choice {
 #comments-module #comment-form textarea {
   background-color: #5d5d5d;
   border: 0px;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
   width: 99%;
   height: 17px;
@@ -5975,8 +5987,9 @@ ul#themes_tags li.tagit-choice {
   position: absolute;
   top: -8px;
   right: 10px;
-  -webkit-box-shadow: 0px 0px 4px black;
   -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
   behavior: url(static/js/pie/PIE.htc);
   width: 40px;
@@ -5994,17 +6007,19 @@ ul#themes_tags li.tagit-choice {
 #comments-module #comment-list li .comment-message {
   background-color: white;
   border: 0px;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
   width: 99%;
   padding: 4px;
   margin-bottom: 3px;
   padding-bottom: 15px;
-  -webkit-box-shadow: 0px 2px 5px #1d1a1a;
   -moz-box-shadow: 0px 2px 5px #1d1a1a;
+  -webkit-box-shadow: 0px 2px 5px #1d1a1a;
+  -o-box-shadow: 0px 2px 5px #1d1a1a;
   box-shadow: 0px 2px 5px #1d1a1a;
   color: #828181;
   font-size: 11px;
@@ -6030,8 +6045,9 @@ ul#themes_tags li.tagit-choice {
 }
 #comments-module #comment-list li .comment-info img {
   position: absolute;
-  -webkit-box-shadow: 0px 0px 4px black;
   -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
   behavior: url(static/js/pie/PIE.htc);
   width: 40px;
@@ -6099,13 +6115,15 @@ ul#themes_tags li.tagit-choice {
 }
 #notification-area .anonymous-disclaimer, #notification-area .edition-notification {
   background-color: black;
-  -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
+  -webkit-border-radius: 4px;
   -o-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -khtml-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 0px 0px 4px black;
   -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
   behavior: url(static/js/pie/PIE.htc);
   padding: 10px;

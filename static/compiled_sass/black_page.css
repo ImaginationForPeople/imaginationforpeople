@@ -4650,6 +4650,32 @@ a.label:hover, a.badge:hover {
 /**
  *  Mixins
  */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
 .content {
   background-color: #282828;
   background-image: url(../images/base/content-bg.jpg);
@@ -4705,8 +4731,9 @@ a.label:hover, a.badge:hover {
 }
 
 .button {
-  -webkit-box-shadow: 0px 0px 4px black;
   -moz-box-shadow: 0px 0px 4px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -o-box-shadow: 0px 0px 4px black;
   box-shadow: 0px 0px 4px black;
   behavior: url(static/js/pie/PIE.htc);
 }
