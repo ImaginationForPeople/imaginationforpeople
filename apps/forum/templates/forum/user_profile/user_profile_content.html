@@ -1,0 +1,52 @@
+{% include "user_profile/user_tabs.html" %}
+
+<div id="stats_tab">
+    {% include "user_profile/user_stats.html" %}
+</div>
+
+{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
+<div id=inbox_tab>
+    {% include "user_profile/user_inbox.html" %}
+</div>
+{% endif %}
+
+{% if user_follow_feature_on %}
+<div id="network_tab">
+    {% include "user_profile/user_network.html" %}
+</div>
+{% endif %}
+
+{% if can_show_karma %}
+<div id="reputation_tab">
+    {% include "user_profile/user_reputation.html" %}
+</div>
+{% endif %}
+
+<div id="followed-questions_tab">
+    {% with favorite_questions as questions %}
+    {% include "user_profile/users_questions.html" %}
+    {% endwith %}
+</div>
+
+<div id="activity_tab">
+    {% include "user_profile/user_activity.html" %}
+</div>
+
+
+{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
+<div id="votes_tab">
+    {% include "user_profile/user_votes.html" %}
+</div>
+{% endif %}
+
+{% if request.user == view_user or request.user|can_moderate_user(view_user) %}
+<div id="subscriptions_tab">
+    {% include "user_profile/user_email_subscriptions.html" %}
+</div>
+{% endif %}  
+
+{% if request.user|can_moderate_user(view_user) %}
+<div id="moderation_tab" {%if return_to_tab == 'moderation'%}class="active_tab"{%endif%}>
+    {% include "user_profile/user_moderate.html" %}
+</div>
+{% endif %}
