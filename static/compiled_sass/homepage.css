@@ -1,3 +1,29 @@
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
 body {
   background-color: #282828;
 }
@@ -689,65 +715,81 @@ hr {
 /* cmsplugin-zinnia */
 .hentry {
   margin: 10px 0px;
-  padding: 5px 0px;
+  padding: 0px 0px;
   background-color: #f2f2f2;
-  border-left: 3px solid #04add1;
+  overflow: hidden;
   color: #282828;
+}
+.hentry > .entry-image {
+  width: 35%;
+  line-height: 200px;
+  vertical-align: top;
+  display: inline-block;
+  margin-right: 0px;
+  border-right: 3px solid #04add1;
+}
+.hentry > .entry-image img {
+  vertical-align: middle;
+  max-width: 100%;
+  float: none;
+}
+.hentry .entry-main-details-image {
+  width: 62%;
+}
+.hentry .entry-main-details {
+  display: inline-block;
+  border-left: 3px solid #04add1;
+  margin-left: -3px;
+  padding: 0px 0px 0px 10px;
 }
 .hentry a {
   color: #04add1;
 }
-.hentry > .entry-header {
-  margin-left: 10px;
+.hentry .entry-header {
+  margin: 10px 0px;
 }
-.hentry > .entry-header .entry-info {
+.hentry .entry-header .entry-info {
   font-size: 70%;
   color: #8e8e8e;
 }
-.hentry > .entry-footer {
-  margin-left: 10px;
+.hentry .entry-header h2 {
+  margin: 7px 0px;
+  font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
+  font-size: 17px;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: bold;
+}
+.hentry .entry-footer {
   margin-top: 10px;
   font-size: 70%;
   display: none;
 }
-.hentry > .continue-reading {
+.hentry .continue-reading {
   margin: 8px 0px;
+  font-weight: bold;
 }
 .hentry .entry-info {
   margin: 5px 5px;
   text-align: right;
   display: none;
 }
-.hentry .entry-content p {
-  margin: 8px 0px;
-}
 .hentry .entry-content img {
   float: left;
-  max-width: 250px;
+  max-width: 35%;
   height: auto;
   margin-right: 1em;
   /* -(margin left + border) */
   margin-left: -13px;
-  border-top: 3px solid #04add1;
-  border-right: 3px solid #04add1;
-  border-bottom: 3px solid #04add1;
 }
-.hentry > .entry-body {
-  margin-left: 10px;
+.hentry .entry-body {
   margin-right: 10px;
 }
-.hentry h2 {
-  margin: 0px 0px;
-  color: #282828;
-  font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
-  font-size: 17px;
-  text-transform: uppercase;
-  font-style: normal;
-  font-weight: bold;
-  text-shadow: 1px 1px 0px #8e8e8e;
+.hentry p {
+  margin: 8px 0px;
 }
 .hentry ul {
-  padding-left: 10px;
+  padding-left: 20px;
   color: #282828;
   margin-bottom: 10px;
 }
