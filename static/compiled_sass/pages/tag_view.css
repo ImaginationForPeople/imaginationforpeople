@@ -4676,209 +4676,206 @@ a.label:hover, a.badge:hover {
 /**
  * font piles
  */
-@font-face {
-  font-family: 'OpenSansBold_obsolete';
-  src: url('../../../fonts/opensans-bold-webfont.eot');
-  src: url('../../../fonts/opensans-bold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bold-webfont.woff') format("woff"), url('../../../fonts/opensans-bold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bold-webfont.svg#OpenSansBold') format("svg");
-  font-weight: bold;
-  font-style: normal;
+body {
+  background-color: #f8f8f8;
 }
 
-@font-face {
-  font-family: 'OpenSansBoldItalic_obsolete';
-  src: url('../../../fonts/opensans-bolditalic-webfont.eot');
-  src: url('../../../fonts/opensans-bolditalic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bolditalic-webfont.woff') format("woff"), url('../../../fonts/opensans-bolditalic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bolditalic-webfont.svg#OpenSansBoldItalic') format("svg");
-  font-weight: normal;
-  font-style: normal;
+#header-zone {
+  background-color: #282828;
 }
 
-@font-face {
-  font-family: 'OpenSansCondensedBold_obsolete';
-  src: url('../../../fonts/opensans-condbold-webfont.eot');
-  src: url('../../../fonts/opensans-condbold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-condbold-webfont.woff') format("woff"), url('../../../fonts/opensans-condbold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-condbold-webfont.svg#OpenSansCondensedBold') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'OpenSansRegular_obsolete';
-  src: url('../../../fonts/opensans-regular-webfont.eot');
-  src: url('../../../fonts/opensans-regular-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-regular-webfont.woff') format("woff"), url('../../../fonts/opensans-regular-webfont.ttf') format("truetype"), url('../../../fonts/opensans-regular-webfont.svg#OpenSansRegular') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'OpenSansItalic_obsolete';
-  src: url('../../../fonts/opensans-italic-webfont.eot');
-  src: url('../../../fonts/opensans-italic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-italic-webfont.woff') format("woff"), url('../../../fonts/opensans-italic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-italic-webfont.svg#OpenSansItalic') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'OpenSansSemibold_obsolete';
-  src: url('../../../fonts/opensans-semibold-webfont.eot');
-  src: url('../../../fonts/opensans-semibold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-semibold-webfont.woff') format("woff"), url('../../../fonts/opensans-semibold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-semibold-webfont.svg#') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  src: url('../../../fonts/opensans-bold-webfont.eot');
-  src: url('../../../fonts/opensans-bold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bold-webfont.woff') format("woff"), url('../../../fonts/opensans-bold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bold-webfont.svg#OpenSansBold') format("svg");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  src: url('../../../fonts/opensans-bolditalic-webfont.eot');
-  src: url('../../../fonts/opensans-bolditalic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-bolditalic-webfont.woff') format("woff"), url('../../../fonts/opensans-bolditalic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-bolditalic-webfont.svg#OpenSansBoldItalic') format("svg");
-  font-weight: bold;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  src: url('../../../fonts/opensans-condbold-webfont.eot');
-  src: url('../../../fonts/opensans-condbold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-condbold-webfont.woff') format("woff"), url('../../../fonts/opensans-condbold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-condbold-webfont.svg#OpenSansCondensedBold') format("svg");
-  font-weight: bold;
-  font-stretch: condensed;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  src: url('../../../fonts/opensans-regular-webfont.eot');
-  src: url('../../../fonts/opensans-regular-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-regular-webfont.woff') format("woff"), url('../../../fonts/opensans-regular-webfont.ttf') format("truetype"), url('../../../fonts/opensans-regular-webfont.svg#OpenSansRegular') format("svg");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  src: url('../../../fonts/opensans-italic-webfont.eot');
-  src: url('../../../fonts/opensans-italic-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-italic-webfont.woff') format("woff"), url('../../../fonts/opensans-italic-webfont.ttf') format("truetype"), url('../../../fonts/opensans-italic-webfont.svg#OpenSansItalic') format("svg");
-  font-weight: normal;
-  font-style: italic;
-}
-
-@font-face {
-  font-family: 'OpenSans';
-  src: url('../../../fonts/opensans-semibold-webfont.eot');
-  src: url('../../../fonts/opensans-semibold-webfont.eot?#iefix') format("embedded-opentype"), url('../../../fonts/opensans-semibold-webfont.woff') format("woff"), url('../../../fonts/opensans-semibold-webfont.ttf') format("truetype"), url('../../../fonts/opensans-semibold-webfont.svg#') format("svg");
-  font-weight: 600;
-  font-style: normal;
-}
-
-.project.wide-card {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+#subheader-zone {
+  background-color: white;
   position: relative;
-  height: 81px;
-  width: inherit;
-  margin-bottom: 10px;
 }
-.project.wide-card img {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: inherit;
+
+#pictured-zone {
+  background-color: black;
+  height: 253px;
+  border-bottom: 4px solid #04add1;
 }
-.project.wide-card .project-information {
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
+#pictured-zone .tag-header {
+  position: relative;
+}
+#pictured-zone .tag-header a img {
+  width: 100%;
+  height: auto;
+  border: none;
+}
+#pictured-zone .tag-header .credit {
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 0.83em;
+  font-style: italic;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: inherit;
-  height: inherit;
-  padding: 10px;
+  top: 145px;
+  left: 10px;
   color: white;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  background-image: url('../../../images/tags/icon-arrow-white-big.png?1348091001'), url('../../../images/base/background-black-dots-opacity-50.png?1348091001');
-  background-repeat: no-repeat, repeat;
-  background-position: 400px center, top left;
+}
+#pictured-zone .project-list.wide-card {
+  margin-top: 20px;
+}
+
+#content-zone {
+  clear: both;
+  background-color: white;
+  margin-bottom: 2em;
+}
+
+#description-zone {
+  background-image: linear-gradient(top, #282828 0%, #000000 100%);
+  background-image: -o-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -moz-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -webkit-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -ms-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #282828), color-stop(1, black));
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 0 4px 4px 0;
+  position: absolute;
+  top: 170px;
+  left: 0px;
+  padding: 0;
+  width: 55%;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  min-height: 90px;
+}
+#description-zone .icon-tag-big {
+  display: block;
+  margin: 0;
+  padding: 0;
+  min-height: 5em;
+  min-width: 5em;
+  background-image: url('../../images/tags/icon-tag-white-big.png?1348091001');
+  background-repeat: no-repeat;
+  background-position: 80px center;
+}
+#description-zone .tag-title {
+  color: white;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 2.33em;
+  font-style: normal;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+#description-zone .tag-description {
+  color: white;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  font-style: italic;
+}
+#description-zone .tag-description .button {
+  margin-top: 1em;
+  margin-left: 1em;
+  float: right;
+}
+#description-zone .readmore {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  background-image: linear-gradient(top, #282828 0%, #000000 100%);
+  background-image: -o-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -moz-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -webkit-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -ms-linear-gradient(top, #282828 0%, black 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #282828), color-stop(1, black));
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 25px;
+  right: -25px;
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+#description-zone .readmore:hover {
+  right: -30px;
+}
+#description-zone .readmore a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../images/tags/icon-arrow-blue-big.png?1348091001');
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+hr.shaded-separator {
+  display: block;
+  border: 0;
+  width: 100%;
+  height: 10px;
+  background-image: url('../../images/base/horizontal-separator.png?1348091001');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.tag-follow-button {
+  background-image: linear-gradient(top, #4abae9 0%, #3990b4 100%);
+  background-image: -o-linear-gradient(top, #4abae9 0%, #3990b4 100%);
+  background-image: -moz-linear-gradient(top, #4abae9 0%, #3990b4 100%);
+  background-image: -webkit-linear-gradient(top, #4abae9 0%, #3990b4 100%);
+  background-image: -ms-linear-gradient(top, #4abae9 0%, #3990b4 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4abae9), color-stop(1, #3990b4));
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
   transition: all 0.5s ease;
   -moz-transition: all 0.5s ease;
   -webkit-transition: all 0.5s ease;
   -o-transition: all 0.5s ease;
-}
-.project.wide-card .project-information .title {
   display: block;
-  position: absolute;
-  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  border: 4px solid #c7e4ea;
+  color: white;
+  padding: 1em;
+  font-weight: bold;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  text-transform: uppercase;
+}
+.tag-follow-button:hover {
+  background-image: linear-gradient(top, #33b1e6 0%, #3381a1 100%);
+  background-image: -o-linear-gradient(top, #33b1e6 0%, #3381a1 100%);
+  background-image: -moz-linear-gradient(top, #33b1e6 0%, #3381a1 100%);
+  background-image: -webkit-linear-gradient(top, #33b1e6 0%, #3381a1 100%);
+  background-image: -ms-linear-gradient(top, #33b1e6 0%, #3381a1 100%);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #33b1e6), color-stop(1, #3381a1));
+  border: 4px solid #b4dbe3;
+  text-decoration: none;
+}
+
+.tag-add-button {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  display: block;
+  background-color: #04add1;
+  box-shadow: inset 0 0 0 #04add1;
+  background-image: url('../../images/tags/icon-plus-white-big.png?1348091001'), url('../../images/base/background-white-dots.png?1348091001');
+  background-opacity: 1, 1, 0;
+  background-repeat: no-repeat, repeat;
+  background-position: 190px center, top left;
+  padding: 15px;
+  padding-left: 10px;
+  padding-right: 75px;
   font-size: 1.17em;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
   font-stretch: condensed;
   font-weight: bold;
-  line-height: 1.404em;
   text-transform: uppercase;
-  visibility: visible;
-  color: black;
-  bottom: 10px;
-  padding-left: 1em;
-  padding-right: 1em;
-}
-.project.wide-card .project-information .title span {
-  background-color: white;
-}
-.project.wide-card .project-information .description {
-  padding-right: 70px;
-  font-family: "OpenSans", Arial, Helvetica, sans-serif;
-  font-size: 1em;
-  font-style: italic;
-  opacity: 0;
-}
-.project.wide-card:hover .project-information {
-  -webkit-box-sizing: border-box;
-  /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;
-  /* Firefox, other Gecko */
-  box-sizing: border-box;
-  /* Opera/IE 8+ */
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 10px;
-  visibility: visible;
-  background-color: rgba(4, 173, 209, 0.7);
-  background-image: url('../../../images/tags/icon-arrow-white-big.png?1348091001'), url('../../../images/base/background-black-dots-opacity-12.png?1348091001');
-  background-position: 200px center, top left;
   color: white;
+  margin-bottom: 2em;
 }
-.project.wide-card:hover .project-information .title {
-  margin-right: 70px;
-  position: static;
-  color: white;
-  background: none;
-  padding: 0;
-  margin-bottom: 0.5em;
-}
-.project.wide-card:hover .project-information .title span {
-  background-color: transparent;
-}
-.project.wide-card:hover .project-information .description {
-  opacity: 1;
+.tag-add-button:hover {
+  text-decoration: none;
+  background-color: #0498b8;
 }
