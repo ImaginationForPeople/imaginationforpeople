@@ -1,5 +1,5 @@
 @import "mixin.scss";
-
+@import "constants.scss";
 
 body{
     background-color:#282828;
@@ -811,69 +811,89 @@ hr{
 /* cmsplugin-zinnia */
 .hentry {
     margin: 10px 0px;
-    padding: 5px 0px;
+    padding: 0px 0px;
     background-color: $colorLightGrey;
-    border-left: 3px solid $colorLightBlue;
+    overflow: hidden;
     color:$colorDarkGrey;
+    > .entry-image {
+        width: 35%;
+        line-height: 200px;
+        vertical-align:top;
+        display: inline-block;
+        margin-right: 0px;
+        border-right: 3px solid $colorLightBlue;
+        img {
+            vertical-align: middle;
+            max-width: 100%;
+            float: none;
+        }
+        
+    }
+    .entry-main-details-image {
+            width: 62%;
+    }
+    .entry-main-details {
+        display: inline-block;
+        border-left: 3px solid $colorLightBlue;
+        margin-left: -3px;
+        padding: 0px 0px 0px 10px;
+    }
     
     a {
     color: $colorLightBlue;
     }
-    > .entry-header {
-        margin-left: 10px;
+    .entry-header {
+        margin: 10px 0px;
+        
         .entry-info {
             font-size: 70%;
             color:$colorMedGrey;
         }
+        h2 {
+        margin:7px 0px;
+        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
+        font-size:17px;
+        text-transform:uppercase;
+        font-style:normal;
+        font-weight:bold;
+        }
     }
-    > .entry-footer {
-        margin-left: 10px;
+    .entry-footer {
         margin-top: 10px;
         font-size: 70%;
         display: none;
     }
-    > .continue-reading {
+    .continue-reading {
         margin: 8px 0px;
+        font-weight: bold;
     }
     .entry-info {
         margin: 5px 5px;
         text-align: right;
                 display: none;
     }
+    
+    
     .entry-content {
-        p {
-            margin: 8px 0px;
-        }
         img {
             float: left;
-            max-width: 250px;
+            max-width: 35%;
             height: auto;
             margin-right: 1em;
             /* -(margin left + border) */
             margin-left: -13px;
-            border-top: 3px solid $colorLightBlue;
-            border-right: 3px solid $colorLightBlue;
-            border-bottom: 3px solid $colorLightBlue;
         }
     }
-        > .entry-body {
-        margin-left: 10px;
+        .entry-body {
         margin-right: 10px;
     }
-                    h2{
-                        margin:0px 0px;
-                        color:$colorDarkGrey;
-                        font-family: "OpenSans", Arial, Helvetica, sans-serif !important;
-                        font-size:17px;
-                        text-transform:uppercase;
-                        font-style:normal;
-                        font-weight:bold;
-                        text-shadow:1px 1px 0px $colorMedGrey;
-                    }
 
+        p {
+            margin: 8px 0px;
+        }
                         
                         ul{
-                            padding-left:10px;
+                            padding-left:20px;
                             color:$colorDarkGrey;
                             margin-bottom:10px;
 
