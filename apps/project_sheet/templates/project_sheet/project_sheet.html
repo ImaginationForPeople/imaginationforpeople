@@ -74,27 +74,27 @@
 		    <div class="references-links link-list span4" >
 			<h3>{% trans "Links" %}</h3>
 			<ul>
-			    <li><a href="#">Article sur classicnews</a></li>
-			    <li><a href="#">Article sur classicnews</a></li>
-			    <li><a href="#">Article sur classicnews</a></li>
-			    <li><a href="#">Article sur classicnews</a></li>
-			    <li><a href="#">Article sur rue89</a></li>
-			    <li><a href="#">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur rue89</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
 			</ul>
 
-			<a href="#FIXME-BADURL">{% trans "Add a link" %}</a>
+			<a href="#FIXME-BADURL" class="button">{% trans "Add a link" %}</a>
 		    </div> <!-- .references-links link-list -->
 
 		    <div class="references-documents document-list span4" >
 			<h3>{% trans "Documents" %}</h3>
 			<ul>
-			    <li><a href="#">Cahier des charges</a></li>
-			    <li><a href="#">Business plan</a></li>
-			    <li><a href="#">Présentation du projet</a></li>
-			    <li><a href="#">Communiqué de presse</a></li>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Cahier des charges</a></li>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Business plan</a></li>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Présentation du projet</a></li>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Communiqué de presse</a></li>
 			</ul>
 
-			<a href="#FIXME-BADURL">{% trans "Add a link" %}</a>
+			<a href="#FIXME-BADURL" class="button">{% trans "Add a link" %}</a>
 		    </div> <!-- .references-documents document-list -->
 		</div> <!-- .row -->
 
@@ -161,18 +161,17 @@
 	    <div class="project-gallery clearfix">
 		<!-- FIXME: use dynamic data for gallery -->
 
-		<div class="project-list square fancy clearfix">
-		    <h2>{% trans "Gallery"|capfirst %}</h2>
-		    <a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
-		    {% include "project_sheet/block/gallery_fancy.html" %}
-		</div>
+		<h2>{% trans "Gallery"|capfirst %}</h2>
+		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		{% include "project_sheet/block/gallery_fancy.html" %}
 
-		<div class="project-partners partner-block clearfix">
-		    <!-- FIXME: use dynamic data for member list -->
-		    <h2>{% trans "Partners"|capfirst %}</h2>
-		    {% include "project_sheet/block/partnerlist_flat_wide.html" %}
-		</div>
 	    </div> <!-- .project-gallery -->
+
+	    <div class="project-partners partner-block clearfix">
+		<!-- FIXME: use dynamic data for member list -->
+		<h2>{% trans "Partners"|capfirst %}</h2>
+		{% include "project_sheet/block/partnerlist_flat_wide.html" %}
+	    </div>
 	</div> <!-- .project-sidebar -->
     </div>
 </div>

@@ -1,9 +1,16 @@
-// FIXME: switch to make responsive
+
+
+// load reusable components
 @import "i4p-mixins";
 @import "i4p-constants";
 
+.project-content {
+    background-color: white;
+    padding-top: 3rem;
+}
+
 .project-sidebar {
-    width: inherit;
+    @include bootstrap-makeColumn(4,0);
 }
 
 .member-block {
@@ -36,7 +43,6 @@
     background-color: $colorLightGrey;
     clear: both;
     height: 2.4rem;
-    margin-bottom: 3rem;
 
     ul {
 	list-style: none;
@@ -225,12 +231,22 @@
     .references-links {
 	ul li {
 	    display: block;
+
+	    a {
+		color: black;
+	    }
 	}
+
+	
     }
 
     .references-documents {
 	ul li {
 	    display: block;
+
+	    a {
+		color: black;
+	    }
 	}
     }
 }

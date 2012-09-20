@@ -2,9 +2,13 @@
 {% load i18n %}
 {% load compress %}
 
+{% block base_grid %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
+{% endblock %}
+
 {% block style %}
 {% compress css %}
-<!-- base CSS -->
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
 {% endcompress %}
 {% endblock %}
@@ -50,7 +54,9 @@
     Fixed
 </div>
 
+<div class="project-content">
 {% block project_content %}{% endblock %}
+</div>
 
 {% endwith %}
 {% endblock %}

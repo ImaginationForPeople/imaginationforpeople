@@ -1,16 +1,11 @@
 @import "i4p-mixins";
-@import "i4p-fonts";
 @import "i4p-constants";
-
-// FIXME: switch to make responsive
-// @import "compass_twitter_bootstrap_responsive";
-@import "compass_twitter_bootstrap";
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
 
 #beta-logo{
-    background-image:url('../images/base/beta-logo.png');
+    background-image: image-url('base/beta-logo.png');
     background-repeat:no-repeat;
     width:90px;
     height:90px;

@@ -7,6 +7,8 @@
 
 {% block style %}
 {% compress css %}
+<!-- FIXME: remove this line once fonts is integrated in the base.html -->
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" /> 
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
 {% endcompress %}
 {% endblock %}
