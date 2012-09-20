@@ -344,8 +344,24 @@ Version: 1.0
 #top-zone {
     padding-top: 15px;
     text-align: left;
-    font-size: 9px;
+    background:black;
     
+    h1.padlock {
+        color: white;
+        font-family: "OpenSansBold_obsolete",Arial,Helvetica,sans-serif;
+        font-size: 0.9em;
+        font-style: normal;
+        text-transform: uppercase;
+    }
+
+    #form-user {
+        margin:0 25px 0 0
+    }
+
+    #form-user p {
+        margin:0
+    }
+
     .left, .left-logged {
         width: 290px;
         float: left;
@@ -383,6 +399,7 @@ Version: 1.0
         font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
         font-size:10px;
         color: $colorLightBlue;
+        font-weight:bold;
     }
     
     input[type=text], input[type=password]{
@@ -396,16 +413,20 @@ Version: 1.0
         height: 16px;
         padding-left:4px;
         @include border-radius(4px); 
+        margin-bottom:0
     }
     
+    #form-user p.checkbox {
+        margin-top:10px
+    }
+
     input[type=submit], button{
-        background-image: url('../images/home/openid-button.jpg');
+        background: url('../images/home/openid-button.jpg') repeat-x bottom left #03abcf;
         color:white;
         font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
         font-size:11px;
         padding:2px 6px;
         margin:0px;
-        background-color:#303030;
         border:0px;
         cursor:pointer;     
         position:relative;
@@ -422,23 +443,47 @@ Version: 1.0
     }
     
     #top-signin{
-        position:absolute;
-        margin:0px !important;
-        left:160px;
-        top:72px;
+        height: 24px;
+        left: 168px;
+        margin: 0 !important;
+        position: absolute;
+        top: 71px;
     }
     
     .password_lost{
         font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
         font-size:10px;
         color: $colorLightBlue;
-        margin-left:22px;
+        left: 152px;
+        margin-left: 22px;
+        position: absolute;
+        top: 106px;
+        font-weight:bold;
     }
     
     .password_lost:hover{
         color:white;
     }
+
+    .social-panel ul {
+        margin-left:0;
+        margin-bottom:15px
+    }
+
+    #not-yet h1 {
+        float:left;
+        margin: 0 10px 0 0;
+    }
     
+    #not-yet a {
+        font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
+        font-size:11px;
+        color: $colorLightBlue;
+        font-weight:bold;
+        position: relative;
+        top: 7px;
+    }
+
     #interface_lang  {
         position:relative;
         margin-top:10px;

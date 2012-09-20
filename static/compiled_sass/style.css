@@ -9633,7 +9633,7 @@ ul li {
   width: 100%;
   height: 48px;
   background: url("../images/base/header_bar_bg.png") repeat-x top left;
-  margin: 20px 0 0 0;
+  margin: 0;
 }
 #header-zone #header {
   position: relative;
@@ -9690,13 +9690,16 @@ ul li {
 
 #header-menu ul {
   position: absolute;
-  top: 48px;
-  left: 0;
+  top: 43px;
+  left: -26px;
   float: none;
   height: auto;
   z-index: 1000;
   width: 200px;
   padding: 5px 0 0 0;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  border-radius: 4px / 4px;
 }
 #header-menu ul li {
   display: block;
@@ -9743,14 +9746,17 @@ div#interface_lang > a {
 }
 div#interface_lang ul {
   position: absolute;
-  top: 48px;
-  left: 0;
+  top: 43px;
+  left: -26px;
   float: none;
   height: auto;
   z-index: 1000;
   width: 200px;
   padding: 5px 0 0 0;
   display: none;
+  -webkit-border-radius: 4px 4px;
+  -moz-border-radius: 4px / 4px;
+  border-radius: 4px / 4px;
 }
 div#interface_lang ul li {
   display: block;
@@ -9803,6 +9809,9 @@ div#interface_lang:hover ul {
   font-family: Tahoma, Helvetica, Arial, sans-serif;
   line-height: 48px;
 }
+#header-bar #user-bt a:hover {
+  text-decoration: none;
+}
 
 div#tools {
   float: left;
@@ -9825,7 +9834,7 @@ div#tools > a {
 div#tools ul {
   position: absolute;
   top: 48px;
-  left: -25px;
+  left: -100px;
   float: none;
   height: auto;
   z-index: 1000;
