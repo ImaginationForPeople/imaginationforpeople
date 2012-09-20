@@ -467,7 +467,11 @@ Version: 1.0
 
     .social-panel ul {
         margin-left:0;
-        margin-bottom:15px
+        margin-bottom:15px;
+	list-style: none;
+	li {
+	   display: inline;
+	}	
     }
 
     #not-yet h1 {
