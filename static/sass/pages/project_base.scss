@@ -4,6 +4,11 @@
 @import "i4p-mixins";
 @import "i4p-constants";
 
+.project-content {
+    background-color: white;
+    padding-top: 3rem;
+}
+
 .project-sidebar {
     @include bootstrap-makeColumn(4,0);
 }
@@ -38,7 +43,6 @@
     background-color: $colorLightGrey;
     clear: both;
     height: 2.4rem;
-    margin-bottom: 3rem;
 
     ul {
 	list-style: none;
