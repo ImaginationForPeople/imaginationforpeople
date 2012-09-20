@@ -37,9 +37,9 @@ Compass
 Installing
 ----------
 
-To install Compass_, run::
+To install Compass_, from the project root run::
 
-  gem install compass rb-inotify
+  bundle install --path=vendor/bundle
 
 
 Running
@@ -48,16 +48,17 @@ Running
 To allow CSS (re)generation, use the following command while modifying
 CSSes::
 
-   compass watch static
+   cd static
+   bundle exec compass watch
 
 If compass crashes when trying to regenerate files you are still editing, can
 try the following command::
 
-   while true ; do compass watch static ; done
+   while true ; do bundle exec compass watch static ; done
 
 To run a one-time compilation, use::
 
-   compass compile static
+    bundle exec compass compile static
 
 
 SCSS Mixins
