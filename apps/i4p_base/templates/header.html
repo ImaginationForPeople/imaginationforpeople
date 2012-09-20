@@ -1,34 +1,124 @@
 {% load i18n %}
 {% load cms_tags %}
-    <div id="header-zone">
-        <div id="header" class="center">
-        
-            <div class="logo">
-                <a href="{% page_url 'homepage' %}">
-                    <div class="logo"><a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/{% if site.folder_name %}{{ site.folder_name }}/{% endif %}logo.png" alt="{{ site.name }}" border="0"/></a></div>
-                </a>
+{% load menu_tags %}
+{% load honeypot %}
+{% load umessages_tags %}               
+{% load i4p_tags %}
+
+    
+    {% if not user.is_authenticated %}     
+    <div id="top-zone">
+        <div class="container">
+            <div id="form-user" class="left">
+                <form action="{% url userena_signin %}?next={{ request.path }}" class="clearfix" method="post" class="profile_edition">
+                     <h1 class="padlock">{% trans "Member Login" %}</h1>
+                    
+                    {% csrf_token %}
+                        {{ signin_form.non_field_errors }}
+                        {% for field in signin_form %}
+                            {{ field.errors }}
+                            {% comment %} Displaying checkboxes differently {% endcomment %}
+                            {% if field.name == 'remember_me' %}
+                            <p class="checkbox">
+                                <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                            </p>
+                            {% else %}
+                            <p>
+                                {{ field.label_tag }} 
+                                {{ field }}
+                            </p>
+                            {% endif %}
+                        {% endfor %}
+                    <div class="clear"></div>
+                    <input type="submit" id="top-signin" value="{% trans 'Sign in' %}" />
+                    <a class="password_lost" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
+
+                </form>
             </div>
+    
+            <div class="left right">
             
-            {% include "menu.html" %}
-            {% comment %}
-            <ul id="menu">
-                <li id="about_button"><a href="javascript:;">{% trans "About us" %}</a></li>
-                <li id="projects_list_button"><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
-                <li><a class="addproject_button" href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
-                <li><a href="/workgroup/">{% trans 'Workgroups' %}</a></li>
+                <h1 class="padlock">{% trans "You can also use" %}</h1>
+                {% with redirect_url=request.path %}
+                    {% include "userena/social-networks.html" %}
+                {% endwith %}
+                <div class="clear"></div>
 
-                    <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
+                <div id="not-yet">
+                    <h1 class="padlock">{% trans "Not a member yet ?" %}</h1>
+                    <a class="link" href="{% url userena_signup %}">{% trans "Signup now !" %}</a>        
+                </div>
                 
-                <li><a href="{% page_url 'ipmedia' %}">{% trans "IP MEDIA" %}</a></li>
-                <li><a href="/blog/?lang={{ LANGUAGE_CODE }}">Blog</a></li>
-            </ul>
-            {% endcomment %}
-            <div class="clear"></div>
-            {% include "search.html" %}
-            <div class="clear"></div>
-
+            </div>
         </div>
+    </div>     
+    {% endif %}
 
+    <div id="header-zone">
+        <div id="header" class="container">
+            <div id="header-bar">
+                <div class="logo">
+                    <a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/{% if site.folder_name %}{{ site.folder_name }}/{% endif %}/logo.png" alt="{{ site.name }}" border="0"/></a>
+                </div>
+            
+                 {% include "menu.html" %}
+                 <div class="header-right">
+                     {% include "search.html" %}
+                     <div id="interface_lang">
+                        <a class="open-panel" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
+                         <ul>
+                        {% get_available_languages as languages %}
+                        {% for lang_code, lang_name in languages %}
+                            {% language lang_code %}
+                                <li><a href="{{ request.path|chlocale:lang_code }}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                            {% endlanguage %}
+                        {% endfor %}
+                        </ul>   
+                    </div>                
+                    <div id="user-bt">
+                        {% if user.is_authenticated %}  
+                        <a class="open link open-panel" href="javascript:;">{{ user.username }}</a>
+                        {% else %}
+                            <a class="open link open-panel" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
+                        {% endif %}
+                    </div>
+                    {% if user.is_authenticated %}
+                    {% get_unread_message_count_for user as unread_message_count %}
+                    {% if unread_message_count != 0 %}
+                    <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /><div class="message_count" >{{ unread_message_count }}</div></a></div>
+                    {% else %}
+                     <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></div>
+                    {% endif %}
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <div id="tools">
+                        <a href="javascript:void(0)">&nbsp;</a>
+                        <ul>
+                            <li class="view-profile"><a href="{% url userena_profile_detail request.user %}" title="{% trans 'View my profile' %}">{% trans "View my profile" %}</a></li>
+                            <li class="edit-profile"><a href="{% url userena_profile_edit user.username %}" title="{% trans 'Edit my profile' %}">{% trans "Edit my profile" %}</a></li>
+                            {% if user.is_staff %}
+                            <li class="logout"><a href="{% url userena_signout %}?next={% page_url 'homepage' %}" title="{% trans 'Log out' %}">{% trans "Logout" %}</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 
 
+
+{% comment %}
+<ul id="menu">
+    <li id="about_button"><a href="javascript:;">{% trans "About us" %}</a></li>
+    <li id="projects_list_button"><a href="{% url project_sheet-list %}">{% trans "Projects" %}</a></li>
+    <li><a class="addproject_button" href="{% url project_sheet-start %}">{% trans "Add a project" %}</a></li>
+    <li><a href="/workgroup/">{% trans 'Workgroups' %}</a></li>
+
+        <li><a href="/contribute/">{% trans 'Contribute' %}</a></li>
+    
+    <li><a href="{% page_url 'ipmedia' %}">{% trans "IP MEDIA" %}</a></li>
+    <li><a href="/blog/?lang={{ LANGUAGE_CODE }}">Blog</a></li>
+</ul>
+{% endcomment %}

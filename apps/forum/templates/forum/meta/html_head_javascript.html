@@ -1,0 +1,69 @@
+<script src="{{"/js/modernizr.custom.js"|static_url }}"></script>
+<script type='text/javascript' src="{{"/js/utils.js"|static_url }}"></script>
+<script src="{{"/js/autocompleter.js"|static_url }}"></script>
+<script type='text/javascript' src="{{"/js/jquery.timeago.js"|static_url }}"></script>
+<script type='text/javascript' src="{{"/js/jquery.history.js"|static_url }}"></script>
+<script type='text/javascript' src="{{"/js/bootstrap-modal.js"|static_url }}"></script>
+<script type='text/javascript' src='{{"/js/jquery.validate.js"|static_url}}'></script>
+<script type="text/javascript" src="{% url django.views.i18n.javascript_catalog 'askbot' %}"></script>
+<script type="text/javascript">
+    var i18nLang = '{{settings.LANGUAGE_CODE}}';
+    var scriptUrl = "{% url forum-index %}"
+    var askbotSkin = '{{settings.ASKBOT_DEFAULT_SKIN}}';
+    var enableMathJax = {% if settings.ENABLE_MATHJAX %}true{% else %}false{% endif %};
+    var askbot = {};
+    askbot['data'] = {};
+    {% if request.user.is_authenticated() %}
+        askbot['data']['userIsAuthenticated'] = true;
+        askbot['data']['userId'] = {{request.user.id}};
+        askbot['data']['userIsAdminOrMod'] = {% if 
+                                                request.user.is_administrator()
+                                                or request.user.is_moderator()
+                                            %}true{% else %}false{% endif %};
+        askbot['data']['userReputation'] = {{request.user.reputation}};
+    {% else %}
+        askbot['data']['userIsAuthenticated'] = false;
+        askbot['data']['userReputation'] = 0;
+    {% endif %}
+    askbot['urls'] = {};
+    askbot['settings'] = {};
+    askbot['messages'] = {};
+    
+    askbot['urls']['manageInbox'] = '{% url manage_inbox %}';
+    askbot['urls']['save_post_reject_reason'] = '{% url save_post_reject_reason %}';
+    askbot['urls']['delete_post_reject_reason'] = '{% url delete_post_reject_reason %}';
+    askbot['urls']['edit_group_membership'] = '{% url edit_group_membership %}';
+    askbot['urls']['get_groups_list'] = '{% url get_groups_list %}';
+    askbot['urls']['join_or_leave_group'] = '{% url join_or_leave_group %}';
+    askbot['urls']['questions'] = '{% url "questions" %}';
+    askbot['urls']['api_get_questions'] = '{% url api_get_questions %}';
+    askbot['urls']['mark_interesting_tag'] = '{% url mark_interesting_tag %}';
+    askbot['urls']['mark_ignored_tag'] = '{% url mark_ignored_tag %}';
+    askbot['urls']['mark_subscribed_tag'] = '{% url mark_subscribed_tag %}';
+    askbot['urls']['unmark_tag'] = '{% url unmark_tag %}';
+    askbot['urls']['set_tag_filter_strategy'] = '{% url "set_tag_filter_strategy" %}';
+    askbot['urls']['questions'] = '{% url "questions" %}';
+    askbot['urls']['question_url_template'] = scriptUrl + '{{'question/'|transurl}}{{ "{{QuestionID}}/" }}';
+    askbot['urls']['get_tags_by_wildcard'] = '{% url "get_tags_by_wildcard" %}';
+    askbot['urls']['get_tag_list'] = '{% url "get_tag_list" %}';
+    askbot['urls']['get_users_info'] = '{% url "get_users_info"%}'
+    askbot['urls']['user_signin'] = '{{ settings.LOGIN_URL }}';
+    askbot['urls']['join_or_leave_group'] = '{% url join_or_leave_group %}';
+    askbot['urls']['upload'] = '{% url "upload" %}';
+    askbot['urls']['postComments'] = '{% url post_comments %}';
+    askbot['urls']['editComment'] = '{% url edit_comment %}';
+    askbot['urls']['deleteComment'] = '{% url delete_comment %}';
+    askbot['urls']['getComment'] = '{% url get_comment %}';
+    askbot['urls']['question_url_template'] = scriptUrl + '{{ 'question/'|transurl }}{{ "{{QuestionID}}/{{questionSlug}}" }}';{# yes it needs to be that whacky #}
+    askbot['urls']['vote_url_template'] = scriptUrl + '{{ 'questions/'|transurl }}{{ "{{QuestionID}}/" }}{{ 'vote/'|transurl }}';
+    askbot['urls']['user_signin'] = '{{ settings.LOGIN_URL }}';
+    askbot['urls']['swap_question_with_answer'] = '{% url swap_question_with_answer %}';
+    askbot['urls']['upvote_comment'] = '{% url upvote_comment %}';
+    askbot['urls']['delete_post'] = '{% url delete_post %}';
+    askbot['messages']['addComment'] = '{% trans %}post a comment{% endtrans %}';
+    
+    askbot['settings']['static_url'] = '{{ settings.STATIC_URL }}';
+    
+</script>
+
+<script type="text/javascript" src="{{"/js/user.js"|static_url}}"></script>

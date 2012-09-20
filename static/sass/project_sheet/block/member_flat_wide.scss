@@ -1,0 +1,99 @@
+@import "i4p-mixins";
+@import "i4p-constants";
+
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for progressbar
+$flag-sprite-dimensions: true;
+@import "flag/*.png"; // */
+@include all-flag-sprites;
+
+
+.people-list.wide-flat{
+
+    @include border-radius($sizeRadiusSmall);
+    @include border-box;
+    border: 1px solid darken($colorLightGrey,2%);
+    position: relative;
+
+    padding: 5px;
+    background-color: $colorLightGrey;
+    margin-bottom: 12px;
+
+    h2 {
+	font-family: $fontOpenSans;
+	font-size: $sizeTextLarge;
+	font-stretch: condensed;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 5px;
+	margin-bottom: 5px;
+    }
+
+    @import "../../common/block/seemore.scss";
+    
+    ul {
+	list-style: none;
+
+	li {
+	    margin-bottom: 10px;
+	}
+    }
+}
+
+.person.wide-flat {
+    position: relative;
+    @include border-box;
+    @include transition(all .5s ease);
+    width: 100%;
+    padding: 5px;
+
+    * {
+	margin-left: 50px;
+    }
+
+    .avatar {
+	width: 40px;
+	height: 40px;
+	float: left;
+	margin: 0;
+	border: 1px solid $colorMedLightGrey;
+    }
+
+    .fullname {
+	display: block;
+	color: black;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextNormal;
+	font-weight: bold;
+	font-style: italic;
+    }
+
+    .project {
+	display: block;
+	color: black;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextNormal;
+	font-weight: bold;
+
+	&:before {
+	    content: attr(data-memberof-str);
+	    font-style: italic;
+	    display: block;
+	    font-weight: normal;
+	}
+    }
+
+    .country {
+	position: absolute;
+	display: block;
+	margin: 0;
+	top: 35px;
+	left: 30px;
+    }
+
+    &:hover {
+	background-color: white;
+    }
+}

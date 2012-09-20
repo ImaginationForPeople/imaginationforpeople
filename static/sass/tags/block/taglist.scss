@@ -1,0 +1,134 @@
+@import "i4p-mixins";
+@import "i4p-constants";
+
+.tag-list {
+    line-height: 1.5em;
+    margin-top: 2em;
+    margin-bottom: 2em;
+
+    h2 {
+	@include border-radius($sizeRadiusSmall 0 0 $sizeRadiusSmall);
+	background-image: image-url("tags/icon-tag-white-small.png");
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	height: 16px;
+	font-family: $fontOpenSans;
+	font-weight: bold;
+	font-style: italic;
+	font-size: $sizeTextSmall;
+	display: inline;
+	color: white;
+	float: left;
+	background-color: $colorMedDarkGrey;
+	padding-left: 20px;
+	padding-right: .5em;
+	margin: 0;
+	margin-right: .25em;
+	line-height: $sizeTextSmall * 1.6;
+    }
+
+    ul {
+	display: block;
+	list-style: none;
+	margin-left: 0.5em;
+
+	&:after {
+	    content: "";
+	    clear: both;
+	}
+
+	li {
+	    @include transition(all .5s ease);
+
+	    background-color: $colorMedLightGrey;
+	    color: $colorMedDarkGrey;
+	    display: block;
+	    float: left;
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextSmall;
+	    font-style: italic;
+	    font-weight: bold;
+	    height: 16px;
+	    line-height: $sizeTextSmall * 1.6;
+	    margin-bottom: 4px;
+	    margin-right: 8px;
+	    padding-left: 5px;
+	    padding-right: 5px;
+	    position: relative;
+
+	    &.edit {
+		background-color: $colorMedDarkGrey;
+		color: white;
+
+		&:before {
+		    border-bottom-color: $colorMedDarkGrey;
+		    border-top-color: $colorMedDarkGrey;
+		}
+
+		&:after {
+		    border-left-color: $colorMedDarkGrey;
+		}
+	    }
+
+	    a {
+		@include transition(all .5s ease);
+
+		color: inherit;
+		font-size: 100%;
+		margin-right: 0.2em;
+		text-decoration: none;
+	    }
+
+	    &:first-child:before {
+		border-left: none;
+		display: inline;
+	    }
+
+	    &:before {
+		@include border-box;
+		@include transition(all .5s ease);
+
+		border-bottom: 8px solid $colorMedLightGrey;
+		border-left: 5px solid transparent;
+		border-top: 8px solid $colorMedLightGrey;
+		content:"";
+		display: inline;
+		height: 0;
+		left: -5px;
+		position: absolute;
+		top: 0;
+		width: 0;
+	    }
+
+	    &:after {
+		@include border-box;
+		@include transition(all .5s ease);
+
+		border-bottom: 8px solid transparent;
+		border-left: 5px solid $colorMedLightGrey;
+		border-top: 8px solid transparent;
+		content:"";
+		height: 0;
+		position: absolute;
+		right: -5px;
+		top: 0;
+		width: 0;
+	    }
+
+	    &:hover {
+		background-color: $colorMedGrey;
+		color: $colorLightGrey;
+
+		&:before {
+		    border-bottom-color: $colorMedGrey;
+		    border-top-color: $colorMedGrey;
+		}
+
+		&:after {
+		    border-left-color: $colorMedGrey;
+		}
+	    }
+	}
+
+    }
+}

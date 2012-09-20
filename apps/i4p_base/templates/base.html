@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
@@ -20,7 +20,9 @@
     <title>{% block title_prefix %}{% endblock %}{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
+	{% block base_grid %}
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
+	{% endblock %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
@@ -39,7 +41,7 @@
 
 
     {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
@@ -114,6 +116,10 @@
             //$(this).stop().rotate({animateTo:0});
         });	
         
+        $('#top-zone').hide();
+        $('#user-bt a.open-panel').click(function(){
+          $('#top-zone').slideToggle();
+        });
         
     });
         
@@ -147,8 +153,10 @@
     <div id="beta-logo"></div>
     
     <div class="global">   
-    
+       
+      {% comment %}
       {% block login-slide %} {% include "login-slide.html" %} {% endblock %}	
+      {% endcomment %}
 
       {% block newproject_popup %} 
         <div id="new_project_style_popup_zone" class="hidden">
@@ -180,7 +188,7 @@
 
     {% block inline_js %}
     {% endblock %}
-    
+
   </body>
 
 </html>

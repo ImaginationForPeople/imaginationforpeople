@@ -1,0 +1,17 @@
+    <h2>{% trans %}Email subscription settings{% endtrans %}</h2>
+    <p class="message">
+{% trans %}<span class='big strong'>Adjust frequency of email updates.</span> Receive updates on interesting questions by email, <strong><br/>help the community</strong> by answering questions of your colleagues. If you do not wish to receive emails - select 'no email' on all items below.<br/>Updates are only sent when there is any new activity on selected items.{% endtrans %}</p>
+    <div>
+    {% if action_status %}
+        <p class="action-status"><span>{{action_status}}</span></p>
+    {% endif %}
+    <form method="post" action="">{% csrf_token %}
+        <input type="hidden" name="submitted_tab" value="email_subscriptions" />
+        {{email_feeds_form}}
+        {{tag_filter_selection_form}}
+        <div class="submit-row text-align-right">
+            <input type="submit" class="submit" name="save" value="{% trans %}Update{% endtrans %}"/>&nbsp;
+            <input type="submit" class="submit" name="stop_email" value="{% trans %}Stop Email{% endtrans %}"/>
+        </div>
+    </form>
+    </div>

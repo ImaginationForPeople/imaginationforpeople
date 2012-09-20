@@ -6,721 +6,174 @@
 {% load honeypot %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
+
 {% block title %}
-    {% if project_translation.title %}
-        {{project_translation.title|capfirst}} 
-	{% if project_translation.baseline %}
-	: {{ project_translation.baseline }}
-	{% endif %}
-    {% else %}
-        {% trans 'start project'|capfirst %}
-    {% endif %}
-    | {{ site.name }}
+{% if project_translation.title %}
+{{project_translation.title|capfirst}} 
+{% if project_translation.baseline %}
+: {{ project_translation.baseline }}
+{% endif %}
+{% else %}
+{% trans 'start project'|capfirst %}
+{% endif %}
+| {{ site.name }}
 {% endblock %}
 
-{% block style %}
-  {{ block.super }}
-  {% compress css %}
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery/jquery.ui.autocomplete.tagit.css" media="screen, projection" />
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/jquery/jquery.autocomplete.css" media="screen, projection" />
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" type="text/css" media="screen" />
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/confirm.css" type="text/css" media="screen" />
-
-  <link rel="stylesheet" href="{{ STATIC_URL }}css/ajax_select.css" type="text/css" media="screen" />
-
-  
-  <style type="text/css">
-  .dynamic-form {
-      width: 100%;
-    }
-    
-    .dynamic-form input{
-    width: 90%;
-    border: 1px solid #AAAAAA;
-    margin-bottom: 5px;
-    padding: 4px;
-    font-size: 11px;
-    color: #838181;
-    }
-    </style>
-
-  {% endcompress %}
-{% endblock %}
-
-{% block extra_head %}
-  {{ block.super }}
-  
-  {% compress js %}
-    
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js" ></script>
-	
-  <!-- inline editing -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
-
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
-
-  
-  <!-- for tags -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tag-it.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tag-it.iecompat.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tinysort.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tagcloud.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.form.js"></script>
-  
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-serializeobject.js"></script>
-
-  
-  <!-- Scripts for Image Slider & Miniatures -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.easing.1.2.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider.js" ></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jcarousel.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/swfobject.js" ></script>
-  
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
-  
-  <!-- Scripts for Media Slider -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.simplemodal.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/media.js"></script>
-
-  <!-- Custom checkbox -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.simpleImageCheck-0.4.js"></script>
-  
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.formset.js"></script>
-  
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.autocomplete.js"></script>
-
-  <script type="text/javascript" src="{{ STATIC_URL }}js/post-comment.js"></script>
-  
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-
-  <!-- Autocomplete -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/ajax_select.js"></script>
-
-  
-  {% endcompress %}
-
-
-{% endblock %}
-
-{% block inline_js %}
-  {% compress js %}
-  <!-- Sidebar -->
-  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/sidebar.js"></script>
-  
-  <script type="text/javascript">
-    // Upper menu
-    $(document).ready(function(){ 
-        $("ul.sf-menu").superfish({delay: 400, speed: 'fast'})
-  
-        // Comments
-	// Customize the location of the media to match your project structure
-        var media = '{{ STATIC_URL }}'
-
-    // On enter
-    $('#comment-form #id_comment').keypress(function(e) {
-          if ( e.which == 13 ) {
-               $('#comment-form form').blur();
-               $('#comment-form form').submit();
-          }
-    });
-
-    // Sample text
-    $("#comment-form #id_comment").example("{% trans 'Type your message here and hit enter when done...' %}");
-    
-    // Ajax 
-    $('div#comment-form form').submit(function() {
-        ajaxComment({'media': media});
-        return false;
-    });
-
-    // Team section 
-    $("#member_list_edit").hide();
-    $(".grey_column_team_buttons").hide();
-
-	$("#member_list li").hover(function() {
-	    $(this).find(".grey_column_team_buttons").show();
-	}, function() {
-	    $(this).find(".grey_column_team_buttons").fadeOut("fast");
-	});
-
-
-  // Project infos 
-    var project_infos_block_edit = $('#project_infos_block_edit');
-    var project_infos_block = $('#project_infos_block');
-	var project_infos_edit_button = $('#project_infos_block_edit_button');
-	var project_infos_edit_button_cancel = $('#project_infos_block_edit_button_cancel');
-
-	project_infos_block_edit.hide();
-
-	/* When clicking on the edit pencil, for the project infos section */
-	project_infos_edit_button.click(function() {
-	    project_infos_block.hide();
-	    project_infos_block_edit.show();
-
-	    return false;
-	});
-
-	/* When clicking on the [X] button in inline edit mode */
-	project_infos_edit_button_cancel.click(function() {
-	    project_infos_block_edit.hide();
-	    project_infos_block.show();
-	    project_infos_edit_button.hide();
-
-	    return false;
-	});
-
-        // Addthis
-        addthis.init();
-    });
-    
-
-    $('.team-contact a').mouseover(function() {
-        $('.team-contact .on').animate({ width: "187px" }, {duration : 180});
-     });
-     
-    $('.team-contact a').mouseout(function() {
-        $('.team-contact .on').animate({ width: "0px" }, {duration : 90});
-    });
-    
-    $('.member-contact a').mouseover(function() {
-        $(this).next('.on').animate({ width: "80px" }, {duration : 130});
-     });
-     
-    $('.member-contact a').mouseout(function() {
-        $(this).next('.on').animate({ width: "0px" }, {duration : 70});
-    });
-
-     
-  </script>
-
-
-  {% endcompress %}
-
-  <script type="text/javascript" defer="defer">
-    // Related updates
-    $('#themes-form').ajaxForm({
-    	success: function(){
-            $('#opened-sidebar').slideToggle();
-            location.reload();
-        }
-    });
-
-    /* Notification  area 
-    Must be here because functions are used in inline_editing_save_callback
-    */
-	function clearNotification(theDivNotificationClass){
-		$("#notification-area ul li ."+theDivNotificationClass).parent("li").remove();
-	}
-	
-	function notifySomething(theDivNotificationClass){
-		clearNotification(theDivNotificationClass);
-		var notifClone = $("div."+theDivNotificationClass).clone();
-		$("#notification-area ul").append("<li></li>");
-		$("#notification-area ul li:last").append(notifClone);
-		notifClone.removeClass("hidden");
-		notifClone.find("a.close-notif").click(function(){
-			notifClone.parent("li").remove();
-			return false;
-		});
-		notifClone.find("a.login-slide-openner").click(function(){
-			$("#open").click();
-			clearNotification(theDivNotificationClass);
-			return false;
-		});
-	}
-	
-	{% if not user.is_authenticated %}
-		{% if title_form or baseline_form or picture_form %}
-		notifySomething("anonymous-disclaimer");
-		{% endif %}
-		$(".editing-button").click(function(){
-			notifySomething("anonymous-disclaimer");
-		});
-	{% endif %}
-	
-	{% if project_translation.completion_progress == "EDIT" %}
-	notifySomething("edition-notification");
-	{% endif %}
-
-	// Inline save callback
-	function inline_editing_save_callback(data) {
-	    var res = jQuery.parseJSON(data);
-
-	    /* Toggle black background to white in case we're editing for the first time the "About Project" section */
-	    $(this).parent('div.project_description_zone_edition').removeClass('project_description_zone_edition').addClass('project_description_zone');
-
-	    if ( res.redirect ) {
-		window.location = res.redirect_url;
-	    }
-	    
-	    $(this).html(res.text);
-	    if($(this).attr('id') == "project_translation_progress"){
-	    	edit_btn = $("<a title=\"{% trans 'Edit'|capfirst %}\" href=\"#\" class=\"button editing-button nomargin right\"><img src=\"{{ STATIC_URL }}images/base/edit.png\" /></a>");
-	    	$(this).append(edit_btn);
-	    	
-	    	edit_btn.click(function() {
-	    		{% if not user.is_authenticated %}
-	    		notifySomething("anonymous-disclaimer");
-	    		{% endif %}
-	    		$(this).dblclick();
-	    	    return false;
-	    	});
-	    	
-	    	edit_btn.hide();
-	        $(this).hover(function() {edit_btn.show();},
-	        		      function() {edit_btn.fadeOut('fast');}
-	        );
-	    	
-	        if(res.completion_progress == "EDIT"){
-	        	notifySomething("edition-notification");
-	        }
-	        else {
-	        	clearNotification("edition-notification");
-	        }
-	        
-	    }
-
-	    return false;
-
-	}
-
-
-    $(document).ready(function() {
-	var tags = $("#themes_tags").tagit({
-	    itemName: 'themes'
-	});
-
-	$("#themes_list").tagcloud({type:"sphere", sizemin:10, height: 200, colormin: "888888", colormax: "343434"}).find("li").tsort();
-
-	$("#themes_list li").click(function($this) {
-	    $.fn.tagit.create_tag($(this).text());
-	});
-
-	// restore tags in get
-	
-    {% if project_translation %}
-        {% tags_for_object project_translation as project_tags %}
-        	{% for tag in project_tags %}
-        	$.fn.tagit.create_tag("{{ tag }}");
-	        {% endfor %}
-    {% endif %}
-
-
-     /* FIXME: This needs to be factorized */
-    $('#project_translation_progress').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
-                                               {event: 'dblclick',
-						tooltip: 'Double-click to edit',
-						loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
-						loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-						submitdata: {'language_code': '{{ LANGUAGE_CODE }}'},
-						dataType: 'json',
-						callback: inline_editing_save_callback,
-						indicator: 'Saving...',
-						type: 'select',
-						height: '40px',
-						width: '535px',
-						cancel: "<input title='{% trans 'Cancel'|capfirst %}'  class='redbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/x.png' alt='X'/>",
-						submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
-						onblur: 'ignore',
-						cssclass: 'inline-edit',
-						});
-	
-	$('.project_description_txt').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
-                                               {event: 'dblclick',
-						tooltip: 'Double-click to edit',
-						loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
-						loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-                        submitdata: function(value, settings) {
-                          return {
-                            'language_code': '{{ LANGUAGE_CODE }}',
-                            'description': $('.project_description_txt input[name=description]').val()
-                          }
-                        },
-						dataType: 'json',
-						callback: inline_editing_save_callback,
-						indicator: 'Saving...',
-						type: 'growfield',
-						height: '40px',
-						width: '535px',
-                        cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}"  class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
-						submit: "<input title='{% trans 'Ok'|capfirst %}'  class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
-						onblur: 'ignore',
-						cssclass: 'inline-edit',
-						placeholder: "{% trans "This bloc is empty : don’t forget to fill it !"|capfirst %}"
-                                               });
-
-    {% if user.is_authenticated and project_translation %}
-    $('#project_status').editable('{% url project_sheet-instance-edit-status project_translation.slug %}', {
-data: '{{ project_status_choices|safe }}',
-        type: "select",
-        submit: "OK",
-        name: "status"
-    });
-    {% endif %}
-
-
-	$('.project_details_body').editable('{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}',
-                                            {event: 'dblclick',
-                                             tooltip: 'Double-click to edit',
-                                             loadurl: '{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}',
-					     loaddata: {'language_code': '{{ LANGUAGE_CODE }}'},
-                         submitdata: function(value, settings) {
-                           return {
-                             'language_code': '{{ LANGUAGE_CODE }}',
-                             'description': $('.project_details_body input[name=description]').val()
-                           }
-                         },
-					     dataType: 'json',
-					     callback: inline_editing_save_callback,
-                         indicator: 'Saving...',
-                         type: 'growfield',
-                         height: '40px',
-                         width: '690px',
-                         cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}" class="redbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X"/>',
-                         submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_URL }}images/base/v.png' alt='Ok'/>",
-                         onblur: 'ignore',
-                         cssclass: 'inline-edit',
-                         placeholder: "{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
-                                            });
-	
-
-    $('.project_details_body').dblclick(function() {
-      $('a.editing-button').fadeOut('fast');
-    });
-
-    $('.project_details_title_edit a.button').click(function() {
-      $(this).parent().next('.project_details_body').dblclick();
-       return false;
-    });
-
-
-    $('.project_description .button').click(function() {
-	$('.project_description_txt').dblclick();
-       return false;
-    });
-
-    $('div#about_section_txt > a').click(function() {
-	$('.project_description_txt').dblclick();
-	return false;
-    });
-    
-    $('div#project_translation_progress > a').click(function() {
-    	$('#project_translation_progress').dblclick();
-    	return false;
-    });
-
-    /*
-     * TODO: only related to the fadeIn/Out of edition button
-     * can be externalized
-     */
-        $('a.editing-button').hide();
-        $('a.editing-button').each(function(){
-        	var button = $(this);
-        	$(this).parents("div").first().hover(function() {
-        		button.show();
-        	},function() {
-        		button.fadeOut('fast');
-            }
-        	);
-        });
-
-
-    // References section
-    	$('#reference_form tr').formset();
-    	
-        $('#cancel_ref_edit').click(function(){
-            $('#reference_list').show();
-            $('#reference_form').replaceWith(refFormClone);
-            $('#reference_form').hide();
-            return false;
-        })
-
-    	$('#edit_references_button').click(function(){
-    		refFormClone = $('#reference_form').clone(true);
-    		$('#reference_list').hide();
-    		$('#reference_form').show('slow');
-    		return false;
-    	});
-    	
-        $('td.ref input[type=checkbox]').simpleImageCheck({
-              image: '{{ STATIC_URL }}images/check_off.png',
-              imageChecked: '{{ STATIC_URL }}images/check_on.png',
-              afterCheck: function(isChecked) {
-                  input = $(this).parent().find('input[type=text]')
-                if (isChecked) {
-                  input.attr('disabled', 'disabled');
-                }
-                else{
-                  input.removeAttr("disabled");
-                }
-              }
-        });
-
-        refFormClone = null;
-        $('#reference_form').hide();
-        $('a.delete-row').each(function(){
-        	var txt = $(this).html();
-        	$(this).html("<img src='{{ STATIC_URL }}images/check_on.png' title='"+txt+"' alt='"+txt+"'/>");
-        });
-        $('a.add-row').addClass("link");
-        
-    });
-  </script>
-
-
-
-
-
-{% endblock %}
-
+<<<<<<< HEAD
+=======
       {% block nav %} {% include "nav.html" %} {% endblock %}
+>>>>>>> develop
 
 {% block project_content %}	
-<div class="grid_13 alpha project_content">
-    <div id="notification-area" class="grid_13 alpha omega">
-  	 
-        <ul>
-        </ul>
-         
-        <div class="anonymous-disclaimer hidden">
-            {% blocktrans %}
-            Thank you for the interest you have shown in this project. <br />
-            Don't you want to <a class="login-slide-openner link" href="#">log in</a> or <a class="login-slide-openner link" href="#">sign up</a> before editing?
-            {% endblocktrans %}
-            <a class="close-notif" href="#">X</a>
-        </div>
-        
-        <div class="edition-notification hidden">
-			{% blocktrans %}
-            This project sheet is a draft. Become in one click a co-publisher of this project !
-            <br />You can enrich it very simply by clicking on text boxes which seem to be incomplete. You will then have access to a wiki field allowing you to write additional content.
-			<br />Please feel free to ask for help through <a class="link" href="/feedback/list/">feedback</a> or on <a class="link" href="http://imaginationforpeople.org/conference/">live chat</a>.
-            {% endblocktrans %}
-            <a class="close-notif" href="#">X</a>
-        </div>
 
+<div class="container">        
+    <div class="row">
+	<div class="span8 project-main">
+	    <div class="project-about">
+		<h2><span>{% trans "About the project" %}</span></h2>
+
+		{% comment %} PROJECT ABOUT SECTION {% endcomment %}
+		<p>
+		    {{ project_translation.about_section|linebreaksbr }}
+		</p>
+
+		{% comment %} PROJECT TAGS {% endcomment %}
+		{% if project_translation %}
+		{% tags_for_object project_translation as project_tags %}
+		{% with taglist_title="Themes" %}
+		{% with taglist_tags=project_tags %}
+		{% with taglist_is_editable=1 %}
+		{% with taglist_edit_action="#FIXME-BADURL" %}
+		{% include "tags/block/taglist.html" %}
+		{% endwith %}
+		{% endwith %}
+		{% endwith %}
+		{% endwith %}
+		{% endif %}
+	    </div> <!-- .project-about -->
+
+	    <div class="project-details">
+		{% for topic, questions in topics %}
+		{% for q, a in questions %}
+		<h2 id="question-{{q.id}}" class="detail-question">
+		    <span>{{ q.content|capfirst }}</span>
+		</h2>
+		<p id="answer-{{q.id}}" class="detail-answer">
+		    {{ a.content|linebreaksbr }}
+		</p>
+		{% endfor %}
+		{% endfor %}
+	    </div> <!-- .project-details -->
+
+	    <hr class="shaded-separator" />
+
+	    <div class="project-references">
+		<h2>{% trans "References" %}</h2>
+
+		<div class="row">
+		    <div class="references-links link-list span4" >
+			<h3>{% trans "Links" %}</h3>
+			<ul>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur rue89</a></li>
+			    <li><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			</ul>
+
+			<a href="#FIXME-BADURL" class="button">{% trans "Add a link" %}</a>
+		    </div> <!-- .references-links link-list -->
+
+		    <div class="references-documents document-list span4" >
+			<h3>{% trans "Documents" %}</h3>
+			<ul>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Cahier des charges</a></li>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Business plan</a></li>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Présentation du projet</a></li>
+			    <li><a href="#FIXME-ADD-REAL-DOC">Communiqué de presse</a></li>
+			</ul>
+
+			<a href="#FIXME-BADURL" class="button">{% trans "Add a link" %}</a>
+		    </div> <!-- .references-documents document-list -->
+		</div> <!-- .row -->
+
+	    </div> <!-- .project-references -->
+
+	    <div class="project-comments">
+		<h2>{% trans "Comments" %}</h2>
+
+		<div class="row">
+		    <div class="comment-list span5">
+			<ul>
+			    <li class="comment">
+				<div class="header">
+				    <span class="author">Simon Sarazin</span>
+				    <span class="postdate">Oct. 28, 2011</span>
+				</div>
+				<div class="content">
+				    Lorem ipsum dolor sit amet, consectetur apiscing elit, sed do eiusmod...
+				</div>
+			    </li>
+			    <li class="comment">
+				<div class="header">
+				    <span class="author">Simon Sarazin</span>
+				    <span class="postdate">Oct. 28, 2011</span>
+				</div>
+				<div class="content">
+				    Lorem ipsum dolor sit amet, consectetur apiscing elit, sed do eiusmod...
+				</div>
+			    </li>
+			</ul>
+			<!-- FIXME: missing see the XX comments -->
+			<!-- FIXME: missing add your comment -->
+		    </div>
+
+		    <div class="comment-discuss span3">
+			<h3>{% trans "Discuss or comment this project with other people" %}</h3>
+			<a href="">{% trans "go to the discussion" %}</a>
+		    </div>
+
+		    <div class="comment-ask span3">
+			<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
+			<a href="">{% trans "go to the help calls" %}</a>
+		    </div>
+		</div>
+	    </div> <!-- .project-comments -->
+	</div> <!-- .project-main -->
+
+	<div class="span4 project-sidebar">	
+
+	    <div class="project-members member-block">
+		<!-- FIXME: use dynamic data for member list -->
+		<h2>{% trans "Contributors"|capfirst %}</h2>
+		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		{% include "project_sheet/block/memberlist_fancy_square.html" %}
+	    </div>
+
+	    <div class="project-related clearfix">
+		<!-- FIXME: use dynamic data for related project list -->
+		<h2>{% trans "Related projects"|capfirst %}</h2>
+		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		{% include "project_sheet/block/cardlist_fancy_wide.html" %}
+	    </div>
+
+	    <div class="project-gallery clearfix">
+		<!-- FIXME: use dynamic data for gallery -->
+
+		<h2>{% trans "Gallery"|capfirst %}</h2>
+		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
+		{% include "project_sheet/block/gallery_fancy.html" %}
+
+	    </div> <!-- .project-gallery -->
+
+	    <div class="project-partners partner-block clearfix">
+		<!-- FIXME: use dynamic data for member list -->
+		<h2>{% trans "Partners"|capfirst %}</h2>
+		{% include "project_sheet/block/partnerlist_flat_wide.html" %}
+	    </div>
+	</div> <!-- .project-sidebar -->
     </div>
-    <!-- PROJECT TITLE -->
-    {% if title_form %}
-      <!-- PROJECT TITLE - edition mode-->
-      {% if project_translation %}
-	<form id="title" action="{% url  project_sheet-instance-edit-field project_translation.slug 'title' %}" method="post">{% csrf_token %}
-      {% else %}
-	<form id="title" action="{% url project_sheet-edit-field topic.slug 'title' %}" method="post">{% csrf_token %}
-      {% endif %}
-      {{title_form.title}}
-      <input id="project_title_cancel" type="reset" onclick="history.back()" value="&nbsp;" alt="X" title="{% trans 'Cancel'|capfirst %}"  />
-      <input id="project_title_submit" type="submit" value="&nbsp;" alt="V" title="{% trans 'Ok'|capfirst %}"  />
-	</form>
-
-      {% else %}
-	{% if project_translation %}
-	  <!-- PROJECT TITLE - filled -->
-	  <a href="{% url project_sheet-instance-edit-field project_translation.slug 'title' %}">
-	    <div id="project_title">{{ project_translation.title }}</div>
-	  </a>
-	  <div id="project_translation_progress">
-	  	  <a title="{% trans 'Edit'|capfirst %}" href="#" class="button editing-button nomargin right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-	  </div>
-	{% else %}
-	  <!-- PROJECT TITLE - empty -->
-	  <a href="{% url project_sheet-edit-field topic.slug 'title' %}">
-	    <div id="project_title_edit_inactive">{% trans 'my project title'|capfirst %}</div>
-	  </a>
-	{% endif %}
-      {% endif %}
-      
-    {% if project_translation %}
-    <div id="project_generals_infoblock">
-    {% endif %}
-    
-        {% if project_translation.project.topics.all.0 %}
-        <img class="project_topic_mini" src="{{ STATIC_URL }}images/{{ site.folder_name }}/topics/{{ project_translation.project.topics.all.0.topic.slug }}-picto.png" alt="{{ project_translation.project.topics.all.0.topic.label }}" title="{{ project_translation.project.topics.all.0.topic.label }}" />
-        {% endif %}
-      
-        <!-- BASELINE -->
-          {% if baseline_form %}
-        <!-- BASELINE - edition mode-->
-        {% if project_translation %}
-
-        <form id="baseline" action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" method="post" class="project_baseline_edition">{% csrf_token %}
-        {% else %}
-        <form id="baseline" action="{% url project_sheet-edit-field topic.slug 'baseline'%}" method="post" class="project_baseline_edition">{% csrf_token %}
-        {% endif %}
-        {{ baseline_form.baseline }}
-        <input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />
-        <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>
-        </form>
-        {% else %}
-          {% if project_translation %}
-            <!-- BASELINE - filled-->
-            <div class="project_baseline focus">
-              <p>{{ project_translation.baseline }}</p>
-              <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-            </div>
-          {% else %}
-            <!--  BASELINE - empty -->
-            <div class="project_baseline_edition_inactive">
-              <p>{% trans "One line description"|capfirst %}</p>
-              <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
-            </div>
-          {% endif %}
-        {% endif %}	
-
-        <div class="clear"></div>        
-        
-        <!-- PROJECT INFOS - existing project - viewable version -->
-        <div id="project_infos_block">
-          {% if project_translation %} 
-          
-            <!-- edition of the full information block  -->
-            <a href="#" id="project_infos_block_edit_button" title="{% trans 'Edit'|capfirst %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a>
-
-            <!-- add the creation date + the author (this info is auto-filled if a "Project Leader" is defined in the "Team" section) 
-            <div class="creation_date">
-            Created {{ project_translation.created }} {% trans 'by' %} 
-            <i>
-              {% if project.author %}
-            {{ project.author.get_full_name_or_username }}
-              {% else %}
-            {% trans 'anonymous'|capfirst %}
-              {% endif %}
-            </i>
-            ({{ project.ip_addr }})
-            </div> -->
-            
-            <div class="location">{% trans "Location:" %}
-            {% if project_translation.project.location %}
-                <!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-                {% if project_translation.project.location.address %}
-                {{ project_translation.project.location.address }} -
-                {% endif %}
-            {% if project_translation.project.location.country %}
-                  <img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
-                  {% endif %}
-                {% if project_translation.project.location.lat %}
-                <img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
-                {% endif %}
-            {% else %}
-                <em>{% trans 'unknown'|capfirst %}</em>
-            {% endif %}
-            </div>
-            
-            <!-- Website -->
-            {% if project_translation.project.website %}
-              <div class="website">{% trans "Website:" %} <a href="{{ project.website }}" target="_blank" rel="nofollow">{{ project_translation.project.website }}</a></div>
-            {% else %}
-                {% trans "Website:" %} <em>{% trans 'unknown'|capfirst %}</em>
-            {% endif %}
-           
-            
-          {% endif %}
-        
-        {% if project_translation %}
-        </div>
-        {% endif %}
-        
-        {% if project_translation %} 
-        <!-- PROJECT INFOS - editing version -->
-        <div id="project_infos_block_edit">
-          <form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
-            {% csrf_token %}
-
-            {{ project_info_form.as_p }}
-            {{ project_location_form.as_p }}
-            <div class="clear"></div>
-            <input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />							
-            <input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
-          </form>	
-        </div>
-        {% endif %}
-	
-	</div>
-	
-        {% if project_translation %}
-        	{% include "project_sheet/media_gallery.html"%}
-	{% endif %}
-	
-	<!-- PROJECT DESCRIPTION -->
-	<div class="project_description">
-	  {% include "project_sheet/about_section.html" %}
-	</div>					
-	
-
-	<!-- PROJECT DETAILS  (Answers to Questions) -->
-	{% for topic, questions in topics %}
-	<div class="project_details">
-	        {% for q, a in questions %}
-    	        {% if answer_form %}
-                	<!-- PARAGRAPH - edit mode -->
-                	<div id="question-{{q.id}}" class="project_details_title_edit">
-                		<h2>{{ q.content|capfirst }}</h2>
-                	</div>
-                		{% if project_instance %}
-                			<form class="project_details_body_edit" action="{% url project_sheet-instance-edit-question project_instance.slug q.id %}" method="post">{% csrf_token %}
-                		{% else %}
-                			<form class="project_details_body_edit" action="{% url project_sheet-edit-field topic.slug 'answer_content' %}" method="post">{% csrf_token %}
-                		{% endif %}
-                			{{answer_form.content}}
-                			<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />	
-                			<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
-                	</form>
-                {% else %}
-                	{% if project_translation %}
-                		<div id="question-{{q.id}}" class="project_details_title_edit">
-                			<h2>{{ q.content|capfirst }}</h2>
-                			<a href="{% url project_sheet-instance-edit-question project_translation.slug q.id %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-                		</div>
-                		{% if a.content %}
-                			<!-- PARAGRAPH - filled -->
-                            <p id="answer-{{q.id}}" class="project_details_body">{{ a.content|linebreaksbr }}</p>
-                		{% else %}
-                        <p id="answer-{{q.id}}" class="project_details_body empty">{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}</p>
-                		{% endif %}
-                	{% else %}
-                		<!-- PARAGRAPH - empty -->
-                		<div id="question-{{q.id}}" class="project_details_title_edit">
-                			<h2>{{ q.content|capfirst }}</h2>
-                			<a  title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'answer_content' %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
-                		</div>
-                		<p id="answer_txt" class="project_details_body empty"></p>
-                	{% endif %}
-                {% endif %}
-	    {% endfor %}
-	</div>
-	{% endfor %}
-
-
-	
-	<div class="clear"></div>
-	
-	{% include "project_sheet/references_section.html" %}
-	
-	<div class="clear"></div>
-
-	{% if project_translation %}
-	{% include "comments/comments-module.html" %}
-	{% endif %}
-
-	<div id="license-note">
-	  {% blocktrans %}
-	    This project sheet, except media, is licensed under the <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons CC-BY-SA 3.0</a> <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="Contrat Creative Commons" style="border-width:0" src="{{ STATIC_URL }}images/cc-by-sa3_80_25.png" /></a>
-	  {% endblocktrans %}
-	</div>
-	
-    </div>      
-    <!-- GREY COLUMN - closed (default) -->
-	{% include "project_sheet/grey_column.html"%}
-
-    {% if project_translation %}
-    	<!-- GREY COLUMN - RELATED - opened -->
-    	{% include "project_sheet/sidebar_related.html"%}
-    	
-    	<!-- GREY COLUMN - TEAM - opened -->
-    	{% include "project_sheet/sidebar_team.html"%}
-    {% endif %}
+</div>
 
 {% endblock %}

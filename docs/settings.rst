@@ -121,7 +121,13 @@ version control).
     LINKEDIN_CONSUMER_SECRET     = 'XXXXXXXXXXXX'
 
 
+Forum
+=====
 
+.. code-block:: python
+    ASKBOT_URL = 'forum'
+    
+The configuration of the forum is delegated to django-livesettings : /[ASKBOT_URL]/settings/
 
 
 Reference configuration

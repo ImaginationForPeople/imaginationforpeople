@@ -1,0 +1,92 @@
+@import "i4p-mixins";
+@import "i4p-constants";
+
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for progressbar
+$progressbar-sprite-dimensions: true;
+@import "project/progressbar/*.png"; // */
+@include all-progressbar-sprites(true);
+
+// @import "project/topic/*.png"; // */
+
+$picto-sprite-dimensions: true;
+@import "project/picto/*.png"; // */
+@include all-picto-sprites(true);
+
+$topic-sprite-dimensions: true;
+@import "project/topic/*.png"; // */
+@include all-topic-sprites(true);
+
+// FIXME: move block rules elsewhere
+.member-block {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 0;
+    padding-top: 5px;
+
+    h2 {
+	margin-top: 5px;
+	text-transform: uppercase;
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+    }
+
+    @import "../../common/block/seemore.scss";
+}
+
+.member-list.square.fancy {
+    width: inherit;
+
+    input {
+	display: none;
+    }
+
+    .view {
+	@include bootstrap-clearfix;
+	@include border-radius($sizeRadiusSmall);
+	@include border-box;
+	list-style: none;
+	outline: 1px solid $colorMedGrey;
+	padding: 5px;
+	display: block;
+	white-space: no-wrap;	
+	height: 60px;
+	width: inherit;
+	overflow: hidden;
+	width: 1000%;
+    }
+
+    .active {
+	display: block;
+	text-align: center;
+	margin: 10px;
+
+	label {
+	    @include transition(all .5s ease);
+	    border-radius: 5px 5px 5px 5px;
+	    background-color: $colorMedDarkGrey;
+	    display: inline-block;
+	    height: 10px;
+	    width: 10px;
+	}
+    }
+
+    #slide-0:checked ~ .active label:nth-child(1),
+    #slide-1:checked ~ .active label:nth-child(2),
+    #slide-2:checked ~ .active label:nth-child(3),
+    #slide-3:checked ~ .active label:nth-child(4),
+    #slide-4:checked ~ .active label:nth-child(5),
+    #slide-5:checked ~ .active label:nth-child(6),
+    #slide-6:checked ~ .active label:nth-child(7),
+    #slide-7:checked ~ .active label:nth-child(8),
+    #slide-8:checked ~ .active label:nth-child(9),
+    #slide-9:checked ~ .active label:nth-child(10),
+    {
+	background-color: $colorLightBlue;
+    }
+
+}
+

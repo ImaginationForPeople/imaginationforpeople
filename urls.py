@@ -7,6 +7,9 @@ from django.contrib import admin
 from dynamicsites.views import site_info
 #from i18nurls.i18n import i18n_patterns # XXX: update when moving to dj1.4
 from userena.contrib.umessages import views as messages_views
+
+from askbot.sitemap import QuestionsSitemap
+
 from django_notify.urls import get_pattern as get_notify_pattern
 from wiki.urls import get_pattern as get_wiki_pattern
 
@@ -24,10 +27,12 @@ admin.autodiscover()
 ## Sitemaps
 sitemaps = {
     'projects': I4pProjectTranslationSitemap(),
-    }
+    'questions': QuestionsSitemap(),
+}
 
 urlpatterns = i18n_patterns('',
-                            )
+
+)
 
 ## Static Media
 if settings.DEBUG:
@@ -53,6 +58,7 @@ urlpatterns += i18n_patterns('',
     url(r'^member/', include('apps.member.urls')),
     url(r'^tags/', include('apps.tags.urls', namespace='tags')),
     url(r'^feedback/', include('backcap.urls')),
+    url(r'^%s/' % settings.ASKBOT_URL , include('apps.forum.urls')),
 
     # Configure umessages compose view so that it uses recipient autocompletion
     url(r'^messages/compose/$',
@@ -87,7 +93,8 @@ urlpatterns += i18n_patterns('',
 
 ## Non localized urls
 urlpatterns += patterns('',
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.index', {'sitemaps': sitemaps}),
+     (r'^sitemap-(?P<section>.+)\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 
     (r'^tinymce/', include('tinymce.urls')),
     (r'^uploadify/', include('uploadify.urls')),
