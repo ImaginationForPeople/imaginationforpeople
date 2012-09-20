@@ -2,14 +2,11 @@
 @import "i4p-constants";
 @import "i4p-fonts";
 
-require 
 .project-gallery {
     outline: 1px solid red;
 
     .picture {
 	position: relative;
-	width: inherit;
-	height: auto;
 
 	.description {
 	    @include transition(all .5s ease);
