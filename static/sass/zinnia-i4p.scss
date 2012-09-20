@@ -3,7 +3,7 @@
 
 body .zinnia {
     #header {
-    margin-top: 0;
+        margin-top: 0;
         h1 {
             margin-top: 0;
             a {
@@ -21,6 +21,15 @@ body .zinnia {
     a:visited {
         color: $colorMedGrey
     }
+    .entry-body {
+        img {
+        max-width: 50%;
+        }
+            .entry-excerpt {
+        display: none;
+    }
+    }
+
 }
 
 

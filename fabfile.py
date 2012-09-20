@@ -475,8 +475,11 @@ def database_restore():
     """
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
 
-    remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
-    
+    if(env.wsginame == 'dev.wsgi'):
+        remote_db_path = os.path.join(env.venvfullpath, env.projectname, 'current_database.sql.bz2')
+    else:
+        remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
+
     if(env.wsginame != 'dev.wsgi'):
         put('current_database.sql.bz2', remote_db_path)
 

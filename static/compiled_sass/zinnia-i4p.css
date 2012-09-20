@@ -1,0 +1,47 @@
+/**
+ *  Mixins
+ */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
+body .zinnia #header {
+  margin-top: 0;
+}
+body .zinnia #header h1 {
+  margin-top: 0;
+}
+body .zinnia #header h1 a {
+  color: #04add1 !important;
+}
+body .zinnia #header h1:first-letter {
+  color: #5eab37;
+}
+body .zinnia a {
+  color: #119cba;
+}
+body .zinnia a:visited {
+  color: #8e8e8e;
+}

@@ -1,0 +1,138 @@
+/**
+ *  Mixins
+ */
+/***
+ * IMPORTANT : CONSTANTS NAMING SCHEME
+ *
+ * The naming scheme is simple, your constants name must follow this rule :
+ * "<typename>[<Targetname>]<Attributename>"
+ * 
+ * - <typename> could be "color", "size", "font", etc.
+ *
+ * - <targetname> is optional and could be any targetable CSS objects or
+ *   properties like "text", "border", etc. 
+ *
+ * - <attributename> is a meaningful description of your constant, like "Blue",
+ *   "LightBlue", "Small", "Huge", etc.
+ */
+/**
+ * Old Colors (obsolete, please use new color naming scheme instead)
+ */
+/**
+ * New colors
+ */
+/**
+ * text sizes
+ */
+/**
+ * font piles
+ */
+.project.wide-card {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  height: 81px;
+  width: inherit;
+  margin-bottom: 10px;
+}
+.project.wide-card img {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+}
+.project.wide-card .project-information {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  padding: 10px;
+  color: white;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  background-image: url('../../../images/tags/icon-arrow-white-big.png?1347622500'), url('../../../images/base/background-black-dots-opacity-50.png?1347622500');
+  background-repeat: no-repeat, repeat;
+  background-position: 400px center, top left;
+  transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+}
+.project.wide-card .project-information .title {
+  display: block;
+  position: absolute;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1.17em;
+  font-stretch: condensed;
+  font-weight: bold;
+  line-height: 1.404em;
+  text-transform: uppercase;
+  visibility: visible;
+  color: black;
+  bottom: 10px;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.project.wide-card .project-information .title span {
+  background-color: white;
+}
+.project.wide-card .project-information .description {
+  padding-right: 70px;
+  font-family: "OpenSans", Arial, Helvetica, sans-serif;
+  font-size: 1em;
+  font-style: italic;
+  opacity: 0;
+}
+.project.wide-card:hover .project-information {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  visibility: visible;
+  background-color: rgba(4, 173, 209, 0.7);
+  background-image: url('../../../images/tags/icon-arrow-white-big.png?1347622500'), url('../../../images/base/background-black-dots-opacity-12.png?1347622500');
+  background-position: 200px center, top left;
+  color: white;
+}
+.project.wide-card:hover .project-information .title {
+  margin-right: 70px;
+  position: static;
+  color: white;
+  background: none;
+  padding: 0;
+  margin-bottom: 0.5em;
+}
+.project.wide-card:hover .project-information .title span {
+  background-color: transparent;
+}
+.project.wide-card:hover .project-information .description {
+  opacity: 1;
+}
