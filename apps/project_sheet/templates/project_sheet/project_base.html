@@ -4,6 +4,7 @@
 
 {% block base_grid %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
 {% endblock %}
 
 {% block style %}
@@ -53,7 +54,9 @@
     Fixed
 </div>
 
+<div class="project-content">
 {% block project_content %}{% endblock %}
+</div>
 
 {% endwith %}
 {% endblock %}
