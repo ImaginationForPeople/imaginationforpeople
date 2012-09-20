@@ -2,9 +2,12 @@
 {% load i18n %}
 {% load compress %}
 
+{% block base_grid %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+{% endblock %}
+
 {% block style %}
 {% compress css %}
-<!-- base CSS -->
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
 {% endcompress %}
 {% endblock %}

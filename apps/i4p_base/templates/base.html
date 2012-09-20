@@ -16,7 +16,9 @@
 
 
     {% compress css %}
-    <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />-->
+	{% block base_grid %}
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
+	{% endblock %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
