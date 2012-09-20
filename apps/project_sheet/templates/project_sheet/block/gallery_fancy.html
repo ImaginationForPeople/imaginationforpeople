@@ -9,14 +9,23 @@ FIXME: use picture list instead of project_translation
 
 {% endcomment %}
 {% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy.css" />
+{% endaddtoblock %}
+
 <div class="project-gallery">
 	<ul>
 		{% for project_picture in project_translation.project.pictures.all %}
 		{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
 		{% if forloop.counter0 < 4 %}
-		<li>
+		<li class="picture">
 			<img 
-			class="picture
+			class="picture-image
 			{% if project_translation.project.pictures.all|length < 3 %}
 			{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
 			big
@@ -25,8 +34,12 @@ FIXME: use picture list instead of project_translation
 			{% if forloop.counter0|divisibleby:"3" %}big{% else %}small{% endif %}
 			{% endif %}
 			" src="{{project_picture.display.url}}" alt="">
+			<span class="description">
+				{{project_picture.desc}}
+			</span>
 		</li>
 		{% endif %}
 		{% endfor %}
 	</ul>
 </div>
+
