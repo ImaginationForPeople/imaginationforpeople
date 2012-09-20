@@ -7,48 +7,49 @@
 
     
     {% if not user.is_authenticated %}     
-    <div id="top-zone" class="container">
-        <div id="form-user" class="left">
-            <form action="{% url userena_signin %}?next={{ request.path }}" class="clearfix" method="post" class="profile_edition">
-                 <h1 class="padlock">{% trans "Member Login" %}</h1>
-                
-                {% csrf_token %}
-                    {{ signin_form.non_field_errors }}
-                    {% for field in signin_form %}
-                        {{ field.errors }}
-                        {% comment %} Displaying checkboxes differently {% endcomment %}
-                        {% if field.name == 'remember_me' %}
-                        <p class="checkbox">
-                            <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-                        </p>
-                        {% else %}
-                        <p>
-                            {{ field.label_tag }} 
-                            {{ field }}
-                        </p>
-                        {% endif %}
-                    {% endfor %}
-                <div class="clear"></div>
-                <input type="submit" id="top-signin" value="{% trans 'Sign in' %}" />
-                <a class="password_lost" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
+    <div id="top-zone">
+        <div class="container">
+            <div id="form-user" class="left">
+                <form action="{% url userena_signin %}?next={{ request.path }}" class="clearfix" method="post" class="profile_edition">
+                     <h1 class="padlock">{% trans "Member Login" %}</h1>
+                    
+                    {% csrf_token %}
+                        {{ signin_form.non_field_errors }}
+                        {% for field in signin_form %}
+                            {{ field.errors }}
+                            {% comment %} Displaying checkboxes differently {% endcomment %}
+                            {% if field.name == 'remember_me' %}
+                            <p class="checkbox">
+                                <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
+                            </p>
+                            {% else %}
+                            <p>
+                                {{ field.label_tag }} 
+                                {{ field }}
+                            </p>
+                            {% endif %}
+                        {% endfor %}
+                    <div class="clear"></div>
+                    <input type="submit" id="top-signin" value="{% trans 'Sign in' %}" />
+                    <a class="password_lost" href="{% url userena_password_reset %}">{% trans "Lost your password?" %}</a>
 
-            </form>
-        </div>
-    
-        <div class="left right">
-        
-            <h1 class="padlock">{% trans "You can also use" %}</h1>
-            {% with redirect_url=request.path %}
-                {% include "userena/social-networks.html" %}
-            {% endwith %}
-            <div class="clear"></div>
-            <br /><br />
-
-            <div>
-                <h1 class="padlock">{% trans "Not a member yet ?" %}</h1>
-                <a class="link" href="{% url userena_signup %}">{% trans "Signup now !" %}</a>        
+                </form>
             </div>
+    
+            <div class="left right">
             
+                <h1 class="padlock">{% trans "You can also use" %}</h1>
+                {% with redirect_url=request.path %}
+                    {% include "userena/social-networks.html" %}
+                {% endwith %}
+                <div class="clear"></div>
+
+                <div id="not-yet">
+                    <h1 class="padlock">{% trans "Not a member yet ?" %}</h1>
+                    <a class="link" href="{% url userena_signup %}">{% trans "Signup now !" %}</a>        
+                </div>
+                
+            </div>
         </div>
     </div>     
     {% endif %}

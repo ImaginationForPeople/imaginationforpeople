@@ -218,9 +218,6 @@ img{
     color: $colorLightBlue !important;
 }
 
-
-
-
 /*---- HEADER ----*/
 
 #blue_border{
@@ -234,7 +231,7 @@ img{
     width:100%;
 	height:48px;
     background:url('../images/base/header_bar_bg.png') repeat-x top left;
-    margin:20px 0 0 0;
+    margin:0;
 
     #header{
     	position:relative;
@@ -297,13 +294,14 @@ img{
 
 #header-menu ul {
 	position:absolute;
-	top:48px;
-	left:0;
+	top:43px;
+	left:-26px;
 	float:none;
 	height:auto;
 	z-index:1000;
 	width:200px;
 	padding:5px 0 0 0;
+	@include border-radius(4px, 4px);
 
 	li{
 		display:block;
@@ -352,14 +350,15 @@ div#interface_lang{
 
 	ul {
 		position:absolute;
-		top:48px;
-		left:0;
+		top:43px;
+		left:-26px;
 		float:none;
 		height:auto;
 		z-index:1000;
 		width:200px;
 		padding:5px 0 0 0;
 		display:none;
+		@include border-radius(4px, 4px);
 
 		li{
 			display:block;
@@ -413,6 +412,10 @@ div#interface_lang:hover ul {
 	font-size:0.9em;
 	font-family:Tahoma, Helvetica, Arial, sans-serif;
 	line-height:48px;
+
+    &:hover {
+		text-decoration:none;
+	}
 }
 
 div#tools{
@@ -437,7 +440,7 @@ div#tools{
 	ul {
 		position:absolute;
 		top:48px;
-		left:-25px;
+		left:-100px;
 		float:none;
 		height:auto;
 		z-index:1000;
