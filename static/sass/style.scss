@@ -3,7 +3,7 @@
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
-
+// move to header specific (block) css files
 #beta-logo{
     background-image: image-url('base/beta-logo.png');
     background-repeat:no-repeat;
@@ -827,12 +827,13 @@ div#tools ul li.logout a:hover {
 
 
 
+// FIXME: move to block/page specific CSS file
 /*---- New project style popup ----*/
 
 #new_project_style_popup_zone{
     width:100%;
     height:1000px;
-    background-image:url('../images/base/black.png');
+    background-image: image-url('base/black.png');
     position:fixed;
     z-index:9000;
 }
@@ -846,7 +847,7 @@ div#tools ul li.logout a:hover {
     padding-top:10px;
     padding-bottom:20px;
     position:relative;
-    background-image:url('../images/base/newproject_popup-bg.png');
+    background-image: image-url('base/newproject_popup-bg.png');
     border:1px solid #9b9b9b;
     @include border-radius(4px);
 
@@ -913,19 +914,19 @@ div#tools ul li.logout a:hover {
 	}
 
 	a.social_innov{
-	    background-image:url('../images/base/project_type-innov.png');
+	    background-image: image-url('base/project_type-innov.png');
 	}
 
 	a.cultural{
-	    background-image:url('../images/base/project_type-culturel.png');
+	    background-image: image-url('base/project_type-culturel.png');
 	}
 
 	a.social_innov:hover{
-	    background-image:url('../images/base/project_type-innov-on.png');
+	    background-image: image-url('base/project_type-innov-on.png');
 	}
 
 	a.cultural:hover{
-	    background-image:url('../images/base/project_type-culturel-on.png');
+	    background-image: image-url('base/project_type-culturel-on.png');
 	}
 
 	a:hover span{
@@ -937,6 +938,7 @@ div#tools ul li.logout a:hover {
 
 /*---- New project style popup ----*/
 
+// FIXME: move to topic-select specific page & blocks files
 #new_project_style_page{
     padding:50px 0px;
     padding-bottom:60px;
@@ -959,9 +961,9 @@ div#tools ul li.logout a:hover {
 /* Contenu global-------------------------------------------------------------------------------------------------- */
 
 
-
-.nav{
-    background-image:url(../images/base/teaser-nav-bg.jpg);
+// FIXME: move to block specific css files
+.nav {
+    background-image: image-url('base/teaser-nav-bg.jpg');
     width:100%;
     height:423px;
     background-color:black;
@@ -971,7 +973,7 @@ div#tools ul li.logout a:hover {
     background-color:#282828;
 }
 
-
+// FIXME: explain purpose ?
 .content{
     position:relative;
     padding:0px;
@@ -981,18 +983,20 @@ div#tools ul li.logout a:hover {
     padding-bottom:20px;
 }
 
+// FIXME: explain purpose ?
 .block-content{
     position:relative;	
     width:100%;
 }
 
-
+// FIXME: please choose between french & english naming..
 .colonne{
     float:left;
     position:relative;
 }
 
 
+// FIXME: move to block specific css files
 .edito{
     color:#9d9d9d;
     font-size:15px;
@@ -1000,10 +1004,12 @@ div#tools ul li.logout a:hover {
     margin-bottom:5px;
 }
 
-#about .colonne a{
+// FIXME: move to block specific css files
+#about .colonne a {
     text-decoration:underline;
 }
 
+// FIXME: move to block specific css files
 .colonne{
 
     a{
@@ -1025,6 +1031,7 @@ div#tools ul li.logout a:hover {
 /* --Formulaires-- */
 
 
+// FIXME: explain purpose ?
 .errorlist{
     color:white;
     /*position:absolute;
@@ -1033,6 +1040,9 @@ div#tools ul li.logout a:hover {
 font-style:italic;
 }
 
+// FIXME: use color constants
+// FIXME: explain purpose
+// FIXME: move elsewhere (block/page specifc css)
 #id_content, #id_nom, #id_prenom, #id_mail, #id_subject/*,.content input*/{
     width:64%;
     border:1px solid grey;
@@ -1058,6 +1068,7 @@ font-style:italic;
 
 
 
+// FIXME: move to block specific CSS.
 /* --FOOTER---------------------------------------------------------------------------------------------------- */
 
 #footer-zone-top{
