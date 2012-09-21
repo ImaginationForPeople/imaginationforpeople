@@ -4,6 +4,8 @@
 .project-list.wide-flat {
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
+    @include i4p-seemore-class;
+
     position: relative;
     padding: 5px;
 
@@ -22,10 +24,6 @@
 	margin-bottom: 5px;
     }
 
-    @import "../../common/block/seemore.scss";
-
-    .seemore {
-    }
     ul {
 	list-style: none;
     }

@@ -12,6 +12,7 @@ $flag-sprite-dimensions: true;
 
 .people-list.wide-flat{
 
+    @include i4p-seemore-class;
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
     border: 1px solid darken($colorLightGrey,2%);
@@ -31,8 +32,6 @@ $flag-sprite-dimensions: true;
 	margin-bottom: 5px;
     }
 
-    @import "../../common/block/seemore.scss";
-    
     ul {
 	list-style: none;
 

@@ -20,6 +20,8 @@ $topic-sprite-dimensions: true;
 @include all-topic-sprites(true);
 
 .project-list.square.fancy {
+    @include i4p-seemore-class;
+
     position: relative;
     margin-bottom: 20px;
     padding: 0;
@@ -32,8 +34,6 @@ $topic-sprite-dimensions: true;
 	font-family: $fontOpenSans;
 	font-stretch: condensed;
     }
-
-    @import "../../common/block/seemore.scss";
 }
 
 .project.square.fancy {
