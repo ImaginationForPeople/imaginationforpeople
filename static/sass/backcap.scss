@@ -21,7 +21,7 @@
     border-bottom:1px solid black;
     padding:10px;
     
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
 	@include border-radius(4px);
     
     position:fixed;
@@ -36,7 +36,7 @@
     margin-bottom:4px;
     top:-5px;
    
-    @include shadow(4px, black);  	
+    @include i4p-shadow(4px, black);  	
     }
 }
 
@@ -67,7 +67,7 @@
 }
 
 .vote-actions .button{
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
     margin-left:2px;
     margin-right:2px;
     left:1px;
@@ -82,7 +82,7 @@
     border-top:1px solid #353535;
     border-bottom:1px solid black;
     
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
     @include border-radius(4px);  
 	
     margin-top:12px;
@@ -244,7 +244,7 @@ div#feedback-sidebar {
     border-bottom:1px solid black;
     padding:10px;
     
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
 	@include border-radius(4px);
 }
 

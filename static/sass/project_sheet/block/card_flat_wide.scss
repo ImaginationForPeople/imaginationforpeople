@@ -3,7 +3,7 @@
 
 .project-list.wide-flat {
     @include border-radius($sizeRadiusSmall);
-    @include border-box;
+    @include box-sizing(border-box);
     position: relative;
     padding: 5px;
 
@@ -33,7 +33,7 @@
 
 .project.wide-flat {
     @include border-radius($sizeRadiusSmall);
-    @include transition(all .5s ease);
+    @include i4p-transition(all .5s ease);
     margin-bottom: 3px;
     background-color: $colorMedGrey;
 
@@ -50,7 +50,7 @@
     overflow: hidden;
 
     .title {
-	@include transition(all .5s ease);
+	@include i4p-transition(all .5s ease);
 	font-family: $fontOpenSans;
 	font-size: $sizeTextBig;
 	font-stretch: condensed;
@@ -60,7 +60,7 @@
     }
 
     .description {
-	@include transition(all .5s ease);
+	@include i4p-transition(all .5s ease);
 
 	font-family: $fontOpenSans;
 	font-size: $sizeTextNormal;

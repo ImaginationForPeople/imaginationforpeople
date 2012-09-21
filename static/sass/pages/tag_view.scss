@@ -56,8 +56,8 @@ body {
 }
 
 #description-zone {
-    @include background-vertical-gradient($colorDarkGrey, black);
-    @include box-shadow-bottomleft;
+    @include i4p-background-vertical-gradient($colorDarkGrey, black);
+    @include i4p-box-shadow-bottomleft;
     border-radius: 0 $sizeRadiusSmall $sizeRadiusSmall 0;
 
     // position: relative;
@@ -106,8 +106,8 @@ body {
 
     .readmore {
 	@include border-radius($sizeRadiusSmall);
-	@include background-vertical-gradient($colorDarkGrey, black);
-	@include box-shadow-bottomleft;
+	@include i4p-background-vertical-gradient($colorDarkGrey, black);
+	@include i4p-box-shadow-bottomleft;
 	position: absolute;
 	top: 25px;
 	right: -25px;
@@ -144,9 +144,9 @@ hr.shaded-separator {
 }
 
 .tag-follow-button {
-    @include background-vertical-gradient(#4abae9, #3990b4);
+    @include i4p-background-vertical-gradient(#4abae9, #3990b4);
     @include border-radius($sizeRadiusSmall);
-    @include transition( all .5s ease );
+    @include i4p-transition( all .5s ease );
     display: block;
     border: 4px solid #c7e4ea;
     color: white;
@@ -157,7 +157,7 @@ hr.shaded-separator {
     text-transform: uppercase;
 
     &:hover {
-	@include background-vertical-gradient(darken(#4abae9,5%), darken(#3990b4,5%));
+	@include i4p-background-vertical-gradient(darken(#4abae9,5%), darken(#3990b4,5%));
 	border: 4px solid darken(#c7e4ea,5%);
 	text-decoration: none;
     }
@@ -165,7 +165,7 @@ hr.shaded-separator {
 
 .tag-add-button {
     @include border-radius($sizeRadiusSmall);
-    @include transition( all .5s ease );
+    @include i4p-transition( all .5s ease );
     display: block;
     background-color: $colorLightBlue;
 

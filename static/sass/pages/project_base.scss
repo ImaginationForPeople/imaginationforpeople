@@ -39,7 +39,7 @@
 }
 
 .project-menubar {
-    @include border-box;
+    @include box-sizing(border-box);
     background-color: $colorLightGrey;
     clear: both;
     height: 2.4rem;
@@ -50,7 +50,7 @@
     }
 
     li {
-	@include border-box;
+	@include box-sizing(border-box);
 	margin: 0;
 	display: block;
 	float:left;
@@ -90,7 +90,7 @@
 	}
 
 	&.active {
-	    @include background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+	    @include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
 	    position: relative;
 	    border-right-color: $colorDarkBlue;
 
@@ -130,7 +130,7 @@
 
 .project-toolbar {
     @include border-radius(0 $sizeRadiusSmall $sizeRadiusSmall 0);
-    @include box-shadow-bottomleft;
+    @include i4p-box-shadow-bottomleft;
     background-color: $colorDarkGrey;
     display: block;
     height: 120px;
@@ -150,7 +150,7 @@
     }
 
     p {
-	@include border-box;
+	@include box-sizing(border-box);
 	padding-left: 2rem;
 	position: relative;
 	margin-bottom: 2em;

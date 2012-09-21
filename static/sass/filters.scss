@@ -12,7 +12,7 @@
     padding-top:5px;
     padding-bottom:5px;
     
-    //@include shadow(4px, black); 
+    //@include i4p-shadow(4px, black); 
 	//@include border-radius(4px);
     position:absolute;
     right:0px;
@@ -28,7 +28,7 @@
         top:4px;
         margin-left:3px;
         margin-right:4px;
-        @include shadow(4px, black); 
+        @include i4p-shadow(4px, black); 
     }
 }
 
@@ -454,14 +454,14 @@
     
      h1{
         font-size:25px;    
-        @include shadow(2px, #181818); 
+        @include i4p-shadow(2px, #181818); 
     }
     
     .edito{
         font-size:18px;
         padding-right:20px;
         
-        @include shadow(2px, #181818); 
+        @include i4p-shadow(2px, #181818); 
         text-align:left;
     }
 }
@@ -476,7 +476,7 @@
 	margin-right:15px;
 	padding-bottom:3px;
 	float:right;    
-    @include shadow(2px, #181818); 
+    @include i4p-shadow(2px, #181818); 
 }
 
 .manifesto-link:hover{

@@ -29,7 +29,7 @@
         text-align:center;
         padding-top:5px;
         padding-bottom:5px;
-        @include shadow(4px, #181818);
+        @include i4p-shadow(4px, #181818);
         background-image:url('../images/usermessages/my-messages-title.jpg'); 
         background-color:transparent !important;
         background-repeat:no-repeat;
@@ -48,7 +48,7 @@
         width:100%;
         height:32px;
         margin-bottom:20px;
-        @include shadow(4px, #181818);
+        @include i4p-shadow(4px, #181818);
     
         a.new_message{
             height:32px;

@@ -1,5 +1,6 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
 
 // use bootstrap everywhere, yay !
 @import "compass_twitter_bootstrap/variables";
@@ -44,13 +45,13 @@
 }
 
 
-@mixin shadow($size, $color) {
+@mixin i4p-shadow($size, $color) {
     @include single-box-shadow($color, 0px, 0px, $size);
     behavior: url(static/js/pie/PIE.htc);
 }
 
 
-@mixin background-vertical-gradient($colorTop, $colorBottom) {
+@mixin i4p-background-vertical-gradient($colorTop, $colorBottom) {
     background-image: linear-gradient(top, $colorTop 0%, $colorBottom 100%);
     background-image: -o-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
     background-image: -moz-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
@@ -66,21 +67,15 @@
     );
 }
 
-// box model that includes padding widthin width
-@mixin border-box {
-    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-    box-sizing: border-box;         /* Opera/IE 8+ */
-}
-
-@mixin box-shadow-bottomleft {
+@mixin i4p-box-shadow-bottomleft {
     box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
 }
 
-
-@mixin transition( $effect ) {
+// FIXME: replace with compass/css3 transition
+@mixin i4p-transition( $effect ) {
     transition: $effect;
     -moz-transition: $effect;
     -webkit-transition: $effect;
     -o-transition: $effect;
 }
+
