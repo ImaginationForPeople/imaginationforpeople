@@ -9,6 +9,33 @@
  *  Mixins
  */
 
+@mixin i4p-sprite($classname) {
+    [class^="#{$classname}-"],
+    [class*=" #{$classname}-"] {
+	display: inline-block;
+	vertical-align: middle;
+    }
+
+}
+
+@mixin i4p-sprite-header($classname) {
+    h1, h2, h3, h4, h5, h6 {
+	i[class^="#{$classname}-"],
+	i[class*=" #{$classname}-"] {
+	    margin-right: .25em;
+	}
+    }
+}
+
+
+@mixin i4p-font-title {
+    font-size: $sizeTextLarge;
+    font-family: $fontOpenSans;
+    font-stretch: condensed;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 @mixin georgia($font-size) {
     font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
     font-size:$font-size;
