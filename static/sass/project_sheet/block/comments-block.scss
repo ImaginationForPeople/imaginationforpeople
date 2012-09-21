@@ -1,0 +1,17 @@
+@import "i4p-mixins";
+@import "i4p-constants";
+
+.comments-block {
+}
+
+.comments-list {
+
+}
+
+.comments-discuss {
+    @include i4p-font-button($sizeText : $sizeTextLarge);
+}
+
+.comments-ask {
+    @include i4p-font-button($sizeText : $sizeTextLarge);
+}
