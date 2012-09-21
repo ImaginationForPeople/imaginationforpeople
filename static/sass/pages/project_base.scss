@@ -4,9 +4,19 @@
 @import "i4p-mixins";
 @import "i4p-constants";
 
+
+// create sprites for progressbar
+$sheet-sprite-dimensions: true;
+@import "project/sheet/*.png"; // */
+@include all-sheet-sprites;
+
+
 .project-content {
     background-color: white;
     padding-top: 3rem;
+
+    @include i4p-sprite('sheet');
+    @include i4p-sprite-header('sheet');
 }
 
 .project-sidebar {
@@ -211,7 +221,9 @@
     }
 }
 
+
 .project-references {
+
     h2 {
 	font-size: $sizeTextLarge;
 	font-family: $fontOpenSans;
