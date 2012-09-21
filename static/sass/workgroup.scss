@@ -15,8 +15,6 @@
     border-bottom:1px solid #c2c2c2;
 }
 
-
-
 #workgroups_list{
 
     li{
@@ -98,12 +96,26 @@
     form input{
     }
     
-    ul li img{
-        border:1px solid #F1E4D3;
-        @include shadow(6px, black);
-        margin-left:3px;
-        margin-right:3px;
+    #wg-ml-subscriber-list {
+    ul{
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+            
+            img{
+                border:1px solid #F1E4D3;
+                @include shadow(4px, black);
+                margin:5px;
+
+            }
+        }
     }
+}
+
     
     .button{
         color:#fff;
