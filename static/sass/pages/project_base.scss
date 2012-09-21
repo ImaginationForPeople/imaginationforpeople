@@ -10,6 +10,8 @@ $sheet-sprite-dimensions: true;
 @import "project/sheet/*.png"; // */
 @include all-sheet-sprites;
 
+// quick fix for a broken thing
+#langage-tool { visibility: hidden; display: none; }
 
 .project-content {
     background-color: white;
@@ -17,17 +19,46 @@ $sheet-sprite-dimensions: true;
 
     @include i4p-sprite('sheet');
     @include i4p-sprite-header('sheet');
-}
 
-.project-sidebar {
-    @include bootstrap-makeColumn(4,0);
-}
 
-.member-block {
-    width: inherit;
-}
+    .project-comments {
+	@include i4p-seemore-class;
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
 
-#langage-tool { visibility: hidden; display: none; }
+    .project-partners {
+	@include i4p-seemore-class;
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
+
+    .project-gallery {
+	@include i4p-seemore-class;
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
+
+    .project-related {
+	@include i4p-seemore-class;
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
+
+    .project-sidebar {
+	@include bootstrap-makeColumn(4,0);
+    }
+
+    .project-members {
+	@include i4p-seemore-class;
+
+	width: inherit;
+    }
+}
 
 
 .project-subheader {
@@ -151,12 +182,9 @@ $sheet-sprite-dimensions: true;
 
 .project-about {
     h2 {
+	@include i4p-font-title;
+
 	margin-bottom: 1em;
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
     }
 
     p {
@@ -197,11 +225,7 @@ $sheet-sprite-dimensions: true;
 
 .project-details {
     h2 {
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
+	@include i4p-font-title;
     }
 
     .detail-question {
@@ -225,19 +249,11 @@ $sheet-sprite-dimensions: true;
 .project-references {
 
     h2 {
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
+	@include i4p-font-title;
     }
 
     h3 {
-	font-size: $sizeTextBig;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
+	@include i4p-font-title($sizeTextBig);
     }
 
     .references-links {
@@ -249,7 +265,11 @@ $sheet-sprite-dimensions: true;
 	    }
 	}
 
-	
+
+	.button {
+	    @include i4p-button;
+	}
+
     }
 
     .references-documents {
