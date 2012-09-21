@@ -82,14 +82,23 @@
   display: block;
   margin: 0px;
 }
-#workgroup_detail ul li img {
+#workgroup_detail #wg-ml-subscriber-list ul {
+  padding: 0px;
+  margin: 0px;
+}
+#workgroup_detail #wg-ml-subscriber-list ul li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
+#workgroup_detail #wg-ml-subscriber-list ul li img {
   border: 1px solid #F1E4D3;
-  -webkit-box-shadow: 0px 0px 6px black;
-  -moz-box-shadow: 0px 0px 6px black;
-  box-shadow: 0px 0px 6px black;
+  -webkit-box-shadow: 0px 0px 4px black;
+  -moz-box-shadow: 0px 0px 4px black;
+  box-shadow: 0px 0px 4px black;
   behavior: url(static/js/pie/PIE.htc);
-  margin-left: 3px;
-  margin-right: 3px;
+  margin: 5px;
 }
 #workgroup_detail .button {
   color: #fff;
