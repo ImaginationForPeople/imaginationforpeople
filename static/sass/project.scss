@@ -5,6 +5,18 @@
 .categories .menu{
     position:relative;
     top:-30px;
+    
+    ul{
+        padding:0px;
+        padding-top: 8px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
 }
 
 /* ----------Project Body - CREATION + EDITION ----------- */
@@ -717,7 +729,9 @@ form{
 #project_photo_gallery{
 	position:relative;
 	width:700px;
-    
+    #all_metadata{
+        display: none;
+    }
     #media_buttons{
         position:absolute;
         right:7px;
@@ -961,6 +975,18 @@ form{
     }
 }
 
+#cloudtag_list{
+    display:inline;
+    padding:0px;
+    margin:0px;
+    li{
+        list-style-type:none;
+        display:inline;
+        padding:0px;
+        margin:0px;
+    }
+}
+
 #contact_team-infos{
     
     p{
@@ -978,6 +1004,18 @@ form{
         }
     }
 }
+
+#member_list{
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
+
 
 .member-contact{
     

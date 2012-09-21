@@ -92,9 +92,8 @@ img{
     border:0px;
 }
 
-
+/* #focus-menu */
 #focus-menu ul{
-
     padding:0px;
     margin:0px;
 
@@ -104,7 +103,6 @@ img{
 	padding:0px;
 	margin:0px;
     }
-
 }
 
 .button, .redbutton, .greenbutton{
@@ -214,8 +212,13 @@ img{
 }
 
 
-.social-login strong{
-    color: $colorLightBlue !important;
+.social-login {
+    
+    list-style-type:none;
+    display:inline;
+    strong{
+        color: $colorLightBlue !important;
+    }
 }
 
 /*---- HEADER ----*/
@@ -772,6 +775,15 @@ div#tools ul li.logout a:hover {
 	}
 
     }
+    ul{
+
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
 }
 
 
@@ -1205,12 +1217,13 @@ font-style:italic;
     padding: 8px 0px;
 
     #footer-bottom{
-
 	ul{
-
+            padding:0px;
+            margin:0px;
 	    li{
 		margin:0px 10px;
-
+                list-style-type:none;
+                display:inline;
 		a{
 		    color:#4b4b4b;
 		}
