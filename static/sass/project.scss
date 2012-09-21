@@ -1311,7 +1311,14 @@ form{
     }
 
     #partners_list{
-    
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
         li.grey_column_team_partner{
             float:left;
             margin-bottom:20px;
@@ -1705,7 +1712,9 @@ ul#themes_tags li.tagit-choice {
     bottom:0px;
     z-index:3000;
     position :fixed;
-
+    ul {
+        list-style-type: none;
+    }
     .anonymous-disclaimer, .edition-notification{
         background-color:black;
         @include border-radius(4px); 	
