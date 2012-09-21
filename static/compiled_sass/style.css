@@ -123,16 +123,6 @@ img {
   border: 0px;
 }
 
-ul {
-  padding: 0px;
-  margin: 0px;
-}
-ul li {
-  list-style-type: none;
-  display: inline;
-  padding: 0px;
-  margin: 0px;
-}
 
 #focus-menu ul {
   padding: 0px;
@@ -253,6 +243,10 @@ ul li {
   background-color: white;
 }
 
+.social-login {
+  list-style-type: none;
+  display: inline;
+}
 .social-login strong {
   color: #04add1 !important;
 }
@@ -484,6 +478,12 @@ ul li {
 #langage-tool form {
   left: 5px;
   position: relative;
+}
+#langage-tool ul li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
 }
 
 .selected-lang {
@@ -835,8 +835,14 @@ ul li {
   background-color: #050505;
   padding: 8px 0px;
 }
+#footer-zone-bottom #footer-bottom ul {
+  padding: 0px;
+  margin: 0px;
+}
 #footer-zone-bottom #footer-bottom ul li {
   margin: 0px 10px;
+  list-style-type: none;
+  display: inline;
 }
 #footer-zone-bottom #footer-bottom ul li a {
   color: #4b4b4b;

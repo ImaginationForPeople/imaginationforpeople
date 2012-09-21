@@ -533,11 +533,14 @@ hr {
 #content-zone #content #right_col #loginbox ul.profile_actions {
   position: relative;
   margin: 0px;
+  padding: 0px;
 }
 #content-zone #content #right_col #loginbox ul.profile_actions li {
   float: left;
   position: relative;
   margin-right: 3px;
+  list-style-type: none;
+  display: inline;
 }
 #content-zone #content #right_col #loginbox ul.profile_actions li .message_count {
   color: white;
@@ -549,8 +552,15 @@ hr {
   font-weight: bold;
   font-size: 80%;
 }
+#content-zone #content #right_col #newmembers {
+  padding: 0px;
+  margin: 0px;
+}
 #content-zone #content #right_col #newmembers li {
   margin: 1px 2px;
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
   float: left;
   position: relative;
   background-color: #bdbdbd;

@@ -14,6 +14,16 @@
 #projectlist_sort .rss {
   display: inline-block;
 }
+#projectlist_sort #projectlist_sort_buttons {
+  padding: 0px;
+  margin: 0px;
+}
+#projectlist_sort #projectlist_sort_buttons li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
 #projectlist_sort .button {
   top: 4px;
   margin-left: 3px;
@@ -79,6 +89,17 @@
 .categories .menu {
   margin-left: 34px;
 }
+.categories .menu ul {
+  padding: 0px;
+  padding-top: 8px;
+  margin: 0px;
+}
+.categories .menu ul li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
 .categories .menu a {
   width: 100%;
   height: 30px;
@@ -109,6 +130,17 @@
   margin: 10px;
   color: #393939;
   position: relative;
+}
+.filtersbox_content #cloudtag_list {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
+.filtersbox_content #cloudtag_list li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
 }
 .filtersbox_content h4 {
   color: #d3d3d1;

@@ -92,32 +92,16 @@ img{
     border:0px;
 }
 
-ul{
-
-	padding:0px;
-	margin:0px;
-    
-    li{
-        list-style-type:none;
-        display:inline;
-        padding:0px;
-        margin:0px;
-    }
-
-}
 
 #focus-menu ul{
-
 	padding:0px;
 	margin:0px;
-    
     li{
         list-style-type:none;
         display:inline;
         padding:0px;
         margin:0px;
     }
-
 }
 
 .button, .redbutton, .greenbutton{
@@ -227,8 +211,13 @@ ul{
 }
 
 
-.social-login strong{
-    color:$blue !important;
+.social-login {
+    
+    list-style-type:none;
+    display:inline;
+    strong{
+        color:$blue !important;
+    }
 }
 
 
@@ -539,6 +528,15 @@ ul{
         
         }
         
+    }
+    ul{
+
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
     }
 }
 
@@ -954,12 +952,13 @@ ul{
     padding: 8px 0px;
     
     #footer-bottom{
-        
         ul{
-        
+            padding:0px;
+            margin:0px;
             li{
                 margin:0px 10px;
-        
+                list-style-type:none;
+                display:inline;
                 a{
                     color:#4b4b4b;
                 }

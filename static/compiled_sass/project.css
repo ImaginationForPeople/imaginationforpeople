@@ -2,6 +2,17 @@
   position: relative;
   top: -30px;
 }
+.categories .menu ul {
+  padding: 0px;
+  padding-top: 8px;
+  margin: 0px;
+}
+.categories .menu ul li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
 
 /* ----------Project Body - CREATION + EDITION ----------- */
 form {
@@ -619,6 +630,9 @@ form {
   position: relative;
   width: 700px;
 }
+#project_photo_gallery #all_metadata {
+  display: none;
+}
 #project_photo_gallery #media_buttons {
   position: absolute;
   right: 7px;
@@ -810,6 +824,18 @@ form {
   z-index: 04;
 }
 
+#cloudtag_list {
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
+#cloudtag_list li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
+
 #contact_team-infos p {
   position: relative;
   float: right;
@@ -822,6 +848,17 @@ form {
 #contact_team-infos p img {
   position: relative;
   top: 4px;
+}
+
+#member_list {
+  padding: 0px;
+  margin: 0px;
+}
+#member_list li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
 }
 
 .member-contact {
