@@ -1116,6 +1116,16 @@ form {
 #partners-widget .title {
   /*padding-left:40px;*/
 }
+#partners-widget #partners_list {
+  padding: 0px;
+  margin: 0px;
+}
+#partners-widget #partners_list li {
+  list-style-type: none;
+  display: inline;
+  padding: 0px;
+  margin: 0px;
+}
 #partners-widget #partners_list li.grey_column_team_partner {
   float: left;
   margin-bottom: 20px;
@@ -1455,6 +1465,9 @@ ul#themes_tags li.tagit-choice {
   bottom: 0px;
   z-index: 3000;
   position: fixed;
+}
+#notification-area ul {
+  list-style-type: none;
 }
 #notification-area .anonymous-disclaimer, #notification-area .edition-notification {
   background-color: black;
