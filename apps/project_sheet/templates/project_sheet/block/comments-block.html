@@ -1,0 +1,24 @@
+<h2>
+	<i class="sheet-comments"></i>
+	{% trans "Comments" %}</h2>
+
+<div class="row">
+
+	{% include "project_sheet/block/comments-list.html" %}
+
+	<div class="comment-discuss span3">
+		<h3>{% trans "Discuss or comment this project with other people" %}</h3>
+		<a href="#FIXME-BAD-URL">
+			<i class="sheet-plus"></i>
+			{% trans "go to the discussion" %}
+		</a>
+	</div>
+
+	<div class="comment-ask span3">
+		<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
+		<a href="#FIXME-BAD-URL">
+			<i class="sheet-plus"></i>
+			{% trans "go to the help calls" %}
+		</a>
+	</div>
+</div>
