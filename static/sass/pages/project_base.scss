@@ -247,6 +247,9 @@ $sheet-sprite-dimensions: true;
 
 
 .project-references {
+    &.references-block {
+	@include i4p-block;
+    }
 
     h2 {
 	@include i4p-font-title;
