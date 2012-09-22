@@ -1,0 +1,60 @@
+@import "i4p/constants";
+@import "i4p/fonts";
+
+@mixin i4p-button-flat {
+    @include reset-box-model;
+    @include reset-font;
+    @include reset-focus;
+
+    @include i4p-font-title($sizeTextNormal);
+    @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
+
+    @include bootstrap-makeColumn(3);
+    @include i4p-transition;
+
+    display: block;
+    border: none;
+    color: $colorMedDarkGrey;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-shadow: none;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $colorMedLightGrey;
+    background-image: none;
+    box-shadow: none;
+
+    &:hover {
+	background-color: $colorLightBlue;
+	color: white;
+    }
+}
+
+@mixin i4p-button-fancy {
+    @include reset-box-model;
+    @include reset-font;
+    @include reset-focus;
+
+    @include i4p-font-button($sizeTextNormal);
+    @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
+    @include i4p-transition;
+
+    box-shadow: none;
+    border: $sizeBorderSmall solid $colorPaleBlue;
+    color: white;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-shadow: none;
+    width: 100%;
+
+    &:hover {
+	@include i4p-background-vertical-gradient( $colorDarkBlue, $colorDarkBlue);
+	background-color: $colorDarkBlue;
+	border-color: $colorLightBlue;
+	color: white;
+    }
+}
+

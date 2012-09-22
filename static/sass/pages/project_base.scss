@@ -269,7 +269,7 @@ $sheet-sprite-dimensions: true;
 
 
 	.button {
-	    @include i4p-button;
+	    @include i4p-button-flat;
 	}
 
     }
@@ -281,6 +281,10 @@ $sheet-sprite-dimensions: true;
 	    a {
 		color: black;
 	    }
+	}
+
+	.button {
+	    @include i4p-button-flat;
 	}
     }
 }
