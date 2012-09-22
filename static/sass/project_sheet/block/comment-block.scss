@@ -1,0 +1,84 @@
+@import "i4p-mixins";
+@import "i4p-constants";
+
+$comment_sizeAvatar: 50px;
+
+.comment-block {
+    @include i4p-block;
+}
+
+.comment-discuss {
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: $colorMedGrey;
+
+    h3 {
+	@include i4p-font-button($sizeTextBig);
+	line-height: $sizeTextBig;
+	margin-bottom: 1rem;
+    }
+
+    .button {
+	@include i4p-button;
+    }
+}
+
+.comment-ask {
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: $colorMedGrey;
+
+    h3 {
+	@include i4p-font-button($sizeTextBig);
+	line-height: $sizeTextBig;
+	margin-bottom: 1rem;
+    }
+
+    .button {
+	@include i4p-button;
+    }
+}
+
+.comment-add {
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
+
+    background-color: $colorLightGrey;
+    padding: $sizePaddingSmall;
+
+    form {
+	padding: 0; margin: 0;
+    }
+
+    .avatar {
+	@include border-radius($sizeRadiusSmall);
+	@include box-sizing(border-box);
+	display: block;
+	float: left;
+	width: $comment_sizeAvatar;
+	height: $comment_sizeAvatar;
+	background-color: black;
+    }
+
+    .comment-new {
+	@include border-radius($sizeRadiusSmall);
+	@include box-sizing(border-box);
+
+	display: block;
+	border: 2px solid $colorMedLightGrey;
+	width: 100%;
+	font-style: italic;
+	margin: 0;
+	margin-left: $comment_sizeAvatar + (2 * $sizePaddingSmall);
+	width: 300px;
+	height: 80px;
+
+
+	&:focus {
+	    border: 2px solid $colorLightBlue;
+	}
+    }
+}
+

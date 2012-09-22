@@ -21,6 +21,7 @@ $topic-sprite-dimensions: true;
 
 // FIXME: move block rules elsewhere
 .member-block {
+    @include i4p-seemore-class;
     position: relative;
     margin-bottom: 20px;
     padding: 0;
@@ -33,8 +34,6 @@ $topic-sprite-dimensions: true;
 	font-family: $fontOpenSans;
 	font-stretch: condensed;
     }
-
-    @import "../../common/block/seemore.scss";
 }
 
 .member-list.square.fancy {
@@ -47,7 +46,7 @@ $topic-sprite-dimensions: true;
     .view {
 	@include bootstrap-clearfix;
 	@include border-radius($sizeRadiusSmall);
-	@include border-box;
+	@include box-sizing(border-box);
 	list-style: none;
 	outline: 1px solid $colorMedGrey;
 	padding: 5px;
@@ -65,7 +64,7 @@ $topic-sprite-dimensions: true;
 	margin: 10px;
 
 	label {
-	    @include transition(all .5s ease);
+	    @include i4p-transition(all .5s ease);
 	    border-radius: 5px 5px 5px 5px;
 	    background-color: $colorMedDarkGrey;
 	    display: inline-block;

@@ -6,7 +6,7 @@
 
 .project.wide-card {
     @include border-radius($sizeRadiusSmall);
-    @include box-shadow-bottomleft;
+    @include i4p-box-shadow-bottomleft;
     position: relative; // make children position absolute but relative to this
     height: 81px; // 81px for grid_5 , 64px for grid_4
     width: inherit;
@@ -23,7 +23,7 @@
 
     .project-information {
 	@include border-radius($sizeRadiusSmall);
-	@include border-box;
+	@include box-sizing(border-box);
 	position: absolute; // yet relative to parent
 	top: 0;
 	left: 0;
@@ -36,7 +36,7 @@
 	background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-50.png");
 	background-repeat: no-repeat, repeat;
 	background-position: 400px center, top left;
-	@include transition( all .5s ease );
+	@include i4p-transition( all .5s ease );
 
 	.title {
 	    display: block;
@@ -68,7 +68,7 @@
     }
 
     &:hover .project-information {
-	@include border-box;
+	@include box-sizing(border-box);
 	position: absolute; // yet relative to parent
 	top: 0;
 	left: 0;

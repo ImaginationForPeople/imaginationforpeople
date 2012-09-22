@@ -1,0 +1,70 @@
+@import "i4p-mixins";
+@import "i4p-constants";
+
+
+$commentList_sizeAvatar: 50px;
+
+.comment-list {
+    ul {
+	margin:0;
+	padding: 0;
+    }
+
+    .seemore {
+	color: $colorMedGrey;
+	display: block;
+	font-style: italic;
+	position: relative;
+	text-align: center;
+
+	&:hover {
+	    color: $colorMedDarkGrey;
+	}
+    }
+}
+
+.comment {
+    @include i4p-transition(all .5s ease);
+    @include border-radius($sizeRadiusSmall);
+
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    display: block;
+    background-color: white;
+    position: relative;
+    padding: $sizePaddingSmall;
+
+    &:hover {
+	background-color: $colorLightGrey;
+    }
+
+    .avatar {
+	@include border-radius($sizeRadiusSmall);
+
+	float: left;
+	display: block;
+	width: $commentList_sizeAvatar;
+	height: $commentList_sizeAvatar;
+	background-color: black;
+    }
+
+    .header {
+	margin-left: $commentList_sizeAvatar + (2 * $sizePaddingSmall);
+	margin-bottom: .5rem;
+
+	.author {
+	    @include i4p-font-subtitle($sizeTextBig);
+	    font-style: italic;
+	}
+
+	.postdate {
+	    &:before {
+		content: " - ";
+	    }
+	}
+    }
+
+    .content {
+	margin-left: 60px;
+    }
+}

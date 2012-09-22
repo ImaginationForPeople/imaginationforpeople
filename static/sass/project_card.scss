@@ -25,12 +25,12 @@
 		margin:0;
 		padding:0;
 		padding-right:5px;
-		@include shadow(8px, #181818);
+		@include i4p-shadow(8px, #181818);
 		@include border-radius(8px);
 	}
 	a:hover {
 		border: 1px solid #848484;
-		@include shadow(8px, #848484); 
+		@include i4p-shadow(8px, #848484); 
 		@include border-radius(8px);
 		text-decoration: none;
 		color: #bdbdbd;
@@ -67,7 +67,7 @@
 		height:190px;
 		border:0px !important;
 	
-		@include shadow(12px, #181818);
+		@include i4p-shadow(12px, #181818);
 	
 	    .project-photo{
 	        width:100%;

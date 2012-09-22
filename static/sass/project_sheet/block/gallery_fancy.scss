@@ -47,7 +47,7 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 
 
 	.overlay-one {
-	    @include transition(all .5s ease);
+	    @include i4p-transition(all .5s ease);
 	    display: block;
 	    position: absolute;
 	    height: inherit;
@@ -58,7 +58,7 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	}
 
 	.overlay-two {
-	    @include transition(all .5s ease);
+	    @include i4p-transition(all .5s ease);
 	    display: block;
 	    position: absolute;
 	    height: inherit;
@@ -68,8 +68,8 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	}
 
 	.description {
-	    @include transition(all .5s ease);
-	    @include border-box;
+	    @include i4p-transition(all .5s ease);
+	    @include box-sizing(border-box);
 	    opacity: 0;
 	    position: absolute;
 	    display: block;

@@ -20,6 +20,8 @@ $topic-sprite-dimensions: true;
 @include all-topic-sprites(true);
 
 .project-list.square.fancy {
+    @include i4p-seemore-class;
+
     position: relative;
     margin-bottom: 20px;
     padding: 0;
@@ -32,19 +34,17 @@ $topic-sprite-dimensions: true;
 	font-family: $fontOpenSans;
 	font-stretch: condensed;
     }
-
-    @import "../../common/block/seemore.scss";
 }
 
 .project.square.fancy {
-    @include box-shadow-bottomleft;
+    @include i4p-box-shadow-bottomleft;
     @include border-radius($sizeRadiusSmall);
     height: 150px;
     position: relative;
 
     .summary {
 	@include border-radius($sizeRadiusSmall);
-	@include transition(all .5s ease);
+	@include i4p-transition(all .5s ease);
 	position: relative;
 	height: 150px;
 
@@ -56,7 +56,7 @@ $topic-sprite-dimensions: true;
 	z-index: 2;
 
 	.title {
-	    @include transition(all .5s ease);
+	    @include i4p-transition(all .5s ease);
 	    position: absolute;
 
 	    font-family: $fontOpenSans;
@@ -112,7 +112,7 @@ $topic-sprite-dimensions: true;
     }
 
     .progress {
-	@include transition(all .5s ease);
+	@include i4p-transition(all .5s ease);
 	font-family: $fontOpenSans;
 	font-size: $sizeTextTiny;
 	position: absolute;
@@ -142,8 +142,8 @@ $topic-sprite-dimensions: true;
 
     .location {
 	@include border-radius(0 0 $sizeRadiusSmall $sizeRadiusSmall);
-	@include border-box;
-	@include transition(all .5s ease);
+	@include box-sizing(border-box);
+	@include i4p-transition(all .5s ease);
 	position: absolute;
 	top: 125px;
 	color: white;
@@ -165,7 +165,7 @@ $topic-sprite-dimensions: true;
 
     .pictos {
 	position: absolute;
-	@include transition(all .5s ease);
+	@include i4p-transition(all .5s ease);
 	top: 0;
 	left: 0;
 	z-index: 5;
@@ -194,7 +194,7 @@ $topic-sprite-dimensions: true;
     }
 
     .topic {
-	@include transition(all .5s ease);
+	@include i4p-transition(all .5s ease);
 	background-image: image-url("project/card-top-handler.png");
 	background-repeat: no-repeat;
 	background-position: top center;
@@ -209,14 +209,14 @@ $topic-sprite-dimensions: true;
 	overflow: hidden;
 
 	.illustration {
-	    @include transition(all .5s ease);
+	    @include i4p-transition(all .5s ease);
 	    position: absolute;
 	    top: 2px;
 	    left: 65px;
 	}
 
 	.description {
-	    @include transition(all .5s ease);
+	    @include i4p-transition(all .5s ease);
 	    position: absolute;
 	    // FIXME: add left-size icon
 	    top: -20px;

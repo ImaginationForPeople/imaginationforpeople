@@ -14,8 +14,6 @@
         <a href="?show_comments=1#comments-module" class="link">{% trans "View the" %} {{ comment_count }} {% trans "comments" %}</a>
     </div>
     
-    <div class="clear"></div>
-
     <div id="comment-form">
         
         {% if user.is_authenticated %}
@@ -46,14 +44,7 @@
         
 	</div>
 
-    <div id="clear"></div>
-    
-
     {% render_comment_list for project_translation %}
 
-    <div class="clear"></div>
 </div>
-
-
-<div class="clear"></div>
 

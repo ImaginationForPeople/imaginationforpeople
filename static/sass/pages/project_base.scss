@@ -4,20 +4,60 @@
 @import "i4p-mixins";
 @import "i4p-constants";
 
+
+// create sprites for progressbar
+$sheet-sprite-dimensions: true;
+@import "project/sheet/*.png"; // */
+@include all-sheet-sprites;
+
+// quick fix for a broken thing
+#langage-tool { visibility: hidden; display: none; }
+
 .project-content {
     background-color: white;
     padding-top: 3rem;
-}
 
-.project-sidebar {
-    @include bootstrap-makeColumn(4,0);
-}
+    @include i4p-sprite('sheet');
+    @include i4p-sprite-header('sheet');
 
-.member-block {
-    width: inherit;
-}
 
-#langage-tool { visibility: hidden; display: none; }
+    .project-comments {
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
+
+    .project-partners {
+	@include i4p-seemore-class;
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
+
+    .project-gallery {
+	@include i4p-seemore-class;
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
+
+    .project-related {
+	@include i4p-seemore-class;
+	h2 {
+	    @include i4p-font-title;
+	}
+    }
+
+    .project-sidebar {
+	@include bootstrap-makeColumn(4,0);
+    }
+
+    .project-members {
+	@include i4p-seemore-class;
+
+	width: inherit;
+    }
+}
 
 
 .project-subheader {
@@ -39,7 +79,7 @@
 }
 
 .project-menubar {
-    @include border-box;
+    @include box-sizing(border-box);
     background-color: $colorLightGrey;
     clear: both;
     height: 2.4rem;
@@ -50,7 +90,7 @@
     }
 
     li {
-	@include border-box;
+	@include box-sizing(border-box);
 	margin: 0;
 	display: block;
 	float:left;
@@ -90,7 +130,7 @@
 	}
 
 	&.active {
-	    @include background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+	    @include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
 	    position: relative;
 	    border-right-color: $colorDarkBlue;
 
@@ -130,7 +170,7 @@
 
 .project-toolbar {
     @include border-radius(0 $sizeRadiusSmall $sizeRadiusSmall 0);
-    @include box-shadow-bottomleft;
+    @include i4p-box-shadow-bottomleft;
     background-color: $colorDarkGrey;
     display: block;
     height: 120px;
@@ -141,16 +181,13 @@
 
 .project-about {
     h2 {
+	@include i4p-font-title;
+
 	margin-bottom: 1em;
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
     }
 
     p {
-	@include border-box;
+	@include box-sizing(border-box);
 	padding-left: 2rem;
 	position: relative;
 	margin-bottom: 2em;
@@ -187,11 +224,7 @@
 
 .project-details {
     h2 {
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
+	@include i4p-font-title;
     }
 
     .detail-question {
@@ -211,21 +244,18 @@
     }
 }
 
+
 .project-references {
+    &.references-block {
+	@include i4p-block;
+    }
+
     h2 {
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
+	@include i4p-font-title;
     }
 
     h3 {
-	font-size: $sizeTextBig;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
+	@include i4p-font-title($sizeTextBig);
     }
 
     .references-links {
@@ -237,7 +267,11 @@
 	    }
 	}
 
-	
+
+	.button {
+	    @include i4p-button;
+	}
+
     }
 
     .references-documents {
