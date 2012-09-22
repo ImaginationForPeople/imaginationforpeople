@@ -19,7 +19,7 @@
 
 	<div class="comment-discuss span3">
 		<h3>{% trans "Discuss or comment this project with other people" %}</h3>
-		<a href="#FIXME-BAD-URL">
+		<a href="#FIXME-BAD-URL" class="button">
 			<i class="sheet-plus"></i>
 			{% trans "go to the discussion" %}
 		</a>
@@ -27,7 +27,7 @@
 
 	<div class="comment-ask span3">
 		<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
-		<a href="#FIXME-BAD-URL">
+		<a href="#FIXME-BAD-URL" class="button">
 			<i class="sheet-plus"></i>
 			{% trans "go to the help calls" %}
 		</a>
@@ -36,12 +36,10 @@
 <div class="row">
 	<!-- FIXME: missing add your comment -->
 	<div class="comment-add span5">
-			<div class="comment-user">
-				<img src="" class="avatar" />
-			</div>
-			<div class="comment-new ">
-				<textarea placeholder='{% trans "Add your comment there and press enter to send..." %}'>
-				</textarea>
-			</div>
+		<form action="#FIXME-COMMENT-NEW-FORM-ACTION-URL">
+			<img src="" class="avatar" />
+			<textarea class="comment-new" placeholder='{% trans "Add your comment there and press enter to send..." %}'>
+			</textarea>
+		</form>
 	</div>
 </div>

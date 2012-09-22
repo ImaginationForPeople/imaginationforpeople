@@ -8,11 +8,15 @@
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment-list.css" />
 {% endaddtoblock %}
+{% comment %}FIXME: use real comment block instead {% endcomment %}
 <div class="comment-list span5">
 	<ul>
 		<li class="comment">
 			<a href="#FIXME-EDIT-URL" class="action-edit"></a>
 			<a href="#FIXME-DELETE-URL" class="action-delete"></a>
+			<div class="avatar">
+				<img src="#FIXME-AVATAR-URL" />
+			</div>
 			<div class="header">
 				<span class="author">Simon Sarazin</span>
 				<span class="postdate">Oct. 28, 2011</span>

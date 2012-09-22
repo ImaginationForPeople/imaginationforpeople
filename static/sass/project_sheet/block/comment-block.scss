@@ -1,17 +1,44 @@
 @import "i4p-mixins";
 @import "i4p-constants";
 
+$comment_sizeAvatar: 50px;
 
 .comment-block {
     @include i4p-block;
 }
 
 .comment-discuss {
-    @include i4p-font-button($sizeTextBig);
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: $colorMedGrey;
+
+    h3 {
+	@include i4p-font-button($sizeTextBig);
+	line-height: $sizeTextBig;
+	margin-bottom: 1rem;
+    }
+
+    .button {
+	@include i4p-button;
+    }
 }
 
 .comment-ask {
-    @include i4p-font-button($sizeTextBig);
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    color: $colorMedGrey;
+
+    h3 {
+	@include i4p-font-button($sizeTextBig);
+	line-height: $sizeTextBig;
+	margin-bottom: 1rem;
+    }
+
+    .button {
+	@include i4p-button;
+    }
 }
 
 .comment-add {
@@ -19,42 +46,38 @@
     @include box-sizing(border-box);
 
     background-color: $colorLightGrey;
-    position: relative;
-    height: 100px;
+    padding: $sizePaddingSmall;
 
-    .comment-user {
+    form {
+	padding: 0; margin: 0;
+    }
+
+    .avatar {
+	@include border-radius($sizeRadiusSmall);
 	@include box-sizing(border-box);
-	width: 50px;
-	position: absolute;
-	top: $sizePaddingMedium;
-	left: $sizePaddingMedium;
-
-	.avatar {
-	    @include border-radius($sizeRadiusSmall);
-	    display: block;
-	    width: 50px;
-	    height: 50px;
-	    background-color: black;
-	}
+	display: block;
+	float: left;
+	width: $comment_sizeAvatar;
+	height: $comment_sizeAvatar;
+	background-color: black;
     }
 
     .comment-new {
+	@include border-radius($sizeRadiusSmall);
+	@include box-sizing(border-box);
+
+	display: block;
+	border: 2px solid $colorMedLightGrey;
+	width: 100%;
 	font-style: italic;
-	top: $sizePaddingMedium;
-	right: $sizePaddingMedium;
-	width: 295px;
-	position: absolute;
+	margin: 0;
+	margin-left: $comment_sizeAvatar + (2 * $sizePaddingSmall);
+	width: 300px;
+	height: 80px;
 
-	textarea {
-	    @include border-radius($sizeRadiusSmall);
-	    @include box-sizing(border-box);
-	    border: 2px solid $colorMedLightGrey;
-	    width: 100%;
-	    height: 80px;
 
-	    &:focus {
-		border: 2px solid $colorLightBlue;
-	    }
+	&:focus {
+	    border: 2px solid $colorLightBlue;
 	}
     }
 }
