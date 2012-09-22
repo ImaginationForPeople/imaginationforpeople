@@ -38,7 +38,7 @@
 	}
 
 	li {
-	    @include transition(all .5s ease);
+	    @include i4p-transition(all .5s ease);
 
 	    background-color: $colorMedLightGrey;
 	    color: $colorMedDarkGrey;
@@ -71,7 +71,7 @@
 	    }
 
 	    a {
-		@include transition(all .5s ease);
+		@include i4p-transition(all .5s ease);
 
 		color: inherit;
 		font-size: 100%;
@@ -85,8 +85,8 @@
 	    }
 
 	    &:before {
-		@include border-box;
-		@include transition(all .5s ease);
+		@include box-sizing(border-box);
+		@include i4p-transition(all .5s ease);
 
 		border-bottom: 8px solid $colorMedLightGrey;
 		border-left: 5px solid transparent;
@@ -101,8 +101,8 @@
 	    }
 
 	    &:after {
-		@include border-box;
-		@include transition(all .5s ease);
+		@include box-sizing(border-box);
+		@include i4p-transition(all .5s ease);
 
 		border-bottom: 8px solid transparent;
 		border-left: 5px solid $colorMedLightGrey;

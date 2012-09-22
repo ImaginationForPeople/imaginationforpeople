@@ -26,7 +26,7 @@
         height:200px;
         padding:8px;
         float:left;
-        @include shadow(8px, black);
+        @include i4p-shadow(8px, black);
         @include border-radius(4px); 
         margin:10px;
         overflow:hidden;
@@ -101,7 +101,7 @@
     
     ul li img{
         border:1px solid #F1E4D3;
-        @include shadow(6px, black);
+        @include i4p-shadow(6px, black);
         margin-left:3px;
         margin-right:3px;
     }
