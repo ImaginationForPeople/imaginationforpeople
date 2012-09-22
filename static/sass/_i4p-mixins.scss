@@ -118,8 +118,15 @@
     }
 }
 
+@mixin i4p-block {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
 @mixin i4p-button {
-    @include global-reset;
+    @include reset-box-model;
+    @include reset-font;
+    @include reset-focus;
 
     border: 1px solid red;
     background-color: $colorLightBlue;
