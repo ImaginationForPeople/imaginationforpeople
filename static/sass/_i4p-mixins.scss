@@ -144,7 +144,8 @@
     background-color: $colorDarkBlue;
 
     &:hover {
-	color: $colorMedGrey;
+	@include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
+	color: white;
     }
 }
 
