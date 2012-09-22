@@ -4,7 +4,7 @@
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
 // move to header specific (block) css files
-#beta-logo{
+#beta-logo {
     background-image: image-url('base/beta-logo.png');
     background-repeat: no-repeat;
     width: 90px;
@@ -15,23 +15,27 @@
     z-index: 9000;
 }
 
-.categories .menu ul li:first-child{
-    display: block;
-    visibility: visible;
-    border-right: 1px solid #676665;
+.categories {
+    .menu {
+	ul li:first-child {
+	    display: block;
+	    visibility: visible;
+	    border-right: 1px solid #676665;
+	}
+
+	.selected .categ-button {
+	    display: block;
+	    visibility: visible;
+	    border-right: 1px solid #676665;
+	}
+
+	ul li:first-child .categ-button {
+	    border-right: 1px solid #676665;
+	}
+    }
 }
 
-.categories .menu  .selected .categ-button{
-    display: block;
-    visibility: visible;
-    border-right: 1px solid #676665;
-}
-
-.categories .menu ul li:first-child .categ-button{
-    border-right: 1px solid #676665;
-}
-
-.sf-menu .current{
+.sf-menu .current {
     border-right: 0px !important;
 }
 
@@ -40,10 +44,7 @@
 /* ----------------------------------------------------------------------------------------------------------- */
 
 
-
-
-
-body{	
+body {	
     background-color: black;
     padding: 0px;
     margin: 0px;
@@ -52,20 +53,20 @@ body{
 }
 
 
-.centreur, .center{	
+.centreur, .center {	
     margin-left: auto;
     margin-right: auto;
     position: relative;
     width:977px;	
 }
 
-.global{
+.global {
 
 }
 
 
-h1{
-    @include georgia(18px); 
+h1 {
+    @include georgia(18px);
     color: #c2c2c2;
 
     padding: 0px;
@@ -73,32 +74,32 @@ h1{
 }
 
 
-a{
+a {
     text-decoration: none;
     border:0px;	
 }
 
 
-a:hover{
+a:hover {
     text-decoration:underline;	
 }
 
-p{
+p {
     padding: 0px;
     margin: 0px;
 }
 
-img{
+img {
     border: 0px;
 }
 
 
-ul{
+ul {
 
     padding: 0px;
     margin: 0px;
 
-    li{
+    li {
 	list-style-type: none;
 	display: inline;
 	padding: 0px;
@@ -107,7 +108,8 @@ ul{
 
 }
 
-.button, .redbutton, .greenbutton{
+// FIXME: please, use mixins... or page/block specific styles
+.button, .redbutton, .greenbutton {
     background-color: #eeeeee;
     border: 1px solid #bdbdbd;
     position: relative;
@@ -121,7 +123,7 @@ ul{
     font-family : Verdana, Arial, Sans-serif;
     font-weight: bold;
     color: #5a5959;
-    text-shadow:1px 1px 0 #fff; 
+    text-shadow: 1px 1px 0 #fff;
     text-align: center;
     text-decoration: none;
     text-transform: none;
@@ -129,17 +131,16 @@ ul{
     float:left;	
     top:-1px;	
 
-    @include i4p-shadow(4px, #a1a1a1); 
-    @include border-radius(4px); 
+    @include i4p-shadow(4px, #a1a1a1);
+    @include border-radius(4px);
 
-    img{
+    img {
 	position: relative;
     }
-
 }
 
 
-.button:hover{
+.button:hover {
     color: #fff;
     text-decoration: none;
     text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
@@ -149,18 +150,18 @@ ul{
 }
 
 
-.redbutton:hover{
+.redbutton:hover {
     background: image-url('base/minibutton_red.jpg');
     border:1px solid #881b1b;	
 }
 
-.greenbutton:hover{
+.greenbutton:hover {
     background: image-url('base/minibutton_green.jpg');
     border:1px solid #01841f;	
 }
 
 
-.close{
+.close {
     font-family: Verdana,Arial,Sans-serif;
     font-size: 9px;
     color: black;
@@ -174,18 +175,18 @@ ul{
     top: 4px;
     font-style: normal;
 
-    @include border-radius(2px); 
+    @include border-radius(2px);
 }
 
 
-.close:hover{
+.close:hover {
     color:white;	
     text-decoration: none;
     background-color: black;
 }
 
 
-.del{
+.del {
     font-family: Verdana,Arial,Sans-serif;
     font-size: 9px;
     font-weight: bold;
@@ -200,21 +201,21 @@ ul{
 
     @include border-radius(2px); 	
 
-    position:absolute; 
-    right:19px; 
+    position: absolute;
+    right: 19px;
     z-index: 4000;
 
 }
 
 
-.del:hover{
+.del:hover {
     color:black;	
     text-decoration: none;
     background-color: white;
 }
 
 
-.social-login strong{
+.social-login strong {
     color: $colorLightBlue !important;
 }
 
@@ -223,20 +224,20 @@ ul{
 
 /*---- HEADER ----*/
 
-#blue_border{
+#blue_border {
     border-top: 3px solid $colorLightBlue;
     position: relative;
     z-index: 2000;
 }
 
-#header-zone{
+#header-zone {
     background-color: black;
     width: 100%;
 	height: 48px;
     background: image-url('base/header_bar_bg.png') repeat-x top left;
     margin: 20px 0 0 0;
 
-    #header{
+    #header {
     	position: relative;
     }
 }
@@ -263,7 +264,7 @@ ul{
 		display: none;
 	}
 
-	li{
+	li {
 		display: block;
 		float: left;
 		padding: 0 16px 0 10px;
@@ -274,7 +275,7 @@ ul{
 			background: none;
 		}
 
-	 	a{
+	 	a {
 	 		color: #8f8f8f;
 	 		text-transform: uppercase;
 	 		line-height: 48px;
@@ -305,7 +306,7 @@ ul{
 	width: 200px;
 	padding: 5px 0 0 0;
 
-	li{
+	li {
 		display: block;
 		float: none;
 		position: static;
@@ -313,7 +314,7 @@ ul{
 		background: none;
 		width: 130px;
 
-		a{
+		a {
 			display: block;
 			text-transform: none;
 			background: none;
@@ -324,7 +325,7 @@ ul{
 			background: black;
 			float: none;
 
-			&:hover{
+			&:hover {
 				color: white;
 				background: #757575;
 				@include border-radius(4px, 4px);
@@ -333,7 +334,7 @@ ul{
 	}
 }
 
-div#interface_lang{
+div#interface_lang {
 	float: left;
 	height: 48px;
 	margin: 0 0 0 20px;
@@ -361,7 +362,7 @@ div#interface_lang{
 		padding: 5px 0 0 0;
 		display: none;
 
-		li{
+		li {
 			display: block;
 			float: none;
 			position: static;
@@ -369,7 +370,7 @@ div#interface_lang{
 			background: none;
 			width: 100px;
 
-			a{
+			a {
 				display: block;
 				text-transform: none;
 				background: none;
@@ -380,7 +381,7 @@ div#interface_lang{
 				background: black;
 				color: #8f8f8f;
 
-				&:hover{
+				&:hover {
 					color: white;
 					background: #757575;
 					text-decoration: none;
@@ -415,7 +416,7 @@ div#interface_lang:hover ul {
 	line-height: 48px;
 }
 
-div#tools{
+div#tools {
 	float: left;
 	height: 48px;
 	margin: 0;
@@ -446,7 +447,7 @@ div#tools{
 		display: none;
 		@include border-radius(4px, 4px);
 
-		li{
+		li {
 			display: block;
 			float: none;
 			position: static;
@@ -454,7 +455,7 @@ div#tools{
 			background: none;
 			width: 130px;
 
-			a{
+			a {
 				display: block;
 				text-transform: none;
 				background: none;
@@ -467,7 +468,7 @@ div#tools{
 				padding: 0 10px 0 25px;
 				@include border-radius(4px, 4px);
 
-				&:hover{
+				&:hover {
 					color: white;
 					background: #757575;
 					text-decoration: none;
@@ -494,7 +495,7 @@ div#tools ul li.logout a:hover {
 /*---- Search box ----*/
 
 
-.search{
+.search {
     float: left;
     height: 22px;
 
@@ -515,7 +516,7 @@ div#tools ul li.logout a:hover {
 	margin: 13px 0 0 20px;
     }
 
-    input[type="submit"]{
+    input[type="submit"] {
 	background-image: none;
 	background-color: transparent;
 	border: 0px;
@@ -525,45 +526,45 @@ div#tools ul li.logout a:hover {
     }
 }
 
-#header{
-    .search{
+#header {
+    .search {
     }
 }
 
 /*---- Projects hover menu ----*/
 
-#projects-hover-menu-zone, #about-hover-menu-zone{
+#projects-hover-menu-zone, #about-hover-menu-zone {
     background-color: #0f0f0f;
     width: 100%;
     position: absolute;
     z-index: 900;
 
-    .hover-menu{
+    .hover-menu {
 	color: white;
 	margin: 20px auto;
 
-	a{
+	a {
 	    color: white;
 	}
 
-	a:hover{
+	a:hover {
 	    text-decoration: none;
 	}
     }
 }
 
-#projects-hover-menu-zone{
+#projects-hover-menu-zone {
 
-    .hover-menu{
+    .hover-menu {
 
-	#filters_links{
+	#filters_links {
 
-	    ul li{            
+	    ul li {
 		display: list-item;
 		padding: 4px 0px;
 		margin: 2px 0px;
 
-		a{
+		a {
 		    font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif !important;
 		    font-size: 12px;
 		    text-transform: uppercase;
@@ -571,75 +572,75 @@ div#tools ul li.logout a:hover {
 		    padding: 3px;
 		}
 
-		a:hover{
+		a:hover {
 		    color: black;
 		    background-color: white;
-		} 
+		}
 	    }
 
-	    ul li#allprojects_button a{
+	    ul li#allprojects_button a {
 		background-image: image-url('base/allprojects_button-bg.jpg');
-		@include border-radius(4px); 
+		@include border-radius(4px);
 	    }
 	}
 
-	h2{
+	h2 {
 	    font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif !important;
 	    font-size: 12px;
 	    text-transform: uppercase;
 	    margin: 4px 0px;
 	}
 
-	hr{
+	hr {
 	    margin: 3px 0px;
-	}  
+	}
 
-	ul.projects_lists{
+	ul.projects_lists {
 
-	    li{
+	    li {
 		display: list-item;
 		padding: 4px 0px;
 		font-size: 11px;
 	    }
 
-	    li:hover{
+	    li:hover {
 		background-color: white;
 
-		a{
-		    color: black;
-		}
-	    }
-	}  
-    }    
-}
-
-#about-hover-menu-zone{
-
-    .hover-menu{
-
-	ul {
-
-	    li{
-		margin: 0px 5px;
-		padding: 3px 5px;
-	    }
-
-	    li:hover{
-		background-color: white;
-
-		a{
+		a {
 		    color: black;
 		}
 	    }
 	}
-    }    
+    }
+}
+
+#about-hover-menu-zone {
+
+    .hover-menu {
+
+	ul {
+
+	    li {
+		margin: 0px 5px;
+		padding: 3px 5px;
+	    }
+
+	    li:hover {
+		background-color: white;
+
+		a {
+		    color: black;
+		}
+	    }
+	}
+    }
 }
 
 
 
 /* -- Filters -- */
 
-.categories{
+.categories {
 
     width: 100%;
     /*background-image: image-url('base/menu-bg.png');*/
@@ -649,26 +650,26 @@ div#tools ul li.logout a:hover {
     padding: 0px;
     margin: 0px;
     background-repeat:repeat-x;	
-    border-top:1px solid #676665;    
+    border-top: 1px solid #676665;
     background-color: black;
 
-    .menu{
+    .menu {
 
-	.search{
+	.search {
 	    float: right;
 	}
 
-	ul{
+	ul {
 	    padding-top: 8px;
 	    position: relative;
 	    top: -8px;
 	}
 
-	.categ-button.first{
+	.categ-button.first {
 	    border-left: 1px solid #676665;
 	}
 
-	.categ-button{
+	.categ-button {
 	    position: relative;
 	    padding: 0px;
 	    margin: 0px;
@@ -676,14 +677,14 @@ div#tools ul li.logout a:hover {
 	    height: 28px;
 	    float: left;
 	    padding-top:8px;	
-	    text-align:center;        
+	    text-align: center;
 	}
 
-	#categ-last{
+	#categ-last {
 	    border-right: 1px solid #676665;
 	}
 
-	.categ-button span{
+	.categ-button span {
 	    float: left;
 	}
 
@@ -691,10 +692,10 @@ div#tools ul li.logout a:hover {
 
 }
 
-.categories .menu ul{
+.categories .menu ul {
 
-    li{
-	a{
+    li {
+	a {
 	    font-family: Arial, Helvetica, sans-serif;
 	    font-size: 16px;
 	    font-style: normal;
@@ -702,7 +703,7 @@ div#tools ul li.logout a:hover {
 	    color: #979797;
 	}
 
-	.categ-button a:hover{
+	.categ-button a:hover {
 	    color: white;
 	    text-decoration: none;
 	    background-image: image-url('base/menu-bg-hover.png');
@@ -732,14 +733,14 @@ div#tools ul li.logout a:hover {
 	    width: 109px;
 	    height: 40px;
 	    top: -8px;
-	    left:-1px;            
+	    left: -1px;
 	    padding-top: 16px;
-	    z-index:100;            
+	    z-index: 100;
 	    font-weight: bold;
 	    text-align: center;
 	}
 
-    }    
+    }
 
 }
 
@@ -749,7 +750,7 @@ div#tools ul li.logout a:hover {
 
 
 
-#langage-tool{
+#langage-tool {
 
     position: absolute;
     right: 0px;
@@ -759,11 +760,11 @@ div#tools ul li.logout a:hover {
     text-align: center;
     z-index: 300;
 
-    form{
+    form {
 	left: 5px;
 	position: relative;
 
-	select{
+	select {
 
 
 	}
@@ -772,7 +773,7 @@ div#tools ul li.logout a:hover {
 }
 
 
-.selected-lang{
+.selected-lang {
     width: 33px;
     height: 11px;
     background-repeat:no-repeat;	
@@ -784,7 +785,7 @@ div#tools ul li.logout a:hover {
 }
 
 
-#langage-tool form .button{
+#langage-tool form .button {
     padding: 1px;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -793,7 +794,7 @@ div#tools ul li.logout a:hover {
 }
 
 
-.toolbox{
+.toolbox {
 
     position: absolute;
     right: 0px;
@@ -809,7 +810,7 @@ div#tools ul li.logout a:hover {
     display: none;
     visibility: hidden;
 
-    .tools-title{
+    .tools-title {
 	position: relative;
 	width: 100%;
 	height: 20px;
@@ -820,7 +821,7 @@ div#tools ul li.logout a:hover {
 	left: -5px;
     }
 
-    .tools img{
+    .tools img {
 	border: 0px;
     }
 }
@@ -830,7 +831,7 @@ div#tools ul li.logout a:hover {
 // FIXME: move to block/page specific CSS file
 /*---- New project style popup ----*/
 
-#new_project_style_popup_zone{
+#new_project_style_popup_zone {
     width: 100%;
     height: 1000px;
     background-image: image-url('base/black.png');
@@ -838,7 +839,7 @@ div#tools ul li.logout a:hover {
     z-index: 9000;
 }
 
-#new_project_style_popup{
+#new_project_style_popup {
     width: 620px;
     margin-top: 160px;
     margin-left: auto;
@@ -851,27 +852,27 @@ div#tools ul li.logout a:hover {
     border: 1px solid #9b9b9b;
     @include border-radius(4px);
 
-    #project_type{
+    #project_type {
 	display: inline-block;
 
-	.topic_picto{
+	.topic_picto {
 	    width: 142px;
 	    height: 99px;
 	    margin: 5px;
 	    float: left;
 
-	    div{
+	    div {
 		width: 142px;
 		height: 99px;
 	    }
 
-	    a:hover{
+	    a:hover {
 		text-decoration: none;
 	    }
 	}
-    }    
+    }
 
-    .close-button{
+    .close-button {
 	position: absolute;
 	top: 15px;
 	right: 15px;
@@ -879,30 +880,30 @@ div#tools ul li.logout a:hover {
 	cursor: pointer;
     }
 
-    h1{
+    h1 {
 	font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	font-style: normal;
 	text-transform: uppercase;
 	position: relative;
-	top:5px;    
+	top: 5px;
     }
 
-    hr{
+    hr {
 	border-top: 1px dotted white !important;
 	border-bottom: 0px dotted white !important;
 	width: 92%;
     }
 
-    #project_type{
+    #project_type {
 
-	a{
+	a {
 	    width: 142px;
 	    height: 99px;
 	    position: relative;
 	    float: left;
 
-	    span{
+	    span {
 		width: 100%;
 		position: absolute;
 		bottom: 5px;
@@ -913,23 +914,23 @@ div#tools ul li.logout a:hover {
 	    }
 	}
 
-	a.social_innov{
+	a.social_innov {
 	    background-image: image-url('base/project_type-innov.png');
 	}
 
-	a.cultural{
+	a.cultural {
 	    background-image: image-url('base/project_type-culturel.png');
 	}
 
-	a.social_innov:hover{
+	a.social_innov:hover {
 	    background-image: image-url('base/project_type-innov-on.png');
 	}
 
-	a.cultural:hover{
+	a.cultural:hover {
 	    background-image: image-url('base/project_type-culturel-on.png');
 	}
 
-	a:hover span{
+	a:hover span {
 	    color: white;
 	}
     }
@@ -939,19 +940,19 @@ div#tools ul li.logout a:hover {
 /*---- New project style popup ----*/
 
 // FIXME: move to topic-select specific page & blocks files
-#new_project_style_page{
+#new_project_style_page {
     padding: 50px 0px;
     padding-bottom: 60px;
 
-    #new_project_style_popup{
+    #new_project_style_popup {
 	margin-top: 10px;
 
-	a.close-button{
+	a.close-button {
 	    display: none;
 	    visibility: hidden;
 	}
 
-	a:hover{
+	a:hover {
 	    text-decoration: none;
 	}
     }
@@ -986,20 +987,20 @@ div#tools ul li.logout a:hover {
 */
 
 // FIXME: explain purpose ?
-.block-content{
+.block-content {
     position:relative;	
     width: 100%;
 }
 
 // FIXME: please choose between french & english naming..
-.colonne{
+.colonne {
     float: left;
     position: relative;
 }
 
 
 // FIXME: move to block specific css files
-.edito{
+.edito {
     color: #9d9d9d;
     font-size: 15px;
     margin-top: 10px;
@@ -1012,10 +1013,10 @@ div#tools ul li.logout a:hover {
 }
 
 // FIXME: move to block specific css files
-.colonne{
+.colonne {
 
-    a{
-	@include georgia(12px); 
+    a {
+	@include georgia(12px);
 	color: $colorLightBlue;
 
 	padding-top: 5px;
@@ -1023,7 +1024,7 @@ div#tools ul li.logout a:hover {
 	display: block;
     }
 
-    a:hover{
+    a:hover {
 	color:#65e4ff;	
     }
 }
@@ -1034,7 +1035,7 @@ div#tools ul li.logout a:hover {
 
 
 // FIXME: explain purpose ?
-.errorlist{
+.errorlist {
     color: white;
     /*position: absolute;
     top: 45px;
@@ -1045,7 +1046,7 @@ font-style: italic;
 // FIXME: use color constants
 // FIXME: explain purpose
 // FIXME: move elsewhere (block/page specifc css)
-#id_content, #id_nom, #id_prenom, #id_mail, #id_subject/*,.content input*/{
+#id_content, #id_nom, #id_prenom, #id_mail, #id_subject/*,.content input*/ {
     width: 64%;
     border: 1px solid grey;
     color: white;
@@ -1053,15 +1054,15 @@ font-style: italic;
     font-size: 11px;
     margin-top: 3px;
     margin-bottom: 3px;
-    @include border-radius(4px); 
+    @include border-radius(4px);
 }
 
-#id_content{
+#id_content {
     height: 50px;
     padding: 4px;
 }
 
-#id_nom, #id_prenom, #id_mail, #id_subject/*,.content input*/{
+#id_nom, #id_prenom, #id_mail, #id_subject/*,.content input*/ {
     height: 12px;
     padding: 4px;
 }
@@ -1073,7 +1074,7 @@ font-style: italic;
 // FIXME: move to block specific CSS.
 /* --FOOTER---------------------------------------------------------------------------------------------------- */
 
-#footer-zone-top{
+#footer-zone-top {
     clear: both;
     background-color: $darkgrey;
     border-top: 3px solid #0c0c0c;
@@ -1097,12 +1098,12 @@ font-style: italic;
     	}
     }
 
-    #footer{
+    #footer {
 	padding: 20px 0px;
 	color: #b4b4b4;
 	/*background: image-url('base/footer-bg.jpg') no-repeat center;*/
 
-	h1{
+	h1 {
 	    font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
 	    font-size: 16px;
 	    text-transform: uppercase;
@@ -1112,45 +1113,45 @@ font-style: italic;
 	    color: white;
 	}
 
-	.baseline{
+	.baseline {
 	    font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
 	    font-size: 15px;
 	    text-transform: uppercase;
 	    margin-bottom: 10px;
 	}
 
-	a{
+	a {
 	    font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
 	    font-size: 12px;
 	    color: $colorLightBlue;
 	}
 
-	a:hover{
+	a:hover {
 	    color: white;
 	}
 
-	.licences, .licenses p{
+	.licences, .licenses p {
 
 	    font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif !important;
 	    font-size: 12px;
 	}
 
-	.contrib-links.right{
+	.contrib-links.right {
 	    margin-right: 60px;
 	}
 
-	.contrib-links a{
+	.contrib-links a {
 	    font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif !important;
 	    font-size: 12px;
 	    color: #737373;
 	    text-transform: uppercase;
 	}
 
-	.contrib-links a:hover{
+	.contrib-links a:hover {
 	    color: white;
 	}
 
-	.newsletter{
+	.newsletter {
 	    float: left;
 	    background: image-url('base/newsletter-bg.png') no-repeat left 0;
 	    height: 22px;
@@ -1169,7 +1170,7 @@ font-style: italic;
 		width: 152px;
 	    }
 
-	    input[type="submit"]{
+	    input[type="submit"] {
 		background-image: none;
 		background-color: transparent;
 		border: 0px;
@@ -1179,46 +1180,46 @@ font-style: italic;
 	    }
 	}
 
-	.concept{
+	.concept {
 	    width: 100%;
 	    position: relative;
 	    float: left;
 	    margin-bottom: 20px;
 
-	    img{
+	    img {
 		float: left;
 		margin-top: 20px;
 	    }
 
-	    .concept_detail{
+	    .concept_detail {
 		width: 250px;
 		float: right;
 
-		h1{
+		h1 {
 		    padding: 5px 0px;
 		}
 
-		p{
+		p {
 		    margin-bottom: 5px;
 		}
 	    }
-	} 
+	}
 
-	.concept:hover{
+	.concept:hover {
 	    color: white;
-	}        
+	}
     }
 }
 
-#footer-zone-bottom{
+#footer-zone-bottom {
     background-color: #050505;
     padding: 8px 0px;
 
-    #footer-bottom{
+    #footer-bottom {
 
-	ul{
+	ul {
 
-	    li{
+	    li {
 		margin: 0px 10px;
 
 		a {
