@@ -93,6 +93,10 @@ img {
     border: 0px;
 }
 
+ul{
+    padding:0px;
+    margin:0px;
+    }
 
 #focus-menu ul{
     padding: 0px;
@@ -104,7 +108,6 @@ img {
 	padding: 0px;
 	margin: 0px;
     }
-
 }
 
 // FIXME: please, use mixins... or page/block specific styles
@@ -214,8 +217,13 @@ img {
 }
 
 
-.social-login strong {
-    color: $colorLightBlue !important;
+.social-login {
+    
+    list-style-type:none;
+    display:inline;
+    strong{
+        color: $colorLightBlue !important;
+    }
 }
 
 /*---- HEADER ----*/
@@ -766,6 +774,15 @@ div#tools ul li.logout a:hover {
 	}
 
     }
+    ul{
+
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
 }
 
 
@@ -1211,15 +1228,16 @@ font-style: italic;
     background-color: #050505;
     padding: 8px 0px;
 
-    #footer-bottom {
-
-	ul {
-
-	    li {
-		margin: 0px 10px;
-
-		a {
-		    color: #4b4b4b;
+    #footer-bottom{
+	ul{
+            padding:0px;
+            margin:0px;
+	    li{
+		margin:0px 10px;
+                list-style-type:none;
+                display:inline;
+		a{
+		    color:#4b4b4b;
 		}
 
 		a:hover {

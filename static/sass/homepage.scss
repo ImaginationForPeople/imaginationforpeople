@@ -120,6 +120,16 @@ hr{
             overflow:hidden;
         
             .project_slider{
+                ul{
+                    padding:0px;
+                    margin:0px;
+                    li{
+                        list-style-type:none;
+                        display:inline;
+                        padding:0px;
+                        margin:0px;
+                    }
+                }
             
                 .focus_project{
                     position:relative;
@@ -603,12 +613,14 @@ hr{
                 ul.profile_actions{
                     position:relative;
                     margin:0px;
-
+                    padding:0px;
+                    
                     li{
                         float:left;
                         position:relative;
                         margin-right:3px;
-                    
+                        list-style-type:none;
+                        display:inline;
                         .message_count{
                             color: white;
                             position: absolute;
@@ -629,9 +641,13 @@ hr{
             }
             
             #newmembers{                
-            
+                padding:0px;
+                margin:0px;
                 li{
                     margin:1px 2px;
+                    list-style-type:none;
+                    display:inline;
+                    padding:0px;
                     float:left;
                     position:relative;
                     background-color:$normalgrey;
