@@ -56,7 +56,7 @@
 
 .separator{
 	height:2px;
-	background-image:url(../images/base/separator.jpg);
+	background-image: image-url("base/separator.jpg");
 	background-repeat:repeat-x;
 	position:relative;
 	margin-top:15px;
@@ -64,7 +64,7 @@
 }
 
 hr{
-    background-image:url(../images/base/separator.jpg);
+    background-image: image-url("base/separator.jpg");
     background-repeat:repeat-x;
     background-position:bottom;
     width:100%;
@@ -87,7 +87,7 @@ hr{
 
 
 .edit1:hover{
-	background-image:url("../images/project/edit1.png");
+	background-image: image-url("project/edit1.png");
 	background-position:right center;
 	background-repeat:no-repeat;
 	display:block inline;
@@ -96,7 +96,7 @@ hr{
 }
 
 .edit2{
-	background-image:url("../images/project/edit2.png");
+	background-image: image-url("project/edit2.png");
 	background-position:right center;
 	background-repeat:no-repeat;
 	display:inline-block;

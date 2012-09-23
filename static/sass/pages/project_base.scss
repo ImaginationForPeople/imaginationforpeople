@@ -10,6 +10,11 @@ $sheet-sprite-dimensions: true;
 @import "project/sheet/*.png"; // */
 @include all-sheet-sprites;
 
+$i4p-action-sprite-dimensions: true;
+$i4p-action-sprites: sprite-map("i4p-action/*.png");
+@import "i4p-action/*.png"; // */
+// @include all-i4p-action-sprites; // NO AUTO INCLUDE
+
 // quick fix for a broken thing
 #langage-tool { visibility: hidden; display: none; }
 
@@ -247,7 +252,7 @@ $sheet-sprite-dimensions: true;
 
 .project-references {
     &.references-block {
-	@include i4p-block;
+	@include i4p-layout-block;
     }
 
     h2 {
@@ -259,32 +264,85 @@ $sheet-sprite-dimensions: true;
     }
 
     .references-links {
-	ul li {
-	    display: block;
+	position: relative;
 
-	    a {
-		color: black;
+	ul {
+	    margin-bottom: 1em;
+	    min-height: 10em;
+
+	    .link-item {
+		@include i4p-transition;
+		display: block;
+		padding-left: 1em;
+		background-color: white;
+
+		&:hover {
+		    background-color: $colorLightDarkGrey;
+		}
+
+		a {
+		    color: black;
+		}
 	    }
 	}
 
-
 	.button {
 	    @include i4p-button-flat;
-	}
 
+	    .action-add {
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite(add-black); 
+	    }
+
+	    &:hover .action-add {
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite('add-white'); 
+	    }
+	}
     }
 
     .references-documents {
-	ul li {
-	    display: block;
+	position: relative;
 
-	    a {
-		color: black;
-	    }
+	ul {
+	    margin-bottom: 1em;
+	    min-height: 10em;
+
+	    .document-item {
+		@include i4p-transition;
+		display: block;
+		padding-left: 1em;
+		background-color: white;
+
+		&:hover {
+		    background-color: $colorLightDarkGrey;
+		}
+
+		a {
+		    color: black;
+		}
+	    } 
 	}
+
 
 	.button {
 	    @include i4p-button-flat;
+
+	    .action-add {
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite(add-black); 
+	    }
+
+	    &:hover .action-add {
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite('add-white'); 
+	    }
 	}
     }
 }

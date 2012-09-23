@@ -8,20 +8,23 @@
 
     @include i4p-font-title($sizeTextNormal);
     @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
-
     @include bootstrap-makeColumn(3);
     @include i4p-transition;
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
 
+    float: none;
+    position: static;
     display: block;
     border: none;
     color: $colorMedDarkGrey;
     margin: 0;
-    padding: 0;
+    padding: 0.2em;
     text-align: center;
     text-shadow: none;
     margin-left: auto;
     margin-right: auto;
-    background-color: $colorMedLightGrey;
+    background-color: $colorLightDarkGrey;
     background-image: none;
     box-shadow: none;
 
@@ -39,6 +42,7 @@
     @include i4p-font-button($sizeTextNormal);
     @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
     @include i4p-transition;
+    @include border-radius($sizeRadiusSmall);
 
     box-shadow: none;
     border: $sizeBorderSmall solid $colorPaleBlue;
