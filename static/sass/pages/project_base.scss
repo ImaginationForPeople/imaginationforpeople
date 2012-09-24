@@ -187,6 +187,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     ul {
 
 	li {
+	    @include i4p-transition;
 	    padding: $sizeMarginSmall;
 	    padding-top: $sizeMarginSmall * 1.5;
 	    padding-bottom: $sizeMarginSmall * 1.5;
@@ -195,9 +196,22 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	    border-bottom: 1px solid darken($colorDarkGrey,10%);
 	    display: block;
 
-	    &:first-child,
+	    &:first-child {
+		@include border-radius(0 $sizeRadiusSmall 0 0);
+	    }
+
 	    &:last-child {
-		@include border-radius(0 $sizeRadiusSmall $sizeRadiusSmall 0);
+		@include border-radius(0 0 $sizeRadiusSmall 0);
+	    }
+
+	    &:hover {
+		border-bottom: 1px solid transparent;
+		border-top: 1px solid transparent;
+		background-color: darken($colorDarkGrey,3%);
+	    }
+
+	    a {
+		display: block;
 	    }
 	}
 	
