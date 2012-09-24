@@ -34,7 +34,7 @@
     }
 }
 
-@mixin i4p-button-fancy {
+@mixin i4p-button-fancy-bordered {
     @include reset-box-model;
     @include reset-font;
     @include reset-focus;
@@ -62,3 +62,34 @@
     }
 }
 
+@mixin i4p-button-fancy-dotted {
+    @include border-radius($sizeRadiusSmall);
+    @include i4p-transition( all .5s ease );
+    display: block;
+    background-color: $colorLightBlue;
+
+    box-shadow: inset 0 0 0 $colorLightBlue;
+    background-image: image-url("tags/icon-plus-white-big.png"), image-url("base/background-white-dots.png");
+
+    background-opacity: 1, 1, 0;
+    background-repeat: no-repeat, repeat;
+    background-position: 190px center, top left;
+
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 75px;
+
+    font-size: $sizeTextBig;
+    font-family: $fontOpenSans;
+    font-stretch: condensed;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 2em;
+
+    &:hover {
+	text-decoration: none;
+	background-color: darken($colorLightBlue,5%);
+    }
+}
