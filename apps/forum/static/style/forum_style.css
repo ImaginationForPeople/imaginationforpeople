@@ -4,6 +4,78 @@
 /* Variables for fonts*/
 /* "Trebuchet MS", sans-serif;*/
 /* Buttons */
+
+
+/* =============================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+audio, canvas, video { display: inline-block; *display: inline; *zoom: 1; }
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
+
+
+/* =============================================================================
+                               RESET CSS
+   ========================================================================== */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, fieldset, textarea
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;} 
+
+html,body{height:100%;}
+
+a{text-decoration:none;cursor:pointer;}
+
+
+ 
+li{	
+	list-style:none;}
+
+
+button, a{
+	cursor:pointer;}
+
+
+/* =============================================================================
+                           FIN RESET CSS
+============================================================================== */
+
+
+
+
+
+
+/* =============================================================================
+                           GENERAL HTML STYLES
+============================================================================== */
+/* General styles for gradients */
+/* Receive exactly positions for background Sprite  */
+/* CSS3 Elements */
+/* Library of predifined less functions styles */
+/* ----- General HTML Styles----- */
+
+body {
+  background: #f8f8f8;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  font-family: Arial;
+}
+
+
 .button-style-hover {
   background-color: #cde5e9;
   background-repeat: no-repeat;
@@ -18,65 +90,21 @@
   -moz-text-shadow: 0px 1px 0px #c6d9dd;
   -webkit-text-shadow: 0px 1px 0px #c6d9dd;
 }
-/* General styles for gradients */
-/* Receive exactly positions for background Sprite  */
-/* CSS3 Elements */
-/* Library of predifined less functions styles */
-/* ----- General HTML Styles----- */
-body {
-  background: #FFF;
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-  color: #000;
-  font-family: Arial;
-}
-div {
-  margin: 0 auto;
-  padding: 0;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-ul,
-li,
-dl,
-dt,
-dd,
-form,
-img,
-p {
-  margin: 0;
-  padding: 0;
-  border: none;
-}
-label {
-  vertical-align: middle;
-}
+
+
 hr {
   border: none;
   border-top: 1px dashed #ccccce;
 }
-input,
-select {
-  vertical-align: middle;
-  font-family: Trebuchet MS, "segoe ui", Helvetica, Tahoma, Verdana, MingLiu, PMingLiu, Arial, sans-serif;
-  margin-left: 0px;
-}
-textarea:focus,
-input:focus {
-  outline: none;
-}
+
 iframe {
   border: none;
 }
 p {
-  font-size: 14px;
-  line-height: 140%;
-  margin-bottom: 6px;
+  line-height:normal;
+  font-size: 11px;
+  font-family: 'OpenSans', Arial, sans-serif;
+  color:706f6f;
 }
 a {
   color: #1b79bd;
@@ -91,12 +119,7 @@ h3 {
   font-size: 19px;
   padding: 3px 0 3px 5px;
 }
-ul {
-  list-style: disc;
-  margin-left: 20px;
-  padding-left: 0px;
-  margin-bottom: 1em;
-}
+
 ol {
   list-style: decimal;
   margin-left: 30px;
@@ -105,9 +128,6 @@ ol {
 }
 td ul {
   vertical-align: middle;
-}
-li input {
-  margin: 3px 3px 4px 3px;
 }
 pre {
   font-family: Consolas, Monaco, Liberation Mono, Lucida Console, Monospace;
@@ -135,6 +155,7 @@ blockquote {
 /* http://pathfindersoftware.com/2007/09/developers-note-2/ */
 * html .clearfix,
 * html .paginator {
+  zoom:1;
   height: 1;
   overflow: visible;
   min-height: 1%;
@@ -142,11 +163,15 @@ blockquote {
 .clearfix:after,
 .paginator:after {
   clear: both;
-  content: ".";
+  content: "";
   display: block;
   height: 0;
   visibility: hidden;
 }
+
+div.clear{
+clear:both;}
+
 .badges a {
   color: #763333;
   text-decoration: underline;
@@ -180,7 +205,17 @@ body.user-messages {
   margin: 0 auto;
   padding: 0;
 }
-/* ----- Notify message bar , check blocks/system_messages.html ----- */
+
+/* =============================================================================
+                         FIN  GENERAL HTML STYLES
+============================================================================== */
+
+
+
+
+/* =============================================================================
+                         NOTIFY MESSAGE BAR, CHECK blocks/system_messages.html
+============================================================================== */
 .notify {
   position: fixed;
   top: 0px;
@@ -214,18 +249,23 @@ body.user-messages {
 #closeNotify:hover {
   background: -26px -5px url(../images/sprites.png) no-repeat;
 }
+
+/* =============================================================================
+                       FIN  NOTIFY MESSAGE BAR (check blocks/system_messages.html)
+============================================================================== */
+
+
+
+
+/* =============================================================================
+                               HEADER/MENUS/SEARCH BAR
+============================================================================== */
 /* ----- Header, check blocks/header.html ----- */
 #header {
   margin-top: 0px;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
 }
-.content-wrapper {
-  /* wrapper positioning class */
 
-  width: 950px;
-  margin: auto;
-  position: relative;
-}
 #logo img {
   padding: 5px 0px 5px 0px;
   height: 75px;
@@ -276,7 +316,7 @@ body.user-messages {
   /*display: block;
   float: left;*/
   color: #656565;
-  font-family: 'Open Sans Condensed',Arial,sans-serif;
+  font-family: 'Open Sans ',Arial,sans-serif;
   font-size: 17px !important;
   padding: 0px 0px 0px 35px;
   height: 25px;
@@ -486,54 +526,444 @@ body.user-messages {
   -moz-text-shadow: 0px 1px 0px #c6d9dd;
   -webkit-text-shadow: 0px 1px 0px #c6d9dd;
 }
+
+
+/* =============================================================================
+                              FIN HEADER/MENUS/SEARCH BAR
+============================================================================== */
+
+
+
+
+/* =============================================================================
+                            STRUCTURES EN 2 COLONNES
+============================================================================== */
 /* ----- Content layout, check two_column_body.html or one_column_body.html ----- */
+.content-wrapper {
+  /* wrapper positioning class */
+  zoom:1;
+  width: 960px;
+  margin: auto;
+  position: relative;
+}
+
+.content-wrapper:after{
+  clear: both;
+  content: "";
+  display: block;}
+
 #ContentLeft {
+  zoom:1;
   width: 680px;
   float: left;
   position: relative;
   padding-bottom: 10px;
 }
+
+#ContentLeft:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
 #ContentRight {
   float: left;
   padding: 0 0px 10px 0px;
-  margin-left: 50px;
-  width: 200px;
+  margin-left:20px;
+  width: 240px;
 }
 #ContentFull {
   float: left;
-  width: 960px;
+  width: 960px;}
+/* =============================================================================
+                            FIN STRUCTURES EN 2 COLONNES
+============================================================================== */
+
+
+
+
+
+
+
+
+/* =============================================================================
+                                  LISTE DE QUESTIONS (colonne gauche)
+============================================================================== */
+/* ----- Question list , check main_page/content.html and macros/macros.html----- */
+ul#question-list {
+  position: relative;
+  clear:both;
+  padding: 0;
+  margin:0; /*override de ul,ol{margin: 0 0 9px 25px;} dans white_page.css*/
+  width: 100%;
+  
 }
+li.short-summary {
+  zoom:1;
+  display:block;/*override display:inline dans imaginationforpeople:8001/static/syle.css*/
+  position: relative;
+  filter: inherit;
+  padding:0;
+  margin:0;
+  padding-top:25px;
+  padding-bottom:25px;
+  padding-left:12px;
+  padding-right:12px;  
+  background: url(http://www.francois-rosenbaum.com/staging/imaginationforpeople/ombre_questions.png) center bottom no-repeat;
+}
+
+li.short-summary:hover{
+	background:none;
+	background-color:#ebebeb;
+	-webkit-border-radius: 5px;    
+    border-radius: 5px;}
+
+li.short-summary:after{
+  clear: both;
+  content: "";
+  display: block;}
+
+li.short-summary  p {
+  line-height:normal;
+  font-size: 11px;
+  font-style:italic;
+  font-family: 'OpenSans', Arial, sans-serif;
+  color:706f6f;
+}
+
+li.short-summary div.wrap_question_description{
+	float:left;
+	width:465px;}
+	
+li.short-summary div.wrap_question_description h2 a,
+li.short-summary div.wrap_question_description h2{
+  line-height:normal;
+  font-size: 15px;
+  text-transform:uppercase;
+  font-weight: bold;
+  padding: 0;
+  margin:0;
+  margin-bottom: 7px;
+  color:#242424;
+  font-family: 'OpenSans', Arial, sans-serif;
+}
+
+
+
+/*+++ Infos question (date, temps restant, nbr vues, nbr réponses, nbr votes) ++++*/
+li.short-summary div.infos_question{
+	float:right;
+	width:170px;}
+	
+li.short-summary div.infos_question p:first-child {
+  font-size: 11px;
+  font-style:italic;
+  font-family: 'OpenSans', Arial, sans-serif;
+  color:706f6f;
+  margin-bottom:10px;
+	}	
+	
+li.short-summary div.infos_question p:first-child span.auteur_question{
+	text-decoration:underline;
+	}	
+	
+li.short-summary div.infos_question p.temps_restant{
+	font-weight:bold;
+	font-style:italic;
+	font-size:12px;
+  margin-bottom:10px;
+	}	
+
+li.short-summary div.infos_question div.infos_pictos{zoom:1;}
+li.short-summary div.infos_question div.infos_pictos:after{
+  clear: both;
+  content: "";
+  display: block;}
+  
+li.short-summary div.infos_question a{
+	float:left;
+	display:block;
+	padding:0;
+	margin:0;
+	margin-left:10px;}
+li.short-summary div.infos_question a:first-child{
+	margin-left:0;}
+
+li.short-summary div.infos_question a.nbr_reponses{
+	height:18px;
+	padding-left:25px;
+	color:#706f6f;
+    background: url(../images/picto_nbr_reponse.png) no-repeat;
+	}	
+	
+li.short-summary div.infos_question a.nbr_vues{
+	height:18px;
+	padding-left:29px;
+	color:#706f6f;
+    background: url(../images/picto_nbr_vues.png) no-repeat;
+	}	
+	
+li.short-summary div.infos_question a.nbr_votes{
+	height:18px;
+	padding-left:20px;
+	color:#706f6f;
+    background: url(../images/picto_nbr_votes.png) no-repeat;
+	}	
+	
+
+/*+++ Fin infos question (date, temps restant, nbr vues, nbr réponses, nbr votes) ++++*/
+
+
+
+/* ----- Question list Paginator , check main_content/pager.html and macros/utils_macros.html----- */
+.evenMore {
+  font-size: 13px;
+  color: #707070;
+  padding: 15px 0px 10px 0px;
+  clear: both;
+}
+.evenMore a {
+  text-decoration: underline;
+  color: #1b79bd;
+}
+.pager {
+  margin-top: 10px;
+  margin-bottom: 16px;
+}
+.pagesize {
+  margin-top: 10px;
+  margin-bottom: 16px;
+  float: right;
+}
+.paginator {
+  padding: 5px 0 10px 0;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.paginator .prev a,
+.paginator .prev a:visited,
+.paginator .next a,
+.paginator .next a:visited {
+  background-color: #fff;
+  color: #777;
+  padding: 2px 4px 3px 4px;
+}
+.paginator a {
+  color: #7ea9b3;
+}
+.paginator .prev {
+  margin-right: .5em;
+}
+.paginator .next {
+  margin-left: .5em;
+}
+.paginator .page a,
+.paginator .page a:visited,
+.paginator .curr {
+  padding: .25em;
+  background-color: #fff;
+  margin: 0em .25em;
+  color: #ff;
+}
+.paginator .curr {
+  background-color: #8ebcc7;
+  color: #fff;
+  font-weight: bold;
+}
+.paginator .next a,
+.paginator .prev a {
+  color: #7ea9b3;
+}
+.paginator .page a:hover,
+.paginator .curr a:hover,
+.paginator .prev a:hover,
+.paginator .next a:hover {
+  color: #8C8C8C;
+  background-color: #E1E1E1;
+  text-decoration: none;
+}
+.paginator .text {
+  color: #777;
+  padding: .3em;
+}
+.paginator .paginator-container-left {
+  padding: 5px 0 10px 0;
+}
+
+
+/* =============================================================================
+                               FIN  LISTE DE QUESTIONS (colonne gauche)
+============================================================================== */
+
+
+
+/* =============================================================================
+                                 PAGINATION
+============================================================================== */	
+div.pagination_1{
+	text-align:center;}
+	
+div.pagination_1 ul{zoom:1; text-align:center;display:inline-block;}
+div.pagination_1 ul:after{
+    clear: both;
+    content: "";
+    display: block;}
+
+div.pagination_1 ul,
+div.pagination_1 li{
+	margin:0;
+	padding:0;}
+	
+div.pagination_1 li a{
+  font-size: 18px;
+  text-transform:uppercase;
+  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  color:706f6f;}
+div.pagination_1 li a:hover{
+	color:#04add1;
+	text-decoration:none;
+}
+div.pagination_1 li{
+	float:left;
+	display:block;
+	padding-top:10px;
+	padding-left:2px;
+	padding-right:2px;
+	padding-bottom:10px;}
+ 
+div.pagination_1 li.page_precedente{
+	padding-left:0;
+	padding-right:25px;}
+ 
+div.pagination_1 li.page_precedente a{
+  padding-left:12px;
+  padding-right:0;
+  background: url(../images/pagination_1/chevron_gauche.png) left center no-repeat;
+	}
+div.pagination_1 li.page_precedente a:hover{
+  background: url(../images/pagination_1/chevron_gauche_hover.png) left center no-repeat;}
+  
+div.pagination_1 li.page_suivante{
+	padding-left:25px;}
+		
+div.pagination_1 li.page_suivante a{
+  padding-right:12px;
+  background: url(../images/pagination_1/chevron_droit.png) right center no-repeat;
+	}
+div.pagination_1 li.page_suivante a:hover{
+  background: url(../images/pagination_1/chevron_droit_hover.png) right center no-repeat;}
+	
+div.pagination_1 li.page_active{
+	color:#ffffff;
+	width:25px;
+  background: url(../images/pagination_1/cercle.png) center center no-repeat;
+	}
+div.pagination_1 li.page_active a:hover,
+div.pagination_1 li.page_active a{
+	color:#ffffff;}
+
+/* =============================================================================
+                              FIN PAGINATION
+============================================================================== */
+
+
+
+/* =============================================================================
+                                   TAGS
+============================================================================== */
+ul.suite_tags{
+	display:inline-block;
+	margin:0;
+	padding:0;
+	margin-top:10px;
+	zoom:1;
+	}
+	
+ul.suite_tags:after{
+    clear: both;
+    content: "";
+    display: block;}
+
+ul.suite_tags{
+	zoom:1;}
+
+ul.suite_tags li{
+	position:relative;
+	float:left;
+	height:18px;
+	padding-left:18px;
+	padding-right:20px;
+	border-top:1px solid #ffffff;
+	border-bottom:1px solid #ffffff;
+	background-color:#c9c9c9;}
+
+ul.suite_tags li:first-child{
+	padding-left:10px;
+    border-left:1px solid  #ffffff;
+	-webkit-border-radius: 6px 0px 0px 6px;
+    border-radius: 6px 0px 0px 6px;
+    }
+
+ul.suite_tags li div.part_tag{}
+
+ul.suite_tags li div.part_tag a{
+    font-family: 'OpenSans', Arial, sans-serif;
+    font-style:italic;
+    font-weight:bold;
+	color:#706f6f;
+	line-height:18px;
+	font-size:11px;}
+
+ul.suite_tags li div.part_pointe{
+	position:absolute;
+	z-index:2;
+	width:9px;
+	height:20px;
+	top:-1px;
+	right:-9px;
+	background: url(http://www.francois-rosenbaum.com/staging/imaginationforpeople/pointe_tag_question.png) no-repeat;}
+/* =============================================================================
+                                  FIN TAGS
+============================================================================== */
+
+
+
+
+
+
+
+
+
+/* =============================================================================
+                                    WIDGETS
+============================================================================== */
 /* ----- Sidebar Widgets Box, check main_page/sidebar.html or question/sidebar.html ----- */
 .box {
-  padding: 4px 0px 10px 0px;
-  width: 100%;
+	position:relative;
+	margin-bottom:20px;
   /* widgets for question template */
 
   /* notify by email box */
 
 }
-.box p {
+/*.box p {
   margin-bottom: 4px;
   color: #707070;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
-}
+}*/
 .box p.info-box-follow-up-links {
   text-align: right;
   margin: 0;
 }
 .box h2 {
   padding-left: 0;
-  background: #eceeeb;
-  height: 30px;
-  line-height: 30px;
-  text-align: right;
-  font-size: 18px !important;
+  text-transform:uppercase;
+  font-size: 16px;
   font-weight: normal;
-  color: #656565;
+  color: #242424;
   padding-right: 10px;
   margin-bottom: 10px;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
-  width: 190px;
 }
 .box h3 {
   color: #4a757f;
@@ -543,24 +973,21 @@ body.user-messages {
   font-family: 'Open Sans Condensed', Arial, sans-serif;
   padding-left: 0px;
 }
-.box .contributorback {
-  background: #eceeeb url(../images/contributorsback.png) no-repeat center left;
-}
+
 .box label {
-  color: #707070;
-  font-size: 15px;
+  color: #242424;
+  font-size: 12px;
   vertical-align: bottom;
   display: inline;
   text-align: left;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
+    font-family: 'OpenSans', Arial, sans-serif;
 }
 .box #displayTagFilterControl label,
 .box #emailTagFilterControl label {
   /*Especial width just for the tag filter boxes in index page*/
 
-  width: 160px;
 }
-.box ul {
+/*.box ul {
   margin-left: 22px;
 }
 .box li {
@@ -569,7 +996,7 @@ body.user-messages {
   line-height: 20px;
   margin-bottom: 10px;
   color: #707070;
-}
+}*/
 .box ul.tags {
   list-style: none;
   margin: 0;
@@ -577,11 +1004,8 @@ body.user-messages {
   line-height: 170%;
   display: block;
 }
-.box #displayTagFilterControl p label {
-  color: #707070;
-  font-size: 15px;
-}
-.box .inputs #interestingTagInput,
+
+/*.box .inputs #interestingTagInput,
 .box .inputs #ignoredTagInput,
 .box .inputs #subscribedTagInput,
 .box .inputs #ab-tag-search {
@@ -589,12 +1013,12 @@ body.user-messages {
   height: 25px;
   width: 140px;
   margin-bottom: 0px;
-}
+}*/
 .box .inputs #ab-tag-search {
   width: 138px;
 }
-.box .inputs #interestingTagAdd,
-.box .inputs #ignoredTagAdd,
+/*.box .inputs #interestingTagAdd,
+.box .inputs #ignoredTagAdd,*/
 .box .inputs #subscribedTagAdd,
 .box .inputs #ab-tag-search-add {
   border: 0;
@@ -632,13 +1056,10 @@ body.user-messages {
   -moz-border-radius: 4px;
   -webkit-border-radius: 4px;
   -khtml-border-radius: 4px;
-  /*padding-right: 0px; 
-  padding-left: 0px; 
-  margin-top: 0px; */
   margin-left: 1px;
 }
-.box .inputs #interestingTagAdd:hover,
-.box .inputs #ignoredTagAdd:hover,
+/*.box .inputs #interestingTagAdd:hover,
+.box .inputs #ignoredTagAdd:hover,*/
 .box .inputs #ab-tag-search-add:hover {
   background-color: #cde5e9;
   background-repeat: no-repeat;
@@ -770,24 +1191,226 @@ body.user-messages {
   font-size: 13px;
   line-height: 1.3;
 }
-/* tips and markdown help are widgets for ask template */
-#tips li {
+
+/*++++++++++++ BOX TIPS & BOX MARKDOWN HELP ++++++++++++++*/
+
+div#tips h2{
+	line-height:15px;
+	margin-bottom:3px;
+}
+
+div#tips ul{
+	position:relative;
+	background-color:#242424;
+	-webkit-border-radius: 4px;    
+    border-radius: 4px;
+	padding:15px;
+	}
+	
+div#tips li {
+	padding-left:25px;
+	padding-bottom:15px;
+	background: url(../images/widget_tips/picto_ampoule.png) no-repeat;
+}
+
+div#tips ul li.pointe_cadre{
+	position:absolute;
+	top:7px;
+	left:-7px;
+	width:7px;
+	height:15px;
+	padding-left:25px;
+	padding-bottom:15px;
+	background: url(../images/widget_tips/pointe_cadre.png) no-repeat;}
+
+div#tips li p{
+	font-size:12px;
+	color:#ffffff;
+}
+
+
+div#markdownHelp h2{
+	line-height:15px;
+	margin-bottom:3px;
+}
+
+div#markdownHelp ul{
+	background-color:#242424;
+	-webkit-border-radius: 4px;    
+    border-radius: 4px;
+	padding:15px;
+	}
+		
+div#markdownHelp ul li {
+	padding-left:25px;
+	padding-bottom:15px;
+	background: url(../images/widget_markdown_help/puce.png) 3px 4px no-repeat;
+}
+
+div#markdownHelp li p{
+	font-size:12px;
+	color:#ffffff;
+}
+
+
+/*++++++++++++ FIN BOX TIPS & BOX MARKDOWN HELP ++++++++++++++*/
+
+
+/*++++++++++++ BOX CONTRIBUTORS ++++++++++++++*/
+div#contrib-users h2 {
+  padding-left:29px;
+  background:  url(../images/widget_contributors/picto_contributors.png) 0px 7px no-repeat;
+}
+
+div#contrib-users a.voir_tout{
+	display:block;
+	position:absolute;
+	right:0;
+	top:8px;
+	line-height:normal;
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:11px;
+	color:#242424;
+	padding-right:15px;
+  background:  url(../images/widget_contributors/chevron_droit.png) right 3px no-repeat;}
+/*++++++++++++ FIN BOX CONTRIBUTORS ++++++++++++++*/
+
+
+/*++++++++++++ BOX TAG SELECTOR ++++++++++++++*/
+div#tagSelector h2 {
+  padding-left:21px;
+  background:  url(../images/widget_tag_selector/picto_tag.png) 0px 7px no-repeat;
+}
+
+div#tagSelector h3 {
+  font-family: 'OpenSans', Arial, sans-serif;text-transform:uppercase;
+  font-size: 12px;
+  text-transform:uppercase;
+  font-weight: bold;
+  color: #706f6f;
+  margin-bottom:10px;
+}
+
+div#tagSelector div.inputs {
+  clear: both;
+  float: none;
+  margin-bottom: 10px;
+}
+
+div#tagSelector ul.liste_tags{
+	zoom:1;
+    margin-bottom:10px;}
+div#tagSelector ul.liste_tags:after {	
+    content: "";
+    display: block;
+    clear: both;}
+
+div#tagSelector ul.liste_tags li{
+	zoom:1;
+	float:left;
+	margin-right:4px;
+	margin-bottom:4px;
+	padding-left:7px;
+	padding-right:7px;
+	padding-top:2px;
+	padding-bottom:3px;
+	background-color:#dedede;
+	-webkit-border-radius: 6px;    
+    border-radius: 6px;}
+div#tagSelector ul.liste_tags li:after {	
+    content: "";
+    display: block;
+    clear: both;}
+
+div#tagSelector ul.liste_tags li p{
+	float:left;
+	font-size:12px;
+	font-style:italic;
+	font-weight:bold;
+	color:#8f8f8f;
+	padding-right:7px;}
+
+div#tagSelector ul.liste_tags li a{
+	float:right;
+	display:block;
+	text-indent:-5000px;
+	width:9px;
+	height:9px;
+	margin-top:4px;
+    background:  url(../images/widget_tag_selector/croix.png) left top no-repeat;
+	}
+div#tagSelector ul.liste_tags li a:hover{
+    background:  url(../images/widget_tag_selector/croix.png) left bottom no-repeat;
+	}
+	
+div#tagSelector div.inputs {
+	zoom:1;}
+div#tagSelector div.inputs:after {	
+    content: "";
+    display: block;
+    clear: both;}
+
+div#tagSelector div.inputs input[type=text]{
+	float:left;
+	border:1px solid #8b8b8b;
+	-webkit-border-radius: 3px;    
+    border-radius: 3px;
+	width:185px;
+}
+
+div#tagSelector div.inputs input[type=submit]{
+	float:left;
+	color:#ffffff;
+    font-family: 'OpenSans', Arial, sans-serif;text-transform:uppercase;
+    font-size: 20px;
+	line-height:20px;
+	margin-top:-1px;
+	margin-left:5px;
+	font-weight:bold;
+	border:3px solid #c7e4ea;
+	-webkit-border-radius: 5px;    
+    border-radius: 5px;
+	background: rgb(74,186,233);
+	background: -moz-linear-gradient(top,  rgba(74,186,233,1) 0%, rgba(57,144,180,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(74,186,233,1)), color-stop(100%,rgba(57,144,180,1)));
+	background: -webkit-linear-gradient(top,  rgba(74,186,233,1) 0%,rgba(57,144,180,1) 100%);
+	background: -o-linear-gradient(top,  rgba(74,186,233,1) 0%,rgba(57,144,180,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(74,186,233,1) 0%,rgba(57,144,180,1) 100%);
+	background: linear-gradient(to bottom,  rgba(74,186,233,1) 0%,rgba(57,144,180,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4abae9', endColorstr='#3990b4',GradientType=0 );
+}
+
+div#tagSelector div.inputs input[type=submit]:hover{
+	background: rgb(57,144,180);
+	background: -moz-linear-gradient(top,  rgba(57,144,180,1) 0%, rgba(74,186,233,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(57,144,180,1)), color-stop(100%,rgba(74,186,233,1)));
+	background: -webkit-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(74,186,233,1) 100%);
+	background: -o-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(74,186,233,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(74,186,233,1) 100%);
+	background: linear-gradient(to bottom,  rgba(57,144,180,1) 0%,rgba(74,186,233,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3990b4', endColorstr='#4abae9',GradientType=0 );
+}
+
+div#tagSelector div#displayTagFilterControl p label {
   color: #707070;
-  font-size: 13px;
-  list-style-image: url(../images/tips.png);
+  font-size: 12px;
 }
-#tips a {
-  font-size: 16px;
-}
-#markdownHelp li {
-  color: #707070;
-  font-size: 13px;
-}
-#markdownHelp a {
-  font-size: 16px;
-}
+/*++++++++++++ FIN BOX TAG SELECTOR ++++++++++++++*/
+
+/* =============================================================================
+                               FIN WIDGETS
+============================================================================== */
+
+
+
+
+
+/*===================================================================================
+                             BARRE DE TRIE + BTN RSS 
+====================================================================================*/
 /* ----- Sorting top Tab, check main_page/tab_bar.html ------*/
 .tabBar {
+  zoom:1;
   background-color: #eff5f6;
   height: 30px;
   margin-bottom: 3px;
@@ -801,6 +1424,13 @@ body.user-messages {
   -webkit-border-radius: 5px;
   -khtml-border-radius: 5px;
 }
+
+.tabBar:after {	
+    content: "";
+    display: block;
+    clear: both;}
+
+
 .tabBar h2 {
   float: left;
 }
@@ -875,6 +1505,14 @@ body.user-messages {
 .rss:hover {
   color: #F4A731 !important;
 }
+
+
+/*===================================================================================
+                          FIN BARRE DE TRIE + BTN RSS 
+====================================================================================*/
+
+
+
 /* ----- Headline, containing number of questions and tags selected, check main_page/headline.html ----- */
 #questionCount {
   font-weight: bold;
@@ -910,203 +1548,7 @@ ul#searchTags {
   text-decoration: underline;
   color: #1b79bd;
 }
-/* ----- Question list , check main_page/content.html and macros/macros.html----- */
-#question-list {
-  float: left;
-  position: relative;
-  background-color: #FFF;
-  padding: 0;
-  width: 100%;
-}
-.short-summary {
-  position: relative;
-  filter: inherit;
-  padding: 10px 0 3px 0;
-  border-bottom: 1px solid #DDDBCE;
-  margin-bottom: 1px;
-  overflow: hidden;
-  width: 100%;
-  float: left;
-  /*background: url(../images/summary-background.png) repeat-x;*/
 
-}
-.short-summary h2 {
-  font-size: 20px;
-  font-weight: normal;
-  line-height: 26px;
-  padding-left: 0;
-  margin-bottom: 7px;
-  display: block;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
-}
-.short-summary a {
-  color: #464646;
-}
-.short-summary .userinfo {
-  text-align: right;
-  line-height: 16px;
-  font-family: Arial;
-  padding-right: 4px;
-}
-.short-summary .userinfo .timeago,
-.short-summary span.anonymous {
-  font-size: 11px;
-  clear: both;
-  font-weight: normal;
-  color: #555;
-}
-.short-summary .userinfo a {
-  font-weight: bold;
-  font-size: 11px;
-}
-.short-summary .counts {
-  float: right;
-  margin: 4px 0 0 5px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
-}
-.short-summary .counts .item-count {
-  font-size: 20px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
-}
-.short-summary .counts .votes div,
-.short-summary .counts .views div,
-.short-summary .counts .answers div,
-.short-summary .counts .favorites div {
-  font-size: 14px;
-  line-height: 14px;
-  color: #646464;
-}
-.short-summary .tags {
-  margin: 0 0 0 1px;
-}
-.short-summary .votes,
-.short-summary .answers,
-.short-summary .favorites,
-.short-summary .views {
-  text-align: center;
-  margin: 0 3px;
-  padding: 8px 2px 0px 2px;
-  width: 51px;
-  float: right;
-  height: 44px;
-  border: #dbdbd4 1px solid;
-}
-.short-summary .votes {
-  background: url(../images/vote-background.png) repeat-x;
-}
-.short-summary .answers {
-  background: url(../images/answers-background.png) repeat-x;
-}
-.short-summary .views {
-  background: url(../images/view-background.png) repeat-x;
-}
-.short-summary .no-votes .item-count {
-  color: #b1b5b6;
-}
-.short-summary .some-votes .item-count {
-  color: #4a757f;
-}
-.short-summary .no-answers .item-count {
-  color: #b1b5b6;
-}
-.short-summary .some-answers .item-count {
-  color: #eab243;
-}
-.short-summary .no-views .item-count {
-  color: #b1b5b6;
-}
-.short-summary .some-views .item-count {
-  color: #d33f00;
-}
-.short-summary .accepted .item-count {
-  background: url(../images/accept.png) no-repeat top right;
-  display: block;
-  text-align: center;
-  width: 40px;
-  color: #eab243;
-}
-.short-summary .some-favorites .item-count {
-  background: #338333;
-  color: #d0f5a9;
-}
-.short-summary .no-favorites .item-count {
-  background: #eab243;
-  color: yellow;
-}
-/* ----- Question list Paginator , check main_content/pager.html and macros/utils_macros.html----- */
-.evenMore {
-  font-size: 13px;
-  color: #707070;
-  padding: 15px 0px 10px 0px;
-  clear: both;
-}
-.evenMore a {
-  text-decoration: underline;
-  color: #1b79bd;
-}
-.pager {
-  margin-top: 10px;
-  margin-bottom: 16px;
-}
-.pagesize {
-  margin-top: 10px;
-  margin-bottom: 16px;
-  float: right;
-}
-.paginator {
-  padding: 5px 0 10px 0;
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-.paginator .prev a,
-.paginator .prev a:visited,
-.paginator .next a,
-.paginator .next a:visited {
-  background-color: #fff;
-  color: #777;
-  padding: 2px 4px 3px 4px;
-}
-.paginator a {
-  color: #7ea9b3;
-}
-.paginator .prev {
-  margin-right: .5em;
-}
-.paginator .next {
-  margin-left: .5em;
-}
-.paginator .page a,
-.paginator .page a:visited,
-.paginator .curr {
-  padding: .25em;
-  background-color: #fff;
-  margin: 0em .25em;
-  color: #ff;
-}
-.paginator .curr {
-  background-color: #8ebcc7;
-  color: #fff;
-  font-weight: bold;
-}
-.paginator .next a,
-.paginator .prev a {
-  color: #7ea9b3;
-}
-.paginator .page a:hover,
-.paginator .curr a:hover,
-.paginator .prev a:hover,
-.paginator .next a:hover {
-  color: #8C8C8C;
-  background-color: #E1E1E1;
-  text-decoration: none;
-}
-.paginator .text {
-  color: #777;
-  padding: .3em;
-}
-.paginator .paginator-container-left {
-  padding: 5px 0 10px 0;
-}
 /* ----- Tags Styles ----- */
 /* tag formatting is also copy-pasted in template
    because it must be the same in the emails
@@ -1166,11 +1608,7 @@ ul.tags.marked-tags li,
 .wildcard-tags ul.tags li {
   margin-bottom: 5px;
 }
-#tagSelector div.inputs {
-  clear: both;
-  float: none;
-  margin-bottom: 10px;
-}
+
 .tags-page ul.tags li,
 ul#ab-user-tags li {
   width: 160px;
@@ -1281,322 +1719,268 @@ ul#related-tags li {
   display: inline;
   padding-right: 15px;
 }
-/* ----- Ask and Edit Question Form template----- */
-.section-title {
-  color: #7ea9b3;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
-  font-weight: bold;
-  font-size: 24px;
-}
-#fmask {
-  margin-bottom: 30px;
-  width: 100%;
-}
-#askFormBar {
-  display: inline-block;
-  padding: 4px 7px 0px 0px;
-  margin-top: 0px;
-  width:100%;
-}
-#askFormBar p {
-  margin: 0 0 5px 0;
-  font-size: 14px;
-  color: #525252;
-  line-height: 1.4;
-}
-#askFormBar .questionTitleInput {
-  font-size: 24px;
-  line-height: 24px;
-  height: 36px;
-  margin: 0px;
-  padding: 0px 0 0 5px;
-  border: #cce6ec 3px solid;
-  width: 99%;
-}
-.ask-page div#question-list,
-.edit-question-page div#question-list {
-  border-bottom: #f0f0ec 1px solid;
-  float: none;
-}
-.ask-page div#question-list a,
-.edit-question-page div#question-list a {
-  line-height: 30px;
-}
-.ask-page div#question-list h2,
-.edit-question-page div#question-list h2 {
-  font-size: 13px;
-  padding-bottom: 0;
-  color: #1b79bd;
-  border-top: #f0f0ec 1px solid;
-  border-left: #f0f0ec 1px solid;
-  height: 30px;
-  line-height: 30px;
-  font-weight: normal;
-}
-.ask-page div#question-list span,
-.edit-question-page div#question-list span {
-  width: 28px;
-  height: 26px;
-  line-height: 26px;
-  text-align: center;
-  margin-right: 10px;
-  float: left;
-  display: block;
-  color: #fff;
-  background: #b8d0d5;
-  border-radius: 3px;
-  -ms-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  -khtml-border-radius: 3px;
-}
-.ask-page label,
-.edit-question-page label {
-  color: #525252;
-  font-size: 13px;
-}
-.ask-page #id_tags, .edit-question-page #id_tags {
-  border: #cce6ec 3px solid;
-  height: 25px;
-  padding-left: 5px;
-  font-size: 14px;
-  width: 395px;
-}
-.ask-page #id_post_author_username,
-.question-page #id_post_author_username,
-.edit-question-page #id_post_author_username,
-.edit-answer-page #id_post_author_username,
-.ask-page #id_post_author_email,
-.question-page #id_post_author_email,
-.edit-question-page #id_post_author_email,
-.edit-answer-page #id_post_author_email {
-  border: #cce6ec 3px solid;
-  height: 25px;
-  padding-left: 5px;
-  font-size: 14px;
-  width: 186px;
-}
-.ask-page #id_post_author_email,
-.question-page #id_post_author_email,
-.edit-question-page #id_post_author_email,
-.edit-answer-page #id_post_author_email {
-  margin-left: 10px;
-}
-.ask-page table.proxy-user-info,
-.question-page table.proxy-user-info,
-.edit-question-page table.proxy-user-info,
-.edit-answer-page table.proxy-user-info {
-  border-spacing: 0px;
-}
-.ask-page table.proxy-user-info .form-item,
-.question-page table.proxy-user-info .form-item,
-.edit-question-page table.proxy-user-info .form-item,
-.edit-answer-page table.proxy-user-info .form-item {
-  float: left;
-}
-#id_user, #id_user_author {
-  border: #cce6ec 3px solid;
-  height: 25px;
-  padding-left: 5px;
-  width: 395px;
-  font-size: 14px;
-}
-.title-desc {
-  color: #707070;
-  font-size: 13px;
-  margin-bottom: 5px;
-}
-#fmanswer input.submit,
-.ask-page input.submit,
-.edit-question-page input.submit {
-  float: left;
-  font-weight: normal;
-  margin-top: 3px;
-  height: 34px;
-  font-size: 21px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  color: #4a757f;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
-  text-shadow: 0px 1px 0px #c6d9dd;
-  -moz-text-shadow: 0px 1px 0px #c6d9dd;
-  -webkit-text-shadow: 0px 1px 0px #c6d9dd;
-  border-top: #eaf2f3 1px solid;
-  background-color: #d1e2e5;
-  background-repeat: no-repeat;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#d1e2e5), color-stop(25%, #d1e2e5), to(#a9c2c7));
-  background-image: -webkit-linear-gradient(#d1e2e5, #d1e2e5 25%, #a9c2c7);
-  background-image: -moz-linear-gradient(top, #d1e2e5, #d1e2e5 25%, #a9c2c7);
-  background-image: -ms-linear-gradient(#d1e2e5, #d1e2e5 25%, #a9c2c7);
-  background-image: -o-linear-gradient(#d1e2e5, #d1e2e5 25%, #a9c2c7);
-  background-image: linear-gradient(#d1e2e5, #d1e2e5 25%, #a9c2c7);
-  border-radius: 4px;
-  -ms-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  -webkit-box-shadow: 1px 1px 2px #636363;
-  -moz-box-shadow: 1px 1px 2px #636363;
-  box-shadow: 1px 1px 2px #636363;
-  margin-right: 30px;
-}
-#fmanswer input.submit:hover,
-.ask-page input.submit:hover,
-.edit-question-page input.submit:hover {
-  background-color: #cde5e9;
-  background-repeat: no-repeat;
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#cde5e9), color-stop(25%, #cde5e9), to(#94b3ba));
-  background-image: -webkit-linear-gradient(#cde5e9, #cde5e9 25%, #94b3ba);
-  background-image: -moz-linear-gradient(top, #cde5e9, #cde5e9 25%, #94b3ba);
-  background-image: -ms-linear-gradient(#cde5e9, #cde5e9 25%, #94b3ba);
-  background-image: -o-linear-gradient(#cde5e9, #cde5e9 25%, #94b3ba);
-  background-image: linear-gradient(#cde5e9, #cde5e9 25%, #94b3ba);
-  text-decoration: none;
-  text-shadow: 0px 1px 0px #c6d9dd;
-  -moz-text-shadow: 0px 1px 0px #c6d9dd;
-  -webkit-text-shadow: 0px 1px 0px #c6d9dd;
-  text-shadow: 0px 1px 0px #c6d9dd;
-  -moz-text-shadow: 0px 1px 0px #c6d9dd;
-  -webkit-text-shadow: 0px 1px 0px #c6d9dd;
-}
-.wmd-container {
-  border: #cce6ec 3px solid;
-}
-.users-page .wmd-container {
-  width: 200px;
-}
-.ask-page .wmd-container,
-.question-page .wmd-container,
-.edit-question-page .wmd-container,
-.edit-answer-page .wmd-container {
-  float: left;
-  width: 100%;
-  
-}
-.ask-page #editor,
-.question-page #editor,
-.edit-question-page #editor,
-.edit-answer-page #editor {
-  width: 99%;
-}
-#editor {
-  /* adjustment for editor preview */
 
-  display: block;
-  font-size: 100%;
-  min-height: 200px;
-  line-height: 18px;
-  margin: 0;
-  border: 0;
-}
-.users-page #editor {
-  width: 192px;
-}
-#id_title {
-  width: 100%;
-}
-.wmd-preview {
-  margin: 0;
-  padding: 5px;
-  background-color: #F5F5F5;
-  min-height: 20px;
-  overflow: auto;
-  font-size: 13px;
-  font-family: Arial;
-}
-.wmd-preview p {
-  margin-bottom: 14px;
-  line-height: 1.4;
-  font-size: 14px;
-}
-.wmd-preview p:last-child {
-  margin-bottom: 0;
-}
-.wmd-preview pre {
-  background-color: #E7F1F8;
-}
-.wmd-preview blockquote {
-  background-color: #eee;
-}
-.wmd-preview IMG {
-  max-width: 600px;
-}
-.user-page .wmd-buttons {
-  width: 725px;
-}
-.preview-toggle {
-  width: 100%;
-  color: #b6a475;
-  /*letter-spacing:1px;*/
 
-  text-align: left;
+
+
+
+/*====================================================================================================================
+                                   COMMUN A TOUS LES "FORMULAIRES" DU SITE
+====================================================================================================================*/
+input[type="submit"],input[type="file"]{cursor:pointer;}
+
+
+
+select {
+  vertical-align: middle;
+  line-height:normal;
+  font-size: 12px;
+  font-family: 'OpenSans', Arial, sans-serif;
+  font-style:italic;
+  color:#706f6f;
 }
-.preview-toggle span:hover {
-  cursor: pointer;
+
+li input {
+  margin: 3px 3px 4px 3px;
 }
-.after-editor {
-  margin-top: 15px;
-  margin-bottom: 15px;
+
+
+input[type=text]{
+	text-indent:5px;
+	height:30px;
+	width:100%;
+	font-size: 12px;
+	font-family: 'OpenSans', Arial, sans-serif;
+	font-style:italic;
+	color:#706f6f;}
+
+textarea{
+	text-indent:5px;
+	resize:none;
+	border:2px solid #87cad9;
+	width:100%;
+	font-size: 12px;
+	font-family: 'OpenSans', Arial, sans-serif;
+	font-style:italic;
+	color:#706f6f;}
+	
+
+textarea:focus,
+input:focus {
+  outline: none;
 }
-.checkbox {
-  margin-left: 5px;
-  font-weight: normal;
-  cursor: help;
-}
-.question-options {
-  margin-top: 1px;
-  color: #666;
-  line-height: 13px;
-  margin-bottom: 5px;
-}
-.question-options label {
-  vertical-align: text-bottom;
-}
-.edit-content-html {
-  border-top: 1px dotted #D8D2A9;
-  border-bottom: 1px dotted #D8D2A9;
-  margin: 5px 0 5px 0;
-}
-.edit-question-page,
-#fmedit,
-.wmd-preview {
-  color: #525252;
-}
-.edit-question-page #id_revision,
-#fmedit #id_revision,
-.wmd-preview #id_revision {
-  font-size: 14px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.edit-question-page #id_title,
-#fmedit #id_title,
-.wmd-preview #id_title {
-  font-size: 24px;
-  line-height: 24px;
-  height: 36px;
-  margin: 0px;
-  padding: 0px 0 0 5px;
-  border: #cce6ec 3px solid;
-  width: 719px;
-  margin-bottom: 10px;
-}
-.edit-question-page #id_summary,
-#fmedit #id_summary,
-.wmd-preview #id_summary {
-  border: #cce6ec 3px solid;
-  height: 25px;
-  padding-left: 5px;
-  width: 395px;
-  font-size: 14px;
-}
-.edit-question-page .title-desc,
-#fmedit .title-desc,
-.wmd-preview .title-desc {
-  margin-bottom: 10px;
-}
-/* ----- Question template ----- */
+
+div.title-desc{
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:11px;
+	color:#706f6f;}
+/*====================================================================================================================
+                                 FIN COMMUN A TOUS LES "FORMULAIRES" DU SITE
+====================================================================================================================*/
+
+
+
+
+
+/*====================================================================================================================
+                                 "ASK FORM" POSER UNE QUESTION
+								 "EDIT FORM" MODIFIER UNE QUESTION
+====================================================================================================================*/
+form#fmask,
+form#fmedit{
+	padding:20px;
+	-webkit-border-radius: 5px;    
+    border-radius: 5px;
+	background-color:#dedede;}
+
+
+form#fmask label,
+form#fmedit label{
+	display:block;
+	padding-bottom:5px;
+    text-transform:uppercase;
+    vertical-align: middle;
+    font-family: 'Open Sans Condensed', Arial, sans-serif;
+    font-weight:bold;
+    font-size:14px;
+    color:#242424;}
+
+form#fmask div.form-item,
+form#fmedit div.form-item{
+	padding-bottom:20px;}
+
+form#fmask textarea,
+form#fmedit textarea{
+	border:none;}
+
+form#fmask div.wmd-container,
+form#fmedit div.wmd-container{
+	border:2px solid #87cad9;
+	background-color:#ffffff;}
+
+form#fmask div#wmd-button-bar,
+form#fmedit div#wmd-button-bar{
+	border-bottom:1px solid #dedede;}
+
+form#fmask div.preview-toggle,
+form#fmedit div.preview-toggle{
+	padding-bottom:20px;}
+	
+form#fmask div.preview-toggle p#pre-collapse,
+form#fmedit div.preview-toggle p#pre-collapse{
+    text-transform:uppercase;
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	color:#706f6f;
+	padding-bottom:5px;
+	cursor:pointer;}
+
+form#fmask div.wmd-preview,
+form#fmedit div.wmd-preview{
+	padding:5px;
+	min-height:60px;
+ 	height:auto !important;
+ 	height:60px;
+	-webkit-border-radius: 5px;    
+    border-radius: 5px;
+	background-color:#fff;}
+
+form#fmask table.proxy-user-info div.form-item,
+form#fmedit table.proxy-user-info div.form-item{
+	padding-bottom:10px;}
+
+form#fmask div.question-options,
+form#fmedit div.question-options{
+	padding-bottom:20px;}
+	
+form#fmask div.question-options label,
+form#fmedit div.question-options label{
+    font-family: 'OpenSans', Arial, sans-serif;
+	display:inline;
+	font-weight:normal;
+	text-transform:none;
+	font-size:12px;	
+	color:#706f6f;}
+
+form#fmask button.submit{
+    text-transform:uppercase;
+    font-family: 'OpenSans', Arial, sans-serif;
+	padding-right:10px;
+	font-weight:bold;	
+	font-size:12px;
+	-webkit-border-radius: 15px;    
+    border-radius: 15px;
+	border:none;
+	box-shadow:none;
+	text-shadow:none;
+	height:auto;
+	background: rgb(74,185,232);
+	background: -moz-linear-gradient(top,  rgba(74,185,232,1) 0%, rgba(57,144,180,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(74,185,232,1)), color-stop(100%,rgba(57,144,180,1)));
+	background: -webkit-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -o-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: linear-gradient(to bottom,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
+	color:#ffffff;
+	}
+
+form#fmask button.submit i.interrogation{
+  	display: inline-block;
+    *margin-right: .3em;
+	margin-top: -3px;
+    vertical-align: text-top;
+	width:21px;
+	height:20px;
+    background: url(../images/picto_question.png) no-repeat;
+	}
+
+form#fmedit input[type=submit]{
+    text-transform:uppercase;
+    font-family: 'OpenSans', Arial, sans-serif;
+	padding-right:10px;
+	padding-left:10px;
+	padding-top:4px;
+	padding-bottom:4px;
+	font-weight:bold;	
+	font-size:12px;
+	-webkit-border-radius: 15px;    
+    border-radius: 15px;
+	border:none;
+	box-shadow:none;
+	text-shadow:none;
+	height:auto;
+	background: rgb(74,185,232);
+	background: -moz-linear-gradient(top,  rgba(74,185,232,1) 0%, rgba(57,144,180,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(74,185,232,1)), color-stop(100%,rgba(57,144,180,1)));
+	background: -webkit-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -o-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: linear-gradient(to bottom,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
+	color:#ffffff;
+	}
+
+form#fmedit input[type=button]{
+    text-transform:uppercase;
+    font-family: 'OpenSans', Arial, sans-serif;
+	padding-right:10px;
+	padding-left:10px;
+	padding-top:4px;
+	padding-bottom:4px;
+	font-weight:bold;	
+	font-size:12px;
+	-webkit-border-radius: 15px;    
+    border-radius: 15px;
+	border:none;
+	box-shadow:none;
+	text-shadow:none;
+	height:auto;
+	background: rgb(255,132,102);
+	background: -moz-linear-gradient(top,  rgba(255,132,102,1) 0%, rgba(255,27,27,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,132,102,1)), color-stop(100%,rgba(255,27,27,1)));
+	background: -webkit-linear-gradient(top,  rgba(255,132,102,1) 0%,rgba(255,27,27,1) 100%);
+	background: -o-linear-gradient(top,  rgba(255,132,102,1) 0%,rgba(255,27,27,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(255,132,102,1) 0%,rgba(255,27,27,1) 100%);
+	background: linear-gradient(to bottom,  rgba(255,132,102,1) 0%,rgba(255,27,27,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8466', endColorstr='#ff1b1b',GradientType=0 );
+
+	color:#ffffff;
+	}
+
+
+form#fmask input[type=text],
+form#fmedit input[type=text]{
+	border:2px solid #87cad9;}
+
+
+
+
+/*====================================================================================================================
+                                  FIN "ASK FORM" POSER UNE QUESTION
+								  FIN "EDIT FORM" MODIFIER UNE QUESTION
+====================================================================================================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*====================================================================================================================
+                                          QUESTION TEMPLATE
+====================================================================================================================*/
+div.conteneur_question_card{
+	background-color:green;}
+#question-table{
+	background-color:red;}
+/*
 .question-page h1 {
   padding-top: 0px;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
@@ -1630,6 +2014,7 @@ ul#related-tags li {
 .question-page #question-table {
   float: left;
   border-top: #f0f0f0 1px solid;
+  background-color:red;
 }
 .question-page #question-table,
 .question-page .answer-table {
@@ -2071,17 +2456,20 @@ ul#related-tags li {
   color: #707070;
   font-weight: normal;
 }
+
+*/
+/*
 .question-page .vote-buttons {
   float: left;
   text-align: center;
   padding-top: 2px;
-  margin: 0px 10px 0px 3px;
+  margin: 0px 10px 0px 3px;*/
   /* small IE fixes */
-
+/*
   *margin: 0;
   *height: 210px;
   *width: 30px;
-}
+}*//*
 .question-page .vote-buttons IMG {
   cursor: pointer;
 }
@@ -2095,9 +2483,9 @@ ul#related-tags li {
 .question-page .vote-buttons .notify-sidebar {
   text-align: justify;
   /*width: 130px;*/
-  margin-top: 7px;
-}
-.question-page .vote-buttons .notify-sidebar label {
+ /* margin-top: 7px;*/
+/*}*/
+/*.question-page .vote-buttons .notify-sidebar label {
   vertical-align: top;
 }
 .question-page .tabBar-answer {
@@ -2206,7 +2594,18 @@ ul#related-tags li {
 }
 .linkedin-share.icon {
   background-position: -52px 0px;
-}
+}*/
+
+
+
+/*====================================================================================================================
+                                       FIN QUESTION TEMPLATE
+====================================================================================================================*/
+
+
+
+
+
 /* -----Content pages, Login, About, FAQ, Users----- */
 .openid-signin,
 .meta,
@@ -3291,10 +3690,7 @@ ul.post-retag input {
 #question-controls .tags {
   margin: 0 0 3px 0;
 }
-#tagSelector {
-  padding-bottom: 2px;
-  margin-bottom: 0;
-}
+
 #related-tags {
   padding-left: 3px;
 }
