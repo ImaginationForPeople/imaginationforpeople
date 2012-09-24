@@ -9,50 +9,17 @@
 @import "compass_twitter_bootstrap/variables";
 @import "compass_twitter_bootstrap/mixins";
 
+
+@import "i4p/fonts";
+@import "i4p/sprites";
+@import "i4p/buttons";
+
 // FIXME: split i4p-mixins by theme :-)
 
 /**
  *  Mixins
  */
 
-@mixin i4p-sprite($classname) {
-    [class^="#{$classname}-"],
-    [class*=" #{$classname}-"] {
-	display: inline-block;
-	vertical-align: middle;
-    }
-
-}
-
-@mixin i4p-sprite-header($classname) {
-    h1, h2, h3, h4, h5, h6 {
-	i[class^="#{$classname}-"],
-	i[class*=" #{$classname}-"] {
-	    margin-right: .25em;
-	}
-    }
-}
-
-
-@mixin i4p-font-subtitle($sizeText : $sizeTextLarge) {
-    font-size: $sizeText;
-    font-family: $fontOpenSans;
-    font-stretch: condensed;
-    font-weight: bold;
-}
-
-@mixin i4p-font-title($sizeText : $sizeTextLarge) {
-    @include i4p-font-subtitle($sizeText);
-    text-transform: uppercase;
-}
-
-@mixin i4p-font-button($sizeText : $sizeTextLarge) {
-    font-family: $fontOpenSans;
-    font-size: $sizeText;
-    font-stretch: normal;
-    font-weight: bold;
-    text-transform: uppercase;
-}
 
 @mixin georgia($font-size) {
     font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
@@ -89,7 +56,7 @@
 }
 
 // FIXME: replace with compass/css3 transition
-@mixin i4p-transition( $effect ) {
+@mixin i4p-transition( $effect : all .5s ease) {
     -moz-transition: $effect;
     -o-transition: $effect;
     transition: $effect;
@@ -122,30 +89,19 @@
     }
 }
 
-@mixin i4p-block {
+@mixin i4p-layout-block {
     margin-top: 1rem;
     margin-bottom: 2rem;
 }
 
-
-@mixin i4p-button {
-    @include reset-box-model;
-    @include reset-font;
-    @include reset-focus;
-    @include i4p-font-button($sizeTextNormal);
-    margin: 0;
-    padding: 0;
-    text-shadow: none;
-    text-align: center;
-    color: white;
+@mixin i4p-shaded-separator {
     display: block;
+    border: 0;
     width: 100%;
-    border: $sizeBorderSmall solid $colorLightBlue;
-    background-color: $colorDarkBlue;
-
-    &:hover {
-	@include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
-	color: white;
-    }
+    height: 10px;
+    background-image: image-url("base/horizontal-separator.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
 }
 

@@ -1,5 +1,5 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
 body {
     background-color: $colorWhite;
@@ -53,6 +53,10 @@ body {
     clear: both;
     background-color: white;
     margin-bottom: 2em;
+
+    hr.shaded-separator {
+	@include i4p-shaded-separator;
+    }
 }
 
 #description-zone {
@@ -63,7 +67,7 @@ body {
     // position: relative;
     // z-index: 1;
     position: absolute;
-    top: 170px;
+    bottom: 10px;
     left: 0px;
     padding: 0;
     width: 55%;
@@ -131,18 +135,6 @@ body {
 }
 
 
-
-hr.shaded-separator {
-    display: block;
-    border: 0;
-    width: 100%;
-    height: 10px;
-    background-image: image-url("base/horizontal-separator.png");
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-}
-
 .tag-follow-button {
     @include i4p-background-vertical-gradient(#4abae9, #3990b4);
     @include border-radius($sizeRadiusSmall);
@@ -164,33 +156,6 @@ hr.shaded-separator {
 }
 
 .tag-add-button {
-    @include border-radius($sizeRadiusSmall);
-    @include i4p-transition( all .5s ease );
-    display: block;
-    background-color: $colorLightBlue;
-
-    box-shadow: inset 0 0 0 $colorLightBlue;
-    background-image: image-url("tags/icon-plus-white-big.png"), image-url("base/background-white-dots.png");
-
-    background-opacity: 1, 1, 0;
-    background-repeat: no-repeat, repeat;
-    background-position: 190px center, top left;
-
-    padding: 15px;
-    padding-left: 10px;
-    padding-right: 75px;
-
-    font-size: $sizeTextBig;
-    font-family: $fontOpenSans;
-    font-stretch: condensed;
-    font-weight: bold;
-
-    text-transform: uppercase;
-    color: white;
-    margin-bottom: 2em;
-
-    &:hover {
-	text-decoration: none;
-	background-color: darken($colorLightBlue,5%);
-    }
+    @include i4p-button-fancy-dotted;
 }
+
