@@ -24,7 +24,7 @@
 <div class="container">        
     <div class="row">
 	<div class="span8 project-main">
-	    <div class="project-about">
+	    <div class="project-about"><a name="project-information"></a>
 		<h2><span>{% trans "About the project" %}</span></h2>
 
 		{% comment %} PROJECT ABOUT SECTION {% endcomment %}
@@ -47,7 +47,7 @@
 		{% endif %}
 	    </div> <!-- .project-about -->
 
-	    <div class="project-details">
+	    <div class="project-details"><a name="project-details"></a>
 		{% for topic, questions in topics %}
 		{% for q, a in questions %}
 		<h2 id="question-{{q.id}}" class="detail-question">
@@ -63,6 +63,7 @@
 	    <hr class="shaded-separator" />
 
 	    <div class="project-references references-block">
+		<a name="project-references"></a>
 		<h2>
 		    <i class="sheet-references"></i>
 		    {% trans "References" %}</h2>
@@ -99,8 +100,9 @@
 
 	    </div> <!-- .project-references -->
 
-	    <div class="project-comments comment-block">
+	    <hr class="shaded-separator" />
 
+	    <div class="project-comments comment-block">
 		{% include "project_sheet/block/comment-block.html" %}
 	    </div> <!-- .project-comments -->
 	</div> <!-- .project-main -->
