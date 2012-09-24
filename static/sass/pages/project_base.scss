@@ -19,12 +19,14 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 #langage-tool { visibility: hidden; display: none; }
 
 .project-content {
+    @include i4p-sprite('sheet');
+    @include i4p-sprite-header('sheet');
     background-color: white;
     padding-top: 3rem;
 
-    @include i4p-sprite('sheet');
-    @include i4p-sprite-header('sheet');
-
+    .shaded-separator {
+	@include i4p-shaded-separator;
+    }
 
     .project-comments {
 	h2 {
