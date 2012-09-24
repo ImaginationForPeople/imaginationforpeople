@@ -18,11 +18,13 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 // quick fix for a broken thing
 #langage-tool { visibility: hidden; display: none; }
 
+
 .project-content {
     @include i4p-sprite('sheet');
     @include i4p-sprite-header('sheet');
     background-color: white;
     padding-top: 3rem;
+
 
     .shaded-separator {
 	@include i4p-shaded-separator;
@@ -185,6 +187,46 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     position: fixed;
     top: 20%;
     min-width: 40px;
+
+    // FIXME define a reusable tooltip + mixin
+    .i4p-tooltip {
+	position: relative;
+
+	&:after {
+	    @include i4p-transition;
+	    content: attr(data-tooltip);
+	    opacity: 0;
+	}
+
+	&:hover {
+	    &:after {
+		opacity: 1;
+	    }
+	}
+
+	&.i4p-tooltip-round-black {
+	    &:after {
+		@include border-radius($sizeRadiusBig);
+		position: absolute;
+		display: block;
+		height: 20px;
+		color: white;
+		left: -100px;
+		top: -$sizePaddingSmall;
+		background-color: $colorDarkGrey;
+		padding: $sizePaddingSmall;
+		padding-left: $sizePaddingMedium;
+		padding-right: $sizePaddingMedium;
+	    }
+
+	    &:hover {
+		&:after {
+		    left: 38px;
+		}
+	    }
+
+	}
+    }
 
     ul {
 
