@@ -70,19 +70,48 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 
 .project-subheader {
+
     background-color: black;
     clear: both;
     height: 304px;
     position: relative;
 
     .infocard {
-	position: absolute;
-	bottom: 0;
-	left: 0;
+	@include i4p-sprite('sheet');
+	@include i4p-sprite-header('sheet');
+
 	color: white;
+
+	h2 {
+	    @include i4p-font-title($sizeTextBig);
+	    color: white;
+	}
 
 	.title {
 
+	}
+
+	.infotable {
+	    width: 100%;
+
+	    tr {
+		border-bottom: $sizeMarginSmall solid black;
+	    }
+
+	    th {
+		@include i4p-font-title($sizeTextNormal);
+		@include box-sizing(border-box);
+
+		background-color: $colorDarkGrey;
+		padding: $sizePaddingSmall;
+		vertical-align: top;
+		text-align: left;
+	    }
+
+	    td {
+		color: white;
+		padding: $sizePaddingSmall;
+	    }
 	}
     }
 }
