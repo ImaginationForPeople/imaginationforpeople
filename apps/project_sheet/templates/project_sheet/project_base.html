@@ -27,7 +27,7 @@
 	    <div class="span4 infocard">
 		<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
 		<table class="infotable">
-		    <tr>
+		    <tr class="infotable-map">
 			<th>{% trans "Map" %}</th>
 			<td>
 			    Av. Bolivar PArque Central,<br/>
@@ -36,25 +36,37 @@
 			    FIXME: use real address data - flag &amp; country	
 			</td>
 		    </tr>
-		    <tr>
+		    <tr class="infotable-website">
 			<th>{% trans "Web" %}</th>
-			<td></td>
+			<td>
+			    <!-- Website -->              
+			    {% if project_translation.project.website %}
+			    <a href="{{ project.website }}" target="_blank" rel="nofollow">{{ project_translation.project.website }}</a>
+			    {% else %}
+			    {% trans 'unknown'|capfirst %}
+			    {% endif %}
+			</td>
 		    </tr>
-		    <tr>
+		    <tr class="infotable-follow">
 			<th>{% trans "Follow" %}</th>
 			<td></td>
 		    </tr>
-		    <tr>
+		    <tr class="infotable-share">
 			<th>{% trans "Share" %}</th>
 			<td></td>
 		    </tr>
-		    <tr>
+		    <tr class="infotable-movecommons">
 			<th>{% trans "Movecommons" %}</th>
 			<td></td>
 		    </tr>
-		    <tr>
+		    <tr class="infotable-maturity">
 			<th>{% trans "Maturity" %}</th>
-			<td></td>
+			<td>
+			    {% comment %}FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
+			    <p class="progressbar progressbar-{{project_translation.project.status|lower }}">
+				<span class="status">{{ project_translation.project.get_status_display }}</span>
+			    </p>
+			</td>
 		    </tr>
 		</table>
 	    </div>
