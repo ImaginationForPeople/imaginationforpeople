@@ -10,6 +10,11 @@ $sheet-sprite-dimensions: true;
 @import "project/sheet/*.png"; // */
 @include all-sheet-sprites;
 
+// create sprites for toolbar
+$i4p-toolbar-sprite-dimensions: true;
+@import "project_sheet/i4p-toolbar/*.png"; // */
+@include all-i4p-toolbar-sprites;
+
 $i4p-action-sprite-dimensions: true;
 $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
