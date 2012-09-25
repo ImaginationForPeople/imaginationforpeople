@@ -237,7 +237,6 @@ ul{
 #header-zone {
     background-color: black;
     width: 100%;
-	height: 48px;
     background: image-url('base/header_bar_bg.png') repeat-x top left;
     margin: 20px 0 0 0;
 
@@ -247,16 +246,26 @@ ul{
 }
 
 #header-bar {
-	width: 100%;
+    width: 100%;
+    display: block;
+    vertical-align: baseline;
+    .logo {
+        float: left;
+        height: 42px;
+        display: inline-block;
+        margin: 0 5px;
+        a {
+            img {
+                
+            }
+        }
 
-	.logo {
-		float: left;
-		margin: 0 5px;
-	}
+    }
 }
 
 #header-bar .header-right {
-	float: right;
+	/* float: right;*/
+	display: inline-block;
 }
 
 #header-menu {

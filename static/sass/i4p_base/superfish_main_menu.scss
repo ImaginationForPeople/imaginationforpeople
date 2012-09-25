@@ -4,7 +4,7 @@
 /*** ESSENTIAL STYLES ***/
 
 $menuhighlightbackground:black;
-$menubackground:$darkgrey;
+$menubackground:black;
 $menutextcolor:$greymenu;
 $menuhighlighttextcolor:white;
 $bordercolor:$greymenu;
@@ -122,7 +122,7 @@ ul.sf-main-menu li {
   height: 10px;
   text-indent: -999em;
   overflow: hidden;
-  background: url("../images/arrows-ffffff.png") no-repeat -10px -100px;
+  background: url("../../images/arrows-ffffff.png") no-repeat -10px -100px;
   /* 8-bit indexed alpha png. IE6 gets solid image only */
 }
 
@@ -176,7 +176,7 @@ li {
 /*** shadows for all but IE6 ***/
 /*
 .sf-shadow ul {
-  background: url("../images/shadow.png") no-repeat bottom right;
+  background: url("../../images/shadow.png") no-repeat bottom right;
   padding: 0 8px 9px 0;
   -moz-border-radius-bottomleft: 17px;
   -moz-border-radius-topright: 17px;
@@ -191,44 +191,43 @@ li {
 /*** I4P specific stuff ***/
 
 .sf-main-menu{
-  position:relative;
-  float:right;
-  top:76px; 
-  margin-right:210px;  
-  margin-bottom: 0;
+  float: none;
+  display: block;
+  width: 500px;
+  height: 48px;
+  margin: 0px;
   > ul {
     height:100%;
   }
-  a {
-    height: 100%;
-    &:hover {
-      background: $colorMedDarkGrey;
-      @include border-radius(4px, 4px);
-      }
-  }
   li {
     height: 100%
+    a {
+      height: 100%;
+      padding: 0px 1em;
+      @include i4p-font-menu($sizeTextSmall);
+      padding: 0px 1em;
+      margin:4px;
+    }
+    a:hover {
+        background: $colorMedDarkGrey;
+        @include border-radius(4px, 4px);
+    } 
   }
 
+
+
   > li{
-    a {
-      font-family: $fontOpenSans;
-      font-size:$sizeTextSmall;
-      padding:1em;
-      margin:4px;
-      
-    }  
+    background: transparent;
     > a{
       margin:0px;
       line-height: 48px;
-      font-size:$sizeTextNormal;
-      font-weight:bold;
+      @include i4p-font-menu($sizeTextNormal);
       text-transform:uppercase;
       border: none;
       margin-left: 0px;
       padding:0px 7px 0px 19px;
       /* background image is 5px X 5px dot */
-      background:url('../images/base/grey_dot.png') no-repeat 4px center;
+      background:url('../../images/base/grey_dot.png') no-repeat 4px center;
       > .sf-sub-indicator {
         top: 19px;
       }
