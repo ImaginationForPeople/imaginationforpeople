@@ -27,13 +27,28 @@
 	    <div class="span4 infocard">
 		<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
 		<table class="infotable">
-		    <tr class="infotable-map">
-			<th>{% trans "Map" %}</th>
+		    <tr class="infotable-location location">
+			<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
+			<th>{% trans "Location" %}</th>
 			<td>
-			    Av. Bolivar PArque Central,<br/>
-			    Torre Deste, piso 18<br/>
-			    Caracas, Distrito Capital<br/>
-			    FIXME: use real address data - flag &amp; country	
+			    <div class="location-address">
+				{% if project_translation.project.location %}
+				<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
+				{% if project_translation.project.location.address %}
+				{{ project_translation.project.location.address }}
+				{% endif %}
+			    </div>
+			    <div class="location-country">
+				{% if project_translation.project.location.country %}
+				<img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
+				{% endif %}
+				{% if project_translation.project.location.lat %}
+				<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
+				{% endif %}
+				{% else %}
+				<em>{% trans 'unknown'|capfirst %}</em>
+				{% endif %}
+			    </div>
 			</td>
 		    </tr>
 		    <tr class="infotable-website">
@@ -47,18 +62,22 @@
 			    {% endif %}
 			</td>
 		    </tr>
+		    <!-- FIXME: re-enable whell data will be in the object model
 		    <tr class="infotable-follow">
 			<th>{% trans "Follow" %}</th>
 			<td></td>
 		    </tr>
+		    -->
 		    <tr class="infotable-share">
 			<th>{% trans "Share" %}</th>
 			<td></td>
 		    </tr>
+		    <!-- FIXME: re-enable whell data will be in the object model
 		    <tr class="infotable-movecommons">
 			<th>{% trans "Movecommons" %}</th>
 			<td></td>
 		    </tr>
+		    -->
 		    <tr class="infotable-maturity">
 			<th>{% trans "Maturity" %}</th>
 			<td>
