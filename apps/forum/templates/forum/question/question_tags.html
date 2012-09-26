@@ -1,8 +1,18 @@
-{{
-    macros.tag_list_widget(
-        tags = thread.get_tag_names(),
-        id = 'question-tags',
-        css_class = 'post-tags tags',
-        tag_css_class = 'post-tag'
-    )
-}}
+{% import "macros.html" as macros %}
+<ul class="tag_list">
+{% for tag in thread.get_tag_names() %}
+<li>
+<div class="part_tag">
+<a href=""
+   title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+   rel="tag"
+   data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+            {{ tag|replace('*', '&#10045;')|truncate(17, True)|escape }}
+</a>
+</div>
+				<div class="part_pointe"></div>
+</li>
+{% endfor %}
+
+</ul>
+
