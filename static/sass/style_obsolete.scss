@@ -217,34 +217,20 @@ ul{
 .social-login strong{
     color: $colorLightBlue !important;
 }
-
-
-
-
-/*---- HEADER ----*/
-
-#blue_border{
-    border-top:3px solid $colorLightBlue;
-    position:relative;
-    z-index:2000;
-}
-
-#header-zone{
-    background-color:$darkgrey;
-
-    #header{
-	height:123px;
-	position:relative;
-
-	.logo{
-	    width:217px;
-	    height:70px;
-	    position:absolute;
-	    top:5px;
-	}
+/* Workarounds before we delete this file */
+#header-zone {
+    #header {
+        width: 940px;
+        margin-left:auto;
+        margin-right:auto;
     }
 }
-
+.global #top-zone {
+    width: 940px;
+    height: 140px;
+    margin-left:auto;
+    margin-right:auto;
+}
 
 /*---- Projects hover menu ----*/
 
@@ -383,16 +369,6 @@ ul{
 	float:right;
     }
 }
-
-#header{
-    .search{
-	position:absolute!important;
-	bottom:10px !important;
-	right:-2px!important;
-	padding:0px!important;
-    }
-}
-
 
 
 /* -- Filters -- */

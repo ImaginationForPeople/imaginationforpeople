@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
@@ -18,11 +18,12 @@
     {% compress css %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style_obsolete.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide_obsolete.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
     {% endcompress %}
 
@@ -110,11 +111,16 @@
             //$(this).stop().rotate({animateTo:0});
         });	
         
-        
+        $('#top-zone').hide();
+        $('#user-bt a.open-panel').click(function(){
+          $('#top-zone').slideToggle();
+        });
+
     });
         
     </script>
 
+    {% block extra_script %}{% endblock %}
     
     {% block extra_head %}{% endblock %}
     
@@ -138,20 +144,18 @@
   </head>
 
 
-  <body>
+  <body class="{% block extra_body_class %}{% endblock %}">
     
     <div id="beta-logo"></div>
     
     <div class="global">   
     
-      {% block login-slide %} {% include "login-slide_obsolete.html" %} {% endblock %}	
-
       {% block newproject_popup %} 
         <div id="new_project_style_popup_zone" class="hidden">
         </div>
       {% endblock %}      
       
-      {% block header %} {% include "header_obsolete.html" %} {% endblock %}			
+      {% block header %} {% include "header.html" %} {% endblock %}			
       <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->
       {% block nav %} {% include "nav_obsolete.html" %} {% endblock %}
       

@@ -193,9 +193,13 @@ li {
 .sf-main-menu{
   float: none;
   display: block;
-  width: 500px;
+  max-width: 700px;
   height: 48px;
   margin: 0px;
+  img {
+        vertical-align: middle;
+  }
+  
   > ul {
     height:100%;
   }
@@ -218,14 +222,17 @@ li {
 
   > li{
     background: transparent;
+    height: 100%;
     > a{
+    vertical-align: middle;
       margin:0px;
+      height: 100%;
       line-height: 48px;
       @include i4p-font-menu($sizeTextNormal);
       text-transform:uppercase;
       border: none;
       margin-left: 0px;
-      padding:0px 7px 0px 19px;
+      padding:0px 5px 0px 15px;
       /* background image is 5px X 5px dot */
       background:url('../../images/base/grey_dot.png') no-repeat 4px center;
       > .sf-sub-indicator {
