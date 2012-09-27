@@ -1,0 +1,269 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+/*---- HEADER ----*/
+
+#header-zone {
+    background-color: black;
+    width: 100%;
+    margin: 0 0 0 0;
+    border-top: 3px solid $colorLightBlue;
+
+    #header {
+        position: relative;
+    }
+}
+
+#header-bar {
+    width: 100%;
+    display: block;
+    vertical-align: baseline;
+    .logo {
+        float: left;
+        height: 42px;
+        margin: 0 10px 0 0;
+        a {
+            img {
+                
+            }
+        }
+
+    }
+}
+
+#header-bar .header-right {
+    line-height: 16px;
+    text-align: right;
+    display: block;
+    float: right;
+    height: 42px;
+    margin-top: -3px;
+    * {
+        text-align: left;
+    }
+    div.header-right-pre-top {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        margin-top: 3px;
+        margin-bottom: 19px; /* header-right-top height - header-right-pre-top height */
+        @include background(image-url("foo.png"),
+        radial-gradient(bottom left, transparent 4px, $colorLightBlue 5px));
+        }
+        
+    div.header-right-post-top {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        margin-top: 3px;
+        margin-bottom: 19px; /* header-right-top height - header-right-pre-top height */
+        @include background(image-url("foo.png"),
+        radial-gradient(bottom right, transparent 4px, $colorLightBlue 5px));
+        }
+                
+    div.header-right-top {
+        display: inline-block;
+        height: 24px;
+        line-height: 24px;
+        background-color: $colorLightBlue;
+        @include border-bottom-radius(5px);
+        @include i4p-font-header-right-top($sizeTextNormal);
+        color: white;
+        padding: 0px 5px;
+        
+        a {
+            @include i4p-font-header-right-top($sizeTextNormal);
+            color: white;
+        }
+        #messages-bt {
+            height: 100%;
+            margin: 0 0.5em;
+            float: left;
+        }
+
+        #user-bt {
+            height: 100%;
+            margin: 0 0.5em;
+            float: left;
+        }
+
+        #user-bt a {
+            font-style:oblique;
+        }
+    
+        div#interface_lang {
+            margin: 0 0.5em;
+            height: 100%;
+            float: left;
+            position: relative;
+
+            & > a {
+                text-transform: uppercase;
+                display: block;
+                float: left;
+                font-weight: bold;
+                text-decoration: none;
+                
+            }
+
+            ul {
+                position: absolute;
+                top: 24px;
+                left: 0;
+                float: none;
+                height: auto;
+                z-index: 1000;
+                width: 200px;
+                padding: 5px 0 0 0;
+                display: none;
+
+                li {
+                    display: block;
+                    float: none;
+                    position: static;
+                    height: 18px;
+                    background: none;
+                    width: 100px;
+
+                    a {
+                        display: block;
+                        text-transform: none;
+                        background: none;
+                        line-height: 18px;
+                        font-weight: normal;
+                        font-size: 0.9em;
+                        padding: 0 3px;
+                        background: black;
+                        color: #8f8f8f;
+        
+                        &:hover {
+                            color: white;
+                            background: #757575;
+                            text-decoration: none;
+                            @include border-radius(4px, 4px);
+                        }
+                    }
+                }
+            }
+        }
+
+        div#interface_lang:hover ul {
+            display: block;
+        }
+        
+        div#tools {
+            float: left;
+            height: 24px;
+            margin: 0 0.5em;
+            position: relative;
+
+            & > a {
+                background: image-url("base/arrow_down.png") no-repeat scroll 50% 50% transparent;
+                color: #8F8F8F;
+                display: block;
+                float: left;
+                font-weight: bold;
+                line-height: 24px;
+                text-decoration: none;
+                text-transform: uppercase;
+                width: 9px;
+            }
+
+            ul {
+                position: absolute;
+                top: 24px;
+                left: -25px;
+                float: none;
+                height: auto;
+                z-index: 1000;
+                width: 200px;
+                padding: 5px 0 0 0;
+                display: none;
+                @include border-radius(4px, 4px);
+
+                li {
+                    display: block;
+                    float: none;
+                    position: static;
+                    height: 22px;
+                    background: none;
+                    width: 130px;
+
+                    a {
+                        display: block;
+                        text-transform: none;
+                        background: none;
+                        line-height: 22px;
+                        font-weight: normal;
+                        font-size: 0.9em;
+                        padding: 0 3px;
+                        background: black;
+                        color: #8f8f8f;
+                        padding: 0 10px 0 25px;
+                        @include border-radius(4px, 4px);
+
+                        &:hover {
+                            color: white;
+                            background: #757575;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+
+        div#tools:hover ul {
+            display: block;
+        }
+
+        div#tools ul li.view-profile a:hover {
+            background: #757575 image-url('base/mini_eye_ico.png') no-repeat 3px center;
+        }
+        div#tools ul li.edit-profile a:hover {
+            background: #757575 image-url('base/mini_pencil_ico.png') no-repeat 3px center;
+        }
+        div#tools ul li.logout a:hover {
+            background: #757575 image-url('base/mini_deco_ico.png') no-repeat 3px center;
+        }
+        
+    }
+    .header-right-bottom {
+        height: 24px;
+        margin-right: 5px;
+        /*---- Search box ----*/
+        .search {
+            float: right;
+            height: 24px;
+            margin: 0;
+            form {
+            margin: 0;
+            }
+            input[type="text"] {
+                font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif !important;
+                background: #6a6a6a image-url('base/search_ico.png') no-repeat 10px 50%;
+                border: 0px solid #646464;
+                color: #242424;
+                font-family: Arial,Helvetica,sans-serif;
+                font-size: 10px;
+                height: 20px;
+                padding: 0px;
+                padding-left: 24px;
+                text-indent: 0px;
+                width: 130px;
+                font-style: italic;
+                @include border-radius(11px, 11px);
+                margin: 2px 0 2px 0px;
+            }
+            input[type="submit"] {
+                display: none;
+                background-image: none;
+                background-color: transparent;
+                border: 0px;
+                margin: 0px;
+                padding: 0px;
+                width: 32px;
+                float: right;
+            }
+        }
+    }
+}
