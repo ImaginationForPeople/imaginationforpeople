@@ -5,11 +5,13 @@
 /* Workarounds before we delete this file */
 #header-zone {
     height: auto;
+    font-size: 12px; /* Reset the font size for relative measurements, too many stylesheets mess with it for now */
     #header {
         width: 940px;
         margin-left:auto;
         margin-right:auto;
     }
+    .clear {clear: both;height: 0;line-height: 0;}
 }
 .global #top-zone {
     width: 940px;
