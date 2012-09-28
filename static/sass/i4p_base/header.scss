@@ -2,6 +2,21 @@
 @import "i4p/constants";
 
 /*---- HEADER ----*/
+/* Workarounds before we delete this file */
+#header-zone {
+    height: auto;
+    #header {
+        width: 940px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+}
+.global #top-zone {
+    width: 940px;
+    height: 140px;
+    margin-left:auto;
+    margin-right:auto;
+}
 
 #header-zone {
     background-color: black;

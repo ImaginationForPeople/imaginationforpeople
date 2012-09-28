@@ -1,4 +1,4 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
@@ -9,6 +9,7 @@
 
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
@@ -106,7 +107,10 @@
             //$(this).stop().rotate({animateTo:0});
         }); 
         
-        
+        $('#top-zone').hide();
+        $('#user-bt a.open-panel').click(function(){
+          $('#top-zone').slideToggle();
+        });
     });
         
     </script>
@@ -136,8 +140,6 @@
   <body class="{% block body_class %}{% endblock %}{% if user_messages %} user-messages{% endif %}{% if page_class %} {{page_class}}{% endif %}{% if request.user.is_anonymous() %} anon{% endif %} lang-{{settings.LANGUAGE_CODE}}">
   
     <div class="global">   
-    
-          {% block login_slide %} {{ include_django("login-slide.html", request) }} {% endblock %}   
     
           {% block header %} {{ include_django("header.html", request) }} {% endblock %}         
           
