@@ -737,13 +737,12 @@ ul{
 /* --Formulaires-- */
 
 
-// FIXME: explain purpose ?
+/* This is the list of data entry errors displayed to the user if any django
+ form fails validation */
 .errorlist {
-    color: white;
-    /*position: absolute;
-    top: 45px;
-    right:100px;*/
-font-style: italic;
+    color: red;
+    font-style: italic;
+    font-weight: bold;
 }
 
 // FIXME: use color constants

@@ -19,11 +19,11 @@
     text-transform: uppercase;
 }
 
-@mixin i4p-font-menu($sizeText : $sizeTextNormal) {
+@mixin i4p-font-search($sizeText : $sizeTextNormal) {
     font-family: $fontOpenSans;
     font-size: $sizeText;
     font-stretch: condensed;
-    font-weight: bold;
+    font-weight: normal;
 }
 
 @mixin i4p-font-menu($sizeText : $sizeTextNormal) {
