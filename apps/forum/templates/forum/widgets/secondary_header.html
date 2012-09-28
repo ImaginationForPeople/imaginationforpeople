@@ -1,12 +1,11 @@
 <!-- template secondary_header.html -->
 <div id="secondaryHeader">
-    <div class="content-wrapper">
+    <div class="secondary_header_bar">
         <a id="homeButton" href="{% url questions %}"></a>
         <div id="scopeWrapper">
             {% include "widgets/scope_nav.html" %}
-            {% include "widgets/search_bar.html" %} {# include search form widget #}
+            {% include "widgets/ask_button.html" %}
         </div>
-        {% include "widgets/ask_button.html" %}    
-        <div class="clean"></div>
+        {% include "widgets/search_bar.html" %} {# include search form widget #}   
     </div>
 </div>
