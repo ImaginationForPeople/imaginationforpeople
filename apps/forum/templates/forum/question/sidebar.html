@@ -4,6 +4,12 @@
     {{ settings.SIDEBAR_QUESTION_HEADER }}
 </div>
 {% endif %}
+<div class="box author_infos">
+	<h2>{% trans %}Author{% endtrans %}</h2>
+    <div class="question_author">
+        {% include "question/question_author_info.html" %}
+    </div>
+</div>
 <div class="box vote-buttons">
     <h2 >{% trans %}Question tools{% endtrans %}</h2>
     {{ macros.follow_user_toggle(visitor=request.user, subject=question.author) }}

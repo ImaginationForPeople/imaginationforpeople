@@ -1,0 +1,13 @@
+<ul class="liste_tags">
+{% for tag in tag_names %}
+<li>
+    <a href="{{ search_state.add_tag(tag).full_url() }}"
+       title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+       rel="tag"
+       data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+       {{ tag|replace('*', '&#10045;')|escape }}
+    </a>
+    <div class="delete-icon">x</div>
+</li>
+{% endfor %}
+</ul>

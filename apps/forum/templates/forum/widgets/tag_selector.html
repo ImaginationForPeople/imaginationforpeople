@@ -1,60 +1,38 @@
 {# todo - maybe disable navigation from ignored tags here when "hide" is on - with js? #}
 {% import "macros.html" as macros %}
 <div id="tagSelector" class="box">
-    <h2>{% trans %}Interesting tags{% endtrans %}</h2>
-    {{ 
-        macros.tag_list_widget(
-            interesting_tag_names,
-            deletable = True,
-            css_class = 'interesting marked-tags',
-            search_state = search_state
-        )
-    }}
-    {# todo - add this via js
-        "remove '%(tag_name)s' from the list of interesting tags"|
-        format(tag_name = tag_name)
-    #}
+    <h2>{% trans %}Tags{% endtrans %}</h2>
+    
+    <h3>{% trans %}Interesting tags{% endtrans %}</h3>
+    {% with interesting_tag_names as tag_names%}
+    {% include "widgets/tag_list.html" %}
+    {% endwith %}
     <div class="inputs">
         <input id="interestingTagInput" autocomplete="off" type="text"/>
-        <input id="interestingTagAdd" type="submit" value="{% trans %}add{% endtrans %}"/>
+        <input id="interestingTagAdd" type="submit" value="{% trans %}+{% endtrans %}"/>
     </div>
-    <h2>{% trans %}Ignored tags{% endtrans %}</h2>
-    {{
-        macros.tag_list_widget(
-            ignored_tag_names,
-            deletable = True,
-            css_class = 'ignored marked-tags',
-            search_state = search_state
-        )
-    }}
-    {# todo: add this via javascript 
-        "remove '%(tag_name)s' from the list of ignored tags"|
-        format(tag_name = tag_name)
-    #}
+    
+    <h3>{% trans %}Ignored tags{% endtrans %}</h3>
+    {% with ignored_tag_names as tag_names%}
+    {% include "widgets/tag_list.html" %}
+    {% endwith %}
     <div class="inputs">
         <input id="ignoredTagInput" autocomplete="off" type="text"/>
-        <input id="ignoredTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>
+        <input id="ignoredTagAdd" type="submit" value="{% trans %}+{% endtrans%}"/>
     </div>
+    
     {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
-        <h2>{% trans %}Subscribed tags{% endtrans %}</h2>
-        {{
-            macros.tag_list_widget(
-                subscribed_tag_names,
-                deletable = True,
-                css_class = 'subscribed marked-tags',
-                search_state = search_state
-            )
-        }}
-        {# todo: add this via javascript 
-            "remove '%(tag_name)s' from the list of ignored tags"|
-            format(tag_name = tag_name)
-        #}
-        <div class="inputs">
-            <input id="subscribedTagInput" autocomplete="off" type="text"/>
-            <input id="subscribedTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>
-        </div>
+    <h2>{% trans %}Subscribed tags{% endtrans %}</h2>
+    {% with subscribed_tag_names as tag_names%}
+    {% include "widgets/tag_list.html" %}
+    {% endwith %}
+    <div class="inputs">
+        <input id="subscribedTagInput" autocomplete="off" type="text"/>
+        <input id="subscribedTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>
+    </div>
+    
     {% endif %}
-    <h3>{% trans %}Show only questions from{% endtrans%}</h3>
+    <h3>{% trans %}Show only questions from{% endtrans%}</h3>    
     <div id="displayTagFilterControl">
         {{
             macros.radio_select(
