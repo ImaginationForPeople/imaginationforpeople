@@ -1,6 +1,6 @@
 {% cache 0 "tags" tags search_tags scope sort query context.page language_code %}
   <div class="box">
-    <h2>{% trans %}Tags{% endtrans %}</h2>
+    <h2>{% trans %}Tags{% endtrans %} (<a href="{% url tags %}">{% trans %}view all tags{% endtrans %}</a>)</h2>
     {% if tag_list_type == 'list' %}
       <ul id="related-tags" class="tags">
         {% for tag in tags %}

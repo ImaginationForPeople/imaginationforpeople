@@ -6,9 +6,7 @@ inherits(TagWarningBox, WrappedElement);
 
 TagWarningBox.prototype.createDom = function(){
     this._element = this.makeElement('div');
-    this._element
-        .css('display', 'block')
-        .css('margin', '0 0 13px 2px');
+    this._element.css('display', 'block').css('margin', '0 0 13px 2px');
     this._element.addClass('non-existing-tags');
     this._warning = this.makeElement('p');
     this._element.append(this._warning);
@@ -343,7 +341,7 @@ var liveSearch = function(query_string) {
             query.focus();
 
             var old_list = $('#' + q_list_sel);
-            var new_list = $('<div></div>').hide().html(data['questions']);
+            var new_list = $('<ul></ul>').hide().html(data['questions']);
             new_list.find('.timeago').timeago();
             old_list.stop(true).after(new_list).fadeOut(200, function() {
                 //show new div with a fadeIn effect

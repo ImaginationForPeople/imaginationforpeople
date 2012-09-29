@@ -1,21 +1,43 @@
 {# todo - maybe disable navigation from ignored tags here when "hide" is on - with js? #}
 {% import "macros.html" as macros %}
 <div id="tagSelector" class="box">
-    <h2>{% trans %}Tags{% endtrans %}</h2>
+    <h2>{% trans %}Tags filtering{% endtrans %}</h2>
     
     <h3>{% trans %}Interesting tags{% endtrans %}</h3>
-    {% with interesting_tag_names as tag_names%}
-    {% include "widgets/tag_list.html" %}
-    {% endwith %}
+    <ul class="taglist tags interesting marked-tags">
+    {% for tag in interesting_tag_names %}
+    <li class="deletable-tag tag-left" >
+        <a class="tag tag-right"
+           href="{{ search_state.add_tag(tag).full_url() }}"
+           title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+           rel="tag"
+           data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+           {{ tag|replace('*', '&#10045;')|escape }}
+        </a>
+        <span class="delete-icon">x</span>
+    </li>
+    {% endfor %}
+    </ul>
     <div class="inputs">
         <input id="interestingTagInput" autocomplete="off" type="text"/>
         <input id="interestingTagAdd" type="submit" value="{% trans %}+{% endtrans %}"/>
     </div>
     
     <h3>{% trans %}Ignored tags{% endtrans %}</h3>
-    {% with ignored_tag_names as tag_names%}
-    {% include "widgets/tag_list.html" %}
-    {% endwith %}
+    <ul class="taglist tags ignored marked-tags">
+    {% for tag in ignored_tag_names %}
+    <li class="deletable-tag tag-left" >
+        <a class="tag tag-right"
+           href="{{ search_state.add_tag(tag).full_url() }}"
+           title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+           rel="tag"
+           data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+           {{ tag|replace('*', '&#10045;')|escape }}
+        </a>
+        <span class="delete-icon">x</span>
+    </li>
+    {% endfor %}
+    </ul>
     <div class="inputs">
         <input id="ignoredTagInput" autocomplete="off" type="text"/>
         <input id="ignoredTagAdd" type="submit" value="{% trans %}+{% endtrans%}"/>
@@ -23,9 +45,20 @@
     
     {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
     <h2>{% trans %}Subscribed tags{% endtrans %}</h2>
-    {% with subscribed_tag_names as tag_names%}
-    {% include "widgets/tag_list.html" %}
-    {% endwith %}
+    <ul class="taglist tags subscribed marked-tags">
+    {% for tag in subscribed_tag_names %}
+    <li class="deletable-tag tag-left" >
+        <a class="tag tag-right"
+           href="{{ search_state.add_tag(tag).full_url() }}"
+           title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+           rel="tag"
+           data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+           {{ tag|replace('*', '&#10045;')|escape }}
+        </a>
+        <span class="delete-icon">x</span>
+    </li>
+    {% endfor %}
+    </ul>    
     <div class="inputs">
         <input id="subscribedTagInput" autocomplete="off" type="text"/>
         <input id="subscribedTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>

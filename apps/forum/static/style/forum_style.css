@@ -912,13 +912,13 @@ ul.tag_list li div.part_pointe{
   margin-bottom: 10px;
   color: #707070;
 }*/
-.box ul.tags {
+/*.box ul.tags {
   list-style: none;
   margin: 0;
   padding: 0;
   line-height: 170%;
   display: block;
-}
+}*/
 
 /*.box .inputs #interestingTagInput,
 .box .inputs #ignoredTagInput,
@@ -1172,7 +1172,7 @@ div#tagSelector ul.taglist li a{
 	color:#8f8f8f;
 	padding-right:7px;}
 
-div#tagSelector ul.taglist li div.delete-icon{
+div#tagSelector ul.taglist li span.delete-icon{
 	float:right;
 	display:block;
 	text-indent:-5000px;
@@ -1454,7 +1454,7 @@ ul#searchTags {
 .tag-size-10 {
   font-size: 21px;
 }
-ul.tags,
+/*ul.tags,
 ul.tags.marked-tags,
 ul#related-tags {
   list-style: none;
@@ -1492,7 +1492,7 @@ ul#related-tags li {
   float: left;
   clear: left;
 }
-/* .tag-left and .tag-right are for the sliding doors decoration of tags */
+
 .tag-left {
   cursor: pointer;
   display: block;
@@ -1509,7 +1509,6 @@ ul#related-tags li {
   border: #fff 1px solid ;
   border-top: #fff 2px solid;
   outline: #cfdbdb 1px solid;
-  /* .box-shadow(0px,1px,0px,#88a8a8);*/
 
   display: block;
   float: left;
@@ -1543,6 +1542,7 @@ ul#related-tags li {
 .tags a:hover {
   color: #1A1A1A;
 }
+*/
 .users-page h1,
 .tags-page h1,
 .groups-page h1 {
@@ -1892,6 +1892,7 @@ body.question-page div.conteneur_question_card div.wrapper_vote_number{
 body.question-page div.conteneur_question_card div.wrapper_vote_number div.question-img-upvote{
 	height:14px;
     background: url(../images/arrow_up_vote.png) center top no-repeat;
+    cursor: pointer;
 }
 
 body.question-page div.conteneur_question_card div.wrapper_vote_number div.vote-number{
@@ -1907,6 +1908,7 @@ body.question-page div.conteneur_question_card div.wrapper_vote_number div.vote-
 body.question-page div.conteneur_question_card div.wrapper_vote_number div.question-img-downvote {
 	height:14px;
   background: url(../images/arrow_down_vote.png) center top no-repeat;
+   cursor: pointer;
 }
 /*++++++++  END VOTE NUMBER ++++++++*/
 
@@ -2063,7 +2065,7 @@ body.question-page div.comment div.admin_actions .comment-delete a.delete-icon {
 	color:#706f6f;
 	padding-left:4px;	
 }
-body.question-page div.comment div.admin_actions a.edit{
+body.question-page div.comment div.admin_actions .comment-edit a.edit-icon{
 	float:right;
     font-family: 'OpenSans', Arial, sans-serif;
 	font-size:11px;
