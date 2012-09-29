@@ -144,100 +144,131 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     clear: both;
     height: 2.4rem;
 
-    ul {
+    .row > ul {
 	list-style: none;
 	margin: 0;
-    }
 
-    li {
-	@include box-sizing(border-box);
-	margin: 0;
-	display: block;
-	float:left;
-	border-left: 1px solid white;
-	border-right: 1px solid $colorMedLightGrey;
-	position: relative;
-	font-size: $sizeTextSmall;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	text-transform: uppercase;
-	padding: 0;
-	height: 2.4rem;
-	border-collapse: collapse;
-
-	a {
+	& > li {
+	    @include box-sizing(border-box);
+	    margin: 0;
 	    display: block;
-	    padding: .7rem;
-	    padding-left: .7rem;
-	    padding-right: .7rem;
-	    color: $colorMedGrey;
-	    font-weight: bold;
-
-	    i {
-		position: relative;
-		top: -2px;
-		display: inline-block;
-		vertical-align: middle;
-	    }
-	}
-
-	&:hover {
-	    background-color: $colorMedLightGrey;
-	    border-color: $colorMedLightGrey; // both left & right (flat effect)
-
-	    a {
-		color: white;
-		text-decoration: none;
-	    }
-	}
-
-	&.right {
-	    float:right;
-	    border: none;
-
-	    a {
-		padding-left: 0.2rem;
-		padding-right: 0.2rem;
-	    }
-	}
-
-	&.active {
-	    @include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+	    float:left;
+	    border-left: 1px solid white;
+	    border-right: 1px solid $colorMedLightGrey;
 	    position: relative;
-	    border-right-color: $colorDarkBlue;
+	    font-size: $sizeTextSmall;
+	    font-family: $fontOpenSans;
+	    font-stretch: condensed;
+	    text-transform: uppercase;
+	    padding: 0;
+	    height: 2.4rem;
+	    border-collapse: collapse;
 
 	    a {
-		color: white;
+		display: block;
+		padding: .7rem;
+		padding-left: .7rem;
+		padding-right: .7rem;
+		color: $colorMedGrey;
+		font-weight: bold;
+
+		i {
+		    position: relative;
+		    top: -2px;
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+
+
+		&:hover {
+		    color: blue;
+		}
+
+		&.share {
+
+		    &:focus ~ .submenu {
+			opacity: 1;
+			display: block;
+			top: 30px;
+			right: -$sizeMarginSmall;
+		    }
+		}
 	    }
 
-	    &:before {
-		content:""; 
-		position: absolute; 
-		left: 50%; 
-		bottom: -10px; 
-		width: 0; 
-		height: 0; 
-		margin-left: -10px;
-		border-left: 10px solid transparent; 
-		border-top: 10px solid $colorDarkBlue; 
-		border-right: 10px solid transparent;
+	    .submenu {
+		@include i4p-transition;
+		width: 60px;
+		padding: $sizePaddingMedium;
+		display: none;
+		background-color: $colorLightLightGrey;
+		opacity: 0;
+		list-style: none;
+		position: absolute;
+
+		li {
+		    display: block;
+		}
 	    }
 
 	    &:hover {
-		background-image: none;
-		background-color: $colorMedGrey;
-		border-color: $colorMedGrey; // both left & right (flat effect)
+		background-color: $colorMedLightGrey;
+		border-color: $colorMedLightGrey; // both left & right (flat effect)
 
-		a { 
+		a {
+		    color: white;
+		    text-decoration: none;
+		}
+	    }
+
+	    &.right {
+		float:right;
+		border: none;
+
+		a {
+		    padding-left: 0.2rem;
+		    padding-right: 0.2rem;
+		}
+	    }
+
+	    &.active {
+		@include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+		position: relative;
+		border-right-color: $colorDarkBlue;
+
+		a {
 		    color: white;
 		}
 
 		&:before {
-		    border-top-color: $colorMedGrey;
+		    content:""; 
+		    position: absolute; 
+		    left: 50%; 
+		    bottom: -10px; 
+		    width: 0; 
+		    height: 0; 
+		    margin-left: -10px;
+		    border-left: 10px solid transparent; 
+		    border-top: 10px solid $colorDarkBlue; 
+		    border-right: 10px solid transparent;
+		}
+
+		&:hover {
+		    background-image: none;
+		    background-color: $colorMedGrey;
+		    border-color: $colorMedGrey; // both left & right (flat effect)
+
+		    a { 
+			color: white;
+		    }
+
+		    &:before {
+			border-top-color: $colorMedGrey;
+		    }
 		}
 	    }
 	}
     }
+
 }
 
 .project-toolbar {
@@ -321,7 +352,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 		display: block;
 	    }
 	}
-	
+
     }
 }
 
@@ -342,7 +373,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	&:before {
 	    margin: 0;
 	    padding: 0;
-	    color: $colorLightGrey;
+	    color: $colorLightLightGrey;
 	    content: '\201D';
 	    font-size: 12rem;
 	    font-weight: bold;
@@ -356,7 +387,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	&:after {
 	    margin: 0;
 	    padding: 0;
-	    color: $colorLightGrey;
+	    color: $colorLightLightGrey;
 	    content: '\201C';
 	    font-weight: bold;
 	    font-size: 12rem;
