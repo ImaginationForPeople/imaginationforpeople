@@ -21,11 +21,19 @@ Parameters for this block
 	{% for member in project.detailed_members.all|slice:"4" %}
 	<input id="slide-{{forloop.counter0}}" type="radio" name="slider" {% if forloop.first %}checked=""{% endif %} selected="false">
 	{% endfor %}
-	<ul class="view">
-		{% for member in project.detailed_members.all %}
-		{% include "project_sheet/block/member_fancy_square.html" %}
-		{% endfor %}
-	</ul>
+	<div class="view">
+		<ul>
+			{% for member in project.detailed_members.all %}
+			{% include "project_sheet/block/member_fancy_square.html" %}
+			{% endfor %}
+			{% for member in project.detailed_members.all %}
+			{% include "project_sheet/block/member_fancy_square.html" %}
+			{% endfor %}
+			{% for member in project.detailed_members.all %}
+			{% include "project_sheet/block/member_fancy_square.html" %}
+			{% endfor %}
+		</ul>
+	</div>
 	<div class="controls">
 	</div>
 	<div class="active">

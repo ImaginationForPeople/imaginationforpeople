@@ -38,6 +38,7 @@ $topic-sprite-dimensions: true;
 
 .member-list.square.fancy {
     width: inherit;
+    overflow: hidden;
 
     input {
 	display: none;
@@ -47,15 +48,30 @@ $topic-sprite-dimensions: true;
 	@include bootstrap-clearfix;
 	@include border-radius($sizeRadiusSmall);
 	@include box-sizing(border-box);
-	list-style: none;
-	outline: 1px solid $colorMedGrey;
-	padding: 5px;
+	@include i4p-transition(all .5s ease);
+	border: 1px solid $colorLightDarkGrey;
+	background-color: $colorLightGrey;
 	display: block;
-	white-space: no-wrap;	
-	height: 60px;
 	width: inherit;
-	overflow: hidden;
-	width: 1000%;
+	padding-left: 25px;
+	padding-right: 25px;
+
+	ul {
+	    @include box-sizing(border-box);
+	    @include i4p-transition(all .5s ease);
+	    padding: 5px;
+	    height: 60px;
+	    list-style: none;
+	    white-space: no-wrap;	
+	    width: 20 * 60px ;
+
+	    li {
+		&:nth-child(4n + 4) {
+		    margin-right: 60px;
+		}
+	    }
+	}
+
     }
 
     .active {
@@ -73,18 +89,15 @@ $topic-sprite-dimensions: true;
 	}
     }
 
-    #slide-0:checked ~ .active label:nth-child(1),
-    #slide-1:checked ~ .active label:nth-child(2),
-    #slide-2:checked ~ .active label:nth-child(3),
-    #slide-3:checked ~ .active label:nth-child(4),
-    #slide-4:checked ~ .active label:nth-child(5),
-    #slide-5:checked ~ .active label:nth-child(6),
-    #slide-6:checked ~ .active label:nth-child(7),
-    #slide-7:checked ~ .active label:nth-child(8),
-    #slide-8:checked ~ .active label:nth-child(9),
-    #slide-9:checked ~ .active label:nth-child(10),
-    {
-	background-color: $colorLightBlue;
+
+    @for $i from 0 through 10 {
+	#slide-#{$i}:checked ~ .active label:nth-child(#{$i + 1}) {
+	    background-color: $colorLightBlue;
+	}
+
+	#slide-#{$i}:checked ~ .view ul {
+	    margin-left: $i * -5 * 60px;
+	}
     }
 
 }
