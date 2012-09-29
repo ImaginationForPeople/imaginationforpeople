@@ -18,6 +18,7 @@ Parameters for this block
 {% endaddtoblock %}
 
 <div class="member-list square fancy">
+	{% comment %} FIXME: more inputs/labels than expected with slice, why ? {% endcomment %}
 	{% for member in project.detailed_members.all|slice:"4" %}
 	<input id="slide-{{forloop.counter0}}" 
 	class="slide-input {% if forloop.first %}first-input{% endif %}{% if forloop.last %}last-input{% endif %}" 
@@ -26,12 +27,6 @@ Parameters for this block
 	<div class="view">
 		{% comment %} FIXME: add shuffle filter to the list {% endcomment %}
 		<ul>
-			{% for member in project.detailed_members.all %}
-			{% include "project_sheet/block/member_fancy_square.html" %}
-			{% endfor %}
-			{% for member in project.detailed_members.all %}
-			{% include "project_sheet/block/member_fancy_square.html" %}
-			{% endfor %}
 			{% for member in project.detailed_members.all %}
 			{% include "project_sheet/block/member_fancy_square.html" %}
 			{% endfor %}
