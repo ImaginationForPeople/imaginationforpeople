@@ -4,6 +4,7 @@
 {% load tagging_tags %}
 {% load compress %}
 {% load honeypot %}
+{% load sekizai_tags %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
 
@@ -19,6 +20,9 @@
 | {{ site.name }}
 {% endblock %}
 
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/partner-block.css" />
+{% endaddtoblock %}
 
 {% block project_content %}	
 
@@ -141,13 +145,7 @@
 
 	    </div> <!-- .project-gallery -->
 
-	    <div class="project-partners partner-block clearfix">
-		<!-- FIXME: use dynamic data for member list -->
-		<h2>
-		    <i class="sheet-partners"></i>
-		    {% trans "Partners"|capfirst %}</h2>
-		{% include "project_sheet/block/partnerlist_flat_wide.html" %}
-	    </div>
+	    {% include "project_sheet/block/partner-block.html" %}
 	</div> <!-- .project-sidebar -->
     </div>
 </div>

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
+{% load sekizai_tags %}
 
 {% block base_grid %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
@@ -15,6 +16,30 @@
 
 {% block content %}	
 {% with gridsystem='bootstrap' %}
+
+{% addtoblock "js" %}
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    {% if project_translation %}
+    <script>
+    // Addthis configuration
+    var addthis_share = {
+        templates : {
+            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
+        }
+    }
+
+    $(document).ready(function() {
+        // Addthis
+	addthis.init();
+    });
+    </script>
+    {% endif %}
+
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
+{% endaddtoblock %}
 
 
 <div class="project-subheader">
@@ -115,20 +140,17 @@
 	    </a></li>
 	    <li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
 	    <li class="right">
-		<a class="share" tabindex="1">{% trans "Share" %}
+		<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
 		    <i class="i4p-toolbar-dropdown"></i>
 		</a>
-		<ul class="submenu">
-		    <li>
-			Twitter
-		    </li>
-		    <li>
-			Facebook
-		    </li>
-		    <li>
-			Other
-		    </li>
-		</ul>
+
+              <!-- AddThis Button BEGIN -->
+              <ul class="addthis_toolbox addthis_default_style dropdown-menu">
+		<a class="addthis_button_facebook_like"  fb:like:layout="button_count"></a>
+		<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
+	      </ul>
+              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+              <!-- AddThis Button END -->
 	    </li>
 	</ul>
     </div>

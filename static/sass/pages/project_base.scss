@@ -185,18 +185,17 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 		}
 
 		&.share {
-
 		    &:focus ~ .submenu {
 			opacity: 1;
 			display: block;
-			top: 30px;
-			right: -$sizeMarginSmall;
 		    }
 		}
 	    }
 
 	    .submenu {
 		@include i4p-transition;
+		top: 30px;
+		right: -$sizeMarginSmall;
 		width: 60px;
 		padding: $sizePaddingMedium;
 		display: none;
@@ -204,6 +203,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 		opacity: 0;
 		list-style: none;
 		position: absolute;
+		z-index: 1;
 
 		li {
 		    display: block;
