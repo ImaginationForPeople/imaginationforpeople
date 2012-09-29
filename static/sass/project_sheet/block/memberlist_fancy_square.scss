@@ -19,6 +19,11 @@ $topic-sprite-dimensions: true;
 @import "project/topic/*.png"; // */
 @include all-topic-sprites(true);
 
+$i4p-slider-sprite-dimensions: true;
+$i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
+@import "project_sheet/i4p-slider/*.png"; // */
+// @include all-i4p-slider-sprites; // NO AUTO INCLUDE
+
 // FIXME: move block rules elsewhere
 .member-block {
     @include i4p-seemore-class;
@@ -55,6 +60,7 @@ $topic-sprite-dimensions: true;
 	width: inherit;
 	padding-left: 25px;
 	padding-right: 25px;
+	position: relative;
 
 	ul {
 	    @include box-sizing(border-box);
@@ -72,6 +78,13 @@ $topic-sprite-dimensions: true;
 	    }
 	}
 
+    }
+
+    .controls {
+	display: block;
+	position: relative;
+	height: 1px;
+	width: inherit;
     }
 
     .active {
@@ -97,6 +110,55 @@ $topic-sprite-dimensions: true;
 
 	#slide-#{$i}:checked ~ .view ul {
 	    margin-left: $i * -5 * 60px;
+	}
+    }
+
+    .slide-input {
+	display: none;
+    }
+
+    @mixin member-list-leftcontrol {
+	background: $i4p-slider-sprites no-repeat;
+	@include i4p-slider-sprite(prev); 
+	position: absolute;
+	display: block;
+	bottom: 25px;
+	left: 10px;
+	width: 15px;
+	height: 15px;
+    }
+
+    @mixin member-list-rightcontrol {
+	background: $i4p-slider-sprites no-repeat;
+	@include i4p-slider-sprite(next); 
+	position: absolute;
+	display: block;
+	bottom: 25px;
+	right: 6px;
+	width: 15px;
+	height: 15px;
+    }
+
+    // controls 
+    .slide-input.first-input:checked ~ .controls label:last-child {
+	content: "v1";
+	@include member-list-leftcontrol;
+    }
+
+    .slide-input.last-input:checked ~ .controls label:first-child {
+	content: "v2";
+	@include member-list-rightcontrol;
+    }
+
+    @for $i from 0 through 10 {
+	#slide-#{$i}:checked ~ .controls label:nth-child(#{$i + 2}) {
+	    content: "v3";
+	    @include member-list-rightcontrol;
+	}
+
+	#slide-#{$i}:checked ~ .controls label:nth-child(#{$i}) {
+	    content: "v4";
+	    @include member-list-leftcontrol;
 	}
     }
 
