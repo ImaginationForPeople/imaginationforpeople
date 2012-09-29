@@ -67,7 +67,7 @@ button, a{
 /* ----- General HTML Styles----- */
 
 body {
-  background: #f8f8f8;
+  background: #f8f8f8 !important;
   font-size: 14px;
   margin: 0;
   padding: 0;
@@ -367,116 +367,10 @@ body.user-messages {
 #header.without-logo #metaNav {
   margin-bottom: 7px;
 }
-#secondaryHeader {
-  /* Div containing Home button, scope navigation, search form and ask button, check blocks/secondary_header.html */
-
-  height: 55px;
-  background: #e9e9e1;
-  border-bottom: #d3d3c2 1px solid;
-  border-top: #fcfcfc 1px solid;
-  margin-bottom: 10px;
-  font-family: 'Open Sans Condensed', Arial, sans-serif;
-}
-#secondaryHeader #homeButton {
-  border-right: #afaf9e 1px solid;
-  background: -6px -36px url(../images/sprites.png) no-repeat;
-  height: 55px;
-  width: 43px;
-  display: block;
-  float: left;
-}
-#secondaryHeader #homeButton:hover {
-  background: -51px -36px url(../images/sprites.png) no-repeat;
-}
-#secondaryHeader #scopeWrapper {
-  width: 688px;
-  float: left;
-}
-#secondaryHeader #scopeWrapper a {
-  display: block;
-  float: left;
-}
-#secondaryHeader #scopeWrapper .scope-selector {
-  font-size: 20px;
-  color: #7a7a6b;
-  height: 55px;
-  line-height: 55px;
-  margin-left: 16px;
-}
-#secondaryHeader #scopeWrapper .on {
-  background: url(../images/scopearrow.png) no-repeat center bottom;
-}
-#secondaryHeader #scopeWrapper .ask-message {
-  font-size: 24px;
-}
-#searchBar {
-  /* Main search form , check widgets/search_bar.html */
-
-  display: inline-block;
-  background-color: #fff;
-  width: 400px;
-  border: 1px solid #c9c9b5;
-  float: right;
-  height: 42px;
-  margin: 6px 0px 0px 15px;
-}
-#searchBar .searchInput,
-#searchBar .searchInputCancelable {
-  font-size: 26px;
-  height: 36px;
-  font-weight: 300;
-  background: #FFF;
-  border: 0px;
-  color: #484848;
-  padding-top: 1px;
-  font-family: Arial;
-  vertical-align: top;
-}
-#searchBar .searchInput {
-  width: 342px;
-}
-#searchBar .searchInputCancelable {
-  width: 305px;
-}
-#searchBar .logoutsearch {
-  width: 337px;
-}
-#searchBar .searchBtn {
-  font-size: 10px;
-  color: #666;
-  background-color: #eee;
-  height: 42px;
-  border: #FFF 1px solid;
-  line-height: 22px;
-  text-align: center;
-  float: right;
-  margin: 0px;
-  width: 48px;
-  background: -98px -36px url(../images/sprites.png) no-repeat;
-  cursor: pointer;
-}
-#searchBar .searchBtn:hover {
-  background: -146px -36px url(../images/sprites.png) no-repeat;
-}
-#searchBar .cancelSearchBtn {
-  font-size: 30px;
-  color: #ce8888;
-  background: #fff;
-  height: 42px;
-  border: 0px;
-  border-left: #deded0 1px solid;
-  text-align: center;
-  width: 35px;
-  cursor: pointer;
-}
-#searchBar .cancelSearchBtn:hover {
-  color: #d84040;
-}
 
 
-#askButton {
-  /* check blocks/secondary_header.html and widgets/ask_button.html*/
 
+/*#askButton {
   line-height: 44px;
   margin-top: 6px;
   float: right;
@@ -509,7 +403,6 @@ body.user-messages {
   -moz-box-shadow: 1px 1px 2px #636363;
   box-shadow: 1px 1px 2px #636363;
   width: 200px;
-  /* to match width of sidebar */
 
 }
 #askButton:hover {
@@ -525,7 +418,7 @@ body.user-messages {
   text-shadow: 0px 1px 0px #c6d9dd;
   -moz-text-shadow: 0px 1px 0px #c6d9dd;
   -webkit-text-shadow: 0px 1px 0px #c6d9dd;
-}
+}*/
 
 
 /* =============================================================================
@@ -536,7 +429,7 @@ body.user-messages {
 
 
 /* =============================================================================
-                            STRUCTURES EN 2 COLONNES
+                           2 COLUMNS STRUCTURE
 ============================================================================== */
 /* ----- Content layout, check two_column_body.html or one_column_body.html ----- */
 .content-wrapper {
@@ -576,7 +469,7 @@ body.user-messages {
   float: left;
   width: 960px;}
 /* =============================================================================
-                            FIN STRUCTURES EN 2 COLONNES
+                            END 2 COLUMNS STRUCTURE
 ============================================================================== */
 
 
@@ -1246,15 +1139,15 @@ div#tagSelector div.inputs {
   margin-bottom: 10px;
 }
 
-div#tagSelector ul.liste_tags{
+div#tagSelector ul.taglist{
 	zoom:1;
     margin-bottom:10px;}
-div#tagSelector ul.liste_tags:after {	
+div#tagSelector ul.taglist:after {	
     content: "";
     display: block;
     clear: both;}
 
-div#tagSelector ul.liste_tags li{
+div#tagSelector ul.taglist li{
 	zoom:1;
 	float:left;
 	margin-right:4px;
@@ -1266,12 +1159,12 @@ div#tagSelector ul.liste_tags li{
 	background-color:#dedede;
 	-webkit-border-radius: 6px;    
     border-radius: 6px;}
-div#tagSelector ul.liste_tags li:after {	
+div#tagSelector ul.taglist li:after {	
     content: "";
     display: block;
     clear: both;}
 
-div#tagSelector ul.liste_tags li p{
+div#tagSelector ul.taglist li a{
 	float:left;
 	font-size:12px;
 	font-style:italic;
@@ -1279,7 +1172,7 @@ div#tagSelector ul.liste_tags li p{
 	color:#8f8f8f;
 	padding-right:7px;}
 
-div#tagSelector ul.liste_tags li a{
+div#tagSelector ul.taglist li div.delete-icon{
 	float:right;
 	display:block;
 	text-indent:-5000px;
@@ -1287,8 +1180,9 @@ div#tagSelector ul.liste_tags li a{
 	height:9px;
 	margin-top:4px;
     background:  url(../images/widget_tag_selector/croix.png) left top no-repeat;
+	cursor:pointer;
 	}
-div#tagSelector ul.liste_tags li a:hover{
+div#tagSelector ul.taglist li div.delete-icon:hover{
     background:  url(../images/widget_tag_selector/croix.png) left bottom no-repeat;
 	}
 	
@@ -1480,8 +1374,15 @@ div.tabBar h2#questionCount{
   color: #242424;
   font-family: 'OpenSans',Arial,sans-serif;}
    
+div#sort_tabs,
 div.tabsA{
+	zoom:1;
 	float:right;}
+div#sort_tabs:after,
+div.tabsA:after {	
+    content: "";
+    display: block;
+    clear: both;}
 
 /*===================================================================================
                              TAB BAR +  RSS BTN + QUESTION COUNT
@@ -1815,6 +1716,7 @@ form#fmedit div.wmd-preview{
 form#fmask table.proxy-user-info div.form-item,
 form#fmedit table.proxy-user-info div.form-item{
 	padding-bottom:10px;}
+	
 
 form#fmask div.question-options,
 form#fmedit div.question-options{
@@ -1990,7 +1892,6 @@ body.question-page div.conteneur_question_card div.wrapper_vote_number{
 body.question-page div.conteneur_question_card div.wrapper_vote_number div.question-img-upvote{
 	height:14px;
     background: url(../images/arrow_up_vote.png) center top no-repeat;
-    cursor: pointer;
 }
 
 body.question-page div.conteneur_question_card div.wrapper_vote_number div.vote-number{
@@ -2006,7 +1907,6 @@ body.question-page div.conteneur_question_card div.wrapper_vote_number div.vote-
 body.question-page div.conteneur_question_card div.wrapper_vote_number div.question-img-downvote {
 	height:14px;
   background: url(../images/arrow_down_vote.png) center top no-repeat;
-  cursor: pointer;
 }
 /*++++++++  END VOTE NUMBER ++++++++*/
 
@@ -2365,6 +2265,104 @@ body.question-page div.answer-body div.answer-img-downvote{
 
 
 /*++++++++  END ANSWER ++++++++*/
+
+/*++++++++  FIRST ANSWER ++++++++*/
+form#fmanswer{
+	margin-top:20px;
+	padding-top:30px;
+    background: url(../images/ombre_questions.png) center top no-repeat;}
+
+form#fmanswer h2{	
+    font-family: 'Open Sans Condensed', Arial, sans-serif;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-size:20px;
+	margin-top: 8px;
+	color:#04add1;}
+
+form#fmanswer div.wmd-container{
+	margin-top:20px;
+	border:2px solid #87cad9;
+	background-color:#ffffff;
+	margin-bottom:20px;}
+
+form#fmanswer div#wmd-button-bar{
+	border-bottom:1px solid #dedede;}
+
+form#fmanswer textarea{
+	border:none;}
+
+form#fmanswer div.preview-toggle{
+	padding-bottom:20px;}
+	
+form#fmanswer div.preview-toggle p#pre-collapse{
+    text-transform:uppercase;
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:14px;
+	font-weight:bold;
+	color:#706f6f;
+	padding-bottom:5px;
+	cursor:pointer;}
+
+form#fmanswer div.wmd-preview{
+	padding:5px;
+	min-height:60px;
+ 	height:auto !important;
+ 	height:60px;
+	-webkit-border-radius: 5px;    
+    border-radius: 5px;
+	background-color:#fff;}
+
+form#fmanswer table.proxy-user-info div.form-item{
+	padding-bottom:10px;}
+
+form#fmanswer input[type="text"] {
+    border: 2px solid #87CAD9;
+}
+	
+form#fmanswer table.proxy-user-info label{
+	color: #242424;
+    display: block;
+    font-family: 'Open Sans Condensed',Arial,sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    vertical-align: middle;}
+
+form#fmanswer input#add-answer-btn{
+    text-transform:uppercase;
+    font-family: 'OpenSans', Arial, sans-serif;
+	margin-top:10px;
+	padding:5px;
+	padding-right:10px;
+	padding-left:10px;
+	font-weight:bold;	
+	font-size:12px;
+	-webkit-border-radius: 15px;    
+    border-radius: 15px;
+	border:none;
+	box-shadow:none;
+	text-shadow:none;
+	height:auto;
+	color:#ffffff;
+	background: rgb(74,185,232);
+	background: -moz-linear-gradient(top,  rgba(74,185,232,1) 0%, rgba(57,144,180,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(74,185,232,1)), color-stop(100%,rgba(57,144,180,1)));
+	background: -webkit-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -o-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: linear-gradient(to bottom,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
+}
+
+form#fmanswer div.checkbox{
+	float: left;
+    margin-top: 20px;}
+
+form#fmanswer div.checkbox label{
+	color:#706F6F;}
+/*++++++++ END FIRST ANSWER ++++++++*/
 
 
 body.question-page div#ContentLeft > a.submit{ 
@@ -4386,6 +4384,17 @@ textarea.tipped-input {
   background-position: -456px -144px;
 }
 
+
+i.interrogation{
+  	display: inline-block;
+    *margin-right: .3em;
+	margin-top: -3px;
+    vertical-align: text-top;
+	width:21px;
+	height:20px;
+    background: url(../images/picto_question.png) no-repeat;
+	}
+
 /*========================================================================================
 						END ICON SYSTEM FROM BOOTSTRAP 
 			   (exact copy from the usual bootstrap.css stylesheet)
@@ -4397,6 +4406,221 @@ textarea.tipped-input {
 /*========================================================================================
 						      SECONDARY HEADER
 /*========================================================================================*/
+div#secondaryHeader {
+  /* Div containing Home button, scope navigation, search form and ask button, check blocks/secondary_header.html */
+  border-top: #3a3838 8px solid;
+  background: url(../images/background_secondary_header.png) no-repeat center top;
+  height: 55px;
+  padding-top: 115px;
+}
+
+div#secondaryHeader div.secondary_header_bar{
+	zoom:1;
+	width:932px;/*total width inluding paddings 960px*/	
+	margin:0 auto;
+    padding-top:8px;
+	padding-left:14px;
+	padding-bottom:8px;
+	padding-right:14px;
+	-webkit-border-radius: 6px;
+    border-radius: 6px;
+	background-color:#f2f2f2;}
+div#secondaryHeader div.secondary_header_bar:after{
+  clear: both;
+  content: "";
+  display: block;}
+  
+
+div#secondaryHeader div.secondary_header_bar a#askButton{
+	float:right;
+    text-transform:uppercase;
+    font-family: 'OpenSans', Arial, sans-serif;
+	padding:5px;
+	padding-right:10px;
+	font-weight:bold;	
+	font-size:12px;
+	-webkit-border-radius: 15px;    
+    border-radius: 15px;
+	border:none;
+	box-shadow:none;
+	text-shadow:none;
+	height:auto;
+	background: rgb(74,185,232);
+	background: -moz-linear-gradient(top,  rgba(74,185,232,1) 0%, rgba(57,144,180,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(74,185,232,1)), color-stop(100%,rgba(57,144,180,1)));
+	background: -webkit-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -o-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	background: linear-gradient(to bottom,  rgba(74,185,232,1) 0%,rgba(57,144,180,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
+	color:#ffffff;
+}
+
+
+div#secondaryHeader a#homeButton {
+  display: block;
+  float: left;
+  height: 22px;
+  width: 22px;
+  background: url(../images/home_button.png) left top no-repeat;
+}
+div#secondaryHeader a#homeButton:hover {
+  background: url(../images/home_button.png) left bottom no-repeat;  
+}
+
+
+div#secondaryHeader div#scopeWrapper {
+  zoom:1;
+  width: 640px;
+  float: left;}
+div#secondaryHeader div#scopeWrapper:after{
+  clear: both;
+  content: "";
+  display: block;} 
+
+
+div#secondaryHeader #scopeWrapper a.scope-selector {
+    display: block;
+    float: left;
+	font-family: 'OpenSans', Arial, sans-serif;
+	font-size:12px;
+	color:#706f6f;
+	font-weight:bold;
+	text-transform:uppercase;
+    margin-left: 16px;
+    padding-top: 7px;
+}
+div#secondaryHeader #scopeWrapper a.scope-selector.on,
+div#secondaryHeader #scopeWrapper a.scope-selector:hover{
+	text-decoration:none;
+	color:#04add1;}
+
+div#secondaryHeader #scopeWrapper .ask-message {
+	font-family: 'OpenSans', Arial, sans-serif;
+	font-size:12px;
+	color:#706f6f;
+	font-weight:bold;
+	text-transform:uppercase;
+	padding-left:20px;
+	padding-top: 4px;
+}
+
+
+/*++++++++++++++++++++++++ SEARCH BAR ++++++++++++++++++++++++++++*/
+
+div#searchBar {
+  background-color: #fff;
+  border-top: 1px solid #cccccc;
+  float: right;
+  width:240px;
+  height:25px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+
+div#searchBar form#searchForm{
+	zoom:1;	
+}
+div#searchBar form#searchForm:after{
+  clear: both;
+  content: "";
+  display: block;}
+ 
+div#searchBar input.searchBtn{
+	display:block;
+	float:left;
+	width:20px;
+	height:10px; 
+	margin-top: 8px;
+	border:none;
+    background: url(../images/search_icon.png) right top no-repeat;
+	cursor:pointer;
+	}
+	
+div#searchBar input.searchInput,
+div#searchBar input.searchInputCancelable{
+	float:left;
+	display:block;
+	width:200px;
+	height:25px;
+	border:none;}
+	
+div#searchBar input.cancelSearchBtn{
+	float:right;
+	display:block;
+	width:20px;
+	height:10px;
+	margin-top: 8px;
+	border:none;
+	text-indent:-5000px;
+    background: url(../images/close_dark.png) no-repeat;
+	cursor:pointer;}
+
+
+/*#searchBar {
+  display: inline-block;
+  background-color: #fff;
+  width: 400px;
+  border: 1px solid #c9c9b5;
+  float: right;
+  height: 42px;
+  margin: 6px 0px 0px 15px;
+}
+#searchBar .searchInput,
+#searchBar .searchInputCancelable {
+  font-size: 26px;
+  height: 36px;
+  font-weight: 300;
+  background: #FFF;
+  border: 0px;
+  color: #484848;
+  padding-top: 1px;
+  font-family: Arial;
+  vertical-align: top;
+}
+#searchBar .searchInput {
+  width: 342px;
+}
+#searchBar .searchInputCancelable {
+  width: 305px;
+}
+#searchBar .logoutsearch {
+  width: 337px;
+}
+#searchBar .searchBtn {
+  font-size: 10px;
+  color: #666;
+  background-color: #eee;
+  height: 42px;
+  border: #FFF 1px solid;
+  line-height: 22px;
+  text-align: center;
+  float: right;
+  margin: 0px;
+  width: 48px;
+  background: -98px -36px url(../images/sprites.png) no-repeat;
+  cursor: pointer;
+}
+#searchBar .searchBtn:hover {
+  background: -146px -36px url(../images/sprites.png) no-repeat;
+}
+#searchBar .cancelSearchBtn {
+  font-size: 30px;
+  color: #ce8888;
+  background: #fff;
+  height: 42px;
+  border: 0px;
+  border-left: #deded0 1px solid;
+  text-align: center;
+  width: 35px;
+  cursor: pointer;
+}
+#searchBar .cancelSearchBtn:hover {
+  color: #d84040;
+}*/
+
+/*++++++++++++++++++++++++ END SEARCH BAR ++++++++++++++++++++++++++++*/
 /*========================================================================================
 						     END  SECONDARY HEADER
 /*========================================================================================*/									 

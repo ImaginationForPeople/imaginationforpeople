@@ -2,5 +2,5 @@
     {% if not search_state %}  {#  get empty SearchState() if there's none #}
         {% set search_state=search_state|get_empty_search_state %}
     {% endif %}
-    <a id="askButton" href="{{ search_state.full_ask_url() }}">{% trans %}Ask Your Question{% endtrans %}</a>
+    <a id="askButton" href="{{ search_state.full_ask_url() }}"><i class="interrogation"> </i> {% trans %}Ask Your Question{% endtrans %}</a>
 {% endif %}
