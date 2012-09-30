@@ -84,7 +84,7 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
     env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
-    env.gitbranch = "release/o-nine"
+    env.gitbranch = "release/tucker"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -93,7 +93,8 @@ def stagenv():
 @task
 def devenv():
     """
-    [ENVIRONMENT] Developpement (must be run from the virtualenv path)
+    [ENVIRONMENT] Developpement (must be run from the project path: 
+    the one where the fabfile is)
     """
     commonenv()
     env.wsginame = "dev.wsgi"
@@ -103,12 +104,13 @@ def devenv():
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['localhost']
 
-    env.gitrepo = "../"
+    current_path = local('pwd',capture=True)
+    
+    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "develop"
 
-    env.venvbasepath = os.path.join("./")
-    env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
-
+    env.venvbasepath = os.path.normpath(os.path.join(current_path,"../../"))
+    env.venvfullpath = os.path.normpath(os.path.join(current_path,"../"))
 
 ## Virtualenv
 def build_virtualenv():
@@ -161,17 +163,35 @@ def collect_static_files():
     print(cyan('Collecting static files'))
     venvcmd('./manage.py collectstatic --noinput')
 
+@task
+def make_messages():
+    """
+    Run *.po file generation for translation
+    """
+    appspath=env.venvfullpath + '/' + env.projectname + '/' + "apps"
+    with cd(appspath):
+        apps = run('ls -d */').split(None)
+    cmd = "django-admin.py makemessages -a -e html,txt"
+    print(cyan('Generating .po files for the following apps: %s' % apps))
+    for app in apps:
+        appsubdir = 'apps/%s' % app
+        if exists(appspath + '/' + app + '/' + '/locale'):
+            print(cyan('\t * %s' % appsubdir))
+            venvcmd(cmd, subdir=appsubdir)
+
+@task
 def compile_messages():
     """
-    Run compile messages and reload the app
+    Run compile *.mo file from *.po
     """
-    apps = venvcmd('ls -d */', subdir="apps").split("\n")
+    appspath=env.venvfullpath + '/' + env.projectname + '/' + "apps"
+    with cd(appspath):
+        apps = run('ls -d */').split(None)
     cmd = "django-admin.py compilemessages -v0"
     print(cyan('Compiling i18 messages for the following apps: %s' % apps))
     for app in apps:
         appsubdir = 'apps/%s' % app
-        cwd = venvcmd('pwd', subdir=appsubdir)
-        if exists(cwd + '/locale'):
+        if exists(appspath + '/' + app + '/' + '/locale'):
             print(cyan('\t * %s' % appsubdir))
             venvcmd(cmd, subdir=appsubdir)
 
@@ -455,12 +475,16 @@ def database_restore():
     """
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
 
-    remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
-    
+    if(env.wsginame == 'dev.wsgi'):
+        remote_db_path = os.path.join(env.venvfullpath, env.projectname, 'current_database.sql.bz2')
+    else:
+        remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
+
     if(env.wsginame != 'dev.wsgi'):
         put('current_database.sql.bz2', remote_db_path)
 
-    execute(webservers_stop)
+    if(env.wsginame != 'dev.wsgi'):
+        execute(webservers_stop)
     
     # Drop db
     with settings(warn_only=True):
@@ -468,7 +492,7 @@ def database_restore():
 
     # Create db
     sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
-
+    run('pwd')
     # Restore data
     with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
         run('grep "DATABASE" -A 8 site_settings.py')
@@ -477,4 +501,5 @@ def database_restore():
                                               env.db_name)
         )
 
-    execute(webservers_start)
+    if(env.wsginame != 'dev.wsgi'):
+        execute(webservers_start)

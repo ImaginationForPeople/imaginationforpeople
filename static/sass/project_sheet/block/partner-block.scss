@@ -1,0 +1,12 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+.partner-block {
+
+    form {
+	textarea {
+	    @include box-sizing(border-box);
+	    width: 100%;
+	}
+    }
+}

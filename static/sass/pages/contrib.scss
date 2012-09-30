@@ -1,4 +1,4 @@
-@import "mixin.scss";
+@import "i4p-mixins";
 
 
 body{
@@ -66,103 +66,14 @@ a{
 
 /* --HEADER---------------------------------------------------------------------------------------------------- */
 
-
-
-#header{
-	background-image:url(../../images/pages/contrib/header-bg.jpg);
-    background-repeat:repeat-x;
-	width:100%;
-    height:116px;
-	color:#a6a6a6;
-	background-position:center;
-    position:relative;
-    margin-top: -25px;
-
-    #stain-top{
-        background-image:url(../../images/pages/contrib/tache-top.png);
-        background-repeat:repeat-x;
-        width:316px;
-        height:48px;
-        background-position:center;
-        position:absolute;
-        bottom:-48px;
-        left:0px;
-    }
-    
-    #logo{	
-        position:relative;
-        float:left;
-        top:30px;	
-    }
+.nav-white {
+    display:none;
 }
-
-
-ul#menu{
-    list-style-type:inline;	
-    margin:0px;
-    height:18px;
-    position:relative;
-    right:15px;
-    bottom:0px;
-    float:right;
-    top:80px;
-    
-    li {
-        margin-left:20px;
-        float:left; /*pour IE*/
-        list-style-type:none;
-        position:relative;	
-        
-        ul{
-            position:absolute;
-            padding:10px;
-            background-color:#951B81;
-            z-index:100;
-            width:auto;
-            margin-top:10px;
-            
-            li{
-                float:none;
-                margin:0px;
-                font-size:13px;
-            }
-            
-            li:hover{
-                background-color:#c473ad;
-            }
-        }
-    }
-    
-    a {
-        text-decoration:none;
-        color:#8e8e8e;
-        @include georgia(20px); 
-        
-        img {	
-            border:0px solid black;
-        }
-    }
-    
-    a:hover {	
-        color:#5f5f5f;
-    } 
-}
- 
-
-ul#menu > li:hover{
-    height:27px;
-}
-
- 
-
 
 /* --ZONES DE CONTENUS---------------------------------------------------------------------------------------------------- */
 
 
 .content{
-	color:#818181;
-	position:relative;
-    margin:12px;
 }
 
 
@@ -202,6 +113,8 @@ ul#menu > li:hover{
             padding-bottom:12px;
             border-bottom:1px solid #dadada;
             font-size:10px;
+            float: left;
+            width: 100%;
             
             img{
                 float:left;
@@ -279,7 +192,7 @@ ul#menu > li:hover{
     background-color:#fafafa;
     border:1px solid #cdcdcd;
     @include border-radius(8px); 
-    @include shadow(3px, #f3f3f3);
+    @include i4p-shadow(3px, #f3f3f3);
     margin-top:30px;
     
     ul#jobs{
@@ -358,87 +271,3 @@ ul#menu > li:hover{
 }
 
 
-/* --FOOTER---------------------------------------------------------------------------------------------------- */
-
-
-* {
-    margin: 0;
-}
-html, body {
-    height: 100%;
-}
-
-#footer{
-	background-color:#f3f3f3;
-    border-top:1px solid #dadada;
-	width:100%;
-    color:#818181;
-	text-align:center;
-	padding-top:7px;	
-	padding-bottom:7px;	
-    font-size:11px;
-    
-    #stain-top{
-        background-image:url(../../images/pages/contrib/tache-bottom.png);
-        background-repeat:repeat-x;
-        width:443px;
-        height:38px;
-        background-position:center;
-        position:absolute;
-        top:-38px;
-        right:0px;
-    }
-    
-    .separatorv{
-        left:20px;
-    }
-    
-    a{
-        color:#818181;
-        text-decoration:none;
-    }
-    
-    a:hover{
-        color:#5f5f5f;
-    }
-    
-    img{
-        position:relative;
-        top:8px;
-    }
-    
-    #links{
-        width:670px;
-        float:right;
-        padding-top:10px;
-        
-        ul{
-            width:180px;
-            float:left;
-            margin-left:20px;
-            padding:0px;
-            text-align:left;
-            padding-left:20px;
-            
-            li{
-                list-style-type:none;
-                font-size:14px;
-            }
-            
-            h1{
-                color: #0090be;
-                @include georgia(20px); 
-                margin-bottom:10px;
-            }
-        }
-    }
-}
-
-#footer {
-    margin: 0 auto;
-    position: relative;
-}
-
-#footer /*, .push*/ {
-    height: 150px;
-}

@@ -1,12 +1,13 @@
-﻿{% extends "base.html" %}
+﻿{% extends "base_obsolete.html" %}
 {% load i18n %}
 {% load compress %}
 {% load cms_tags %}  
 
 {% block style %}
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/fonts.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/zinnia-i4p.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
     {% endcompress %}
 {% endblock %}
@@ -161,7 +162,7 @@
 
     <div id="content" class="center">
         <div id="left_col">
-        
+        {% placeholder "Left column" %}
             <!-- TEMP!!! -->
             <div class="infoblock">
                 <div class="image">

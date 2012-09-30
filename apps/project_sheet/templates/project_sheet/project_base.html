@@ -1,25 +1,195 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
+{% load sekizai_tags %}
+
+{% block base_grid %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
+{% endblock %}
 
 {% block style %}
-  {{ block.super }}
-  {% compress css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project.css" />
-  {% endcompress %}
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
+{% endcompress %}
 {% endblock %}
 
 {% block content %}	
+{% with gridsystem='bootstrap' %}
 
-	
-  <div class="content">        
-    <div class="container_18">
-      <div class="grid_18 alpha omega">	
-        {% block project_content %}{% endblock %}
-      </div>
+{% addtoblock "js" %}
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    {% if project_translation %}
+    <script>
+    // Addthis configuration
+    var addthis_share = {
+        templates : {
+            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
+        }
+    }
+
+    $(document).ready(function() {
+        // Addthis
+	addthis.init();
+    });
+    </script>
+    {% endif %}
+
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
+{% endaddtoblock %}
+
+{% if project_translation %}
+<div class="project-subheader">
+    <div class="container">
+	<div class="row">
+	    <div class="span8 subheader">
+		<h1 class="title">{{ project_translation.title }}</h1>
+		<div class="description">{{ project_translation.baseline }}</div>
+		<div class="background">
+		    <img src="{{ project_translation.project.pictures.1.display.url }}" alt="" />
+		</div>
+	    </div>
+	    <div class="span4 infocard">
+		<a name="project-information"></a>
+		<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
+		<table class="infotable">
+		    <tr class="infotable-location location">
+			<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
+			<th>{% trans "Location" %}</th>
+			<td>
+			    <div class="location-address">
+				{% if project_translation.project.location %}
+				<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
+				{% if project_translation.project.location.address %}
+				{{ project_translation.project.location.address }}
+				{% endif %}
+			    </div>
+			    <div class="location-country">
+				{% if project_translation.project.location.country %}
+				<img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
+				{% endif %}
+				{% if project_translation.project.location.lat %}
+				<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
+				{% endif %}
+				{% else %}
+				<em>{% trans 'unknown'|capfirst %}</em>
+				{% endif %}
+			    </div>
+			</td>
+		    </tr>
+		    <tr class="infotable-website">
+			<th>{% trans "Web" %}</th>
+			<td>
+			    <!-- Website -->              
+			    {% if project_translation.project.website %}
+			    <a href="{{ project.website }}" target="_blank" rel="nofollow">{{ project_translation.project.website }}</a>
+			    {% else %}
+			    {% trans 'unknown'|capfirst %}
+			    {% endif %}
+			</td>
+		    </tr>
+		    <!-- FIXME: re-enable whell data will be in the object model
+		    <tr class="infotable-follow">
+			<th>{% trans "Follow" %}</th>
+			<td></td>
+		    </tr>
+		    -->
+		    <tr class="infotable-share">
+			<th>{% trans "Share" %}</th>
+			<td></td>
+		    </tr>
+		    <!-- FIXME: re-enable whell data will be in the object model
+		    <tr class="infotable-movecommons">
+			<th>{% trans "Movecommons" %}</th>
+			<td></td>
+		    </tr>
+		    -->
+		    <tr class="infotable-maturity">
+			<th>{% trans "Maturity" %}</th>
+			<td>
+			    {% comment %}FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
+			    <p class="progressbar progressbar-{{project_translation.project.status|lower }}">
+				<span class="status">{{ project_translation.project.get_status_display }}</span>
+			    </p>
+			</td>
+		    </tr>
+		</table>
+	    </div>
+	</div>
     </div>
-    <div class="clear"></div>
-  </div>
+</div> <!-- .project-subheader -->
+{% endif %}
 
+<div class="project-menubar">
+    <div class="container">
+	<div class="row">
+	<ul class="span8">
+	    <li class="active"><a href="#FIXME-BADURL">{% trans "Project" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
+	    <li><a href="#FIXME-BADURL">{% trans "Gallery" %}</a></li>
+	    <li class="right"><a href="#FIXME-BADURL">
+		    <i class="i4p-toolbar-favorite"></i>
+		</a>
+	    </li>
+	    <li class="right"><a href="#FIXME-BADURL">
+		    <i class="i4p-toolbar-print"></i>
+		    </a>
+	    </li>
+	    <li class="right"><a href="#FIXME-BADURL">
+		    <i class="i4p-toolbar-widgets"></i>
+	    </a></li>
+	    <li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
+	    <li class="right">
+		<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
+		    <i class="i4p-toolbar-dropdown"></i>
+		</a>
 
+              <!-- AddThis Button BEGIN -->
+              <ul class="addthis_toolbox addthis_default_style dropdown-menu">
+		<a class="addthis_button_facebook_like"  fb:like:layout="button_count"></a>
+		<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
+	      </ul>
+              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+              <!-- AddThis Button END -->
+	    </li>
+	</ul>
+    </div>
+    </div>
+</div> <!-- .project-menubar -->
+
+<div class="project-toolbar">
+    <ul>
+	<li>
+	    <a href="#project-information" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Information" %}">
+		<i class="sheet-information-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-about" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
+		<i class="sheet-details-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-references" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "References" %}">
+		<i class="sheet-references-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-comments" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Comments" %}">
+		<i class="sheet-comments-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-partners" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Partners" %}">
+		<i class="sheet-partners-white"></i></a>
+	</li>
+    </ul>
+</div>
+
+<div class="project-content">
+{% block project_content %}{% endblock %}
+</div>
+
+{% endwith %}
 {% endblock %}

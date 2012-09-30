@@ -1,0 +1,63 @@
+<!-- question_edit_tips.html -->
+<div id ="tips" class="box">
+    <h2>{% trans %}Tips{% endtrans %}</h2>
+    <ul>
+    	<li class="pointe_cadre"></li>
+    	<li><p>{% trans %}ask a question interesting to this community {% endtrans %}</p></li>
+    	<li><p>{% trans %}provide enough details{% endtrans %}</p></li>
+    	<li><p>{% trans %} be clear and concise{% endtrans %}</p></li>
+    </ul>
+    <p class='info-box-follow-up-links'>
+        {#
+<!-- will be change to a popup windows
+        <a href="{% url faq %}" target="_blank" title="{% trans %}see frequently asked questions{% endtrans %}">{% trans %}FAQ{% endtrans %} »</a>
+-->
+#}
+    </p>
+</div>
+ 
+<div id="markdownHelp" class="box">
+    <h2>{% trans %}Markdown basics{% endtrans %}</h2>
+    <ul>
+        {% if settings.MARKDUP_CODE_FRIENDLY or settings.ENABLE_MATHJAX %}
+        <li>
+            <p>{% trans %}*italic*{% endtrans %}</p>
+        </li>
+        <li>
+            <p>{% trans %}**bold**{% endtrans %}</p>
+        </li>
+        {% else %}
+        <li>
+            <p>{% trans %}*italic* or _italic_{% endtrans %}</p>
+        </li>
+        <li>
+            <p>{% trans %}**bold** or __bold__{% endtrans %}</p>
+        </li>
+        {% endif %}
+        <li>
+            <p><b>{% trans %}link{% endtrans %}</b>:[{% trans %}text{% endtrans %}](http://url.com/ "{% trans %}title{% endtrans %}")</p>
+
+        </li>
+        
+        <li>
+            <p><b>{% trans %}image{% endtrans %}</b>:![alt {% trans %}text{% endtrans %}](/path/img.jpg "{% trans %}title{% endtrans %}")</p>
+
+        </li>
+        <li>
+            <p>
+            {% trans %}numbered list:{% endtrans %}
+            1.  Foo
+            2.  Bar
+            </p>
+        </li>
+        <li>
+            <p>{% trans %}basic HTML tags are also supported{% endtrans %}</p>
+        </li>
+    </ul>
+    <p class='info-box-follow-up-links'>
+<!-- will be change to a popup windows
+        <a href="http://en.wikipedia.org/wiki/Markdown" target="_blank">{% trans %}learn more about Markdown{% endtrans %} »</a>
+-->
+    </p>
+</div>
+<!-- end question_edit_tips.html -->

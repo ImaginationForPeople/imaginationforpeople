@@ -1,0 +1,20 @@
+{% if not search_state %} 
+{% set search_state=search_state|get_empty_search_state %}
+{% endif %}
+<ul class="tag_list">
+{% for tag in thread.get_tag_names() %}
+<li>
+<div class="part_tag">
+<a href="{{ search_state.add_tag(tag).full_url() }}"
+   title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+   rel="tag"
+   data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+            {{ tag|replace('*', '&#10045;')|truncate(17, True)|escape }}
+</a>
+</div>
+<div class="part_pointe"></div>
+</li>
+{% endfor %}
+
+</ul>
+

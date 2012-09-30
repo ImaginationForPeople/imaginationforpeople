@@ -1,0 +1,45 @@
+{% load i18n %}
+{% load comments %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment-block.css" />
+{% endaddtoblock %}
+
+<h2>
+	<i class="sheet-comments"></i>
+	{% trans "Comments" %}</h2>
+
+<div class="row">
+
+	{% include "project_sheet/block/comment-list.html" %}
+
+	<div class="comment-discuss span3">
+		<h3>{% trans "Discuss or comment this project with other people" %}</h3>
+		<a href="#FIXME-BAD-URL" class="button">
+			<i class="sheet-plus"></i>
+			{% trans "go to the discussion" %}
+		</a>
+	</div>
+
+	<div class="comment-ask span3">
+		<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
+		<a href="#FIXME-BAD-URL" class="button">
+			<i class="sheet-plus"></i>
+			{% trans "go to the help calls" %}
+		</a>
+	</div>
+</div>
+<div class="row">
+	<!-- FIXME: missing add your comment -->
+	<div class="comment-add span5">
+		<form action="#FIXME-COMMENT-NEW-FORM-ACTION-URL">
+			<img src="" class="avatar" />
+			<textarea class="comment-new" placeholder='{% trans "Add your comment there and press enter to send..." %}'>
+			</textarea>
+		</form>
+	</div>
+</div>

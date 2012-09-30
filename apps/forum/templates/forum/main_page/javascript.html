@@ -1,0 +1,20 @@
+<script type="text/javascript" src='{{"/js/live_search.js"|static_url}}'></script>
+
+<script type="text/javascript">
+    var sortMethod = '{{sort}}';
+    var showSortByRelevance = {% if show_sort_by_relevance %}true{% else %}false{% endif %};
+    var minSearchWordLength = {{settings.MIN_SEARCH_WORD_LENGTH}};
+    $(document).ready(function(){
+        /*var on_tab = '#nav_questions';
+        $(on_tab).attr('className','on');*/
+        liveSearch('{{ search_state.query_string()|escapejs }}');
+        Hilite.exact = false;
+        Hilite.elementid = "question-list";
+        Hilite.debug_referrer = location.href;
+    });
+
+</script>
+
+{% if request.user.is_authenticated() %}
+<script type='text/javascript' src='{{"/js/tag_selector.js"|static_url}}'></script>
+{% endif %}

@@ -1,0 +1,80 @@
+{% spaceless %}
+{% if post.comment_count > 0 %}
+   <!-- commented because it s just a word "comment" not particulaly usefull in our case <h2 id="comment-title">Comments</h2>
+    <div class="clean"></div> -->
+{% endif %}
+{% set widget_id = 'comments-for-' + post.post_type + '-' + post.id|string %}
+<div class="comments" id="{{widget_id}}">
+    <div class="content">
+        {% if show_post == post and show_comment and show_comment_position > settings.MAX_COMMENTS_TO_SHOW %}
+            {% set comments = post.get_cached_comments()[:show_comment_position] %}
+        {% else %}
+            {% set comments = post.get_cached_comments()[:settings.MAX_COMMENTS_TO_SHOW] %}
+        {% endif %}
+        {% for comment in comments %}
+            {# Warning! Any changes to the comment markup IN THIS `FOR` LOOP must be duplicated in post.js
+               for the purposes of the AJAX comment editor #}
+            <div class="comment" id="comment-{{comment.id}}">
+                <div class="comment-votes">
+                    {% if comment.score > 0 %}
+                        <div id="comment-img-upvote-{{comment.id}}" class="upvote">{{comment.score}}</div>
+                        <script type="text/javascript">
+                            askbot['functions']['renderPostVoteButtons']('comment', '{{comment.id}}');
+                        </script>
+                    {% else %}
+                        <div class="upvote"></div>
+                    {% endif %}
+                </div>
+                <div class="comment-body">
+                    <div class="comment_infos">
+                        <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
+                        <span class="age">&nbsp;({{ macros.timeago(comment.added_at) }})</span>
+                    </div>
+                    {{comment.html}}
+                    <div class="admin_actions">                 
+                         <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans %}delete this comment{% endtrans %}">
+                            <i class="icon-trash"> </i> {% trans %}delete{% endtrans %}
+                         </a>               
+                         <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans %}edit this comment{% endtrans %}"> 
+                            <i class="icon-pencil"> </i> {% trans %}edit{% endtrans %}
+                        </a>
+                    </div><!-- end div.admin_actions -->                       
+                </div>
+            </div>
+            <script type="text/javascript">
+                askbot['functions']['renderPostControls']('{{comment.id}}');
+            </script>
+        {% endfor %}
+        <div class="controls">
+            {% if show_post == post and show_comment %}
+                {% if show_comment_position > settings.MAX_COMMENTS_TO_SHOW %}
+                    {{
+                        macros.add_or_show_comments_button(
+                                            post = post,
+                                            max_comments = show_comment_position,
+                                            widget_id = widget_id
+                                        )
+                    }}
+                {% else %}
+                    {{
+                        macros.add_or_show_comments_button(
+                                            post = post,
+                                            max_comments = settings.MAX_COMMENTS_TO_SHOW,
+                                            widget_id = widget_id
+                                        )
+                    }}
+                {% endif %}
+            {% else %}
+                {{
+                    macros.add_or_show_comments_button(
+                                        post = post,
+                                        max_comments = settings.MAX_COMMENTS_TO_SHOW,
+                                        widget_id = widget_id
+                                    )
+                }}
+            {% endif %}
+        </div>
+    </div><!-- end div.content -->
+    
+</div>
+{% endspaceless %}

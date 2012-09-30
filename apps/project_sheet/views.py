@@ -24,7 +24,7 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -40,6 +40,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
+from tagging.models import TaggedItem
 from reversion.models import Version
 
 from .filters import FilterSet
@@ -144,7 +145,6 @@ class ProjectStartView(TemplateView):
 
         return context
 
-
 class ProjectTopicSelectView(TemplateView):
     """
     Before starting a project, one needs to pick a topic
@@ -209,19 +209,26 @@ def project_sheet_show(request, slug, add_media=False):
 
     project_status_choices['selected'] = project_translation.master.status
 
+    # Related projects
+    related_projects = TaggedItem.objects.get_related(project_translation,
+                                                      I4pProjectTranslation.objects.exclude(project__id=project.id),
+                                                      num=4)
+
     context = {
         'topics': topics,
         'project': project,
-               'project_translation': project_translation,
-               'project_themes_form': project_themes_form,
-               'project_objectives_form': project_objectives_form,
-               'reference_formset' : reference_formset,
-               'project_info_form': project_info_form,
-               'project_location_form': project_location_form,
-               'project_member_form': project_member_form,
-               'project_status_choices': simplejson.dumps(project_status_choices),
-               #'project_member_formset': project_member_formset,
-               'project_tab' : True}
+        'project_translation': project_translation,
+        'project_themes_form': project_themes_form,
+        'project_objectives_form': project_objectives_form,
+        'reference_formset' : reference_formset,
+        'project_info_form': project_info_form,
+        'project_location_form': project_location_form,
+        'project_member_form': project_member_form,
+        'project_status_choices': simplejson.dumps(project_status_choices),
+        # 'project_member_formset': project_member_formset,
+        'project_tab' : True,
+        'related_projects': related_projects,
+    }
 
     if add_media:
         ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
@@ -240,6 +247,7 @@ def project_sheet_show(request, slug, add_media=False):
                               context_instance=RequestContext(request)
                               )
 
+@require_POST    
 @login_required
 def project_sheet_create_translation(request, project_slug):
     """
@@ -684,7 +692,7 @@ class ProjectRecentChangesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
 
-        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=30)
+        twenty_days_ago = datetime.now() - timedelta(days=30)
 
         project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
         parent_project_ct = ContentType.objects.get_for_model(I4pProject)

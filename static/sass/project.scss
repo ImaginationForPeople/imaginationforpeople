@@ -1,9 +1,22 @@
-@import "mixin.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 
 .categories .menu{
     position:relative;
     top:-30px;
+    
+    ul{
+        padding:0px;
+        padding-top: 8px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
 }
 
 /* ----------Project Body - CREATION + EDITION ----------- */
@@ -468,7 +481,7 @@ form{
         right:-73px;
         margin-right:3px;
         
-        @include shadow(4px, #424242);
+        @include i4p-shadow(4px, #424242);
     }
 }
 
@@ -716,7 +729,9 @@ form{
 #project_photo_gallery{
 	position:relative;
 	width:700px;
-    
+    #all_metadata{
+        display: none;
+    }
     #media_buttons{
         position:absolute;
         right:7px;
@@ -890,7 +905,7 @@ form{
     background-color:black;
     width:65%;
     @include border-radius(4px);
-    @include shadow(4px, black);
+    @include i4p-shadow(4px, black);
     padding:5px;    
     
     .project_card_pictos{
@@ -960,6 +975,18 @@ form{
     }
 }
 
+#cloudtag_list{
+    display:inline;
+    padding:0px;
+    margin:0px;
+    li{
+        list-style-type:none;
+        display:inline;
+        padding:0px;
+        margin:0px;
+    }
+}
+
 #contact_team-infos{
     
     p{
@@ -977,6 +1004,18 @@ form{
         }
     }
 }
+
+#member_list{
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
+
 
 .member-contact{
     
@@ -1272,7 +1311,14 @@ form{
     }
 
     #partners_list{
-    
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
         li.grey_column_team_partner{
             float:left;
             margin-bottom:20px;
@@ -1524,7 +1570,7 @@ ul#themes_tags li.tagit-choice {
                     position:absolute;
                     top:-8px;
                     right:10px;
-                    @include shadow(4px, black);
+                    @include i4p-shadow(4px, black);
                     width:40px;
                     height:40px;
                     border:1px solid #f1e4d3;
@@ -1577,7 +1623,7 @@ ul#themes_tags li.tagit-choice {
             
             img{
                 position:absolute;
-                @include shadow(4px, black);
+                @include i4p-shadow(4px, black);
                 width:40px;
                 height:40px;
                 border:1px solid #f1e4d3;
@@ -1666,14 +1712,16 @@ ul#themes_tags li.tagit-choice {
     bottom:0px;
     z-index:3000;
     position :fixed;
-
+    ul {
+        list-style-type: none;
+    }
     .anonymous-disclaimer, .edition-notification{
         background-color:black;
         @include border-radius(4px); 	
-        @include shadow(4px, black); 
+        @include i4p-shadow(4px, black); 
         padding:10px;
         color:white;
-        border:2px solid $blue;
+        border:2px solid  $colorLightBlue;
         margin-bottom: 10px;
 
         

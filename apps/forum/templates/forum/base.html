@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
+
+<head>  
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+    <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
+
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
+    
+    {% block before_css %}{% endblock %}
+    {% include "meta/html_head_stylesheets.html" %}
+
+    {% block style %}
+      
+     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
+      
+    {% endblock %}  
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="{{ STATIC_URL }}js/shiv_html5_fix.js"></script>      
+    <![endif]-->    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
+    <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
+    		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
+
+    <!-- for i18n -->
+    <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
+
+    {% block forestyle %}{% endblock %}
+    {% include "meta/html_head_javascript.html" %}
+    {% block forejs %}{% endblock %}
+    
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+      
+        // Reject for old browsers
+        $.reject({reject: {msie5: true,
+                msie6: true,
+                msie7: true
+                },
+            imagePath: "{{ STATIC_URL}}images/browsers/",
+            header: "{% trans %}Did you know that your Internet Browser is out of date?{% endtrans %}",
+            paragraph1: "{% trans %}Your browser is out of date, and may not be compatible with our website. A list of the most popular web browsers can be found below.{% endtrans %}",
+            paragraph2: "{% trans %}Just click on the icons to get to the download page{% endtrans %}",
+            closeMessage: "{% trans %}By closing this window you acknowledge that your experience on this website may be degraded{% endtrans %}",
+            closeLink: "{% trans %}Close This Window{% endtrans %}"
+        });
+            
+            
+        $(".social-login img").tipsy({html: true });
+        
+        
+        // Text example for forms
+        $(".search input[type=text]").example("{% trans %}Project search{% endtrans %}");
+        
+        $("input[name=identification]").example("{% trans %}Enter your login{% endtrans %}");
+        $("input[name=password]").example("{% trans %}Password{% endtrans %}");
+        
+        $("input[name=openid_identifier]").example("{% trans %}Enter your username{% endtrans %}");
+        
+        $(".newsletter input[type=text]").example("{% trans %}Enter your email adress{% endtrans %}");
+
+        
+        //Show new project topic popup when user click on add a project
+        var popup_content = $("#new_project_style_popup_zone"); 
+
+        
+        /*
+        $("a.addproject_button").click(function(){
+            var url = $(this).attr("href");
+            
+            popup_content.load("{% url project_sheet-start %} #new_project_style_popup");
+            popup_content.removeClass("hidden");
+            $.getScript("{{ STATIC_URL }}js/project_sheet/topics_select_popup.js");
+            return false;
+        });
+        */
+        
+        
+        // Rollover for social networks links
+        $("li.social-login a img").hover(function(){
+            $(this).attr("src", $(this).attr("src").replace(".png", "-on.png"));
+            //$(this).stop().rotate({animateTo:360});
+        }).mouseleave(function(){
+            $(this).attr("src", $(this).attr("src").replace("-on-on.png", ".png"));
+            //$(this).stop().rotate({animateTo:0});
+        }); 
+        
+        $('#top-zone').hide();
+        $('#user-bt a.open-panel').click(function(){
+          $('#top-zone').slideToggle();
+        });
+    });
+        
+    </script>
+
+    
+    {% block extra_head %}{% endblock %}
+    
+    {{ include_django("sites_specs.html", request) }}
+    
+    {% if not debug %}
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(["_setAccount", "UA-21778007-2"]);
+      _gaq.push(["_setDomainName", "imaginationforpeople.org"]);
+      _gaq.push(["_trackPageview"]);
+   
+     (function() {
+       var ga = document.createElement("script"); ga.type = "text/javascript"; ga.async = true;
+        ga.src = ("https:" == document.location.protocol ? "https://ssl" : "http://www") + ".google-analytics.com/ga.js";
+       var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    {% endif %}
+
+  </head>
+
+  <body class="{% block body_class %}{% endblock %}{% if user_messages %} user-messages{% endif %}{% if page_class %} {{page_class}}{% endif %}{% if request.user.is_anonymous() %} anon{% endif %} lang-{{settings.LANGUAGE_CODE}}">
+  
+    <div class="global">   
+    
+          {% block header %} {{ include_django("header.html", request) }} {% endblock %}         
+          
+          
+          {% include "widgets/system_messages.html" %}
+    
+
+            {% include "widgets/secondary_header.html" %} {# Scope selector, search input and ask button #}
+            {% if settings.ENABLE_LEADING_SIDEBAR %}
+            <div id="leading-sidebar">
+                {{ settings.LEADING_SIDEBAR }}
+            </div>
+            {% endif %}
+          
+          <div class="content-wrapper">
+          {% block body %}{% endblock %}
+          </div>
+
+    </div>
+    {% include "meta/bottom_scripts.html" %}
+    {% block endjs %}
+    {% endblock %}
+    <script type="text/javascript">
+        for (url_name in askbot['urls']){
+            askbot['urls'][url_name] = cleanUrl(askbot['urls'][url_name]);
+        }
+    </script>
+  </body>
+
+</html>
+

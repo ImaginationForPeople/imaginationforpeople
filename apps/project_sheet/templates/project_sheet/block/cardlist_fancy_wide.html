@@ -1,0 +1,20 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project_translation_list : list of I4pProjectTranslation
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+
+
+
+<div class="
+	{% if gridsystem == "bootstrap" %}{% else %}grid_5 omega{% endif %}
+   	project-list wide-card">
+	{% for project_translation in project_translation_list %}
+	{% include "project_sheet/block/card_fancy_wide.html" %}
+	{% endfor %}
+</div>

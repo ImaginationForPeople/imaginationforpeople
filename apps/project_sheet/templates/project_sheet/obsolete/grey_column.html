@@ -1,0 +1,282 @@
+{% load i18n %}
+{% load tagging_tags %}
+
+{% block extra_head %}
+    {% if project_translation %}
+    <script>
+    //Twitter reconfiguration for Addthis
+    var addthis_share = {
+        templates : {
+            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
+        }
+    }
+    </script>
+    {% endif %}
+{% endblock %}
+
+
+<div class="grid_5 omega grey_column">
+	<div class="grey_column_content">
+     {% if project_translation %}
+     <center>
+       <div id="project_status">
+         {% include "project_sheet/project_status.html" %}
+       </div>
+     </center>
+        
+        <br />
+                
+        <div id="sidebar-section-related" class="sidebar-section-openable">
+            
+            <div class="title">
+	      <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-callto" class="button editing-button">
+                <img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" />
+	      </a>
+	      {% trans 'take action'|capfirst %}
+            </div>            
+            
+            <div class="clear"></div>
+
+	    <!-- Call to (help request) -->
+	    <div id="section-callto">
+
+	      {% if callto_section_form %}
+	        <form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'callto_section' %}#sidebar-section-related">
+		  {% csrf_token %}
+		  {{ callto_section_form.callto_section }}
+		  <br /><br />
+		  <input type="image" alt="Ok" src="{{ STATIC_URL }}images/base/v.png" style="margin-left: 4px;" class="greenbutton right nomargin" title="{ % trans "Ok" %}" />
+		  <input type="image" alt="X" src="{{ STATIC_URL }}images/base/x.png" style="margin-left: 4px;" class="redbutton right nomargin" title="{% trans "Cancel" %}" />
+		</form>
+              {% else %}
+                {% if project_translation.callto_section %}
+                  {{ project_translation.callto_section|linebreaks }}
+                {% else %}
+                  {% trans "This project has not claimed its needs yet. Please edit if you are aware of a requirement." %}
+                {% endif %}
+              {% endif %}
+            </div>
+            
+            <div class="clear"></div><br/>
+            
+	    <div id="social-sharing" style="float:left; margin-bottom: 5px; height:20px; width: position:relative; width:227px;">
+	      <span class="spread">{% trans "Spread the word:" %}</span>
+              <!-- AddThis Button BEGIN -->
+              <div class="addthis_toolbox addthis_default_style"> <style> .at300b iframe {width: 100px !important;} </style>
+		<a class="addthis_button_facebook_like" fb:like:layout="button_count" style="float:right;"></a>
+		<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
+	      </div>
+              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+              <!-- AddThis Button END -->
+	    </div>
+            
+            <div class="clear"></div><br />
+            
+            <div class="title">
+                <a title="{% trans 'edit'|capfirst %}"
+                 href="{% url project_sheet-instance-edit-related project_translation.slug %}"
+                 class="button sidebar-opener editing-button" name="opened-sidebar"> 
+                    <img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /> 
+                </a>
+                {% trans 'related'|capfirst %}
+            </div>
+
+            <!-- Colonne grise remplie -->
+
+            {% if project_translation.objectives.all|length > 0 %}
+            <div class="grey_column_objective">
+                <label>{% trans 'objectives:'|capfirst %}</label> 
+                  <ul id="cloudtag_list">
+                  {% for objective in project.objectives.all %}
+                        <li><a href="{% url project_sheet-list%}?objectives={{ objective.id }}" class="link">{{ objective }}</a>{% if not forloop.last %},{% endif%}</li> 
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+
+            {% if not project_translation.themes %}
+            <p>
+                <a class="sidebar-opener" href="#" name="opened-sidebar">
+                {% trans "Click here to set the <strong>categories</strong> and <strong>tags</strong> of this project."|capfirst %}</a>
+            </p>
+            {% else %} {% tags_for_object project_translation as taglist %}
+            <div class="grey_column_tagcloud">
+                <label>{% trans 'Tags:'|capfirst %}</label>
+                <ul id="cloudtag_list">
+                    {% for tag in taglist %}
+                        <li><a href="{% url tags:tag-view tag.name %}">{{ tag.name }}</a>{% if not forloop.last %},{% endif%}</li> 
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
+        
+        <div class="clear"></div>
+
+        <div id="sidebar-section-team" class="sidebar-section-openable">
+            <!-- About the team -->
+            <div class="title">
+                <a title="{% trans 'Add a member'|capfirst %}" href="#" class="button sidebar-opener editing-button" name="opened-sidebar-team"><img src="{{ STATIC_URL }}images/base/add.png" alt="{% trans 'add' %}" /></a>
+                {% trans 'The team'|capfirst %}
+            </div>
+
+            <div class="clear"></div>
+            
+            {% if project.members.count != 0 %}
+                <div id="contact_team-infos">
+                    <img src="{{ STATIC_URL }}images/project/contact_team-picto.jpg" alt="{% trans 'Contact team' %}" width="73" height="67" />
+                    <p>
+                        {% blocktrans %}
+                            Use the messaging system to get in touch with the team 
+                            <img src="{{ STATIC_URL }}images/project/team_info-picto1.jpg" alt="Contact team" width="27" height="15" />
+                            or one of its member
+                            <img src="{{ STATIC_URL }}images/project/team_info-picto2.jpg" alt="Contact member" width="25" height="15" />
+                            .
+                        {% endblocktrans %}
+                    </p>
+                </div>
+                
+                <div class="clear"></div>
+                
+                    <div class="team-contact">
+                        {% with project.members.all|join:"+" as recipients %}
+                            <a href="{%  url userena_umessages_compose_to recipients %}">{% trans "Contact team" %}</a> 
+                        {% endwith %}
+                        <div class="on"></div>
+                        <div class="off"></div>
+                    </div>
+
+                <div class="clear"></div>
+            {% endif %}
+
+
+            {% if project.members.all|length == 0 %}
+              <!-- Text that is visible when this section is empty -->
+              <!-- The name attribute of the anchor is the ID of the sidebar to open -->
+              <p>
+                <a href="#" class="sidebar-opener"  name="opened-sidebar-team">
+                  <img src="{{ STATIC_URL }}images/project/avatar.jpg" alt="{% trans 'There is no registered team members: please to fill this section !' %}" />
+                </a>
+              </p>
+            {% else %}
+
+            <ul id="member_list">
+            
+                {% for member in project.detailed_members.all %}
+                <li class="grey_column_team_member member{{ member.id }}">
+                    <div  style="position:relative; float:left; width:80px;">
+                        <img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" width="80" height="80"/>
+                        <div class="grey_column_team_buttons">
+                            <!-- <a title="{% trans 'Edit'|capfirst %}" href="javascript:alert('Not Yet Implemented');"	class="button nomargin"><img src="{{ STATIC_URL }}images/base/edit.png" alt="edit" /></a> -->
+                            {% if user.is_authenticated %}
+                            <input id="del_member_link" type="image" title="{% trans 'Delete'|capfirst %}" value="{% url project_sheet-instance-del-member project_translation.slug member.user.username %}" class="button redbutton nomargin" src="{{ STATIC_URL }}images/base/trash.png" alt="{% trans 'delete' %}" /> 
+                            {% endif %}
+                        </div>
+                        {% if member.user.get_profile.country %}
+                            <img src="{{ member.user.get_profile.country.flag }}" class="flag" title="{{ member.user.get_profile.country.name }}" alt="{{ member.user.get_profile.country }}"/>
+                        {% endif %}
+                       
+                        <div class="member-contact">
+                            <a href="{%  url userena_umessages_compose_to member.user.username %}">{% trans "Contact" %}</a>
+                            <div class="on"></div>
+                            <div class="off"></div>
+                        </div>
+                        
+                    </div> 
+                    
+                    <div  style="position:relative; float:left; width:130px; margin-left:10px;">
+
+                        <h2>
+                            <a href="{% url userena_profile_detail member.user %}">{{ member.user.get_full_name|default:member.user.username }}</a>             
+                        </h2>
+                        <div class="clear"></div>
+                          
+                        <h3>{{ member.role }}</h3>
+                        <div class="clear"></div>
+                          
+                        <p>{{ member.comment }}</p>	
+                    
+                    </div> 
+
+                    <div class="clear"></div>                    
+
+                </li>
+                
+                <div class="clear"></div>                    
+
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+     
+        
+        <div class="clear"></div>      
+        <div id="sidebar-section-partners">
+            <div id="partners-widget">
+                <div class="title">
+                    <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget" class="button editing-button"><img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" /></a>
+                    {% trans 'Current partners'|capfirst %}
+                </div> 
+                
+                <div class="clear"></div>   
+                
+            {% if project.partners.all|length %}
+                    <ul id="partners_list">
+                        {% for partner in project.partners.all %}
+                        
+                        <div class="clear"></div>
+
+                        <li class="grey_column_team_partner">
+                            <a href="{% url partner-detail partner.slug %}">
+                                <img src="{{ MEDIA_URL }}{{ partner.picture.original_image }}" alt="{{ partner.name }}" />
+                            </a>  
+                                
+                            <h2>
+                                <a href="{% url partner-detail partner.slug %}">{{ partner.name }}</a>             
+                            </h2>
+
+                            {{ partner.description|linebreaks }}
+                        </li>
+                        {% endfor %}
+                    </ul>     
+            {% endif %}
+            
+            {% if not project.partners.all|length and not project_translation.partners_section %}
+                {% trans "This project has no known partners." %}
+                <br /><br />
+            {% endif %}
+
+            {% if partners_section_form %}
+                <form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget">
+                    {% csrf_token %}
+                    {{ partners_section_form.partners_section }}
+                    <br /><br />
+                    <input type="image" alt="Ok" src="/static/images/base/v.png" style="margin-left: 4px;" class="greenbutton right nomargin" title="Ok">
+                    <input type="image" alt="X" src="/static/images/base/x.png" style="margin-left: 4px;" class="redbutton right nomargin" title="Cancel">
+                </form>
+                {% else %}
+                    {% if project_translation.partners_section %}
+                        {{ project_translation.partners_section|linebreaks }}
+                    {% endif %}
+                {% endif %}
+
+                
+                
+            </div>
+        </div>
+
+            
+
+
+		{% else %}
+            <h1>{% trans "Want to get started on your project sheet ?" %}</h1>
+            {% trans "Click on the field you want to edit, edit it, and save the changes. Once you’ve modified a field, your project sheet will be created." %} 
+
+        {% endif %}
+        
+        
+		<div class="clear"></div>
+        
+	</div>
+</div>

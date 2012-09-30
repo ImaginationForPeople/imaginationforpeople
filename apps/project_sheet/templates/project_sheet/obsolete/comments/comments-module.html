@@ -1,0 +1,50 @@
+﻿{% load i18n %}
+{% load comments %}
+
+<br />
+
+<div id="comments-module">
+
+    <div class="title">
+        <img src="{{ STATIC_URL }}images/project/comments-picto.jpg" />{% trans "Comments" %}
+    </div>
+    
+    <div id="comments-count">
+      {% get_comment_count for project_translation as comment_count %}
+        <a href="?show_comments=1#comments-module" class="link">{% trans "View the" %} {{ comment_count }} {% trans "comments" %}</a>
+    </div>
+    
+    <div id="comment-form">
+        
+        {% if user.is_authenticated %}
+
+            {% get_comment_form for project_translation as comment_form %}
+            <form action="{% comment_form_target %}" method="post">
+                {% csrf_token %}
+                {{ comment_form.content_type }}
+                {{ comment_form.object_pk }}
+                {{ comment_form.timestamp }}
+                {{ comment_form.security_hash }}
+                
+                <textarea name="comment" id="id_comment"></textarea>
+                <div class="comment-info">
+                    <div class="bulle"></div>
+		    <img src="{{ request.user.get_profile.get_mugshot_url }}" alt="{% trans 'Your avatar' %}" /> 
+                </div>
+                
+                <p style="display: none;">
+                    {{ comment_form.honeypot }}
+                <input type="submit" value="{% trans "Post comment" %}"/>
+                </p>
+                
+                <input type="hidden" name="next" value="{{ project_translation.get_absolute_url }}">
+
+            </form>
+        {% endif %}
+        
+	</div>
+
+    {% render_comment_list for project_translation %}
+
+</div>
+

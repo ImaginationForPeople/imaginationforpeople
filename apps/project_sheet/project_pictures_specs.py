@@ -45,7 +45,38 @@ class Center(ImageProcessor):
             coord_x, coord_y = (bg_w - img_w) / 2, (bg_h - img_h) / 2
 
             bg_picture.paste(img, (coord_x, coord_y, coord_x + img_w, coord_y + img_h))
+            
         return bg_picture, fmt
+
+
+class AlphaGradient(ImageProcessor):
+    """
+    Make an alpha to dark gradient
+    """
+    @classmethod
+    def process(cls, img, fmt, obj):
+        if img.mode == 'RGBA':
+            img = img.convert('RGB')
+            
+        width, height = img.size
+        # create a vertical gradient...
+        for y in range(0, height):
+
+            for x in range(0, 255):
+                darken = x / 255.0
+
+                # Left one                
+                r, g, b = img.getpixel((x, y))
+                new_pix = (int(r*darken), int(g*darken), int(b*darken))
+                img.putpixel((x, y), new_pix)
+
+                # Right one
+                r, g, b = img.getpixel((width-1-x, y))
+                new_pix = (int(r*darken), int(g*darken), int(b*darken))
+                img.putpixel((width-1-x, y), new_pix)
+                
+
+        return img, fmt
 
 class ResizeThumb(processors.Resize):
     """
@@ -69,6 +100,25 @@ class ResizeDisplay(processors.Resize):
     """
     width = 700
 
+
+class ResizeBig169(processors.Resize):
+    """
+    Resizing processor providing a big 16/9
+    """
+    width = 730
+    height = 253
+    crop = True
+    upscale = True
+
+class ResizeSmall169(processors.Resize):
+    """
+    Resizing processor providing a small 16/9
+    """
+    width = 296
+    height = 85
+    crop = True   
+    upscale = True
+
 class PreResizeMosaic(processors.Resize):
     """
     Resizing processor for mosaic
@@ -76,7 +126,7 @@ class PreResizeMosaic(processors.Resize):
     width = 200
 
 class CenterMosaic(processors.Resize):
-    #FIXME : semantic ? Center or Resize ?
+    # FIXME : semantic ? Center or Resize ?
     width = 40
     height = 40
     crop = True
@@ -121,3 +171,28 @@ class IDCard(ImageSpec):
     access_as = 'thumbnail_idcard'
     pre_cache = True
     processors = [ResizeIDCard, EnhanceThumb]
+
+
+class BigPanoHeader(ImageSpec):
+    """
+    A big 16/9 header
+    """
+    access_as = 'big_pano_header'
+    pre_cache = False
+    processors = [ResizeBig169]
+
+class TagHeader(ImageSpec):
+    """
+    A pano header with gradient alpha
+    """
+    access_as = 'tag_header'
+    pre_cache = False
+    processors = [ResizeBig169, AlphaGradient]
+
+class SmallPanoHeader(ImageSpec):
+    """
+    A small 16/9 header
+    """
+    access_as = 'small_pano_header'
+    pre_cache = False
+    processors = [ResizeSmall169]    

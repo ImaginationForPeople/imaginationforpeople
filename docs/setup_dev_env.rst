@@ -11,10 +11,11 @@ install it using your package manager such as *apt* if you're on
 debian::
 
   apt-get install virtualenv
-  virtualenv --no-site-packages imaginationforpeople.org
+  virtualenv --no-site-packages i4p-env
 
-Since we rely on a few Ruby_ tools, you need to add the following
-lines to your :file:`bin/activate` script to be able to use gems_::
+Since we rely on a few Ruby_ tools, we recommend to use a ruby-specific
+environment management tool like rbenv or rvm. Otherwise simply add the
+following lines to your :file:`bin/activate` script to be able to use gems_::
 
   export GEM_HOME="$VIRTUAL_ENV/gems"
   export GEM_PATH=""
@@ -22,11 +23,11 @@ lines to your :file:`bin/activate` script to be able to use gems_::
 
 Then, enters the environment::
 
-  cd imaginationforpeople.org && source bin/activate
+  cd i4p-env && source bin/activate
 
 Your prompt should update to something like (note the prefix)::
 
-  (i4p-env)glibersat@carpe:~/Source/i4p-env/imaginationforpeople/
+  (i4p-env)glibersat@carpe:~/Source/i4p-env
 
 **Note**: For the next steps, you need to be in an activated environment.
 
@@ -47,6 +48,7 @@ dependencies using::
   pip install -U -r requirements.txt
 
 *It may be the right to fetch a cup of coffee! :-)*
+
 
 Populating the Database
 =======================

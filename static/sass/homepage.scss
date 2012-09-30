@@ -1,4 +1,5 @@
-@import "mixin.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 
 body{
@@ -26,13 +27,13 @@ hr{
     position:relative;
     
     h1.what_is{
-        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+        font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
         font-size:32px;
         position:absolute;
         top:40px;
         left:0px;
         width:255px; 
-        color:$greyblack;
+        color:$colorDarkGrey;
         z-index:60;
         text-align:right;
         font-style:normal;
@@ -43,22 +44,22 @@ hr{
         width:180px;
         position:absolute;
         top:30px;
-        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+        font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
         font-size:13px;
         text-transform:uppercase;
         z-index:60;
         
         h1{
-            font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+            font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
             font-size:19px;
             text-shadow: 1px 1px white;
             font-style:normal;
             font-weight:normal;
-            color:$greyblack;
+            color:$colorDarkGrey;
         }
         
         a{
-            font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+            font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
             color:black;
         }
     }
@@ -72,7 +73,7 @@ hr{
     }
     
     .baseline{
-        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+        font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
         font-size:15px;
         position:absolute;
         right:0px;
@@ -119,6 +120,16 @@ hr{
             overflow:hidden;
         
             .project_slider{
+                ul{
+                    padding:0px;
+                    margin:0px;
+                    li{
+                        list-style-type:none;
+                        display:inline;
+                        padding:0px;
+                        margin:0px;
+                    }
+                }
             
                 .focus_project{
                     position:relative;
@@ -162,17 +173,17 @@ hr{
                             span{
                                 text-align:center;
                                 position:relative;
-                                font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+                                font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
                                 font-size:15px;
                                 text-transform:uppercase;
                                 background-color:white;
                                 font-style:normal;
                                 font-weight:normal;
-                                color:$greyblack;
+                                color:$colorDarkGrey;
                                 line-height:20px;
                                 
                                 a{
-                                    color:$greyblack;
+                                    color:$colorDarkGrey;
                                 }
                             }
                         }
@@ -182,7 +193,7 @@ hr{
                 .focus_project.addproject{
                     
                     h1{
-                        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+                        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
                         font-size:23px;
                         font-style:normal;
                         position:absolute;
@@ -233,7 +244,7 @@ hr{
         } 
 
         #focus-menu a, #focus-nav a{
-            font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+            font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
             font-size:15px;
             text-transform:uppercase;
             color:$greymenu;
@@ -247,7 +258,7 @@ hr{
         
         #focus-menu a.selected{
             color:white;
-            border-bottom:4px solid $blue;
+            border-bottom:4px solid  $colorLightBlue;
         }
         
          #focus-nav a:hover{
@@ -281,7 +292,7 @@ hr{
                 height:250px;
             
                 .image{
-                    border-right:3px solid $blue;
+                    border-right:3px solid  $colorLightBlue;
                     float:left;
                     width:250px;
                     height:250px;
@@ -295,14 +306,18 @@ hr{
                     float:right;
                     position:relative;
                     
+					a {
+						color: #04ADD1;
+					}
+					
                     h2{
                         margin:0px;
-                        color:$greyblack;
+                        color:$colorDarkGrey;
                         text-shadow:1px 1px 0px white;
-                        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
+                        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif !important;
                         font-size:16px;
                     }
-                    
+
                     span.date{
                         position:absolute;
                         top:11px;
@@ -320,8 +335,8 @@ hr{
                     
                     h1{
                         margin:7px 0px;
-                        color:$greyblack;
-                        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
+                        color:$colorDarkGrey;
+                        font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif !important;
                         font-size:17px;
                         text-transform:uppercase;
                         font-style:normal;
@@ -331,13 +346,13 @@ hr{
                     .description{
                     
                         p{
-                            color:$greyblack;
+                            color:$colorDarkGrey;
                             margin-bottom:8px;
                         }
                         
                         ul{
                             padding-left:20px;
-                            color:$greyblack;
+                            color:$colorDarkGrey;
                             margin-bottom:10px;
 
                             li{
@@ -406,7 +421,7 @@ hr{
             color:$grey;
             
             span{
-                font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+                font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
                 font-size:11px;
                 margin:15px 0px;
                 margin-top:5px;
@@ -426,7 +441,7 @@ hr{
                 position:relative;
             
                 h1{
-                    font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+                    font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
                     font-size:14px;
                     font-style:normal;
                     margin:0px;
@@ -450,14 +465,14 @@ hr{
                     border:1px solid #343434;
                     margin: 3px 0px;
                     width:98%;
-                    font-family: "OpenSans", Arial, Helvetica, sans-serif;
+                    font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif;
                     font-size:10px;
                     padding:2px;
                     @include border-radius(4px); 
                 }
                 
                 input[type=submit], button{
-                    font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+                    font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
                     font-size:11px;
                     padding:3px 6px;
                     margin:0px;
@@ -489,7 +504,7 @@ hr{
                 overflow:hidden;
                 
                 .loginlink{
-                    font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+                    font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
                     font-size:15px;
                     text-transform:uppercase;
                     color:$grey;
@@ -503,7 +518,7 @@ hr{
                 }
                 
                 .loginlink:first-child{
-                    color:$blue;
+                    color: $colorLightBlue;
                 }
                 
                 hr{
@@ -564,11 +579,11 @@ hr{
                         label[for=id_remember_me]{
                             display:block;
                             visibility:visible;
-                            color:$blue;
+                            color: $colorLightBlue;
                             position:absolute;
                             left:0px;
                             bottom:0px;
-                            font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+                            font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
                             font-size:9px;
                         }
                         
@@ -583,7 +598,7 @@ hr{
                             right:0px;
                             bottom:0px;
                             font-size:9px;
-                            font-family: "OpenSansRegular", Arial, Helvetica, sans-serif;
+                            font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
                             font-style:normal;
                             font-weight:normal;
                         }
@@ -598,12 +613,14 @@ hr{
                 ul.profile_actions{
                     position:relative;
                     margin:0px;
-
+                    padding:0px;
+                    
                     li{
                         float:left;
                         position:relative;
                         margin-right:3px;
-                    
+                        list-style-type:none;
+                        display:inline;
                         .message_count{
                             color: white;
                             position: absolute;
@@ -624,9 +641,13 @@ hr{
             }
             
             #newmembers{                
-            
+                padding:0px;
+                margin:0px;
                 li{
                     margin:1px 2px;
+                    list-style-type:none;
+                    display:inline;
+                    padding:0px;
                     float:left;
                     position:relative;
                     background-color:$normalgrey;
@@ -700,11 +721,11 @@ hr{
     bottom:50px;
     right:40px;
     z-index:300;
-    @include shadow(8px, black);
+    @include i4p-shadow(8px, black);
     
     h1{
         font-size:17px;
-        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
         font-style:normal;
         color:white;
         margin:0px;
@@ -741,7 +762,7 @@ hr{
             @include border-radius(4px);
             border:0px;
             color: #7F7E7E;
-            font-family: "OpenSans",Arial,Helvetica,sans-serif !important;
+            font-family: "OpenSans_obsolete",Arial,Helvetica,sans-serif !important;
             font-size: 10px;
             padding:3px 0px;
         }
@@ -749,7 +770,7 @@ hr{
         input[type=submit]{
             width:100%;
             @include border-radius(4px);
-            background-color:$blue;
+            background-color: $colorLightBlue;
             border:0px;
             margin-top:5px;
             color:white;
@@ -802,4 +823,103 @@ hr{
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif !important;   
         text-transform: none !important;
     }
+}
+
+/* cmsplugin-zinnia */
+.hentry {
+    margin: 10px 0px;
+    padding: 0px 0px;
+    background-color: $colorLightGrey;
+    overflow: hidden;
+    color:$colorDarkGrey;
+    > .entry-image {
+        width: 35%;
+        line-height: 200px;
+        vertical-align:top;
+        display: inline-block;
+        margin-right: 0px;
+        border-right: 3px solid $colorLightBlue;
+        img {
+            vertical-align: middle;
+            max-width: 100%;
+            float: none;
+        }
+        
+    }
+    .entry-main-details-image {
+            width: 62%;
+    }
+    .entry-main-details {
+        display: inline-block;
+        border-left: 3px solid $colorLightBlue;
+        margin-left: -3px;
+        padding: 0px 0px 0px 10px;
+    }
+    
+    a {
+    color: $colorLightBlue;
+    }
+    .entry-header {
+        margin: 10px 0px;
+        
+        .entry-info {
+            font-size: 70%;
+            color:$colorMedGrey;
+        }
+        h2 {
+        margin:7px 0px;
+        font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
+        font-size:17px;
+        text-transform:uppercase;
+        font-style:normal;
+        font-weight:bold;
+        }
+    }
+    .entry-footer {
+        margin-top: 10px;
+        font-size: 70%;
+        display: none;
+    }
+    .continue-reading {
+        margin: 8px 0px;
+        font-weight: bold;
+    }
+    .entry-info {
+        margin: 5px 5px;
+        text-align: right;
+                display: none;
+    }
+    
+    
+    .entry-content {
+        img {
+            float: left;
+            max-width: 35%;
+            height: auto;
+            margin-right: 1em;
+            /* -(margin left + border) */
+            margin-left: -13px;
+        }
+    }
+        .entry-body {
+        margin-right: 10px;
+    }
+
+        p {
+            margin: 8px 0px;
+        }
+                        
+                        ul{
+                            padding-left:20px;
+                            color:$colorDarkGrey;
+                            margin-bottom:10px;
+
+                            li{
+                                float:none;
+                                list-style-image:url('../images/base/blue_tick.png');
+                                display: list-item;
+                                margin:4px 0px;
+                            }
+                        }                    
+                    
 }

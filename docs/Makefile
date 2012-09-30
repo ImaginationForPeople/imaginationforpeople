@@ -21,7 +21,7 @@ db_graphs:
 	@test -x images || mkdir images
 	@for app in $(APPS) ; do \
 		echo "\t* " $$app; \
-		../manage.py graph_models $$app -o images/"$$app"_models.png ; \
+		../manage.py graph_models $$app -o images/"$$app"_models.png || exit 1 ; \
 	done
 
 transifex:
@@ -29,7 +29,7 @@ transifex:
 	@test -x images || mkdir images
 	for app in $(APPS) ; do \
 		echo "\t* " $$module; \
-		wget https://www.transifex.com/projects/p/imaginationforpeople/resource/"$$app"/chart/image_png -O images/transifex_"$$app".png ; \
+		wget https://www.transifex.com/projects/p/imaginationforpeople/resource/"$$app"/chart/image_png -O images/transifex_"$$app".png || exit 1; \
 	done
 
 help:

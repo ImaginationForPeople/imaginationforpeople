@@ -1,0 +1,35 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+body .zinnia {
+    #header {
+        margin-top: 0;
+        h1 {
+            margin-top: 0;
+            a {
+                color: $colorLightBlue !important;
+            }
+        }
+        h1:first-letter {
+                color: $colorTextGreen;
+        }
+
+    }
+    a {
+        color: $colorLinkOnWhite;
+    }
+    a:visited {
+        color: $colorMedGrey
+    }
+    .entry-body {
+        img {
+        max-width: 50%;
+        }
+            .entry-excerpt {
+        display: none;
+    }
+    }
+
+}
+
+
