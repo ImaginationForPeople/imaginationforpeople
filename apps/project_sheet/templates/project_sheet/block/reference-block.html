@@ -9,6 +9,9 @@ Parameters for this block
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
+{% load i18n i4p_tags %}
+
+<!-- REFERENCES - Viewable version -->
 
 {% addtoblock "js" %}
 {% endaddtoblock %}
@@ -17,6 +20,7 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/reference-block.css" />
 {% endaddtoblock %}
 
+{% if project_translation %}
 <div class="{{ reference_block_extra_class }} references-block">
 	<a name="project-references"></a>
 	<h2>
@@ -26,13 +30,16 @@ Parameters for this block
 	<div class="row">
 		<div class="references-links link-list span4" >
 			<h3>{% trans "Links" %}</h3>
+
 			<ul>
-				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
-				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
-				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
-				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
-				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur rue89</a></li>
-				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+				{% for ref in project_translation.project.references.all %}
+				<li class="link-item">{{ ref.desc|urlize|url_target_blank}}
+				</li> 
+				{% empty %}
+				<li>{% trans 'no references'|capfirst %}</li> 
+				{% endfor %}
+
+				<!-- <li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li> -->
 			</ul>
 			<a href="#FIXME-BADURL" class="button">
 				<i class="action-add"></i>
@@ -54,3 +61,4 @@ Parameters for this block
 
 	</div> <!-- .row -->
 </div> <!-- .project-references -->
+{% endif %}
