@@ -213,8 +213,6 @@ def project_sheet_show(request, slug, add_media=False):
                                                       I4pProjectTranslation.objects.exclude(project__id=project.id),
                                                       num=4)
 
-    print related_projects
-
     context = {
         'topics': topics,
         'project': project,
