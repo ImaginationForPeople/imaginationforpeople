@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
+{% load sekizai_tags %}
 
 {% block base_grid %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
@@ -16,15 +17,43 @@
 {% block content %}	
 {% with gridsystem='bootstrap' %}
 
+{% addtoblock "js" %}
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    {% if project_translation %}
+    <script>
+    // Addthis configuration
+    var addthis_share = {
+        templates : {
+            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
+        }
+    }
 
+    $(document).ready(function() {
+        // Addthis
+	addthis.init();
+    });
+    </script>
+    {% endif %}
+
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
+{% endaddtoblock %}
+
+{% if project_translation %}
 <div class="project-subheader">
     <div class="container">
 	<div class="row">
 	    <div class="span8 subheader">
 		<h1 class="title">{{ project_translation.title }}</h1>
 		<div class="description">{{ project_translation.baseline }}</div>
+		<div class="background">
+		    <img src="{{ project_translation.project.pictures.1.display.url }}" alt="" />
+		</div>
 	    </div>
 	    <div class="span4 infocard">
+		<a name="project-information"></a>
 		<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
 		<table class="infotable">
 		    <tr class="infotable-location location">
@@ -91,7 +120,8 @@
 	    </div>
 	</div>
     </div>
-</div>
+</div> <!-- .project-subheader -->
+{% endif %}
 
 <div class="project-menubar">
     <div class="container">
@@ -102,11 +132,31 @@
 	    <li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
 	    <li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
 	    <li><a href="#FIXME-BADURL">{% trans "Gallery" %}</a></li>
-	    <li class="right"><a href="#FIXME-BADURL">z</a></li>
-	    <li class="right"><a href="#FIXME-BADURL">y</a></li>
-	    <li class="right"><a href="#FIXME-BADURL">x</a></li>
+	    <li class="right"><a href="#FIXME-BADURL">
+		    <i class="i4p-toolbar-favorite"></i>
+		</a>
+	    </li>
+	    <li class="right"><a href="#FIXME-BADURL">
+		    <i class="i4p-toolbar-print"></i>
+		    </a>
+	    </li>
+	    <li class="right"><a href="#FIXME-BADURL">
+		    <i class="i4p-toolbar-widgets"></i>
+	    </a></li>
 	    <li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
-	    <li class="right"><a href="#FIXME-BADURL">{% trans "Share" %}</a></li>
+	    <li class="right">
+		<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
+		    <i class="i4p-toolbar-dropdown"></i>
+		</a>
+
+              <!-- AddThis Button BEGIN -->
+              <ul class="addthis_toolbox addthis_default_style dropdown-menu">
+		<a class="addthis_button_facebook_like"  fb:like:layout="button_count"></a>
+		<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
+	      </ul>
+              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+              <!-- AddThis Button END -->
+	    </li>
 	</ul>
     </div>
     </div>
@@ -119,7 +169,7 @@
 		<i class="sheet-information-white"></i></a>
 	</li>
 	<li>
-	    <a href="#project-details" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
+	    <a href="#project-about" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
 		<i class="sheet-details-white"></i></a>
 	</li>
 	<li>

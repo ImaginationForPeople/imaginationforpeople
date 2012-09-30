@@ -4,14 +4,23 @@ Parameters for this block
 =========================
 
 * partner_list : FIXME datatype
+* project_translation : I4pProjectTranslation
 
 {% endcomment %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/partner-list.css" />
+{% endaddtoblock %}
 
 
 	{% if project.partners.all|length %}
-	<ul id="partners-list">
+	<ul id="partner-list">
 		{% for partner in project.partners.all %}
 
 		<div class="clear"></div>
@@ -34,5 +43,21 @@ Parameters for this block
 	<!-- FIXME: quelle différence entre les deux blocs ? comment on voit le contenu ? -->
 	{% if not project.partners.all|length and not project_translation.partners_section %}
 	{% trans "This project has no known partners." %}
+	{% endif %}
+
+	{% if partners_section_form %}
+	<form method="POST" action="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget">
+		{% csrf_token %}
+		{{ partners_section_form.partners_section }}
+		<br />
+		<div class="btn-group pull-right">
+			<input type="image" alt="Ok" src="{{ STATIC_URL }}images/base/v.png" class="btn" title="Ok">
+			<input type="image" alt="X" src="{{ STATIC_URL }}images/base/x.png" class="btn" title="Cancel">
+		</div>
+	</form>
+	{% else %}
+	{% if project_translation.partners_section %}
+	{{ project_translation.partners_section|linebreaks }}
+	{% endif %}
 	{% endif %}
 

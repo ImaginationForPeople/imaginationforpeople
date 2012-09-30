@@ -81,11 +81,32 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     height: 304px;
     position: relative;
 
+
+    .subheader {
+	@include box-sizing(border-box);
+	overflow: hidden;
+	padding-top: 14rem;
+
+	h1 {
+	    @include i4p-font-pagetitle($sizeTextHuge);
+	    color: white;
+	    margin-left: 50px;
+	}
+
+	.description {
+	    @include i4p-font-base($sizeTextNormal);
+	    margin-left: 50px;
+	    color: white;
+	    font-style: italic;
+	}
+    }
+
     .infocard {
 	@include i4p-sprite('sheet');
 	@include i4p-sprite-header('sheet');
 
 	color: white;
+
 
 	h2 {
 	    @include i4p-font-title($sizeTextBig);
@@ -144,88 +165,131 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     clear: both;
     height: 2.4rem;
 
-    ul {
+    .row > ul {
 	list-style: none;
 	margin: 0;
-    }
 
-    li {
-	@include box-sizing(border-box);
-	margin: 0;
-	display: block;
-	float:left;
-	border-left: 1px solid white;
-	border-right: 1px solid $colorMedLightGrey;
-	position: relative;
-	font-size: $sizeTextSmall;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
-	text-transform: uppercase;
-	padding: 0;
-	height: 2.4rem;
-	border-collapse: collapse;
-
-	a {
+	& > li {
+	    @include box-sizing(border-box);
+	    margin: 0;
 	    display: block;
-	    padding: .7rem;
-	    padding-left: .7rem;
-	    padding-right: .7rem;
-	    color: $colorMedGrey;
-	    font-weight: bold;
-	}
-
-	&:hover {
-	    background-color: $colorMedLightGrey;
-	    border-color: $colorMedLightGrey; // both left & right (flat effect)
-
-	    a {
-		color: white;
-		text-decoration: none;
-	    }
-	}
-
-	&.right {
-	    float:right;
-	    border: none;
-	}
-
-	&.active {
-	    @include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+	    float:left;
+	    border-left: 1px solid white;
+	    border-right: 1px solid $colorMedLightGrey;
 	    position: relative;
-	    border-right-color: $colorDarkBlue;
+	    font-size: $sizeTextSmall;
+	    font-family: $fontOpenSans;
+	    font-stretch: condensed;
+	    text-transform: uppercase;
+	    padding: 0;
+	    height: 2.4rem;
+	    border-collapse: collapse;
 
 	    a {
-		color: white;
+		display: block;
+		padding: .7rem;
+		padding-left: .7rem;
+		padding-right: .7rem;
+		color: $colorMedGrey;
+		font-weight: bold;
+
+		i {
+		    position: relative;
+		    top: -2px;
+		    display: inline-block;
+		    vertical-align: middle;
+		}
+
+
+		&:hover {
+		    color: blue;
+		}
+
+		&.share {
+		    &:focus ~ .submenu {
+			opacity: 1;
+			display: block;
+		    }
+		}
 	    }
 
-	    &:before {
-		content:""; 
-		position: absolute; 
-		left: 50%; 
-		bottom: -10px; 
-		width: 0; 
-		height: 0; 
-		margin-left: -10px;
-		border-left: 10px solid transparent; 
-		border-top: 10px solid $colorDarkBlue; 
-		border-right: 10px solid transparent;
+	    .submenu {
+		@include i4p-transition;
+		top: 30px;
+		right: -$sizeMarginSmall;
+		width: 60px;
+		padding: $sizePaddingMedium;
+		display: none;
+		background-color: $colorLightLightGrey;
+		opacity: 0;
+		list-style: none;
+		position: absolute;
+		z-index: 1;
+
+		li {
+		    display: block;
+		}
 	    }
 
 	    &:hover {
-		background-image: none;
-		background-color: $colorMedGrey;
-		border-color: $colorMedGrey; // both left & right (flat effect)
+		background-color: $colorMedLightGrey;
+		border-color: $colorMedLightGrey; // both left & right (flat effect)
 
-		a { 
+		a {
+		    color: white;
+		    text-decoration: none;
+		}
+	    }
+
+	    &.right {
+		float:right;
+		border: none;
+
+		a {
+		    padding-left: 0.2rem;
+		    padding-right: 0.2rem;
+		}
+	    }
+
+	    &.active {
+		@include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+		position: relative;
+		border-right-color: $colorDarkBlue;
+
+		a {
 		    color: white;
 		}
 
 		&:before {
-		    border-top-color: $colorMedGrey;
+		    content:""; 
+		    position: absolute; 
+		    left: 50%; 
+		    bottom: -10px; 
+		    width: 0; 
+		    height: 0; 
+		    margin-left: -10px;
+		    border-left: 10px solid transparent; 
+		    border-top: 10px solid $colorDarkBlue; 
+		    border-right: 10px solid transparent;
+		}
+
+		&:hover {
+		    background-image: none;
+		    background-color: $colorMedGrey;
+		    border-color: $colorMedGrey; // both left & right (flat effect)
+
+		    a { 
+			color: white;
+		    }
+
+		    &:before {
+			border-top-color: $colorMedGrey;
+		    }
 		}
 	    }
 	}
     }
+
 }
 
 .project-toolbar {
@@ -238,6 +302,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     position: fixed;
     top: 20%;
     min-width: 40px;
+    z-index: 90;
 
     // FIXME define a reusable tooltip + mixin
     .i4p-tooltip {
@@ -309,7 +374,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 		display: block;
 	    }
 	}
-	
+
     }
 }
 
@@ -330,7 +395,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	&:before {
 	    margin: 0;
 	    padding: 0;
-	    color: $colorLightGrey;
+	    color: $colorLightLightGrey;
 	    content: '\201D';
 	    font-size: 12rem;
 	    font-weight: bold;
@@ -344,7 +409,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	&:after {
 	    margin: 0;
 	    padding: 0;
-	    color: $colorLightGrey;
+	    color: $colorLightLightGrey;
 	    content: '\201C';
 	    font-weight: bold;
 	    font-size: 12rem;
@@ -380,101 +445,5 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 
 .project-references {
-    &.references-block {
-	@include i4p-layout-block;
-    }
-
-    h2 {
-	@include i4p-font-title;
-    }
-
-    h3 {
-	@include i4p-font-title($sizeTextBig);
-    }
-
-    .references-links {
-	position: relative;
-
-	ul {
-	    margin-bottom: 1em;
-	    min-height: 10em;
-
-	    .link-item {
-		@include i4p-transition;
-		display: block;
-		padding-left: 1em;
-		background-color: white;
-
-		&:hover {
-		    background-color: $colorLightDarkGrey;
-		}
-
-		a {
-		    color: black;
-		    text-decoration: none;
-		}
-	    }
-	}
-
-	.button {
-	    @include i4p-button-flat;
-
-	    .action-add {
-		display: inline-block;
-		position: relative;
-		vertical-align: middle;
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite(add-black); 
-	    }
-
-	    &:hover .action-add {
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite('add-white'); 
-	    }
-	}
-    }
-
-    .references-documents {
-	position: relative;
-
-	ul {
-	    margin-bottom: 1em;
-	    min-height: 10em;
-
-	    .document-item {
-		@include i4p-transition;
-		display: block;
-		padding-left: 1em;
-		background-color: white;
-
-		&:hover {
-		    background-color: $colorLightDarkGrey;
-		}
-
-		a {
-		    color: black;
-		    text-decoration: none;
-		}
-	    } 
-	}
-
-
-	.button {
-	    @include i4p-button-flat;
-
-	    .action-add {
-		display: inline-block;
-		position: relative;
-		vertical-align: middle;
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite(add-black); 
-	    }
-
-	    &:hover .action-add {
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite('add-white'); 
-	    }
-	}
-    }
 }
 
