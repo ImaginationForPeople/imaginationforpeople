@@ -334,10 +334,7 @@ for the purposes of the AJAX comment editor #}
         askbot['data']['{{widget_id}}'] = {
             truncated: {% if post.comment_count > max_comments %}true{% else %}false{% endif %}
         };
-        askbot['functions']['renderAddCommentButton'](
-                                                '{{post.id}}',
-                                                {{remaining_comment_count}}
-                                            );
+        askbot['functions']['renderAddCommentButton']('{{post.id}}', {{remaining_comment_count}});
     </script>
 {%- endmacro -%}
 

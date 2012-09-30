@@ -304,6 +304,7 @@ function pickedTags(){
         } else {
             return;
         }
+        
         $('.' + section + '.tags.marked-tags .tag-left').each(
             function(i,item){
                 var tag = new Tag();

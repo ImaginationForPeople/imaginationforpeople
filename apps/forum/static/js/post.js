@@ -389,17 +389,17 @@ var Vote = function(){
     };
 
     var getOffensiveQuestionFlag = function(){
-        var offensiveQuestionFlag = '#question-table span[id^="'+ offensiveIdPrefixQuestionFlag +'"]';
+        var offensiveQuestionFlag = '#question-controls span[id^="'+ offensiveIdPrefixQuestionFlag +'"]';
         return $(offensiveQuestionFlag);
     };
 
     var getRemoveOffensiveQuestionFlag = function(){
-        var removeOffensiveQuestionFlag = '#question-table span[id^="'+ removeOffensiveIdPrefixQuestionFlag +'"]';
+        var removeOffensiveQuestionFlag = '#question-controls span[id^="'+ removeOffensiveIdPrefixQuestionFlag +'"]';
         return $(removeOffensiveQuestionFlag);
     };
 
     var getRemoveAllOffensiveQuestionFlag = function(){
-        var removeAllOffensiveQuestionFlag = '#question-table span[id^="'+ removeAllOffensiveIdPrefixQuestionFlag +'"]';
+        var removeAllOffensiveQuestionFlag = '#question-controls span[id^="'+ removeAllOffensiveIdPrefixQuestionFlag +'"]';
         return $(removeAllOffensiveQuestionFlag);
     };
 
@@ -985,7 +985,8 @@ var questionRetagger = function(){
                     new_tags = getUniqueWords(json['new_tags']);
                     oldTagsHtml = '';
                     cancelRetag();
-                    drawNewTags(new_tags.join(' '));
+                    tagsDiv.html(json['html'])
+                    //drawNewTags(new_tags.join(' '));
                 }
                 else {
                     cancelRetag();
