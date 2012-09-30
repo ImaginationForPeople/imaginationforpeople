@@ -83,9 +83,21 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 
     .subheader {
+	@include box-sizing(border-box);
+	overflow: hidden;
+	padding-top: 14rem;
+
 	h1 {
 	    @include i4p-font-pagetitle($sizeTextHuge);
 	    color: white;
+	    margin-left: 50px;
+	}
+
+	.description {
+	    @include i4p-font-base($sizeTextNormal);
+	    margin-left: 50px;
+	    color: white;
+	    font-style: italic;
 	}
     }
 
@@ -290,6 +302,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     position: fixed;
     top: 20%;
     min-width: 40px;
+    z-index: 90;
 
     // FIXME define a reusable tooltip + mixin
     .i4p-tooltip {
@@ -432,101 +445,5 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 
 .project-references {
-    &.references-block {
-	@include i4p-layout-block;
-    }
-
-    h2 {
-	@include i4p-font-title;
-    }
-
-    h3 {
-	@include i4p-font-title($sizeTextBig);
-    }
-
-    .references-links {
-	position: relative;
-
-	ul {
-	    margin-bottom: 1em;
-	    min-height: 10em;
-
-	    .link-item {
-		@include i4p-transition;
-		display: block;
-		padding-left: 1em;
-		background-color: white;
-
-		&:hover {
-		    background-color: $colorLightDarkGrey;
-		}
-
-		a {
-		    color: black;
-		    text-decoration: none;
-		}
-	    }
-	}
-
-	.button {
-	    @include i4p-button-flat;
-
-	    .action-add {
-		display: inline-block;
-		position: relative;
-		vertical-align: middle;
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite(add-black); 
-	    }
-
-	    &:hover .action-add {
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite('add-white'); 
-	    }
-	}
-    }
-
-    .references-documents {
-	position: relative;
-
-	ul {
-	    margin-bottom: 1em;
-	    min-height: 10em;
-
-	    .document-item {
-		@include i4p-transition;
-		display: block;
-		padding-left: 1em;
-		background-color: white;
-
-		&:hover {
-		    background-color: $colorLightDarkGrey;
-		}
-
-		a {
-		    color: black;
-		    text-decoration: none;
-		}
-	    } 
-	}
-
-
-	.button {
-	    @include i4p-button-flat;
-
-	    .action-add {
-		display: inline-block;
-		position: relative;
-		vertical-align: middle;
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite(add-black); 
-	    }
-
-	    &:hover .action-add {
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite('add-white'); 
-	    }
-	}
-    }
 }
 
