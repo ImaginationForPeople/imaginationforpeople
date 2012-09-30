@@ -30,6 +30,7 @@
     <div class="row">
 	<div class="span8 project-main">
 	    <div class="project-about"><a name="project-information"></a>
+		<a name="project-about"></a>
 		<h2><span>{% trans "About the project" %}</span></h2>
 
 		{% comment %} PROJECT ABOUT SECTION {% endcomment %}
@@ -52,7 +53,7 @@
 		{% endif %}
 	    </div> <!-- .project-about -->
 
-	    <div class="project-details"><a name="project-details"></a>
+	    <div class="project-details">
 		{% for topic, questions in topics %}
 		{% for q, a in questions %}
 		<h2 id="question-{{q.id}}" class="detail-question">

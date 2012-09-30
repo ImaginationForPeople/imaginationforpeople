@@ -41,15 +41,19 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
 {% endaddtoblock %}
 
-
+{% if project_translation %}
 <div class="project-subheader">
     <div class="container">
 	<div class="row">
 	    <div class="span8 subheader">
 		<h1 class="title">{{ project_translation.title }}</h1>
 		<div class="description">{{ project_translation.baseline }}</div>
+		<div class="background">
+		    <img src="{{ project_translation.project.pictures.1.display.url }}" alt="" />
+		</div>
 	    </div>
 	    <div class="span4 infocard">
+		<a name="project-information"></a>
 		<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
 		<table class="infotable">
 		    <tr class="infotable-location location">
@@ -116,7 +120,8 @@
 	    </div>
 	</div>
     </div>
-</div>
+</div> <!-- .project-subheader -->
+{% endif %}
 
 <div class="project-menubar">
     <div class="container">
@@ -164,7 +169,7 @@
 		<i class="sheet-information-white"></i></a>
 	</li>
 	<li>
-	    <a href="#project-details" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
+	    <a href="#project-about" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
 		<i class="sheet-details-white"></i></a>
 	</li>
 	<li>
