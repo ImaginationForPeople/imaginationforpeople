@@ -1,0 +1,56 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+  * reference_block_extra_class : an extra CSS class for this block
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/reference-block.css" />
+{% endaddtoblock %}
+
+<div class="{{ reference_block_extra_class }} references-block">
+	<a name="project-references"></a>
+	<h2>
+		<i class="sheet-references"></i>
+		{% trans "References" %}</h2>
+
+	<div class="row">
+		<div class="references-links link-list span4" >
+			<h3>{% trans "Links" %}</h3>
+			<ul>
+				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur rue89</a></li>
+				<li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li>
+			</ul>
+			<a href="#FIXME-BADURL" class="button">
+				<i class="action-add"></i>
+				{% trans "Add a link" %}</a>
+		</div> <!-- .references-links link-list -->
+
+		<div class="references-documents document-list span4" >
+			<h3>{% trans "Documents" %}</h3>
+			<ul>
+				<li class="document-item"><a href="#FIXME-ADD-REAL-DOC">Cahier des charges</a></li>
+				<li class="document-item"><a href="#FIXME-ADD-REAL-DOC">Business plan</a></li>
+				<li class="document-item"><a href="#FIXME-ADD-REAL-DOC">Présentation du projet</a></li>
+				<li class="document-item"><a href="#FIXME-ADD-REAL-DOC">Communiqué de presse</a></li>
+			</ul>
+
+			<a href="#FIXME-BADURL" class="button">
+				<i class="action-add"></i>{% trans "Add a link" %}</a>
+		</div> <!-- .references-documents document-list -->
+
+	</div> <!-- .row -->
+</div> <!-- .project-references -->
