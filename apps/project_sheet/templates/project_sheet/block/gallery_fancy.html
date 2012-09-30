@@ -10,6 +10,7 @@ FIXME: use picture list instead of project_translation
 {% endcomment %}
 {% load i18n %}
 {% load sekizai_tags %}
+{% load thumbnail %}
 
 {% addtoblock "js" %}
 {% endaddtoblock %}
@@ -33,7 +34,10 @@ FIXME: use picture list instead of project_translation
 			{% endif %}
 			">
 			<div class="image">
-				<img src="{{project_picture.display.url}}" alt="">
+				<img src="{{project_picture.display.url}}" class="normal" alt="">
+				<!-- FIXME: include the black/white version of the pic 
+				<img src="{% thumbnail project_picture.display 150x150 bw %}" class="bw" alt="">
+				-->
 			</div>
 			<div class="description">
 				{{project_picture.desc}}
