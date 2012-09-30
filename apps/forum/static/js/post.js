@@ -599,8 +599,8 @@ var Vote = function(){
             );
         }
         else if(data.status == "1"){
-            var follow_html = gettext('Follow');
-            object.attr("class", 'button follow');
+            var follow_html = gettext('Follow this question');
+            object.attr("class", 'button followed');
             object.html(follow_html);
             var fav = getFavoriteNumber();
             fav.removeClass("my-favorite-number");
@@ -613,7 +613,7 @@ var Vote = function(){
             }
         }
         else if(data.success == "1"){
-            var followed_html = gettext('<div>Following</div><div class="unfollow">Unfollow</div>');
+            var followed_html = gettext('Unfollow this question');
             object.html(followed_html);
             object.attr("class", 'button followed');
             var fav = getFavoriteNumber();
@@ -663,13 +663,15 @@ var Vote = function(){
         //to django.po files
         //_('anonymous users cannot flag offensive posts') + pleaseLogin;
         if (data.success == "1"){
-            if(data.count > 0)
-                $(object).children('span[class="darkred"]').text("("+ data.count +")");
-            else
-                $(object).children('span[class="darkred"]').text("");
-
             // Change the link text and rebind events
-            $(object).find("a.question-flag").html(gettext("remove flag"));
+            var new_html = '<i class="icon-flag icon-white"> </i>'+gettext("remove flag")
+            if(data.count > 0){
+            	new_html += "("+ data.count +")";
+            }
+            if(data.post_type == "answer") {
+            	new_html = new_html.replace("icon-white", "");
+            }
+            $(object).find("a.question-flag").html(new_html);
             var obj_id = $(object).attr("id");
             $(object).attr("id", obj_id.replace("flag-", "remove-flag-"));
 
@@ -692,18 +694,15 @@ var Vote = function(){
         //to django.po files
         //_('anonymous users cannot flag offensive posts') + pleaseLogin;
         if (data.success == "1"){
-            if(data.count > 0){
-                $(object).children('span[class="darkred"]').text("("+ data.count +")");                
-            }
-            else{
-                $(object).children('span[class="darkred"]').text("");
-                // Remove "remove all flags link" since there are no more flags to remove
-                var remove_all = $(object).siblings('span.offensive-flag[id*="-offensive-remove-all-flag-"]');
-                $(remove_all).next("span.sep").remove();
-                $(remove_all).remove();
-            }
             // Change the link text and rebind events
-            $(object).find("a.question-flag").html(gettext("flag offensive"));
+            var new_html = '<i class="icon-flag icon-white"> </i>'+gettext("flag offensive")
+            if(data.count > 0){
+            	new_html += "("+ data.count +")";
+            }
+            if(data.post_type == "answer") {
+            	new_html = new_html.replace("icon-white", "");
+            }
+            $(object).find("a.question-flag").html(new_html);
             var obj_id = $(object).attr("id");
             $(object).attr("id", obj_id.replace("remove-flag-", "flag-"));
 
@@ -1146,11 +1145,11 @@ DeletePostLink.prototype.setPostDeleted = function(is_deleted){
     if (is_deleted === true){
         post.addClass('deleted');
         this._post_deleted = true;
-        this.getElement().html(gettext('undelete'));
+        this.getElement().html('<i class="icon-trash icon-white"> </i> '+gettext('undelete'));
     } else if (is_deleted === false){
         post.removeClass('deleted');
         this._post_deleted = false;
-        this.getElement().html(gettext('delete'));
+        this.getElement().html('<i class="icon-trash icon-white"> </i> '+gettext('delete'));
     }
 };
 
@@ -1460,12 +1459,13 @@ Comment.prototype.decorate = function(element){
     var parent_type = this._element.parent().parent().attr('id').split('-')[2];
     var comment_id = this._element.attr('id').replace('comment-','');
     this._data = {id: comment_id};
-    var delete_img = this._element.find('span.delete-icon');
+    var delete_img = this._element.find('a.delete-icon');
     if (delete_img.length > 0){
         this._deletable = true;
         this._delete_icon = new DeleteIcon(this.deletePrompt);
         this._delete_icon.setHandler(this.getDeleteHandler());
         this._delete_icon.decorate(delete_img);
+        this._delete_icon.setHandlerInternal();
     }
     var edit_link = this._element.find('a.edit');
     if (edit_link.length > 0){
@@ -1527,37 +1527,44 @@ Comment.prototype.setContent = function(data){
     votes.append(vote.getElement());
 
     this._element.append(votes);
-
-    this._comment_delete = $('<div class="comment-delete"></div>');
-    if (this._deletable){
-        this._delete_icon = new DeleteIcon(this._delete_prompt);
-        this._delete_icon.setHandler(this.getDeleteHandler());
-        this._comment_delete.append(this._delete_icon.getElement());
-    }
-    this._element.append(this._comment_delete);
-
+    
     this._comment_body = $('<div class="comment-body"></div>');
-    this._comment_body.html(this._data['html']);
-    //this._comment_body.append(' &ndash; ');
-
+    
+    this._comment_infos = $('<div class="comment_infos"></div>');
+    
     this._user_link = $('<a></a>').attr('class', 'author');
     this._user_link.attr('href', this._data['user_url']);
     this._user_link.html(this._data['user_display_name']);
-    this._comment_body.append(this._user_link);
-
-    this._comment_body.append(' (');
-    this._comment_added_at = $('<abbr class="timeago"></abbr>');
-    this._comment_added_at.html(this._data['comment_added_at']);
-    this._comment_added_at.attr('title', this._data['comment_added_at']);
-    this._comment_added_at.timeago();
-    this._comment_body.append(this._comment_added_at);
-    this._comment_body.append(')');
+    this._comment_infos.append(this._user_link);
+    
+    this._comment_added_at = $('<span class="age"></span>')
+    this._comment_added_at.append(' (');
+    this._comment_timeago = $('<abbr class="timeago" title="'+this._data['comment_added_at']+'">'+this._data['comment_added_at']+'</abbr>');
+    this._comment_timeago.timeago();
+    this._comment_added_at.append(this._comment_timeago);
+    this._comment_added_at.append(')');
+    this._comment_infos.append(this._comment_added_at);
+    
+    this._comment_body.append(this._comment_infos);
+    
+    this._comment_body.append(this._data['html']);
+    
+    this._comment_controls = $('<div class="admin_actions"></div>')
+    
+    if (this._deletable){
+        this._delete_icon = new DeleteIcon(this._delete_prompt);
+        this._delete_icon.setHandler(this.getDeleteHandler());
+        this._comment_controls.append(this._delete_icon.getElement());
+    }
 
     if (this._editable){
         this._edit_link = new EditLink();
         this._edit_link.setHandler(this.getEditHandler())
-        this._comment_body.append(this._edit_link.getElement());
+        this._comment_controls.append(this._edit_link.getElement());
     }
+    
+    this._comment_body.append(this._comment_controls);
+    
     this._element.append(this._comment_body);
 
     this._blank = false;

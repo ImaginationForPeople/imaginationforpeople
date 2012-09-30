@@ -18,12 +18,14 @@
                     {% include "question/answer_author_info.html" %}
                 </div>
                 <div class="answer_txt">{{ answer.html }}</div>
-                <a class="btn_comment"><i class="icon-bubbles"> </i> Poster un commentaire</a>
+                {#<a class="btn_comment"><i class="icon-bubbles"> </i> Poster un commentaire</a>#}
                 <div class="answer-controls post-controls">
                     {% include "question/answer_controls.html" %}
                 </div>
             </div>
-            {% include "question/answer_comments.html" %}
+            {% with answer as post %}
+                {% include "question/post_comments.html" %}
+            {% endwith %}
         </div>
     </div>
     <div class="clean"></div>

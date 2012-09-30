@@ -4,7 +4,7 @@
     {{ settings.SIDEBAR_QUESTION_HEADER }}
 </div>
 {% endif %}
-<div class="box author_and_follow_question">
+<div class="box author_and_follow_question vote-buttons">
     	<div class="arrow"></div>        
         {% include "question/question_author_info.html" %}
         {% if favorited %}
@@ -109,7 +109,7 @@
 </div>
 {% endif %}
 
-{% if similar_threads.data and settings.SIDEBAR_QUESTION_SHOW_RELATED %}
+{% if similar_threads.data() and settings.SIDEBAR_QUESTION_SHOW_RELATED %}
     {#% cache 1800 "related_questions" related_questions question.id language_code %#}
     <div class="box">
         <h2>{% trans %}Related questions{% endtrans %}</h2>
@@ -123,7 +123,3 @@
     </div>
     {#% endcache %#}
 {% endif %}
-
-<div class="box">
-    {{ settings.SIDEBAR_QUESTION_FOOTER }}
-</div>

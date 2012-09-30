@@ -2050,14 +2050,16 @@ body.question-page div.comment div.comment_infos span.age{
 body.question-page div.comment div.admin_actions{
 	zoom:1;
 	padding-top:10px;}
+	
 body.question-page div.comment div.admin_actions:after{
   clear: both;
   content: "";
   display: block;}
+
 body.question-page div.comment div.admin_actions .comment-delete {
 	float:right;
 }
-body.question-page div.comment div.admin_actions .comment-delete a.delete-icon {
+body.question-page div.comment div.admin_actions a.delete-icon.comment-delete  {
     font-family: 'OpenSans', Arial, sans-serif;
 	font-size:11px;
 	font-weight:normal;
@@ -2065,7 +2067,7 @@ body.question-page div.comment div.admin_actions .comment-delete a.delete-icon {
 	color:#706f6f;
 	padding-left:4px;	
 }
-body.question-page div.comment div.admin_actions .comment-edit a.edit-icon{
+body.question-page div.comment div.admin_actions a.edit-icon.comment-edit {
 	float:right;
     font-family: 'OpenSans', Arial, sans-serif;
 	font-size:11px;
@@ -2259,11 +2261,15 @@ body.question-page div.answer-body div.vote-number{
 	
 body.question-page div.answer-body div.answer-img-upvote{
 	height:7px;
-    background: url(../images/question/chevron_up.png) no-repeat;}
+    background: url(../images/question/chevron_up.png) no-repeat;
+    cursor : pointer;
+}
 
 body.question-page div.answer-body div.answer-img-downvote{
 	height:7px;
-    background: url(../images/question/chevron_down.png) no-repeat;}
+    background: url(../images/question/chevron_down.png) no-repeat;
+    cursor : pointer;
+}
 
 
 /*++++++++  END ANSWER ++++++++*/
