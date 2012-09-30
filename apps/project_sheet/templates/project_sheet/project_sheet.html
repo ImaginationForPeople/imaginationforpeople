@@ -125,7 +125,7 @@
 		    {% trans "Related projects"|capfirst %}
 		</h2>
 		<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>
-		{% include "project_sheet/block/cardlist_fancy_wide.html" %}
+		{% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
 	    </div>
 
 	    <div class="project-gallery clearfix">
