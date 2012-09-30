@@ -246,6 +246,7 @@ def project_sheet_show(request, slug, add_media=False):
                               context_instance=RequestContext(request)
                               )
 
+@require_POST    
 @login_required
 def project_sheet_create_translation(request, project_slug):
     """
