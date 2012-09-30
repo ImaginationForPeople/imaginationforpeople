@@ -35,17 +35,21 @@ Parameters for this block
 		</ul>
 	</div>
 	<div class="controls">
+		{% if project.detailed_members.all|length > 4 %}
 		{% for member in project.detailed_members.all %}
 		{% if forloop.counter0|divisibleby:"4" %}
 		<label for="slide-{{forloop.counter0}}"></label>
 		{% endif %}
 		{% endfor %}
+		{% endif %}
 	</div>
 	<div class="active">
+		{% if project.detailed_members.all|length > 4 %}
 		{% for member in project.detailed_members.all %}
 		{% if forloop.counter0|divisibleby:"4" %}
 		<label for="slide-{{forloop.counter0}}"></label>
 		{% endif %}
 		{% endfor %}
+		{% endif %}
 	</div>
 </div>
