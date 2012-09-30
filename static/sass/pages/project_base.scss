@@ -81,11 +81,20 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     height: 304px;
     position: relative;
 
+
+    .subheader {
+	h1 {
+	    @include i4p-font-pagetitle($sizeTextHuge);
+	    color: white;
+	}
+    }
+
     .infocard {
 	@include i4p-sprite('sheet');
 	@include i4p-sprite-header('sheet');
 
 	color: white;
+
 
 	h2 {
 	    @include i4p-font-title($sizeTextBig);

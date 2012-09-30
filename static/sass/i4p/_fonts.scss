@@ -1,9 +1,21 @@
 
-@mixin i4p-font-subtitle($sizeText : $sizeTextLarge) {
+// FIXME: rename 
+
+@mixin i4p-font-base($sizeText : $sizeTextNormal) {
     font-size: $sizeText;
     font-family: $fontOpenSans;
-    font-stretch: condensed;
+}
+
+@mixin i4p-font-pagetitle($sizeText : $sizeTextHuge) {
+    @include i4p-font-base($sizeText);
     font-weight: bold;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+@mixin i4p-font-subtitle($sizeText : $sizeTextLarge) {
+    @include i4p-font-base($sizeText);
+    font-stretch: condensed;
 }
 
 @mixin i4p-font-title($sizeText : $sizeTextLarge) {
