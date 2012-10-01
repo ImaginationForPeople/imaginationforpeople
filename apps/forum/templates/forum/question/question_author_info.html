@@ -1,8 +1,18 @@
-{{ 
-    macros.post_last_updater_and_creator_info(
-        question,
-        settings.MIN_REP_TO_EDIT_WIKI,
-        karma_mode = settings.KARMA_MODE,
-        badges_mode = settings.BADGES_MODE
-    )
-}}
+
+
+<div class="author_info_question">
+	<div class="avatar_author_date">
+        <img class="gravatar" width="48" height="48" alt="Image Gravatar de admin" title="admin" src="http://www.gravatar.com/avatar/7a54245224dc6193b66b096da029b0a5?s=160&d=monsterid">
+        <p>{% trans %}Posted {% endtrans %}<abbr class="timeago" title="2012-09-18 16:18:58 +0200">13 days ago</abbr> </p>
+        <p>{% trans %}By{% endtrans %} <a href="/fr/member/admin/">Sophie Duverger</a></p>
+    </div>
+    <div class="wrapper_country_badges">
+        <img class="flag_country" width="14" height="10" alt="{% trans %}French flag{% endtrans %}" src="http://imaginationforpeople.org:8001/static/images/question/french_flag.png">
+        <p>France</p>
+        <ul>
+            <li class="gold_badge">53</li>
+            <li class="silver_badge">3</li>
+            <li class="bronze_badge">1</li>
+        </ul>
+    </div>
+</div>
