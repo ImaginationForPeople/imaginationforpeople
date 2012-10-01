@@ -630,14 +630,18 @@ li.short-summary div.infos_question a.nbr_votes{
 
 /* ----- Question list Paginator , check main_content/pager.html and macros/utils_macros.html----- */
 .evenMore {
-  font-size: 13px;
-  color: #707070;
+  font-family: 'Open Sans Condensed', Arial, sans-serif;
+  font-size: 15px;
+  font-weight:bold;
+  padding-left:15px;
+  text-transform:uppercase;
+	color:#706f6f;
   padding: 15px 0px 10px 0px;
-  clear: both;
 }
 .evenMore a {
   text-decoration: underline;
-  color: #1b79bd;
+  color: #04add1;
+  text-decoration:none;
 }
 .pager {
   margin-top: 10px;
@@ -732,7 +736,7 @@ div.pagination_1 li a{
   font-size: 18px;
   text-transform:uppercase;
   font-family: 'Open Sans Condensed', Arial, sans-serif;
-  color:706f6f;}
+  color:#706f6f;}
 div.pagination_1 li a:hover{
 	color:#04add1;
 	text-decoration:none;
@@ -840,9 +844,6 @@ ul.tag_list li div.part_pointe{
 /* =============================================================================
                                   FIN TAGS
 ============================================================================== */
-
-
-
 
 
 
@@ -1003,9 +1004,7 @@ ul.tag_list li div.part_pointe{
   color: #777;
   text-align: center;
 }
-.box .notify-sidebar #question-subscribe-sidebar {
-  margin: 0 0 0 3px;
-}
+
 .users-page .box label {
   display: inline;
   float: none;
@@ -1253,6 +1252,7 @@ div.author_and_follow_question h2{
 	line-height: 15px;
     margin-bottom: 3px;}
 
+
 div.author_and_follow_question div.arrow{
 	position:absolute;
 	top:15px;
@@ -1261,6 +1261,85 @@ div.author_and_follow_question div.arrow{
 	height:16px;
     background:  url(../images/widget_author/arrow_author_box.png) no-repeat;}
 	
+div.author_and_follow_question div.author_info_question{
+	position:relative;
+	zoom:1;
+	padding-bottom:15px;
+	min-height:48px;
+ 	height:auto !important;
+ 	height:48px;}
+div.author_and_follow_question div.author_info_question:after {	
+    content: "";
+    display: block;
+    clear: both;}
+	
+div.author_and_follow_question div.author_info_question img.gravatar{
+	position:absolute;
+	-webkit-border-radius: 4px;    
+    border-radius: 4px;}	
+
+div.author_and_follow_question div.avatar_author_date p{
+	padding-left:60px;
+	color:#ffffff;
+	font-style:italic;}
+	
+div.author_and_follow_question div.avatar_author_date p a{
+	font-weight:bold;
+	font-style:normal;}
+
+div.author_and_follow_question div.avatar_author_date .timeago{
+	font-weight:normal;}
+		
+div.author_and_follow_question div.author_info_question div.wrapper_country_badges{
+	zoom:1;
+	padding-left:60px;padding-top:5px;}
+div.author_and_follow_question div.author_info_question div.wrapper_country_badges:after {	
+    content: "";
+    display: block;
+    clear: both;}
+	
+div.author_and_follow_question div.author_info_question a{
+	color:#ffffff;
+	font-style:italic;}
+
+div.author_and_follow_question div.author_info_question div.wrapper_country_badges img{
+	float:left;
+	padding-right:5px;
+	padding-top:2px;}
+
+div.author_and_follow_question div.author_info_question div.wrapper_country_badges p{
+	float:left;
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:10px;
+	color:#ffffff;
+	font-style:italic;}
+
+div.author_and_follow_question div.author_info_question div.wrapper_country_badges ul{
+	zoom:1;
+	float:left;}
+div.author_and_follow_question div.author_info_question div.wrapper_country_badges ul:after {	
+    content: "";
+    display: block;
+    clear: both;}
+
+div.author_and_follow_question div.author_info_question div.wrapper_country_badges ul li{
+	float:left;
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:10px;
+	color:#ffffff;
+	padding-right:14px;
+	margin-left:10px
+	}
+
+div.author_info_question div.wrapper_country_badges ul li.gold_badge{	
+    background:  url(../images/widget_author/badges.png) right 3px  no-repeat;}
+div.author_info_question div.wrapper_country_badges ul li.silver_badge{	
+    background:  url(../images/widget_author/badges.png) right -47px  no-repeat;}
+div.author_info_question div.wrapper_country_badges ul li.bronze_badge{	
+    background:  url(../images/widget_author/badges.png) right -97px no-repeat;}
+
+
+	/*--- Follow the question ---*/
 div.author_and_follow_question a.followed{	
 	float:none;
 	display:block;	
@@ -1288,6 +1367,25 @@ div.author_and_follow_question a.followed{
 	background: linear-gradient(to bottom,  rgba(254,254,254,1) 0%,rgba(231,231,231,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e7e7e7',GradientType=0 );
 	color:#242424;}
+	
+div.author_and_follow_question div.notify-sidebar label {
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:12px;
+	color:#ffffff; 
+}
+
+div.author_and_follow_question div.notify-sidebar p.rss{
+	padding-left:25px;
+	padding-top:5px;
+	margin-top:10px;
+    background:  url(../images/widget_author/rss.png) no-repeat;}
+div.author_and_follow_question div.notify-sidebar p a{
+    font-family: 'OpenSans', Arial, sans-serif;
+	font-size:12px;
+	color:#ffffff; }
+	
+	
+	/*--- End follow question ---*/
 /*++++++++++++ FIN BOX AUTHOR INFOS ++++++++++++++*/
 
 
@@ -1324,10 +1422,140 @@ div.statsWidget p strong {
 
 
 
+
+
+/*++++++++++++ RELATED TAGS ++++++++++++++*/
+ul#related-tags{
+	zoom:1;}
+ul#related-tags:after{
+    clear: both;
+    content: "";
+    display: block;}
+
+
+div.related_tag_widget h2 {
+    background: url("../images/widget_tag_selector/picto_tag.png") no-repeat scroll 0 7px transparent;
+    padding-left: 21px;
+}
+
+div.related_tag_widget h2 a{
+	color:#706f6f;}
+div.related_tag_widget h2 a:hover{
+	text-decoration:none;
+	color: #04ADD1;}
+
+ul#related-tags li{
+	float:left;
+	zoom:1;
+	float:left;
+	-webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    padding: 2px 7px 3px;
+	background-color: #DEDEDE;}
+ul#related-tags li:after{
+    clear: both;
+    content: "";
+    display: block;}
+	
+ul#related-tag li:first-child{
+	padding-left:10px;
+	margin-left:0px;
+    }
+
+ul#related-tags li div.tag-left{float:left;}
+ul#related-tags span.tag-number{
+	display:block; 
+	float:left; 
+    font-family: 'OpenSans', Arial, sans-serif;
+	padding-left:4px;
+	font-size: 13px;
+	color: #8F8F8F;
+	letter-spacing: -2px;}
+
+ul#related-tags li div.tag-left a{
+	color: #8F8F8F;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+	padding-right:4px;
+	border-right: 1px solid #FFFFFF;
+}
+
+/*++++++++++++ END RELATED TAGS ++++++++++++++*/
+
+
 /* =============================================================================
                                FIN WIDGETS
 ============================================================================== */
 
+
+
+
+
+
+/*===================================================================================
+                            "SEE ALL TAGS" PAGE
+====================================================================================*/
+body.tags-page h1.section-title{
+	color: #706F6F;
+    font-family: 'OpenSans',Arial,sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: bold;
+    padding-top: 10px;
+    text-transform: uppercase;}
+
+ul.tags{
+	zoom:1;}
+ul.tags:after{
+    clear: both;
+    content: "";
+    display: block;}
+
+ul.tags li{
+	float:left;
+	zoom:1;
+	float:left;
+	-webkit-border-radius: 6px;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    padding: 2px 7px 3px;
+	background-color: #DEDEDE;}
+ul.tags li:after{
+    clear: both;
+    content: "";
+    display: block;}
+	
+ul.tags li:first-child{
+	padding-left:10px;
+	margin-left:0px;
+    }
+
+ul.tags li div.tag-left{float:left;}
+ul.tags span.tag-number{
+	display:block; 
+	float:left; 
+    font-family: 'OpenSans', Arial, sans-serif;
+	padding-left:4px;
+	font-size: 13px;
+	color: #8F8F8F;
+	letter-spacing: -2px;}
+
+ul.tags li div.tag-left a{
+	color: #8F8F8F;
+    font-size: 12px;
+    font-style: italic;
+    font-weight: bold;
+	padding-right:4px;
+	border-right: 1px solid #FFFFFF;
+}
+
+/*===================================================================================
+                           END "SEE ALL TAGS" PAGE
+====================================================================================*/
 
 
 
@@ -4396,7 +4624,7 @@ textarea.tipped-input {
 i.interrogation{
   	display: inline-block;
     *margin-right: .3em;
-	margin-top: -3px;
+	margin-top: -2px;
     vertical-align: text-top;
 	width:21px;
 	height:20px;
@@ -4443,8 +4671,7 @@ div#secondaryHeader div.secondary_header_bar a#askButton{
 	float:right;
     text-transform:uppercase;
     font-family: 'OpenSans', Arial, sans-serif;
-	padding:5px;
-	padding-right:10px;
+	padding: 5px 10px 4px 6px;
 	font-weight:bold;	
 	font-size:12px;
 	-webkit-border-radius: 15px;    
@@ -4463,7 +4690,17 @@ div#secondaryHeader div.secondary_header_bar a#askButton{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
 	color:#ffffff;
 }
-
+div#secondaryHeader div.secondary_header_bar a#askButton:hover{
+	text-decoration:none;
+	background: rgb(57,144,180);
+	background: -moz-linear-gradient(top,  rgba(57,144,180,1) 0%, rgba(73,182,228,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(57,144,180,1)), color-stop(100%,rgba(73,182,228,1)));
+	background: -webkit-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	background: -o-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	background: linear-gradient(to bottom,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3990b4', endColorstr='#49b6e4',GradientType=0 );
+}
 
 div#secondaryHeader a#homeButton {
   display: block;
