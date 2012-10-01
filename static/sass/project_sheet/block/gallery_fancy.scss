@@ -43,6 +43,22 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    position: absolute;
 	    height: inherit;
 	    width: 300px;
+
+	    img {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		&.color {
+		    @include i4p-transition(all .5s ease);
+		    opacity: 1;
+		}
+
+		&.bw {
+		    @include i4p-transition(all .5s ease);
+		    opacity: 1;
+		}
+	    }
 	}
 
 
@@ -90,6 +106,10 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    }
 	    .overlay-two {
 		opacity: 0;
+	    }
+	    .image {
+		.color { opacity: 1; }
+		.bw { opacity: 0; }
 	    }
 	}
     }
