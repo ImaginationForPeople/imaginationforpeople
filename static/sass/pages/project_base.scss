@@ -312,7 +312,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 
 .project-about {
-    h2 {
+    & > h2 {
 	@include i4p-font-title;
 
 	margin-bottom: 1em;
