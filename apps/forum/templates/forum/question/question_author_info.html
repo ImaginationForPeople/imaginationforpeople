@@ -5,6 +5,7 @@
         <p>{% trans %}by{% endtrans %} <a href="{{ profile.get_absolute_url() }}">{{profile.user.username}}</a></p>
     </div>
     <div class="wrapper_country_badges">
+    
         {% if profile.country %}
         <img class="flag_country" width="14" height="10" 
             alt="{% trans country=profile.country.name %}Flag of {{country}}{% endtrans %}" 
@@ -12,10 +13,14 @@
             src="{{ profile.country.flag }}">
         <p>{{ profile.country.name }}</p>
         {% endif %}
+        
+        {#
         <ul>
             <li class="gold_badge">{{ profile.gold }}</li>
             <li class="silver_badge">{{ profile.silver }}</li>
             <li class="bronze_badge">{{ profile.bronze }}</li>
         </ul>
+        #}
+        
     </div>
 </div>
