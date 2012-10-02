@@ -17,6 +17,7 @@
 
 	{% include "project_sheet/block/comment-list.html" %}
 
+	<div class="span3">
 	<div class="comment-discuss span3">
 		<h3>{% trans "Discuss or comment this project with other people" %}</h3>
 		<a href="#FIXME-BAD-URL" class="button">
@@ -32,13 +33,39 @@
 			{% trans "go to the help calls" %}
 		</a>
 	</div>
+	</div>
 </div>
 <div class="row">
 	<!-- FIXME: missing add your comment -->
 	<div class="comment-add span5">
-		<form action="#FIXME-COMMENT-NEW-FORM-ACTION-URL">
-			<img src="" class="avatar" />
-			<textarea class="comment-new" placeholder='{% trans "Add your comment there and press enter to send..." %}'></textarea>
-		</form>
+        {% if user.is_authenticated %}
+
+            {% get_comment_form for project_translation as comment_form %}
+            <form action="{% comment_form_target %}" method="post">
+                {% csrf_token %}
+                {{ comment_form.content_type }}
+                {{ comment_form.object_pk }}
+                {{ comment_form.timestamp }}
+                {{ comment_form.security_hash }}
+                
+				<img src="{{ request.user.get_profile.get_mugshot_url }}" class="avatar" alt="{% trans 'Your avatar' %}" /> 
+				<textarea class="comment-new" name="comment" id="id_comment"
+					placeholder='{% trans "Add your comment there and press enter to send..." %}'></textarea>
+
+                <div class="comment-info">
+                    <div class="bulle"></div>
+                </div>
+                
+                <p style="display: none;">
+                    {{ comment_form.honeypot }}
+                <input type="submit" value="{% trans "Post comment" %}"/>
+                </p>
+                
+                <input type="hidden" name="next" value="{{ project_translation.get_absolute_url }}">
+            </form>
+        {% endif %}
 	</div>
+
+        
+        
 </div>
