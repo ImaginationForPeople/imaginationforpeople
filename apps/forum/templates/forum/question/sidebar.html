@@ -12,7 +12,7 @@
         {% if favorited %}
             <a class="button followed" alt="{% trans %}click to unfollow this question{% endtrans %}">
                 <span>{% trans %}Following this question{% endtrans %}</span>
-                <span class='unfollow'>{% trans %}Unfollow this question{% endtrans %}</span>
+                <span class='unfollow'>({% trans %}click to unfollow{% endtrans %})</span>
             </a>
         {% else %}
             <a class="button followed" alt="{% trans %}click to follow this question{% endtrans %}">
