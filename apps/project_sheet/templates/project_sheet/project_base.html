@@ -43,87 +43,7 @@
 
 {% if project_translation %}
 <div class="project-subheader">
-    <div class="container">
-	<div class="row">
-	    <div class="span8 subheader">
-		<div class="background">
-		    <img src="{{ project_translation.project.pictures.all.1.display.url }}" alt="" />
-		    <!-- <img src=" picture_project_translations.0.project.pictures.all.0.tag_header.url" alt="" /> -->
-		</div>
-		<div class="overlay">
-		    <h1 class="title">{{ project_translation.title }}</h1>
-		    <div class="description">{{ project_translation.baseline }}</div>
-		    <div class="details"></div>
-		</div>
-	    </div>
-	    <div class="span4 infocard">
-		<a name="project-information"></a>
-		<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
-		<table class="infotable">
-		    <tr class="infotable-location location">
-			<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
-			<th>{% trans "Location" %}</th>
-			<td>
-			    <div class="location-address">
-				{% if project_translation.project.location %}
-				<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-				{% if project_translation.project.location.address %}
-				{{ project_translation.project.location.address }}
-				{% endif %}
-			    </div>
-			    <div class="location-country">
-				{% if project_translation.project.location.country %}
-				<img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
-				{% endif %}
-				{% if project_translation.project.location.lat %}
-				<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
-				{% endif %}
-				{% else %}
-				<em>{% trans 'unknown'|capfirst %}</em>
-				{% endif %}
-			    </div>
-			</td>
-		    </tr>
-		    <tr class="infotable-website">
-			<th>{% trans "Web" %}</th>
-			<td>
-			    <!-- Website -->              
-			    {% if project_translation.project.website %}
-			    <a href="{{ project.website }}" target="_blank" rel="nofollow">{{ project_translation.project.website }}</a>
-			    {% else %}
-			    {% trans 'unknown'|capfirst %}
-			    {% endif %}
-			</td>
-		    </tr>
-		    <!-- FIXME: re-enable whell data will be in the object model
-		    <tr class="infotable-follow">
-			<th>{% trans "Follow" %}</th>
-			<td></td>
-		    </tr>
-		    <tr class="infotable-share">
-			<th>{% trans "Share" %}</th>
-			<td></td>
-		    </tr>
-		    -->
-		    <!-- FIXME: re-enable whell data will be in the object model
-		    <tr class="infotable-movecommons">
-			<th>{% trans "Movecommons" %}</th>
-			<td></td>
-		    </tr>
-		    -->
-		    <tr class="infotable-maturity">
-			<th>{% trans "Maturity" %}</th>
-			<td>
-			    {% comment %} FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
-			    <p class="progressbar progressbar-{{project_translation.project.status|lower }}">
-				<span class="status">{{ project_translation.project.get_status_display }}</span>
-			    </p>
-			</td>
-		    </tr>
-		</table>
-	    </div>
-	</div>
-    </div>
+    {% include "project_sheet/block/subheader.html" %}
 </div> <!-- .project-subheader -->
 {% endif %}
 
@@ -168,30 +88,7 @@
     </div>
 </div> <!-- .project-menubar -->
 
-<div class="project-toolbar">
-    <ul>
-	<li>
-	    <a href="#project-information" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Information" %}">
-		<i class="sheet-information-white"></i></a>
-	</li>
-	<li>
-	    <a href="#project-about" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
-		<i class="sheet-details-white"></i></a>
-	</li>
-	<li>
-	    <a href="#project-references" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "References" %}">
-		<i class="sheet-references-white"></i></a>
-	</li>
-	<li>
-	    <a href="#project-comments" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Comments" %}">
-		<i class="sheet-comments-white"></i></a>
-	</li>
-	<li>
-	    <a href="#project-partners" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Partners" %}">
-		<i class="sheet-partners-white"></i></a>
-	</li>
-    </ul>
-</div>
+{% include "project_sheet/block/toolbar.html" %}
 
 <div class="project-content">
 {% block project_content %}{% endblock %}

@@ -9,8 +9,10 @@
     @include i4p-box-shadow-bottomleft;
     position: relative; // make children position absolute but relative to this
     height: 81px; // 81px for grid_5 , 64px for grid_4
-    width: inherit;
-    margin-bottom: 10px;
+    width: 100%;
+    margin: 0;
+    margin-bottom: $sizeMarginMedium;
+    display: block;
 
     img {
 	@include border-radius($sizeRadiusSmall);
@@ -42,7 +44,7 @@
 	    display: block;
 	    position: absolute;
 	    font-family: $fontOpenSans;
-	    font-size: $sizeTextBig;
+	    font-size: $sizeTextNormal;
 	    font-stretch: condensed;
 	    font-weight: bold;
 	    line-height: $sizeTextBig * 1.2;
