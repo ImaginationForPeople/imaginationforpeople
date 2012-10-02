@@ -8,8 +8,8 @@
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment-list.css" />
 {% endaddtoblock %}
-{% comment %}FIXME: use real comment block instead {% endcomment %}
-<div class="comment-list span5">
+{% comment %}FIXME: limit span8 to span5 once discussion is available {% endcomment %}
+<div class="comment-list span8"> 
 	<ul>
 		{% get_comment_list for project_translation as comment_list %}
 		{% if "show_comments" in request.GET %}

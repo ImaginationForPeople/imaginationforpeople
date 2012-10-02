@@ -17,27 +17,29 @@
 
 	{% include "project_sheet/block/comment-list.html" %}
 
+	{% comment %}
 	<div class="span3">
-	<div class="comment-discuss span3">
-		<h3>{% trans "Discuss or comment this project with other people" %}</h3>
-		<a href="#FIXME-BAD-URL" class="button">
-			<i class="sheet-plus"></i>
-			{% trans "go to the discussion" %}
-		</a>
-	</div>
+		<div class="comment-discuss span3">
+			<h3>{% trans "Discuss or comment this project with other people" %}</h3>
+			<a href="#FIXME-BAD-URL" class="button">
+				<i class="sheet-plus"></i>
+				{% trans "go to the discussion" %}
+			</a>
+		</div>
 
-	<div class="comment-ask span3">
-		<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
-		<a href="#FIXME-BAD-URL" class="button">
-			<i class="sheet-plus"></i>
-			{% trans "go to the help calls" %}
-		</a>
+		<div class="comment-ask span3">
+			<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
+			<a href="#FIXME-BAD-URL" class="button">
+				<i class="sheet-plus"></i>
+				{% trans "go to the help calls" %}
+			</a>
+		</div>
 	</div>
-	</div>
+	{% endcomment %}
 </div>
 <div class="row">
 	<!-- FIXME: missing add your comment -->
-	<div class="comment-add span5">
+	<div class="comment-add span8">{% comment %} FIXME: limit to span5 once discussion is available again {%endcomment%}
         {% if user.is_authenticated %}
 
             {% get_comment_form for project_translation as comment_form %}
