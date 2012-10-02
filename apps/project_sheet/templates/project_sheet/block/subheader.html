@@ -49,7 +49,33 @@
 				{% endif %}
 				{% endif %}
 			    </h1> <!-- /TITLE -->
-			    <div class="description">{{ project_translation.baseline }}</div>
+			    <div class="description"><!-- BASELINE -->
+				{% if baseline_form %}
+				<!-- BASELINE - edition mode-->
+				<form id="baseline" 
+				    {% if project_translation %}
+				    action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" 
+				    {% else %}
+				    action="{% url project_sheet-edit-field topic.slug 'baseline'%}" 
+				    {% endif %}
+				    method="post" class="project_baseline_edition">{% csrf_token %}
+				    {{ baseline_form.baseline }}
+				    <input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />
+				    <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>
+				</form>
+				{% else %}
+				{% if project_translation %}
+				<!-- BASELINE - filled-->
+				    {{ project_translation.baseline }}
+				    <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+				{% else %}
+				<!--  BASELINE - empty -->
+				    {% trans "One line description"|capfirst %}
+				    <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+				{% endif %}
+				{% endif %}	
+			    </div><!-- /BASELINE -->
+
 			    <div class="details"></div>
 			</div>
 		</div>

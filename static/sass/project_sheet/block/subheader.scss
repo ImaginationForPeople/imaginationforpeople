@@ -18,6 +18,21 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
 
+@mixin i4p-editable {
+    .editing-button {
+	@include i4p-transition;
+	display: none;
+	opacity: 0;
+    }
+
+    &:hover {
+	.editing-button {
+	    display: block;
+	    opacity: 1;
+	}
+    }
+}
+
 .project-subheader {
     background-color: black;
     position: relative;
@@ -37,25 +52,14 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 	    .title {
 		@include i4p-font-pagetitle($sizeTextHuge);
+		@include i4p-editable;
 		color: white;
 		margin-left: 50px;
-
-		a {
-		    @include i4p-transition;
-		    display: none;
-		    opacity: 0;
-		}
-
-		&:hover {
-		    a {
-			display: block;
-			opacity: 1;
-		    }
-		}
 	    }
 
 	    .description {
 		@include i4p-font-base($sizeTextNormal);
+		@include i4p-editable;
 		margin-left: 50px;
 		color: white;
 		font-style: italic;
