@@ -10,6 +10,10 @@ $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 
 .project-gallery {
+    ul {
+	margin:0;
+    }
+
     .picture {
 	width: 100%;
 	position: relative;
