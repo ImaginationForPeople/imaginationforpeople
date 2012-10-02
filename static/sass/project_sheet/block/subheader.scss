@@ -19,14 +19,14 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
 
 @mixin i4p-editable {
-    .editing-button {
+    & > .editing-button {
 	@include i4p-transition;
 	display: none;
 	opacity: 0;
     }
 
     &:hover {
-	.editing-button {
+	& > .editing-button {
 	    display: block;
 	    opacity: 1;
 	}

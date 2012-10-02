@@ -61,7 +61,9 @@
 				    method="post" class="project_baseline_edition">{% csrf_token %}
 				    {{ baseline_form.baseline }}
 				    <input  title="{% trans 'Ok'|capfirst %}" class="greenbutton" type="image"  src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />
-				    <a class="button redbutton nomargin "  href="javascript:history.back(1)" title="{% trans 'Cancel'|capfirst %}" class="button editing-button"><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>
+				    <a class="button redbutton nomargin "  href="javascript:history.back(1)" 
+					title="{% trans 'Cancel'|capfirst %}" class="button editing-button"
+					><img src="{{ STATIC_URL }}images/base/x.png" alt="X" /></a>
 				</form>
 				{% else %}
 				{% if project_translation %}
