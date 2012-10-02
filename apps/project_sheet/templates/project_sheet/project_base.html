@@ -28,9 +28,10 @@
         }
     }
 
-    $(document).ready(function() {
-        // Addthis
-	addthis.init();
+    // load only when all assets are ready
+    $(window).load(function() {
+	// Addthis
+	addthis.init(); 
     });
     </script>
     {% endif %}
@@ -80,7 +81,6 @@
 		<a class="addthis_button_facebook_like"  fb:like:layout="button_count"></a>
 		<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
 	      </ul>
-              <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
               <!-- AddThis Button END -->
 	    </li>
 	</ul>
@@ -94,5 +94,6 @@
 {% block project_content %}{% endblock %}
 </div>
 
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
 {% endwith %}
 {% endblock %}
