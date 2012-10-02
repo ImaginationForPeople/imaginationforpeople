@@ -11,11 +11,13 @@
             title="{% trans country=profile.country.name, person=profile.user.username|escape %}{{person}} is from {{country}}{% endtrans %}"
             src="{{ profile.country.flag }}">
         <p>{{ profile.country.name }}</p>
+        {#
         {% endif %}
         <ul>
             <li class="gold_badge">{{ profile.gold }}</li>
             <li class="silver_badge">{{ profile.silver }}</li>
             <li class="bronze_badge">{{ profile.bronze }}</li>
         </ul>
+        #}
     </div>
 </div>
