@@ -14,6 +14,7 @@
 		{% if "show_comments" in request.GET %}
 		{% for comment in comment_list reversed %}
 		<li class="comment {% cycle 'odd' 'even' %}">
+			PIF
 			{% include "project_sheet/block/comment-item.html" %}
 		</li>
 		{% endfor %}
@@ -21,14 +22,15 @@
 		{% else %}
 		{% for comment in comment_list|slice:"-5:" reversed %}
 		<li class="comment {% cycle 'odd' 'even' %}">
+			PAF
 			{% include "project_sheet/block/comment-item.html" %}
 		</li>
 		{% endfor %}
 		{% endif %}
 	</ul>
-	<a class="seemore" href="#FIXME-URL: show remaining comments">
-		{% trans "Show all FIXME-COUNTER comments" %}
-		<!-- FIXME: show down chevron icon -->
+	<a class="seemore" href="?show_comments=1#comments-module">
+      {% get_comment_count for project_translation as comment_count %}
+        {% trans "Show all" %} {{ comment_count }} {% trans "comments" %}</a>
 	</a>
 </div>
 {% comment %}
