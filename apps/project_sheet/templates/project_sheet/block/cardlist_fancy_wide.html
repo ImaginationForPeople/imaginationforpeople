@@ -16,5 +16,7 @@ Parameters for this block
    	project-list wide-card">
 	{% for project_translation in project_translation_list %}
 	{% include "project_sheet/block/card_fancy_wide.html" %}
+	{% empty %}
+	{% trans "No projects found" %}
 	{% endfor %}
 </div>
