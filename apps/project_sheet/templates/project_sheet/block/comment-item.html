@@ -1,0 +1,13 @@
+{% load humanize %}
+
+<a href="#FIXME-EDIT-URL" class="action-edit"></a>
+<a href="#FIXME-DELETE-URL" class="action-delete"></a>
+<div class="avatar">
+	<a href="{% url userena_profile_detail comment.user.username %}"><img src="{{ comment.user.get_profile.get_mugshot_url }}" /></a>
+</div>
+<div class="header">
+	<span class="author"><a href="{% url userena_profile_detail comment.user.username %}">{{ comment.user.get_full_name|default:comment.user.username }}</a></span>
+	<span class="postdate">{{ comment.submit_date|naturalday|capfirst }}</span>
+</div>
+<div class="content">{{ comment.comment|capfirst }}</div>
+
