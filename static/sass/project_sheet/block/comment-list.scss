@@ -52,6 +52,10 @@ $commentList_sizeAvatar: 50px;
 	width: $commentList_sizeAvatar;
 	height: $commentList_sizeAvatar;
 	background-color: black;
+
+	img {
+	    @include border-radius($sizeRadiusSmall);
+	}
     }
 
     .header {
@@ -60,6 +64,7 @@ $commentList_sizeAvatar: 50px;
 
 	.author {
 	    @include i4p-font-subtitle($sizeTextBig);
+
 	    font-style: italic;
 	}
 
