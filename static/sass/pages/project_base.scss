@@ -57,6 +57,8 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
     .project-related {
 	@include i4p-seemore-class;
+	width: inherit;
+
 	h2 {
 	    @include i4p-font-title;
 	}
@@ -307,91 +309,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 }
 
-.project-toolbar {
-    @include border-radius(0 $sizeRadiusSmall $sizeRadiusSmall 0);
-    @include i4p-box-shadow-bottomleft;
-    @include i4p-sprite('sheet');
-    background-color: $colorDarkGrey;
-    display: block;
-    min-height: 120px;
-    position: fixed;
-    top: 20%;
-    min-width: 40px;
-    z-index: 90;
 
-    // FIXME define a reusable tooltip + mixin
-    .i4p-tooltip {
-	position: relative;
-
-	&:after {
-	    @include i4p-transition;
-	    content: attr(data-tooltip);
-	    opacity: 0;
-	}
-
-	&:hover {
-	    &:after {
-		opacity: 1;
-	    }
-	}
-
-	&.i4p-tooltip-round-black {
-	    &:after {
-		@include border-radius($sizeRadiusBig);
-		position: absolute;
-		display: block;
-		height: 20px;
-		color: white;
-		left: -100px;
-		top: -$sizePaddingSmall;
-		background-color: $colorDarkGrey;
-		padding: $sizePaddingSmall;
-		padding-left: $sizePaddingMedium;
-		padding-right: $sizePaddingMedium;
-	    }
-
-	    &:hover {
-		&:after {
-		    left: 38px;
-		}
-	    }
-
-	}
-    }
-
-    ul {
-
-	li {
-	    @include i4p-transition;
-	    padding: $sizeMarginSmall;
-	    padding-top: $sizeMarginSmall * 1.5;
-	    padding-bottom: $sizeMarginSmall * 1.5;
-	    padding-left: $sizeMarginSmall * 1.5;
-	    border-top: 1px solid lighten($colorDarkGrey,10%);
-	    border-bottom: 1px solid darken($colorDarkGrey,10%);
-	    display: block;
-
-	    &:first-child {
-		@include border-radius(0 $sizeRadiusSmall 0 0);
-	    }
-
-	    &:last-child {
-		@include border-radius(0 0 $sizeRadiusSmall 0);
-	    }
-
-	    &:hover {
-		border-bottom: 1px solid transparent;
-		border-top: 1px solid transparent;
-		background-color: darken($colorDarkGrey,3%);
-	    }
-
-	    a {
-		display: block;
-	    }
-	}
-
-    }
-}
 
 .project-about {
     h2 {

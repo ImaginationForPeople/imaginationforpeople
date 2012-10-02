@@ -1,23 +1,24 @@
 
-/***
- * IMPORTANT : CONSTANTS NAMING SCHEME
- *
- * The naming scheme is simple, your constants name must follow this rule :
- * "<typename>[<Targetname>]<Attributename>"
- * 
- * - <typename> could be "color", "size", "font", etc.
- *
- * - <targetname> is optional and could be any targetable CSS objects or
- *   properties like "text", "border", etc. 
- *
- * - <attributename> is a meaningful description of your constant, like "Blue",
- *   "LightBlue", "Small", "Huge", etc.
- */
+//
+// VERY IMPORTANT : "the how to NAME REUSABLE CONSTANTS tutorial"
+//
+// The naming scheme is simple, your constants name must follow this rule :
+// "<typename>[<Targetname>]<Attributename>"
+//
+// - <typename> could be "color", "size", "font", etc.
+//
+// - <targetname> is optional and could be any targetable CSS objects or
+//   properties like "text", "border", etc. 
+//
+// - <attributename> is a meaningful description of your constant, like "Blue",
+//   "LightBlue", "Small", "Huge", etc.
+//
 
 
-/**
- * Old Colors (obsolete, please use new color naming scheme instead)
- */
+//
+// OLD COLORS 
+// They are obsolete, so please use new color naming scheme instead.
+//
 
 $darkgrey: #171717;
 $grey: #cdcdcd;
@@ -25,9 +26,10 @@ $greymenu: #c1c1c1;
 $normalgrey: #bdbdbd;
 
 
-/**
- * New colors
- */
+//
+// NEW COLORS
+// You MUST use them.
+//
 
 $colorPaleBlue: #c7e4ea;
 $colorLightBlue: #04add1;
@@ -46,20 +48,30 @@ $colorDarkGrey: #282828;
 $colorLightGreen: #A3C866;
 
 $colorTextGreen: #5EAB37;
-/**
- * text sizes
- */
-$sizeTextHuge: 2.33em; //28px; for h1
-$sizeTextLarge: 1.33em; //16px; for h2
-$sizeTextBig: 1.17em; //14px; for h3
-$sizeTextNormal: 1em; //12px
-$sizeTextSmall: 0.92em; //11px;
-$sizeTextTiny: 0.83em; //10px;
 
 
-/**
- * font piles
- */
+//
+// TEXT SIZES
+//
+// $sizeTextHuge: 2.33rem; //28px; for h1
+// $sizeTextLarge: 1.33rem; //16px; for h2
+// $sizeTextBig: 1.17rem; //14px; for h3
+// $sizeTextNormal: 1rem; //12px
+// $sizeTextSmall: 0.92rem; //11px;
+// $sizeTextTiny: 0.83rem; //10px;
+
+// after root em definition
+$sizeTextHuge: 2.8rem; //28px; for h1
+$sizeTextLarge: 1.6rem; //16px; for h2
+$sizeTextBig: 1.4rem; //14px; for h3
+$sizeTextNormal: 1.2rem; //12px
+$sizeTextSmall: 1.1rem; //11px;
+$sizeTextTiny: 1rem; //10px;
+
+
+//
+// FONT PILES
+//
 
 $fontOpenSans: "OpenSans", Arial, Helvetica, sans-serif;
 
@@ -79,5 +91,6 @@ $sizePaddingMedium: 10px;
 $sizePaddingBig: 15px;
 
 $sizeMarginSmall: 5px;
+$sizeMarginMedium: 7.5px;
 $sizeMarginBig: 10px;
 
