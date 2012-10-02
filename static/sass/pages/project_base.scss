@@ -86,6 +86,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	@include box-sizing(border-box);
 	overflow: hidden;
 	padding-top: 14rem;
+	position: relative;
 
 	h1 {
 	    @include i4p-font-pagetitle($sizeTextHuge);
@@ -98,6 +99,16 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	    margin-left: 50px;
 	    color: white;
 	    font-style: italic;
+	}
+
+	.background {
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    img {
+		height: 304px;
+		width: auto;
+	    }
 	}
     }
 
