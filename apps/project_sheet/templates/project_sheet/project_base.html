@@ -46,11 +46,14 @@
     <div class="container">
 	<div class="row">
 	    <div class="span8 subheader">
-		<h1 class="title">{{ project_translation.title }}</h1>
-		<div class="description">{{ project_translation.baseline }}</div>
 		<div class="background">
 		    <img src="{{ project_translation.project.pictures.all.1.display.url }}" alt="" />
 		    <!-- <img src=" picture_project_translations.0.project.pictures.all.0.tag_header.url" alt="" /> -->
+		</div>
+		<div class="overlay">
+		    <h1 class="title">{{ project_translation.title }}</h1>
+		    <div class="description">{{ project_translation.baseline }}</div>
+		    <div class="details"></div>
 		</div>
 	    </div>
 	    <div class="span4 infocard">
@@ -97,11 +100,11 @@
 			<th>{% trans "Follow" %}</th>
 			<td></td>
 		    </tr>
-		    -->
 		    <tr class="infotable-share">
 			<th>{% trans "Share" %}</th>
 			<td></td>
 		    </tr>
+		    -->
 		    <!-- FIXME: re-enable whell data will be in the object model
 		    <tr class="infotable-movecommons">
 			<th>{% trans "Movecommons" %}</th>

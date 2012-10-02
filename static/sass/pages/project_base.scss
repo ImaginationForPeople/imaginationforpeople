@@ -75,36 +75,40 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 
 .project-subheader {
-
     background-color: black;
-    clear: both;
-    height: 304px;
     position: relative;
 
-
     .subheader {
-	@include box-sizing(border-box);
 	overflow: hidden;
-	padding-top: 14rem;
 	position: relative;
 
-	h1 {
-	    @include i4p-font-pagetitle($sizeTextHuge);
-	    color: white;
-	    margin-left: 50px;
-	}
+	.overlay {
+	    @include box-sizing(border-box);
+	    background-color: rgba(0,0,0,0.5);
+	    position: absolute;
+	    bottom: 0;
+	    height: 6rem;
+	    z-index: 1;
+	    width: 100%;
 
-	.description {
-	    @include i4p-font-base($sizeTextNormal);
-	    margin-left: 50px;
-	    color: white;
-	    font-style: italic;
+	    h1 {
+		@include i4p-font-pagetitle($sizeTextHuge);
+		color: white;
+		margin-left: 50px;
+	    }
+
+	    .description {
+		@include i4p-font-base($sizeTextNormal);
+		margin-left: 50px;
+		color: white;
+		font-style: italic;
+	    }
 	}
 
 	.background {
-	    position: absolute;
 	    top: 0;
 	    left: 0;
+
 	    img {
 		height: 304px;
 		width: auto;
