@@ -111,7 +111,7 @@
 		    <tr class="infotable-maturity">
 			<th>{% trans "Maturity" %}</th>
 			<td>
-			    {% comment %}FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
+			    {% comment %} FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
 			    <p class="progressbar progressbar-{{project_translation.project.status|lower }}">
 				<span class="status">{{ project_translation.project.get_status_display }}</span>
 			    </p>
@@ -128,7 +128,8 @@
     <div class="container">
 	<div class="row">
 	<ul class="span8">
-	    <li class="active"><a href="#FIXME-BADURL">{% trans "Project" %}</a></li>
+	    <li class="active"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
+	    {% comment %}
 	    <li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
 	    <li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
 	    <li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
@@ -145,6 +146,7 @@
 		    <i class="i4p-toolbar-widgets"></i>
 	    </a></li>
 	    <li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
+	    {% endcomment %}
 	    <li class="right">
 		<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
 		    <i class="i4p-toolbar-dropdown"></i>
