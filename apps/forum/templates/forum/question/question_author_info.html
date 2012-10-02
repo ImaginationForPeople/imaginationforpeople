@@ -1,18 +1,21 @@
-
-
 <div class="author_info_question">
 	<div class="avatar_author_date">
-        <img class="gravatar" width="48" height="48" alt="Image Gravatar de admin" title="admin" src="http://www.gravatar.com/avatar/7a54245224dc6193b66b096da029b0a5?s=160&d=monsterid">
-        <p>{% trans %}Posted {% endtrans %}<abbr class="timeago" title="2012-09-18 16:18:58 +0200">13 days ago</abbr> </p>
-        <p>{% trans %}By{% endtrans %} <a href="/fr/member/admin/">Sophie Duverger</a></p>
+        {% include "widgets/avatar.html"%}
+        <p>{% trans %}posted{% endtrans %} {{ macros.timeago(question.added_at) }}</p>
+        <p>{% trans %}by{% endtrans %} <a href="{{ profile.get_absolute_url() }}">{{profile.user.username}}</a></p>
     </div>
     <div class="wrapper_country_badges">
-        <img class="flag_country" width="14" height="10" alt="{% trans %}French flag{% endtrans %}" src="http://imaginationforpeople.org:8001/static/images/question/french_flag.png">
-        <p>France</p>
+        {% if profile.country %}
+        <img class="flag_country" width="14" height="10" 
+            alt="{% trans country=profile.country.name %}Flag of {{country}}{% endtrans %}" 
+            title="{% trans country=profile.country.name, person=profile.user.username|escape %}{{person}} is from {{country}}{% endtrans %}"
+            src="{{ profile.country.flag }}">
+        <p>{{ profile.country.name }}</p>
+        {% endif %}
         <ul>
-            <li class="gold_badge">53</li>
-            <li class="silver_badge">3</li>
-            <li class="bronze_badge">1</li>
+            <li class="gold_badge">{{ profile.gold }}</li>
+            <li class="silver_badge">{{ profile.silver }}</li>
+            <li class="bronze_badge">{{ profile.bronze }}</li>
         </ul>
     </div>
 </div>
