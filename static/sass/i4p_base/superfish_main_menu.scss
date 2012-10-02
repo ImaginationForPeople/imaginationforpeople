@@ -208,7 +208,7 @@ li {
     a {
       height: 100%;
       padding: 0px 1em;
-      @include i4p-font-menu($sizeTextSmall);
+      @include i4p-font-menu(11px);
       padding: 0px 1em;
       margin:4px;
     }
@@ -228,7 +228,7 @@ li {
       margin:0px;
       height: 100%;
       line-height: 48px;
-      @include i4p-font-menu();
+      @include i4p-font-menu(12px);
       text-transform:uppercase;
       border: none;
       margin-left: 0px;
