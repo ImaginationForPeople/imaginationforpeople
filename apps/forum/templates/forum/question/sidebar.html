@@ -5,12 +5,14 @@
 </div>
 {% endif %}
 <div class="box author_and_follow_question vote-buttons">
-    	<div class="arrow"></div>        
+    	<div class="arrow"></div>       
+        {% with question.author.get_profile() as profile %} 
         {% include "question/question_author_info.html" %}
+        {% endwith %}
         {% if favorited %}
             <a class="button followed" alt="{% trans %}click to unfollow this question{% endtrans %}">
                 <span>{% trans %}Following this question{% endtrans %}</span>
-                <span class='unfollow'>{% trans %}Unfollow this question{% endtrans %}</span>
+                <span class='unfollow'>({% trans %}click to unfollow{% endtrans %})</span>
             </a>
         {% else %}
             <a class="button followed" alt="{% trans %}click to follow this question{% endtrans %}">
