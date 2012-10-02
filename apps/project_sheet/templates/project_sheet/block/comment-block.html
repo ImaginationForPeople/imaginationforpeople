@@ -3,6 +3,7 @@
 {% load sekizai_tags %}
 
 {% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/comment-block.js"></script>
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
@@ -37,37 +38,34 @@
 	</div>
 	{% endcomment %}
 </div>
+{% if user.is_authenticated %}
 <div class="row">
-	<!-- FIXME: missing add your comment -->
 	<div class="comment-add span8">{% comment %} FIXME: limit to span5 once discussion is available again {%endcomment%}
-        {% if user.is_authenticated %}
 
-            {% get_comment_form for project_translation as comment_form %}
-            <form action="{% comment_form_target %}" method="post">
-                {% csrf_token %}
-                {{ comment_form.content_type }}
-                {{ comment_form.object_pk }}
-                {{ comment_form.timestamp }}
-                {{ comment_form.security_hash }}
-                
-				<img src="{{ request.user.get_profile.get_mugshot_url }}" class="avatar" alt="{% trans 'Your avatar' %}" /> 
-				<textarea class="comment-new" name="comment" id="id_comment"
-					placeholder='{% trans "Add your comment there and press enter to send..." %}'></textarea>
+		{% get_comment_form for project_translation as comment_form %}
+		<form action="{% comment_form_target %}" method="post">
+			{% csrf_token %}
+			{{ comment_form.content_type }}
+			{{ comment_form.object_pk }}
+			{{ comment_form.timestamp }}
+			{{ comment_form.security_hash }}
 
-                <div class="comment-info">
-                    <div class="bulle"></div>
-                </div>
-                
-                <p style="display: none;">
-                    {{ comment_form.honeypot }}
-                <input type="submit" value="{% trans "Post comment" %}"/>
-                </p>
-                
-                <input type="hidden" name="next" value="{{ project_translation.get_absolute_url }}">
-            </form>
-        {% endif %}
+			<img src="{{ request.user.get_profile.get_mugshot_url }}" class="avatar" alt="{% trans 'Your avatar' %}" /> 
+			<textarea class="comment-new" name="comment" id="id_comment"
+				placeholder='{% trans "Add your comment there and press enter to send..." %}'></textarea>
+
+			<div class="comment-info">
+				<div class="bulle"></div>
+			</div>
+
+			<p style="display: none;">
+				{{ comment_form.honeypot }}
+				<input type="submit" value="{% trans "Post comment" %}"/>
+			</p>
+
+			<input type="hidden" name="next" value="{{ project_translation.get_absolute_url }}">
+		</form>
 	</div>
 
-        
-        
 </div>
+{% endif %}
