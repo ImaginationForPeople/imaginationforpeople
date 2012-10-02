@@ -11,11 +11,10 @@
 {% comment %}FIXME: use real comment block instead {% endcomment %}
 <div class="comment-list span5">
 	<ul>
-		{% if "show_comments" in request.GET %}
 		{% get_comment_list for project_translation as comment_list %}
+		{% if "show_comments" in request.GET %}
 		{% for comment in comment_list reversed %}
 		<li class="comment {% cycle 'odd' 'even' %}">
-			PIF
 			{% include "project_sheet/block/comment-item.html" %}
 		</li>
 		{% endfor %}
@@ -23,7 +22,6 @@
 		{% else %}
 		{% for comment in comment_list|slice:"-5:" reversed %}
 		<li class="comment {% cycle 'odd' 'even' %}">
-			PAF
 			{% include "project_sheet/block/comment-item.html" %}
 		</li>
 		{% endfor %}
