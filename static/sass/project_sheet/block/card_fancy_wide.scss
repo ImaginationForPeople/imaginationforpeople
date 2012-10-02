@@ -2,7 +2,6 @@
 @import "i4p/constants";
 
 .project-list.wide-card {
-    width: inherit;
 }
 
 .project.wide-card {
@@ -10,7 +9,7 @@
     @include i4p-box-shadow-bottomleft;
     position: relative; // make children position absolute but relative to this
     height: 81px; // 81px for grid_5 , 64px for grid_4
-    width: inherit;
+    width: 100%;
     margin: 0;
     margin-bottom: $sizeMarginMedium;
     display: block;
