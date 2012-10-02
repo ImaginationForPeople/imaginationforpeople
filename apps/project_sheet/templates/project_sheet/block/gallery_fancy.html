@@ -35,8 +35,8 @@ FIXME: use picture list instead of project_translation
 			">
 			<div class="image">
 				<!-- <img src="{{project_picture.display.url}}" class="normal" alt=""> -->
-				<img src="{% thumbnail project_picture.display.name 300x300 upscale=1 crop=300x300 %}" class="color" alt="">
-				<img src="{% thumbnail project_picture.display.name 300x300 upscale=1 crop=300x300 bw %}" class="bw" alt="">
+				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
+				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
 			</div>
 			<div class="description">
 				{{project_picture.desc}}
