@@ -64,8 +64,11 @@ $commentList_sizeAvatar: 50px;
 
 	.author {
 	    @include i4p-font-subtitle($sizeTextBig);
-
 	    font-style: italic;
+
+	    a {
+		color: black;
+	    }
 	}
 
 	.postdate {
