@@ -1,6 +1,11 @@
 @import "i4p-mixins";
 @import "i4p/constants";
 
+/* ONLY UNTILL BOOTSTRAP IS FULLY INTEGRATED, use pixels for font sizes */
+
+$sizeTextNormal: 12px;
+$sizeTextSmall: 11px;
+
 /*** ESSENTIAL STYLES ***/
 
 $menuhighlightbackground:black;
@@ -208,7 +213,7 @@ li {
     a {
       height: 100%;
       padding: 0px 1em;
-      @include i4p-font-menu(11px);
+      @include i4p-font-menu($sizeTextSmall);
       padding: 0px 1em;
       margin:4px;
     }
@@ -228,7 +233,7 @@ li {
       margin:0px;
       height: 100%;
       line-height: 48px;
-      @include i4p-font-menu(12px);
+      @include i4p-font-menu($sizeTextNormal);
       text-transform:uppercase;
       border: none;
       margin-left: 0px;
