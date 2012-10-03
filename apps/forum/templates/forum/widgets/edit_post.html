@@ -1,6 +1,6 @@
 {% if edit_title %}
     <div class="form-item">
-        <label for="id_title" ><strong>{{ post_form.title.label_tag() }}:</strong></label> <span class="form-error"></span><br/>
+        <label for="id_title" >{{ post_form.title.label_tag() }}:</label> <span class="form-error"></span>
         {{ post_form.title }} {{ post_form.title.errors }}
         <div class="title-desc">
             {{ post_form.title.help_text }}
