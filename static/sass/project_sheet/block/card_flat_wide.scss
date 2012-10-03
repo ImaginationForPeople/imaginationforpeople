@@ -1,0 +1,73 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+.project-list.wide-flat {
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
+    @include i4p-seemore-class;
+
+    position: relative;
+    padding: 5px;
+
+    border: 1px solid darken($colorLightLightGrey,2%);
+    background-color: $colorLightLightGrey;
+    margin-bottom: 12px;
+
+    h2 {
+	font-family: $fontOpenSans;
+	font-size: $sizeTextLarge;
+	font-stretch: condensed;
+	font-weight: bold;
+	text-transform: uppercase;
+	margin-top: 5px;
+	margin-bottom: 5px;
+    }
+
+    ul {
+	list-style: none;
+    }
+}
+
+.project.wide-flat {
+    @include border-radius($sizeRadiusSmall);
+    @include i4p-transition(all .5s ease);
+    margin-bottom: 3px;
+    background-color: $colorMedGrey;
+
+    background-image: image-url("tags/icon-arrow-white-big.png");
+    background-repeat: no-repeat;
+    background-position: 400px center;
+    background-size: 25px 25px;
+
+    display: block;
+    padding: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    height: 47px;
+    overflow: hidden;
+
+    .title {
+	@include i4p-transition(all .5s ease);
+	font-family: $fontOpenSans;
+	font-size: $sizeTextBig;
+	font-stretch: condensed;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+    }
+
+    .description {
+	@include i4p-transition(all .5s ease);
+
+	font-family: $fontOpenSans;
+	font-size: $sizeTextNormal;
+	font-style: italic;
+	color: white;
+    }
+
+    &:hover {
+	padding-right: 40px;
+	background-color: $colorLightBlue;
+	background-position: 200px center;
+    }
+}

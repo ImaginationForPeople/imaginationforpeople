@@ -9,8 +9,13 @@ django-countries==1.0.5
 django-tagging==0.3.1
 django-autoslug==1.4.1
 
+easy-thumbnails==1.0.3
+
 # Django cms 2.3rc2.post0
 -e git+https://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
+
+# Wiki
+-e git+https://github.com/ImaginationForPeople/django-wiki.git#egg=django-wiki
 
 #Migration failed on recent postgres.  Use our own branch in the meantime
 #-e git+https://github.com/CommOnEcoute/cmsplugin_facebook.git@8416f8506eb77ed9954dc12aa1f4b6eebe68d39c#egg=cmsplugin-facebook
@@ -39,6 +44,8 @@ django-tinymce==1.5.1a2
 # Python < 2.7 compatibility
 ordereddict==1.1
 
+django-sekizai==0.6.1
+
 BeautifulSoup
 lxml
 html5lib
@@ -48,7 +55,7 @@ linaro-django-pagination==2.0.2
 
 -e git://github.com/ImaginationForPeople/emencia-django-newsletter.git@master#egg=emencia.django.newsletter
 
--e git+https://github.com/jezdez/django_compressor.git@8c7961d2eb778edce2f1e101121629b96f93aba5#egg=django_compressor
+django_compressor==1.2
 
 #-e git+https://github.com/jtauber/django-notification.git@555b506a3e225d476d17939d8b43f853fd0226ec#egg=django-notification
 -e git+https://github.com/liberation/django-notification.git@75867589ad63078cba8271d228920a66a02833b0#egg=django-notification
@@ -78,10 +85,13 @@ django-simplegravatar==0.2
 
 -e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
+#Askbot
+-e git://github.com/atiberghien/askbot-devel.git@2013c9784e28a3d8c7695df6dd9f6d24aa2da667#egg=askbot
+
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@cff1d648ac46bd49f4c0271e17bfb77b6373b9bc#egg=django-blog-zinnia
 -e git://github.com/Fantomas42/cmsplugin-zinnia.git@5c539df6a8e1141f99d1815f0fbbc97950f5cfdb#egg=cmsplugin-zinnia
-    
+
 # Testing tools
 coverage<3.4
 lettuce==0.1.27

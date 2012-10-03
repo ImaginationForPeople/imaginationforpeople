@@ -1,0 +1,108 @@
+// load reusable components
+@import "i4p-mixins";
+@import "i4p/constants";
+
+$i4p-action-sprite-dimensions: true;
+$i4p-action-sprites: sprite-map("i4p-action/*.png");
+@import "i4p-action/*.png"; // */
+// @include all-i4p-action-sprites; // NO AUTO INCLUDE
+
+.references-block .references-links > a.button, .references-block .references-documents  > a.button{
+              //---------------------DISABLED UNTIL FUNCTIONAL------------------------
+        display: none;
+        }
+        
+.references-block {
+    @include i4p-layout-block;
+
+    h2 {
+	@include i4p-font-title;
+    }
+
+    h3 {
+	@include i4p-font-title($sizeTextBig);
+    }
+
+    .references-links {
+	position: relative;
+
+	ul {
+	    margin-bottom: 1em;
+
+	    .link-item {
+		@include i4p-transition;
+		display: block;
+		padding-left: 1em;
+		background-color: white;
+
+		&:hover {
+		    background-color: $colorLightDarkGrey;
+		}
+
+		a {
+		    color: black;
+		    text-decoration: none;
+		}
+	    }
+	}
+
+	.button {
+	    @include i4p-button-flat;
+
+	    .action-add {
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite(add-black); 
+	    }
+
+	    &:hover .action-add {
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite('add-white'); 
+	    }
+	}
+    }
+
+    .references-documents {
+	position: relative;
+
+	ul {
+	    margin-bottom: 1em;
+
+	    .document-item {
+		@include i4p-transition;
+		display: block;
+		padding-left: 1em;
+		background-color: white;
+
+		&:hover {
+		    background-color: $colorLightDarkGrey;
+		}
+
+		a {
+		    color: black;
+		    text-decoration: none;
+		}
+	    } 
+	}
+
+
+	.button {
+	    @include i4p-button-flat;
+
+	    .action-add {
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite(add-black); 
+	    }
+
+	    &:hover .action-add {
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite('add-white'); 
+	    }
+	}
+    }
+}

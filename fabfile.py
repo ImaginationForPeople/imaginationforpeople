@@ -195,6 +195,14 @@ def compile_messages():
             print(cyan('\t * %s' % appsubdir))
             venvcmd(cmd, subdir=appsubdir)
 
+@task
+def compile_stylesheets():
+    """
+    Generate *.css files from *.scss
+    """
+    with cd(env.venvfullpath + '/' + env.projectname + '/static'):
+        sudo('bundle exec compass compile --force', shell=True, user=env.user)
+            
 def tests():
     """
     Run all tests on remote
@@ -282,6 +290,7 @@ def app_update():
     """
     execute(updatemaincode)
     execute(compile_messages)
+    execute(compile_stylesheets)
     execute(app_db_update)
     execute(collect_static_files)
     # tests()
@@ -392,12 +401,12 @@ def install_builddeps():
     print(cyan('Installing compilers and required libraries'))
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
-def install_devdeps():
-    """
-    Will install commonly needed developpement dependencies.
-    """
-    print(cyan('Installing required developpement tools'))
-    sudo('ruby-compass libfssm-ruby')
+@task
+def install_compass():
+    sudo('apt-get install -y rubygems')
+    sudo('gem install bundler')
+    venvcmd('/var/lib/gems/1.8/bin/bundle install --path=vendor/bundle')
+
 
 @task
 def bootstrap_full():
@@ -410,7 +419,8 @@ def bootstrap_full():
     execute(install_database_server)
     execute(install_webservers)
     execute(install_builddeps)
-
+    execute(install_compass)
+    
     execute(deploy_bootstrap)
     
     if(env.wsginame == 'dev.wsgi'):

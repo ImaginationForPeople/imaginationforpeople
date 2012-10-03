@@ -1,3 +1,4 @@
+// From https://github.com/jaz303/tipsy, MIT licence
 (function($) {
     $.fn.tipsy = function(options) {
 

@@ -1,0 +1,37 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* taglist_title : the title of tag list
+* taglist_tags : a list of tags
+
+* taglist_is_editable : boolean. True of the taglist must be editable.
+* taglist_edit_action : url to call for edit actions
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/block/taglist.css" />
+{% endaddtoblock %}
+
+<div class="tag-list clearfix">
+	<h2>{% trans taglist_title|capfirst %}</h2>
+	<ul>
+		{% for tag in taglist_tags %}
+		<!-- FIXME: how do we get tag count on non-tag pages ? -->
+		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }}{% if tag.count %} ({{ tag.count }}){% endif %}</a></li>
+		{% endfor %}
+		{% if taglist_is_editable %}
+		<li class="edit">
+			<a href="{{ taglist_edit_action }}">+</a>
+		</li>
+		{% endif %}
+	</ul>
+</div> <!-- #tags-related -->

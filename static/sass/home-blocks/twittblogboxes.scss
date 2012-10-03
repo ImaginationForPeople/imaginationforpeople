@@ -1,4 +1,5 @@
-@import "mixin.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 .twittblogbox{
     float:left;
@@ -10,12 +11,12 @@
     h1{
         padding:8px;
         background-color:$greymenu;
-        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif !important;
+        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif !important;
         font-size:16px;
         font-style:normal;
         text-transform:uppercase;
         text-shadow:1px 1px #f3f3f3;
-        border-top:3px solid $blue;
+        border-top:3px solid  $colorLightBlue;
         padding-left:40px;
         background-repeat:no-repeat;
         background-position:5px 2px;
@@ -32,7 +33,7 @@
             border-bottom:1px dotted $greymenu;
             float:left;
             font-size:10px;
-            color:$greyblack;
+            color:$colorDarkGrey;
             
             
             img{
@@ -51,7 +52,7 @@
             }
             
             a{
-                color:$blue;
+                color: $colorLightBlue;
             }
             
             a:hover{
@@ -67,7 +68,7 @@
     #twitter_box{
     
         h1{
-            color:$greyblack;
+            color:$colorDarkGrey;
             background-image:url('../../images/home/twitter-logo.jpg');
         }    
     }
@@ -115,7 +116,7 @@
                 }
                 
                 a{
-                    color:$blue !important;
+                    color: $colorLightBlue !important;
                 }
             }
         }

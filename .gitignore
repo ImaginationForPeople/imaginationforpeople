@@ -6,14 +6,14 @@
 build
 src
 lib
-media/uploads
-media/cache
+media
 *.mo
 *,cover
 #*.py
 .#*
-#*.html
 \#*\#
+#*.html
+*~
 media/.sass-cache
 i4p_index/
 *.swp
@@ -23,3 +23,8 @@ pip-log.txt
 .settings
 docs/_build/*
 media/*
+vendor/bundle
+.bundle
+Gemfile.lock
+/static/compiled_sass/
+/static/compiled_images/

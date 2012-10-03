@@ -1,0 +1,12 @@
+{% cache 600 "contributors" contributors search_tags scope sort query context.page language_code %}
+  <div id="contrib-users" class="box">
+  <h2 class="contributorback">{% trans %}Contributors{% endtrans %}</h2>
+  {#<a href="#" class="voir_tout">Voir tous (07)</a>#}
+  {% spaceless %}
+  {% for profile in contributors %}
+    {% include "widgets/avatar.html"%}
+  {% endfor %}
+  {% endspaceless %}
+  </div>
+{% endcache %}
+ 

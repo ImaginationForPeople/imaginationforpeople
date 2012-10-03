@@ -8,18 +8,6 @@
       {% endif %}
       </div>
       
-      {% ifequal project_translation.project.status "IDEA" %}
-      <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress25.jpg" /><p> {{ project_translation.project.get_status_display }}</p></div>
-      {% endifequal %}
-      {% ifequal project_translation.project.status "BEGIN" %}
-      <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress50.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
-      {% endifequal %}
-      {% ifequal project_translation.project.status "WIP" %}
-      <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress75.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
-      {% endifequal %}
-      {% ifequal project_translation.project.status "END" %}
-      <div class="project_card_progress"><img src="{{ STATIC_URL }}images/project/progress100.jpg" /><p>{{ project_translation.project.get_status_display }}</p></div>
-      {% endifequal %}
     
     <div class="project_card_content">
       <div class="project_card_pictos">

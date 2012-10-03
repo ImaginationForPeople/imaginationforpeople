@@ -1,4 +1,5 @@
-@import "mixin.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 
 .categories .menu{
@@ -480,7 +481,7 @@ form{
         right:-73px;
         margin-right:3px;
         
-        @include shadow(4px, #424242);
+        @include i4p-shadow(4px, #424242);
     }
 }
 
@@ -904,7 +905,7 @@ form{
     background-color:black;
     width:65%;
     @include border-radius(4px);
-    @include shadow(4px, black);
+    @include i4p-shadow(4px, black);
     padding:5px;    
     
     .project_card_pictos{
@@ -1569,7 +1570,7 @@ ul#themes_tags li.tagit-choice {
                     position:absolute;
                     top:-8px;
                     right:10px;
-                    @include shadow(4px, black);
+                    @include i4p-shadow(4px, black);
                     width:40px;
                     height:40px;
                     border:1px solid #f1e4d3;
@@ -1622,7 +1623,7 @@ ul#themes_tags li.tagit-choice {
             
             img{
                 position:absolute;
-                @include shadow(4px, black);
+                @include i4p-shadow(4px, black);
                 width:40px;
                 height:40px;
                 border:1px solid #f1e4d3;
@@ -1717,10 +1718,10 @@ ul#themes_tags li.tagit-choice {
     .anonymous-disclaimer, .edition-notification{
         background-color:black;
         @include border-radius(4px); 	
-        @include shadow(4px, black); 
+        @include i4p-shadow(4px, black); 
         padding:10px;
         color:white;
-        border:2px solid $blue;
+        border:2px solid  $colorLightBlue;
         margin-bottom: 10px;
 
         

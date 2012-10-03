@@ -1,0 +1,216 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+/* ONLY UNTILL BOOTSTRAP IS FULLY INTEGRATED, use pixels for font sizes */
+
+$sizeTextNormal: 12px;
+$sizeTextSmall: 11px;
+
+/*---- HEADER ----*/
+/* Workarounds before we migrate the whole site to bootstrap */
+#header-zone {
+    height: auto;
+    #header {
+        width: 940px;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    .clear {clear: both;height: 0;line-height: 0;}
+}
+.global #top-zone {
+    height: 140px;
+}
+
+#header-zone {
+    background: image-url('base/header_bar_bg.png') repeat-x top left;
+    background-color: black;
+    width: 100%;
+    margin: 0 0 0 0;
+    border-top: 3px solid $colorLightBlue;
+    border-bottom: 8px solid $colorMedDarkGrey;
+    #header {
+        position: relative;
+    }
+}
+
+#header-bar {
+    width: 100%;
+    display: block;
+    vertical-align: baseline;
+    .logo {
+        float: left;
+        height: 48px;
+        margin: 0 10px 0 0;
+        a {
+            img {
+                
+            }
+        }
+
+    }
+}
+
+#header-bar .header-right {
+    line-height: 16px;
+    text-align: right;
+    display: block;
+    float: right;
+    height: 48px;
+    * {
+        text-align: left;
+    }
+    div.header-right-pre-top {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        margin-bottom: 19px; /* header-right-top height - header-right-pre-top height */
+        @include background(
+        radial-gradient(bottom left, transparent 4px, $colorLightBlue 5px));
+        }
+        
+    div.header-right-post-top {
+        display: inline-block;
+        clear: right;
+        width: 5px;
+        height: 5px;
+        margin-bottom: 19px; /* header-right-top height - header-right-pre-top height */
+        @include background(
+        radial-gradient(bottom right, transparent 4px, $colorLightBlue 5px));
+        }
+                
+    div.header-right-top {
+        display: inline-block;
+        height: 24px;
+        line-height: 24px;
+        background-color: $colorLightBlue;
+        @include border-bottom-radius(5px);
+        @include i4p-font-header-right-top($sizeTextNormal);
+        color: white;
+        padding: 0px 5px;
+        
+        a {
+            @include i4p-font-header-right-top($sizeTextNormal);
+            color: white;
+        }
+
+        #user-bt {
+            height: 100%;
+            margin: 0 0.5em;
+            float: left;
+        }
+
+        #user-bt a {
+            font-style:oblique;
+        }
+    
+        div#interface_lang {
+            margin: 0 0.5em;
+            height: 100%;
+            float: left;
+            position: relative;
+            @include i4p-font-menu($sizeTextSmall);
+            & > a {
+                text-transform: uppercase;
+                display: block;
+                float: left;
+                font-weight: bold;
+                text-decoration: none;
+                
+            }
+
+            ul {
+                position: absolute;
+                top: 24px;
+                left: 0;
+                float: none;
+                height: auto;
+                z-index: 1000;
+                width: 200px;
+                padding: 5px 0 0 0;
+                display: none;
+
+                li {
+                    display: block;
+                    float: none;
+                    position: static;
+                    height: 18px;
+                    background: none;
+                    width: 100px;
+
+                    a {
+                        display: block;
+                        text-transform: none;
+                        background: none;
+                        line-height: 18px;
+                        padding: 0 3px;
+                        background: black;
+                        color: #8f8f8f;
+        
+                        &:hover {
+                            color: white;
+                            background: #757575;
+                            text-decoration: none;
+                            @include border-radius(4px, 4px);
+                        }
+                    }
+                }
+            }
+        }
+
+        div#interface_lang:hover ul {
+            display: block;
+        }
+        div#tools {
+            float: left;
+            height: 24px;
+            margin: 0 0.5em;
+            div {
+                display: inline-block;
+                height: 100%;
+                margin: 0 0.2em;
+            }
+            div#messages-bt {
+
+            }
+        }
+        
+    }
+    .header-right-bottom {
+        height: 24px;
+        margin-top: -0.25em;
+        margin-right: 5px;
+        /*---- Search box ----*/
+        .search {
+            float: right;
+            height: 24px;
+            margin: 0;
+            form {
+            margin: 0;
+            }
+            input[type="text"] {
+                @include i4p-font-search($sizeTextSmall);
+                background: #6a6a6a image-url('base/search_ico.png') no-repeat 10px 50%;
+                border: 0px solid #646464;
+                color: #242424;
+                height: 20px;
+                padding: 0px;
+                padding-left: 24px;
+                text-indent: 0px;
+                width: 130px;
+                font-style: italic;
+                @include border-radius(11px, 11px);
+                margin: 2px 0 2px 0px;
+            }
+            input[type="submit"] {
+                display: none;
+                background-image: none;
+                background-color: transparent;
+                border: 0px;
+                margin: 0px;
+                padding: 0px;
+                width: 32px;
+                float: right;
+            }
+        }
+    }
+}

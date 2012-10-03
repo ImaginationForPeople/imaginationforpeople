@@ -1,0 +1,109 @@
+@import "compass/css3/border-radius";
+@import "compass/css3/box-shadow";
+@import "compass/css3/box-sizing";
+@import "compass/css3/images";
+
+// reset utilities
+@import "compass/utilities/general/reset";
+
+// use bootstrap everywhere, yay !
+@import "compass_twitter_bootstrap/variables";
+@import "compass_twitter_bootstrap/mixins";
+
+
+@import "i4p/fonts";
+@import "i4p/sprites";
+@import "i4p/buttons";
+
+// FIXME: split i4p-mixins by theme :-)
+
+/**
+ *  Mixins
+ */
+
+
+@mixin georgia($font-size) {
+    font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
+    font-size:$font-size;
+    font-weight:bold;
+    font-style:italic;
+}
+
+
+@mixin i4p-shadow($size, $color) {
+    @include single-box-shadow($color, 0px, 0px, $size);
+    behavior: url(static/js/pie/PIE.htc);
+}
+
+
+@mixin i4p-background-vertical-gradient($colorTop, $colorBottom) {
+    background-image: linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -moz-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -ms-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -o-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -webkit-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+
+    background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, $colorTop),
+	color-stop(1, $colorBottom)
+    );
+}
+
+@mixin i4p-box-shadow-bottomleft {
+    box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
+}
+
+// FIXME: replace with compass/css3 transition
+@mixin i4p-transition( $effect : all .5s ease) {
+    -moz-transition: $effect;
+    -o-transition: $effect;
+    transition: $effect;
+    -webkit-transition: $effect;
+}
+
+// Adds the see more class to a block
+// WARNING: the block will become relatively-positionned
+@mixin i4p-seemore-class {
+    position: relative;
+
+    .seemore {
+	color: black;
+	display: block;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextTiny;
+	margin-right: 1em;
+	margin-top: 1.1em;
+	position: absolute;
+	right: 0;
+	right: 5px;
+	text-decoration: none;
+	top: 0;
+
+	&:after {
+	    content: ">";
+	    font-weight: bold;
+	    margin-left: 1em;
+	}
+    }
+}
+
+@mixin i4p-layout-block {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+@mixin i4p-shaded-separator {
+    display: block;
+    border: 0;
+    width: 100%;
+    height: 10px;
+    background-image: image-url("base/horizontal-separator.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.4;
+}
+

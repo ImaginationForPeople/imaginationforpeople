@@ -1,5 +1,5 @@
-@import "mixin.scss";
-@import "constants.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 .content{
 	background-color:#282828;
@@ -69,5 +69,5 @@
 
 
 .button{
-    @include shadow(4px,black); 	
+    @include i4p-shadow(4px,black); 	
 }

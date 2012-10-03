@@ -1,6 +1,5 @@
-@import "mixin.scss";
-@import "fonts.scss";
-@import "constants.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 body .zinnia {
     #header {
@@ -20,7 +19,7 @@ body .zinnia {
         color: $colorLinkOnWhite;
     }
     a:visited {
-        color: $colorMedGrey
+        color: $colorLinkOnWhite
     }
     .entry-body {
         img {
@@ -32,5 +31,51 @@ body .zinnia {
     }
 
 }
+/* Feature hiding */
 
+body.zinniai4p {
+ /* All zinnia pages */
+    #widget-randoms {
+        display: none;
+    }
+    #widget-linkbacks {
+        display: none;
+    }
+    #pingbacks {
+        display: none;
+    }
+    #trackbacks{
+        display: none;
+    }
+    .entry-next, .entry-previous {
+        display: none;
+    }
+}
+/* Entry list page */
+body.entry-list { 
 
+    #widget-authors {
+        display: none;
+    }
+    #widget-populars {
+        display: none;
+    }
+    #widget-recents {
+        display: none;
+    }
+    .entry-shorturl {
+        display: none;
+    }
+    .entry-comments {
+        display: none;
+    }
+}
+/* Single entry page */
+body.entry { 
+    #widget-calendar {
+        display: none;
+    }
+    #widget-archives {
+        display: none;
+    }
+}

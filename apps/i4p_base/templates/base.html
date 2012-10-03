@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
@@ -20,14 +20,17 @@
     <title>{% block title_prefix %}{% endblock %}{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
+	{% block base_grid %}
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
+	{% endblock %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
     {% endcompress %}
 
     {% block style %}
@@ -35,11 +38,11 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
-    {% render_block "css" %}	
+    {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}	
 
 
     {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
@@ -56,7 +59,7 @@
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
-    {% render_block "js" %}
+    {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -114,6 +117,10 @@
             //$(this).stop().rotate({animateTo:0});
         });	
         
+        $('#top-zone').hide();
+        $('#user-bt a.open-panel').click(function(){
+          $('#top-zone').slideToggle();
+        });
         
     });
         
@@ -147,9 +154,7 @@
     <div id="beta-logo"></div>
     
     <div class="global">   
-    
-      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}	
-
+       
       {% block newproject_popup %} 
         <div id="new_project_style_popup_zone" class="hidden">
         </div>
@@ -180,7 +185,7 @@
 
     {% block inline_js %}
     {% endblock %}
-    
+
   </body>
 
 </html>

@@ -1,0 +1,325 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for progressbar
+$progressbar-sprite-dimensions: true;
+@import "project/progressbar/*.png"; // */
+@include all-progressbar-sprites(true);
+
+// @import "project/topic/*.png"; // */
+
+$picto-sprite-dimensions: true;
+@import "project/picto/*.png"; // */
+@include all-picto-sprites(true);
+
+$topic-sprite-dimensions: true;
+@import "project/topic/*.png"; // */
+@include all-topic-sprites(true);
+
+.project-list.square.fancy {
+    @include i4p-seemore-class;
+
+    position: relative;
+    margin-bottom: 20px;
+    padding: 0;
+    padding-top: 5px;
+
+    h2 {
+	margin-top: 5px;
+	text-transform: uppercase;
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+    }
+}
+
+.project.square.fancy {
+    @include i4p-box-shadow-bottomleft;
+    @include border-radius($sizeRadiusSmall);
+    height: 150px;
+    position: relative;
+
+    .summary {
+	@include border-radius($sizeRadiusSmall);
+	@include i4p-transition(all .5s ease);
+	position: relative;
+	height: 150px;
+
+	background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-50.png");
+	background-repeat: no-repeat, repeat;
+	background-position: 200px 110px, top left;
+	background-size: 25px 25px, auto;
+
+	z-index: 2;
+
+	.title {
+	    @include i4p-transition(all .5s ease);
+	    position: absolute;
+
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextBig;
+	    font-stretch: condensed;
+	    font-weight: bold;
+	    line-height: $sizeTextBig * 1.2;
+
+	    bottom: 55px;
+	    margin-left: 10px;
+	    margin-right: 10px;
+	    color: black;
+	    text-transform: uppercase;
+	    z-index: 2;
+	    opacity: 1;
+	    padding-left: 5px;
+	    padding-right: 5px;
+
+	    span {
+		background-color: white;
+	    }
+	}
+
+	.description {
+	    opacity: 0;
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextSmall;
+	    font-style: italic;
+	    visibility: hidden;
+	    height: 50px;
+	    overflow: hidden;
+	}
+
+	&:before { // the SEE THE PROJECT label
+	    display: block;
+	    position: absolute;
+	    content: attr(data-action-1);
+	    text-transform: uppercase;
+
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextNormal;
+	    font-weight: bold;
+
+	    text-decoration: none;
+	    visibility: hidden;
+	    top: 105px;
+	    left: 10px;
+	    font-size: 80%;
+	    width: 65%;
+	    opacity: 0;
+	    color: white;
+	}
+    }
+
+    .progress {
+	@include i4p-transition(all .5s ease);
+	font-family: $fontOpenSans;
+	font-size: $sizeTextTiny;
+	position: absolute;
+	top: 90px;
+	left: 0;
+	width: 100%;
+	height: 25px;
+	color: white;
+	text-shadow: 0 0 $sizeRadiusSmall black;
+	padding-top: 10px;
+	background-image: image-url("project/front-uprounded-rectangle.png");
+	opacity: 1;
+	z-index: 3;
+
+	.status {
+	    display: block;
+	    position: absolute;
+	    width: 100px;
+	    top: 15px;
+	    left: 5px;
+	    font-style: italic;
+	    background-size: 100px 60px; // resize progressbar icon
+	    text-align: right;
+	    padding-right: 10px;
+	}
+    }
+
+    .location {
+	@include border-radius(0 0 $sizeRadiusSmall $sizeRadiusSmall);
+	@include box-sizing(border-box);
+	@include i4p-transition(all .5s ease);
+	position: absolute;
+	top: 125px;
+	color: white;
+	font-family: $fontOpenSans;
+	font-size: $sizeTextTiny;
+	width: 100%;
+	height: 25px;
+	background: black;
+	padding-left: 10px;
+	z-index: 3;
+	opacity: 1;
+
+	.flag {
+	    float: left;
+	    margin-right: 5px;
+	}
+    }
+
+
+    .pictos {
+	position: absolute;
+	@include i4p-transition(all .5s ease);
+	top: 0;
+	left: 0;
+	z-index: 5;
+	width: 100%;
+	height: 100%;
+	opacity: 1;
+
+	.picto-team {
+	    position: absolute;
+	    top: 105px;
+	    right: 25px;
+	}
+
+	.picto-editing {
+	    position: absolute;
+	    top: 105px;
+	    right: 10px;
+	}
+
+	.picto-bestof {
+	    display: block;
+	    position: absolute;
+	    top: -2px;
+	    left: 5px;
+	}
+    }
+
+    .topic {
+	@include i4p-transition(all .5s ease);
+	background-image: image-url("project/card-top-handler.png");
+	background-repeat: no-repeat;
+	background-position: top center;
+	background-opacity: 1;
+	opacity: 1;
+	z-index: 4;
+	position: absolute;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+
+	.illustration {
+	    @include i4p-transition(all .5s ease);
+	    position: absolute;
+	    top: 2px;
+	    left: 65px;
+	}
+
+	.description {
+	    @include i4p-transition(all .5s ease);
+	    position: absolute;
+	    // FIXME: add left-size icon
+	    top: -20px;
+	    padding: 10px;
+	    text-align: center;
+	    font-family: $fontOpenSans;
+	    font-size: $sizeTextTiny;
+	    font-weight: bold;
+	    color: white;
+	    opacity: 0;
+	    visibility: hidden;
+	}
+    }
+
+    .photo {
+	@include border-radius($sizeRadiusSmall);
+	overflow: hidden;
+	position: absolute;
+	z-index: 1;
+
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+
+
+	img {
+	    @include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
+	    width: auto;
+	    height: 100%;
+	    margin-left: -50%;
+	}
+
+    }
+
+    &:hover {
+
+	.summary {
+	    height: 150px;
+
+	    background-color: rgba($colorLightBlue,0.7);
+	    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-12.png");
+	    background-repeat: no-repeat , repeat;
+	    background-position: 100px 110px, 0 0;
+
+	    .title {
+		visibility: hidden;
+		opacity: 0;
+	    }
+
+	    .description {
+		position: absolute;
+		top: 30px;
+		padding: 10px;
+		visibility: visible;
+		text-decoration: none;
+		color: white;
+		z-index: 7;
+		opacity: 1;
+	    }
+
+	    &:before { // the SEE THE PROJECT label
+		visibility: visible;
+		opacity: 1;
+	    }
+
+	}
+
+	.location {
+	    opacity: 0;
+	}
+
+	.progress {
+	    opacity: 0;
+	}
+
+	.photo {
+	    &:after {
+		opacity: 0;
+	    }
+	}
+
+	.topic {
+	    background-position: center -100px;
+
+	    .illustration {
+		top: -100px;
+		opacity: 0;
+		visibility: hidden;
+	    }
+
+	    .description {
+		top: 0px;
+		opacity: 1;
+		visibility: visible;
+	    }
+	}
+
+	.pictos {
+	    opacity: 0;
+	}
+
+    } // hover
+
+} // project
+
