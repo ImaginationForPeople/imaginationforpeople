@@ -104,9 +104,7 @@ poor design of the data or methods on data objects #}
         <!--{{ post_contributor_avatar_and_credentials(
             post, post.author, karma_mode = karma_mode, badges_mode = badges_mode
         ) }} get rid of the badges and karma-->
-        {{ post_contributor_avatar_and_credentials(
-            post, post.author
-        ) }}
+        {{ post_contributor_avatar_and_credentials(post, post.author) }}
         <p>
             {# todo: access to class names needs to be removed here #}
             {% if post.post_type == 'question' %}

@@ -1,8 +1,10 @@
-{{ 
-    macros.post_last_updater_and_creator_info(
-        answer,
-        settings.MIN_REP_TO_EDIT_WIKI,
-        karma_mode = settings.KARMA_MODE,
-        badges_mode = settings.BADGES_MODE
-    )
-}}
+<div class='post-author-info'>
+{% if answer.is_anonymous %}
+    <img alt="{% trans %}anonymous user{% endtrans %}" src="{{ '/images/anon.png'|static_url }} " class="gravatar" width="32" height="32" />
+    <p>{% trans %}anonymous user{% endtrans %}</p>
+{% else %}
+    {{ macros.gravatar(answer.author, 32) }}
+    <a href="{{ answer.author.get_profile().get_absolute_url()}}">{{ answer.author.username}}</a>
+ {% endif %}
+<p>{% trans %}answered{% endtrans %} {{ macros.timeago(answer.added_at) }}</p>
+</div>
