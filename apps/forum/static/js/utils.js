@@ -43,8 +43,8 @@ var getUniqueWords = function(value){
 };
 
 var showMessage = function(element, msg, where) {
-    var div = $('<div class="vote-notification"><h3>' + msg + '</h3>(' +
-    gettext('click to close') + ')</div>');
+    var div = $('<div class="vote-notification"><h3>' + msg + '</h3><p><i class="icon-remove icon-white"></i> <span>(' +
+    gettext('click to close') + ')</span></p></div>');
 
     div.click(function(event) {
         $(".vote-notification").fadeOut("fast", function() { $(this).remove(); });
