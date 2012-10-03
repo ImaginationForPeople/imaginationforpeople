@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{{"/js/wmd/wmd.css"|static_url}}" />
 {% endblock %}
 {% block content %}
-<div class="section-title">{% trans %}Edit question{% endtrans %} [<a href="{{ question.get_absolute_url() }}">{% trans %}back{% endtrans %}</a>]</div>
+<div class="section-title">{% trans %}Edit question{% endtrans %} <a href="{{ question.get_absolute_url() }}">({% trans %}back{% endtrans %})</a></div>
 <form id="fmedit" action="{% url edit_question question.id %}" method="post" >{% csrf_token %}
 
     {% if revision_form.revision.errors %}{{ revision_form.revision.errors.as_ul() }}{% endif %}
