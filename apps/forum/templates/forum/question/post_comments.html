@@ -29,16 +29,16 @@
                     <div class="comment_infos">
                         <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
                         <span class="age">&nbsp;({{ macros.timeago(comment.added_at) }})</span>
+                        <div class="admin_actions">                 
+                             <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans %}delete this comment{% endtrans %}">
+                                <i class="icon-trash"> </i> {% trans %}delete{% endtrans %}
+                             </a>               
+                             <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans %}edit this comment{% endtrans %}"> 
+                                <i class="icon-pencil"> </i> {% trans %}edit{% endtrans %}
+                            </a>
+                        </div><!-- end div.admin_actions -->  
                     </div>
-                    {{comment.html}}
-                    <div class="admin_actions">                 
-                         <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans %}delete this comment{% endtrans %}">
-                            <i class="icon-trash"> </i> {% trans %}delete{% endtrans %}
-                         </a>               
-                         <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans %}edit this comment{% endtrans %}"> 
-                            <i class="icon-pencil"> </i> {% trans %}edit{% endtrans %}
-                        </a>
-                    </div><!-- end div.admin_actions -->                       
+                    {{comment.html}}                    
                 </div>
             </div>
             <script type="text/javascript">
