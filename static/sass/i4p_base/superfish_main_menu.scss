@@ -122,7 +122,7 @@ ul.sf-main-menu li {
   height: 10px;
   text-indent: -999em;
   overflow: hidden;
-  background: url("../../images/arrows-ffffff.png") no-repeat -10px -100px;
+  background: url("../../images/arrows-i4p.png") no-repeat -10px -100px;
   /* 8-bit indexed alpha png. IE6 gets solid image only */
 }
 
@@ -208,7 +208,7 @@ li {
     a {
       height: 100%;
       padding: 0px 1em;
-      @include i4p-font-menu($sizeTextSmall);
+      @include i4p-font-menu(11px);
       padding: 0px 1em;
       margin:4px;
     }
@@ -228,7 +228,7 @@ li {
       margin:0px;
       height: 100%;
       line-height: 48px;
-      @include i4p-font-menu($sizeTextNormal);
+      @include i4p-font-menu(12px);
       text-transform:uppercase;
       border: none;
       margin-left: 0px;
@@ -239,9 +239,16 @@ li {
         top: 19px;
       }
     }
-    &:first-child a {
-      background:none;
-      padding-left: 0px;
+    /* The home page link */
+    &:first-child { 
+      a {
+        background:none;
+        padding-left: 5px;
+      }
+      a:hover {
+        background: $colorMedDarkGrey;
+        @include border-radius(4px, 4px);
+      } 
     }
   }
 }

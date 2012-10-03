@@ -404,6 +404,7 @@ LOGOUT_URL = "/member/signout/"
 # XXX To be removed as soon as google login is confirmed working
 LOCALE_INDEPENDENT_PATHS = (
         re.compile('^/member/complete/google-oauth2/?'),
+        re.compile('^/member/login/google-oauth2/?'),
 	)
 
 ## Flags
