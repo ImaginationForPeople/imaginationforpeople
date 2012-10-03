@@ -7,6 +7,11 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
 
+.references-block .references-links > a.button, .references-block .references-documents  > a.button{
+              //---------------------DISABLED UNTIL FUNCTIONAL------------------------
+        display: none;
+        }
+        
 .references-block {
     @include i4p-layout-block;
 
@@ -23,7 +28,6 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 	ul {
 	    margin-bottom: 1em;
-	    min-height: 10em;
 
 	    .link-item {
 		@include i4p-transition;
@@ -65,7 +69,6 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 	ul {
 	    margin-bottom: 1em;
-	    min-height: 10em;
 
 	    .document-item {
 		@include i4p-transition;
