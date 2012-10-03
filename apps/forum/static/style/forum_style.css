@@ -206,6 +206,7 @@ body.user-messages {
   padding: 0;
 }
 
+
 /* =============================================================================
                          FIN  GENERAL HTML STYLES
 ============================================================================== */
@@ -495,10 +496,10 @@ body.main-page h1#questionCount{
 body.main-page a.rss{
 	float:right;
 	display:block;
-	width:21px;
-	height:21px;       
+	width:15px;
+	height:15px;       
 	margin-left: 15px;
-    margin-top: 15px;
+    margin-top: 17px;
 	text-indent:-5000px;
     background: url(../images/rss.png) no-repeat;}
 
@@ -587,40 +588,43 @@ li.short-summary div.infos_question p.temps_restant{
   margin-bottom:10px;
 	}	
 
-li.short-summary div.infos_question div.infos_pictos{zoom:1;}
+
+li.short-summary div.infos_question div.infos_pictos{
+	zoom:1;}
 li.short-summary div.infos_question div.infos_pictos:after{
   clear: both;
   content: "";
   display: block;}
+
   
-li.short-summary div.infos_question a{
+li.short-summary div.infos_question div.infos_pictos p{
 	float:left;
-	display:block;
 	padding:0;
 	margin:0;
 	margin-left:10px;}
-li.short-summary div.infos_question a:first-child{
+	
+li.short-summary div.infos_question div.infos_pictos p:first-child{
 	margin-left:0;}
 
-li.short-summary div.infos_question a.nbr_reponses{
+li.short-summary div.infos_question div.infos_pictos p.nbr_answers{
 	height:18px;
 	padding-left:25px;
 	color:#706f6f;
-    background: url(../images/picto_nbr_reponse.png) no-repeat;
+    background: url(../images/question/icon_answer.png) no-repeat;
 	}	
 	
-li.short-summary div.infos_question a.nbr_vues{
+li.short-summary div.infos_question div.infos_pictos p.nbr_views{
 	height:18px;
 	padding-left:29px;
 	color:#706f6f;
-    background: url(../images/picto_nbr_vues.png) no-repeat;
+    background: url(../images/question/icon_eye.png) no-repeat;
 	}	
 	
-li.short-summary div.infos_question a.nbr_votes{
+li.short-summary  div.infos_question div.infos_pictos p.nbr_votes{
 	height:18px;
 	padding-left:20px;
 	color:#706f6f;
-    background: url(../images/picto_nbr_votes.png) no-repeat;
+    background: url(../images/question/icon_votes.png) no-repeat;
 	}	
 	
 
@@ -1001,7 +1005,7 @@ ul.tag_list li div.part_pointe{
   font-size: 100%;
   font-family: Arial;
   font-weight: bold;
-  color: #777;
+  color: white;
   text-align: center;
 }
 
@@ -1366,7 +1370,7 @@ div.author_and_follow_question a.followed{
 	background: -ms-linear-gradient(top,  rgba(254,254,254,1) 0%,rgba(231,231,231,1) 100%);
 	background: linear-gradient(to bottom,  rgba(254,254,254,1) 0%,rgba(231,231,231,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e7e7e7',GradientType=0 );
-	color:#242424;}
+	color:#3A92B6;}
 	
 div.author_and_follow_question a.followed .unfollow{
     font-size: 9px;
@@ -1382,7 +1386,7 @@ div.author_and_follow_question div.notify-sidebar p.rss{
 	padding-left:25px;
 	padding-top:5px;
 	margin-top:10px;
-    background:  url(../images/widget_author/rss.png) no-repeat;}
+    background:  url(../images/widget_author/rss.png) 4px 4px no-repeat;}
 div.author_and_follow_question div.notify-sidebar p a{
     font-family: 'OpenSans', Arial, sans-serif;
 	font-size:12px;
@@ -1503,12 +1507,12 @@ ul#related-tags li div.tag-left a{
                             "SEE ALL TAGS" PAGE
 ====================================================================================*/
 body.tags-page h1.section-title{
-	color: #706F6F;
+	color: #242424;
     font-family: 'OpenSans',Arial,sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     font-style: normal;
-    font-weight: bold;
-    padding-top: 10px;
+    font-weight: bold;    
+	margin-top: 14px;
     text-transform: uppercase;}
 
 ul.tags{
@@ -1885,6 +1889,20 @@ div.title-desc{
                                  "ASK FORM" POSER UNE QUESTION
 								 "EDIT FORM" MODIFIER UNE QUESTION
 ====================================================================================================================*/
+body.edit-question-page div.section-title{
+	color: #242424;
+    font-family: 'OpenSans',Arial,sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: bold;   
+	margin-bottom:5px;
+    text-transform: uppercase;}
+body.edit-question-page div.section-title a{
+	color:#706F6F;}
+body.edit-question-page div.section-title a:hover{
+	text-decoration:none;
+	color:#1B79BD;}
+	
 form#fmask,
 form#fmedit{
 	padding:20px;
@@ -2255,11 +2273,11 @@ body.question-page div.comment{
 	padding-left:35px;
 	border-top:1px solid #ffffff;
 	border-bottom:1px solid #dedede;
-    background: url(../images/question/chevron_up.png) 11px 18px no-repeat;}
-body.question-page div.comment:first-child{
+}
+/*body.question-page div.comment:first-child{
 	padding-top:0;
 	border-top:none;
-    background: url(../images/question/chevron_up.png) 11px 3px no-repeat;}
+    background: url(../images/question/chevron_up.png) 11px 3px no-repeat;}*/
 
 body.question-page div.comment div.comment_infos{
 	padding-bottom:10px;}
@@ -2315,7 +2333,7 @@ body.question-page div.comments div.controls:after{
   content: "";
   display: block;}
 	
-body.question-page div.comments div.controls .button{
+/*body.question-page div.comments div.controls .button{
 	float:right;
     font-family: 'OpenSans', Arial, sans-serif;
 	margin:0; padding:0;
@@ -2333,8 +2351,10 @@ body.question-page div.comments div.controls .button{
 	text-shadow:none;
 	border:none;
 	-webkit-border-radius: 5px;    
-    border-radius: 5px;}
-body.question-page div.comments div.controls .button:hover{
+    border-radius: 5px;
+}*/
+
+/*body.question-page div.comments div.controls .button:hover{
 	background: rgb(39,115,120);
 	background: rgb(17,79,91);
 	background: -moz-linear-gradient(top,  rgba(17,79,91,1) 0%, rgba(39,115,120,1) 100%);
@@ -2343,7 +2363,7 @@ body.question-page div.comments div.controls .button:hover{
 	background: -o-linear-gradient(top,  rgba(17,79,91,1) 0%,rgba(39,115,120,1) 100%);
 	background: -ms-linear-gradient(top,  rgba(17,79,91,1) 0%,rgba(39,115,120,1) 100%);
 	background: linear-gradient(to bottom,  rgba(17,79,91,1) 0%,rgba(39,115,120,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#114f5b', endColorstr='#277378',GradientType=0 );}
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#114f5b', endColorstr='#277378',GradientType=0 );}*/
 
 body.question-page div.comments form.post-comments{
 	zoom:1;
@@ -2606,7 +2626,7 @@ form#fmanswer div.checkbox label{
 /*++++++++ END FIRST ANSWER ++++++++*/
 
 
-body.question-page div#ContentLeft > a.submit{ 
+body.question-page div#ContentLeft > a.submit , body.question-page div.comments div.controls .button{ 
     text-transform:uppercase;
     font-family: 'OpenSans', Arial, sans-serif;
 	padding:5px;
@@ -2630,6 +2650,17 @@ body.question-page div#ContentLeft > a.submit{
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
 	color:#ffffff;
 	}
+body.question-page div#ContentLeft > a.submit:hover{
+	text-decoration:none;
+	background: rgb(57,144,180);
+	background: -moz-linear-gradient(top,  rgba(57,144,180,1) 0%, rgba(73,182,228,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(57,144,180,1)), color-stop(100%,rgba(73,182,228,1)));
+	background: -webkit-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	background: -o-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	background: -ms-linear-gradient(top,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	background: linear-gradient(to bottom,  rgba(57,144,180,1) 0%,rgba(73,182,228,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3990b4', endColorstr='#49b6e4',GradientType=0 );
+}
 
 body.question-page div#ContentLeft > span {
 	display:block;
@@ -3225,7 +3256,7 @@ ins {
   background-color: #E6F0A2;
 }
 /* ----- Red Popup notification ----- */
-.vote-notification {
+/*.vote-notification {
   z-index: 1;
   cursor: pointer;
   display: none;
@@ -3247,7 +3278,6 @@ ins {
   -khtml-border-radius: 4px;
 }
 .vote-notification h3 {
-  background: url(../images/notification.png) repeat-x top;
   padding: 10px 10px 10px 10px;
   font-size: 13px;
   margin-bottom: 5px;
@@ -3261,6 +3291,59 @@ ins {
   -webkit-border-top-left-radius: 4px;
   -webkit-border-top-right-radius: 4px;
 }
+.vote-notification a {
+  color: #fb7321;
+  text-decoration: underline;
+  font-weight: bold;
+}*/
+
+.vote-notification {
+  display: none;
+  position: absolute;
+  left:-32px;
+  width:120px;
+  z-index: 1;
+  cursor: pointer;
+  padding-top:15px;
+  background: url(../images/question/arrow_notification_tooltip.png) center 8px no-repeat;
+}
+.vote-notification h3 {
+  padding:5px;
+  font-family: 'OpenSans', Arial, sans-serif;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: normal;
+  border-radius: 4px;
+  -ms-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  background-color: #242424;    
+  text-align: center;
+}
+
+.vote-notification p{
+  position:absolute;
+  top: 15px;
+  right: -18px;
+  padding:1px;
+  text-align: center;
+  height:14px;
+  width:14px;
+  border-radius: 4px;
+  -ms-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -khtml-border-radius: 4px;
+  background-color:#242424;}
+ 
+ .vote-notification p span{
+  font-family: 'OpenSans', Arial, sans-serif;
+  font-size: 11px;
+  text-align: center;
+  color:#fffff;
+  display:none;}
+
 .vote-notification a {
   color: #fb7321;
   text-decoration: underline;

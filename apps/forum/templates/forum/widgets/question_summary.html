@@ -27,9 +27,9 @@
     	<p><span class="date_question">{{ timeago(question.added_at) }}</span>&nbsp;{%trans%}by{%endtrans%}&nbsp;<span class="auteur_question">{{thread.last_activity_by.username|escape}}</span></p>
     	<p class="temps_restant">{{thread.last_activity_at|diff_date}}</p>
     	<div class="infos_pictos">
-        	<a href="#" class="nbr_reponses">{{thread.answer_count}}</a>
-        	<a href="#" class="nbr_vues">{{thread.view_count}}</a>
-        	<a href="#" class="nbr_votes">{{question.score}}</a>
+        	<p class="tipsed nbr_answers" title="{% trans %}Answers{% endtrans %}">{{thread.answer_count}}</p>
+        	<p class="tipsed nbr_views" title="{% trans %}Viewed{% endtrans %}">{{thread.view_count}}</p>
+        	<p class="tipsed nbr_votes" title="{% trans %}Votes{% endtrans %}">{{question.score}}</p>
         </div>
     	
     </div><!--fin div.infos_question -->

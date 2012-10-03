@@ -1,6 +1,6 @@
 {% if edit_title %}
     <div class="form-item">
-        <label for="id_title" ><strong>{{ post_form.title.label_tag() }}:</strong></label> <span class="form-error"></span><br/>
+        {{ post_form.title.label_tag() }}  <span class="form-error"></span>
         {{ post_form.title }} {{ post_form.title.errors }}
         <div class="title-desc">
             {{ post_form.title.help_text }}
@@ -46,7 +46,7 @@
 {% endif %}
 {% if 'summary' in post_form['fields'] %}
     <div class="form-item">
-        <strong>{{ post_form.summary.label_tag() }}</strong> <br/>
+        <strong>{{ post_form.summary.label_tag() }}</strong> 
         {{ post_form.summary }}
         <div class="title-desc">
             {{ post_form.summary.help_text }}
@@ -61,8 +61,10 @@
     </p>
 	<div id="previewer" class="wmd-preview"></div>
 </div>
+ 
 {% if user and user.is_authenticated() and user.is_administrator() %}
     {# admin can post answers or questions on behalf of anyone. #}
+    {#
     <table class="proxy-user-info">
         <tbody>
             <tr><td colspan="2">
@@ -98,4 +100,5 @@
             </tr>
         </tbody>
     </table>
+    #}
 {% endif %}

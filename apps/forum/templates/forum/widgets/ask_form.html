@@ -29,6 +29,7 @@
             user = request.user
         )
     }}
+    {#
     <div class="question-options">
         {% if settings.WIKI_ON %}
             {{ macros.checkbox_in_div(form.wiki) }}
@@ -37,6 +38,7 @@
             {{ macros.checkbox_in_div(form.ask_anonymously) }}
         {% endif %}
     </div>
+    #}
     {% if not request.user.is_authenticated() %}
     <button type="submit" name="post_anon" value="{% trans %}Login/Signup to Post{% endtrans %}" class="submit">Login/Signup to Post</button>
     {% else %}

@@ -15,6 +15,7 @@
             {# Warning! Any changes to the comment markup IN THIS `FOR` LOOP must be duplicated in post.js
                for the purposes of the AJAX comment editor #}
             <div class="comment" id="comment-{{comment.id}}">
+                {# Temporary disable upvote on comments
                 <div class="comment-votes">
                     {% if comment.score > 0 %}
                         <div id="comment-img-upvote-{{comment.id}}" class="upvote">{{comment.score}}</div>
@@ -25,6 +26,7 @@
                         <div class="upvote"></div>
                     {% endif %}
                 </div>
+                #}
                 <div class="comment-body">
                     <div class="comment_infos">
                         <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
