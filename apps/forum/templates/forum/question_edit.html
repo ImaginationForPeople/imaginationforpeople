@@ -25,6 +25,7 @@
                 )
     }}
     <div class="after-editor">
+        {#
         <div class="question-options">
             {% if settings.WIKI_ON and question.wiki == False %}
                 {{ macros.checkbox_in_div(form.wiki) }}
@@ -33,6 +34,7 @@
                 {{ macros.checkbox_in_div(form.reveal_identity) }}
             {% endif %}
         </div>
+        #}
         <input type="submit" value="{% trans %}Save edit{% endtrans %}" class="submit" />&nbsp;
         <input type="button" value="{% trans %}Cancel{% endtrans %}" class="submit" onclick="history.back(-1);" />
 

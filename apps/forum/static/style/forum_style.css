@@ -1005,7 +1005,7 @@ ul.tag_list li div.part_pointe{
   font-size: 100%;
   font-family: Arial;
   font-weight: bold;
-  color: #777;
+  color: white;
   text-align: center;
 }
 
@@ -2273,11 +2273,11 @@ body.question-page div.comment{
 	padding-left:35px;
 	border-top:1px solid #ffffff;
 	border-bottom:1px solid #dedede;
-    background: url(../images/question/chevron_up.png) 11px 18px no-repeat;}
-body.question-page div.comment:first-child{
+}
+/*body.question-page div.comment:first-child{
 	padding-top:0;
 	border-top:none;
-    background: url(../images/question/chevron_up.png) 11px 3px no-repeat;}
+    background: url(../images/question/chevron_up.png) 11px 3px no-repeat;}*/
 
 body.question-page div.comment div.comment_infos{
 	padding-bottom:10px;}
@@ -2333,7 +2333,7 @@ body.question-page div.comments div.controls:after{
   content: "";
   display: block;}
 	
-body.question-page div.comments div.controls .button{
+/*body.question-page div.comments div.controls .button{
 	float:right;
     font-family: 'OpenSans', Arial, sans-serif;
 	margin:0; padding:0;
@@ -2351,8 +2351,10 @@ body.question-page div.comments div.controls .button{
 	text-shadow:none;
 	border:none;
 	-webkit-border-radius: 5px;    
-    border-radius: 5px;}
-body.question-page div.comments div.controls .button:hover{
+    border-radius: 5px;
+}*/
+
+/*body.question-page div.comments div.controls .button:hover{
 	background: rgb(39,115,120);
 	background: rgb(17,79,91);
 	background: -moz-linear-gradient(top,  rgba(17,79,91,1) 0%, rgba(39,115,120,1) 100%);
@@ -2361,7 +2363,7 @@ body.question-page div.comments div.controls .button:hover{
 	background: -o-linear-gradient(top,  rgba(17,79,91,1) 0%,rgba(39,115,120,1) 100%);
 	background: -ms-linear-gradient(top,  rgba(17,79,91,1) 0%,rgba(39,115,120,1) 100%);
 	background: linear-gradient(to bottom,  rgba(17,79,91,1) 0%,rgba(39,115,120,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#114f5b', endColorstr='#277378',GradientType=0 );}
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#114f5b', endColorstr='#277378',GradientType=0 );}*/
 
 body.question-page div.comments form.post-comments{
 	zoom:1;
@@ -2624,7 +2626,7 @@ form#fmanswer div.checkbox label{
 /*++++++++ END FIRST ANSWER ++++++++*/
 
 
-body.question-page div#ContentLeft > a.submit{ 
+body.question-page div#ContentLeft > a.submit , body.question-page div.comments div.controls .button{ 
     text-transform:uppercase;
     font-family: 'OpenSans', Arial, sans-serif;
 	padding:5px;
