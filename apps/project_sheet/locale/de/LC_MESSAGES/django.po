@@ -1,22 +1,25 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-21 15:14+0200\n"
-"PO-Revision-Date: 2012-05-19 18:32+0000\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2012-09-05 16:37+0200\n"
+"PO-Revision-Date: 2012-09-05 14:39+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
-"Language-Team: German (http://www.transifex.net/projects/p/"
-"imaginationforpeople/language/de/)\n"
-"Language: de\n"
+"Language-Team: German (http://www.transifex.com/projects/p/imaginationforpeople/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Language: de\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: cms_plugins.py:33
+msgid "Projects for a tag"
+msgstr ""
 
 #: filters.py:79
 msgid "Themes contain"
@@ -34,183 +37,155 @@ msgstr ""
 msgid "World"
 msgstr ""
 
-#: models.py:59 models.py:320
+#: models.py:61 models.py:315
 msgid "description"
 msgstr ""
 
-#: models.py:59
+#: models.py:61
 msgid "Insert your reference here (URL, books, etc)"
 msgstr ""
 
-#: models.py:73
+#: models.py:75
 msgid "Untranslated name"
 msgstr ""
 
-#: models.py:104
+#: models.py:106
 msgid "Concept"
 msgstr ""
 
-#: models.py:105
+#: models.py:107
 msgid "Starting"
 msgstr ""
 
-#: models.py:106
+#: models.py:108
 msgid "In development"
 msgstr ""
 
-#: models.py:107
+#: models.py:109
 msgid "Mature"
 msgstr ""
 
-#: models.py:109 models.py:321
+#: models.py:111 models.py:316
 msgid "author"
 msgstr ""
 
-#: models.py:113
+#: models.py:115
 msgid "members"
 msgstr ""
 
-#: models.py:118
+#: models.py:120
 msgid "best of"
 msgstr ""
 
-#: models.py:120 models.py:319
+#: models.py:122 models.py:314
 msgid "creation date"
 msgstr ""
 
-#: models.py:123
+#: models.py:125
 msgid "objectives"
 msgstr ""
 
-#: models.py:125
+#: models.py:127
 msgid "website"
 msgstr ""
 
-#: models.py:131 models.py:234
+#: models.py:133 models.py:236
 msgid "status"
 msgstr ""
 
-#: models.py:135
+#: models.py:137
 msgid "project leader information"
 msgstr ""
 
-#: models.py:139
+#: models.py:141
 msgid "location"
 msgstr ""
 
-#: models.py:145
+#: models.py:147
 msgid "topics"
 msgstr ""
 
-#: models.py:149
+#: models.py:151
 msgid "The sites that the project sheet is accessible at."
 msgstr ""
 
-#: models.py:150
+#: models.py:152
 msgid "sites"
 msgstr ""
 
-#: models.py:189
+#: models.py:191
 msgid "Weight"
 msgstr ""
 
-#: models.py:191 models.py:201
+#: models.py:193 models.py:203
 msgid "Content"
 msgstr ""
 
-#: models.py:216
+#: models.py:218
 msgid "In edition"
 msgstr ""
 
-#: models.py:217
+#: models.py:219
 msgid "Complete"
 msgstr ""
 
-#: models.py:224
+#: models.py:226
 msgid "language"
 msgstr ""
 
-#: models.py:228
+#: models.py:230
 msgid "title"
 msgstr ""
 
-#: models.py:229
+#: models.py:231
 msgid "My Project Title"
 msgstr ""
 
-#: models.py:240
+#: models.py:242
 msgid "one line description"
 msgstr ""
 
-#: models.py:244 templates/project_sheet/project_sheet.html:568
+#: models.py:246 templates/project_sheet/project_sheet.html:567
 msgid "One line description"
 msgstr ""
 
-#: models.py:247 templates/project_sheet/about_section.html:3
+#: models.py:249 templates/project_sheet/about_section.html:3
 msgid "about the project"
 msgstr ""
 
-#: models.py:248 templates/project_sheet/partners_section.html:6
-#: templates/project_sheet/partners_section.html:20
-#: templates/project_sheet/partners_section.html:32
+#: models.py:250 templates/project_sheet/partners_section.html:20
 msgid "who are the partners of this project"
 msgstr ""
 
-#: models.py:249
+#: models.py:251
 msgid "Help request"
 msgstr ""
 
-#: models.py:255 templates/project_sheet/uniqueness_section.html:5
-#: templates/project_sheet/uniqueness_section.html:19
-#: templates/project_sheet/uniqueness_section.html:31
-msgid "in what ways is this project unique and creative"
-msgstr ""
-
-#: models.py:256
-msgid "what is the social value of this project"
-msgstr ""
-
-#: models.py:257 templates/project_sheet/scalability_section.html:6
-#: templates/project_sheet/scalability_section.html:20
-#: templates/project_sheet/scalability_section.html:32
-msgid "what is the potential of this project to expand and develop"
-msgstr ""
-
-#: models.py:258 templates/project_sheet/triggering_factor_section.html:6
-#: templates/project_sheet/triggering_factor_section.html:20
-#: templates/project_sheet/triggering_factor_section.html:32
-msgid "what was the triggering factor of this project"
-msgstr ""
-
-#: models.py:259
-msgid "what is the business model of the project"
-msgstr ""
-
-#: models.py:262
+#: models.py:253
 msgid "Themes of the project"
 msgstr ""
 
-#: models.py:322
+#: models.py:317
 msgid "source"
 msgstr ""
 
-#: models.py:323
+#: models.py:318
 msgid "license"
 msgstr ""
 
-#: models.py:351
+#: models.py:346
 msgid "role"
 msgstr ""
 
-#: models.py:356
+#: models.py:351
 msgid "comment"
 msgstr ""
 
-#: models.py:369
+#: models.py:364
 msgid "New project/translation added"
 msgstr ""
 
-#: models.py:375
+#: models.py:370
 msgid "A member has joined a project"
 msgstr ""
 
@@ -236,59 +211,47 @@ msgstr ""
 
 #: templates/project_sheet/about_section.html:6
 #: templates/project_sheet/about_section.html:8
-#: templates/project_sheet/business_model_section.html:33
-#: templates/project_sheet/grey_column.html:34
-#: templates/project_sheet/grey_column.html:173
-#: templates/project_sheet/grey_column.html:220
+#: templates/project_sheet/grey_column.html:32
+#: templates/project_sheet/grey_column.html:171
+#: templates/project_sheet/grey_column.html:218
 #: templates/project_sheet/partners_section.html:33
-#: templates/project_sheet/project_sheet.html:262
-#: templates/project_sheet/project_sheet.html:527
-#: templates/project_sheet/project_sheet.html:563
-#: templates/project_sheet/project_sheet.html:569
-#: templates/project_sheet/project_sheet.html:581
-#: templates/project_sheet/project_sheet.html:688
+#: templates/project_sheet/project_sheet.html:261
+#: templates/project_sheet/project_sheet.html:526
+#: templates/project_sheet/project_sheet.html:562
+#: templates/project_sheet/project_sheet.html:568
+#: templates/project_sheet/project_sheet.html:580
+#: templates/project_sheet/project_sheet.html:687
 #: templates/project_sheet/references_section.html:7
-#: templates/project_sheet/scalability_section.html:33
-#: templates/project_sheet/triggering_factor_section.html:33
-#: templates/project_sheet/uniqueness_section.html:32
 #: templates/project_sheet/value_section.html:33
 msgid "Edit"
 msgstr ""
 
 #: templates/project_sheet/about_section.html:21
-#: templates/project_sheet/business_model_section.html:14
 #: templates/project_sheet/media_gallery.html:105
 #: templates/project_sheet/partners_section.html:14
-#: templates/project_sheet/project_sheet.html:327
-#: templates/project_sheet/project_sheet.html:350
-#: templates/project_sheet/project_sheet.html:384
-#: templates/project_sheet/project_sheet.html:517
-#: templates/project_sheet/project_sheet.html:555
-#: templates/project_sheet/project_sheet.html:636
-#: templates/project_sheet/project_sheet.html:669
-#: templates/project_sheet/scalability_section.html:14
-#: templates/project_sheet/triggering_factor_section.html:14
-#: templates/project_sheet/uniqueness_section.html:13
+#: templates/project_sheet/project_sheet.html:326
+#: templates/project_sheet/project_sheet.html:349
+#: templates/project_sheet/project_sheet.html:383
+#: templates/project_sheet/project_sheet.html:516
+#: templates/project_sheet/project_sheet.html:554
+#: templates/project_sheet/project_sheet.html:635
+#: templates/project_sheet/project_sheet.html:668
 #: templates/project_sheet/value_section.html:14
 msgid "Ok"
 msgstr ""
 
 #: templates/project_sheet/about_section.html:22
-#: templates/project_sheet/business_model_section.html:15
-#: templates/project_sheet/grey_column.html:51
+#: templates/project_sheet/grey_column.html:49
 #: templates/project_sheet/media_gallery.html:46
 #: templates/project_sheet/media_gallery.html:106
 #: templates/project_sheet/partners_section.html:15
-#: templates/project_sheet/project_sheet.html:326
-#: templates/project_sheet/project_sheet.html:349
-#: templates/project_sheet/project_sheet.html:383
-#: templates/project_sheet/project_sheet.html:516
-#: templates/project_sheet/project_sheet.html:556
-#: templates/project_sheet/project_sheet.html:637
-#: templates/project_sheet/project_sheet.html:670
-#: templates/project_sheet/scalability_section.html:15
-#: templates/project_sheet/triggering_factor_section.html:15
-#: templates/project_sheet/uniqueness_section.html:14
+#: templates/project_sheet/project_sheet.html:325
+#: templates/project_sheet/project_sheet.html:348
+#: templates/project_sheet/project_sheet.html:382
+#: templates/project_sheet/project_sheet.html:515
+#: templates/project_sheet/project_sheet.html:555
+#: templates/project_sheet/project_sheet.html:636
+#: templates/project_sheet/project_sheet.html:669
 #: templates/project_sheet/value_section.html:15
 msgid "Cancel"
 msgstr ""
@@ -303,136 +266,120 @@ msgstr ""
 msgid "click here to describe your project"
 msgstr ""
 
-#: templates/project_sheet/all_recent_changes.html:27
+#: templates/project_sheet/all_recent_changes.html:26
 msgid "Latest 20 days changes"
 msgstr ""
 
-#: templates/project_sheet/all_recent_changes.html:28
-#: templates/project_sheet/project_list.html:68
+#: templates/project_sheet/all_recent_changes.html:27
+#: templates/project_sheet/project_list.html:73
 msgid "RSS Feed"
 msgstr ""
 
-#: templates/project_sheet/all_recent_changes.html:50
-#: templates/project_sheet/project_list.html:109
+#: templates/project_sheet/all_recent_changes.html:49
+#: templates/project_sheet/project_list.html:103
 msgid "Your request did not return any result."
 msgstr ""
 
-#: templates/project_sheet/business_model_section.html:6
-#: templates/project_sheet/business_model_section.html:20
-#: templates/project_sheet/business_model_section.html:32
-msgid "what is the business model of this project"
-msgstr ""
-
-#: templates/project_sheet/business_model_section.html:27
-#: templates/project_sheet/partners_section.html:27
-#: templates/project_sheet/scalability_section.html:27
-#: templates/project_sheet/triggering_factor_section.html:27
-msgid "This field is blank. Don’t forget to complete it! "
-msgstr ""
-
-#: templates/project_sheet/grey_column.html:35
-#: templates/project_sheet/grey_column.html:78
-#: templates/project_sheet/grey_column.html:220
+#: templates/project_sheet/grey_column.html:33
+#: templates/project_sheet/grey_column.html:76
+#: templates/project_sheet/grey_column.html:218
 msgid "edit"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:37
+#: templates/project_sheet/grey_column.html:35
 msgid "take action"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:57
+#: templates/project_sheet/grey_column.html:55
 msgid ""
 "This project has not claimed its needs yet. Please edit if you are aware of "
 "a requirement."
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:65
+#: templates/project_sheet/grey_column.html:63
 msgid "Spread the word:"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:83
+#: templates/project_sheet/grey_column.html:81
 #: templates/project_sheet/sidebar_related.html:6
 msgid "related"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:90
+#: templates/project_sheet/grey_column.html:88
 msgid "objectives:"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:103
+#: templates/project_sheet/grey_column.html:101
 msgid ""
 "Click here to set the <strong>categories</strong> and <strong>tags</strong> "
 "of this project."
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:107
+#: templates/project_sheet/grey_column.html:105
 msgid "Tags:"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:122
+#: templates/project_sheet/grey_column.html:120
 msgid "Add a member"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:122
+#: templates/project_sheet/grey_column.html:120
 msgid "add"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:123
+#: templates/project_sheet/grey_column.html:121
 #: templates/project_sheet/sidebar_team.html:6
 msgid "The team"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:130
-#: templates/project_sheet/grey_column.html:146
+#: templates/project_sheet/grey_column.html:128
+#: templates/project_sheet/grey_column.html:144
 msgid "Contact team"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:132
+#: templates/project_sheet/grey_column.html:130
 #, python-format
 msgid ""
 "\n"
-"                            Use the messaging system to get in touch with "
-"the team \n"
-"                            <img src=\"%(STATIC_URL)simages/project/"
-"team_info-picto1.jpg\" alt=\"Contact team\" width=\"27\" height=\"15\" />\n"
+"                            Use the messaging system to get in touch with the team \n"
+"                            <img src=\"%(STATIC_URL)simages/project/team_info-picto1.jpg\" alt=\"Contact team\" width=\"27\" height=\"15\" />\n"
 "                            or one of its member\n"
-"                            <img src=\"%(STATIC_URL)simages/project/"
-"team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" />\n"
+"                            <img src=\"%(STATIC_URL)simages/project/team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" />\n"
 "                            .\n"
 "                        "
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:161
+#: templates/project_sheet/grey_column.html:159
 msgid "There is no registered team members: please to fill this section !"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:175
+#: templates/project_sheet/grey_column.html:173
 #: templates/project_sheet/media_gallery.html:59
 #: templates/project_sheet/media_gallery.html:61
 msgid "Delete"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:175
+#: templates/project_sheet/grey_column.html:173
 msgid "delete"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:183
+#: templates/project_sheet/grey_column.html:181
 msgid "Contact"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:221
-msgid "Partners"
+#: templates/project_sheet/grey_column.html:219
+msgid "Current partners"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:248
+#: templates/project_sheet/grey_column.html:246
 msgid "This project has no known partners."
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:275
+#: templates/project_sheet/grey_column.html:273
 msgid "Want to get started on your project sheet ?"
 msgstr ""
 
-#: templates/project_sheet/grey_column.html:276
+#: templates/project_sheet/grey_column.html:274
 msgid ""
 "Click on the field you want to edit, edit it, and save the changes. Once "
 "you’ve modified a field, your project sheet will be created."
@@ -447,7 +394,7 @@ msgid "DATETIME_FORMAT"
 msgstr ""
 
 #: templates/project_sheet/history.html:18
-#: templates/project_sheet/project_sheet.html:585
+#: templates/project_sheet/project_sheet.html:584
 msgid "by"
 msgstr ""
 
@@ -528,12 +475,17 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: templates/project_sheet/project_complete_card.html:16
-msgid "There is no description for this project"
+#: templates/project_sheet/partners_section.html:6
+#: templates/project_sheet/partners_section.html:32
+msgid "who are the current partners of this project"
 msgstr ""
 
-#: templates/project_sheet/project_complete_card.html:20
-msgid "More info"
+#: templates/project_sheet/partners_section.html:27
+msgid "This field is blank. Don’t forget to complete it! "
+msgstr ""
+
+#: templates/project_sheet/project_complete_card.html:18
+msgid "There is no description for this project"
 msgstr ""
 
 #: templates/project_sheet/project_edit_themes.html:9
@@ -545,22 +497,22 @@ msgstr ""
 msgid "Update"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:29
+#: templates/project_sheet/project_id_card.html:28
 #: templates/project_sheet/project_status.html:5
 msgid "associated team"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:32
+#: templates/project_sheet/project_id_card.html:31
 #: templates/project_sheet/project_status.html:8
 msgid "in progress"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:35
+#: templates/project_sheet/project_id_card.html:34
 #: templates/project_sheet/project_status.html:11
 msgid "popular"
 msgstr ""
 
-#: templates/project_sheet/project_id_card.html:38
+#: templates/project_sheet/project_id_card.html:37
 #: templates/project_sheet/project_status.html:14
 msgid "bestof"
 msgstr ""
@@ -576,12 +528,16 @@ msgstr ""
 msgid "Find projects on "
 msgstr ""
 
-#: templates/project_sheet/project_list.html:71
-msgid "Last projects"
+#: templates/project_sheet/project_list.html:68
+msgid "Order by:"
 msgstr ""
 
-#: templates/project_sheet/project_list.html:72
-msgid "Last editions"
+#: templates/project_sheet/project_list.html:70
+msgid "Newest projects"
+msgstr ""
+
+#: templates/project_sheet/project_list.html:71
+msgid "Recent changes"
 msgstr ""
 
 #: templates/project_sheet/project_list_pagination.html:9
@@ -594,81 +550,68 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:17
+#: templates/project_sheet/project_sheet.html:16
 msgid "start project"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:132
+#: templates/project_sheet/project_sheet.html:131
 msgid "Type your message here and hit enter when done..."
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:353
+#: templates/project_sheet/project_sheet.html:352
 msgid "This bloc is empty : don’t forget to fill it !"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:387
-#: templates/project_sheet/project_sheet.html:682
-#: templates/project_sheet/uniqueness_section.html:26
+#: templates/project_sheet/project_sheet.html:386
+#: templates/project_sheet/project_sheet.html:681
 #: templates/project_sheet/value_section.html:27
 msgid "This field is blank. Don’t forget to complete it!"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:490
+#: templates/project_sheet/project_sheet.html:489
 msgid ""
 "\n"
-"            Thank you for the interest you have shown in this project. <br /"
-">\n"
-"            Don't you want to <a class=\"login-slide-openner link\" href=\"#"
-"\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign up</"
-"a> before editing?\n"
+"            Thank you for the interest you have shown in this project. <br />\n"
+"            Don't you want to <a class=\"login-slide-openner link\" href=\"#\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign up</a> before editing?\n"
 "            "
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:498
+#: templates/project_sheet/project_sheet.html:497
 msgid ""
 "\n"
-"            This project sheet is a draft. Become in one click a co-"
-"publisher of this project !\n"
-"            <br />You can enrich it very simply by clicking on text boxes "
-"which seem to be incomplete. You will then have access to a wiki field "
-"allowing you to write additional content.\n"
-"\t\t\t<br />Please feel free to ask for help through <a class=\"link\" href="
-"\"/feedback/list/\">feedback</a> or on <a class=\"link\" href=\"http://"
-"imaginationforpeople.org/conference/\">live chat</a>.\n"
+"            This project sheet is a draft. Become in one click a co-publisher of this project !\n"
+"            <br />You can enrich it very simply by clicking on text boxes which seem to be incomplete. You will then have access to a wiki field allowing you to write additional content.\n"
+"\t\t\t<br />Please feel free to ask for help through <a class=\"link\" href=\"/feedback/list/\">feedback</a> or on <a class=\"link\" href=\"http://imaginationforpeople.org/conference/\">live chat</a>.\n"
 "            "
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:532
+#: templates/project_sheet/project_sheet.html:531
 msgid "my project title"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:590
+#: templates/project_sheet/project_sheet.html:589
 msgid "anonymous"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:596
+#: templates/project_sheet/project_sheet.html:595
 msgid "Location:"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:609
-#: templates/project_sheet/project_sheet.html:617
+#: templates/project_sheet/project_sheet.html:608
+#: templates/project_sheet/project_sheet.html:616
 msgid "unknown"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:615
-#: templates/project_sheet/project_sheet.html:617
+#: templates/project_sheet/project_sheet.html:614
+#: templates/project_sheet/project_sheet.html:616
 msgid "Website:"
 msgstr ""
 
-#: templates/project_sheet/project_sheet.html:710
+#: templates/project_sheet/project_sheet.html:709
 #, python-format
 msgid ""
 "\n"
-"\t    This project sheet, except media, is licensed under the <a rel="
-"\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-"Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons."
-"org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style="
-"\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>\n"
+"\t    This project sheet, except media, is licensed under the <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>\n"
 "\t  "
 msgstr ""
 

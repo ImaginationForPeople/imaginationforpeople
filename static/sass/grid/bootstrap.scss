@@ -1,0 +1,25 @@
+/**********************************************************************
+ * BIG FAT NOTICE : READ CAREFULLY
+ **********************************************************************
+ *
+ * Only a single inclusion of the bootstrap grid is allowed, in the
+ * *base*.scss page.
+ *
+ * Other scss files MUST NOT include the "compass_twitter_bootstrap*" file,
+ * but only the i4p-* 
+ *
+ */
+
+// FIXME: switch versions to make responsive (WARNING: a lot of things will break).
+// @import "compass_twitter_bootstrap_responsive";
+@import "compass_twitter_bootstrap";
+
+html {
+    // the default font size for browsers is 16px, so we adjust it to 10px.for easy calculations.
+    font-size: 62.5%;
+}
+
+// then define desired font size for body
+body {
+    font-size: 1.2rem;
+}

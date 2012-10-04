@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_obsolete.html" %}
 {% load menu_tags %}
 {% load i18n cms_tags sekizai_tags %}
 {% load compress %}
@@ -29,12 +29,14 @@
 			<div class="grid_3 alpha omega">			
 			
 				<div class="left-menu">  	
-				
-              	<h2>{% page_attribute "page_title" request.current_page.get_root %} </h2>  
-				{% show_menu_below_id request.current_page.get_root.reverse_id 0 100 100 100 %}	
-				{% placeholder "Menucontent" or %}
-				{% endplaceholder %}
 					
+					{% placeholder "menu_workgroups" or %}  
+					<h2>{% trans "MENU" %}</h2>
+					<ul>             
+						{% show_menu 0 100 100 100 %}
+					</ul>
+					{% endplaceholder %}
+               
 				</div>
 				
 			</div>
@@ -42,15 +44,14 @@
 			<div class="grid_14 alpha omega">			
 			
 				<div class="block-content">  			
-			       
-			         {% placeholder "page_title" or %}
-			         <h1>{% page_attribute "page_title" %}</h1>
-			         {% endplaceholder %}
+			      {% placeholder "page_title" or %}
+			      <h1>{% page_attribute "page_title" %}</h1>
+			      {% endplaceholder %}
 
 				  {% placeholder "content" or %}
-				  <iframe src="http://pad.imaginationforpeople.org/p/{% page_attribute "page_title" request.current_page.get_root %}{% page_attribute "page_title" request.current_page %}?showChat=false&showLineNumbers=false&showControls=true" frameborder="0" width="755px" height="550px"></iframe>
+				  <iframe src="http://pad.imaginationforpeople.org/p/{% page_attribute "page_title" request.current_page.parent.id %}{% page_attribute "page_title" request.current_page %}?showChat=false&showLineNumbers=false&showControls=true" frameborder="0" width="755px" height="550px"></iframe>
 				  {% endplaceholder %}
-										
+									
 				</div>
 				
 			</div>

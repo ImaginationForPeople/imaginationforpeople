@@ -1,0 +1,15 @@
+{% import "email/macros.html" as macros %}
+{# parameters:
+    * min_upvotes
+    * username
+    * site_name - for the footer
+    * site_link - html for the link
+#}
+<p style="{{ macros.heading_style() }}">
+    {% trans user=username|escape %}{{ username }}, your question could not be posted by email just yet.{% endtrans %}
+</p>
+<p>
+    {% trans %}To make posts by email, you need to receive about {{min_upvotes}} upvotes.{% endtrans %}<br/>
+    {% trans link=site_link|safe %}At this time, please post your question at {{link}}{% endtrans %}
+</p>
+{% include "email/footer.html" %}

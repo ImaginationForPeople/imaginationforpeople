@@ -1,5 +1,7 @@
-@import "mixin.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
+// please do not use theses non-semantic classes (or rewrite them as mixins)
 .hidden{
 	display:none !important;
 	visibility:hidden !important;
@@ -54,7 +56,7 @@
 
 .separator{
 	height:2px;
-	background-image:url(../images/base/separator.jpg);
+	background-image: image-url("base/separator.jpg");
 	background-repeat:repeat-x;
 	position:relative;
 	margin-top:15px;
@@ -62,7 +64,7 @@
 }
 
 hr{
-    background-image:url(../images/base/separator.jpg);
+    background-image: image-url("base/separator.jpg");
     background-repeat:repeat-x;
     background-position:bottom;
     width:100%;
@@ -74,7 +76,7 @@ hr{
 
 
 .link{
-    color:$blue;
+    color: $colorLightBlue;
     @include georgia(12px);
     text-decoration:none;
 }
@@ -85,7 +87,7 @@ hr{
 
 
 .edit1:hover{
-	background-image:url("../images/project/edit1.png");
+	background-image: image-url("project/edit1.png");
 	background-position:right center;
 	background-repeat:no-repeat;
 	display:block inline;
@@ -94,7 +96,7 @@ hr{
 }
 
 .edit2{
-	background-image:url("../images/project/edit2.png");
+	background-image: image-url("project/edit2.png");
 	background-position:right center;
 	background-repeat:no-repeat;
 	display:inline-block;

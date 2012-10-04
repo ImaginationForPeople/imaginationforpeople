@@ -1,0 +1,51 @@
+{% if settings.ENABLE_MATHJAX %}
+    <script type='text/javascript' src="{{settings.MATHJAX_BASE_URL}}/MathJax.js">
+        MathJax.Hub.Config({
+            extensions: ["tex2jax.js"],
+            jax: ["input/TeX","output/HTML-CSS"],
+            tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]}
+        });
+    </script>
+{% endif %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        {% if active_tab == 'questions' %}
+            if (Modernizr.history) {
+                // history management works!
+            } else {
+                // no history support :(
+                //hash = unescape(window.location.hash).replace('#','').split("?")[0]
+                {# todo: fix this evil code!!! #}
+                var hash = History.unescapeHash(window.location.hash).replace('#','').split("?")[0];
+                var questions_url = askbot['urls']['questions'];
+                if (hash.substring(0, questions_url.length) === questions_url) {
+                    var url = hash;
+                } else {
+                    var url = questions_url + hash;
+                }
+                if (hash !== '' && hash !== undefined && url !== undefined){
+                    {# was this causing strange redirects in IE??? #}
+                    window.location = 'http://' + window.location.host + url;
+                }
+            }
+        {% endif %}
+        // focus input on the search bar endcomment
+        {% if active_tab in ('users', 'questions', 'tags') %}
+            $('#keywords').focus();
+        {% elif active_tab == 'ask' %}
+            $('#id_title').focus();
+        {% else %}
+            animateHashes();
+        {% endif %}
+        
+        $('abbr.timeago').timeago();
+        
+        {% if user_messages %}
+            $('#validate_email_alert').click(function(){notify.close(true)})
+            notify.show();
+        {% endif %}
+    });
+</script>
+{% if settings.USE_CUSTOM_JS %}
+<script src="{% url 'custom_js'%}" type="text/javascript"></script>
+{% endif %}

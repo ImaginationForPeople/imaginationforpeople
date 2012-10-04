@@ -12,20 +12,30 @@ PAPEROPT_a4     = -D latex_paper_size=a4
 PAPEROPT_letter = -D latex_paper_size=letter
 ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest
+.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest db_graphs transifex
 
-APPS=project_sheet i4p_base member
+APPS=i4p_base member partner project_sheet workgroup
 
 db_graphs:
 	@echo "Generating DB graphs"
 	@test -x images || mkdir images
 	@for app in $(APPS) ; do \
 		echo "\t* " $$app; \
-		../manage.py graph_models $$app -o images/"$$app"_models.png ; \
+		../manage.py graph_models $$app -o images/"$$app"_models.png || exit 1 ; \
+	done
+
+transifex:
+	@echo "Getting pictures from transifex"
+	@test -x images || mkdir images
+	for app in $(APPS) ; do \
+		echo "\t* " $$module; \
+		wget https://www.transifex.com/projects/p/imaginationforpeople/resource/"$$app"/chart/image_png -O images/transifex_"$$app".png || exit 1; \
 	done
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  db_graphs  to regenerate database schmeas"
+	@echo "  transifex  to regenerate translation update"
 	@echo "  html       to make standalone HTML files"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
@@ -46,7 +56,7 @@ help:
 clean:
 	-rm -rf $(BUILDDIR)/*
 
-html: db_graphs
+html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."

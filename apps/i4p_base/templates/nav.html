@@ -1,7 +1,8 @@
 {% load i18n %}
 
 {% block nav %}	
-	
+
+	{% comment %}
 	
 	<div class="nav-white">
 		<div class="container_18">
@@ -30,9 +31,7 @@
                         {% if project_translation %}
 						<li><div class="categ-button first"><a href="{% url project_sheet-show project_translation.slug %}" {% if project_tab %}class="selected"{% endif %}>{% trans "Project" %}</a></div></li>
 						
-                        {% comment %}
                             <li><div class="categ-button" id="categ-last"><a href="{% url project_sheet-history project_translation.slug %}" {% if history_tab %}class="selected"{% endif %}>{% trans "History" %}</a></div></li>
-                        {% endcomment %}
                         
                        {% else %}
                         <li><div class="categ-button first"><a href="#" class="selected">{% trans "Project" %}</a></div></li>
@@ -56,7 +55,9 @@
 								  {% for translation in project_translation.project.translations.all %}
 								  <!-- FIXME - if possible, the title and the text next the flag must been the full language name, and NOT the abreviation ! -->
 								  <li>
+								    {% language translation.language_code %}
 								    <a href="{% url project_sheet-show translation.slug %}"><img src="{{ STATIC_URL }}images/flags/{{ translation.language_code }}.gif" title="{{ translation.language_code }}" />{{ translation.language_code }}</a>
+								    {% endlanguage %}
 								    {% endfor %}		
 								    
 								  </li>
@@ -93,6 +94,6 @@
 		</div>
 	</div>	
 	
-	
+	{% endcomment %}
 	
 {% endblock %}

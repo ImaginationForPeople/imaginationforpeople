@@ -1,0 +1,55 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* members : member list (FIXME: object type ?)
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
+{% endaddtoblock %}
+
+<div class="member-list square fancy">
+	{% comment %} FIXME: more inputs/labels than expected with slice, why ? {% endcomment %}
+	{% for member in project.detailed_members.all %}
+	{% if forloop.counter0|divisibleby:"4" %}
+	<input id="slide-{{forloop.counter0}}" 
+	class="slide-input {% if forloop.first %}first-input{% endif %} {% if forloop.last %}last-input{% endif %}" 
+	type="radio" name="slider" {% if forloop.first %}checked=""{% endif %} selected="false">
+	{% endif %}
+	{% endfor %}
+	<div class="view">
+		{% comment %} FIXME: add shuffle filter to the list {% endcomment %}
+		<ul>
+			{% for member in project.detailed_members.all %}
+			{% include "project_sheet/block/member_fancy_square.html" %}
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="controls">
+		{% if project.detailed_members.all|length > 4 %}
+		{% for member in project.detailed_members.all %}
+		{% if forloop.counter0|divisibleby:"4" %}
+		<label for="slide-{{forloop.counter0}}"></label>
+		{% endif %}
+		{% endfor %}
+		{% endif %}
+	</div>
+	<div class="active">
+		{% if project.detailed_members.all|length > 4 %}
+		{% for member in project.detailed_members.all %}
+		{% if forloop.counter0|divisibleby:"4" %}
+		<label for="slide-{{forloop.counter0}}"></label>
+		{% endif %}
+		{% endfor %}
+		{% endif %}
+	</div>
+</div>

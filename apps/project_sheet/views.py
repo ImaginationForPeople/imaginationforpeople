@@ -24,7 +24,7 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-import datetime
+from datetime import datetime, timedelta
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -40,7 +40,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
-from localeurl.templatetags.localeurl_tags import chlocale
+from tagging.models import TaggedItem
 from reversion.models import Version
 
 from .filters import FilterSet
@@ -53,6 +53,7 @@ from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
 from .utils import get_project_project_translation_recent_changes, fields_diff
+from .utils import get_project_translation_by_any_translation_slug
 
 
 def project_sheet_list(request):
@@ -96,7 +97,15 @@ def project_sheet_list(request):
         else:
             # By default, display the project listing using the following order: 
             # best_of, random().
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__best_of', '?')
+            # We need the ordering to be stable within a user session session.
+            # As a hashing function, use a hopefully portable pure SQL
+            # implementation (using only basic sql operators) of 
+            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
+            # Here the number of buckets (m) is determined by the day of the
+            # year
+            day_of_year = int(datetime.now().strftime('%j'))
+            pseudo_random_field = "(project_id * (project_id + 3)) %% {0:d}".format(day_of_year)
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
@@ -135,7 +144,6 @@ class ProjectStartView(TemplateView):
 
         return context
 
-
 class ProjectTopicSelectView(TemplateView):
     """
     Before starting a project, one needs to pick a topic
@@ -161,10 +169,15 @@ def project_sheet_show(request, slug, add_media=False):
 
     site = Site.objects.get_current()
         
-    project_translation = get_object_or_404(I4pProjectTranslation,
-                                            slug=slug,
-                                            language_code=language_code,
-                                            project__site=site)
+    try:
+        project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=slug,
+                                            prefered_language_code=language_code,
+                                            site=site)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    if project_translation.language_code != language_code:
+        return redirect(project_translation, permanent=False)
 
     # Info
     project_info_form = I4pProjectInfoForm(request.POST or None,
@@ -195,19 +208,26 @@ def project_sheet_show(request, slug, add_media=False):
 
     project_status_choices['selected'] = project_translation.project.status
 
+    # Related projects
+    related_projects = TaggedItem.objects.get_related(project_translation,
+                                                      I4pProjectTranslation.objects.exclude(project__id=project.id),
+                                                      num=4)
+
     context = {
         'topics': topics,
         'project': project,
-               'project_translation': project_translation,
-               'project_themes_form': project_themes_form,
-               'project_objectives_form': project_objectives_form,
-               'reference_formset' : reference_formset,
-               'project_info_form': project_info_form,
-               'project_location_form': project_location_form,
-               'project_member_form': project_member_form,
-               'project_status_choices': simplejson.dumps(project_status_choices),
-               #'project_member_formset': project_member_formset,
-               'project_tab' : True}
+        'project_translation': project_translation,
+        'project_themes_form': project_themes_form,
+        'project_objectives_form': project_objectives_form,
+        'reference_formset' : reference_formset,
+        'project_info_form': project_info_form,
+        'project_location_form': project_location_form,
+        'project_member_form': project_member_form,
+        'project_status_choices': simplejson.dumps(project_status_choices),
+        # 'project_member_formset': project_member_formset,
+        'project_tab' : True,
+        'related_projects': related_projects,
+    }
 
     if add_media:
         ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
@@ -226,6 +246,7 @@ def project_sheet_show(request, slug, add_media=False):
                               context_instance=RequestContext(request)
                               )
 
+@require_POST    
 @login_required
 def project_sheet_create_translation(request, project_slug):
     """
@@ -248,8 +269,11 @@ def project_sheet_create_translation(request, project_slug):
                                                                                   language_code=requested_language_code,
                                                                                   default_title=current_project_translation.title)
 
+    current_language = translation.get_language()
+    translation.activate(requested_language_code)
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
-    return redirect(chlocale(url, requested_language_code))
+    translation.activate(current_language)
+    return redirect(url)
 
 def project_sheet_edit_location(request, slug):
     language_code = translation.get_language()
@@ -614,8 +638,6 @@ def project_sheet_history(request, project_slug):
     """
     Show the history of a project member
     """
-    # FIXME Remove this asap
-    raise Http404
     language_code = translation.get_language()
 
     # get the project translation and its base
@@ -669,7 +691,7 @@ class ProjectRecentChangesView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
 
-        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=30)
+        twenty_days_ago = datetime.now() - timedelta(days=30)
 
         project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
         parent_project_ct = ContentType.objects.get_for_model(I4pProject)

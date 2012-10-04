@@ -1,0 +1,10 @@
+<div class='post-author-info'>
+{% if answer.is_anonymous %}
+    <img alt="{% trans %}anonymous user{% endtrans %}" src="{{ '/images/anon.png'|static_url }} " class="gravatar" width="32" height="32" />
+    <p>{% trans %}anonymous user{% endtrans %}</p>
+{% else %}
+    {{ macros.gravatar(answer.author, 32) }}
+    <a href="{{ answer.author.get_profile().get_absolute_url()}}">{{ answer.author.username}}</a>
+ {% endif %}
+<p>{% trans %}answered{% endtrans %} {{ macros.timeago(answer.added_at) }}</p>
+</div>

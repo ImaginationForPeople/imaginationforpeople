@@ -19,9 +19,6 @@
 """
 Views for handling members
 """
-from httplib import HTTPConnection
-
-from django.core.mail import mail_admins
 from django.core.urlresolvers import reverse
 from django.utils import translation
 from django.contrib import messages
@@ -30,6 +27,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.sites.models import Site
 from django.http import HttpResponseForbidden
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext as _
@@ -43,7 +41,6 @@ from userena.forms import SignupForm, SignupFormOnlyEmail
 from userena.utils import signin_redirect
 
 from guardian.decorators import permission_required_or_403
-from localeurl.utils import strip_path, locale_url
 from reversion.models import Version
 
 from apps.project_sheet.utils import get_project_translations_from_parents
@@ -71,6 +68,7 @@ def signup(request, signup_form,
         if form.is_valid():
             user = form.save()
             profile = user.get_profile()
+            # Language
             profile.language = request.LANGUAGE_CODE
             profile.save()
 
@@ -186,13 +184,11 @@ def profile_edit(request, username, edit_profile_form=I4PEditProfileForm,
                 messages.success(request, _('Your profile has been updated.'),
                                  fail_silently=True)
 
-            if success_url: redirect_to = success_url
-            else: redirect_to = reverse('userena_profile_detail', kwargs={'username': username})
-
-            # Ensure the redirect URL locale prefix matches the profile locale
-            _locale, path = strip_path(redirect_to)
-            redirect_to = locale_url(path, locale=profile.language)
-            request.session['django_language'] = profile.language
+            if success_url:
+                redirect_to = success_url
+            else:
+                translation.activate(profile.language)                                
+                redirect_to = reverse('userena_profile_detail', kwargs={'username': username})
 
             return redirect(redirect_to)
 

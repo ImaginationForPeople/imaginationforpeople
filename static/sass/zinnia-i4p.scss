@@ -1,0 +1,81 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+body .zinnia {
+    #header {
+        margin-top: 0;
+        h1 {
+            margin-top: 0;
+            a {
+                color: $colorLightBlue !important;
+            }
+        }
+        h1:first-letter {
+                color: $colorTextGreen;
+        }
+
+    }
+    a {
+        color: $colorLinkOnWhite;
+    }
+    a:visited {
+        color: $colorLinkOnWhite
+    }
+    .entry-body {
+        img {
+        max-width: 50%;
+        }
+            .entry-excerpt {
+        display: none;
+    }
+    }
+
+}
+/* Feature hiding */
+
+body.zinniai4p {
+ /* All zinnia pages */
+    #widget-randoms {
+        display: none;
+    }
+    #widget-linkbacks {
+        display: none;
+    }
+    #pingbacks {
+        display: none;
+    }
+    #trackbacks{
+        display: none;
+    }
+    .entry-next, .entry-previous {
+        display: none;
+    }
+}
+/* Entry list page */
+body.entry-list { 
+
+    #widget-authors {
+        display: none;
+    }
+    #widget-populars {
+        display: none;
+    }
+    #widget-recents {
+        display: none;
+    }
+    .entry-shorturl {
+        display: none;
+    }
+    .entry-comments {
+        display: none;
+    }
+}
+/* Single entry page */
+body.entry { 
+    #widget-calendar {
+        display: none;
+    }
+    #widget-archives {
+        display: none;
+    }
+}

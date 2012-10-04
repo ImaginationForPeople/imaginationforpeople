@@ -1,0 +1,7 @@
+<a style="text-decoration:none" href="{{ profile.get_absolute_url() }}">
+<img class="gravatar" 
+    width="48" height="48"
+    src="{{ profile.get_mugshot_url() }}"
+    title="{{profile.user.username|escape}}" 
+    alt="{{username}}" />
+</a>
