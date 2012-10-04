@@ -501,6 +501,7 @@ ASKBOT_STARTUP_CHECK = False
 ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
 ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
+LIVESETTINGS_CACHE_TIMEOUT = 6000
 
 ## Celery Settings
 # TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge
