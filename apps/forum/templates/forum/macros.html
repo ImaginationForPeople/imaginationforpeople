@@ -81,7 +81,7 @@
 {# there is a whole bunch of trickery here, probably indicative of 
 poor design of the data or methods on data objects #}
 {% if contributor_type=="original_author" %}
-    <div class='post-update-info'>
+    <div class='post-author-info'>
     {% if is_wiki %}
         <p>
            {%- if post.post_type == 'question' -%}
@@ -91,7 +91,7 @@ poor design of the data or methods on data objects #}
            {% else %}
                 {%- trans %}posted{% endtrans %}
            {% endif %}
-           <strong>{{ timeago(post.added_at) }}</strong>
+           {{ timeago(post.added_at) }}
         </p>
         <img width="35" height="35"
             src="{{'/images/wiki.png'|static_url}}"
@@ -101,7 +101,11 @@ poor design of the data or methods on data objects #}
         <p class="tip">{% trans %}This post is a wiki.
         Anyone with karma &gt;{{wiki_min_rep}} is welcome to improve it.{% endtrans %}</p>
     {% else %}
-        <p style="line-height:12px;">
+        <!--{{ post_contributor_avatar_and_credentials(
+            post, post.author, karma_mode = karma_mode, badges_mode = badges_mode
+        ) }} get rid of the badges and karma-->
+        {{ post_contributor_avatar_and_credentials(post, post.author) }}
+        <p>
             {# todo: access to class names needs to be removed here #}
             {% if post.post_type == 'question' %}
                 {% trans %}asked{% endtrans %}
@@ -111,14 +115,11 @@ poor design of the data or methods on data objects #}
                 {% trans %}posted{% endtrans %}
             {% endif %}
             {% if post.__class__.__name__ == 'PostRevision' %}
-                <strong>{{ timeago(post.revised_at) }}</strong>
+                {{ timeago(post.revised_at) }}
             {% else %}
-                <strong>{{ timeago(post.added_at) }}</strong>
+               {{ timeago(post.added_at) }}
             {% endif %}
         </p>
-        {{ post_contributor_avatar_and_credentials(
-            post, post.author, karma_mode = karma_mode, badges_mode = badges_mode
-        ) }}
     {% endif %}
     </div>
 {% elif contributor_type=="last_updater" %}
@@ -133,7 +134,7 @@ poor design of the data or methods on data objects #}
     {% endif %}
     {% if last_edited_at %}
     <div class='post-update-info'>
-        <p style="line-height:12px;">
+        <p>
             <a 
         {% if post.post_type == 'question' %}
             href="{% url question_revisions post.id %}"
@@ -326,15 +327,12 @@ for the purposes of the AJAX comment editor #}
     {% else %}
         {% set remaining_comment_count = 0 %}
     {% endif %}
-    <a id="add-comment-to-post-{{post.id}}" class="button"></a>
+    <a id="add-comment-to-post-{{post.id}}" class="button" style="margin: 5px; float: right;"></a>
     <script type="text/javascript">
         askbot['data']['{{widget_id}}'] = {
             truncated: {% if post.comment_count > max_comments %}true{% else %}false{% endif %}
         };
-        askbot['functions']['renderAddCommentButton'](
-                                                '{{post.id}}',
-                                                {{remaining_comment_count}}
-                                            );
+        askbot['functions']['renderAddCommentButton']('{{post.id}}', {{remaining_comment_count}});
     </script>
 {%- endmacro -%}
 
@@ -349,8 +347,8 @@ for the purposes of the AJAX comment editor #}
 -%}
     {% spaceless %}
     {% if post.comment_count > 0 %}
-        <h2 id="comment-title">Comments</h2>
-        <div class="clean"></div> 
+       <!-- commented because it s just a word "comment" not particulaly usefull in our case <h2 id="comment-title">Comments</h2>
+        <div class="clean"></div> -->
     {% endif %}
     {% set widget_id = 'comments-for-' + post.post_type + '-' + post.id|string %}
     <div class="comments" id="{{widget_id}}">
@@ -377,35 +375,43 @@ for the purposes of the AJAX comment editor #}
                             <div class="upvote"></div>
                         {% endif %}
                     </div>
-                    <div 
-                        id="post-{{comment.id}}-delete"
-                        class="comment-delete"
-                    >
-                        <span class="delete-icon" title="{% trans %}delete this comment{% endtrans %}"></span>
-                    </div>
                     <div class="comment-body">
-                        {{comment.html}}
-                        <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
+                  		<div class="comment_infos">
+                    	 <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
                         <span class="age">&nbsp;({{ timeago(comment.added_at) }})</span>
-                        <a id="post-{{comment.id}}-edit"
-                            class="edit">{% trans %}edit{% endtrans %}</a>
+                        </div>
+                        {{comment.html}} 
+                        <div class="admin_actions">                 
+                            <div id="post-{{comment.id}}-delete" class="comment-delete">
+                             <a class="delete-icon" title="{% trans %}delete this comment{% endtrans %}"><i class="icon-trash"> </i> {% trans %}Supprimer{% endtrans %}</a>
+                            </div>                        
+                            <a id="post-{{comment.id}}-edit" class="edit"> <i class="icon-pencil"> </i> {% trans %}edit{% endtrans %}</a>
+                        </div><!-- end div.admin_actions -->                       
                     </div>
                 </div>
                 <script type="text/javascript">
                     askbot['functions']['renderPostControls']('{{comment.id}}');
                 </script>
             {% endfor %}
-        </div>
-        <div class="controls">
-            {% if show_post == post and show_comment %}
-                {% if show_comment_position > max_comments %}
-                    {{
-                        add_or_show_comments_button(
-                                            post = post,
-                                            max_comments = show_comment_position,
-                                            widget_id = widget_id
-                                        )
-                    }}
+            <div class="controls">
+                {% if show_post == post and show_comment %}
+                    {% if show_comment_position > max_comments %}
+                        {{
+                            add_or_show_comments_button(
+                                                post = post,
+                                                max_comments = show_comment_position,
+                                                widget_id = widget_id
+                                            )
+                        }}
+                    {% else %}
+                        {{
+                            add_or_show_comments_button(
+                                                post = post,
+                                                max_comments = max_comments,
+                                                widget_id = widget_id
+                                            )
+                        }}
+                    {% endif %}
                 {% else %}
                     {{
                         add_or_show_comments_button(
@@ -415,16 +421,9 @@ for the purposes of the AJAX comment editor #}
                                         )
                     }}
                 {% endif %}
-            {% else %}
-                {{
-                    add_or_show_comments_button(
-                                        post = post,
-                                        max_comments = max_comments,
-                                        widget_id = widget_id
-                                    )
-                }}
-            {% endif %}
-        </div>
+        	</div>
+        </div><!-- end div.content -->
+        
     </div>
     {% endspaceless %}
 {%- endmacro -%}
@@ -646,46 +645,6 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
     {% endif %}
 {% endspaceless %}
 {%- endmacro -%}
-
-
-
-{%- macro paginator_main_page(p, position, search_state) -%} {# p is paginator context dictionary #}
-    {% spaceless %}
-        {% if p.is_paginated %}
-            <div class="paginator" style="float:{{position}}">
-                {% if p.has_previous %}
-                    <span class="prev"><a href="{{ search_state.change_page(p.previous).full_url() }}" title="{% trans %}previous{% endtrans %}">
-                        &laquo; {% trans %}previous{% endtrans %}</a></span>
-                {% endif %}
-                {% if not p.in_leading_range %}
-                    {% for num in p.pages_outside_trailing_range %}
-                        <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" >{{ num }}</a></span>
-                    {% endfor %}
-                    ...
-                {% endif %}
-
-                {% for num in p.page_numbers %}
-                    {% if num == p.page and p.pages != 1%}
-                        <span class="curr" title="{% trans %}current page{% endtrans %}">{{ num }}</span>
-                    {% else %}
-                        <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{num}}{% endtrans %}">{{ num }}</a></span>
-                    {% endif %}
-                {% endfor %}
-
-                {% if not p.in_trailing_range %}
-                    ...
-                    {% for num in p.pages_outside_leading_range|reverse %}
-                        <span class="page"><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{ num }}{% endtrans %}">{{ num }}</a></span>
-                    {% endfor %}
-                {% endif %}
-                {% if p.has_next %}
-                    <span class="next"><a href="{{ search_state.change_page(p.next).full_url() }}" title="{% trans %}next page{% endtrans %}">{% trans %}next page{% endtrans %} &raquo;</a></span>
-                {% endif %}
-            </div>
-        {% endif %}
-    {% endspaceless %}
-{%- endmacro -%}
-
 
 {%- macro inbox_link(user) -%}
     {% if user.new_response_count > 0 or user.seen_response_count > 0 %}

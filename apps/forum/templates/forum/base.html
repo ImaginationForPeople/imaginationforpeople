@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
@@ -25,7 +25,10 @@
       
     {% endblock %}  
 
-
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="{{ STATIC_URL }}js/shiv_html5_fix.js"></script>      
+    <![endif]-->    
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
@@ -34,7 +37,14 @@
     <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-    
+    <!-- modifier l'appel ci dessous à tipsy (tooltips) sur tout le site de manière a cibler la classe et pas tag.tispsed -->
+    <script type="text/javascript">
+		$(document).ready(function(){ 
+			$('.tipsed').tipsy({
+				delay: 0
+			});
+		});
+	</script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>

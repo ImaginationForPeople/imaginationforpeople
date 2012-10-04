@@ -1,12 +1,12 @@
 {% if edit_title %}
     <div class="form-item">
-        <label for="id_title" ><strong>{{ post_form.title.label_tag() }}:</strong></label> <span class="form-error"></span><br/>
+        {{ post_form.title.label_tag() }}  <span class="form-error"></span>
         {{ post_form.title }} {{ post_form.title.errors }}
         <div class="title-desc">
             {{ post_form.title.help_text }}
         </div>
     </div>
-{% endif %}
+{% endif %} 
 <div class='wmd-container'>
     <div id="wmd-button-bar" class="wmd-panel"></div>
     {{ post_form.text }}{# this element is resizable and will be wrapped by js #}
@@ -20,7 +20,7 @@
         {% if tags_are_required %}
             <label for="id_tags">
             {% if mandatory_tags %}
-                <strong>{% trans %}tags{% endtrans %}</strong>
+                <label for="id_tags">{% trans %}tags{% endtrans %}</strong>
                 {% trans %}, one of these is required{% endtrans %}
                 {{
                     tag_list_widget(
@@ -35,7 +35,7 @@
             {% endif %}
             </label>
         {% else %}
-            <strong>{% trans %}tags:{% endtrans %}</strong>
+            <label for="id_tags">{% trans %}tags:{% endtrans %}</label>
         {% endif %}
         <span class="form-error">{{ post_form.tags.errors }}</span><br/>
         {{ post_form.tags }}
@@ -46,7 +46,7 @@
 {% endif %}
 {% if 'summary' in post_form['fields'] %}
     <div class="form-item">
-        <strong>{{ post_form.summary.label_tag() }}</strong> <br/>
+        <strong>{{ post_form.summary.label_tag() }}</strong> 
         {{ post_form.summary }}
         <div class="title-desc">
             {{ post_form.summary.help_text }}
@@ -56,22 +56,20 @@
 {% endif %}
 
 <div class="preview-toggle">
-    <span 
-        id="pre-collapse" 
-        title="{% trans %}Toggle the real time Markdown editor preview{% endtrans %}"
-    >
+    <p id="pre-collapse" title="{% trans %}Toggle the real time Markdown editor preview{% endtrans %}">
         [{% trans %}hide preview{% endtrans %}]
-    </span>
+    </p>
+	<div id="previewer" class="wmd-preview"></div>
 </div>
-<div id="previewer" class="wmd-preview"></div>
-
+ 
 {% if user and user.is_authenticated() and user.is_administrator() %}
     {# admin can post answers or questions on behalf of anyone. #}
+    {#
     <table class="proxy-user-info">
         <tbody>
             <tr><td colspan="2">
                 <label>
-                    {% trans %}To post on behalf of someone else, enter user name <strong>and</strong> email below.{% endtrans %}
+                    {% trans %}To post on behalf of someone else, enter user name and email below.{% endtrans %}
                 </label>
             </td></tr>
             <tr>
@@ -99,6 +97,8 @@
                     <span class="form-error">{{ post_form.post_author_username.errors }}</span>
                     <span class="form-error">{{ post_form.post_author_email.errors }}</span>
                 </td>
+            </tr>
         </tbody>
     </table>
+    #}
 {% endif %}

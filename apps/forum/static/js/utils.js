@@ -43,8 +43,8 @@ var getUniqueWords = function(value){
 };
 
 var showMessage = function(element, msg, where) {
-    var div = $('<div class="vote-notification"><h3>' + msg + '</h3>(' +
-    gettext('click to close') + ')</div>');
+    var div = $('<div class="vote-notification"><h3>' + msg + '</h3><p><i class="icon-remove icon-white"></i> <span>(' +
+    gettext('click to close') + ')</span></p></div>');
 
     div.click(function(event) {
         $(".vote-notification").fadeOut("fast", function() { $(this).remove(); });
@@ -451,6 +451,8 @@ inherits(EditLink, SimpleControl);
 
 EditLink.prototype.createDom = function(){
     var element = $('<a></a>');
+    element.addClass('edit-icon');
+    element.addClass('comment-edit');
     element.addClass('edit');
     this.decorate(element);
 };
@@ -458,7 +460,7 @@ EditLink.prototype.createDom = function(){
 EditLink.prototype.decorate = function(element){
     this._element = element;
     this._element.attr('title', gettext('click to edit this comment'));
-    this._element.html(gettext('edit'));
+    this._element.html('<i class="icon-pencil"> </i>'+gettext('edit'));
     this.setHandlerInternal();
 };
 
@@ -471,8 +473,9 @@ inherits(DeleteIcon, SimpleControl);
 
 DeleteIcon.prototype.decorate = function(element){
     this._element = element;
-    this._element.attr('class', 'delete-icon');
+    this._element.attr('class', 'delete-icon comment-delete');
     this._element.attr('title', this._title);
+    this._element.html('<i class="icon-trash"> </i>'+gettext('delete'));
     if (this._handler !== null){
         this.setHandlerInternal();
     }
@@ -483,7 +486,7 @@ DeleteIcon.prototype.setHandlerInternal = function(){
 };
 
 DeleteIcon.prototype.createDom = function(){
-    this._element = this.makeElement('span');
+    this._element = this.makeElement('a');
     this.decorate(this._element);
     if (this._content !== null){
         this.setContent(this._content);

@@ -6,9 +6,14 @@
 </div>
 {% endif %}
 
-<div id="metaNav" class="box" style="width: 100%; float: none;">
-    {% include "widgets/meta_nav.html" %}
+{% if settings.GROUPS_ENABLED %}
+<div class="box">
+<a id="navGroups"  href="{% url groups %}" {% if active_tab == 'groups' %}class="on"{% endif %}>
+    {% trans %}groups{% endtrans %}
+</a>
 </div>
+{% endif %}
+
 
 {% if contributors and settings.SIDEBAR_MAIN_SHOW_AVATARS %}
     {% include "widgets/contributors.html" %}

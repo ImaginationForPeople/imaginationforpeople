@@ -11,14 +11,14 @@
                     {% endif %}
                 {% endif %}
             {% endif %}
-            <input id="id_title" class="questionTitleInput" name="title" autocomplete="off"
+            <input id="id_title" class="questionTitleInput" type="text" name="title" autocomplete="off"
                 value="{% if form.initial.title %}{{form.initial.title|escape}}{% endif %}"/>
             <span class="form-error">{{ form.title.errors }}</span>
         </div>
         <div class="title-desc">
             {{ form.title.help_text }}
         </div>
-    </div>
+    </div> 
     <div id='question-list'></div>
     {{
         macros.edit_post(
@@ -29,6 +29,7 @@
             user = request.user
         )
     }}
+    {#
     <div class="question-options">
         {% if settings.WIKI_ON %}
             {{ macros.checkbox_in_div(form.wiki) }}
@@ -37,10 +38,11 @@
             {{ macros.checkbox_in_div(form.ask_anonymously) }}
         {% endif %}
     </div>
+    #}
     {% if not request.user.is_authenticated() %}
-    <input type="submit" name="post_anon" value="{% trans %}Login/Signup to Post{% endtrans %}" class="submit" />
+    <button type="submit" name="post_anon" value="{% trans %}Login/Signup to Post{% endtrans %}" class="submit">Login/Signup to Post</button>
     {% else %}
-    <input type="submit" name="post" value="{% trans %}Ask Your Question{% endtrans %}" class="submit" />
+    <button type="submit" name="post" value="{% trans %}Ask Your Question{% endtrans %}" class="submit"><i class="interrogation"> </i> {% trans %}Ask Your Question{% endtrans %}</button>
     {% endif %}
     <div class="clean"></div>
 </form>
