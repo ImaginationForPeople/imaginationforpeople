@@ -31,7 +31,7 @@ class ProjectsForTagPlugin(CMSPluginBase):
     List of all projects associated to a tag
     """
     name = _("Projects for a tag")
-    render_template = "project_sheet/projects_for_tag.html"
+    render_template = "project_sheet/obsolete/projects_for_tag.html"
     model = TagCMS
     
     def render(self, context, instance, placeholder):
