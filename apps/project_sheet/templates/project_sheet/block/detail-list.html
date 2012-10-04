@@ -1,0 +1,41 @@
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/detail-list.css" />
+{% endaddtoblock %}
+
+{% for topic, questions in topics %}
+{% for q, a in questions %}
+<div class="detail-item">
+	<h2 id="question-{{q.id}}" class="detail-question">
+		<span>{{ q.content|capfirst }}</span>
+		<a href="{% url project_sheet-instance-edit-question project_translation.slug q.id %}" class="button right editing-button">
+			<img src="{{ STATIC_URL }}images/base/edit.png" />
+		</a>
+	</h2>
+	{% if answer_form %}
+	<form                                                                                                       
+		class="project_details_body_edit"                                                                       
+		{% if project_instance %}                                                                               
+		action="{% url project_sheet-instance-edit-question project_instance.slug q.id %}"                      
+		{% else %}                                                                                              
+		action="{% url project_sheet-edit-field topic.slug 'answer_content' %}"                                 
+		{% endif %}                                                                                             
+		method="post">{% csrf_token %}                                                                          
+		{{answer_form.content}}                                                                                 
+		<input  title="{% trans 'Ok'|capfirst %}" class="greenbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/v.png"   alt="Ok" /> 
+		<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/x.png  " alt="X" />
+	</form> 
+	{% else %}
+	<p id="answer-{{q.id}}" class="detail-answer">
+		{{ a.content|linebreaksbr }}
+	</p>
+	{% endif %}
+</div>
+{% endfor %}
+{% endfor %}

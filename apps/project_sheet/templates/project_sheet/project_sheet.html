@@ -50,17 +50,8 @@
 		{% endif %}
 	    </div> <!-- .project-about -->
 
-	    <div class="project-details">
-		{% for topic, questions in topics %}
-		{% for q, a in questions %}
-		<h2 id="question-{{q.id}}" class="detail-question">
-		    <span>{{ q.content|capfirst }}</span>
-		</h2>
-		<p id="answer-{{q.id}}" class="detail-answer">
-		    {{ a.content|linebreaksbr }}
-		</p>
-		{% endfor %}
-		{% endfor %}
+	    <div class="project-details detail-list">
+		{% include "project_sheet/block/detail-list.html" %}
 	    </div> <!-- .project-details -->
 
 	    <hr class="shaded-separator" />
