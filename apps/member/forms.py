@@ -71,7 +71,26 @@ class I4PEditProfileForm(EditProfileForm):
     class Meta:
         model = I4pProfile
         exclude = ('registration_site',
-                   'user',)
+                   'user',
+                   
+                   'status',
+                   'reputation',
+                   'gold',
+                   'silver',
+                   'bronze',
+                   'questions_per_page',
+                   'last_seen',
+                   'interesting_tags',
+                   'ignored_tags',
+                   'subscribed_tags',
+                   'show_marked_tags',
+                   'email_tag_filter_strategy',
+                   'email_signature',
+                   'display_tag_filter_strategy',
+                   'new_response_count',
+                   'seen_response_count',
+                   'consecutive_days_visit_count',
+                   'is_fake',)
 
 
 class AutoCompleteComposeForm(ComposeForm):
