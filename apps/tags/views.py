@@ -48,7 +48,6 @@ class TagPageView(TemplateView):
         current_site = Site.objects.get_current()
         current_language_code = translation.get_language()
 
-        print ">>", tag
         tag_instance = get_tag(tag)
         if tag_instance is None:
             raise Http404(_('No Tag found matching "%s".') % tag)
