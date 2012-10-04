@@ -26,7 +26,7 @@ Parameters for this block
 	<ul>
 		{% for tag in taglist_tags %}
 		<!-- FIXME: how do we get tag count on non-tag pages ? -->
-		<li><a href="{% url tags:tag-view tag %}">{{ tag.name }}{% if tag.count %} ({{ tag.count }}){% endif %}</a></li>
+		<li><a href="{% url tags:tag-view tag.name|urlencode %}">{{ tag.name }}{% if tag.count %} ({{ tag.count }}){% endif %}</a></li>
 		{% endfor %}
 		{% if taglist_is_editable %}
 		<li class="edit">

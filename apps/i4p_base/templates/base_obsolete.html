@@ -32,7 +32,7 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
-    {% render_block "css" %}	
+    {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
 
 
     {% compress js %}
@@ -53,7 +53,7 @@
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
-    {% render_block "js" %}
+    {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
 
     <script type="text/javascript">
       $(document).ready(function(){
