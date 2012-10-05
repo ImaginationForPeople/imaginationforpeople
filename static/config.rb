@@ -52,10 +52,29 @@ end
 # by their counterparts without the hash uniqueness.
 on_stylesheet_saved do |filename|
   if File.exists?(filename)
-    css = File.read filename
-    File.open(filename, 'w+') do |f|
-      f << css.gsub(%r{-s[a-z0-9]{10}\.png}, '.png')
-    end
+	fnew = File.open(filename + ".new", 'w+')
+	fold = File.open(filename, 'r')
+	fold.readlines.each do |li|
+		case li
+		when /([0-9.]+)rem(\s*)/ then
+			# compute and rewrite for IE8
+			val_px = ($1.to_f * 10).to_i
+			fnew << li.gsub(/([0-9.]+)rem(\s*)/, '%spx\2' % val_px)
+			# real rule
+			fnew << li
+		when /-s[a-z0-9]{10}\.png/ then
+			fnew << li.gsub(%r{-s[a-z0-9]{10}\.png}, '.png')
+		else
+			# simple copy
+			fnew << li
+		end
+	end
+	FileUtils.mv filename + ".new", filename
+    #css = File.read filename
+	
+    #File.open(filename, 'w+') do |f|
+    #  f << css.gsub(%r{-s[a-z0-9]{10}\.png}, '.png')
+    #end
   end
 end
 
