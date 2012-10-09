@@ -279,7 +279,7 @@ def app_fullupdate():
     execute(updatemaincode)
     execute(compile_messages)
     execute(compile_stylesheets)
-    execute(update_requirements, force=True)
+    execute(update_requirements, force=False)
     execute(app_db_update)
     execute(collect_static_files)
     # tests()
@@ -443,6 +443,7 @@ def bootstrap_full():
     execute(install_database_server)
     execute(install_webservers)
     execute(install_builddeps)
+    execute(install_rbenv)
     execute(install_compass)
     
     execute(deploy_bootstrap)
