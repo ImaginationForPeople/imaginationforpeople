@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-09-05 16:35+0200\n"
-"PO-Revision-Date: 2012-09-05 14:38+0000\n"
+"POT-Creation-Date: 2012-10-05 11:09+0200\n"
+"PO-Revision-Date: 2012-10-05 09:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -1023,7 +1023,7 @@ msgstr "La page demandée a retourné une erreur"
 msgid "Thank you try again later."
 msgstr "Merci de réessayer plus tard."
 
-#: templates/base.html:14
+#: templates/base.html:14 templates/base_obsolete.html:14
 msgid ""
 "Imagination for People (IP) is a multilingual, Wikipedia-like open platform "
 "dedicated to disruptive social innovation. At a global scale, IP aims to "
@@ -1031,51 +1031,52 @@ msgid ""
 "challenges of living together."
 msgstr "Imagination for People est une plateforme Web multilingue dédiée à l’Imagination Citoyenne. Cet espace d'échanges vise à identifier et à faire émerger, à l’échelle mondiale, des expériences inédites en matière d’innovation sociale. "
 
-#: templates/base.html:15 templates/pages/homepage.html:17
+#: templates/base.html:20 templates/base_obsolete.html:15
+#: templates/pages/homepage.html:18
 msgid "identify and support imaginative social projects"
 msgstr "repérer et soutenir les projets sociaux créatifs"
 
-#: templates/base.html:66
+#: templates/base.html:73 templates/base_obsolete.html:67
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Saviez-vous que votre navigateur n'est plus à jour ?"
 
-#: templates/base.html:67
+#: templates/base.html:74 templates/base_obsolete.html:68
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
 msgstr "Votre navigateur est obsolète, et pourrait ne pas être compatible avec ce site internet. Une liste des navigateurs les plus populaires se trouve ci-dessous."
 
-#: templates/base.html:68
+#: templates/base.html:75 templates/base_obsolete.html:69
 msgid "Just click on the icons to get to the download page"
 msgstr "Cliquez sur les images pour aller à la page de téléchargement"
 
-#: templates/base.html:69
+#: templates/base.html:76 templates/base_obsolete.html:70
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
 msgstr "En fermant cette fenêtre, vous êtes informés que la navigation sur le site pourrait être dégradée."
 
-#: templates/base.html:70
+#: templates/base.html:77 templates/base_obsolete.html:71
 msgid "Close This Window"
 msgstr "Ferme Cette Fenêtre"
 
-#: templates/base.html:78
+#: templates/base.html:85 templates/base_obsolete.html:79
 msgid "Project search"
 msgstr "Recherche de projet"
 
-#: templates/base.html:80
+#: templates/base.html:87 templates/base_obsolete.html:81
 msgid "Enter your login"
 msgstr "Enter son login"
 
-#: templates/base.html:81
+#: templates/base.html:88 templates/base_obsolete.html:82
 msgid "Password"
 msgstr "Mot de passe"
 
-#: templates/base.html:83
+#: templates/base.html:90 templates/base_obsolete.html:84
 msgid "Enter your username"
 msgstr "Entrer son nom d'utilisateur"
 
-#: templates/base.html:85
+#: templates/base.html:92 templates/base_obsolete.html:86
 msgid "Enter your email adress"
 msgstr "Entrer son adresse mail"
 
@@ -1100,6 +1101,7 @@ msgid "Clear filters"
 msgstr "Effacer les filtres"
 
 #: templates/filter-panel.html:60
+#: templates/cmsplugin_zinnia/_entry_detail.html:71
 msgid "Tags"
 msgstr "Tags"
 
@@ -1156,30 +1158,40 @@ msgstr "Equipe"
 msgid "Project Status"
 msgstr "Statut du projet"
 
-#: templates/footer.html:20
+#: templates/footer.html:23 templates/footer_obsolete.html:20
 msgid ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
 msgstr "Une communauté de citoyens créatifs pour repérer et soutenir les projets d'innovation sociale."
 
-#: templates/footer.html:28
+#: templates/footer.html:31 templates/footer_obsolete.html:28
 msgid "Read the manifesto"
 msgstr "Lire le manifeste"
 
-#: templates/footer.html:28
+#: templates/footer.html:31 templates/footer_obsolete.html:28
 msgid "About IP"
 msgstr "À propos"
 
-#: templates/footer.html:29
+#: templates/footer.html:32 templates/footer_obsolete.html:29
 msgid "Follow us"
 msgstr "Nous suivre"
 
-#: templates/footer.html:31 templates/footer.html.py:32
-#: templates/footer.html:33 templates/footer.html.py:34
+#: templates/footer.html:34 templates/footer.html.py:35
+#: templates/footer.html:36 templates/footer.html.py:37
+#: templates/footer_obsolete.html:31 templates/footer_obsolete.html.py:32
+#: templates/footer_obsolete.html:33 templates/footer_obsolete.html.py:34
 msgid "Follow us on"
 msgstr "Nous suivre sur"
 
-#: templates/footer.html:60
+#: templates/footer.html:59
+#, python-format
+msgid ""
+"\n"
+"                        \"<strong>%(url)s</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.\"\n"
+"    \t            "
+msgstr ""
+
+#: templates/footer_obsolete.html:60
 #, python-format
 msgid ""
 "\n"
@@ -1187,33 +1199,65 @@ msgid ""
 "\t            "
 msgstr "\n                    \"<strong>%(url)s</strong> est propulsée par un ensemble de composantes libres sous <strong>AGPL</strong> et <strong>Creative Commons</strong>.\"\n\t            "
 
-#: templates/login-slide.html:17
-msgid "Interface language"
-msgstr "Langue de l'interface"
-
-#: templates/login-slide.html:32
+#: templates/header.html:14 templates/login-slide.html:32
 msgid "Member Login"
 msgstr "Connexion "
 
-#: templates/login-slide.html:52
+#: templates/header.html:34 templates/login-slide.html:52
 msgid "Sign in"
 msgstr "Connexion"
 
-#: templates/login-slide.html:53 templates/pages/home-blocks/loginbox.html:48
+#: templates/header.html:35 templates/login-slide.html:53
+#: templates/pages/home-blocks/loginbox.html:48
 msgid "Lost your password?"
 msgstr "Mot de passe oublié?"
 
-#: templates/login-slide.html:60
+#: templates/header.html:42 templates/login-slide.html:60
 msgid "You can also use"
 msgstr "Vous pouvez aussi vous connecter avec :"
 
-#: templates/login-slide.html:68
+#: templates/header.html:49 templates/login-slide.html:68
 msgid "Not a member yet ?"
 msgstr "Pas encore membre ?"
 
-#: templates/login-slide.html:69
+#: templates/header.html:50 templates/login-slide.html:69
 msgid "Signup now !"
 msgstr "Inscrivez-vous !"
+
+#: templates/header.html:85 templates/login-slide.html:124
+#: templates/backcap/feedback_detail.html:229
+msgid "Log In"
+msgstr "Se connecter"
+
+#: templates/header.html:85 templates/login-slide.html:124
+msgid "Register"
+msgstr "S'inscrire"
+
+#: templates/header.html:93 templates/header.html.py:95
+#: templates/login-slide.html:132 templates/login-slide.html.py:134
+#: templates/pages/home-blocks/loginbox.html:83
+#: templates/pages/home-blocks/loginbox.html:85
+msgid "My messages"
+msgstr "Mes messages"
+
+#: templates/header.html:97 templates/login-slide.html:137
+#: templates/pages/home-blocks/loginbox.html:88
+msgid "View my profile"
+msgstr "Afficher mon profil"
+
+#: templates/header.html:98 templates/login-slide.html:138
+#: templates/pages/home-blocks/loginbox.html:89
+msgid "Edit my profile"
+msgstr "Editer mon profil"
+
+#: templates/header.html:100 templates/login-slide.html:142
+#: templates/pages/home-blocks/loginbox.html:90
+msgid "Log out"
+msgstr "Se déconnecter"
+
+#: templates/login-slide.html:17
+msgid "Interface language"
+msgstr "Langue de l'interface"
 
 #: templates/login-slide.html:79
 msgid "My projects"
@@ -1223,53 +1267,31 @@ msgstr "Mes projets"
 msgid "You have no projects"
 msgstr "Vous n'avez pas de projets"
 
-#: templates/login-slide.html:123 templates/backcap/feedback_detail.html:229
-msgid "Log In"
-msgstr "Se connecter"
-
-#: templates/login-slide.html:123
-msgid "Register"
-msgstr "S'inscrire"
-
-#: templates/login-slide.html:125
+#: templates/login-slide.html:126
 msgid "Close Panel"
 msgstr "Fermer le panneau"
 
-#: templates/login-slide.html:131 templates/login-slide.html.py:133
-#: templates/pages/home-blocks/loginbox.html:83
-#: templates/pages/home-blocks/loginbox.html:85
-msgid "My messages"
-msgstr "Mes messages"
-
-#: templates/login-slide.html:136 templates/pages/home-blocks/loginbox.html:88
-msgid "View my profile"
-msgstr "Afficher mon profil"
-
-#: templates/login-slide.html:137 templates/pages/home-blocks/loginbox.html:89
-msgid "Edit my profile"
-msgstr "Editer mon profil"
-
-#: templates/login-slide.html:139
+#: templates/login-slide.html:140
 msgid "Administration"
 msgstr "Administration"
 
-#: templates/login-slide.html:141 templates/pages/home-blocks/loginbox.html:90
-msgid "Log out"
-msgstr "Se déconnecter"
+#: templates/menu.html:20
+msgid "Home"
+msgstr ""
 
-#: templates/nav.html:31 templates/nav.html.py:36
+#: templates/nav_obsolete.html:31 templates/nav_obsolete.html.py:36
 msgid "Project"
 msgstr "Projet"
 
-#: templates/nav.html:33
+#: templates/nav_obsolete.html:33
 msgid "History"
 msgstr "Historique"
 
-#: templates/nav.html:51
+#: templates/nav_obsolete.html:51
 msgid "other languages"
 msgstr "Autres langues"
 
-#: templates/nav.html:64
+#: templates/nav_obsolete.html:64
 msgid "create a new translation"
 msgstr "Créer une nouvelle traduction"
 
@@ -1537,6 +1559,120 @@ msgstr "Chargement des tweets"
 msgid "Twitter"
 msgstr "Twitter"
 
+#: templates/cmsplugin_zinnia/_entry_detail.html:25
+msgid "Written by"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:29
+#, python-format
+msgid "Show all %(author)s's entries"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:32
+msgid "on"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:34
+msgid "Written on"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:38
+msgid "in"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:41
+#, python-format
+msgid "Show all entries in %(category)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:61
+#, python-format
+msgid "Continue reading %(object)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:63
+msgid "Continue reading"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:75
+#, python-format
+msgid "Show all entries tagged by %(tag)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:78
+msgid "No tags"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:83
+msgid "Short url"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:85
+#, python-format
+msgid "Short URL to %(object)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:92
+msgid "Discussions"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:96
+#, python-format
+msgid "Comments on %(object)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:97
+#, python-format
+msgid "%(comment_count)s comment"
+msgid_plural "%(comment_count)s comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:101
+msgid "No comments yet."
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:102
+#, python-format
+msgid "Leave a comment on %(object)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:103
+msgid "Be first to comment!"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:106
+msgid "Comments are closed."
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:112
+#, python-format
+msgid "Pingbacks on %(object)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:113
+#, python-format
+msgid "%(pingback_count)s pingback"
+msgid_plural "%(pingback_count)s pingbacks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:119
+#, python-format
+msgid "Trackbacks on %(object)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:120
+#, python-format
+msgid "%(trackback_count)s trackback"
+msgid_plural "%(trackback_count)s trackbacks"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/cmsplugin_zinnia/entry_detail.html:7
+msgid "No entries yet."
+msgstr ""
+
 #: templates/pages/contrib.html:45
 msgid "A community dedicated to"
 msgstr "Une communauté dédiée à"
@@ -1581,7 +1717,7 @@ msgstr "Dernière activité"
 msgid "Latest commits"
 msgstr "Dernières modifications"
 
-#: templates/pages/contrib.html:139 templates/pages/homepage.html:135
+#: templates/pages/contrib.html:139 templates/pages/homepage.html:136
 msgid "Join the community"
 msgstr "Rejoignez la communauté"
 
@@ -1593,35 +1729,35 @@ msgstr "Actualités"
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr "Il n'y a pas encore de contenu. Passez en mode édition et ajoutez un élément."
 
-#: templates/pages/homepage.html:37
+#: templates/pages/homepage.html:38
 msgid "My project title"
 msgstr "Le titre du projet"
 
-#: templates/pages/homepage.html:38
+#: templates/pages/homepage.html:39
 msgid "One line description"
 msgstr "Description en une ligne"
 
-#: templates/pages/homepage.html:127
+#: templates/pages/homepage.html:128
 msgid " What is it ?"
 msgstr "Qu'est-ce que c'est ?"
 
-#: templates/pages/homepage.html:130
+#: templates/pages/homepage.html:131
 msgid "Explore and contribute"
 msgstr "Explorer et contribuer"
 
-#: templates/pages/homepage.html:131
+#: templates/pages/homepage.html:132
 msgid "to social and cultural projects"
 msgstr "à des projets sociaux et culturels"
 
-#: templates/pages/homepage.html:136
+#: templates/pages/homepage.html:137
 msgid "of citizens from more 30 countries"
 msgstr "Rejoignez une communauté de citoyens de plus de 30 pays."
 
-#: templates/pages/homepage.html:141
+#: templates/pages/homepage.html:142
 msgid " Detect and develop socially innovative projects."
 msgstr "Une communauté de citoyens créatifs pour repérer et soutenir les projets d'innovation sociale."
 
-#: templates/pages/homepage.html:224
+#: templates/pages/homepage.html:225
 msgid ""
 "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 "<strong>register</strong> your project"

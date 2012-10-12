@@ -201,7 +201,8 @@ def compile_stylesheets():
     Generate *.css files from *.scss
     """
     with cd(env.venvfullpath + '/' + env.projectname + '/static'):
-        sudo('bundle exec compass compile --force', shell=True, user=env.user)
+        sudo('rm -rf compiled_sass', user=env.user)
+        sudo('/var/lib/gems/1.9.1/bin/bundle exec compass compile --force', shell=True, user=env.user)
             
 def tests():
     """
@@ -276,8 +277,9 @@ def app_fullupdate():
     Full Update: maincode and dependencies
     """
     execute(updatemaincode)
-    execute(update_requirements, force=True)
     execute(compile_messages)
+    execute(compile_stylesheets)
+    execute(update_requirements, force=True)
     execute(app_db_update)
     execute(collect_static_files)
     # tests()
@@ -403,9 +405,9 @@ def install_builddeps():
 
 @task
 def install_compass():
-    sudo('apt-get install -y rubygems')
-    sudo('gem install bundler')
-    venvcmd('/var/lib/gems/1.8/bin/bundle install --path=vendor/bundle')
+    sudo('apt-get install -y ruby1.9.1')
+    sudo('gem1.9.1 install bundler ')
+    venvcmd('/var/lib/gems/1.9.1/bin/bundle install --path=vendor/bundle')
 
 
 @task
