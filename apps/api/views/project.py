@@ -59,6 +59,7 @@ class UserResource(ModelResource):
     
     def dehydrate(self, bundle):
         bundle.data['fullname'] = bundle.obj.get_full_name()
+        bundle.data['avatar'] = bundle.obj.get_profile().get_mugshot_url()
         return bundle
 
 class ProjectVideoDetailResource(ModelResource):
