@@ -287,6 +287,7 @@ INSTALLED_APPS = (
     'apps.i4p_base',
     'apps.member',
     'apps.project_sheet',
+    'apps.project_support',
     'apps.partner',
     'apps.workgroup',
     'apps.tags',

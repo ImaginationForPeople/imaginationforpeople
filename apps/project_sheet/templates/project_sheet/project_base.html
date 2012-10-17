@@ -52,10 +52,10 @@
     <div class="container">
 	<div class="row">
 	<ul class="span8">
-	    <li class="active"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
+	    <li {% if not active_tab or active_tab = 'project' %}class="active"{% endif %}><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
+        <li {% if active_tab = 'support' %}class="active"{% endif %}><a href="{% url project_support_main project_translation.slug %}">{% trans "Calls for help" %}</a></li>
 	    {% comment %}
 	    <li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
-	    <li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
 	    <li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
 	    <li><a href="#FIXME-BADURL">{% trans "Gallery" %}</a></li>
 	    <li class="right"><a href="#FIXME-BADURL">

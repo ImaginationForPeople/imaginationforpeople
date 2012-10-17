@@ -1,10 +1,11 @@
 #-- encoding: utf-8 --
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls.defaults import patterns, url, include
 
 from . import views
 from . import ajax
 
 import feeds
+
 
 PROJECT_AUTHORIZED_FIELDS = "|".join([
     'title',
@@ -26,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/edit/question/(?P<question_id>[\d]+)/$', views.project_sheet_edit_question, name='project_sheet-instance-edit-question'),
     url(r'^(?P<slug>[-\w]+)/edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-instance-edit-field'),
 
+    url(r'^(?P<project_slug>[-\w]+)/support/$', include("apps.project_support.urls")),
 
     url(r'^(?P<project_slug>[-\w]+)/edit/references/$', views.project_sheet_edit_references, name='project_sheet-instance-edit-references'),
 
