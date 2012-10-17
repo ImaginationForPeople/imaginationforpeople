@@ -75,7 +75,7 @@ class ProjectPictureListResource(ModelResource):
         fields = [None]
     
     def dehydrate(self, bundle):
-        bundle.data['thumb'] = bundle.obj.thumbnail_image.url
+        bundle.data['thumb'] = bundle.obj.thumbnail_api.url
         return bundle
     
 class ProjectPictureDetailResource(ModelResource):
@@ -85,8 +85,8 @@ class ProjectPictureDetailResource(ModelResource):
         fields = ['author', 'created', 'desc', 'license', 'source']
     
     def dehydrate(self, bundle):
-        bundle.data['thumb'] = bundle.obj.thumbnail_image.url
-        bundle.data['url'] = bundle.obj.display.url
+        bundle.data['thumb'] = bundle.obj.thumbnail_api.url
+        bundle.data['url'] = bundle.obj.display_api.url
         return bundle
     
 class I4pProjectListResource(ModelResource):
