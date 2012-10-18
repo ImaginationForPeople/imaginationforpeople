@@ -282,6 +282,8 @@ INSTALLED_APPS = (
     'djkombu',
     'followit',
 
+    'categories.editor',
+
     # Internal Apps
     'apps.forum',
     'apps.i4p_base',
