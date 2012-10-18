@@ -180,11 +180,11 @@ class I4pProjectTranslationResource(ModelResource):
         return self.create_response(request, to_be_serialized)
     
     def get_bestof(self, request, **kwargs):
-        best_projects = I4pProject.objects.filter(best_of=True)
+        best_projects = I4pProject.objects.filter(best_of=True).order_by('?')[:80]
         return self.get_custom(request, best_projects, **kwargs);
     
     def get_latest(self, request, **kwargs):
-        latest_projects = I4pProject.objects.order_by('-created')[:10]
+        latest_projects = I4pProject.objects.order_by('-created')[:40]
         return self.get_custom(request, latest_projects, **kwargs)
     
     def get_random(self, request, **kwargs):
