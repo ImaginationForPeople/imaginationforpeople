@@ -34,7 +34,6 @@ FIXME: use picture list instead of project_translation
 			{% endif %}
 			">
 			<div class="image">
-				<!-- <img src="{{project_picture.display.url}}" class="normal" alt=""> -->
 				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
 				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
 			</div>
@@ -49,5 +48,23 @@ FIXME: use picture list instead of project_translation
 		{% endif %}
 		{% endfor %}
 	</ul>
+</div>
+
+<div class="project-gallery-modal">
+	<div class="viewer">
+		<div class="slider">
+		</div>
+	</div>
+
+	<div class="information">
+		<div class="title">
+		</div>
+
+		<div class="source">
+		</div>
+
+		<div class="license">
+		</div>
+	</div>
 </div>
 
