@@ -1,1 +1,21 @@
 {% extends "project_sheet/project_base.html" %}
+{% load i18n %}
+
+{% block project_content %}
+<div class="container">        
+    <div class="row">
+    <div class="span8 project-main">
+        <div id="support-toolbar">
+        {% comment %} 
+        {% trans 'call for help'%} {{project_translation.projectformalsupport_set.count }}
+        {% endcomment %}
+        {% trans 'help proposal' %} {{project_translation.projectinformalsupport_set.count }}
+        <a href="{% url project_support_propose project_slug=project_translation.slug %}">{% trans 'propose a new call for help of help proposal'%}</a>
+        </div>
+    </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
