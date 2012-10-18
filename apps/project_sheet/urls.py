@@ -1,7 +1,8 @@
 #-- encoding: utf-8 --
-from django.conf.urls.defaults import patterns, url, include
+from django.conf.urls.defaults import patterns, url
 
 from . import views
+from apps.project_support import views as support_views
 from . import ajax
 
 import feeds
@@ -27,8 +28,6 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/edit/question/(?P<question_id>[\d]+)/$', views.project_sheet_edit_question, name='project_sheet-instance-edit-question'),
     url(r'^(?P<slug>[-\w]+)/edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-instance-edit-field'),
 
-    url(r'^(?P<project_slug>[-\w]+)/support/$', include("apps.project_support.urls")),
-
     url(r'^(?P<project_slug>[-\w]+)/edit/references/$', views.project_sheet_edit_references, name='project_sheet-instance-edit-references'),
 
     url(r'^(?P<project_slug>[-\w]+)/translate/$', views.project_sheet_create_translation, name='project_sheet-translate'),
@@ -38,6 +37,11 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/update/related/$', ajax.project_update_related, name='project_sheet-project_update_related'),
     
     url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
+    
+    
+    url(r'^(?P<project_slug>[-\w]+)/support/$', support_views.ProjectSupportView.as_view(), name='project_support_main'),
+    url(r'^(?P<project_slug>[-\w]+)/support/propose/$', support_views.propose_project_support, name='project_support_propose'),
+    
 
     url(r'^(?P<slug>[-\w]+)/$', views.project_sheet_show, name='project_sheet-show'),
     url(r'^(?P<slug>[-\w]+)/add/media/$', views.project_sheet_show, {'add_media' : True}, name='project_sheet-instance-add-media'),
