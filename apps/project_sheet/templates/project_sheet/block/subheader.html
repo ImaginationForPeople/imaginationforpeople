@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
+{% load thumbnail %}
 
 {% block base_grid %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
@@ -19,10 +20,9 @@
 	<div class="row">
 	    <div class="span8 subheader">
 		<div class="background">
-		    <img src="{{ project_translation.project.pictures.all.0.display.url }}" alt="" />&nbsp;
+		    <img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 600x250 upscale crop='50,50' %}" alt="" />&nbsp;
 		</div>
 		<div class="overlay">
-
 		    <h1 class="title"> <!-- TITLE -->
 			{% if title_form %}<!-- readwrite mode-->
 			<form id="title" 

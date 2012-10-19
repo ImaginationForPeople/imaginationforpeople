@@ -281,6 +281,7 @@ INSTALLED_APPS = (
     'djcelery',
     'djkombu',
     'followit',
+    'tastypie',
 
     # Internal Apps
     'apps.forum',
@@ -404,6 +405,7 @@ LOGOUT_URL = "/member/signout/"
 # XXX To be removed as soon as google login is confirmed working
 LOCALE_INDEPENDENT_PATHS = (
         re.compile('^/member/complete/google-oauth2/?'),
+        re.compile('^/member/login/google-oauth2/?'),
 	)
 
 ## Flags
@@ -500,6 +502,7 @@ ASKBOT_STARTUP_CHECK = False
 ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
 ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
+LIVESETTINGS_CACHE_TIMEOUT = 6000
 
 ## Celery Settings
 # TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge

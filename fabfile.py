@@ -195,6 +195,15 @@ def compile_messages():
             print(cyan('\t * %s' % appsubdir))
             venvcmd(cmd, subdir=appsubdir)
 
+@task
+def compile_stylesheets():
+    """
+    Generate *.css files from *.scss
+    """
+    with cd(env.venvfullpath + '/' + env.projectname + '/static'):
+        sudo('rm -rf compiled_sass', user=env.user)
+        sudo('bundle exec compass compile --force', shell=True, user=env.user)
+            
 def tests():
     """
     Run all tests on remote
@@ -268,8 +277,9 @@ def app_fullupdate():
     Full Update: maincode and dependencies
     """
     execute(updatemaincode)
-    execute(update_requirements, force=True)
     execute(compile_messages)
+    execute(compile_stylesheets)
+    execute(update_requirements, force=False)
     execute(app_db_update)
     execute(collect_static_files)
     # tests()
@@ -282,6 +292,7 @@ def app_update():
     """
     execute(updatemaincode)
     execute(compile_messages)
+    execute(compile_stylesheets)
     execute(app_db_update)
     execute(collect_static_files)
     # tests()
@@ -392,12 +403,34 @@ def install_builddeps():
     print(cyan('Installing compilers and required libraries'))
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
-def install_devdeps():
-    """
-    Will install commonly needed developpement dependencies.
-    """
-    print(cyan('Installing required developpement tools'))
-    sudo('ruby-compass libfssm-ruby')
+@task
+def install_rbenv():
+    # Install rbenv:
+    sudo('git clone git://github.com/sstephenson/rbenv.git ~/.rbenv', user=env.user)
+    # Add rbenv to the path:
+    sudo('echo \'export PATH="$HOME/.rbenv/bin:$PATH"\' >> .bash_profile', user=env.user)
+    sudo('echo \'eval "$(rbenv init -)"\' >> .bash_profile', user=env.user)
+    sudo('source ~/.bash_profile', user=env.user)
+    # Install ruby-build:
+    with cd('/tmp'):
+        sudo('git clone git://github.com/sstephenson/ruby-build.git', user=env.user)
+    with cd('/tmp/ruby-build'):
+        sudo('./install.sh')
+    # Install Ruby 1.9.3-p125:
+    sudo('rbenv install 1.9.3-p125', user=env.user)
+    sudo('rbenv global 1.9.3-p125', user=env.user)
+    # Rehash:
+    sudo('rbenv rehash', user=env.user)
+    
+    #install bundler
+    sudo('gem install bundler', user=env.user)
+    sudo('rbenv rehash')
+
+@task
+def install_compass():
+    with cd(env.venvfullpath + '/' + env.projectname + '/'):
+        sudo('rm -rf vendor/bundle', user=env.user)
+        sudo('bundle install --path=vendor/bundle', user=env.user)
 
 @task
 def bootstrap_full():
@@ -410,7 +443,9 @@ def bootstrap_full():
     execute(install_database_server)
     execute(install_webservers)
     execute(install_builddeps)
-
+    execute(install_rbenv)
+    execute(install_compass)
+    
     execute(deploy_bootstrap)
     
     if(env.wsginame == 'dev.wsgi'):

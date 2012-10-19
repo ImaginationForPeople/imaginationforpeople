@@ -104,9 +104,7 @@ poor design of the data or methods on data objects #}
         <!--{{ post_contributor_avatar_and_credentials(
             post, post.author, karma_mode = karma_mode, badges_mode = badges_mode
         ) }} get rid of the badges and karma-->
-        {{ post_contributor_avatar_and_credentials(
-            post, post.author
-        ) }}
+        {{ post_contributor_avatar_and_credentials(post, post.author) }}
         <p>
             {# todo: access to class names needs to be removed here #}
             {% if post.post_type == 'question' %}
@@ -329,7 +327,7 @@ for the purposes of the AJAX comment editor #}
     {% else %}
         {% set remaining_comment_count = 0 %}
     {% endif %}
-    <a id="add-comment-to-post-{{post.id}}" class="button"></a>
+    <a id="add-comment-to-post-{{post.id}}" class="button" style="margin: 5px; float: right;"></a>
     <script type="text/javascript">
         askbot['data']['{{widget_id}}'] = {
             truncated: {% if post.comment_count > max_comments %}true{% else %}false{% endif %}

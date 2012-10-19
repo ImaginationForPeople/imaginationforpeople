@@ -1,0 +1,17 @@
+{% load i18n %}
+{% load url from future %}
+<ul class="{% if tags %}tags{% else %}no-tags{% endif %}">
+  {% for tag in tags %}
+  {% if tag.count > 1 %}
+  <li>
+    <a href="{% url 'zinnia_tag_detail' tag.name %}"
+       title="{% blocktrans count entry_count=tag.count %}{{ entry_count }} entry tagged by {{ tag }}{% plural %}{{ entry_count }} entries tagged by {{ tag }}{% endblocktrans %}"
+       class="tag-{{ tag.font_size }}">{{ tag }}</a>
+  </li>
+  {% endif %}
+  {% empty %}
+  <li>
+    {% trans "No tags yet." %}
+  </li>
+  {% endfor %}
+</ul>

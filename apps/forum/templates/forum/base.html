@@ -39,7 +39,14 @@
     <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-    
+    <!-- modifier l'appel ci dessous à tipsy (tooltips) sur tout le site de manière a cibler la classe et pas tag.tispsed -->
+    <script type="text/javascript">
+		$(document).ready(function(){ 
+			$('.tipsed').tipsy({
+				delay: 0
+			});
+		});
+	</script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>

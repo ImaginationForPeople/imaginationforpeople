@@ -79,18 +79,21 @@ raven==2.0.3
 
 -e git+https://github.com/ojii/django-nani.git@bb47153e05b46b775658887f214a486412fe25a5#egg=django-nani
 
-feedparser==5.0.1
+feedparser==5.1.2
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
 django-simplegravatar==0.2
 
 -e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
-#Askbot
--e git://github.com/atiberghien/askbot-devel.git@fb398f8f3417896671264d8f981b7f2ab1f69103#egg=askbot
+# Askbot
+-e git://github.com/atiberghien/askbot-devel.git@276b8c7ce22bb3650fecdfadad220806b9872330#egg=askbot
 
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@cff1d648ac46bd49f4c0271e17bfb77b6373b9bc#egg=django-blog-zinnia
 -e git://github.com/Fantomas42/cmsplugin-zinnia.git@5c539df6a8e1141f99d1815f0fbbc97950f5cfdb#egg=cmsplugin-zinnia
+
+# REST API
+-e git://github.com/ImaginationForPeople/django-tastypie.git@2794c04f568c417279b2a48381e85b87cbec7274#egg=django-tastypie
 
 # Testing tools
 coverage<3.4

@@ -15,6 +15,7 @@
             {# Warning! Any changes to the comment markup IN THIS `FOR` LOOP must be duplicated in post.js
                for the purposes of the AJAX comment editor #}
             <div class="comment" id="comment-{{comment.id}}">
+                {# Temporary disable upvote on comments
                 <div class="comment-votes">
                     {% if comment.score > 0 %}
                         <div id="comment-img-upvote-{{comment.id}}" class="upvote">{{comment.score}}</div>
@@ -25,20 +26,21 @@
                         <div class="upvote"></div>
                     {% endif %}
                 </div>
+                #}
                 <div class="comment-body">
                     <div class="comment_infos">
                         <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
                         <span class="age">&nbsp;({{ macros.timeago(comment.added_at) }})</span>
+                        <div class="admin_actions">                 
+                             <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans %}delete this comment{% endtrans %}">
+                                <i class="icon-trash"> </i> {% trans %}delete{% endtrans %}
+                             </a>               
+                             <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans %}edit this comment{% endtrans %}"> 
+                                <i class="icon-pencil"> </i> {% trans %}edit{% endtrans %}
+                            </a>
+                        </div><!-- end div.admin_actions -->  
                     </div>
-                    {{comment.html}}
-                    <div class="admin_actions">                 
-                         <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans %}delete this comment{% endtrans %}">
-                            <i class="icon-trash"> </i> {% trans %}delete{% endtrans %}
-                         </a>               
-                         <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans %}edit this comment{% endtrans %}"> 
-                            <i class="icon-pencil"> </i> {% trans %}edit{% endtrans %}
-                        </a>
-                    </div><!-- end div.admin_actions -->                       
+                    {{comment.html}}                    
                 </div>
             </div>
             <script type="text/javascript">

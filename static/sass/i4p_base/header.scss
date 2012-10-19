@@ -1,11 +1,15 @@
 @import "i4p-mixins";
 @import "i4p/constants";
 
+/* ONLY UNTILL BOOTSTRAP IS FULLY INTEGRATED, use pixels for font sizes */
+
+$sizeTextNormal: 12px;
+$sizeTextSmall: 11px;
+
 /*---- HEADER ----*/
-/* Workarounds before we delete this file */
+/* Workarounds before we migrate the whole site to bootstrap */
 #header-zone {
     height: auto;
-    font-size: 12px; /* Reset the font size for relative measurements, too many stylesheets mess with it for now */
     #header {
         width: 940px;
         margin-left:auto;
@@ -19,6 +23,7 @@
 
 #header-zone {
     background: image-url('base/header_bar_bg.png') repeat-x top left;
+    background-color: black;
     width: 100%;
     margin: 0 0 0 0;
     border-top: 3px solid $colorLightBlue;

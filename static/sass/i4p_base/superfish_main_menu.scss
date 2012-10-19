@@ -1,6 +1,11 @@
 @import "i4p-mixins";
 @import "i4p/constants";
 
+/* ONLY UNTILL BOOTSTRAP IS FULLY INTEGRATED, use pixels for font sizes */
+
+$sizeTextNormal: 12px;
+$sizeTextSmall: 11px;
+
 /*** ESSENTIAL STYLES ***/
 
 $menuhighlightbackground:black;
@@ -122,7 +127,7 @@ ul.sf-main-menu li {
   height: 10px;
   text-indent: -999em;
   overflow: hidden;
-  background: url("../../images/arrows-ffffff.png") no-repeat -10px -100px;
+  background: url("../../images/arrows-i4p.png") no-repeat -10px -100px;
   /* 8-bit indexed alpha png. IE6 gets solid image only */
 }
 
@@ -239,9 +244,16 @@ li {
         top: 19px;
       }
     }
-    &:first-child a {
-      background:none;
-      padding-left: 0px;
+    /* The home page link */
+    &:first-child { 
+      a {
+        background:none;
+        padding-left: 5px;
+      }
+      a:hover {
+        background: $colorMedDarkGrey;
+        @include border-radius(4px, 4px);
+      } 
     }
   }
 }
