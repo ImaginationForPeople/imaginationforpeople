@@ -21,8 +21,8 @@ FIXME: use picture list instead of project_translation
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy.css" />
 {% endaddtoblock %}
 
-{% unique_counter block_counter %}
-{% with gallery_unique_counter=block_counter %}
+{% unique_counter gallery_fancy %}
+{% with gallery_unique_counter=gallery_fancy_counter %}
 
 <div class="project-gallery" id="gallery-{{ gallery_unique_counter }}">
 	<ul>

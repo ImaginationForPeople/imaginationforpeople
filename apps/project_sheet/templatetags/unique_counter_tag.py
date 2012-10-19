@@ -15,7 +15,7 @@ def do_unique_counter(parser, token):
 
 class UniqueCounterNode(template.Node):
     def __init__(self, varname):
-        self.varname = varname
+        self.varname = '%s_counter' % (varname)
 
     def render(self, context):
         try:
@@ -23,7 +23,6 @@ class UniqueCounterNode(template.Node):
         except:
             var = 0
         deep = len(context.dicts)-1
-        context.dicts[deep][self.varname] = var+1
+        context.dicts[deep][self.varname] = var + 1
         return ''
         #return "%d" % (var)
-
