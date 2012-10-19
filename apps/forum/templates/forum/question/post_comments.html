@@ -29,7 +29,7 @@
                 #}
                 <div class="comment-body">
                     <div class="comment_infos">
-                        <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
+                        <a class="author" href="{{comment.author.get_profile().get_absolute_url() }}">{{comment.author.username|escape}}</a>
                         <span class="age">&nbsp;({{ macros.timeago(comment.added_at) }})</span>
                         <div class="admin_actions">                 
                              <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans %}delete this comment{% endtrans %}">
