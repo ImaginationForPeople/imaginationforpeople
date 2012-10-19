@@ -20,6 +20,7 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	height: $gallery_sizeImageHeight;
 	overflow: hidden;
 
+
 	&.picture-big {
 	    clear: both;
 	    display: block;
@@ -41,6 +42,11 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    .overlay-one {
 		background-position: (($gallery_sizeImageSmallWidth - $gallery_sizeOverlayWidth) / 2) (($gallery_sizeImageHeight - $gallery_sizeOverlayHeight)/2 );
 	    }
+	}
+
+	a {
+	    width: inherit;
+	    height: inherit;
 	}
 
 	.image {

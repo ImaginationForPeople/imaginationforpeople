@@ -24,7 +24,7 @@ FIXME: use picture list instead of project_translation
 {% unique_counter gallery_fancy %}
 {% with gallery_unique_counter=gallery_fancy_counter %}
 
-<div class="project-gallery" id="gallery-{{ gallery_unique_counter }}">
+<div class="project-gallery" >
 	<ul>
 		{% for project_picture in project_translation.project.pictures.all %}
 		{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
@@ -37,40 +37,66 @@ FIXME: use picture list instead of project_translation
 			{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
 			{% if forloop.counter0|divisibleby:"3" %}picture-big{% else %}picture-small{% endif %}
 			{% endif %}
-			">
+			" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="modal">
 			<div class="image">
 				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
 				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
 			</div>
-			<a href="#">
 			<div class="description">
 				{{project_picture.desc}}
 			</div>
 			<!-- TODO: rewrite with semantic HTML if possible -->
 			<div class="overlay-one"></div>
 			<div class="overlay-two"></div>
-			</a>
 		</li>
 		{% endif %}
 		{% endfor %}
 	</ul>
 </div>
 
-<div class="project-gallery-modal">
+<div class="project-gallery-modal modal hide fade in" tabindex="-1" role="dialog" id="gallery-{{ gallery_unique_counter }}" >
+	<!-- FIXME: load real data there -->
 	<div class="viewer">
-		<div class="slider">
-		</div>
+		<ul class="slider">
+			{% for project_picture in project_translation.project.pictures.all %}
+			{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
+			{% if forloop.counter0 < 4 %}
+			<li class="picture
+				{% if project_translation.project.pictures.all|length < 3 %}
+				{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
+				picture-big
+				{% else %}
+				{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
+				{% if forloop.counter0|divisibleby:"3" %}picture-big{% else %}picture-small{% endif %}
+				{% endif %}
+				" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="modal">
+				<div class="image">
+					<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
+					<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
+				</div>
+				<div class="description">
+					{{project_picture.desc}}
+				</div>
+				<!-- TODO: rewrite with semantic HTML if possible -->
+				<div class="overlay-one"></div>
+				<div class="overlay-two"></div>
+			</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
 	</div>
 
 	<div class="information">
 		<div class="title">
-
+			FIXME: title
 		</div>
 
 		<div class="source">
+			FIXME: source
 		</div>
 
 		<div class="license">
+			FIXME: license
 		</div>
 	</div>
 </div>
