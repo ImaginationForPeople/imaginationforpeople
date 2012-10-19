@@ -77,7 +77,7 @@
 		    <i class="sheet-members"></i>
 		    {% trans "Contributors"|capfirst %}</h2>
 		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% include "project_sheet/block/memberlist_fancy_square.html" %}
+		{% include "project_sheet/block/memberlist_fancy_square.html" with members=project_translation.project.detailed_members.all %}
 	    </div>
 
 	    <div class="project-related clearfix">

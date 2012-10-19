@@ -10,20 +10,9 @@ SUPPORT_TYPE_CHOICES = (
 )
 
 class ProjectSupport(models.Model):
-    project = models.ForeignKey(I4pProjectTranslation)
+    project_translation = models.ForeignKey(I4pProjectTranslation)
     type = models.CharField(max_length=4, choices=SUPPORT_TYPE_CHOICES)
     category = models.ForeignKey(TaggedCategory)
-    
-    def get_contributors(self):
-        raise Exception("Not yet implemented")
-    
-    def get_last_activity(self):
-        raise Exception("Not yet implemented")
-    
-    class Meta:
-        abstract=True
-
-class ProjectInformalSupport(ProjectSupport):
     thread = models.ForeignKey(Thread)
     
     def get_contributors(self):

@@ -19,7 +19,7 @@ Parameters for this block
 
 <div class="member-list square fancy">
 	{% comment %} FIXME: more inputs/labels than expected with slice, why ? {% endcomment %}
-	{% for member in project.detailed_members.all %}
+	{% for member in members %}
 	{% if forloop.counter0|divisibleby:"4" %}
 	<input id="slide-{{forloop.counter0}}" 
 	class="slide-input {% if forloop.first %}first-input{% endif %} {% if forloop.last %}last-input{% endif %}" 
@@ -29,14 +29,14 @@ Parameters for this block
 	<div class="view">
 		{% comment %} FIXME: add shuffle filter to the list {% endcomment %}
 		<ul>
-			{% for member in project.detailed_members.all %}
+			{% for member in members %}
 			{% include "project_sheet/block/member_fancy_square.html" %}
 			{% endfor %}
 		</ul>
 	</div>
 	<div class="controls">
-		{% if project.detailed_members.all|length > 4 %}
-		{% for member in project.detailed_members.all %}
+		{% if members|length > 4 %}
+		{% for member in members %}
 		{% if forloop.counter0|divisibleby:"4" %}
 		<label for="slide-{{forloop.counter0}}"></label>
 		{% endif %}
@@ -44,8 +44,8 @@ Parameters for this block
 		{% endif %}
 	</div>
 	<div class="active">
-		{% if project.detailed_members.all|length > 4 %}
-		{% for member in project.detailed_members.all %}
+		{% if members|length > 4 %}
+		{% for member in members %}
 		{% if forloop.counter0|divisibleby:"4" %}
 		<label for="slide-{{forloop.counter0}}"></label>
 		{% endif %}

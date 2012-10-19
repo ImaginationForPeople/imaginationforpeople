@@ -4,4 +4,7 @@ from categories.admin import CategoryBaseAdmin
 
 from .models import TaggedCategory
 
-admin.site.register(TaggedCategory, CategoryBaseAdmin)
+class TaggedCategoryAdmin(CategoryBaseAdmin):
+    exclude = ['tag']
+
+admin.site.register(TaggedCategory, TaggedCategoryAdmin)

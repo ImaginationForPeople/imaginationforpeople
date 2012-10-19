@@ -1,21 +1,97 @@
 {% extends "project_sheet/project_base.html" %}
-{% load i18n %}
+{% load i18n extra_tags humanize%}
+
+{% block style %}
+{{ block.super }}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />
+{% endblock %}
 
 {% block project_content %}
 <div class="container">        
     <div class="row">
     <div class="span8 project-main">
-        <div id="support-toolbar">
-        {% comment %} 
-        {% trans 'call for help'%} {{project_translation.projectformalsupport_set.count }}
-        {% endcomment %}
-        {% trans 'help proposal' %} {{project_translation.projectinformalsupport_set.count }}
-        <a href="{% url project_support_propose project_slug=project_translation.slug %}">{% trans 'propose a new call for help of help proposal'%}</a>
+        <div id="support-toolbar" class="span8">
+            <div>
+                {% trans 'call for help'%} <span class="badge">{{ call_count }}</span>
+            </div>
+            <div>
+                {% trans 'help proposal' %} <span class="badge">{{ prop_count }}</span>
+            </div>
+            <div class="propose-link">
+                <a href="{% url project_support_propose project_slug=project_translation.slug %}">{% trans 'propose a new call for help/help proposal'%}</a>
+            </div>
+        </div>
+        <div id="support-list">
+        <ul id="question-list">
+        {% for thread in threads %}
+            {% with thread.question as question %}
+            <li id="question-{{question.id}}" class="short-summary">
+
+                <div class="wrap_question_description">
+                    <h2>
+                        <a href="#" title="{{thread.title}}">{{thread.title}}</a>
+                    </h2>
+                    <p>{{question.summary|escape}}</p>
+                    <ul class="tag_list">
+                        {% for tag in thread.get_tag_names %}
+                        <li>
+                            <div class="part_tag">
+                                <a href=""
+                                title="{{ tag }}"
+                                rel="tag"
+                                data-tag-name="{{ tag }}">
+                                {{tag}}
+                                </a>
+                            </div> 
+                            <div class="part_pointe"></div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!--fin div.wrap_question_description -->
+
+                    <div class="infos_question">
+                        <p>
+                            <span class="date_question">{{ question.added_at|naturaltime }}</span>&nbsp;{% trans 'by' %}&nbsp;
+                            <span class="auteur_question">{{thread.last_activity_by.username|escape}}</span>
+                        </p>
+                        <p class="temps_restant">{{thread.last_activity_at}}</p>
+                        <div class="infos_pictos">
+                            <p class="tipsed nbr_answers" title="{% trans 'Answers' %}">{{thread.answer_count}}</p>
+                            <p class="tipsed nbr_views" title="{% trans 'Viewed' %}">{{thread.view_count}}</p>
+                            <p class="tipsed nbr_votes" title="{% trans 'Votes' %}">{{question.score}}</p>
+                        </div>
+                    </div><!--fin div.infos_question -->
+
+            </li>
+            {% endwith %}
+            <!--fin li.short-summary -->
+        {% endfor %}
+        </ul>
         </div>
     </div>
+    <div class="span4 project-sidebar"> 
+
+        <div class="project-members member-block">
+        <!-- FIXME: use dynamic data for member list -->
+        <h2>
+            <i class="sheet-members"></i>
+            {% trans "Contributors"|capfirst %}</h2>
+            {% include "project_sheet/block/memberlist_fancy_square.html" with members= %}
+        </div>
+
+        <div class="project-gallery clearfix">
+        <h2>
+            <i class="sheet-gallery"></i>
+            {% trans "Activities"|capfirst %}
+        </h2>
+        {% include "project_sheet/block/gallery_fancy.html" %}
+
+        </div> <!-- .project-gallery -->
+        
+    </div> <!-- .project-sidebar -->
     </div>
 </div>
-
-
-
 {% endblock %}
