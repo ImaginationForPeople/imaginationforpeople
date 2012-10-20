@@ -347,7 +347,7 @@ def project_sheet_edit_question(request, slug, question_id):
     context['question_id'] = question_id
     context['project_slug'] = slug
 
-    return render_to_response(template_name="project_sheet/project_edit_question.html",
+    return render_to_response(template_name="project_sheet/page/project_sheet_edit_question.html",
                               dictionary=context,
                               context_instance=RequestContext(request))
 
