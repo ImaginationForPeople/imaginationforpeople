@@ -2,15 +2,21 @@
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
 
+{% comment %} JS DEPENDENCIES FOR INLINE EDITING {% endcomment %}
 {% addtoblock "js" %}
-<!-- external dependencies for inline editing -->
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
-
-<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/detail-list.js"></script>
 {% endaddtoblock %}
 
+{% comment %} JS + CSS DEPENDENCIES {% endcomment %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/detail-list.js"></script>
+{% endaddtoblock %}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/detail-list.css" />
 {% endaddtoblock %}
