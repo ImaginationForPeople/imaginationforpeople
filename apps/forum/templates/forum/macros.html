@@ -377,7 +377,7 @@ for the purposes of the AJAX comment editor #}
                     </div>
                     <div class="comment-body">
                   		<div class="comment_infos">
-                    	 <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
+                    	 <a class="author" href="{{comment.author.get_profile().get_absolute_url()}}">{{comment.author.username|escape}}</a>
                         <span class="age">&nbsp;({{ timeago(comment.added_at) }})</span>
                         </div>
                         {{comment.html}} 
@@ -583,14 +583,14 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- endmacro -%}
 
 {#todo: rename this to avatar #}
-{%- macro gravatar(profile, size) -%}
+{%- macro gravatar(user, size) -%}
 {% spaceless %}
-<a style="text-decoration:none" href="{{ profile.get_absolute_url() }}">
+<a style="text-decoration:none" href="{{ user.get_profile().get_absolute_url() }}">
 <img class="gravatar" 
     width="{{size}}" height="{{size}}"
-    src="{{ profile.get_mugshot_url() }}"
-    title="{{profile.user.username|escape}}" 
-    alt="{% trans username=profile.user.username|escape %}{{username}} gravatar image{% endtrans %}" /
+    src="{{ user.get_profile().get_mugshot_url() }}"
+    title="{{user.username|escape}}" 
+    alt="{% trans username=user.username|escape %}{{username}} gravatar image{% endtrans %}" /
 ></a>
 {% endspaceless %}
 {%- endmacro -%}

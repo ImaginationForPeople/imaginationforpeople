@@ -281,6 +281,7 @@ INSTALLED_APPS = (
     'djcelery',
     'djkombu',
     'followit',
+    'tastypie',
 
     'categories.editor',
 
