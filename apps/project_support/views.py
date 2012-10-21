@@ -8,7 +8,7 @@ from django.template.context import RequestContext
 from django.utils import translation
 from django.views.generic.base import TemplateView
 
-from askbot.models import Thread
+from askbot.models import Thread, Activity
 
 from apps.project_sheet.models import I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translation_by_any_translation_slug
@@ -44,13 +44,24 @@ class ProjectSupportView(TemplateView):
         prop_count = project_translation.projectsupport_set.filter(type="PROP").count()
         call_count = project_translation.projectsupport_set.filter(type="CALL").count()
         
+        contributors = list(Thread.objects.get_thread_contributors(thread_list=threads))
+        
+        activity_ids = []
+        for thread in threads:
+            for post in thread.posts.all():
+                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')
+                
+        
         extra_context = {
              'project' : project,
              'project_translation' : project_translation,
              'active_tab' : 'support',
              'threads' : threads,
              'prop_count' : prop_count,
-             'call_count' : call_count
+             'call_count' : call_count,
+             'contributors' : contributors,
+             'activities' : activities,
          }
         
         context.update(extra_context)

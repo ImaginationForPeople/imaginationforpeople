@@ -31,7 +31,7 @@
 
                 <div class="wrap_question_description">
                     <h2>
-                        <a href="#" title="{{thread.title}}">{{thread.title}}</a>
+                        <a href="{{thread.get_absolute_url}}" title="{{thread.title}}">{{thread.title}}</a>
                     </h2>
                     <p>{{question.summary|escape}}</p>
                     <ul class="tag_list">
@@ -79,16 +79,24 @@
         <h2>
             <i class="sheet-members"></i>
             {% trans "Contributors"|capfirst %}</h2>
-            {% include "project_sheet/block/memberlist_fancy_square.html" with members= %}
+            {% include "project_sheet/block/memberlist_fancy_square.html" with members=contributors %}
         </div>
 
         <div class="project-gallery clearfix">
         <h2>
-            <i class="sheet-gallery"></i>
-            {% trans "Activities"|capfirst %}
+            <i class="sheet-gallery"></i>{% trans "Activities"|capfirst %}
         </h2>
-        {% include "project_sheet/block/gallery_fancy.html" %}
-
+        {% for activity in activities %}
+           <div class="support-activity">
+            <a href="{{ activity.user.get_profile.get_absolute_url }}">
+            <img src="{{ activity.user.get_profile.get_mugshot_url }}" alt="{{ activity.user.username }}" />
+            </a>
+            <p>
+            {{activity.user.username}} {{activity.get_activity_type_display}} {% trans 'on' %} 
+            {{activity.content_object.thread.projectsupport_set.all.0.get_type_display}} "{{activity.content_object.thread.title }}"
+            </p>
+           </div>
+           {% endfor %}
         </div> <!-- .project-gallery -->
         
     </div> <!-- .project-sidebar -->
