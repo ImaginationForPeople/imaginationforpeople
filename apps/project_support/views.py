@@ -9,6 +9,7 @@ from django.utils import translation
 from django.views.generic.base import TemplateView
 
 from askbot.models import Thread, Activity
+from askbot.views.readers import question
 
 from apps.project_sheet.models import I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translation_by_any_translation_slug
@@ -17,7 +18,7 @@ from apps.project_support.forms import ProjectSupportProposalForm
 from apps.project_support.models import ProjectSupport
 
 class ProjectSupportView(TemplateView):
-    template_name = 'project_support/project_support.html'
+    template_name = 'project_support/project_support_list.html'
 
     def get_context_data(self, project_slug, **kwargs):
         context = super(ProjectSupportView, self).get_context_data(**kwargs)
@@ -129,3 +130,33 @@ def propose_project_support(request, project_slug):
         return render_to_response("project_support/project_support_form.html",
                                   dictionary=context,
                                   context_instance=RequestContext(request))
+
+def view_project_support(request, project_slug, support_id):
+    
+    language_code = translation.get_language()
+    site = Site.objects.get_current()
+        
+    try:
+        project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=project_slug,
+                                            prefered_language_code=language_code,
+                                            site=site)
+        
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    if project_translation.language_code != language_code:
+        return redirect(project_translation, permanent=False)
+
+    project = project_translation.project
+    
+    extra_context = {
+             'project' : project,
+             'project_translation' : project_translation,
+             'active_tab' : 'support',
+         }
+    
+    return question(request, 
+                    support_id, 
+                    template_name="project_support/project_support_thread.html",
+                    jinja2_rendering=False,
+                    extra_context=extra_context)
