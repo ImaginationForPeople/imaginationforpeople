@@ -2,6 +2,14 @@
 
 $(document).ready(function() {
 	// we encapsulate editable call within each to force "this" to be correcly set...
+	$('.detail-question .editing-button').each(function(){
+		$(this).click(function(e){
+			e.preventDefault();
+			var dataTarget = $(this).attr('data-target');
+			$('#' + dataTarget).trigger("click");
+		});
+	});
+
 	$('.detail-answer').each(function(){
 		$(this).editable($(this).attr('data-editable-save-url'), {
 			tooltip: $(this).attr('data-editable-tooltip'),

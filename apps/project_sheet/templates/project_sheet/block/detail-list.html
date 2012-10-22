@@ -26,7 +26,10 @@
 <div class="detail-item">
 	<h2 id="question-{{q.id}}" class="detail-question">
 		<span>{{ q.content|capfirst }}</span>
-		<a href="{% url project_sheet-instance-edit-question project_translation.slug q.id %}" class="button right editing-button">
+		<a href="{% url project_sheet-instance-edit-question project_translation.slug q.id %}" class="button right editing-button"
+			data-toggle="edit-answer"
+			data-target="funnyprefix-answer-{{q.id}}"
+			>
 			<img src="{{ STATIC_URL }}images/base/edit.png" />
 		</a>
 	</h2>
