@@ -132,7 +132,7 @@ class ProjectStartView(TemplateView):
     """
     When one starts a project, after having selected a topic
     """
-    template_name = 'project_sheet/project_sheet.html'
+    template_name = 'project_sheet/page/project_sheet.html'
 
     def get_context_data(self, topic_slug, **kwargs):
         context = super(ProjectStartView, self).get_context_data(**kwargs)
@@ -148,7 +148,7 @@ class ProjectTopicSelectView(TemplateView):
     """
     Before starting a project, one needs to pick a topic
     """
-    template_name = 'project_sheet/topic_select.html'
+    template_name = 'project_sheet/obsolete/topic_select.html'
 
     def get_context_data(self, **kwargs):
         context = super(ProjectTopicSelectView, self).get_context_data(**kwargs)
