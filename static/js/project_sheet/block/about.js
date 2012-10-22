@@ -1,8 +1,7 @@
-// FIXME: make sure jquery.editable plugin are loaded
 
 $(document).ready(function() {
 	// we encapsulate editable call within each to force "this" to be correcly set...
-	$('.detail-question .editing-button').each(function(){
+	$("*[data-toggle='i4p-editable-button']").each(function(){
 		$(this).click(function(e){
 			e.preventDefault();
 			var dataTarget = $(this).attr('data-target');
@@ -10,7 +9,7 @@ $(document).ready(function() {
 		});
 	});
 
-	$('.detail-answer').each(function(){
+	$("*[data-toggle='i4p-editable']").each(function(){
 		$(this).editable($(this).attr('data-editable-save-url'), {
 			tooltip: $(this).attr('data-editable-tooltip'),
 			type: $(this).attr('data-editable-type'),
@@ -45,4 +44,3 @@ $(document).ready(function() {
 
 	});
 });
-
