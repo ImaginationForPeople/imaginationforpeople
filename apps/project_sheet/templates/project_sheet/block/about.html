@@ -2,6 +2,7 @@
 {% load tagging_tags %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
+{% load unique_counter_tag %}
 
 {% comment %} JS DEPENDENCIES FOR INLINE EDITING {% endcomment %}
 {% addtoblock "js" %}
@@ -22,17 +23,20 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/about.css" />
 {% endaddtoblock %}
 
+{% unique_counter about %}
+{% with about_unique_counter=about_counter %}
+
 <h2><span>{% trans "About the project" %}</span>
 	<a href="#FIXME-bad-static-edit-url" class="button right editing-button"
 		data-toggle="i4p-editable-button"
-		data-target=""
+		data-target="about-description-{{about_unique_counter}}"
 		>
 		<img src="{{ STATIC_URL }}images/base/edit.png" />
 	</a>
 </h2>
 
 {% comment %} PROJECT ABOUT SECTION {% endcomment %}
-<p 
+<p id="about-description-{{about_unique_counter}}"
 	data-language-code="{{ LANGUAGE_CODE }}"
 	data-toggle="i4p-editable"
 	data-editable-id="about_section_txt"
@@ -44,6 +48,8 @@
 >
 {{ project_translation.about_section|linebreaksbr }}
 </p>
+
+{% endwith %}
 
 {% comment %} PROJECT TAGS {% endcomment %}
 {% if project_translation %}
@@ -58,3 +64,4 @@
 {% endwith %}
 {% endwith %}
 {% endif %}
+
