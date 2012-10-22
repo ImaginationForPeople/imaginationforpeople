@@ -27,18 +27,19 @@
 {% with about_unique_counter=about_counter %}
 
 <h2><span>{% trans "About the project" %}</span>
-	<a href="#FIXME-bad-static-edit-url" class="button right editing-button"
+	<a href="#FIXME-bad-static-edit-url" class="i4p-button"
 		data-toggle="i4p-editable-button"
 		data-target="about-description-{{about_unique_counter}}"
 		>
 		<img src="{{ STATIC_URL }}images/base/edit.png" />
+		{% trans 'Edit' %}
 	</a>
 </h2>
 
 {% comment %} PROJECT ABOUT SECTION {% endcomment %}
 <p id="about-description-{{about_unique_counter}}"
-	data-language-code="{{ LANGUAGE_CODE }}"
 	data-toggle="i4p-editable"
+	data-language-code="{{ LANGUAGE_CODE }}"
 	data-editable-id="about_section_txt"
 	data-editable-tooltip="{% trans 'Double-click to edit' %}"
 	data-editable-type="textarea"
