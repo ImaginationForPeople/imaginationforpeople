@@ -163,7 +163,15 @@
 					<tr class="infotable-website">
 						<th>{% trans "Web" %}</th>
 						<td>
-							{% if project_location_form %}<!-- WEBSITE/READWRITE mode-->
+							{% if project_info_form %}<!-- WEBSITE/READWRITE mode-->
+							<form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
+								{% csrf_token %}
+
+								{{ project_info_form.as_p }}
+								<div class="clear"></div>
+								<input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" />							
+								<input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  class="button redbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" />
+							</form>	
 							{% else %}<!-- WEBSITE/READONLY mode-->
 							{% if project_translation.project.website %}
 							<a href="{{ project.website }}" target="_blank" rel="nofollow">{{ project_translation.project.website }}</a>
