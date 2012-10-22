@@ -1,4 +1,4 @@
-﻿{% extends "project_sheet/project_base.html" %}
+﻿{% extends "project_sheet/layout/project_base.html" %}
 
 {% load i18n %}
 {% load tagging_tags %}
@@ -26,28 +26,11 @@
 <div class="container">        
     <div class="row">
 	<div class="span8 project-main">
-	    <div class="project-about"><a name="project-information"></a>
+	    <div class="project-about">
 		<a name="project-about"></a>
-		<h2><span>{% trans "About the project" %}</span></h2>
 
-		{% comment %} PROJECT ABOUT SECTION {% endcomment %}
-		<p>
-		    {{ project_translation.about_section|linebreaksbr }}
-		</p>
+		{% include "project_sheet/block/about.html" %}
 
-		{% comment %} PROJECT TAGS {% endcomment %}
-		{% if project_translation %}
-		{% tags_for_object project_translation as project_tags %}
-		{% with taglist_title="Themes" %}
-		{% with taglist_tags=project_tags %}
-		{% with taglist_is_editable=1 %}
-		{% with taglist_edit_action="#FIXME-BADURL" %}
-		{% include "tags/block/taglist.html" %}
-		{% endwith %}
-		{% endwith %}
-		{% endwith %}
-		{% endwith %}
-		{% endif %}
 	    </div> <!-- .project-about -->
 
 	    <div class="project-details detail-list">

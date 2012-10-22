@@ -241,7 +241,7 @@ def project_sheet_show(request, slug, add_media=False):
         context.update({'picture_form' : ProjectPictureForm(),
                         'video_form' : ProjectVideoForm()})
 
-    return render_to_response(template_name='project_sheet/project_sheet.html',
+    return render_to_response(template_name='project_sheet/page/project_sheet.html',
                               dictionary=context,
                               context_instance=RequestContext(request)
                               )
@@ -347,7 +347,7 @@ def project_sheet_edit_question(request, slug, question_id):
     context['question_id'] = question_id
     context['project_slug'] = slug
 
-    return render_to_response(template_name="project_sheet/project_edit_question.html",
+    return render_to_response(template_name="project_sheet/page/project_sheet_edit_question.html",
                               dictionary=context,
                               context_instance=RequestContext(request))
 
@@ -412,7 +412,7 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
         context['topic'] = topic
 
     context["%s_form" % field] = form
-    return render_to_response(template_name="project_sheet/project_sheet.html",
+    return render_to_response(template_name="project_sheet/page/project_sheet.html",
                               dictionary=context,
                               context_instance=RequestContext(request))
 
