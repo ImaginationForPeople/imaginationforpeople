@@ -23,13 +23,13 @@
 
 {% block project_content %}	
 
-{% if project_translation %}
 <div class="container">        
     <div class="row">
 	<div class="span8 project-main">
 
 	    <div class="project-about">
 		<a name="project-about"></a>
+
 		{% include "project_sheet/block/about.html" %}
 	    </div> <!-- .project-about -->
 
@@ -38,7 +38,6 @@
 	    </div> <!-- .project-details -->
 
 	    <hr class="shaded-separator" />
-
 
 	    {% include "project_sheet/block/reference-block.html" with reference_block_extra_class="project-references" %}
 
@@ -86,6 +85,5 @@
 	</div> <!-- .project-sidebar -->
     </div>
 </div>
-{% endif %}
 
 {% endblock %}
