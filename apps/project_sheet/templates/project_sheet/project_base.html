@@ -55,7 +55,7 @@
 	    <li {% if not active_tab or active_tab = 'project' %}class="active"{% endif %}><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
         <li {% if active_tab = 'support' %}class="active"{% endif %}>
             <a href="{% url project_support_main project_translation.slug %}">
-                {% trans "Calls for help" %}
+                {% trans "supports" %}
                 <span class="badge">{{project_translation.projectsupport_set.count }}</span>
             </a>
         </li>
