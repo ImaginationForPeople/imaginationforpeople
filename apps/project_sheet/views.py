@@ -454,44 +454,44 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
                               context_instance=RequestContext(request))
 
 
-def project_sheet_edit_tags(request, project_slug):
+class ProjectEditTagsView(ProjectView):
     """
     Edit tags a given project sheet.
     Non-Ajax version.
     """
-    language_code = translation.get_language()
+    def get_context_data(self, slug, *args, **kwargs):
+        context = super(ProjectEditTagsView, self).get_context_data(slug, *args, **kwargs)
 
-    # get the project translation and its base
-    try:
-        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                              language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
+        context.update({
+            'project_sheet_themes_form': self.project_sheet_themes_form,
+            'project_sheet_objectives_form': self.project_sheet_objectives_form
+        })
+                       
+        return context
+    
+    def get(self, request, *args, **kwargs):
+        self.project_sheet_themes_form = I4pProjectThemesForm(instance=self.project_translation)
 
-    parent_project = project_translation.project
+        self.project_sheet_objectives_form = I4pProjectObjectivesForm(instance=self.project_translation.project,
+                                                                      prefix="objectives-form")
 
-    project_sheet_themes_form = I4pProjectThemesForm(request.POST or None,
-                                                     instance=project_translation)
+        return super(ProjectEditTagsView, self).get(request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+        self.project_sheet_themes_form = I4pProjectThemesForm(request.POST,
+                                                              instance=self.project_translation)
 
-    project_sheet_objectives_form = I4pProjectObjectivesForm(request.POST or None,
-                                                             instance=parent_project,
-                                                             prefix="objectives-form")
+        self.project_sheet_objectives_form = I4pProjectObjectivesForm(request.POST,
+                                                                      instance=self.project_translation.project,
+                                                                      prefix="objectives-form")
 
-    if request.method == 'POST':
-        if project_sheet_themes_form.is_valid() and project_sheet_objectives_form.is_valid():
-            project_sheet_themes_form.save()
-            project_sheet_objectives_form.save()
+        if self.project_sheet_themes_form.is_valid() and self.project_sheet_objectives_form.is_valid():
+            self.project_sheet_themes_form.save()
+            self.project_sheet_objectives_form.save()
 
-            return redirect(project_translation)
-
-    dictionary = {'project_translation': project_translation,
-                  'project_sheet_themes_form': project_sheet_themes_form,
-                  'project_sheet_objectives_form': project_sheet_objectives_form}
-
-    return render_to_response(template_name="project_sheet/page/project_edit_tags.html",
-                              dictionary=dictionary,
-                              context_instance=RequestContext(request)
-                              )
+            return redirect(self.project_translation)
+        else:
+            return super(ProjectEditTagsView, self).post(request, *args, **kwargs)
 
 
 def project_sheet_add_media(request):

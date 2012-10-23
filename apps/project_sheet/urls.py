@@ -26,8 +26,9 @@ urlpatterns = patterns('',
     # Show
     url(r'^(?P<slug>[-\w]+)/$', views.ProjectView.as_view(), name='project_sheet-show'),
 
-    # Generic edit fields
+    # Edits
     url(r'^edit/(?P<topic_slug>[-\w]+)/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
+    url(r'^(?P<slug>[-\w]+)/edit/tags/$', views.ProjectEditTagsView.as_view(), name='project_sheet-instance-edit-tags'),                       
     url(r'^(?P<slug>[-\w]+)/edit/location/$', views.ProjectEditLocationView.as_view(), name='project_sheet-instance-edit-location'),
     url(r'^(?P<slug>[-\w]+)/edit/info/$', views.ProjectEditInfoView.as_view(), name='project_sheet-instance-edit-info'),
     url(r'^(?P<slug>[-\w]+)/edit/status/$', ajax.project_sheet_edit_status, name='project_sheet-instance-edit-status'),
@@ -36,10 +37,6 @@ urlpatterns = patterns('',
 
     # References
     url(r'^(?P<slug>[-\w]+)/edit/references/$', views.ProjectEditReferencesView.as_view(), name='project_sheet-instance-edit-references'),
-
-    # Tags
-    url(r'^(?P<project_slug>[-\w]+)/edit/tags/$', views.project_sheet_edit_tags, name='project_sheet-instance-edit-tags'),
-    url(r'^(?P<project_slug>[-\w]+)/update/related/$', ajax.project_update_related, name='project_sheet-project_update_related'),
 
     # History
     url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
@@ -61,8 +58,8 @@ urlpatterns = patterns('',
     # Translations
     url(r'^(?P<project_slug>[-\w]+)/translate/$', views.project_sheet_create_translation, name='project_sheet-translate'),
 
-    # Generic Ajax views
-    url(r'^start/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
+    # Ajax views
+    url(r'^(?P<project_slug>[-\w]+)/update/related/$', ajax.project_update_related, name='project_sheet-project_update_related'),                  url(r'^start/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
     url(r'^start/ajax/field/load/$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
     url(r'^(?P<project_slug>[-\w]+)/ajax/field/load/$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
     url(r'^(?P<project_slug>[-\w]+)/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),

@@ -63,12 +63,21 @@
 
 
 {% if project_translation %}
-  {% tags_for_object project_translation as project_tags %}
+  {% if project_sheet_themes_form %}
+  <form method='POST' action='?'>
+    {% csrf_token %}
+    {{ project_sheet_themes_form }}
+    <input type="submit"/>
+  </form>
+  {% else %}
 
-  {% url project_sheet-instance-edit-tags project_translation.slug as url_edit_tags %}
-  {% with taglist_title="Themes" taglist_tags=project_tags taglist_is_editable=1 taglist_edit_action=url_edit_tags %}
-    {% include "tags/block/taglist.html" %}
-  {% endwith %}
+    {% tags_for_object project_translation as project_tags %}
+
+    {% url project_sheet-instance-edit-tags project_translation.slug as url_edit_tags %}
+    {% with taglist_title="Themes" taglist_tags=project_tags taglist_is_editable=1 taglist_edit_action=url_edit_tags %}
+      {% include "tags/block/taglist.html" %}
+    {% endwith %}
+  {% endif %}
 
 {% endif %}
 
