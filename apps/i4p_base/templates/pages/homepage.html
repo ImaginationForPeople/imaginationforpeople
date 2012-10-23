@@ -123,7 +123,7 @@
     {% cms_toolbar %}
     <div id="video-zone">
         <div id="video" class="center"> 
-
+            {% placeholder "Top video zone" or %}
             <h1 class="what_is">{% trans ' What is it ?' %}</h1>
 
             <div id="project_block">
@@ -142,6 +142,7 @@
                 {% endplaceholder %}
             </div>
             <img src="{{ STATIC_URL }}images/home/video.jpg" alt="video" width="982" height="132"/>
+            {% endplaceholder %}
         </div>
     </div>
     
