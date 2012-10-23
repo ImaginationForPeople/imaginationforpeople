@@ -1,6 +1,6 @@
 <form
         id="fmanswer"
-        action="{% url answer question.id %}"
+        action="{{form_answer_url}}"
         method="post"
         >{% csrf_token %}
     {# ==== START: question/subscribe_by_email_prompt.html ==== #}
