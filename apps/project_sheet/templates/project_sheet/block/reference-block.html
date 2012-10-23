@@ -20,7 +20,7 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/reference-block.css" />
 {% endaddtoblock %}
 
-<div class="{{ reference_block_extra_class }} references-block">
+<div id="references" class="{{ reference_block_extra_class }} references-block">
 	<a name="project-references"></a>
 	<h2>
 		<i class="sheet-references"></i>
@@ -29,7 +29,14 @@ Parameters for this block
 	<div class="row">
 		<div class="references-links link-list span4" >
 			<h3>{% trans "Links" %}</h3>
-
+			<a href="{% url project_sheet-instance-edit-references project_translation.slug %}#references">edit</a>
+			{% if reference_formset %}
+			<form method="POST" action="?">
+			  {% csrf_token %}
+			  {{ reference_formset }}
+			  <input type="submit"/>
+			</form>
+			{% endif %}
 			<ul>
 				{% if project_translation %}
 				{% for ref in project_translation.project.references.all %}

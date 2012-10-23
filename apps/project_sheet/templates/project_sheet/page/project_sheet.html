@@ -54,7 +54,12 @@
 		    {% trans "Related projects"|capfirst %}
 		</h2>
 		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
+		{% if related_projects %}
+		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
+		{% else %}
+		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
+		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
+		{% endif %}
 	    </div>
 
 	    <div class="project-gallery clearfix">

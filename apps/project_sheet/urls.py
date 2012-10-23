@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     # Show
     url(r'^(?P<slug>[-\w]+)/$', views.ProjectView.as_view(), name='project_sheet-show'),
 
-    # Edit fields
+    # Generic edit fields
     url(r'^edit/(?P<topic_slug>[-\w]+)/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/location/$', views.ProjectEditLocationView.as_view(), name='project_sheet-instance-edit-location'),
     url(r'^(?P<slug>[-\w]+)/edit/info/$', views.ProjectEditInfoView.as_view(), name='project_sheet-instance-edit-info'),
@@ -35,7 +35,7 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-instance-edit-field'),
 
     # References
-    url(r'^(?P<project_slug>[-\w]+)/edit/references/$', views.project_sheet_edit_references, name='project_sheet-instance-edit-references'),
+    url(r'^(?P<slug>[-\w]+)/edit/references/$', views.ProjectEditReferencesView.as_view(), name='project_sheet-instance-edit-references'),
 
     # Tags
     url(r'^(?P<project_slug>[-\w]+)/edit/tags/$', views.project_sheet_edit_tags, name='project_sheet-instance-edit-tags'),
