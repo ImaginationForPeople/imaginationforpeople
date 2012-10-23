@@ -124,17 +124,18 @@ def build_virtualenv():
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
 
+@task
 def update_requirements(force=False):
     """
     update external dependencies on remote host
     """
     print(cyan('Updating requirements using PIP'))
-    run('pip install -E %(venvfullpath)s -U pip' % env)
+    run('%(venvfullpath)s/bin/pip install -U pip' % env)
     
     if force:
-        cmd = "pip install -E %(venvfullpath)s -I -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+        cmd = "%(venvfullpath)s/bin/pip install -I -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
     else:
-        cmd = "pip install -E %(venvfullpath)s -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+        cmd = "%(venvfullpath)s/bin/pip install -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
     run("yes w | %s" % cmd)
 
 
