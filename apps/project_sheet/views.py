@@ -257,7 +257,7 @@ class ProjectAddMediaView(ProjectView):
 
 class ProjectEditInfoView(ProjectView):
     """
-    Edit Info
+    Edit Misc Info (website, ...)
     """
     def get(self, request, *args, **kwargs):
         self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.project)
