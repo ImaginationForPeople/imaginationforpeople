@@ -23,11 +23,11 @@
 
 {% block project_content %}	
 
+{% if project_translation %}
 <div class="container">        
     <div class="row">
 	<div class="span8 project-main">
 
-	    {% if project_translation %}
 	    <div class="project-about">
 		<a name="project-about"></a>
 		{% include "project_sheet/block/about.html" %}
@@ -48,7 +48,6 @@
 	    <div class="project-comments comment-block">
 		{% include "project_sheet/block/comment-block.html" %}
 	    </div> <!-- .project-comments -->
-	    {% endif %}
 
 	</div> <!-- .project-main -->
 
@@ -87,5 +86,6 @@
 	</div> <!-- .project-sidebar -->
     </div>
 </div>
+{% endif %}
 
 {% endblock %}
