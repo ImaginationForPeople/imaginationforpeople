@@ -24,11 +24,12 @@ urlpatterns = patterns('',
     url(r'^recent-changes/$', views.ProjectRecentChangesView.as_view(), name='project_sheet-recent-changes'),
 
     # Show
-    url(r'^(?P<slug>[-\w]+)/$', views.project_sheet_show, name='project_sheet-show'),
+    url(r'^(?P<slug>[-\w]+)/$', views.ProjectView.as_view(), name='project_sheet-show'),
 
     # Edit fields
     url(r'^edit/(?P<topic_slug>[-\w]+)/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
-    url(r'^(?P<slug>[-\w]+)/edit/location/$', views.project_sheet_edit_location, name='project_sheet-instance-edit-location'),
+    url(r'^(?P<slug>[-\w]+)/edit/location/$', views.ProjectEditLocationView.as_view(), name='project_sheet-instance-edit-location'),
+    url(r'^(?P<slug>[-\w]+)/edit/info/$', views.ProjectEditInfoView.as_view(), name='project_sheet-instance-edit-info'),
     url(r'^(?P<slug>[-\w]+)/edit/status/$', ajax.project_sheet_edit_status, name='project_sheet-instance-edit-status'),
     url(r'^(?P<slug>[-\w]+)/edit/question/(?P<question_id>[\d]+)/$', views.project_sheet_edit_question, name='project_sheet-instance-edit-question'),
     url(r'^(?P<slug>[-\w]+)/edit/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-instance-edit-field'),
@@ -44,7 +45,7 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
                        
     # Media
-    url(r'^(?P<slug>[-\w]+)/add/media/$', views.project_sheet_show, {'add_media' : True}, name='project_sheet-instance-add-media'),
+    url(r'^(?P<slug>[-\w]+)/add/media/$', views.ProjectView.as_view(), {'add_media' : True}, name='project_sheet-instance-add-media'),
     url(r'^add/media/$', views.project_sheet_add_media, name='project_sheet-add-media'),
     url(r'^add/picture/$', views.project_sheet_add_picture, name='project_sheet-add-picture'),
     url(r'^(?P<slug>[-\w]+)/add/picture/$', views.project_sheet_add_picture, name='project_sheet-instance-add-picture'),
