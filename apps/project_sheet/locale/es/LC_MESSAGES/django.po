@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011, 2012.
-# Slyan  <maire.sylvain@gmail.com>, 2011, 2012.
+# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011-2012.
+# Slyan  <maire.sylvain@gmail.com>, 2011-2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-10-05 11:09+0200\n"
-"PO-Revision-Date: 2012-10-05 09:11+0000\n"
+"POT-Creation-Date: 2012-10-23 19:51+0200\n"
+"PO-Revision-Date: 2012-10-23 17:53+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Spanish <ip-es@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: cms_plugins.py:33
 msgid "Projects for a tag"
-msgstr ""
+msgstr "Proyectos para una etiqueta"
 
 #: filters.py:79
 msgid "Themes contain"
-msgstr "Ver los"
+msgstr "Los temas contienen"
 
 #: filters.py:110
 msgid "With associated leaders"
@@ -49,7 +49,7 @@ msgstr "Introduzca aquí su referencia (URL, libros, etc)"
 
 #: models.py:75
 msgid "Untranslated name"
-msgstr ""
+msgstr "Nombre no traducido"
 
 #: models.py:106
 msgid "Concept"
@@ -105,23 +105,23 @@ msgstr "ubicación"
 
 #: models.py:147
 msgid "topics"
-msgstr ""
+msgstr "temas"
 
 #: models.py:151
 msgid "The sites that the project sheet is accessible at."
-msgstr ""
+msgstr "Los sitios en los que la descripción del proyecto es accesible."
 
 #: models.py:152
 msgid "sites"
-msgstr ""
+msgstr "páginas"
 
 #: models.py:191
 msgid "Weight"
-msgstr ""
+msgstr "Peso"
 
 #: models.py:193 models.py:203
 msgid "Content"
-msgstr ""
+msgstr "Contenido"
 
 #: models.py:218
 msgid "In edition"
@@ -147,7 +147,7 @@ msgstr "Título de mi proyecto"
 msgid "one line description"
 msgstr "descríbalo en una línea"
 
-#: models.py:246 templates/project_sheet/block/subheader.html:76
+#: models.py:246 templates/project_sheet/block/subheader.html:111
 #: templates/project_sheet/obsolete/project_sheet.html:567
 msgid "One line description"
 msgstr "Descríbalo en una línea"
@@ -156,7 +156,7 @@ msgstr "Descríbalo en una línea"
 msgid "about the project"
 msgstr "Acerca del proyecto"
 
-#: models.py:250 templates/project_sheet/partners_section.html:20
+#: models.py:250 templates/project_sheet/obsolete/partners_section.html:20
 msgid "who are the partners of this project"
 msgstr "¿Quiénes son los socios de este proyecto"
 
@@ -192,105 +192,26 @@ msgstr "Añadido un nuevo proyecto o traducción"
 msgid "A member has joined a project"
 msgstr "Un miembro se ha unido a un proyecto"
 
-#: templates/project_sheet/all_recent_changes.html:26
-msgid "Latest 20 days changes"
-msgstr "Cambios de los últimos 20 días"
+#: templates/project_sheet/block/about.html:34
+msgid "About the project"
+msgstr "Sobre el proyecto"
 
-#: templates/project_sheet/all_recent_changes.html:27
-#: templates/project_sheet/project_list.html:73
-msgid "RSS Feed"
-msgstr "Fuente RSS"
-
-#: templates/project_sheet/all_recent_changes.html:49
-#: templates/project_sheet/project_list.html:103
-msgid "Your request did not return any result."
-msgstr "Su búsqueda no devolvió ningún resultado."
-
-#: templates/project_sheet/history.html:18
-msgid "Made on"
-msgstr "Hecho el"
-
-#: templates/project_sheet/history.html:18
-msgid "DATETIME_FORMAT"
-msgstr "DATETIME_FORMAT"
-
-#: templates/project_sheet/history.html:18
-#: templates/project_sheet/obsolete/project_sheet.html:584
-msgid "by"
-msgstr "por"
-
-#: templates/project_sheet/history.html:22
-msgid "Anonymous"
-msgstr "Anónimo"
-
-#: templates/project_sheet/history.html:24
-msgid "on"
-msgstr "en"
-
-#: templates/project_sheet/history.html:30
-msgid "and"
-msgstr "y"
-
-#: templates/project_sheet/history.html:33
-msgid "\""
-msgstr "\""
-
-#: templates/project_sheet/partners_section.html:6
-#: templates/project_sheet/partners_section.html:32
-msgid "who are the current partners of this project"
-msgstr ""
-
-#: templates/project_sheet/partners_section.html:14
-#: templates/project_sheet/value_section.html:14
-#: templates/project_sheet/block/detail-list.html:31
-#: templates/project_sheet/block/subheader.html:36
-#: templates/project_sheet/block/subheader.html:64
-#: templates/project_sheet/obsolete/about_section.html:21
-#: templates/project_sheet/obsolete/media_gallery.html:105
-#: templates/project_sheet/obsolete/project_sheet.html:326
-#: templates/project_sheet/obsolete/project_sheet.html:349
-#: templates/project_sheet/obsolete/project_sheet.html:383
-#: templates/project_sheet/obsolete/project_sheet.html:516
-#: templates/project_sheet/obsolete/project_sheet.html:554
-#: templates/project_sheet/obsolete/project_sheet.html:635
-#: templates/project_sheet/obsolete/project_sheet.html:668
-msgid "Ok"
-msgstr "Ok"
-
-#: templates/project_sheet/partners_section.html:15
-#: templates/project_sheet/value_section.html:15
-#: templates/project_sheet/block/detail-list.html:32
-#: templates/project_sheet/block/subheader.html:35
-#: templates/project_sheet/block/subheader.html:66
-#: templates/project_sheet/obsolete/about_section.html:22
-#: templates/project_sheet/obsolete/grey_column.html:49
-#: templates/project_sheet/obsolete/media_gallery.html:46
-#: templates/project_sheet/obsolete/media_gallery.html:106
-#: templates/project_sheet/obsolete/project_sheet.html:325
-#: templates/project_sheet/obsolete/project_sheet.html:348
-#: templates/project_sheet/obsolete/project_sheet.html:382
-#: templates/project_sheet/obsolete/project_sheet.html:515
-#: templates/project_sheet/obsolete/project_sheet.html:555
-#: templates/project_sheet/obsolete/project_sheet.html:636
-#: templates/project_sheet/obsolete/project_sheet.html:669
-msgid "Cancel"
-msgstr "Cancelar"
-
-#: templates/project_sheet/partners_section.html:27
-msgid "This field is blank. Don’t forget to complete it! "
-msgstr "Este campo está en blanco. ¡No olvide completarlo!"
-
-#: templates/project_sheet/partners_section.html:33
-#: templates/project_sheet/value_section.html:33
+#: templates/project_sheet/block/about.html:41
+#: templates/project_sheet/block/detail-list.html:36
 #: templates/project_sheet/block/partner-block.html:28
-#: templates/project_sheet/block/subheader.html:42
-#: templates/project_sheet/block/subheader.html:73
-#: templates/project_sheet/block/subheader.html:77
+#: templates/project_sheet/block/reference-block.html:58
+#: templates/project_sheet/block/subheader.html:54
+#: templates/project_sheet/block/subheader.html:67
+#: templates/project_sheet/block/subheader.html:107
+#: templates/project_sheet/block/subheader.html:112
+#: templates/project_sheet/block/subheader.html:158
+#: templates/project_sheet/block/subheader.html:201
 #: templates/project_sheet/obsolete/about_section.html:6
 #: templates/project_sheet/obsolete/about_section.html:8
 #: templates/project_sheet/obsolete/grey_column.html:32
 #: templates/project_sheet/obsolete/grey_column.html:171
 #: templates/project_sheet/obsolete/grey_column.html:218
+#: templates/project_sheet/obsolete/partners_section.html:33
 #: templates/project_sheet/obsolete/project_sheet.html:261
 #: templates/project_sheet/obsolete/project_sheet.html:526
 #: templates/project_sheet/obsolete/project_sheet.html:562
@@ -298,169 +219,60 @@ msgstr "Este campo está en blanco. ¡No olvide completarlo!"
 #: templates/project_sheet/obsolete/project_sheet.html:580
 #: templates/project_sheet/obsolete/project_sheet.html:687
 #: templates/project_sheet/obsolete/references_section.html:7
+#: templates/project_sheet/obsolete/value_section.html:33
 msgid "Edit"
 msgstr "Editar"
 
-#: templates/project_sheet/project_base.html:55
-#: templates/project_sheet/block/toolbar.html:28
-msgid "Project"
+#: templates/project_sheet/block/about.html:56
+#: templates/project_sheet/block/detail-list.html:58
+msgid "Double-click to edit"
 msgstr ""
 
-#: templates/project_sheet/project_base.html:76
-#: templates/project_sheet/block/subheader.html:130
-msgid "Share"
-msgstr ""
-
-#: templates/project_sheet/project_complete_card.html:18
-msgid "There is no description for this project"
-msgstr "Este proyecto no tiene descripción"
-
-#: templates/project_sheet/project_edit_themes.html:9
-#, python-format
-msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
-msgstr "Modificar la información vinculada de &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
-
-#: templates/project_sheet/project_edit_themes.html:17
-msgid "Update"
-msgstr "Actualizar"
-
-#: templates/project_sheet/project_id_card.html:16
-#: templates/project_sheet/project_status.html:5
-msgid "associated team"
-msgstr "equipo asociado"
-
-#: templates/project_sheet/project_id_card.html:19
-#: templates/project_sheet/project_status.html:8
-msgid "in progress"
-msgstr "en progreso"
-
-#: templates/project_sheet/project_id_card.html:22
-#: templates/project_sheet/project_status.html:11
-msgid "popular"
-msgstr "popular"
-
-#: templates/project_sheet/project_id_card.html:25
-#: templates/project_sheet/project_status.html:14
-msgid "bestof"
-msgstr "lo mejor de"
-
-#: templates/project_sheet/project_list.html:7
-msgid ""
-"These experiences have a positive social impact and create social goodwill. "
-"they demonstrate a disruptive inventiveness and can be easily disseminated "
-"and scaled in other places or cultural contexts."
-msgstr "Estas experiencias tienen un impacto social positivo y fomentan la buena voluntad en la sociedad. Demuestran una imaginación rompedora y pueden ser difundidas y adaptadas con facilidad a cualquier lugar y contexto cultural."
-
-#: templates/project_sheet/project_list.html:8
-msgid "Find projects on "
-msgstr ""
-
-#: templates/project_sheet/project_list.html:68
-msgid "Order by:"
-msgstr ""
-
-#: templates/project_sheet/project_list.html:70
-msgid "Newest projects"
-msgstr ""
-
-#: templates/project_sheet/project_list.html:71
-msgid "Recent changes"
-msgstr ""
-
-#: templates/project_sheet/project_list_pagination.html:9
-#: templates/project_sheet/project_list_pagination.html:12
-msgid "previous"
-msgstr "previo"
-
-#: templates/project_sheet/project_list_pagination.html:36
-#: templates/project_sheet/project_list_pagination.html:39
-msgid "next"
-msgstr "siguiente"
-
-#: templates/project_sheet/project_sheet.html:19
-#: templates/project_sheet/obsolete/project_sheet.html:16
-msgid "start project"
-msgstr "iniciar proyecto"
-
-#: templates/project_sheet/project_sheet.html:31
-msgid "About the project"
-msgstr ""
-
-#: templates/project_sheet/project_sheet.html:80
-msgid "Contributors"
-msgstr ""
-
-#: templates/project_sheet/project_sheet.html:90
-msgid "Related projects"
-msgstr ""
-
-#: templates/project_sheet/project_sheet.html:100
-msgid "Gallery"
-msgstr ""
-
-#: templates/project_sheet/sidebar_related.html:6
-#: templates/project_sheet/obsolete/grey_column.html:81
-msgid "related"
-msgstr "relacionado"
-
-#: templates/project_sheet/sidebar_related.html:14
-msgid "Objectives:"
-msgstr "Objetivos:"
-
-#: templates/project_sheet/sidebar_related.html:22
-msgid "Themes:"
-msgstr "Temas:"
-
-#: templates/project_sheet/sidebar_related.html:22
-msgid "select your tags from the cloud below"
-msgstr "seleccione las etiquetas de la nube inferior"
-
-#: templates/project_sheet/sidebar_related.html:39
-msgid "Close &amp; discard"
-msgstr "Cerrar &amp; descartar"
-
-#: templates/project_sheet/sidebar_related.html:40
-#: templates/project_sheet/sidebar_team.html:17
-#: templates/project_sheet/obsolete/references_section.html:33
-msgid "Save & close"
-msgstr "Guardar & cerrar"
-
-#: templates/project_sheet/sidebar_team.html:6
-#: templates/project_sheet/obsolete/grey_column.html:121
-msgid "The team"
-msgstr "El equipo"
-
-#: templates/project_sheet/sidebar_team.html:9
-msgid "Add a team member"
-msgstr "Añadir un miembro del equipo"
-
-#: templates/project_sheet/sidebar_team.html:16
-msgid "Close & discard"
-msgstr "Cerrar & descartar"
-
-#: templates/project_sheet/topic_select_fragment.html:11
-msgid "Select your type of project"
-msgstr ""
-
-#: templates/project_sheet/value_section.html:6
-#: templates/project_sheet/value_section.html:20
-#: templates/project_sheet/value_section.html:32
-msgid "What is the social value of this project"
-msgstr "¿Cuál es el valor social de este proyecto"
-
-#: templates/project_sheet/value_section.html:27
+#: templates/project_sheet/block/about.html:60
+#: templates/project_sheet/block/detail-list.html:62
 #: templates/project_sheet/obsolete/project_sheet.html:386
 #: templates/project_sheet/obsolete/project_sheet.html:681
+#: templates/project_sheet/obsolete/value_section.html:27
 msgid "This field is blank. Don’t forget to complete it!"
 msgstr "Este campo está en blanco. ¡No olvide completarlo!"
 
+#: templates/project_sheet/block/about.html:65
+msgid "Welcome to your new project sheet!"
+msgstr ""
+
+#: templates/project_sheet/block/about.html:68
+msgid "The first step is to edit the project title."
+msgstr ""
+
+#: templates/project_sheet/block/about.html:71
+msgid ""
+"To do that, <strong>hover your mouse on 'My Project Title'</strong> so you "
+"can see the pencil. Then, <strong>click on it</strong> and fill in your "
+"project title."
+msgstr ""
+
+#: templates/project_sheet/block/about.html:74
+msgid ""
+"You will then <strong>have access to the whole sheet</strong> where you can "
+"fill in all the details of your project, the same way you did for the title."
+" If you've already used a <strong>wiki</strong> before, you'll feel at home."
+" "
+msgstr ""
+
+#: templates/project_sheet/block/about.html:77
+msgid ""
+"At any time, if you feel lost, just use the <strong>Feedback</strong> tab, "
+"located on the right of the screen. We'll try to help you as fast as "
+"possible."
+msgstr ""
+
 #: templates/project_sheet/block/card_fancy_square.html:23
 msgid "See the project"
-msgstr ""
+msgstr "Ver el proyecto"
 
 #: templates/project_sheet/block/cardlist_fancy_wide.html:20
 msgid "No projects found"
-msgstr ""
+msgstr "Ningún proyecto encontrado"
 
 #: templates/project_sheet/block/comment-block.html:15
 #: templates/project_sheet/block/toolbar.html:36
@@ -468,38 +280,95 @@ msgstr ""
 msgid "Comments"
 msgstr "Comentarios"
 
-#: templates/project_sheet/block/comment-block.html:55
+#: templates/project_sheet/block/comment-block.html:56
 #: templates/project_sheet/obsolete/comments/comments-module.html:32
 msgid "Your avatar"
 msgstr "Su avatar"
 
-#: templates/project_sheet/block/comment-block.html:57
+#: templates/project_sheet/block/comment-block.html:58
 msgid "Add your comment there and press enter to send..."
-msgstr ""
+msgstr "Añada su comentario aquí y pulse entrar para enviar..."
 
-#: templates/project_sheet/block/comment-block.html:65
+#: templates/project_sheet/block/comment-block.html:66
 #: templates/project_sheet/obsolete/comments/comments-module.html:37
 msgid "Post comment"
 msgstr "Enviar comentario"
 
-#: templates/project_sheet/block/comment-list.html:33
+#: templates/project_sheet/block/comment-list.html:35
 msgid "Show all"
-msgstr ""
+msgstr "Mostrar todo"
 
-#: templates/project_sheet/block/comment-list.html:33
+#: templates/project_sheet/block/comment-list.html:35
 #: templates/project_sheet/obsolete/comments/comments-module.html:14
 msgid "comments"
 msgstr "comentarios"
 
+#: templates/project_sheet/block/detail-list.html:49
+#: templates/project_sheet/block/form_buttons.html:6
+#: templates/project_sheet/block/subheader.html:32
+#: templates/project_sheet/block/subheader.html:179
+#: templates/project_sheet/obsolete/about_section.html:21
+#: templates/project_sheet/obsolete/media_gallery.html:105
+#: templates/project_sheet/obsolete/partners_section.html:14
+#: templates/project_sheet/obsolete/project_sheet.html:326
+#: templates/project_sheet/obsolete/project_sheet.html:349
+#: templates/project_sheet/obsolete/project_sheet.html:383
+#: templates/project_sheet/obsolete/project_sheet.html:516
+#: templates/project_sheet/obsolete/project_sheet.html:554
+#: templates/project_sheet/obsolete/project_sheet.html:635
+#: templates/project_sheet/obsolete/project_sheet.html:668
+#: templates/project_sheet/obsolete/value_section.html:14
+msgid "Ok"
+msgstr "Ok"
+
+#: templates/project_sheet/block/detail-list.html:50
+#: templates/project_sheet/block/form_buttons.html:12
+#: templates/project_sheet/block/form_buttons.html:13
+#: templates/project_sheet/block/subheader.html:31
+#: templates/project_sheet/block/subheader.html:185
+#: templates/project_sheet/obsolete/about_section.html:22
+#: templates/project_sheet/obsolete/grey_column.html:49
+#: templates/project_sheet/obsolete/media_gallery.html:46
+#: templates/project_sheet/obsolete/media_gallery.html:106
+#: templates/project_sheet/obsolete/partners_section.html:15
+#: templates/project_sheet/obsolete/project_sheet.html:325
+#: templates/project_sheet/obsolete/project_sheet.html:348
+#: templates/project_sheet/obsolete/project_sheet.html:382
+#: templates/project_sheet/obsolete/project_sheet.html:515
+#: templates/project_sheet/obsolete/project_sheet.html:555
+#: templates/project_sheet/obsolete/project_sheet.html:636
+#: templates/project_sheet/obsolete/project_sheet.html:669
+#: templates/project_sheet/obsolete/value_section.html:15
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: templates/project_sheet/block/form_buttons.html:8
+msgid "Save"
+msgstr ""
+
+#: templates/project_sheet/block/gallery_fancy.html:57
+msgid "No picture found"
+msgstr ""
+
 #: templates/project_sheet/block/member_fancy_square.html:28
 #: templates/project_sheet/block/member_flat_wide.html:23
 msgid "Member of : "
-msgstr ""
+msgstr "Miembro de:"
+
+#: templates/project_sheet/block/menubar.html:12
+#: templates/project_sheet/block/toolbar.html:28
+msgid "Project"
+msgstr "Proyecto"
+
+#: templates/project_sheet/block/menubar.html:33
+#: templates/project_sheet/block/subheader.html:218
+msgid "Share"
+msgstr "Compartir"
 
 #: templates/project_sheet/block/partner-block.html:25
 #: templates/project_sheet/block/toolbar.html:40
 msgid "Partners"
-msgstr ""
+msgstr "Socios"
 
 #: templates/project_sheet/block/partner-block.html:29
 #: templates/project_sheet/obsolete/grey_column.html:33
@@ -513,69 +382,63 @@ msgstr "editar"
 msgid "This project has no known partners."
 msgstr "Este proyecto no tiene socios conocidos."
 
-#: templates/project_sheet/block/reference-block.html:28
+#: templates/project_sheet/block/reference-block.html:27
 #: templates/project_sheet/block/toolbar.html:32
 msgid "References"
-msgstr ""
+msgstr "Referencias"
 
 #: templates/project_sheet/block/reference-block.html:32
 msgid "Links"
-msgstr ""
+msgstr "Enlaces"
 
-#: templates/project_sheet/block/reference-block.html:39
+#: templates/project_sheet/block/reference-block.html:46
+#: templates/project_sheet/block/reference-block.html:49
 #: templates/project_sheet/obsolete/references_section.html:16
 msgid "no references"
 msgstr "sin referencias"
 
-#: templates/project_sheet/block/reference-block.html:46
-#: templates/project_sheet/block/reference-block.html:64
-msgid "Add a link"
-msgstr ""
-
-#: templates/project_sheet/block/reference-block.html:50
-msgid "Documents"
-msgstr ""
-
-#: templates/project_sheet/block/reference-block.html:54
-msgid "no documents"
-msgstr ""
-
-#: templates/project_sheet/block/subheader.html:48
+#: templates/project_sheet/block/subheader.html:68
 #: templates/project_sheet/obsolete/project_sheet.html:531
 msgid "my project title"
 msgstr "Título de mi proyecto"
 
-#: templates/project_sheet/block/subheader.html:87
+#: templates/project_sheet/block/subheader.html:123
 #: templates/project_sheet/block/toolbar.html:24
 msgid "Information"
-msgstr ""
+msgstr "Información"
 
-#: templates/project_sheet/block/subheader.html:91
+#: templates/project_sheet/block/subheader.html:129
 msgid "Location"
-msgstr ""
+msgstr "Localización"
 
-#: templates/project_sheet/block/subheader.html:108
-#: templates/project_sheet/block/subheader.html:120
+#: templates/project_sheet/block/subheader.html:161
+#: templates/project_sheet/block/subheader.html:198
+#: templates/project_sheet/block/subheader.html:207
 #: templates/project_sheet/obsolete/project_sheet.html:608
 #: templates/project_sheet/obsolete/project_sheet.html:616
 msgid "unknown"
 msgstr "desconocido"
 
-#: templates/project_sheet/block/subheader.html:114
+#: templates/project_sheet/block/subheader.html:171
 msgid "Web"
-msgstr ""
+msgstr "Web"
 
-#: templates/project_sheet/block/subheader.html:126
+#: templates/project_sheet/block/subheader.html:214
 msgid "Follow"
-msgstr ""
+msgstr "Seguir"
 
-#: templates/project_sheet/block/subheader.html:136
+#: templates/project_sheet/block/subheader.html:224
 msgid "Movecommons"
-msgstr ""
+msgstr "Movecommons"
 
-#: templates/project_sheet/block/subheader.html:141
+#: templates/project_sheet/block/subheader.html:229
 msgid "Maturity"
-msgstr ""
+msgstr "Madurez"
+
+#: templates/project_sheet/layout/project_base.html:26
+#: templates/project_sheet/obsolete/project_sheet.html:16
+msgid "start project"
+msgstr "iniciar proyecto"
 
 #: templates/project_sheet/obsolete/about_section.html:39
 #: templates/project_sheet/obsolete/about_section.html:50
@@ -586,6 +449,20 @@ msgstr "Descripción del proyecto"
 #: templates/project_sheet/obsolete/about_section.html:51
 msgid "click here to describe your project"
 msgstr "haga clic aquí para describir su proyecto"
+
+#: templates/project_sheet/obsolete/all_recent_changes.html:26
+msgid "Latest 20 days changes"
+msgstr "Cambios de los últimos 20 días"
+
+#: templates/project_sheet/obsolete/all_recent_changes.html:27
+#: templates/project_sheet/obsolete/project_list.html:73
+msgid "RSS Feed"
+msgstr "Fuente RSS"
+
+#: templates/project_sheet/obsolete/all_recent_changes.html:49
+#: templates/project_sheet/obsolete/project_list.html:103
+msgid "Your request did not return any result."
+msgstr "Su búsqueda no devolvió ningún resultado."
 
 #: templates/project_sheet/obsolete/grey_column.html:35
 msgid "take action"
@@ -601,6 +478,11 @@ msgstr "Este proyecto no ha expresado necesidades concretas. Modifique este apar
 msgid "Spread the word:"
 msgstr "Correr la voz:"
 
+#: templates/project_sheet/obsolete/grey_column.html:81
+#: templates/project_sheet/obsolete/sidebar_related.html:6
+msgid "related"
+msgstr "relacionado"
+
 #: templates/project_sheet/obsolete/grey_column.html:88
 msgid "objectives:"
 msgstr "Objetivos:"
@@ -609,7 +491,7 @@ msgstr "Objetivos:"
 msgid ""
 "Click here to set the <strong>categories</strong> and <strong>tags</strong> "
 "of this project."
-msgstr "Haga clic aquí para establecer <strong>los objetivos</strong> y <strong>las etiquetas</strong> de este proyecto."
+msgstr "Haga clic aquí para establecer los <strong>objetivos</strong> y las <strong>etiquetas</strong> de este proyecto."
 
 #: templates/project_sheet/obsolete/grey_column.html:105
 msgid "Tags:"
@@ -622,6 +504,11 @@ msgstr "Añadir un miembro"
 #: templates/project_sheet/obsolete/grey_column.html:120
 msgid "add"
 msgstr "añadir"
+
+#: templates/project_sheet/obsolete/grey_column.html:121
+#: templates/project_sheet/obsolete/sidebar_team.html:6
+msgid "The team"
+msgstr "El equipo"
 
 #: templates/project_sheet/obsolete/grey_column.html:128
 #: templates/project_sheet/obsolete/grey_column.html:144
@@ -660,7 +547,7 @@ msgstr "Contacto"
 
 #: templates/project_sheet/obsolete/grey_column.html:219
 msgid "Current partners"
-msgstr ""
+msgstr "Los socios"
 
 #: templates/project_sheet/obsolete/grey_column.html:273
 msgid "Want to get started on your project sheet ?"
@@ -671,6 +558,35 @@ msgid ""
 "Click on the field you want to edit, edit it, and save the changes. Once "
 "you’ve modified a field, your project sheet will be created."
 msgstr "Haga clic en el campo que desee editar y, a continuación, guarde los cambios. Su proyecto se creará al modificar un campo."
+
+#: templates/project_sheet/obsolete/history.html:18
+msgid "Made on"
+msgstr "Hecho el"
+
+#: templates/project_sheet/obsolete/history.html:18
+msgid "DATETIME_FORMAT"
+msgstr "DATETIME_FORMAT"
+
+#: templates/project_sheet/obsolete/history.html:18
+#: templates/project_sheet/obsolete/project_sheet.html:584
+msgid "by"
+msgstr "por"
+
+#: templates/project_sheet/obsolete/history.html:22
+msgid "Anonymous"
+msgstr "Anónimo"
+
+#: templates/project_sheet/obsolete/history.html:24
+msgid "on"
+msgstr "en"
+
+#: templates/project_sheet/obsolete/history.html:30
+msgid "and"
+msgstr "y"
+
+#: templates/project_sheet/obsolete/history.html:33
+msgid "\""
+msgstr "\""
 
 #: templates/project_sheet/obsolete/media_gallery.html:7
 msgid "upload a media"
@@ -719,7 +635,7 @@ msgstr "Fuente:"
 #: templates/project_sheet/obsolete/media_gallery.html:74
 #: templates/project_sheet/obsolete/media_gallery.html:96
 msgid "Licence :"
-msgstr "Licencia :"
+msgstr "Licencia:"
 
 #: templates/project_sheet/obsolete/media_gallery.html:144
 msgid "Sorry, video are temporary disabled on Internet Explorer"
@@ -733,9 +649,84 @@ msgstr "Sí"
 msgid "No"
 msgstr "No"
 
+#: templates/project_sheet/obsolete/partners_section.html:6
+#: templates/project_sheet/obsolete/partners_section.html:32
+msgid "who are the current partners of this project"
+msgstr "¿quiénes son los socios de este proyecto"
+
+#: templates/project_sheet/obsolete/partners_section.html:27
+msgid "This field is blank. Don’t forget to complete it! "
+msgstr "Este campo está en blanco. ¡No olvide completarlo!"
+
+#: templates/project_sheet/obsolete/project_complete_card.html:18
+msgid "There is no description for this project"
+msgstr "Este proyecto no tiene descripción"
+
+#: templates/project_sheet/obsolete/project_edit_themes.html:9
+#, python-format
+msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
+msgstr "Modificar la información vinculada de &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
+
+#: templates/project_sheet/obsolete/project_edit_themes.html:17
+msgid "Update"
+msgstr "Actualizar"
+
+#: templates/project_sheet/obsolete/project_id_card.html:16
+#: templates/project_sheet/obsolete/project_status.html:5
+msgid "associated team"
+msgstr "equipo asociado"
+
+#: templates/project_sheet/obsolete/project_id_card.html:19
+#: templates/project_sheet/obsolete/project_status.html:8
+msgid "in progress"
+msgstr "en progreso"
+
+#: templates/project_sheet/obsolete/project_id_card.html:22
+#: templates/project_sheet/obsolete/project_status.html:11
+msgid "popular"
+msgstr "popular"
+
+#: templates/project_sheet/obsolete/project_id_card.html:25
+#: templates/project_sheet/obsolete/project_status.html:14
+msgid "bestof"
+msgstr "lo mejor de"
+
+#: templates/project_sheet/obsolete/project_list.html:7
+msgid ""
+"These experiences have a positive social impact and create social goodwill. "
+"they demonstrate a disruptive inventiveness and can be easily disseminated "
+"and scaled in other places or cultural contexts."
+msgstr "Estas experiencias tienen un impacto social positivo y fomentan la buena voluntad en la sociedad. Demuestran una imaginación rompedora y pueden ser difundidas y adaptadas con facilidad a cualquier lugar y contexto cultural."
+
+#: templates/project_sheet/obsolete/project_list.html:8
+msgid "Find projects on "
+msgstr "Encuentre proyectos en"
+
+#: templates/project_sheet/obsolete/project_list.html:68
+msgid "Order by:"
+msgstr "Ordenar por:"
+
+#: templates/project_sheet/obsolete/project_list.html:70
+msgid "Newest projects"
+msgstr "Nuevos proyectos"
+
+#: templates/project_sheet/obsolete/project_list.html:71
+msgid "Recent changes"
+msgstr "Cambios recientes"
+
+#: templates/project_sheet/obsolete/project_list_pagination.html:9
+#: templates/project_sheet/obsolete/project_list_pagination.html:12
+msgid "previous"
+msgstr "previo"
+
+#: templates/project_sheet/obsolete/project_list_pagination.html:36
+#: templates/project_sheet/obsolete/project_list_pagination.html:39
+msgid "next"
+msgstr "siguiente"
+
 #: templates/project_sheet/obsolete/project_sheet.html:131
 msgid "Type your message here and hit enter when done..."
-msgstr "Escriba su mensaje aquí y presione enter al acabar..."
+msgstr "Escriba su mensaje aquí y presione la tecla Intro al acabar..."
 
 #: templates/project_sheet/obsolete/project_sheet.html:352
 msgid "This bloc is empty : don’t forget to fill it !"
@@ -756,7 +747,7 @@ msgid ""
 "            <br />You can enrich it very simply by clicking on text boxes which seem to be incomplete. You will then have access to a wiki field allowing you to write additional content.\n"
 "\t\t\t<br />Please feel free to ask for help through <a class=\"link\" href=\"/feedback/list/\">feedback</a> or on <a class=\"link\" href=\"http://imaginationforpeople.org/conference/\">live chat</a>.\n"
 "            "
-msgstr ""
+msgstr "\n            Esta hoja de proyecto es un borrador. ¡Conviértase en un clic en un co-editor de este proyecto! <br />Puede mejorarlo simplemente haciendo clic en los cuadros de texto que parecen estar incompletos. A continuación, tendrá acceso a un campo de wiki que le permite escribir el contenido adicional. »»»<br />Por favor, siéntase libre de pedir ayuda a través de <a class=\"link\" href=\"/feedback/list/\">feedback</a> o en <a class=\"link\" href=\"http://imaginationforpeople.org/conference/\">chat en vivo</a>.\n            "
 
 #: templates/project_sheet/obsolete/project_sheet.html:589
 msgid "anonymous"
@@ -787,6 +778,65 @@ msgstr "referencias"
 msgid "Cancel & close"
 msgstr "Cancelar & cerrar"
 
+#: templates/project_sheet/obsolete/references_section.html:33
+#: templates/project_sheet/obsolete/sidebar_related.html:40
+#: templates/project_sheet/obsolete/sidebar_team.html:17
+msgid "Save & close"
+msgstr "Guardar & cerrar"
+
+#: templates/project_sheet/obsolete/sidebar_related.html:14
+msgid "Objectives:"
+msgstr "Objetivos:"
+
+#: templates/project_sheet/obsolete/sidebar_related.html:22
+msgid "Themes:"
+msgstr "Temas:"
+
+#: templates/project_sheet/obsolete/sidebar_related.html:22
+msgid "select your tags from the cloud below"
+msgstr "seleccione las etiquetas de la nube inferior"
+
+#: templates/project_sheet/obsolete/sidebar_related.html:39
+msgid "Close &amp; discard"
+msgstr "Cerrar &amp; descartar"
+
+#: templates/project_sheet/obsolete/sidebar_team.html:9
+msgid "Add a team member"
+msgstr "Añadir un miembro del equipo"
+
+#: templates/project_sheet/obsolete/sidebar_team.html:16
+msgid "Close & discard"
+msgstr "Cerrar & descartar"
+
+#: templates/project_sheet/obsolete/topic_select_fragment.html:11
+msgid "Select your type of project"
+msgstr "Seleccione el tipo de proyecto"
+
+#: templates/project_sheet/obsolete/value_section.html:6
+#: templates/project_sheet/obsolete/value_section.html:20
+#: templates/project_sheet/obsolete/value_section.html:32
+msgid "What is the social value of this project"
+msgstr "¿Cuál es el valor social de este proyecto"
+
 #: templates/project_sheet/obsolete/comments/comments-module.html:14
 msgid "View the"
 msgstr "Ver los"
+
+#: templates/project_sheet/page/project_sheet.html:49
+msgid "Contributors"
+msgstr "Contribuyentes"
+
+#: templates/project_sheet/page/project_sheet.html:59
+msgid "Related projects"
+msgstr "Proyectos relacionados"
+
+#: templates/project_sheet/page/project_sheet.html:67
+#, python-format
+msgid ""
+"You need to <a href=\"%(tags_url)s\">tag this project</a> before we can "
+"suggest related projects."
+msgstr ""
+
+#: templates/project_sheet/page/project_sheet.html:74
+msgid "Gallery"
+msgstr "Galería"

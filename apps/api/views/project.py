@@ -24,6 +24,7 @@ from django.utils import translation
 from tastypie import fields
 from tastypie.resources import ModelResource
 from tastypie.utils.urls import trailing_slash
+from tastypie.throttle import CacheDBThrottle
 
 from apps.i4p_base.models import Location
 from apps.project_sheet.models import Answer, Objective, I4pProject, I4pProjectTranslation, Topic,\
@@ -133,6 +134,7 @@ class I4pProjectTranslationResource(ModelResource):
     class Meta:
         queryset = I4pProjectTranslation.objects.all()
         resource_name = 'project'
+        throttle = CacheDBThrottle()
         
         bestof_allowed_methods = ['get']
         latest_allowed_methods = ['get']
@@ -140,7 +142,8 @@ class I4pProjectTranslationResource(ModelResource):
         fields = ['id', 'slug','language_code','title','baseline']
         
     def dispatch_detail(self, request, **kwargs):
-        translation.activate(kwargs["language_code"])
+        if "language_code" in kwargs:
+            translation.activate(kwargs["language_code"])
         return ModelResource.dispatch_detail(self, request, **kwargs)
     
     def dispatch_bestof(self, request, **kwargs):
