@@ -23,6 +23,7 @@
 		{% include "project_sheet/block/detail-list.html" %}
 	    </div> <!-- .project-details -->
 
+	    {% if project_translation %}
 	    <hr class="shaded-separator" />
 
 	    {% include "project_sheet/block/reference-block.html" with reference_block_extra_class="project-references" %}
@@ -34,10 +35,13 @@
 		{% include "project_sheet/block/comment-block.html" %}
 	    </div> <!-- .project-comments -->
 
+	    {% endif %}
+
 	</div> <!-- .project-main -->
 
 	<div class="span4 project-sidebar">	
 
+	  {% if project_translation %}
 	    <div class="project-members member-block">
 		<!-- FIXME: use dynamic data for member list -->
 		<h2>
@@ -73,6 +77,7 @@
 	    </div> <!-- .project-gallery -->
 
 	    {% include "project_sheet/block/partner-block.html" %}
+	    {% endif %}
 	</div> <!-- .project-sidebar -->
     </div>
 </div>
