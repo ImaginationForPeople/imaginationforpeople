@@ -1,0 +1,9 @@
+@import "i4p/buttons";
+
+.project-about {
+    h2 {
+	.i4p-button {
+	    @include i4p-button-fancy-bordered-small;
+	}
+    }
+}

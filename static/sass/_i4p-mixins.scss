@@ -11,6 +11,7 @@
 @import "compass_twitter_bootstrap/mixins";
 
 
+@import "i4p/mixins";
 @import "i4p/fonts";
 @import "i4p/sprites";
 @import "i4p/buttons";
@@ -36,33 +37,11 @@
 }
 
 
-@mixin i4p-background-vertical-gradient($colorTop, $colorBottom) {
-    background-image: linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -moz-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -ms-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -o-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -webkit-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-
-    background-image: -webkit-gradient(
-	linear,
-	left top,
-	left bottom,
-	color-stop(0, $colorTop),
-	color-stop(1, $colorBottom)
-    );
-}
 
 @mixin i4p-box-shadow-bottomleft {
     box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
 }
 
-// FIXME: replace with compass/css3 transition
-@mixin i4p-transition( $effect : all .5s ease) {
-    -moz-transition: $effect;
-    -o-transition: $effect;
-    transition: $effect;
-    -webkit-transition: $effect;
-}
 
 // Adds the see more class to a block
 // WARNING: the block will become relatively-positionned
