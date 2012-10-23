@@ -714,7 +714,7 @@ def project_sheet_history(request, project_slug):
             parent_project_previous_version = version
 
 
-    return render_to_response('project_sheet/history.html',
+    return render_to_response('project_sheet/obsolete/history.html',
                               {'project_translation' : project_translation,
                                'versions' : versions,
                                'history_tab' : True},
