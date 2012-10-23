@@ -167,7 +167,7 @@
 						<th>{% trans "Web" %}</th>
 						<td>
 							{% if project_info_form %}<!-- WEBSITE/READWRITE mode-->
-							<form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
+							<form action="{% url project_sheet-instance-edit-info project_translation.slug %}" method="post">
 								{% csrf_token %}
 
 								{{ project_info_form.as_p }}
@@ -186,7 +186,6 @@
 							</form>	
 							{% else %}
 							{% if project_translation %}<!-- WEBSITE/READONLY filled -->
-
 							{% if project_translation.project.website %}
 							<a href="{{ project.website }}" target="_blank" rel="nofollow">
 								{{ project_translation.project.website }}

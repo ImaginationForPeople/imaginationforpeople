@@ -150,14 +150,20 @@ class ProjectTopicSelectView(TemplateView):
     """
     template_name = 'project_sheet/obsolete/topic_select.html'
 
+    def get(self, request, *args, **kwargs):
+        site = Site.objects.get_current()
+        
+        self.site_topics = SiteTopic.objects.filter(site=site)
+
+        # In case we only have one topic, don't prompt the useryep
+        if len(self.site_topics) == 1:
+            return redirect('project_sheet-start', self.site_topics[0].topic.slug, permanent=False)
+
+        return super(ProjectTopicSelectView, self).get(self, request, *args, **kwargs)
+    
     def get_context_data(self, **kwargs):
         context = super(ProjectTopicSelectView, self).get_context_data(**kwargs)
-
-        site = Site.objects.get_current()
-        site_topics = SiteTopic.objects.filter(site=site)
-
-        context['site_topics'] = site_topics
-
+        context['site_topics'] = self.site_topics
         return context
 
 
@@ -172,13 +178,16 @@ class ProjectView(TemplateView):
         language_code = translation.get_language()        
         site = Site.objects.get_current()
         slug = kwargs['slug']
-        
+
         try:
             self.project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=slug,
                                                                                        prefered_language_code=language_code,
                                                                                        site=site)
         except I4pProjectTranslation.DoesNotExist:
             raise Http404
+
+        if self.project_translation.language_code != language_code:
+            return redirect(self.project_translation, permanent=False)
 
         return super(ProjectView, self).dispatch(request, *args, **kwargs)
             
@@ -191,20 +200,10 @@ class ProjectView(TemplateView):
     
     def get_context_data(self, slug, *args, **kwargs):
         context = super(ProjectView, self).get_context_data(**kwargs)
-
-        language_code = translation.get_language()
-
-        if self.project_translation.language_code != language_code:
-            return redirect(self.project_translation, permanent=False)
             
         # Forms
-        # project_info_form = I4pProjectInfoForm(instance=project_translation.project)
-        # project_themes_form = I4pProjectThemesForm(instance=project_translation)
-        # project_objectives_form = I4pProjectObjectivesForm(instance=self.project_translation.project, prefix="objectives-form")
         # project_member_form = ProjectMemberForm()
         # project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
-        # project_location_form = I4pProjectLocationForm(instance=project_translation.project.location)
-        # reference_formset = ProjectReferenceFormSet(queryset=self.project_translation.project.references.all())
         project_status_choices = OrderedDict((k, unicode(v)) 
                                              for k, v in I4pProject.STATUS_CHOICES)
         
@@ -261,22 +260,22 @@ class ProjectEditInfoView(ProjectView):
     Edit Info
     """
     def get(self, request, *args, **kwargs):
-        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.project.location)
-        return super(ProjectEditLocationView, self).get(request, *args, **kwargs)
+        self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.project)
+        return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
         # Misc info: website, ...
-        project_info_form = I4pProjectInfoForm(request.POST,
-                                               instance=self.project_translation.project)
+        self.project_info_form = I4pProjectInfoForm(request.POST,
+                                                    instance=self.project_translation.project)
         
-        if request.method == 'POST' and project_info_form.is_valid():
-            info = project_info_form.save()
+        if self.project_info_form.is_valid():
+            info = self.project_info_form.save()
             return redirect(self.project_translation)
         else:
-            return super(ProjectEditInfoView, self).post(request, *args, **kwargs)
+            return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
 
     def get_context_data(self, slug, **kwargs):
-        context = super(ProjectEditLocationView, self).get_context_data(slug, **kwargs)
+        context = super(ProjectEditInfoView, self).get_context_data(slug, **kwargs)
         
         context['project_info_form'] = self.project_info_form
         
@@ -621,7 +620,7 @@ class ProjectEditReferencesView(ProjectView):
 
         next_url = request.POST.get("next", None)
         if next_url:
-            return HttpResponseRedirect(next_url)
+            return redirect(next_url)
 
         return redirect(self.project_translation)
 
