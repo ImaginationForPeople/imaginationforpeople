@@ -273,7 +273,7 @@ class ProjectEditInfoView(ProjectView):
             info = project_info_form.save()
             return redirect(self.project_translation)
         else:
-            return self.get(request, *args, **kwargs)
+            return super(ProjectEditInfoView, self).post(request, *args, **kwargs)
 
     def get_context_data(self, slug, **kwargs):
         context = super(ProjectEditLocationView, self).get_context_data(slug, **kwargs)
@@ -597,34 +597,33 @@ def project_sheet_del_video(request, slug, vid_id):
     return redirect(project_translation)
 
 
-@require_POST
-def project_sheet_edit_references(request, project_slug):
+class ProjectEditReferencesView(ProjectView):
     """
     Edit references of a project
     """
-    language_code = translation.get_language()
+    def get_context_data(self, slug, *args, **kwargs):
+        context = super(ProjectEditReferencesView, self).get_context_data(slug, *args, **kwargs)
+        context['reference_formset'] = self.reference_formset
+        return context
+    
+    def get(self, request, *args, **kwargs):
+        self.reference_formset = ProjectReferenceFormSet(queryset=self.project_translation.project.references.all())
+        return super(ProjectEditReferencesView, self).get(request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+        self.reference_formset = ProjectReferenceFormSet(request.POST,
+                                                         queryset=self.project_translation.project.references.all())
 
-    # get the project translation and its base
-    try:
-        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                              language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
+        if self.reference_formset.is_valid():
+            refs = self.reference_formset.save()
+            for ref in refs:
+                self.project_translation.project.references.add(ref)
 
-    parent_project = project_translation.project
+        next_url = request.POST.get("next", None)
+        if next_url:
+            return HttpResponseRedirect(next_url)
 
-    reference_formset = ProjectReferenceFormSet(request.POST, queryset=parent_project.references.all())
-
-    if reference_formset.is_valid():
-        refs = reference_formset.save()
-        for ref in refs:
-            parent_project.references.add(ref)
-
-    next_url = request.POST.get("next", None)
-    if next_url:
-        return HttpResponseRedirect(next_url)
-
-    return redirect(project_translation)
+        return redirect(self.project_translation)
 
 
 def project_sheet_member_add(request, project_slug):
