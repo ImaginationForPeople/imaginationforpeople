@@ -38,7 +38,8 @@
 	</div>
 	{% endcomment %}
 </div>
-{% if user.is_authenticated %}
+
+{% if project_translation and user.is_authenticated %}
 <div class="row">
 	<div class="comment-add span8">{% comment %} FIXME: limit to span5 once discussion is available again {%endcomment%}
 

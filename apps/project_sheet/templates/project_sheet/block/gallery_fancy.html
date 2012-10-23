@@ -50,6 +50,8 @@ FIXME: use picture list instead of project_translation
 			<div class="overlay-two"></div>
 		</li>
 		{% endif %}
+		{% empty %}
+		<li>{% trans 'No picture found' %}</li>
 		{% endfor %}
 	</ul>
 </div>

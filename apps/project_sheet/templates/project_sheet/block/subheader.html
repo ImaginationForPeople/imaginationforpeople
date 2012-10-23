@@ -9,11 +9,6 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/subheader.css" />
 {% endaddtoblock %}
 
-{% unique_counter subheader %}
-{% with subheader_title_unique_counter=subheader_counter %}
-
-{% unique_counter subheader %}
-{% with subheader_baseline_unique_counter=subheader_counter %}
 
 <div class="project-subheader">
 	<div class="container">
@@ -24,7 +19,7 @@
 				</div>
 				<div class="overlay">
 					<h1 class="title"> <!-- TITLE -->
-						{% if title_form %}<!-- readwrite mode-->
+						{% if title_form %}<!-- TITLE/READWRITE -->
 						<form id="title" 
 							{% if project_translation %}
 							action="{% url  project_sheet-instance-edit-field project_translation.slug 'title' %}" 
@@ -38,7 +33,9 @@
 						</form>
 
 						{% else %}
-						{% if project_translation %}<!-- readonly filled -->
+						{% if project_translation %}<!-- TITLE/READONLY filled -->
+						{% unique_counter subheader %}
+						{% with subheader_title_unique_counter=subheader_counter %}
 						<span id="subheader-title-{{subheader_title_unique_counter}}"
 							{% comment %}
 							data-toggle="i4p-editable"
@@ -61,19 +58,19 @@
 							>
 							<img src="{{ STATIC_URL }}images/base/edit.png" />
 						</a>
-
+						{% endwith %}<!-- %subheader_title_unique_counter -->
 						{% else %}
-						<!-- PROJECT TITLE - empty -->
-						<a href="{% url project_sheet-edit-field topic.slug 'title' %}"
-							>
-							{% trans 'my project title'|capfirst %}
-						</a>
+						<!-- TITLE/READONLY empty -->
+
+						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'title' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+						{% trans 'my project title'|capfirst %}
+
 						{% endif %}
 						{% endif %}
 					</h1> <!-- /TITLE -->
 					<div class="description"><!-- BASELINE -->
 						{% if baseline_form %}
-						<!-- BASELINE - edition mode-->
+						<!-- BASELINE/READWRITE -->
 						<form id="baseline" 
 							{% if project_translation %}
 							action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" 
@@ -86,7 +83,9 @@
 						</form>
 						{% else %}
 						{% if project_translation %}
-						<!-- BASELINE - filled-->
+						<!-- BASELINE/READONLY filled-->
+						{% unique_counter subheader %}
+						{% with subheader_baseline_unique_counter=subheader_counter %}
 						<span
 							id="subheader-baseline-{{subheader_baseline_unique_counter}}"
 							{% comment %}
@@ -103,8 +102,9 @@
 							{{ project_translation.baseline }}
 						</span>
 						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+						{% endwith %}
 						{% else %}
-						<!--  BASELINE - empty -->
+						<!--  BASELINE/READONLY empty -->
 						{% trans "One line description"|capfirst %}
 						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
 						{% endif %}
@@ -125,7 +125,7 @@
 						<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
 						<th>{% trans "Location" %}</th>
 						<td>
-							{% if project_location_form %}<!-- readwrite mode-->
+							{% if project_location_form %}<!-- LOCATION/READWRITE -->
 							<div class="location-form">
 								<form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
 									{% csrf_token %}
@@ -134,12 +134,15 @@
 									{% include "project_sheet/block/form_buttons.html" %}
 								</form>	
 							</div> <!-- .location-form -->
-							{% else %}<!-- READONLY mode-->
+							{% else %}
+							{% if project_translation %}
+							<!-- LOCATION/READONLY filled-->
 							<div class="location-address">
 								{% if project_translation.project.location %}
 								<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
 								{% if project_translation.project.location.address %}
 								{{ project_translation.project.location.address }}
+								{% endif %}
 								{% endif %}
 							</div>
 							<div class="location-country">
@@ -150,11 +153,11 @@
 								<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
 								{% endif %}
 								<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-location project_translation.slug %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
-								{% else %} <!-- READONLY/CREATE mode -->
-								<em>{% trans 'unknown'|capfirst %}</em>
-								<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
-								{% endif %}
 							</div> <!-- .location-address -->
+							{% else %}<!-- LOCATION/READONLY/EMPTY mode -->
+							<em>{% trans 'unknown'|capfirst %}</em>
+							{% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>{% endcomment %}
+							{% endif %}
 							{% endif %}
 						</td>
 					</tr>
@@ -213,5 +216,3 @@
 	</div>
 </div> <!-- .project-subheader -->
 
-{% endwith %}
-{% endwith %}

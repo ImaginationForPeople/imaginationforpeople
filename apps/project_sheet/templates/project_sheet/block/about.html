@@ -23,10 +23,13 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/about.css" />
 {% endaddtoblock %}
 
+
 {% unique_counter about %}
 {% with about_unique_counter=about_counter %}
 
+
 <h2><span>{% trans "About the project" %}</span>
+{% if project_translation %}
 	<a href="#FIXME-bad-static-edit-url" class="i4p-button"
 		data-toggle="i4p-editable-button"
 		data-target="about-description-{{about_unique_counter}}"
@@ -34,10 +37,12 @@
 		<img src="{{ STATIC_URL }}images/base/edit.png" />
 		{% trans 'Edit' %}
 	</a>
+{% endif %}
 </h2>
 
 {% comment %} PROJECT ABOUT SECTION {% endcomment %}
 <p id="about-description-{{about_unique_counter}}"
+{% if project_translation %}
 	data-toggle="i4p-editable"
 	data-language-code="{{ LANGUAGE_CODE }}"
 	data-editable-id="about_section_txt"
@@ -46,6 +51,7 @@
 	data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
 	data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
 	data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
+{% endif %}
 >
 {{ project_translation.about_section|linebreaksbr }}
 </p>
