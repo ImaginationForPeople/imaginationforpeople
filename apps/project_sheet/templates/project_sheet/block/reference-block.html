@@ -27,11 +27,8 @@ Parameters for this block
 		{% trans "References" %}</h2>
 
 	<div class="row">
-		<div class="references-links link-list span4" >
+		<div class="references-links link-list span8" >{% comment %} FIXME: change back to span4 {% endcomment %}
 			<h3>{% trans "Links" %}</h3>
-			{% if project_translation %}
-			<a href="{% url project_sheet-instance-edit-references project_translation.slug %}#references">edit</a>
-			{% endif %}
 			{% if reference_formset %}
 			<form method="POST" action="?">
 			  {% csrf_token %}
@@ -53,17 +50,20 @@ Parameters for this block
 				<!-- <li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li> -->
 			</ul>
 			{% if project_translation %}
-			<a href="#FIXME-BADURL" class="button">
+			<a 
+				href="{% url project_sheet-instance-edit-references project_translation.slug %}#references"
+				class="button">
 				<i class="action-add"></i>
-				{% trans "Add a link" %}
+				{% trans "Edit" %}
 			</a>
 			{% endif %}
 		</div> <!-- .references-links link-list -->
 
+		{% comment %}
 		<div class="references-documents document-list span4" >
 			<h3>{% trans "Documents" %}</h3>
 			<ul>
-				{% comment %} FIXME: add documents to datamodel and load real data {% endcomment %}
+				{% commen/t %} FIXME: add documents to datamodel and load real data {% endcomme/nt %}
 				<li>{% trans 'no documents'|capfirst %}</li> 
 				<!--
 				<li class="document-item"><a href="#FIXME-ADD-REAL-DOC">Cahier des charges</a></li>
@@ -79,6 +79,7 @@ Parameters for this block
 			</a>
 			{% endif %}
 		</div> <!-- .references-documents document-list -->
+		{% endcomment %}
 
 	</div> <!-- .row -->
 </div> <!-- .project-references -->
