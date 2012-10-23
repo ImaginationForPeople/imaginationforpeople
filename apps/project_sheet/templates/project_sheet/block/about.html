@@ -24,9 +24,9 @@
 {% endaddtoblock %}
 
 
+
 {% unique_counter about %}
 {% with about_unique_counter=about_counter %}
-
 
 <h2><span>{% trans "About the project" %}</span>
 {% if project_translation %}
@@ -40,23 +40,29 @@
 {% endif %}
 </h2>
 
-{% comment %} PROJECT ABOUT SECTION {% endcomment %}
-<p id="about-description-{{about_unique_counter}}"
 {% if project_translation %}
+{% comment %} PROJECT ABOUT SECTION {% endcomment %}
+
+<p id="about-description-{{about_unique_counter}}"
 	data-toggle="i4p-editable"
 	data-language-code="{{ LANGUAGE_CODE }}"
 	data-editable-id="about_section_txt"
+	data-editable-trigger="dblclick"
 	data-editable-tooltip="{% trans 'Double-click to edit' %}"
 	data-editable-type="textarea"
 	data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
 	data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
 	data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
-{% endif %}
 >
 {{ project_translation.about_section|linebreaksbr }}
 </p>
+{% else %}
+<p>
+{% trans 'Please start your project by filling its title or description' %}
+</p>
+{% endif %}
 
-{% endwith %}
+{% endwith %}<!-- %about_unique_counter -->
 
 {% comment %} PROJECT TAGS {% endcomment %}
 

@@ -52,6 +52,7 @@
 	data-language-code="{{ LANGUAGE_CODE }}"
 	data-toggle="i4p-editable"
 	data-editable-id="answer-{{q.id}}"
+	data-editable-trigger="dblclick"
 	data-editable-tooltip="{% trans 'Double-click to edit' %}"
 	data-editable-type="textarea"
 	data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"

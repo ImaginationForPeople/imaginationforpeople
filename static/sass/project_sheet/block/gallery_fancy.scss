@@ -9,6 +9,10 @@ $gallery_strOverlayUrl: 'gallery/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 
+.project-gallery-modal {
+    // FIXME: fix bootstrap modal width locally 
+}
+
 .project-gallery {
     ul {
 	margin:0;
