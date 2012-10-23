@@ -714,7 +714,7 @@ def project_sheet_history(request, project_slug):
             parent_project_previous_version = version
 
 
-    return render_to_response('project_sheet/history.html',
+    return render_to_response('project_sheet/obsolete/history.html',
                               {'project_translation' : project_translation,
                                'versions' : versions,
                                'history_tab' : True},
@@ -722,7 +722,7 @@ def project_sheet_history(request, project_slug):
 
 
 class ProjectRecentChangesView(TemplateView):
-    template_name = 'project_sheet/all_recent_changes.html'
+    template_name = 'project_sheet/obsolete/all_recent_changes.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
