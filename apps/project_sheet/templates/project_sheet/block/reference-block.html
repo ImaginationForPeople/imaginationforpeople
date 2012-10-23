@@ -29,7 +29,9 @@ Parameters for this block
 	<div class="row">
 		<div class="references-links link-list span4" >
 			<h3>{% trans "Links" %}</h3>
+			{% if project_translation %}
 			<a href="{% url project_sheet-instance-edit-references project_translation.slug %}#references">edit</a>
+			{% endif %}
 			{% if reference_formset %}
 			<form method="POST" action="?">
 			  {% csrf_token %}
