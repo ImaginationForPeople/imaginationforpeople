@@ -4,7 +4,7 @@
     {% language project_translation.language_code %}
         <a href="{% url project_sheet-show project_translation.slug %}" class="project_list_project"  title="{{ project_translation.baseline}}">
     {% endlanguage %}
-    {% include "project_sheet/project_id_card.html" %}
+    {% include "project_sheet/obsolete/project_id_card.html" %}
     
     <div class="project_infos">
       {% if project_translation.baseline %}

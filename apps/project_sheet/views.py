@@ -121,7 +121,7 @@ def project_sheet_list(request):
     extra_context["filters_tab_selected"] = True
 
     return object_list(request,
-                       template_name='project_sheet/project_list.html',
+                       template_name='project_sheet/obsolete/project_list.html',
                        queryset=ordered_project_sheets,
                        # paginate_by=12,
                        allow_empty=True,
