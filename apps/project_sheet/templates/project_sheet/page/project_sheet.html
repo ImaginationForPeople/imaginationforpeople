@@ -1,4 +1,4 @@
-﻿{% extends "project_sheet/project_base.html" %}
+﻿{% extends "project_sheet/layout/project_base.html" %}
 
 {% load i18n %}
 {% load tagging_tags %}
@@ -7,70 +7,41 @@
 {% load sekizai_tags %}
 {% load comments %}
 
-{% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
-
-{% block title %}
-{% if project_translation.title %}
-{{project_translation.title|capfirst}} 
-{% if project_translation.baseline %}
-: {{ project_translation.baseline }}
-{% endif %}
-{% else %}
-{% trans 'start project'|capfirst %}
-{% endif %}
-| {{ site.name }}
-{% endblock %}
-
 {% block project_content %}	
 
 <div class="container">        
     <div class="row">
 	<div class="span8 project-main">
-	    <div class="project-about"><a name="project-information"></a>
+
+	    <div class="project-about">
 		<a name="project-about"></a>
-		<h2><span>{% trans "About the project" %}</span></h2>
 
-		{% comment %} PROJECT ABOUT SECTION {% endcomment %}
-		<p>
-		    {{ project_translation.about_section|linebreaksbr }}
-		</p>
-
-		{% comment %} PROJECT TAGS {% endcomment %}
-		{% if project_translation %}
-		{% tags_for_object project_translation as project_tags %}
-		{% with taglist_title="Themes" %}
-		{% with taglist_tags=project_tags %}
-		{% with taglist_is_editable=1 %}
-		{% with taglist_edit_action="#FIXME-BADURL" %}
-		{% include "tags/block/taglist.html" %}
-		{% endwith %}
-		{% endwith %}
-		{% endwith %}
-		{% endwith %}
-		{% endif %}
+		{% include "project_sheet/block/about.html" %}
 	    </div> <!-- .project-about -->
 
 	    <div class="project-details detail-list">
 		{% include "project_sheet/block/detail-list.html" %}
 	    </div> <!-- .project-details -->
 
+	    {% if project_translation %}
 	    <hr class="shaded-separator" />
-
 
 	    {% include "project_sheet/block/reference-block.html" with reference_block_extra_class="project-references" %}
 
 
 	    <hr class="shaded-separator" />
 
-	    {% if project_translation %}
 	    <div class="project-comments comment-block">
 		{% include "project_sheet/block/comment-block.html" %}
 	    </div> <!-- .project-comments -->
+
 	    {% endif %}
+
 	</div> <!-- .project-main -->
 
 	<div class="span4 project-sidebar">	
 
+	  {% if project_translation %}
 	    <div class="project-members member-block">
 		<!-- FIXME: use dynamic data for member list -->
 		<h2>
@@ -87,7 +58,12 @@
 		    {% trans "Related projects"|capfirst %}
 		</h2>
 		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
+		{% if related_projects %}
+		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
+		{% else %}
+		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
+		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
+		{% endif %}
 	    </div>
 
 	    <div class="project-gallery clearfix">
@@ -101,6 +77,7 @@
 	    </div> <!-- .project-gallery -->
 
 	    {% include "project_sheet/block/partner-block.html" %}
+	    {% endif %}
 	</div> <!-- .project-sidebar -->
     </div>
 </div>

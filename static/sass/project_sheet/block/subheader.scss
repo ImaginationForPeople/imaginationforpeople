@@ -42,6 +42,9 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	position: relative;
         /* necessary when the is no project image */
         min-height: 150px;
+	margin-left: 0px;
+	height: 300px;
+
 	.overlay {
 	    @include box-sizing(border-box);
 	    background-color: rgba(0,0,0,0.5);
@@ -73,8 +76,8 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
         
 	    img {
-		height: 304px;
-		width: auto;
+		height: 300px;
+		width: 620px;
 	    }
 	}
     }
