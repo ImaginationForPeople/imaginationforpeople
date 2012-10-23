@@ -7,20 +7,6 @@
 {% load sekizai_tags %}
 {% load comments %}
 
-{% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
-
-{% block title %}
-{% if project_translation.title %}
-{{project_translation.title|capfirst}} 
-{% if project_translation.baseline %}
-: {{ project_translation.baseline }}
-{% endif %}
-{% else %}
-{% trans 'start project'|capfirst %}
-{% endif %}
-| {{ site.name }}
-{% endblock %}
-
 {% block project_content %}	
 
 <div class="container">        

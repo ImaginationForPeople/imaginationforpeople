@@ -211,7 +211,7 @@ def project_sheet_show(request, slug, add_media=False):
     # Related projects
     related_projects = TaggedItem.objects.get_related(project_translation,
                                                       I4pProjectTranslation.objects.exclude(project__id=project.id),
-                                                      num=4)
+                                                      num=3)
 
     context = {
         'topics': topics,
@@ -417,9 +417,9 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
                               context_instance=RequestContext(request))
 
 
-def project_sheet_edit_related(request, project_slug):
+def project_sheet_edit_tags(request, project_slug):
     """
-    Edit themes (using tags) of a given project sheet.
+    Edit tags a given project sheet.
     Non-Ajax version.
     """
     language_code = translation.get_language()
@@ -451,7 +451,7 @@ def project_sheet_edit_related(request, project_slug):
                   'project_sheet_themes_form': project_sheet_themes_form,
                   'project_sheet_objectives_form': project_sheet_objectives_form}
 
-    return render_to_response(template_name="project_sheet/project_edit_themes.html",
+    return render_to_response(template_name="project_sheet/page/project_edit_tags.html",
                               dictionary=dictionary,
                               context_instance=RequestContext(request)
                               )
@@ -609,7 +609,8 @@ def project_sheet_member_add(request, project_slug):
 
     return redirect(project_translation)
 
-
+@require_POST
+@login_required
 def project_sheet_member_delete(request, project_slug, username):
     """
     Delete a project member
