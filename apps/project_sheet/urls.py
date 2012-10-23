@@ -39,7 +39,7 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
     
     
-    url(r'^(?P<project_slug>[-\w]+)/support/$', support_views.ProjectSupportView.as_view(), name='project_support_main'),
+    url(r'^(?P<project_slug>[-\w]+)/support/$', support_views.list_project_support, name='project_support_main'),
     url(r'^(?P<project_slug>[-\w]+)/support/propose/$', support_views.propose_project_support, name='project_support_propose'),
     url(r'(?P<project_slug>[-\w]+)/support/(?P<question_id>\d+)/', support_views.view_project_support, name='project_support_view'),
     url(r'(?P<project_slug>[-\w]+)/support/edit/(?P<question_id>\d+)/', support_views.propose_project_support, name='project_support_edit'),
