@@ -17,6 +17,7 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
 {% endaddtoblock %}
 
+{% if project.detailed_members.all %}
 <div class="member-list square fancy">
 	{% comment %} FIXME: more inputs/labels than expected with slice, why ? {% endcomment %}
 	{% for member in project.detailed_members.all %}
@@ -53,3 +54,6 @@ Parameters for this block
 		{% endif %}
 	</div>
 </div>
+{% else %}
+No user associated with this project.
+{% endif %}

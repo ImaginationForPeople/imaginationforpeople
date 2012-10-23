@@ -9,6 +9,10 @@ $gallery_strOverlayUrl: 'gallery/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 
+.project-gallery-modal {
+    // FIXME: fix bootstrap modal width locally 
+}
+
 .project-gallery {
     ul {
 	margin:0;
@@ -19,6 +23,7 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	position: relative;
 	height: $gallery_sizeImageHeight;
 	overflow: hidden;
+
 
 	&.picture-big {
 	    clear: both;
@@ -41,6 +46,11 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    .overlay-one {
 		background-position: (($gallery_sizeImageSmallWidth - $gallery_sizeOverlayWidth) / 2) (($gallery_sizeImageHeight - $gallery_sizeOverlayHeight)/2 );
 	    }
+	}
+
+	a {
+	    width: inherit;
+	    height: inherit;
 	}
 
 	.image {
@@ -117,5 +127,9 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    }
 	}
     }
+
+}
+
+.project-gallery-modal {
 
 }

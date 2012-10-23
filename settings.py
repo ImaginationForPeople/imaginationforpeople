@@ -281,6 +281,7 @@ INSTALLED_APPS = (
     'djcelery',
     'djkombu',
     'followit',
+    'tastypie',
 
     # Internal Apps
     'apps.forum',
