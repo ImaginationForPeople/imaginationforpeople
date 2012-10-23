@@ -26,11 +26,11 @@
 <div class="container">        
     <div class="row">
 	<div class="span8 project-main">
+
+	    {% if project_translation %}
 	    <div class="project-about">
 		<a name="project-about"></a>
-
 		{% include "project_sheet/block/about.html" %}
-
 	    </div> <!-- .project-about -->
 
 	    <div class="project-details detail-list">
@@ -45,11 +45,11 @@
 
 	    <hr class="shaded-separator" />
 
-	    {% if project_translation %}
 	    <div class="project-comments comment-block">
 		{% include "project_sheet/block/comment-block.html" %}
 	    </div> <!-- .project-comments -->
 	    {% endif %}
+
 	</div> <!-- .project-main -->
 
 	<div class="span4 project-sidebar">	

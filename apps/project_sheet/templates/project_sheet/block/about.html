@@ -23,8 +23,11 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/about.css" />
 {% endaddtoblock %}
 
+{% if project_translation %}
+
 {% unique_counter about %}
 {% with about_unique_counter=about_counter %}
+
 
 <h2><span>{% trans "About the project" %}</span>
 	<a href="#FIXME-bad-static-edit-url" class="i4p-button"
@@ -66,3 +69,4 @@
 {% endwith %}
 {% endif %}
 
+{% endif %}
