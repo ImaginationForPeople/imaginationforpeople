@@ -2,9 +2,21 @@
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
 
+{% comment %} JS DEPENDENCIES FOR INLINE EDITING {% endcomment %}
 {% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
 {% endaddtoblock %}
 
+{% comment %} JS + CSS DEPENDENCIES {% endcomment %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/detail-list.js"></script>
+{% endaddtoblock %}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/detail-list.css" />
 {% endaddtoblock %}
@@ -14,8 +26,12 @@
 <div class="detail-item">
 	<h2 id="question-{{q.id}}" class="detail-question">
 		<span>{{ q.content|capfirst }}</span>
-		<a href="{% url project_sheet-instance-edit-question project_translation.slug q.id %}" class="button right editing-button">
+		<a href="{% url project_sheet-instance-edit-question project_translation.slug q.id %}" class="i4p-button"
+			data-toggle="i4p-editable-button"
+			data-target="funnyprefix-answer-{{ q.id }}"
+			>
 			<img src="{{ STATIC_URL }}images/base/edit.png" />
+			{% trans 'Edit' %}
 		</a>
 	</h2>
 	{% if answer_form %}
@@ -32,7 +48,17 @@
 		<input  title="{% trans 'Cancel'|capfirst %}" class="redbutton nomargin" type="image" src="{{ STATIC_URL }}images/base/x.png  " alt="X" />
 	</form> 
 	{% else %}
-	<p id="answer-{{q.id}}" class="detail-answer">
+	<p id="funnyprefix-answer-{{q.id}}" class="detail-answer" 
+	data-language-code="{{ LANGUAGE_CODE }}"
+	data-toggle="i4p-editable"
+	data-editable-id="answer-{{q.id}}"
+	data-editable-trigger="dblclick"
+	data-editable-tooltip="{% trans 'Double-click to edit' %}"
+	data-editable-type="textarea"
+	data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
+	data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{%   else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
+	data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
+	>
 		{{ a.content|linebreaksbr }}
 	</p>
 	{% endif %}

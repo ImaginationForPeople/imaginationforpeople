@@ -1,0 +1,89 @@
+{% load i18n %}
+{% load tagging_tags %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+{% load unique_counter_tag %}
+
+{% comment %} JS DEPENDENCIES FOR INLINE EDITING {% endcomment %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
+{% endaddtoblock %}
+
+{% comment %} JS + CSS DEPENDENCIES {% endcomment %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/about.js"></script>
+{% endaddtoblock %}
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/about.css" />
+{% endaddtoblock %}
+
+
+
+{% unique_counter about %}
+{% with about_unique_counter=about_counter %}
+
+<h2><span>{% trans "About the project" %}</span>
+{% if project_translation %}
+	<a href="#FIXME-bad-static-edit-url" class="i4p-button"
+		data-toggle="i4p-editable-button"
+		data-target="about-description-{{about_unique_counter}}"
+		>
+		<img src="{{ STATIC_URL }}images/base/edit.png" />
+		{% trans 'Edit' %}
+	</a>
+{% endif %}
+</h2>
+
+{% if project_translation %}
+{% comment %} PROJECT ABOUT SECTION {% endcomment %}
+
+<p id="about-description-{{about_unique_counter}}"
+	data-toggle="i4p-editable"
+	data-language-code="{{ LANGUAGE_CODE }}"
+	data-editable-id="about_section_txt"
+	data-editable-trigger="dblclick"
+	data-editable-tooltip="{% trans 'Double-click to edit' %}"
+	data-editable-type="textarea"
+	data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
+	data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
+	data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
+>
+{{ project_translation.about_section|linebreaksbr }}
+</p>
+{% else %}
+<p>
+{% trans 'Please start your project by filling its title or description' %}
+</p>
+{% endif %}
+
+{% endwith %}<!-- %about_unique_counter -->
+
+{% comment %} PROJECT TAGS {% endcomment %}
+
+
+
+{% if project_translation %}
+  {% if project_sheet_themes_form %}
+  <form method='POST' action='?'>
+    {% csrf_token %}
+    {{ project_sheet_themes_form }}
+    <input type="submit"/>
+  </form>
+  {% else %}
+
+    {% tags_for_object project_translation as project_tags %}
+
+    {% url project_sheet-instance-edit-tags project_translation.slug as url_edit_tags %}
+    {% with taglist_title="Themes" taglist_tags=project_tags taglist_is_editable=1 taglist_edit_action=url_edit_tags %}
+      {% include "tags/block/taglist.html" %}
+    {% endwith %}
+  {% endif %}
+
+{% endif %}
+

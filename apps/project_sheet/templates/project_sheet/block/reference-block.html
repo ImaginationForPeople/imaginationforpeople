@@ -20,8 +20,7 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/reference-block.css" />
 {% endaddtoblock %}
 
-{% if project_translation %}
-<div class="{{ reference_block_extra_class }} references-block">
+<div id="references" class="{{ reference_block_extra_class }} references-block">
 	<a name="project-references"></a>
 	<h2>
 		<i class="sheet-references"></i>
@@ -30,20 +29,35 @@ Parameters for this block
 	<div class="row">
 		<div class="references-links link-list span4" >
 			<h3>{% trans "Links" %}</h3>
-
+			{% if project_translation %}
+			<a href="{% url project_sheet-instance-edit-references project_translation.slug %}#references">edit</a>
+			{% endif %}
+			{% if reference_formset %}
+			<form method="POST" action="?">
+			  {% csrf_token %}
+			  {{ reference_formset }}
+			  <input type="submit"/>
+			</form>
+			{% endif %}
 			<ul>
+				{% if project_translation %}
 				{% for ref in project_translation.project.references.all %}
 				<li class="link-item">{{ ref.desc|urlize|url_target_blank}}
 				</li> 
 				{% empty %}
 				<li>{% trans 'no references'|capfirst %}</li> 
 				{% endfor %}
-
+				{% else %}
+				<li>{% trans 'no references'|capfirst %}</li> 
+				{% endif %}
 				<!-- <li class="link-item"><a href="#FIXME-ADD-REAL-LINK">Article sur classicnews</a></li> -->
 			</ul>
+			{% if project_translation %}
 			<a href="#FIXME-BADURL" class="button">
 				<i class="action-add"></i>
-				{% trans "Add a link" %}</a>
+				{% trans "Add a link" %}
+			</a>
+			{% endif %}
 		</div> <!-- .references-links link-list -->
 
 		<div class="references-documents document-list span4" >
@@ -59,10 +73,12 @@ Parameters for this block
 				-->
 			</ul>
 
+			{% if project_translation %}
 			<a href="#FIXME-BADURL" class="button">
-				<i class="action-add"></i>{% trans "Add a link" %}</a>
+				<i class="action-add"></i>{% trans "Add a link" %}
+			</a>
+			{% endif %}
 		</div> <!-- .references-documents document-list -->
 
 	</div> <!-- .row -->
 </div> <!-- .project-references -->
-{% endif %}

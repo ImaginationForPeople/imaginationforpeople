@@ -9,6 +9,8 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment-list.css" />
 {% endaddtoblock %}
 {% comment %}FIXME: limit span8 to span5 once discussion is available {% endcomment %}
+
+{% if project_translation %}
 <div class="comment-list span8"> 
 	<ul>
 		{% get_comment_list for project_translation as comment_list %}
@@ -32,3 +34,4 @@
         {% trans "Show all" %} {{ comment_count }} {% trans "comments" %}</a>
 	</a>
 </div>
+{% endif %}
