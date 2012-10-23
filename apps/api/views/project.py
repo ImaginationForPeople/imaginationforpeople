@@ -142,7 +142,8 @@ class I4pProjectTranslationResource(ModelResource):
         fields = ['id', 'slug','language_code','title','baseline']
         
     def dispatch_detail(self, request, **kwargs):
-        translation.activate(kwargs["language_code"])
+        if "language_code" in kwargs:
+            translation.activate(kwargs["language_code"])
         return ModelResource.dispatch_detail(self, request, **kwargs)
     
     def dispatch_bestof(self, request, **kwargs):
