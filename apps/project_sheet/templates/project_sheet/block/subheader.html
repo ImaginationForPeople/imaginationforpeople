@@ -24,7 +24,7 @@
 				</div>
 				<div class="overlay">
 					<h1 class="title"> <!-- TITLE -->
-						{% if title_form %}<!-- readwrite mode-->
+						{% if title_form %}<!-- TITLE/READWRITE -->
 						<form id="title" 
 							{% if project_translation %}
 							action="{% url  project_sheet-instance-edit-field project_translation.slug 'title' %}" 
@@ -38,7 +38,7 @@
 						</form>
 
 						{% else %}
-						{% if project_translation %}<!-- readonly filled -->
+						{% if project_translation %}<!-- TITLE/READONLY filled -->
 						<span id="subheader-title-{{subheader_title_unique_counter}}"
 							{% comment %}
 							data-toggle="i4p-editable"
@@ -63,17 +63,17 @@
 						</a>
 
 						{% else %}
-						<!-- PROJECT TITLE - empty -->
-						<a href="{% url project_sheet-edit-field topic.slug 'title' %}"
-							>
-							{% trans 'my project title'|capfirst %}
-						</a>
+						<!-- TITLE/READONLY empty -->
+
+						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'title' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+						{% trans 'my project title'|capfirst %}
+
 						{% endif %}
 						{% endif %}
 					</h1> <!-- /TITLE -->
 					<div class="description"><!-- BASELINE -->
 						{% if baseline_form %}
-						<!-- BASELINE - edition mode-->
+						<!-- BASELINE/READWRITE -->
 						<form id="baseline" 
 							{% if project_translation %}
 							action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" 
@@ -86,7 +86,7 @@
 						</form>
 						{% else %}
 						{% if project_translation %}
-						<!-- BASELINE - filled-->
+						<!-- BASELINE/READONLY filled-->
 						<span
 							id="subheader-baseline-{{subheader_baseline_unique_counter}}"
 							{% comment %}
@@ -104,7 +104,7 @@
 						</span>
 						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
 						{% else %}
-						<!--  BASELINE - empty -->
+						<!--  BASELINE/READONLY empty -->
 						{% trans "One line description"|capfirst %}
 						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
 						{% endif %}
