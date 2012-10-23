@@ -25,6 +25,8 @@
 
 
 
+{% unique_counter about %}
+{% with about_unique_counter=about_counter %}
 
 <h2><span>{% trans "About the project" %}</span>
 {% if project_translation %}
@@ -41,12 +43,11 @@
 {% if project_translation %}
 {% comment %} PROJECT ABOUT SECTION {% endcomment %}
 
-{% unique_counter about %}
-{% with about_unique_counter=about_counter %}
 <p id="about-description-{{about_unique_counter}}"
 	data-toggle="i4p-editable"
 	data-language-code="{{ LANGUAGE_CODE }}"
 	data-editable-id="about_section_txt"
+	data-editable-trigger="dblclick"
 	data-editable-tooltip="{% trans 'Double-click to edit' %}"
 	data-editable-type="textarea"
 	data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
@@ -55,13 +56,13 @@
 >
 {{ project_translation.about_section|linebreaksbr }}
 </p>
-{% endwith %}
 {% else %}
 <p>
 {% trans 'Please start your project by filling its title or description' %}
 </p>
 {% endif %}
 
+{% endwith %}<!-- %about_unique_counter -->
 
 {% comment %} PROJECT TAGS {% endcomment %}
 

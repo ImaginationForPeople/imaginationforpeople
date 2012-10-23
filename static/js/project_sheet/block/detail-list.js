@@ -1,4 +1,5 @@
 // FIXME: make sure jquery.editable plugin are loaded
+// FIXME: remplace with a common editable JS class (bootstrap like) for i4p-editable
 
 $(document).ready(function() {
 	// we encapsulate editable call within each to force "this" to be correcly set...
@@ -6,12 +7,14 @@ $(document).ready(function() {
 		$(this).click(function(e){
 			e.preventDefault();
 			var dataTarget = $(this).attr('data-target');
-			$('#' + dataTarget).trigger("click");
+			var dataTargetTrigger = $('#' + dataTarget).attr('data-editable-trigger');
+			$('#' + dataTarget).trigger(dataTargetTrigger);
 		});
 	});
 
 	$('.detail-answer').each(function(){
 		$(this).editable($(this).attr('data-editable-save-url'), {
+			'event': $(this).attr('data-editable-trigger'),
 			tooltip: $(this).attr('data-editable-tooltip'),
 			type: $(this).attr('data-editable-type'),
 			loadurl: $(this).attr('data-editable-load-url'),
