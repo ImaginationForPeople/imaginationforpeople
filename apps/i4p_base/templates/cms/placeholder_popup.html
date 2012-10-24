@@ -1,0 +1,12 @@
+{% if content %}
+    <div class="basic-modal-content" title="Basic dialog">
+        {{ content }}
+        <script>
+            var parent_div = $("script").last().parent();
+            //This should work, but there seems to be some interaction with bootstrap
+            //parent_div.modal();
+            //This is silly, but will have to do to illustrate
+            alert(parent_div.text());
+        </script>
+    </div>
+{% endif %}

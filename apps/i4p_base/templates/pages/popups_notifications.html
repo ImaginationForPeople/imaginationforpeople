@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n cms_tags sekizai_tags %}
+
+
+{% block content %}
+{% addtoblock "css" %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+{% endaddtoblock %}
+
+
+
+    <div class="content">
+    <h1>{% trans "This page is only to store notifications and popups Switch to edit mode to edit.  There should be only one page using this template, with an id of 'popups_notifications_container_page'" %}</h1>
+
+        <div class="notification_admin_field">
+            <p>{% trans "Popup shown on every project page if present and the user is logged-in." %}</p>
+            <p>{% placeholder "project_sheet_logged_in_popup" %}</p>
+        </div>
+    </div>
+
+    
+
+{% endblock %}
