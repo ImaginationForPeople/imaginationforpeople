@@ -18,9 +18,18 @@ $gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGut
     box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
     width: $gallery_sizeModalWidth;
     margin-left: -$gallery_sizeModalWidth/2;
+
+    .viewer-side {
+	background-color: black;
+
+	.
+    }
+
+    .information-side {
+    }
 }
 
-.project-gallery {
+.project-gallery-widget {
     ul {
 	margin:0;
     }
