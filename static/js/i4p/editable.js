@@ -89,7 +89,7 @@ $(document).ready(function() {
 						var buttonThis = this;
 						var buttonTarget = $(buttonThis).attr('data-target');
 						var localId = $(editableThis).attr('id');
-						console.log("scanning button with target : #" + buttonTarget);
+						//console.log("scanning button with target : #" + buttonTarget);
 
 						if (localId == buttonTarget) {
 							$(buttonThis).fadeIn('slow');
