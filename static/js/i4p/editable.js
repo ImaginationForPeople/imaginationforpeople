@@ -24,6 +24,8 @@
  *
 */
 
+// FIXME: make sure jquery.editable plugin is loaded
+
 $(document).ready(function() {
 
 	// we encapsulate editable call within each to force "this" to be correcly set...
