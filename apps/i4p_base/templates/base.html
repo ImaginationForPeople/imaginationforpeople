@@ -43,6 +43,9 @@
 
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
+	<script type="text/javascript">
+		var I4P_STATIC_URL="{{STATIC_URL}}";
+	</script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
