@@ -9,7 +9,7 @@ $(document).ready(function(){
 
 		$(editableThis).bind(editableTrigger,function(){
 			// add edited class on elem
-			$(itemThis).addClass('edited');
+			$(itemThis).addClass('editing');
 		});
 
 		// FIXME: add onblur trigger for de-cssing
