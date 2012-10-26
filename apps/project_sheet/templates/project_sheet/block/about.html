@@ -3,6 +3,7 @@
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
 {% load unique_counter_tag %}
+{% load i18n i4p_tags %}
 
 {% comment %} JS DEPENDENCIES FOR INLINE EDITING {% endcomment %}
 {% addtoblock "js" %}
@@ -15,10 +16,18 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
 {% endaddtoblock %}
 
-{% comment %} JS + CSS DEPENDENCIES {% endcomment %}
+{% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
 {% addtoblock "js" %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/about.js"></script>
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/about.js");  
+</script>
 {% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
+</script>
+{% endaddtoblock %}
+
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/about.css" />
 {% endaddtoblock %}
@@ -56,7 +65,7 @@
 	data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
 	data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
 >
-{{ project_translation.about_section|linebreaksbr }}
+{{ project_translation.about_section|linebreaksbr|urlize|url_target_blank }}
 </p>
 {% else %}
 <h3>{% trans "Welcome to your new project sheet!" %}</h3>

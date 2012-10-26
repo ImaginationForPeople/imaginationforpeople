@@ -1,3 +1,5 @@
+
+
 @import "i4p-mixins";
 @import "i4p/constants";
 
@@ -8,12 +10,24 @@ $gallery_sizeImageBigWidth: 300px;
 $gallery_strOverlayUrl: 'gallery/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
+$gallery_sizeModalColumns: 10;
+$gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($gallery_sizeModalColumns - 1);
 
+// act as a bootstrap "container"
 .project-gallery-modal {
-    // FIXME: fix bootstrap modal width locally 
+    box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
+    width: $gallery_sizeModalWidth;
+    margin-left: -$gallery_sizeModalWidth/2;
+
+    .viewer-side {
+	background-color: black;
+    }
+
+    .information-side {
+    }
 }
 
-.project-gallery {
+.project-gallery-widget {
     ul {
 	margin:0;
     }
@@ -130,6 +144,3 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 
 }
 
-.project-gallery-modal {
-
-}
