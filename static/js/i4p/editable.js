@@ -72,14 +72,11 @@ $(document).ready(function() {
 				dataType: 'json',
 				callback: function(data) {
 					var res = jQuery.parseJSON(data);
-					// FIXME: do CSS magic for current element type
 					$(editableThis).html(res.text);
 				},
 				indicator: 'Saving...',
-				//cancel: '{% filter escapejs %}{% render_honeypot_field "description" %}{% endfilter %}<input title="{% trans "Cancel"|capfirst %}" class="r  edbutton right nomargin" style="margin-left:4px;" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="Cancel"/>',
-				cancel: 'Cancel',
-				//submit: "<input title='{% trans 'Ok'|capfirst %}' class='greenbutton right nomargin' style='margin-left:4px;' type='image' src='{{ STATIC_U  RL }}images/base/v.png' alt='Ok'/>",
-				submit: 'Save',
+				cancel: $(editableThis).attr('data-editable-cancel'),
+				submit: $(editableThis).attr('data-editable-submit'),
 				onblur: 'ignore',
 				cssclass: 'inline-edit',
 				placeholder: $(editableThis).attr('data-editable-tooltip'),
