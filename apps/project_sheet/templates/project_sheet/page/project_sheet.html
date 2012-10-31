@@ -6,10 +6,18 @@
 {% load honeypot %}
 {% load sekizai_tags %}
 {% load comments %}
+{% load i4p_djangocms_tags %}
 
 {% block project_content %}	
 
 <div class="container">        
+    {% if user.is_authenticated %}
+        {% with "project_sheet_logged_in_popup" as placeholder_name %}
+            {% popup_placeholder "project_sheet_logged_in_popup" "popups_notifications_container_page" %}
+        {% endwith %}
+    {% endif %}
+
+        {% popup_placeholder "project_sheet_unconditional_popup" "popups_notifications_container_page" %}
     <div class="row">
 	<div class="span8 project-main">
 
