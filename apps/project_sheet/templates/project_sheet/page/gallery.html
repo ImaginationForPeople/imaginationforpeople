@@ -1,0 +1,46 @@
+﻿{% extends "project_sheet/layout/project_base.html" %}
+
+{% load i18n %}
+{% load tagging_tags %}
+{% load compress %}
+{% load honeypot %}
+{% load sekizai_tags %}
+{% load comments %}
+
+{% block project_content %}	
+
+<div class="container">        
+    <div class="row">
+	<div class="span8 project-main">
+
+	  
+	  {% if project_picture_add %}
+	  <form method='POST' action='?' enctype="multipart/form-data">
+	    {% csrf_token %}
+	    {{ project_picture_add }}
+	    <input type="submit"/>
+	  </form>
+	  {% endif %}
+	  
+
+	  <a href="{% url project_sheet-instance-picture-add project_translation.slug %}">Add picture</a>
+	  <br/>
+	  Add video
+	  <br/>
+	  
+	  
+	  {% for picture in project.pictures.all %}
+	  <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/>[<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}">delete</a>]
+	  {% endfor %}
+
+	</div> <!-- .project-main -->
+
+	<div class="span4 project-sidebar">	
+
+	  SIDEBAR
+
+	</div> <!-- .project-sidebar -->
+    </div>
+</div>
+
+{% endblock %}
