@@ -493,6 +493,13 @@ class ProjectEditTagsView(ProjectView):
             return super(ProjectEditTagsView, self).post(request, *args, **kwargs)
 
 
+class ProjectGalleryView(ProjectView):
+    """
+    Display a page of the gallery of the project
+    """
+    template_name = 'project_sheet/page/gallery.html'
+    
+            
 def project_sheet_add_media(request):
     """
     Display a page where it is possible to submit either a video or
@@ -515,29 +522,40 @@ def project_sheet_add_media(request):
                               context,
                               context_instance=RequestContext(request))
 
-def project_sheet_add_picture(request, slug=None):
+
+class ProjectGalleryAddPictureView(ProjectGalleryView):
     """
     Add a picture to a project
     """
-    language_code = translation.get_language()
-
-    ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
-                                                                   'desc',
-                                                                   'license',
-                                                                   'author',
-                                                                   'source'))
-
-    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
-                                                          language_code=language_code)
-
-    if request.method == 'POST':
-        picture_form = ProjectPictureForm(request.POST, request.FILES)
-        if picture_form.is_valid():
-            picture = picture_form.save(commit=False)
-            picture.project = project_translation.project
+    def dispatch(self, request, *args, **kwargs):
+        self.ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
+                                                                            'desc',
+                                                                            'license',
+                                                                            'author',
+                                                                            'source'))
+        return super(ProjectGalleryAddPictureView, self).dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        self.picture_form = self.ProjectPictureForm()
+        return super(ProjectGalleryAddPictureView, self).get(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        self.picture_form = self.ProjectPictureForm(request.POST, request.FILES)
+        if self.picture_form.is_valid():
+            picture = self.picture_form.save(commit=False)
+            picture.project = self.project_translation.project
             picture.save()
 
-    return redirect(project_translation)
+            return redirect('project_sheet-instance-gallery', self.project_translation.slug, permanent=False)
+        else:
+            return super(ProjectGalleryAddPictureView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, slug, **kwargs):
+        context = super(ProjectGalleryAddPictureView, self).get_context_data(slug, **kwargs)
+        context['project_picture_add'] = self.picture_form
+        
+        return context
+            
 
 def project_sheet_del_picture(request, slug, pic_id):
     """
@@ -555,7 +573,7 @@ def project_sheet_del_picture(request, slug, pic_id):
     picture = ProjectPicture.objects.filter(project=project_translation.project, id=pic_id)
     picture.delete()
 
-    return redirect(project_translation)
+    return redirect('project_sheet-instance-gallery', project_translation.slug, permanent=False)
 
 def project_sheet_add_video(request, slug=None):
     """
