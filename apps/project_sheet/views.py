@@ -45,8 +45,8 @@ from reversion.models import Version
 
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
-from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm
+from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
+from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm, ProjectVideoAddForm
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS, Question
 from .utils import build_filters_and_context
@@ -522,25 +522,16 @@ def project_sheet_add_media(request):
                               context,
                               context_instance=RequestContext(request))
 
-
 class ProjectGalleryAddPictureView(ProjectGalleryView):
     """
     Add a picture to a project
     """
-    def dispatch(self, request, *args, **kwargs):
-        self.ProjectPictureForm = modelform_factory(ProjectPicture, fields=('original_image',
-                                                                            'desc',
-                                                                            'license',
-                                                                            'author',
-                                                                            'source'))
-        return super(ProjectGalleryAddPictureView, self).dispatch(request, *args, **kwargs)
-    
     def get(self, request, *args, **kwargs):
-        self.picture_form = self.ProjectPictureForm()
+        self.picture_form = ProjectPictureAddForm()
         return super(ProjectGalleryAddPictureView, self).get(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
-        self.picture_form = self.ProjectPictureForm(request.POST, request.FILES)
+        self.picture_form = ProjectPictureAddForm(request.POST, request.FILES)
         if self.picture_form.is_valid():
             picture = self.picture_form.save(commit=False)
             picture.project = self.project_translation.project
@@ -555,8 +546,8 @@ class ProjectGalleryAddPictureView(ProjectGalleryView):
         context['project_picture_add'] = self.picture_form
         
         return context
-            
 
+@login_required
 def project_sheet_del_picture(request, slug, pic_id):
     """
     Delete a picture from a project sheet
@@ -575,26 +566,33 @@ def project_sheet_del_picture(request, slug, pic_id):
 
     return redirect('project_sheet-instance-gallery', project_translation.slug, permanent=False)
 
-def project_sheet_add_video(request, slug=None):
+
+class ProjectGalleryAddVideoView(ProjectGalleryView):
     """
-    Embed a video to a project
+    Add a video to a project
     """
-    language_code = translation.get_language()
-
-    ProjectVideoForm = modelform_factory(ProjectVideo, fields=('video_url',))
-
-    project_translation = get_project_translation_by_slug(project_translation_slug=slug,
-                                                          language_code=language_code)
-
-    if request.method == 'POST':
-        video_form = ProjectVideoForm(request.POST)
-        if video_form.is_valid():
-            video = video_form.save(commit=False)
-            video.project = project_translation.project
+    def get(self, request, *args, **kwargs):
+        self.picture_form = ProjectVideoAddForm()
+        return super(ProjectGalleryAddVideoView, self).get(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        self.video_form = ProjectVideoAddForm(request.POST, request.FILES)
+        if self.video_form.is_valid():
+            video = self.video_form.save(commit=False)
+            video.project = self.project_translation.project
             video.save()
 
-    return redirect(project_translation)
+            return redirect('project_sheet-instance-gallery', self.project_translation.slug, permanent=False)
+        else:
+            return super(ProjectGalleryAddVideoView, self).get(request, *args, **kwargs)
 
+    def get_context_data(self, slug, **kwargs):
+        context = super(ProjectGalleryAddVideoView, self).get_context_data(slug, **kwargs)
+        context['project_video_add'] = self.picture_form
+        
+        return context
+
+@login_required
 def project_sheet_del_video(request, slug, vid_id):
     """
     Delete a video from a project sheet
@@ -611,7 +609,7 @@ def project_sheet_del_video(request, slug, vid_id):
     video = ProjectVideo.objects.filter(project=project_translation.project, id=vid_id)
     video.delete()
 
-    return redirect(project_translation)
+    return redirect('project_sheet-instance-gallery', project_translation.slug, permanent=False)
 
 
 class ProjectEditReferencesView(ProjectView):
