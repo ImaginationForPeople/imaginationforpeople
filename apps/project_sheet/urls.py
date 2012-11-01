@@ -44,13 +44,12 @@ urlpatterns = patterns('',
     # Media
     url(r'^(?P<slug>[-\w]+)/gallery/$', views.ProjectGalleryView.as_view(), name='project_sheet-instance-gallery'),
     url(r'^(?P<slug>[-\w]+)/gallery/picture/add/$', views.ProjectGalleryAddPictureView.as_view(), name='project_sheet-instance-picture-add'),
-    url(r'^(?P<slug>[-\w]+)/gallery/picture/del/(?P<pic_id>\d+)/$', views.project_sheet_del_picture, name='project_sheet-instance-picture-del'),                       
+    url(r'^(?P<slug>[-\w]+)/gallery/picture/(?P<pic_id>\d+)/del/$', views.project_sheet_del_picture, name='project_sheet-instance-picture-del'),                       
     # url(r'^add/media/$', views.project_sheet_add_media, name='project_sheet-add-media'),
     # url(r'^add/picture/$', views.project_sheet_add_picture, name='project_sheet-add-picture'),
     # url(r'^add/video/$', views.project_sheet_add_video, name='project_sheet-add-video'),
-    url(r'^(?P<slug>[-\w]+)/gallery/video/add/$', views.project_sheet_add_video, name='project_sheet-instance-add-video'),
-
-    url(r'^(?P<slug>[-\w]+)/gallery/video/del/(?P<vid_id>\d+)/$', views.project_sheet_del_video, name='project_sheet-instance-del-video'),
+    url(r'^(?P<slug>[-\w]+)/gallery/video/add/$', views.ProjectGalleryAddVideoView.as_view(), name='project_sheet-instance-video-add'),
+    url(r'^(?P<slug>[-\w]+)/gallery/video/(?P<vid_id>\d+)/del/$', views.project_sheet_del_video, name='project_sheet-instance-video-del'),
 
     # Members
     url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
