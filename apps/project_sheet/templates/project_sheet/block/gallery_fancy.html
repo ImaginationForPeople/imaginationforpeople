@@ -13,8 +13,11 @@ FIXME: use picture list instead of project_translation
 {% load thumbnail %}
 {% load unique_counter_tag %}
 
-{% addtoblock "js" %}
-<script src="{{ STATIC_URL }}js/project_sheet/block/gallery_fancy.js"></script>
+{% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "footer_js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");  
+</script>
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
@@ -30,24 +33,24 @@ FIXME: use picture list instead of project_translation
 		{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
 		{% if forloop.counter0 < 4 %}
 		<li class="picture
-			{% if project_translation.project.pictures.all|length < 3 %}
-			{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
-			picture-big
-			{% else %}
-			{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
-			{% if forloop.counter0|divisibleby:"3" %}picture-big{% else %}picture-small{% endif %}
-			{% endif %}
-			" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="modal">
-			<div class="image">
-				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
-				<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
-			</div>
-			<div class="description">
-				{{project_picture.desc}}
-			</div>
-			<!-- TODO: rewrite with semantic HTML if possible -->
-			<div class="overlay-one"></div>
-			<div class="overlay-two"></div>
+		{% if project_translation.project.pictures.all|length < 3 %}
+		{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
+		picture-big
+		{% else %}
+		{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
+		{% if forloop.counter0|divisibleby:"3" %}picture-big{% else %}picture-small{% endif %}
+		{% endif %}
+		" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="modal">
+		<div class="image">
+			<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
+			<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
+		</div>
+		<div class="description">
+			{{project_picture.desc}}
+		</div>
+		<!-- TODO: rewrite with semantic HTML if possible -->
+		<div class="overlay-one"></div>
+		<div class="overlay-two"></div>
 		</li>
 		{% endif %}
 		{% empty %}
@@ -58,49 +61,45 @@ FIXME: use picture list instead of project_translation
 
 <div class="project-gallery-modal modal hide fade in out span10" tabindex="-1" role="dialog" id="gallery-{{ gallery_unique_counter }}" >
 	<div class="row">
-	<div class="viewer-side span5">
-		<ul class="slider">
-			{% for project_picture in project_translation.project.pictures.all %}
-			{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
-			{% if forloop.counter0 < 4 %}
-			<li class="picture
-				{% if project_translation.project.pictures.all|length < 3 %}
-				{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
-				picture-big
-				{% else %}
-				{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
-				{% if forloop.counter0|divisibleby:"3" %}picture-big{% else %}picture-small{% endif %}
-				{% endif %}
-				" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="modal">
+		<div class="viewer-side span7">
+			FIXME: the viewer
+		</div>
+
+		<div class="information-side span3">
+			<div class="title">
+				FIXME: title
+			</div>
+
+			<div class="source">
+				FIXME: source
+			</div>
+
+			<div class="license">
+				FIXME: license
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="viewer-side span7">
+			<ul class="slider">
+				{% for project_picture in project_translation.project.pictures.all %}
+				{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
+				{% if forloop.counter0 < 4 %}
+				<li class="picture picture-slider" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="viewable">
 				<div class="image">
-					<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
-					<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
+					<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}" class="color" alt="">
 				</div>
-				<div class="description">
-					{{project_picture.desc}}
-				</div>
-				<!-- TODO: rewrite with semantic HTML if possible -->
-				<div class="overlay-one"></div>
-				<div class="overlay-two"></div>
-			</li>
-			{% endif %}
-			{% endfor %}
-		</ul>
-	</div>
-
-	<div class="information-side span3">
-		<div class="title">
-			FIXME: title
+				</li>
+				{% endif %}
+				{% endfor %}
+			</ul>
 		</div>
-
-		<div class="source">
-			FIXME: source
+		<div class="viewer-side span3">
+			<div class="actions">
+				FIXME: license
+			</div>
 		</div>
-
-		<div class="license">
-			FIXME: license
-		</div>
-	</div>
 	</div>
 </div>
 {% endwith %}
