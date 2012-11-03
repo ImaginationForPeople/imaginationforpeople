@@ -24,6 +24,10 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 @import "project_sheet/i4p-slider/*.png"; // */
 // @include all-i4p-slider-sprites; // NO AUTO INCLUDE
 
+.member-block-overlay {
+
+}
+
 // FIXME: move block rules elsewhere
 .member-block {
     @include i4p-seemore-class;
