@@ -14,6 +14,10 @@ FIXME: use picture list instead of project_translation
 {% load unique_counter_tag %}
 
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider-1.8.6.js"></script>
+{% endaddtoblock %}
+
 {% addtoblock "footer_js" %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");  
@@ -26,6 +30,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");
 
 {% unique_counter gallery_fancy %}
 {% with gallery_unique_counter=gallery_fancy_counter %}
+
+{% unique_counter gallery_fancy_slider %}
+{% with slider_unique_counter=gallery_fancy_slider_counter %}
 
 <div class="project-gallery-widget">
 	<ul>
@@ -40,7 +47,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");
 		{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
 		{% if forloop.counter0|divisibleby:"3" %}picture-big{% else %}picture-small{% endif %}
 		{% endif %}
-		" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="modal">
+		" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="modal" >
 		<div class="image">
 			<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
 			<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">
@@ -59,13 +66,14 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");
 	</ul>
 </div>
 
+
 <div class="project-gallery-modal modal hide fade in out span10" tabindex="-1" role="dialog" id="gallery-{{ gallery_unique_counter }}" >
 	<div class="row">
-		<div class="viewer-side span7">
+		<div class="top-side viewer-side span7">
 			FIXME: the viewer
 		</div>
 
-		<div class="information-side span3">
+		<div class="top-side information-side span3">
 			<div class="title">
 				FIXME: title
 			</div>
@@ -81,25 +89,36 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");
 	</div>
 
 	<div class="row">
-		<div class="viewer-side span7">
-			<ul class="slider">
-				{% for project_picture in project_translation.project.pictures.all %}
-				{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
-				{% if forloop.counter0 < 4 %}
-				<li class="picture picture-slider" data-target="#gallery-{{ gallery_unique_counter }}" data-toggle="viewable">
-				<div class="image">
-					<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}" class="color" alt="">
-				</div>
-				</li>
-				{% endif %}
-				{% endfor %}
-			</ul>
+		<div class="bottom-side viewer-side span7">
+			<div class="gallery-slider-container">
+				<ul id="gallery-slider-{{ slider_unique_counter }}" class="gallery-slider" data-toggle="i4p-slider" data-slider-view="#FIXME-dom-selector-for-view">
+					{% for project_picture in project_translation.project.pictures.all %}
+					<li><img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  alt="" /></li>
+					{% endfor %}
+					{% for project_picture in project_translation.project.pictures.all %}
+					<li><img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  alt="FIXME: remove after debug" /></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="gallery-nav">
+				<a href="#" data-toggle="i4p-slider-control" 
+					data-slider-target="gallery-slider-{{ slider_unique_counter }}" 
+					data-slider-command="goBack">
+					{% trans "Previous"|capfirst %}
+				</a>
+				<a href="#" data-toggle="i4p-slider-control" 
+					data-slider-target="gallery-slider-{{ slider_unique_counter }}" 
+					data-slider-command="goForward" class='right'>
+					{% trans "Next" %}
+				</a>
+			</div>
 		</div>
-		<div class="viewer-side span3">
+		<div class="bottom-side information-side span3">
 			<div class="actions">
-				FIXME: license
+				<a href="#FIXME-bad-url-for-gallery">view gallery</a>
 			</div>
 		</div>
 	</div>
 </div>
+{% endwith %}
 {% endwith %}

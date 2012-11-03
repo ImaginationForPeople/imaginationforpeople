@@ -2,6 +2,8 @@
 
 @import "i4p-mixins";
 @import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
 
 $gallery_sizeImageHeight: 197px;
 $gallery_sizeImageSmallWidth: 150px;
@@ -11,21 +13,115 @@ $gallery_strOverlayUrl: 'gallery/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 $gallery_sizeModalColumns: 10;
-$gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($gallery_sizeModalColumns - 1);
+$gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($gallery_sizeModalColumns);
+
+$gallery_sizeSliderWidth: 540px;
 
 // act as a bootstrap "container"
 .project-gallery-modal {
     box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
     width: $gallery_sizeModalWidth;
     margin-left: -$gallery_sizeModalWidth/2;
+    overflow: hidden;
+
+    .row:first-child {
+	background-image: image-url('project_sheet/gallery_fancy/horizontal-separator.png');
+	background-position: center bottom;
+	background-repeat: repeat-x;
+    }
+
+    .gallery-slider-container {
+	// local anythingslider adaptation
+	.anythingSlider {
+	    position: relative;
+	    height: 75px;
+
+	    .anythingWindow {
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+		width: $gallery_sizeSliderWidth;
+	    }
+
+	    .anythingBase {
+		position: absolute;
+	    }
+
+	    .activePage {
+		// do something ?
+	    }
+	}
+
+	.gallery-slider {
+	    display: block;
+	    width: $gallery_sizeSliderWidth;
+	    height: 70px;
+	    outline: 1px solid red; // FIXME: remove this line
+	    overflow: hidden;
+	    list-style: none;
+
+	    & > li {
+		float: left;
+		width: 108px;
+		height: 70px;
+		margin:0;
+		position: relative;
+
+		img {
+		    position: absolute;
+		    top: 5px;
+		    left: 11px;
+		    outline: 1px solid $colorDarkGrey;
+		}
+	    }
+	}
+    }
+
+    .gallery-nav {
+	@include i4p-font-subtitle($sizeTextNormal);
+	text-transform: uppercase;
+	display: block;
+
+	a {
+	    color: white;
+	    padding: 0;
+	    padding-left: $sizePaddingMedium;
+	    padding-right: $sizePaddingMedium;
+	}
+    }
 
     .viewer-side {
 	background-color: black;
+
+	&.top-side {
+	    height: 200px;
+	}
+
+	&.bottom-side {
+	    // FIXME
+	    min-height: 100px;
+	}
     }
 
     .information-side {
+	&.top-side {
+	    // FIXME
+	}
+
+	&.bottom-side {
+	    a {
+		@include i4p-button-fancy-bordered;
+
+		display: block;
+		width: 60%;
+		margin-top: $sizeTextNormal * 2;
+		margin-left: auto;
+		margin-right: auto;
+	    }
+	}
     }
 }
+
 
 .project-gallery-widget {
     ul {
