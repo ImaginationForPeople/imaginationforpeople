@@ -16,6 +16,7 @@ from wiki.urls import get_pattern as get_wiki_pattern
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
+from apps.tags.sitemaps import TagSitemap
 
 # For server errors
 handler500 = 'django.views.defaults.server_error'
@@ -28,6 +29,7 @@ admin.autodiscover()
 sitemaps = {
     'projects': I4pProjectTranslationSitemap(),
     'questions': QuestionsSitemap(),
+    'tags': TagSitemap(),
 }
 
 urlpatterns = i18n_patterns('',
