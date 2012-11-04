@@ -45,17 +45,10 @@ from reversion.models import Version
 
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
-<<<<<<< HEAD
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
 from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm, ProjectVideoAddForm
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS, Question
-=======
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm
-from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm
-from .models import Answer, ProjectPicture, ProjectVideo, SiteTopic, Topic
-from .models import ProjectMember, I4pProject, I4pProjectTranslation, VERSIONNED_FIELDS, Question
->>>>>>> 8606f9de3b0c898348aa32ce5e6ed363633ef3d6
 from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -96,7 +89,7 @@ def project_sheet_list(request):
 
         # Fourth pass to order sheet
         if data.get("order") == "creation":
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__created')
+            ordered_project_sheets = filtered_project_sheets.order_by('-master__created')
             extra_context["order"] = "creation"
         elif data.get("order") == "modification":
             ordered_project_sheets = filtered_project_sheets.order_by('-modified')
@@ -111,9 +104,9 @@ def project_sheet_list(request):
             # Here the number of buckets (m) is determined by the day of the
             # year
             day_of_year = int(datetime.now().strftime('%j'))
-            pseudo_random_field = "(project_id * (project_id + 3)) %% {0:d}".format(day_of_year)
+            pseudo_random_field = "(master_id * (master_id + 3)) %% {0:d}".format(day_of_year)
             ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field},
-                                                                   order_by=['-project__best_of','pseudo_random'])
+                                                                   order_by=['-master__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
@@ -230,7 +223,7 @@ class ProjectView(TemplateView):
 
         # Related projects
         related_projects = TaggedItem.objects.get_related(self.project_translation,
-                                                          I4pProjectTranslation.objects.exclude(project__id=project.id),
+                                                          I4pProjectTranslation.objects.exclude(master__id=project.id),
                                                           num=3)
 
         context.update({

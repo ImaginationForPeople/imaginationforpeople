@@ -221,7 +221,19 @@ class I4pProject(models.Model):
 
         return project_translation.get_absolute_url()
 
+# XXX: Hvad
+#     # @models.permalink
+#     def get_absolute_url(self):
+#         current_language = translation.get_language()
+#         translation.activate(self.language_code)
+#         url = reverse('project_sheet-show', kwargs={'slug': self.slug})
+#         translation.activate(current_language)
+#         return url
 
+
+#     def __unicode__(self):
+#         return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
+        
 
 
 class Question(TranslatableModel):
@@ -250,22 +262,6 @@ class Answer(TranslatableModel):
         return 'Answer to: [%s] (Project %s)' % (self.question, self.project)
 
 
-# class I4pProjectTranslation(models.Model):
-#     """
-#     A translation of a project
-#     """
-
-#     # @models.permalink
-#     def get_absolute_url(self):
-#         current_language = translation.get_language()
-#         translation.activate(self.language_code)
-#         url = reverse('project_sheet-show', kwargs={'slug': self.slug})
-#         translation.activate(current_language)
-#         return url
-
-
-#     def __unicode__(self):
-#         return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
 
 
 def last_modification_date(sender, instance, **kwargs):

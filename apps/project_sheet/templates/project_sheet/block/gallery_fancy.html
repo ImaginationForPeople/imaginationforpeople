@@ -26,11 +26,11 @@ FIXME: use picture list instead of project_translation
 
 <div class="project-gallery-widget">
 	<ul>
-		{% for project_picture in project_translation.project.pictures.all %}
+		{% for project_picture in project_translation.master.pictures.all %}
 		{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
 		{% if forloop.counter0 < 4 %}
 		<li class="picture
-			{% if project_translation.project.pictures.all|length < 3 %}
+			{% if project_translation.master.pictures.all|length < 3 %}
 			{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
 			picture-big
 			{% else %}
@@ -60,11 +60,11 @@ FIXME: use picture list instead of project_translation
 	<div class="row">
 	<div class="viewer-side span5">
 		<ul class="slider">
-			{% for project_picture in project_translation.project.pictures.all %}
+			{% for project_picture in project_translation.master.pictures.all %}
 			{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
 			{% if forloop.counter0 < 4 %}
 			<li class="picture
-				{% if project_translation.project.pictures.all|length < 3 %}
+				{% if project_translation.master.pictures.all|length < 3 %}
 				{% comment %} FOR SMALL GALLERIES, WE DO ONLY BIG IMAGES {% endcomment %}
 				picture-big
 				{% else %}

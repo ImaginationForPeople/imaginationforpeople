@@ -32,40 +32,40 @@ Parameters for this block
 
 	<div class="card" >
 		<div class="photo">	
-			{% if project_translation.project.pictures.all|length > 0 %}
-			<img src="{{ project_translation.project.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
+			{% if project_translation.master.pictures.all|length > 0 %}
+			<img src="{{ project_translation.master.pictures.all.0.thumbnail_idcard.url }}" alt=""/>
 			{% endif %}
 		</div> <!-- photo -->
 
 		<div class="progress">
-			<p class="status progressbar-{{project_translation.project.status|lower }}">{{ project_translation.project.get_status_display }}</p>
+			<p class="status progressbar-{{project_translation.master.status|lower }}">{{ project_translation.master.get_status_display }}</p>
 		</div>
 
 		<div class="pictos">
-			{% if project_translation.project.members.count > 0 %}
+			{% if project_translation.master.members.count > 0 %}
 			<div class="picto-team"></div>
 			{% endif %}
 			{% ifequal project_translation.completion_progress "EDIT" %}
 			<div class="picto-editing"></div>
 			{% endifequal  %}
-			{% if project_translation.project.best_of %}
+			{% if project_translation.master.best_of %}
 			<div class="picto-bestof"></div>
 			{% endif %}
 		</div>
 
 		<div class="location">
-			{% if project_translation.project.location.country %}
-			{{project_translation.project.location.get_country_display|truncatewords:2|capfirst}}
-			<img src="{{ project_translation.project.location.country.flag }}" class="flag" title="{{ project_translation.project.location.get_country_display }}" alt="{{ project_translation.project.location.get_country_display }}"/>
+			{% if project_translation.master.location.country %}
+			{{project_translation.master.location.get_country_display|truncatewords:2|capfirst}}
+			<img src="{{ project_translation.master.location.country.flag }}" class="flag" title="{{ project_translation.master.location.get_country_display }}" alt="{{ project_translation.master.location.get_country_display }}"/>
 			{% else %}
 
 			{% endif %}
 		</div>	
 
-		{% if project_translation.project.topics.all.0 %}
+		{% if project_translation.master.topics.all.0 %}
 		<div class="topic">
-			<div class="illustration topic-{{ project_translation.project.topics.all.0.topic.slug }}-small" title="{{ project_translation.project.topics.all.0.topic.label }}"></div>
-			<p class="description">{{ project_translation.project.topics.all.0.topic.label }}</p>
+			<div class="illustration topic-{{ project_translation.master.topics.all.0.topic.slug }}-small" title="{{ project_translation.master.topics.all.0.topic.label }}"></div>
+			<p class="description">{{ project_translation.master.topics.all.0.topic.label }}</p>
 		</div>
 		{% endif %}
 	</div>

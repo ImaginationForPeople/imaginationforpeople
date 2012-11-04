@@ -112,7 +112,7 @@ def _answer_load(language_code, project_slug, question):
                                             slug=project_slug,
                                             language_code=language_code,
                                             project__site=site)
-    project = project_translation.project
+    project = project_translation.master
     answer = get_object_or_404(Answer, project__id=project.id,
                                question__id=question)
 
@@ -154,7 +154,7 @@ def project_textfield_save(request, project_slug=None):
 
 
 def _answer_save(language_code, project_slug, project_translation, question, value):
-    project = project_translation.project
+    project = project_translation.master
     question = get_object_or_404(Question, id=question)
 
     if value:
@@ -218,7 +218,7 @@ def project_sheet_edit_status(request, slug):
 
     # Status
     project_status_form = I4pProjectStatusForm(request.POST,
-                                               instance=project_translation.project)
+                                               instance=project_translation.master)
 
     if request.method == 'POST' and project_status_form.is_valid():
         project_status_form.save()
@@ -245,7 +245,7 @@ def project_update_related(request, project_slug):
     project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
                                                           language_code=language_code)
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     themes = ", ".join(request.POST.getlist('themes'))
     project_translation.themes = themes
