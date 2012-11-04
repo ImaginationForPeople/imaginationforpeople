@@ -10,15 +10,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 16:36+0200\n"
-"PO-Revision-Date: 2012-08-13 11:46+0000\n"
+"POT-Creation-Date: 2012-10-23 19:52+0200\n"
+"PO-Revision-Date: 2012-10-05 09:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: fields.py:43
 msgid "Recipients not found"
@@ -40,63 +40,63 @@ msgstr "Επώνυμο"
 msgid "gender"
 msgstr "φύλο"
 
-#: models.py:46
+#: models.py:47
 msgid "male"
 msgstr "άντρας"
 
-#: models.py:47
+#: models.py:48
 msgid "female"
 msgstr "γυναίκα"
 
-#: models.py:51
+#: models.py:52
 msgid "motto"
 msgstr "αγαπημένή φράση"
 
-#: models.py:52
+#: models.py:53
 msgid "about"
 msgstr "Σχετικά με "
 
-#: models.py:53
+#: models.py:54
 msgid "birthday"
 msgstr "γενέθλια"
 
-#: models.py:54
+#: models.py:55
 msgid "website"
 msgstr "δικτυακός τόπος"
 
-#: models.py:55
+#: models.py:56
 msgid "linkedin"
 msgstr "LinkedIn"
 
-#: models.py:56
+#: models.py:57
 msgid "twitter"
 msgstr "Twitter"
 
-#: models.py:57
+#: models.py:58
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:58
+#: models.py:59
 msgid "address"
 msgstr "διεύθυνση"
 
-#: models.py:59
+#: models.py:60
 msgid "country"
 msgstr "χώρα"
 
-#: models.py:61
+#: models.py:62
 msgid "registration site"
 msgstr ""
 
-#: models.py:64
+#: models.py:65
 msgid "location"
 msgstr "τοποθεσία"
 
-#: models.py:80
+#: models.py:82
 msgid "New user registered"
 msgstr "Εγγράφηκε νέος χρήστης"
 
-#: models.py:126
+#: models.py:128
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
 msgstr "Νέο μήνυμα από %(sender)s στο Imagination For People"
@@ -233,19 +233,25 @@ msgstr ""
 msgid "Account setup"
 msgstr "Ρύθμιση Λογαριασμού"
 
-#: templates/userena/forms.html:41 templates/userena/forms.html.py:69
+#: templates/userena/forms.html:26
+msgid ""
+"The following fields in your profile contains invalid data you need to "
+"correct:"
+msgstr ""
+
+#: templates/userena/forms.html:59 templates/userena/forms.html.py:87
 msgid "Save changes"
 msgstr "Αποθήκευση αλλαγών "
 
-#: templates/userena/forms.html:80
+#: templates/userena/forms.html:98
 msgid "Change password"
 msgstr "Αλλαγή κωδικού πρόσβασης"
 
-#: templates/userena/forms.html:85
+#: templates/userena/forms.html:103
 msgid "Your current email address is the following:"
 msgstr "Το τρέχον e-mail σας είναι το ακόλουθο:"
 
-#: templates/userena/forms.html:90
+#: templates/userena/forms.html:108
 msgid "Change email"
 msgstr "Αλλαγή e-mail"
 

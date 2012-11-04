@@ -1,5 +1,5 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
 
 $commentList_sizeAvatar: 50px;
@@ -16,6 +16,12 @@ $commentList_sizeAvatar: 50px;
 	font-style: italic;
 	position: relative;
 	text-align: center;
+
+	padding-bottom: 10px;
+	margin-bottom: 1em;
+	background-repeat: no-repeat;
+	background-image: image-url('project_sheet/comment/seemore.png');
+	background-position: bottom center;
 
 	&:hover {
 	    color: $colorMedDarkGrey;
@@ -35,7 +41,7 @@ $commentList_sizeAvatar: 50px;
     padding: $sizePaddingSmall;
 
     &:hover {
-	background-color: $colorLightGrey;
+	background-color: $colorLightLightGrey;
     }
 
     .avatar {
@@ -46,6 +52,10 @@ $commentList_sizeAvatar: 50px;
 	width: $commentList_sizeAvatar;
 	height: $commentList_sizeAvatar;
 	background-color: black;
+
+	img {
+	    @include border-radius($sizeRadiusSmall);
+	}
     }
 
     .header {
@@ -55,6 +65,10 @@ $commentList_sizeAvatar: 50px;
 	.author {
 	    @include i4p-font-subtitle($sizeTextBig);
 	    font-style: italic;
+
+	    a {
+		color: black;
+	    }
 	}
 
 	.postdate {

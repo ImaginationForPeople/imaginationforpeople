@@ -1,5 +1,40 @@
+
+// THE MINIMAL COMMON CSS STYLE FOR ALL PAGES : defining root fonts size
+
+// the root font size is defined depending on the HTML element
+html {
+    // the default font size for browsers is 16px, so we adjust it to 10px.for easy calculations.
+    font-size: 62.5%;
+}
+
+// then define desired font size for body
+body {
+    background-color: black; // FIXME : remove that line
+    padding: 0px; // FIXME: remove that line
+    margin: 0px; // FIXME: remove that line
+    font-family: Verdana, Arial, Helvetica, sans-serif; // FIXME: remove that line
+    font-size: 1.2rem;	
+}
+
+// END OF THE MINIMAL COMMON CSS STYLE FOR ALL PAGES.
+
+
+@import "compass_twitter_bootstrap/variables";
+@import "compass_twitter_bootstrap/mixins";
+
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
+
+// 
+// BOOTSTRAP STYLE FIXES SPECIFIC TO I4P
+// 
+.modal-backdrop {
+    @include bootstrap-opacity(40);
+}
+
+//
+// BIG FAT WARNING : ALL THE REST MUST BE DELETED OR MOVED ELSEWHERE.
+//
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
@@ -41,16 +76,6 @@
 
 
 
-/* ----------------------------------------------------------------------------------------------------------- */
-
-
-body {	
-    background-color: black;
-    padding: 0px;
-    margin: 0px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-size:12px;	
-}
 
 
 .centreur, .center {	
@@ -93,6 +118,10 @@ img {
     border: 0px;
 }
 
+ul{
+    padding:0px;
+    margin:0px;
+    }
 
 #focus-menu ul{
     padding: 0px;
@@ -104,7 +133,6 @@ img {
 	padding: 0px;
 	margin: 0px;
     }
-
 }
 
 // FIXME: please, use mixins... or page/block specific styles
@@ -213,317 +241,12 @@ img {
     background-color: white;
 }
 
-
-.social-login strong {
-    color: $colorLightBlue !important;
-}
-
-/*---- HEADER ----*/
-
-#blue_border {
-    border-top: 3px solid $colorLightBlue;
-    position: relative;
-    z-index: 2000;
-}
-
-#header-zone {
-    background-color: black;
-    width: 100%;
-	height: 48px;
-    background: image-url('base/header_bar_bg.png') repeat-x top left;
-    margin: 20px 0 0 0;
-
-    #header {
-    	position: relative;
-    }
-}
-
-#header-bar {
-	width: 100%;
-
-	.logo {
-		float: left;
-		margin: 0 5px;
-	}
-}
-
-#header-bar .header-right {
-	float: right;
-}
-
-#header-menu {
-	float: left;
-	height: 48px;
-	margin: 0 0 0 20px;
-
-	ul {
-		display: none;
-	}
-
-	li {
-		display: block;
-		float: left;
-		padding: 0 16px 0 10px;
-		background: image-url('base/grey_dot.png') no-repeat 100% 50%;
-		position: relative;
-
-		&:last-child {
-			background: none;
-		}
-
-	 	a {
-	 		color: #8f8f8f;
-	 		text-transform: uppercase;
-	 		line-height: 48px;
-	 		display: block;
-	 		float: left;
-	 		font-weight: bold;
-	 		text-decoration: none;
-	 	}
-	}
-}
-
-#header-menu li.sibling > a {
-	padding-right: 20px;
-	background: image-url('base/arrow_down.png') no-repeat 100% 50%;
-}
-
-#header-menu li.sibling:hover ul {
-	display: block;
-}
-
-#header-menu ul {
-	position: absolute;
-	top: 48px;
-	left: 0;
-	float: none;
-	height: auto;
-	z-index: 1000;
-	width: 200px;
-	padding: 5px 0 0 0;
-
-	li {
-		display: block;
-		float: none;
-		position: static;
-		height: 18px;
-		background: none;
-		width: 130px;
-
-		a {
-			display: block;
-			text-transform: none;
-			background: none;
-			line-height: 18px;
-			font-weight: normal;
-			font-size: 0.9em;
-			padding: 0 3px;
-			background: black;
-			float: none;
-
-			&:hover {
-				color: white;
-				background: #757575;
-				@include border-radius(4px, 4px);
-			}
-		}
-	}
-}
-
-div#interface_lang {
-	float: left;
-	height: 48px;
-	margin: 0 0 0 20px;
-	position: relative;
-
-	& > a {
-		color: #8f8f8f;
- 		text-transform: uppercase;
- 		line-height: 48px;
- 		display: block;
- 		float: left;
- 		font-weight: bold;
- 		text-decoration: none;
- 		width: 50px;
-	}
-
-	ul {
-		position: absolute;
-		top: 48px;
-		left: 0;
-		float: none;
-		height: auto;
-		z-index: 1000;
-		width: 200px;
-		padding: 5px 0 0 0;
-		display: none;
-
-		li {
-			display: block;
-			float: none;
-			position: static;
-			height: 18px;
-			background: none;
-			width: 100px;
-
-			a {
-				display: block;
-				text-transform: none;
-				background: none;
-				line-height: 18px;
-				font-weight: normal;
-				font-size: 0.9em;
-				padding: 0 3px;
-				background: black;
-				color: #8f8f8f;
-
-				&:hover {
-					color: white;
-					background: #757575;
-					text-decoration: none;
-					@include border-radius(4px, 4px);
-				}
-			}
-		}
-	}
-}
-
-div#interface_lang:hover ul {
-	display: block;
-}
-
-#header-bar #messages-bt {
-	background: image-url("base/header_bar_sep.png") no-repeat scroll left center transparent;
-    float: left;
-    height: 38px;
-    padding: 10px 14px 0;
-}
-
-#header-bar #user-bt {
-	background: image-url("base/header_bar_sep.png") no-repeat scroll left center transparent;
-    float: left;
-    height: 48px;
-    padding: 0 14px;
-}
-
-#header-bar #user-bt a {
-	font-size: 0.9em;
-	font-family: Tahoma, Helvetica, Arial, sans-serif;
-	line-height: 48px;
-}
-
-div#tools {
-	float: left;
-	height: 48px;
-	margin: 0;
-	position: relative;
-	background: image-url("base/header_bar_sep.png") no-repeat scroll left center transparent;
-
-	& > a {
-		background: image-url("base/arrow_down.png") no-repeat scroll 50% 50% transparent;
-	    color: #8F8F8F;
-	    display: block;
-	    float: left;
-	    font-weight: bold;
-	    line-height: 48px;
-	    text-decoration: none;
-	    text-transform: uppercase;
-	    width: 34px;
-	}
-
-	ul {
-		position: absolute;
-		top: 48px;
-		left: -25px;
-		float: none;
-		height: auto;
-		z-index: 1000;
-		width: 200px;
-		padding: 5px 0 0 0;
-		display: none;
-		@include border-radius(4px, 4px);
-
-		li {
-			display: block;
-			float: none;
-			position: static;
-			height: 22px;
-			background: none;
-			width: 130px;
-
-			a {
-				display: block;
-				text-transform: none;
-				background: none;
-				line-height: 22px;
-				font-weight: normal;
-				font-size: 0.9em;
-				padding: 0 3px;
-				background: black;
-				color: #8f8f8f;
-				padding: 0 10px 0 25px;
-				@include border-radius(4px, 4px);
-
-				&:hover {
-					color: white;
-					background: #757575;
-					text-decoration: none;
-				}
-			}
-		}
-	}
-}
-
-div#tools:hover ul {
-	display: block;
-}
-
-div#tools ul li.view-profile a:hover {
-	background: #757575 image-url('base/mini_eye_ico.png') no-repeat 3px center;
-}
-div#tools ul li.edit-profile a:hover {
-	background: #757575 image-url('base/mini_pencil_ico.png') no-repeat 3px center;
-}
-div#tools ul li.logout a:hover {
-	background: #757575 image-url('base/mini_deco_ico.png') no-repeat 3px center;
-}
-
-/*---- Search box ----*/
-
-
-.search {
-    float: left;
-    height: 22px;
-
-    input[type="text"] {
-	font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif !important;
-	background: #6a6a6a image-url('base/search_ico.png') no-repeat 10px 50%;
-	border: 0px solid #646464;
-	color: #242424;
-	font-family: Arial,Helvetica,sans-serif;
-	font-size: 10px;
-	height: 18px;
-	padding: 2px;
-	padding-left: 24px;
-	text-indent: 0px;
-	width: 130px;
-	font-style: italic;
-	@include border-radius(11px, 11px);
-	margin: 13px 0 0 20px;
-    }
-
-    input[type="submit"] {
-	background-image: none;
-	background-color: transparent;
-	border: 0px;
-	margin: 0px;
-	width: 32px;
-	float: right;
-    }
-}
-
-#header {
-    .search {
+.social-login {
+    
+    list-style-type:none;
+    display:inline;
+    strong{
+        color: $colorLightBlue !important;
     }
 }
 
@@ -765,6 +488,15 @@ div#tools ul li.logout a:hover {
 
 	}
 
+    }
+    ul{
+
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
     }
 }
 
@@ -1030,13 +762,12 @@ div#tools ul li.logout a:hover {
 /* --Formulaires-- */
 
 
-// FIXME: explain purpose ?
+/* This is the list of data entry errors displayed to the user if any django
+ form fails validation */
 .errorlist {
-    color: white;
-    /*position: absolute;
-    top: 45px;
-    right:100px;*/
-font-style: italic;
+    color: red;
+    font-style: italic;
+    font-weight: bold;
 }
 
 // FIXME: use color constants
@@ -1211,15 +942,16 @@ font-style: italic;
     background-color: #050505;
     padding: 8px 0px;
 
-    #footer-bottom {
-
-	ul {
-
-	    li {
-		margin: 0px 10px;
-
-		a {
-		    color: #4b4b4b;
+    #footer-bottom{
+	ul{
+            padding:0px;
+            margin:0px;
+	    li{
+		margin:0px 10px;
+                list-style-type:none;
+                display:inline;
+		a{
+		    color:#4b4b4b;
 		}
 
 		a:hover {

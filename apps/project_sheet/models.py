@@ -376,7 +376,12 @@ def delete_parent_if_last_translation(sender, instance, **kwargs):
     """
     When the last translation of a project is deleted, delete the project.
     """
-    project = instance.project
+    try:
+        project = instance.project
+    except I4pProject.DoesNotExist:
+        # Can happen if the parent when already deleted
+        return
+        
     if project.translations.count() == 0:
         project.delete()
 

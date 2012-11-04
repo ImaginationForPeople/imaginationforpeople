@@ -8,68 +8,30 @@
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment-list.css" />
 {% endaddtoblock %}
-{% comment %}FIXME: use real comment block instead {% endcomment %}
-<div class="comment-list span5">
+{% comment %}FIXME: limit span8 to span5 once discussion is available {% endcomment %}
+
+{% if project_translation %}
+<div class="comment-list span8"> 
 	<ul>
-		<li class="comment">
-			<a href="#FIXME-EDIT-URL" class="action-edit"></a>
-			<a href="#FIXME-DELETE-URL" class="action-delete"></a>
-			<div class="avatar">
-				<img src="#FIXME-AVATAR-URL" />
-			</div>
-			<div class="header">
-				<span class="author">Simon Sarazin</span>
-				<span class="postdate">Oct. 28, 2011</span>
-			</div>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur apiscing elit, sed do eiusmod...
-			</div>
+		{% get_comment_list for project_translation as comment_list %}
+		{% if "show_comments" in request.GET %}
+		{% for comment in comment_list reversed %}
+		<li class="comment {% cycle 'odd' 'even' %}">
+			{% include "project_sheet/block/comment-item.html" %}
 		</li>
-		<li class="comment">
-			<div class="header">
-				<span class="author">Simon Sarazin</span>
-				<span class="postdate">Oct. 28, 2011</span>
-			</div>
-			<div class="content">
-				Lorem ipsum dolor sit amet, consectetur apiscing elit, sed do eiusmod...
-			</div>
+		{% endfor %}
+
+		{% else %}
+		{% for comment in comment_list|slice:"-5:" reversed %}
+		<li class="comment {% cycle 'odd' 'even' %}">
+			{% include "project_sheet/block/comment-item.html" %}
 		</li>
+		{% endfor %}
+		{% endif %}
 	</ul>
-	<a class="seemore" href="#FIXME-URL: show remaining comments">
-		{% trans "Show all FIXME-COUNTER comments" %}
-		<!-- FIXME: show down chevron icon -->
+	<a class="seemore" href="?show_comments=1#comments-module">
+      {% get_comment_count for project_translation as comment_count %}
+        {% trans "Show all" %} {{ comment_count }} {% trans "comments" %}</a>
 	</a>
 </div>
-{% comment %}
-<!-- ------------------------------
-OLD VERSION OF THE SAME TEMPLATE BELOW :
----------------------------------->
-
-{% load i18n %}
-{% load comments %}
-{% load sekizai_tags %}
-
-{% addtoblock "js" %}
-{% endaddtoblock %}
-
-{% addtoblock "css" %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment.css" />
-{% endaddtoblock %}
-
-<ul id="comments-list">
-	{% if "show_comments" in request.GET %}
-	{% for comment in comment_list reversed %}
-	<li class="{% cycle 'odd' 'even' %}">
-		{% include "project_sheet/block/comment.html" %}
-	</li>
-	{% endfor %}
-
-	{% else %}
-	{% for comment in comment_list|slice:"-5:" reversed %}
-	<li class="{% cycle 'odd' 'even' %}">
-		{% include "project_sheet/block/comment.html" %}
-	</li>
-	{% endfor %}
-	{% endif %}
-</ul>
-{% endcomment %}
+{% endif %}

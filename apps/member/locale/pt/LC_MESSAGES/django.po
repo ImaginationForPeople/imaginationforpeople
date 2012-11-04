@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 16:36+0200\n"
-"PO-Revision-Date: 2012-08-13 11:46+0000\n"
+"POT-Creation-Date: 2012-10-23 19:52+0200\n"
+"PO-Revision-Date: 2012-10-05 09:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: fields.py:43
 msgid "Recipients not found"
@@ -38,63 +38,63 @@ msgstr ""
 msgid "gender"
 msgstr ""
 
-#: models.py:46
+#: models.py:47
 msgid "male"
 msgstr ""
 
-#: models.py:47
+#: models.py:48
 msgid "female"
 msgstr ""
 
-#: models.py:51
+#: models.py:52
 msgid "motto"
 msgstr ""
 
-#: models.py:52
+#: models.py:53
 msgid "about"
 msgstr ""
 
-#: models.py:53
+#: models.py:54
 msgid "birthday"
 msgstr ""
 
-#: models.py:54
+#: models.py:55
 msgid "website"
 msgstr ""
 
-#: models.py:55
+#: models.py:56
 msgid "linkedin"
 msgstr ""
 
-#: models.py:56
+#: models.py:57
 msgid "twitter"
 msgstr ""
 
-#: models.py:57
+#: models.py:58
 msgid "facebook"
 msgstr ""
 
-#: models.py:58
+#: models.py:59
 msgid "address"
 msgstr ""
 
-#: models.py:59
+#: models.py:60
 msgid "country"
 msgstr ""
 
-#: models.py:61
+#: models.py:62
 msgid "registration site"
 msgstr ""
 
-#: models.py:64
+#: models.py:65
 msgid "location"
 msgstr ""
 
-#: models.py:80
+#: models.py:82
 msgid "New user registered"
 msgstr ""
 
-#: models.py:126
+#: models.py:128
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
 msgstr ""
@@ -218,19 +218,25 @@ msgstr ""
 msgid "Account setup"
 msgstr ""
 
-#: templates/userena/forms.html:41 templates/userena/forms.html.py:69
+#: templates/userena/forms.html:26
+msgid ""
+"The following fields in your profile contains invalid data you need to "
+"correct:"
+msgstr ""
+
+#: templates/userena/forms.html:59 templates/userena/forms.html.py:87
 msgid "Save changes"
 msgstr ""
 
-#: templates/userena/forms.html:80
+#: templates/userena/forms.html:98
 msgid "Change password"
 msgstr ""
 
-#: templates/userena/forms.html:85
+#: templates/userena/forms.html:103
 msgid "Your current email address is the following:"
 msgstr ""
 
-#: templates/userena/forms.html:90
+#: templates/userena/forms.html:108
 msgid "Change email"
 msgstr ""
 

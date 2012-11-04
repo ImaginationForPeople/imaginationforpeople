@@ -1,5 +1,30 @@
-@import "i4p-mixins.scss";
-@import "i4p-constants.scss";
+
+
+// THE MINIMAL COMMON CSS STYLE FOR ALL PAGES : defining root fonts size
+
+// the root font size is defined depending on the HTML element
+html {
+    // the default font size for browsers is 16px, so we adjust it to 10px.for easy calculations.
+    font-size: 62.5%;
+}
+
+// then define desired font size for body
+body {
+    background-color: black; // FIXME : remove that line
+    padding: 0px; // FIXME: remove that line
+    margin: 0px; // FIXME: remove that line
+    font-family: Verdana, Arial, Helvetica, sans-serif; // FIXME: remove that line
+    font-size: 1.2rem;	
+}
+
+// END OF THE MINIMAL COMMON CSS STYLE FOR ALL PAGES.
+
+//
+// BIG FAT WARNING : ALL THE REST MUST BE DELETED OR MOVED ELSEWHERE.
+//
+
+@import "i4p-mixins";
+@import "i4p/constants";
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
@@ -41,15 +66,6 @@
 
 
 
-
-
-body{	
-    background-color:black;
-    padding:0px;
-    margin:0px;
-    font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-size:12px;	
-}
 
 
 .centreur, .center{	
@@ -218,34 +234,6 @@ ul{
     color: $colorLightBlue !important;
 }
 
-
-
-
-/*---- HEADER ----*/
-
-#blue_border{
-    border-top:3px solid $colorLightBlue;
-    position:relative;
-    z-index:2000;
-}
-
-#header-zone{
-    background-color:$darkgrey;
-
-    #header{
-	height:123px;
-	position:relative;
-
-	.logo{
-	    width:217px;
-	    height:70px;
-	    position:absolute;
-	    top:5px;
-	}
-    }
-}
-
-
 /*---- Projects hover menu ----*/
 
 #projects-hover-menu-zone, #about-hover-menu-zone{
@@ -383,16 +371,6 @@ ul{
 	float:right;
     }
 }
-
-#header{
-    .search{
-	position:absolute!important;
-	bottom:10px !important;
-	right:-2px!important;
-	padding:0px!important;
-    }
-}
-
 
 
 /* -- Filters -- */

@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-05 16:36+0200\n"
-"PO-Revision-Date: 2012-08-13 11:46+0000\n"
+"POT-Creation-Date: 2012-10-23 19:52+0200\n"
+"PO-Revision-Date: 2012-10-05 09:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/"
 "imaginationforpeople/language/fr/)\n"
@@ -21,7 +21,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: fields.py:43
 msgid "Recipients not found"
@@ -43,63 +43,63 @@ msgstr "Nom"
 msgid "gender"
 msgstr "sexe"
 
-#: models.py:46
+#: models.py:47
 msgid "male"
 msgstr "homme"
 
-#: models.py:47
+#: models.py:48
 msgid "female"
 msgstr "femme"
 
-#: models.py:51
+#: models.py:52
 msgid "motto"
 msgstr "devise"
 
-#: models.py:52
+#: models.py:53
 msgid "about"
 msgstr "A propos de moi"
 
-#: models.py:53
+#: models.py:54
 msgid "birthday"
 msgstr "Date de naissance"
 
-#: models.py:54
+#: models.py:55
 msgid "website"
 msgstr "site web"
 
-#: models.py:55
+#: models.py:56
 msgid "linkedin"
 msgstr "linkedIn"
 
-#: models.py:56
+#: models.py:57
 msgid "twitter"
 msgstr "twitter"
 
-#: models.py:57
+#: models.py:58
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:58
+#: models.py:59
 msgid "address"
 msgstr "adresse"
 
-#: models.py:59
+#: models.py:60
 msgid "country"
 msgstr "ville"
 
-#: models.py:61
+#: models.py:62
 msgid "registration site"
-msgstr ""
+msgstr "site d'enregistrement"
 
-#: models.py:64
+#: models.py:65
 msgid "location"
 msgstr "lieu"
 
-#: models.py:80
+#: models.py:82
 msgid "New user registered"
 msgstr "Nouvel utilisateur enregistré"
 
-#: models.py:126
+#: models.py:128
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
 msgstr "Nouveau message de %(sender)s sur Imagination For People"
@@ -235,19 +235,25 @@ msgstr ""
 msgid "Account setup"
 msgstr "Configuration du compte"
 
-#: templates/userena/forms.html:41 templates/userena/forms.html.py:69
+#: templates/userena/forms.html:26
+msgid ""
+"The following fields in your profile contains invalid data you need to "
+"correct:"
+msgstr ""
+
+#: templates/userena/forms.html:59 templates/userena/forms.html.py:87
 msgid "Save changes"
 msgstr "Enregistrer les modifications"
 
-#: templates/userena/forms.html:80
+#: templates/userena/forms.html:98
 msgid "Change password"
 msgstr "Changer le mot de passe"
 
-#: templates/userena/forms.html:85
+#: templates/userena/forms.html:103
 msgid "Your current email address is the following:"
 msgstr "Votre adresse e-mail actuelle est la suivante:"
 
-#: templates/userena/forms.html:90
+#: templates/userena/forms.html:108
 msgid "Change email"
 msgstr "Changer l'email"
 

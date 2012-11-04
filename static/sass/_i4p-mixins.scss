@@ -1,6 +1,7 @@
 @import "compass/css3/border-radius";
 @import "compass/css3/box-shadow";
 @import "compass/css3/box-sizing";
+@import "compass/css3/images";
 
 // reset utilities
 @import "compass/utilities/general/reset";
@@ -9,50 +10,18 @@
 @import "compass_twitter_bootstrap/variables";
 @import "compass_twitter_bootstrap/mixins";
 
+
+@import "i4p/mixins";
+@import "i4p/fonts";
+@import "i4p/sprites";
+@import "i4p/buttons";
+
 // FIXME: split i4p-mixins by theme :-)
 
 /**
  *  Mixins
  */
 
-@mixin i4p-sprite($classname) {
-    [class^="#{$classname}-"],
-    [class*=" #{$classname}-"] {
-	display: inline-block;
-	vertical-align: middle;
-    }
-
-}
-
-@mixin i4p-sprite-header($classname) {
-    h1, h2, h3, h4, h5, h6 {
-	i[class^="#{$classname}-"],
-	i[class*=" #{$classname}-"] {
-	    margin-right: .25em;
-	}
-    }
-}
-
-
-@mixin i4p-font-subtitle($sizeText : $sizeTextLarge) {
-    font-size: $sizeText;
-    font-family: $fontOpenSans;
-    font-stretch: condensed;
-    font-weight: bold;
-}
-
-@mixin i4p-font-title($sizeText : $sizeTextLarge) {
-    @include i4p-font-subtitle($sizeText);
-    text-transform: uppercase;
-}
-
-@mixin i4p-font-button($sizeText : $sizeTextLarge) {
-    font-family: $fontOpenSans;
-    font-size: $sizeText;
-    font-stretch: normal;
-    font-weight: bold;
-    text-transform: uppercase;
-}
 
 @mixin georgia($font-size) {
     font-family:Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
@@ -68,33 +37,11 @@
 }
 
 
-@mixin i4p-background-vertical-gradient($colorTop, $colorBottom) {
-    background-image: linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -moz-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -ms-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -o-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-    background-image: -webkit-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-
-    background-image: -webkit-gradient(
-	linear,
-	left top,
-	left bottom,
-	color-stop(0, $colorTop),
-	color-stop(1, $colorBottom)
-    );
-}
 
 @mixin i4p-box-shadow-bottomleft {
     box-shadow: $sizeShadowSmall $sizeShadowSmall $sizeShadowSmall rgba(0,0,0,0.5);
 }
 
-// FIXME: replace with compass/css3 transition
-@mixin i4p-transition( $effect ) {
-    -moz-transition: $effect;
-    -o-transition: $effect;
-    transition: $effect;
-    -webkit-transition: $effect;
-}
 
 // Adds the see more class to a block
 // WARNING: the block will become relatively-positionned
@@ -122,30 +69,20 @@
     }
 }
 
-@mixin i4p-block {
+@mixin i4p-layout-block {
     margin-top: 1rem;
     margin-bottom: 2rem;
 }
 
-
-@mixin i4p-button {
-    @include reset-box-model;
-    @include reset-font;
-    @include reset-focus;
-    @include i4p-font-button($sizeTextNormal);
-    margin: 0;
-    padding: 0;
-    text-shadow: none;
-    text-align: center;
-    color: white;
+@mixin i4p-shaded-separator {
     display: block;
+    border: 0;
     width: 100%;
-    border: $sizeBorderSmall solid $colorLightBlue;
-    background-color: $colorDarkBlue;
-
-    &:hover {
-	@include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
-	color: white;
-    }
+    height: 10px;
+    background-image: image-url("base/horizontal-separator.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.4;
 }
 

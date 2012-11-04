@@ -168,12 +168,18 @@
     position:relative;
     top:-37px;
     padding-top:35px;
-    
+    ul{
+        li{
+            display:inline;
+            list-style-type:none;
+        }
+    }
     .menu ul{
         padding-left:55px;   
 
         li{
             display:list-item;
+            list-style-type:none;
             margin-bottom:4px;
             @include georgia(18px);
             color:white;

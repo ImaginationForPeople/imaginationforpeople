@@ -1,5 +1,5 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
 
 .content-feedback {
@@ -119,7 +119,16 @@
 		font-style: italic;
 		font-size: 12px;
 	}
-	
+    ul{
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
     .feedback-info {
       
         .type_Q, .type_P , .type_I {

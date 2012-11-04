@@ -1,5 +1,5 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
 $sprite-layout: smart;
 @import "compass/utilities/sprites/base";
@@ -15,11 +15,11 @@ $flag-sprite-dimensions: true;
     @include i4p-seemore-class;
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
-    border: 1px solid darken($colorLightGrey,2%);
+    border: 1px solid darken($colorLightLightGrey,2%);
     position: relative;
 
     padding: 5px;
-    background-color: $colorLightGrey;
+    background-color: $colorLightLightGrey;
     margin-bottom: 12px;
 
     h2 {

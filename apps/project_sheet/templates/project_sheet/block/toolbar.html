@@ -1,0 +1,44 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+FIXME: use picture list instead of project_translation
+
+* project_translation : I4pProjectTranslation
+
+{% endcomment %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/toolbar.css" />
+{% endaddtoblock %}
+
+<div class="project-toolbar">
+    <ul>
+	<li>
+	    <a href="#project-information" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Information" %}">
+		<i class="sheet-information-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-about" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
+		<i class="sheet-details-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-references" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "References" %}">
+		<i class="sheet-references-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-comments" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Comments" %}">
+		<i class="sheet-comments-white"></i></a>
+	</li>
+	<li>
+	    <a href="#project-partners" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Partners" %}">
+		<i class="sheet-partners-white"></i></a>
+	</li>
+    </ul>
+</div>

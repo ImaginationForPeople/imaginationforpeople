@@ -1,5 +1,7 @@
+
+
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
 $gallery_sizeImageHeight: 197px;
 $gallery_sizeImageSmallWidth: 150px;
@@ -8,13 +10,34 @@ $gallery_sizeImageBigWidth: 300px;
 $gallery_strOverlayUrl: 'gallery/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
+$gallery_sizeModalColumns: 10;
+$gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($gallery_sizeModalColumns - 1);
 
-.project-gallery {
+// act as a bootstrap "container"
+.project-gallery-modal {
+    box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
+    width: $gallery_sizeModalWidth;
+    margin-left: -$gallery_sizeModalWidth/2;
+
+    .viewer-side {
+	background-color: black;
+    }
+
+    .information-side {
+    }
+}
+
+.project-gallery-widget {
+    ul {
+	margin:0;
+    }
+
     .picture {
 	width: 100%;
 	position: relative;
 	height: $gallery_sizeImageHeight;
 	overflow: hidden;
+
 
 	&.picture-big {
 	    clear: both;
@@ -39,10 +62,31 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    }
 	}
 
+	a {
+	    width: inherit;
+	    height: inherit;
+	}
+
 	.image {
 	    position: absolute;
 	    height: inherit;
 	    width: 300px;
+
+	    img {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		&.color {
+		    @include i4p-transition(all .5s ease);
+		    opacity: 1;
+		}
+
+		&.bw {
+		    @include i4p-transition(all .5s ease);
+		    opacity: 1;
+		}
+	    }
 	}
 
 
@@ -91,7 +135,12 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    .overlay-two {
 		opacity: 0;
 	    }
+	    .image {
+		.color { opacity: 1; }
+		.bw { opacity: 0; }
+	    }
 	}
     }
 
 }
+

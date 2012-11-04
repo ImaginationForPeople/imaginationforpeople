@@ -1,10 +1,11 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
+@import "i4p/buttons";
 
 $comment_sizeAvatar: 50px;
 
 .comment-block {
-    @include i4p-block;
+    @include i4p-layout-block;
 }
 
 .comment-discuss {
@@ -20,7 +21,7 @@ $comment_sizeAvatar: 50px;
     }
 
     .button {
-	@include i4p-button;
+	@include i4p-button-fancy-bordered;
     }
 }
 
@@ -37,7 +38,7 @@ $comment_sizeAvatar: 50px;
     }
 
     .button {
-	@include i4p-button;
+	@include i4p-button-fancy-bordered;
     }
 }
 
@@ -45,7 +46,7 @@ $comment_sizeAvatar: 50px;
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
 
-    background-color: $colorLightGrey;
+    background-color: $colorLightLightGrey;
     padding: $sizePaddingSmall;
 
     form {

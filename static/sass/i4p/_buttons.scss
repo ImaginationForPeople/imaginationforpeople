@@ -1,0 +1,112 @@
+// reset utilities
+@import "compass/utilities/general/reset";
+
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/fonts";
+
+@mixin i4p-button-flat {
+    @include reset-box-model;
+    @include reset-font;
+    @include reset-focus;
+
+    @include i4p-font-title($sizeTextNormal);
+    @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
+    @include bootstrap-makeColumn(3);
+    @include i4p-transition;
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
+
+    float: none;
+    position: static;
+    display: block;
+    border: none;
+    color: $colorMedDarkGrey;
+    margin: 0;
+    padding: 0.2em;
+    text-align: center;
+    text-shadow: none;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $colorLightDarkGrey;
+    background-image: none;
+    box-shadow: none;
+
+    &:hover {
+	background-color: $colorLightBlue;
+	color: white;
+    }
+}
+
+@mixin i4p-button-fancy-bordered {
+    @include reset-box-model;
+    @include reset-font;
+    @include reset-focus;
+
+    @include i4p-font-button($sizeTextNormal);
+    @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
+    @include i4p-transition;
+    @include border-radius($sizeRadiusSmall);
+
+    box-shadow: none;
+    border: $sizeBorderSmall solid $colorPaleBlue;
+    color: white;
+    display: block;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    text-shadow: none;
+    width: 100%;
+
+    &:hover {
+	@include i4p-background-vertical-gradient( $colorDarkBlue, $colorDarkBlue);
+	background-color: $colorDarkBlue;
+	border-color: $colorLightBlue;
+	color: white;
+	text-decoration: none;
+    }
+}
+
+
+@mixin i4p-button-fancy-bordered-small {
+    @include i4p-button-fancy-bordered;
+
+    width: auto;
+    padding-left: $sizePaddingSmall;
+    padding-right: $sizePaddingSmall;
+    font-size: $sizeTextSmall;
+    float: right;
+    line-height: $sizeTextSmall * 1.3;
+}
+
+@mixin i4p-button-fancy-dotted {
+    @include border-radius($sizeRadiusSmall);
+    @include i4p-transition( all .5s ease );
+    display: block;
+    background-color: $colorLightBlue;
+
+    box-shadow: inset 0 0 0 $colorLightBlue;
+    background-image: image-url("tags/icon-plus-white-big.png"), image-url("base/background-white-dots.png");
+
+    background-opacity: 1, 1, 0;
+    background-repeat: no-repeat, repeat;
+    background-position: 190px center, top left;
+
+    padding: 15px;
+    padding-left: 10px;
+    padding-right: 75px;
+
+    font-size: $sizeTextBig;
+    font-family: $fontOpenSans;
+    font-stretch: condensed;
+    font-weight: bold;
+
+    text-transform: uppercase;
+    color: white;
+    margin-bottom: 2em;
+
+    &:hover {
+	text-decoration: none;
+	background-color: darken($colorLightBlue,5%);
+    }
+}

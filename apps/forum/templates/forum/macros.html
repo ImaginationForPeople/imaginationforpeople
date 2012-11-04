@@ -104,9 +104,7 @@ poor design of the data or methods on data objects #}
         <!--{{ post_contributor_avatar_and_credentials(
             post, post.author, karma_mode = karma_mode, badges_mode = badges_mode
         ) }} get rid of the badges and karma-->
-        {{ post_contributor_avatar_and_credentials(
-            post, post.author
-        ) }}
+        {{ post_contributor_avatar_and_credentials(post, post.author) }}
         <p>
             {# todo: access to class names needs to be removed here #}
             {% if post.post_type == 'question' %}
@@ -329,7 +327,7 @@ for the purposes of the AJAX comment editor #}
     {% else %}
         {% set remaining_comment_count = 0 %}
     {% endif %}
-    <a id="add-comment-to-post-{{post.id}}" class="button"></a>
+    <a id="add-comment-to-post-{{post.id}}" class="button" style="margin: 5px; float: right;"></a>
     <script type="text/javascript">
         askbot['data']['{{widget_id}}'] = {
             truncated: {% if post.comment_count > max_comments %}true{% else %}false{% endif %}
@@ -379,7 +377,7 @@ for the purposes of the AJAX comment editor #}
                     </div>
                     <div class="comment-body">
                   		<div class="comment_infos">
-                    	 <a class="author" href="{{comment.author.get_profile_url()}}">{{comment.author.username|escape}}</a>
+                    	 <a class="author" href="{{comment.author.get_profile().get_absolute_url()}}">{{comment.author.username|escape}}</a>
                         <span class="age">&nbsp;({{ timeago(comment.added_at) }})</span>
                         </div>
                         {{comment.html}} 
@@ -585,14 +583,14 @@ answer {% if answer.accepted() %}accepted-answer{% endif %} {% if answer.author_
 {%- endmacro -%}
 
 {#todo: rename this to avatar #}
-{%- macro gravatar(profile, size) -%}
+{%- macro gravatar(user, size) -%}
 {% spaceless %}
-<a style="text-decoration:none" href="{{ profile.get_absolute_url() }}">
+<a style="text-decoration:none" href="{{ user.get_profile().get_absolute_url() }}">
 <img class="gravatar" 
     width="{{size}}" height="{{size}}"
-    src="{{ profile.get_mugshot_url() }}"
-    title="{{profile.user.username|escape}}" 
-    alt="{% trans username=profile.user.username|escape %}{{username}} gravatar image{% endtrans %}" /
+    src="{{ user.get_profile().get_mugshot_url() }}"
+    title="{{user.username|escape}}" 
+    alt="{% trans username=user.username|escape %}{{username}} gravatar image{% endtrans %}" /
 ></a>
 {% endspaceless %}
 {%- endmacro -%}

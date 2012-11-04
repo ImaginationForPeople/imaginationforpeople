@@ -1,0 +1,33 @@
+@import "i4p-mixins";
+@import "i4p/buttons";
+
+.project-details {
+
+    &.edit-mode {
+	background-color: $colorLightBlue;
+    }
+
+    .detail-question {
+	.i4p-button {
+	    @include i4p-button-fancy-bordered-small;
+	    margin-top: 0.6rem;
+	}
+    }
+
+    .detail-answer {
+	.inline-edit {
+	    background-color: $colorLightBlue;
+
+	    textarea {
+		@include box-sizing(border-box);
+
+		font-size: $sizeTextNormal;
+		line-height: $sizeTextNormal * 1.3;
+		min-height: $sizeTextNormal * 1.3 * 3;
+		resize: vertical;
+		-moz-resize: vertical;
+	    }
+	}
+    }
+}
+

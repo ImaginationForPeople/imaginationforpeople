@@ -1,5 +1,5 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
 .twittblogbox{
     float:left;
@@ -7,6 +7,14 @@
     height:290px;
     overflow:hidden;
     background-image: url('../../images/home/infoblock-bg.jpg');
+    
+    .tweet_time {
+	margin-right: 3px;
+	}
+	
+    .tweet_join {
+    display: none;
+    }
     
     h1{
         padding:8px;
@@ -25,13 +33,15 @@
     
     ul{
         margin:2px 8px;
-        
+        padding:0px;
         li{
+            list-style-type:none;
+            display:inline;
             padding:5px 0px;
             border-bottom:1px dotted $greymenu;
             float:left;
             font-size:10px;
-            color:$greyblack;
+            color:$colorDarkGrey;
             
             
             img{
@@ -66,7 +76,7 @@
     #twitter_box{
     
         h1{
-            color:$greyblack;
+            color:$colorDarkGrey;
             background-image:url('../../images/home/twitter-logo.jpg');
         }    
     }

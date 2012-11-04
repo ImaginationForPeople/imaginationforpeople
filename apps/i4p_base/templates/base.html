@@ -23,13 +23,16 @@
 	{% block base_grid %}
 	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
 	{% endblock %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/block/modal.css" />
     {% endcompress %}
 
     {% block style %}
@@ -37,11 +40,14 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
-    {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}	
+    {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
 
 
     {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
+	<script type="text/javascript">
+		var I4P_STATIC_URL="{{STATIC_URL}}";
+	</script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
@@ -154,10 +160,6 @@
     
     <div class="global">   
        
-      {% comment %}
-      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}	
-      {% endcomment %}
-
       {% block newproject_popup %} 
         <div id="new_project_style_popup_zone" class="hidden">
         </div>

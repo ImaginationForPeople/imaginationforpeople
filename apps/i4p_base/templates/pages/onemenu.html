@@ -29,14 +29,26 @@
 			<div class="grid_3 alpha omega">			
 			
 				<div class="left-menu">  	
-					
+				{% ifequal current_page.parent.reverse_id "workgroups" %}
+					    
 					{% placeholder "menu_workgroups" or %}  
 					<h2>{% trans "MENU" %}</h2>
 					<ul>             
-						{% show_menu 0 100 100 100 %}
+					{% show_menu 1 100 0 100 %}
 					</ul>
 					{% endplaceholder %}
+					
+			  {% else %}
                
+                 {% placeholder "menu_workgroups" inherit or %}
+                        
+					<h2>{% trans "MENU" %}</h2>
+					<ul>             
+						{% show_menu 1 100 0 100 %}
+					</ul>
+					{% endplaceholder %}
+					
+				{% endifequal %}
 				</div>
 				
 			</div>

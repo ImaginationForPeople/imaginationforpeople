@@ -1,0 +1,120 @@
+﻿{% extends "base_obsolete.html" %}
+{% load i18n %}
+{% load compress %}
+{% load tagging_tags %}
+{% load pagination_tags %}
+
+{% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
+{% block title %}{% trans 'Find projects on '%}{{ site.name }}{% endblock %}
+
+{% block style %}
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/superfish.css" />
+
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/filters.css" />
+  
+    <style type="text/css">
+        body {
+        background-color: #282828;
+        }    
+    </style>
+
+  {% endcompress %}
+{% endblock %}
+
+{% block extra_head %}
+  {{ block.super }}
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url project_sheet-new-projects-rss %}" />
+
+  {% compress js %}
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js"></script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/filtersPanel.js"></script>
+    {% endcompress %}    
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+        if($.cookie('i4p_bottom_panel') == 'on'){
+            $("a#lock-picto").click();
+            $(".categories_project_page").css({height: '260px'}); 
+        }
+    });
+  </script>
+
+{% endblock %}
+
+
+{% block nav %}{% endblock %}
+
+
+{% block content %}
+
+  {% autopaginate project_translation_list 12 %}
+  <div class="content">
+    <div class="container_18 relative">
+    {% include "filter-panel.html" %}
+        <!-- Projects sorting -->
+        <div id="projectlist_sort" >
+                      
+            {% trans 'Order by:'%}
+            <ul id="projectlist_sort_buttons">
+                <li class="ui-corner-all {% ifequal order 'creation' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?{{orderparams}}&order=creation">{% trans "Newest projects" %}</a></li>
+                <li class="ui-corner-all {% ifequal order 'modification' %}filter-on{% endifequal %}"><a class="button" href="{% url project_sheet-list %}?{{orderparams}}&order=modification">{% trans "Recent changes" %}</a></li>
+            </ul>    
+            <a href="{% url project_sheet-new-projects-rss %}" class="rss"><img src="{{ STATIC_URL }}images/base/picto_rss.gif" alt="{% trans 'RSS Feed' %}" /></a>
+
+            
+           <!--   
+           <div id="langage-tool">				
+                <ul id="sample-menu-1" class="sf-menu">		
+                    <li class="current">
+                        <a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ LANGUAGE_CODE }}.gif" title="{{ LANGUAGE_CODE }}" /> {{ LANGUAGE_CODE }}</a>
+                        <ul>
+                              {% for language in LANGUAGES %}
+                              <li><a href="#"><img src="{{ STATIC_URL }}/images/flags/{{ language.0 }}.gif" title="{{ language.1 }}" />{{ language.0 }}</a>
+                              {% endfor %}	
+					
+                        </ul>		
+                    </li>
+                </ul>					
+            </div>
+             -->        
+        </div>
+
+      
+	<div id="projects_list">
+	  {% for project_translation in project_translation_list %}
+	  
+	  <!-- Affichage à choisir en fonction du type d'affichage désiré ! -->
+	  <div class="colonne grid_6">
+	    {% include "project_sheet/obsolete/project_complete_card.html" %}			
+	  </div>
+	  
+	{% empty %}
+        {% trans 'Your request did not return any result.'%}
+	{% endfor %}
+	</div>
+      
+	<div class="clear"></div>
+	
+	<div>
+	  {% paginate using "project_sheet/obsolete/project_list_pagination.html" %}
+	</div>
+
+
+    </div>
+  </div>
+ 
+  
+{% endblock %}
+
+{% block footer %}  {% endblock %}

@@ -1,5 +1,5 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
 
 /*---- Projects sorting ----*/
@@ -23,6 +23,16 @@
     }
     .rss {
         display: inline-block;
+    }
+    #projectlist_sort_buttons {
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
     }
     .button{
         top:4px;
@@ -99,6 +109,17 @@
     height:36px;
     
     .menu{
+    ul{
+    padding:0px;
+    padding-top: 8px;
+    margin:0px;
+    li{
+        list-style-type:none;
+        display:inline;
+        padding:0px;
+        margin:0px;
+    }
+}
         margin-left:34px;
         
         a {
@@ -133,7 +154,18 @@
     margin:10px;
     color:#393939;
     position:relative;
-    
+    #cloudtag_list{
+        display:inline;
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+}
+
     h4{
         color:#d3d3d1;
         @include georgia(18px); 

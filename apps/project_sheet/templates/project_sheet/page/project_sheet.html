@@ -1,0 +1,93 @@
+﻿{% extends "project_sheet/layout/project_base.html" %}
+
+{% load i18n %}
+{% load tagging_tags %}
+{% load compress %}
+{% load honeypot %}
+{% load sekizai_tags %}
+{% load comments %}
+{% load i4p_djangocms_tags %}
+
+{% block project_content %}	
+
+<div class="container">        
+    {% if user.is_authenticated %}
+        {% with "project_sheet_logged_in_popup" as placeholder_name %}
+            {% popup_placeholder "project_sheet_logged_in_popup" "popups_notifications_container_page" %}
+        {% endwith %}
+    {% endif %}
+
+        {% popup_placeholder "project_sheet_unconditional_popup" "popups_notifications_container_page" %}
+    <div class="row">
+	<div class="span8 project-main">
+
+	    <div class="project-about">
+		<a name="project-about"></a>
+
+		{% include "project_sheet/block/about.html" %}
+	    </div> <!-- .project-about -->
+
+	    <div class="project-details detail-list">
+		{% include "project_sheet/block/detail-list.html" %}
+	    </div> <!-- .project-details -->
+
+	    {% if project_translation %}
+	    <hr class="shaded-separator" />
+
+	    {% include "project_sheet/block/reference-block.html" with reference_block_extra_class="project-references" %}
+
+
+	    <hr class="shaded-separator" />
+
+	    <div class="project-comments comment-block">
+		{% include "project_sheet/block/comment-block.html" %}
+	    </div> <!-- .project-comments -->
+
+	    {% endif %}
+
+	</div> <!-- .project-main -->
+
+	<div class="span4 project-sidebar">	
+
+	  {% if project_translation %}
+	    <div class="project-members member-block">
+		<!-- FIXME: use dynamic data for member list -->
+		<h2>
+		    <i class="sheet-members"></i>
+		    {% trans "Contributors"|capfirst %}</h2>
+		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
+		{% include "project_sheet/block/memberlist_fancy_square.html" %}
+	    </div>
+
+	    <div class="project-related clearfix">
+		<!-- FIXME: use real data for related project list once in the datamodel -->
+		<h2>
+		    <i class="sheet-related"></i>
+		    {% trans "Related projects"|capfirst %}
+		</h2>
+		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
+		{% if related_projects %}
+		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
+		{% else %}
+		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
+		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
+		{% endif %}
+	    </div>
+
+	    <div class="project-gallery gallery-block clearfix">
+		<h2>
+		    <i class="sheet-gallery"></i>
+		    {% trans "Gallery"|capfirst %}
+		</h2>
+		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
+		{% include "project_sheet/block/gallery_fancy.html" %}
+
+	    </div> <!-- .project-gallery -->
+
+	    {% include "project_sheet/block/partner-block.html" %}
+	    {% endif %}
+	</div> <!-- .project-sidebar -->
+    </div>
+</div>
+
+{% endblock %}

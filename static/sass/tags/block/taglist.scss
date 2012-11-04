@@ -1,6 +1,7 @@
 @import "i4p-mixins";
-@import "i4p-constants";
+@import "i4p/constants";
 
+$taglist_sizeBlockHeight: $sizeTextSmall * 1.3;
 .tag-list {
     line-height: 1.5em;
     margin-top: 2em;
@@ -11,7 +12,7 @@
 	background-image: image-url("tags/icon-tag-white-small.png");
 	background-position: 5px center;
 	background-repeat: no-repeat;
-	height: 16px;
+	height: $taglist_sizeBlockHeight;
 	font-family: $fontOpenSans;
 	font-weight: bold;
 	font-style: italic;
@@ -20,17 +21,17 @@
 	color: white;
 	float: left;
 	background-color: $colorMedDarkGrey;
-	padding-left: 20px;
-	padding-right: .5em;
+	padding-left: 20px; // icon size
+	padding-right: $sizePaddingSmall;
 	margin: 0;
 	margin-right: .25em;
-	line-height: $sizeTextSmall * 1.6;
+	line-height: $taglist_sizeBlockHeight;
     }
 
     ul {
 	display: block;
 	list-style: none;
-	margin-left: 0.5em;
+	margin-left: $sizeMarginSmall;
 
 	&:after {
 	    content: "";
@@ -45,15 +46,14 @@
 	    display: block;
 	    float: left;
 	    font-family: $fontOpenSans;
-	    font-size: $sizeTextSmall;
 	    font-style: italic;
 	    font-weight: bold;
-	    height: 16px;
-	    line-height: $sizeTextSmall * 1.6;
-	    margin-bottom: 4px;
-	    margin-right: 8px;
-	    padding-left: 5px;
-	    padding-right: 5px;
+	    height: $taglist_sizeBlockHeight;
+	    line-height: $taglist_sizeBlockHeight;
+	    margin-bottom: $sizeMarginSmall;
+	    margin-right: $sizeMarginMedium;
+	    padding-left: $sizePaddingSmall;
+	    padding-right: $sizePaddingSmall;
 	    position: relative;
 
 	    &.edit {
@@ -73,8 +73,8 @@
 	    a {
 		@include i4p-transition(all .5s ease);
 
+		font-size: $sizeTextSmall;
 		color: inherit;
-		font-size: 100%;
 		margin-right: 0.2em;
 		text-decoration: none;
 	    }
@@ -88,13 +88,13 @@
 		@include box-sizing(border-box);
 		@include i4p-transition(all .5s ease);
 
-		border-bottom: 8px solid $colorMedLightGrey;
-		border-left: 5px solid transparent;
-		border-top: 8px solid $colorMedLightGrey;
+		border-bottom: ($taglist_sizeBlockHeight / 2) solid $colorMedLightGrey;
+		border-left: ($taglist_sizeBlockHeight / 3.2) solid transparent;
+		border-top: ($taglist_sizeBlockHeight / 2) solid $colorMedLightGrey;
 		content:"";
 		display: inline;
 		height: 0;
-		left: -5px;
+		left: -($taglist_sizeBlockHeight / 3.7);
 		position: absolute;
 		top: 0;
 		width: 0;
@@ -104,20 +104,20 @@
 		@include box-sizing(border-box);
 		@include i4p-transition(all .5s ease);
 
-		border-bottom: 8px solid transparent;
-		border-left: 5px solid $colorMedLightGrey;
-		border-top: 8px solid transparent;
+		border-bottom: ($taglist_sizeBlockHeight / 2) solid transparent;
+		border-left: ($taglist_sizeBlockHeight / 3.2) solid $colorMedLightGrey;
+		border-top: ($taglist_sizeBlockHeight / 2) solid transparent;
 		content:"";
 		height: 0;
 		position: absolute;
-		right: -5px;
+		right: -($taglist_sizeBlockHeight / 3.7);
 		top: 0;
 		width: 0;
 	    }
 
 	    &:hover {
 		background-color: $colorMedGrey;
-		color: $colorLightGrey;
+		color: $colorLightLightGrey;
 
 		&:before {
 		    border-bottom-color: $colorMedGrey;

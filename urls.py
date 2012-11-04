@@ -43,7 +43,7 @@ if settings.DEBUG:
     )
 ##Zinia (blog)
 urlpatterns += i18n_patterns('',
-                        url(r'^weblog/', include('zinnia.urls')),
+                        url(r'^blog/', include('zinnia.urls')),
                         url(r'^comments/', include('django.contrib.comments.urls'))
                         )
 
@@ -105,6 +105,8 @@ urlpatterns += patterns('',
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),
+
+    (r'^api/', include('apps.api.urls'))
 )
 
 ## CMS
