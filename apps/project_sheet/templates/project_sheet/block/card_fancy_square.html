@@ -18,7 +18,7 @@ Parameters for this block
 {% endaddtoblock %}
 
 <a class="project square fancy grid_3{% if forloop.first %} alpha{%endif%}{% if forloop.last %} omega{%endif%}"
-	href="{{ project_translation.get_absolute_url }}" >
+	href="{{ project_translation.master.get_absolute_url }}" >
 
 	<div class="summary" data-action-1="{% trans "See the project" %}" />
 		<h2 class="title"><span>{{ project_translation.title|truncatechars:50 }}</span></h2>

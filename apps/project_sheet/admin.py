@@ -42,7 +42,7 @@ class I4pProjectAdmin(VersionAdmin):
         PartnerInline,
         TranslationInline,
         )
-    list_display = ('__str__', 'status', 'best_of', 'created')
+    list_display = ('__unicode__', 'status', 'best_of', 'created')
     date_hierarchy = 'created'
     list_filter = ['site', 'status', 'best_of', 'topics']
 
@@ -72,8 +72,6 @@ admin.site.register(Answer, AnswerAdmin)
 admin.site.register(SiteTopic, SiteTopicAdmin)
 
 admin.site.register(Objective, ObjectiveAdmin)
-
-admin.site.register(I4pProjectTranslation, VersionAdmin)
 
 admin.site.register(ProjectVideo, admin.ModelAdmin)
 admin.site.register(ProjectPicture, admin.ModelAdmin)

@@ -188,7 +188,7 @@ class ProjectView(TemplateView):
             raise Http404
 
         if self.project_translation.language_code != language_code:
-            return redirect(self.project_translation, permanent=False)
+            return redirect(self.project_translation.master, permanent=False)
 
         return super(ProjectView, self).dispatch(request, *args, **kwargs)
             

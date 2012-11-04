@@ -40,7 +40,7 @@ from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
-from hvad.models import TranslatableModel, TranslatedFields
+from hvad.models import TranslatableModel, TranslatedFields, TranslationManager
 import reversion
 from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
@@ -50,6 +50,7 @@ from tagging.models import Tag
 
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
+from apps.i4p_base.managers import CurrentSiteTranslationManager
 
 # Add Introspector for south: django-licenses field
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
@@ -97,7 +98,7 @@ class SiteTopic(models.Model):
     def __unicode__(self):
         return '%s & %s' % (self.site, self.topic) 
 
-class I4pProject(models.Model):
+class I4pProject(TranslatableModel):
     """
     Root object for a project. Holds only shared data
     """
@@ -157,8 +158,8 @@ class I4pProject(models.Model):
     site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), 
                                   verbose_name=_("sites"),
                                   related_name='projects')
-    objects = models.Manager()
-    on_site = CurrentSiteManager()
+    objects = TranslationManager()
+    on_site = CurrentSiteTranslationManager()
     
     add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
     add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
@@ -198,43 +199,21 @@ class I4pProject(models.Model):
         
     )
 
-    
-    
     def __unicode__(self):
-        res = u"Parent project %d" % self.id
-        if self.translations.all().count():
-            res = "%s (%s)" % (res,
-                               self.translations.all()[0].slug)
-
-        return res
-
+        return self.lazy_translation_getter('title', 'Project: %s' % self.pk)
 
     def get_absolute_url(self):
-        # Don't move this, or you get in trouble with cyclic imports
-        from .utils import get_project_translation_from_parent
+        current_language = translation.get_language()
 
-        language_code = translation.get_language()
-        project_translation = get_project_translation_from_parent(parent=self,
-                                                                  language_code=language_code,
-                                                                  fallback_language='en',
-                                                                  fallback_any=True)
+        # Don't move this into the 'activate' block or hvad will get
+        # crazy with the language change
+        slug = self.lazy_translation_getter('slug') 
 
-        return project_translation.get_absolute_url()
-
-# XXX: Hvad
-#     # @models.permalink
-#     def get_absolute_url(self):
-#         current_language = translation.get_language()
-#         translation.activate(self.language_code)
-#         url = reverse('project_sheet-show', kwargs={'slug': self.slug})
-#         translation.activate(current_language)
-#         return url
-
-
-#     def __unicode__(self):
-#         return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
+        translation.activate(self.language_code)
+        url = reverse('project_sheet-show', kwargs={'slug': slug})
+        translation.activate(current_language)
         
-
+        return url
 
 class Question(TranslatableModel):
     """

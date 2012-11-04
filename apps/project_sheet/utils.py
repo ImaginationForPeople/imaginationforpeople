@@ -66,7 +66,7 @@ def get_project_translation_by_any_translation_slug(project_translation_slug, pr
                  try:
                      project_translation = I4pProjectTranslation.objects.get(slug=project_translation_slug,
                                                                              language_code=lang_code,
-                                                                             project__site=site)
+                                                                             master__site=site)
                      project_best_translation = get_project_translation_from_parent(project_translation.master,
                                                                                     prefered_language_code,
                                                                                     fallback_language=settings.LANGUAGE_CODE,
