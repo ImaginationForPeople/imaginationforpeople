@@ -20,7 +20,7 @@ Django Admin for a Project Sheet
 """
 from django.contrib import admin
 
-from nani import admin as nani_admin
+import hvad.admin
 from oembed_works.models import StoredOEmbedResponse
 from reversion.admin import VersionAdmin
 
@@ -46,19 +46,19 @@ class I4pProjectAdmin(VersionAdmin):
     date_hierarchy = 'created'
     list_filter = ['site', 'status', 'best_of', 'topics']
 
-class QuestionAdmin(nani_admin.TranslatableAdmin):
-    list_display = ('topic', 'weight',)
+class QuestionAdmin(hvad.admin.TranslatableAdmin):
+    list_display = ('topic', 'weight', 'all_translations')
 
-class TopicAdmin(nani_admin.TranslatableAdmin):
+class TopicAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('__str__', 'all_translations')
 
 class SiteTopicAdmin(VersionAdmin):
     list_display = ('topic', 'order', 'site')
 
-class AnswerAdmin(nani_admin.TranslatableAdmin):
-    pass
+class AnswerAdmin(hvad.admin.TranslatableAdmin):
+    list_display = ('__str__', 'all_translations')
 
-class ObjectiveAdmin(nani_admin.TranslatableAdmin):
+class ObjectiveAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('__str__', 'all_translations')
 
 admin.site.register(I4pProject, I4pProjectAdmin)

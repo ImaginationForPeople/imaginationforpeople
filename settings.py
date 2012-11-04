@@ -204,7 +204,7 @@ INSTALLED_APPS = (
     'userena',
     'userena.contrib.umessages',
     'guardian',
-    'nani',
+    'hvad',
     'honeypot',
 
     'raven.contrib.django',

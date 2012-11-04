@@ -40,7 +40,7 @@ from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
-from nani.models import TranslatableModel, TranslatedFields
+from hvad.models import TranslatableModel, TranslatedFields
 import reversion
 from reversion.models import Version
 from south.modelsinspector import add_introspection_rules
@@ -108,6 +108,12 @@ class I4pProject(models.Model):
         ('WIP', _('In development')),
         ('END', _('Mature')),
     ]
+    
+    PROGRESS_CHOICES = [
+        ("EDIT", _("In edition")),
+        ("FULL", _("Complete")),
+    ]
+    
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
     ip_addr = models.CharField(max_length=15, null=True, blank=True)
 
@@ -157,6 +163,41 @@ class I4pProject(models.Model):
     add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
     add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
     
+    translations = TranslatedFields(
+        meta = {'unique_together' : [('language_code', 'slug')]},
+        
+        language_code = models.CharField(_('language'),
+                                         max_length=6,
+                                         choices=settings.LANGUAGES),
+        
+        title = models.CharField(_("title"), max_length=80,
+                                 default=_("My Project Title")),
+        
+        slug = AutoSlugField(populate_from="title",
+                             always_update=True,
+                             unique_with=['language_code']),
+        
+        completion_progress = models.CharField(verbose_name=_('status'),
+                                               max_length=5, choices=PROGRESS_CHOICES, default="EDIT",
+                                               null=True, blank=True),
+        
+        modified = models.DateTimeField(null=True, blank=True),
+        
+        baseline = models.CharField(verbose_name=_("one line description"),
+                                    max_length=180,
+                                    null=True,
+                                    blank=True,
+                                    default=_("One line description")
+                                ),
+        
+        about_section = models.TextField(_("about the project"), null=True, blank=True),
+        partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True),
+        callto_section = models.TextField(_("Help request"), null=True, blank=True),
+        
+        themes = TagField(_("Themes of the project"), null=True, blank=True),
+        
+    )
+
     
     
     def __unicode__(self):
@@ -206,63 +247,25 @@ class Answer(TranslatableModel):
         unique_together = (("question", "project"), )
         
     def __unicode__(self):
-        return 'Answer to: [%s]' % (self.question,)
+        return 'Answer to: [%s] (Project %s)' % (self.question, self.project)
 
 
-class I4pProjectTranslation(models.Model):
-    """
-    A translation of a project
-    """
+# class I4pProjectTranslation(models.Model):
+#     """
+#     A translation of a project
+#     """
 
-    PROGRESS_CHOICES = [
-        ("EDIT", _("In edition")),
-        ("FULL", _("Complete")),
-    ]
-    class Meta:
-        unique_together = ('language_code', 'slug')
-
-    project = models.ForeignKey(I4pProject, related_name='translations')
-
-    language_code = models.CharField(_('language'),
-                                     max_length=6,
-                                     choices=settings.LANGUAGES)
-
-    title = models.CharField(_("title"), max_length=80,
-                             default=_("My Project Title"))
-    slug = AutoSlugField(populate_from="title",
-                         always_update=True,
-                         unique_with=['language_code'])
-
-    completion_progress = models.CharField(verbose_name=_('status'),
-                                max_length=5, choices=PROGRESS_CHOICES, default="EDIT",
-                                null=True, blank=True)
-
-    modified = models.DateTimeField(null=True, blank=True)
-
-    baseline = models.CharField(verbose_name=_("one line description"),
-                                max_length=180,
-                                null=True,
-                                blank=True,
-                                default=_("One line description")
-                                )
-
-    about_section = models.TextField(_("about the project"), null=True, blank=True)
-    partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
-    callto_section = models.TextField(_("Help request"), null=True, blank=True)
-
-    themes = TagField(_("Themes of the project"), null=True, blank=True)
-
-    # @models.permalink
-    def get_absolute_url(self):
-        current_language = translation.get_language()
-        translation.activate(self.language_code)
-        url = reverse('project_sheet-show', kwargs={'slug': self.slug})
-        translation.activate(current_language)
-        return url
+#     # @models.permalink
+#     def get_absolute_url(self):
+#         current_language = translation.get_language()
+#         translation.activate(self.language_code)
+#         url = reverse('project_sheet-show', kwargs={'slug': self.slug})
+#         translation.activate(current_language)
+#         return url
 
 
-    def __unicode__(self):
-        return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
+#     def __unicode__(self):
+#         return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
 
 
 def last_modification_date(sender, instance, **kwargs):
@@ -356,40 +359,40 @@ class ProjectMember(models.Model):
         return u"%s - %s" % (self.project, self.user)
 
 
+# XXX: HVAD
 # Email on events
-@receiver(post_save, sender=I4pProjectTranslation, dispatch_uid='email-on-new-project-translation')
-def email_managers_on_new_translation(sender, instance, created, **kwargs):
-    if created:
-        body = render_to_string('project_sheet/emails/new_translation.txt', {'project_translation': instance})
-        mail_managers(subject=_(u'New project/translation added'), message=body)
+# @receiver(post_save, sender=I4pProjectTranslation, dispatch_uid='email-on-new-project-translation')
+# def email_managers_on_new_translation(sender, instance, created, **kwargs):
+#     if created:
+#         body = render_to_string('project_sheet/emails/new_translation.txt', {'project_translation': instance})
+#         mail_managers(subject=_(u'New project/translation added'), message=body)
 
-@receiver(post_save, sender=ProjectMember, dispatch_uid='email-on-member-project-association')
-def email_managers_when_a_member_joins_a_project(sender, instance, created, **kwargs):
-    if created:
-        body = render_to_string('project_sheet/emails/member_joined_project.txt', {'project_member': instance})
-        mail_managers(subject=_(u'A member has joined a project'), message=body)
+# @receiver(post_save, sender=ProjectMember, dispatch_uid='email-on-member-project-association')
+# def email_managers_when_a_member_joins_a_project(sender, instance, created, **kwargs):
+#     if created:
+#         body = render_to_string('project_sheet/emails/member_joined_project.txt', {'project_member': instance})
+#         mail_managers(subject=_(u'A member has joined a project'), message=body)
 
 
-@receiver(post_delete, sender=I4pProjectTranslation, 
-          dispatch_uid='delete-parent-project-when-deleting-last-translation')
-def delete_parent_if_last_translation(sender, instance, **kwargs):
-    """
-    When the last translation of a project is deleted, delete the project.
-    """
-    try:
-        project = instance.project
-    except I4pProject.DoesNotExist:
-        # Can happen if the parent when already deleted
-        return
+# @receiver(post_delete, sender=I4pProjectTranslation, 
+#           dispatch_uid='delete-parent-project-when-deleting-last-translation')
+# def delete_parent_if_last_translation(sender, instance, **kwargs):
+#     """
+#     When the last translation of a project is deleted, delete the project.
+#     """
+#     try:
+#         project = instance.project
+#     except I4pProject.DoesNotExist:
+#         # Can happen if the parent when already deleted
+#         return
         
-    if project.translations.count() == 0:
-        project.delete()
-
+#     if project.translations.count() == 0:
+#         project.delete()
 
 # Reversions
 VERSIONNED_FIELDS = {
     I4pProject : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
-    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'themes', 'completion_progress']
+# XXX HVAD    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'themes', 'completion_progress'] 
 }
 
 for model, fields in VERSIONNED_FIELDS.iteritems():
