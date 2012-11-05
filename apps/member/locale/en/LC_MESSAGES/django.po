@@ -1,20 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-05-14 09:59+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-23 19:52+0200\n"
 "PO-Revision-Date: 2012-05-14 08:02+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: fields.py:43
@@ -37,64 +37,68 @@ msgstr "Last name"
 msgid "gender"
 msgstr "gender"
 
-#: models.py:52
+#: models.py:47
 msgid "male"
 msgstr "male"
 
-#: models.py:53
+#: models.py:48
 msgid "female"
 msgstr "female"
 
-#: models.py:57
+#: models.py:52
 msgid "motto"
 msgstr "motto"
 
-#: models.py:58
+#: models.py:53
 msgid "about"
 msgstr "about"
 
-#: models.py:59
+#: models.py:54
 msgid "birthday"
 msgstr "birthday"
 
-#: models.py:60
+#: models.py:55
 msgid "website"
 msgstr "website"
 
-#: models.py:61
+#: models.py:56
 msgid "linkedin"
 msgstr "linkedin"
 
-#: models.py:62
+#: models.py:57
 msgid "twitter"
 msgstr "twitter"
 
-#: models.py:63
+#: models.py:58
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:64
+#: models.py:59
 msgid "address"
 msgstr "address"
 
-#: models.py:65
+#: models.py:60
 msgid "country"
 msgstr "country"
 
-#: models.py:68
+#: models.py:62
+msgid "registration site"
+msgstr ""
+
+#: models.py:65
 msgid "location"
 msgstr "location"
 
-#: models.py:78
+#: models.py:82
 msgid "New user registered"
 msgstr "New user registered"
 
-#: models.py:134
+#: models.py:128
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
 msgstr "New message from %(sender)s on Imagination For People"
 
-#: views.py:186
+#: views.py:184
 msgid "Your profile has been updated."
 msgstr "Your profile has been updated."
 
@@ -143,7 +147,9 @@ msgstr "you haven't received any message yet"
 msgid ""
 "\n"
 "%(sender)s has sent you a message:\n"
-msgstr "\n%(sender)s has sent you a message:\n"
+msgstr ""
+"\n"
+"%(sender)s has sent you a message:\n"
 
 #: templates/umessages/message_notification.txt:6
 #, python-format
@@ -151,7 +157,10 @@ msgid ""
 "\n"
 "You can view it online at:\n"
 "%(message_url)s\n"
-msgstr "\nYou can view it online at:\n%(message_url)s\n"
+msgstr ""
+"\n"
+"You can view it online at:\n"
+"%(message_url)s\n"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -171,7 +180,9 @@ msgstr "You have just been notified by mail on your new email address"
 msgid ""
 "To associate this email address with your account (%(username)s) click on "
 "the link provided in this email."
-msgstr "To associate this email address with your account (%(username)s) click on the link provided in this email."
+msgstr ""
+"To associate this email address with your account (%(username)s) click on "
+"the link provided in this email."
 
 #: templates/userena/email_change_complete.html:24
 #: templates/userena/email_confirm_complete.html:23
@@ -193,7 +204,9 @@ msgstr "New email"
 msgid ""
 "Your new email address is saved. You can continue using userena with this "
 "email."
-msgstr "Your new email address is saved. You can continue using userena with this email."
+msgstr ""
+"Your new email address is saved. You can continue using userena with this "
+"email."
 
 #: templates/userena/email_confirm_fail.html:4
 msgid "Email verification failed."
@@ -213,19 +226,25 @@ msgstr "You could try changing it again in your account settings."
 msgid "Account setup"
 msgstr "Account setup"
 
-#: templates/userena/forms.html:41 templates/userena/forms.html.py:69
+#: templates/userena/forms.html:26
+msgid ""
+"The following fields in your profile contains invalid data you need to "
+"correct:"
+msgstr ""
+
+#: templates/userena/forms.html:59 templates/userena/forms.html.py:87
 msgid "Save changes"
 msgstr "Save changes"
 
-#: templates/userena/forms.html:80
+#: templates/userena/forms.html:98
 msgid "Change password"
 msgstr "Change password"
 
-#: templates/userena/forms.html:85
+#: templates/userena/forms.html:103
 msgid "Your current email address is the following:"
 msgstr "Your current email address is the following:"
 
-#: templates/userena/forms.html:90
+#: templates/userena/forms.html:108
 msgid "Change email"
 msgstr "Change email"
 
@@ -284,7 +303,8 @@ msgstr "Reset password email is send"
 #: templates/userena/password_reset_done.html:22
 msgid ""
 "An e-mail has been send to you which explains how to reset your password."
-msgstr "An e-mail has been send to you which explains how to reset your password."
+msgstr ""
+"An e-mail has been send to you which explains how to reset your password."
 
 #: templates/userena/password_reset_form.html:25
 msgid "Send password"
@@ -347,7 +367,10 @@ msgid ""
 "\n"
 "\t\t  Page %(page)s of %(num_pages)s\n"
 "\t\t"
-msgstr "\n\t\t  Page %(page)s of %(num_pages)s\n\t\t"
+msgstr ""
+"\n"
+"\t\t  Page %(page)s of %(num_pages)s\n"
+"\t\t"
 
 #: templates/userena/signin_form.html:4
 msgid "Signin"
@@ -385,14 +408,18 @@ msgstr "Thank you for signing up with us!"
 msgid ""
 "You have been sent an email with an activation link to the supplied email "
 "address."
-msgstr "You have been sent an email with an activation link to the supplied email address."
+msgstr ""
+"You have been sent an email with an activation link to the supplied email "
+"address."
 
 #: templates/userena/signup_complete.html:24
 #, python-format
 msgid ""
 "We will store your signup information for %(userena_activation_days)s days "
 "on our server. "
-msgstr "We will store your signup information for %(userena_activation_days)s days on our server. "
+msgstr ""
+"We will store your signup information for %(userena_activation_days)s days "
+"on our server. "
 
 #: templates/userena/signup_form.html:5
 msgid "Signup"
@@ -408,9 +435,7 @@ msgstr "Already a member?"
 
 #: templates/userena/social-networks.html:4
 #: templates/userena/social-networks.html:5
-#: templates/userena/social-networks.html:6
-#: templates/userena/social-networks.html:7
-#: templates/userena/social-networks.html:8
+#: templates/userena/social-networks.html:11
 msgid "Connect with"
 msgstr "Connect with"
 

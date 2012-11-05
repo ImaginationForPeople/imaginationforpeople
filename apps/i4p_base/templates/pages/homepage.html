@@ -1,12 +1,12 @@
-﻿{% extends "base.html" %}
+﻿{% extends "base_obsolete.html" %}
 {% load i18n %}
 {% load compress %}
 {% load cms_tags %}  
 
 {% block style %}
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/fonts.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/zinnia-i4p.css" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
     {% endcompress %}
 {% endblock %}
@@ -123,7 +123,7 @@
     {% cms_toolbar %}
     <div id="video-zone">
         <div id="video" class="center"> 
-
+            {% placeholder "Top video zone" or %}
             <h1 class="what_is">{% trans ' What is it ?' %}</h1>
 
             <div id="project_block">
@@ -142,6 +142,7 @@
                 {% endplaceholder %}
             </div>
             <img src="{{ STATIC_URL }}images/home/video.jpg" alt="video" width="982" height="132"/>
+            {% endplaceholder %}
         </div>
     </div>
     
@@ -161,43 +162,7 @@
 
     <div id="content" class="center">
         <div id="left_col">
-        
-            <!-- TEMP!!! -->
-            <div class="infoblock">
-                <div class="image">
-                  {% placeholder "Infoblock Picture 1" %}
-                </div>
-                <div class="details">
-                    {% placeholder "Infoblock Text 1" %}
-                </div>
-            </div>
-            
-            <div class="clear"></div>
-
-            <div class="infoblock">
-                <div class="image">
-                  {% placeholder "Infoblock Picture 2" %}
-                </div>
-                <div class="details">
-                    {% placeholder "Infoblock 2" %}
-                </div>
-            </div>
-            
-            <div class="clear"></div>        
-            <!-- /TEMP!!! -->
-        
-        
-            {% comment %}
-
-                <!-- 2 latest news -->
-                {% include "pages/home-blocks/infoblock.html" %}     
-                
-                {% placeholder banners %}
-            
-                <!-- Même principe que le template du plugin Twitter : charger avec Senkizai un css specifique qui @import "twittblogboxes.scss"; -->
-                {% include "pages/home-blocks/blog-box.html" %} 
-                
-            {% endcomment %}
+        {% placeholder "Left column" %}
             
             
             <div id="blog_box_zone">

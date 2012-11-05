@@ -4,6 +4,8 @@
 DEBUG = True
 TEMPLATE_DEBUG = True
 
+SOUTH_TESTS_MIGRATE = False
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -14,6 +16,14 @@ DATABASES = {
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# If you want to run tests under sqlite, uncomment the following (but beware 
+# that there ARE occasional differences between postgres and sqlite.
+'''
+import sys
+if 'test' in sys.argv:
+    DATABASES['default'] = {'ENGINE': 'django.db.backends.sqlite3'}
+'''
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).

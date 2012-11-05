@@ -1,0 +1,39 @@
+{% extends "project_sheet/layout/project_base.html" %}
+{% load i18n %}
+{% load compress %}
+
+{% block style %}
+  {% compress css %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/history.css" />
+    {% endcompress %}
+{% endblock %}
+
+
+{% block project_content %}
+
+<ul class="history">
+{% for version in versions %}
+    {% if version.diff%}
+        <li>{% trans "Made on" %} <em>{{version.revision.date_created|date:_("DATETIME_FORMAT")}}</em> {% trans "by" %} 
+        {% if version.revision.user.get_profile %}
+            <a href="{{version.revision.user.get_profile.get_absolute_url}}" class="link">{{version.revision.user.get_profile.get_full_name_or_username}}</a>
+        {% else %}
+            {% trans 'Anonymous' %}
+        {% endif %}
+        {% trans 'on' %}
+        {% for field in version.diff %}
+            {% if not forloop.first %}
+                {% if forloop.last %}
+                    ,&nbsp;
+                {%else%}
+                    &nbsp;{% trans 'and' %}&nbsp;  
+                {%endif%}
+            {%endif%}
+             <strong>{% trans '"' %}{{field}}{% trans '"' %} </strong>
+        {% endfor %}
+        </li>
+     {% endif %}  
+{% endfor %}
+</ul>
+{% endblock %}

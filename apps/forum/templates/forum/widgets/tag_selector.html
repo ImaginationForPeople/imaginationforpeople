@@ -1,0 +1,95 @@
+{# todo - maybe disable navigation from ignored tags here when "hide" is on - with js? #}
+{% import "macros.html" as macros %}
+<div id="tagSelector" class="box">
+    <h2>{% trans %}Tags filtering{% endtrans %}</h2>
+    
+    <h3>{% trans %}Interesting tags{% endtrans %}</h3>
+    <ul class="taglist tags interesting marked-tags">
+    {% for tag in interesting_tag_names %}
+    <li class="deletable-tag tag-left" >
+        <a class="tag tag-right"
+           href="{{ search_state.add_tag(tag).full_url() }}"
+           title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+           rel="tag"
+           data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+           {{ tag|replace('*', '&#10045;')|escape }}
+        </a>
+        <span class="delete-icon">x</span>
+    </li>
+    {% endfor %}
+    </ul>
+    <div class="inputs">
+        <input id="interestingTagInput" autocomplete="off" type="text"/>
+        <input id="interestingTagAdd" type="submit" value="{% trans %}+{% endtrans %}"/>
+    </div>
+    
+    <h3>{% trans %}Ignored tags{% endtrans %}</h3>
+    <ul class="taglist tags ignored marked-tags">
+    {% for tag in ignored_tag_names %}
+    <li class="deletable-tag tag-left" >
+        <a class="tag tag-right"
+           href="{{ search_state.add_tag(tag).full_url() }}"
+           title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+           rel="tag"
+           data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+           {{ tag|replace('*', '&#10045;')|escape }}
+        </a>
+        <span class="delete-icon">x</span>
+    </li>
+    {% endfor %}
+    </ul>
+    <div class="inputs">
+        <input id="ignoredTagInput" autocomplete="off" type="text"/>
+        <input id="ignoredTagAdd" type="submit" value="{% trans %}+{% endtrans%}"/>
+    </div>
+    
+    {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
+    <h2>{% trans %}Subscribed tags{% endtrans %}</h2>
+    <ul class="taglist tags subscribed marked-tags">
+    {% for tag in subscribed_tag_names %}
+    <li class="deletable-tag tag-left" >
+        <a class="tag tag-right"
+           href="{{ search_state.add_tag(tag).full_url() }}"
+           title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+           rel="tag"
+           data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+           {{ tag|replace('*', '&#10045;')|escape }}
+        </a>
+        <span class="delete-icon">x</span>
+    </li>
+    {% endfor %}
+    </ul>    
+    <div class="inputs">
+        <input id="subscribedTagInput" autocomplete="off" type="text"/>
+        <input id="subscribedTagAdd" type="submit" value="{% trans %}add{% endtrans%}"/>
+    </div>
+    
+    {% endif %}
+    <h3>{% trans %}Show only questions from{% endtrans%}</h3>    
+    <div id="displayTagFilterControl">
+        {{
+            macros.radio_select(
+                name = "display_tag_filter_strategy",
+                value = request.user.display_tag_filter_strategy,
+                choices = display_tag_filter_strategy_choices
+            )
+        }}
+    </div>
+    {% if settings.SUBSCRIBED_TAG_SELECTOR_ENABLED %}
+        <h3>{% trans %}Send me email alerts for{% endtrans%}</h3>
+        <div id="emailTagFilterControl">
+            {{
+                macros.radio_select(
+                    name = "email_tag_filter_strategy",
+                    value = request.user.email_tag_filter_strategy,
+                    choices = email_tag_filter_strategy_choices
+                )
+            }}
+            {% if request.user.is_authenticated() %}
+            <p>
+                <a href="{{ request.user.get_profile().get_absolute_url()}}">{% trans %}Change frequency of emails{% endtrans %}</a>
+            </p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>

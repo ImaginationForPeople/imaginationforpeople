@@ -1,0 +1,35 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* partner_list : FIXME datatype
+* project_translation : I4pProjectTranslation
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/partner-block.css" />
+{% endaddtoblock %}
+
+
+<div class="project-partners partner-block clearfix">
+	<h2>
+		<i class="sheet-partners"></i>
+		{% trans "Partners"|capfirst %}
+
+		{% if partners_section_form %}
+		<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'partners_section' %}#partners-widget" class="btn btn-small pull-right">
+			<img src="{{ STATIC_URL }}images/base/edit.png" alt="{% trans 'edit' %}" />
+		</a>
+		{% endif %}
+	</h2>
+	{% include "project_sheet/block/partner-list.html" %}
+</div>
+

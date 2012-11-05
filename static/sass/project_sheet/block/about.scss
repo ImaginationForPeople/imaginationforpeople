@@ -1,0 +1,23 @@
+@import "i4p/constants";
+@import "i4p/buttons";
+
+.project-about {
+    h2 {
+	.i4p-button {
+	    @include i4p-button-fancy-bordered-small;
+	    margin-top: 0.6rem;
+	}
+    }
+
+    .inline-edit {
+	background-color: $colorLightBlue;
+
+	button[type="submit"] {
+	    color: green;
+	}
+
+	button[type="cancel"] {
+	    color: red;
+	}
+    }
+}

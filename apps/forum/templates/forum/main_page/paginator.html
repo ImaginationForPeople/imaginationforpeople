@@ -1,0 +1,41 @@
+<div class="pagination_1">
+    {% with context|setup_paginator as p %}
+    {% if p.is_paginated %}
+        <ul>
+            {% if p.has_previous %}
+                <li class="page_precedente">
+                    <a href="{{ search_state.change_page(p.previous).full_url() }}" title="{% trans %}previous{% endtrans %}">{% trans %}previous{% endtrans %}</a>
+                </li>
+            {% endif %}
+            {% if not p.in_leading_range %}
+                {% for num in p.pages_outside_trailing_range %}
+                    <li><a href="{{ search_state.change_page(num).full_url() }}" >{{ num }}</a></li>
+                {% endfor %}
+                ...
+            {% endif %}
+
+            {% for num in p.page_numbers %}
+                {% if num == p.page and p.pages != 1%}
+                    <li class="page_active" title="{% trans %}current page{% endtrans %}">{{ num }}</li>
+                {% else %}
+                    <li><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{num}}{% endtrans %}">{{ num }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if not p.in_trailing_range %}
+                ...
+                {% for num in p.pages_outside_leading_range|reverse %}
+                    <li><a href="{{ search_state.change_page(num).full_url() }}" title="{% trans %}page {{ num }}{% endtrans %}">{{ num }}</a></li>
+                {% endfor %}
+            {% endif %}
+            {% if p.has_next %}
+                <li class="page_suivante">
+                    <a href="{{ search_state.change_page(p.next).full_url() }}" title="{% trans %}next page{% endtrans %}">{% trans %}next page{% endtrans %}</a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+</div>
+    
+    

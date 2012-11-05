@@ -3,38 +3,43 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Niki Lambropoulos <nikilambropoulos@yahoo.co.uk>, 2012.
 #   <vanessaner@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-14 10:01+0200\n"
-"PO-Revision-Date: 2012-03-19 12:59+0000\n"
+"POT-Creation-Date: 2012-10-23 19:52+0200\n"
+"PO-Revision-Date: 2012-09-05 14:39+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cms_plugins.py:33
+#: cms_plugins.py:60
 msgid "WorkGroup (un)subscribe button"
 msgstr "Κουμπί εγγραφής(διαγραφής) στην ομάδα εργασίας"
 
-#: models.py:33
+#: cms_plugins.py:73
+msgid "WorkGroup subscribers list"
+msgstr ""
+
+#: models.py:34
 msgid "name"
 msgstr "όνομα"
 
-#: models.py:36
+#: models.py:37
 msgid "spoken language"
 msgstr "ομιλούμενη γλώσσα"
 
-#: models.py:40
+#: models.py:41
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: models.py:48
+#: models.py:49
 msgid "visible"
 msgstr "ορατό"
 
@@ -78,22 +83,31 @@ msgstr "Εγγραφή"
 msgid "Unsubscribe"
 msgstr "Διαγραφή"
 
-#: templates/workgroup/workgroup_detail.html:37
-msgid "You are not susbcribed to this Mailing List"
-msgstr "Δεν είστε εγγεγραμμένοι στην σε αυτή τη λίστα αλληλογραφίας"
-
-#: templates/workgroup/workgroup_detail.html:39
-msgid "You are susbcribed to this Mailing List"
-msgstr "Είστε εγγεγραμμένοι σε αυτή τη λίστα αλληλογραφίας"
-
-#: templates/workgroup/workgroup_detail.html:60
-msgid "Group subscribers and non IP members mail (admin):"
-msgstr ""
-
-#: templates/workgroup/workgroup_detail.html:69
-msgid "Group subscribers and IP members mail (admin):"
-msgstr ""
-
 #: templates/workgroup/workgroup_list.html:10
 msgid "Workgroups"
 msgstr "Ομάδες Εργασίας"
+
+#: templates/workgroup/workgroup_subscribers.html:6
+msgid "Group subscribers"
+msgstr ""
+
+#: templates/workgroup/workgroup_subscribers.html:10
+msgid "You are not susbcribed to this Mailing List"
+msgstr "Δεν είστε εγγεγραμμένοι στην σε αυτή τη λίστα αλληλογραφίας"
+
+#: templates/workgroup/workgroup_subscribers.html:12
+msgid "You are susbcribed to this Mailing List"
+msgstr "Είστε εγγεγραμμένοι σε αυτή τη λίστα αλληλογραφίας"
+
+#: templates/workgroup/workgroup_subscribers.html:28
+#, python-format
+msgid "And %(anonymous_count)s anonymous subscriber%(pluralize)s"
+msgstr ""
+
+#: templates/workgroup/workgroup_subscribers.html:32
+msgid "Group subscribers and non IP members mail (admin):"
+msgstr "Ομάδες συνδρομητών και μη μέλη ταχυδρομείου IP (διαχειριστές)"
+
+#: templates/workgroup/workgroup_subscribers.html:41
+msgid "Group subscribers and IP members mail (admin):"
+msgstr "Ομάδες συνδρομητών και μέλη ταχυδρομείου IP (διαχειριστές)"

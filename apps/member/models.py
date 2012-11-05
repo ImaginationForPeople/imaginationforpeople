@@ -26,6 +26,7 @@ from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 
+from askbot.models.profile import AskbotBaseProfile, add_missing_subscriptions
 from django_countries import CountryField
 from social_auth.signals import socialauth_registered
 from userena.models import UserenaLanguageBaseProfile
@@ -38,7 +39,7 @@ from apps.i4p_base.models import Location, I4P_COUNTRIES
 from .social import fetch_profile_data
 
 
-class I4pProfile(UserenaLanguageBaseProfile):
+class I4pProfile(UserenaLanguageBaseProfile, AskbotBaseProfile):
     """
     Userena Profile with language switch
     """
@@ -67,6 +68,7 @@ class I4pProfile(UserenaLanguageBaseProfile):
     def get_absolute_url(self):
         return ('userena_profile_detail', [self.user.username])
 
+post_save.connect(add_missing_subscriptions, sender=I4pProfile)
 
 @receiver(post_save, sender=I4pProfile, dispatch_uid='set-registration-site-on-profile')
 def set_registration_site_on_profile(sender, instance, created, **kwargs):

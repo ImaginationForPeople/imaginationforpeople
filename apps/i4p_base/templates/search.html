@@ -1,6 +1,13 @@
 {% load i18n %}
+    <div class="search">
         
-
+        <form action="{% url project_sheet-list %}">
+            <input type="submit" value="&nbsp;" />
+            {{ project_sheet_search_form.text }}
+        </form>
+        
+    </div>
+{% comment %}
     <div id="searchbox">
         
         <form method="get" action="{% url i4p-search %}" autocomplete="off">
@@ -35,3 +42,4 @@
 	</ul>
         <div class="clear"></div>
     </div>
+{% endcomment %}

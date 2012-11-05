@@ -1,23 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
+# Translators:
 # Translators:
 # Niki Lambropoulos <nikilambropoulos@yahoo.co.uk>, 2012.
 #   <vanessaner@gmail.com>, 2011, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2012-05-14 09:59+0200\n"
-"PO-Revision-Date: 2012-05-14 08:02+0000\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-10-23 19:52+0200\n"
+"PO-Revision-Date: 2012-10-05 09:11+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
+"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: el\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: fields.py:43
 msgid "Recipients not found"
@@ -39,64 +40,68 @@ msgstr "Επώνυμο"
 msgid "gender"
 msgstr "φύλο"
 
-#: models.py:52
+#: models.py:47
 msgid "male"
 msgstr "άντρας"
 
-#: models.py:53
+#: models.py:48
 msgid "female"
 msgstr "γυναίκα"
 
-#: models.py:57
+#: models.py:52
 msgid "motto"
 msgstr "αγαπημένή φράση"
 
-#: models.py:58
+#: models.py:53
 msgid "about"
 msgstr "Σχετικά με "
 
-#: models.py:59
+#: models.py:54
 msgid "birthday"
 msgstr "γενέθλια"
 
-#: models.py:60
+#: models.py:55
 msgid "website"
 msgstr "δικτυακός τόπος"
 
-#: models.py:61
+#: models.py:56
 msgid "linkedin"
 msgstr "LinkedIn"
 
-#: models.py:62
+#: models.py:57
 msgid "twitter"
 msgstr "Twitter"
 
-#: models.py:63
+#: models.py:58
 msgid "facebook"
 msgstr "facebook"
 
-#: models.py:64
+#: models.py:59
 msgid "address"
 msgstr "διεύθυνση"
 
-#: models.py:65
+#: models.py:60
 msgid "country"
 msgstr "χώρα"
 
-#: models.py:68
+#: models.py:62
+msgid "registration site"
+msgstr ""
+
+#: models.py:65
 msgid "location"
 msgstr "τοποθεσία"
 
-#: models.py:78
+#: models.py:82
 msgid "New user registered"
 msgstr "Εγγράφηκε νέος χρήστης"
 
-#: models.py:134
+#: models.py:128
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
 msgstr "Νέο μήνυμα από %(sender)s στο Imagination For People"
 
-#: views.py:186
+#: views.py:184
 msgid "Your profile has been updated."
 msgstr "Το προφίλ σας έχει ενημερωθεί."
 
@@ -145,7 +150,10 @@ msgstr "δεν έχετε λάβει ακόμη κανένα μήνυμα"
 msgid ""
 "\n"
 "%(sender)s has sent you a message:\n"
-msgstr "\n⏎\n%(sender)s σου έστειλε ένα μήνυμα:⏎\n"
+msgstr ""
+"\n"
+"⏎\n"
+"%(sender)s σου έστειλε ένα μήνυμα:⏎\n"
 
 #: templates/umessages/message_notification.txt:6
 #, python-format
@@ -153,7 +161,11 @@ msgid ""
 "\n"
 "You can view it online at:\n"
 "%(message_url)s\n"
-msgstr "\n⏎\nΜπορείτε να to δείτε στην ηλεκτρονική διεύθυνση:⏎\n%(message_url)s⏎\n"
+msgstr ""
+"\n"
+"⏎\n"
+"Μπορείτε να to δείτε στην ηλεκτρονική διεύθυνση:⏎\n"
+"%(message_url)s⏎\n"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -173,7 +185,9 @@ msgstr "Έχει σταλεί ενημέρωση στο νέο σας email."
 msgid ""
 "To associate this email address with your account (%(username)s) click on "
 "the link provided in this email."
-msgstr "Για να συνδέσετε το e-mail σας με τον λογαριασμό σας ( %(username)s ) κάντε κλικ στο σύνδεσμο που παρέχεται σε αυτό το email."
+msgstr ""
+"Για να συνδέσετε το e-mail σας με τον λογαριασμό σας ( %(username)s ) κάντε "
+"κλικ στο σύνδεσμο που παρέχεται σε αυτό το email."
 
 #: templates/userena/email_change_complete.html:24
 #: templates/userena/email_confirm_complete.html:23
@@ -195,7 +209,9 @@ msgstr "Νέο e-mail"
 msgid ""
 "Your new email address is saved. You can continue using userena with this "
 "email."
-msgstr "Η νέα σας διεύθυνση ηλεκτρονικού ταχυδρομείου αποθηκεύθηκε. Μπορείτε να συνεχίσετε να χρησιμοποιείτε το userena με αυτό το email."
+msgstr ""
+"Η νέα σας διεύθυνση ηλεκτρονικού ταχυδρομείου αποθηκεύθηκε. Μπορείτε να "
+"συνεχίσετε να χρησιμοποιείτε το userena με αυτό το email."
 
 #: templates/userena/email_confirm_fail.html:4
 msgid "Email verification failed."
@@ -208,26 +224,34 @@ msgstr "Το email σας δεν ήταν δυνατόν να επαληθευτ
 
 #: templates/userena/email_confirm_fail.html:21
 msgid "You could try changing it again in your account settings."
-msgstr "Μπορείτε να δοκιμάσετε να το αλλάξετε ξανά στις ρυθμίσεις του λογαριασμού σας."
+msgstr ""
+"Μπορείτε να δοκιμάσετε να το αλλάξετε ξανά στις ρυθμίσεις του λογαριασμού "
+"σας."
 
 #: templates/userena/email_form.html:7 templates/userena/password_form.html:7
 #: templates/userena/profile_form.html:7
 msgid "Account setup"
 msgstr "Ρύθμιση Λογαριασμού"
 
-#: templates/userena/forms.html:41 templates/userena/forms.html.py:69
+#: templates/userena/forms.html:26
+msgid ""
+"The following fields in your profile contains invalid data you need to "
+"correct:"
+msgstr ""
+
+#: templates/userena/forms.html:59 templates/userena/forms.html.py:87
 msgid "Save changes"
 msgstr "Αποθήκευση αλλαγών "
 
-#: templates/userena/forms.html:80
+#: templates/userena/forms.html:98
 msgid "Change password"
 msgstr "Αλλαγή κωδικού πρόσβασης"
 
-#: templates/userena/forms.html:85
+#: templates/userena/forms.html:103
 msgid "Your current email address is the following:"
 msgstr "Το τρέχον e-mail σας είναι το ακόλουθο:"
 
-#: templates/userena/forms.html:90
+#: templates/userena/forms.html:108
 msgid "Change email"
 msgstr "Αλλαγή e-mail"
 
@@ -242,7 +266,9 @@ msgstr "Ο κωδικός σας έχει αλλάξει"
 
 #: templates/userena/password_complete.html:21
 msgid "From now on you can use your new password to signin"
-msgstr "Από τώρα και στο εξής μπορείτε να χρησιμοποιήσετε το νέο κωδικό σας για να εγγραφείτε."
+msgstr ""
+"Από τώρα και στο εξής μπορείτε να χρησιμοποιήσετε το νέο κωδικό σας για να "
+"εγγραφείτε."
 
 #: templates/userena/password_reset_complete.html:4
 msgid "Password reset"
@@ -286,7 +312,9 @@ msgstr "Απεστάλει η επαναφορά του κωδικόυ πρόσ�
 #: templates/userena/password_reset_done.html:22
 msgid ""
 "An e-mail has been send to you which explains how to reset your password."
-msgstr "Ένα μήνυμα ηλεκτρονικού ταχυδρομείου σας έχει στείλει που εξηγεί πως να επαναφέρετε τον κωδικό πρόσβασής σας."
+msgstr ""
+"Ένα μήνυμα ηλεκτρονικού ταχυδρομείου σας έχει στείλει που εξηγεί πως να "
+"επαναφέρετε τον κωδικό πρόσβασής σας."
 
 #: templates/userena/password_reset_form.html:25
 msgid "Send password"
@@ -349,7 +377,9 @@ msgid ""
 "\n"
 "\t\t  Page %(page)s of %(num_pages)s\n"
 "\t\t"
-msgstr "\nΣελίδα %(page)s  απο  %(num_pages)s"
+msgstr ""
+"\n"
+"Σελίδα %(page)s  απο  %(num_pages)s"
 
 #: templates/userena/signin_form.html:4
 msgid "Signin"
@@ -387,14 +417,18 @@ msgstr "Σας ευχαριστούμε για την εγγραφή σας!"
 msgid ""
 "You have been sent an email with an activation link to the supplied email "
 "address."
-msgstr "Σας έχει αποσταλεί ένα e-mail με έναν σύνδεσμο ενεργοποίησης για την παρεχόμενη διεύθυνση ηλεκτρονικού ταχυδρομείου."
+msgstr ""
+"Σας έχει αποσταλεί ένα e-mail με έναν σύνδεσμο ενεργοποίησης για την "
+"παρεχόμενη διεύθυνση ηλεκτρονικού ταχυδρομείου."
 
 #: templates/userena/signup_complete.html:24
 #, python-format
 msgid ""
 "We will store your signup information for %(userena_activation_days)s days "
 "on our server. "
-msgstr "Οι πληροφορίες εγγραφής σας θα είναι αποθηκευμένες για %(userena_activation_days)s  ημέρες στο διακομιστή μας."
+msgstr ""
+"Οι πληροφορίες εγγραφής σας θα είναι αποθηκευμένες για "
+"%(userena_activation_days)s  ημέρες στο διακομιστή μας."
 
 #: templates/userena/signup_form.html:5
 msgid "Signup"
@@ -410,9 +444,7 @@ msgstr "Είστε ήδη μέλος;"
 
 #: templates/userena/social-networks.html:4
 #: templates/userena/social-networks.html:5
-#: templates/userena/social-networks.html:6
-#: templates/userena/social-networks.html:7
-#: templates/userena/social-networks.html:8
+#: templates/userena/social-networks.html:11
 msgid "Connect with"
 msgstr ""
 
@@ -428,7 +460,9 @@ msgstr "Ζητήσατε μια αλλαγή της διεύθυνσης e-mail 
 
 #: templates/userena/emails/confirmation_email_message_new.txt:7
 msgid "Please confirm this email address by clicking on the link below:"
-msgstr "Επιβεβαιώστε αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου κάνοντας κλικ στον παρακάτω σύνδεσμο:"
+msgstr ""
+"Επιβεβαιώστε αυτή τη διεύθυνση ηλεκτρονικού ταχυδρομείου κάνοντας κλικ στον "
+"παρακάτω σύνδεσμο:"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:11
 msgid "Thanks for using our site!"

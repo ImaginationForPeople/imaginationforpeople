@@ -1,4 +1,4 @@
-@import "mixin.scss";
+@import "i4p-mixins";
 
 
 #opened-sidebar, #opened-sidebar-team, #langage-tool ul li ul{
@@ -17,31 +17,15 @@
 
 body{
 	background-color:white;	
-    background-image:url('../images/base/white-page-content-bg.jpg');
-    background-position:center;
-    background-repeat:repeat-y;
 }
 
 .content{
 	background-color:white;	
-	background-image:url(../images/base/white-page-content-bg.jpg);	
-	background-repeat:repeat-y;	
-	background-position:center;
 	width:100%;	
 }
 
 
 /* --MENU------- */
-
-
-#header .sf-main-menu{
-    li ul li a {
-        color: white !important;
-    }
-    > li > a > .sf-sub-indicator{
-         background: url("../images/arrows-000000.png") no-repeat -10px -100px;
-         }
-}
 
 .nav-white{
 	background-image:url(../images/base/nav-white-bg.png);	
@@ -79,33 +63,6 @@ body{
 	height:181px;
 	position:relative;
 }
-
-
-/* --HEADER---------------------------------------------------------------------------------------------------- */
-
-#header-zone{	
-	color:#4a4a4a;
-	background-color:white;
-}
-
-
-#header  a{
-	color:#595959 !important;
-}
-
-#header .linkbox a:hover{
-	color:#7F7E7E !important;
-}
-
-
-#menu a{
-	color:#4a4a4a !important;
-}
-
-#header #menu a:hover{
-	color:#BDBDBD !important;
-}
-
 
 /* --CONTENT---------------------------------------------------------------------------------------------------- */
 

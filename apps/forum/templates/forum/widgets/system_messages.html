@@ -1,0 +1,8 @@
+<div class="notify" style="display:none">
+    {% if messages %}
+        {% for message in messages %}
+              <p class="notification {% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+    <a id="closeNotify" onclick="notify.close(true)"></a>
+</div>

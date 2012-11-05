@@ -1,0 +1,72 @@
+{% load i18n %}
+{% load comments %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/comment-block.js"></script>
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment-block.css" />
+{% endaddtoblock %}
+
+<h2>
+	<i class="sheet-comments"></i>
+	{% trans "Comments" %}</h2>
+
+<div class="row">
+
+	{% include "project_sheet/block/comment-list.html" %}
+
+	{% comment %}
+	<div class="span3">
+		<div class="comment-discuss span3">
+			<h3>{% trans "Discuss or comment this project with other people" %}</h3>
+			<a href="#FIXME-BAD-URL" class="button">
+				<i class="sheet-plus"></i>
+				{% trans "go to the discussion" %}
+			</a>
+		</div>
+
+		<div class="comment-ask span3">
+			<h3>{% trans "Ask questions or propose your help to develop the projet" %}</h3>
+			<a href="#FIXME-BAD-URL" class="button">
+				<i class="sheet-plus"></i>
+				{% trans "go to the help calls" %}
+			</a>
+		</div>
+	</div>
+	{% endcomment %}
+</div>
+
+{% if project_translation and user.is_authenticated %}
+<div class="row">
+	<div class="comment-add span8">{% comment %} FIXME: limit to span5 once discussion is available again {%endcomment%}
+
+		{% get_comment_form for project_translation as comment_form %}
+		<form action="{% comment_form_target %}" method="post">
+			{% csrf_token %}
+			{{ comment_form.content_type }}
+			{{ comment_form.object_pk }}
+			{{ comment_form.timestamp }}
+			{{ comment_form.security_hash }}
+
+			<img src="{{ request.user.get_profile.get_mugshot_url }}" class="avatar" alt="{% trans 'Your avatar' %}" /> 
+			<textarea class="comment-new" name="comment" id="id_comment"
+				placeholder='{% trans "Add your comment there and press enter to send..." %}'></textarea>
+
+			<div class="comment-info">
+				<div class="bulle"></div>
+			</div>
+
+			<p style="display: none;">
+				{{ comment_form.honeypot }}
+				<input type="submit" value="{% trans "Post comment" %}"/>
+			</p>
+
+			<input type="hidden" name="next" value="{{ project_translation.get_absolute_url }}">
+		</form>
+	</div>
+
+</div>
+{% endif %}

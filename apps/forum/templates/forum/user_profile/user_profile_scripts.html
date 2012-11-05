@@ -1,0 +1,53 @@
+<script type='text/javascript' src='{{"/js/jquery.idTabs.min.js"|static_url}}'></script>
+<script type='text/javascript' src='{{"/js/excanvas.min.js"|static_url}}'></script>
+    <script type='text/javascript' src='{{"/js/jquery.flot.min.js"|static_url}}'></script>
+<script type='text/javascript' src='{{"/js/jquery.form.js"|static_url}}'></script>
+
+<script type='text/javascript' src='{{"/js/tag_selector.js"|static_url}}'></script>
+<script type="text/javascript" src='{{"/js/post.js"|static_url}}'></script>
+
+<script type="text/javascript">
+
+    askbot['data']['viewUserName'] = '{{ view_user.username|escape }}';
+    askbot['data']['viewUserId'] = {{view_user.id}};
+
+    $(document).ready(function(){
+        $("div.tabBar.tabBar-profile .tabsC").idTabs();
+
+        $.each($('.group-join-btn'), function(idx, elem){
+            var group_join_btn = new GroupJoinButton();
+            group_join_btn.decorate($(elem));
+        });
+        
+        $("#id_user_status_info").hide();
+        $("#id_user_status").change(function () {
+            var optionValue = $(this).attr('value');
+            if (optionValue == "d") {
+                $('#id_user_status_info').html("{% trans %}Administrators have privileges of normal users, but in addition they can assign/revoke any status to any user, and are exempt from the reputation limits.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "m"){
+                $('#id_user_status_info').html("{% trans %}Moderators have the same privileges as administrators, but cannot add or remove user status of 'moderator' or 'administrator'.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "a"){
+                $('#id_user_status_info').html("{% trans %}'Approved' status means the same as regular user.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "s"){
+                $('#id_user_status_info').html("{% trans %}Suspended users can only edit or delete their own posts.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else if (optionValue == "b"){
+                $('#id_user_status_info').html("{% trans %}Blocked users can only login and send feedback to the site administrators, their url and profile will also be hidden.{% endtrans %}");
+                $('#id_user_status_info').show('slow');
+            } else {
+                $('#id_user_status_info').hide('slow');
+            }
+        });
+    });
+</script>
+<script type="text/javascript" >
+<!-- must stay after the previous initialization ... -->
+$(document).ready(function(){
+    setup_inbox();
+    setup_badge_details_toggle();
+});
+</script>
+

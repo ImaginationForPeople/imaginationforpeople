@@ -1,4 +1,5 @@
-@import "mixin.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 
 .content-feedback {
@@ -6,7 +7,7 @@
 }
 
 .feedback-title{
-font-size:18px;
+    font-size:18px;
 }
 
 #feedback-text{
@@ -20,7 +21,7 @@ font-size:18px;
     border-bottom:1px solid black;
     padding:10px;
     
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
 	@include border-radius(4px);
     
     position:fixed;
@@ -35,7 +36,7 @@ font-size:18px;
     margin-bottom:4px;
     top:-5px;
    
-    @include shadow(4px, black);  	
+    @include i4p-shadow(4px, black);  	
     }
 }
 
@@ -66,7 +67,7 @@ font-size:18px;
 }
 
 .vote-actions .button{
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
     margin-left:2px;
     margin-right:2px;
     left:1px;
@@ -81,7 +82,7 @@ font-size:18px;
     border-top:1px solid #353535;
     border-bottom:1px solid black;
     
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
     @include border-radius(4px);  
 	
     margin-top:12px;
@@ -118,7 +119,16 @@ font-size:18px;
 		font-style: italic;
 		font-size: 12px;
 	}
-	
+    ul{
+        padding:0px;
+        margin:0px;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+    }
     .feedback-info {
       
         .type_Q, .type_P , .type_I {
@@ -243,7 +253,7 @@ div#feedback-sidebar {
     border-bottom:1px solid black;
     padding:10px;
     
-    @include shadow(4px, black); 
+    @include i4p-shadow(4px, black); 
 	@include border-radius(4px);
 }
 
@@ -308,7 +318,7 @@ div#feedback-sidebar {
             font-weight:bold;
             position:relative;
             top:3px;
-            color:$blue;
+            color: $colorLightBlue;
         }
         
         .helptext{

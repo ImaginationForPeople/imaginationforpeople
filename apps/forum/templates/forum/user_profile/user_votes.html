@@ -1,0 +1,28 @@
+{% from "macros.html" import timeago %}
+<div style="padding-top:5px;font-size:13px;">
+{% for vote in votes %}
+    <div style="clear:both;line-height:20px" >
+        <div style="width:150px;float:left">{{ timeago(vote.voted_at) }}</div>
+        <div style="width:30px;float:left">
+        {% if vote.vote==1 %}
+            <img src="{{"/images/vote-arrow-up-on-new.png"|static_url}}" title="{% trans %}upvote{% endtrans %}">
+        {% else %}
+            <img src="{{"/images/vote-arrow-down-on-new.png"|static_url}}" title="{% trans %}downvote{% endtrans %}">
+        {% endif %}
+        </div>
+        <div style="float:left;overflow:hidden;width:750px">
+            {% set post_title = vote.voted_post.thread.title %}
+            {% if vote.voted_post.is_question() %}
+            <span class="question-title-link">
+                <a href="{% url question vote.voted_post.id %}{{ post_title|slugify }}">{{ post_title|escape }}</a>
+            </span>
+            {% else %}
+            <span class="answer-title-link">
+                <a href="{% url question vote.voted_post.thread._question_post().id %}{{ post_title|slugify }}#{{ vote.voted_post.id }}">{{ post_title|escape}}$
+            </span>
+            {% endif %}
+            <div style="height:5px"></div>
+        </div>
+    </div>
+{% endfor %}
+</div>

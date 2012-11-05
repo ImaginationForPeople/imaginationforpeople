@@ -1,0 +1,97 @@
+
+//
+// VERY IMPORTANT : "the how to NAME REUSABLE CONSTANTS tutorial"
+//
+// The naming scheme is simple, your constants name must follow this rule :
+// "<typename>[<Targetname>]<Attributename>"
+//
+// - <typename> could be "color", "size", "font", etc.
+//
+// - <targetname> is optional and could be any targetable CSS objects or
+//   properties like "text", "border", etc. 
+//
+// - <attributename> is a meaningful description of your constant, like "Blue",
+//   "LightBlue", "Small", "Huge", etc.
+//
+
+
+//
+// OLD COLORS 
+// They are obsolete, so please use new color naming scheme instead.
+//
+
+$darkgrey: #171717;
+$grey: #cdcdcd;
+$greymenu: #c1c1c1;
+$normalgrey: #bdbdbd;
+
+
+//
+// NEW COLORS
+// You MUST use them.
+//
+
+$colorPaleBlue: #c7e4ea;
+$colorLightBlue: #04add1;
+$colorDarkBlue: #378cc2;
+
+$colorWhite: #f8f8f8;
+$colorLinkOnWhite: #119CBA;
+
+$colorLightLightGrey: #f2f2f2;
+$colorLightGrey: #ebebeb;
+$colorLightDarkGrey: #dedede;
+$colorMedLightGrey: #c9c9c9;
+$colorMedGrey: #8e8e8e;
+$colorMedDarkGrey: #535353;
+$colorDarkGrey: #282828;
+$colorLightGreen: #A3C866;
+
+$colorTextGreen: #5EAB37;
+
+
+//
+// TEXT SIZES
+//
+// $sizeTextHuge: 2.33rem; //28px; for h1
+// $sizeTextLarge: 1.33rem; //16px; for h2
+// $sizeTextBig: 1.17rem; //14px; for h3
+// $sizeTextNormal: 1rem; //12px
+// $sizeTextSmall: 0.92rem; //11px;
+// $sizeTextTiny: 0.83rem; //10px;
+
+// after root em definition
+$sizeTextHuge: 2.8rem; //28px; for h1
+$sizeTextLarge: 1.6rem; //16px; for h2
+$sizeTextBig: 1.4rem; //14px; for h3
+$sizeTextNormal: 1.2rem; //12px
+$sizeTextSmall: 1.1rem; //11px;
+$sizeTextTiny: 1rem; //10px;
+
+
+//
+// FONT PILES
+//
+
+$fontOpenSans: "OpenSans", Arial, Helvetica, sans-serif;
+
+// effect sizes
+$sizeShadowSmall: 2px;
+$sizeShadowBig: 4px;
+$sizeShadowHuge: 8px;
+
+$sizeBorderSmall: 2px;
+$sizeBorderMedium: 4px;
+
+$sizeRadiusSmall: 4px;
+$sizeRadiusMedium: 8px;
+$sizeRadiusBig: 12px;
+
+$sizePaddingSmall: 5px;
+$sizePaddingMedium: 10px;
+$sizePaddingBig: 15px;
+
+$sizeMarginSmall: 5px;
+$sizeMarginMedium: 7.5px;
+$sizeMarginBig: 10px;
+

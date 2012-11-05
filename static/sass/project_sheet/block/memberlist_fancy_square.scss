@@ -1,0 +1,166 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for progressbar
+$progressbar-sprite-dimensions: true;
+@import "project/progressbar/*.png"; // */
+@include all-progressbar-sprites(true);
+
+// @import "project/topic/*.png"; // */
+
+$picto-sprite-dimensions: true;
+@import "project/picto/*.png"; // */
+@include all-picto-sprites(true);
+
+$topic-sprite-dimensions: true;
+@import "project/topic/*.png"; // */
+@include all-topic-sprites(true);
+
+$i4p-slider-sprite-dimensions: true;
+$i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
+@import "project_sheet/i4p-slider/*.png"; // */
+// @include all-i4p-slider-sprites; // NO AUTO INCLUDE
+
+// FIXME: move block rules elsewhere
+.member-block {
+    @include i4p-seemore-class;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 0;
+    padding-top: 5px;
+
+    h2 {
+	margin-top: 5px;
+	text-transform: uppercase;
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+    }
+}
+
+.member-list.square.fancy {
+    width: inherit;
+    overflow: hidden;
+
+    input {
+	display: none;
+    }
+
+    .view {
+	@include bootstrap-clearfix;
+	@include border-radius($sizeRadiusSmall);
+	@include box-sizing(border-box);
+	@include i4p-transition(all .5s ease);
+	border: 1px solid $colorLightDarkGrey;
+	background-color: $colorLightLightGrey;
+	display: block;
+	width: inherit;
+	padding-left: 25px;
+	padding-right: 25px;
+	position: relative;
+
+	ul {
+	    @include box-sizing(border-box);
+	    @include i4p-transition(all .5s ease);
+	    padding: 5px;
+	    height: 60px;
+	    list-style: none;
+	    white-space: nowrap;
+	    // width: 20 * 60px ;
+
+	    li {
+		&:nth-child(4n + 4) {
+		    margin-right: 60px;
+		}
+	    }
+	}
+
+    }
+
+    .controls {
+	display: block;
+	position: relative;
+	height: 1px;
+	width: inherit;
+    }
+
+    .active {
+	display: block;
+	text-align: center;
+	margin: 10px;
+
+	label {
+	    @include i4p-transition(all .5s ease);
+	    border-radius: 5px 5px 5px 5px;
+	    background-color: $colorMedDarkGrey;
+	    display: inline-block;
+	    height: 10px;
+	    width: 10px;
+	}
+    }
+
+
+    @for $i from 0 through 10 {
+	#slide-#{$i}:checked ~ .active label:nth-child(#{$i + 1}) {
+	    background-color: $colorLightBlue;
+	}
+
+	#slide-#{$i}:checked ~ .view ul {
+	    margin-left: $i * -5 * 60px;
+	}
+    }
+
+    .slide-input {
+	display: none;
+    }
+
+    @mixin member-list-leftcontrol {
+	background: $i4p-slider-sprites no-repeat;
+	@include i4p-slider-sprite(prev); 
+	position: absolute;
+	display: block;
+	bottom: 25px;
+	left: 10px;
+	width: 15px;
+	height: 15px;
+    }
+
+    @mixin member-list-rightcontrol {
+	background: $i4p-slider-sprites no-repeat;
+	@include i4p-slider-sprite(next); 
+	position: absolute;
+	display: block;
+	bottom: 25px;
+	right: 6px;
+	width: 15px;
+	height: 15px;
+    }
+
+    // controls 
+    .slide-input.first-input:checked ~ .controls label:last-child {
+	content: "v1";
+	@include member-list-leftcontrol;
+    }
+
+    .slide-input.last-input:checked ~ .controls label:first-child {
+	content: "v2";
+	@include member-list-rightcontrol;
+    }
+
+    @for $i from 0 through 10 {
+	#slide-#{$i}:checked ~ .controls label:nth-child(#{$i + 2}) {
+	    content: "v3";
+	    @include member-list-rightcontrol;
+	}
+
+	#slide-#{$i}:checked ~ .controls label:nth-child(#{$i}) {
+	    content: "v4";
+	    @include member-list-leftcontrol;
+	}
+    }
+
+}
+

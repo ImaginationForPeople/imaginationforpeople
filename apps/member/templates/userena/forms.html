@@ -19,6 +19,24 @@
         <form action="{% url userena_profile_edit user.username %}" method="post" enctype="multipart/form-data" class="profile_edition">
 
             {% csrf_token %}                
+
+            {% if profile_form.is_bound %}
+                {% if profile_form.is_valid != True %}
+                    <div class=overall_errorlist>
+                        <p>{% trans 'The following fields in your profile contains invalid data you need to correct:' %} </p>
+                        {% for field in profile_form %}
+                            {% if field.errors %}
+                                <p>
+                                    <label for="id_first_name">{{ field.label_tag }}</label>
+                                </p>
+                                {{ field.errors }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endif %}
+            
+            
             <div id="about_me">
                 {{ profile_profile_form.gender.errors }}
                 <p>{{ profile_form.gender.label_tag }}{{ profile_form.gender}}</p>

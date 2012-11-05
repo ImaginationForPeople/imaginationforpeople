@@ -1,0 +1,37 @@
+{% load i18n %}
+{% load comments %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/comment-list.css" />
+{% endaddtoblock %}
+{% comment %}FIXME: limit span8 to span5 once discussion is available {% endcomment %}
+
+{% if project_translation %}
+<div class="comment-list span8"> 
+	<ul>
+		{% get_comment_list for project_translation as comment_list %}
+		{% if "show_comments" in request.GET %}
+		{% for comment in comment_list reversed %}
+		<li class="comment {% cycle 'odd' 'even' %}">
+			{% include "project_sheet/block/comment-item.html" %}
+		</li>
+		{% endfor %}
+
+		{% else %}
+		{% for comment in comment_list|slice:"-5:" reversed %}
+		<li class="comment {% cycle 'odd' 'even' %}">
+			{% include "project_sheet/block/comment-item.html" %}
+		</li>
+		{% endfor %}
+		{% endif %}
+	</ul>
+	<a class="seemore" href="?show_comments=1#comments-module">
+      {% get_comment_count for project_translation as comment_count %}
+        {% trans "Show all" %} {{ comment_count }} {% trans "comments" %}</a>
+	</a>
+</div>
+{% endif %}

@@ -1,29 +1,38 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
-    <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
-    
+    <meta name="language" content="{{ LANGUAGE_CODE }}" />
     <meta name="keywords" content="{% block meta_keywords %}Imagination for people, i4p, social, innovation sociale{% endblock %}" /> 
+    <meta name="author" content="{{ site }}" />
     <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
-    <title>{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
+    {% block extra_meta %}{% endblock %}
 
+    <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
+    {% block extra_link %}{% endblock %}
+
+    <title>{% block title_prefix %}{% endblock %}{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
+	{% block base_grid %}
+	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
+	{% endblock %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/block/modal.css" />
     {% endcompress %}
 
     {% block style %}
@@ -31,11 +40,14 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
-    {% render_block "css" %}	
+    {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
 
 
     {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
+	<script type="text/javascript">
+		var I4P_STATIC_URL="{{STATIC_URL}}";
+	</script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
@@ -60,7 +72,7 @@
 	i4p_globalsearch_complete_url = "{% url i4p-globalsearch-complete %}";
     </script>										       
 
-    {% render_block "js" %}
+    {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
 
     <script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>
 
@@ -116,11 +128,15 @@
             //$(this).stop().rotate({animateTo:0});
         });	
         
+        $('#top-zone').hide();
+        $('#user-bt a.open-panel').click(function(){
+          $('#top-zone').slideToggle();
+        });
         
     });
         
     </script>
-
+    {% block extra_script %}{% endblock %}
     
     {% block extra_head %}{% endblock %}
     
@@ -144,22 +160,20 @@
   </head>
 
 
-  <body>
+  <body class="{% block extra_body_class %}{% endblock %}">
     
     <div id="beta-logo"></div>
     
     <div class="global">   
-    
-      {% block login-slide %} {% include "login-slide.html" %} {% endblock %}	
-
+       
       {% block newproject_popup %} 
         <div id="new_project_style_popup_zone" class="hidden">
         </div>
       {% endblock %}      
       
       {% block header %} {% include "header.html" %} {% endblock %}			
-      <!-- insert a test here ; in function of the type of the page (nav ou view) the nav nis not the same ( bubble_nav / basic nav)   -->
-      {% block nav %} {% include "nav.html" %} {% endblock %}
+
+      {% block nav %}{% endblock %}
       
       {% if user.is_authenticated %}
       <div>
@@ -170,9 +184,9 @@
       </div>
       {% endif %}
 
-      
-      {% block content %}{% endblock %}
-
+      {% block central_content_zone %}
+        {% block content %}{% endblock %}
+      {% endblock %}
 
       {% block footer %} {% include "footer.html" %} {% endblock %}
 
@@ -182,7 +196,7 @@
 
     {% block inline_js %}
     {% endblock %}
-    
+
   </body>
 
 </html>

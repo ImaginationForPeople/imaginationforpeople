@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base_obsolete.html" %}
 {% load i18n %}
 {% load compress %}
 
@@ -6,7 +6,6 @@
   {% compress css %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/partners.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
     {% endcompress %}
 {% endblock %}
 
@@ -30,30 +29,21 @@
             <img class="logo" src="{{ MEDIA_URL }}{{ partner.picture.original_image }}"/>
         </div>
         
-        <div class="grid_12 omega">
+        <div class="grid_12 omega description">
             {{ partner.description|safe|linebreaks }}
         </div>
         
         <div class="clear"></div>
-        <br /><br />
-        
+
         <div id="partner_projects">                
-            <div class="separator">
-                <h2>{% trans 'Supported projects' %}</h2>
-            </div>
-
-            {% for project_translation in partner_projects %}   
-                <div class="colonne grid_6">
-                    {% include "project_sheet/project_complete_card.html" %}   
-                </div>
-                {% empty %}
-                <em>{% trans "No contributions yet." %}</em>
-            {% endfor %}
-
+          <h2>{% trans 'Supported projects' %}</h2>
+	    {% for project_translation in partner_projects %}
+	    {% include "project_sheet/block/card_fancy_square.html" %}
+	    {% empty %}
+	    {% trans "No projects" %}
+	    {% endfor %}
         </div>
 
-        
-        
         <div class="clear"></div>
         
     </div>

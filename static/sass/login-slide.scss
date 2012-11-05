@@ -1,4 +1,5 @@
-@import "mixin.scss";
+@import "i4p-mixins";
+@import "i4p/constants";
 
 
 /*
@@ -75,7 +76,7 @@ Version: 1.0
             padding-top:2px;
             
             a{
-                font-family: 'OpenSansCondensedBold', Arial, Helvetica, sans-serif;
+                font-family: 'OpenSansCondensedBold_obsolete', Arial, Helvetica, sans-serif;
                 color:white;
             }
         }
@@ -98,7 +99,7 @@ Version: 1.0
             top:4px;
             
             a {
-                color: $blue;
+                color: $colorLightBlue;
             }
             
             a:hover {
@@ -121,7 +122,7 @@ Version: 1.0
             
             a.open.link, a.close.link {
                 height: 20px;
-                font-family: 'OpenSansBoldItalic', Arial, Helvetica, sans-serif;
+                font-family: 'OpenSansBoldItalic_obsolete', Arial, Helvetica, sans-serif;
                 line-height: 20px !important;
                 /*padding-left: 32px !important;*/
                 cursor: pointer;
@@ -169,13 +170,13 @@ Version: 1.0
     height:0px;
     
     a.link{
-        font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+        font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
         font-size:12px;
         font-weight:normal;
     }
     
     h1 {
-        font-family: "OpenSansCondensedBold", Arial, Helvetica, sans-serif;
+        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
         font-size:16px;
         text-transform:uppercase;
         font-style:normal;
@@ -253,9 +254,9 @@ Version: 1.0
         label[for=id_remember_me]{
             display:block !important;
             visibility:visible !important;
-            font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+            font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
             font-size:10px;
-            color:$blue;
+            color: $colorLightBlue;
         }
         
         input[type=text], input[type=password]{
@@ -264,7 +265,7 @@ Version: 1.0
             margin-top: 4px;
             width: 150px;
             color: #3d3d3d;
-            font-family: "OpenSansItalic", Arial, Helvetica, sans-serif;
+            font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
             font-size:11px;
             height: 16px;
             padding-left:4px;
@@ -274,7 +275,7 @@ Version: 1.0
         input[type=submit], button{
             background-image: url('../images/home/openid-button.jpg');
             color:white;
-            font-family: "OpenSansBold", Arial, Helvetica, sans-serif;
+            font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
             font-size:11px;
             padding:2px 6px;
             margin:0px;
@@ -302,9 +303,9 @@ Version: 1.0
         }
         
         .password_lost{
-            font-family: "OpenSansItalic",Arial,Helvetica,sans-serif;
+            font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
             font-size:10px;
-            color:$blue;
+            color: $colorLightBlue;
             margin-left:22px;
         }
         
@@ -339,6 +340,181 @@ Version: 1.0
         }
     }
 }
+
+#top-zone {
+    padding-top: 15px;
+    text-align: left;
+    background:black;
+    
+    h1.padlock {
+        color: white;
+        font-family: "OpenSansBold_obsolete",Arial,Helvetica,sans-serif;
+        font-size: 0.9em;
+        font-style: normal;
+        text-transform: uppercase;
+    }
+
+    #form-user {
+        margin:0 25px 0 0
+    }
+
+    #form-user p {
+        margin:0
+    }
+
+    .left, .left-logged {
+        width: 290px;
+        float: left;
+        padding: 0 10px;
+    }
+    
+    .left{
+        position:relative;
+        /*border-left: 1px solid #333;*/
+    }
+    
+    .left:first-child {
+        border-left: 0px solid #333;
+    }
+    
+    .panel_projects{
+        width:460px;
+        float: right;
+        padding: 0 15px;
+    }
+    
+    form{
+        margin: 0 0 10px 0;
+        position:relative;
+    }
+    
+    label{
+        display:none;
+        visibility:hidden;
+    }
+    
+    label[for=id_remember_me]{
+        display:block !important;
+        visibility:visible !important;
+        font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
+        font-size:10px;
+        color: $colorLightBlue;
+        font-weight:bold;
+    }
+    
+    input[type=text], input[type=password]{
+        border: 1px #1A1A1A solid;
+        margin-right: 5px;
+        margin-top: 4px;
+        width: 150px;
+        color: #3d3d3d;
+        font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
+        font-size:11px;
+        height: 16px;
+        padding-left:4px;
+        @include border-radius(4px); 
+        margin-bottom:0
+    }
+    
+    #form-user p.checkbox {
+        margin-top:10px
+    }
+
+    input[type=submit], button{
+        background: url('../images/home/openid-button.jpg') repeat-x bottom left #03abcf;
+        color:white;
+        font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
+        font-size:11px;
+        padding:2px 6px;
+        margin:0px;
+        border:0px;
+        cursor:pointer;     
+        position:relative;
+        top:-1px;
+        @include border-radius(4px);
+    }
+    
+    input[type=submit]:hover, button:hover{
+        color:black !important;
+    }
+    
+    input:focus.field {
+        background: #545454;
+    }
+    
+    #top-signin{
+        height: 24px;
+        left: 168px;
+        margin: 0 !important;
+        position: absolute;
+        top: 71px;
+    }
+    
+    .password_lost{
+        font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
+        font-size:10px;
+        color: $colorLightBlue;
+        left: 152px;
+        margin-left: 22px;
+        position: absolute;
+        top: 106px;
+        font-weight:bold;
+    }
+    
+    .password_lost:hover{
+        color:white;
+    }
+
+    .social-panel ul {
+        margin-left:0;
+        margin-bottom:15px;
+	list-style: none;
+	li {
+	   display: inline;
+	}	
+    }
+
+    #not-yet h1 {
+        float:left;
+        margin: 0 10px 0 0;
+    }
+    
+    #not-yet a {
+        font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
+        font-size:11px;
+        color: $colorLightBlue;
+        font-weight:bold;
+        position: relative;
+        top: 7px;
+    }
+
+    #interface_lang  {
+        position:relative;
+        margin-top:10px;
+        
+        li{
+            width:88px;
+            float:left;
+            margin-right:5px;
+            margin-bottom:10px;
+            
+            img{
+                margin-right:8px;
+            }
+            
+            a{
+                margin-right:8px;
+                color:#898989;
+            }
+            
+            a:hover{
+                text-decoration:none;
+                color:#d0d0d0;
+            }
+        }
+    }
+}
+
 
 
 
