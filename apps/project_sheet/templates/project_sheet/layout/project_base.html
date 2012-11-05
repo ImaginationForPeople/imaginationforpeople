@@ -5,7 +5,6 @@
 
 {% block base_grid %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
 {% endblock %}
 
 {% block style %}
@@ -58,7 +57,9 @@
 
 {% include "project_sheet/block/subheader.html" %}
 
+{% block navigation %}
 {% include "project_sheet/block/menubar.html" %}
+{% endblock %}
 
 {% include "project_sheet/block/toolbar.html" %}
 

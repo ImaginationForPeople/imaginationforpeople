@@ -206,6 +206,7 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
+    'tabs',
 
     'raven.contrib.django',
 
@@ -485,6 +486,7 @@ CMS_TEMPLATES = (
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
   ('pages/onemenu.html', _('One menu page')),
+  ('pages/popups_notifications.html', _('Popups and notifications container')),
 )
 
 CMS_REDIRECTS = True

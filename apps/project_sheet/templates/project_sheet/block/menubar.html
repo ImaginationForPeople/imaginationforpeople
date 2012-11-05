@@ -10,26 +10,27 @@
 		<div class="row">
 			<div class="menubar-leftcolumn span8">
 				<ul>
-					<li class="active"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
-					<li><a href="#FIXME-BADURL">{% trans "Gallery" %}</a></li>
-					{% comment %}
-					<li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
-					<li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
-					<li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
-					<li class="right"><a href="#FIXME-BADURL">
+			
+				<li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
+				<li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}"><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
+				{% comment %}
+				<li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
+				<li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
+				<li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
+				<li class="right"><a href="#FIXME-BADURL">
 						<i class="i4p-toolbar-favorite"></i>
 					</a>
-					</li>
-					<li class="right"><a href="#FIXME-BADURL">
+				</li>
+				<li class="right"><a href="#FIXME-BADURL">
 						<i class="i4p-toolbar-print"></i>
 					</a>
-					</li>
-					<li class="right"><a href="#FIXME-BADURL">
+				</li>
+				<li class="right"><a href="#FIXME-BADURL">
 						<i class="i4p-toolbar-widgets"></i>
-					</a></li>
-					<li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
-					{% endcomment %}
-					<li class="right">
+				</a></li>
+				<li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
+				{% endcomment %}
+				<li class="right">
 					<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
 						<i class="i4p-toolbar-dropdown"></i>
 					</a>
@@ -40,8 +41,8 @@
 						<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
 					</ul>
 					<!-- AddThis Button END -->
-					</li>
-				</ul>
+				</li>
+			</ul>
 			</div>
 			<div class="menubar-rightcolumn span4">
 				<ul>

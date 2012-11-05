@@ -19,7 +19,6 @@
 Django Forms for a Project Sheet
 """
 from django import forms
-from django.contrib.auth.models import User
 from django.forms.models import modelformset_factory
 
 from ajax_select.fields import AutoCompleteSelectField
@@ -27,7 +26,8 @@ from nani.forms import TranslatableModelForm
 
 from apps.i4p_base.models import Location
 
-from .models import I4pProject, I4pProjectTranslation, ProjectReference, ProjectMember, Answer
+from .models import I4pProject, I4pProjectTranslation, ProjectPicture, ProjectVideo
+from .models import ProjectReference, ProjectMember, Answer
 
 class I4pProjectThemesForm(forms.ModelForm):
     """
@@ -117,3 +117,14 @@ class AnswerForm(TranslatableModelForm):
     class Meta:
         model = Answer
         fields = ('content',)
+
+
+class ProjectPictureAddForm(forms.ModelForm):
+    class Meta:
+        model = ProjectPicture
+        fields = ('original_image', 'desc', 'license', 'author', 'source')
+
+class ProjectVideoAddForm(forms.ModelForm):
+    class Meta:
+        model = ProjectVideo
+        fields = ('video_url', )
