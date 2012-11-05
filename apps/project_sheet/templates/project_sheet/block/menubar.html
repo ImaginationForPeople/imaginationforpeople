@@ -1,6 +1,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
+{% load tabs %}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/menubar.css" />
 {% endaddtoblock %}
@@ -9,8 +10,9 @@
 	<div class="container">
 		<div class="row">
 			<ul class="span8">
-				<li class="active"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
-				<li><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
+				<li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
+				<li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}"><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
+
 				{% comment %}
 				<li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
 				<li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>

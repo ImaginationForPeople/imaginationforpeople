@@ -206,6 +206,7 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
+    'tabs',
 
     'raven.contrib.django',
 
