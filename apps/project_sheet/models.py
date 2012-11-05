@@ -199,6 +199,15 @@ class I4pProject(TranslatableModel):
         
     )
 
+    def get_primary_picture(self):
+        """
+        Return the first picture, if available
+        """
+        if len(self.pictures.all()):
+            return self.pictures.all()[0]
+        else:
+            return None
+    
     def __unicode__(self):
         return self.lazy_translation_getter('title', 'Project: %s' % self.pk)
 

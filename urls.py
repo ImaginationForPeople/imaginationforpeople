@@ -12,6 +12,8 @@ from wiki.urls import get_pattern as get_wiki_pattern
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
+from apps.tags.sitemaps import TagSitemap
+
 
 # For server errors
 handler500 = 'django.views.defaults.server_error'
@@ -20,10 +22,16 @@ handler404 = 'django.views.defaults.page_not_found'
 ## Admin
 admin.autodiscover()
 
+import haystack.views
+
+import apps.i4p_base.ajax
+import apps.i4p_base.views
+
 ## Sitemaps
 sitemaps = {
     'projects': I4pProjectTranslationSitemap(),
     'questions': QuestionsSitemap(),
+    'tags': TagSitemap(),
 }
 
 urlpatterns = i18n_patterns('',
@@ -57,6 +65,8 @@ urlpatterns += i18n_patterns('',
     url(r'^member/', include('apps.member.urls')),
     url(r'^tags/', include('apps.tags.urls', namespace='tags')),
     url(r'^feedback/', include('backcap.urls')),
+    url(r'^search/', haystack.views.basic_search, name='i4p-search'),
+    url(r'^ajax/search$', apps.i4p_base.ajax.globalsearch_autocomplete, name='i4p-globalsearch-complete'),
     url(r'^%s/' % settings.ASKBOT_URL , include('apps.forum.urls')),
 
     # Configure umessages compose view so that it uses recipient autocompletion

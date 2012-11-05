@@ -7,9 +7,14 @@
 {% load sekizai_tags %}
 {% load comments %}
 {% load i4p_djangocms_tags %}
+{% load tabs %}
+
+{% block navigation %}
+{% tab 'project_sheet' 'project' %}
+{{ block.super }}
+{% endblock %}
 
 {% block project_content %}	
-
 <div class="container">        
     {% if user.is_authenticated %}
         {% with "project_sheet_logged_in_popup" as placeholder_name %}

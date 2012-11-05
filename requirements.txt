@@ -2,7 +2,7 @@ django==1.4
 psycopg2==2.4.1
 south==0.7.5
 
-django-extensions==0.6
+django-extensions==1.0.0
 
 django-countries==1.0.5
 
@@ -29,7 +29,8 @@ django-imagekit==0.3.6
 Pillow==1.7.4
 
 whoosh==1.8.4
-django-haystack==1.2.7
+# Haystack 2.0.0-beta
+-e git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 
 django-voting==0.1
 django-annoying==0.7.4
@@ -52,6 +53,7 @@ html5lib
 django-ajax-selects==1.2.3
 django-ajaxcomments==0.2
 linaro-django-pagination==2.0.2
+-e git+https://github.com/tifosiblack/django-tabs.git@11561e13047a96e1a074754581b877b49c83ae8b#egg=django-tabs
 
 -e git://github.com/ImaginationForPeople/emencia-django-newsletter.git@master#egg=emencia.django.newsletter
 
@@ -68,7 +70,7 @@ django-social-auth==0.6.9
 -e git+https://github.com/jorgebastida/django-dajaxice.git@d5a70654fbcd7241fbdfaf5a89fea2746cd25369#egg=django-dajaxice
 -e git+https://github.com/jorgebastida/django-dajax.git@510a6c3e267ce7b2a5423a7e8bcca191956247ed#egg=django-dajax
 
--e git+https://github.com/SpreadBand/django-backcap.git@b5cda24429cc3a9cfc3d58c4c7da12433dfc486d#egg=django-backcap
+-e git+https://github.com/SpreadBand/django-backcap.git@16e072aa77d130268dbaff55a66d59948d8545cc#egg=django-backcap
 
 django-reversion==1.6.1
 

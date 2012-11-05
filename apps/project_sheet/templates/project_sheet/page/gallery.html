@@ -7,6 +7,13 @@
 {% load sekizai_tags %}
 {% load comments %}
 {% load oembed_works_tags %}
+{% load tabs %}
+
+{% block navigation %}
+{% tab 'project_sheet' 'gallery' %}
+{{ block.super }}
+{% endblock %}
+
 
 {% block project_content %}	
 
