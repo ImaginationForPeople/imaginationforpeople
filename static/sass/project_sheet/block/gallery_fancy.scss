@@ -16,6 +16,7 @@ $gallery_sizeModalColumns: 10;
 $gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($gallery_sizeModalColumns);
 
 $gallery_sizeSliderWidth: 540px;
+$gallery_sizeSliderHeight: 75px;
 
 // act as a bootstrap "container"
 .project-gallery-modal {
@@ -34,7 +35,7 @@ $gallery_sizeSliderWidth: 540px;
 	// local anythingslider adaptation
 	.anythingSlider {
 	    position: relative;
-	    height: 75px;
+	    height: $gallery_sizeSliderHeight;
 
 	    .anythingWindow {
 		height: 100%;
@@ -48,22 +49,24 @@ $gallery_sizeSliderWidth: 540px;
 	    }
 
 	    .activePage {
-		// do something ?
+		img {
+		    outline: 1px solid white;
+		}
 	    }
 	}
 
 	.gallery-slider {
 	    display: block;
 	    width: $gallery_sizeSliderWidth;
-	    height: 70px;
-	    outline: 1px solid red; // FIXME: remove this line
+	    height: $gallery_sizeSliderHeight;
 	    overflow: hidden;
 	    list-style: none;
 
 	    & > li {
 		float: left;
+		display: block;
 		width: 108px;
-		height: 70px;
+		height: $gallery_sizeSliderHeight;
 		margin:0;
 		position: relative;
 
@@ -72,6 +75,11 @@ $gallery_sizeSliderWidth: 540px;
 		    top: 5px;
 		    left: 11px;
 		    outline: 1px solid $colorDarkGrey;
+		}
+
+		// FIXME: show view thing over images on overlay
+		&:hover {
+		    // FIXME
 		}
 	    }
 	}
