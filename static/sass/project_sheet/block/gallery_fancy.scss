@@ -9,7 +9,7 @@ $gallery_sizeImageHeight: 197px;
 $gallery_sizeImageSmallWidth: 150px;
 $gallery_sizeImageBigWidth: 300px;
 
-$gallery_strOverlayUrl: 'gallery/view-overlay.png';
+$gallery_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 $gallery_sizeModalColumns: 10;
@@ -17,6 +17,9 @@ $gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGut
 
 $gallery_sizeSliderWidth: 540px;
 $gallery_sizeSliderHeight: 75px;
+
+$gallery_sizeSliderImageWidth: 88px;
+$gallery_sizeSliderImageHeight: 55px;
 
 // act as a bootstrap "container"
 .project-gallery-modal {
@@ -48,6 +51,10 @@ $gallery_sizeSliderHeight: 75px;
 		position: absolute;
 	    }
 
+	    .panel {
+		height: $gallery_sizeSliderHeight;
+	    }
+
 	    .activePage {
 		img {
 		    outline: 1px solid white;
@@ -57,25 +64,75 @@ $gallery_sizeSliderHeight: 75px;
 
 	.gallery-slider {
 	    display: block;
-	    width: $gallery_sizeSliderWidth;
-	    height: $gallery_sizeSliderHeight;
 	    overflow: hidden;
 	    list-style: none;
+	    height: $gallery_sizeSliderHeight;
 
 	    & > li {
+		@include box-sizing(border-box);
+
 		float: left;
 		display: block;
-		width: 108px;
-		height: $gallery_sizeSliderHeight;
 		margin:0;
 		position: relative;
+		overflow: hidden;
+		height: $gallery_sizeSliderHeight;
+		width: 108px;
 
 		img {
 		    position: absolute;
-		    top: 5px;
 		    left: 11px;
+		    top: 2px;
 		    outline: 1px solid $colorDarkGrey;
+		    z-index: 1;
+		    height: $gallery_sizeSliderImageHeight;
+		    width: $gallery_sizeSliderImageWidth;
+		    margin-top: 5px;
+		    margin-bottom: 5px;
 		}
+
+		// in before, we put the view icon
+		&:before {
+		    @include i4p-transition(all .5s ease);
+		    background-position: center center;
+		    background-repeat: no-repeat;
+		    background-image: image-url($gallery_strOverlayUrl);
+		    content: "";
+		    z-index: 3;
+		    display: block;
+		    height: $gallery_sizeSliderImageHeight;
+		    width: $gallery_sizeSliderImageWidth;
+		    left: 11px;
+		    position: absolute;
+		    top: 7px;
+		    opacity: 0;
+		}
+
+		// in after we manage the darkness
+		&:after {
+		    @include i4p-transition(all .5s ease);
+		    background-color: black;
+		    content: "";
+		    z-index: 2;
+		    display: block;
+		    height: $gallery_sizeSliderImageHeight;
+		    width: $gallery_sizeSliderImageWidth;
+		    left: 11px;
+		    position: absolute;
+		    top: 7px;
+		    opacity: 0.7;
+		}
+
+		&:hover {
+		    &:after {
+			opacity: 0;
+		    }
+
+		    &:before {
+		    opacity: 1;
+		    }
+		}
+
 
 		// FIXME: show view thing over images on overlay
 		&:hover {
