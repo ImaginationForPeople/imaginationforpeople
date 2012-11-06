@@ -1,3 +1,4 @@
+//FIXME: please cleanup/prefix this thing
 jQuery.ready(function() {
   jQuery('a.minibutton').bind({
     mousedown: function() {
