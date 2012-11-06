@@ -70,7 +70,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");
 <div class="project-gallery-modal modal hide fade in out span10" tabindex="-1" role="dialog" id="gallery-{{ gallery_unique_counter }}" >
 	<div class="row">
 		<div class="top-side viewer-side span7">
-			<ul class="gallery-viewer-container" id="gallery-modal-view-{{ modal_unique_counter }}">
+			<ul class="gallery-viewer-container" id="gallery-modal-view-{{ modal_unique_counter }}"
+					data-toggle="i4p-gallery-fancy-viewer" 
+				>
 			</ul>
 		</div>
 
@@ -101,7 +103,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");
 					data-slider-view="#gallery-modal-view-{{ modal_unique_counter }}">
 					{% for project_picture in project_translation.project.pictures.all %}
 					<li data-slide-number="{{ forloop.counter }}">
-					<a href="{% thumbnail project_picture.original_image.name 600x400 upscale=1 crop='50,50' %}">
+					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
 						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  alt="" />
 					</a>
 					</li>
@@ -109,7 +111,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");
 
 					{% for project_picture in project_translation.project.pictures.all %}
 					<li data-slide-number="{{ forloop.counter }}">
-					<a href="{% thumbnail project_picture.original_image.name 600x400 upscale=1 crop='50,50' %}">
+					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
 					<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  alt="FIXME: remove after debug" />
 				</a>
 					</li>

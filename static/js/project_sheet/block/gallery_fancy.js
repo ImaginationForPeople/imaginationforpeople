@@ -6,8 +6,31 @@
 $(document).ready(function(){
 	// local helper to display upper side pictures
 	function gallery_fancy_display() {
-
 	}
+	
+	// enable slider controllers first (to be ready in case a slider fails/slows)
+	$('*[data-toggle="i4p-gallery-fancy-modal-control"]').each(function(){
+		var controlThis = this;
+
+		console.log("gallery-fancy: within fancy-modal-control");
+
+		$(controlThis).click(function(e){
+			var target = '#' + $(controlThis).attr('data-slider-target');
+			var command = $(controlThis).attr('data-slider-command');
+			switch (command.toLowerCase()) {
+				case 'goforward':
+					$(target).data('AnythingSlider').goForward();
+					break;
+				case 'goback':
+					$(target).data('AnythingSlider').goBack();
+					break;
+				default:
+					console.log("send '" + command + "' to " + target);
+			}
+			e.preventDefault();
+		});
+	});
+	console.log('gallery-fancy: initialized modal controls!');
 
 	// FIXME: change i4p prefix with a local one (gallery-fancy-...)
 	// enable slider
@@ -17,13 +40,12 @@ $(document).ready(function(){
 
 		var backText = $(sliderThis).attr('data-slider-backtext') || "prev";
 		var forwardText = $(sliderThis).attr('data-slider-forwardtext') || "next";
+		console.log("gallery-fancy: data-slider-view = " + viewerObjSelector);
 
 		// initialize the lower side (wide thumb slider with a full list)
 		$(sliderThis).anythingSlider({
 			autoPlay: false,
 			startStopped: true, 
-			forwardText: forwardText,
-			backText: backText,
 
 			buildArrows: false, // no prev/next arrows
 			buildNavigation: false, // no tabs
@@ -38,12 +60,8 @@ $(document).ready(function(){
 		});
 		console.log('gallery-fancy: initialized bottom slider!');
 
-		console.log("gallery-fancy: data-slider-view = " + viewerObjSelector);
-		console.log($(viewerObjSelector));
-
-
 		// make all slides fully active
-		$('*[data-toggle="i4p-gallery-fancy-slider"] a').each(function(){
+		$(sliderThis).find('a').each(function(){
 			var linkThis = this;
 			var linkNumber = $(linkThis).parent().attr('data-slide-number');
 			var linkSrc= $(linkThis).attr('href');
@@ -52,7 +70,7 @@ $(document).ready(function(){
 			// populate upper slider here
 			// FIXME: maybe use pure.js ?
 			$(viewerObjSelector).append('<li><img src="' + linkSrc + '" /></li>')
-				
+
 			// bind click event
 			$(linkThis).click(function(event){
 				event.preventDefault();
@@ -61,14 +79,20 @@ $(document).ready(function(){
 		});
 		console.log('gallery-fancy: initialized slides!');
 		console.log($(viewerObjSelector));
+	});
 
 
-		// initialize upper slider (with nothing inside)
-		$(viewerObjSelector).anythingslider({
+	// initialize upper slider (with nothing inside)
+	$('*[data-toggle="i4p-gallery-fancy-viewer"]').each(function(){
+		var sliderThis = this;
+		var sliderId = $(sliderThis).attr('id');
+
+		console.log("gallery-fancy: within fancy-viewer id = " + sliderId );
+		// console.log($(sliderThis));
+	
+		$(sliderThis).anythingslider({
 			autoPlay: false,
 			startStopped: true, 
-			forwardText: forwardText,
-			backText: backText,
 
 			buildArrows: false, // no prev/next arrows
 			buildNavigation: false, // no tabs
@@ -77,34 +101,11 @@ $(document).ready(function(){
 
 			expand: false,
 			resizeContents: false,
-			infiniteSlides: true, // no wrap
-			changeBy: 1
-		});
-		console.log('gallery-fancy: initialized top slider!');
-
-		console.log('gallery-fancy: active!');
-	});
-
-	// enable slider controllers
-	$('*[data-toggle="i4p-gallery-fancy-modal-control"]').each(function(){
-		var controlThis = this;
-
-		$(controlThis).click(function(e){
-			var target = '#' + $(controlThis).attr('data-slider-target');
-			var command = $(controlThis).attr('data-slider-command');
-			switch (command.toLowerCase()) {
-			case 'goforward':
-				$(target).data('AnythingSlider').goForward();
-				break;
-			case 'goback':
-				$(target).data('AnythingSlider').goBack();
-				break;
-			default:
-				console.log("send '" + command + "' to " + target);
-			}
-			e.preventDefault();
 		});
 	});
+	console.log('gallery-fancy: initialized top slider!');
+
+
 
 });
 
