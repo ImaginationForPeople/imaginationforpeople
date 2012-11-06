@@ -56,6 +56,9 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
     
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-throttle-debounce.js"></script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pure.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
@@ -63,8 +66,12 @@
 
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
+    <script type="text/javascript">
+	i4p_globalsearch_complete_url = "{% url i4p-globalsearch-complete %}";
+    </script>										       
 
     {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -85,11 +92,7 @@
             
         $(".social-login img").tipsy({html: true });
         
-        
-				// FIXME: move this code in a header-specific js
-      	// Text example for forms
-        $(".search input[type=text]").example("{% trans 'Project search'|escapejs %}");
-        
+             
         $("input[name=identification]").example("{% trans 'Enter your login'|escapejs %}");
         $("input[name=password]").example("{% trans 'Password'|escapejs %}");
         
@@ -102,6 +105,7 @@
         var popup_content = $("#new_project_style_popup_zone"); 
 
         
+
         
         
         // Rollover for social networks links

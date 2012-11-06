@@ -171,7 +171,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'backcap.context_processors.backcap_forms',
         
     'django.core.context_processors.static',
-    'apps.project_sheet.context_processors.project_search_forms',
+    'apps.i4p_base.context_processors.search_form',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',
@@ -206,10 +206,10 @@ INSTALLED_APPS = (
     'guardian',
     'nani',
     'honeypot',
+    'serializers',
     'tabs',
 
     'raven.contrib.django',
-
     'tinymce',
     'tagging',
     'imagekit',
@@ -413,9 +413,19 @@ LOCALE_INDEPENDENT_PATHS = (
 COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
 
 ### HAYSTACK
-HAYSTACK_SITECONF = 'imaginationforpeople.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_WHOOSH_PATH = os.path.join(PROJECT_PATH, 'i4p_index')
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
+        'STORAGE': 'file',
+        'POST_LIMIT': 128 * 1024 * 1024,
+        'INCLUDE_SPELLING': True,
+        'BATCH_SIZE': 500,
+    },
+}
+
+HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
+
 
 ### STATIC FILES
 STATIC_URL = '/static/'

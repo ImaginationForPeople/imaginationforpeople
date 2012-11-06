@@ -1,5 +1,4 @@
 {% load i18n %}
-        
     <div class="search">
         
         <form action="{% url project_sheet-list %}">
@@ -8,3 +7,39 @@
         </form>
         
     </div>
+{% comment %}
+    <div id="searchbox">
+        
+        <form method="get" action="{% url i4p-search %}" autocomplete="off">
+            <input type="submit" value="&nbsp;" />
+            {{ search_form.q }}
+        </form>
+
+	<div id="q-suggestions">
+	  <ul></ul>
+	</div>
+
+	<!-- pure template -->
+	<ul class="q-suggestions-template">
+	  <li class="projects">
+	    <ul>
+	      <span>{% trans "Projects" %}</span>
+	      <li><a href="javascript:void(0)"><img width="20px" height="20px" alt="project image" src="{{ STATIC_URL }}images/ajax-loader.gif"/><span>{% trans "No match" %}</span></a></li>
+	    </ul>
+	  </li>
+	  <li class="workgroups">
+	    <ul>
+	      <span>{% trans "Workgroups" %}</span>
+	      <li><a href="javascript:void(0)"><img width="20px" height="20px" alt="workgroup image" src="{{ STATIC_URL }}images/home/picto-ressources.jpg"/><span>{% trans "No match" %}</span></a></li>
+	    </ul>
+	  </li>
+	  <li class="profiles">
+	    <ul>
+	      <span>{% trans "Users" %}</span>
+	      <li><a href="javascript:void(0)"><img width="20px" height="20px" alt="profile image" src="{{ STATIC_URL }}images/home/picto-community.jpg"/><span>{% trans "No match" %}</span></a></li>
+	    </ul>
+	  </li>
+	</ul>
+        <div class="clear"></div>
+    </div>
+{% endcomment %}
