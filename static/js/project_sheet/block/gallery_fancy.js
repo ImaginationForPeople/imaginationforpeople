@@ -4,42 +4,34 @@
 // require jquery.anythingslider.fx
 
 $(document).ready(function(){
-	// local helper to display upper side pictures
-	function gallery_fancy_display() {
-	}
-	
+
+	console.log('gallery-fancy: yay ! start things...');
+
 	// enable slider controllers first (to be ready in case a slider fails/slows)
-	$('*[data-toggle="i4p-gallery-fancy-modal-control"]').each(function(){
-		var controlThis = this;
-
-		console.log("gallery-fancy: within fancy-modal-control");
-
-		$(controlThis).click(function(e){
-			var target = '#' + $(controlThis).attr('data-slider-target');
-			var command = $(controlThis).attr('data-slider-command');
-			switch (command.toLowerCase()) {
-				case 'goforward':
-					$(target).data('AnythingSlider').goForward();
-					break;
-				case 'goback':
-					$(target).data('AnythingSlider').goBack();
-					break;
-				default:
-					console.log("send '" + command + "' to " + target);
-			}
-			e.preventDefault();
-		});
+	$('*[data-toggle="i4p-gallery-fancy-modal-control"]').click(function(e){
+		var target = '#' + $(this).attr('data-slider-target');
+		var command = $(this).attr('data-slider-command');
+		switch (command.toLowerCase()) {
+			case 'goforward':
+				$(target).data('AnythingSlider').goForward();
+				break;
+			case 'goback':
+				$(target).data('AnythingSlider').goBack();
+				break;
+			default:
+				console.log("send '" + command + "' to " + target);
+		}
+		e.preventDefault();
 	});
 	console.log('gallery-fancy: initialized modal controls!');
 
+
 	// FIXME: change i4p prefix with a local one (gallery-fancy-...)
-	// enable slider
+	// enable lower slider
 	$('*[data-toggle="i4p-gallery-fancy-slider"]').each(function(){
 		var sliderThis = this;
 		var viewerObjSelector = $(this).attr('data-slider-view');
 
-		var backText = $(sliderThis).attr('data-slider-backtext') || "prev";
-		var forwardText = $(sliderThis).attr('data-slider-forwardtext') || "next";
 		console.log("gallery-fancy: data-slider-view = " + viewerObjSelector);
 
 		// initialize the lower side (wide thumb slider with a full list)
@@ -68,8 +60,7 @@ $(document).ready(function(){
 			// console.log('gallery-fancy: parsing link : '+linkThis);
 
 			// populate upper slider here
-			// FIXME: maybe use pure.js ?
-			$(viewerObjSelector).append('<li><img src="' + linkSrc + '" /></li>')
+			// $(viewerObjSelector).append('<li><img src="' + linkSrc + '" alt=""/></li>')
 
 			// bind click event
 			$(linkThis).click(function(event){
@@ -77,9 +68,8 @@ $(document).ready(function(){
 				console.log('FIXME: show slide slide '+linkNumber+' on upper slider');
 			});
 		});
-		console.log('gallery-fancy: initialized slides!');
-		console.log($(viewerObjSelector));
-	});
+		console.log('gallery-fancy: initialized lower slides!');
+	}); // lower slider init
 
 
 	// initialize upper slider (with nothing inside)
@@ -89,7 +79,21 @@ $(document).ready(function(){
 
 		console.log("gallery-fancy: within fancy-viewer id = " + sliderId );
 		// console.log($(sliderThis));
-	
+
+		$(sliderThis).find('a').each(function(){
+			var linkThis = this;
+			var linkNumber = $(linkThis).parent().attr('data-slide-number');
+
+			// bind click event
+			$(linkThis).click(function(event){
+				event.preventDefault();
+				console.log('FIXME: show slide slide '+linkNumber+' on lower slider');
+			});
+		});
+
+		console.log('gallery-fancy: initialized upper slides!');
+		console.log($(viewerObjSelector));
+
 		$(sliderThis).anythingslider({
 			autoPlay: false,
 			startStopped: true, 
@@ -106,6 +110,6 @@ $(document).ready(function(){
 	console.log('gallery-fancy: initialized top slider!');
 
 
-
+	console.log('gallery-fancy: DONE');
 });
 
