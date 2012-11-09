@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+{% load sekizai_tags %}
+
+{% block base_grid %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+{% endblock %}
+
+{% block style %}
+{% compress css %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
+{% endcompress %}
+{% endblock %}
+
+{% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
+
+{% block title %}
+{% if project_translation.title %}
+{{project_translation.title|capfirst}} 
+{% if project_translation.baseline %}
+: {{ project_translation.baseline }}
+{% endif %}
+{% else %}
+{% trans 'start project'|capfirst %}
+{% endif %}
+| {{ site.name }}
+{% endblock %}
+
+{% block content %}	
+{% with gridsystem='bootstrap' %}
+
+{% addtoblock "js" %}
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    {% if project_translation %}
+    <script>
+    // Addthis configuration
+    var addthis_share = {
+        templates : {
+            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
+        }
+    }
+
+    // load only when all assets are ready
+    $(window).load(function() {
+	// Addthis
+	addthis.init(); 
+    });
+    </script>
+    {% endif %}
+
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
+{% endaddtoblock %}
+
+{% include "project_sheet/block/subheader.html" %}
+
+{% include "project_sheet/block/menubar.html" %}
+
+{% include "project_sheet/block/toolbar.html" %}
+
+<div class="project-content">
+{% block project_content %}{% endblock %}
+</div>
+
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+{% endwith %}
+{% endblock %}

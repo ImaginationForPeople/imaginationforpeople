@@ -30,7 +30,7 @@ Parameters for this block
 		{% endfor %}
 		{% if taglist_is_editable %}
 		<li class="edit">
-			<a href="{{ taglist_edit_action }}">+</a>
+			<a href="{{ taglist_edit_action }}">{% trans "edit" %}</a>
 		</li>
 		{% endif %}
 	</ul>

@@ -85,6 +85,14 @@ class ResizeThumb(processors.Resize):
     width = 95
     height = 65
     crop = True
+    
+class ResizeThumbApi(processors.Resize):
+    """
+    Resizing processor providing API media thumbnail
+    """
+    width = 200
+    height = 200
+    crop = True
 
 class ResizeIDCard(processors.Resize):
     """
@@ -151,11 +159,21 @@ class Thumbnail(ImageSpec):
     access_as = 'thumbnail_image'
     pre_cache = True
     processors = [ResizeThumb, EnhanceThumb]
+    
+class ThumbnailApi(ImageSpec):
+    access_as = 'thumbnail_api'
+    pre_cache = False
+    processors = [ResizeThumbApi, EnhanceThumb]
 
 class Display(ImageSpec):
     access_as = 'display'
     increment_count = True
     processors = [ResizeDisplay, CenterDisplay]
+
+class DisplayApi(ImageSpec):
+    access_as = 'display_api'
+    increment_count = True
+    processors = [ResizeDisplay]
 
 class MosaicTile(ImageSpec):
     """

@@ -84,7 +84,7 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
     env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
-    env.gitbranch = "release/tucker"
+    env.gitbranch = "release/restapi"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -202,7 +202,7 @@ def compile_stylesheets():
     """
     with cd(env.venvfullpath + '/' + env.projectname + '/static'):
         sudo('rm -rf compiled_sass', user=env.user)
-        sudo('/var/lib/gems/1.9.1/bin/bundle exec compass compile --force', shell=True, user=env.user)
+        sudo('bundle exec compass compile --force', shell=True, user=env.user)
             
 def tests():
     """
@@ -279,7 +279,7 @@ def app_fullupdate():
     execute(updatemaincode)
     execute(compile_messages)
     execute(compile_stylesheets)
-    execute(update_requirements, force=True)
+    execute(update_requirements, force=False)
     execute(app_db_update)
     execute(collect_static_files)
     # tests()
@@ -404,11 +404,33 @@ def install_builddeps():
     sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
 
 @task
-def install_compass():
-    sudo('apt-get install -y ruby1.9.1')
-    sudo('gem1.9.1 install bundler ')
-    venvcmd('/var/lib/gems/1.9.1/bin/bundle install --path=vendor/bundle')
+def install_rbenv():
+    # Install rbenv:
+    sudo('git clone git://github.com/sstephenson/rbenv.git ~/.rbenv', user=env.user)
+    # Add rbenv to the path:
+    sudo('echo \'export PATH="$HOME/.rbenv/bin:$PATH"\' >> .bash_profile', user=env.user)
+    sudo('echo \'eval "$(rbenv init -)"\' >> .bash_profile', user=env.user)
+    sudo('source ~/.bash_profile', user=env.user)
+    # Install ruby-build:
+    with cd('/tmp'):
+        sudo('git clone git://github.com/sstephenson/ruby-build.git', user=env.user)
+    with cd('/tmp/ruby-build'):
+        sudo('./install.sh')
+    # Install Ruby 1.9.3-p125:
+    sudo('rbenv install 1.9.3-p125', user=env.user)
+    sudo('rbenv global 1.9.3-p125', user=env.user)
+    # Rehash:
+    sudo('rbenv rehash', user=env.user)
+    
+    #install bundler
+    sudo('gem install bundler', user=env.user)
+    sudo('rbenv rehash')
 
+@task
+def install_compass():
+    with cd(env.venvfullpath + '/' + env.projectname + '/'):
+        sudo('rm -rf vendor/bundle', user=env.user)
+        sudo('bundle install --path=vendor/bundle', user=env.user)
 
 @task
 def bootstrap_full():
@@ -421,6 +443,7 @@ def bootstrap_full():
     execute(install_database_server)
     execute(install_webservers)
     execute(install_builddeps)
+    execute(install_rbenv)
     execute(install_compass)
     
     execute(deploy_bootstrap)
