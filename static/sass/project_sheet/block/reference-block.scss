@@ -7,10 +7,15 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
 
-.references-block .references-links > a.button, .references-block .references-documents  > a.button{
-              //---------------------DISABLED UNTIL FUNCTIONAL------------------------
-        display: none;
-        }
+// FIXME: DISABLED UNTIL FUNCTIONAL
+.references-block {
+    .references-links > a.button {
+	// display: none;
+    }
+    .references-documents  > a.button {
+	display: none;
+    }
+}
         
 .references-block {
     @include i4p-layout-block;

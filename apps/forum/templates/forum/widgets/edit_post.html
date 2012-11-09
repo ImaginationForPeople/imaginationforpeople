@@ -62,7 +62,7 @@
 	<div id="previewer" class="wmd-preview"></div>
 </div>
  
-{% if user and user.is_authenticated() and user.is_administrator() %}
+{% if user and user.is_authenticated() and user.get_profile().is_administrator() %}
     {# admin can post answers or questions on behalf of anyone. #}
     {#
     <table class="proxy-user-info">

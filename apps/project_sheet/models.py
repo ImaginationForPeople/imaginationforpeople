@@ -157,7 +157,14 @@ class I4pProject(models.Model):
     add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
     add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
     
-    
+    def get_primary_picture(self):
+        """
+        Return the first picture, if available
+        """
+        if len(self.pictures.all()):
+            return self.pictures.all()[0]
+        else:
+            return None
     
     def __unicode__(self):
         res = u"Parent project %d" % self.id
@@ -376,7 +383,12 @@ def delete_parent_if_last_translation(sender, instance, **kwargs):
     """
     When the last translation of a project is deleted, delete the project.
     """
-    project = instance.project
+    try:
+        project = instance.project
+    except I4pProject.DoesNotExist:
+        # Can happen if the parent when already deleted
+        return
+        
     if project.translations.count() == 0:
         project.delete()
 

@@ -37,7 +37,7 @@ line_comments = false
 sass_options = {:unix_newlines=>true}
 line_comments = false
 preferred_syntax = :scss
- 
+
 # Rename sprites to remove the Compass-generated hash
 on_sprite_saved do |filename|
 	newname = filename.gsub(%r{-s[a-z0-9]{10}\.png$}, '.png')
@@ -48,34 +48,44 @@ on_sprite_saved do |filename|
 	newname
 end
 
+REGEXP_REMS=/([0-9.]+)rem(\s*)/ ;
+REGEXP_PNG=/-s[a-z0-9]{10}\.png/ ;
+
 # Replace in stylesheets generated references to sprites
 # by their counterparts without the hash uniqueness.
 on_stylesheet_saved do |filename|
-  if File.exists?(filename)
-	fnew = File.open(filename + ".new", 'w+')
-	fold = File.open(filename, 'r')
-	fold.readlines.each do |li|
-		case li
-		when /([0-9.]+)rem(\s*)/ then
-			# compute and rewrite for IE8
-			val_px = ($1.to_f * 10).to_i
-			fnew << li.gsub(/([0-9.]+)rem(\s*)/, '%spx\2' % val_px)
-			# real rule
-			fnew << li
-		when /-s[a-z0-9]{10}\.png/ then
-			fnew << li.gsub(%r{-s[a-z0-9]{10}\.png}, '.png')
-		else
-			# simple copy
-			fnew << li
+	filename_new = "%s.new" % filename
+
+	if File.exists?(filename)
+		fnew = File.open(filename_new, 'w')
+		fold = File.open(filename, 'r')
+		while (li = fold.gets) do
+			case li
+			when REGEXP_REMS then
+				# compute and rewrite for IE8
+				val_px = ($1.to_f * 10).to_i
+				fnew << li.gsub(REGEXP_REMS, '%spx\2' % val_px)
+				# real rule
+				fnew << li
+			when REGEXP_PNG then
+				fnew << li.gsub(REGEXP_PNG, '.png')
+			else
+				# simple copy
+				fnew << li
+			end
 		end
+		fnew.close
+		fold.close
+		FileUtils.mv filename_new, filename
 	end
-	FileUtils.mv filename + ".new", filename
-    #css = File.read filename
-	
-    #File.open(filename, 'w+') do |f|
-    #  f << css.gsub(%r{-s[a-z0-9]{10}\.png}, '.png')
-    #end
-  end
+=begin
+	css = File.read filename
+
+	File.open(filename, 'w+') do |f|
+	  f << css.gsub(%r{-s[a-z0-9]{10}\.png}, '.png')
+	end
+=end
+	filename
 end
 
 

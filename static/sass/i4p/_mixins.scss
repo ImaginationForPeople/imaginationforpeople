@@ -1,0 +1,30 @@
+
+@import "compass/css3/border-radius";
+
+// use bootstrap everywhere, yay !
+@import "compass_twitter_bootstrap/variables";
+@import "compass_twitter_bootstrap/mixins";
+
+@mixin i4p-background-vertical-gradient($colorTop, $colorBottom) {
+    background-image: linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -moz-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -ms-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -o-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+    background-image: -webkit-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
+
+    background-image: -webkit-gradient(
+	linear,
+	left top,
+	left bottom,
+	color-stop(0, $colorTop),
+	color-stop(1, $colorBottom)
+    );
+}
+
+// FIXME: replace with compass/css3 transition
+@mixin i4p-transition( $effect : all .5s ease) {
+    transition: $effect;
+    -moz-transition: $effect;
+    -o-transition: $effect;
+    -webkit-transition: $effect;
+}

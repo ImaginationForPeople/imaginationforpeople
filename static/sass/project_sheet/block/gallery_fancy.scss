@@ -1,3 +1,5 @@
+
+
 @import "i4p-mixins";
 @import "i4p/constants";
 
@@ -8,8 +10,24 @@ $gallery_sizeImageBigWidth: 300px;
 $gallery_strOverlayUrl: 'gallery/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
+$gallery_sizeModalColumns: 10;
+$gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($gallery_sizeModalColumns - 1);
 
-.project-gallery {
+// act as a bootstrap "container"
+.project-gallery-modal {
+    box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
+    width: $gallery_sizeModalWidth;
+    margin-left: -$gallery_sizeModalWidth/2;
+
+    .viewer-side {
+	background-color: black;
+    }
+
+    .information-side {
+    }
+}
+
+.project-gallery-widget {
     ul {
 	margin:0;
     }
@@ -19,6 +37,7 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	position: relative;
 	height: $gallery_sizeImageHeight;
 	overflow: hidden;
+
 
 	&.picture-big {
 	    clear: both;
@@ -41,6 +60,11 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 	    .overlay-one {
 		background-position: (($gallery_sizeImageSmallWidth - $gallery_sizeOverlayWidth) / 2) (($gallery_sizeImageHeight - $gallery_sizeOverlayHeight)/2 );
 	    }
+	}
+
+	a {
+	    width: inherit;
+	    height: inherit;
 	}
 
 	.image {
@@ -119,3 +143,4 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
     }
 
 }
+

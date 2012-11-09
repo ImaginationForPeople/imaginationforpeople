@@ -42,6 +42,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     }
 
     .project-partners {
+	@include i4p-layout-block;
 	@include i4p-seemore-class;
 	h2 {
 	    @include i4p-font-title;
@@ -49,6 +50,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     }
 
     .project-gallery {
+	@include i4p-layout-block;
 	@include i4p-seemore-class;
 	h2 {
 	    @include i4p-font-title;
@@ -56,6 +58,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     }
 
     .project-related {
+	@include i4p-layout-block;
 	@include i4p-seemore-class;
 	width: inherit;
 

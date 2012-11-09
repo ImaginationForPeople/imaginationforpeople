@@ -23,6 +23,7 @@
 	{% block base_grid %}
 	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
 	{% endblock %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
@@ -31,6 +32,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/block/modal.css" />
     {% endcompress %}
 
     {% block style %}
@@ -43,6 +45,9 @@
 
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
+	<script type="text/javascript">
+		var I4P_STATIC_URL="{{STATIC_URL}}";
+	</script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
@@ -50,6 +55,10 @@
     <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-throttle-debounce.js"></script>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/pure.js"></script>
     
     <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
     		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
@@ -59,7 +68,13 @@
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
 
+    <script type="text/javascript">
+	i4p_globalsearch_complete_url = "{% url i4p-globalsearch-complete %}";
+    </script>										       
+
     {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>
 
     <script type="text/javascript">
       $(document).ready(function(){
@@ -79,10 +94,6 @@
             
             
         $(".social-login img").tipsy({html: true });
-        
-        
-      	// Text example for forms
-        $(".search input[type=text]").example("{% trans 'Project search'|escapejs %}");
         
         $("input[name=identification]").example("{% trans 'Enter your login'|escapejs %}");
         $("input[name=password]").example("{% trans 'Password'|escapejs %}");

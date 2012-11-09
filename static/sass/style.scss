@@ -1,4 +1,3 @@
-
 // THE MINIMAL COMMON CSS STYLE FOR ALL PAGES : defining root fonts size
 
 // the root font size is defined depending on the HTML element
@@ -18,12 +17,23 @@ body {
 
 // END OF THE MINIMAL COMMON CSS STYLE FOR ALL PAGES.
 
-//
-// BIG FAT WARNING : ALL THE REST MUST BE DELETED OR MOVED ELSEWHERE.
-//
+
+@import "compass_twitter_bootstrap/variables";
+@import "compass_twitter_bootstrap/mixins";
 
 @import "i4p-mixins";
 @import "i4p/constants";
+
+// 
+// BOOTSTRAP STYLE FIXES SPECIFIC TO I4P
+// 
+.modal-backdrop {
+    @include bootstrap-opacity(40);
+}
+
+//
+// BIG FAT WARNING : ALL THE REST MUST BE DELETED OR MOVED ELSEWHERE.
+//
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
@@ -959,4 +969,3 @@ ul{
     position: relative;
     top: 2px;
 }
-
