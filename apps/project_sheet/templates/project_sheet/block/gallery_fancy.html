@@ -24,7 +24,7 @@ FIXME: use picture list instead of project_translation
 {% unique_counter gallery_fancy %}
 {% with gallery_unique_counter=gallery_fancy_counter %}
 
-<div class="project-gallery" >
+<div class="project-gallery-widget">
 	<ul>
 		{% for project_picture in project_translation.project.pictures.all %}
 		{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
@@ -57,9 +57,8 @@ FIXME: use picture list instead of project_translation
 </div>
 
 <div class="project-gallery-modal modal hide fade in out span10" tabindex="-1" role="dialog" id="gallery-{{ gallery_unique_counter }}" >
-	<!-- FIXME: load real data there -->
 	<div class="row">
-	<div class="viewer span5">
+	<div class="viewer-side span5">
 		<ul class="slider">
 			{% for project_picture in project_translation.project.pictures.all %}
 			{% comment %} WE DISPLAY ONLY FOUR PICTURES, NOT MORE {% endcomment %}
@@ -89,7 +88,7 @@ FIXME: use picture list instead of project_translation
 		</ul>
 	</div>
 
-	<div class="information span3">
+	<div class="information-side span3">
 		<div class="title">
 			FIXME: title
 		</div>

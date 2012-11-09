@@ -55,10 +55,3 @@ def homepage(request):
                               dictionary=context,
                               context_instance=RequestContext(request)
                               )
-
-
-
-
-
-
-
