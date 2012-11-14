@@ -17,6 +17,7 @@ from apps.project_sheet.utils import get_project_translation_by_any_translation_
 from apps.project_support.forms import ProjectSupportProposalForm
 
 from apps.project_support.models import ProjectSupport
+from apps.tags.models import TaggedCategory
     
 def list_project_support(request, 
                          project_slug,
@@ -61,6 +62,8 @@ def list_project_support(request,
          'prop_count' : prop_count,
          'call_count' : call_count,
          'activities' : activities,
+         'root_category' : TaggedCategory.objects.get(name='support'),
+         'feed_url': reverse('project_support_main', args=[project_translation.slug])+"#TODO_RSS",
     }
     
     return questions(request, 
