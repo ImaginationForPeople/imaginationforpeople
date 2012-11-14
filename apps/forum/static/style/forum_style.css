@@ -3,6 +3,9 @@
 @import url(forum_question_list.css);
 @import url(forum_question.css);
 @import url(forum_widgets.css);
+@import url(forum_tabbar.css);
+@import url(forum_searchbar.css);
+
 /* General Predifined classes, read more in lesscss.org */
 /* Variables for Colors*/
 /* Variables for fonts*/
@@ -732,66 +735,6 @@ ul.tags li div.tag-left a{
 /*===================================================================================
                            END "SEE ALL TAGS" PAGE
 ====================================================================================*/
-
-
-
-
-/*===================================================================================
-                             TAB BAR +  RSS BTN + QUESTION COUNT
-====================================================================================*/
-
-div.tabBar{
-	zoom:1;
-	margin:0;
-	padding-top:15px;
-	padding-bottom:15px;}
-
-div.tabBar:after {	
-    content: "";
-    display: block;
-    clear: both;}
-
-div.tabBar a,
-div.tabBar span.label{
-    font-family: 'OpenSans',Arial,sans-serif;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-size:12px;	
-	color:#706f6f;}
-	
-div.tabBar a{
-	margin-left:10px;}
-	
-div.tabBar a:hover,
-div.tabBar a.on{
-	color:#242424;
-	text-decoration:none;}
-
-div.tabBar h2#questionCount{
-  float:left;
-  padding:0;
-  margin:0;
-  padding-top:2px;
-  text-transform:uppercase;
-  font-weight: bold;
-  font-size: 12px;
-  color: #242424;
-  font-family: 'OpenSans',Arial,sans-serif;}
-   
-div#sort_tabs,
-div.tabsA{
-	zoom:1;
-	float:right;}
-div#sort_tabs:after,
-div.tabsA:after {	
-    content: "";
-    display: block;
-    clear: both;}
-
-/*===================================================================================
-                             TAB BAR +  RSS BTN + QUESTION COUNT
-====================================================================================*/
-
 
 
 /* ----- Headline, containing number of questions and tags selected, check main_page/headline.html ----- */
@@ -3413,121 +3356,6 @@ div#secondaryHeader #scopeWrapper .ask-message {
 }
 
 
-/*++++++++++++++++++++++++ SEARCH BAR ++++++++++++++++++++++++++++*/
-
-div#searchBar {
-  background-color: #fff;
-  border-top: 1px solid #cccccc;
-  float: right;
-  width:240px;
-  height:25px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-}
-
-
-div#searchBar form#searchForm{
-	zoom:1;	
-}
-div#searchBar form#searchForm:after{
-  clear: both;
-  content: "";
-  display: block;}
- 
-div#searchBar input.searchBtn{
-	display:block;
-	float:left;
-	width:20px;
-	height:10px; 
-	margin-top: 8px;
-	border:none;
-    background: url(../images/search_icon.png) right top no-repeat;
-	cursor:pointer;
-	}
-	
-div#searchBar input.searchInput,
-div#searchBar input.searchInputCancelable{
-	float:left;
-	display:block;
-	width:200px;
-	height:25px;
-	border:none;}
-	
-div#searchBar input.cancelSearchBtn{
-	float:right;
-	display:block;
-	width:20px;
-	height:10px;
-	margin-top: 8px;
-	border:none;
-	text-indent:-5000px;
-    background: url(../images/close_dark.png) no-repeat;
-	cursor:pointer;}
-
-
-/*#searchBar {
-  display: inline-block;
-  background-color: #fff;
-  width: 400px;
-  border: 1px solid #c9c9b5;
-  float: right;
-  height: 42px;
-  margin: 6px 0px 0px 15px;
-}
-#searchBar .searchInput,
-#searchBar .searchInputCancelable {
-  font-size: 26px;
-  height: 36px;
-  font-weight: 300;
-  background: #FFF;
-  border: 0px;
-  color: #484848;
-  padding-top: 1px;
-  font-family: Arial;
-  vertical-align: top;
-}
-#searchBar .searchInput {
-  width: 342px;
-}
-#searchBar .searchInputCancelable {
-  width: 305px;
-}
-#searchBar .logoutsearch {
-  width: 337px;
-}
-#searchBar .searchBtn {
-  font-size: 10px;
-  color: #666;
-  background-color: #eee;
-  height: 42px;
-  border: #FFF 1px solid;
-  line-height: 22px;
-  text-align: center;
-  float: right;
-  margin: 0px;
-  width: 48px;
-  background: -98px -36px url(../images/sprites.png) no-repeat;
-  cursor: pointer;
-}
-#searchBar .searchBtn:hover {
-  background: -146px -36px url(../images/sprites.png) no-repeat;
-}
-#searchBar .cancelSearchBtn {
-  font-size: 30px;
-  color: #ce8888;
-  background: #fff;
-  height: 42px;
-  border: 0px;
-  border-left: #deded0 1px solid;
-  text-align: center;
-  width: 35px;
-  cursor: pointer;
-}
-#searchBar .cancelSearchBtn:hover {
-  color: #d84040;
-}*/
-
-/*++++++++++++++++++++++++ END SEARCH BAR ++++++++++++++++++++++++++++*/
 /*========================================================================================
 						     END  SECONDARY HEADER
 /*========================================================================================*/									 
