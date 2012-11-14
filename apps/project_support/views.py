@@ -18,7 +18,14 @@ from apps.project_support.forms import ProjectSupportProposalForm
 
 from apps.project_support.models import ProjectSupport
     
-def list_project_support(request, project_slug):
+def list_project_support(request, 
+                         project_slug,
+                         scope=None, 
+                         sort=None, 
+                         query=None, 
+                         tags=None, 
+                         author=None, 
+                         page=None):
     language_code = translation.get_language()
     site = Site.objects.get_current()
         
@@ -60,7 +67,15 @@ def list_project_support(request, project_slug):
                      template_name="project_support/project_support_list.html", 
                      thread_ids=thread_ids,
                      jinja2_rendering=False,
-                     extra_context=extra_context)
+                     extra_context=extra_context,
+                     questions_url=reverse('project_support_main', args=[project_translation.slug]),
+                     ask_url=reverse('project_support_propose', args=[project_translation.slug]),
+                     scope=scope, 
+                     sort=sort, 
+                     query=query,
+                     tags=tags, 
+                     author=author,
+                     page=page)
     
 def propose_project_support(request, project_slug, question_id=None):
 

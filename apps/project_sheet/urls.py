@@ -73,7 +73,19 @@ urlpatterns = patterns('',
     
     
     # Supports
-    url(r'^(?P<project_slug>[-\w]+)/support/$', support_views.list_project_support, name='project_support_main'),
+    url( #from askbot
+        (r'^(?P<project_slug>[-\w]+)/support' +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + 
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+        r'/$'),
+
+        support_views.list_project_support, 
+        name='project_support_main'
+    ),
     url(r'^(?P<project_slug>[-\w]+)/support/propose/$', support_views.propose_project_support, name='project_support_propose'),
     url(r'(?P<project_slug>[-\w]+)/support/(?P<question_id>\d+)/', support_views.view_project_support, name='project_support_view'),
     url(r'(?P<project_slug>[-\w]+)/support/edit/(?P<question_id>\d+)/', support_views.propose_project_support, name='project_support_edit'),
