@@ -89,7 +89,7 @@ class ProjectPictureDetailResource(ModelResource):
     
 class I4pProjectListResource(ModelResource):
     location = fields.ForeignKey(LocationListResource, 'location', full=True, null=True)
-    pictures = fields.ToManyField(ProjectPictureListResource, 'pictures', full=True, null=True)
+    pictures = fields.ToManyField(ProjectPictureListResource, full=True, null=True, attribute=lambda bundle: ProjectPicture.objects.filter(project=bundle.obj)[:1])
     
     class Meta:
         queryset = I4pProject.objects.all()
