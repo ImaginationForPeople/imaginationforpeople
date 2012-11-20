@@ -1,0 +1,14 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+
+.project-gallery-main {
+
+    .project-gallery-actions {
+	@include i4p-layout-block;
+
+	input {
+	    @include i4p-button-flat;
+	}
+    }
+}

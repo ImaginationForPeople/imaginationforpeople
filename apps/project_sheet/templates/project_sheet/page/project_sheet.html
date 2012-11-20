@@ -14,6 +14,10 @@
 {{ block.super }}
 {% endblock %}
 
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/page/project_sheet.css" />
+{% endaddtoblock %}
+
 {% block project_content %}	
 <div class="container">        
     {% if user.is_authenticated %}
