@@ -1,8 +1,15 @@
 
+// Load and prepare helpers for i4p-action sprites
+
 $i4p-action-sprite-dimensions: true;
 $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
-// @include all-i4p-action-sprites; // NO AUTO INCLUDE
+
+
+// PLEASE DOT NOT AUTO-INCLUDE & AUTO-GENERATE CSS CLASSES THERE !
+// USE CAREFULLY WITHIN FINAL SCSS FILES ONLY.
+//
+// ex: @include all-i4p-action-sprites; 
 
 @mixin i4p-sprite($classname) {
     [class^="#{$classname}-"],
