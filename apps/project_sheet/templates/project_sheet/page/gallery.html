@@ -14,17 +14,17 @@
 {{ block.super }}
 {% endblock %}
 
+
+{% block project_content %}	
+
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/page/gallery.css" />
 {% endaddtoblock %}
-
-{% block project_content %}	
 
 <div class="container">        
     <div class="row">
 	<div class="span8 project-gallery-main">
 
-	    <div class="project-gallery-actions">
 		{% if project_picture_add %}
 		<form method='POST' action='?' enctype="multipart/form-data">
 		    {% csrf_token %}
@@ -40,29 +40,59 @@
 		    <input type="submit" />
 		</form>
 		{% endif %}
-	    </div>
 
+		<div class="project-gallery-actions">
+		    <a class="button" href="{% url project_sheet-instance-picture-add project_translation.slug %}">
+			<i class="action-add"></i>
+			Add picture
+		    </a>
+		    <a class="button" href="{% url project_sheet-instance-video-add project_translation.slug %}">
+			<i class="action-add"></i>
+			Add video
+		    </a>
+		</div>
 
-	    <a href="{% url project_sheet-instance-picture-add project_translation.slug %}">Add picture</a>
-	    <br/>
-	    <a href="{% url project_sheet-instance-video-add project_translation.slug %}">Add video</a>
-	    <br/>
+		<div class="project-gallery gallery-pictures-block">
+		    <h2><span>{% trans 'pictures' %}</span></h2>
+		    <div class="row">
+			{% for picture in project.pictures.all %}
+			<div class="project-gallery-picture span2" >
+			    <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/>
+			    {% comment %}
+			    [<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}">delete</a>]
+			    {% endcomment %}
+			</div>
+			{% endfor %}
+		    </div>
+		</div>
 
-	    {% for picture in project.pictures.all %}
-	    <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/>[<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}">delete</a>]
-	    {% endfor %}
-
-	    {% for video in project.videos.all %}
-	    {% oembed 700x460 %}{{ video.video_url }}{% endoembed %}[<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
-	    {% endfor %}
+		<div class="project-gallery gallery-videos-block">
+		    <h2><span>{% trans 'videos' %}</span></h2>
+		    <div class="row">
+			{% for video in project.videos.all %}
+			<div class="project-gallery-video" >
+			    {% oembed 140x140 %}{{ video.video_url }}{% endoembed %}
+			    {% comment %}
+			    [<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
+			    {% endcomment %}
+			</div>
+			{% endfor %}
+		    </div>
+		</div>
 
 
 	</div> <!-- .project-main -->
 
 	<div class="span4 project-sidebar">	
+	    <div class="project-gallery gallery-videos-block">
+		<h2><span>{% trans 'cover picture' %}</span></h2>
+		<!-- FIXME: display the cover picture thumbnail -->
+	    </div>
 
-	    SIDEBAR
-
+	    <div class="project-gallery gallery-videos-block">
+		<h2><span>{% trans 'cover video' %}</span></h2>
+		<!-- FIXME: display the cover video thumbnail -->
+	    </div>
 	</div> <!-- .project-sidebar -->
     </div>
 </div>

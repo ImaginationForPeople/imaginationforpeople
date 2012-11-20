@@ -1,14 +1,33 @@
 @import "i4p-mixins";
 @import "i4p/constants";
 @import "i4p/buttons";
+@import "i4p/sprites";
 
 .project-gallery-main {
 
     .project-gallery-actions {
 	@include i4p-layout-block;
 
-	input {
+	.button {
 	    @include i4p-button-flat;
+	    display: inline-block;
+
+	    .action-add {
+		display: inline-block;
+		position: relative;
+		vertical-align: middle;
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite('add-black'); 
+	    }
+
+	    &:hover .action-add {
+		background: $i4p-action-sprites no-repeat; 
+		@include i4p-action-sprite('add-white'); 
+	    }
 	}
+
+    }
+
+    .project-gallery-picture {
     }
 }
