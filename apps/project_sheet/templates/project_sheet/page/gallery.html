@@ -76,18 +76,25 @@
 		<h2><span>{% trans 'cover picture' %}</span></h2>
 		<!-- FIXME: display the cover picture thumbnail -->
 
+		{% if project.pictures.all|length < 1 %}
+		{% trans 'This project has no pictures yet' %}
+		{% else %}
 		<div class="row">
 		<div class="picture span2">
 		    <div class="image">
 			<img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 140x120 upscale=1 crop='50,50' %}" alt="" />&nbsp;
 		    </div>
 		</div>
-		</div>
+		{% endif %}
 	    </div>
 
 	    <div class="video-block">
 		<h2><span>{% trans 'cover video' %}</span></h2>
 		<!-- FIXME: display the cover video thumbnail -->
+
+		{% if project.videos.all|length < 1 %}
+		{% trans 'This project has no videos yet' %}
+		{% else %}
 
 		<div class="row">
 		    <div class="video span2">
@@ -95,6 +102,7 @@
 			</div>
 		    </div>
 		</div>
+		{% endif %}
 	    </div>
 	</div> <!-- .project-sidebar -->
     </div>

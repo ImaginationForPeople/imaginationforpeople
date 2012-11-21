@@ -32,6 +32,10 @@
 				<i class="icon-remove icon-white"></i>
 			</a>
 		</div>
+		{% empty %}
+		<div class="no-picture span8">
+		{% trans 'This project has no pictures yet' %}
+		</div>
 		{% endfor %}
 	</div>
 </div>
@@ -51,6 +55,10 @@
 			{% comment %}
 			[<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
 			{% endcomment %}
+		</div>
+		{% empty %}
+		<div class="no-video span8">
+			{% trans 'This project has no videos yet' %}
 		</div>
 		{% endfor %}
 	</div>
