@@ -24,7 +24,7 @@
 
 <div class="container">        
     <div class="row">
-	<div class="span8 project-gallery-main">
+	<div class="span8 page-gallery-main">
 
 	    {% if project_picture_add %}
 	    <form method='POST' action='?' enctype="multipart/form-data">
@@ -42,7 +42,7 @@
 	    </form>
 	    {% endif %}
 
-	    <div class="project-gallery-actions">
+	    <div class="gallery-actions">
 		<a class="button" href="{% url project_sheet-instance-picture-add project_translation.slug %}">
 		    <i class="action-add"></i>
 		    Add picture
@@ -53,52 +53,11 @@
 		</a>
 	    </div>
 
-	    <div class="project-gallery gallery-pictures-block">
-		<h2><span>{% trans 'pictures' %}</span></h2>
-		<div class="row">
-		    {% for picture in project.pictures.all %}
-		    <div class="project-gallery-picture span2" >
-			<!-- <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/> -->
-
-			<div class="image">
-			    <img src="{% thumbnail picture.original_image.name 140x120 upscale=1 crop='50,50' %}" class="color" alt="">
-			</div>
-
-			<div class="description">
-			    {{picture.desc}}
-			</div>
-			{% comment %}
-			[<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}">delete</a>]
-			{% endcomment %}
-		    </div>
-		    {% endfor %}
-		</div>
-	    </div>
-
-	    <div class="project-gallery gallery-videos-block">
-		<h2><span>{% trans 'videos' %}</span></h2>
-		<div class="row">
-		    {% for video in project.videos.all %}
-		    <div class="project-gallery-video" >
-			<div class="video">
-			    {% oembed 140x120 %}{{ video.video_url }}{% endoembed %}
-			</div>
-
-			<div class="description">
-			    {{video.desc}}
-			</div>
-			{% comment %}
-			[<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
-			{% endcomment %}
-		    </div>
-		    {% endfor %}
-		</div>
-	    </div>
-
+	    {% include "project_sheet/block/gallery_fancy_wide.html" %}
 
 	</div> <!-- .project-main -->
 
-	<div class="span4 project-sidebar">	
+	<div class="span4 page-gallery-sidebar">	
 	    <div class="project-gallery gallery-videos-block">
 		<h2><span>{% trans 'cover picture' %}</span></h2>
 		<!-- FIXME: display the cover picture thumbnail -->
