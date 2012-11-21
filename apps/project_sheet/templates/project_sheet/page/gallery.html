@@ -6,6 +6,7 @@
 {% load honeypot %}
 {% load sekizai_tags %}
 {% load comments %}
+{% load thumbnail %}
 {% load oembed_works_tags %}
 {% load tabs %}
 
@@ -25,60 +26,74 @@
     <div class="row">
 	<div class="span8 project-gallery-main">
 
-		{% if project_picture_add %}
-		<form method='POST' action='?' enctype="multipart/form-data">
-		    {% csrf_token %}
-		    {{ project_picture_add }}
-		    <input type="submit" />
-		</form>
-		{% endif %}
+	    {% if project_picture_add %}
+	    <form method='POST' action='?' enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ project_picture_add }}
+		<input type="submit" />
+	    </form>
+	    {% endif %}
 
-		{% if project_video_add %}
-		<form method='POST' action='?' enctype="multipart/form-data">
-		    {% csrf_token %}
-		    {{ project_video_add }}
-		    <input type="submit" />
-		</form>
-		{% endif %}
+	    {% if project_video_add %}
+	    <form method='POST' action='?' enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ project_video_add }}
+		<input type="submit" />
+	    </form>
+	    {% endif %}
 
-		<div class="project-gallery-actions">
-		    <a class="button" href="{% url project_sheet-instance-picture-add project_translation.slug %}">
-			<i class="action-add"></i>
-			Add picture
-		    </a>
-		    <a class="button" href="{% url project_sheet-instance-video-add project_translation.slug %}">
-			<i class="action-add"></i>
-			Add video
-		    </a>
-		</div>
+	    <div class="project-gallery-actions">
+		<a class="button" href="{% url project_sheet-instance-picture-add project_translation.slug %}">
+		    <i class="action-add"></i>
+		    Add picture
+		</a>
+		<a class="button" href="{% url project_sheet-instance-video-add project_translation.slug %}">
+		    <i class="action-add"></i>
+		    Add video
+		</a>
+	    </div>
 
-		<div class="project-gallery gallery-pictures-block">
-		    <h2><span>{% trans 'pictures' %}</span></h2>
-		    <div class="row">
-			{% for picture in project.pictures.all %}
-			<div class="project-gallery-picture span2" >
-			    <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/>
-			    {% comment %}
-			    [<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}">delete</a>]
-			    {% endcomment %}
+	    <div class="project-gallery gallery-pictures-block">
+		<h2><span>{% trans 'pictures' %}</span></h2>
+		<div class="row">
+		    {% for picture in project.pictures.all %}
+		    <div class="project-gallery-picture span2" >
+			<!-- <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/> -->
+
+			<div class="image">
+			    <img src="{% thumbnail picture.original_image.name 140x120 upscale=1 crop='50,50' %}" class="color" alt="">
 			</div>
-			{% endfor %}
-		    </div>
-		</div>
 
-		<div class="project-gallery gallery-videos-block">
-		    <h2><span>{% trans 'videos' %}</span></h2>
-		    <div class="row">
-			{% for video in project.videos.all %}
-			<div class="project-gallery-video" >
-			    {% oembed 140x140 %}{{ video.video_url }}{% endoembed %}
-			    {% comment %}
-			    [<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
-			    {% endcomment %}
+			<div class="description">
+			    {{picture.desc}}
 			</div>
-			{% endfor %}
+			{% comment %}
+			[<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}">delete</a>]
+			{% endcomment %}
 		    </div>
+		    {% endfor %}
 		</div>
+	    </div>
+
+	    <div class="project-gallery gallery-videos-block">
+		<h2><span>{% trans 'videos' %}</span></h2>
+		<div class="row">
+		    {% for video in project.videos.all %}
+		    <div class="project-gallery-video" >
+			<div class="video">
+			    {% oembed 140x120 %}{{ video.video_url }}{% endoembed %}
+			</div>
+
+			<div class="description">
+			    {{video.desc}}
+			</div>
+			{% comment %}
+			[<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
+			{% endcomment %}
+		    </div>
+		    {% endfor %}
+		</div>
+	    </div>
 
 
 	</div> <!-- .project-main -->

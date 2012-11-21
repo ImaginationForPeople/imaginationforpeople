@@ -3,6 +3,13 @@
 @import "i4p/buttons";
 @import "i4p/sprites";
 
+$gallery_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
+$gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
+$gallery_sizeThumbImageHeight: 120px;
+$gallery_sizeThumbImageWidth: 140px;
+$gallery_sizeThumbTextHeight: 60px;
+
 .project-gallery-main {
 
     .project-gallery-actions {
@@ -28,6 +35,74 @@
 
     }
 
-    .project-gallery-picture {
+    .project-gallery-picture,
+    .project-gallery-video {
+	width: $gallery_sizeThumbImageWidth;
+	height: $gallery_sizeThumbImageHeight + $gallery_sizeThumbTextHeight;
+	position: relative;
+
+	.image {
+	    @include i4p-transition(all .5s ease);
+	    @include border-radius($sizeRadiusSmall);
+	    @include box-sizing(border-box);
+
+	    position: absolute;
+	    border: 1px solid $colorLightGrey;
+	    top: 0;
+	    height: $gallery_sizeThumbImageHeight;
+
+	    img {
+		@include border-radius($sizeRadiusSmall);
+	    }
+
+	    // in before, we put the view icon
+	    &:before {
+		@include i4p-transition(all .5s ease);
+		background-image: image-url($gallery_strOverlayUrl);
+		background-position: center center;
+		background-repeat: no-repeat;
+		content: "";
+		display: block;
+		height: $gallery_sizeThumbImageHeight;
+		left: 0;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		width: $gallery_sizeThumbImageWidth;
+		z-index: 3;
+	    }
+
+	    &:after {
+		@include i4p-transition(all .5s ease);
+		background-color: rgba(255,255,255,0.1);
+		content: "";
+		display: block;
+		height: $gallery_sizeThumbImageHeight;
+		left: 0;
+		opacity: 1;
+		position: absolute;
+		top: 0;
+		width: $gallery_sizeThumbImageWidth;
+		z-index: 2;
+	    }
+
+	    &:hover {
+		border: 1px solid $colorMedGrey;
+		&:before {
+		    opacity: 1;
+		}
+
+		&:after {
+		    opacity: 0;
+		}
+	    }
+
+	}
+	.description {
+	    position: absolute;
+	    top: 125px;
+	    height: 60px;
+	    overflow: hidden;
+	}
     }
 }
