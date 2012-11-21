@@ -26,21 +26,6 @@
     <div class="row">
 	<div class="span8 page-gallery-main">
 
-	    {% if project_picture_add %}
-	    <form method='POST' action='?' enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ project_picture_add }}
-		<input type="submit" />
-	    </form>
-	    {% endif %}
-
-	    {% if project_video_add %}
-	    <form method='POST' action='?' enctype="multipart/form-data">
-		{% csrf_token %}
-		{{ project_video_add }}
-		<input type="submit" />
-	    </form>
-	    {% endif %}
 
 	    <div class="gallery-actions">
 		<a class="button" href="{% url project_sheet-instance-picture-add project_translation.slug %}">
@@ -50,7 +35,36 @@
 		<a class="button" href="{% url project_sheet-instance-video-add project_translation.slug %}">
 		    <i class="action-add"></i>
 		    Add video
+
 		</a>
+
+		{% if project_picture_add %}
+		<div class="row">
+		    <div class="span8">
+			<div  class="editable non-ajax">
+			    <form method='POST' action='?' enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ project_picture_add }}
+				<input type="submit" />
+			    </form>
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+
+		{% if project_video_add %}
+		<div class="row">
+		    <div class="span8">
+			<div  class="editable non-ajax">
+			    <form method='POST' action='?' enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ project_video_add }}
+				<input type="submit" />
+			    </form>
+			</div>
+		    </div>
+		</div>
+		{% endif %}
 	    </div>
 
 	    {% include "project_sheet/block/gallery_fancy_wide.html" %}
@@ -58,14 +72,29 @@
 	</div> <!-- .project-main -->
 
 	<div class="span4 page-gallery-sidebar">	
-	    <div class="project-gallery gallery-videos-block">
+	    <div class="picture-block">
 		<h2><span>{% trans 'cover picture' %}</span></h2>
 		<!-- FIXME: display the cover picture thumbnail -->
+
+		<div class="row">
+		<div class="picture span2">
+		    <div class="image">
+			<img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 140x120 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+		    </div>
+		</div>
+		</div>
 	    </div>
 
-	    <div class="project-gallery gallery-videos-block">
+	    <div class="video-block">
 		<h2><span>{% trans 'cover video' %}</span></h2>
 		<!-- FIXME: display the cover video thumbnail -->
+
+		<div class="row">
+		    <div class="video span2">
+			<div class="image">
+			</div>
+		    </div>
+		</div>
 	    </div>
 	</div> <!-- .project-sidebar -->
     </div>

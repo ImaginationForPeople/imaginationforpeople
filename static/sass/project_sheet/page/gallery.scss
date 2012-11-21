@@ -10,8 +10,7 @@ $gallery_sizeThumbImageHeight: 120px;
 $gallery_sizeThumbImageWidth: 140px;
 $gallery_sizeThumbTextHeight: 60px;
 
-.page-gallery-main,
-.page-gallery-sidebar {
+.page-gallery-main {
 
     .gallery-actions {
 	@include i4p-layout-block;
@@ -34,6 +33,131 @@ $gallery_sizeThumbTextHeight: 60px;
 	    }
 	}
 
+	.editable {
+	    @include box-sizing(border-box);
+	    background-color: $colorLightBlue;
+	    position: relative;
+
+	    &.non-ajax {
+		@include box-sizing(border-box);
+		padding: $sizePaddingMedium;
+		margin-top: $sizeMarginMedium * 2;
+
+		label {
+		    color: white;
+		}
+
+		input {
+		    color: $colorDarkGrey;
+		}
+	    }
+
+	    &:before {
+		width: 0;
+		height: 0;
+		// position: absolute;
+		// top: -$sizeMarginMedium;
+		// left: 130px;
+
+		border-bottom: $sizeMarginMedium solid red;
+		border-left: $sizeMarginMedium solid transparent;
+		border-right: $sizeMarginMedium solid transparent;
+	    }
+	}
+
+    }
+}
+
+.page-gallery-sidebar {
+
+    .picture-block,
+    .video-block {
+	@include i4p-layout-block;
+	@include box-sizing(border-box);
+
+	border-left: 1px solid $colorLightGrey;
+	padding-left: $sizePaddingMedium;
+
+	h2 {
+	    @include i4p-font-title;
+	}
+
+
+	&:before {
+	    background-color: red;
+	    width: 200px;
+	    height: 200px;
+
+	    border-top: 100px solid red;
+	    border-bottom: 100px solid green;
+	    border-right: 100px solid blue;
+	}
+
     }
 
+    .picture, .video {
+
+
+	width: $gallery_sizeThumbImageWidth;
+	height: $gallery_sizeThumbImageHeight + $gallery_sizeThumbTextHeight;
+	position: relative;
+
+	.image {
+	    @include i4p-transition(all .5s ease);
+	    @include border-radius($sizeRadiusSmall);
+	    @include box-sizing(border-box);
+
+	    position: absolute;
+	    border: 1px solid $colorLightGrey;
+	    top: 0;
+	    height: $gallery_sizeThumbImageHeight;
+
+	    img {
+		@include border-radius($sizeRadiusSmall);
+	    }
+
+	    // in before, we put the view icon
+	    &:before {
+		@include i4p-transition(all .5s ease);
+		background-image: image-url($gallery_strOverlayUrl);
+		background-position: center center;
+		background-repeat: no-repeat;
+		content: "";
+		display: block;
+		height: $gallery_sizeThumbImageHeight;
+		left: 0;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		width: $gallery_sizeThumbImageWidth;
+		z-index: 3;
+	    }
+
+	    &:after {
+		@include i4p-transition(all .5s ease);
+		background-color: rgba(255,255,255,0.1);
+		content: "";
+		display: block;
+		height: $gallery_sizeThumbImageHeight;
+		left: 0;
+		opacity: 1;
+		position: absolute;
+		top: 0;
+		width: $gallery_sizeThumbImageWidth;
+		z-index: 2;
+	    }
+
+	    &:hover {
+		border: 1px solid $colorMedGrey;
+		&:before {
+		    opacity: 1;
+		}
+
+		&:after {
+		    opacity: 0;
+		}
+	    }
+	}
+    }
 }
+
