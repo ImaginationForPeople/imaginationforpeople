@@ -20,16 +20,16 @@ FIXME: use picture list instead of project_translation
 
 {% addtoblock "footer_js" %}
 <script type="text/javascript">
-$.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy.js");  
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy_thin.js");  
 </script>
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy_thin.css" />
 {% endaddtoblock %}
 
-{% unique_counter gallery_fancy %}
-{% with gallery_modal_unique_counter=gallery_fancy_counter %}
+{% unique_counter gallery_fancy_thin %}
+{% with gallery_modal_unique_counter=gallery_fancy_thin_counter %}
 
 <div class="project-gallery-widget">
 	<ul>
