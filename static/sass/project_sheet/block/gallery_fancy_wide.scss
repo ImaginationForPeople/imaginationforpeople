@@ -10,7 +10,11 @@ $gallery_sizeThumbImageHeight: 120px;
 $gallery_sizeThumbImageWidth: 140px;
 $gallery_sizeThumbTextHeight: 60px;
 
-.gallery-fancy-wide-block {
+
+.gallery-fancy-wide-block,
+.vidgallery-fancy-wide-block {
+     @include i4p-layout-block;
+
     h2 {
 	@include i4p-font-title;
     }
