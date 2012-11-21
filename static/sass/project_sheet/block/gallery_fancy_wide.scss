@@ -26,11 +26,14 @@ $gallery_sizeThumbTextHeight: 60px;
 	position: relative;
 
 	.delete {
+	    @include border-radius($sizeRadiusSmall);
 	    z-index: 2;
 	    position: absolute;
 	    top: 1px;
-	    right: 1px;
+	    right: 0px;
 	    background-color: rgba(0,0,0,0.5);
+	    width: $sizeTextNormal;
+	    height: $sizeTextNormal;
 	}
 
 	.image {
