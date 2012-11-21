@@ -11,13 +11,26 @@ $gallery_sizeThumbImageWidth: 140px;
 $gallery_sizeThumbTextHeight: 60px;
 
 .gallery-fancy-wide-block {
-    .page-gallery-picture,
-    .page-gallery-video {
+    h2 {
+	@include i4p-font-title;
+    }
+
+    .picture,
+    .video {
 	width: $gallery_sizeThumbImageWidth;
 	height: $gallery_sizeThumbImageHeight + $gallery_sizeThumbTextHeight;
 	position: relative;
 
+	.delete {
+	    z-index: 2;
+	    position: absolute;
+	    top: 1px;
+	    right: 1px;
+	    background-color: rgba(0,0,0,0.5);
+	}
+
 	.image {
+	    z-index: 1;
 	    @include i4p-transition(all .5s ease);
 	    @include border-radius($sizeRadiusSmall);
 	    @include box-sizing(border-box);
@@ -30,6 +43,7 @@ $gallery_sizeThumbTextHeight: 60px;
 	    img {
 		@include border-radius($sizeRadiusSmall);
 	    }
+
 
 	    // in before, we put the view icon
 	    &:before {
