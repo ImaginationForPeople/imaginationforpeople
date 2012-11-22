@@ -75,24 +75,46 @@ $gallery_sizeThumbTextHeight: 60px;
 	@include i4p-layout-block;
 	@include box-sizing(border-box);
 
+	position: relative;
 	border-left: 1px solid $colorLightGrey;
 	padding-left: $sizePaddingMedium;
+	display: block;
 
 	h2 {
 	    @include i4p-font-title;
 	}
 
+	&:after {
+	    content: "";
+	    position: absolute;
+	    @include box-sizing(content-box);
 
-	&:before {
-	    background-color: red;
-	    width: 200px;
-	    height: 200px;
+	    top: $sizeMarginMedium;
+	    left: -$sizeMarginMedium - 1;
 
-	    border-top: 100px solid red;
-	    border-bottom: 100px solid green;
-	    border-right: 100px solid blue;
+	    width: 0px;
+	    height: 0px;
+
+	    border-top: $sizePaddingMedium solid transparent;
+	    border-bottom: $sizePaddingMedium solid transparent;
+	    border-right: $sizePaddingMedium solid $colorLightGrey;
 	}
 
+	&:after {
+	    content: "";
+	    position: absolute;
+	    @include box-sizing(content-box);
+
+	    top: $sizeMarginMedium;
+	    left: -$sizePaddingMedium ;
+
+	    width: 0px;
+	    height: 0px;
+
+	    border-top: $sizePaddingMedium solid transparent;
+	    border-bottom: $sizePaddingMedium solid transparent;
+	    border-right: $sizePaddingMedium solid white;
+	}
     }
 
     .picture, .video {
