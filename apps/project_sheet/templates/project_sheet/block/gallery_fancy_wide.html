@@ -7,6 +7,7 @@
 {% load comments %}
 {% load thumbnail %}
 {% load oembed_works_tags %}
+{% load unique_counter_tag %}
 {% load tabs %}
 
 
@@ -14,11 +15,16 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy_wide.css" />
 {% endaddtoblock %}
 
+{% unique_counter gallery_fancy_wide %}
+{% with gallery_modal_unique_counter=gallery_fancy_wide_counter %}
+
 <div class="gallery-fancy-wide-block">
 	<h2><span>{% trans 'pictures' %}</span></h2>
 	<div class="row">
 		{% for picture in project.pictures.all %}
-		<div class="picture span2" >
+		<div class="picture span2" 
+			data-target="#gallery-{{ gallery_modal_unique_counter }}" data-toggle="modal" 
+			>
 			<!-- <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/> -->
 
 			<div class="image">
@@ -64,3 +70,6 @@
 	</div>
 </div>
 
+{% include "project_sheet/block/gallery_modal.html" %}
+
+{% endwith %}
