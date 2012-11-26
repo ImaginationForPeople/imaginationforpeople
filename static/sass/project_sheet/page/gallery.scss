@@ -140,7 +140,7 @@ $gallery_sizeThumbTextHeight: 60px;
 	    position: absolute;
 	    border: 1px solid $colorLightGrey;
 	    top: 0;
-	    height: $gallery_sizeThumbImageHeight;
+	    height: $gallery_sizeThumbImageHeight + 2;
 
 	    img {
 		@include border-radius($sizeRadiusSmall);
@@ -154,12 +154,12 @@ $gallery_sizeThumbTextHeight: 60px;
 		background-repeat: no-repeat;
 		content: "";
 		display: block;
-		height: $gallery_sizeThumbImageHeight;
+		height: $gallery_sizeThumbImageHeight + 2;
 		left: 0;
 		opacity: 0;
 		position: absolute;
 		top: 0;
-		width: $gallery_sizeThumbImageWidth;
+		width: $gallery_sizeThumbImageWidth + 2;
 		z-index: 3;
 	    }
 
@@ -168,12 +168,12 @@ $gallery_sizeThumbTextHeight: 60px;
 		background-color: rgba(255,255,255,0.1);
 		content: "";
 		display: block;
-		height: $gallery_sizeThumbImageHeight;
+		height: $gallery_sizeThumbImageHeight + 2;
 		left: 0;
 		opacity: 1;
 		position: absolute;
 		top: 0;
-		width: $gallery_sizeThumbImageWidth;
+		width: $gallery_sizeThumbImageWidth + 2;
 		z-index: 2;
 	    }
 
