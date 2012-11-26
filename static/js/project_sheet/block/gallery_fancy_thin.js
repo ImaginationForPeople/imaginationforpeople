@@ -3,41 +3,53 @@
 // require jquery.anythingslider
 // require jquery.anythingslider.fx
 
-$(document).ready(function(){
+/*jslint browser: true*/
+/*global $, jQuery, document*/
 
-	console.log('gallery-fancy: yay ! start things...');
+// FIXME: change all i4p prefixes with a local i4p-block prefix (i4p-gallery_fancy_thin...)
+
+"use strict";
+
+$(document).ready(function () {
+
+	var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
 
 	// enable slider controllers first (to be ready in case a slider fails/slows)
-	$('*[data-toggle="i4p-gallery-fancy-modal-control"]').click(function(e){
-		var target = '#' + $(this).attr('data-slider-target');
-		var command = $(this).attr('data-slider-command');
+	$('*[data-toggle="i4p-gallery-modal-control"]').click(function (e) {
+		var targetId = $(this).attr('data-slider-target-id'),
+			command = $(this).attr('data-slider-command'),
+			targetSlider = $('#' + targetId).data('AnythingSlider');
+
+		if (!targetSlider) { $.error('AnythingtargetSlider not initialized on object ' + targetId); }
+
 		switch (command.toLowerCase()) {
-			case 'goforward':
-				$(target).data('AnythingSlider').goForward();
-				break;
-			case 'goback':
-				$(target).data('AnythingSlider').goBack();
-				break;
-			default:
-				console.log("send '" + command + "' to " + target);
+		case 'goforward':
+			targetSlider.goForward();
+			break;
+		case 'goback':
+			targetSlider.goBack();
+			break;
+		default:
+			jdebug("send '" + command + "' to object id " + targetId);
 		}
 		e.preventDefault();
 	});
-	console.log('gallery-fancy: initialized modal controls!');
 
+	jdebug('initialized modal controls!');
 
-	// FIXME: change i4p prefix with a local one (gallery-fancy-...)
 	// enable lower slider
-	$('*[data-toggle="i4p-gallery-fancy-slider"]').each(function(){
-		var sliderThis = this;
-		var viewerObjSelector = $(this).attr('data-slider-view');
+	$('*[data-toggle="i4p-gallery-fancy-slider"]').each(function () {
+		var sliderThis = this,
+			sliderViewId = $(this).attr('data-slider-view-id');
 
-		console.log("gallery-fancy: data-slider-view = " + viewerObjSelector);
+		if (!sliderViewId) { $.error('data-slider-view-id not initialized'); }
+
+		jdebug("data-slider-view = " + sliderViewId);
 
 		// initialize the lower side (wide thumb slider with a full list)
 		$(sliderThis).anythingSlider({
 			autoPlay: false,
-			startStopped: true, 
+			startStopped: true,
 
 			buildArrows: false, // no prev/next arrows
 			buildNavigation: false, // no tabs
@@ -50,66 +62,71 @@ $(document).ready(function(){
 			infiniteSlides: true, // no wrap
 			changeBy: 5
 		});
-		console.log('gallery-fancy: initialized bottom slider!');
+		jdebug('initialized bottom slider!');
 
 		// make all slides fully active
-		$(sliderThis).find('a').each(function(){
-			var linkThis = this;
-			var linkNumber = $(linkThis).parent().attr('data-slide-number');
-			var linkSrc= $(linkThis).attr('href');
-			// console.log('gallery-fancy: parsing link : '+linkThis);
+		$(sliderThis).find('a').each(function () {
+			var linkThis = this,
+				linkNumber = $(linkThis).parent().attr('data-slide-number'),
+				linkSrc = $(linkThis).attr('href');
+
+			// jdebug('gallery-fancy: parsing link : '+linkThis);
 
 			// populate upper slider here
 			// $(viewerObjSelector).append('<li><img src="' + linkSrc + '" alt=""/></li>')
 
 			// bind click event
-			$(linkThis).click(function(event){
+			$(linkThis).click(function (event) {
 				event.preventDefault();
-				console.log('FIXME: show slide slide '+linkNumber+' on upper slider');
+				jdebug('FIXME: show slide slide ' + linkNumber + ' on upper slider');
 			});
 		});
-		console.log('gallery-fancy: initialized lower slides!');
+		jdebug('initialized lower slides!');
 	}); // lower slider init
 
 
+	/*
 	// initialize upper slider (with nothing inside)
 	$('*[data-toggle="i4p-gallery-fancy-viewer"]').each(function(){
-		var sliderThis = this;
-		var sliderId = $(sliderThis).attr('id');
+	var sliderThis = this;
+	var sliderId = $(sliderThis).attr('id');
+	var viewerObjSelector = $(this).attr('data-slider-view');
 
-		console.log("gallery-fancy: within fancy-viewer id = " + sliderId );
-		// console.log($(sliderThis));
+	jdebug("within fancy-viewer id = " + sliderId );
+	// jdebug($(sliderThis));
 
-		$(sliderThis).find('a').each(function(){
-			var linkThis = this;
-			var linkNumber = $(linkThis).parent().attr('data-slide-number');
+	$(sliderThis).find('a').each(function(){
+	var linkThis = this;
+	var linkNumber = $(linkThis).parent().attr('data-slide-number');
 
-			// bind click event
-			$(linkThis).click(function(event){
-				event.preventDefault();
-				console.log('FIXME: show slide slide '+linkNumber+' on lower slider');
-			});
-		});
-
-		console.log('gallery-fancy: initialized upper slides!');
-		console.log($(viewerObjSelector));
-
-		$(sliderThis).anythingslider({
-			autoPlay: false,
-			startStopped: true, 
-
-			buildArrows: false, // no prev/next arrows
-			buildNavigation: false, // no tabs
-			buildStartStop: false, // no start/stop
-			hashTags: false,
-
-			expand: false,
-			resizeContents: false,
-		});
+	// bind click event
+	$(linkThis).click(function(event){
+	event.preventDefault();
+	jdebug('FIXME: show slide slide '+linkNumber+' on lower slider');
 	});
-	console.log('gallery-fancy: initialized top slider!');
+	});
 
+	jdebug('initialized upper slides!');
+	jdebug($(viewerObjSelector));
+	if (!viewerObjSelector){ $.error('no viewerObjSelector defined'); }
+	jdebug('that was the viewerObjSelector!');
 
-	console.log('gallery-fancy: DONE');
+	$(sliderThis).anythingslider({
+	autoPlay: false,
+	startStopped: true, 
+
+	buildArrows: false, // no prev/next arrows
+	buildNavigation: false, // no tabs
+	buildStartStop: false, // no start/stop
+	hashTags: false,
+
+	expand: false,
+	resizeContents: false,
+	});
+	});
+	jdebug('initialized top slider!');
+	*/
+
+	jdebug('init DONE');
 });
 
