@@ -20,7 +20,7 @@ $(document).ready(function () {
 			command = $(this).attr('data-slider-command'),
 			targetSlider = $('#' + targetId).data('AnythingSlider');
 
-		if (!targetSlider) { $.error('AnythingtargetSlider not initialized on object ' + targetId); }
+		if (!targetSlider) { console.error('AnythingSlider not initialized on object ' + targetId); }
 
 		switch (command.toLowerCase()) {
 		case 'goforward':
@@ -37,17 +37,14 @@ $(document).ready(function () {
 
 	jdebug('initialized modal controls!');
 
+
 	// enable lower slider
 	$('*[data-toggle="i4p-gallery-fancy-slider"]').each(function () {
-		var sliderThis = this,
-			sliderViewId = $(this).attr('data-slider-view-id');
+		var lowerSlider = this,
+			viewId = $(this).attr('data-slider-view-id');
 
-		if (!sliderViewId) { $.error('data-slider-view-id not initialized'); }
-
-		jdebug("data-slider-view = " + sliderViewId);
-
-		// initialize the lower side (wide thumb slider with a full list)
-		$(sliderThis).anythingSlider({
+		// initialize the lower side (wide thumb slider with a 5-set list)
+		$(lowerSlider).anythingSlider({
 			autoPlay: false,
 			startStopped: true,
 
@@ -62,70 +59,78 @@ $(document).ready(function () {
 			infiniteSlides: true, // no wrap
 			changeBy: 5
 		});
-		jdebug('initialized bottom slider!');
+		jdebug('initialized bottom slider !');
 
-		// make all slides fully active
-		$(sliderThis).find('a').each(function () {
+		// each slides should show upper slider's slide
+		$(lowerSlider).find('a').each(function () {
 			var linkThis = this,
-				linkNumber = $(linkThis).parent().attr('data-slide-number'),
+				linkNumber = $(linkThis).parent().attr('data-slider-index'),
 				linkSrc = $(linkThis).attr('href');
 
-			// jdebug('gallery-fancy: parsing link : '+linkThis);
+			if (linkNumber === undefined) { console.error('data-slider-index not defined'); }
 
-			// populate upper slider here
-			// $(viewerObjSelector).append('<li><img src="' + linkSrc + '" alt=""/></li>')
+			// bind click event, warning: viewSlider is available at runtime (clicktime) only
+			$(linkThis).click(function (event) {
+				var viewSlider = $('#' + viewId);
+				if (viewSlider === undefined) { console.error('no object for data-slider-view-id = ' + viewId); }
+
+				event.preventDefault();
+				jdebug('FIXME: show slide slide ' + linkNumber + ' on upper slider');
+				viewSlider.anythingSlider(linkNumber);
+			});
+		});
+
+		jdebug('initialized lower slides clicks !');
+	}); // lower slider init
+
+
+	jdebug('before fancy viewer');
+	// initialize upper slider
+	$('*[data-toggle="i4p-gallery-modal-viewer"]').each(function () {
+		var upperSlider = this,
+			sliderId = $(upperSlider).attr('id');
+			// viewId = $(upperSlider).attr('data-slider-view-id');
+
+			console.debug(upperSlider);
+
+		// jdebug(viewId);
+		// if (viewId === undefined) {console.error('data-slider-view-id not initialized'); }
+
+/*
+			viewSlider = $('#' + viewId).data('AnythingSlider');
+		if (!viewSlider) { console.error('AnythingSlider not initialized on object ' + viewId); }
+*/
+
+		jdebug('passed fancy viewer init');
+
+		// set links from lower to upper slider
+		/*
+		$(sliderThis).find('a').each(function () {
+			var linkThis = this,
+				linkNumber = $(linkThis).parent().attr('data-slide-number');
 
 			// bind click event
 			$(linkThis).click(function (event) {
 				event.preventDefault();
-				jdebug('FIXME: show slide slide ' + linkNumber + ' on upper slider');
+				jdebug('FIXME: show slide slide ' + linkNumber + ' on lower slider');
 			});
+		}); */
+
+		// initialize the upper side (large single view)
+		$(upperSlider).anythingSlider({
+			autoPlay: false,
+			startStopped: true,
+
+			buildArrows: false, // no prev/next arrows
+			buildNavigation: false, // no tabs
+			buildStartStop: false, // no start/stop
+			hashTags: false,
+
+			expand: false,
+			resizeContents: false
 		});
-		jdebug('initialized lower slides!');
-	}); // lower slider init
-
-
-	/*
-	// initialize upper slider (with nothing inside)
-	$('*[data-toggle="i4p-gallery-fancy-viewer"]').each(function(){
-	var sliderThis = this;
-	var sliderId = $(sliderThis).attr('id');
-	var viewerObjSelector = $(this).attr('data-slider-view');
-
-	jdebug("within fancy-viewer id = " + sliderId );
-	// jdebug($(sliderThis));
-
-	$(sliderThis).find('a').each(function(){
-	var linkThis = this;
-	var linkNumber = $(linkThis).parent().attr('data-slide-number');
-
-	// bind click event
-	$(linkThis).click(function(event){
-	event.preventDefault();
-	jdebug('FIXME: show slide slide '+linkNumber+' on lower slider');
+		jdebug('initialized top slider!');
 	});
-	});
-
-	jdebug('initialized upper slides!');
-	jdebug($(viewerObjSelector));
-	if (!viewerObjSelector){ $.error('no viewerObjSelector defined'); }
-	jdebug('that was the viewerObjSelector!');
-
-	$(sliderThis).anythingslider({
-	autoPlay: false,
-	startStopped: true, 
-
-	buildArrows: false, // no prev/next arrows
-	buildNavigation: false, // no tabs
-	buildStartStop: false, // no start/stop
-	hashTags: false,
-
-	expand: false,
-	resizeContents: false,
-	});
-	});
-	jdebug('initialized top slider!');
-	*/
 
 	jdebug('init DONE');
 });

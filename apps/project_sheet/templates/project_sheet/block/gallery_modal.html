@@ -41,10 +41,10 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 		<div class="top-side viewer-side span7">
 			<ul class="gallery-viewer-container" 
 				id="gallery-modal-view-{{ modal_unique_counter }}"
-					data-toggle="i4p-gallery-fancy-viewer" 
+					data-toggle="i4p-gallery-modal-viewer" 
 				>
 				{% for project_picture in project_translation.project.pictures.all %}
-				<li data-slide-number="{{ forloop.counter }}">
+				<li data-slider-index="{{ forloop.counter }}">
 				<a href="#">
 				<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
 					alt="image-{{ forloop.counter }}" /> 
@@ -80,7 +80,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					data-toggle="i4p-gallery-fancy-slider" 
 					data-slider-view-id="gallery-modal-view-{{ modal_unique_counter }}">
 					{% for project_picture in project_translation.project.pictures.all %}
-					<li data-slide-number="{{ forloop.counter }}">
+					<li data-slider-index="{{ forloop.counter }}">
 					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
 						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  
 						alt="" />
@@ -90,7 +90,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 
 					{% comment %} FIXME: remove this loop after debug {% endcomment %}
 					{% for project_picture in project_translation.project.pictures.all %}
-					<li data-slide-number="{{ forloop.counter }}">
+					<li data-slider-index="{{ forloop.counter }}">
 					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
 						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  
 						alt="" />
