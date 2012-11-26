@@ -39,19 +39,21 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 	role="dialog" id="gallery-{{ gallery_modal_unique_counter }}" >
 	<div class="row">
 		<div class="top-side viewer-side span7">
-			<ul class="gallery-viewer-container" 
-				id="gallery-modal-view-{{ modal_unique_counter }}"
+			<div class="viewer-container">
+				<ul id="gallery-modal-view-{{ modal_unique_counter }}"
 					data-toggle="i4p-gallery-modal-viewer" 
-				>
-				{% for project_picture in project_translation.project.pictures.all %}
-				<li data-slider-index="{{ forloop.counter }}">
-				<a href="#">
-				<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
-					alt="image-{{ forloop.counter }}" /> 
-				</a>
-				</li>
-				{% endfor %}
-			</ul>
+					class="viewer-slider"
+					>
+					{% for project_picture in project_translation.project.pictures.all %}
+					<li data-slider-index="{{ forloop.counter }}">
+					<a href="#">
+						<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
+						alt="image-{{ forloop.counter }}" /> 
+					</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
 		</div>
 
 		<div class="top-side information-side span3">
@@ -74,7 +76,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 
 	<div class="row">
 		<div class="bottom-side viewer-side span7">
-			<div class="gallery-slider-container">
+			<div class="thumbnails-container">
 				<ul id="gallery-slider-{{ modal_unique_counter }}" 
 					class="gallery-slider" 
 					data-toggle="i4p-gallery-fancy-slider" 

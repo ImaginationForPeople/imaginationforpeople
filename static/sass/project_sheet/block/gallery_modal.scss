@@ -4,21 +4,29 @@
 @import "i4p/buttons";
 @import "i4p/fonts";
 
-$gallery_sizeModalColumns: 10;
-$gallery_sizeModalWidth: $gallery_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($gallery_sizeModalColumns);
-$gallery_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$galleryModal_sizeModalColumns: 10;
+$galleryModal_sizeModalWidth: $galleryModal_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($galleryModal_sizeModalColumns);
 
-$gallery_sizeSliderWidth: 540px;
-$gallery_sizeSliderHeight: 75px;
+$galleryModal_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$galleryModal_strSeparatorUrl: 'project_sheet/gallery_fancy/horizontal-separator.png';
 
-$gallery_sizeSliderImageWidth: 88px;
-$gallery_sizeSliderImageHeight: 55px;
+$galleryModal_sizeViewerContainerWidth: 540px;
+$galleryModal_sizeViewerContainerHeight: 400px;
+
+$galleryModal_sizeViewerWidth: 500px;
+$galleryModal_sizeViewerHeight: 380px;
+
+$galleryModal_sizeThumbContainerWidth: 540px;
+$galleryModal_sizeThumbContainerHeight: 75px;
+
+$galleryModal_sizeThumbWidth: 88px;
+$galleryModal_sizeThumbHeight: 55px;
 
 
 .project-gallery-modal {
     box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
-    width: $gallery_sizeModalWidth;
-    margin-left: -$gallery_sizeModalWidth/2;
+    width: $galleryModal_sizeModalWidth;
+    margin-left: -$galleryModal_sizeModalWidth/2;
     overflow: hidden;
 
     // FIXME: remove after debug ?
@@ -28,22 +36,21 @@ $gallery_sizeSliderImageHeight: 55px;
     overflow-y: auto;
 
     .row:first-child {
-	background-image: image-url('project_sheet/gallery_fancy/horizontal-separator.png');
+	background-image: image-url($galleryModal_strSeparatorUrl);
 	background-position: center bottom;
 	background-repeat: repeat-x;
     }
 
-    .gallery-slider-container {
-	// local anythingslider adaptation
+    .viewer-container {
 	.anythingSlider {
 	    position: relative;
-	    height: $gallery_sizeSliderHeight;
+	    height: $galleryModal_sizeViewerContainerHeight;
 
 	    .anythingWindow {
 		height: 100%;
 		overflow: hidden;
 		position: relative;
-		width: $gallery_sizeSliderWidth;
+		width: $galleryModal_sizeViewerContainerWidth;
 	    }
 
 	    .anythingBase {
@@ -51,7 +58,55 @@ $gallery_sizeSliderImageHeight: 55px;
 	    }
 
 	    .panel {
-		height: $gallery_sizeSliderHeight;
+		height: $galleryModal_sizeViewerContainerHeight;
+	    }
+
+	    .activePage {
+		img {
+		    outline: 1px solid white;
+		}
+	    }
+	}
+
+	.viewer-slider {
+	    display: block;
+	    overflow: hidden;
+	    list-style: none;
+	    height: $galleryModal_sizeViewerContainerHeight;
+
+	    & > li {
+		@include box-sizing(border-box);
+
+		float: left;
+		display: block;
+		margin:0;
+		position: relative;
+		overflow: hidden;
+		height: $galleryModal_sizeViewerContainerHeight;
+		width: $galleryModal_sizeViewerContainerWidth;
+	    }
+	}
+    }
+
+    .thumbnails-container {
+	// local anythingslider adaptation
+	.anythingSlider {
+	    position: relative;
+	    height: $galleryModal_sizeThumbContainerHeight;
+
+	    .anythingWindow {
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+		width: $galleryModal_sizeThumbContainerWidth;
+	    }
+
+	    .anythingBase {
+		position: absolute;
+	    }
+
+	    .panel {
+		height: $galleryModal_sizeThumbContainerHeight;
 	    }
 
 	    .activePage {
@@ -65,7 +120,7 @@ $gallery_sizeSliderImageHeight: 55px;
 	    display: block;
 	    overflow: hidden;
 	    list-style: none;
-	    height: $gallery_sizeSliderHeight;
+	    height: $galleryModal_sizeThumbContainerHeight;
 
 	    & > li {
 		@include box-sizing(border-box);
@@ -75,7 +130,7 @@ $gallery_sizeSliderImageHeight: 55px;
 		margin:0;
 		position: relative;
 		overflow: hidden;
-		height: $gallery_sizeSliderHeight;
+		height: $galleryModal_sizeThumbContainerHeight;
 		width: 108px;
 
 		a {
@@ -85,8 +140,8 @@ $gallery_sizeSliderImageHeight: 55px;
 			top: 2px;
 			outline: 1px solid $colorDarkGrey;
 			z-index: 1;
-			height: $gallery_sizeSliderImageHeight;
-			width: $gallery_sizeSliderImageWidth;
+			height: $galleryModal_sizeThumbHeight;
+			width: $galleryModal_sizeThumbWidth;
 			margin-top: 5px;
 			margin-bottom: 5px;
 		    }
@@ -96,12 +151,12 @@ $gallery_sizeSliderImageHeight: 55px;
 			@include i4p-transition(all .5s ease);
 			background-position: center center;
 			background-repeat: no-repeat;
-			background-image: image-url($gallery_strOverlayUrl);
+			background-image: image-url($galleryModal_strOverlayUrl);
 			content: "";
 			z-index: 3;
 			display: block;
-			height: $gallery_sizeSliderImageHeight;
-			width: $gallery_sizeSliderImageWidth;
+			height: $galleryModal_sizeThumbHeight;
+			width: $galleryModal_sizeThumbWidth;
 			left: 11px;
 			position: absolute;
 			top: 7px;
@@ -115,8 +170,8 @@ $gallery_sizeSliderImageHeight: 55px;
 			content: "";
 			z-index: 2;
 			display: block;
-			height: $gallery_sizeSliderImageHeight;
-			width: $gallery_sizeSliderImageWidth;
+			height: $galleryModal_sizeThumbHeight;
+			width: $galleryModal_sizeThumbWidth;
 			left: 11px;
 			position: absolute;
 			top: 7px;
@@ -160,7 +215,7 @@ $gallery_sizeSliderImageHeight: 55px;
 	background-color: black;
 
 	&.top-side {
-	    min-height: 200px;
+	    min-height: 400px;
 	}
 
 	&.bottom-side {

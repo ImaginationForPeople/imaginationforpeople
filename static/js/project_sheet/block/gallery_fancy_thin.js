@@ -13,6 +13,7 @@
 $(document).ready(function () {
 
 	var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
+	// var jdebug = function (str) { return null; }; 
 
 	// enable slider controllers first (to be ready in case a slider fails/slows)
 	$('*[data-toggle="i4p-gallery-modal-control"]').click(function (e) {
@@ -75,8 +76,8 @@ $(document).ready(function () {
 				if (viewSlider === undefined) { console.error('no object for data-slider-view-id = ' + viewId); }
 
 				event.preventDefault();
-				jdebug('FIXME: show slide slide ' + linkNumber + ' on upper slider');
 				viewSlider.anythingSlider(linkNumber);
+				jdebug('FIXME: remove - showing slide slide ' + linkNumber + ' on upper slider');
 			});
 		});
 
@@ -91,8 +92,6 @@ $(document).ready(function () {
 			sliderId = $(upperSlider).attr('id');
 			// viewId = $(upperSlider).attr('data-slider-view-id');
 
-			console.debug(upperSlider);
-
 		// jdebug(viewId);
 		// if (viewId === undefined) {console.error('data-slider-view-id not initialized'); }
 
@@ -102,19 +101,6 @@ $(document).ready(function () {
 */
 
 		jdebug('passed fancy viewer init');
-
-		// set links from lower to upper slider
-		/*
-		$(sliderThis).find('a').each(function () {
-			var linkThis = this,
-				linkNumber = $(linkThis).parent().attr('data-slide-number');
-
-			// bind click event
-			$(linkThis).click(function (event) {
-				event.preventDefault();
-				jdebug('FIXME: show slide slide ' + linkNumber + ' on lower slider');
-			});
-		}); */
 
 		// initialize the upper side (large single view)
 		$(upperSlider).anythingSlider({
@@ -128,6 +114,8 @@ $(document).ready(function () {
 
 			expand: false,
 			resizeContents: false
+
+			// FIXME: on show, update information panel & update lower slider if needed
 		});
 		jdebug('initialized top slider!');
 	});
