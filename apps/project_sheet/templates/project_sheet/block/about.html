@@ -17,12 +17,12 @@
 {% endaddtoblock %}
 
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
-{% addtoblock "js" %}
+{% addtoblock "footer_js" %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/project_sheet/block/about.js");  
 </script>
 {% endaddtoblock %}
-{% addtoblock "js" %}
+{% addtoblock "footer_js" %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
 </script>

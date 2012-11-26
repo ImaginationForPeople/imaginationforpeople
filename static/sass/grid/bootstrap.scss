@@ -23,3 +23,12 @@ html {
 body {
     font-size: 1.2rem;
 }
+
+[class^="icon-"], [class*=" icon-"] {
+    background-image: image-url("bootstrap/glyphicons-halflings.png");
+}
+
+.icon-white[class^="icon-"], .icon-white[class*=" icon-"] {
+    background-image: image-url("bootstrap/glyphicons-halflings-white.png");
+}
+

@@ -6,6 +6,7 @@
 {% load honeypot %}
 {% load sekizai_tags %}
 {% load comments %}
+{% load thumbnail %}
 {% load oembed_works_tags %}
 {% load tabs %}
 
@@ -17,48 +18,93 @@
 
 {% block project_content %}	
 
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/page/gallery.css" />
+{% endaddtoblock %}
+
 <div class="container">        
     <div class="row">
-	<div class="span8 project-main">
+	<div class="span8 page-gallery-main">
 
-	  
-	  {% if project_picture_add %}
-	  <form method='POST' action='?' enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {{ project_picture_add }}
-	    <input type="submit"/>
-	  </form>
-	  {% endif %}
 
-	  {% if project_video_add %}
-	  <form method='POST' action='?' enctype="multipart/form-data">
-	    {% csrf_token %}
-	    {{ project_video_add }}
-	    <input type="submit"/>
-	  </form>
-	  {% endif %}
-	  
+	    <div class="gallery-actions">
+		<a class="button" href="{% url project_sheet-instance-picture-add project_translation.slug %}">
+		    <i class="action-add"></i>
+		    Add picture
+		</a>
+		<a class="button" href="{% url project_sheet-instance-video-add project_translation.slug %}">
+		    <i class="action-add"></i>
+		    Add video
 
-	  <a href="{% url project_sheet-instance-picture-add project_translation.slug %}">Add picture</a>
-	  <br/>
-	  <a href="{% url project_sheet-instance-video-add project_translation.slug %}">Add video</a>
-	  <br/>
-	  
-	  {% for picture in project.pictures.all %}
-	  <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/>[<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}">delete</a>]
-	  {% endfor %}
+		</a>
 
-	  {% for video in project.videos.all %}
-	    {% oembed 700x460 %}{{ video.video_url }}{% endoembed %}[<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
-	  {% endfor %}
+		{% if project_picture_add %}
+		<div class="row">
+		    <div class="span8">
+			<div  class="editable non-ajax">
+			    <form method='POST' action='?' enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ project_picture_add }}
+				<input type="submit" />
+			    </form>
+			</div>
+		    </div>
+		</div>
+		{% endif %}
 
+		{% if project_video_add %}
+		<div class="row">
+		    <div class="span8">
+			<div  class="editable non-ajax">
+			    <form method='POST' action='?' enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ project_video_add }}
+				<input type="submit" />
+			    </form>
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+	    </div>
+
+	    {% include "project_sheet/block/gallery_fancy_wide.html" %}
 
 	</div> <!-- .project-main -->
 
-	<div class="span4 project-sidebar">	
+	<div class="span4 page-gallery-sidebar">	
+	    <div class="picture-block">
+		<h2><span>{% trans 'cover picture' %}</span></h2>
+		<!-- FIXME: display the cover picture thumbnail -->
 
-	  SIDEBAR
+		{% if project.pictures.all|length < 1 %}
+		{% trans 'This project has no pictures yet' %}
+		{% else %}
+		<div class="row">
+		    <div class="picture span2">
+			<div class="image">
+			    <img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 140x120 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+	    </div>
 
+	    <div class="video-block">
+		<h2><span>{% trans 'cover video' %}</span></h2>
+		<!-- FIXME: display the cover video thumbnail -->
+
+		{% if project.videos.all|length < 1 %}
+		{% trans 'This project has no videos yet' %}
+		{% else %}
+
+		<div class="row">
+		    <div class="video span2">
+			<div class="image">
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+	    </div>
 	</div> <!-- .project-sidebar -->
     </div>
 </div>

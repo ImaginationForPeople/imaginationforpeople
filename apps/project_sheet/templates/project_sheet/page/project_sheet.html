@@ -15,6 +15,11 @@
 {% endblock %}
 
 {% block project_content %}	
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/page/project_sheet.css" />
+{% endaddtoblock %}
+
 <div class="container">        
     {% if user.is_authenticated %}
         {% with "project_sheet_logged_in_popup" as placeholder_name %}
@@ -85,7 +90,7 @@
 		    {% trans "Gallery"|capfirst %}
 		</h2>
 		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% include "project_sheet/block/gallery_fancy.html" %}
+		{% include "project_sheet/block/gallery_fancy_thin.html" %}
 
 	    </div> <!-- .project-gallery -->
 

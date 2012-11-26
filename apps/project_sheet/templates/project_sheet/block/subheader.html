@@ -15,6 +15,7 @@
 		<div class="row">
 			<div class="span8 subheader">
 				<div class="background">
+					{% comment %} FIXME: cover image is simply the first of the list, not a special/selected one {% endcomment %}
 					<img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
 				</div>
 				<div class="overlay">
