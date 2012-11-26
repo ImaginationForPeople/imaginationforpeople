@@ -41,7 +41,7 @@
 		{% if project_picture_add %}
 		<div class="row">
 		    <div class="span8">
-			<div  class="editable non-ajax">
+			<div  class="editable editable-picture non-ajax">
 			    <form method='POST' action='?' enctype="multipart/form-data">
 				{% csrf_token %}
 				{{ project_picture_add }}
@@ -55,7 +55,7 @@
 		{% if project_video_add %}
 		<div class="row">
 		    <div class="span8">
-			<div  class="editable non-ajax">
+			<div  class="editable editable-video non-ajax">
 			    <form method='POST' action='?' enctype="multipart/form-data">
 				{% csrf_token %}
 				{{ project_video_add }}

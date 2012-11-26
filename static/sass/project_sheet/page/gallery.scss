@@ -55,13 +55,21 @@ $gallery_sizeThumbTextHeight: 60px;
 	    &:before {
 		width: 0;
 		height: 0;
-		// position: absolute;
-		// top: -$sizeMarginMedium;
-		// left: 130px;
+		content: "";
+		position: absolute;
+		top: -$sizeMarginMedium + 1;
 
-		border-bottom: $sizeMarginMedium solid red;
+		border-bottom: $sizeMarginMedium solid $colorLightBlue;
 		border-left: $sizeMarginMedium solid transparent;
 		border-right: $sizeMarginMedium solid transparent;
+	    }
+
+	    &.editable-picture:before {
+		left: 110px;
+	    }
+
+	    &.editable-video:before {
+		left: 330px;
 	    }
 	}
 
