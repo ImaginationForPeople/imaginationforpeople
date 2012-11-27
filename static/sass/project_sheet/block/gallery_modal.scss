@@ -216,6 +216,7 @@ $galleryModal_sizeThumbHeight: 55px;
 	@include i4p-font-subtitle($sizeTextNormal);
 	text-transform: uppercase;
 	display: block;
+	margin-bottom: $sizeMarginMedium;
 
 	a {
 	    color: white;
@@ -230,6 +231,8 @@ $galleryModal_sizeThumbHeight: 55px;
 
 	&.top-side {
 	    min-height: 400px;
+	    //padding-top: $sizePaddingMedium;
+	    //padding-bottom: $sizePaddingMedium;
 	}
 
 	&.bottom-side {
@@ -241,17 +244,38 @@ $galleryModal_sizeThumbHeight: 55px;
     .information-side {
 	&.top-side {
 	    // FIXME
+	    //padding-top: $sizePaddingMedium;
+	    //padding-bottom: $sizePaddingMedium;
 	}
 
 	&.bottom-side {
-	    a {
-		@include i4p-button-fancy-bordered;
+	    .action {
+		margin-top: $sizeMarginMedium;
+		margin-bottom: $sizeMarginMedium;
 
-		display: block;
-		width: 60%;
-		margin-top: $sizeTextNormal * 2;
-		margin-left: auto;
-		margin-right: auto;
+		a {
+		    @include i4p-font-subtitle($sizeTextSmall);
+		    display: block;
+		    color: $colorMedGrey;
+
+		    &:hover {
+			color: black;
+		    }
+		}
+	    }
+
+	    .action-primary {
+		margin-top: $sizeMarginMedium;
+		margin-bottom: $sizeMarginMedium;
+
+		a {
+		    @include i4p-button-fancy-bordered;
+
+		    display: block;
+		    width: 60%;
+		    margin-left: auto;
+		    margin-right: auto;
+		}
 	    }
 	}
     }
