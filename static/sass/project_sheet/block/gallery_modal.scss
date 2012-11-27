@@ -42,6 +42,9 @@ $galleryModal_sizeThumbHeight: 55px;
     }
 
     .viewer-container {
+	margin-top: $sizeMarginMedium;
+	margin-bottom: $sizeMarginMedium;
+
 	.anythingSlider {
 	    position: relative;
 	    height: $galleryModal_sizeViewerContainerHeight;
@@ -59,11 +62,16 @@ $galleryModal_sizeThumbHeight: 55px;
 
 	    .panel {
 		height: $galleryModal_sizeViewerContainerHeight;
-	    }
 
-	    .activePage {
 		img {
-		    outline: 1px solid white;
+			@include i4p-transition(all .5s ease);
+			outline: 1px solid rgba(255,255,255,0);
+		}
+
+		&.activePage {
+		    img {
+			outline: 1px solid rgba(255,255,255,0.5);
+		    }
 		}
 	    }
 	}
@@ -72,7 +80,7 @@ $galleryModal_sizeThumbHeight: 55px;
 	    display: block;
 	    overflow: hidden;
 	    list-style: none;
-	    height: $galleryModal_sizeViewerContainerHeight;
+	    height: $galleryModal_sizeViewerContainerHeight + 10;
 
 	    & > li {
 		@include box-sizing(border-box);
@@ -83,7 +91,13 @@ $galleryModal_sizeThumbHeight: 55px;
 		position: relative;
 		overflow: hidden;
 		height: $galleryModal_sizeViewerContainerHeight;
-		width: $galleryModal_sizeViewerContainerWidth;
+		width: $galleryModal_sizeViewerContainerWidth + 5;
+
+		img {
+		    left: 10px;
+		    position: absolute;
+		    top: 1px;
+		}
 	    }
 	}
     }
