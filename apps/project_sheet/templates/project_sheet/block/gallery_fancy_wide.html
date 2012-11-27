@@ -50,8 +50,9 @@
 	<h2><span>{% trans 'videos' %}</span></h2>
 	<div class="row">
 		{% for video in project.videos.all %}
-		<div class="project-gallery-video" >
-			<div class="video">
+		<div class="video span2" >
+			<div class="remotevideo">
+				<!-- FIXME: extract video thumbnail as specified there : http://stackoverflow.com/questions/2068344/how-to-get-thumbnail-of-youtube-video-link-using-youtube-api -->
 				{% oembed 140x120 %}{{ video.video_url }}{% endoembed %}
 			</div>
 
