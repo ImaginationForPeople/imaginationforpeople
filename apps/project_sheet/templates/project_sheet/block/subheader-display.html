@@ -1,0 +1,240 @@
+{% load i18n %}
+{% load compress %}
+{% load sekizai_tags %}
+{% load thumbnail %}
+{% load unique_counter_tag %}
+
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/subheader.css" />
+{% endaddtoblock %}
+
+
+<div class="project-subheader">
+	<div class="container">
+		<div class="row">
+			<div class="span8 subheader">
+				<div class="background">
+					{% comment %} FIXME: cover image is simply the first of the list, not a special/selected one {% endcomment %}
+					<img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+				</div>
+				<div class="overlay">
+					<h1 class="title"> <!-- TITLE -->
+						{% if title_form %}<!-- TITLE/READWRITE -->
+						<form id="title" 
+							{% if project_translation %}
+							action="{% url  project_sheet-instance-edit-field project_translation.slug 'title' %}" 
+							{% else %}
+							action="{% url project_sheet-edit-field topic.slug 'title' %}"
+							{% endif %}
+							method="post">{% csrf_token %}
+							{{title_form.title}}
+							<input id="project_title_cancel" type="reset" onclick="history.back()" value="Cancel" alt="X" title="{% trans 'Cancel'|capfirst %}"  />
+							<input id="project_title_submit" type="submit" value="Ok" alt="V" title="{% trans 'Ok'|capfirst %}"  />
+						</form>
+
+						{% else %}
+						{% if project_translation %}<!-- TITLE/READONLY filled -->
+						{% unique_counter subheader %}
+						{% with subheader_title_unique_counter=subheader_counter %}
+						<span id="subheader-title-{{subheader_title_unique_counter}}"
+							{% comment %}
+							data-toggle="i4p-editable"
+							data-language-code="{{ LANGUAGE_CODE }}"
+							data-editable-id="project_title"
+							data-editable-tooltip="{% trans 'Double-click to edit' %}"
+							data-editable-type="textarea"
+							data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
+							data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
+							data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
+							{% endcomment %}
+							>
+							{{ project_translation.title }}
+						</span>
+						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'title' %}" class="button editing-button nomargin right"
+							{% comment %}
+							data-toggle="i4p-editable-button"
+							data-target="subheader-title-{{subheader_title_unique_counter}}"
+							{% endcomment %}
+							>
+							<img src="{{ STATIC_URL }}images/base/edit.png" />
+						</a>
+						{% endwith %}<!-- %subheader_title_unique_counter -->
+						{% else %}
+						<!-- TITLE/READONLY empty -->
+
+						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'title' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+						{% trans 'my project title'|capfirst %}
+
+						{% endif %}
+						{% endif %}
+					</h1> <!-- /TITLE -->
+					<div class="description"><!-- BASELINE -->
+						{% if baseline_form %}
+						<!-- BASELINE/READWRITE -->
+						<form id="baseline" 
+							{% if project_translation %}
+							action="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" 
+							{% else %}
+							action="{% url project_sheet-edit-field topic.slug 'baseline'%}" 
+							{% endif %}
+							method="post" class="project_baseline_edition">{% csrf_token %}
+							{{ baseline_form.baseline }}
+							{% include "project_sheet/block/form_buttons.html" %}
+						</form>
+						{% else %}
+						{% if project_translation %}
+						<!-- BASELINE/READONLY filled-->
+						{% unique_counter subheader %}
+						{% with subheader_baseline_unique_counter=subheader_counter %}
+						<span
+							id="subheader-baseline-{{subheader_baseline_unique_counter}}"
+							{% comment %}
+							data-toggle="i4p-editable"
+							data-language-code="{{ LANGUAGE_CODE }}"
+							data-editable-id="baseline"
+							data-editable-tooltip="{% trans 'Double-click to edit' %}"
+							data-editable-type="textarea"
+							data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
+							data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
+							data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
+							{% endcomment %}
+							>
+							{{ project_translation.baseline }}
+						</span>
+						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+						{% endwith %}
+						{% else %}
+						<!--  BASELINE/READONLY empty -->
+						{% trans "One line description"|capfirst %}
+						<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+						{% endif %}
+						{% endif %}	
+					</div><!-- /BASELINE -->
+
+					<div class="details"></div>
+				</div>
+			</div> <!-- .subheader -->
+
+			<div class="span4 infocard">
+				<a name="project-information"></a>
+				<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
+				<table class="infotable">
+
+
+					<tr class="infotable-location location">
+						<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
+						<th>{% trans "Location" %}</th>
+						<td>
+							{% if project_location_form %}<!-- LOCATION/READWRITE -->
+							<div class="location-form">
+								<form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
+									{% csrf_token %}
+									{{ project_location_form.as_p }}
+									<div class="clear"></div>
+									{% include "project_sheet/block/form_buttons.html" %}
+								</form>	
+							</div> <!-- .location-form -->
+							{% else %}
+							{% if project_translation %}
+							<!-- LOCATION/READONLY filled-->
+							<div class="location-address">
+								{% if project_translation.project.location %}
+								<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
+								{% if project_translation.project.location.address %}
+								{{ project_translation.project.location.address }}
+								{% endif %}
+								{% endif %}
+							</div>
+							<div class="location-country">
+								{% if project_translation.project.location.country %}
+								<img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
+								{% endif %}
+								{% if project_translation.project.location.lat %}
+								<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
+								{% endif %}
+								<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-location project_translation.slug %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+							</div> <!-- .location-address -->
+							{% else %}<!-- LOCATION/READONLY/EMPTY mode -->
+							<em>{% trans 'unknown'|capfirst %}</em>
+							{% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>{% endcomment %}
+							{% endif %}
+							{% endif %}
+						</td>
+					</tr>
+
+
+					<tr class="infotable-website">
+						<th>{% trans "Web" %}</th>
+						<td>
+							{% if project_info_form %}<!-- WEBSITE/READWRITE mode-->
+							<form action="{% url project_sheet-instance-edit-info project_translation.slug %}" method="post">
+								{% csrf_token %}
+
+								{{ project_info_form.as_p }}
+								<div class="clear"></div>
+								<input title="{% trans 'Ok'|capfirst %}" 
+									class="button greenbutton nomargin right" 
+									type="image" 
+									src="{{ STATIC_URL }}images/base/v.png" 
+									alt="Ok" ></input>
+								<input id="project_infos_block_edit_button_cancel" 
+									title="{% trans 'Cancel'|capfirst %}"  
+									class="button redbutton nomargin right" 
+									type="image" 
+									src="{{ STATIC_URL }}images/base/x.png" 
+									alt="X" ></input>
+							</form>	
+							{% else %}
+							{% if project_translation %}<!-- WEBSITE/READONLY filled -->
+							{% if project_translation.project.website %}
+							<a href="{{ project.website }}" target="_blank" rel="nofollow">
+								{{ project_translation.project.website }}
+							</a>
+							{% else %}
+							{% trans 'unknown'|capfirst %}
+							{% endif %}
+
+							<a title="{% trans 'Edit'|capfirst %}" 
+								href="{% url project_sheet-instance-edit-info project_translation.slug %}" 
+								class="button editing-button right"
+								><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+
+							{% else %}<!-- WEBSITE/READONLY empty -->
+							{% trans 'unknown'|capfirst %}
+							{% endif %}
+							{% endif%}
+						</td>
+					</tr>
+					<!-- FIXME: re-enable whell data will be in the object model
+					<tr class="infotable-follow">
+						<th>{% trans "Follow" %}</th>
+						<td></td>
+					</tr>
+					<tr class="infotable-share">
+						<th>{% trans "Share" %}</th>
+						<td></td>
+					</tr>
+					-->
+					<!-- FIXME: re-enable whell data will be in the object model
+					<tr class="infotable-movecommons">
+						<th>{% trans "Movecommons" %}</th>
+						<td></td>
+					</tr>
+					-->
+					<tr class="infotable-maturity">
+						<th>{% trans "Maturity" %}</th>
+						<td>
+							{% comment %} FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
+							<p class="progressbar progressbar-{{project_translation.project.status|lower }}">
+							<span class="status">{{ project_translation.project.get_status_display }}</span>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</div> <!-- .infotable -->
+
+		</div>
+	</div>
+</div> <!-- .project-subheader -->
+
