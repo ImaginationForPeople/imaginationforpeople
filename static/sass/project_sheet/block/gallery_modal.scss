@@ -61,7 +61,7 @@ $galleryModal_sizeThumbHeight: 55px;
 	    }
 
 	    .panel {
-		height: $galleryModal_sizeViewerContainerHeight;
+		height: $galleryModal_sizeViewerContainerHeight + 2;
 
 		img {
 			@include i4p-transition(all .5s ease);
@@ -73,6 +73,15 @@ $galleryModal_sizeThumbHeight: 55px;
 			outline: 1px solid rgba(255,255,255,0.5);
 		    }
 		}
+
+		.description, .source, .licence, .delete {
+		    position: absolute;
+		    top: 0;
+		    height: 1px;
+		    display: none;
+		    visibility: hidden;
+		}
+
 	    }
 	}
 

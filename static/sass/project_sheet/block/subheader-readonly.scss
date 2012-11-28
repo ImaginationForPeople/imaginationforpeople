@@ -1,0 +1,126 @@
+// load reusable components
+@import "i4p-mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
+
+
+// create sprites for progressbar
+$sheet-sprite-dimensions: true;
+@import "project/sheet/*.png"; // */
+@include all-sheet-sprites;
+
+// create sprites for toolbar
+$i4p-toolbar-sprite-dimensions: true;
+@import "project_sheet/i4p-toolbar/*.png"; // */
+@include all-i4p-toolbar-sprites;
+
+$i4p-action-sprite-dimensions: true;
+$i4p-action-sprites: sprite-map("i4p-action/*.png");
+@import "i4p-action/*.png"; // */
+// @include all-i4p-action-sprites; // NO AUTO INCLUDE
+
+@mixin i4p-editable {
+    & > .editing-button {
+	@include i4p-transition;
+	display: none;
+	opacity: 0;
+    }
+
+    &:hover {
+	& > .editing-button {
+	    display: block;
+	    opacity: 1;
+	}
+    }
+}
+
+.project-subheader {
+    background-color: black;
+    position: relative;
+
+    .subheader {
+	overflow: hidden;
+	position: relative;
+        /* necessary when the is no project image */
+        min-height: 150px;
+	margin-left: 0px;
+	height: 300px;
+
+	.overlay {
+	    @include box-sizing(border-box);
+	    background-color: rgba(0,0,0,0.5);
+	    position: absolute;
+	    bottom: 0;
+	    min-height: 6rem;
+	    z-index: 1;
+	    width: 100%;
+
+	    .title {
+		@include i4p-font-pagetitle($sizeTextHuge);
+		@include i4p-editable;
+		color: white;
+		margin-left: 50px;
+	    }
+
+	    .description {
+		@include i4p-font-base($sizeTextNormal);
+		@include i4p-editable;
+		margin-left: 50px;
+		color: white;
+		font-style: italic;
+	    }
+	}
+
+	.background {
+	    top: 0;
+	    left: 0;
+
+        
+	    img {
+		height: 300px;
+		width: 620px;
+	    }
+	}
+    }
+
+    .infocard {
+	@include i4p-sprite('sheet');
+	@include i4p-sprite-header('sheet');
+
+	color: white;
+
+
+	h2 {
+	    @include i4p-font-title($sizeTextBig);
+	    color: white;
+	}
+
+	.title {
+
+	}
+
+	.infotable {
+	    th {
+		background-color: $colorDarkGrey;
+	    }
+
+	    .infotable-maturity {
+		height: 2rem;
+
+		.progressbar {
+		    margin-top: 1rem;
+		}
+		.status {
+		    position: relative;
+		    margin-top: 1rem;
+		    top: -1rem;
+		    margin-bottom: 1rem;
+		    text-shadow: 0px 0px $sizeBorderSmall rgba(0,0,0,0.5);
+		    font-style: italic;
+		    padding-left: $sizePaddingSmall;
+		}
+	    }
+	}
+    }
+}

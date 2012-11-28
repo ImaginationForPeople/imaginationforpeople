@@ -42,21 +42,25 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 			<div class="viewer-container">
 				<ul id="gallery-modal-view-{{ modal_unique_counter }}"
 					data-toggle="i4p-gallery-modal-viewer" 
+					data-slider-information-id="gallery-modal-information-{{ modal_unique_counter }}"
+					data-slider-actions-id="gallery-modal-actions-{{ modal_unique_counter }}"
 					class="viewer-slider"
 					>
 					{% for project_picture in project_translation.project.pictures.all %}
 					<li data-slider-index="{{ forloop.counter }}">
-					<a href="#">
 						<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
 						alt="image-{{ forloop.counter }}" /> 
-					</a>
+						<div class="description">{{project_picture.desc}}</div>
+						<div class="source">{{project_picture.source}}</div>
+						<div class="licence">{{project_picture.licence}}</div>
+						<a href="{% url project_sheet-instance-picture-del project_translation.slug project_picture.id %}" class="delete"></a>
 					</li>
 					{% endfor %}
 				</ul>
 			</div>
 		</div>
 
-		<div class="top-side information-side span3">
+		<div class="top-side information-side span3" id="gallery-modal-information-{{ modal_unique_counter }}">
 			<div class="title">
 				<h2>Title</h2>
 				<span class="gallery-viewer-title"></span>
@@ -114,15 +118,17 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 				</a>
 			</div>
 		</div>
-		<div class="bottom-side information-side span3">
+		<div class="bottom-side information-side span3"
+			id="gallery-modal-actions-{{ modal_unique_counter }}"
+			>
 			<div class="action">
-				<a href="#FIXME-bad-url-for-set-as-cover">{% trans 'Set as cover picture' %}</a>
-				<a href="#FIXME-bad-url-for-delete">{% trans 'Delete this picture' %}</a>
-				<a href="#FIXME-bad-url-for-modify">{% trans 'Modify this picture' %}</a>
+				<a class='set-cover' href="#FIXME-bad-url-for-set-as-cover">{% trans 'Set as cover picture' %}</a>
+				<a class='delete' href="#FIXME-bad-url-for-delete">{% trans 'Delete this picture' %}</a>
+				<a class='edit' href="#FIXME-bad-url-for-modify">{% trans 'Modify this picture' %}</a>
 			</div>
 
 			<div class="action-primary">
-				<a href="#FIXME-bad-url-for-gallery">{% trans 'View gallery' %}</a>
+				<a class='view-gallery' href="#FIXME-bad-url-for-gallery">{% trans 'View gallery' %}</a>
 			</div>
 		</div>
 	</div>

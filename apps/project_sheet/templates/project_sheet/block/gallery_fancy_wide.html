@@ -34,9 +34,11 @@
 			<div class="description">
 				{{picture.desc}}
 			</div>
+			{% comment %}
 			<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}" class="delete">
 				<i class="icon-remove icon-white"></i>
 			</a>
+			{% endcomment %}
 		</div>
 		{% empty %}
 		<div class="no-picture span8">

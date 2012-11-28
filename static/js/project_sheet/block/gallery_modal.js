@@ -12,8 +12,8 @@
 
 $(document).ready(function () {
 
-	// var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
-	var jdebug = function (str) { return null; }; 
+	//var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
+	var jdebug = function (str) { return null; };
 
 	// enable slider controllers first (to be ready in case a slider fails/slows)
 	$('*[data-toggle="i4p-gallery-modal-control"]').click(function (e) {
@@ -71,11 +71,11 @@ $(document).ready(function () {
 			if (linkNumber === undefined) { console.error('data-slider-index not defined'); }
 
 			// bind click event, warning: viewSlider is available at runtime (clicktime) only
-			$(linkThis).click(function (event) {
+			$(linkThis).click(function (ev) {
 				var viewSlider = $('#' + viewId);
 				if (viewSlider === undefined) { console.error('no object for data-slider-view-id = ' + viewId); }
 
-				event.preventDefault();
+				ev.preventDefault();
 				viewSlider.anythingSlider(linkNumber);
 				jdebug('FIXME: remove - showing slide slide ' + linkNumber + ' on upper slider');
 			});
@@ -89,18 +89,42 @@ $(document).ready(function () {
 	// initialize upper slider
 	$('*[data-toggle="i4p-gallery-modal-viewer"]').each(function () {
 		var upperSlider = this,
-			sliderId = $(upperSlider).attr('id');
-			// viewId = $(upperSlider).attr('data-slider-view-id');
+			sliderId = $(upperSlider).attr('id'),
+			infoId = $(upperSlider).attr('data-slider-information-id'),
+			actionsId = $(upperSlider).attr('data-slider-actions-id'),
+			infoObj,
+			actionsObj,
+			updateInformationFn,
+			prepareInformationFn;
 
-		// jdebug(viewId);
-		// if (viewId === undefined) {console.error('data-slider-view-id not initialized'); }
+		// test information panel definition and set reference
+		if (infoId === undefined) {console.error('data-slider-information-id not initialized'); }
+		infoObj = $('#' + infoId);
 
-/*
-			viewSlider = $('#' + viewId).data('AnythingSlider');
-		if (!viewSlider) { console.error('AnythingSlider not initialized on object ' + viewId); }
-*/
+		if (actionsId === undefined) {console.error('data-slider-actions-id not initialized'); }
+		actionsObj = $('#' + actionsId);
 
-		jdebug('passed fancy viewer init');
+		prepareInformationFn = function (slider) {
+			infoObj.find('.gallery-viewer-title').fadeOut();
+			infoObj.find('.gallery-viewer-source').fadeOut();
+			infoObj.find('.gallery-viewer-licence').fadeOut();
+		};
+
+		// update side information panel from current active slide
+		updateInformationFn = function (slider) {
+			jdebug('updateInformationFn: begin');
+			infoObj.find('.gallery-viewer-title')
+				.text(slider.$currentPage.find('.description').text())
+				.fadeIn();
+			infoObj.find('.gallery-viewer-source')
+				.text(slider.$currentPage.find('.source').text())
+				.fadeIn();
+			infoObj.find('.gallery-viewer-licence')
+				.text(slider.$currentPage.find('.licence').text())
+				.fadeIn();
+			actionsObj.find('.delete').attr('href', slider.$currentPage.find('.delete').attr('href'));
+			jdebug('updateInformationFn: end');
+		};
 
 		// initialize the upper side (large single view)
 		$(upperSlider).anythingSlider({
@@ -113,9 +137,14 @@ $(document).ready(function () {
 			hashTags: false,
 
 			expand: false,
-			resizeContents: false
+			resizeContents: false,
 
-			// FIXME: on show, update information panel & update lower slider if needed
+			// get displayed slide info & update information panel & lower slider
+			onSlideBegin: prepareInformationFn,
+			onSlideComplete: updateInformationFn,
+
+			// force a move to slide 1 (to update info at slider init)
+			onInitialized: function (ev, slider) { slider.gotoPage(1); }
 		});
 		jdebug('initialized top slider!');
 	});
