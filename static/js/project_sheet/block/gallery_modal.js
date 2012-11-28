@@ -12,8 +12,8 @@
 
 $(document).ready(function () {
 
-	var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
-	//var jdebug = function (str) { return null; };
+	//var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
+	var jdebug = function (str) { return null; };
 
 	// enable slider controllers first (to be ready in case a slider fails/slows)
 	$('*[data-toggle="i4p-gallery-modal-control"]').click(function (e) {
@@ -91,13 +91,18 @@ $(document).ready(function () {
 		var upperSlider = this,
 			sliderId = $(upperSlider).attr('id'),
 			infoId = $(upperSlider).attr('data-slider-information-id'),
+			actionsId = $(upperSlider).attr('data-slider-actions-id'),
 			infoObj,
+			actionsObj,
 			updateInformationFn,
 			prepareInformationFn;
 
 		// test information panel definition and set reference
 		if (infoId === undefined) {console.error('data-slider-information-id not initialized'); }
 		infoObj = $('#' + infoId);
+
+		if (actionsId === undefined) {console.error('data-slider-actions-id not initialized'); }
+		actionsObj = $('#' + actionsId);
 
 		prepareInformationFn = function (slider) {
 			infoObj.find('.gallery-viewer-title').fadeOut();
@@ -107,6 +112,7 @@ $(document).ready(function () {
 
 		// update side information panel from current active slide
 		updateInformationFn = function (slider) {
+			jdebug('updateInformationFn: begin');
 			infoObj.find('.gallery-viewer-title')
 				.text(slider.$currentPage.find('.description').text())
 				.fadeIn();
@@ -116,6 +122,8 @@ $(document).ready(function () {
 			infoObj.find('.gallery-viewer-licence')
 				.text(slider.$currentPage.find('.licence').text())
 				.fadeIn();
+			actionsObj.find('.delete').attr('href', slider.$currentPage.find('.delete').attr('href'));
+			jdebug('updateInformationFn: end');
 		};
 
 		// initialize the upper side (large single view)
