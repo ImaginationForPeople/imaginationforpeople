@@ -6,4 +6,35 @@
 
 .project-subheader {
     // common styles
+
+	.infotable {
+	    width: 100%;
+
+	    tr {
+		border-bottom: $sizeMarginSmall solid transparent;
+	    }
+
+	    th {
+		@include i4p-font-title($sizeTextNormal);
+		@include box-sizing(border-box);
+
+		padding: $sizePaddingSmall;
+		vertical-align: top; // FIXME: should be middle in the future
+		text-align: left;
+	    }
+
+	    td {
+		color: white;
+		padding: $sizePaddingSmall;
+	    }
+
+	    .location-form {
+		label { visibility: hidden; display: none; }
+
+		#id_address {
+		    max-height: $sizeTextNormal * 5;
+		}
+	    }
+	}
 }
+

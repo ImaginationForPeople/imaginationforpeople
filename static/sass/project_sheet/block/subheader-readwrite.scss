@@ -24,5 +24,16 @@
 	@include i4p-font-title($sizeTextBig);
 	color: white;
     }
+
+    .infotable {
+	th {
+	    background-color: $colorMedBlue;
+	    width: 90px;
+	}
+
+	td {
+	    color: white;
+	}
+    }
 }
 

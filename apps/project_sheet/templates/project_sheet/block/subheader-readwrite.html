@@ -32,7 +32,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 						{% csrf_token %}
 						{{ project_location_form.as_p }}
 						<div class="clear"></div>
+						{% comment %} FIXME: include form button for degraded view 
 						{% include "project_sheet/block/form_buttons.html" %}
+						{% endcomment %}
 					</form>	
 				</div> <!-- .location-form -->
 				{% else %}
@@ -71,43 +73,16 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 		<tr class="infotable-website">
 			<th>{% trans "Web" %}</th>
 			<td>
-				{% if project_info_form %}<!-- WEBSITE/READWRITE mode-->
 				<form action="{% url project_sheet-instance-edit-info project_translation.slug %}" method="post">
 					{% csrf_token %}
 
 					{{ project_info_form.as_p }}
-					<div class="clear"></div>
-					<input title="{% trans 'Ok'|capfirst %}" 
-					class="button greenbutton nomargin right" 
-					type="image" 
-					src="{{ STATIC_URL }}images/base/v.png" 
-					alt="Ok" ></input>
-					<input id="project_infos_block_edit_button_cancel" 
-					title="{% trans 'Cancel'|capfirst %}"  
-					class="button redbutton nomargin right" 
-					type="image" 
-					src="{{ STATIC_URL }}images/base/x.png" 
-					alt="X" ></input>
+
+					{% comment %} FIXME: include form button for degraded view 
+					{% include "project_sheet/block/form_buttons.html" %}
+					{% endcomment %}
 				</form>	
-				{% else %}
-				{% if project_translation %}<!-- WEBSITE/READONLY filled -->
-				{% if project_translation.project.website %}
-				<a href="{{ project.website }}" target="_blank" rel="nofollow">
-					{{ project_translation.project.website }}
-				</a>
-				{% else %}
-				{% trans 'unknown'|capfirst %}
-				{% endif %}
-
-				<a title="{% trans 'Edit'|capfirst %}" 
-					href="{% url project_sheet-instance-edit-info project_translation.slug %}" 
-					class="button editing-button right"
-					><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
-
-				{% else %}<!-- WEBSITE/READONLY empty -->
-				{% trans 'unknown'|capfirst %}
-				{% endif %}
-				{% endif%}
+				&nbsp;
 			</td>
 		</tr>
 		<!-- FIXME: re-enable whell data will be in the object model
@@ -145,4 +120,13 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 	</table>
 </div> <!-- .infocard -->
 
+<div class="span12">
+	<!-- FIXME: validate all forms at once with JS -->
+	<!-- FIXME: for clean degradation, include button in each form & hide them once JS is loaded -->
+	<input title="{% trans 'Ok'|capfirst %}" class="button greenbutton nomargin right" 
+	type="image" src="{{ STATIC_URL }}images/base/v.png" alt="Ok" ></input>
+
+	<input id="project_infos_block_edit_button_cancel" title="{% trans 'Cancel'|capfirst %}"  
+	class="button redbutton nomargin right" type="image" src="{{ STATIC_URL }}images/base/x.png" alt="X" ></input>
+</div>
 
