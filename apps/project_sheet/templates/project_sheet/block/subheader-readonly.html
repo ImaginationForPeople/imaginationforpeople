@@ -84,7 +84,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				{% endif %}
 				method="post" class="project_baseline_edition">{% csrf_token %}
 				{{ baseline_form.baseline }}
-				{% include "project_sheet/block/form_buttons.html" %}
+				{% include "project_sheet/block/subheader-buttons.html" %}
 			</form>
 			{% else %}
 			{% if project_translation %}
@@ -128,16 +128,6 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
 			<th>{% trans "Location" %}</th>
 			<td>
-				{% if project_location_form %}<!-- LOCATION/READWRITE -->
-				<div class="location-form">
-					<form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
-						{% csrf_token %}
-						{{ project_location_form.as_p }}
-						<div class="clear"></div>
-						{% include "project_sheet/block/form_buttons.html" %}
-					</form>	
-				</div> <!-- .location-form -->
-				{% else %}
 				{% if project_translation %}
 				<!-- LOCATION/READONLY filled-->
 				<div class="location-address">
@@ -161,32 +151,12 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				<em>{% trans 'unknown'|capfirst %}</em>
 				{% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>{% endcomment %}
 				{% endif %}
-				{% endif %}
 			</td>
 		</tr>
 
 		<tr class="infotable-website">
 			<th>{% trans "Web" %}</th>
 			<td>
-				{% if project_info_form %}<!-- WEBSITE/READWRITE mode-->
-				<form action="{% url project_sheet-instance-edit-info project_translation.slug %}" method="post">
-					{% csrf_token %}
-
-					{{ project_info_form.as_p }}
-					<div class="clear"></div>
-					<input title="{% trans 'Ok'|capfirst %}" 
-					class="button greenbutton nomargin right" 
-					type="image" 
-					src="{{ STATIC_URL }}images/base/v.png" 
-					alt="Ok" ></input>
-					<input id="project_infos_block_edit_button_cancel" 
-					title="{% trans 'Cancel'|capfirst %}"  
-					class="button redbutton nomargin right" 
-					type="image" 
-					src="{{ STATIC_URL }}images/base/x.png" 
-					alt="X" ></input>
-				</form>	
-				{% else %}
 				{% if project_translation %}<!-- WEBSITE/READONLY filled -->
 				{% if project_translation.project.website %}
 				<a href="{{ project.website }}" target="_blank" rel="nofollow">
@@ -204,7 +174,6 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				{% else %}<!-- WEBSITE/READONLY empty -->
 				{% trans 'unknown'|capfirst %}
 				{% endif %}
-				{% endif%}
 			</td>
 		</tr>
 		<!-- FIXME: re-enable whell data will be in the object model

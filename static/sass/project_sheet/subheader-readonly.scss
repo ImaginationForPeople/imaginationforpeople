@@ -18,6 +18,10 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
 
+$i4p-form-action-sprite-dimensions: true;
+$i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
+@import "project_sheet/i4p-form-action/*.png"; // */
+
 @mixin i4p-editable {
     & > .editing-button {
 	@include i4p-transition;
