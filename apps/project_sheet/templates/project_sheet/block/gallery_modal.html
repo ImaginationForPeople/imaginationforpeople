@@ -42,21 +42,23 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 			<div class="viewer-container">
 				<ul id="gallery-modal-view-{{ modal_unique_counter }}"
 					data-toggle="i4p-gallery-modal-viewer" 
+					data-slider-information-id="gallery-modal-information-{{ modal_unique_counter }}"
 					class="viewer-slider"
 					>
 					{% for project_picture in project_translation.project.pictures.all %}
 					<li data-slider-index="{{ forloop.counter }}">
-					<a href="#">
 						<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
 						alt="image-{{ forloop.counter }}" /> 
-					</a>
+						<div class="description">{{project_picture.desc}}</div>
+						<div class="source">{{project_picture.source}}</div>
+						<div class="licence">{{project_picture.licence}}</div>
 					</li>
 					{% endfor %}
 				</ul>
 			</div>
 		</div>
 
-		<div class="top-side information-side span3">
+		<div class="top-side information-side span3" id="gallery-modal-information-{{ modal_unique_counter }}">
 			<div class="title">
 				<h2>Title</h2>
 				<span class="gallery-viewer-title"></span>
