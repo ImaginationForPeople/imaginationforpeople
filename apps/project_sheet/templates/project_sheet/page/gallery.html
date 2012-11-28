@@ -1,0 +1,112 @@
+﻿{% extends "project_sheet/layout/project_base.html" %}
+
+{% load i18n %}
+{% load tagging_tags %}
+{% load compress %}
+{% load honeypot %}
+{% load sekizai_tags %}
+{% load comments %}
+{% load thumbnail %}
+{% load oembed_works_tags %}
+{% load tabs %}
+
+{% block navigation %}
+{% tab 'project_sheet' 'gallery' %}
+{{ block.super }}
+{% endblock %}
+
+
+{% block project_content %}	
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/page/gallery.css" />
+{% endaddtoblock %}
+
+<div class="container">        
+    <div class="row">
+	<div class="span8 page-gallery-main">
+
+
+	    <div class="gallery-actions">
+		<a class="button" href="{% url project_sheet-instance-picture-add project_translation.slug %}">
+		    <i class="action-add"></i>
+		    Add picture
+		</a>
+		<a class="button" href="{% url project_sheet-instance-video-add project_translation.slug %}">
+		    <i class="action-add"></i>
+		    Add video
+
+		</a>
+
+		{% if project_picture_add %}
+		<div class="row">
+		    <div class="span8">
+			<div  class="editable editable-picture non-ajax">
+			    <form method='POST' action='?' enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ project_picture_add }}
+				<input type="submit" />
+			    </form>
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+
+		{% if project_video_add %}
+		<div class="row">
+		    <div class="span8">
+			<div  class="editable editable-video non-ajax">
+			    <form method='POST' action='?' enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ project_video_add }}
+				<input type="submit" />
+			    </form>
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+	    </div>
+
+	    {% include "project_sheet/block/gallery_fancy_wide.html" %}
+
+	</div> <!-- .project-main -->
+
+	<div class="span4 page-gallery-sidebar">	
+	    <div class="picture-block">
+		<h2><span>{% trans 'cover picture' %}</span></h2>
+		<!-- FIXME: display the cover picture thumbnail -->
+
+		{% if project.pictures.all|length < 1 %}
+		{% trans 'This project has no pictures yet' %}
+		{% else %}
+		<div class="row">
+		    <div class="picture span2">
+			<div class="image">
+			    <img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 140x120 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+	    </div>
+
+	    <div class="video-block">
+		<h2><span>{% trans 'cover video' %}</span></h2>
+		<!-- FIXME: display the cover video thumbnail -->
+
+		{% if project.videos.all|length < 1 %}
+		{% trans 'This project has no videos yet' %}
+		{% else %}
+
+		<div class="row">
+		    <div class="video span2">
+			<div class="image">
+			</div>
+		    </div>
+		</div>
+		{% endif %}
+	    </div>
+	</div> <!-- .project-sidebar -->
+    </div>
+</div>
+
+{% endblock %}

@@ -24,6 +24,10 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 @import "project_sheet/i4p-slider/*.png"; // */
 // @include all-i4p-slider-sprites; // NO AUTO INCLUDE
 
+.member-block-overlay {
+
+}
+
 // FIXME: move block rules elsewhere
 .member-block {
     @include i4p-seemore-class;
@@ -68,8 +72,8 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 	    padding: 5px;
 	    height: 60px;
 	    list-style: none;
-	    white-space: no-wrap;	
-	    width: 20 * 60px ;
+	    white-space: nowrap;
+	    // width: 20 * 60px ;
 
 	    li {
 		&:nth-child(4n + 4) {

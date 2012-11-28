@@ -1,19 +1,23 @@
+
+
 @import "i4p-mixins";
 @import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
 
 $gallery_sizeImageHeight: 197px;
 $gallery_sizeImageSmallWidth: 150px;
 $gallery_sizeImageBigWidth: 300px;
 
-$gallery_strOverlayUrl: 'gallery/view-overlay.png';
+$gallery_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
 $gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
 $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 
-.project-gallery-modal {
-    // FIXME: fix bootstrap modal width locally 
-}
+// act as a bootstrap "container"
 
-.project-gallery {
+
+
+.project-gallery-widget {
     ul {
 	margin:0;
     }
@@ -130,6 +134,3 @@ $gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
 
 }
 
-.project-gallery-modal {
-
-}

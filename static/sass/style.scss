@@ -1,4 +1,3 @@
-
 // THE MINIMAL COMMON CSS STYLE FOR ALL PAGES : defining root fonts size
 
 // the root font size is defined depending on the HTML element
@@ -18,12 +17,23 @@ body {
 
 // END OF THE MINIMAL COMMON CSS STYLE FOR ALL PAGES.
 
-//
-// BIG FAT WARNING : ALL THE REST MUST BE DELETED OR MOVED ELSEWHERE.
-//
+
+@import "compass_twitter_bootstrap/variables";
+@import "compass_twitter_bootstrap/mixins";
 
 @import "i4p-mixins";
 @import "i4p/constants";
+
+// 
+// BOOTSTRAP STYLE FIXES SPECIFIC TO I4P
+// 
+.modal-backdrop {
+    @include bootstrap-opacity(40);
+}
+
+//
+// BIG FAT WARNING : ALL THE REST MUST BE DELETED OR MOVED ELSEWHERE.
+//
 
 /* --TEMP---------------------------------------------------------------------------------------------------- */
 
@@ -124,7 +134,9 @@ ul{
     }
 }
 
-// FIXME: please, use mixins... or page/block specific styles
+// FIXME: please, use mixins...
+// FIXME: replace button, redbutton, greenbutton with page/block specific styles
+/*
 .button, .redbutton, .greenbutton {
     background-color: #eeeeee;
     border: 1px solid #bdbdbd;
@@ -154,8 +166,9 @@ ul{
 	position: relative;
     }
 }
+*/
 
-
+/*
 .button:hover {
     color: #fff;
     text-decoration: none;
@@ -175,6 +188,7 @@ ul{
     background: image-url('base/minibutton_green.jpg');
     border:1px solid #01841f;	
 }
+*/
 
 
 .close {
@@ -959,4 +973,3 @@ ul{
     position: relative;
     top: 2px;
 }
-

@@ -1,0 +1,131 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+FIXME: use picture list instead of project_translation
+
+* project_translation : I4pProjectTranslation
+* gallery_modal_unique_counter : a unique counter
+
+{% endcomment %}
+
+{% load i18n %}
+{% load sekizai_tags %}
+{% load thumbnail %}
+{% load unique_counter_tag %}
+
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_modal.css" />
+{% endaddtoblock %}
+
+{% comment %} SYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider-1.8.6.js"></script>
+{% endaddtoblock %}
+
+{% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "footer_js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");  
+</script>
+{% endaddtoblock %}
+
+{% unique_counter gallery_fancy_slider %}
+{% with modal_unique_counter=gallery_fancy_slider_counter %}
+
+<div class="project-gallery-modal modal hide fade in out span10" tabindex="-1" 
+	role="dialog" id="gallery-{{ gallery_modal_unique_counter }}" >
+	<div class="row">
+		<div class="top-side viewer-side span7">
+			<div class="viewer-container">
+				<ul id="gallery-modal-view-{{ modal_unique_counter }}"
+					data-toggle="i4p-gallery-modal-viewer" 
+					class="viewer-slider"
+					>
+					{% for project_picture in project_translation.project.pictures.all %}
+					<li data-slider-index="{{ forloop.counter }}">
+					<a href="#">
+						<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
+						alt="image-{{ forloop.counter }}" /> 
+					</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</div>
+
+		<div class="top-side information-side span3">
+			<div class="title">
+				<h2>Title</h2>
+				<span class="gallery-viewer-title"></span>
+			</div>
+
+			<div class="source">
+				<h2>Source</h2>
+				<span class="gallery-viewer-source"></span>
+			</div>
+
+			<div class="license">
+				<h2>License</h2>
+				<span class="gallery-viewer-license"></span>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="bottom-side viewer-side span7">
+			<div class="thumbnails-container">
+				<ul id="gallery-slider-{{ modal_unique_counter }}" 
+					class="gallery-slider" 
+					data-toggle="i4p-gallery-fancy-slider" 
+					data-slider-view-id="gallery-modal-view-{{ modal_unique_counter }}">
+					{% for project_picture in project_translation.project.pictures.all %}
+					<li data-slider-index="{{ forloop.counter }}">
+					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
+						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  
+						alt="" />
+					</a>
+					</li>
+					{% endfor %}
+
+					{% comment %} FIXME: remove this loop after debug {% endcomment %}
+					{% for project_picture in project_translation.project.pictures.all %}
+					<li data-slider-index="{{ forloop.counter }}">
+					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
+						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  
+						alt="" />
+					</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="gallery-nav">
+				<a href="#" data-toggle="i4p-gallery-modal-control" 
+					data-slider-target-id="gallery-slider-{{ modal_unique_counter }}" 
+					data-slider-command="goBack">
+					{% trans "Previous"|capfirst %}
+				</a>
+				<a href="#" data-toggle="i4p-gallery-modal-control" 
+					data-slider-target-id="gallery-slider-{{ modal_unique_counter }}" 
+					data-slider-command="goForward" class='right'>
+					{% trans "Next" %}
+				</a>
+			</div>
+		</div>
+		<div class="bottom-side information-side span3">
+			<div class="action">
+				<a href="#FIXME-bad-url-for-set-as-cover">{% trans 'Set as cover picture' %}</a>
+				<a href="#FIXME-bad-url-for-delete">{% trans 'Delete this picture' %}</a>
+				<a href="#FIXME-bad-url-for-modify">{% trans 'Modify this picture' %}</a>
+			</div>
+
+			<div class="action-primary">
+				<a href="#FIXME-bad-url-for-gallery">{% trans 'View gallery' %}</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endwith %}

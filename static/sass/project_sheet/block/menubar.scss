@@ -1,0 +1,159 @@
+
+// load reusable components
+@import "i4p-mixins";
+@import "i4p/constants";
+
+.project-menubar {
+    @include box-sizing(border-box);
+    background-color: $colorLightGrey;
+    clear: both;
+    height: 2.8rem;
+
+    .menubar-leftcolumn, .menubar-rightcolumn {
+	ul {
+	    list-style: none;
+	    margin: 0;
+
+	    & > li {
+		@include box-sizing(border-box);
+		margin: 0;
+		display: block;
+		float:left;
+		border-left: 1px solid white;
+		border-right: 1px solid $colorMedLightGrey;
+		position: relative;
+		font-size: $sizeTextSmall;
+		font-family: $fontOpenSans;
+		font-stretch: condensed;
+		text-transform: uppercase;
+		padding: 0;
+		height: 2.8rem;
+		border-collapse: collapse;
+
+		a {
+		    display: block;
+		    padding: 0.7 * $sizePaddingMedium;
+		    padding-left: 0.7 * $sizePaddingMedium;
+		    padding-right: 0.7 * $sizePaddingMedium;
+		    color: $colorMedGrey;
+		    font-weight: bold;
+
+		    i {
+			position: relative;
+			top: -2px;
+			display: inline-block;
+			vertical-align: middle;
+		    }
+
+		    &:hover {
+			color: blue;
+		    }
+
+		    &.share {
+			&:focus ~ .submenu {
+			    opacity: 1;
+			    display: block;
+			}
+		    }
+		}
+
+		.submenu {
+		    @include i4p-transition;
+		    top: 30px;
+		    right: -$sizeMarginSmall;
+		    width: 60px;
+		    padding: $sizePaddingMedium;
+		    display: none;
+		    background-color: $colorLightLightGrey;
+		    opacity: 0;
+		    list-style: none;
+		    position: absolute;
+		    z-index: 1;
+
+		    li {
+			display: block;
+		    }
+		}
+
+		&:hover {
+		    background-color: $colorMedLightGrey;
+		    border-color: $colorMedLightGrey; // both left & right (flat effect)
+
+		    a {
+			color: white;
+			text-decoration: none;
+		    }
+		}
+
+		&.right {
+		    float:right;
+
+		    a {
+			padding-left: $sizePaddingSmall;
+			padding-right: $sizePaddingSmall;
+		    }
+		}
+
+
+		&.active {
+		    @include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+		    position: relative;
+		    border-right-color: $colorDarkBlue;
+
+		    a {
+			color: white;
+		    }
+
+		    &:before {
+			content:""; 
+			position: absolute; 
+			left: 50%; 
+			bottom: -10px; 
+			width: 0; 
+			height: 0; 
+			margin-left: -10px;
+			border-left: 10px solid transparent; 
+			border-top: 10px solid $colorDarkBlue; 
+			border-right: 10px solid transparent;
+		    }
+
+		    &:hover {
+			background-image: none;
+			background-color: $colorMedGrey;
+			border-color: $colorMedGrey; // both left & right (flat effect)
+
+			a { 
+			    color: white;
+			}
+
+			&:before {
+			    border-top-color: $colorMedGrey;
+			}
+		    }
+		}
+	    }
+	}
+    }
+
+    // specifics to left column
+    .menubar-leftcolumn {
+	margin-left: 0;
+	margin-right: 20px;
+
+	& > ul > li {
+	    &.right {
+		border: none;
+	    }
+	}
+    }
+
+    // specifics to right column
+    .menubar-rightcolumn {
+	& > ul > li > a {
+	    padding-left: $sizePaddingSmall;
+	    padding-right: $sizePaddingSmall;
+	}
+    }
+
+}
+

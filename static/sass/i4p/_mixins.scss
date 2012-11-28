@@ -1,4 +1,9 @@
+
 @import "compass/css3/border-radius";
+
+// use bootstrap everywhere, yay !
+@import "compass_twitter_bootstrap/variables";
+@import "compass_twitter_bootstrap/mixins";
 
 @mixin i4p-background-vertical-gradient($colorTop, $colorBottom) {
     background-image: linear-gradient(top, $colorTop 0%, $colorBottom 100%);
