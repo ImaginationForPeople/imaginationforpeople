@@ -128,7 +128,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 			</div>
 
 			<div class="action-primary">
-				<a class='view-gallery' href="#FIXME-bad-url-for-gallery">{% trans 'View gallery' %}</a>
+				<a class='view-gallery' href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans 'View gallery' %}</a>
 			</div>
 		</div>
 	</div>
