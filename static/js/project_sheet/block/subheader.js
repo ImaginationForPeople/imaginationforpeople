@@ -12,6 +12,7 @@
 
 $(document).ready(function () {
 	$('.subheader-actions .submit-button').click(function (ev) {
+		// FIXME: hide local form action buttons.
 		var thisBtn = this,
 			targetHeader = $(thisBtn).parent().parent().parent();
 
