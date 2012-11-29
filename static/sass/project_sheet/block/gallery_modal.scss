@@ -24,6 +24,12 @@ $galleryModal_sizeThumbHeight: 55px;
 
 
 .project-gallery-modal {
+    @include i4p-font-base($sizeTextNormal);
+
+    h2 {
+	@include i4p-font-title($sizeTextLarge);
+    }
+
     box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
     width: $galleryModal_sizeModalWidth;
     margin-left: -$galleryModal_sizeModalWidth/2;
@@ -222,8 +228,7 @@ $galleryModal_sizeThumbHeight: 55px;
     }
 
     .gallery-nav {
-	@include i4p-font-subtitle($sizeTextNormal);
-	text-transform: uppercase;
+	@include i4p-font-title($sizeTextNormal);
 	display: block;
 	margin-bottom: $sizeMarginMedium;
 
@@ -266,6 +271,7 @@ $galleryModal_sizeThumbHeight: 55px;
 		    @include i4p-font-subtitle($sizeTextSmall);
 		    display: block;
 		    color: $colorMedGrey;
+		    text-transform: uppercase;
 
 		    &:hover {
 			color: black;

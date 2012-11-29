@@ -15,6 +15,24 @@ $(document).ready(function () {
 	//var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
 	var jdebug = function (str) { return null; };
 
+	$('*[data-toggle="i4p-gallery-modal"]').click(function (e) {
+		var modalTargetId = $(this).attr('data-modal-target-id'),
+			sliderTargetId = $(this).attr('data-slider-view-id'),
+			currentIndex = $(this).attr('data-slider-index'),
+			command = $(this).attr('data-slider-command'),
+			sliderTarget = $('#' + sliderTargetId).data('AnythingSlider');
+
+		if (modalTargetId === undefined) { console.error('data-modal-target-id not defined'); }
+		if (sliderTargetId === undefined) { console.error('data-slider-view-id not defined'); }
+		if (currentIndex === undefined) { console.error('data-slider-index not defined'); }
+
+		if (!sliderTarget) { console.error('AnythingSlider not initialized on object ' + sliderTargetId); }
+
+		console.log('modal control called for slide ' + currentIndex + ' on ' + modalTargetId);
+		sliderTarget.gotoPage(currentIndex);
+		$('#' + modalTargetId).modal();
+	});
+
 	// enable slider controllers first (to be ready in case a slider fails/slows)
 	$('*[data-toggle="i4p-gallery-modal-control"]').click(function (e) {
 		var targetId = $(this).attr('data-slider-target-id'),
