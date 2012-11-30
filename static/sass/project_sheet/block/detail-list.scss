@@ -27,9 +27,6 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 	}
     }
 
-    .detail-answer {
-	padding-left: 2rem;
-    }
 
     &.edit-mode {
 	background-color: $colorLightBlue;
@@ -63,15 +60,18 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
     }
 
     .detail-answer {
+	padding-left: 2rem;
+
 	.inline-edit {
 	    @include bootstrap-clearfix;
+
+	    margin-left: -1rem;
 
 	    background-color: $colorLightBlue;
 	    padding: $sizePaddingSmall;
 
 	    textarea {
 		@include box-sizing(border-box);
-		width: 580px;
 
 		font-size: $sizeTextNormal;
 		line-height: $sizeTextNormal * 1.3;
