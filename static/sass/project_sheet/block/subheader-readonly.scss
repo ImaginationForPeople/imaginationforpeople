@@ -105,6 +105,30 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 		background-color: $colorDarkGrey;
 	    }
 
+	    .infotable-location {
+		.editing-button {
+		    @include i4p-button-editable-fancy;
+		    @include i4p-transition(all .5s ease);
+		    opacity: 0;
+		}
+
+		&:hover .editing-button {
+		    opacity: 1;
+		}
+	    }
+
+	    .infotable-website {
+		.editing-button {
+		    @include i4p-button-editable-fancy;
+		    @include i4p-transition(all .5s ease);
+		    opacity: 0;
+		}
+
+		&:hover .editing-button {
+		    opacity: 1;
+		}
+	    }
+
 	    .infotable-maturity {
 		height: 2rem;
 
