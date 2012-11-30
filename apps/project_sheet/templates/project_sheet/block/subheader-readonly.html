@@ -84,7 +84,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				{% endif %}
 				method="post" class="project_baseline_edition">{% csrf_token %}
 				{{ baseline_form.baseline }}
-				{% include "project_sheet/block/subheader-buttons.html" %}
+				{% include "project_sheet/block/form-buttons.html" %}
 			</form>
 			{% else %}
 			{% if project_translation %}

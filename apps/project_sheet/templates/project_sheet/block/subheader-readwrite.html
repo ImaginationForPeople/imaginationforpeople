@@ -33,7 +33,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 						{{ project_location_form.as_p }}
 						<div class="clear"></div>
 						{% comment %} FIXME: include form button for degraded view 
-						{% include "project_sheet/block/subheader-buttons.html" %}
+						{% include "project_sheet/block/form-buttons.html" %}
 						{% endcomment %}
 					</form>	
 				</div> <!-- .location-form -->
@@ -79,7 +79,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 					{{ project_info_form.as_p }}
 
 					{% comment %} FIXME: include form button for degraded view 
-					{% include "project_sheet/block/subheader-buttons.html" %}
+					{% include "project_sheet/block/form-buttons.html" %}
 					{% endcomment %}
 				</form>	
 				&nbsp;
@@ -124,6 +124,6 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 	<!-- FIXME: validate all forms at once with JS -->
 	<!-- FIXME: for clean degradation, include button in each form & hide them once JS is loaded -->
 
-	{% include "project_sheet/block/subheader-buttons.html" %}
+	{% include "project_sheet/block/form-buttons.html" %}
 </div>
 
