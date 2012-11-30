@@ -18,7 +18,15 @@ $(document).ready(function () {
 			$(itemThis).addClass('editing');
 		});
 
-		// FIXME: add onblur trigger for de-cssing
+		$(editableThis).bind('submit', function () {
+			// remove edited class on elem
+			$(itemThis).removeClass('editing');
+		});
+
+		$(editableThis).bind('cancel', function () {
+			// remove edited class on elem
+			$(itemThis).removeClass('editing');
+		});
 	});
 });
 

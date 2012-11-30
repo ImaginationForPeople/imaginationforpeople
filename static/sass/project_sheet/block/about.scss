@@ -5,7 +5,27 @@
     h2 {
 	.i4p-button {
 	    @include i4p-button-fancy-bordered-small;
-	    margin-top: 0.6rem;
+
+	    margin-top: 0.4rem;
+	    padding-top: $sizePaddingTiny;
+	    padding-bottom: $sizePaddingTiny;
+
+	    span {
+		padding: 0;
+		@include i4p-transition(all .5s ease);
+		background-color: transparent;
+	    }
+
+	    &:before {
+		display: inline-block;
+		background-image: image-url('project_sheet/edit-icon.png');
+		content: "";
+		background-position: right center;
+		background-repeat: no-repeat;
+		width: 17px;
+		height: 20px;
+		vertical-align: middle;
+	    }
 	}
     }
 

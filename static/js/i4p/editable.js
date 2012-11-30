@@ -94,6 +94,7 @@ $(document).ready(function () {
 					var res = jQuery.parseJSON(data);
 					$(editableThis).html(res.text);
 					editableButtonEnableFn();
+					$(editableThis).trigger('submit');
 				},
 				indicator: 'Saving...',
 				cancel: $(editableThis).attr('data-editable-cancel') || 'Cancel',
@@ -101,7 +102,10 @@ $(document).ready(function () {
 				cssclass: 'inline-edit',
 				placeholder: $(editableThis).attr('data-editable-tooltip'),
 				onblur: 'ignore',
-				onreset: editableButtonEnableFn
+				onreset: function () {
+					editableButtonEnableFn();
+					$(editableThis).trigger('cancel');
+				}
 			}
 		);
 	});
