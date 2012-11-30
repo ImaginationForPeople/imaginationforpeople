@@ -44,7 +44,12 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy_thin.js");
 		{% comment %} FOR BIGGER GALLERIES,}WE ALTERNATE ONE BIG AND TWO SMALL {% endcomment %}
 		{% if forloop.counter0|divisibleby:"3" %}picture-big{% else %}picture-small{% endif %}
 		{% endif %}
-		" data-target="#gallery-{{ gallery_modal_unique_counter }}" data-toggle="modal" >
+		" 
+		data-modal-target-id="gallery-{{ gallery_modal_unique_counter }}" 
+		data-slider-view-id="gallery-modal-view-{{ gallery_modal_unique_counter }}"
+		data-toggle="i4p-gallery-modal" 
+		data-slider-index="{{ forloop.counter }}"
+		>
 		<div class="image">
 			<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' %}" class="color" alt="">
 			<img src="{% thumbnail project_picture.original_image.name 300x197 upscale=1 crop='50,50' bw %}" class="bw" alt="">

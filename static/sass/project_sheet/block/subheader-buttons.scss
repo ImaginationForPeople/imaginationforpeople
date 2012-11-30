@@ -18,21 +18,25 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 	.submit-button {
 	    @include i4p-form-action-sprite('ok-white'); 
 
-	    background: $i4p-form-action-sprites no-repeat; 
-	    display: block-inline;
-	    width: 50px;
-	    height: 50px;
+	    border: none;
+	    display: block;
+	    float: right;
+	    font-size: 0;
+	    margin-left: $sizeMarginMedium;
+	    cursor: pointer;
 	}
 
 	.cancel-button {
 	    @include i4p-form-action-sprite('cancel-white'); 
 
-	    background: $i4p-form-action-sprites no-repeat; 
-	    display: block-inline;
-	    width: 50px;
-	    height: 50px;
+	    border: none;
+	    display: block;
+	    float: right;
+	    font-size: 0;
+	    margin-left: $sizeMarginMedium;
+	    cursor: pointer;
 	}
 
     }
-
 }
+

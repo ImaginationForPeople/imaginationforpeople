@@ -23,7 +23,10 @@
 	<div class="row">
 		{% for picture in project.pictures.all %}
 		<div class="picture span2" 
-			data-target="#gallery-{{ gallery_modal_unique_counter }}" data-toggle="modal" 
+			data-slider-index="{{ forloop.counter }}"
+			data-modal-target-id="gallery-{{ gallery_modal_unique_counter }}" 
+			data-slider-view-id="gallery-modal-view-{{ gallery_modal_unique_counter }}"
+			data-toggle="i4p-gallery-modal" 
 			>
 			<!-- <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/> -->
 
