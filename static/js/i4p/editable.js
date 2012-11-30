@@ -52,7 +52,23 @@ $(document).ready(function () {
 	});
 
 	$("*[data-toggle='i4p-editable']").each(function () {
-		var editableThis = this;
+		var editableThis = this,
+			editableButtonEnableFn;
+
+		editableButtonEnableFn = function () {
+			// re-enable edit button
+			$("*[data-toggle='i4p-editable-button']").each(function () {
+				var buttonThis = this,
+					buttonTarget = $(buttonThis).attr('data-target'),
+					localId = $(editableThis).attr('id');
+
+				//console.log("scanning button with target : #" + buttonTarget);
+
+				if (localId === buttonTarget) {
+					$(buttonThis).fadeIn('slow');
+				}
+			});
+		};
 
 		$(this).editable(
 			$(this).attr('data-editable-save-url'),
@@ -77,26 +93,15 @@ $(document).ready(function () {
 				callback: function (data) {
 					var res = jQuery.parseJSON(data);
 					$(editableThis).html(res.text);
+					editableButtonEnableFn();
 				},
 				indicator: 'Saving...',
-				cancel: $(editableThis).attr('data-editable-cancel'),
-				submit: $(editableThis).attr('data-editable-submit'),
+				cancel: $(editableThis).attr('data-editable-cancel') || 'Cancel',
+				submit: $(editableThis).attr('data-editable-submit') || 'Save',
 				cssclass: 'inline-edit',
 				placeholder: $(editableThis).attr('data-editable-tooltip'),
-				//onblur: 'ignore',
-				onblur: function (data) {
-					// re-enable edit button
-					$("*[data-toggle='i4p-editable-button']").each(function () {
-						var buttonThis = this,
-							buttonTarget = $(buttonThis).attr('data-target'),
-							localId = $(editableThis).attr('id');
-						//console.log("scanning button with target : #" + buttonTarget);
-
-						if (localId === buttonTarget) {
-							$(buttonThis).fadeIn('slow');
-						}
-					});
-				}
+				onblur: 'ignore',
+				onreset: editableButtonEnableFn
 			}
 		);
 	});
