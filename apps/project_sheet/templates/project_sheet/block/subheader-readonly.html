@@ -84,7 +84,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				{% endif %}
 				method="post" class="project_baseline_edition">{% csrf_token %}
 				{{ baseline_form.baseline }}
-				{% include "project_sheet/block/subheader-buttons.html" %}
+				{% include "project_sheet/block/form-buttons.html" %}
 			</form>
 			{% else %}
 			{% if project_translation %}
@@ -145,11 +145,11 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 					{% if project_translation.project.location.lat %}
 					<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
 					{% endif %}
-					<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-location project_translation.slug %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+					<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-location project_translation.slug %}" class="button editing-button right"></a>
 				</div> <!-- .location-address -->
 				{% else %}<!-- LOCATION/READONLY/EMPTY mode -->
 				<em>{% trans 'unknown'|capfirst %}</em>
-				{% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>{% endcomment %}
+				{% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"></a>{% endcomment %}
 				{% endif %}
 			</td>
 		</tr>
@@ -169,7 +169,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				<a title="{% trans 'Edit'|capfirst %}" 
 					href="{% url project_sheet-instance-edit-info project_translation.slug %}" 
 					class="button editing-button right"
-					><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+					></a>
 
 				{% else %}<!-- WEBSITE/READONLY empty -->
 				{% trans 'unknown'|capfirst %}

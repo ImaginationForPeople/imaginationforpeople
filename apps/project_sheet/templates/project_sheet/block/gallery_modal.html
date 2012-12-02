@@ -95,7 +95,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					</li>
 					{% endfor %}
 
-					{% comment %} FIXME: remove this loop after debug {% endcomment %}
+					{% comment %} ANOTHER LOOP FOR DEBUGGING PURPOSE ONLY 
 					{% for project_picture in project_translation.project.pictures.all %}
 					<li data-slider-index="{{ forloop.counter }}">
 					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
@@ -104,6 +104,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					</a>
 					</li>
 					{% endfor %}
+					{% endcomment %}
 				</ul>
 			</div>
 			<div class="gallery-nav">
