@@ -126,27 +126,6 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     }
 }
 
-.project-details {
-    h2 {
-	@include i4p-font-title;
-    }
-
-    .detail-question {
-	margin-top: 1em;
-	margin-bottom: 1em;
-
-	span {
-	    padding-left: .5em;
-	    padding-right: .5em;
-	    background-color: $colorMedDarkGrey;
-	    color: white;
-	}
-    }
-
-    .detail-answer {
-	padding-left: 2rem;
-    }
-}
 
 
 .project-references {

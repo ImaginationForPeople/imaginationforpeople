@@ -1,3 +1,4 @@
+
 function confirm(message, callback) {
 	$('#confirm').modal({
 		position: ["30%",],
