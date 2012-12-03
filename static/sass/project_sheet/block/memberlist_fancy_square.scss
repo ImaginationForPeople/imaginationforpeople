@@ -24,9 +24,12 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 @import "project_sheet/i4p-slider/*.png"; // */
 // @include all-i4p-slider-sprites; // NO AUTO INCLUDE
 
-.member-block-overlay {
 
-}
+$memberListFancySquare_sizeMemberContainerWidth: 260px;
+$memberListFancySquare_sizeMemberContainerHeight: 65px;
+
+$memberListFancySquare_sizeMemberWidth: 88px;
+$memberListFancySquare_sizeMemberHeight: 52px;
 
 // FIXME: move block rules elsewhere
 .member-block {
@@ -46,76 +49,69 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 }
 
 .member-list.square.fancy {
+    @include bootstrap-clearfix;
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
+    @include i4p-transition(all .5s ease);
+
     width: inherit;
+    height: 70px;
+
     overflow: hidden;
+    background-color: $colorLightGrey;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+
+    .anythingSlider {
+	width: inherit;
+
+	position: relative;
+	height: $memberListFancySquare_sizeMemberContainerHeight;
+
+	.anythingWindow {
+	    height: 100%;
+	    overflow: hidden;
+	    padding-left: 20px;
+	    padding-right: 20px;
+	    position: relative;
+	    width: $memberListFancySquare_sizeMemberContainerWidth;
+	}
+
+	.anythingBase {
+	    position: absolute;
+	}
+
+	.panel {
+	    height: $memberListFancySquare_sizeMemberContainerHeight + 2;
+
+	    img {
+		@include i4p-transition(all .5s ease);
+		outline: 1px solid rgba(255,255,255,0);
+	    }
+
+	    &.activePage {
+		img {
+		    outline: 1px solid rgba(255,255,255,0.5);
+		}
+	    }
+
+	    .description, .source, .licence, .delete {
+		position: absolute;
+		top: 0;
+		height: 1px;
+		display: none;
+		visibility: hidden;
+	    }
+
+	}
+    }
 
     input {
 	display: none;
     }
 
-    .view {
-	@include bootstrap-clearfix;
-	@include border-radius($sizeRadiusSmall);
-	@include box-sizing(border-box);
-	@include i4p-transition(all .5s ease);
-	border: 1px solid $colorLightDarkGrey;
-	background-color: $colorLightLightGrey;
-	display: block;
-	width: inherit;
-	padding-left: 25px;
-	padding-right: 25px;
-	position: relative;
-
-	ul {
-	    @include box-sizing(border-box);
-	    @include i4p-transition(all .5s ease);
-	    padding: 5px;
-	    height: 60px;
-	    list-style: none;
-	    white-space: nowrap;
-	    // width: 20 * 60px ;
-
-	    li {
-		&:nth-child(4n + 4) {
-		    margin-right: 60px;
-		}
-	    }
-	}
-
-    }
-
-    .controls {
-	display: block;
-	position: relative;
-	height: 1px;
-	width: inherit;
-    }
-
-    .active {
-	display: block;
-	text-align: center;
-	margin: 10px;
-
-	label {
-	    @include i4p-transition(all .5s ease);
-	    border-radius: 5px 5px 5px 5px;
-	    background-color: $colorMedDarkGrey;
-	    display: inline-block;
-	    height: 10px;
-	    width: 10px;
-	}
-    }
-
-
-    @for $i from 0 through 10 {
-	#slide-#{$i}:checked ~ .active label:nth-child(#{$i + 1}) {
-	    background-color: $colorLightBlue;
-	}
-
-	#slide-#{$i}:checked ~ .view ul {
-	    margin-left: $i * -5 * 60px;
-	}
-    }
 
     .slide-input {
 	display: none;
@@ -143,28 +139,6 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 	height: 15px;
     }
 
-    // controls 
-    .slide-input.first-input:checked ~ .controls label:last-child {
-	content: "v1";
-	@include member-list-leftcontrol;
-    }
-
-    .slide-input.last-input:checked ~ .controls label:first-child {
-	content: "v2";
-	@include member-list-rightcontrol;
-    }
-
-    @for $i from 0 through 10 {
-	#slide-#{$i}:checked ~ .controls label:nth-child(#{$i + 2}) {
-	    content: "v3";
-	    @include member-list-rightcontrol;
-	}
-
-	#slide-#{$i}:checked ~ .controls label:nth-child(#{$i}) {
-	    content: "v4";
-	    @include member-list-leftcontrol;
-	}
-    }
 
 }
 
