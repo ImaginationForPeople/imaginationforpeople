@@ -69,13 +69,13 @@ $galleryModal_sizeThumbHeight: 55px;
 	    .panel {
 		height: $galleryModal_sizeViewerContainerHeight + 2;
 
-		img {
+		img, iframe {
 			@include i4p-transition(all .5s ease);
 			outline: 1px solid rgba(255,255,255,0);
 		}
 
 		&.activePage {
-		    img {
+		    img, iframe {
 			outline: 1px solid rgba(255,255,255,0.5);
 		    }
 		}
@@ -108,7 +108,7 @@ $galleryModal_sizeThumbHeight: 55px;
 		height: $galleryModal_sizeViewerContainerHeight;
 		width: $galleryModal_sizeViewerContainerWidth + 5;
 
-		img {
+		img, iframe {
 		    left: 10px;
 		    position: absolute;
 		    top: 1px;
@@ -156,11 +156,19 @@ $galleryModal_sizeThumbHeight: 55px;
 
 		float: left;
 		display: block;
+		visibility: visible;
 		margin:0;
 		position: relative;
 		overflow: hidden;
 		height: $galleryModal_sizeThumbContainerHeight;
 		width: 108px;
+		opacity: 1; 
+
+		&.cloned {
+		    @include i4p-transition(all .5s ease);
+		    visibility: hidden;
+		    opacity: 0; 
+		}
 
 		a {
 		    img {
