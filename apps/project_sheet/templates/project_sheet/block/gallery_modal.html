@@ -95,16 +95,11 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					</li>
 					{% endfor %}
 
-					{% comment %} ANOTHER LOOP FOR DEBUGGING PURPOSE ONLY 
-					{% for project_picture in project_translation.project.pictures.all %}
-					<li data-slider-index="{{ forloop.counter }}">
-					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
-						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  
-						alt="" />
-					</a>
+					{% for project_video in project_translation.project.videos.all %}
+					<li data-slider-index="{{ project_translation.project.pictures.all|length|add:forloop.counter }}">
+						<img  src="{{ STATIC_URL }}images/play_video.png" class="color" alt="">
 					</li>
 					{% endfor %}
-					{% endcomment %}
 				</ul>
 			</div>
 			<div class="gallery-nav">

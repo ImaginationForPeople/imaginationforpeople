@@ -48,7 +48,7 @@ on_sprite_saved do |filename|
 	newname
 end
 
-REGEXP_REMS=/([0-9.]+)rem(\s*)/ ;
+REGEXP_REMS=/(:.*?)([0-9.]+)rem(\s*)/ ;
 REGEXP_PNG=/-s[a-z0-9]{10}\.png/ ;
 
 # Replace in stylesheets generated references to sprites
@@ -62,9 +62,15 @@ on_stylesheet_saved do |filename|
 		while (li = fold.gets) do
 			case li
 			when REGEXP_REMS then
+				prefix = $1
+				rem_val = $2
+				suffix = $3
 				# compute and rewrite for IE8
-				val_px = ($1.to_f * 10).to_i
-				fnew << li.gsub(REGEXP_REMS, '%spx\2' % val_px)
+				val_px = (rem_val.to_f * 10).to_i
+				rw_li = li.gsub(REGEXP_REMS, '%s%spx%s' % [prefix, val_px, suffix])
+				puts "REM match   : %s" % li
+			   	puts "	  rewrite : %s" % rw_li
+				fnew << rw_li
 				# real rule
 				fnew << li
 			when REGEXP_PNG then
@@ -78,6 +84,9 @@ on_stylesheet_saved do |filename|
 		fold.close
 		FileUtils.mv filename_new, filename
 	end
+	filename
+end
+
 =begin
 	css = File.read filename
 
@@ -85,7 +94,5 @@ on_stylesheet_saved do |filename|
 	  f << css.gsub(%r{-s[a-z0-9]{10}\.png}, '.png')
 	end
 =end
-	filename
-end
 
 

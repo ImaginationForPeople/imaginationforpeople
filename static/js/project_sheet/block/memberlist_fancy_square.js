@@ -37,26 +37,6 @@ $(document).ready(function () {
 		});
 		jdebug('initialized bottom slider !');
 
-		// each slides should show upper slider's slide
-		$(lowerSlider).find('a').each(function () {
-			var linkThis = this,
-				linkNumber = $(linkThis).parent().attr('data-slider-index'),
-				linkSrc = $(linkThis).attr('href');
-
-			if (linkNumber === undefined) { console.error('data-slider-index not defined'); }
-
-			// bind click event, warning: viewSlider is available at runtime (clicktime) only
-			$(linkThis).click(function (ev) {
-				var viewSlider = $('#' + viewId);
-				if (viewSlider === undefined) { console.error('no object for data-slider-view-id = ' + viewId); }
-
-				ev.preventDefault();
-				viewSlider.anythingSlider(linkNumber);
-				jdebug('FIXME: remove - showing slide slide ' + linkNumber + ' on upper slider');
-			});
-		});
-
-		jdebug('initialized lower slides clicks !');
 	}); // lower slider init
 
 });
