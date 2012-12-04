@@ -25,7 +25,7 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 // @include all-i4p-slider-sprites; // NO AUTO INCLUDE
 
 
-$memberListFancySquare_sizeMemberContainerWidth: 260px;
+$memberListFancySquare_sizeMemberContainerWidth: 300px;
 $memberListFancySquare_sizeMemberContainerHeight: 65px;
 
 $memberListFancySquare_sizeMemberWidth: 88px;
@@ -54,7 +54,8 @@ $memberListFancySquare_sizeMemberHeight: 52px;
     @include box-sizing(border-box);
     @include i4p-transition(all .5s ease);
 
-    width: inherit;
+    width: $memberListFancySquare_sizeMemberContainerWidth;
+    // width: inherit;
     height: 70px;
 
     overflow: hidden;
@@ -63,24 +64,63 @@ $memberListFancySquare_sizeMemberHeight: 52px;
     padding-top: 10px;
     padding-bottom: 10px;
 
+    // hide block before anythingSlider initialization
+    & > .member-list-slider {
+	visibility: hidden;
+	display: none;
+	// FIXME: add a loader as a background image
+    }
+
 
     .anythingSlider {
-	width: inherit;
+	@include box-sizing(border-box);
 
 	position: relative;
 	height: $memberListFancySquare_sizeMemberContainerHeight;
+	width: inherit;
+	// $memberListFancySquare_sizeMemberContainerWidth;
+	// padding-left: 22px;
+	// padding-right: 22px;
 
 	.anythingWindow {
 	    height: 100%;
 	    overflow: hidden;
-	    padding-left: 20px;
-	    padding-right: 20px;
 	    position: relative;
-	    width: $memberListFancySquare_sizeMemberContainerWidth;
+	    width: $memberListFancySquare_sizeMemberContainerWidth - 42px;
 	}
 
 	.anythingBase {
 	    position: absolute;
+	}
+
+	.anythingControls {
+	    position: absolute;
+	    top: 100px;
+	    left: 0;
+	    display: block;
+	    height: $memberListFancySquare_sizeMemberContainerHeight;
+	    width: $memberListFancySquare_sizeMemberContainerWidth;
+	}
+
+	.arrow {
+	    position: absolute;
+	    top: 12px;
+
+	    &.back {
+		left: 5px;
+	    }
+
+	    &.forward {
+		right: 5px;
+	    }
+
+	    a {
+		font-size: $sizeTextLarge;
+		font-family: $fontOpenSans;
+		font-stretch: condensed;
+		font-size: $sizeTextHuge;
+		color: $colorMedGrey;
+	    }
 	}
 
 	.panel {
