@@ -68,8 +68,9 @@ on_stylesheet_saved do |filename|
 				# compute and rewrite for IE8
 				val_px = (rem_val.to_f * 10).to_i
 				rw_li = li.gsub(REGEXP_REMS, '%s%spx%s' % [prefix, val_px, suffix])
-				puts "REM match   : %s" % li
-			   	puts "	  rewrite : %s" % rw_li
+				# debug :
+				# puts "REM match   : %s" % li
+			   	# puts "	  rewrite : %s" % rw_li
 				fnew << rw_li
 				# real rule
 				fnew << li
