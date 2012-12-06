@@ -61,7 +61,6 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				data-target="subheader-title-{{subheader_title_unique_counter}}"
 				{% endcomment %}
 				>
-				<img src="{{ STATIC_URL }}images/base/edit.png" />
 			</a>
 			{% endwith %}<!-- %subheader_title_unique_counter -->
 			{% else %}
@@ -106,7 +105,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				>
 				{{ project_translation.baseline }}
 			</span>
-			<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png" /></a>
+			<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-field project_translation.slug 'baseline' %}" class="button editing-button right"></a>
 			{% endwith %}
 			{% else %}
 			<!--  BASELINE/READONLY empty -->

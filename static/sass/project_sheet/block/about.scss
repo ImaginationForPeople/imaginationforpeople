@@ -40,6 +40,7 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
     }
 
     &.editing {
+	    @include i4p-transition(all .5s ease);
 	    background-color: $colorLightBlue;
 
 	    h2{
@@ -52,7 +53,7 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
     .inline-edit {
 	@include bootstrap-clearfix;
 
-	background-color: $colorLightBlue;
+	// background-color: $colorLightBlue;
 	padding: $sizePaddingSmall;
 	margin-left: -1rem;
 

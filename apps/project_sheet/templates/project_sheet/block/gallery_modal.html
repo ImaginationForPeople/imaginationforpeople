@@ -15,6 +15,7 @@ FIXME: use picture list instead of project_translation
 {% load sekizai_tags %}
 {% load thumbnail %}
 {% load unique_counter_tag %}
+{% load oembed_works_tags %}
 
 
 {% addtoblock "css" %}
@@ -47,6 +48,8 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					data-slider-actions-id="gallery-modal-actions-{{ modal_unique_counter }}"
 					class="viewer-slider"
 					>
+
+					{% comment %} IMAGE LOOP {% endcomment %}
 					{% for project_picture in project_translation.project.pictures.all %}
 					<li data-slider-index="{{ forloop.counter }}">
 						<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
@@ -55,6 +58,17 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 						<div class="source">{{project_picture.source}}</div>
 						<div class="licence">{{project_picture.licence}}</div>
 						<a href="{% url project_sheet-instance-picture-del project_translation.slug project_picture.id %}" class="delete"></a>
+					</li>
+					{% endfor %}
+
+					{% comment %} VIDEO LOOP {% endcomment %}
+					{% for project_video in project_translation.project.videos.all %}
+					<li data-slider-index="{{ forloop.counter }}">
+						{% oembed 520x400 %}{{ project_video.video_url }}{% endoembed %}
+						<div class="description">{{project_video.desc}}</div>
+						<div class="source">{{project_video.source}}</div>
+						<div class="licence">{{project_video.licence}}</div>
+						<a href="{% url project_sheet-instance-picture-del project_translation.slug project_video.id %}" class="delete"></a>
 					</li>
 					{% endfor %}
 				</ul>
@@ -95,16 +109,14 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					</li>
 					{% endfor %}
 
-					{% comment %} ANOTHER LOOP FOR DEBUGGING PURPOSE ONLY 
-					{% for project_picture in project_translation.project.pictures.all %}
-					<li data-slider-index="{{ forloop.counter }}">
-					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
-						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  
-						alt="" />
-					</a>
+					{% for project_video in project_translation.project.videos.all %}
+					<li data-slider-index="{{ project_translation.project.pictures.all|length|add:forloop.counter }}">
+					<a href="#">
+						<img  src="{{ STATIC_URL }}images/play_video.png" class="color" alt="" />
+
+						</a>
 					</li>
 					{% endfor %}
-					{% endcomment %}
 				</ul>
 			</div>
 			<div class="gallery-nav">

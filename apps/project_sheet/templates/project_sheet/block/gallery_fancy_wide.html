@@ -55,10 +55,16 @@
 	<h2><span>{% trans 'videos' %}</span></h2>
 	<div class="row">
 		{% for video in project.videos.all %}
-		<div class="video span2" >
+		<div class="video span2" 
+			data-slider-index="{{ project.pictures.all|length|add:forloop.counter }}"
+			data-modal-target-id="gallery-{{ gallery_modal_unique_counter }}" 
+			data-slider-view-id="gallery-modal-view-{{ gallery_modal_unique_counter }}"
+			data-toggle="i4p-gallery-modal" 
+			>
 			<div class="remotevideo">
 				<!-- FIXME: extract video thumbnail as specified there : http://stackoverflow.com/questions/2068344/how-to-get-thumbnail-of-youtube-video-link-using-youtube-api -->
-				{% oembed 140x120 %}{{ video.video_url }}{% endoembed %}
+				<img  src="{{ STATIC_URL }}images/play_video.png"  class="color" alt="">
+				<!-- { oembed 140x120 %}{{ video.video_url }}{% endoembed } -->
 			</div>
 
 			<div class="description">
