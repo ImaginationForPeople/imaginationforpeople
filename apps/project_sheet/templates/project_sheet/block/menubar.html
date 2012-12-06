@@ -30,8 +30,33 @@
 				<li class="right"><a href="#FIXME-BADURL">
 						<i class="i4p-toolbar-widgets"></i>
 				</a></li>
-				<li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
 				{% endcomment %}
+				<li class="right">
+					<a role="menu" href="#FIXME-BADURL" class="dropdown-toggle" 
+						data-target="#" data-toggle="dropdown">{% trans "Lang" %}
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						{% for translation in project_translation.project.translations.all %}
+						<li>
+							<a tabindex="-1" href="#" >{{ translation.language_code }}</a>
+						</li>
+						{% endfor %}
+						<li class="divider"></li>
+						<li class="dropdown-submenu">
+							<a tabindex="-1" href="#">{% trans "Add new translation" %}</a>
+							<ul class="dropdown-menu">
+								{% for language in LANGUAGES %}
+								<li>
+									<a tabindex="-1" href="#">
+										{{ language.1 }} - {{ language.0 }}
+									</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</li>
+					</ul>
+				</li>
 				<li class="right">
 					<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
 						<i class="i4p-toolbar-dropdown"></i>
