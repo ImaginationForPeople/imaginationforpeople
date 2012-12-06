@@ -21,17 +21,14 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
 
 @mixin i4p-editable {
-    & > .editing-button {
-	@include i4p-transition;
-	display: none;
+    .editing-button {
+	@include i4p-button-editable-fancy;
+	@include i4p-transition(all .5s ease);
 	opacity: 0;
     }
 
-    &:hover {
-	& > .editing-button {
-	    display: block;
-	    opacity: 1;
-	}
+    &:hover .editing-button {
+	opacity: 1;
     }
 }
 
@@ -106,27 +103,11 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	    }
 
 	    .infotable-location {
-		.editing-button {
-		    @include i4p-button-editable-fancy;
-		    @include i4p-transition(all .5s ease);
-		    opacity: 0;
-		}
-
-		&:hover .editing-button {
-		    opacity: 1;
-		}
+		@include i4p-editable;
 	    }
 
 	    .infotable-website {
-		.editing-button {
-		    @include i4p-button-editable-fancy;
-		    @include i4p-transition(all .5s ease);
-		    opacity: 0;
-		}
-
-		&:hover .editing-button {
-		    opacity: 1;
-		}
+		@include i4p-editable;
 	    }
 
 	    .infotable-maturity {

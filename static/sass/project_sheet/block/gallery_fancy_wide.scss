@@ -36,6 +36,7 @@ $gallery_sizeThumbTextHeight: 60px;
 	    height: $sizeTextNormal;
 	}
 
+	.remotevideo,
 	.image {
 	    z-index: 1;
 	    @include i4p-transition(all .5s ease);
@@ -49,6 +50,8 @@ $gallery_sizeThumbTextHeight: 60px;
 
 	    img {
 		@include border-radius($sizeRadiusSmall);
+		width: 100%;
+		height: 100%;
 	    }
 
 

@@ -19,12 +19,12 @@
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
 {% addtoblock "footer_js" %}
 <script type="text/javascript">
-$.getScript(I4P_STATIC_URL+"js/project_sheet/block/about.js");  
+$.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
 </script>
 {% endaddtoblock %}
 {% addtoblock "footer_js" %}
 <script type="text/javascript">
-	$.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/about.js");  
 </script>
 {% endaddtoblock %}
 
@@ -65,8 +65,6 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/about.js");
 	data-editable-type="textarea"
 	data-editable-load-url="{% if project_translation %}{% url project_sheet-ajax-field-load project_translation.slug %}{% else %}{% url project_sheet-ajax-field-load %}{% endif %}"
 	data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{% else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
-	data-editable-cancel="<button type='cancel'>Cancel</button>"
-	data-editable-submit="<button type='submit'>Submit</button>"
 	data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
 	>
 	{{ project_translation.about_section|linebreaksbr|urlize|url_target_blank }}

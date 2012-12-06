@@ -67,7 +67,7 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 
 	    margin-left: -1rem;
 
-	    background-color: $colorLightBlue;
+	    // background-color: $colorLightBlue;
 	    padding: $sizePaddingSmall;
 
 	    textarea {
@@ -84,6 +84,7 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 
     .detail-item {
 	&.editing {
+	    @include i4p-transition(all .5s ease);
 	    background-color: $colorLightBlue;
 
 	    h2{

@@ -12,7 +12,7 @@
 
 $(document).ready(function () {
 
-	//var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
+	// var jdebug = function (str) { console.log('gallery-fancy: ' + str); };
 	var jdebug = function (str) { return null; };
 
 	$('*[data-toggle="i4p-gallery-modal"]').click(function (e) {
@@ -28,7 +28,7 @@ $(document).ready(function () {
 
 		if (!sliderTarget) { console.error('AnythingSlider not initialized on object ' + sliderTargetId); }
 
-		console.log('modal control called for slide ' + currentIndex + ' on ' + modalTargetId);
+		jdebug('modal control called for slide ' + currentIndex + ' on ' + modalTargetId);
 		sliderTarget.gotoPage(currentIndex);
 		$('#' + modalTargetId).modal();
 	});
