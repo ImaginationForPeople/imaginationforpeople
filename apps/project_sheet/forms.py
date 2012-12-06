@@ -59,7 +59,7 @@ class I4pProjectInfoForm(forms.ModelForm):
     """
     class Meta:
         model = I4pProject
-        fields = ('website',)
+        fields = ('website', 'status')
 
 
 class I4pProjectLocationForm(forms.ModelForm):
