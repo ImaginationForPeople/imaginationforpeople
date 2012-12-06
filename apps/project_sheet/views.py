@@ -435,13 +435,9 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
             form = FieldForm()
 
     if project_translation:
-        context['project_info_form'] = I4pProjectInfoForm(instance=project_translation.project)
-        context['project_themes_form'] = I4pProjectThemesForm(instance=project_translation)
-        context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
+        # context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
         context['project_member_form'] = ProjectMemberForm()
-        context['project_location_form'] = I4pProjectLocationForm(instance=project_translation.project.location)
         context['answer_form'] = AnswerForm()
-        context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
         context['project_tab'] = True
         context['project'] = project_translation.project
     elif topic_slug:
