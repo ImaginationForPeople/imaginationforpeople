@@ -275,8 +275,9 @@ INSTALLED_APPS = (
     'cmsplugin_iframe',
     'cmsplugin_contact',
 
-    'askbot',
     'askbot.deps.livesettings',
+    'askbot',
+    
     'longerusername',
     'keyedcache',
     'djcelery',
