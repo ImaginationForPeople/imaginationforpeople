@@ -1,7 +1,9 @@
-from django.db.models import Count
+from django.conf import settings
 from django.contrib import comments
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
+from django.db.models import Count
+from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template.context import RequestContext
 from django.utils import translation
@@ -9,10 +11,13 @@ from django.views.decorators.cache import cache_page
 from django.views.decorators.http import require_GET
 from django.views.decorators.vary import vary_on_headers
 
+from haystack.query import SearchQuerySet
+from serializers import ModelSerializer, Field
+
+from apps.member.models import I4pProfile
 from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translations_from_parents
-
-
+from apps.workgroup.models import WorkGroup
 
 def _slider_make_response(request, queryset):
     count = int(request.GET.get('count', 14))
@@ -70,9 +75,87 @@ def slider_most_commented(request):
                               context_instance=RequestContext(request))
 
 
+class ProjectSerializer(ModelSerializer):
+    """
+    A serializer for the I4PProject Models
+    """
+    class Meta:
+        fields = ('title', 'get_absolute_url', 'image')
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
+    image = Field(source='*', convert=lambda obj: ProjectSerializer.get_mosaic(obj))
 
+    @staticmethod
+    def get_mosaic(obj):
+        p = obj.project.get_primary_picture()
+        if p:
+            return p.mosaic_tile.url
+        else:
+            return settings.STATIC_URL + "images/home/picto-projects.jpg"
 
+class WorkGroupSerializer(ModelSerializer):
+    """
+    A serializer for the WorkGroup Models
+    """
+    class Meta:
+        fields = ('name', 'get_absolute_url')
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
 
+class I4pProfileSerializer(ModelSerializer):
+    """
+    A serializer for the I4pProfile Models
+    """
+    class Meta:
+        fields = ('get_full_name_or_username', 'get_absolute_url', 'mugshot')
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
+    get_full_name_or_username = Field(source='*', convert=lambda obj: obj.get_full_name_or_username())    
+    mugshot = Field(source='*', convert=lambda obj: I4pProfileSerializer.get_mugshot(obj))
 
+    @staticmethod
+    def get_mugshot(obj):
+        try:
+            return obj.mugshot.url
+        except:
+            return settings.STATIC_URL + "images/home/picto-community.jpg"
+            
+
+@require_GET
+#@cache_page(60 * 60 * 12) # 12 Hours
+@vary_on_headers('Host')
+def globalsearch_autocomplete(request):
+    """
+    Suggest results while typing in the search bar
+    """
+    current_language_code = translation.get_language()
+
+    question = request.GET.get('q', '')
+
+    # Don't allow question under 3 characters
+    if len(question) < 3:
+        return HttpResponse("", content_type='application/json')
+
+    # matches. XXX: Need to filter based on 'Site'
+    projects = SearchQuerySet().models(I4pProjectTranslation).filter(
+        language_code=current_language_code
+    ).autocomplete(content_auto=question)
+
+    workgroups = SearchQuerySet().models(WorkGroup).filter(
+        language_code=current_language_code,
+        visible=True,
+    ).autocomplete(content_auto=question)
+
+    profiles = SearchQuerySet().models(I4pProfile).autocomplete(content_auto=question)
+
+    project_serializer = ProjectSerializer(depth=0)
+    project_data = project_serializer.serialize([r.object for r in projects[:3] if r != None], format='json')
+
+    workgroup_serializer = WorkGroupSerializer(depth=0)
+    workgroup_data = workgroup_serializer.serialize([r.object for r in workgroups[:3] if r != None], format='json')    
+
+    profile_serializer = I4pProfileSerializer(depth=0)
+    profile_data = profile_serializer.serialize([r.object for r in profiles[:3] if r != None], format='json')
+
+    data = '{"projects": %s, "workgroups": %s, "profiles": %s}' % (project_data, workgroup_data, profile_data)
+    
+    return HttpResponse(data, content_type='application/json')
 
 
