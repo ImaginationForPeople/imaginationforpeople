@@ -38,8 +38,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/detail-list.js");
 			data-toggle="i4p-editable-button"
 			data-target="funnyprefix-answer-{{ q.id }}"
 			>
-			<img src="{{ STATIC_URL }}images/base/edit.png" />
-			{% trans 'Edit' %}
+			<span>{% trans 'Edit' %}</span>
 		</a>
 	</h2>
 	{% if answer_form %}

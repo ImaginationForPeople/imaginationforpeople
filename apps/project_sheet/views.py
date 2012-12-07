@@ -261,15 +261,26 @@ class ProjectEditInfoView(ProjectView):
     """
     def get(self, request, *args, **kwargs):
         self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.project)
+        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.project.location)
         return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
         # Misc info: website, ...
         self.project_info_form = I4pProjectInfoForm(request.POST,
                                                     instance=self.project_translation.project)
+
+        self.project_location_form = I4pProjectLocationForm(request.POST,
+                                                            instance=self.project_translation.project.location)
+
+        print self.project_translation.project.location
         
-        if self.project_info_form.is_valid():
-            info = self.project_info_form.save()
+        if self.project_info_form.is_valid() and self.project_location_form.is_valid():
+            self.project_info_form.save()
+            location = self.project_location_form.save()
+            if not self.project_translation.project.location:
+                self.project_translation.project.location = location
+                self.project_translation.project.save()
+            
             return redirect(self.project_translation)
         else:
             return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
@@ -278,6 +289,7 @@ class ProjectEditInfoView(ProjectView):
         context = super(ProjectEditInfoView, self).get_context_data(slug, **kwargs)
         
         context['project_info_form'] = self.project_info_form
+        context['project_location_form'] = self.project_location_form
         
         return context
 
@@ -435,13 +447,9 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
             form = FieldForm()
 
     if project_translation:
-        context['project_info_form'] = I4pProjectInfoForm(instance=project_translation.project)
-        context['project_themes_form'] = I4pProjectThemesForm(instance=project_translation)
-        context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
+        # context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
         context['project_member_form'] = ProjectMemberForm()
-        context['project_location_form'] = I4pProjectLocationForm(instance=project_translation.project.location)
         context['answer_form'] = AnswerForm()
-        context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
         context['project_tab'] = True
         context['project'] = project_translation.project
     elif topic_slug:

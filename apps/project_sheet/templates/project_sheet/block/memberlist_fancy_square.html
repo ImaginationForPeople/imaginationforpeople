@@ -17,42 +17,25 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
 {% endaddtoblock %}
 
+{% comment %} SYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider-1.8.6.js"></script>
+{% endaddtoblock %}
+
+{% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "footer_js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_fancy_square.js");  
+</script>
+{% endaddtoblock %}
+
 {% if members %}
 <div class="member-list square fancy">
-	{% comment %} FIXME: more inputs/labels than expected with slice, why ? {% endcomment %}
-	{% for member in members %}
-	{% if forloop.counter0|divisibleby:"4" %}
-	<input id="slide-{{forloop.counter0}}" 
-	class="slide-input {% if forloop.first %}first-input{% endif %} {% if forloop.last %}last-input{% endif %}" 
-	type="radio" name="slider" {% if forloop.first %}checked=""{% endif %} selected="false">
-	{% endif %}
-	{% endfor %}
-	<div class="view">
-		{% comment %} FIXME: add shuffle filter to the list {% endcomment %}
-		<ul>
-			{% for member in members %}
-			{% include "project_sheet/block/member_fancy_square.html" %}
-			{% endfor %}
-		</ul>
-	</div>
-	<div class="controls">
-		{% if members|length > 4 %}
-		{% for member in members %}
-		{% if forloop.counter0|divisibleby:"4" %}
-		<label for="slide-{{forloop.counter0}}"></label>
-		{% endif %}
-		{% endfor %}
-		{% endif %}
-	</div>
-	<div class="active">
-		{% if members|length > 4 %}
-		{% for member in members %}
-		{% if forloop.counter0|divisibleby:"4" %}
-		<label for="slide-{{forloop.counter0}}"></label>
-		{% endif %}
-		{% endfor %}
-		{% endif %}
-	</div>
+    <ul class="member-list-slider" data-toggle="i4p-memberlist-fancy-slider" >
+        {% for member in members %}
+        {% include "project_sheet/block/member_fancy_square.html" %}
+        {% endfor %}
+    </ul>
 </div>
 {% else %}
 No user associated with this project.

@@ -1,4 +1,3 @@
-
 /*
  *
  * Assign jquery editable attributes on each dom object having the
@@ -24,31 +23,52 @@
  *
 */
 
-// FIXME: make sure jquery.editable plugin is loaded
+// require jquery
+// require jquery.editable
 
-$(document).ready(function() {
+/*jslint browser: true*/
+/*global $, jQuery, document*/
+
+"use strict";
+
+$(document).ready(function () {
 
 	// we encapsulate editable call within each to force "this" to be correcly set...
-	$("*[data-toggle='i4p-editable-button']").each(function(){
-		var buttonThis = this;
-		var dataTarget = '#' + $(this).attr('data-target');
-		var dataTargetTrigger = $(dataTarget).attr('data-editable-trigger');
+	$("*[data-toggle='i4p-editable-button']").each(function () {
+		var buttonThis = this,
+			dataTarget = '#' + $(this).attr('data-target'),
+			dataTargetTrigger = $(dataTarget).attr('data-editable-trigger');
 
-		$(this).click(function(e){
-			e.preventDefault();
+		$(this).click(function (ev) {
+			ev.preventDefault();
 			$(dataTarget).trigger(dataTargetTrigger);
 		});
 
 		// hide clicked button and other for the same element once 
 		// FIXME: hide other buttons for the same elements
-		$(dataTarget).bind(dataTargetTrigger, function() {
+		$(dataTarget).bind(dataTargetTrigger, function () {
 			$(buttonThis).fadeOut('slow');
-
 		});
 	});
 
-	$("*[data-toggle='i4p-editable']").each(function(){
-		var editableThis = this;
+	$("*[data-toggle='i4p-editable']").each(function () {
+		var editableThis = this,
+			editableButtonEnableFn;
+
+		editableButtonEnableFn = function () {
+			// re-enable edit button
+			$("*[data-toggle='i4p-editable-button']").each(function () {
+				var buttonThis = this,
+					buttonTarget = $(buttonThis).attr('data-target'),
+					localId = $(editableThis).attr('id');
+
+				//console.log("scanning button with target : #" + buttonTarget);
+
+				if (localId === buttonTarget) {
+					$(buttonThis).fadeIn('slow');
+				}
+			});
+		};
 
 		$(this).editable(
 			$(this).attr('data-editable-save-url'),
@@ -61,38 +81,32 @@ $(document).ready(function() {
 					'id' : $(editableThis).attr('data-editable-id'),
 					'language_code': $(editableThis).attr('data-language-code')
 				},
-				submitdata: function(value, settings) {
+				submitdata: function (value, settings) {
 					return {
 						'id' : $(editableThis).attr('data-editable-id'),
 						'language_code': $(editableThis).attr('data-language-code'),
 						'description': '',
 						// FIXME: use the honeypot // $('.project_details_body input[name=description]').val()
-					}
+					};
 				},
 				dataType: 'json',
-				callback: function(data) {
+				callback: function (data) {
 					var res = jQuery.parseJSON(data);
 					$(editableThis).html(res.text);
+					editableButtonEnableFn();
+					$(editableThis).trigger('submit');
 				},
 				indicator: 'Saving...',
-				cancel: $(editableThis).attr('data-editable-cancel'),
-				submit: $(editableThis).attr('data-editable-submit'),
-				onblur: 'ignore',
+				cancel: $(editableThis).attr('data-editable-cancel') || 'Cancel',
+				submit: $(editableThis).attr('data-editable-submit') || 'Save',
 				cssclass: 'inline-edit',
 				placeholder: $(editableThis).attr('data-editable-tooltip'),
-				onblur: function(data) {
-					// re-enable edit button
-					$("*[data-toggle='i4p-editable-button']").each(function(){
-						var buttonThis = this;
-						var buttonTarget = $(buttonThis).attr('data-target');
-						var localId = $(editableThis).attr('id');
-						//console.log("scanning button with target : #" + buttonTarget);
-
-						if (localId == buttonTarget) {
-							$(buttonThis).fadeIn('slow');
-						}
-					});
+				onblur: 'ignore',
+				onreset: function () {
+					editableButtonEnableFn();
+					$(editableThis).trigger('cancel');
 				}
-			});
+			}
+		);
 	});
 });

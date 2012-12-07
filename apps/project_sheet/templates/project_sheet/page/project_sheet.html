@@ -15,6 +15,11 @@
 {% endblock %}
 
 {% block project_content %}	
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/page/project_sheet.css" />
+{% endaddtoblock %}
+
 <div class="container">        
     {% if user.is_authenticated %}
         {% with "project_sheet_logged_in_popup" as placeholder_name %}
@@ -26,11 +31,8 @@
     <div class="row">
 	<div class="span8 project-main">
 
-	    <div class="project-about">
-		<a name="project-about"></a>
 
-		{% include "project_sheet/block/about.html" %}
-	    </div> <!-- .project-about -->
+	    {% include "project_sheet/block/about.html" %}
 
 	    <div class="project-details detail-list">
 		{% include "project_sheet/block/detail-list.html" %}
@@ -56,10 +58,10 @@
 
 	  {% if project_translation %}
 	    <div class="project-members member-block">
-		<!-- FIXME: use dynamic data for member list -->
 		<h2>
 		    <i class="sheet-members"></i>
 		    {% trans "Contributors"|capfirst %}</h2>
+
 		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
 		{% include "project_sheet/block/memberlist_fancy_square.html" with members=project_translation.project.detailed_members.all %}
 	    </div>
@@ -85,7 +87,7 @@
 		    {% trans "Gallery"|capfirst %}
 		</h2>
 		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% include "project_sheet/block/gallery_fancy.html" %}
+		{% include "project_sheet/block/gallery_fancy_thin.html" %}
 
 	    </div> <!-- .project-gallery -->
 

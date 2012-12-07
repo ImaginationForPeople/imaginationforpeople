@@ -1,0 +1,14 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% comment %}FIXME: replace with reusable/themable form buttons {%endcomment%}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/form-buttons.css" />
+{% endaddtoblock %}
+
+<div class="form-buttons">
+	<a onclick="history.back(1)" class="cancel-button" >&nbsp;</a>
+
+	<input type="submit" name="save" value="save" class="submit-button" />
+</div>
