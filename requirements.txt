@@ -1,4 +1,4 @@
-django==1.4
+django==1.4.2
 psycopg2==2.4.1
 south==0.7.5
 pygraphviz==1.1
@@ -14,7 +14,10 @@ django-autocomplete-light==1.1.13
 easy-thumbnails==1.0.3
 
 # Django cms 2.3rc2.post0
--e git://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
+
+#-e git://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
+-e git://github.com/divio/django-cms.git@2.3#egg=django-cms
+
 
 # Wiki
 -e git://github.com/benjaoming/django-wiki.git@64a22a81807898f3fb1d60c86a9c13bb26fe4ac8#egg=django-wiki
