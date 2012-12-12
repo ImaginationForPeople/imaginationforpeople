@@ -41,7 +41,6 @@ $memberListFancySquare_sizeHeight: 52px;
 
 
 .member-list-overlay.square.fancy {
-    @include i4p-font-subtitle($sizeTextSmall);
     @include i4p-transition(all .5s ease);
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
@@ -55,8 +54,8 @@ $memberListFancySquare_sizeHeight: 52px;
     z-index: 99;
 
     background-color: $colorDarkGrey;
-    width: 200px;
-    min-height: 80px;
+    min-width: 200px;
+    min-height: 60px;
     padding: $sizePaddingMedium;
 
     &.open-member,
@@ -76,11 +75,36 @@ $memberListFancySquare_sizeHeight: 52px;
     }
 
     .details {
-	margin-left: 80px;
-    }
+	margin-left: 75px;
+	font-size: $sizeTextSmall;
 
-    .fullname {
-	color: white;
+	.fullname {
+	    @include i4p-font-subtitle($sizeTextNormal);
+	    font-style: italic;
+	    color: white;
+	    white-space: nowrap;
+	}
+
+	.contact, .profile {
+	    background-position: center left;
+	    background-repeat: no-repeat;
+	    display: block;
+	    padding-left: 20px;
+
+	    @include i4p-transition(all .5s ease);
+	    color: $colorMedGrey;
+
+	    &:hover {
+		color: $colorLightGrey;
+		text-decoration: none;
+	    }
+	}
+	.contact {
+	    background-image: image-url('project_sheet/memberlist/contact.png');
+	}
+	.profile {
+	    background-image: image-url('project_sheet/memberlist/profile.png');
+	}
     }
 }
 
