@@ -80,6 +80,7 @@ $memberListFancySquare_sizeHeight: 52px;
 
 	.fullname {
 	    @include i4p-font-subtitle($sizeTextNormal);
+	    line-height: $sizeTextNormal;
 	    font-style: italic;
 	    color: white;
 	    white-space: nowrap;
