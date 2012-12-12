@@ -39,16 +39,19 @@
 					<ul class="dropdown-menu">
 						{% for translation in project_translation.project.translations.all %}
 						<li>
-							<a tabindex="-1" href="#" >{{ translation.language_code }}</a>
+						<a tabindex="-1" 
+							href="{% language translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %}" 
+							>{{ translation.language_code }}</a>
 						</li>
 						{% endfor %}
 						<li class="divider"></li>
 						<li class="dropdown-submenu">
 							<a tabindex="-1" href="#">{% trans "Add new translation" %}</a>
 							<ul class="dropdown-menu">
+								<!-- FIXME: the submenu always show all language, even if they exist/are filled -->
 								{% for language in LANGUAGES %}
 								<li>
-									<a tabindex="-1" href="#">
+									<a tabindex="-1" href="{% language language.0 %}{% url project_sheet-show project_translation.slug %}{% endlanguage %}">
 										{{ language.1 }} - {{ language.0 }}
 									</a>
 								</li>
