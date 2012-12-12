@@ -102,8 +102,8 @@ $(document).ready(function () {
 			buildStartStop: false, // no start/stop
 			hashTags: false,
 
-			backText: "&lt;",
-			forwardText: "&gt;",
+			backText: " ", // "&lt;",
+			forwardText: " ", // "&gt;",
 
 			expand: false,
 			resizeContents: false,

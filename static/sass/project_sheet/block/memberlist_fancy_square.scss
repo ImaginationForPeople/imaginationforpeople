@@ -40,7 +40,7 @@ $memberListFancySquare_sizeWidth: 88px;
 $memberListFancySquare_sizeHeight: 52px;
 
 
-.member-list-overlay.square.fancy {
+.memberlist-overlay.square.fancy {
     @include i4p-transition(all .5s ease);
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
@@ -119,7 +119,7 @@ $memberListFancySquare_sizeHeight: 52px;
 }
 
 
-.member-list.square.fancy {
+.memberlist.square.fancy {
     @include bootstrap-clearfix;
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
@@ -137,7 +137,7 @@ $memberListFancySquare_sizeHeight: 52px;
     position: relative;
 
     // hide block before anythingSlider initialization
-    & > .member-list-slider {
+    & > .memberlist-slider {
 	visibility: hidden;
 	display: none;
 	// FIXME: add a loader as a background image
@@ -205,11 +205,15 @@ $memberListFancySquare_sizeHeight: 52px;
 	    top: 25px;
 
 	    &.back {
-		left: 5px;
+		left: 10px;
+		background: $i4p-slider-sprites no-repeat;
+		@include i4p-slider-sprite(prev); 
 	    }
 
 	    &.forward {
-		right: 5px;
+		right: 10px;
+		background: $i4p-slider-sprites no-repeat;
+		@include i4p-slider-sprite(next); 
 	    }
 
 	    & > a {
@@ -261,44 +265,14 @@ $memberListFancySquare_sizeHeight: 52px;
 	display: none;
     }
 
-    @mixin member-list-leftcontrol {
-	background: $i4p-slider-sprites no-repeat;
-	@include i4p-slider-sprite(prev); 
-	position: absolute;
-	display: block;
-	bottom: 25px;
-	left: 10px;
-	width: 15px;
-	height: 15px;
-    }
-
-    @mixin member-list-rightcontrol {
-	background: $i4p-slider-sprites no-repeat;
-	@include i4p-slider-sprite(next); 
-	position: absolute;
-	display: block;
-	bottom: 25px;
-	right: 6px;
-	width: 15px;
-	height: 15px;
-    }
-
-
 }
 
 // FIXME: move block rules elsewhere
 .member-block {
+    @include i4p-layout-block;
     @include i4p-seemore-class;
-    position: relative;
-    margin-bottom: 20px;
-    padding: 0;
-    padding-top: 5px;
 
     h2 {
-	margin-top: 5px;
-	text-transform: uppercase;
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
+	@include i4p-font-title;
     }
 }
