@@ -7,6 +7,7 @@
 {% load sekizai_tags %}
 {% load comments %}
 {% load i4p_djangocms_tags %}
+{% load unique_counter_tag %}
 {% load tabs %}
 
 {% block navigation %}
@@ -62,7 +63,16 @@
 		    <i class="sheet-members"></i>
 		    {% trans "Contributors"|capfirst %}</h2>
 
-		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
+		{% unique_counter memberlist_fancy_modal %}
+		{% with memberlist_fancy_modal_seeall_unique_counter=memberlist_fancy_modal_counter %}
+		<a  href="#" class="seemore"
+		    data-modal-target-id="memberlist-fancy-modal-seeall-{{ gallery_modal_unique_counter }}" 
+		    data-toggle="i4p-memberlist-fancy-modal-seeall" 
+		    >{% trans "See more" %}</a>
+
+		{% include "project_sheet/block/memberlist_fancy_modal_seeall.html" %}
+
+		{% endwith %}
 		{% include "project_sheet/block/memberlist_fancy_square.html" %}
 	    </div>
 
