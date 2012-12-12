@@ -12,12 +12,83 @@
 
 $(document).ready(function () {
 	var jdebug = function (str) { console.log('memberlist_fancy_square: ' + str); };
-	//var jdebug = function (str) { return null; };
+	// var jdebug = function (str) { return null; };
 
+	//
+	// Set up the overlay
+	//
+	// FIXME: document parameters & such
+	//
+	$('*[data-toggle="i4p-memberlist-fancy-overlay"]').each(function () {
+		var memberSlider = this,
+			viewId = $(this).attr('data-overlay-view-id'),
+			viewObj;
+
+		if (viewId === undefined) { console.error('data-overlay-view-id not defined'); }
+		viewObj = $('#' + viewId);
+
+		// enable 
+		viewObj.hover(function () {
+			// display the view
+			viewObj.addClass('open-overlay');
+		}, function () { // handlerOut
+			viewObj.removeClass('open-overlay');
+		});
+
+		// enable the view on hover	
+		$(memberSlider).find('*[data-toggle="i4p-memberlist-fancy-overlay-hook"]')
+			.hover(function () { // handlerIn
+				var memberHookObj = $(this),
+					hookOffset,
+					memberImg,
+					memberName,
+					memberDesc,
+					memberContact,
+					memberProfile;
+
+				// FIXME: fill the view with data
+				memberImg = memberHookObj.find('.avatar').attr('src');
+				memberName = memberHookObj.attr('data-member-fullname');
+				memberContact = memberHookObj.attr('data-member-profile');
+				memberProfile = memberHookObj.attr('data-member-contact');
+
+				viewObj.find('.avatar').attr('src', memberImg);
+				viewObj.find('.fullname').text(memberName);
+				viewObj.find('.profile').attr('href', memberProfile);
+				viewObj.find('.contact').attr('href', memberContact);
+
+				/*
+				memberDesc = ;
+				memberContact = ;
+				memberProfile = 
+				*/
+
+				// move the view over the hook
+				hookOffset = memberHookObj.position();
+				//console.log(memberHookObj.position());
+				//console.log(memberHookObj.offset());
+
+				hookOffset.left -= viewObj.width();
+				hookOffset.top += viewObj.height();
+
+				viewObj.css(hookOffset);
+
+				// display the view
+				viewObj.addClass('open-member');
+			}, function () { // handlerOut
+				viewObj.removeClass('open-member');
+			});
+	});
+
+	//
+	// Set up the slider
+	//
 	// enable lower slider
 	$('*[data-toggle="i4p-memberlist-fancy-slider"]').each(function () {
-		var memberSlider = this,
-			viewId = $(this).attr('data-slider-view-id');
+		var memberSlider = this;
+		//	viewId = $(this).attr('data-slider-view-id');
+
+		// if (viewId === undefined) { console.error('data-slider-view-id not defined'); }
 
 		// initialize the lower side (wide thumb slider with a 5-set list)
 		$(memberSlider).anythingSlider({
@@ -36,12 +107,7 @@ $(document).ready(function () {
 			resizeContents: false,
 			showMultiple: 4,
 			infiniteSlides: true, // no wrap
-			changeBy: 4,
-
-			onInitialized : function (slider) {
-				// jdebug("i'm alive");
-				// slider.find('*').removeAttr('style', '');
-			}
+			changeBy: 4
 		});
 		jdebug('initialized bottom slider !');
 

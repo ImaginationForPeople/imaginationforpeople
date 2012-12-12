@@ -1,5 +1,6 @@
 @import "i4p-mixins";
 @import "i4p/constants";
+@import "i4p/fonts";
 
 $sprite-layout: smart;
 @import "compass/utilities/sprites/base";
@@ -38,22 +39,51 @@ $memberListFancySquare_sizeWindowHeight: 65px;
 $memberListFancySquare_sizeWidth: 88px;
 $memberListFancySquare_sizeHeight: 52px;
 
-// FIXME: move block rules elsewhere
-.member-block {
-    @include i4p-seemore-class;
-    position: relative;
-    margin-bottom: 20px;
-    padding: 0;
-    padding-top: 5px;
 
-    h2 {
-	margin-top: 5px;
-	text-transform: uppercase;
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
+.member-list-overlay.square.fancy {
+    @include i4p-font-subtitle($sizeTextSmall);
+    @include i4p-transition(all .5s ease);
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
+    @include i4p-box-shadow-bottomleft;
+
+    display: none;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    opacity: 0;
+    z-index: 99;
+
+    background-color: $colorDarkGrey;
+    width: 200px;
+    min-height: 80px;
+    padding: $sizePaddingMedium;
+
+    &.open-member,
+    &.open-overlay {
+	display: block;
+	opacity: 1;
+    }
+
+    .avatar {
+	@include border-radius($sizeRadiusSmall);
+	display: block;
+	float: left;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	border: 1px solid $colorMedGrey;
+    }
+
+    .details {
+	margin-left: 80px;
+    }
+
+    .fullname {
+	color: white;
     }
 }
+
 
 .member-list.square.fancy {
     @include bootstrap-clearfix;
@@ -105,16 +135,24 @@ $memberListFancySquare_sizeHeight: 52px;
 
 	    & > li {
 		@include box-sizing(border-box);
+		@include i4p-transition(all .5s ease);
 
 		display: block;
 		float: left;
 		margin: 0;
 		position: relative;
 		width: 60px;
+		opacity: 1;
+		visibility: visible;
 
 		img {
 		    position: absolute;
 		    left: 5px;
+		}
+
+		&.cloned {
+		    visibility: hidden;
+		    opacity: 0;
 		}
 	    }
 	}
@@ -214,3 +252,19 @@ $memberListFancySquare_sizeHeight: 52px;
 
 }
 
+// FIXME: move block rules elsewhere
+.member-block {
+    @include i4p-seemore-class;
+    position: relative;
+    margin-bottom: 20px;
+    padding: 0;
+    padding-top: 5px;
+
+    h2 {
+	margin-top: 5px;
+	text-transform: uppercase;
+	font-size: $sizeTextLarge;
+	font-family: $fontOpenSans;
+	font-stretch: condensed;
+    }
+}

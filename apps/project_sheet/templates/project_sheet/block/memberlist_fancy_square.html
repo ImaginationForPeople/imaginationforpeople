@@ -9,6 +9,7 @@ Parameters for this block
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
+{% load unique_counter_tag %}
 
 {% addtoblock "js" %}
 {% endaddtoblock %}
@@ -29,14 +30,34 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_fancy_square.js");
 </script>
 {% endaddtoblock %}
 
+{% unique_counter memberlist_fancy_overlay %}
+{% with overlay_unique_counter=memberlist_fancy_overlay_counter %}
+
 {% if project.detailed_members.all %}
-<div class="member-list square fancy">
+<div class="member-list square fancy" 
+	data-toggle="i4p-memberlist-fancy-overlay" 
+	data-overlay-view-id="member-list-fancy-overlay-{{ overlay_unique_counter }}"
+	>
 	<ul class="member-list-slider" data-toggle="i4p-memberlist-fancy-slider" >
 		{% for member in project.detailed_members.all %}
 		{% include "project_sheet/block/member_fancy_square.html" %}
 		{% endfor %}
 	</ul>
+
 </div>
+
+<div id="member-list-fancy-overlay-{{ overlay_unique_counter }}" class="member-list-overlay square fancy">
+	<img class="avatar" />
+	<div class="details">
+		<span class="fullname"></span>
+		<span class="position"></span>
+		<a href="#" class="contact">{% trans 'Contact' %}</a>
+		<a href="#" class="profile">{% trans 'Profile' %}</a>
+	</div>
+</div>
+
 {% else %}
 No user associated with this project.
 {% endif %}
+
+{% endwith %}
