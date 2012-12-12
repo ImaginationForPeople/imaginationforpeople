@@ -66,7 +66,7 @@
 		{% unique_counter memberlist_modal %}
 		{% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
 		<a  href="#" class="seemore"
-		    data-modal-target-id="memberlist-modal-seeall-{{  }}" 
+		    data-modal-target-id="memberlist-modal-seeall-{{ memberlist_modal_seeall_unique_counter }}" 
 		    data-toggle="i4p-memberlist-modal-seeall" 
 		    >{% trans "See more" %}</a>
 
