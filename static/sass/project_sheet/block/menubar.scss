@@ -166,7 +166,20 @@
 	    font-weight: normal;
 	    text-transform: capitalize;
 	}
+	.lang-action {
+	    font-style: italic;
+	    font-weight: normal;
+	    text-transform: normal;
+	}
+	.lang-arrow {
+	    display: inline-block;
+	    min-width: 3rem;
+	    content: "<";
+	}
     }
 
+    .dropdown-menu {
+	background-color: $colorLightGrey;
+    }
 }
 
