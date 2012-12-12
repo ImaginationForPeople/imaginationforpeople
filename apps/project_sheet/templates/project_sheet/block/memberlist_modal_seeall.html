@@ -30,8 +30,27 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_modal_seeall.js");
 	role="dialog" >
 	<div class="row">
 		<div class="action-side span3">
+			<div class="counters-block">
+				<h2>{% trans 'members' %}</h2>
+
+				<ul>
+					<li>{% trans 'founders' %}</li>
+					<li>{% trans 'supporters' %}</li>
+					<li>{% trans 'users' %}</li>
+				</ul>
+			</div>
+			<a href="#FIXME-BAD-URL">{% trans 'Contact all members' %}</a>
+			<a href="#FIXME-BAD-URL">{% trans 'Add to the list' %}</a>
 		</div>
 		<div class="list-side span7">
+			<div class="founders-block">
+			</div>
+
+			<div class="supporters-block">
+			</div>
+
+			<div class="users-block">
+			</div>
 		</div>
 	</div>
 </div>
