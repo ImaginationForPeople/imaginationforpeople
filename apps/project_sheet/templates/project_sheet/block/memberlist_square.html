@@ -15,7 +15,7 @@ Parameters for this block
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_fancy_square.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_square.css" />
 {% endaddtoblock %}
 
 {% comment %} SYNCHRONOUS JS LOADING {% endcomment %}
@@ -26,23 +26,23 @@ Parameters for this block
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
 {% addtoblock "footer_js" %}
 <script type="text/javascript">
-$.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_fancy_square.js");  
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");  
 </script>
 {% endaddtoblock %}
 
-{% unique_counter memberlist_fancy_overlay %}
-{% with overlay_unique_counter=memberlist_fancy_overlay_counter %}
+{% unique_counter memberlist_overlay %}
+{% with overlay_unique_counter=memberlist_overlay_counter %}
 
 
-{% unique_counter memberlist_fancy_modal %}
-{% with modal_addmember_unique_counter=memberlist_fancy_modal_counter %}
+{% unique_counter memberlist_modal %}
+{% with modal_addmember_unique_counter=memberlist_modal_counter %}
 
 {% if project.detailed_members.all %}
 <div class="memberlist square fancy" 
-	data-toggle="i4p-memberlist-fancy-overlay" 
-	data-overlay-view-id="memberlist-fancy-overlay-{{ overlay_unique_counter }}"
+	data-toggle="i4p-memberlist-overlay" 
+	data-overlay-view-id="memberlist-overlay-{{ overlay_unique_counter }}"
 	>
-	<ul class="memberlist-slider" data-toggle="i4p-memberlist-fancy-slider" >
+	<ul class="memberlist-slider" data-toggle="i4p-memberlist-slider" >
 		{% for member in project.detailed_members.all %}
 		{% include "project_sheet/block/member_fancy_square.html" %}
 		{% endfor %}
@@ -50,7 +50,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_fancy_square.js");
 
 </div>
 
-<div id="memberlist-fancy-overlay-{{ overlay_unique_counter }}" class="memberlist-overlay square fancy">
+<div id="memberlist-overlay-{{ overlay_unique_counter }}" class="memberlist-overlay square fancy">
 	<img class="avatar" />
 	<div class="details">
 		<h3 class="fullname"></h3>

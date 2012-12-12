@@ -11,15 +11,15 @@
 "use strict";
 
 $(document).ready(function () {
-	var jdebug = function (str) { console.log('memberlist_fancy_square: ' + str); };
-	// var jdebug = function (str) { return null; };
+	// var jdebug = function (str) { console.log('memberlist_square: ' + str); };
+	var jdebug = function (str) { return null; };
 
 	//
 	// Set up the overlay
 	//
 	// FIXME: document parameters & such
 	//
-	$('*[data-toggle="i4p-memberlist-fancy-overlay"]').each(function () {
+	$('*[data-toggle="i4p-memberlist-overlay"]').each(function () {
 		var memberSlider = this,
 			viewId = $(this).attr('data-overlay-view-id'),
 			viewObj;
@@ -36,7 +36,7 @@ $(document).ready(function () {
 		});
 
 		// enable the view on hover	
-		$(memberSlider).find('*[data-toggle="i4p-memberlist-fancy-overlay-hook"]')
+		$(memberSlider).find('*[data-toggle="i4p-member-overlay-hook"]')
 			.hover(function () { // handlerIn
 				var memberHookObj = $(this),
 					hookOffset,
@@ -86,7 +86,7 @@ $(document).ready(function () {
 	// Set up the slider
 	//
 	// enable lower slider
-	$('*[data-toggle="i4p-memberlist-fancy-slider"]').each(function () {
+	$('*[data-toggle="i4p-memberlist-slider"]').each(function () {
 		var memberSlider = this;
 		//	viewId = $(this).attr('data-slider-view-id');
 
