@@ -16,11 +16,11 @@ $(document).ready(function () {
 
 	// enable lower slider
 	$('*[data-toggle="i4p-memberlist-fancy-slider"]').each(function () {
-		var lowerSlider = this,
+		var memberSlider = this,
 			viewId = $(this).attr('data-slider-view-id');
 
 		// initialize the lower side (wide thumb slider with a 5-set list)
-		$(lowerSlider).anythingSlider({
+		$(memberSlider).anythingSlider({
 			autoPlay: false,
 			startStopped: true,
 
@@ -36,7 +36,12 @@ $(document).ready(function () {
 			resizeContents: false,
 			showMultiple: 4,
 			infiniteSlides: true, // no wrap
-			changeBy: 4
+			changeBy: 4,
+
+			onInitialized : function (slider) {
+				// jdebug("i'm alive");
+				// slider.find('*').removeAttr('style', '');
+			}
 		});
 		jdebug('initialized bottom slider !');
 

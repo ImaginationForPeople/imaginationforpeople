@@ -25,11 +25,18 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 // @include all-i4p-slider-sprites; // NO AUTO INCLUDE
 
 
-$memberListFancySquare_sizeMemberContainerWidth: 300px;
-$memberListFancySquare_sizeMemberContainerHeight: 65px;
+$memberListFancySquare_sizeContainerWidth: 300px;
+$memberListFancySquare_sizeContainerHeight: 65px;
 
-$memberListFancySquare_sizeMemberWidth: 88px;
-$memberListFancySquare_sizeMemberHeight: 52px;
+$memberListFancySquare_sizeItemMargin: 10px;
+
+$memberListFancySquare_sizeWindowMarginWidth: 30px;
+$memberListFancySquare_sizeWindowWidth: $memberListFancySquare_sizeContainerWidth - (2 * $memberListFancySquare_sizeWindowMarginWidth);
+$memberListFancySquare_sizeWindowHeight: 65px;
+
+
+$memberListFancySquare_sizeWidth: 88px;
+$memberListFancySquare_sizeHeight: 52px;
 
 // FIXME: move block rules elsewhere
 .member-block {
@@ -54,7 +61,7 @@ $memberListFancySquare_sizeMemberHeight: 52px;
     @include box-sizing(border-box);
     @include i4p-transition(all .5s ease);
 
-    width: $memberListFancySquare_sizeMemberContainerWidth;
+    width: $memberListFancySquare_sizeContainerWidth;
     // width: inherit;
     height: 70px;
 
@@ -63,6 +70,7 @@ $memberListFancySquare_sizeMemberHeight: 52px;
 
     padding-top: 10px;
     padding-bottom: 10px;
+    position: relative;
 
     // hide block before anythingSlider initialization
     & > .member-list-slider {
@@ -72,13 +80,10 @@ $memberListFancySquare_sizeMemberHeight: 52px;
     }
 
 
+    // NOTE: do not style the slider itself, the JS overrides everything.
     .anythingSlider {
-	@include box-sizing(border-box);
-
-	position: relative;
-	height: $memberListFancySquare_sizeMemberContainerHeight;
-	width: inherit;
-	// $memberListFancySquare_sizeMemberContainerWidth;
+	// height: $memberListFancySquare_sizeContainerHeight;
+	// width: $memberListFancySquare_sizeContainerWidth;
 	// padding-left: 22px;
 	// padding-right: 22px;
 
@@ -86,11 +91,32 @@ $memberListFancySquare_sizeMemberHeight: 52px;
 	    height: 100%;
 	    overflow: hidden;
 	    position: relative;
-	    width: $memberListFancySquare_sizeMemberContainerWidth - 42px;
+	    width: $memberListFancySquare_sizeWindowWidth;
+	    margin-left: $memberListFancySquare_sizeWindowMarginWidth;
+	    margin-right: $memberListFancySquare_sizeWindowMarginWidth;
 	}
 
 	.anythingBase {
 	    position: absolute;
+	    margin: 0;
+	    // padding-left: ;
+	    // background-color: red;
+
+
+	    & > li {
+		@include box-sizing(border-box);
+
+		display: block;
+		float: left;
+		margin: 0;
+		position: relative;
+		width: 60px;
+
+		img {
+		    position: absolute;
+		    left: 5px;
+		}
+	    }
 	}
 
 	.anythingControls {
@@ -98,13 +124,13 @@ $memberListFancySquare_sizeMemberHeight: 52px;
 	    top: 100px;
 	    left: 0;
 	    display: block;
-	    height: $memberListFancySquare_sizeMemberContainerHeight;
-	    width: $memberListFancySquare_sizeMemberContainerWidth;
+	    height: $memberListFancySquare_sizeContainerHeight;
+	    width: $memberListFancySquare_sizeContainerWidth;
 	}
 
 	.arrow {
 	    position: absolute;
-	    top: 12px;
+	    top: 25px;
 
 	    &.back {
 		left: 5px;
@@ -114,17 +140,23 @@ $memberListFancySquare_sizeMemberHeight: 52px;
 		right: 5px;
 	    }
 
-	    a {
+	    & > a {
+		@include i4p-transition(all .5s ease);
 		font-size: $sizeTextLarge;
 		font-family: $fontOpenSans;
 		font-stretch: condensed;
 		font-size: $sizeTextHuge;
 		color: $colorMedGrey;
+
+		&:hover {
+		    color: $colorDarkGrey;
+		    text-decoration: none;
+		}
 	    }
 	}
 
 	.panel {
-	    height: $memberListFancySquare_sizeMemberContainerHeight + 2;
+	    height: $memberListFancySquare_sizeContainerHeight + 2;
 
 	    img {
 		@include i4p-transition(all .5s ease);
