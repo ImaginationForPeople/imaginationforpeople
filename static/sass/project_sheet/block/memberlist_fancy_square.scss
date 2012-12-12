@@ -83,6 +83,16 @@ $memberListFancySquare_sizeHeight: 52px;
 	    font-style: italic;
 	    color: white;
 	    white-space: nowrap;
+	    margin: 0;
+	}
+	.position {
+	    @include i4p-font-subtitle($sizeTextTiny);
+	    font-weight: normal;
+	    display: block;
+	    margin-bottom: $sizeMarginSmall;
+	    white-space: nowrap;
+	    font-style: italic;
+	    color: white;
 	}
 
 	.contact, .profile {

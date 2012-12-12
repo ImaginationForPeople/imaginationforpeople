@@ -42,18 +42,20 @@ $(document).ready(function () {
 					hookOffset,
 					memberImg,
 					memberName,
-					memberDesc,
+					memberPosition,
 					memberContact,
 					memberProfile;
 
 				// FIXME: fill the view with data
 				memberImg = memberHookObj.find('.avatar').attr('src');
 				memberName = memberHookObj.attr('data-member-fullname');
+				memberPosition = memberHookObj.attr('data-member-position');
 				memberContact = memberHookObj.attr('data-member-profile');
 				memberProfile = memberHookObj.attr('data-member-contact');
 
 				viewObj.find('.avatar').attr('src', memberImg);
 				viewObj.find('.fullname').text(memberName);
+				viewObj.find('.position').text(memberPosition);
 				viewObj.find('.profile').attr('href', memberProfile);
 				viewObj.find('.contact').attr('href', memberContact);
 

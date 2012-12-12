@@ -20,6 +20,7 @@ Parameters for this block
 <li id="member-{{ member.id }}" class="member square fancy" 
 	data-slider-index="{{ forloop.counter }}"
 	data-toggle="i4p-memberlist-fancy-overlay-hook"
+	data-member-position="{{ member.role }}"
 	data-member-fullname="{{ member.user.get_full_name|default:member.user.username }}"
 	data-member-profile="{{ member.user.get_profile.get_absolute_url }}"
 	data-member-contact="{{ member.user.get_profile.get_absolute_url }}"
