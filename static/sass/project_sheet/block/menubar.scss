@@ -10,7 +10,7 @@
     height: 2.8rem;
 
     .menubar-leftcolumn, .menubar-rightcolumn {
-	ul {
+	& > ul {
 	    list-style: none;
 	    margin: 0;
 
@@ -46,7 +46,8 @@
 		    }
 
 		    &:hover {
-			color: blue;
+			color: white;
+			background-color: $colorMedLightGrey;
 		    }
 
 		    &.share {
@@ -79,7 +80,7 @@
 		    background-color: $colorMedLightGrey;
 		    border-color: $colorMedLightGrey; // both left & right (flat effect)
 
-		    a {
+		    & > a {
 			color: white;
 			text-decoration: none;
 		    }
@@ -131,9 +132,9 @@
 			}
 		    }
 		}
-	    }
-	}
-    }
+	    } // & > li 
+	} // & > ul
+    } // .menubar-leftcolumn, .menubar-rightcolumn
 
     // specifics to left column
     .menubar-leftcolumn {
@@ -155,5 +156,31 @@
 	}
     }
 
+    .lang-menu {
+	.lang-code {
+	    display: inline-block;
+	    font-weight: bold;
+	    min-width: 3rem;
+	}
+	.lang-title {
+	    font-style: italic;
+	    font-weight: normal;
+	    text-transform: capitalize;
+	}
+	.lang-action {
+	    font-style: italic;
+	    font-weight: normal;
+	    text-transform: normal;
+	}
+	.lang-arrow {
+	    display: inline-block;
+	    min-width: 3rem;
+	    content: "<";
+	}
+    }
+
+    .dropdown-menu {
+	background-color: $colorLightGrey;
+    }
 }
 
