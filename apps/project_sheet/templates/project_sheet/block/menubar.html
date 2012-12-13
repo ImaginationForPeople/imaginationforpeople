@@ -57,10 +57,13 @@
 								<!-- FIXME: the submenu always show all language, even if they exist/are filled -->
 								{% for language in LANGUAGES %}
 								<li>
-									<a tabindex="-1" href="{% language language.0 %}{% url project_sheet-show project_translation.slug %}{% endlanguage %}">
+									<form method='POST' tabindex="-1" action="{% url project_sheet-translate project_translation.slug %}">
+									  {% csrf_token %}
 										<span class="lang-code">{{ language.0 }}</span>
 										<span class="lang-title">{{ language.1 }}</span>
-									</a>
+										<input type='hidden' name='requested_language' value='{{ language.0 }}'/>
+										<input type='submit' value='{{ language.1 }}'/>
+									</form>
 								</li>
 								{% endfor %}
 							</ul>

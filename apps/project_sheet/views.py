@@ -332,7 +332,7 @@ def project_sheet_create_translation(request, project_slug):
     site = Site.objects.get_current()
 
     requested_language_code = request.POST.get("requested_language", None)
-    if None:
+    if requested_language_code is None:
         return HttpResponseForbidden()
 
     try:
