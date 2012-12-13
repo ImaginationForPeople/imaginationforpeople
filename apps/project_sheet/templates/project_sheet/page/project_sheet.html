@@ -7,6 +7,7 @@
 {% load sekizai_tags %}
 {% load comments %}
 {% load i4p_djangocms_tags %}
+{% load unique_counter_tag %}
 {% load tabs %}
 
 {% block navigation %}
@@ -62,8 +63,17 @@
 		    <i class="sheet-members"></i>
 		    {% trans "Contributors"|capfirst %}</h2>
 
-		{%comment%}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% include "project_sheet/block/memberlist_fancy_square.html" %}
+		{% unique_counter memberlist_modal %}
+		{% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
+		<a  href="#" class="seemore"
+		    data-modal-target-id="memberlist-modal-seeall-{{ memberlist_modal_seeall_unique_counter }}" 
+		    data-toggle="i4p-memberlist-modal-seeall" 
+		    >{% trans "See more" %}</a>
+
+		{% include "project_sheet/block/memberlist_modal_seeall.html" %}
+
+		{% endwith %}
+		{% include "project_sheet/block/memberlist_square.html" %}
 	    </div>
 
 	    <div class="project-related clearfix">
