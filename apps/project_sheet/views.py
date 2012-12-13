@@ -293,35 +293,6 @@ class ProjectEditInfoView(ProjectView):
         
         return context
 
-class ProjectEditLocationView(ProjectView):
-    """
-    Edit Location
-    """
-    def get(self, request, *args, **kwargs):
-        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.project.location)
-        return super(ProjectEditLocationView, self).get(request, *args, **kwargs)
-        
-    def post(self, request, *args, **kwargs):
-        # Location
-        project_location_form = I4pProjectLocationForm(request.POST,
-                                                       instance=self.project_translation.project.location)
-
-        if request.method == 'POST' and project_location_form.is_valid():
-            location = project_location_form.save()
-            if not self.project_translation.project.location:
-                self.project_translation.project.location = location
-                self.project_translation.project.save()
-
-        return redirect(self.project_translation)
-
-    def get_context_data(self, slug, **kwargs):
-        context = super(ProjectEditLocationView, self).get_context_data(slug, **kwargs)
-        
-        context['project_location_form'] = self.project_location_form
-        
-        return context
-        
-        
 @require_POST    
 @login_required
 def project_sheet_create_translation(request, project_slug):
