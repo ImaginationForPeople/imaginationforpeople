@@ -20,6 +20,7 @@
 <script type="text/javascript" src="{{ STATIC_URL }}js/utils.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+    $('#queryForm input:submit').hide();
 	$("#queryForm").submit(function(){
 		var url = $(this).attr("action");
 		url = QSutils.patch_query_string(url, "query:"+$(this).find("input[name=query]").val());
@@ -55,16 +56,16 @@ $(document).ready(function(){
         <div class="span8 project-main">
             <h2 class="title">{% trans "Filter calls"|upper %}</h2>
             <div id="categorySearch">
-                <div>
+                <div class="form">
                     <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
                         <input type="text" name="query" />
                         <input type="submit">
                     </form>
                 </div>
-                <div>
+                <div class="middle">
                     {% trans "or"%}
                 </div>
-                <div>
+                <div class="category">
                     <ul class="sf-main-menu">
                         <li><a href="#">Parcourir les catégories</a>
                             <ul>
