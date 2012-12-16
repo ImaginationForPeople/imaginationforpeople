@@ -9,26 +9,11 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tabbar.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />
-<style>
-<!--
-a.rss {
-    background: url("/static/images/rss.png") no-repeat scroll 0 0 transparent;
-    display: block;
-    float: right;
-    height: 15px;
-    margin-left: 15px;
-    margin-top: 17px;
-    text-indent: -5000px;
-    width: 15px;
-}
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />-->
+{% endaddtoblock %}
 
-#categorySearch div {
-    float: left;
-}
-
--->
-</style>
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
 {% endaddtoblock %}
 
 {% addtoblock "js" %}
@@ -61,119 +46,58 @@ $(document).ready(function(){
 {% endblock %}
 
 {% block misc_toolbar %}
-<div class="support-toolbar">
-    <div class="container">
-    <div class="row">
-        <ul class="span12">
-                <li>{% trans 'call for help'%} <span class="badge">{{ call_count }}</span></li>
-                <li>{% trans 'help proposal' %} <span class="badge">{{ prop_count }}</span></li>
-                <li class="right"><a class="propose-link" href="{% url project_support_propose project_slug=project_translation.slug %}">{% trans 'propose a new call for help/help proposal'%}</a></li>
-        </ul>
-    </div>
-    </div>
-</div>
+    {% include "project_support/block/support_toolbar.html" %}
 {% endblock %}
 
 {% block project_content %}
 <div class="container">        
     <div class="row">
-    <div class="span8 project-main">
-        <div id="categorySearch">
-            <div>
-                <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
-                <input type="text" name="query" />
-                <input type="submit" style="display: none;">
-                </form>
-            </div>
-            <div>
-            {% trans "or"%}
-            </div>
-            <div>
-                <ul class="sf-main-menu">
-                    <li><a href="#">Parcourir les catégories</a>
-                    <ul>
-                        {% categories_tree 'support' search_state%}
+        <div class="span8 project-main">
+            <h2 class="title">{% trans "Filter calls"|upper %}</h2>
+            <div id="categorySearch">
+                <div>
+                    <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
+                        <input type="text" name="query" />
+                        <input type="submit">
+                    </form>
+                </div>
+                <div>
+                    {% trans "or"%}
+                </div>
+                <div>
+                    <ul class="sf-main-menu">
+                        <li><a href="#">Parcourir les catégories</a>
+                            <ul>
+                                {% categories_tree 'support' search_state%}
+                            </ul>
+                        </li>
                     </ul>
-                    </li>
-                </ul>
+                </div>
             </div>
-        </div>
-        {% if search_tags or query %}
-            <ul style="width: 100%; float: left;">
-             {% if query %}
-             <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}">X</a></li>
-             {% endif %}
-             {% for tag in search_tags %}
-             <li>{{tag}}<a class="remove-tag-search" data-tag-name="{{tag}}" href="{{search_state.full_url}}">X</a></li>
-             {% endfor %}
+            {% if search_tags or query %}
+            <ul>
+                {% if query %}
+                <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}">X</a></li>
+                {% endif %}
+                {% for tag in search_tags %}
+                <li>{{tag}}<a class="remove-tag-search" data-tag-name="{{tag}}" href="{{search_state.full_url}}">X</a></li>
+                {% endfor %}
             </ul>
-        {% endif %}
-        <div>
-        {% include_jinja "main_page/tab_bar.html" request %}
-        </div>
-        <div id="support-list">
-            <ul id="question-list">
-            {% for thread in threads.object_list %}
-                {% with thread.question as question %}
-                <li id="question-{{question.id}}" class="short-summary">
-    
-                    <div class="wrap_question_description">
-                        <h2>
-                            <a href="{{thread.projectsupport_set.all.0.get_absolute_url}}" title="{{thread.title}}">{{thread.title}}</a>
-                        </h2>
-                        <p>{{question.summary|escape}}</p>
-                        {% include_jinja "question/question_tags.html" request %}
-                    </div>
-                    <!--fin div.wrap_question_description -->
-    
-                        <div class="infos_question">
-                            <p>
-                                <span class="date_question">{{ question.added_at|naturaltime }}</span>&nbsp;{% trans 'by' %}&nbsp;
-                                <span class="auteur_question">{{thread.last_activity_by.username|escape}}</span>
-                            </p>
-                            <p class="temps_restant">{{thread.last_activity_at}}</p>
-                            <div class="infos_pictos">
-                                <p class="tipsed nbr_answers" title="{% trans 'Answers' %}">{{thread.answer_count}}</p>
-                                <p class="tipsed nbr_views" title="{% trans 'Viewed' %}">{{thread.view_count}}</p>
-                                <p class="tipsed nbr_votes" title="{% trans 'Votes' %}">{{question.score}}</p>
-                            </div>
-                        </div><!--fin div.infos_question -->
-    
-                </li>
-                {% endwith %}
-                <!--fin li.short-summary -->
-            {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="span4 project-sidebar"> 
-        <div class="project-members member-block">
-        <!-- FIXME: use dynamic data for member list -->
-        <h2>
-            <i class="sheet-members"></i>
-            {% trans "Contributors"|capfirst %}</h2>
-            {% include "project_sheet/block/memberlist_fancy_square.html" with members=contributors %}
+            {% endif %}
+            <div>
+            {% include_jinja "main_page/tab_bar.html" request %}
+            </div>
+            {% include "project_support/block/question_list.html" %}
         </div>
 
-        <div class="project-gallery clearfix">
-        <h2>
-            <i class="sheet-gallery"></i>{% trans "Activities"|capfirst %}
-        </h2>
-        <ul id="all-support-activities">
-        {% for activity in activities %}
-           <li class="support-activity">
-                <a href="{{ activity.user.get_profile.get_absolute_url }}">
-                    <img src="{{ activity.user.get_profile.get_mugshot_url }}" alt="{{ activity.user.username }}" />
-                </a>
-                <p>
-                {{activity.user.username}} {{activity.get_activity_type_display}} {% trans 'on' %} 
-                {{activity.content_object.thread.projectsupport_set.all.0.get_type_display}} "{{activity.content_object.thread.title }}"
-                </p>
-           </li>
-           {% endfor %}
-        </ul> <!-- .project-gallery -->
+        <div class="span4 project-sidebar"> 
+            <div class="project-members member-block">
+                <h2><i class="sheet-members"></i>{% trans "Contributors"|capfirst %}</h2>
+                {% include "member/block/memberlist_square.html" with members=contributors %}
+            </div>
+
+            {% include "project_support/block/support_activities.html" %}
         </div>
-    </div> <!-- .project-sidebar -->
     </div>
 </div>
 {% endblock %}

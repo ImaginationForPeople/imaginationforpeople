@@ -1,0 +1,17 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+.project-content {
+	h2.title {
+		font-family: $fontOpenSans;
+		font-size: $sizeTextLarge;
+		font-stretch: condensed;
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+
+	.project-main {
+		margin-left:0 20px 0 0;
+	}
+}

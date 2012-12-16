@@ -36,13 +36,13 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");
 {% unique_counter memberlist_modal %}
 {% with modal_addmember_unique_counter=memberlist_modal_counter %}
 
-{% if project.detailed_members.all %}
+{% if members.all %}
 <div class="memberlist square fancy" 
 	data-toggle="i4p-memberlist-overlay" 
 	data-overlay-view-id="memberlist-overlay-{{ overlay_unique_counter }}"
 	>
 	<ul class="memberlist-slider" data-toggle="i4p-memberlist-slider" >
-		{% for member in project.detailed_members.all %}
+		{% for member in members.all %}
 		{% include "project_sheet/block/member_fancy_square.html" %}
 		{% endfor %}
 	</ul>
