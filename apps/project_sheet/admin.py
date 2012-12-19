@@ -61,6 +61,7 @@ class AnswerAdmin(hvad.admin.TranslatableAdmin):
 class ObjectiveAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('__str__', 'all_translations')
 
+    
 admin.site.register(I4pProject, I4pProjectAdmin)
 
 admin.site.register(Topic, TopicAdmin)

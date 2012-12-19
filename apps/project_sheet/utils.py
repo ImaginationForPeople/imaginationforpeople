@@ -25,7 +25,7 @@ from django.contrib.sites.models import Site
 
 from tagging.models import Tag
 
-from .models import I4pProject, I4pProjectTranslation, SiteTopic, VERSIONNED_FIELDS
+from .models import I4pProject, I4pProjectTranslation, SiteTopic, VERSIONED_FIELDS
 from .filters import BestOfFilterForm, NameBaselineFilterForm, TopicFilterForm
 from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectLocationFilterForm
 from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilterForm
@@ -250,7 +250,7 @@ def get_project_project_translation_recent_changes(queryset):
             if project_translation_previous_version:
                 infos['diff'] = fields_diff(project_translation_previous_version,
                                             version,
-                                            VERSIONNED_FIELDS[project_translation_ct.model_class()])
+                                            VERSIONED_FIELDS[project_translation_ct.model_class()])
             project_translation_previous_version = version
 
             try:
@@ -269,7 +269,7 @@ def get_project_project_translation_recent_changes(queryset):
             if parent_project_previous_version:
                 infos['diff'] = fields_diff(parent_project_previous_version,
                                             version,
-                                            VERSIONNED_FIELDS[parent_project_ct.model_class()])
+                                            VERSIONED_FIELDS[parent_project_ct.model_class()])
             parent_project_previous_version = version
 
         if infos['diff']:

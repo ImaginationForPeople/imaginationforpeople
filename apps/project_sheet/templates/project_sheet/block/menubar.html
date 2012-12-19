@@ -13,8 +13,9 @@
 			<div class="menubar-leftcolumn span8">
 				<ul>
 			
-				<li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
+				<li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}"><a href="{{ project_translation.master.get_absolute_url  }}">{% trans "Project" %}</a></li>
 				<li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}"><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
+				<li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %}"><a href="{% url project_sheet-instance-history project_translation.slug %}">{% trans "History" %}</a></li>
 				{% comment %}
 				<li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
 				<li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>

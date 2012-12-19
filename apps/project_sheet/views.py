@@ -47,8 +47,8 @@ from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
 from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm, ProjectVideoAddForm
-from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
-from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS, Question
+from .models import Answer, AnswerTranslation, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
+from .models import ProjectMember, I4pProject, VERSIONED_FIELDS, Question
 from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -211,13 +211,13 @@ class ProjectView(TemplateView):
         project = self.project_translation.master
 
         # Fetch questions
-        topics = []
+        self.topics = []
         for topic in Topic.objects.filter(site_topics=project.topics.all()):
             questions = []
             for question in topic.questions.all().order_by('weight'):
                 answers = Answer.objects.filter(project=project, question=question)
                 questions.append([question, answers and answers[0] or None])
-            topics.append([topic, questions])
+            self.topics.append([topic, questions])
                 
         project_status_choices['selected'] = self.project_translation.master.status
 
@@ -227,7 +227,7 @@ class ProjectView(TemplateView):
                                                           num=3)
 
         context.update({
-            'topics': topics,
+            'topics': self.topics,
             'project': project,
             'project_translation': self.project_translation,
             'project_status_choices': simplejson.dumps(project_status_choices),
@@ -663,55 +663,78 @@ def project_sheet_member_delete(request, project_slug, username):
     return redirect(project_translation)
 
 
-def project_sheet_history(request, project_slug):
+class ProjectHistoryView(ProjectView):
     """
-    Show the history of a project member
+    Display a page of the modifications of the project
     """
-    language_code = translation.get_language()
+    template_name = 'project_sheet/page/history.html'
 
-    # get the project translation and its base
-    try:
-        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                              language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
-
-    parent_project = project_translation.master
-
-    #versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
-
-    project_translation_ct = ContentType.objects.get_for_model(project_translation)
-    parent_project_ct = ContentType.objects.get_for_model(parent_project)
-
-    versions = Version.objects.filter(Q(content_type=project_translation_ct,
-                                        object_id=unicode(project_translation.id)) |
-                                      Q(content_type=parent_project_ct,
-                                        object_id=unicode(parent_project.id))).order_by('-revision__date_created')
-
-    project_translation_previous_version = None
-    parent_project_previous_version = None
-
-    for version in versions:
-        #Directly modify object in query set in order to keep order
-        if version.content_type == project_translation_ct:
-            if project_translation_previous_version:
-                version.diff = fields_diff(project_translation_previous_version,
-                                           version,
-                                           VERSIONNED_FIELDS[project_translation_ct.model_class()])
-            project_translation_previous_version = version
-        else:# version.content_type == parent_project_ct:
-            if parent_project_previous_version:
-                version.diff = fields_diff(parent_project_previous_version,
-                                           version,
-                                           VERSIONNED_FIELDS[parent_project_ct.model_class()])
-            parent_project_previous_version = version
+    def get_context_data(self, slug, **kwargs):    
+        context = super(ProjectHistoryView, self).get_context_data(slug, **kwargs)
+        
+        parent_project = self.project_translation.master
 
 
-    return render_to_response('project_sheet/obsolete/history.html',
-                              {'project_translation' : project_translation,
-                               'versions' : versions,
-                               'history_tab' : True},
-                              context_instance=RequestContext(request))
+        
+        #versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
+        
+        project_translation_ct = ContentType.objects.get_for_model(self.project_translation)
+        parent_project_ct = ContentType.objects.get_for_model(parent_project)
+        
+        versions = Version.objects.filter(Q(content_type=project_translation_ct,
+                                            object_id=unicode(self.project_translation.id)) |
+                                          Q(content_type=parent_project_ct,
+                                            object_id=unicode(parent_project.id))).order_by('-revision__date_created')
+        
+        project_translation_previous_version = None
+        parent_project_previous_version = None
+
+        for version in versions:
+            #Directly modify object in query set in order to keep order
+            if version.content_type == project_translation_ct:
+                if project_translation_previous_version:
+                    version.diff = fields_diff(project_translation_previous_version,
+                                               version,
+                                               VERSIONED_FIELDS[str(project_translation_ct.model_class().__name__)])
+                project_translation_previous_version = version
+            else:# version.content_type == parent_project_ct:
+                if parent_project_previous_version:
+                    version.diff = fields_diff(parent_project_previous_version,
+                                               version,
+                                               VERSIONED_FIELDS[str(parent_project_ct.model_class().__name__)])
+                parent_project_previous_version = version
+                
+                
+        from reversion.helpers import generate_patch_html
+
+        # Project sheet
+
+        
+        
+        # Questions
+        answer_diffs = {}
+        for topic, questions in self.topics:
+            for question, answer in questions:
+                try:
+                    answer_translation = answer.translations.get(language_code=answer.language_code)
+                except AnswerTranslation.DoesNotExist:
+                    continue
+
+                # Get available versions
+                versions = Version.objects.get_for_object(answer_translation).order_by('revision__date_created')
+                print versions
+                if len(versions) > 1:
+                    old_version = versions[1]
+                    new_version = versions[0]
+                    answer_diffs[question] = generate_patch_html(old_version, new_version, 'content')
+                else:
+                    answer_diffs[question] = None
+        
+        context['versions'] = versions
+        context['answer_diffs'] = answer_diffs
+
+            
+        return context
 
 
 class ProjectRecentChangesView(TemplateView):

@@ -38,7 +38,7 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/edit/references/$', views.ProjectEditReferencesView.as_view(), name='project_sheet-instance-edit-references'),
 
     # History
-    url(r'^(?P<project_slug>[-\w]+)/history/$', views.project_sheet_history, name='project_sheet-history'),
+    url(r'^(?P<slug>[-\w]+)/history/$', views.ProjectHistoryView.as_view(), name='project_sheet-instance-history'),
                        
     # Media
     url(r'^(?P<slug>[-\w]+)/gallery/$', views.ProjectGalleryView.as_view(), name='project_sheet-instance-gallery'),

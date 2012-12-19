@@ -30,7 +30,7 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.core.urlresolvers import reverse
 from django.core.mail import mail_managers
 from django.db import models
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save, post_delete, class_prepared
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
@@ -54,6 +54,21 @@ from apps.i4p_base.managers import CurrentSiteTranslationManager
 
 # Add Introspector for south: django-licenses field
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
+
+VERSIONED_FIELDS = {
+    'I4pProject' : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
+    'I4pProjectTranslation': ['title', 'baseline', 'language_code', 'about_section', 'themes', 'completion_progress', 'master'],
+    'AnswerTranslation': ['content', 'master']
+}
+    
+# Keep this before classes, otherwise I4pProject won't be caught
+@receiver(signal=class_prepared)
+def register_versioned_models(sender, **kwargs):
+    if sender.__name__ in VERSIONED_FIELDS:
+        fields = VERSIONED_FIELDS[sender.__name__]
+        if not reversion.is_registered(sender):
+            reversion.register(sender, fields=fields)
+
 
 class ProjectReference(models.Model):
     """
@@ -247,7 +262,7 @@ class Answer(TranslatableModel):
         unique_together = (("question", "project"), )
         
     def __unicode__(self):
-        return 'Answer to: [%s] (Project %s)' % (self.question, self.project)
+        return u'Answer to: [%s] (Project %s)' % (self.question, self.project)
 
 
 
@@ -373,16 +388,6 @@ class ProjectMember(models.Model):
         
 #     if project.translations.count() == 0:
 #         project.delete()
-
-# Reversions
-VERSIONNED_FIELDS = {
-    I4pProject : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
-# XXX HVAD    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'themes', 'completion_progress'] 
-}
-
-for model, fields in VERSIONNED_FIELDS.iteritems():
-    if not reversion.is_registered(model):
-        reversion.register(model, fields=fields)
 
 class TagCMS(CMSPlugin):
     tag = models.ForeignKey(Tag) #models.CharField(_('Tag'), choices=gen_tag_list(), max_length=50) 
