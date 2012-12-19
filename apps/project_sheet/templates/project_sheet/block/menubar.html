@@ -37,7 +37,7 @@
 						<i class="i4p-toolbar-dropdown"></i>
 					</a>
 					<ul class="dropdown-menu lang-menu">
-						{% for translation in project_translation.project.translations.all %}
+						{% for translation in project_translation.master.translations.all %}
 						<li>
 						<a tabindex="-1" 
 							href="{% language translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %}" 

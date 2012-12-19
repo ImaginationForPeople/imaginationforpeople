@@ -20,7 +20,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 <div class="span8 subheader">
 	<div class="background">
 		{% comment %} FIXME: cover image is simply the first of the list, not a special/selected one {% endcomment %}
-		<img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+		<img src="{% thumbnail project_translation.master.pictures.all.0.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
 	</div>
 	<div class="overlay">
 		<h1 class="title"> <!-- TITLE -->
@@ -130,18 +130,18 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				{% if project_translation %}
 				<!-- LOCATION/READONLY filled-->
 				<div class="location-address">
-					{% if project_translation.project.location %}
+					{% if project_translation.master.location %}
 					<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-					{% if project_translation.project.location.address %}
-					{{ project_translation.project.location.address }}
+					{% if project_translation.master.location.address %}
+					{{ project_translation.master.location.address }}
 					{% endif %}
 					{% endif %}
 				</div>
 				<div class="location-country">
-					{% if project_translation.project.location.country %}
-					<img src="{{ project.location.country.flag }}" alt="{{ project_translation.project.location.country }}"/> {{ project_translation.project.location.country.name }}
+					{% if project_translation.master.location.country %}
+					<img src="{{ project.location.country.flag }}" alt="{{ project_translation.master.location.country }}"/> {{ project_translation.master.location.country.name }}
 					{% endif %}
-					{% if project_translation.project.location.lat %}
+					{% if project_translation.master.location.lat %}
 					<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
 					{% endif %}
 					<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"></a>
@@ -157,9 +157,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			<th>{% trans "Web" %}</th>
 			<td>
 				{% if project_translation %}<!-- WEBSITE/READONLY filled -->
-				{% if project_translation.project.website %}
+				{% if project_translation.master.website %}
 				<a href="{{ project.website }}" target="_blank" rel="nofollow">
-					{{ project_translation.project.website }}
+					{{ project_translation.master.website }}
 				</a>
 				{% else %}
 				{% trans 'unknown'|capfirst %}
@@ -195,8 +195,8 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			<th>{% trans "Maturity" %}</th>
 			<td>
 				{% comment %} FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
-				<p class="progressbar progressbar-{{project_translation.project.status|lower }}">
-				<span class="status">{{ project_translation.project.get_status_display }}</span>
+				<p class="progressbar progressbar-{{project_translation.master.status|lower }}">
+				<span class="status">{{ project_translation.master.get_status_display }}</span>
 				</p>
 			</td>
 		</tr>
