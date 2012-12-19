@@ -465,7 +465,7 @@ class ProjectEditTagsView(ProjectView):
             self.project_sheet_themes_form.save()
             self.project_sheet_objectives_form.save()
 
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         else:
             return super(ProjectEditTagsView, self).post(request, *args, **kwargs)
 
@@ -615,7 +615,7 @@ class ProjectEditReferencesView(ProjectView):
         if next_url:
             return redirect(next_url)
 
-        return redirect(self.project_translation)
+        return redirect(self.project_translation.master)
 
 
 def project_sheet_member_add(request, project_slug):

@@ -111,7 +111,7 @@ def _answer_load(language_code, project_slug, question):
     project_translation = get_object_or_404(I4pProjectTranslation,
                                             slug=project_slug,
                                             language_code=language_code,
-                                            project__site=site)
+                                            master__site=site)
     project = project_translation.master
     answer = get_object_or_404(Answer, project__id=project.id,
                                question__id=question)
@@ -169,7 +169,7 @@ def _answer_save(language_code, project_slug, project_translation, question, val
         answer.save()
         response_dict = dict(text=value,
                              redirect=project_slug is None,
-                             redirect_url=project_translation.get_absolute_url())
+                             redirect_url=project.get_absolute_url())
 
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
@@ -195,7 +195,7 @@ def _textfield_save(language_code, project_slug, project_translation, section, v
 
         response_dict.update({'text': text or '',
                               'redirect': project_slug is None,
-                              'redirect_url': project_translation.get_absolute_url()})
+                              'redirect_url': project_translation.master.get_absolute_url()})
 
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:

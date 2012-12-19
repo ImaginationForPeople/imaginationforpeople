@@ -252,29 +252,30 @@ class Answer(TranslatableModel):
 
 
 
-def last_modification_date(sender, instance, **kwargs):
-    if sender == Version:
-        version = instance
-        ct_project = ContentType.objects.get_for_model(I4pProject)
-        ct_sheet = ContentType.objects.get_for_model(I4pProjectTranslation)
+# XXX HVAD
+# def last_modification_date(sender, instance, **kwargs):
+#     if sender == Version:
+#         version = instance
+#         ct_project = ContentType.objects.get_for_model(I4pProject)
+#         ct_sheet = ContentType.objects.get_for_model(I4pProjectTranslation)
 
-        if version.content_type == ct_sheet:
-            try:
-                project_sheet = ct_sheet.model_class().objects.get(id=version.object_id)
-                project_sheet.modified = version.revision.date_created
-                project_sheet.save()
-            except:
-                pass
-        elif version.content_type == ct_project:
-            try:
-                project = ct_project.model_class().objects.get(id=version.object_id)
-                for project_sheet in project.translations.all():
-                    project_sheet.modified = version.revision.date_created
-                    project_sheet.save()
-            except:
-                pass
+#         if version.content_type == ct_sheet:
+#             try:
+#                 project_sheet = ct_sheet.model_class().objects.get(id=version.object_id)
+#                 project_sheet.modified = version.revision.date_created
+#                 project_sheet.save()
+#             except:
+#                 pass
+#         elif version.content_type == ct_project:
+#             try:
+#                 project = ct_project.model_class().objects.get(id=version.object_id)
+#                 for project_sheet in project.translations.all():
+#                     project_sheet.modified = version.revision.date_created
+#                     project_sheet.save()
+#             except:
+#                 pass
 
-post_save.connect(last_modification_date, sender=Version)
+# post_save.connect(last_modification_date, sender=Version)
 
 
 
