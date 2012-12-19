@@ -28,9 +28,11 @@ cmsplugin-contact==1.0.0
 django-imagekit==0.3.6
 Pillow==1.7.4
 
+django-serializers==0.5.1
+
 whoosh==1.8.4
 # Haystack 2.0.0-beta
--e git+https://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
+-e git://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
 
 django-voting==0.1
 django-annoying==0.7.4
@@ -53,7 +55,7 @@ html5lib
 django-ajax-selects==1.2.3
 django-ajaxcomments==0.2
 linaro-django-pagination==2.0.2
--e git+https://github.com/tifosiblack/django-tabs.git@11561e13047a96e1a074754581b877b49c83ae8b#egg=django-tabs
+-e git://github.com/tifosiblack/django-tabs.git@11561e13047a96e1a074754581b877b49c83ae8b#egg=django-tabs
 
 -e git://github.com/ImaginationForPeople/emencia-django-newsletter.git@master#egg=emencia.django.newsletter
 
@@ -74,7 +76,8 @@ django-social-auth==0.6.9
 
 django-reversion==1.6.1
 
--e git+https://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
+# django-mailman
+-e git://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
 
 # For Sentry
 raven==2.0.3
@@ -88,7 +91,7 @@ django-simplegravatar==0.2
 -e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
 # Askbot
--e git://github.com/atiberghien/askbot-devel.git@de45c585aa8b19606fb7c9fb364d073b0356bfbe#egg=askbot
+-e git://github.com/atiberghien/askbot-devel.git@ab4c9aaa1800e4ea4452bc803fa6dbff4002efb9#egg=askbot
 
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@cff1d648ac46bd49f4c0271e17bfb77b6373b9bc#egg=django-blog-zinnia

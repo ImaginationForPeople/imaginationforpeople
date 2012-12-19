@@ -108,6 +108,7 @@ a:hover {
     text-decoration:underline;	
 }
 
+/* DANGER
 p {
     padding: 0px;
     margin: 0px;
@@ -121,6 +122,7 @@ ul{
     padding:0px;
     margin:0px;
     }
+*/
 
 #focus-menu ul{
     padding: 0px;
@@ -134,7 +136,9 @@ ul{
     }
 }
 
-// FIXME: please, use mixins... or page/block specific styles
+// FIXME: please, use mixins...
+// FIXME: replace button, redbutton, greenbutton with page/block specific styles
+/*
 .button, .redbutton, .greenbutton {
     background-color: #eeeeee;
     border: 1px solid #bdbdbd;
@@ -164,8 +168,9 @@ ul{
 	position: relative;
     }
 }
+*/
 
-
+/*
 .button:hover {
     color: #fff;
     text-decoration: none;
@@ -185,6 +190,7 @@ ul{
     background: image-url('base/minibutton_green.jpg');
     border:1px solid #01841f;	
 }
+*/
 
 
 .close {
