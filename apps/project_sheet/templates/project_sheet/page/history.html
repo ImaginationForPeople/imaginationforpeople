@@ -1,0 +1,36 @@
+﻿{% extends "project_sheet/layout/project_base.html" %}
+
+{% load i18n %}
+{% load tagging_tags %}
+{% load compress %}
+{% load honeypot %}
+{% load sekizai_tags %}
+{% load comments %}
+{% load thumbnail %}
+{% load oembed_works_tags %}
+{% load tabs %}
+
+{% block navigation %}
+{% tab 'project_sheet' 'history' %}
+{{ block.super }}
+{% endblock %}
+
+
+{% block project_content %}	
+
+<div class="container">        
+    <div class="row">
+      HISTORY
+
+      <ul>
+	<li>questions</li>
+	<ul>
+	  {% for diff in answer_diffs.values %}
+	  <li>{{ diff|safe }}</li>
+	  {% endfor %}
+	</ul>
+      </ul>
+    </div>
+</div>
+
+{% endblock %}
