@@ -239,7 +239,7 @@ class ProjectProgressFilterForm(FilterForm):
     """
 
     progress = forms.TypedMultipleChoiceField(required=False, coerce=str,
-                                              choices=I4pProjectTranslation.PROGRESS_CHOICES,
+                                              choices=I4pProject.PROGRESS_CHOICES,
                                               widget=MyCheckboxSelectMultiple)
 
     def apply_to(self, queryset, model_class):

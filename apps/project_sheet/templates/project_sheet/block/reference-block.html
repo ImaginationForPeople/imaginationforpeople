@@ -38,7 +38,7 @@ Parameters for this block
 			{% endif %}
 			<ul>
 				{% if project_translation %}
-				{% for ref in project_translation.project.references.all %}
+				{% for ref in project_translation.master.references.all %}
 				<li class="link-item">{{ ref.desc|urlize|url_target_blank}}
 				</li> 
 				{% empty %}

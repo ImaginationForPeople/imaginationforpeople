@@ -18,9 +18,7 @@
 
 import re
 
-from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
-from tagging.models import Tag
 """
 Ajax views for handling project sheet creation and edition.
 """
@@ -35,8 +33,6 @@ from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
 
 from honeypot.decorators import check_honeypot
-
-import nani
 
 from .models import I4pProjectTranslation, Answer, Question
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm, AnswerForm
@@ -115,8 +111,8 @@ def _answer_load(language_code, project_slug, question):
     project_translation = get_object_or_404(I4pProjectTranslation,
                                             slug=project_slug,
                                             language_code=language_code,
-                                            project__site=site)
-    project = project_translation.project
+                                            master__site=site)
+    project = project_translation.master
     answer = get_object_or_404(Answer, project__id=project.id,
                                question__id=question)
 
@@ -158,7 +154,7 @@ def project_textfield_save(request, project_slug=None):
 
 
 def _answer_save(language_code, project_slug, project_translation, question, value):
-    project = project_translation.project
+    project = project_translation.master
     question = get_object_or_404(Question, id=question)
 
     if value:
@@ -173,7 +169,7 @@ def _answer_save(language_code, project_slug, project_translation, question, val
         answer.save()
         response_dict = dict(text=value,
                              redirect=project_slug is None,
-                             redirect_url=project_translation.get_absolute_url())
+                             redirect_url=project.get_absolute_url())
 
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
@@ -199,7 +195,7 @@ def _textfield_save(language_code, project_slug, project_translation, section, v
 
         response_dict.update({'text': text or '',
                               'redirect': project_slug is None,
-                              'redirect_url': project_translation.get_absolute_url()})
+                              'redirect_url': project_translation.master.get_absolute_url()})
 
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
@@ -222,7 +218,7 @@ def project_sheet_edit_status(request, slug):
 
     # Status
     project_status_form = I4pProjectStatusForm(request.POST,
-                                               instance=project_translation.project)
+                                               instance=project_translation.master)
 
     if request.method == 'POST' and project_status_form.is_valid():
         project_status_form.save()
@@ -249,7 +245,7 @@ def project_update_related(request, project_slug):
     project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
                                                           language_code=language_code)
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     themes = ", ".join(request.POST.getlist('themes'))
     project_translation.themes = themes

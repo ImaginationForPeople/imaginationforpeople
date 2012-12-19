@@ -57,17 +57,20 @@ def get_project_translation_by_any_translation_slug(project_translation_slug, pr
     """
     try:
         project_translation = I4pProjectTranslation.objects.get(slug=project_translation_slug,
-                                            language_code=prefered_language_code,
-                                            project__site=site)
+                                                                language_code=prefered_language_code,
+                                                                master__site=site)
         return project_translation
     except I4pProjectTranslation.DoesNotExist:
         for lang_code, lang_name in settings.LANGUAGES:
              if lang_code != prefered_language_code:
                  try:
                      project_translation = I4pProjectTranslation.objects.get(slug=project_translation_slug,
-                                                language_code=lang_code,
-                                                project__site=site)
-                     project_best_translation = get_project_translation_from_parent(project_translation.project, prefered_language_code, fallback_language=settings.LANGUAGE_CODE, fallback_any=True)
+                                                                             language_code=lang_code,
+                                                                             master__site=site)
+                     project_best_translation = get_project_translation_from_parent(project_translation.master,
+                                                                                    prefered_language_code,
+                                                                                    fallback_language=settings.LANGUAGE_CODE,
+                                                                                    fallback_any=True)
                      return project_best_translation
                  except I4pProjectTranslation.DoesNotExist:
                      pass
@@ -119,18 +122,18 @@ def create_project_translation(language_code, parent_project, default_title=None
     Create a translation of a project.
     """
     try:
-        I4pProjectTranslation.objects.get(project=parent_project,
+        I4pProjectTranslation.objects.get(master=parent_project,
                                           language_code=language_code)
         raise DatabaseError('This translation already exist')
     except I4pProjectTranslation.DoesNotExist:
         pass
 
     if default_title:
-        project_translation = I4pProjectTranslation.objects.create(project=parent_project,
+        project_translation = I4pProjectTranslation.objects.create(master=parent_project,
                                                                    language_code=language_code,
                                                                    title=default_title)            
     else:
-        project_translation = I4pProjectTranslation.objects.create(project=parent_project,
+        project_translation = I4pProjectTranslation.objects.create(master=parent_project,
                                                                    language_code=language_code)
 
     return project_translation
