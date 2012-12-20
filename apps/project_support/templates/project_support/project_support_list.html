@@ -6,9 +6,9 @@
 {{block.super}}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_searchbar.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tabbar.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" />
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tabbar.css" />-->
+<!--- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" /> -->
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" /> -->
 <!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />-->
 {% endaddtoblock %}
 
@@ -58,7 +58,7 @@ $(document).ready(function(){
             <div id="categorySearch">
                 <div class="form">
                     <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
-                        <input type="text" name="query" />
+                        <input type="text" name="query" placeholder="Entrez un mot clé..."/>
                         <input type="submit">
                     </form>
                 </div>
@@ -66,7 +66,7 @@ $(document).ready(function(){
                     {% trans "or"%}
                 </div>
                 <div class="category">
-                    <ul class="sf-main-menu">
+                    <ul>
                         <li><a href="#">Parcourir les catégories</a>
                             <ul>
                                 {% categories_tree 'support' search_state%}
