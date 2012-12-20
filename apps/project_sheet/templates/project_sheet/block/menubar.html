@@ -35,8 +35,43 @@
 				<li class="right"><a href="#FIXME-BADURL">
 						<i class="i4p-toolbar-widgets"></i>
 				</a></li>
-				<li class="right"><a href="#FIXME-BADURL">{% trans "FR" %}</a></li>
 				{% endcomment %}
+				<li class="right">
+					<a role="menu" href="#" class="dropdown-toggle" 
+						data-target="#" data-toggle="dropdown">{% trans "Lang" %}
+						<i class="i4p-toolbar-dropdown"></i>
+					</a>
+					<ul class="dropdown-menu lang-menu">
+						{% for translation in project_translation.project.translations.all %}
+						<li>
+						<a tabindex="-1" 
+							href="{% language translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %}" 
+							>
+							<span class="lang-code">{{ translation.language_code }}</span>
+							<span class="lang-title">{{ translation.language_code|language_name_local }}</span>
+						</a>
+						</li>
+						{% endfor %}
+						<li class="divider"></li>
+						<li class="dropdown-submenu">
+						<a tabindex="-1" href="#" >
+							<span class="lang-arrow"></span>
+							<span class="lang-action">{% trans "Add new translation" %}</span>
+						</a>
+							<ul class="dropdown-menu">
+								<!-- FIXME: the submenu always show all language, even if they exist/are filled -->
+								{% for language in LANGUAGES %}
+								<li>
+									<a tabindex="-1" href="{% language language.0 %}{% url project_sheet-show project_translation.slug %}{% endlanguage %}">
+										<span class="lang-code">{{ language.0 }}</span>
+										<span class="lang-title">{{ language.1 }}</span>
+									</a>
+								</li>
+								{% endfor %}
+							</ul>
+						</li>
+					</ul>
+				</li>
 				<li class="right">
 					<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
 						<i class="i4p-toolbar-dropdown"></i>

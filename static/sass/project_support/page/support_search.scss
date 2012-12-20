@@ -1,0 +1,47 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+.project-content {
+	background:$colorWhite;
+
+	h2.title {
+		font-family: $fontOpenSans;
+		font-size: $sizeTextLarge;
+		font-stretch: condensed;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin:0 0 0 10px;
+		line-height:3rem;
+	}
+
+	.project-main {
+		margin:0 20px 0 0;
+	}
+
+	#queryForm input[type='text'] {
+		height:22px;
+		background:image-url('project_support/misc/search.png') no-repeat 8px center white;
+		@include border-radius(11px,11px);
+		padding:0 10px 0 25px;
+		margin-left:10px;
+		width:155px;
+		font-family: 'OpenSans',Arial,sans-serif;
+	    font-size: 1rem;
+	    font-style: italic;
+	    line-height: normal;
+	    @include single-box-shadow('black',0,0,5px,false,inset);
+	}
+
+	a.rss { display:none }
+
+	.tabBar {
+		@include border-radius(5px,5px);
+		background:$colorLightDarkGrey;
+		padding: 5px 20px 5px 10px;
+	}
+
+	div.tabBar a, div.tabBar span.label {
+		text-shadow:none;
+	}
+}
