@@ -232,11 +232,14 @@ INSTALLED_APPS = (
     'simplegravatar',
     'social_auth',
 
+    'actstream',
+    
     'django_notify',
     'wiki',
     'wiki.plugins.notifications',
     #'grappelli',
     'filebrowser',
+
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -527,7 +530,16 @@ CELERY_ALWAYS_EAGER = DEBUG
 
 djcelery.setup_loader()
 
+# NANI
 NANI_TABLE_NAME_SEPARATOR = ''
+
+# ACTIVITY STREAM
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('project_sheet.I4pProject', 'auth.User', 'project_sheet.Answer'),
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 LOGGING = {
     'version': 1,

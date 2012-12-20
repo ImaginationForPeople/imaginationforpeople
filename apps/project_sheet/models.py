@@ -394,3 +394,43 @@ class TagCMS(CMSPlugin):
         
     def copy_relations(self, oldinstance):
         self.tag = oldinstance.tag
+
+from actstream.models import Action
+import reversion.models
+        
+class VersionActivity(models.Model):
+    """
+    A metadata class to link an Action with a Revision
+    """
+    revision = models.ForeignKey(reversion.models.Revision)
+    action = models.OneToOneField(Action, related_name='version')
+
+from actstream.exceptions import check_actionable_model
+from actstream.models import Action
+import datetime
+    
+def create_action(actor, verb, action_object, target, description=None, public=True):
+    """
+    Handler function to create Action instance upon action signal call.
+    """
+    check_actionable_model(actor)
+    check_actionable_model(action_object)
+    check_actionable_model(target)
+    
+    newaction = Action(
+        actor_content_type=ContentType.objects.get_for_model(actor),
+        actor_object_id=actor.pk,
+        verb=unicode(verb),
+        target_object_id=target.id,
+        target_content_type=ContentType.objects.get_for_model(target),
+        action_object_object_id=action_object.id,
+        action_object_content_type=ContentType.objects.get_for_model(action_object), 
+
+        public=bool(public),
+        description=description,
+        timestamp=datetime.datetime.now(),
+    )
+
+    newaction.save()
+
+    return newaction

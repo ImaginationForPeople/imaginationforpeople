@@ -40,6 +40,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
+from actstream.models import target_stream
 from tagging.models import TaggedItem
 from reversion.models import Version
 
@@ -732,7 +733,7 @@ class ProjectHistoryView(ProjectView):
         
         context['versions'] = versions
         context['answer_diffs'] = answer_diffs
-
+        context['activity'] = target_stream(parent_project)
             
         return context
 

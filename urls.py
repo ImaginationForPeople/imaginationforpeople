@@ -107,6 +107,8 @@ urlpatterns += patterns('',
 
     (r'^tinymce/', include('tinymce.urls')),
     (r'^uploadify/', include('uploadify.urls')),
+                        
+    ('^activity/', include('actstream.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
                         

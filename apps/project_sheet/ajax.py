@@ -15,13 +15,13 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+"""
+Ajax views for handling project sheet creation and edition.
+"""
 
 import re
 
 from django.core.urlresolvers import reverse
-"""
-Ajax views for handling project sheet creation and edition.
-"""
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.models import Site
 from django.forms.models import modelform_factory
@@ -32,11 +32,12 @@ from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
 
+from actstream import action
 from honeypot.decorators import check_honeypot
 
 from .models import I4pProjectTranslation, Answer, Question
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm, AnswerForm
-from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug, create_parent_project
+from .forms import I4pProjectObjectivesForm, I4pProjectStatusForm
+from .utils import get_project_translation_by_slug
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -147,13 +148,18 @@ def project_textfield_save(request, project_slug=None):
     # Check if it's an answer to a question
     question = _ANSWER_RE.search(id)
     if question:
-        return _answer_save(language_code, project_slug, project_translation,
+        return _answer_save(request, language_code, project_slug, project_translation,
                             question.groups()[0], value)
 
     return HttpResponseNotFound()
 
+from reversion import revision
+from .models import VersionActivity
+from actstream.models import Action
+from .models import create_action
 
-def _answer_save(language_code, project_slug, project_translation, question, value):
+@revision.create_on_success
+def _answer_save(request, language_code, project_slug, project_translation, question, value):
     project = project_translation.master
     question = get_object_or_404(Question, id=question)
 
@@ -167,6 +173,13 @@ def _answer_save(language_code, project_slug, project_translation, question, val
             answer = Answer.objects.create(project=project, question=question)
         answer.content = value
         answer.save()
+
+        revision.user = request.user
+        # answer.translations.get(language_code=answer.language_code)
+        answer_action = create_action(actor=request.user, verb='edit', action_object=answer, target=project)
+        revision.add_meta(VersionActivity, action=answer_action)        
+        
+        
         response_dict = dict(text=value,
                              redirect=project_slug is None,
                              redirect_url=project.get_absolute_url())

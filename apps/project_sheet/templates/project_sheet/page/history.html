@@ -21,7 +21,15 @@
 <div class="container">        
     <div class="row">
       HISTORY
-
+      Recent Activity
+      <ul>
+	{% for action in activity %}
+	<li><a href="{% url userena_profile_detail action.actor %}">{{ action.actor.get_profile.get_full_name|default:action.actor.username }}</a> {{ action.verb }} &laquo; {{ action.action_object.question.content }} &raquo; -- {{ action.timestamp|timesince }} ago</li>
+	<ul>
+	  <li>{{ action.version.revision.version_set.all.0.field_dict.content }}</li>
+	</ul>
+	{% endfor %}
+      </ul>
       <ul>
 	<li>questions</li>
 	<ul>
