@@ -50,6 +50,80 @@
 			padding:0 15px;
 			line-height:22px;
 		}
+
+		.category {
+			ul {
+				list-style-type:none;
+			}
+
+			ul li {
+				background:none !important
+			}
+
+			> ul > li > a {
+				height:22px;
+				line-height:22px;
+				display:block;
+				border:1px solid #d0d0d0;
+				@include border-radius(11px,11px);
+				font-family: 'OpenSans',Arial,sans-serif;
+				color:$colorMedGrey;
+				text-transform:uppercase;
+				font-size:1.1rem;
+				padding:0 30px 0 10px;
+				font-weight:bold;
+				font-stretch:condensed;
+				background:image-url('project_support/misc/arrow_down.png') no-repeat 94% center white;
+				@include box-shadow(0 -6px 5px rgba(100, 100, 100, 0.1) inset);
+				position:relative;
+				top:-1px;
+
+				&:hover {
+					text-decoration:none
+				}
+			}
+
+			ul ul {
+				background:white;
+				padding:3px 5px;
+				@include border-radius(4px,4px);
+				@include box-shadow(0 3px 3px rgba(100, 100, 100, 0.3));
+
+				li {
+					display:block;
+					
+					a {
+						padding:0 24px;
+						display:block;
+						background:none;
+						@include border-radius(3px,3px);
+						font-family: 'OpenSans',Arial,sans-serif;
+					    font-size: $sizeTextNormal;
+					    font-style: italic;
+					    line-height: normal;
+					    color:$colorMedDarkGrey;
+					    line-height:22px;
+
+						&:hover {
+							background:#04add1;
+							color:white;
+						}
+					}
+				}
+			}
+
+			.sf-main-menu li:hover ul, .sf-main-menu li.sfHover ul {
+				top:27px;
+			}
+
+			.sf-main-menu li:hover ul ul, .sf-main-menu li.sfHover ul ul{
+				top:0;
+			}
+
+			.sf-sub-indicator {
+			  	top: 7px !important;
+			}
+		}
 	}
 	
 	a.rss { display:none }
