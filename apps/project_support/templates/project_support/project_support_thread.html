@@ -1,16 +1,22 @@
 {% extends "project_sheet/layout/project_base.html" %}
 {% load i18n extra_tags humanize%}
+{% load sekizai_tags %}
 
-{% block style %}
-{{ block.super }}
+{% block content %}
+{{block.super}}
+{% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_widgets.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/wmd/wmd.css" />
-{% endblock %}
+{% endaddtoblock %}
 
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/page/support_thread.css" />
+{% endaddtoblock %}
+{% endblock %}
 {% block extra_body_class %}{{block.super}} question-page{% endblock %}
 
 {% block extra_script %}
