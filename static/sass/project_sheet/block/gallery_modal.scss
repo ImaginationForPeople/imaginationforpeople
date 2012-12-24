@@ -1,0 +1,306 @@
+
+@import "i4p-mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
+
+$galleryModal_sizeModalColumns: 10;
+$galleryModal_sizeModalWidth: $galleryModal_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($galleryModal_sizeModalColumns);
+
+$galleryModal_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$galleryModal_strSeparatorUrl: 'project_sheet/gallery_fancy/horizontal-separator.png';
+
+$galleryModal_sizeViewerContainerWidth: 540px;
+$galleryModal_sizeViewerContainerHeight: 400px;
+
+$galleryModal_sizeViewerWidth: 500px;
+$galleryModal_sizeViewerHeight: 380px;
+
+$galleryModal_sizeThumbContainerWidth: 540px;
+$galleryModal_sizeThumbContainerHeight: 75px;
+
+$galleryModal_sizeThumbWidth: 88px;
+$galleryModal_sizeThumbHeight: 55px;
+
+
+.project-gallery-modal {
+    @include i4p-font-base($sizeTextNormal);
+
+    h2 {
+	@include i4p-font-title($sizeTextLarge);
+    }
+
+    box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
+    width: $galleryModal_sizeModalWidth;
+    margin-left: -$galleryModal_sizeModalWidth/2;
+    overflow: hidden;
+
+    // FIXME: remove after debug ?
+    max-height: 80%;
+
+    overflow: hidden;
+    overflow-y: auto;
+
+    .row:first-child {
+	background-image: image-url($galleryModal_strSeparatorUrl);
+	background-position: center bottom;
+	background-repeat: repeat-x;
+    }
+
+    .viewer-container {
+	margin-top: $sizeMarginMedium;
+	margin-bottom: $sizeMarginMedium;
+
+	.anythingSlider {
+	    position: relative;
+	    height: $galleryModal_sizeViewerContainerHeight;
+
+	    .anythingWindow {
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+		width: $galleryModal_sizeViewerContainerWidth;
+	    }
+
+	    .anythingBase {
+		position: absolute;
+		margin: 0;
+	    }
+
+	    .panel {
+		height: $galleryModal_sizeViewerContainerHeight + 2;
+
+		img, iframe {
+			@include i4p-transition(all .5s ease);
+			outline: 1px solid rgba(255,255,255,0);
+		}
+
+		&.activePage {
+		    img, iframe {
+			outline: 1px solid rgba(255,255,255,0.5);
+		    }
+		}
+
+		.description, .source, .licence, .delete {
+		    position: absolute;
+		    top: 0;
+		    height: 1px;
+		    display: none;
+		    visibility: hidden;
+		}
+
+	    }
+	}
+
+	.viewer-slider {
+	    display: block;
+	    overflow: hidden;
+	    list-style: none;
+	    height: $galleryModal_sizeViewerContainerHeight + 10;
+
+	    & > li {
+		@include box-sizing(border-box);
+
+		float: left;
+		display: block;
+		margin:0;
+		position: relative;
+		overflow: hidden;
+		height: $galleryModal_sizeViewerContainerHeight;
+		width: $galleryModal_sizeViewerContainerWidth + 5;
+
+		img, iframe {
+		    left: 10px;
+		    position: absolute;
+		    top: 1px;
+		}
+	    }
+	}
+    }
+
+    .thumbnails-container {
+	// local anythingslider adaptation
+	.anythingSlider {
+	    position: relative;
+	    height: $galleryModal_sizeThumbContainerHeight;
+
+	    .anythingWindow {
+		height: 100%;
+		overflow: hidden;
+		position: relative;
+		width: $galleryModal_sizeThumbContainerWidth;
+	    }
+
+	    .anythingBase {
+		position: absolute;
+	    }
+
+	    .panel {
+		height: $galleryModal_sizeThumbContainerHeight;
+	    }
+
+	    .activePage {
+		img {
+		    outline: 1px solid white;
+		}
+	    }
+	}
+
+	.gallery-slider {
+	    display: block;
+	    overflow: hidden;
+	    list-style: none;
+	    height: $galleryModal_sizeThumbContainerHeight;
+
+	    & > li {
+		@include box-sizing(border-box);
+
+		float: left;
+		display: block;
+		visibility: visible;
+		margin:0;
+		position: relative;
+		overflow: hidden;
+		height: $galleryModal_sizeThumbContainerHeight;
+		width: 108px;
+		opacity: 1; 
+
+		&.cloned {
+		    @include i4p-transition(all .5s ease);
+		    visibility: hidden;
+		    opacity: 0; 
+		}
+
+		a {
+		    img {
+			position: absolute;
+			left: 11px;
+			top: 2px;
+			outline: 1px solid $colorDarkGrey;
+			z-index: 1;
+			height: $galleryModal_sizeThumbHeight;
+			width: $galleryModal_sizeThumbWidth;
+			margin-top: 5px;
+			margin-bottom: 5px;
+		    }
+
+		    // in before, we put the view icon
+		    &:before {
+			@include i4p-transition(all .5s ease);
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-image: image-url($galleryModal_strOverlayUrl);
+			content: "";
+			z-index: 3;
+			display: block;
+			height: $galleryModal_sizeThumbHeight;
+			width: $galleryModal_sizeThumbWidth;
+			left: 11px;
+			position: absolute;
+			top: 7px;
+			opacity: 0;
+		    }
+
+		    // in after we manage the darkness
+		    &:after {
+			@include i4p-transition(all .5s ease);
+			background-color: black;
+			content: "";
+			z-index: 2;
+			display: block;
+			height: $galleryModal_sizeThumbHeight;
+			width: $galleryModal_sizeThumbWidth;
+			left: 11px;
+			position: absolute;
+			top: 7px;
+			opacity: 0.7;
+		    }
+
+		    &:hover {
+			&:after {
+			    opacity: 0;
+			}
+
+			&:before {
+			    opacity: 1;
+			}
+		    }
+
+
+		    // FIXME: show view thing over images on overlay
+		    &:hover {
+			// FIXME
+		    }
+		}
+	    }
+	}
+    }
+
+    .gallery-nav {
+	@include i4p-font-title($sizeTextNormal);
+	display: block;
+	margin-bottom: $sizeMarginMedium;
+
+	a {
+	    color: white;
+	    padding: 0;
+	    padding-left: $sizePaddingMedium;
+	    padding-right: $sizePaddingMedium;
+	}
+    }
+
+    .viewer-side {
+	background-color: black;
+
+	&.top-side {
+	    min-height: 400px;
+	    //padding-top: $sizePaddingMedium;
+	    //padding-bottom: $sizePaddingMedium;
+	}
+
+	&.bottom-side {
+	    // FIXME
+	    min-height: 100px;
+	}
+    }
+
+    .information-side {
+	&.top-side {
+	    // FIXME
+	    //padding-top: $sizePaddingMedium;
+	    //padding-bottom: $sizePaddingMedium;
+	}
+
+	&.bottom-side {
+	    .action {
+		margin-top: $sizeMarginMedium;
+		margin-bottom: $sizeMarginMedium;
+
+		a {
+		    @include i4p-font-subtitle($sizeTextSmall);
+		    display: block;
+		    color: $colorMedGrey;
+		    text-transform: uppercase;
+
+		    &:hover {
+			color: black;
+		    }
+		}
+	    }
+
+	    .action-primary {
+		margin-top: $sizeMarginMedium;
+		margin-bottom: $sizeMarginMedium;
+
+		a {
+		    @include i4p-button-fancy-bordered;
+
+		    display: block;
+		    width: 60%;
+		    margin-left: auto;
+		    margin-right: auto;
+		}
+	    }
+	}
+    }
+}

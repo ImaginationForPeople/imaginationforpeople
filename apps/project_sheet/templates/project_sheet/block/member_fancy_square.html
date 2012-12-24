@@ -17,14 +17,22 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/member_fancy_square.css" />
 {% endaddtoblock %}
 
-<li id="member-{{ member.id }}" class="member square fancy">
+<li id="member-{{ member.id }}" class="member square fancy" 
+	data-slider-index="{{ forloop.counter }}"
+	data-toggle="i4p-member-overlay-hook"
+	data-member-position="{{ member.role }}"
+	data-member-fullname="{{ member.user.get_full_name|default:member.user.username }}"
+	data-member-profile="{{ member.user.get_profile.get_absolute_url }}"
+	data-member-contact="{{ member.user.get_profile.get_absolute_url }}"
+	>
 	<a href="{{ member.user.get_profile.get_absolute_url }}">
 		<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" class="avatar"/>
 	</a>
 
 	<div class="details">
 		<a href="{{ member.user.get_profile.get_absolute_url }}"><img class="avatar" src="{{ person.user.get_profile.get_mugshot_url }}" /></a>
-		<a class="fullname" href="{{ person.user.get_profile.get_absolute_url }}">{{ person.user.get_profile.get_full_name_or_username }}</a>
+		<a class="fullname" href="{{ person.user.get_profile.get_absolute_url }}"
+			>{{ member.user.get_full_name|default:member.user.username }}</a>
 		<a class="project" href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.translations.all.0.title }}</a>
 		<div class="country flag-{{ person.user.get_profile.country|lower }}"></div>
 	</div>

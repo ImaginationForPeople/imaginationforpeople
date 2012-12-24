@@ -1,0 +1,32 @@
+
+@import "i4p-mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
+
+$memberlistModal_sizeModalColumns: 10;
+$memberlistModal_sizeModalWidth: $memberlistModal_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($memberlistModal_sizeModalColumns);
+
+$memberlistModal_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$memberlistModal_strSeparatorUrl: 'project_sheet/gallery_fancy/horizontal-separator.png';
+
+
+.project-gallery-modal {
+    @include i4p-font-base($sizeTextNormal);
+
+    box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
+    width: $memberlistModal_sizeModalWidth;
+    margin-left: -$memberlistModal_sizeModalWidth/2;
+    overflow: hidden;
+
+    // FIXME: remove after debug ?
+    max-height: 80%;
+
+    overflow: hidden;
+    overflow-y: auto;
+
+    h2 {
+	@include i4p-font-title($sizeTextLarge);
+    }
+}
+
