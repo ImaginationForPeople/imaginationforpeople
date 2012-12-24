@@ -53,8 +53,8 @@ class SearchResource(Resource):
         if limit > 50:
             limit = 50 
         
-        found_projects = SearchQuerySet().models(I4pProjectTranslation).filter_and(content_auto__icontains=request.GET['q'], language_code=self.language_code)[:limit]
-        bundles = [self.build_bundle(obj=obj, data={"id": obj.pk, "title": obj.content_auto}, request=request) for obj in found_projects]
+        found_projects = SearchQuerySet().models(I4pProjectTranslation).filter_and(content_auto__icontains=request.GET['q'], language_code=self.language_code, sites=settings.SITE_ID)[:limit]
+        bundles = [self.build_bundle(obj=obj, data={"language_code": obj.language_code, "slug": obj.slug, "title": obj.content_auto}, request=request) for obj in found_projects]
         to_be_serialized = [self.full_dehydrate(bundle, for_list=True) for bundle in bundles]
         to_be_serialized = self.alter_list_data_to_serialize(request, to_be_serialized)
         return self.create_response(request, to_be_serialized)
