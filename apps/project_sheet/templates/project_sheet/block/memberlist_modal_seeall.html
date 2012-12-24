@@ -46,6 +46,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_modal_seeall.js");
 		<div class="list-side span7">
 
 			<div class="everybody-block">
+				<h2>{% trans 'members' %}</h2>
 				<ul>
 					{% for member in project.detailed_members.all %}
 					{% include "project_sheet/block/member_modal.html" %}

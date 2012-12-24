@@ -24,7 +24,6 @@ Parameters for this block
 		<h3 class="fullname">{{ member.user.get_full_name|default:member.user.username }}</h3>
 		<div class="country flag-{{ person.user.get_profile.country|lower }}">{{ person.user.get_profile.country|lower }}</div>
 		<div class="position">{{ member.role }}</div>
-		<a href="{{ member.user.get_profile.get_absolute_url }}"><img class="avatar" src="{{ person.user.get_profile.get_mugshot_url }}" /></a>
 		<a class="project" href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.translations.all.0.title }}</a>
 		<a href="{{ member.user.get_profile.get_absolute_url }}" class="contact">{% trans 'Contact' %}</a>
 		<a href="{{ member.user.get_profile.get_absolute_url }}" class="profile">{% trans 'Profile' %}</a>
