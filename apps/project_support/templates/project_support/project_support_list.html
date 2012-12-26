@@ -66,8 +66,9 @@ $(document).ready(function(){
                     {% trans "or"%}
                 </div>
                 <div class="category">
-                    <ul>
-                        <li><a href="#">Parcourir les catégories</a>
+                    <ul class="sf-main-menu">
+                        <li>
+                            <a href="#">Parcourir les catégories</a>
                             <ul>
                                 {% categories_tree 'support' search_state%}
                             </ul>

@@ -21,15 +21,16 @@ li.short-summary {
   padding: 0;
   margin: 0;
   padding-top: 18px;
-  padding-bottom: 18px;
+  padding-bottom: 22px;
   padding-left: 50px;
   padding-right: 12px;
-  //background: url(http://www.francois-rosenbaum.com/staging/imaginationforpeople/ombre_questions.png) center bottom no-repeat;
   &.call {
-    background:image-url('project_support/question/icon_call.png') no-repeat 15px 18px;
+    background:image-url('project_support/question/icon_call.png') no-repeat 15px 18px/*,
+                image-url('project_support/question/shadow.png') no-repeat bottom center*/ ;
   }
   &.prop {
-    background:image-url('project_support/question/icon_prop.png') no-repeat 15px 18px;
+    background:image-url('project_support/question/icon_prop.png') no-repeat 15px 18px/*,
+                image-url('project_support/question/shadow.png') no-repeat bottom center*/ ;
   }
   &:hover {
     background-color: #ebebeb;
