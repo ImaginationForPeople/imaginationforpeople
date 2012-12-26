@@ -7,6 +7,11 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
 
+$i4p-form-action-sprite-dimensions: true;
+$i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
+@import "project_sheet/i4p-form-action/*.png"; // */
+// @include all-i4p-form-action-sprites; // NO AUTO INCLUDE
+
 // FIXME: DISABLED UNTIL FUNCTIONAL
 .references-block {
     .references-links > a.button {
@@ -91,9 +96,17 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	    }
 
 	    input[type="submit"] {
-		margin-top: 2rem;
+		@include i4p-form-action-sprite('ok-white'); 
+
+		border: none;
 		clear: both;
-		float: left;
+		content: "";
+		cursor: pointer;
+		display: block;
+		float: right;
+		font-size: 0;
+		margin-left: $sizeMarginMedium;
+		margin-top: 2rem;
 	    }
 
 	    input[type="text"] {
