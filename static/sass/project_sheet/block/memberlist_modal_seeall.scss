@@ -105,6 +105,9 @@ $i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
 			margin-left: 85px;
 
 			.contact, .profile { 
+			    @include i4p-sprite-margin('i4p-memberlist');
+
+			    color: $colorMedDarkGrey;
 			    display: block; 
 			}
 		    }

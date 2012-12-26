@@ -25,7 +25,14 @@ Parameters for this block
 		<div class="country flag-{{ person.user.get_profile.country|lower }}">{{ person.user.get_profile.country|lower }}</div>
 		<div class="position">{{ member.role }}</div>
 		<a class="project" href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.translations.all.0.title }}</a>
-		<a href="{{ member.user.get_profile.get_absolute_url }}" class="contact">{% trans 'Contact' %}</a>
-		<a href="{{ member.user.get_profile.get_absolute_url }}" class="profile">{% trans 'Profile' %}</a>
+		<a href="{{ member.user.get_profile.get_absolute_url }}" class="contact">
+			<i class="i4p-memberlist-sprite i4p-memberlist-contact-grey"></i>
+			{% trans 'Contact' %}
+		</a>
+		<a href="{{ member.user.get_profile.get_absolute_url }}" class="profile">
+			<i class="i4p-memberlist-sprite i4p-memberlist-profile-grey"></i>
+			{% trans 'Profile' %}
+		</a>
+		<!-- FIXME: what is the url for the delete member action ? -->
 	</div>
 </li> 
