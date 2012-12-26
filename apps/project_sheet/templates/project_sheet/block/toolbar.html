@@ -14,6 +14,13 @@ FIXME: use picture list instead of project_translation
 {% addtoblock "js" %}
 {% endaddtoblock %}
 
+{% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "footer_js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/toolbar.js");  
+</script>
+{% endaddtoblock %}
+
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/toolbar.css" />
 {% endaddtoblock %}
