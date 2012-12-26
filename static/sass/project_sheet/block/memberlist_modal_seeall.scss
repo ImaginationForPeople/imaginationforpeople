@@ -75,6 +75,7 @@ $i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
 		margin: 0;
 
 		& > .member {
+		    @include i4p-transition(all .5s ease);
 		    @include border-radius($sizeRadiusSmall);
 
 		    display: block;
@@ -99,6 +100,8 @@ $i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
 			width: 70px;
 			height: 70px;
 			float: left;
+			border: 1px solid $colorLightGrey;
+			overflow: hidden;
 		    }
 
 		    .details {
