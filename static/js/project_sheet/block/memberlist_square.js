@@ -4,7 +4,7 @@
 // require jquery.anythingslider.fx
 
 /*jslint browser: true*/
-/*global $, jQuery, document*/
+/*global $, jQuery, document, console*/
 
 // FIXME: change all i4p prefixes with a local i4p-block prefix (i4p-gallery_fancy_thin...)
 
@@ -44,7 +44,8 @@ $(document).ready(function () {
 					memberName,
 					memberPosition,
 					memberContact,
-					memberProfile;
+					memberProfile,
+					parentOffset;
 
 				// FIXME: fill the view with data
 				memberImg = memberHookObj.find('.avatar').attr('src');
@@ -66,14 +67,22 @@ $(document).ready(function () {
 				*/
 
 				// move the view over the hook
-				hookOffset = memberHookObj.position();
+				// hookOffset = memberHookObj.position();
+				parentOffset = viewObj.parent().offset();
+				hookOffset = memberHookObj.offset();
 				//console.log(memberHookObj.position());
 				//console.log(memberHookObj.offset());
 
+				// console.log("before-shift (offset)" + JSON.stringify(hookOffset));
+				hookOffset.top -= parentOffset.top;
+				hookOffset.left -= parentOffset.left;
+
+				// console.log("after-shift (offset)" + JSON.stringify(hookOffset));
+				hookOffset.top += viewObj.height() / 2;
 				hookOffset.left -= viewObj.width();
-				hookOffset.top += viewObj.height();
 
 				viewObj.css(hookOffset);
+				// console.log("final" + JSON.stringify(viewObj.offset()));
 
 				// display the view
 				viewObj.addClass('open-member');
