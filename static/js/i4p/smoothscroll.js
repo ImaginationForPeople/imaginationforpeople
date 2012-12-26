@@ -2,13 +2,18 @@
 /*jslint browser: true*/
 /*global $, jQuery, document, console*/
 
-// FIXME: change all i4p prefixes with a local i4p-block prefix (i4p-gallery_fancy_thin...)
+// 
+// Enable scrolling for anchor links having
+// the data-toggle attribute set to i4p-smoothscroll.
+//
+// Ex: <a href="#somewhere" data-toggle="i4p-smoothscroll"> ... </a>
+//
 
 (function () {
 	"use strict";
 
 	$(document).ready(function () {
-		$('.project-toolbar ul li a').click(function () {
+		$('[data-toggle="i4p-smoothscroll"]').click(function () {
 			var elemHref = $(this).attr('href'),
 				targetSelector;
 
@@ -22,3 +27,4 @@
 		});
 	});
 }());
+

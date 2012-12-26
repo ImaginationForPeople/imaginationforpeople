@@ -17,7 +17,7 @@ FIXME: use picture list instead of project_translation
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
 {% addtoblock "footer_js" %}
 <script type="text/javascript">
-$.getScript(I4P_STATIC_URL+"js/project_sheet/block/toolbar.js");  
+$.getScript(I4P_STATIC_URL+"js/i4p/smoothscroll.js");  
 </script>
 {% endaddtoblock %}
 
@@ -28,23 +28,23 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/toolbar.js");
 <div class="project-toolbar">
     <ul>
 	<li>
-	    <a href="#project-information" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Information" %}">
+	    <a href="#project-information" class="i4p-tooltip i4p-tooltip-round-black" data-toggle="i4p-smoothscroll" data-tooltip="{% trans "Information" %}">
 		<i class="sheet-information-white"></i></a>
 	</li>
 	<li>
-	    <a href="#project-about" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Project" %}">
+	    <a href="#project-about" class="i4p-tooltip i4p-tooltip-round-black" data-toggle="i4p-smoothscroll" data-tooltip="{% trans "Project" %}">
 		<i class="sheet-details-white"></i></a>
 	</li>
 	<li>
-	    <a href="#project-references" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "References" %}">
+	    <a href="#project-references" class="i4p-tooltip i4p-tooltip-round-black" data-toggle="i4p-smoothscroll" data-tooltip="{% trans "References" %}">
 		<i class="sheet-references-white"></i></a>
 	</li>
 	<li>
-	    <a href="#project-comments" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Comments" %}">
+	    <a href="#project-comments" class="i4p-tooltip i4p-tooltip-round-black" data-toggle="i4p-smoothscroll" data-tooltip="{% trans "Comments" %}">
 		<i class="sheet-comments-white"></i></a>
 	</li>
 	<li>
-	    <a href="#project-partners" class="i4p-tooltip i4p-tooltip-round-black" data-tooltip="{% trans "Partners" %}">
+	    <a href="#project-partners" class="i4p-tooltip i4p-tooltip-round-black" data-toggle="i4p-smoothscroll" data-tooltip="{% trans "Partners" %}">
 		<i class="sheet-partners-white"></i></a>
 	</li>
     </ul>
