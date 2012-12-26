@@ -67,6 +67,53 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 		@include i4p-action-sprite('add-white'); 
 	    }
 	}
+
+	form {
+	    @include box-sizing(border-box);
+	    background-color: $colorLightBlue;
+	    color: white;
+	    padding: $sizePaddingMedium;
+	    text-align: left;
+
+	    label[for*="-desc"] {
+		clear: both;
+		margin-top: 1rem;
+		float: left;
+	    }
+
+	    label[for*="-DELETE"] {
+		float: right;
+	    }
+
+	    input[type="checkbox"] {
+		float: right;
+		margin-right: .25rem;
+	    }
+
+	    input[type="submit"] {
+		margin-top: 2rem;
+		clear: both;
+		float: left;
+	    }
+
+	    input[type="text"] {
+		@include box-sizing(border-box);
+		width: 100%;
+		min-height: 2 * $sizeTextNormal;
+	    }
+
+	    .helptext {
+		float: left;
+		clear: both;
+		font-style: italic;
+	    }
+
+	    &:after {
+		display: block;
+		content: "";
+		clear: both;
+	    }
+	}
     }
 
     .references-documents {
