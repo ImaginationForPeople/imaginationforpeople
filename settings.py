@@ -535,7 +535,7 @@ NANI_TABLE_NAME_SEPARATOR = ''
 
 # ACTIVITY STREAM
 ACTSTREAM_SETTINGS = {
-    'MODELS': ('project_sheet.I4pProject', 'auth.User', 'project_sheet.Answer'),
+    'MODELS': ('project_sheet.I4pProject', 'project_sheet.I4pProjectTranslation', 'auth.User', 'project_sheet.Answer'),
     'FETCH_RELATIONS': True,
     'USE_PREFETCH': True,
     'GFK_FETCH_DEPTH': 1,

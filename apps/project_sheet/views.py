@@ -40,7 +40,7 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
-from actstream.models import target_stream
+from actstream.models import target_stream, model_stream
 from tagging.models import TaggedItem
 from reversion.models import Version
 
@@ -737,21 +737,13 @@ class ProjectHistoryView(ProjectView):
             
         return context
 
-
 class ProjectRecentChangesView(TemplateView):
     template_name = 'project_sheet/obsolete/all_recent_changes.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
 
-        twenty_days_ago = datetime.now() - timedelta(days=30)
-
-        project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
-        parent_project_ct = ContentType.objects.get_for_model(I4pProject)
-        
-        versions = Version.objects.filter(Q(content_type=project_translation_ct) | Q(content_type=parent_project_ct)).filter(revision__date_created__gt=twenty_days_ago).order_by('-revision__date_created')
-
-        context['history'] = get_project_project_translation_recent_changes(versions)
+        context['activity'] = model_stream(I4pProject)
 
         return context
 

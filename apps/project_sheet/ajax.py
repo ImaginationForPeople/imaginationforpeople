@@ -32,12 +32,14 @@ from django.template.defaultfilters import linebreaksbr
 from django.utils import simplejson, translation
 from django.views.decorators.http import require_POST
 
-from actstream import action
 from honeypot.decorators import check_honeypot
+from reversion import revision
 
+from .models import VersionActivity
 from .models import I4pProjectTranslation, Answer, Question
 from .forms import I4pProjectObjectivesForm, I4pProjectStatusForm
 from .utils import get_project_translation_by_slug
+from .utils import create_action
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -142,7 +144,7 @@ def project_textfield_save(request, project_slug=None):
     # Check if we allow this field
     section = id
     if section in TEXTFIELD_MAPPINGS:
-        return _textfield_save(language_code, project_slug,
+        return _textfield_save(request, language_code, project_slug,
                                project_translation, section, value)
 
     # Check if it's an answer to a question
@@ -153,10 +155,6 @@ def project_textfield_save(request, project_slug=None):
 
     return HttpResponseNotFound()
 
-from reversion import revision
-from .models import VersionActivity
-from actstream.models import Action
-from .models import create_action
 
 @revision.create_on_success
 def _answer_save(request, language_code, project_slug, project_translation, question, value):
@@ -175,10 +173,8 @@ def _answer_save(request, language_code, project_slug, project_translation, ques
         answer.save()
 
         revision.user = request.user
-        # answer.translations.get(language_code=answer.language_code)
-        answer_action = create_action(actor=request.user, verb='edit', action_object=answer, target=project)
+        answer_action = create_action(actor=request.user, verb='edit_pjquestion', action_object=answer, target=project)
         revision.add_meta(VersionActivity, action=answer_action)        
-        
         
         response_dict = dict(text=value,
                              redirect=project_slug is None,
@@ -188,8 +184,8 @@ def _answer_save(request, language_code, project_slug, project_translation, ques
     else:
         return HttpResponseNotFound()
 
-
-def _textfield_save(language_code, project_slug, project_translation, section, value):
+@revision.create_on_success
+def _textfield_save(request, language_code, project_slug, project_translation, section, value):
     # Resolve the fieldname
     fieldname = TEXTFIELD_MAPPINGS[section]
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(fieldname,))
@@ -198,7 +194,7 @@ def _textfield_save(language_code, project_slug, project_translation, section, v
 
     if form.is_valid():
         response_dict = {}
-        form.save()
+        project_translation = form.save()
         if project_translation._meta.get_field(fieldname).choices:
             text = getattr(project_translation, "get_%s_display" % fieldname)()
             if fieldname == "completion_progress":
@@ -206,6 +202,11 @@ def _textfield_save(language_code, project_slug, project_translation, section, v
         else:
             text = linebreaksbr(value)
 
+        revision.user = request.user            
+        project = project_translation.master
+        pj_translation_action = create_action(actor=request.user, verb='edit_pjfield', action_object=project_translation, target=project)
+        revision.add_meta(VersionActivity, action=pj_translation_action)
+            
         response_dict.update({'text': text or '',
                               'redirect': project_slug is None,
                               'redirect_url': project_translation.master.get_absolute_url()})

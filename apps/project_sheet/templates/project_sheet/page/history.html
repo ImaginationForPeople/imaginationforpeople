@@ -9,6 +9,7 @@
 {% load thumbnail %}
 {% load oembed_works_tags %}
 {% load tabs %}
+{% load activity_tags %}
 
 {% block navigation %}
 {% tab 'project_sheet' 'history' %}
@@ -20,13 +21,14 @@
 
 <div class="container">        
     <div class="row">
-      HISTORY
-      Recent Activity
+      <h2>HISTORY</h2>
+      <h3>Recent Activity</h3>
       <ul>
 	{% for action in activity %}
-	<li><a href="{% url userena_profile_detail action.actor %}">{{ action.actor.get_profile.get_full_name|default:action.actor.username }}</a> {{ action.verb }} &laquo; {{ action.action_object.question.content }} &raquo; -- {{ action.timestamp|timesince }} ago</li>
+
+	<li>{% display_action action %}</li>
 	<ul>
-	  <li>{{ action.version.revision.version_set.all.0.field_dict.content }}</li>
+	  <li>{{ action.version.revision.version_set.all.0.field_dict }}</li>
 	</ul>
 	{% endfor %}
       </ul>

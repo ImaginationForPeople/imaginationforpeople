@@ -23,6 +23,7 @@ from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.utils import translation
 
+from actstream.models import model_stream
 from reversion.models import Version
 
 from .models import I4pProject, I4pProjectTranslation
@@ -37,28 +38,20 @@ class LatestChangesFeed(Feed):
     description = "Latest changes in the projects"
     
     def items(self):
-        twenty_days_ago = datetime.datetime.now() - datetime.timedelta(days=20)
-
-        project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
-        parent_project_ct = ContentType.objects.get_for_model(I4pProject)
-        
-        versions = Version.objects.filter(Q(content_type=project_translation_ct) | Q(content_type=parent_project_ct)).filter(revision__date_created__gt=twenty_days_ago).order_by('-revision__date_created')
-
-        return get_project_project_translation_recent_changes(versions)
-    
+        return model_stream(I4pProject)
 
     def item_title(self, item):
-        return item['object'].title
+        return item.target.title
 
     def item_description(self, item):
-        return ", ".join(item['diff'])
+        return str(item)
 
     def item_pubdate(self, item):
-        return item['revision'].date_created
+        return item.timestamp
 
     def item_link(self, item):
-        translation.activate(item['language_code'])
-        return reverse('project_sheet-show', kwargs={'slug': item['slug']})
+        translation.activate(item.action_object.language_code)
+        return reverse('project_sheet-show', kwargs={'slug': item.target.slug})
 
     def link(self):
         return reverse('project_sheet-recent-changes')
@@ -81,6 +74,9 @@ class NewProjectsFeed(Feed):
     def link(self):
         return reverse('project_sheet-list')
 
+    def item_link(self, item):
+        translation.activate(item.language_code)
+        return reverse('project_sheet-show', kwargs={'slug': item.slug})
 
     def item_title(self, item):
         return item.title
@@ -89,5 +85,5 @@ class NewProjectsFeed(Feed):
         return item.baseline
 
     def item_pubdate(self, item):
-        return item.project.created
+        return item.master.created
 

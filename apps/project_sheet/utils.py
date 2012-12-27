@@ -18,11 +18,15 @@
 """
 Toolkit for a project sheet management
 """
+import datetime
+
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.db import DatabaseError
 from django.contrib.sites.models import Site
 
+from actstream.exceptions import check_actionable_model
+from actstream.models import Action
 from tagging.models import Tag
 
 from .models import I4pProject, I4pProjectTranslation, SiteTopic, VERSIONED_FIELDS
@@ -250,7 +254,7 @@ def get_project_project_translation_recent_changes(queryset):
             if project_translation_previous_version:
                 infos['diff'] = fields_diff(project_translation_previous_version,
                                             version,
-                                            VERSIONED_FIELDS[project_translation_ct.model_class()])
+                                            VERSIONED_FIELDS[project_translation_ct.model_class().__name__])
             project_translation_previous_version = version
 
             try:
@@ -269,10 +273,37 @@ def get_project_project_translation_recent_changes(queryset):
             if parent_project_previous_version:
                 infos['diff'] = fields_diff(parent_project_previous_version,
                                             version,
-                                            VERSIONED_FIELDS[parent_project_ct.model_class()])
+                                            VERSIONED_FIELDS[parent_project_ct.model_class().__name__])
             parent_project_previous_version = version
 
         if infos['diff']:
             history.append(infos)
 
     return history
+
+#-- Activity stream utils --#
+def create_action(actor, verb, action_object, target, description=None, public=True):
+    """
+    Handler function to create Action instance upon action signal call.
+    """
+    check_actionable_model(actor)
+    check_actionable_model(action_object)
+    check_actionable_model(target)
+    
+    newaction = Action(
+        actor_content_type=ContentType.objects.get_for_model(actor),
+        actor_object_id=actor.pk,
+        verb=unicode(verb),
+        target_object_id=target.id,
+        target_content_type=ContentType.objects.get_for_model(target),
+        action_object_object_id=action_object.id,
+        action_object_content_type=ContentType.objects.get_for_model(action_object), 
+
+        public=bool(public),
+        description=description,
+        timestamp=datetime.datetime.now(),
+    )
+
+    newaction.save()
+
+    return newaction
