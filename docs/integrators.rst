@@ -1,6 +1,20 @@
 ###########
-Integrators
+Integration
 ###########
+
+Overview and project structure
+##############################
+
+Integration consist mainly in building templates, stylesheets and javascript 
+files out of design mockups using the project's application framework.
+
+Project in structured in multiple sub-application:  project_sheet, tags, api, etc.
+
+For each sub-application, we fill find multiple usefull paths :
+
+* ``apps/APPNAME/templates/`` : where templates are located for sub-application APPNAME
+* ``static/sass/APPNAME/`` : where SASS stylesheets are located for sub-application APPNAME
+* ``static/js/APPNAME/``: where javascript files are located for 
 
 File structure
 ##############
