@@ -29,7 +29,9 @@ Your prompt should update to something like (note the prefix)::
 
   (i4p-env)glibersat@carpe:~/Source/i4p-env
 
-**Note**: For the next steps, you need to be in an activated environment.
+.. warning::
+
+  For all next steps, you need to be in an activated environment.
 
 
 Getting the code
@@ -48,6 +50,10 @@ dependencies using::
   pip install -U -r requirements.txt
 
 *It may be the right to fetch a cup of coffee! :-)*
+
+.. note::
+
+  From now on, the ``imaginationforpeople`` directory will be called **the project root** (or **PROJECT_ROOT**).
 
 
 Populating the Database
