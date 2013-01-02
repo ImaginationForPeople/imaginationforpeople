@@ -113,6 +113,8 @@ FIXME: display the 3 trees in parallel for a given example
 HTML Templates
 ==============
 
+Overview
+--------
 
 Templates are simple and standard HTML files that include a special syntax of
 `template tags` at locations where dynamic data should appear.
@@ -127,21 +129,34 @@ FIXME: explain where are the usable modules / templates tags
 FIXME: explain template structure
 
 
-Template structure overview
----------------------------
+Template structure overview: 
 
 * Header comment
 * Requirements
-* Sekizai blocks
+* Assets blocks
 * Template content
 
 
 Header comment
 --------------
 
-FIXME: required usable variables
+The header comment is here to define why the component you are writing is made
+for. 
 
-FIXME: block/ajax/page/etc purpose
+The header comment should something meaningful for later developpers. 
+Usually it answers the following questions :
+
+* Is it a page/block/layout/etc ?
+* What does it display ?
+* Does it have any special use conditions ? (ex: it relies on the bootstrap CSS grid...)
+* What are its parameter variables ? 
+
+It is also hightly recommended write a usage example of the block if it accepts parameters.
+
+
+FIXME :explain parameters variables naming for templates
+
+FIXME: add an example of well-writen header.
 
 
 Requirements
@@ -154,14 +169,27 @@ FIXME: explain known modules
 
 
 
-Sekizai blocks
---------------
+Assets blocks
+-------------
 
-FIXME:  : js / footer_js / css
+Assets blocks is where a HTML template can declare the stylesheet or javascript files it requires.
+Assets blocks relies on the *sekizai* django module.
 
-FIXME: explain sekizai bugs : whitespaces / tags & blocks
+A simple example of assets blocks in a html template::
 
-FIXME: add an example of sekizai block in html template
+  ... HTML template header
+  ... HTML template requirements
+  
+  {% addtoblock "footer_js" %}
+  <script type="text/javascript">
+  $.getScript(I4P_STATIC_URL+"js/project_sheet/block/toolbar.js");  
+  </script>
+  {% endaddtoblock %}
+
+  {% addtoblock "css" %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/toolbar.css" />
+  {% endaddtoblock %}
+
 
 Available zones (FIXME: make a link to page blocks)
 
@@ -281,12 +309,26 @@ Javascript
 ==========
 
 
-FIXME: explain performance issues depending on where the code is loaded  (synchrone, asynchrone, blocking, etc)
+Clean javascript
+----------------
 
 FIXME: explain how to separate code from HTML with meaningfull data-* attributes
 
 FIXME: explain how to translate content in Javascript (using {% trans 'machin' %} as HTML data-attributes parameters...)
 
+FIXME: do not mix CSS and JS. Except for dynamically positionning elements, you should be enabling/disabling CSS classes instead.
+
+FIXME: explain how to use jquery signals/bindings/triggers.
+
+
+JSLint your code
+----------------
+
+
+Javascript performance
+----------------------
+
+FIXME: explain performance issues depending on where the code is loaded  (synchrone, asynchrone, blocking, etc)
 
 
 Graphic assets
@@ -305,18 +347,52 @@ Anti-collision rules
 FIXME: explain what is a collision, and how to prevent them.
 
 
+Variables naming
+----------------
+
+FIXME: explain schema for naming variables and constants
+
+
 SCSS Mixins
 -----------
 
 TODO: explain how re-usable variables & mixins are better than having title
 sizes and common classes redefined everywhere.
 
+TODO: explain how scss mixins work. (add link to an article)
+
 FIXME: document existing mixins with screenshot and code examples
 
 
+Site-wide constants
+```````````````````
 
-Images
-------
+This file, located in ``PROJECT_ROOT/static/sass/i4p/_constants``, contains definitions for
+all site-wide constants (font sizes, padding sizes, etc.).
+
+FIXME: explain available constants (padding, margin, font-sizes, etc.)
+
+.. warning ::
+
+  If you are modifing these constant values, you're probably wrong.
+
+
+
+Rules
+-----
+
+.. warning ::
+
+  Do not use define values in pixels (or hex/rgb colors) or any other kind 
+  of locally hardwritten value in you CSS. **Use I4P constants instead**.
+
+
+
+Naming constants
+----------------
+
+Urls
+----
 
 FIXME: talk about image-urls & relative paths
 
@@ -326,7 +402,8 @@ Sprites
 
 FIXME: sprites are great
 
-FIXME: beware css name collisions
+FIXME: beware css name collisions & bad namespaces
+
 
 
 Very important files
@@ -344,6 +421,7 @@ The ``PROJECT_ROOT/static/styles.scss`` is the main CSS file, called before anyt
   If you are doing a change in this file, you are probably wrong. Re-read the Stylesheets section.
 
 
+
 Some pre-defined CSS Classes
 -----------------------
 
@@ -353,7 +431,12 @@ TODO: explain common classes for button, project cards, etc. Add screenshot + co
 Compass internals
 =================
 
-FIXME: Explain how compass works, explain config.rb
+
+FIXME: Explain how compass works, explain config.rb & paths parameters
+
+FIXME: explain post-processing for REM units
+
+FIXME: explain post-processing for sprite identifiers
 
 
 Internet Explorer compatibility
