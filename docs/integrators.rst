@@ -115,44 +115,34 @@ FIXME: explain things about block definition in layouts / pages
 Stylesheets
 ###########
 
-`I4P` uses Compass_ and Scss_.
-
-When you are working on ``.scss`` files, you need to have compass
-running to make sure the ``.css`` files are regenerated.
-
-As a side note, we made the choice to **commit** ``.scss`` files to
-prevent having to install Compass_ on the deployment server, so please
-do.
 
 
-Compass
-=======
-
-Installing
-----------
-
-To install Compass_, from the project root run::
-
-  bundle install --path=vendor/bundle
+Javascript
+==========
 
 
-Running
--------
+FIXME: explain performance issues depending on where the code is loaded  (synchrone, asynchrone, blocking, etc)
 
-To allow CSS (re)generation, use the following command while modifying
-CSSes::
+FIXME: explain how to separate code from HTML with meaningfull data-* attributes
 
-   cd static
-   bundle exec compass watch
+FIXME: explain how to translate content in Javascript (using {% trans 'machin' %} as HTML data-attributes parameters...)
 
-If compass crashes when trying to regenerate files you are still editing, can
-try the following command::
 
-   while true ; do bundle exec compass watch static ; done
 
-To run a one-time compilation, use::
+Graphic assets
+==============
 
-    bundle exec compass compile static
+
+
+Stylesheets
+===========
+
+FIXME: explain that things are either specific to a layout, to a page, or to a block  
+
+Anti-collision rules
+--------------------
+
+FIXME: explain what is a collision, and how to prevent them.
 
 
 SCSS Mixins
@@ -168,5 +158,3 @@ Pre-defined CSS Classes
 TODO: explain common classes for button, project cards, etc.
 
 
-.. _Compass: http://compass-style.org/
-.. _Scss: http://sass-lang.com/

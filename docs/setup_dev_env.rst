@@ -125,3 +125,56 @@ Once you're done, restart the server.
 .. _Ruby: http://www.ruby-lang.org/
 .. _gems: http://rubygems.org/
 .. _PostGreSQL: http://www.postgresql.org/
+
+
+Compass and assets management
+=============================
+
+The `I4P` project uses many pretty features for developpers, like SCSS_, CSS-Sprites for icons, etc and we decided 
+to use the Compass_ tool to help us do it automagically.
+
+Thus, you will need to (re)generate assets (pictures, stylesheets, etc) to have a fully functional web site.
+
+
+Installing compass
+------------------
+
+To install Compass_, first make sure you have ruby and the bundle gem installed (the prefered way is to use rbenv_).
+
+Then, from the project root run::
+
+  bundle install --path=vendor/bundle
+
+
+Automatically generating assets
+-------------------------------
+
+
+To do one-time compilation of assets, use the following command ::
+
+  cd static && bundle exec compass compile static
+
+  
+To make an automaticall assets (re)generation when you edit files, use the following command while modifying
+CSSes::
+
+   cd static && bundle exec compass watch
+
+   
+Depending on your system environment, compass may crash when trying to regenerate files you are still editing.
+The following command can be a work-around ::
+
+  cd static && while true ; do bundle exec compass watch static ; done
+
+
+And finally, to delete all generated assets, simply type ::
+
+  cd static && while true ; do bundle exec compass clean
+
+  
+Instead of those complex command lines, you can also use the equivalent helper scripts :
+``build.sh``, ``watch.sh``, ``clean.sh``.
+    
+.. _Compass: http://compass-style.org/
+.. _Scss: http://sass-lang.com/
+.. _RbEnv: https://github.com/sstephenson/rbenv
