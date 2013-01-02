@@ -175,11 +175,13 @@ Assets blocks
 Assets blocks is where a HTML template can declare the stylesheet or javascript files it requires.
 Assets blocks relies on the *sekizai* django module.
 
-A simple example of assets blocks in a html template::
+A simple example of assets blocks in a html template, for the ``toolbar`` component (a block) in the ``project_sheet`` sub-project ::
 
-  ... HTML template header
-  ... HTML template requirements
+  <!-- ... HTML template header  ... -->
   
+  <!-- ... HTML template requirements ... -->
+
+
   {% addtoblock "footer_js" %}
   <script type="text/javascript">
   $.getScript(I4P_STATIC_URL+"js/project_sheet/block/toolbar.js");  
