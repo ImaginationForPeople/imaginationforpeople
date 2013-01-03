@@ -397,9 +397,13 @@ class TagCMS(CMSPlugin):
     def copy_relations(self, oldinstance):
         self.tag = oldinstance.tag
         
+from django_extensions.db.fields import json
+
+        
 class VersionActivity(models.Model):
     """
     A metadata class to link an Action with a Revision
     """
     revision = models.ForeignKey(reversion.models.Revision)
     action = models.OneToOneField(Action, related_name='version')
+    diffs = json.JSONField()

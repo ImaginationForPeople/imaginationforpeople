@@ -674,8 +674,6 @@ class ProjectHistoryView(ProjectView):
         context = super(ProjectHistoryView, self).get_context_data(slug, **kwargs)
         
         parent_project = self.project_translation.master
-
-
         
         #versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
         
@@ -723,7 +721,7 @@ class ProjectHistoryView(ProjectView):
 
                 # Get available versions
                 versions = Version.objects.get_for_object(answer_translation).order_by('revision__date_created')
-                print versions
+
                 if len(versions) > 1:
                     old_version = versions[1]
                     new_version = versions[0]

@@ -28,7 +28,7 @@
 
 	<li>{% display_action action %}</li>
 	<ul>
-	  <li>{{ action.version.revision.version_set.all.0.field_dict }}</li>
+	  <li>{{ action.version.diffs }}</li>
 	</ul>
 	{% endfor %}
       </ul>

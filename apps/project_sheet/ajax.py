@@ -155,6 +155,13 @@ def project_textfield_save(request, project_slug=None):
 
     return HttpResponseNotFound()
 
+from django.contrib.auth.models import AnonymousUser, User
+from django.conf import settings
+
+from reversion.models import Version
+from reversion.helpers import generate_diffs
+
+from diff_match_patch import diff_match_patch    
 
 @revision.create_on_success
 def _answer_save(request, language_code, project_slug, project_translation, question, value):
@@ -162,19 +169,30 @@ def _answer_save(request, language_code, project_slug, project_translation, ques
     question = get_object_or_404(Question, id=question)
 
     if value:
-        try:
-            answer = Answer.objects.untranslated().get(project=project,
-                                                       question=question)
-            if not language_code in answer.get_available_languages():
-                answer.translate(language_code)
-        except Answer.DoesNotExist:
-            answer = Answer.objects.create(project=project, question=question)
+        answer, created = Answer.objects.language(language_code).get_or_create(project=project,
+                                                                               question=question)
         answer.content = value
         answer.save()
 
+        previous_answers = Version.objects.get_for_object(answer.translations.get(language_code=language_code)).reverse()
+
+        if len(previous_answers) > 0:
+            previous_answer = previous_answers[0].field_dict['content'] or u""
+        else:
+            previous_answer = u""
+
+        dmp = diff_match_patch()
+        diffs = dmp.diff_main(unicode(previous_answer), unicode(answer.content))
+        print diffs
+
         revision.user = request.user
-        answer_action = create_action(actor=request.user, verb='edit_pjquestion', action_object=answer, target=project)
-        revision.add_meta(VersionActivity, action=answer_action)        
+
+        if request.user == AnonymousUser:
+            actor = User.objet.get(id=settings.ANONYMOUS_USER_ID)
+        else:
+            actor = request.user
+        answer_action = create_action(actor=actor, verb='edit_pjquestion', action_object=answer, target=project)
+        revision.add_meta(VersionActivity, action=answer_action, diffs=diffs)
         
         response_dict = dict(text=value,
                              redirect=project_slug is None,
