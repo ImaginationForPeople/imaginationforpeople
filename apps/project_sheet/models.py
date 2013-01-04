@@ -398,7 +398,7 @@ class TagCMS(CMSPlugin):
         self.tag = oldinstance.tag
         
 from django_extensions.db.fields import json
-
+from diff_match_patch import diff_match_patch
         
 class VersionActivity(models.Model):
     """
@@ -407,3 +407,10 @@ class VersionActivity(models.Model):
     revision = models.ForeignKey(reversion.models.Revision)
     action = models.OneToOneField(Action, related_name='version')
     diffs = json.JSONField()
+    
+    def diffs_html(self):
+      """
+      Outputs the "diffs" field as an HTML report
+      """
+      dmp = diff_match_patch()
+      return dmp.diff_prettyHtml(self.diffs)

@@ -1,0 +1,12 @@
+{% load i18n %}{% if action.actor.get_absolute_url %}<a href="{{ action.actor.get_absolute_url }}">{{ action.actor }}</a>
+{% else %}<a href="{{ action.actor_url }}">{{ action.actor }}</a>{% endif %}
+{% trans "edited the question" %}
+&laquo;
+{{ action.version.revision.version_set.all.0.object.master.question.content }}
+&raquo;
+{% trans "of" %}
+{% if action.target %}
+    {% if action.target.get_absolute_url %}<a href="{{ action.target.get_absolute_url }}">{{ action.target }}</a>
+    {% else %}<a href="{{ action.target_url }}">{{ action.target }}</a>{% endif %}
+{% endif %}
+-- {% blocktrans with action.timestamp|timesince as timesince %}{{ timesince }} ago{% endblocktrans %}
