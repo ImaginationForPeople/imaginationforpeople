@@ -27,6 +27,7 @@ Overview
 
    setup_dev_env.rst
    settings.rst
+   integrators.rst
    contributing.rst
    api.rst
 

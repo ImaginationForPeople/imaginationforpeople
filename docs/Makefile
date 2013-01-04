@@ -16,6 +16,8 @@ ALLSPHINXOPTS   = -d $(BUILDDIR)/doctrees $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) .
 
 APPS=i4p_base member partner project_sheet workgroup
 
+all: help
+
 db_graphs:
 	@echo "Generating DB graphs"
 	@test -x images || mkdir images

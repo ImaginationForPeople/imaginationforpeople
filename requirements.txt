@@ -1,6 +1,7 @@
 django==1.4
 psycopg2==2.4.1
 south==0.7.5
+pygraphviz==1.1
 
 django-extensions==1.0.0
 
@@ -12,10 +13,10 @@ django-autoslug==1.4.1
 easy-thumbnails==1.0.3
 
 # Django cms 2.3rc2.post0
--e git+https://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
+-e git://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
 
 # Wiki
--e git+https://github.com/ImaginationForPeople/django-wiki.git#egg=django-wiki
+-e git://github.com/ImaginationForPeople/django-wiki.git#egg=django-wiki
 
 #Migration failed on recent postgres.  Use our own branch in the meantime
 #-e git+https://github.com/CommOnEcoute/cmsplugin_facebook.git@8416f8506eb77ed9954dc12aa1f4b6eebe68d39c#egg=cmsplugin-facebook
@@ -55,7 +56,7 @@ html5lib
 django-ajax-selects==1.2.3
 django-ajaxcomments==0.2
 linaro-django-pagination==2.0.2
--e git://github.com/tifosiblack/django-tabs.git@11561e13047a96e1a074754581b877b49c83ae8b#egg=django-tabs
+-e git://github.com/simonz05/django-tabs.git@11561e13047a96e1a074754581b877b49c83ae8b#egg=django-tabs
 
 -e git://github.com/ImaginationForPeople/emencia-django-newsletter.git@master#egg=emencia.django.newsletter
 

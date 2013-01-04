@@ -29,7 +29,7 @@
 	  
 	  {% for project_translation in project_translation_list %}	  
             <div class="colonne grid_6">
-	      {% include "project_sheet/project_complete_card.html" %}			
+	      {% include "project_sheet/block/card_fancy_square.html" %}			
 	    </div>
 	  {% empty %}
 	  {% trans "This user does not have any project yet." %}
@@ -52,7 +52,7 @@
 	    
 	  {% for project_translation in project_contrib_list %}   
             <div class="colonne grid_6">
-	      {% include "project_sheet/project_complete_card.html" %}          
+	      {% include "project_sheet/block/card_fancy_square.html" %}          
 	    </div>
 	  {% empty %}
 	  {% trans "No contributions yet." %}

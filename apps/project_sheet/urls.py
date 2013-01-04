@@ -31,7 +31,6 @@ urlpatterns = patterns('',
     # Edits
     url(r'^edit/(?P<topic_slug>[-\w]+)/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/tags/$', views.ProjectEditTagsView.as_view(), name='project_sheet-instance-edit-tags'),                       
-    url(r'^(?P<slug>[-\w]+)/edit/location/$', views.ProjectEditLocationView.as_view(), name='project_sheet-instance-edit-location'),
     url(r'^(?P<slug>[-\w]+)/edit/info/$', views.ProjectEditInfoView.as_view(), name='project_sheet-instance-edit-info'),
     url(r'^(?P<slug>[-\w]+)/edit/status/$', ajax.project_sheet_edit_status, name='project_sheet-instance-edit-status'),
     url(r'^(?P<slug>[-\w]+)/edit/question/(?P<question_id>[\d]+)/$', views.project_sheet_edit_question, name='project_sheet-instance-edit-question'),
