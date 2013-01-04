@@ -21,8 +21,10 @@ Ajax views for handling project sheet creation and edition.
 
 import re
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.forms.models import modelform_factory
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, Http404
@@ -35,11 +37,12 @@ from django.views.decorators.http import require_POST
 from honeypot.decorators import check_honeypot
 from reversion import revision
 
-from .models import VersionActivity
+from apps.i4p_base.models import VersionActivity
+from apps.i4p_base.utils import action_create, make_diffs_for_object
+
 from .models import I4pProjectTranslation, Answer, Question
 from .forms import I4pProjectObjectivesForm, I4pProjectStatusForm
 from .utils import get_project_translation_by_slug
-from .utils import create_action
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -155,14 +158,7 @@ def project_textfield_save(request, project_slug=None):
 
     return HttpResponseNotFound()
 
-from django.contrib.auth.models import AnonymousUser, User
-from django.conf import settings
-
-from reversion.models import Version
-from reversion.helpers import generate_diffs
-
-from diff_match_patch import diff_match_patch    
-
+    
 @revision.create_on_success
 def _answer_save(request, language_code, project_slug, project_translation, question, value):
     project = project_translation.master
@@ -174,24 +170,17 @@ def _answer_save(request, language_code, project_slug, project_translation, ques
         answer.content = value
         answer.save()
 
-        previous_answers = Version.objects.get_for_object(answer.translations.get(language_code=language_code)).reverse()
+        # Generate a diff
+        diffs = make_diffs_for_object(answer.translations.get(language_code=language_code),
+                                      'content',
+                                      answer.content)
 
-        if len(previous_answers) > 0:
-            previous_answer = previous_answers[0].field_dict['content'] or u""
+        if request.user.is_anonymous():
+            revision.user = User.objects.get(id=settings.ANONYMOUS_USER_ID)
         else:
-            previous_answer = u""
+            revision.user = request.user
 
-        dmp = diff_match_patch()
-        diffs = dmp.diff_main(unicode(previous_answer), unicode(answer.content))
-        print diffs
-
-        revision.user = request.user
-
-        if request.user == AnonymousUser:
-            actor = User.objet.get(id=settings.ANONYMOUS_USER_ID)
-        else:
-            actor = request.user
-        answer_action = create_action(actor=actor, verb='edit_pjquestion', action_object=answer, target=project)
+        answer_action = action_create(actor=request.user, verb='edit_pjquestion', action_object=answer, target=project)
         revision.add_meta(VersionActivity, action=answer_action, diffs=diffs)
         
         response_dict = dict(text=value,
@@ -220,9 +209,12 @@ def _textfield_save(request, language_code, project_slug, project_translation, s
         else:
             text = linebreaksbr(value)
 
-        revision.user = request.user            
+        if request.user.is_anonymous():
+            revision.user = User.objects.get(id=settings.ANONYMOUS_USER_ID)
+        else:
+            revision.user = request.user
         project = project_translation.master
-        pj_translation_action = create_action(actor=request.user, verb='edit_pjfield', action_object=project_translation, target=project)
+        pj_translation_action = action_create(actor=request.user, verb='edit_pjfield', action_object=project_translation, target=project)
         revision.add_meta(VersionActivity, action=pj_translation_action)
             
         response_dict.update({'text': text or '',

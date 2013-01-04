@@ -36,7 +36,7 @@ from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 
-from actstream.models import Action
+
 from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
@@ -44,7 +44,7 @@ from licenses.fields import LicenseField
 from hvad.models import TranslatableModel, TranslatedFields, TranslationManager
 import reversion
 import reversion.models
-from reversion.models import Version
+
 from south.modelsinspector import add_introspection_rules
 from south.modelsinspector import add_ignored_fields
 from tagging.fields import TagField
@@ -397,20 +397,3 @@ class TagCMS(CMSPlugin):
     def copy_relations(self, oldinstance):
         self.tag = oldinstance.tag
         
-from django_extensions.db.fields import json
-from diff_match_patch import diff_match_patch
-        
-class VersionActivity(models.Model):
-    """
-    A metadata class to link an Action with a Revision
-    """
-    revision = models.ForeignKey(reversion.models.Revision)
-    action = models.OneToOneField(Action, related_name='version')
-    diffs = json.JSONField()
-    
-    def diffs_html(self):
-      """
-      Outputs the "diffs" field as an HTML report
-      """
-      dmp = diff_match_patch()
-      return dmp.diff_prettyHtml(self.diffs)

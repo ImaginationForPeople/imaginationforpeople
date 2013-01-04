@@ -675,65 +675,10 @@ class ProjectHistoryView(ProjectView):
         
         parent_project = self.project_translation.master
         
-        #versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
-        
-        project_translation_ct = ContentType.objects.get_for_model(self.project_translation)
-        parent_project_ct = ContentType.objects.get_for_model(parent_project)
-        
-        versions = Version.objects.filter(Q(content_type=project_translation_ct,
-                                            object_id=unicode(self.project_translation.id)) |
-                                          Q(content_type=parent_project_ct,
-                                            object_id=unicode(parent_project.id))).order_by('-revision__date_created')
-        
-        project_translation_previous_version = None
-        parent_project_previous_version = None
-
-        for version in versions:
-            #Directly modify object in query set in order to keep order
-            if version.content_type == project_translation_ct:
-                if project_translation_previous_version:
-                    version.diff = fields_diff(project_translation_previous_version,
-                                               version,
-                                               VERSIONED_FIELDS[str(project_translation_ct.model_class().__name__)])
-                project_translation_previous_version = version
-            else:# version.content_type == parent_project_ct:
-                if parent_project_previous_version:
-                    version.diff = fields_diff(parent_project_previous_version,
-                                               version,
-                                               VERSIONED_FIELDS[str(parent_project_ct.model_class().__name__)])
-                parent_project_previous_version = version
-                
-                
-        from reversion.helpers import generate_patch_html
-
-        # Project sheet
-
-        
-        
-        # Questions
-        answer_diffs = {}
-        for topic, questions in self.topics:
-            for question, answer in questions:
-                try:
-                    answer_translation = answer.translations.get(language_code=answer.language_code)
-                except AnswerTranslation.DoesNotExist:
-                    continue
-
-                # Get available versions
-                versions = Version.objects.get_for_object(answer_translation).order_by('revision__date_created')
-
-                if len(versions) > 1:
-                    old_version = versions[1]
-                    new_version = versions[0]
-                    answer_diffs[question] = generate_patch_html(old_version, new_version, 'content')
-                else:
-                    answer_diffs[question] = None
-        
-        context['versions'] = versions
-        context['answer_diffs'] = answer_diffs
         context['activity'] = target_stream(parent_project)
             
         return context
+        
 
 class ProjectRecentChangesView(TemplateView):
     template_name = 'project_sheet/obsolete/all_recent_changes.html'
