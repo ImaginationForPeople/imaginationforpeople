@@ -7,7 +7,7 @@
     @include box-sizing(border-box);
     background-color: $colorLightGrey;
     clear: both;
-    height: 2.8rem;
+    height: 3.3rem;
 
     .menubar-leftcolumn, .menubar-rightcolumn {
 	& > ul {
@@ -27,7 +27,7 @@
 		font-stretch: condensed;
 		text-transform: uppercase;
 		padding: 0;
-		height: 2.8rem;
+		height: 3.3rem;
 		border-collapse: collapse;
 
 		a {
@@ -90,8 +90,7 @@
 		    float:right;
 
 		    a {
-			padding-left: $sizePaddingSmall;
-			padding-right: $sizePaddingSmall;
+			padding: 6px $sizePaddingSmall;
 		    }
 		}
 
@@ -180,7 +179,32 @@
     }
 
     .dropdown-menu {
-	background-color: $colorLightGrey;
+		background-color: $colorLightGrey;
+
+		form {
+			margin:0
+		}
+		li a {
+			padding:0 5px !important;
+			margin:0 3px;
+			@include border-radius(4px,4px)
+		}
+
+		li button {
+			background:none;
+			border:0;
+			color: $colorMedGrey;
+			@include border-radius(4px,4px);
+			font-size:1rem;
+			margin:0 4px;
+			width:150px;
+			text-align:left;
+
+			&:hover {
+				background:$colorMedLightGrey;
+				color:white;
+			}
+		}
     }
 }
 
