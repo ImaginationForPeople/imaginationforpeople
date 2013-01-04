@@ -20,10 +20,18 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 }
 
+@mixin i4p-sprite-margin($classname) {
+    & > i[class^="#{$classname}-"],
+    & > i[class*=" #{$classname}-"] {
+	margin-right: .25em;
+    }
+}
+
+// FIXME: please mark as obsolete & remove wisely
 @mixin i4p-sprite-header($classname) {
     h1, h2, h3, h4, h5, h6 {
-	i[class^="#{$classname}-"],
-	i[class*=" #{$classname}-"] {
+	& > i[class^="#{$classname}-"],
+	& > i[class*=" #{$classname}-"] {
 	    margin-right: .25em;
 	}
     }

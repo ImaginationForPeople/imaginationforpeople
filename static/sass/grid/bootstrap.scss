@@ -24,11 +24,40 @@ body {
     font-size: 1.2rem;
 }
 
+// VARIOUS FIXES FOR CURRENT VERSION  (check & remove on updates?)
+
+// BOOTSTRAP FIX PATH TO ICONS
+
 [class^="icon-"], [class*=" icon-"] {
     background-image: image-url("bootstrap/glyphicons-halflings.png");
 }
 
 .icon-white[class^="icon-"], .icon-white[class*=" icon-"] {
     background-image: image-url("bootstrap/glyphicons-halflings-white.png");
+}
+
+// BOOTSTRAP FIX FOR DROPDOWN MISSING SUBMENUS
+
+.open .dropdown-menu {
+    display: none;
+}
+
+.open > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    left: -95%;
+    top: 0;
+    margin-top: -6px;
+    margin-left: -1px;
 }
 

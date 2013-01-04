@@ -1,0 +1,76 @@
+{% comment %}
+vim: set syntax=htmldjango:
+
+Parameters for this block
+=========================
+
+* memberlist_modal_seeall_unique_counter : a unique counter
+
+{% endcomment %}
+
+{% load i18n %}
+{% load sekizai_tags %}
+{% load thumbnail %}
+{% load unique_counter_tag %}
+
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_modal_seeall.css" />
+{% endaddtoblock %}
+
+{% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "footer_js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_modal_seeall.js");  
+</script>
+{% endaddtoblock %}
+
+<div id="memberlist-modal-seeall-{{ memberlist_modal_seeall_unique_counter }}" 
+	class="memberlist-modal-seeall modal hide fade in out span10" tabindex="-1" 
+	role="dialog" >
+	<div class="modal-body">
+		<div class="row">
+			<div class="action-side span3">
+				<div class="counters-block">
+					<h2><i class="i4p-memberlist-sprite i4p-memberlist-members"></i>{% trans 'members' %}</h2>
+
+					<ul>
+						<li>{% trans 'founders' %}</li>
+						<li>{% trans 'supporters' %}</li>
+						<li>{% trans 'users' %}</li>
+					</ul>
+				</div>
+				<a href="#FIXME-BAD-URL" class="contact-block">
+					<i class="i4p-memberlist-sprite i4p-memberlist-contact-big-white"></i>
+					{% trans 'Contact all members' %}
+				</a>
+				<a href="#FIXME-BAD-URL" class="add-block">
+					<i class="i4p-memberlist-sprite i4p-memberlist-add-big-white"></i>
+					{% trans 'Add to the list' %}
+				</a>
+				<div class="after-block"></div>
+			</div>
+			<div class="list-side span7">
+
+				<div class="everybody-block">
+					<h2>{% trans 'members' %}</h2>
+					<ul>
+						{% for member in project.detailed_members.all %}
+						{% include "project_sheet/block/member_modal.html" %}
+						{% endfor %}
+					</ul>
+				</div>
+
+				<!-- FIXME: information about founders/supporters/users is missing
+				<div class="founders-block">
+				</div>
+				<div class="supporters-block">
+				</div>
+				<div class="users-block">
+				</div>
+				-->
+			</div>
+		</div>
+	</div>
+</div>
+

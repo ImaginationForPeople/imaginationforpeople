@@ -1,0 +1,155 @@
+
+@import "i4p-mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
+
+$memberlistModal_sizeModalColumns: 10;
+$memberlistModal_sizeModalWidth: $memberlistModal_sizeModalColumns * $gridColumnWidth + $gridGutterWidth * ($memberlistModal_sizeModalColumns);
+
+$memberlistModal_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$memberlistModal_strSeparatorUrl: 'project_sheet/gallery_fancy/horizontal-separator.png';
+
+
+$i4p-memberlist-sprite-dimensions: true;
+$i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
+@import "project_sheet/i4p-memberlist/*.png"; // */
+
+.memberlist-modal-seeall {
+    // project-gallery-modal
+    @include i4p-font-base($sizeTextNormal);
+    @include all-i4p-memberlist-sprites; // include all sprites within memberlist-modal
+    @include i4p-sprite('i4p-memberlist');
+
+    box-shadow: 0 0 $sizeShadowHuge rgba(0,0,0,0.5);
+    margin-left: -$memberlistModal_sizeModalWidth/2;
+    max-height: 80%; // FIXME: remove after debug ?
+    overflow: hidden;
+    overflow-y: auto;
+    width: $memberlistModal_sizeModalWidth;
+    // top: 50%;
+    // margin-top: -20%;
+
+    & > .modal-body {
+	padding: 0;
+	max-height: 500px;
+    }
+
+    & > .modal-body > .row {
+	display: table-row;
+    }
+
+
+    h2 {
+	@include i4p-font-title($sizeTextLarge);
+	@include i4p-sprite-margin('i4p-memberlist');
+    }
+
+    // FIXME: which comportement for overflow/scroll on modal windows ? 
+    .action-side {
+	display: table-cell;
+	background-color: $colorDarkGrey;
+	color: white;
+	float: none;
+	vertical-align: top;
+
+	a { color: white; }
+
+	// magic element to resize vertically
+	//.sizehack {
+	  //  display: block;
+	   // width: 1px;
+	  //  height: 1000px;
+	//}
+    }
+
+    .list-side {
+	display: table-cell;
+	margin-left: 0;
+
+	.everybody-block {
+	    padding: $sizePaddingMedium;
+
+	    & > ul {
+		list-style: none;
+		margin: 0;
+
+		& > .member {
+		    @include i4p-transition(all .5s ease);
+		    @include border-radius($sizeRadiusSmall);
+
+		    display: block;
+		    float: left;
+		    height: 80px;
+		    margin: $sizeMarginMedium;
+		    width: 245px;
+
+		    &:hover {
+			background-color: $colorLightGrey;
+		    }
+
+		    .fullname {
+			@include i4p-font-subtitle($sizeTextNormal);
+		    }
+
+		    .avatar {
+			@include border-radius($sizeRadiusSmall);
+
+			margin: 5px;
+			display: block;
+			width: 70px;
+			height: 70px;
+			float: left;
+			border: 1px solid $colorLightGrey;
+			overflow: hidden;
+		    }
+
+		    .details {
+			margin-left: 85px;
+
+			.contact, .profile { 
+			    @include i4p-sprite-margin('i4p-memberlist');
+
+			    color: $colorMedDarkGrey;
+			    display: block; 
+			}
+		    }
+		}
+
+	    }
+	}
+    }
+
+    .counters-block {
+	padding: $sizePaddingMedium;
+	ul{
+	    list-style: none;
+	}
+	border-bottom: 1px solid darken($colorDarkGrey,10%);
+	
+    }
+
+    .contact-block, .add-block {
+	@include i4p-sprite-margin('i4p-memberlist');
+
+	display: block;
+	    text-decoration: none;
+	padding: $sizePaddingMedium;
+	border-top: 1px solid lighten($colorDarkGrey,10%);
+	border-bottom: 1px solid darken($colorDarkGrey,10%);
+
+	&:hover {
+	    @include i4p-transition(all .5s ease);
+	    border-top: 1px solid transparent;
+	    border-bottom: 1px solid transparent;
+	    background-color: darken($colorDarkGrey,5%);
+	}
+
+    }
+
+    .after-block {
+	display: block;
+	border-top: 1px solid lighten($colorDarkGrey,10%);
+    }
+}
+

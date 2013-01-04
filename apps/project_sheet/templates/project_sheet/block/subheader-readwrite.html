@@ -21,6 +21,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 	<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
 </div> <!-- .subheader -->
 
+
+<form action="{% url project_sheet-instance-edit-info project_translation.slug %}" method="post">
+{% csrf_token %}
 <div class="span4 location-card">
 	<table class="infotable">
 		<tr class="infotable-location location">
@@ -28,14 +31,11 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 			<td>
 				{% if project_location_form %}<!-- LOCATION/READWRITE -->
 				<div class="location-form">
-					<form action="{% url project_sheet-instance-edit-location project_translation.slug %}" method="post">
-						{% csrf_token %}
 						{{ project_location_form.as_p }}
 						<div class="clear"></div>
 						{% comment %} FIXME: include form button for degraded view 
 						{% include "project_sheet/block/form-buttons.html" %}
 						{% endcomment %}
-					</form>	
 				</div> <!-- .location-form -->
 				{% else %}
 				{% if project_translation %}
@@ -55,7 +55,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 					{% if project_translation.project.location.lat %}
 					<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
 					{% endif %}
-					<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-location project_translation.slug %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+					<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
 				</div> <!-- .location-address -->
 				{% else %}<!-- LOCATION/READONLY/EMPTY mode -->
 				<em>{% trans 'unknown'|capfirst %}</em>
@@ -73,16 +73,12 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 		<tr class="infotable-website">
 			<th>{% trans "Web" %}</th>
 			<td>
-				<form action="{% url project_sheet-instance-edit-info project_translation.slug %}" method="post">
-					{% csrf_token %}
 
 					{{ project_info_form.as_p }}
 
 					{% comment %} FIXME: include form button for degraded view 
 					{% include "project_sheet/block/form-buttons.html" %}
 					{% endcomment %}
-				</form>	
-				&nbsp;
 			</td>
 		</tr>
 		<!-- FIXME: re-enable whell data will be in the object model
@@ -98,32 +94,11 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 	</table>
 </div>
 
-<div class="span4 insight-card">
-	<table class="infotable">
-		<!-- FIXME: re-enable whell data will be in the object model
-		<tr class="infotable-movecommons">
-			<th>{% trans "Movecommons" %}</th>
-			<td></td>
-		</tr>
-		-->
-		<tr class="infotable-maturity">
-			<th>{% trans "Maturity" %}</th>
-			<td>
-				{% comment %} FIXME: is there a form for maturity information {% endcomment %}
-				{% comment %} FIXME: make a reusable componnent from progressbar cf project fancy card {% endcomment %}
-				<p class="progressbar progressbar-{{project_translation.project.status|lower }}">
-				<span class="status">{{ project_translation.project.get_status_display }}</span>
-				</p>
-			</td>
-		</tr>
-
-	</table>
-</div> <!-- .infocard -->
-
 <div class="span12 subheader-actions">
 	<!-- FIXME: validate all forms at once with JS -->
 	<!-- FIXME: for clean degradation, include button in each form & hide them once JS is loaded -->
 
 	{% include "project_sheet/block/form-buttons.html" %}
 </div>
+</form>
 

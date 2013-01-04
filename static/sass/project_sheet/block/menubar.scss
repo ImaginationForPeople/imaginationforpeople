@@ -7,10 +7,10 @@
     @include box-sizing(border-box);
     background-color: $colorLightGrey;
     clear: both;
-    height: 2.8rem;
+    height: 3.3rem;
 
     .menubar-leftcolumn, .menubar-rightcolumn {
-	ul {
+	& > ul {
 	    list-style: none;
 	    margin: 0;
 
@@ -27,7 +27,7 @@
 		font-stretch: condensed;
 		text-transform: uppercase;
 		padding: 0;
-		height: 2.8rem;
+		height: 3.3rem;
 		border-collapse: collapse;
 
 		a {
@@ -37,6 +37,8 @@
 		    padding-right: 0.7 * $sizePaddingMedium;
 		    color: $colorMedGrey;
 		    font-weight: bold;
+		    height:19px;
+		    line-height:21px;
 
 		    i {
 			position: relative;
@@ -46,7 +48,8 @@
 		    }
 
 		    &:hover {
-			color: blue;
+			color: white;
+			background-color: $colorMedLightGrey;
 		    }
 
 		    &.share {
@@ -79,7 +82,7 @@
 		    background-color: $colorMedLightGrey;
 		    border-color: $colorMedLightGrey; // both left & right (flat effect)
 
-		    a {
+		    & > a {
 			color: white;
 			text-decoration: none;
 		    }
@@ -89,8 +92,9 @@
 		    float:right;
 
 		    a {
-			padding-left: $sizePaddingSmall;
-			padding-right: $sizePaddingSmall;
+				padding: 6px $sizePaddingSmall;
+				height: 20px;
+	    		line-height: 21px;
 		    }
 		}
 
@@ -131,9 +135,9 @@
 			}
 		    }
 		}
-	    }
-	}
-    }
+	    } // & > li 
+	} // & > ul
+    } // .menubar-leftcolumn, .menubar-rightcolumn
 
     // specifics to left column
     .menubar-leftcolumn {
@@ -155,5 +159,56 @@
 	}
     }
 
+    .lang-menu {
+	.lang-code {
+	    display: inline-block;
+	    font-weight: bold;
+	    min-width: 3rem;
+	}
+	.lang-title {
+	    font-style: italic;
+	    font-weight: normal;
+	    text-transform: capitalize;
+	}
+	.lang-action {
+	    font-style: italic;
+	    font-weight: normal;
+	    text-transform: normal;
+	}
+	.lang-arrow {
+	    display: inline-block;
+	    min-width: 3rem;
+	    content: "<";
+	}
+    }
+
+    .dropdown-menu {
+		background-color: $colorLightGrey;
+
+		form {
+			margin:0
+		}
+		li a {
+			padding:0 5px !important;
+			margin:0 3px;
+			@include border-radius(4px,4px)
+		}
+
+		li button {
+			background:none;
+			border:0;
+			color: $colorMedGrey;
+			@include border-radius(4px,4px);
+			font-size:1rem;
+			margin:0 4px;
+			width:150px;
+			text-align:left;
+
+			&:hover {
+				background:$colorMedLightGrey;
+				color:white;
+			}
+		}
+    }
 }
 
