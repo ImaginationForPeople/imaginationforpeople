@@ -62,7 +62,7 @@ def list_project_support(request,
          'prop_count' : prop_count,
          'call_count' : call_count,
          'activities' : activities,
-         'root_category' : TaggedCategory.objects.get(name='support'),
+         'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
          'feed_url': reverse('project_support_main', args=[project_translation.slug])+"#TODO_RSS",
     }
     
