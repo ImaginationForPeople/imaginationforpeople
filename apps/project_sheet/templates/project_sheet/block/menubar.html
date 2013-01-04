@@ -50,19 +50,27 @@
 						<li class="divider"></li>
 						<li class="dropdown-submenu">
 						<a tabindex="-1" href="#" >
-							<span class="lang-arrow"></span>
+							<span class="lang-arrow"><</span>
 							<span class="lang-action">{% trans "Add new translation" %}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- FIXME: the submenu always show all language, even if they exist/are filled -->
 								{% for language in LANGUAGES %}
 								<li>
-									<form method='POST' tabindex="-1" action="{% url project_sheet-translate project_translation.slug %}">
+									<!--<form method='POST' tabindex="-1" action="{% url project_sheet-translate project_translation.slug %}">
 									  {% csrf_token %}
 										<span class="lang-code">{{ language.0 }}</span>
 										<span class="lang-title">{{ language.1 }}</span>
 										<input type='hidden' name='requested_language' value='{{ language.0 }}'/>
 										<input type='submit' value='{{ language.1 }}'/>
+									</form>-->
+									<form method='POST' tabindex="-1" action="{% url project_sheet-translate project_translation.slug %}">
+									  {% csrf_token %}
+										<input type='hidden' name='requested_language' value='{{ language.0 }}'/>
+									  	<button type="submit">
+											<span class="lang-code">{{ language.0 }}</span>
+											<span class="lang-title">{{ language.1 }}</span>
+										</button>
 									</form>
 								</li>
 								{% endfor %}
