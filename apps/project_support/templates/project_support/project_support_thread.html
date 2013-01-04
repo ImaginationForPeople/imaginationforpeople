@@ -6,7 +6,6 @@
 {{block.super}}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_widgets.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />
@@ -14,6 +13,7 @@
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/support_question.css" />
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/page/support_thread.css" />
 {% endaddtoblock %}
 {% endblock %}
@@ -28,12 +28,122 @@
 {% block project_content %}
 <div class="container">        
     <div class="row">
-    <div class="span8 project-main">
-    {% include_jinja "question/content.html" request%}
-    </div>
-    <div class="span4 project-sidebar"> 
-    {% include_jinja "question/sidebar.html" request%}
-    </div>
+
+    {% include "project_support/block/question_card.html" %}
+
+    <div class="span8">
+    
+        <div id="question-table">
+            {% with question as post %}
+            <!-- MUST BE TOTALLY REFACTORED -->
+            {% include_jinja "question/post_comments.html" request %}
+            {% endwith %}
+        </div>
+        
+        {% if answers %}
+            <div class="clean"></div>
+        
+            <div class="tabBar tabBar-answer">
+                <h2 id="questionCount">
+                    {% blocktrans count counter=answer_count %}
+                        {{counter}} Answer
+                        {% plural %}
+                        {{counter}} Answers
+                    {% endblocktrans %}
+                </h2>
+                <div class="tabsA">
+                    <span class="label">{% trans 'Sort by :' %}</span>
+                    <a id="oldest" href="{{ question.get_absolute_url }}?sort=oldest#sort-top"
+                       title="{% trans 'oldest answers will be shown first' %}">
+                       <span>{% trans 'oldest' %}</span>
+                    </a>
+                    <a id="latest" href="{{ question.get_absolute_url }}?sort=latest#sort-top"
+                       title="{% trans 'newest answers will be shown first' %}">
+                       <span>{% trans 'newest' %}</span>
+                    </a>
+                    <a id="votes" href="{{ question.get_absolute_url }}?sort=votes#sort-top"
+                       title="{% trans 'most voted answers will be shown first' %}">
+                       <span>{% trans 'most voted' %}</span>
+                    </a>
+                </div>
+            </div>
+        
+            <div class="clean"></div>
+            {% include "project_support/block/question_paginator.html"  %}
+            <div class="clean"></div>
+        
+            {% for answer in answers %}
+                <a name="{{ answer.id }}"></a>
+                {% if answer.old_answer_id %}
+                    {# Make old URL anchors/hashes work #}
+                    <a class="old_answer_id_anchor" name="{{ answer.old_answer_id }}"></a>
+                {% endif %}
+                <div id="post-id-{{ answer.id }}" class="answer {% if answer.accepted %}accepted-answer{% endif %} {% if answer.author_id = question.author_id %} answered-by-owner{% endif %} {% if answer.deleted %}deleted{% endif %}">
+                    <div class="answer-table">
+                        <div class="item-right">
+                            <div class="answer-body">
+                                <div class="vote-buttons">
+                                    {% with answer as post %}
+                                    {% include "project_support/block/question_controls.html" %}
+                                    {% endwith %}
+                                    <div id="answer-img-accept-{{ answer.id }}"class="answer-img-accept"
+                                        {% if answer.accepted %}
+                                        title="{% trans 'this answer has been selected as correct' %}"
+                                        {% else %}
+                                        title="{% trans 'mark this answer as correct (click again to undo)' %}"
+                                        {% endif %}
+                                    ></div>
+                                </div>
+                                <div class="post-update-info-container">
+                                    <div class='post-author-info'>
+                                        {% if answer.is_anonymous %}
+                                            <img alt="{% trans 'anonymous user' %}" src="{{STATIC_URL}}images/anon.png" class="gravatar" width="32" height="32" />
+                                            <p>{% trans 'anonymous user' %}</p>
+                                        {% else %}
+                                            {% with user.get_profile as profile %}
+                                            <a style="text-decoration:none" href="{{ profile.get_absolute_url }}">
+                                                <img class="gravatar" width="32" height="32" src="{{ profile.get_mugshot_url }}"
+                                                    title="{{user.username|escape}}" alt="{{user.username|escape}}">
+                                            </a>
+                                            {% endwith %}
+                                            <a href="{{ answer.author.get_profile.get_absolute_url}}">{{ answer.author.username}}</a>
+                                         {% endif %}
+                                        <p>{% trans 'answered' %} {{ answer.added_at }}</p>
+                                    </div>
+                                </div>
+                                <div class="answer_txt">{{ answer.html|safe }}</div>
+                                <div class="answer-controls post-controls">
+                                    {% include "project_support/block/answer_controls.html" %}
+                                </div>
+                            </div>
+                            {% with answer as post %}
+                                <!-- MUST BE TOTALLY REFACTORED -->
+                                {% include_jinja "question/post_comments.html" request %}
+                            {% endwith %}
+                        </div>
+                    </div>
+                    <div class="clean"></div>
+                </div>
+                <div class="clean"></div>
+            {% endfor %}
+            
+            {% include "project_support/block/question_paginator.html"  %}
+            <div class="clean"></div>
+        {% endif %}
+        
+        {% if user_already_gave_answer %}
+            <a class="submit" href="{% url "edit_answer" previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
+            <span>{% trans '(only one answer per question is allowed)' %}</span>
+        {% else %}
+            {% include "project_support/block/new_answer_form.html" %}
+        {% endif %}
+        {% if question.closed = False and request.user = question.author %}{# this is outside the form on purpose #}
+            <input type="button" class="submit after-editor answer-own-question" id="fmanswer_button" value="{% trans 'Answer Your Own Question' %}"/>
+        {% endif %}
+        </div>
+        <div class="span4"> 
+        {% include "project_support/block/question_sidebar.html" %}
+        </div>
     </div>
 </div>
 {% endblock %}

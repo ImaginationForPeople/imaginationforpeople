@@ -1,0 +1,98 @@
+{% load i18n extra_tags %}
+<div id="post-id-{{question.id}}" class="row {% if question.deleted %} deleted{% endif %}" style="background: none repeat scroll 0 0 #276675;">
+	<div class="span8">
+        <div class="span1 wrapper_vote_number vote-buttons" style="margin-left: 0px;"> <!-- vote-buttons for JS callback -->
+            {% with question as post %}
+            {% include "project_support/block/post_vote_buttons.html" %}
+            {% endwith %}
+        </div> 
+        <div class="span6">
+            <h1><a href="{{ question.get_absolute_url }}">{{ question.get_title|escape }}</a></h1>
+            <div id="question-tags">
+                <ul class="tag_list">
+                    {% for tag in thread.get_tag_names %}
+                    <li>
+                    <div class="part_tag">
+                    <!-- NO WAY TO REPLACE THIS FTM -->
+                    {% include_jinja "question/question_tag_anchor.html" request %}
+                    </div>
+                    <div class="part_pointe"></div>
+                    </li>
+                    {% endfor %}
+                </ul>   
+            </div>
+            <div class="question-body">
+                {{ question.html|safe }}
+            </div>
+            <div id="question-controls" class="post-controls">
+                {% include "project_support/block/question_controls.html" %}
+            </div>
+        </div>
+        
+         <div class="span1 share_buttons">            
+            {% if settings.ENABLE_SHARING_TWITTER %}
+            <a class="twitter-share icon" title="{% trans 'Share this question on twitter' %}">Twitter</a>
+            {% endif %}
+            
+            {% if settings.ENABLE_SHARING_FACEBOOK %}
+            <a class="facebook-share icon" title="{% trans 'Share this question on facebook' %}">Facebook</a>
+            {% endif %}
+            
+            {% if settings.ENABLE_SHARING_GOOGLE %}
+            <g:plusone size="small" count="false"></g:plusone>
+            {% endif %}
+            
+            {% if settings.ENABLE_SHARING_LINKEDIN %}
+            <a class="linkedin-share icon" title="{% trans 'Share this question on linkedin' %}">Linkedin</a>
+            {% endif %}
+
+        </div>
+    </div>
+    
+    <div class="span4 author_and_follow_question vote-buttons" style="padding: 0px;">
+        <div class="arrow"></div>       
+        {% with question.author.get_profile as profile %} 
+        {% include_jinja "question/question_author_info.html" request %}
+        {% endwith %}
+        
+        {% if favorited %}
+            <a class="button followed" alt="{% trans 'click to unfollow this question' %}">
+                <span>{% trans 'Following this question' %}</span>
+                <span class='unfollow'>({% trans 'click to unfollow' %})</span>
+            </a>
+        {% else %}
+            <a class="button followed" alt="{% trans 'click to follow this question' %}">
+                {%trans 'Follow this question' %}
+            </a>
+        {% endif %}
+        <div id="favorite-number" class="favorite-number{% if favorited %} my-favorite-number{% endif %}">
+            {% if thread.favourite_count > 0 %}
+                {% blocktrans count count=thread.favourite_count %}{{count}} follower{% plural %}{{count}} followers {% endblocktrans %}
+            {% endif %}
+        </div>
+        <div class="notify-sidebar">
+            {%if request.user.is_authenticated %}
+            <input 
+                type="checkbox"
+                id="question-subscribe-sidebar"
+            />
+            <label for="question-subscribe-sidebar">{% trans 'email the updates' %}</label>
+            {%else%}
+            <input type="checkbox" id="question-subscribe-sidebar"/>
+            <label for="question-subscribe-sidebar">{% trans '<strong>Here</strong> (once you log in) you will be able to sign up for the periodic email updates about this question.' %}</label>
+            {%endif%}
+            <p class="rss">
+                <a href="{%url question_feed question.id %}" title="{% trans 'subscribe to this question rss feed' %}">{% trans 'subscribe to rss feed' %}</a>
+            </p>
+        </div>
+    </div>
+    
+    <script type="text/javascript"> 
+    (function(){
+        if (askbot['data']['userIsAuthenticated'] === false){
+            var ctrl = document.getElementById('question-controls')
+            ctrl.parentNode.removeChild(ctrl);
+        }
+    })();  
+     </script>
+ </div>
