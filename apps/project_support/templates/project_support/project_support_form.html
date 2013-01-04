@@ -1,0 +1,28 @@
+{% extends "project_sheet/layout/project_base.html" %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% block content %}
+{{block.super}}
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_form.css" />
+{% endaddtoblock %}
+{% endblock %}
+
+{% block project_content %}
+<div class="container">        
+    <div class="row">
+   	 	<div class="span8 project-main">
+	    	<div id="support-form">
+	    		<h1>{% trans 'Please ask your question here'%}</h1>
+	    		<div class="wrap-form">
+			        <form action="." method="post">{% csrf_token %}
+			        	{{ form.as_p }}
+			       	 	<input type="submit" value="{% trans 'submit'%}">
+			        </form>
+			    </div>
+	    	</div>
+	    </div>
+    </div>
+</div>
+{% endblock %}

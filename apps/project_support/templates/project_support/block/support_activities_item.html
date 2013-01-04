@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<li class="support-activity">
+    <a href="{{ activity.user.get_profile.get_absolute_url }}">
+        <img src="{{ activity.user.get_profile.get_mugshot_url }}" alt="{{ activity.user.username }}" />
+    </a>
+    <p>
+    <strong>{{activity.user.username}}</strong> {{activity.get_activity_type_display}} {% trans 'on' %} 
+    {{activity.content_object.thread.projectsupport_set.all.0.get_type_display}} "{{activity.content_object.thread.title }}"
+    </p>
+</li>
