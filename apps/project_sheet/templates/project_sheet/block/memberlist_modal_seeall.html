@@ -51,7 +51,15 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_modal_seeall.js");
 				<div class="after-block"></div>
 			</div>
 			<div class="list-side span7">
-
+				<div class="member-add-block">
+					<h2>{% trans 'become an actor of the project' %}</h2>	
+					<form method='POST' action='{% url project_sheet-instance-add-member project_translation.slug %}'>
+					    {% csrf_token %}
+					    {{ project_member_add_form.as_p }}
+					    <input height="29" width="30" type="image" src="{{ STATIC_URL }}images/project_sheet/valid.png" alt="{% trans 'save' %}" />
+						<a class="action-close" href="javascript:void(0)">{% trans 'close' %}</a>
+					</form>
+				</div>
 				<div class="everybody-block">
 					<h2>{% trans 'members' %}</h2>
 					<ul>
