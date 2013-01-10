@@ -20,8 +20,13 @@ $(document).ready(function () {
 
 	//	jdebug('modal control called for slide ' + currentIndex + ' on ' + modalTargetId);
 		$('#' + modalTargetId).modal();
+		$('.modal-body .member-add-block').show();
 	});
 
 	jdebug('init DONE');
+
+	$('.member-add-block form .action-close').click(function() {
+		$(this).parents('.member-add-block').slideUp();
+	});
 });
 
