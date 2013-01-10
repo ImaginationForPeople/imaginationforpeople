@@ -56,7 +56,11 @@
 	</div> <!-- .project-main -->
 
 	<div class="span4 project-sidebar">	
-
+	  <form method='POST' action='{% url project_sheet-instance-add-member project_translation.slug %}'>
+	    {% csrf_token %}
+	    {{ project_member_add_form.as_p }}
+	    <input type='submit'/>
+	  </form>
 	  {% if project_translation %}
 	    <div class="project-members member-block">
 		<h2>
