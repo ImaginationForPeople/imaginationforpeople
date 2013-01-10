@@ -67,12 +67,77 @@ $i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
 	display: table-cell;
 	margin-left: 0;
 
-	.everybody-block {
+	.member-add-block {
+	    margin: 10px 10px 0;
 	    padding: $sizePaddingMedium;
+	    padding-left:20px;
+	    background:$colorLightGrey;
+	    @include border-radius(5px,5px);
+	    float:left;
+	    width:94%;
+
+	    form {
+	    	margin:0;
+
+	     	label {
+		    	display:none;
+		    }
+
+		    input[type='text'], textarea {
+		    	border:0;
+		    	font-size:1.1rem;
+		    	font-style:italic;
+		    	@include border-radius(4px,4px);
+		    	color:$colorMedDarkGrey;
+		    	border:1px solid $colorLightGrey;
+		    	margin:0;
+
+		    	&:active, &:focus {
+		    		border:1px solid $colorLightBlue;
+		    	}
+		    }
+
+		    input[type='text'] {
+		    	width:47%;
+		    }
+
+		    textarea {
+		    	width:95%;
+		    	height:60px;
+		    	margin:0 0 5px;
+		    }
+
+		    p {
+		    	margin:0 0 5px;
+		    }
+
+		    input[type='image'] {
+		    	float:right;
+		    	margin:0 14px 0 5px;
+		    }
+
+		    a.action-close {
+		    	display:block;
+		    	width:30px;
+		    	height:29px;
+		    	text-indent:-9999em;
+		    	background:image-url('project_sheet/close.png') no-repeat top left;
+		    	float:right;
+		    }
+		}
+	}
+
+	.everybody-block {
+	    padding: 10px 10px 20px;
+	    float:left;
+
+	    h2 {
+	    	margin:0 0 0 22px;
+	    }
 
 	    & > ul {
 		list-style: none;
-		margin: 0;
+		margin: 0 0 0 10px;
 
 		& > .member {
 		    @include i4p-transition(all .5s ease);
@@ -82,14 +147,16 @@ $i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
 		    float: left;
 		    height: 80px;
 		    margin: $sizeMarginMedium;
-		    width: 245px;
+		    width: 240px;
 
 		    &:hover {
-			background-color: $colorLightGrey;
+			background-color: $colorLightDarkGrey;
 		    }
 
 		    .fullname {
 			@include i4p-font-subtitle($sizeTextNormal);
+			line-height:15px;
+			margin:7px 0 0 0;
 		    }
 
 		    .avatar {
@@ -104,6 +171,10 @@ $i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
 			overflow: hidden;
 		    }
 
+		    .position {
+		    	font-size:0.8em
+		    }
+
 		    .details {
 			margin-left: 85px;
 
@@ -112,6 +183,10 @@ $i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
 
 			    color: $colorMedDarkGrey;
 			    display: block; 
+			    font-size: 0.9em;
+			    font-stretch: condensed;
+			    font-weight: bold;
+			    text-transform: uppercase;
 			}
 		    }
 		}
