@@ -51,8 +51,8 @@ $(document).ready(function () {
 				memberImg = memberHookObj.find('.avatar').attr('src');
 				memberName = memberHookObj.attr('data-member-fullname');
 				memberPosition = memberHookObj.attr('data-member-position');
-				memberContact = memberHookObj.attr('data-member-profile');
-				memberProfile = memberHookObj.attr('data-member-contact');
+				memberContact = memberHookObj.attr('data-member-contact');
+				memberProfile = memberHookObj.attr('data-member-profile');
 
 				viewObj.find('.avatar').attr('src', memberImg);
 				viewObj.find('.fullname').text(memberName);
