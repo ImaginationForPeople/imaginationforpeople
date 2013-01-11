@@ -22,6 +22,9 @@ from django.utils.translation import ugettext_lazy as _
 from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from django_mailman.models import List
+from tagging.fields import TagField
+
+from apps.project_sheet.models import I4pProject
 
 class WorkGroup(models.Model):
     """
@@ -48,6 +51,11 @@ class WorkGroup(models.Model):
     visible = models.BooleanField(verbose_name=_('visible'), 
                                   default=True)
 
+    projects = models.ManyToManyField(I4pProject,
+                                      verbose_name=_('Linked Projects'),
+                                      related_name='workgroups')
+
+    tags = TagField(_("Tags of the group"), null=True, blank=True)
 
     def __unicode__(self):
         return u"%s (%s)" % (self.name,

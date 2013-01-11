@@ -25,6 +25,10 @@ from django.utils.translation import ugettext as _
 from django.views.generic import ListView, DetailView
 from django.views.generic import View
 
+from wiki.core.plugins import registry as plugin_registry        
+from wiki.models.article import Article, ArticleForObject, ArticleRevision
+from wiki.views.article import Edit as WikiEdit
+
 from .models import WorkGroup
 from .utils import get_ml_members
 
@@ -57,9 +61,50 @@ class WorkGroupDetailView(DetailView):
                 except User.DoesNotExist:
                     context['ml_nonmember_list'].append(User(email=member[0]))
 
+        # Wiki
+        try:
+            article = Article.get_for_object(workgroup)
+        except ArticleForObject.DoesNotExist:
+            article = Article.objects.create()
+            article.add_object_relation(workgroup)
+            revision = ArticleRevision(title=workgroup.name, content='')
+            article.add_revision(revision)
+
+        context['wiki_article'] = article
+
+        from apps.project_sheet.utils import get_project_translations_from_parents
+        from django.utils import translation
+        
+        language_code = translation.get_language()
+        project_translations = get_project_translations_from_parents(parents_qs=workgroup.projects.all(),
+                                                                     language_code=language_code,
+                                                                     fallback_language='en',
+                                                                     fallback_any=True)
+        
+        context['group_projects'] = project_translations
+            
         return context
 
+        
+class GroupWikiEdit(WikiEdit):
+    template_name = "workgroup/wiki_edit.html"
+    
+    def dispatch(self, request, workgroup_slug, *args, **kwargs):
+        self.workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)
+        article = Article.get_for_object(self.workgroup)
+        
+        self.sidebar_plugins = plugin_registry.get_sidebar()
+        self.sidebar = []
+        
+        return super(WikiEdit, self).dispatch(request, article, *args, **kwargs)
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(GroupWikiEdit, self).get_context_data(*args, **kwargs)
+        context['workgroup'] = self.workgroup
+        return context
+
+    def get_success_url(self):
+        return redirect(self.workgroup)
 
 class SubscribeView(View):
     """
