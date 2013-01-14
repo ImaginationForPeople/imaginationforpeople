@@ -52,7 +52,6 @@ if settings.DEBUG:
 ##Zinia (blog)
 urlpatterns += i18n_patterns('',
                         url(r'^blog/', include('zinnia.urls')),
-                        url(r'^comments/', include('django.contrib.comments.urls'))
                         )
 
 urlpatterns += i18n_patterns('',

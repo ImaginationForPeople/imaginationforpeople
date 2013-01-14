@@ -3,6 +3,8 @@
 {% load i18n %}
 {% load wiki_tags %}
 {% load tagging_tags %}
+{% load comments %}
+{% load admin_urls %}
 
 {% block content %}
 
@@ -11,7 +13,15 @@
       <br/>
       <br/>
       <h1 class="workgroup_title"><a href="/workgroup">{% trans "Workgroup" %}</a> &raquo; {{ workgroup.name }}</h1>
+
+      {% if request.user.is_staff %}
+      <a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage" %}</a>
+      {% endif %}
       <img class="language tipsed" alt="{{ workgroup.language }}" src="{{ STATIC_URL }}images/flags/{{ workgroup.language }}.gif" title="{{ workgroup.get_language_display }}" />
+
+      {% if workgroup.picture %}
+      <img src="{{ workgroup.picture.url }}"/>
+      {% endif %}
       
       <span class="workgroup_desc">{{ workgroup.description|safe|urlize }}</span>
 
@@ -33,12 +43,28 @@
            {% include "workgroup/subscribe_button.html" %}
 
       <div class="separator"></div>
+      {% else %}
+      {% if workgroup.outside_url %}
+      <a href="{{ workgroup.outside_url }}">LINK TO THE GROUP, IN THE WORLD WILD WEB</a>
+      {% endif %}
     {% endif %}
 
       <h3>Group projects</h3>
       {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_translation_list=group_projects %}
 
+      {% get_comment_count for workgroup as comment_count %}
+      <h3>Shoutbox ({{ comment_count }})</h3> 
+      {% if comment_count %}
+      {% render_comment_list for workgroup %}
+      {% endif %}
+      {% get_comment_form for workgroup as comment_form %}
+      <form method='POST' action='{% comment_form_target %}'>
+	{% csrf_token %}
+	{{ comment_form }}
+	  <input type="submit" name="submit" value="Post">
+      </form>
 
+      
      
     </div>
   </div>
