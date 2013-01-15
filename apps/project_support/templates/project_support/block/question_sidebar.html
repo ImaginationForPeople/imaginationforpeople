@@ -1,0 +1,28 @@
+{% load i18n %}
+<div class="box statsWidget">
+    <h2>{% trans 'Stats' %}</h2>
+    <div>
+        <p>
+            {% trans 'Asked' %}: <strong>{{ question.added_at }}</strong>
+        </p>
+        <p> 
+            {% trans 'Seen' %}: <strong>{{ thread.view_count }} {% trans 'times' %}</strong>
+        </p>
+        <p>
+            {% trans 'Last updated' %}: <strong title="{{ thread.last_activity_at }}">{{thread.last_activity_at|diff_date}}</strong>
+        </p>
+    </div>
+</div>
+
+{% if similar_threads.data and settings.SIDEBAR_QUESTION_SHOW_RELATED %}
+    <div class="box">
+        <h2>{% trans 'Related questions' %}</h2>
+        <div class="questions-related">
+            {% for thread_dict in similar_threads.data %}
+            <p>
+                <a href="{{ thread_dict.url }}">{{ thread_dict.title|escape }}</a>
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}
