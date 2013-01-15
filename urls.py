@@ -3,6 +3,8 @@ from django.conf.urls.defaults import patterns, url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 
+import autocomplete_light
+autocomplete_light.autodiscover() # Keep this before admin.autodiscover()
 
 from dynamicsites.views import site_info
 #from i18nurls.i18n import i18n_patterns # XXX: update when moving to dj1.4
@@ -107,6 +109,8 @@ urlpatterns += patterns('',
 
     (r'^tinymce/', include('tinymce.urls')),
     (r'^uploadify/', include('uploadify.urls')),
+
+    url(r'autocomplete/', include('autocomplete_light.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
                         

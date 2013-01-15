@@ -258,6 +258,7 @@ INSTALLED_APPS = (
     'mptt',
     'menus',
     'sekizai',
+    'autocomplete_light',
     
     'zinnia',
     'cmsplugin_zinnia',

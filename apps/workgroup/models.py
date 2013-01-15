@@ -74,9 +74,11 @@ class WorkGroup(models.Model):
 
     picture = models.ImageField(upload_to=get_grouppicture_path, null=True, blank=True)
 
-    outside_url = models.URLField(_("A URL that points to the real discussion tool, if we're not using the built-in."),
+    outside_url = models.URLField(_('External URL'),
                                   null=True,
-                                  blank=True)
+                                  blank=True,
+                                  help_text=_("A URL that points to the real discussion tool, if we're not using the built-in (eg Facebook group URL).")
+                              )
 
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
