@@ -17,8 +17,10 @@ class CategoriesTreeNode(template.Node):
                 res = res.replace("#SEARCH_URL#", search_state.add_tag(child.tag.name).full_url())
             else:
                 res = res.replace("#SEARCH_URL#", "#")
-                
-            res += "<ul>" + self.render_node(child, search_state) + "</ul></li>"
+            
+            tmp = self.render_node(child, search_state)
+            if tmp:
+                res += "<ul>" + tmp + "</ul></li>"
         return res
     
     def render(self, context):
