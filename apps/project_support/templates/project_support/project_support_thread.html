@@ -4,16 +4,21 @@
 
 {% block content %}
 {{block.super}}
+
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" />
+{% endaddtoblock %}
+{% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_widgets.css" />
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />
+{% endaddtoblock %}
+{% addtoblock "css" %}
 <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}js/wmd/wmd.css" />
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/support_question.css" />
+{% endaddtoblock %}
+{% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/page/support_thread.css" />
 {% endaddtoblock %}
 {% endblock %}
@@ -26,10 +31,11 @@
 {% endblock %}
 
 {% block project_content %}
+
+{% include "project_support/block/question_card.html" %}
+
 <div class="container">        
     <div class="row">
-
-    {% include "project_support/block/question_card.html" %}
 
     <div class="span8">
     

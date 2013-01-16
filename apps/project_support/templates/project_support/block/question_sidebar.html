@@ -1,17 +1,27 @@
 {% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/block/question_sidebar.css" />
+{% endaddtoblock %}
+
 <div class="box statsWidget">
     <h2>{% trans 'Stats' %}</h2>
-    <div>
-        <p>
-            {% trans 'Asked' %}: <strong>{{ question.added_at }}</strong>
-        </p>
-        <p> 
-            {% trans 'Seen' %}: <strong>{{ thread.view_count }} {% trans 'times' %}</strong>
-        </p>
-        <p>
-            {% trans 'Last updated' %}: <strong title="{{ thread.last_activity_at }}">{{thread.last_activity_at|diff_date}}</strong>
-        </p>
+    <div class="date">
+        {% trans 'Asked' %}: <strong>{{ question.added_at }}</strong>
     </div>
+    <p>
+        {% trans 'Last updated' %}: <strong title="{{ thread.last_activity_at }}">{{thread.last_activity_at|diff_date}}</strong>
+    </p>
+    <p class="answers"> 
+        <strong>3 {% trans 'answers' %}</strong>
+    </p>
+    <p class="views"> 
+        <strong>{{ thread.view_count }} {% trans 'views' %}</strong>
+    </p>
+    <p class="votes">
+        {{ post.score }} {% trans 'votes' %}
+    </p>
 </div>
 
 {% if similar_threads.data and settings.SIDEBAR_QUESTION_SHOW_RELATED %}
