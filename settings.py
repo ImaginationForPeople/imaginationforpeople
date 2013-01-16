@@ -11,6 +11,8 @@ import djcelery
 
 from django.utils.translation import ugettext_lazy as _
 
+import apps.i4p_base.mdx_i4p as mdx_i4p
+
 # Import settings for the given site
 from site_settings import *
 
@@ -235,7 +237,7 @@ INSTALLED_APPS = (
     'django_notify',
     'wiki',
     'wiki.plugins.notifications',
-    #'grappelli',
+    'wiki.plugins.attachments',
     'filebrowser',
 
     'django.contrib.auth',
@@ -529,6 +531,10 @@ CELERY_ALWAYS_EAGER = DEBUG
 djcelery.setup_loader()
 
 NANI_TABLE_NAME_SEPARATOR = ''
+
+# WIKI
+markdown_i4p = mdx_i4p.makeExtension()
+WIKI_MARKDOWN_EXTENSIONS = ['extra', 'toc', markdown_i4p]
 
 LOGGING = {
     'version': 1,
