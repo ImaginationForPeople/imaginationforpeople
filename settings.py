@@ -210,6 +210,7 @@ INSTALLED_APPS = (
     'honeypot',
     'serializers',
     'tabs',
+    'logentry_admin',
 
     'raven.contrib.django',
     'tinymce',
