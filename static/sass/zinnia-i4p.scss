@@ -2,9 +2,23 @@
 @import "i4p/constants";
 
 body .zinnia {
+    p {
+    margin: 0 0 0.5em;
+    line-height: 1.5;
+    }
+    h3 {
+        margin-bottom: 0em;
+    }
+    ul {
+        margin-bottom: 0.5em;
+    }
+    .entry-content p {
+        font-size: 105%;
+    }
     #header {
         margin-top: 0;
         h1 {
+            display:none;
             margin-top: 0;
             a {
                 color: $colorLightBlue !important;
@@ -23,14 +37,33 @@ body .zinnia {
     }
     .entry-body {
         img {
-        max-width: 50%;
+        max-width: 35%;
         }
-            .entry-excerpt {
+        .entry-excerpt {
+            display: none;
+        }
+    }
+    #widget-archives ul ul {
         display: none;
     }
+    #widget-populars {
+        a+a { /* Remove number of comments */
+            display: none;
+        }
     }
-
 }
+body.entry-list { 
+    .entry-body {
+        img {
+            max-height: 120px;
+        }
+    }
+    .continue-reading {
+        text-align: right;
+        margin-top: -6px;
+        }
+}
+
 /* Feature hiding */
 
 body.zinniai4p {
@@ -38,7 +71,16 @@ body.zinniai4p {
     #widget-randoms {
         display: none;
     }
+    #widget-tags {
+        display: none;
+    }
     #widget-linkbacks {
+        display: none;
+    }
+    #widget-calendar {
+        display: none;
+    }
+    #widget-authors {
         display: none;
     }
     #pingbacks {
@@ -50,16 +92,18 @@ body.zinniai4p {
     .entry-next, .entry-previous {
         display: none;
     }
+    /* Yearly archives */
+    ul.paginator+h2 {
+        display:none;
+    }
+    ul.paginator+h2+ul {
+        display:none;
+    }
 }
 /* Entry list page */
 body.entry-list { 
 
-    #widget-authors {
-        display: none;
-    }
-    #widget-populars {
-        display: none;
-    }
+
     #widget-recents {
         display: none;
     }
@@ -69,13 +113,16 @@ body.entry-list {
     .entry-comments {
         display: none;
     }
+    .entry-tags {
+        display: none;
+    }
 }
 /* Single entry page */
 body.entry { 
-    #widget-calendar {
+    #widget-archives {
         display: none;
     }
-    #widget-archives {
+    #widget-comments {
         display: none;
     }
 }
