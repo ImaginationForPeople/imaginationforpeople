@@ -1,7 +1,10 @@
 @import "i4p-mixins";
 @import "i4p/constants";
+@import "i4p/fonts";
 
 body .zinnia {
+    @include i4p-font-base($sizeTextNormal);
+    font-size: 62.5%;
     p {
     margin: 0 0 0.5em;
     line-height: 1.5;
@@ -13,7 +16,10 @@ body .zinnia {
         margin-bottom: 0.5em;
     }
     .entry-content p {
-        font-size: 105%;
+
+    }
+    .entry-info {
+        padding-left: 2.5em;
     }
     #header {
         margin-top: 0;
