@@ -178,29 +178,33 @@
          
         <div id="right_col">
             
+            {% placeholder "Right Column" %}
+            
             {% comment %}
                 {% include "search.html" %}            
                 <div class="clear"></div><br />
             {% endcomment %}
             
-            <span>
-                {% placeholder "Site Purpose" or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
-            </span>
-            
-            <!-- Loginbox -->
-            {% include "pages/home-blocks/loginbox.html" %}     
-
-            <!-- Quick Project -->
-            <!-- FIXME -->
             {% comment %}
+                <span>
+                {% placeholder "Site Purpose" or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
+                </span>
+            {% endcomment %}
+            
+            {% comment %}
+                <!-- Loginbox -->
+                {% include "pages/home-blocks/loginbox.html" %}
+            {% endcomment %}
+            
+            {% comment %}
+                <!-- Quick Project -->
+                <!-- FIXME -->
                 {% include "pages/home-blocks/quick_project.html" %} 
             {% endcomment %}            
             
             <!-- Last members -->
             {% include "pages/home-blocks/last_members.html" %}     
 
-            
-            {% placeholder "Homepage Column" %}
             
         </div>
         
