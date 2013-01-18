@@ -11,13 +11,16 @@ from fabric.api import *
 from fabric.colors import cyan
 from fabric.contrib.files import *
 
+@task
 def reloadapp():
     """
     Touch the wsgi
     """
-    print(cyan('Reloading the application'))
-    venvcmd('touch apache/%(wsginame)s' % env)
-
+    print(cyan('Reloading all wsgi applications in : %s' % env.venvfullpath + '/' + env.projectname))
+    #this may accidentally reload staging environments and the like, but it's the only reliable way to 
+    #hit any multisites defined. 
+    with cd(env.venvfullpath + '/' + env.projectname):
+        run('touch apache/*')
 
 def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
     if not user:
