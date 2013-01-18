@@ -24,7 +24,7 @@ def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
         user = env.user
 
     with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
-        return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user, pty=pty)
+        return run('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, pty=pty)
 
 def venv_prefix():
     return 'source %(venvfullpath)s/bin/activate' % env
@@ -163,6 +163,10 @@ def collect_static_files():
     """
     print(cyan('Collecting static files'))
     venvcmd('./manage.py collectstatic --noinput')
+    
+    #Workaround for collectstatic bug on prod server
+    with cd(env.venvfullpath + '/' + env.projectname + '/static'):
+        run('cp -Rp compiled_sass/* css/')
 
 @task
 def make_messages():
@@ -202,8 +206,8 @@ def compile_stylesheets():
     Generate *.css files from *.scss
     """
     with cd(env.venvfullpath + '/' + env.projectname + '/static'):
-        sudo('rm -rf compiled_sass', user=env.user)
-        sudo('bundle exec compass compile --force', shell=True, user=env.user)
+        run('rm -rf compiled_sass')
+        run('bundle exec compass compile --force', shell=True)
             
 def tests():
     """
