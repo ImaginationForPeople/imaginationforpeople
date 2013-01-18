@@ -23,6 +23,7 @@
 	      {% endif %}
             </div>
 
+          {% comment %}
 	      {% if request.current_page.is_home  %}
                 {% placeholder "footer-follow" inherit or %}
             <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
@@ -37,6 +38,7 @@
 	      {% else %}
 	        {% show_placeholder "footer-follow" "homepage" %}
 	      {% endif %}
+        {% endcomment %}
         </div>
         
         <div class="grid_1">&nbsp;</div>
