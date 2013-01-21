@@ -33,22 +33,25 @@
                     {% include "project_support/block/post_vote_buttons.html" %}
                     {% endwith %}
                 </div> 
-                <div class="question-body">
-                    {{ question.html|safe }}
+                <div class="wrapper-question-content">
+                    <div class="question-body">
+                        {{ question.html|safe }}
+                    </div>
+                    <div id="question-tags">
+                        <ul class="tag_list">
+                            {% for tag in thread.get_tag_names %}
+                            <li>
+                            <div class="part_tag">
+                            <!-- NO WAY TO REPLACE THIS FTM -->
+                            {% include_jinja "question/question_tag_anchor.html" request %}
+                            </div>
+                            <div class="part_pointe"></div>
+                            </li>
+                            {% endfor %}
+                        </ul>   
+                    </div>
                 </div>
-                <div id="question-tags">
-                    <ul class="tag_list">
-                        {% for tag in thread.get_tag_names %}
-                        <li>
-                        <div class="part_tag">
-                        <!-- NO WAY TO REPLACE THIS FTM -->
-                        {% include_jinja "question/question_tag_anchor.html" request %}
-                        </div>
-                        <div class="part_pointe"></div>
-                        </li>
-                        {% endfor %}
-                    </ul>   
-                </div>
+                <a class="add-comment" id="add-comment-to-post-3">{% trans 'post a comment' %}</a>
                 <div id="question-controls" class="post-controls">
                     {% include "project_support/block/question_controls.html" %}
                 </div>
@@ -70,21 +73,29 @@
                     </a>
                 {% endif %}
 
+                <div id="question-subscribe">
                 {%if request.user.is_authenticated %}
-                    <input 
+                    <!--<input 
                         type="checkbox"
                         id="question-subscribe-sidebar"
                     />
-                    <label for="question-subscribe-sidebar">{% trans 'email the updates' %}</label>
+                    <label for="question-subscribe-sidebar">{% trans 'email the updates' %}</label>-->
+                    <a class="button" alt="{% trans 'click to subscribe to the email update' %}">
+                        {%trans 'Email the update' %}
+                    </a>
                     {%else%}
-                    <input type="checkbox" id="question-subscribe-sidebar"/>
-                    <label for="question-subscribe-sidebar">{% trans '<strong>Here</strong> (once you log in) you will be able to sign up for the periodic email updates about this question.' %}</label>
+                    <a class="button disabled" alt="{% trans 'login to subscribe to the email update' %}">
+                        {%trans 'Login to subscribe to the email update' %}
+                    </a>
+                    <!--<input type="checkbox" id="question-subscribe-sidebar"/>
+                    <label for="question-subscribe-sidebar">{% trans '<strong>Here</strong> (once you log in) you will be able to sign up for the periodic email updates about this question.' %}</label>-->
                 {%endif%}
+                </div>
 
                 <p class="rss">
                     <a href="{%url question_feed question.id %}" title="{% trans 'subscribe to this question rss feed' %}">{% trans 'subscribe to rss feed' %}</a>
                 </p>
-                
+
                 <div id="favorite-number" class="favorite-number{% if favorited %} my-favorite-number{% endif %}">
                     {% if thread.favourite_count > 0 %}
                         {% blocktrans count count=thread.favourite_count %}{{count}} follower{% plural %}{{count}} followers {% endblocktrans %}

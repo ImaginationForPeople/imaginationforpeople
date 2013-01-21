@@ -7,21 +7,20 @@
 
 <div class="box statsWidget">
     <h2>{% trans 'Stats' %}</h2>
-    <div class="date">
-        {% trans 'Asked' %}: <strong>{{ question.added_at }}</strong>
+    <div class="content">
+        <div class="date">
+            {% trans 'Asked on' %} <strong>{{ question.added_at }}</strong>
+        </div>
+        <p class="answers"> 
+            <strong>3 {% trans 'answers' %}</strong>
+        </p>
+        <p class="views"> 
+            <strong>{{ thread.view_count }} {% trans 'views' %}</strong>
+        </p>
+        <p class="votes">
+            <strong>5 {{ post.score }} {% trans 'votes' %}</strong>
+        </p>
     </div>
-    <p>
-        {% trans 'Last updated' %}: <strong title="{{ thread.last_activity_at }}">{{thread.last_activity_at|diff_date}}</strong>
-    </p>
-    <p class="answers"> 
-        <strong>3 {% trans 'answers' %}</strong>
-    </p>
-    <p class="views"> 
-        <strong>{{ thread.view_count }} {% trans 'views' %}</strong>
-    </p>
-    <p class="votes">
-        {{ post.score }} {% trans 'votes' %}
-    </p>
 </div>
 
 {% if similar_threads.data and settings.SIDEBAR_QUESTION_SHOW_RELATED %}

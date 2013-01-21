@@ -1,0 +1,38 @@
+{% load i18n extra_tags %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/block/post_comments.css" />
+{% endaddtoblock %}
+
+<div class="comments">
+	<div class="content">
+		<div class="comment-form">
+			<form method="post" action="#">
+				<label for="comment-text">{% trans 'Add your comment' %}</label>
+				<textarea row="1" name="comment-text" id="comment-text" placeholder="{% trans 'Add your comment...' %}"></textarea>
+				<input type="submit" class="submit" value="{% trans 'Comment' %}" />
+			</form>
+		</div>
+		<div class="comments-list">
+			<div class="comment">
+				<div class="comment-body">
+					 <div class="comment_infos">
+	                    <a class="author" href="#">JPKefta</a>
+	                    <span class="age">- <abbr class="timeago" title="2013-01-16 17:22:49 +0100">4 days ago</abbr></span>
+	                    <div class="admin_actions">                 
+	                         <a id="post-333333-delete" class="delete-icon comment-delete" title="{% trans 'delete this comment' %}">
+	                            <i class="icon-trash"> </i> {% trans 'delete' %}
+	                         </a>               
+	                         <a id="post-333333-edit" class="edit-icon comment-edit edit" title="{% trans 'edit this comment' %}"> 
+	                            <i class="icon-pencil"> </i> {% trans 'edit' %}
+	                        </a>
+	                    </div><!-- end div.admin_actions -->  
+	                 </div>
+	                 <p>Carles +1 vice salvia. Cliche ugh authentic, mustache carles tumblr terry richardson occupy pitchfork high life pug keytar. Skateboard cred banjo truffaut bespoke typewriter. Yr readymade kogi, vice aesthetic skateboard odd future +1</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

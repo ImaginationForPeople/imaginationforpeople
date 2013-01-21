@@ -42,13 +42,15 @@
         <div id="question-table">
             {% with question as post %}
             <!-- MUST BE TOTALLY REFACTORED -->
+            <!-- TODO FOR DESIGN -->
+            {% comment %}
             {% include_jinja "question/post_comments.html" request %}
+            {% endcomment %}
+            {% include "project_support/block/post_comments.html" %}
             {% endwith %}
         </div>
         
-        {% if answers %}
-            <div class="clean"></div>
-        
+        {% if answers %}        
             <div class="tabBar tabBar-answer">
                 <h2 id="questionCount">
                     {% blocktrans count counter=answer_count %}
@@ -74,9 +76,7 @@
                 </div>
             </div>
         
-            <div class="clean"></div>
             {% include "project_support/block/question_paginator.html"  %}
-            <div class="clean"></div>
         
             {% for answer in answers %}
                 <a name="{{ answer.id }}"></a>
@@ -89,9 +89,10 @@
                         <div class="item-right">
                             <div class="answer-body">
                                 <div class="vote-buttons">
-                                    {% with answer as post %}
+                                    <!--{% with answer as post %}
                                     {% include "project_support/block/question_controls.html" %}
-                                    {% endwith %}
+                                    {% endwith %}-->
+                                    <!-- I BELIEVE THE ANSWER VOTE WIDGET SHOULD BE HERE INSTEAD OF QUESTIONS CONTROLS -->
                                     <div id="answer-img-accept-{{ answer.id }}"class="answer-img-accept"
                                         {% if answer.accepted %}
                                         title="{% trans 'this answer has been selected as correct' %}"
@@ -124,17 +125,13 @@
                             </div>
                             {% with answer as post %}
                                 <!-- MUST BE TOTALLY REFACTORED -->
-                                {% include_jinja "question/post_comments.html" request %}
                             {% endwith %}
                         </div>
                     </div>
-                    <div class="clean"></div>
                 </div>
-                <div class="clean"></div>
             {% endfor %}
             
             {% include "project_support/block/question_paginator.html"  %}
-            <div class="clean"></div>
         {% endif %}
         
         {% if user_already_gave_answer %}
