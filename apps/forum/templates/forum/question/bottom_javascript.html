@@ -1,7 +1,7 @@
 <!-- 
 BEGIN OF FORUM/QUESTION/BOTTOM_JAVASCRIPT.HTML
  -->
- {% include "meta/editor_data.html" %}
+{% include "meta/editor_data.html" %}
 <script type="text/javascript">
     {% if not thread.closed %}
         var maxCommentLength = {{settings.MAX_COMMENT_LENGTH}};
@@ -51,22 +51,13 @@ BEGIN OF FORUM/QUESTION/BOTTOM_JAVASCRIPT.HTML
         });
       }
     }
-</script>
-<script type="text/javascript">
+
     var messages = askbot['messages'];
-    messages['upvote_question'] = gettext(
-        'I like this question (click again to cancel)'
-    );
-    messages['upvote_answer'] = gettext(
-        'I like this answer (click again to cancel)'
-    );
-    messages['downvote_question'] = gettext(
-        "I don't like this question (click again to cancel)"
-    );
-    messages['downvote_answer'] = gettext(
-        "I don't like this answer (click again to cancel)"
-    );
-    </script>
+    messages['upvote_question'] = gettext('I like this question (click again to cancel)');
+    messages['upvote_answer'] = gettext('I like this answer (click again to cancel)');
+    messages['downvote_question'] = gettext("I don't like this question (click again to cancel)");
+    messages['downvote_answer'] = gettext("I don't like this answer (click again to cancel)");
+</script>
 <!-- 
 END OF FORUM/QUESTION/BOTTOM_JAVASCRIPT.HTML
  -->

@@ -27,7 +27,7 @@
                     {% endif %}
 
                 </div>
-                <h1 class="{{thread.projectsupport_set.all.0.type|lower}}"><a href="{{ question.get_absolute_url }}">{{ question.get_title|escape }}</a></h1>
+                <h1 class="{{support.type|lower}}"><a href="{{support.get_absolute_url}}    ">{{ question.get_title|escape }}</a></h1>
                 <div class="wrapper-vote-number vote-buttons"> <!-- vote-buttons for JS callback -->
                     {% with question as post %}
                     {% include "project_support/block/post_vote_buttons.html" %}
@@ -35,7 +35,7 @@
                 </div> 
                 <div class="wrapper-question-content">
                     <div class="question-body">
-                        {{ question.html|safe }}
+                        {{ question.html|striptags|safe }}
                     </div>
                     <div id="question-tags">
                         <ul class="tag_list">
@@ -51,7 +51,6 @@
                         </ul>   
                     </div>
                 </div>
-                <a class="add-comment" id="add-comment-to-post-3">{% trans 'post a comment' %}</a>
                 <div id="question-controls" class="post-controls">
                     {% include "project_support/block/question_controls.html" %}
                 </div>

@@ -1,0 +1,19 @@
+{% load i18n %}
+{% load humanize %}
+<div class="comment">
+    <div class="comment-body">
+         <div class="comment_infos">
+            <a class="author" href="{{comment.author.get_profile.get_absolute_url }}">{{comment.author.username|escape}}</a>
+            <span class="age">- {{comment.added_at|naturaltime}}</span>
+            <div class="admin_actions">                 
+                 <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans 'delete this comment' %}">
+                    <i class="icon-trash"> </i> {% trans 'delete' %}
+                 </a>               
+                 <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans 'edit this comment' %}"> 
+                    <i class="icon-pencil"> </i> {% trans 'edit' %}
+                </a>
+            </div><!-- end div.admin_actions -->  
+         </div>
+         {{comment.html|safe}}
+    </div>
+</div>

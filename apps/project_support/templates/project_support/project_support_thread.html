@@ -26,14 +26,14 @@
 
 {% block extra_script %}
 {{block.super}}
-{% include_jinja "meta/html_head_javascript.html" request %}
-{% include_jinja "question/head_javascript.html" request%}
+{% include_jinja "meta/html_head_javascript.html" request%}
+{% include "project_support/script/head_javascript.html" %}
 {% endblock %}
 
 {% block project_content %}
+{% with support=thread.projectsupport_set.all.0%}
 
 {% include "project_support/block/question_card.html" %}
-
 <div class="container">        
     <div class="row">
 
@@ -41,17 +41,12 @@
     
         <div id="question-table">
             {% with question as post %}
-            <!-- MUST BE TOTALLY REFACTORED -->
-            <!-- TODO FOR DESIGN -->
-            {% comment %}
-            {% include_jinja "question/post_comments.html" request %}
-            {% endcomment %}
             {% include "project_support/block/post_comments.html" %}
             {% endwith %}
         </div>
         
         {% if answers %}        
-            <div class="tabBar tabBar-answer">
+            <div id="answer-sort" class="tabBar tabBar-answer">
                 <h2 id="questionCount">
                     {% blocktrans count counter=answer_count %}
                         {{counter}} Answer
@@ -61,15 +56,15 @@
                 </h2>
                 <div class="tabsA">
                     <span class="label">{% trans 'Sort by :' %}</span>
-                    <a id="oldest" href="{{ question.get_absolute_url }}?sort=oldest#sort-top"
+                    <a id="oldest" href="{{ support.get_absolute_url }}?sort=oldest#answer-sort"
                        title="{% trans 'oldest answers will be shown first' %}">
                        <span>{% trans 'oldest' %}</span>
                     </a>
-                    <a id="latest" href="{{ question.get_absolute_url }}?sort=latest#sort-top"
+                    <a id="latest" href="{{ support.get_absolute_url }}?sort=latest#answer-sort"
                        title="{% trans 'newest answers will be shown first' %}">
                        <span>{% trans 'newest' %}</span>
                     </a>
-                    <a id="votes" href="{{ question.get_absolute_url }}?sort=votes#sort-top"
+                    <a id="votes" href="{{ support.get_absolute_url }}?sort=votes#answer-sort"
                        title="{% trans 'most voted answers will be shown first' %}">
                        <span>{% trans 'most voted' %}</span>
                     </a>
@@ -77,7 +72,6 @@
             </div>
         
             {% include "project_support/block/question_paginator.html"  %}
-        
             {% for answer in answers %}
                 <a name="{{ answer.id }}"></a>
                 {% if answer.old_answer_id %}
@@ -103,17 +97,17 @@
                                 </div>
                                 <div class="post-update-info-container">
                                     <div class='post-author-info'>
-                                        {% if answer.is_anonymous %}
+                                        {% if answer.author.is_anonymous %}
                                             <img alt="{% trans 'anonymous user' %}" src="{{STATIC_URL}}images/anon.png" class="gravatar" width="32" height="32" />
                                             <p>{% trans 'anonymous user' %}</p>
                                         {% else %}
-                                            {% with user.get_profile as profile %}
+                                            {% with answer.author.get_profile as profile %}
                                             <a style="text-decoration:none" href="{{ profile.get_absolute_url }}">
                                                 <img class="gravatar" width="32" height="32" src="{{ profile.get_mugshot_url }}"
-                                                    title="{{user.username|escape}}" alt="{{user.username|escape}}">
+                                                    title="{{profile.user.username|escape}}" alt="{{profile.user.username|escape}}">
                                             </a>
+                                            <a href="{{ profile.get_absolute_url}}">{{ answer.author.username}}</a>
                                             {% endwith %}
-                                            <a href="{{ answer.author.get_profile.get_absolute_url}}">{{ answer.author.username}}</a>
                                          {% endif %}
                                         <p>{% trans 'answered' %} {{ answer.added_at }}</p>
                                     </div>
@@ -124,7 +118,7 @@
                                 </div>
                             </div>
                             {% with answer as post %}
-                                <!-- MUST BE TOTALLY REFACTORED -->
+                                {% include "project_support/block/post_comments.html" %}
                             {% endwith %}
                         </div>
                     </div>
@@ -151,10 +145,10 @@
         </div>
     </div>
 </div>
+{% endwith %}
 {% endblock %}
 
 {% block inline_js %}
 {{block.super}}
-{% include_jinja "meta/bottom_scripts.html" request%}
 {% include_jinja "question/bottom_javascript.html" request %}
 {% endblock %}
