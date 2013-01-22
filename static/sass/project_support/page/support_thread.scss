@@ -127,15 +127,17 @@ body.question-page div {
         padding-bottom: 15px;
         p {
           padding-left: 42px;
-          line-height: auto;
           padding-bottom: 5px;
+          font-family: $fontOpenSans;
+          font-size: 1.1rem;
+          line-height: 1.5rem;
         }
       }
     }
     a.btn_comment {
       bottom: 15px;
       color: #706F6F;
-      font-family: 'OpenSans',Arial,sans-serif;
+      font-family: $fontOpenSans;
       font-size: 10px;
       font-weight: bold;
       left: 15px;
@@ -148,8 +150,8 @@ body.question-page div {
     a {
       padding-left: 3px;
       color: #706F6F;
-      font-family: 'OpenSans',Arial,sans-serif;
-      font-size: 11px;
+      font-family: $fontOpenSans;
+      font-size: 1.1rem;
       font-style: normal;
       font-weight: normal;
     }
@@ -162,9 +164,9 @@ body.question-page div {
       left: 24px;
     }
     &.vote-number {
-      font-family: 'OpenSans',Arial,sans-serif;
+      font-family: $fontOpenSans;
       font-weight: bold;
-      font-size: 14px;
+      font-size: 1.4rem;
       color: #706f6f;
       text-align: center;
     }
@@ -181,10 +183,51 @@ body.question-page div {
   }
 }
 
+ input#fmanswer_button {
+    text-transform: uppercase;
+    font-family: $fontOpenSans;
+    margin-top: 10px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    @include border-radius(15px,15px);
+    border: none;
+    @include box-shadow('none');
+    text-shadow: none;
+    height: auto;
+    color: #ffffff;
+    background: rgb(74, 185, 232);
+    background: -moz-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(74, 185, 232, 1)), color-stop(100%, rgba(57, 144, 180, 1)));
+    background: -webkit-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: -o-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: linear-gradient(to bottom, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
+  }
+
+  .previous-answer {
+      i {
+        position:relative;
+        top:2px;
+      }
+      a {
+        font-family: $fontOpenSans;
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+        color:#333;
+        margin:0 0 0 3px;
+      }
+
+      span {
+        color:#706F6F;
+        font-size: 1rem;
+      }
+  }
+
 /*++++++++  END ANSWER ++++++++*/
-
-
-
 
 
 a {

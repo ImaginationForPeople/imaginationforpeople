@@ -135,8 +135,10 @@
         {% endif %}
         
         {% if user_already_gave_answer %}
-            <a class="submit" href="{% url edit_answer previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
-            <span>{% trans '(only one answer per question is allowed)' %}</span>
+            <div class="previous-answer">
+                <i class="icon-pencil"></i><a class="submit" href="{% url edit_answer previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
+                <span>{% trans '(only one answer per question is allowed)' %}</span>
+            </div>
         {% else %}
             {% include "project_support/block/new_answer_form.html" %}
         {% endif %}
