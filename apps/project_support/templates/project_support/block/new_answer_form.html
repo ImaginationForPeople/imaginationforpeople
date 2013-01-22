@@ -1,4 +1,10 @@
 {% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/block/first_answer.css" />
+{% endaddtoblock %}
+
 <form id="fmanswer" action="{{form_answer_url}}" method="post">{% csrf_token %}
     <div style="clear:both"></div>
     {% if request.user.is_authenticated %}
