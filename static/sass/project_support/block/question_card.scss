@@ -92,6 +92,7 @@
 
  	.wrapper-question-content {
  		padding:0 0 0 70px;
+ 		color:white;
  	}
 
 	a.add-comment {
@@ -231,8 +232,14 @@
 
 	#question-subscribe .button {
 		text-transform:none;
+		font-size:1.1rem;
+	}
+
+	#question-subscribe .button.disabled {
 		font-size:0.9rem;
 	}
+
+
 
 	.rss {
 		position: absolute;

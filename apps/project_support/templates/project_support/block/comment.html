@@ -1,5 +1,22 @@
 {% load i18n %}
 {% load humanize %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
+</script>
+{% endaddtoblock %}
+
 <div class="comment">
     <div class="comment-body">
          <div class="comment_infos">
@@ -14,6 +31,8 @@
                 </a>
             </div><!-- end div.admin_actions -->  
          </div>
-         {{comment.html|safe}}
+         <p data-editable-placeholder="This field is blank. Don’t forget to complete it!" data-editable-save-url="/fr/project/la-coroutine/ajax/field/save/" data-editable-load-url="/fr/project/la-coroutine/ajax/field/load/" data-editable-type="textarea" data-editable-tooltip="Double-click to edit" data-editable-trigger="dblclick" data-editable-id="answer-1" data-toggle="i4p-editable" data-language-code="fr" title="Double-click to edit">
+         {{comment.text|safe}}
+        </p>
     </div>
 </div>
