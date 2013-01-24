@@ -19,5 +19,8 @@ class ProjectSupport(models.Model):
     def get_absolute_url(self):
         return reverse("project_support_view", args=[self.project_translation.slug, self.thread.question.id])
     
-    
-    
+    def save(self, force_insert=False, force_update=False, using=None):
+        models.Model.save(self, force_insert=force_insert, force_update=force_update, using=using)
+        if not self.thread.is_specific:
+            self.thread.is_specific = True
+            self.thread.save()
