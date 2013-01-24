@@ -15,29 +15,61 @@
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
 
+function editCommentClick(commentId){
+    $("p[data-editable-id='"+commentId+"']").dblclick();
+}
+
+function deleteCommentClick(commentId){
+	if (confirm(gettext('confirm delete comment'))){
+        $("div#comment_"+commentId).hide();
+        $.ajax({
+            type: 'POST',
+            url: askbot['urls']['deleteComment'],
+            data: { comment_id: commentId },
+            success: function(json, textStatus, xhr) {
+                $("div#comment_"+commentId).hide();
+            },
+            error: function(xhr, textStatus, exception) {
+                showMessage(del_icon.getElement(), xhr.responseText);
+            },
+            dataType: "json"
+        });
+    }
+}
 
 </script>
 {% endaddtoblock %}
 
-<div class="comment">
+<div id="comment_{{comment.id}}" class="comment">
     <div class="comment-body">
          <div class="comment_infos">
             <a class="author" href="{{comment.author.get_profile.get_absolute_url }}">{{comment.author.username|escape}}</a>
             <span class="age">- {{comment.added_at|naturaltime}}</span>
             {% if comment.author = request.user %}      
             <div class="admin_actions">     
-                 <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans 'delete this comment' %}">
+                 <a id="post-{{comment.id}}-delete" 
+                    class="delete-icon comment-delete" 
+                    title="{% trans 'delete this comment' %}"
+                    onclick="deleteCommentClick({{comment.id}})">
                     <i class="icon-trash"> </i> {% trans 'delete' %}
                  </a>           
-                 <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans 'edit this comment' %}"> 
+                 <a id="post-{{comment.id}}-edit" 
+                    class="edit-icon comment-edit edit" 
+                    title="{% trans 'edit this comment' %}"
+                    onclick="editCommentClick({{comment.id}})"> 
                     <i class="icon-pencil"> </i> {% trans 'edit' %}
                 </a>
                 <script>
+                /*
                 $(document).ready(function(){
                 	$("#post-{{comment.id}}-edit").click(function(){
                         $("p[data-editable-id='{{comment.id}}']").dblclick();
                 	});
+                	$("#post-{{comment.id}}-delete").click(function(){
+                    	
+                	});                    	
                 });
+                */
                 </script>
             </div><!-- end div.admin_actions --> 
              {% endif %}
