@@ -16,6 +16,9 @@
 $.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
 </script>
 {% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_support/project_thread.js"></script>
+{% endaddtoblock %}
 
 <div class="comment">
     <div class="comment-body">
@@ -31,7 +34,7 @@ $.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
                 </a>
             </div><!-- end div.admin_actions -->  
          </div>
-         <p data-editable-placeholder="This field is blank. Don’t forget to complete it!" data-editable-save-url="/fr/project/la-coroutine/ajax/field/save/" data-editable-load-url="/fr/project/la-coroutine/ajax/field/load/" data-editable-type="textarea" data-editable-tooltip="Double-click to edit" data-editable-trigger="dblclick" data-editable-id="answer-1" data-toggle="i4p-editable" data-language-code="fr" title="Double-click to edit">
+         <p class="comment-item" data-editable-placeholder="This field is blank. Don’t forget to complete it!" data-editable-save-url="/fr/project/la-coroutine/ajax/field/save/" data-editable-load-url="/fr/project/la-coroutine/ajax/field/load/" data-editable-type="textarea" data-editable-tooltip="Double-click to edit" data-editable-trigger="dblclick" data-editable-id="answer-1" data-toggle="i4p-editable" data-language-code="fr" title="Double-click to edit">
          {{comment.text|safe}}
         </p>
     </div>
