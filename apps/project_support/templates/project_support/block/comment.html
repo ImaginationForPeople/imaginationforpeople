@@ -14,6 +14,8 @@
 {% addtoblock "js" %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
+
+
 </script>
 {% endaddtoblock %}
 
@@ -22,17 +24,35 @@ $.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
          <div class="comment_infos">
             <a class="author" href="{{comment.author.get_profile.get_absolute_url }}">{{comment.author.username|escape}}</a>
             <span class="age">- {{comment.added_at|naturaltime}}</span>
-            <div class="admin_actions">                 
+            {% if comment.author = request.user %}      
+            <div class="admin_actions">     
                  <a id="post-{{comment.id}}-delete" class="delete-icon comment-delete" title="{% trans 'delete this comment' %}">
                     <i class="icon-trash"> </i> {% trans 'delete' %}
-                 </a>               
+                 </a>           
                  <a id="post-{{comment.id}}-edit" class="edit-icon comment-edit edit" title="{% trans 'edit this comment' %}"> 
                     <i class="icon-pencil"> </i> {% trans 'edit' %}
                 </a>
-            </div><!-- end div.admin_actions -->  
+                <script>
+                $(document).ready(function(){
+                	$("#post-{{comment.id}}-edit").click(function(){
+                        $("p[data-editable-id='{{comment.id}}']").dblclick();
+                	});
+                });
+                </script>
+            </div><!-- end div.admin_actions --> 
+             {% endif %}
          </div>
-         <p data-editable-placeholder="This field is blank. Don’t forget to complete it!" data-editable-save-url="/fr/project/la-coroutine/ajax/field/save/" data-editable-load-url="/fr/project/la-coroutine/ajax/field/load/" data-editable-type="textarea" data-editable-tooltip="Double-click to edit" data-editable-trigger="dblclick" data-editable-id="answer-1" data-toggle="i4p-editable" data-language-code="fr" title="Double-click to edit">
-         {{comment.text|safe}}
-        </p>
+         <p {% if comment.author = request.user %} 
+            data-editable-placeholder="{{comment.text|safe}}" 
+            data-editable-save-url="{% url edit_comment %}" 
+            data-editable-type="textarea" 
+            data-editable-tooltip="{% trans 'Double-click to edit' %}" 
+            data-editable-trigger="dblclick" 
+            data-editable-id="{{comment.id}}" 
+            data-toggle="i4p-editable" 
+            data-language-code="{{LANGUAGE_CODE}}" 
+            title="{% trans 'Double-click to edit' %}"
+            {% endif %}
+            >{{comment.text|safe}}</p>
     </div>
 </div>
