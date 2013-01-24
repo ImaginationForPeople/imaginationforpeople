@@ -39,6 +39,9 @@ function deleteCommentClick(commentId){
 
 </script>
 {% endaddtoblock %}
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_support/project_thread.js"></script>
+{% endaddtoblock %}
 
 <div id="comment_{{comment.id}}" class="comment">
     <div class="comment-body">
@@ -74,6 +77,7 @@ function deleteCommentClick(commentId){
             </div><!-- end div.admin_actions --> 
              {% endif %}
          </div>
+<<<<<<< HEAD
          <p {% if comment.author = request.user %} 
             data-editable-placeholder="{{comment.text|safe}}" 
             data-editable-save-url="{% url edit_comment %}" 
@@ -86,5 +90,10 @@ function deleteCommentClick(commentId){
             title="{% trans 'Double-click to edit' %}"
             {% endif %}
             >{{comment.text|safe}}</p>
+=======
+         <p class="comment-item" data-editable-placeholder="This field is blank. Don’t forget to complete it!" data-editable-save-url="/fr/project/la-coroutine/ajax/field/save/" data-editable-load-url="/fr/project/la-coroutine/ajax/field/load/" data-editable-type="textarea" data-editable-tooltip="Double-click to edit" data-editable-trigger="dblclick" data-editable-id="answer-1" data-toggle="i4p-editable" data-language-code="fr" title="Double-click to edit">
+         {{comment.text|safe}}
+        </p>
+>>>>>>> supremeDeMehdi/feature/project-support
     </div>
 </div>

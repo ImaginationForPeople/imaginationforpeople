@@ -1,6 +1,11 @@
 @import "i4p/_mixins";
 @import "i4p/_fonts";
 @import "i4p/_constants";
+@import "i4p/buttons";
+
+$i4p-form-action-sprite-dimensions: true;
+$i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
+@import "project_sheet/i4p-form-action/*.png";
 
 body.question-page div {
   &.comments {
@@ -132,5 +137,39 @@ body.question-page div {
         line-height:1.5rem;
       }
     }
+    &.editing {
+      @include i4p-transition(all .5s ease);
+      background-color: $colorLightBlue;
+
+      .admin_actions {
+        display:none;
+      }
+
+      .age {
+        color:white !important;
+      }
+    }
   }
+}
+
+ button[type='submit'] {
+  @include i4p-form-action-sprite('ok-white'); 
+
+  border: none;
+  display: block;
+  float: right;
+  font-size: 0;
+  margin-left: $sizeMarginMedium;
+  cursor: pointer;
+  }
+
+  button[type='cancel'] {
+  @include i4p-form-action-sprite('cancel-white'); 
+
+  border: none;
+  display: block;
+  float: right;
+  font-size: 0;
+  margin-left: $sizeMarginMedium;
+  cursor: pointer;
 }
