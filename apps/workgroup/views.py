@@ -49,15 +49,21 @@ class WorkGroupDetailView(DetailView):
         context = super(WorkGroupDetailView, self).get_context_data(**kwargs)
         
         workgroup = context['workgroup']
+
+        # Look up mailing list members
         if workgroup.mailing_list:
-            context['ml_member_list'] = []
-            context['ml_nonmember_list'] = []
-            members = get_ml_members(workgroup) # workgroup.mailing_list.get_all_members()
+            context['ml_member_list'] = [] # Both on I4P & the ML
+            context['ml_nonmember_list'] = [] # Only subscribed to the ML
+            members = get_ml_members(workgroup)
             
             for member in members:
                 try:
                     found_member = User.objects.get(email=member[0])
                     context['ml_member_list'].append(found_member)
+                    
+                    # Subscribe the user to the workgroup if not yet
+                    if found_member not in workgroup.subscribers.all():
+                        workgroup.subscribers.add(found_member)
                 except User.DoesNotExist:
                     context['ml_nonmember_list'].append(User(email=member[0]))
 
@@ -108,17 +114,21 @@ class GroupWikiEdit(WikiEdit):
 
 class SubscribeView(View):
     """
-    Subscribe a user to the mailing list
+    Subscribe a user to the workgroup
     """
     @method_decorator(login_required)
     def get(self, request, workgroup_slug):
         workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)
         user = request.user
 
+        # Subscibre the user to the workgroup
+        workgroup.subscribers.add(user)
+        
         # Force cache regeneration
         cache_key = '%s-ml-members' % workgroup.slug
         cache.delete(cache_key)
 
+        # Subscribe the user to the mailing list        
         if workgroup.mailing_list:
             ml = workgroup.mailing_list
             try:
@@ -140,22 +150,26 @@ class SubscribeView(View):
         if next_url:
             return redirect(next_url)
         else:
-            return redirect('workgroup-detail', workgroup.slug)
+            return redirect(workgroup)
 
 
 class UnsubscribeView(View):
     """
-    Subscribe a user to the mailing list
+    Unsubscribe a user to the workgroup
     """
     @method_decorator(login_required)
     def get(self, request, workgroup_slug):
         workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)
         user = request.user
 
+        # Removing user from workgroup
+        workgroup.subscribers.remove(user)
+        
         # Force cache regeneration
         cache_key = '%s-ml-members' % workgroup.slug
         cache.delete(cache_key)
 
+        # removing user from mailing list
         if workgroup.mailing_list:
             ml = workgroup.mailing_list
             try:
@@ -174,7 +188,7 @@ class UnsubscribeView(View):
         if next_url:
             return redirect(next_url)
         else:
-            return redirect('workgroup-detail', workgroup.slug)
+            return redirect(workgroup)
 
             
         

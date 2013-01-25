@@ -18,6 +18,7 @@
 import os
 
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -80,6 +81,11 @@ class WorkGroup(models.Model):
                                   help_text=_("A URL that points to the real discussion tool, if we're not using the built-in (eg Facebook group URL).")
                               )
 
+    subscribers = models.ManyToManyField(User,
+                                         verbose_name=_("Subscribers"),
+                                         related_name='workgroups',
+                                         blank=True
+                                     )
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
                              self.get_language_display())

@@ -25,6 +25,8 @@
       
       <span class="workgroup_desc">{{ workgroup.description|safe|urlize }}</span>
 
+           {% include "workgroup/subscribe_button.html" %}
+
         <div class="separator"></div>
         
       	{% include "workgroup/workgroup_subscribers.html" %}
@@ -37,10 +39,9 @@
       {% tags_for_object workgroup as group_tags %}
       {% include 'tags/block/taglist.html' with taglist_tags=group_tags taglist_title='themes' %}
 
+
     {% if workgroup.mailing_list %}
        <em class="workgroup_email">To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em><a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}"> - [Browse the Archives]</a>
-
-           {% include "workgroup/subscribe_button.html" %}
 
       <div class="separator"></div>
       {% else %}

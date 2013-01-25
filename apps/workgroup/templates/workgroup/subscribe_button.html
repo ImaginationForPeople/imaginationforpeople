@@ -1,5 +1,5 @@
 {% load i18n %}
-{% if not request.user in ml_member_list %}
+{% if not request.user in workgroup.subscribers.all %}
        <form method='GET' action='{% url workgroup-subscribe workgroup.slug %}'>
          {% csrf_token %}
          <input type='submit' class='button' value="{% trans 'Subscribe' %}" style="font-size:12px;" />
