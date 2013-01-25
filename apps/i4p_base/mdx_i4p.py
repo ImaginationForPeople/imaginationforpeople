@@ -5,6 +5,7 @@ from markdown import etree
 
 from django.core.urlresolvers import reverse
 
+
 class UserTagPattern(SimpleTagPattern):
     """
     Matches a user : @JohnDoe
@@ -85,13 +86,35 @@ class GroupTagPattern(SimpleTagPattern):
 
         return el
         
-    
+class ForumThreadTagPattern(SimpleTagPattern):
+    """
+    Matches a forum question : ?203
+    """
+    def __init__(self):
+        SimpleTagPattern.__init__(self, r'\?(\d+)', 'a')
+        
+    def handleMatch(self, m):
+        from askbot.models.question import Thread
+        el = etree.Element(self.tag)
+        thread_id = m.group(2)
+        try:
+            thread = Thread.objects.get(id=thread_id)
+            el.text = u"?%s - \"%s\"" % (thread_id,
+                                        thread.title)
+            el.attrib['href'] = thread.get_absolute_url()
+        except:
+            el.text = "Unknown forum thread (%s)" % (thread_id)
+
+        return el
+
+        
 class I4pExtension(Extension):
     def extendMarkdown(self, md, md_globals):
         md.inlinePatterns.add('grouppattern', GroupTagPattern(), '_begin')
         md.inlinePatterns.add('projectpattern', ProjectTagPattern(), '_begin')
         md.inlinePatterns.add('userpattern', UserTagPattern(), '_begin')
-        md.inlinePatterns.add('themepattern', ThemeTagPattern(), '_begin')                        
+        md.inlinePatterns.add('themepattern', ThemeTagPattern(), '_begin')
+        md.inlinePatterns.add('forumthreadpattern', ForumThreadTagPattern(), '_begin')                                
 
 def makeExtension(configs=None):
     return I4pExtension(configs=configs)
