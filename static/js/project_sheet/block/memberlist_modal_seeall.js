@@ -22,6 +22,13 @@ $(document).ready(function () {
 		$('#' + modalTargetId).modal();
 	});
 
-	jdebug('init DONE');
+	jdebug('init DONE'); 
+	$('.member-add-block').hide();
+	$('.action-side .add-block').click(function(){
+		$('.member-add-block').slideDown();
+	});
+	$('.member-add-block form .action-close').click(function() {
+		$(this).parents('.member-add-block').slideUp();
+	});
 });
 

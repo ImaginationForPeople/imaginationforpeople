@@ -54,7 +54,7 @@ urlpatterns = patterns('',
 
     # Members
     url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
-    url(r'^(?P<project_slug>[-\w]+)/member/add/$', views.project_sheet_member_add, name='project_sheet-instance-add-member'),
+    url(r'^(?P<slug>[-\w]+)/member/add/$', views.ProjectMemberAddView.as_view(), name='project_sheet-instance-add-member'),
 
     # Translations
     url(r'^(?P<project_slug>[-\w]+)/translate/$', views.project_sheet_create_translation, name='project_sheet-translate'),
