@@ -23,7 +23,7 @@ Parameters for this block
 	data-member-position="{{ member.role }}"
 	data-member-fullname="{{ member.user.get_full_name|default:member.user.username }}"
 	data-member-profile="{{ member.user.get_profile.get_absolute_url }}"
-	data-member-contact="{{ member.user.get_profile.get_absolute_url }}"
+	data-member-contact="{% url userena_umessages_compose_to member.user %}"
 	>
 	<a href="{{ member.user.get_profile.get_absolute_url }}">
 		<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" class="avatar"/>

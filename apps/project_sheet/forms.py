@@ -106,7 +106,7 @@ class ProjectMemberAddForm(forms.ModelForm):
         fields = ('role', 'comment')
 
     role = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _("Specify your role in the project")}))
-    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Optionally, explain briefly your motivation about the project...")}))
+    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Explain briefly your motivation about the project...")}))
 
 ProjectMemberFormSet = modelformset_factory(ProjectMember, 
                                             extra=0, 
