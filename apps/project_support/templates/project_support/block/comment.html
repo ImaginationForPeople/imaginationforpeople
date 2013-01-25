@@ -62,23 +62,10 @@ function deleteCommentClick(commentId){
                     onclick="editCommentClick({{comment.id}})"> 
                     <i class="icon-pencil"> </i> {% trans 'edit' %}
                 </a>
-                <script>
-                /*
-                $(document).ready(function(){
-                	$("#post-{{comment.id}}-edit").click(function(){
-                        $("p[data-editable-id='{{comment.id}}']").dblclick();
-                	});
-                	$("#post-{{comment.id}}-delete").click(function(){
-                    	
-                	});                    	
-                });
-                */
-                </script>
             </div><!-- end div.admin_actions --> 
              {% endif %}
          </div>
-<<<<<<< HEAD
-         <p {% if comment.author = request.user %} 
+         <p class="comment-item" {% if comment.author = request.user %} 
             data-editable-placeholder="{{comment.text|safe}}" 
             data-editable-save-url="{% url edit_comment %}" 
             data-editable-type="textarea" 
@@ -90,10 +77,5 @@ function deleteCommentClick(commentId){
             title="{% trans 'Double-click to edit' %}"
             {% endif %}
             >{{comment.text|safe}}</p>
-=======
-         <p class="comment-item" data-editable-placeholder="This field is blank. Don’t forget to complete it!" data-editable-save-url="/fr/project/la-coroutine/ajax/field/save/" data-editable-load-url="/fr/project/la-coroutine/ajax/field/load/" data-editable-type="textarea" data-editable-tooltip="Double-click to edit" data-editable-trigger="dblclick" data-editable-id="answer-1" data-toggle="i4p-editable" data-language-code="fr" title="Double-click to edit">
-         {{comment.text|safe}}
-        </p>
->>>>>>> supremeDeMehdi/feature/project-support
     </div>
 </div>
