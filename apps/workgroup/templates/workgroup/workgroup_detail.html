@@ -5,6 +5,7 @@
 {% load tagging_tags %}
 {% load comments %}
 {% load admin_urls %}
+{% load guardian_tags %}
 
 {% block content %}
 
@@ -16,6 +17,10 @@
 
       {% if request.user.is_staff %}
       <a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage" %}</a>
+      {% endif %}
+      {% get_obj_perms request.user for workgroup as "workgroup_perms" %}
+      {% if "change_workgroup" in workgroup_perms %}
+      <a href="{% url workgroup-edit workgroup.slug %}">{% trans "Edit" %}</a>
       {% endif %}
       <img class="language tipsed" alt="{{ workgroup.language }}" src="{{ STATIC_URL }}images/flags/{{ workgroup.language }}.gif" title="{{ workgroup.get_language_display }}" />
 

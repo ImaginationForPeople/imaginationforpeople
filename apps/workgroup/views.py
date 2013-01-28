@@ -22,22 +22,56 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic import View
 
+from guardian.decorators import permission_required_or_403
+from guardian.shortcuts import assign
 from wiki.core.plugins import registry as plugin_registry        
 from wiki.models.article import Article, ArticleForObject, ArticleRevision
 from wiki.views.article import Edit as WikiEdit
 
 from .models import WorkGroup
+from .forms import GroupCreateForm, GroupEditForm
 from .utils import get_ml_members
 
-class WorkGroupListView(ListView):
+class GroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
     context_object_name = 'workgroup_list'
     queryset = WorkGroup.objects.all()
 
-class WorkGroupDetailView(DetailView):
+class GroupCreateView(CreateView):
+    """
+    When one wants to create a new group
+    """
+    form_class = GroupCreateForm
+    template_name = 'workgroup/group_create.html'
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        return super(GroupCreateView, self).dispatch(*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        res = super(GroupCreateView, self).post(request, *args, **kwargs)
+        assign('change_workgroup', request.user, self.object)
+        return res
+
+class GroupEditView(UpdateView):
+    """
+    When one wants to edit a group
+    """
+    form_class = GroupEditForm
+    slug_field = 'slug'
+    model = WorkGroup
+    template_name = 'workgroup/group_edit.html'
+
+    @method_decorator(login_required)
+    @method_decorator(permission_required_or_403('change_workgroup', (WorkGroup, 'slug', 'slug')))
+    def dispatch(self, request, *args, **kwargs):
+        return super(GroupEditView, self).dispatch(request, *args, **kwargs)
+        
+
+class GroupDetailView(DetailView):
     template_name = 'workgroup/workgroup_detail.html'
     context_object_name = 'workgroup'
     model = WorkGroup
@@ -46,7 +80,7 @@ class WorkGroupDetailView(DetailView):
         """
         Adds the member of the associated ML if there's one
         """
-        context = super(WorkGroupDetailView, self).get_context_data(**kwargs)
+        context = super(GroupDetailView, self).get_context_data(**kwargs)
         
         workgroup = context['workgroup']
 
