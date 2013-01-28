@@ -17,7 +17,7 @@
 				<li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}"><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
                 <li class="{% iftab 'support' 'support' %}active{% endiftab %}">
                     <a href="{% url project_support_main project_translation.slug %}">
-                    {% trans "Supports" %}
+                    {% trans "Needs" %}
                     <span class="badge">{{project_translation.projectsupport_set.count }}</span>
                     </a>
                </li>
