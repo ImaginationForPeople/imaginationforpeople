@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from django.db import models
 from django.contrib import admin
 
 import autocomplete_light
