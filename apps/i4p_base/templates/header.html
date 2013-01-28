@@ -90,7 +90,7 @@
                         </div>
                         <div id="user-bt">
                             {% if user.is_authenticated %}  
-                                <a class="open link open-panel" href="javascript:;">{{ user.username }}</a>
+                                <a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}">{{ user.username }}</a>
                             {% else %}
                                 <a class="open link open-panel" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
                             {% endif %}
