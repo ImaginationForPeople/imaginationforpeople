@@ -16,7 +16,7 @@
       <h1 class="workgroup_title"><a href="/workgroup">{% trans "Workgroup" %}</a> &raquo; {{ workgroup.name }}</h1>
 
       {% if request.user.is_staff %}
-      <a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage" %}</a>
+      <a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage in admin" %}</a>
       {% endif %}
       {% get_obj_perms request.user for workgroup as "workgroup_perms" %}
       {% if "change_workgroup" in workgroup_perms %}
