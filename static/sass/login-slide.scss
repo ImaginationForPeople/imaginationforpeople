@@ -230,14 +230,14 @@ Version: 1.0
         /* margin-top:10px */
     }
 
-    input[type=submit], button{
+    #top-signin, button{
         @include i4p-button-fancy-bordered;
         width: 150px;
         display: inline-block;
        
     }
     
-    input[type=submit]:hover, button:hover{
+    #top-signin:hover, button:hover{
         color:black !important;
     }
     
