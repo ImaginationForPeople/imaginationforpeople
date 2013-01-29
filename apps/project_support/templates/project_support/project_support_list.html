@@ -77,7 +77,7 @@ $(document).ready(function(){
                 </div>
             </div>
             {% if search_tags or query %}
-            <ul>
+            <ul class="search-tags">
                 {% if query %}
                 <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}">X</a></li>
                 {% endif %}

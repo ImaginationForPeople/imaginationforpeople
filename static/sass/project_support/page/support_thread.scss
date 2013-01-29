@@ -2,6 +2,10 @@
 @import "i4p/_fonts";
 @import "i4p/_constants";
 
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
 body.question-page {
 	div.conteneur_question_card, div.author_and_follow_question { 
 		background:$colorDarkerBlue;
