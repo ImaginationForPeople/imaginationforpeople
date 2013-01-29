@@ -25,7 +25,7 @@
 </span>
 {% endif %}
 <span id='post-{{answer.id}}-edit' class="action-link">
-    <a class="question-edit" href="{% url edit_answer answer.id %}"><i class="icon-pencil"></i> {% trans 'edit' %}</a>
+    <a class="question-edit" href="{% url project_support_edit_answer support.project_translation.slug previous_answer.id %}"><i class="icon-pencil"></i> {% trans 'edit' %}</a>
 </span>
 <span id='post-{{answer.id}}-delete' class="action-link delete-post">
     <a class="question-delete"
