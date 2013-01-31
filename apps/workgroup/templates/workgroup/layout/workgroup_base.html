@@ -9,10 +9,8 @@
 
 {% block style %}
   {% compress css %}
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/layout/workgroup_base.css" />
   {% endcompress %}
-
 {% endblock %}
 
 {% block meta_desc %}{{ workgroup.name }} : {% spaceless %}{{ workgroup.description|safe|striptags|cut:"\n"|truncatewords:42 }}{% endspaceless %}{% endblock %}
@@ -26,11 +24,11 @@
     {% if project_translation %}
     <script>
     // Addthis configuration
-    var addthis_share = {
+    /*var addthis_share = {
         templates : {
             twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
         }
-    }
+    }*/
 
     // load only when all assets are ready
     $(window).load(function() {

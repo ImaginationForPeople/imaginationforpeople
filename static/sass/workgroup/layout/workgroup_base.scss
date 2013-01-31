@@ -1,0 +1,124 @@
+@import "i4p/constants";
+
+body {
+	background:$colorWhite
+}
+
+#workgroup-detail {
+
+	#workgroup-infos {
+		height:164px;
+		background:#e6e6e6;
+		margin-left:0;
+		position:relative;
+
+		.span8, .span4 {
+			height:164px;
+			margin-left:0;
+		}	
+
+		.span8 {
+			border-right:1px solid #dbdbdb;
+
+			#workgroup-card {
+				background: url("../../../images/workgroup/group.png?1359470529") no-repeat scroll left 10px transparent;
+			    margin: 18px 0 0 240px;
+			    padding: 0 0 0 65px;
+
+			    h1 {
+			    	color:black;
+			    	text-transform:uppercase;
+
+			    	a {
+			    		color:black;
+			    		font-style:normal;
+			    		font-family:$fontOpenSans;
+			    	}
+			    }
+			}
+		}
+
+		.span4 {
+			border-left:1px solid #fff;
+
+			.workgroup-lang {
+				font-family:$fontOpenSans;
+				font-size:1.1rem;
+				padding:25px 0 0 15px;
+			}
+
+			.members {
+				padding:15px 0 0 15px;
+
+				strong {
+					padding:0 0 0 40px;
+					background:image-url('workgroup/members.png') no-repeat center left;
+					font-weight:bold;
+					color:#706f6f;
+					text-transform:uppercase;
+					font-size:1.6rem;
+					font-family:$fontOpenSans;
+					display:block;
+
+					span {
+						color:#54a2da
+					}
+				}
+
+				a {
+					background: url("../../../images/workgroup/black_arrow.png?1359483311") no-repeat scroll right center transparent;
+				    color: #242424;
+				    font-size: 1rem;
+				    margin: 3px 0 0 90px;
+				    padding: 0 12px 0 0;
+				}
+			}
+		}
+	}
+
+	#workgroup-content {
+
+		padding-top:10px;
+
+		h3 {
+			font-family:$fontOpenSans;
+			font-stretch:condensed;
+			font-size:1.6rem;
+			text-transform:uppercase;
+		}
+
+		form {
+			label {
+				clear: left;
+			    display: block;
+			    float: left;
+			    font-size: 1.1rem;
+			    height: 26px;
+			    margin-bottom: 9px;
+			    width: 200px;	
+
+			    &[for="id_honeypot"] {
+			    	display:none;
+			    }
+			}
+
+			#id_honeypot {
+				display:none;
+			}
+
+			input[type="text"] {
+				width:370px;
+			}
+
+			textarea {
+				width:370px;
+				height:100px;
+			}
+
+			input[type="submit"] {
+				margin:0 0 0 200px;
+			}
+
+		}
+	}
+}

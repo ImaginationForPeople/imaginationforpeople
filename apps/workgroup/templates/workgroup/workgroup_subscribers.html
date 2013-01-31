@@ -1,14 +1,17 @@
 {% load i18n %}
+{% load sekizai_tags %}
 
-<h3>{% trans "Group subscribers" %} ({{ workgroup.subscribers.all|length}})</h3>
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/workgroup_subscribers.css" />
+{% endaddtoblock %}
 
-<ul>
-  {% for subscriber in workgroup.subscribers.all %}
-  <li><a href="{% url userena_profile_detail subscriber.username %}"><img class="tipsed"  {% if request.user == member %}{% endif %} title="{{ subscriber.first_name }} {{ subscriber.last_name }}" src="{{ subscriber.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
-  {% endfor %}
-</ul>
-
-<br/>
+<div id="subscribers-list">
+  <ul>
+    {% for subscriber in workgroup.subscribers.all %}
+    <li><a href="{% url userena_profile_detail subscriber.username %}"><img class="tipsed"  {% if request.user == member %}{% endif %} title="{{ subscriber.first_name }} {{ subscriber.last_name }}" src="{{ subscriber.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+    {% endfor %}
+  </ul>
+</div>
 
  {% if workgroup.mailing_list %}
 

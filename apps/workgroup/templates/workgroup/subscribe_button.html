@@ -1,14 +1,22 @@
 {% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/subscribe_button.css" />
+{% endaddtoblock %}
+
+<div id="subscribe-button">
 {% if not request.user in workgroup.subscribers.all %}
-       <form method='GET' action='{% url workgroup-subscribe workgroup.slug %}'>
-         {% csrf_token %}
-         <input type='submit' class='button' value="{% trans 'Subscribe' %}" style="font-size:12px;" />
-	 <input type="hidden" name='next_url' value="{{ request.path }}"/>
-       </form>
+  <form method='GET' action='{% url workgroup-subscribe workgroup.slug %}'>
+    {% csrf_token %}
+    <button type='submit' class='button join'><span>{% trans 'Join the workgroup and follow the discussion' %}</span></button>
+	   <input type="hidden" name='next_url' value="{{ request.path }}"/>
+  </form>
 {% else %}
-       <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
-       {% csrf_token %}
-          <input type='submit' class='button' value="{% trans 'Unsubscribe' %}" style="font-size:12px;" />
-	 <input type="hidden" name='next_url' value="{{ request.path }}"/>
-       </form>
+  <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
+    {% csrf_token %}
+    <button original-title="unsubscribe" type='submit' class='button quit'><span>{% trans 'You are a member of this group' %}</span></button>
+	  <input type="hidden" name='next_url' value="{{ request.path }}"/>
+  </form>
 {% endif %}
+</div>
