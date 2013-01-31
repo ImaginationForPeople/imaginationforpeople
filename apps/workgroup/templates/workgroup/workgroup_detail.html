@@ -1,4 +1,4 @@
-{% extends "workgroup/base.html" %}
+{% extends "workgroup/layout/workgroup_base.html" %}
 
 {% load i18n %}
 {% load wiki_tags %}
@@ -6,75 +6,83 @@
 {% load comments %}
 {% load admin_urls %}
 {% load guardian_tags %}
+{% load thumbnail %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/workgroup_detail.css" />
+{% endaddtoblock %}
 
 {% block content %}
 
-  <div class="content">
-    <div class="container_18 relative" id="workgroup_detail">
-      <br/>
-      <br/>
-      <h1 class="workgroup_title"><a href="/workgroup">{% trans "Workgroup" %}</a> &raquo; {{ workgroup.name }}</h1>
-
-      {% if request.user.is_staff %}
-      <a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage in admin" %}</a>
-      {% endif %}
-      {% get_obj_perms request.user for workgroup as "workgroup_perms" %}
-      {% if "change_workgroup" in workgroup_perms %}
-      <a href="{% url workgroup-edit workgroup.slug %}">{% trans "Edit" %}</a>
-      {% endif %}
-      <img class="language tipsed" alt="{{ workgroup.language }}" src="{{ STATIC_URL }}images/flags/{{ workgroup.language }}.gif" title="{{ workgroup.get_language_display }}" />
-
+    <div class="container" id="workgroup-detail">
       {% if workgroup.picture %}
-      <img src="{{ workgroup.picture.url }}"/>
+      <img src="{% thumbnail workgroup.picture 960x300 crop %}"/>
       {% endif %}
-      
-      <span class="workgroup_desc">{{ workgroup.description|safe|urlize }}</span>
 
-           {% include "workgroup/subscribe_button.html" %}
+      <div id="workgroup-infos" class="row">
+        <div class="span8">
+          {% include "workgroup/workgroup_subscribers.html" %}
+          {% include "workgroup/subscribe_button.html" %}
 
-        <div class="separator"></div>
-        
-      	{% include "workgroup/workgroup_subscribers.html" %}
+          <div id="workgroup-card">
+            <h1 class="workgroup_title"><a href="/workgroup">{{ workgroup.name }}</h1>
+            {% if request.user.is_staff %}
+            <a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage in admin" %}</a>
+            {% endif %}
+            {% get_obj_perms request.user for workgroup as "workgroup_perms" %}
+            {% if "change_workgroup" in workgroup_perms %}
+            <a href="{% url workgroup-edit workgroup.slug %}">{% trans "Edit" %}</a>
+            {% endif %}
+            <span class="workgroup_desc">{{ workgroup.description|safe|urlize }}</span>
+            {{ wiki_article.render }}
+            [<a href="{% url workgroup-wiki-edit workgroup.slug %}">edit</a>]
+          </div>
+        </div>
+        <div class="span4">
+          <div class="workgroup-lang">
+              {% trans "Workgroup language :" %} {{ workgroup.get_language_display }}
+          </div>
+          <div class="members">
+            <strong><span>{{ workgroup.subscribers.all|length}}</span> {% trans "members" %}</strong>
+            <a href="#">{% trans "See all" %}</a>
+          </div>
+        </div>
+      </div>
 
+      <div id="workgroup-content" class="row">
+        <div class="span8">
+          {% tags_for_object workgroup as group_tags %}
+          {% include 'tags/block/taglist.html' with taglist_tags=group_tags taglist_title='themes' %}
 
-      <div class="separator"></div>
-      {{ wiki_article.render }}
-      [<a href="{% url workgroup-wiki-edit workgroup.slug %}">edit</a>]
+          {% if workgroup.mailing_list %}
+             <em class="workgroup_email">To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em><a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}"> - [Browse the Archives]</a>
 
-      {% tags_for_object workgroup as group_tags %}
-      {% include 'tags/block/taglist.html' with taglist_tags=group_tags taglist_title='themes' %}
+            {% else %}
+            {% if workgroup.outside_url %}
+            <a href="{{ workgroup.outside_url }}">LINK TO THE GROUP, IN THE WORLD WILD WEB</a>
+            {% endif %}
+          {% endif %}
 
-
-    {% if workgroup.mailing_list %}
-       <em class="workgroup_email">To send an e-mail to the list, use the following address: {{ workgroup.mailing_list.email }}</em><a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}"> - [Browse the Archives]</a>
-
-      <div class="separator"></div>
-      {% else %}
-      {% if workgroup.outside_url %}
-      <a href="{{ workgroup.outside_url }}">LINK TO THE GROUP, IN THE WORLD WILD WEB</a>
-      {% endif %}
-    {% endif %}
-
-      <h3>Group projects</h3>
-      {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_translation_list=group_projects %}
-
-      {% get_comment_count for workgroup as comment_count %}
-      <h3>Shoutbox ({{ comment_count }})</h3> 
-      {% if comment_count %}
-      {% render_comment_list for workgroup %}
-      {% endif %}
-      {% get_comment_form for workgroup as comment_form %}
-      <form method='POST' action='{% comment_form_target %}'>
-	{% csrf_token %}
-	{{ comment_form }}
-	  <input type="submit" name="submit" value="Post">
-      </form>
-
-      
-     
+          {% get_comment_count for workgroup as comment_count %}
+          <h3>Shoutbox ({{ comment_count }})</h3> 
+          {% if comment_count %}
+          {% render_comment_list for workgroup %}
+          {% endif %}
+          {% get_comment_form for workgroup as comment_form %}
+          <form method='POST' action='{% comment_form_target %}'>
+            {% csrf_token %}
+            {{ comment_form }}
+            <input type="submit" name="submit" value="Post">
+          </form>
+        </div>
+        <div class="span4">
+          <h3>Group projects</h3>
+          {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_translation_list=group_projects %}
+        </div>
+      </div>
     </div>
-  </div>
-
+    
 {% endblock %}
 
 
