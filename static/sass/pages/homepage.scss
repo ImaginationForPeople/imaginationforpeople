@@ -51,7 +51,8 @@ hr{
         
         h1{
             font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
-            font-size:19px;
+            font-size: 19px;
+            line-height: 23px;
             text-shadow: 1px 1px white;
             font-style:normal;
             font-weight:normal;
@@ -119,25 +120,30 @@ hr{
                 background-color: $colorLightGrey;
                 overflow: hidden;
                 color:$colorDarkGrey;
+                display: table;
+                table-layout: fixed;
+                width: 100%;
+                
                 > .entry-image {
                     width: 35%;
-                    line-height: 200px;
-                    vertical-align:top;
-                    display: inline-block;
+                    display: table-cell;
                     margin-right: 0px;
-                    border-right: 3px solid $colorLightBlue;
+                    vertical-align: middle;
                     img {
+                            vertical-align: middle;
+                            max-width: 100%;
+                        }
+                    a {
+                        margin: 0px 0px;
                         vertical-align: middle;
-                        max-width: 100%;
-                        float: none;
                     }
-        
                 }
                 .entry-main-details-image {
                         width: 62%;
                 }
                 .entry-main-details {
-                    display: inline-block;
+                    display: table-cell;
+                    vertical-align: middle;
                     border-left: 3px solid $colorLightBlue;
                     margin-left: -3px;
                     padding: 0px 0px 0px 10px;
@@ -156,7 +162,8 @@ hr{
                     h2 {
                     margin:7px 0px;
                     font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
-                    font-size:17px;
+                    font-size: 17px;
+                    line-height: 23px;
                     text-transform:uppercase;
                     font-style:normal;
                     font-weight:bold;
@@ -259,12 +266,11 @@ hr{
                 h1{
                     font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
                     font-size:14px;
+                    line-height: 18px;
                     font-style:normal;
                     margin:0px;
                     padding:0px;
-                    position:relative;
                     text-transform:uppercase;
-                    top:3px;
                 }
                 
                 hr{
