@@ -22,6 +22,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect, get_object_or_404
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext as _
+from django.utils import translation
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.views.generic import View
 
@@ -30,6 +31,8 @@ from guardian.shortcuts import assign
 from wiki.core.plugins import registry as plugin_registry        
 from wiki.models.article import Article, ArticleForObject, ArticleRevision
 from wiki.views.article import Edit as WikiEdit
+
+from apps.project_sheet.utils import get_project_translations_from_parents
 
 from .models import WorkGroup
 from .forms import GroupCreateForm, GroupEditForm
@@ -111,9 +114,6 @@ class GroupDetailView(DetailView):
             article.add_revision(revision)
 
         context['wiki_article'] = article
-
-        from apps.project_sheet.utils import get_project_translations_from_parents
-        from django.utils import translation
         
         language_code = translation.get_language()
         project_translations = get_project_translations_from_parents(parents_qs=workgroup.projects.all(),
@@ -124,6 +124,14 @@ class GroupDetailView(DetailView):
         context['group_projects'] = project_translations
             
         return context
+
+class GroupMembersView(DetailView):
+    """
+    List all members of the given group
+    """
+    template_name = 'workgroup/page/workgroup_members.html'
+    context_object_name = 'workgroup'
+    model = WorkGroup
 
         
 class GroupWikiEdit(WikiEdit):

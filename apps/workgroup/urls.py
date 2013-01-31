@@ -8,6 +8,7 @@ urlpatterns = patterns('',
      url(r'^create$', views.GroupCreateView.as_view(), name='workgroup-create'),
                        
      url(r'^(?P<slug>[-\w]+)/$', views.GroupDetailView.as_view(), name='workgroup-detail'),
+     url(r'^(?P<slug>[-\w]+)/members$', views.GroupMembersView.as_view(), name='workgroup-members'),
      url(r'^(?P<slug>[-\w]+)/edit/$', views.GroupEditView.as_view(), name='workgroup-edit'),
 
     # Subscriptions
