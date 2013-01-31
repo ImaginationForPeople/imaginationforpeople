@@ -25,10 +25,10 @@ from .models import WorkGroup
 class GroupCreateForm(forms.ModelForm):
     class Meta:
         model = WorkGroup
-        fields = ('name', 'language', 'tags', 'picture', 'outside_url')
+        fields = ('name', 'description', 'language', 'tags', 'picture', 'outside_url')
 
 class GroupEditForm(forms.ModelForm):
     class Meta:
         model = WorkGroup
-        fields = ('name', 'language', 'tags', 'picture', 'outside_url')
+        fields = ('name', 'description', 'language', 'tags', 'picture', 'outside_url')
         

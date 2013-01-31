@@ -72,7 +72,7 @@ class GroupEditView(UpdateView):
         
 
 class GroupDetailView(DetailView):
-    template_name = 'workgroup/workgroup_detail.html'
+    template_name = 'workgroup/page/workgroup_detail.html'
     context_object_name = 'workgroup'
     model = WorkGroup
 
