@@ -15,8 +15,10 @@
 {% else %}
   <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
     {% csrf_token %}
-    <button original-title="unsubscribe" type='submit' class='button quit'><span>{% trans 'You are a member of this group' %}</span></button>
-	  <input type="hidden" name='next_url' value="{{ request.path }}"/>
+    <div class='quit'>
+      <span>{% trans 'You are a member of this group' %}</span><button title="{% trans 'Quit this group' %}" type="submit">{% trans 'Quit this group' %}</button>
+  	  <input type="hidden" name='next_url' value="{{ request.path }}"/>
+    </div>
   </form>
 {% endif %}
 </div>

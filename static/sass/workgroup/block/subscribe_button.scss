@@ -45,16 +45,42 @@
 				background-position: 8px 0;
 			}
 		}
+	}
 
-		&.quit {
-			@include border-radius(2px,2px);
-		    border: 0 none;
+	div.quit {
+		@include border-radius(3px,3px);
+	    border: 0 none;
+	    font-family:$fontOpenSans;
+		position:absolute;
+		text-transform:uppercase;
+		color:white;
+		left:20px;
+		top:115px;
+		width:202px;
+		height:38px;
+
+		span {
+			display:block;
+			height:35px;
 		    font-size: 0.9em;
 		    font-weight: bold;
-		    line-height: 1.4rem;
-		    padding: 3px 30px 0 34px;
+		    line-height: 1.7rem;
+		    padding: 3px 0 0 34px;
 		    text-align: left;
 		    background:#706F6F image-url('workgroup/v.png') no-repeat 8px center;
+		    width:122px;
+		    border-right:1px solid #838282;
+		    float:left;
+		}
+
+		button {
+			border-left:1px solid #5f5e5e;
+			width:45px;
+		 	background:#706F6F image-url('workgroup/x.png') no-repeat center center;
+		 	text-indent:-999em;
+		 	position:static;
+		 	border:0;
 		}
 	}
+	
 }
