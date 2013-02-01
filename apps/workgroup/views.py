@@ -48,7 +48,7 @@ class GroupCreateView(CreateView):
     When one wants to create a new group
     """
     form_class = GroupCreateForm
-    template_name = 'workgroup/group_create.html'
+    template_name = 'workgroup/page/group_create.html'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -57,6 +57,7 @@ class GroupCreateView(CreateView):
     def post(self, request, *args, **kwargs):
         res = super(GroupCreateView, self).post(request, *args, **kwargs)
         assign('change_workgroup', request.user, self.object)
+        self.object.subscribers.add(request.user)
         return res
 
 class GroupEditView(UpdateView):
@@ -125,14 +126,11 @@ class GroupDetailView(DetailView):
             
         return context
 
-class GroupMembersView(DetailView):
+class GroupMembersView(GroupDetailView):
     """
     List all members of the given group
     """
     template_name = 'workgroup/page/workgroup_members.html'
-    context_object_name = 'workgroup'
-    model = WorkGroup
-
         
 class GroupWikiEdit(WikiEdit):
     template_name = "workgroup/page/wiki_edit.html"

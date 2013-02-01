@@ -7,33 +7,8 @@
 
 <div id="subscribers-list">
   <ul>
-    {% for subscriber in workgroup.subscribers.all %}
-    <li><a href="{% url userena_profile_detail subscriber.username %}"><img class="tipsed"  {% if request.user == member %}{% endif %} title="{{ subscriber.first_name }} {{ subscriber.last_name }}" src="{{ subscriber.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+    {% for subscriber in workgroup.subscribers.all|slice:":25" %}
+    <li><a href="{% url userena_profile_detail subscriber.username %}"><img class="tipsed" title="{{ subscriber.first_name }} {{ subscriber.last_name }}" src="{{ subscriber.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
     {% endfor %}
   </ul>
 </div>
-
- {% if workgroup.mailing_list %}
-
-<h2>{% trans "Mailing subscribers" %} ({{ ml_member_list|add:ml_nonmember_list|length }})</h2>
-   
-      {# Subscriber list #}
-      <div id="wg-ml-subscriber-list">
-	{% with ml_nonmember_list|length as anonymous_count %}
-	  {% if anonymous_count > 0 %}
-	    <br />
-        <em>{% blocktrans with pluralize=anonymous_count|pluralize %}{{ anonymous_count }} anonymous subscriber{{ pluralize }}{% endblocktrans %}</em>
-	  {% endif %}
-	{% endwith %}
-	{%  if user.is_superuser %}
-	<h3>{% trans "Group subscribers and non IP members mail (admin):" %}</h3>
-	
-	  {% for ml_member in ml_nonmember_list %}
-      <p>{{ ml_member.email }} <p>
-      {% endfor %}
-      <br /><br />
-      {% endif %}
-      
-      </div>
-
-      {% endif %}

@@ -10,6 +10,15 @@
 {% endaddtoblock %}
 
 <div id="subscribe-button">
+{% if workgroup.outside_url %}
+<a href="{{ workgroup.outside_url }}" target="_blank">
+  <span>
+    <div class="quit">
+      {% trans "Open Group Page" %}
+    </div>
+  </span>
+</a>
+{% else %}
 {% if not request.user in workgroup.subscribers.all %}
   <form method='GET' action='{% url workgroup-subscribe workgroup.slug %}'>
     {% csrf_token %}
@@ -20,9 +29,10 @@
   <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
     {% csrf_token %}
     <div class='quit'>
-      <span>{% trans 'You are a member of this group' %}</span><button original-title="{% trans 'Quit this group' %}" type="submit">{% trans 'Quit this group' %}</button>
+      <span>{% trans 'You are part of this group' %}</span><button original-title="{% trans 'Quit this group' %}" type="submit">{% trans 'Quit this group' %}</button>
   	  <input type="hidden" name='next_url' value="{{ request.path }}"/>
     </div>
   </form>
+{% endif %}
 {% endif %}
 </div>
