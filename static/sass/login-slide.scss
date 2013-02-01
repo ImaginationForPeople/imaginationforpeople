@@ -160,222 +160,30 @@ Version: 1.0
 
 }
 
-#panel {
-	width: 100%;
-	color: #999999;
-	background-color: black;
-	overflow: hidden;
-	position: relative;
-	z-index: 9000;
-    height:0px;
-    
-    a.link{
-        font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
-        font-size:12px;
-        font-weight:normal;
-    }
-    
-    h1 {
-        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
-        font-size:16px;
-        text-transform:uppercase;
-        font-style:normal;
-        padding: 5px 0 10px;
-        margin: 0;
-        color: white;
-    }
-    
-    h2{
-        font-size: 1.2em;
-        padding: 10px 0 5px;
-        margin: 0;
-        color: white;
-    }
-    
-    p {
-        margin: 5px 0;
-        padding: 0;
-    }
-    
-    a {
-
-    }
-    
-    a:hover {
-        color: white;
-    }
-    
-    a-lost-pwd {
-        display: block;
-        float: left;
-    }
-    
-    .panel_content {
-        width: 960px;
-        margin: 0 auto;
-        padding-top: 15px;
-        text-align: left;
-        font-size: 9px;
-        top:-2px;
-        position:relative;
-        
-        .left, .left-logged {
-            width: 290px;
-            float: left;
-            padding: 0 10px;
-        }
-        
-        .left{
-            min-height:220px;
-            position:relative;
-            /*border-left: 1px solid #333;*/
-        }
-        
-        .left:first-child {
-            border-left: 0px solid #333;
-        }
-        
-        .panel_projects{
-            width:460px;
-            float: right;
-            padding: 0 15px;
-        }
-        
-        form{
-            margin: 0 0 10px 0;
-            position:relative;
-        }
-        
-        label{
-            display:none;
-            visibility:hidden;
-        }
-        
-        label[for=id_remember_me]{
-            display:block !important;
-            visibility:visible !important;
-            font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
-            font-size:10px;
-            color: $colorLightBlue;
-        }
-        
-        input[type=text], input[type=password]{
-            border: 1px #1A1A1A solid;
-            margin-right: 5px;
-            margin-top: 4px;
-            width: 150px;
-            color: #3d3d3d;
-            font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
-            font-size:11px;
-            height: 16px;
-            padding-left:4px;
-            @include border-radius(4px); 
-        }
-        
-        input[type=submit], button{
-            background-image: url('../images/home/openid-button.jpg');
-            color:white;
-            font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
-            font-size:11px;
-            padding:2px 6px;
-            margin:0px;
-            background-color:#303030;
-            border:0px;
-            cursor:pointer;     
-            position:relative;
-            top:-1px;
-            @include border-radius(4px);
-        }
-        
-        input[type=submit]:hover, button:hover{
-            color:black !important;
-        }
-        
-        input:focus.field {
-            background: #545454;
-        }
-        
-        #top-signin{
-            position:absolute;
-            margin:0px !important;
-            left:160px;
-            top:72px;
-        }
-        
-        .password_lost{
-            font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
-            font-size:10px;
-            color: $colorLightBlue;
-            margin-left:22px;
-        }
-        
-        .password_lost:hover{
-            color:white;
-        }
-        
-        #interface_lang  {
-            position:relative;
-            margin-top:10px;
-            
-            li{
-                width:88px;
-                float:left;
-                margin-right:5px;
-                margin-bottom:10px;
-                
-                img{
-                    margin-right:8px;
-                }
-                
-                a{
-                    margin-right:8px;
-                    color:#898989;
-                }
-                
-                a:hover{
-                    text-decoration:none;
-                    color:#d0d0d0;
-                }
-            }
-        }
-    }
-}
-
 #top-zone {
     padding-top: 15px;
-    text-align: left;
+    text-align: center;
     background:black;
     
     h1.padlock {
+        @include i4p-font-title($sizeTextNormal);
         color: white;
-        font-family: "OpenSansBold_obsolete",Arial,Helvetica,sans-serif;
-        font-size: 0.9em;
-        font-style: normal;
-        text-transform: uppercase;
     }
-
+    h2 {
+        @include i4p-font-base($sizeTextNormal);
+        color: white;
+    }
     #form-user {
-        margin:0 25px 0 0
+        display: inline-block; /* Remove once bootstrap conversion is complete */
+        width:300px; /* Remove once bootstrap conversion is complete */
+
+        /* margin:0 25px 0 0 */
     }
 
     #form-user p {
-        margin:0
+        margin:0.25em 0 0.25em 0;
     }
 
-    .left, .left-logged {
-        width: 290px;
-        float: left;
-        padding: 0 10px;
-    }
-    
-    .left{
-        position:relative;
-        /*border-left: 1px solid #333;*/
-    }
-    
-    .left:first-child {
-        border-left: 0px solid #333;
-    }
     
     .panel_projects{
         width:460px;
@@ -384,6 +192,9 @@ Version: 1.0
     }
     
     form{
+        padding: 0 3em;
+        border-left: 2px solid $colorLightBlue;
+        border-right: 2px solid $colorLightBlue;
         margin: 0 0 10px 0;
         position:relative;
     }
@@ -396,45 +207,37 @@ Version: 1.0
     label[for=id_remember_me]{
         display:block !important;
         visibility:visible !important;
-        font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
-        font-size:10px;
+        @include i4p-font-base($sizeTextSmall);
         color: $colorLightBlue;
-        font-weight:bold;
+        
+        input {
+            margin-top: 0px; /* To manually match bootstrap's  checkbox */
+            display: inline-block;
+            float: none;
+        }
+
     }
     
     input[type=text], input[type=password]{
         border: 1px #1A1A1A solid;
-        margin-right: 5px;
-        margin-top: 4px;
         width: 150px;
-        color: #3d3d3d;
-        font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
-        font-size:11px;
-        height: 16px;
-        padding-left:4px;
+        color: $colorDarkGrey;
+        @include i4p-font-base($sizeTextNormal);
         @include border-radius(4px); 
-        margin-bottom:0
     }
     
     #form-user p.checkbox {
-        margin-top:10px
+        /* margin-top:10px */
     }
 
-    input[type=submit], button{
-        background: url('../images/home/openid-button.jpg') repeat-x bottom left #03abcf;
-        color:white;
-        font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
-        font-size:11px;
-        padding:2px 6px;
-        margin:0px;
-        border:0px;
-        cursor:pointer;     
-        position:relative;
-        top:-1px;
-        @include border-radius(4px);
+    #top-signin, button{
+        @include i4p-button-fancy-bordered;
+        width: 150px;
+        display: inline-block;
+       
     }
     
-    input[type=submit]:hover, button:hover{
+    #top-signin:hover, button:hover{
         color:black !important;
     }
     
@@ -443,49 +246,51 @@ Version: 1.0
     }
     
     #top-signin{
-        height: 24px;
-        left: 168px;
-        margin: 0 !important;
-        position: absolute;
-        top: 71px;
+
     }
     
     .password_lost{
-        font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
-        font-size:10px;
         color: $colorLightBlue;
-        left: 152px;
-        margin-left: 22px;
-        position: absolute;
-        top: 106px;
-        font-weight:bold;
     }
     
     .password_lost:hover{
-        color:white;
-    }
 
+    }
+    #social-sign-in {
+        display: inline-block; /* Remove once bootstrap conversion is complete */
+        width:300px; /* Remove once bootstrap conversion is complete */
+
+        .social-panel ul {
+            margin-left:0;
+            margin-bottom:15px;
+            list-style: none;
+            li {
+                margin-top: 0.5em;
+                display: list-item;
+            }
+        }
+    }
+    
+    #social-sign-up {
+        display: inline-block; /* Remove once bootstrap conversion is complete */
+        width:300px; /* Remove once bootstrap conversion is complete */
+    }
     .social-panel ul {
         margin-left:0;
         margin-bottom:15px;
-	list-style: none;
-	li {
-	   display: inline;
-	}	
+        list-style: none;
+        li {
+            display: inline;
+        }
     }
 
     #not-yet h1 {
-        float:left;
-        margin: 0 10px 0 0;
     }
     
     #not-yet a {
-        font-family: "OpenSansItalic_obsolete",Arial,Helvetica,sans-serif;
-        font-size:11px;
-        color: $colorLightBlue;
-        font-weight:bold;
-        position: relative;
-        top: 7px;
+        @include i4p-button-fancy-bordered;
+        width: 146px;
+        display: inline-block;
     }
 
     #interface_lang  {
@@ -516,101 +321,6 @@ Version: 1.0
 }
 
 
-
-
-
-/* BUTTONS */
-/* Login and Register buttons */
-#panel .panel_content input.bt_login,
-#panel .panel_content input.bt_register {
-	display: block;
-	float: left;
-	clear: left;
-	height: 24px;
-	text-align: center;
-	cursor: pointer;
-	border: none;
-	font-weight: bold;
-	margin: 10px 0;
-}
-
-#panel .panel_content input.bt_login {
-	width: 74px;
-	background: transparent url(../images/base/bt_login.png) no-repeat 0 0;
-}
-
-#panel .panel_content input.bt_register {
-	width: 94px;
-	color: white;
-	background: transparent url(../images/base/bt_register.png) no-repeat 0 0;
-}
-
-#panel{
-
-    .lost-pwd {
-        display: block;
-        float:left;
-        clear: right;
-        padding: 15px 5px 0;
-        font-size: 0.95em;
-        text-decoration: underline;
-    }
-    
-    .project_card {
-        border: 0 none !important;
-        float: left;
-        margin-bottom: 20px;
-        margin-right: 15px;
-        padding: 0;
-        position: relative;
-        text-align: right;
-        top: 5px;
-        width: 137px;
-        
-        .project-photo {
-            background-color: #BDBDBD;
-            background-image: url("../images/project/no-picture.jpg");
-            background-position: center center;
-            background-repeat: no-repeat;
-            height: 71px;
-            position: relative;
-            top: -5px;
-            width: 100%;
-        }
-    }
-    
-    .project_infos_title , .project_card , .project_card_content{
-        text-decoration:none !important;
-    }
-    
-    .project_card_content {
-        height: 45px;
-        margin-bottom: 5px;
-        margin-right: 7px;
-        padding-left: 7px;
-        position: relative;
-    }
-    
-    .project_infos_title {
-        color: #C2C2C2;
-        font-family: Tahoma,Verdana,Arial,Sans-serif;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: bold;
-        margin-bottom: 15px;
-        position: absolute;
-        text-align: left;
-    }
-    
-    .project_infos_baseline {
-        color: #C2C2C2;
-        font-family: Tahoma,Verdana,Arial,Sans-serif;
-        font-size: 11px;
-        font-style: normal;
-        font-weight: bold;
-        height: 55px;
-    }
-}
 
 .social-panel{
     p.social-login{

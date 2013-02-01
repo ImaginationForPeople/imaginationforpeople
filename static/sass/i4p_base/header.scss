@@ -18,7 +18,7 @@ $sizeTextSmall: 11px;
     .clear {clear: both;height: 0;line-height: 0;}
 }
 .global #top-zone {
-    height: 140px;
+    height: 200px;
 }
 
 #header-zone {
@@ -120,12 +120,13 @@ $sizeTextSmall: 11px;
 
             ul {
                 position: absolute;
-                top: 24px;
+                top: 20px;
                 left: 0;
                 float: none;
                 height: auto;
                 z-index: 1000;
                 width: 200px;
+                margin-left: 0px; /* Clear a bootstrap style */
                 padding: 5px 0 0 0;
                 display: none;
 
