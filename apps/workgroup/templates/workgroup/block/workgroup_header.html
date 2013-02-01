@@ -28,9 +28,15 @@
     </div>
     <div class="members">
       <strong><span>{{ workgroup.subscribers.all|length}}</span> 
+	{% if workgroup.mailing_list %}
+	{% blocktrans with workgroup.subscribers.all|length|pluralize as member_plural and ml_nonmember_list|length as nonmember_count %}
+	member{{ member_plural }} (+ {{ nonmember_count }})
+	{% endblocktrans %}
+	{% else %}
 	{% blocktrans with workgroup.subscribers.all|length|pluralize as member_plural %}
 	member{{ member_plural }}
-	{%endblocktrans%}
+	{% endblocktrans %}
+	{% endif %}
       </strong>
       <a href="{% url workgroup-members workgroup.slug %}">{% trans "See all" %}</a>
     </div>
