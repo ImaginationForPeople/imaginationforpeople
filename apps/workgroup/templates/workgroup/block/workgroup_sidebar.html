@@ -1,0 +1,13 @@
+{% load i18n %}
+{% load guardian_tags %}
+
+<div class="span4">
+  <div class="group-projects">
+    <h3>{% trans "Group projects" %}</h3>
+    {% get_obj_perms request.user for workgroup as "workgroup_perms" %}
+    {% if request.user.is_staff and "change_workgroup" in workgroup_perms %}
+    [<a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage linked projects" %}</a>]
+    {% endif %}
+    {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_translation_list=group_projects %}
+  </div>
+</div>

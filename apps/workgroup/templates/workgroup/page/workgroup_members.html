@@ -48,12 +48,7 @@
 	    {% endif %}
           </div>
 	</div>
-        <div class="span4">
-          <div class="group-projects">
-            <h3>Group projects</h3>
-            {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_translation_list=group_projects %}
-          </div>
-        </div>
+	{% include "workgroup/block/workgroup_sidebar.html" %}
       </div>
     </div>
     
