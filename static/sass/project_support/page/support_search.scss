@@ -126,6 +126,33 @@
 		}
 	}
 	
+	ul.search-tags {
+		float:left;
+		clear:left;
+		list-style-type:none;
+		font-family:$fontOpenSans;
+		font-style:italic;
+		font-stretch:condensed;
+		position:relative;
+		top:-5px;
+
+		li {
+			margin: 0 2px;
+			float:left;
+			background:$colorLightDarkGrey;
+			color:#888;
+			padding:0 8px;
+			@include border-radius(5px,5px);
+
+			a {
+				color:#706F6F;
+				font-stretch:normal;
+				margin: 0 0 0 6px;
+				font-style:normal;
+			}
+		}
+	}
+
 	a.rss { display:none }
 
 	/* ------------------------------------------------------------------ */

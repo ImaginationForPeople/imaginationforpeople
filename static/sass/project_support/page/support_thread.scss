@@ -15,7 +15,12 @@ body.question-page {
   .project-content {
     padding-top: 0 !important ;
     background:$colorWhite;
-}
+
+    .previous-answer {
+      float:left;
+      padding:10px 0 0 0
+    }
+  }
 
     div.tabBar a, div.tabBar span.label {
         text-shadow:none;
@@ -26,6 +31,7 @@ body.question-page {
         margin: 25px 0 0;
         padding: 3px 20px 3px 10px;
         width: 95%;
+        float:left;
     }
 
     div.tabBar a,
@@ -81,6 +87,8 @@ body.question-page div {
     @include border-radius(5px,5px);
     background-color: #ececec;
     padding: 15px;
+    width:589px;
+    float:left;
     div {
       &.post-author-info {
         zoom: 1;
