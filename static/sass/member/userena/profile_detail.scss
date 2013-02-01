@@ -1,0 +1,24 @@
+
+/* WARNING, THIS HAS BEEN MOVED FROM STYLE.SCSS, BUT IS NOT LINKED ANYWHERE YET
+WAITING FOR PROFILE.SCSS TO MOVE */
+#about .colonne a {
+    text-decoration: underline;
+}
+
+
+.colonne {
+
+    a {
+    @include georgia(12px);
+    color: $colorLightBlue;
+
+    padding-top: 5px;
+    padding-bottom: 3px;
+    display: block;
+    }
+
+    a:hover {
+    color:#65e4ff;  
+    }
+}
+
