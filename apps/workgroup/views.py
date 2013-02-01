@@ -66,7 +66,7 @@ class GroupEditView(UpdateView):
     form_class = GroupEditForm
     slug_field = 'slug'
     model = WorkGroup
-    template_name = 'workgroup/group_edit.html'
+    template_name = 'workgroup/page/group_edit.html'
 
     @method_decorator(login_required)
     @method_decorator(permission_required_or_403('change_workgroup', (WorkGroup, 'slug', 'slug')))
@@ -135,7 +135,7 @@ class GroupMembersView(DetailView):
 
         
 class GroupWikiEdit(WikiEdit):
-    template_name = "workgroup/wiki_edit.html"
+    template_name = "workgroup/page/wiki_edit.html"
     
     def dispatch(self, request, workgroup_slug, *args, **kwargs):
         self.workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)

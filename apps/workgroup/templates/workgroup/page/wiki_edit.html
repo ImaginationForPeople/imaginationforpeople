@@ -1,9 +1,14 @@
 {% extends "workgroup/layout/workgroup_base.html" %}
 {% load wiki_tags i18n %}
 {% load url from future %}
+{% load sekizai_tags %}
 
 {% block content %}
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/wiki_edit.css" />
+{% endaddtoblock %}
 
+<div id="workgroup-wiki" class="container">
 {% if not user.is_authenticated %}
 <p class="alert alert-warning">
 {% trans "<strong>Warning:</strong> You are not logged in. Your IP address will be logged." %}
@@ -11,9 +16,10 @@
 </p>
 {% endif %}
 
-<div class="row-fluid">
+<div class="row">
 
   <div class="span8">
+    <h1>{% trans 'Edit this workgroup' %}</h1>
     <form method="POST" class="form-horizontal" id="article_edit_form">
       <input type="hidden" name="save" value="1" />
       <input type="hidden" name="preview" value="1" />
@@ -64,6 +70,6 @@
         </a>
       </div>
     </div>
-
+  </div>
 {% endblock %}
 

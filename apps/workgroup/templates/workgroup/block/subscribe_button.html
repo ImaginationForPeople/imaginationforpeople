@@ -5,6 +5,10 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/subscribe_button.css" />
 {% endaddtoblock %}
 
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/workgroup/block/subscribe_button.js" />
+{% endaddtoblock %}
+
 <div id="subscribe-button">
 {% if not request.user in workgroup.subscribers.all %}
   <form method='GET' action='{% url workgroup-subscribe workgroup.slug %}'>
@@ -16,7 +20,7 @@
   <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
     {% csrf_token %}
     <div class='quit'>
-      <span>{% trans 'You are a member of this group' %}</span><button title="{% trans 'Quit this group' %}" type="submit">{% trans 'Quit this group' %}</button>
+      <span>{% trans 'You are a member of this group' %}</span><button original-title="{% trans 'Quit this group' %}" type="submit">{% trans 'Quit this group' %}</button>
   	  <input type="hidden" name='next_url' value="{{ request.path }}"/>
     </div>
   </form>
