@@ -49,34 +49,6 @@ body {
     z-index: 9000;
 }
 
-.categories {
-    .menu {
-	ul li:first-child {
-	    display: block;
-	    visibility: visible;
-	    border-right: 1px solid #676665;
-	}
-
-	.selected .categ-button {
-	    display: block;
-	    visibility: visible;
-	    border-right: 1px solid #676665;
-	}
-
-	ul li:first-child .categ-button {
-	    border-right: 1px solid #676665;
-	}
-    }
-}
-
-.sf-menu .current {
-    border-right: 0px !important;
-}
-
-
-
-
-
 .centreur, .center {	
     margin-left: auto;
     margin-right: auto;
@@ -276,117 +248,6 @@ a:hover {
 	}
     }
 }
-
-
-
-/* -- Filters -- */
-
-.categories {
-
-    width: 100%;
-    /*background-image: image-url('base/menu-bg.png');*/
-    height:37px;	
-    position: relative;
-    /*top:-37px;*/	
-    padding: 0px;
-    margin: 0px;
-    background-repeat:repeat-x;	
-    border-top: 1px solid #676665;
-    background-color: black;
-
-    .menu {
-
-	.search {
-	    float: right;
-	}
-
-	ul {
-	    padding-top: 8px;
-	    position: relative;
-	    top: -8px;
-	}
-
-	.categ-button.first {
-	    border-left: 1px solid #676665;
-	}
-
-	.categ-button {
-	    position: relative;
-	    padding: 0px;
-	    margin: 0px;
-	    width: 107px;
-	    height: 28px;
-	    float: left;
-	    padding-top:8px;	
-	    text-align: center;
-	}
-
-	#categ-last {
-	    border-right: 1px solid #676665;
-	}
-
-	.categ-button span {
-	    float: left;
-	}
-
-    }
-
-}
-
-.categories .menu ul {
-
-    li {
-	a {
-	    font-family: Arial, Helvetica, sans-serif;
-	    font-size: 16px;
-	    font-style: normal;
-	    font-weight: normal;
-	    color: #979797;
-	}
-
-	.categ-button a:hover {
-	    color: white;
-	    text-decoration: none;
-	    background-image: image-url('base/menu-bg-hover.png');
-	    height: 37px;
-	    position: relative;
-	    text-decoration: none;
-	    top: -9px;
-	    left: -1px;
-	    padding: 0px;
-	    margin: 0px;
-	    background-repeat: repeat-x;
-	    position: relative;
-	    padding: 0px;
-	    margin: 0px;
-	    width: 107px;
-	    height: 28px;
-	    float: left;
-	    padding-top: 8px;
-	    border-top: 1px solid #676665;
-	    border-left: 1px solid #676665;
-	    border-right: 1px solid #676665;
-	    text-align: center;
-	}
-
-	.selected {
-	    position: absolute;
-	    width: 109px;
-	    height: 40px;
-	    top: -8px;
-	    left: -1px;
-	    padding-top: 16px;
-	    z-index: 100;
-	    font-weight: bold;
-	    text-align: center;
-	}
-
-    }
-
-}
-
-
-
 /* -- Tools -- */
 
 
@@ -441,39 +302,6 @@ a:hover {
     padding-bottom: 0px;
     margin-left: 10px;
     top: 1px;
-}
-
-
-.toolbox {
-
-    position: absolute;
-    right: 0px;
-    height: 74px;
-    background-image: image-url('base/tools-bg.png');
-    float: left;
-    width: 156px;
-    top: -38px;
-    overflow: visible;
-    z-index: 4000;
-
-    /*temp*/
-    display: none;
-    visibility: hidden;
-
-    .tools-title {
-	position: relative;
-	width: 100%;
-	height: 20px;
-	color: #929292;
-	text-align: right;
-	font-size: 12px;
-	padding-top: 8px;
-	left: -5px;
-    }
-
-    .tools img {
-	border: 0px;
-    }
 }
 
 

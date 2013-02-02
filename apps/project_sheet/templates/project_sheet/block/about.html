@@ -6,13 +6,13 @@
 {% load i18n i4p_tags %}
 
 {% comment %} JS DEPENDENCIES FOR INLINE EDITING {% endcomment %}
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
 {% endaddtoblock %}
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
 {% endaddtoblock %}
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
 {% endaddtoblock %}
 
@@ -22,13 +22,13 @@
 $.getScript(I4P_STATIC_URL+"js/i4p/editable.js");
 </script>
 {% endaddtoblock %}
-{% addtoblock "footer_js" %}
+{% addtoblock "footer_js" strip %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/project_sheet/block/about.js");  
 </script>
 {% endaddtoblock %}
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/about.css" />
 {% endaddtoblock %}
 

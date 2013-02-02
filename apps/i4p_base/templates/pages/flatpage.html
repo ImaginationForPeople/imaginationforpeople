@@ -19,9 +19,13 @@
 {% endblock %}
 
 {% block content %}
-    {% addtoblock "css" %}
+    {% addtoblock "css" strip%}
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+    {% endaddtoblock %}
+    {% addtoblock "css" strip%}
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/flatpage.css" />
+    {% endaddtoblock %}
+    {% addtoblock "css" strip%}
         <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
     {% endaddtoblock %}
     

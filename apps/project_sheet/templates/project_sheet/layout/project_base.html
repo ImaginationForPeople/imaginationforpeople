@@ -30,7 +30,7 @@
 {% block content %}	
 {% with gridsystem='bootstrap' %}
 
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
     <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
     {% if project_translation %}
     <script>

@@ -1,4 +1,5 @@
-
+@import "i4p-mixins";
+@import "i4p/constants";
 /* WARNING, THIS HAS BEEN MOVED FROM STYLE.SCSS, BUT IS NOT LINKED ANYWHERE YET
 WAITING FOR PROFILE.SCSS TO MOVE */
 #about .colonne a {
@@ -9,7 +10,7 @@ WAITING FOR PROFILE.SCSS TO MOVE */
 .colonne {
 
     a {
-    @include georgia(12px);
+    @include i4p-font-base($sizeTextSmall);
     color: $colorLightBlue;
 
     padding-top: 5px;

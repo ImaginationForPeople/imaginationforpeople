@@ -182,13 +182,13 @@ A simple example of assets blocks in a html template, for the ``toolbar`` compon
   <!-- ... HTML template requirements ... -->
 
 
-  {% addtoblock "footer_js" %}
+  {% addtoblock "footer_js" strip %}
   <script type="text/javascript">
   $.getScript(I4P_STATIC_URL+"js/project_sheet/block/toolbar.js");  
   </script>
   {% endaddtoblock %}
 
-  {% addtoblock "css" %}
+  {% addtoblock "css" strip %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/toolbar.css" />
   {% endaddtoblock %}
 
@@ -198,7 +198,7 @@ Available zones (FIXME: make a link to page blocks)
 Available blocks for sekizai : **css**, **js**, **footer_js** .
 
 The "css" block
-````````````````
+```````````````
 
 FIXME: explain where it is (html example)
 
@@ -222,24 +222,24 @@ FIXME: explain how to use async loading with jquery require ;)
 Sekizai problems
 ````````````````
 Actually, there is a problem with the current sekizai system, instead of comparing string meaning (ie: with a *abstract syntaxic tree*), it compares
-strings, **not even taking in account whitespaces and indentation**.
+strings, **not even taking in account whitespaces and indentation**.  The strip tag only strips outside the string.
 
 For instance, the following block ::
 
-  {% addtoblock "js" %}
+  {% addtoblock "js" strip %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
   {% endaddtoblock %}
 
 is considered different from ::
 
-  {% addtoblock "js" %}
+  {% addtoblock "js" strip %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js">
   </script>
   {% endaddtoblock %}
 
 or from ::
 
-  {% addtoblock "js" %}<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>{% endaddtoblock %}
+  {% addtoblock "js" strip %}<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>{% endaddtoblock %}
 
 
 A quick and dirty work-around
@@ -248,7 +248,7 @@ A quick and dirty work-around
 To circumvent the previously stated problem, we suggest that instead of writing ::
 
 
-  {% addtoblock "js" %}
+  {% addtoblock "js" strip %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
@@ -258,15 +258,15 @@ To circumvent the previously stated problem, we suggest that instead of writing 
 We should write::
 
 
-  {% addtoblock "js" %}
+  {% addtoblock "js" strip %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.growfield2.js"></script>
   {% endaddtoblock %}
     
-  {% addtoblock "js" %}
+  {% addtoblock "js" strip %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.js"></script>
   {% endaddtoblock %}
     
-  {% addtoblock "js" %}
+  {% addtoblock "js" strip %}
   <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.jeditable.growfield.js"></script>
   {% endaddtoblock %}
 
@@ -409,7 +409,7 @@ FIXME: beware css name collisions & bad namespaces
 
 
 Very important files
----------------
+--------------------
 
 Styles.scss
 ```````````
@@ -425,7 +425,7 @@ The ``PROJECT_ROOT/static/styles.scss`` is the main CSS file, called before anyt
 
 
 Some pre-defined CSS Classes
------------------------
+----------------------------
 
 TODO: explain common classes for button, project cards, etc. Add screenshot + code examples
 
@@ -448,7 +448,7 @@ FIXME: explain what we aim.
 
 
 Other references
-=================
+================
 
 FIXME: integrate the following link in the doc, with real code examples : https://dev.imaginationforpeople.org/redmine/issues/1170 
     
