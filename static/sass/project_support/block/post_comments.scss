@@ -13,6 +13,7 @@ body.question-page div {
     padding-right: 0;
     padding-left: 100px;
     background: image-url('project_support/misc/arrow_comment_box.png') 150px 8px no-repeat;
+    float:left;
     div.comment-body p {
       padding-bottom: 5px;
     }
@@ -20,10 +21,13 @@ body.question-page div {
   &.content {
     @include border-radius(5px,5px);
     background-color: #ececec;
+    float:left;
   }
   &.comment-form {
     padding:8px 8px 0;
     min-height:35px;
+    float:left;
+    width:504px;
 
     form {
       margin:0;
@@ -39,7 +43,6 @@ body.question-page div {
       @include border-corner-radius('bottom','left',5px);
       @include border-corner-radius('top','right',0);
       @include border-corner-radius('bottom','right',0);
-      border-right:0;
       float:left;
       height:26px;
       width:76%;
@@ -74,6 +77,7 @@ body.question-page div {
     border-top: 1px solid #ffffff;
     border-bottom: 1px solid #dedede;
     background:image-url('project_support/misc/chevron_up.png') no-repeat 14px 22px;
+    clear:both;
 
     &:first-child {
       border-top:0;
