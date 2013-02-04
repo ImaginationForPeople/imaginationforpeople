@@ -65,10 +65,10 @@
 		    font-size: 0.9em;
 		    font-weight: bold;
 		    line-height: 1.4rem;
-		    padding: 6px 0 0 34px;
+		    padding: 6px 6px 0 34px;
 		    text-align: left;
 		    background:#706F6F image-url('workgroup/v.png') no-repeat 8px center;
-		    width:122px;
+		    width:116px;
 		    border-right:1px solid #838282;
 		    float:left;
 		}
@@ -83,4 +83,20 @@
 		}
 	}
 	
+}
+
+/* TEMP */
+
+.block-content #subscribe-button {
+	button {
+		position:static;
+		text-shadow:none;
+		margin-bottom:10px;
+	}
+	.quit {
+		position:relative;
+		left:15px;
+		top:0;
+		margin-bottom:10px;
+	}
 }
