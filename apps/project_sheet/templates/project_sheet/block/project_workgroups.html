@@ -1,0 +1,25 @@
+{% load i18n %}
+{% load comments %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_workgroups.css" />
+{% endaddtoblock %}
+
+<div class="project_workgroups">
+	<h2>{% trans "Related workgroups"|capfirst %}</h2>
+	<!--<a class="seemore" href="#">{% trans "See all" %}</a>-->
+	
+	<ul>
+		{% for group in project.workgroups.all %}
+			<li>
+				<div>
+					<a href="{% url workgroup-detail group.slug %}">{{ group.name }}</a>
+					<p>
+						{{ group.description }}
+					</p>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
