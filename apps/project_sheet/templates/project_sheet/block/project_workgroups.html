@@ -16,7 +16,7 @@
 				<div>
 					<a href="{% url workgroup-detail group.slug %}">{{ group.name }}</a>
 					<p>
-						{{ group.description }}
+						{{ group.description|urlize }}
 					</p>
 				</div>
 			</li>
