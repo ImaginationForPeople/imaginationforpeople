@@ -130,14 +130,11 @@
         
         {% if user_already_gave_answer %}
             <div class="previous-answer">
-                <i class="icon-pencil"></i><a class="submit" href="{% url edit_answer previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
+                <i class="icon-pencil"></i><a class="submit" href="{% url project_support_edit_answer support.project_translation.slug previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
                 <span>{% trans '(only one answer per question is allowed)' %}</span>
             </div>
         {% else %}
             {% include "project_support/block/new_answer_form.html" %}
-        {% endif %}
-        {% if question.closed = False and request.user = question.author %}{# this is outside the form on purpose #}
-            <input type="button" class="submit after-editor answer-own-question" id="fmanswer_button" value="{% trans 'Answer Your Own Question' %}"/>
         {% endif %}
         </div>
         <div class="span4"> 

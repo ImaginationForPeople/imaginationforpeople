@@ -89,5 +89,5 @@ urlpatterns = patterns('',
     url(r'(?P<project_slug>[-\w]+)/support/(?P<question_id>\d+)/', support_views.view_project_support, name='project_support_view'),
     url(r'(?P<project_slug>[-\w]+)/support/edit/(?P<question_id>\d+)/', support_views.propose_project_support, name='project_support_edit'),
     url(r'(?P<project_slug>[-\w]+)/support/answer/(?P<question_id>\d+)/', support_views.answer_project_support, name='project_support_answer'),
-
+    url(r'(?P<project_slug>[-\w]+)/support/answer/edit/(?P<answer_id>\d+)/', support_views.edit_support_answer, name='project_support_edit_answer'),
 )
