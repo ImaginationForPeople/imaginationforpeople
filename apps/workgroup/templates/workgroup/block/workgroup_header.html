@@ -19,7 +19,7 @@
       {% if "change_workgroup" in workgroup_perms %}
       [<a href="{% url workgroup-edit workgroup.slug %}">{% trans "Edit Group" %}</a>]
       {% endif %}
-      <span class="workgroup_desc">{{ workgroup.description|safe|urlize }}</span>
+      <span class="workgroup_desc">{{ workgroup.description|urlize }}</span>
     </div>
   </div>
   <div class="span4">
