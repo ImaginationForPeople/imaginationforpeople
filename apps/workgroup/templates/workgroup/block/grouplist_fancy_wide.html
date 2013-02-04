@@ -3,7 +3,7 @@
 {% load sekizai_tags %}
 
 {% addtoblock "css" %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_workgroups.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/grouplist_fancy_wide.css" />
 {% endaddtoblock %}
 
 <div class="project_workgroups">
@@ -13,12 +13,14 @@
 	<ul>
 		{% for group in project.workgroups.all %}
 			<li>
-				<div>
-					<a href="{% url workgroup-detail group.slug %}">{{ group.name }}</a>
-					<p>
-						{{ group.description|urlize }}
-					</p>
-				</div>
+				<a href="{% url workgroup-detail group.slug %}">
+					<div>
+						<span>{{ group.name }}</span>
+						<p>
+							{{ group.description|urlize }}
+						</p>
+					</div>
+				</a>
 			</li>
 		{% endfor %}
 	</ul>
