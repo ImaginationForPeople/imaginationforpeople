@@ -216,3 +216,13 @@ class I4pProjectTranslationResource(ModelResource):
             fk = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
             bundle.data['project'] = fk.dehydrate(bundle)
         return bundle
+
+class I4pProjectTranslationListResource(ModelResource):
+    project = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
+    
+    class Meta:
+        queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
+        include_resource_uri = False
+        throttle = CacheDBThrottle()
+        
+        fields = ['slug','language_code','title','baseline']
