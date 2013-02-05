@@ -9,6 +9,7 @@ django-countries==1.0.5
 
 django-tagging==0.3.1
 django-autoslug==1.4.1
+django-autocomplete-light==1.1.13
 
 easy-thumbnails==1.0.3
 
@@ -16,13 +17,16 @@ easy-thumbnails==1.0.3
 -e git://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
 
 # Wiki
--e git://github.com/ImaginationForPeople/django-wiki.git#egg=django-wiki
+-e git://github.com/benjaoming/django-wiki.git@64a22a81807898f3fb1d60c86a9c13bb26fe4ac8#egg=django-wiki
 
 #Migration failed on recent postgres.  Use our own branch in the meantime
 #-e git+https://github.com/CommOnEcoute/cmsplugin_facebook.git@8416f8506eb77ed9954dc12aa1f4b6eebe68d39c#egg=cmsplugin-facebook
 -e git://github.com/ImaginationForPeople/cmsplugin_facebook.git@2f8c199fd1884b8ebc7eb7fffdb7a93f274af73e#egg=cmsplugin-facebook
 
 -e git://github.com/divio/cmsplugin-iframe.git@8427d128d8bdadc276ce19b433f46792b8b3a0d8#egg=cmsplugin-iframe
+
+# Show everybody actions in admin
+-e git+https://github.com/vaal-/django-logentry-admin.git@654bf834bb2593b074222a114a3984d873e68bde#egg=django-logentry-admin
 
 cmsplugin-contact==1.0.0
     

@@ -15,19 +15,20 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from django.contrib import admin
-
-import autocomplete_light
-from django_mailman.models import List
+"""
+Django Forms for Groups
+"""
+from django import forms
 
 from .models import WorkGroup
 
-class MailingListAdmin(admin.ModelAdmin):
-    model = List
-    
-class WorkGroupAdmin(admin.ModelAdmin):
-    form = autocomplete_light.modelform_factory(WorkGroup)
+class GroupCreateForm(forms.ModelForm):
+    class Meta:
+        model = WorkGroup
+        fields = ('name', 'description', 'language', 'tags', 'picture', 'outside_url')
 
-
-admin.site.register(WorkGroup, WorkGroupAdmin)
-admin.site.register(List, MailingListAdmin)
+class GroupEditForm(forms.ModelForm):
+    class Meta:
+        model = WorkGroup
+        fields = ('name', 'description', 'language', 'tags', 'picture', 'outside_url')
+        
