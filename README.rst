@@ -1,7 +1,7 @@
 Imagination For People Web Application
 ======================================
 Codenamed "I4P".
-
+  
 Imagination for People (IP) is first and foremost a community of
 citizens from all over the globe who believe that creativity can be
 used in practical ways to make a positive social impact. Basically, we
