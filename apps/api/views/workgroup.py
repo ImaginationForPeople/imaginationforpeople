@@ -17,7 +17,7 @@
 #
 
 from tagging.models import Tag
-from tastypie import fields 
+from tastypie import fields
 from tastypie.resources import ModelResource
 
 from apps.workgroup.models import WorkGroup
@@ -33,6 +33,9 @@ class WorkgroupResource(ModelResource):
         queryset = WorkGroup.objects.all()
         resource_name="workgroup"
         fields = ["name", "description", "language"]
+        filtering = {
+            "language": 'exact',
+        }
         
     def dehydrate(self, bundle):
         bundle.data["tags"] = [tag.name for tag in Tag.objects.get_for_object(bundle.obj)]
