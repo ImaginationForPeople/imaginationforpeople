@@ -222,7 +222,12 @@ class I4pProjectTranslationListResource(ModelResource):
     
     class Meta:
         queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
-        include_resource_uri = False
+        include_resource_uri = True
         throttle = CacheDBThrottle()
         
         fields = ['slug','language_code','title','baseline']
+        
+    def detail_uri_kwargs(self, bundle_or_obj):
+        kwargs = ModelResource.detail_uri_kwargs(self, bundle_or_obj)
+        kwargs["resource_name"] = I4pProjectTranslationResource.Meta.resource_name
+        return kwargs
