@@ -72,7 +72,7 @@
 		{% include "project_sheet/block/memberlist_modal_seeall.html" %}
 
 		{% endwith %}
-		{% include "project_sheet/block/memberlist_square.html" %}
+		{% include "member/block/memberlist_square.html" with members=project.detailed_members.all %}
 	    </div>
 
 	    <div class="project-related clearfix">

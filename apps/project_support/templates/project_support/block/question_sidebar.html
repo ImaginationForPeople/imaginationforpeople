@@ -1,0 +1,37 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/block/question_sidebar.css" />
+{% endaddtoblock %}
+
+<div class="box statsWidget">
+    <h2>{% trans 'Stats' %}</h2>
+    <div class="content">
+        <div class="date">
+            {% trans 'Asked on' %} <strong>{{ question.added_at }}</strong>
+        </div>
+        <p class="answers"> 
+            <strong>{{answer_count}} {% trans 'answers' %}</strong>
+        </p>
+        <p class="views"> 
+            <strong>{{ thread.view_count }} {% trans 'views' %}</strong>
+        </p>
+        <p class="votes">
+            <strong>{{ question.score }} {% trans 'votes' %}</strong>
+        </p>
+    </div>
+</div>
+
+{% if similar_threads.data %}
+    <div class="box">
+        <h2>{% trans 'Related questions' %}</h2>
+        <div class="questions-related">
+            {% for thread_dict in similar_threads.data %}
+            <p>
+                <a href="{{ thread_dict.url }}">{{ thread_dict.title|escape }}</a>
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

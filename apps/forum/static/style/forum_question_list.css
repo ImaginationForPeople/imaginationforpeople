@@ -1,0 +1,123 @@
+ul#question-list {
+  position: relative;
+  clear:both;
+  padding: 0;
+  margin:0; /*override de ul,ol{margin: 0 0 9px 25px;} dans white_page.css*/
+  width: 100%;
+  
+}
+li.short-summary {
+  zoom:1;
+  display:block;/*override display:inline dans imaginationforpeople:8001/static/syle.css*/
+  position: relative;
+  filter: inherit;
+  padding:0;
+  margin:0;
+  padding-top:25px;
+  padding-bottom:25px;
+  padding-left:12px;
+  padding-right:12px;  
+  background: url(http://www.francois-rosenbaum.com/staging/imaginationforpeople/ombre_questions.png) center bottom no-repeat;
+}
+
+li.short-summary:hover{
+    background:none;
+    background-color:#ebebeb;
+    -webkit-border-radius: 5px;    
+    border-radius: 5px;}
+
+li.short-summary:after{
+  clear: both;
+  content: "";
+  display: block;}
+
+li.short-summary  p {
+  line-height:normal;
+  font-size: 11px;
+  font-style:italic;
+  font-family: 'OpenSans', Arial, sans-serif;
+  color:706f6f;
+}
+
+li.short-summary div.wrap_question_description{
+    float:left;
+    width:465px;}
+    
+li.short-summary div.wrap_question_description h2 a,
+li.short-summary div.wrap_question_description h2{
+  line-height:normal;
+  font-size: 15px;
+  text-transform:uppercase;
+  font-weight: bold;
+  padding: 0;
+  margin:0;
+  margin-bottom: 7px;
+  color:#242424;
+  font-family: 'OpenSans', Arial, sans-serif;
+}
+
+/*++++++++  Infos question (date, temps restant, nbr vues, nbr réponses, nbr votes) ++++*/
+li.short-summary div.infos_question{
+    float:right;
+    width:170px;}
+    
+li.short-summary div.infos_question p:first-child {
+  font-size: 11px;
+  font-style:italic;
+  font-family: 'OpenSans', Arial, sans-serif;
+  color:706f6f;
+  margin-bottom:10px;
+    }   
+    
+li.short-summary div.infos_question p:first-child span.auteur_question{
+    text-decoration:underline;
+    }   
+    
+li.short-summary div.infos_question p.temps_restant{
+    font-weight:bold;
+    font-style:italic;
+    font-size:12px;
+  margin-bottom:10px;
+    }   
+
+
+li.short-summary div.infos_question div.infos_pictos{
+    zoom:1;}
+li.short-summary div.infos_question div.infos_pictos:after{
+  clear: both;
+  content: "";
+  display: block;}
+
+  
+li.short-summary div.infos_question div.infos_pictos p{
+    float:left;
+    padding:0;
+    margin:0;
+    margin-left:10px;}
+    
+li.short-summary div.infos_question div.infos_pictos p:first-child{
+    margin-left:0;}
+
+li.short-summary div.infos_question div.infos_pictos p.nbr_answers{
+    height:18px;
+    padding-left:25px;
+    color:#706f6f;
+    background: url(../images/question/icon_answer.png) no-repeat;
+    }   
+    
+li.short-summary div.infos_question div.infos_pictos p.nbr_views{
+    height:18px;
+    padding-left:29px;
+    color:#706f6f;
+    background: url(../images/question/icon_eye.png) no-repeat;
+    }   
+    
+li.short-summary  div.infos_question div.infos_pictos p.nbr_votes{
+    height:18px;
+    padding-left:20px;
+    color:#706f6f;
+    background: url(../images/question/icon_votes.png) no-repeat;
+    }   
+    
+
+/*++++++++  Fin infos question (date, temps restant, nbr vues, nbr réponses, nbr votes) ++++*/

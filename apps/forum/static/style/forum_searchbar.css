@@ -1,0 +1,53 @@
+/*++++++++++++++++++++++++ SEARCH BAR ++++++++++++++++++++++++++++*/
+
+div#searchBar {
+  background-color: #fff;
+  border-top: 1px solid #cccccc;
+  float: right;
+  width:240px;
+  height:25px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+
+div#searchBar form#searchForm{
+    zoom:1; 
+}
+div#searchBar form#searchForm:after{
+  clear: both;
+  content: "";
+  display: block;}
+ 
+div#searchBar input.searchBtn{
+    display:block;
+    float:left;
+    width:20px;
+    height:10px; 
+    margin-top: 8px;
+    border:none;
+    background: url(../images/search_icon.png) right top no-repeat;
+    cursor:pointer;
+    }
+    
+div#searchBar input.searchInput,
+div#searchBar input.searchInputCancelable{
+    float:left;
+    display:block;
+    width:200px;
+    height:25px;
+    border:none;}
+    
+div#searchBar input.cancelSearchBtn{
+    float:right;
+    display:block;
+    width:20px;
+    height:10px;
+    margin-top: 8px;
+    border:none;
+    text-indent:-5000px;
+    background: url(../images/close_dark.png) no-repeat;
+    cursor:pointer;}
+
+
+/*++++++++++++++++++++++++ END SEARCH BAR ++++++++++++++++++++++++++++*/

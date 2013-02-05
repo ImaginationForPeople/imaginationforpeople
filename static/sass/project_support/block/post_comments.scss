@@ -1,0 +1,179 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+@import "i4p/buttons";
+
+$i4p-form-action-sprite-dimensions: true;
+$i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
+@import "project_sheet/i4p-form-action/*.png";
+
+body.question-page div {
+  &.comments {
+    padding-top: 15px;
+    padding-right: 0;
+    padding-left: 100px;
+    background: image-url('project_support/misc/arrow_comment_box.png') 150px 8px no-repeat;
+    float:left;
+    div.comment-body p {
+      padding-bottom: 5px;
+    }
+  }
+  &.content {
+    @include border-radius(5px,5px);
+    background-color: #ececec;
+    float:left;
+  }
+  &.comment-form {
+    padding:8px 8px 0;
+    min-height:35px;
+    float:left;
+    width:504px;
+
+    form {
+      margin:0;
+    }
+
+    label {
+      display:none;
+    }
+
+    textarea {
+      border:2px solid #266774;
+      @include border-corner-radius('top','left',5px);
+      @include border-corner-radius('bottom','left',5px);
+      @include border-corner-radius('top','right',0);
+      @include border-corner-radius('bottom','right',0);
+      float:left;
+      height:26px;
+      width:76%;
+      padding:0 3px;
+      line-height:26px;
+      font-size:1rem;
+      font-style:italic;
+    }
+
+    .submit {
+      float:left;
+      height:30px;
+      border:3px solid #266774;
+      background:#266774;
+      color:white;
+      text-transform:uppercase;
+      font-family:$fontOpenSans;
+      @include border-corner-radius('top','left',0);
+      @include border-corner-radius('bottom','left',0);
+      @include border-corner-radius('top','right',5px);
+      @include border-corner-radius('bottom','right',5px);
+      width:22%;
+      font-size:1.1rem;
+      font-weight:bold;
+    }
+  }
+  &.comment {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 15px;
+    padding-left: 40px;
+    border-top: 1px solid #ffffff;
+    border-bottom: 1px solid #dedede;
+    background:image-url('project_support/misc/chevron_up.png') no-repeat 14px 22px;
+    clear:both;
+
+    &:first-child {
+      border-top:0;
+    }
+
+    &:last-child {
+      border-bottom:0;
+    }
+    div {
+      &.comment_infos {
+        padding-bottom: 10px;
+        a.author {
+          font-family: 'OpenSans', Arial, sans-serif;
+          font-size: 11px;
+          font-weight: bold;
+          font-style: italic;
+          color: #2e2e2e;
+        }
+        span.age {
+          font-family: 'OpenSans', Arial, sans-serif;
+          font-size: 11px;
+          font-weight: normal;
+          font-style: normal;
+          color: #706f6f;
+        }
+      }
+      &.admin_actions {
+        zoom: 1;
+        float: right;
+        &:after {
+          clear: both;
+          content: "";
+          display: block;
+        }
+        .comment-delete {
+          float: right;
+        }
+        a {
+          &.delete-icon.comment-delete {
+            font-family: 'OpenSans', Arial, sans-serif;
+            font-size: 11px;
+            font-weight: normal;
+            font-style: normal;
+            color: #706f6f;
+            padding-left: 4px;
+          }
+          &.edit-icon.comment-edit {
+            float: right;
+            font-family: 'OpenSans', Arial, sans-serif;
+            font-size: 11px;
+            font-weight: normal;
+            font-style: normal;
+            color: #706f6f;
+          }
+        }
+      }
+
+      &.comment-body p {
+        font-size:1.1rem;
+        font-family:$fontOpenSans;
+        line-height:1.5rem;
+      }
+    }
+    &.editing {
+      @include i4p-transition(all .5s ease);
+      background-color: $colorLightBlue;
+
+      .admin_actions {
+        display:none;
+      }
+
+      .age {
+        color:white !important;
+      }
+    }
+  }
+}
+
+ button[type='submit'] {
+  @include i4p-form-action-sprite('ok-white'); 
+
+  border: none;
+  display: block;
+  float: right;
+  font-size: 0;
+  margin-left: $sizeMarginMedium;
+  cursor: pointer;
+  }
+
+  button[type='cancel'] {
+  @include i4p-form-action-sprite('cancel-white'); 
+
+  border: none;
+  display: block;
+  float: right;
+  font-size: 0;
+  margin-left: $sizeMarginMedium;
+  cursor: pointer;
+}

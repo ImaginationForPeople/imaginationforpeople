@@ -80,6 +80,8 @@ django-reversion==1.6.1
 # django-mailman
 -e git://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
 
+-e git+git://github.com/callowayproject/django-categories.git@1.1.3#egg=django-categories
+
 # For Sentry
 raven==2.0.3
 
@@ -92,7 +94,8 @@ django-simplegravatar==0.2
 -e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
 # Askbot
--e git://github.com/atiberghien/askbot-devel.git@ab4c9aaa1800e4ea4452bc803fa6dbff4002efb9#egg=askbot
+-e hg+https://atiberghien@bitbucket.org/atiberghien/django-keyedcache#egg=django-keyedcache
+-e git://github.com/atiberghien/askbot-devel.git@fda747c1af89d8bc8171cb81e82ddc2e0f004d9f#egg=askbot
 
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.1#egg=django-blog-zinnia
@@ -114,3 +117,4 @@ werkzeug
 django-debug-toolbar
 sphinx
 dozer==0.1
+

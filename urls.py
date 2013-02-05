@@ -56,7 +56,7 @@ urlpatterns += i18n_patterns('',
                         )
 
 urlpatterns += i18n_patterns('',
-#    url(r'^', include('apps.i4p_base.urls')),
+    url(r'^', include('apps.i4p_base.urls')),
 
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),

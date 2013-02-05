@@ -1,0 +1,18 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/block/support_toolbar.css" />
+{% endaddtoblock %}
+
+<div class="support-toolbar">
+    <div class="container">
+        <div class="row">
+            <ul class="span12">
+                <li class="call">{% trans 'Project needs'%} <span class="badge">{{ call_count }}</span></li>
+                <li class="prop">{% trans 'Project offers' %} <span class="badge">{{ prop_count }}</span></li>
+                <li class="right"><a class="propose-link" href="{% url project_support_propose project_slug=project_translation.slug %}">{% trans 'explain a new needs or propose your help'%}</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
