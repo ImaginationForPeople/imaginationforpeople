@@ -35,7 +35,7 @@ class WorkgroupResource(ModelResource):
     
     class Meta:
         queryset = WorkGroup.objects.all()
-        resource_name="workgroup"
+        resource_name = "workgroup"
         throttle = CacheDBThrottle()
         fields = ["name", "description", "language"]
         filtering = {
