@@ -19,11 +19,12 @@
 from tagging.models import Tag
 from tastypie import fields
 from tastypie.resources import ModelResource
+from tastypie.throttle import CacheDBThrottle
 
-from apps.workgroup.models import WorkGroup
 from apps.project_sheet.models import I4pProjectTranslation
+from apps.workgroup.models import WorkGroup
 
-from .project import UserResource, I4pProjectTranslationListResource
+from .project import I4pProjectTranslationListResource, UserResource
 
 class WorkgroupResource(ModelResource):
     subscribers = fields.ToManyField(UserResource, "subscribers", full=True, null=True)
@@ -32,6 +33,7 @@ class WorkgroupResource(ModelResource):
     class Meta:
         queryset = WorkGroup.objects.all()
         resource_name="workgroup"
+        throttle = CacheDBThrottle()
         fields = ["name", "description", "language"]
         filtering = {
             "language": 'exact',
