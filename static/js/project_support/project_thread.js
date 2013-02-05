@@ -28,4 +28,15 @@ $(document).ready(function () {
 			$(itemThis).removeClass('editing');
 		});
 	});
+
+	$('.comment-form textarea').focus(function() {
+		$(this).height('80px');
+		$(this).css('line-height','1.5rem');
+		$(this).css('padding-top','4px');
+	});
+	$('.comment-form textarea').blur(function() {
+		$(this).height('26px');
+		$(this).css('line-height','26px');
+		$(this).css('padding-top','0');
+	});
 });

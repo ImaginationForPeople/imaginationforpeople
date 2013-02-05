@@ -10,7 +10,7 @@ from django.views.generic.base import TemplateView
 
 from askbot.models import Thread, Activity, Post
 from askbot.views.readers import question, questions
-from askbot.views.writers import answer
+from askbot.views.writers import answer, edit_answer
 
 from apps.project_sheet.models import I4pProjectTranslation
 from apps.project_sheet.utils import get_project_translation_by_any_translation_slug
@@ -193,3 +193,27 @@ def answer_project_support(request, project_slug, question_id):
     return answer(request, 
                   question_id, 
                   redirect_to=reverse('project_support_view', args=[project_slug, question_id]))
+    
+def edit_support_answer(request, project_slug, answer_id):
+    language_code = translation.get_language()
+    site = Site.objects.get_current()
+        
+    try:
+        project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=project_slug,
+                                            prefered_language_code=language_code,
+                                            site=site)
+        
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    extra_context = {
+         'project_translation' : project_translation,
+         'active_tab' : 'support',
+    }
+    
+    return edit_answer(request, 
+                       answer_id,
+                       jinja2_rendering=False,
+                       template_name="project_support/block/answer_edit.html",
+                       extra_context=extra_context)
+

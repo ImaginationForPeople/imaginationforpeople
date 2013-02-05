@@ -58,7 +58,7 @@ $(document).ready(function(){
             <div id="categorySearch">
                 <div class="form">
                     <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
-                        <input type="text" name="query" placeholder="Entrez un mot clé..."/>
+                        <input type="text" name="query" placeholder="{% trans 'Enter a keyword' %}"/>
                         <input type="submit">
                     </form>
                 </div>
@@ -68,7 +68,7 @@ $(document).ready(function(){
                 <div class="category">
                     <ul class="sf-main-menu">
                         <li>
-                            <a href="#">Parcourir les catégories</a>
+                            <a href="#">{%trans 'Browse categories' %}</a>
                             <ul>
                                 {% categories_tree 'support' search_state%}
                             </ul>
@@ -77,7 +77,7 @@ $(document).ready(function(){
                 </div>
             </div>
             {% if search_tags or query %}
-            <ul>
+            <ul class="search-tags">
                 {% if query %}
                 <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}">X</a></li>
                 {% endif %}
