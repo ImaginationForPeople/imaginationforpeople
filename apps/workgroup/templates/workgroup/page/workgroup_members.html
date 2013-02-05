@@ -32,23 +32,22 @@
 	      {% trans "There are no group subscribers." %}
               {% endfor %}
             </ul>
-	  </div>
+	         </div>
 	    
-	  {% if workgroup.mailing_list and user.is_superuser %}
+	       {% if workgroup.mailing_list and user.is_superuser %}
 	    
-	  <div>
-	    <h3>{% trans "Other mailing list subscribers" %} ({{ ml_nonmember_list|length }})</h3>
+      	  <div>
+      	    <h3>{% trans "Other mailing list subscribers" %} ({{ ml_nonmember_list|length }})</h3>
 
-	    <ul>
-	      {% for ml_member in ml_nonmember_list %}
-	      <li>{{ ml_member.email }} </li>
-	      {% endfor %}
-	    </ul>
-
-	    {% endif %}
+      	    <ul>
+      	      {% for ml_member in ml_nonmember_list %}
+      	      <li>{{ ml_member.email }} </li>
+      	      {% endfor %}
+      	    </ul>
           </div>
-	</div>
-	{% include "workgroup/block/workgroup_sidebar.html" %}
+	       {% endif %}
+	       </div>
+	       {% include "workgroup/block/workgroup_sidebar.html" %}
       </div>
     </div>
     
