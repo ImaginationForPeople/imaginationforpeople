@@ -218,6 +218,11 @@ class I4pProjectTranslationResource(ModelResource):
         return bundle
 
 class I4pProjectTranslationListResource(ModelResource):
+    """
+    Resource used to list I4pProjectTranslation when called from another resource (using ToManyField for example)
+    This resource is NOT used to display I4pProjectTranslation as a front end (like using /project/bestof).
+    The classic I4pProjectTranslationResource is used for these cases.
+    """
     project = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
     
     class Meta:
