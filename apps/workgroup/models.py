@@ -15,13 +15,31 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+import os
+
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from django_mailman.models import List
+from tagging.fields import TagField
+
+from apps.project_sheet.models import I4pProject
+
+def get_grouppicture_path(aWorkGroup, filename):
+    """
+    Generate a random UUID for a picture,
+    use the uuid as the track name
+    """
+    name, extension = os.path.splitext(filename)
+
+    dst = 'uploads/groups/%s/pictures/cover.%s' % (aWorkGroup.slug,
+                                                   extension)
+    return dst
+
 
 class WorkGroup(models.Model):
     """
@@ -48,7 +66,26 @@ class WorkGroup(models.Model):
     visible = models.BooleanField(verbose_name=_('visible'), 
                                   default=True)
 
+    projects = models.ManyToManyField(I4pProject,
+                                      verbose_name=_('Linked Projects'),
+                                      related_name='workgroups',
+                                      blank=True)
 
+    tags = TagField(_("Tags of the group"), null=True, blank=True)
+
+    picture = models.ImageField(upload_to=get_grouppicture_path, null=True, blank=True)
+
+    outside_url = models.URLField(_('External URL'),
+                                  null=True,
+                                  blank=True,
+                                  help_text=_("A URL that points to the real discussion tool, if we're not using the built-in (eg Facebook group URL).")
+                              )
+
+    subscribers = models.ManyToManyField(User,
+                                         verbose_name=_("Subscribers"),
+                                         related_name='workgroups',
+                                         blank=True
+                                     )
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
                              self.get_language_display())

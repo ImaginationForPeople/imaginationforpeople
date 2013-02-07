@@ -27,7 +27,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 .project-content {
     @include i4p-sprite('sheet');
     @include i4p-sprite-header('sheet');
-    background-color: white;
+    background-color: $colorWhite;
     padding-top: 3rem;
 
 
