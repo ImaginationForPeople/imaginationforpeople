@@ -1,7 +1,7 @@
 from markdown.inlinepatterns import SimpleTagPattern
 
 from markdown import Extension
-from markdown import etree
+from markdown.util import etree
 
 from django.core.urlresolvers import reverse
 
