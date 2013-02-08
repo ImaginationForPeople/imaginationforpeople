@@ -41,11 +41,10 @@
                         <ul class="tag_list">
                             {% for tag in thread.get_tag_names %}
                             <li>
-                            <div class="part_tag">
-                            <!-- NO WAY TO REPLACE THIS FTM -->
-                            {% include_jinja "question/question_tag_anchor.html" request %}
-                            </div>
-                            <div class="part_pointe"></div>
+                                <div class="part_tag">
+                                {% include_jinja "question/question_tag_anchor.html" request %}
+                                </div>
+                                <div class="part_pointe"></div>
                             </li>
                             {% endfor %}
                         </ul>   

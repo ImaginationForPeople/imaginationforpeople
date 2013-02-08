@@ -18,6 +18,7 @@ from apps.project_support.forms import ProjectSupportProposalForm
 
 from apps.project_support.models import ProjectSupport
 from apps.tags.models import TaggedCategory
+from askbot.search.state_manager import SearchState
     
 def list_project_support(request, 
                          project_slug,
@@ -174,12 +175,16 @@ def view_project_support(request, project_slug, question_id):
 
     project = project_translation.project
     
+    search_state = SearchState.get_empty()
+    search_state._questions_url = reverse('project_support_main', args=[project_translation.slug])
+    
     extra_context = {
              'project' : project,
              'project_translation' : project_translation,
              'active_tab' : 'support',
              'form_answer_url' : reverse('project_support_answer', args=[project_slug, question_id]),
              'edit_question_url' : reverse('project_support_edit', args=[project_slug, question_id]),
+             'search_state' : search_state,
              'disable_retag' : True,
          }
     

@@ -19,7 +19,11 @@
 	    		<div class="wrap-form">
 			        <form action="." method="post">{% csrf_token %}
 			        	{{ form.as_p }}
+			        	{% if request.user.is_authenticated %}
 			       	 	<input type="submit" value="{% trans 'submit'%}">
+			       	 	{% else %}
+			       	 	<a href="{% url userena_signin %}?next={{request.get_full_path}}">{% trans 'First signin' %}</a>
+			       	 	{% endif%}
 			        </form>
 			    </div>
 			    {% endblock %}
