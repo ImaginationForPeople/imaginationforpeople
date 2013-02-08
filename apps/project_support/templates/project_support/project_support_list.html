@@ -65,16 +65,7 @@ $(document).ready(function(){
                 <div class="middle">
                     {% trans "or"%}
                 </div>
-                <div class="category">
-                    <ul class="sf-main-menu">
-                        <li>
-                            <a href="#">{%trans 'Browse categories' %}</a>
-                            <ul>
-                                {% categories_tree 'support' search_state%}
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                {% include "project_support/block/support_categories_menu.html" %}
             </div>
             {% if search_tags or query %}
             <ul class="search-tags">

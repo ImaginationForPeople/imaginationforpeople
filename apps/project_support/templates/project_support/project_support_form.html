@@ -7,6 +7,7 @@
 {% addtoblock "css" %}
 <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_form.css" />
 {% endaddtoblock %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
 {% endblock %}
 
 {% block project_content %}
@@ -18,7 +19,16 @@
 	    		<h1>{% trans 'Please explain your need here'%}</h1>
 	    		<div class="wrap-form">
 			        <form action="." method="post">{% csrf_token %}
-			        	{{ form.as_p }}
+			        	
+			        	<p>{{form.type.label_tag}}{{form.type}}</p>
+			        	<div id="categorySearch">
+			        	<input type="hidden" name='category' value="{{form.category.value}}"/>
+			        	{% include "project_support/block/support_categories_menu.html" %}
+			        	<label id="categ_label">{% trans 'No selected category' %}</label>
+			        	</div>
+			        	<p>{{form.title.label_tag}}{{form.title}}</p>
+			        	<p>{{form.text.label_tag}}{{form.text}}</p>
+			        	
 			        	{% if request.user.is_authenticated %}
 			       	 	<input type="submit" value="{% trans 'submit'%}">
 			       	 	{% else %}
@@ -26,6 +36,19 @@
 			       	 	{% endif%}
 			        </form>
 			    </div>
+			    <script>
+			    	$(document).ready(function(){
+			    		var current_cat = "{{form.category.value}}"
+			    		if(current_cat){
+			    			$("#categ_label").html($("#"+current_cat+".tag-selector").html())
+			    		}
+			    		$(".tag-selector").click(function(){
+			    			$("#categ_label").html($(this).html());
+			    			$("input[name=category]").val($(this).attr('id'));
+			    			return false;
+			    		});
+			    	});
+			    </script>
 			    {% endblock %}
 	    	</div>
 	    </div>
