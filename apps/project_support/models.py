@@ -6,8 +6,8 @@ from askbot.models.question import Thread
 from apps.tags.models import TaggedCategory
 
 SUPPORT_TYPE_CHOICES = (
-    ("CALL", _("call for help")),
-    ("PROP", _("help proposal")),
+    ("CALL", _("project needs")),
+    ("PROP", _("project offers")),
 )
 
 class ProjectSupport(models.Model):
