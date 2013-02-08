@@ -26,7 +26,7 @@
 			        	{% include "project_support/block/support_categories_menu.html" %}
 			        	<label id="categ_label">{% trans 'No selected category' %}</label>
 			        	</div>
-			        	<p>{{form.title.label_tag}}{{form.title}}</p>
+			        	<p class="title-field">{{form.title.label_tag}}{{form.title}}</p>
 			        	<p>{{form.text.label_tag}}{{form.text}}</p>
 			        	
 			        	{% if request.user.is_authenticated %}
