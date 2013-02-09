@@ -12,8 +12,12 @@ class CategoriesTreeNode(template.Node):
     def render_node(self, node, search_state): 
         res= ""
         for child in node.children.all():
-            res += '<li><a href="#SEARCH_URL#">%s</a>' % child.name
-            if not child.children.count():
+            if not search_state :
+                res += '<li><a id="%s" class="tag-selector" href="">%s</a>' % (child.id, child.name)
+            else:
+                res += '<li><a class="tag-selector" href="#SEARCH_URL#">%s</a>' % child.name
+                
+            if not child.children.count() and search_state:
                 res = res.replace("#SEARCH_URL#", search_state.add_tag(child.tag.name).full_url())
             else:
                 res = res.replace("#SEARCH_URL#", "#")

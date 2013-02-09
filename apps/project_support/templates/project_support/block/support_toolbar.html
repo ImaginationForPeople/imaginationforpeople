@@ -11,7 +11,20 @@
             <ul class="span12">
                 <li class="call">{% trans 'Project needs'%} <span class="badge">{{ call_count }}</span></li>
                 <li class="prop">{% trans 'Project offers' %} <span class="badge">{{ prop_count }}</span></li>
-                <li class="right"><a class="propose-link" href="{% url project_support_propose project_slug=project_translation.slug %}">{% trans 'explain a new needs or propose your help'%}</a></li>
+                <li class="right">
+                	<a class="propose-link" 
+                	   {% if request.user.is_authenticated %}
+        			   href="{% url project_support_propose project_slug=project_translation.slug %}"
+        			   {% else %}
+        			   href="#"
+        			   {% endif  %}
+        			   >
+        			   {% trans 'describe your need or offer your help'|capfirst %}
+        			</a>
+        			{% if not request.user.is_authenticated %}
+        			<a href="{% url userena_signin %}?next={{request.get_full_path}}">{% trans 'First signin' %}</a>
+			       	{% endif  %} 	
+    			</li>
             </ul>
         </div>
     </div>

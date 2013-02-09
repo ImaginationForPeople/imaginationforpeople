@@ -18,6 +18,8 @@ from apps.project_support.forms import ProjectSupportProposalForm
 
 from apps.project_support.models import ProjectSupport
 from apps.tags.models import TaggedCategory
+from askbot.search.state_manager import SearchState
+from askbot.templatetags.extra_filters_jinja import get_empty_search_state
     
 def list_project_support(request, 
                          project_slug,
@@ -150,6 +152,8 @@ def propose_project_support(request, project_slug, question_id=None):
         context = {
             'project_translation' : project_translation,
             'form' : form,
+            'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
+            'search_state' : None,
         }
         
         return render_to_response("project_support/project_support_form.html",
@@ -174,12 +178,16 @@ def view_project_support(request, project_slug, question_id):
 
     project = project_translation.project
     
+    search_state = SearchState.get_empty()
+    search_state._questions_url = reverse('project_support_main', args=[project_translation.slug])
+    
     extra_context = {
              'project' : project,
              'project_translation' : project_translation,
              'active_tab' : 'support',
              'form_answer_url' : reverse('project_support_answer', args=[project_slug, question_id]),
              'edit_question_url' : reverse('project_support_edit', args=[project_slug, question_id]),
+             'search_state' : search_state,
              'disable_retag' : True,
          }
     
