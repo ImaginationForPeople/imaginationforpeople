@@ -60,7 +60,7 @@
 	    <div class="project-members member-block">
 		<h2>
 		    <i class="sheet-members"></i>
-		    {% trans "Contributors"|capfirst %}</h2>
+		    {% trans "Project Community"|capfirst %}</h2>
 
 		{% unique_counter memberlist_modal %}
 		{% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
@@ -72,8 +72,10 @@
 		{% include "project_sheet/block/memberlist_modal_seeall.html" %}
 
 		{% endwith %}
-		{% include "project_sheet/block/memberlist_square.html" %}
+		{% include "member/block/memberlist_square.html" with members=project.detailed_members.all %}
 	    </div>
+
+	    {% include "workgroup/block/grouplist_fancy_wide.html" %}
 
 	    <div class="project-related clearfix">
 		<!-- FIXME: use real data for related project list once in the datamodel -->

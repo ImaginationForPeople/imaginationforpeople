@@ -1,23 +1,18 @@
-<form
-        id="fmanswer"
-        action="{% url answer question.id %}"
-        method="post"
-        >{% csrf_token %}
+{% import "macros.html" as macros %}
+<form id="fmanswer" action="{{form_answer_url}}" method="post">{% csrf_token %}
     {# ==== START: question/subscribe_by_email_prompt.html ==== #}
     {% include "question/subscribe_by_email_prompt.html" %}
     {# ==== END: question/subscribe_by_email_prompt.html ==== #}
     <div style="clear:both"></div>
     {% if request.user.is_anonymous() and settings.ALLOW_POSTING_BEFORE_LOGGING_IN == False %}
         {% if not thread.closed %}
-            <a
-                    class="submit"
-                    href="{{settings.LOGIN_URL}}?next={% url question question.id %}"
-                    >{% trans %}Login/Signup to Answer{% endtrans %}</a>
+            <a class="submit" href="{{settings.LOGIN_URL}}?next={% url question question.id %}">
+            {% trans %}Login/Signup to Answer{% endtrans %}
+            </a>
         {% endif %}
     {% else %}
         {% if not thread.closed %}
             <div>
-                {% spaceless %}
                     <h2>
                         {% if answers %}
                             {% trans %}Your answer{% endtrans %}
@@ -25,7 +20,6 @@
                             {% trans %}Be the first one to answer this question!{% endtrans %}
                         {% endif %}
                     </h2>
-                {% endspaceless %}
             </div>
             {% if request.user.is_anonymous() %}
                 <div class="message">{% trans %}<span class='strong big'>Please start posting your answer anonymously</span> - your answer will be saved within the current session and published after you log in or create a new account. Please try to give a <strong>substantial answer</strong>, for discussions, <strong>please use comments</strong> and <strong>please do remember to vote</strong> (after you log in)!{% endtrans %}</div>

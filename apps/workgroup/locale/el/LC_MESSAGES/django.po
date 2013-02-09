@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-23 19:52+0200\n"
+"POT-Creation-Date: 2013-02-09 22:55+0100\n"
 "PO-Revision-Date: 2012-09-05 14:39+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
@@ -19,31 +19,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cms_plugins.py:60
+#: cms_plugins.py:48
 msgid "WorkGroup (un)subscribe button"
 msgstr "Κουμπί εγγραφής(διαγραφής) στην ομάδα εργασίας"
 
-#: cms_plugins.py:73
+#: cms_plugins.py:61
 msgid "WorkGroup subscribers list"
 msgstr ""
 
-#: models.py:34
+#: models.py:51
 msgid "name"
 msgstr "όνομα"
 
-#: models.py:37
+#: models.py:54
 msgid "spoken language"
 msgstr "ομιλούμενη γλώσσα"
 
-#: models.py:41
+#: models.py:58
 msgid "Description"
 msgstr "Περιγραφή"
 
-#: models.py:49
+#: models.py:66
 msgid "visible"
 msgstr "ορατό"
 
-#: views.py:85
+#: models.py:70
+msgid "Linked Projects"
+msgstr ""
+
+#: models.py:74
+msgid "Tags of the group"
+msgstr ""
+
+#: models.py:78
+msgid "External URL"
+msgstr ""
+
+#: models.py:81
+msgid ""
+"A URL that points to the real discussion tool, if we're not using the built-"
+"in (eg Facebook group URL)."
+msgstr ""
+
+#: models.py:85
+#, fuzzy
+msgid "Subscribers"
+msgstr "Εγγραφή"
+
+#: views.py:180
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
@@ -52,12 +75,12 @@ msgstr ""
 "(%(user_email)s) Έχετε εγγραφεί με επιτυχία στην λίστα αλληλογραφίας "
 "%(workgroup_name)s "
 
-#: views.py:92
+#: views.py:187
 #, python-format
 msgid "You couldn't be subscribed to this workgroup:%s"
 msgstr "Δεν πραγματοποιήθηκε η εγγραφή σας στην ομάδα εργασίας:%s "
 
-#: views.py:119
+#: views.py:218
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
@@ -65,49 +88,150 @@ msgid ""
 msgstr ""
 "(%(user_email)s) Έχετε βγει απο την λίστα αλληλογραφίας %(workgroup_name)s "
 
-#: views.py:126
+#: views.py:225
 #, python-format
 msgid "You couldn't be unsubscribed from this workgroup:%s"
 msgstr "Θα πραγματοποιήθηκε η διαγραφή σας από αυτήν την ομάδα εργασίας:%s"
-
-#: templates/workgroup/base.html:8
-#: templates/workgroup/workgroup_detail.html:11
-msgid "Workgroup"
-msgstr "Ομάδα εργασίας"
-
-#: templates/workgroup/subscribe_button.html:5
-msgid "Subscribe"
-msgstr "Εγγραφή"
-
-#: templates/workgroup/subscribe_button.html:11
-msgid "Unsubscribe"
-msgstr "Διαγραφή"
 
 #: templates/workgroup/workgroup_list.html:10
 msgid "Workgroups"
 msgstr "Ομάδες Εργασίας"
 
-#: templates/workgroup/workgroup_subscribers.html:6
-msgid "Group subscribers"
+#: templates/workgroup/block/grouplist_fancy_wide.html:10
+msgid "Related Groups"
 msgstr ""
 
-#: templates/workgroup/workgroup_subscribers.html:10
-msgid "You are not susbcribed to this Mailing List"
-msgstr "Δεν είστε εγγεγραμμένοι στην σε αυτή τη λίστα αλληλογραφίας"
+#: templates/workgroup/block/grouplist_fancy_wide.html:11
+#: templates/workgroup/block/workgroup_header.html:41
+msgid "See all"
+msgstr ""
 
-#: templates/workgroup/workgroup_subscribers.html:12
-msgid "You are susbcribed to this Mailing List"
-msgstr "Είστε εγγεγραμμένοι σε αυτή τη λίστα αλληλογραφίας"
+#: templates/workgroup/block/subscribe_button.html:17
+msgid "Open Group Page"
+msgstr ""
 
-#: templates/workgroup/workgroup_subscribers.html:28
+#: templates/workgroup/block/subscribe_button.html:25
+msgid "Join the workgroup and follow the discussion"
+msgstr ""
+
+#: templates/workgroup/block/subscribe_button.html:32
+msgid "You are part of this group"
+msgstr ""
+
+#: templates/workgroup/block/subscribe_button.html:32
+msgid "Quit this group"
+msgstr ""
+
+#: templates/workgroup/block/workgroup_header.html:20
+msgid "Edit Group"
+msgstr ""
+
+#: templates/workgroup/block/workgroup_header.html:27
+#, fuzzy
+msgid "Spoken language :"
+msgstr "ομιλούμενη γλώσσα"
+
+#: templates/workgroup/block/workgroup_header.html:32
 #, python-format
-msgid "And %(anonymous_count)s anonymous subscriber%(pluralize)s"
+msgid ""
+"\n"
+"\tmember%(member_plural)s (+ %(nonmember_count)s)\n"
+"\t"
 msgstr ""
 
-#: templates/workgroup/workgroup_subscribers.html:32
-msgid "Group subscribers and non IP members mail (admin):"
-msgstr "Ομάδες συνδρομητών και μη μέλη ταχυδρομείου IP (διαχειριστές)"
+#: templates/workgroup/block/workgroup_header.html:36
+#, python-format
+msgid ""
+"\n"
+"\tmember%(member_plural)s\n"
+"\t"
+msgstr ""
 
-#: templates/workgroup/workgroup_subscribers.html:41
-msgid "Group subscribers and IP members mail (admin):"
-msgstr "Ομάδες συνδρομητών και μέλη ταχυδρομείου IP (διαχειριστές)"
+#: templates/workgroup/block/workgroup_sidebar.html:6
+msgid "Group projects"
+msgstr ""
+
+#: templates/workgroup/block/workgroup_sidebar.html:9
+msgid "Manage linked projects"
+msgstr ""
+
+#: templates/workgroup/layout/workgroup_base.html:17
+msgid "Workgroup"
+msgstr "Ομάδα εργασίας"
+
+#: templates/workgroup/page/group_create.html:9
+msgid "Create a new group "
+msgstr ""
+
+#: templates/workgroup/page/group_edit.html:16
+msgid "Edit this group information"
+msgstr ""
+
+#: templates/workgroup/page/wiki_edit.html:14
+msgid ""
+"<strong>Warning:</strong> You are not logged in. Your IP address will be "
+"logged."
+msgstr ""
+
+#: templates/workgroup/page/wiki_edit.html:15
+msgid "Click here to log in"
+msgstr ""
+
+#: templates/workgroup/page/wiki_edit.html:22
+msgid "Edit this workgroup"
+msgstr ""
+
+#: templates/workgroup/page/wiki_edit.html:43
+msgid "Preview"
+msgstr ""
+
+#: templates/workgroup/page/wiki_edit.html:47
+#: templates/workgroup/page/wiki_edit.html:69
+msgid "Save changes"
+msgstr ""
+
+#: templates/workgroup/page/wiki_edit.html:53
+msgid "Delete article"
+msgstr ""
+
+#: templates/workgroup/page/wiki_edit.html:65
+msgid "Back to editor"
+msgstr ""
+
+#: templates/workgroup/page/workgroup_detail.html:24
+msgid ""
+"This group uses a mailing list to discuss. You can take part to the "
+"discussion by sending an e-mail to the following address:"
+msgstr ""
+
+#: templates/workgroup/page/workgroup_detail.html:24
+msgid "Browse the Archives"
+msgstr ""
+
+#: templates/workgroup/page/workgroup_members.html:27
+#, fuzzy
+msgid "Subscribers list"
+msgstr "Εγγραφή"
+
+#: templates/workgroup/page/workgroup_members.html:32
+msgid "There are no group subscribers."
+msgstr ""
+
+#: templates/workgroup/page/workgroup_members.html:40
+msgid "Other mailing list subscribers"
+msgstr ""
+
+#~ msgid "Unsubscribe"
+#~ msgstr "Διαγραφή"
+
+#~ msgid "You are not susbcribed to this Mailing List"
+#~ msgstr "Δεν είστε εγγεγραμμένοι στην σε αυτή τη λίστα αλληλογραφίας"
+
+#~ msgid "You are susbcribed to this Mailing List"
+#~ msgstr "Είστε εγγεγραμμένοι σε αυτή τη λίστα αλληλογραφίας"
+
+#~ msgid "Group subscribers and non IP members mail (admin):"
+#~ msgstr "Ομάδες συνδρομητών και μη μέλη ταχυδρομείου IP (διαχειριστές)"
+
+#~ msgid "Group subscribers and IP members mail (admin):"
+#~ msgstr "Ομάδες συνδρομητών και μέλη ταχυδρομείου IP (διαχειριστές)"

@@ -34,18 +34,6 @@ class BaseWorkGroupPlugin(CMSPluginBase):
    
     def render(self, context, instance, placeholder):
         workgroup = instance.workgroup
-        members = get_ml_members(workgroup)
-
-        context['ml_member_list'] = []
-        context['ml_nonmember_list'] = []        
-        for member in members:
-            try:
-                found_member = User.objects.get(email=member[0])
-                context['ml_member_list'].append(found_member)
-            except User.DoesNotExist:
-                context['ml_nonmember_list'].append(User(email=member[0]))
-
-
         context['workgroup'] = workgroup
 
         return context

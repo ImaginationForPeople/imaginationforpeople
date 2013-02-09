@@ -275,8 +275,6 @@ class ProjectEditInfoView(ProjectView):
         self.project_location_form = I4pProjectLocationForm(request.POST,
                                                             instance=self.project_translation.project.location)
 
-        print self.project_translation.project.location
-        
         if self.project_info_form.is_valid() and self.project_location_form.is_valid():
             self.project_info_form.save()
             location = self.project_location_form.save()

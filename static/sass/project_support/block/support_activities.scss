@@ -1,0 +1,55 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+.support-activities {
+	h2 {
+		font-family: $fontOpenSans;
+		font-size: $sizeTextLarge;
+		font-stretch: condensed;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	#all-support-activities {
+		list-style-type:none;
+		margin:0;
+		@include border-radius(5px, 5px);
+		background:$colorLightLightGrey;
+		border:1px solid $colorLightDarkGrey;
+
+		li {
+			margin:2px;
+			border-bottom:1px solid $colorLightDarkGrey;
+			padding:5px 5px 10px;
+
+			&:last-child {
+				border:0;
+			}
+
+			img {
+				float:left;
+				margin:0 8px 0 0;
+			}
+
+			p {
+				font-family: 'OpenSans',Arial,sans-serif;
+			    font-size: 1rem;
+			    margin:0;
+			    line-height:1.4rem;
+
+			    strong {
+			    	font-style:italic;
+			    	font-weight:bold;
+			    }
+			}
+		}
+	}
+
+	img {
+		width:27px;
+		height:27px;
+	}
+}

@@ -1,0 +1,96 @@
+{% extends "project_sheet/layout/project_base.html" %}
+{% load i18n extra_tags support_tags humanize%}
+{% load sekizai_tags %}
+
+{% block content %}
+{{block.super}}
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_searchbar.css" />
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tabbar.css" />-->
+<!--- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" /> -->
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" /> -->
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />-->
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/utils.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#queryForm input:submit').hide();
+	$("#queryForm").submit(function(){
+		var url = $(this).attr("action");
+		url = QSutils.patch_query_string(url, "query:"+$(this).find("input[name=query]").val());
+		window.location.replace("{%url project_support_main project_translation.slug %}" + url);
+		return false;
+	});
+	
+	$("a.remove-tag-search").click(function(){
+		var url = $(this).attr("href");
+		url = QSutils.remove_search_tag(url, $(this).attr("data-tag-name"));
+		window.location.replace("{%url project_support_main project_translation.slug %}" + url);
+		return false
+	});
+	
+	$("a.remove-query-search").click(function(){
+        var url = $(this).attr("href");
+        url = QSutils.patch_query_string(url, "query:"+$(this).attr("data-tag-name"), true);
+        window.location.replace("{%url project_support_main project_translation.slug %}" + url);
+        return false
+    });
+});
+</script>
+{% endaddtoblock %}
+{% endblock %}
+
+{% block misc_toolbar %}
+    {% include "project_support/block/support_toolbar.html" %}
+{% endblock %}
+
+{% block project_content %}
+<div class="container">        
+    <div class="row">
+        <div class="span8 project-main">
+            <h2 class="title">{% trans "Filter calls"|upper %}</h2>
+            <div id="categorySearch">
+                <div class="form">
+                    <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
+                        <input type="text" name="query" placeholder="{% trans 'Enter a keyword' %}"/>
+                        <input type="submit">
+                    </form>
+                </div>
+                <div class="middle">
+                    {% trans "or"%}
+                </div>
+                {% include "project_support/block/support_categories_menu.html" %}
+            </div>
+            {% if search_tags or query %}
+            <ul class="search-tags">
+                {% if query %}
+                <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}">X</a></li>
+                {% endif %}
+                {% for tag in search_tags %}
+                <li>{{tag}}<a class="remove-tag-search" data-tag-name="{{tag}}" href="{{search_state.full_url}}">X</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div>
+            {% include_jinja "main_page/tab_bar.html" request %}
+            </div>
+            {% include "project_support/block/question_list.html" %}
+        </div>
+
+        <div class="span4 project-sidebar"> 
+            <div class="project-members member-block">
+                <h2><i class="sheet-members"></i>{% trans "Contributors"|capfirst %}</h2>
+                {% include "member/block/memberlist_square.html" with members=contributors %}
+            </div>
+
+            {% include "project_support/block/support_activities.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}
