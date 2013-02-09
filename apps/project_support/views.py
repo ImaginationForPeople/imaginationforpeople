@@ -19,6 +19,7 @@ from apps.project_support.forms import ProjectSupportProposalForm
 from apps.project_support.models import ProjectSupport
 from apps.tags.models import TaggedCategory
 from askbot.search.state_manager import SearchState
+from askbot.templatetags.extra_filters_jinja import get_empty_search_state
     
 def list_project_support(request, 
                          project_slug,
@@ -151,6 +152,8 @@ def propose_project_support(request, project_slug, question_id=None):
         context = {
             'project_translation' : project_translation,
             'form' : form,
+            'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
+            'search_state' : None,
         }
         
         return render_to_response("project_support/project_support_form.html",
