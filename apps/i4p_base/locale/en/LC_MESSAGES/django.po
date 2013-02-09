@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-23 19:51+0200\n"
+"POT-Creation-Date: 2013-02-09 22:52+0100\n"
 "PO-Revision-Date: 2012-05-14 09:01+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1034,11 +1034,11 @@ msgstr ""
 msgid "identify and support imaginative social projects"
 msgstr "identify and support imaginative social projects"
 
-#: templates/base.html:73 templates/base_obsolete.html:68
+#: templates/base.html:92 templates/base_obsolete.html:68
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Did you know that your Internet Browser is out of date?"
 
-#: templates/base.html:74 templates/base_obsolete.html:69
+#: templates/base.html:93 templates/base_obsolete.html:69
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
@@ -1046,11 +1046,11 @@ msgstr ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
 
-#: templates/base.html:75 templates/base_obsolete.html:70
+#: templates/base.html:94 templates/base_obsolete.html:70
 msgid "Just click on the icons to get to the download page"
 msgstr "Just click on the icons to get to the download page"
 
-#: templates/base.html:76 templates/base_obsolete.html:71
+#: templates/base.html:95 templates/base_obsolete.html:71
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
@@ -1058,29 +1058,30 @@ msgstr ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
 
-#: templates/base.html:77 templates/base_obsolete.html:72
+#: templates/base.html:96 templates/base_obsolete.html:72
 msgid "Close This Window"
 msgstr "Close This Window"
 
-#: templates/base.html:85 templates/base_obsolete.html:80
-msgid "Project search"
-msgstr "Project search"
+#: templates/base.html:103 templates/base_obsolete.html:82
+#, fuzzy
+msgid "Enter your email"
+msgstr "Enter your email adress"
 
-#: templates/base.html:87 templates/base_obsolete.html:82
-msgid "Enter your login"
-msgstr "Enter your login"
-
-#: templates/base.html:88 templates/base_obsolete.html:83
+#: templates/base.html:104 templates/base_obsolete.html:83
 msgid "Password"
 msgstr "Password"
 
-#: templates/base.html:90 templates/base_obsolete.html:85
+#: templates/base.html:106 templates/base_obsolete.html:85
 msgid "Enter your username"
 msgstr "Enter your username"
 
-#: templates/base.html:92 templates/base_obsolete.html:87
+#: templates/base.html:108 templates/base_obsolete.html:87
 msgid "Enter your email adress"
 msgstr "Enter your email adress"
+
+#: templates/base_obsolete.html:80
+msgid "Project search"
+msgstr "Project search"
 
 #: templates/filter-panel.html:12
 msgid "Pin/Unpin the panel"
@@ -1104,7 +1105,7 @@ msgid "Clear filters"
 msgstr "Clear filters"
 
 #: templates/filter-panel.html:60
-#: templates/cmsplugin_zinnia/_entry_detail.html:71
+#: templates/cmsplugin_zinnia/_entry_detail.html:88
 msgid "Tags"
 msgstr "Tags"
 
@@ -1161,7 +1162,7 @@ msgstr "team"
 msgid "Project Status"
 msgstr "Project Status"
 
-#: templates/footer.html:23 templates/footer_obsolete.html:20
+#: templates/footer.html:22 templates/footer_obsolete.html:20
 msgid ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
@@ -1169,36 +1170,34 @@ msgstr ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
 
-#: templates/footer.html:31 templates/footer_obsolete.html:28
+#: templates/footer.html:30
 msgid "Read the manifesto"
 msgstr "Read the manifesto"
 
-#: templates/footer.html:31 templates/footer_obsolete.html:28
+#: templates/footer.html:30
 msgid "About IP"
 msgstr "About IP"
 
-#: templates/footer.html:32 templates/footer_obsolete.html:29
+#: templates/footer.html:31
 msgid "Follow us"
 msgstr "Follow us"
 
-#: templates/footer.html:34 templates/footer.html.py:35
-#: templates/footer.html:36 templates/footer.html.py:37
-#: templates/footer_obsolete.html:31 templates/footer_obsolete.html.py:32
-#: templates/footer_obsolete.html:33 templates/footer_obsolete.html.py:34
+#: templates/footer.html:33 templates/footer.html.py:34
+#: templates/footer.html:35 templates/footer.html.py:36
 msgid "Follow us on"
 msgstr "Follow us on"
 
-#: templates/footer.html:59
+#: templates/footer.html:56
 #, python-format
 msgid ""
 "\n"
-"                        \"<strong>%(url)s</strong> is powered by a set of "
-"free components licensed under <strong>AGPL</strong> and <strong>Creative "
-"Commons</strong>.\"\n"
-"    \t            "
+"\t\t\t\t\"<strong>%(url)s</strong> is powered by a set of free components "
+"licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
+"\"\n"
+"\t\t\t\t"
 msgstr ""
 
-#: templates/footer_obsolete.html:60
+#: templates/footer_obsolete.html:63
 #, python-format
 msgid ""
 "\n"
@@ -1208,81 +1207,67 @@ msgid ""
 "\t            "
 msgstr ""
 
-#: templates/header.html:14 templates/login-slide.html:32
+#: templates/header.html:15
+#, fuzzy
+msgid "Log In with"
+msgstr "Log In"
+
+#: templates/header.html:22
 msgid "Member Login"
 msgstr "Member Login"
 
-#: templates/header.html:34 templates/login-slide.html:52
+#: templates/header.html:41
 msgid "Sign in"
 msgstr "Sign in"
 
-#: templates/header.html:35 templates/login-slide.html:53
-#: templates/pages/home-blocks/loginbox.html:48
-msgid "Lost your password?"
+#: templates/header.html:42
+#, fuzzy
+msgid "I lost my password!"
 msgstr "Lost your password?"
 
-#: templates/header.html:42 templates/login-slide.html:60
-msgid "You can also use"
-msgstr "You can also use"
-
-#: templates/header.html:49 templates/login-slide.html:68
+#: templates/header.html:50
 msgid "Not a member yet ?"
 msgstr "Not a member yet ?"
 
-#: templates/header.html:50 templates/login-slide.html:69
-msgid "Signup now !"
+#: templates/header.html:51
+msgid "Sign-up with your email:"
+msgstr ""
+
+#: templates/header.html:52
+#, fuzzy
+msgid "Sign-up now !"
 msgstr "Signup now !"
 
-#: templates/header.html:85 templates/login-slide.html:124
-#: templates/backcap/feedback_detail.html:229
+#: templates/header.html:54
+msgid "Sign-up with a social networks:"
+msgstr ""
+
+#: templates/header.html:95 templates/header.html.py:109
+#: templates/pages/home-blocks/loginbox.html:88
+msgid "View my profile"
+msgstr "View my profile"
+
+#: templates/header.html:97 templates/backcap/feedback_detail.html:229
 msgid "Log In"
 msgstr "Log In"
 
-#: templates/header.html:85 templates/login-slide.html:124
+#: templates/header.html:97
 msgid "Register"
 msgstr "Register"
 
-#: templates/header.html:93 templates/header.html.py:95
-#: templates/login-slide.html:132 templates/login-slide.html.py:134
+#: templates/header.html:105 templates/header.html.py:107
 #: templates/pages/home-blocks/loginbox.html:83
 #: templates/pages/home-blocks/loginbox.html:85
 msgid "My messages"
 msgstr "My messages"
 
-#: templates/header.html:97 templates/login-slide.html:137
-#: templates/pages/home-blocks/loginbox.html:88
-msgid "View my profile"
-msgstr "View my profile"
-
-#: templates/header.html:98 templates/login-slide.html:138
-#: templates/pages/home-blocks/loginbox.html:89
+#: templates/header.html:110 templates/pages/home-blocks/loginbox.html:89
 msgid "Edit my profile"
 msgstr "Edit my profile"
 
-#: templates/header.html:100 templates/login-slide.html:142
-#: templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:112 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr "Log out"
-
-#: templates/login-slide.html:17
-msgid "Interface language"
-msgstr "Interface language"
-
-#: templates/login-slide.html:79
-msgid "My projects"
-msgstr "My projects"
-
-#: templates/login-slide.html:98
-msgid "You have no projects"
-msgstr "You have no projects"
-
-#: templates/login-slide.html:126
-msgid "Close Panel"
-msgstr "Close Panel"
-
-#: templates/login-slide.html:140
-msgid "Administration"
-msgstr ""
 
 #: templates/menu.html:20
 msgid "Home"
@@ -1553,6 +1538,10 @@ msgstr "Send"
 msgid "Edit Feedback"
 msgstr "Edit Feedback"
 
+#: templates/cms/placeholder_popup.html:6
+msgid "Notice"
+msgstr ""
+
 #: templates/cms/plugins/twitter_recent_entries.html:13
 #, fuzzy
 msgid "we said,"
@@ -1582,116 +1571,120 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:25
+#: templates/cmsplugin_zinnia/_entry_detail.html:33
 #, fuzzy
 msgid "Written by"
 msgstr "Writer"
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:29
+#: templates/cmsplugin_zinnia/_entry_detail.html:37
 #, python-format
 msgid "Show all %(author)s's entries"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:32
+#: templates/cmsplugin_zinnia/_entry_detail.html:40
 msgid "on"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:34
+#: templates/cmsplugin_zinnia/_entry_detail.html:42
 #, fuzzy
 msgid "Written on"
 msgstr "Writer"
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:38
+#: templates/cmsplugin_zinnia/_entry_detail.html:48
 msgid "in"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:41
+#: templates/cmsplugin_zinnia/_entry_detail.html:51
 #, python-format
 msgid "Show all entries in %(category)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:61
+#: templates/cmsplugin_zinnia/_entry_detail.html:57
+msgid "Last update on"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:74
 #, python-format
 msgid "Continue reading %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:63
+#: templates/cmsplugin_zinnia/_entry_detail.html:76
 msgid "Continue reading"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:75
+#: templates/cmsplugin_zinnia/_entry_detail.html:91
 #, python-format
 msgid "Show all entries tagged by %(tag)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:78
+#: templates/cmsplugin_zinnia/_entry_detail.html:94
 msgid "No tags"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:83
+#: templates/cmsplugin_zinnia/_entry_detail.html:100
 msgid "Short url"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:85
+#: templates/cmsplugin_zinnia/_entry_detail.html:102
 #, python-format
 msgid "Short URL to %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:92
+#: templates/cmsplugin_zinnia/_entry_detail.html:110
 #, fuzzy
 msgid "Discussions"
 msgstr "Questions"
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:96
+#: templates/cmsplugin_zinnia/_entry_detail.html:114
 #, python-format
 msgid "Comments on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:97
+#: templates/cmsplugin_zinnia/_entry_detail.html:115
 #, python-format
 msgid "%(comment_count)s comment"
 msgid_plural "%(comment_count)s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:101
+#: templates/cmsplugin_zinnia/_entry_detail.html:119
 #, fuzzy
 msgid "No comments yet."
 msgstr "Most commented"
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:102
+#: templates/cmsplugin_zinnia/_entry_detail.html:121
 #, python-format
 msgid "Leave a comment on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:103
+#: templates/cmsplugin_zinnia/_entry_detail.html:122
 #, fuzzy
 msgid "Be first to comment!"
 msgstr " to post a comment."
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:106
+#: templates/cmsplugin_zinnia/_entry_detail.html:125
 #, fuzzy
 msgid "Comments are closed."
 msgstr "Comments closed."
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:112
+#: templates/cmsplugin_zinnia/_entry_detail.html:131
 #, python-format
 msgid "Pingbacks on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:113
+#: templates/cmsplugin_zinnia/_entry_detail.html:132
 #, python-format
 msgid "%(pingback_count)s pingback"
 msgid_plural "%(pingback_count)s pingbacks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:119
+#: templates/cmsplugin_zinnia/_entry_detail.html:138
 #, python-format
 msgid "Trackbacks on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:120
+#: templates/cmsplugin_zinnia/_entry_detail.html:139
 #, python-format
 msgid "%(trackback_count)s trackback"
 msgid_plural "%(trackback_count)s trackbacks"
@@ -1791,16 +1784,23 @@ msgstr ""
 "A community of imaginative citizens to detect and develop socially "
 "innovative projects."
 
-#: templates/pages/homepage.html:187
-msgid ""
-"You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
-"<strong>register</strong> your project"
-msgstr ""
-"You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
-"<strong>register</strong> your project"
-
 #: templates/pages/onemenu.html:35 templates/pages/onemenu.html.py:45
 msgid "MENU"
+msgstr ""
+
+#: templates/pages/popups_notifications.html:13
+msgid ""
+"This page is only to store notifications and popups Switch to edit mode to "
+"edit.  There should be only one page using this template, with an id of "
+"'popups_notifications_container_page'"
+msgstr ""
+
+#: templates/pages/popups_notifications.html:16
+msgid "Popup shown on every project page if present and the user is logged-in."
+msgstr ""
+
+#: templates/pages/popups_notifications.html:21
+msgid "Popup shown on every project page if present."
 msgstr ""
 
 #: templates/pages/home-blocks/blog-box.html:4
@@ -1862,6 +1862,10 @@ msgstr "Remember me"
 msgid "Go !"
 msgstr "Go !"
 
+#: templates/pages/home-blocks/loginbox.html:48
+msgid "Lost your password?"
+msgstr "Lost your password?"
+
 #: templates/pages/home-blocks/loginbox.html:62
 msgid "Login"
 msgstr "Login"
@@ -1898,6 +1902,31 @@ msgstr "Add"
 #: templates/pages/home-blocks/slider.html:49
 msgid "Add a project"
 msgstr "Add a project"
+
+#~ msgid "Enter your login"
+#~ msgstr "Enter your login"
+
+#~ msgid "You can also use"
+#~ msgstr "You can also use"
+
+#~ msgid "Interface language"
+#~ msgstr "Interface language"
+
+#~ msgid "My projects"
+#~ msgstr "My projects"
+
+#~ msgid "You have no projects"
+#~ msgstr "You have no projects"
+
+#~ msgid "Close Panel"
+#~ msgstr "Close Panel"
+
+#~ msgid ""
+#~ "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
+#~ "<strong>register</strong> your project"
+#~ msgstr ""
+#~ "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
+#~ "<strong>register</strong> your project"
 
 #~ msgid "Get the code"
 #~ msgstr "Get the code"
