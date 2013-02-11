@@ -13,9 +13,12 @@
         </a>
         {% endif %}
       </p>
-    </div>{%comment%}DO NOT PUT SPACE OR CARRIAGE RETURN BETWEEN THESE TWO DIVS{%endcomment%}<div class="entry-main-details {% if object.image %}entry-main-details-image{% else %}entry-main-details-noimage{% endif %}">
+    </div>{%comment%}DO NOT PUT SPACE OR CARRIAGE RETURN BETWEEN THESE TWO DIVS{%endcomment%}<div class="entry-main-details entry-main-details-image">
+    {% else %}
+    <div class="entry-main-details entry-main-details-noimage">
     {% endif %}
     {% endblock %}
+    
   {% block entry-header %}
   <div class="entry-header">
     {% block entry-title %}
@@ -62,9 +65,17 @@
   {% block entry-body %}
   <div class="entry-body">
     {% block entry-content %}
+    {% if object.excerpt != "..." %}
+    <div class="entry-excerpt">
+      {% autoescape off %}
+      {{ object.excerpt }}
+      {% endautoescape on %}
+    </div>
+    {% else %}
     <div class="entry-content">
       {{ object_content }}
     </div>
+    {% endif %}
     {% endblock %}
     {% block continue-reading %}
     {% if continue_reading %}
