@@ -29,7 +29,7 @@
   <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
     {% csrf_token %}
     <div class='quit'>
-      <span>{% trans 'You are part of this group' %}</span><button original-title="{% trans 'Quit this group' %}" type="submit">{% trans 'Quit this group' %}</button>
+      <span>{% trans 'You are part of this group' %}</span><button type="submit">{% trans 'Quit this group' %}</button>
   	  <input type="hidden" name='next_url' value="{{ request.path }}"/>
     </div>
   </form>
