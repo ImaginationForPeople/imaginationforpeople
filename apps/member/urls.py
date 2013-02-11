@@ -10,6 +10,9 @@ from apps.member.forms import I4PSignupForm
 
 import views as member_views
 
+# TODO: Why are we NOT using (r'^members/', include('userena.urls'))?  
+# De-sync with userena has  already caused multiple bugs in the past...
+
 urlpatterns = patterns('',
                        url(r'^', include('social_auth.urls')),
                        # Signup, signin and signout
@@ -55,7 +58,7 @@ urlpatterns = patterns('',
                            member_views.direct_to_user_template,
                            {'template_name': 'userena/activate_complete.html'},
                            name='userena_activate_complete'),
-                       url(r'^(?P<username>[\.\w-]+)/activate/(?P<activation_key>\w+)/$',
+                       url(r'^activate/(?P<activation_key>\w+)/$',
                            userena_views.activate,
                            {'success_url': '/member/activate_success'},
                            name='userena_activate'),
@@ -100,7 +103,7 @@ urlpatterns = patterns('',
                            name='userena_profile_edit'),
 
                        # View profiles
-                       url(r'^(?P<username>[\.\w-]+)/$',
+                       url(r'^(?P<username>(?!signout|signup|signin)[\.\w-]+)/$',
                            member_views.profile_detail,
                            name='userena_profile_detail'),
                        url(r'^page/(?P<page>[0-9]+)/$',

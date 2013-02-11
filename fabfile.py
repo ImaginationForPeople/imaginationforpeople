@@ -292,6 +292,7 @@ def app_fullupdate():
     execute(collect_static_files)
     # tests()
     execute(reloadapp)
+    execute(webservers_reload)
 
 @task
 def app_update():
@@ -305,6 +306,7 @@ def app_update():
     execute(collect_static_files)
     # tests()
     execute(reloadapp)
+    execute(webservers_reload)
 
 ## Webserver
 def configure_webservers():
@@ -335,17 +337,20 @@ def install_webservers():
     sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
     sudo('apt-get install nginx -y')
 
+@task
 def webservers_reload():
     """
     Reload the webserver stack.
     """
     print(cyan("Reloading apache"))
-    # Apache
-    sudo('apache2ctl -k graceful')
+    # Apache (sudo is part of command line here because we don't have full
+    # sudo access
+    run('sudo /etc/init.d/apache2 reload')
 
-    # Nginx
+    # Nginx (sudo is part of command line here because we don't have full
+    # sudo access
     print(cyan("Reloading nginx"))
-    sudo('/etc/init.d/nginx restart')
+    run('sudo /etc/init.d/nginx reload')
 
 def webservers_stop():
     """
