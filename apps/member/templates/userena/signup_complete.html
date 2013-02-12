@@ -7,27 +7,17 @@
 
 {% block content %}
 <div class="content">        
-    <div class="container_18">
-        <div class="grid_18 alpha omega">
-
-            <div id="profile">
-                
-                
-                <div class="separator">
-                    <h2>
-                        {% trans "Signup done!" %}
-                    </h2>
-                </div>
-            
-                <p>{% trans "Thank you for signing up with us!" %}</p>
-                <p>{% blocktrans %}You have been sent an email with an activation link to the supplied email address.{% endblocktrans %}</p>
-                <p>{% blocktrans %}We will store your signup information for {{ userena_activation_days }} days on our server. {% endblocktrans %}</p>
-
-             
+    <div class="container">
+        <div id="profile">
+            <div class="separator">
+                <h2>
+                    {% trans "Signup done!" %}
+                </h2>
             </div>
-            
+            <p>{% trans "Thank you for signing up with us!" %}</p>
+            <p>{% blocktrans %}You have been sent an email with an activation link to the supplied email address.{% endblocktrans %}</p>
+            <p>{% blocktrans %}We will store your signup information for {{ userena_activation_days }} days on our server. {% endblocktrans %}</p>
         </div>
-        <div class="clear"></div>
     </div>
 </div>
 {% endblock %}

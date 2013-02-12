@@ -10,7 +10,7 @@
 
 
 .content{
-
+    padding-top: 20px;
     a{
         color: $colorLightBlue;
     }
@@ -27,41 +27,54 @@
         text-transform:none;
         font-size:17px;
         text-align:center;
-        padding-top:5px;
-        padding-bottom:5px;
+        height: 32px;
+        line-height: 32px;
         @include i4p-shadow(4px, #181818);
-        background-image:url('../images/usermessages/my-messages-title.jpg'); 
+        background-image: image-url('usermessages/my-messages-title.jpg'); 
+        background-size: 100% auto;
         background-color:transparent !important;
         background-repeat:no-repeat;
         padding-right:35px;
-        height:22px;
     }
     
     h1.title:hover{
         text-decoration:underline;
     }
     
+    i4p_left_menu .title_bar a{
+            width: 100%;
+        }
+    
     .title_bar{
         display:block;
         background-color:#686868;
-        padding-right:10px;
+
         width:100%;
         height:32px;
         margin-bottom:20px;
         @include i4p-shadow(4px, #181818);
-    
+        
+        
+            
         a.new_message{
+            display: inline-block;
+            padding-left:50px;
+            
             height:32px;
-            padding-top:5px;
-            padding-bottom:5px;
-            background-image:url('../images/usermessages/new_message.jpg'); 
+
+            background-image: image-url('usermessages/new_message.jpg'); 
             background-repeat:no-repeat;
             color:white;
-            padding-left:50px;
-            padding-right:30px;
-            position:absolute;
-            top:0px;
             @include georgia(17px);
+            > img {
+                padding-left:25px;
+            }
+        }
+        
+        h1.title > img {
+            position:absolute;
+            bottom:-4px;
+            left:50%;
         }
         
         a.new_message:hover{
@@ -102,14 +115,14 @@
     }
     
     #usermessage_list{
-
+        margin: 0px;
         .usermessage{
             width:100%;
             min-height:107px;
             float:left;
             padding:5px;  
             margin-bottom:10px;
-            background-image:url('../images/usermessages/message-bg-see.jpg');
+            background-image: image-url('usermessages/message-bg-see.jpg');
             position:relative;
             color:white;
             list-style-type:none;
@@ -141,7 +154,7 @@
                 .avatar{
                     width:127px;
                     height:117px;
-                    background-image:url('../images/usermessages/avatar-bg.png');
+                    background-image: image-url('usermessages/avatar-bg.png');
                     background-repeat:no-repeat;
                     position:absolute;
                     left:0px;
@@ -189,11 +202,11 @@
         }
         
         .usermessage:hover{
-            background-image:url('../images/usermessages/message-bg-see-over.png');
+            background-image: image-url('usermessages/message-bg-see-over.png');
         }
         
         .usermessage.unsee{
-            background-image:url('../images/usermessages/message-bg-unsee.jpg');
+            background-image: image-url('usermessages/message-bg-unsee.jpg');
             color:black;
             
             em{
@@ -209,7 +222,7 @@
             }
             
             .avatar{
-                background-image:url('../images/usermessages/avatar-bg2.png');
+                background-image: image-url('usermessages/avatar-bg2.png');
             }
         }
         
@@ -248,7 +261,7 @@
         float:left;
         padding:5px;  
         margin-bottom:10px;  
-        background-image:url('../images/usermessages/message-bg-see.jpg');
+        background-image: image-url('usermessages/message-bg-see.jpg');
         position:relative;
         color:white;
         
@@ -322,7 +335,7 @@
         .avatar{
             width:127px;
             height:117px;
-            background-image:url('../images/usermessages/avatar-bg.png');
+            background-image: image-url('usermessages/avatar-bg.png');
             background-repeat:no-repeat;
             position:absolute;
             left:0px;
@@ -341,7 +354,7 @@
 
 
 .ui-icon {
-    background-image: url("../images/ui-icons_222222_256x240-white.png") !important;
+    background-image: image-url('ui-icons_222222_256x240-white.png') !important;
     position:absolute;
     right:5px;
     z-index:200;

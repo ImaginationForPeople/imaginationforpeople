@@ -1,25 +1,21 @@
 @import "i4p-mixins";
 @import "i4p/constants";
-/* WARNING, THIS HAS BEEN MOVED FROM STYLE.SCSS, BUT IS NOT LINKED ANYWHERE YET
-WAITING FOR PROFILE.SCSS TO MOVE */
+
 #about .colonne a {
     text-decoration: underline;
 }
 
 
-.colonne {
+.profile_projects {
 
-    a {
-    @include i4p-font-base($sizeTextSmall);
-    color: $colorLightBlue;
-
-    padding-top: 5px;
-    padding-bottom: 3px;
-    display: block;
+    .separator{
+        margin-top:40px;
     }
-
-    a:hover {
-    color:#65e4ff;  
-    }
+        > a {
+            display: block;
+            width: 150px;
+            margin: 0.5em;
+            float: left;
+        }
 }
 
