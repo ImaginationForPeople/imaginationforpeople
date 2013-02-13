@@ -27,13 +27,21 @@
         padding-left:20px;
     }
     
-    #partner_projects  .separator h2{
-        background-color: #282828;
-        display: inline;
-        padding-right: 15px;
-        position: relative;
-        top: -11px;
-        width: auto;    
+    #partner_projects {
+        > a {
+            display: block;
+            width: 150px;
+            margin: 0.5em;
+            float: left;
+        }
+        .separator h2{
+            background-color: #282828;
+            display: inline;
+            padding-right: 15px;
+            position: relative;
+            top: -11px;
+            width: auto;
+        }    
     }
 
 }
