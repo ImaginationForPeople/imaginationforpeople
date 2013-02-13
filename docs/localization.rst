@@ -29,9 +29,10 @@ Push your changes back to transifex:
    tx push --source
    
 You may want to do some local translation work at this stage (in a local po editor), 
-in which case you then need to commit them to transifex 
+in which case you then need to commit them to transifex.  In which case, you need to
+ push the translation in your language to transifex.  For example, in french:
 
-   tx push --translations
+   tx push --translations -l fr
    
 Don't forget to commit all your changes to git.
 
