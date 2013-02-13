@@ -31,7 +31,7 @@
         class="submit"
         href="{% url "edit_answer" previous_answer.id %}"
     >{% trans %}Edit Your Previous Answer{% endtrans %}</a>
-    <span>{% trans %}(only one answer per question is allowed){% endtrans %}</span>
+    <span>{% trans %}(only one answer per request is allowed){% endtrans %}</span>
 {% else %}
     {% include "question/new_answer_form.html" %}
 {% endif %}

@@ -8,22 +8,22 @@
 <div id="post-id-{{question.id}}" class="question-card-top {% if question.deleted %} deleted{% endif %}">
     <div class="container">
         <div class="row">
-        	<div class="span8">
+            <div class="span8">
                  <div class="share-buttons">            
                     {% if settings.ENABLE_SHARING_TWITTER %}
-                    <a class="twitter-share icon" title="{% trans 'Share this question on twitter' %}">Twitter</a>
+                    <a class="twitter-share icon" title="{% trans 'Share this on twitter' %}">Twitter</a>
                     {% endif %}
                     
                     {% if settings.ENABLE_SHARING_FACEBOOK %}
-                    <a class="facebook-share icon" title="{% trans 'Share this question on facebook' %}">Facebook</a>
+                    <a class="facebook-share icon" title="{% trans 'Share this on facebook' %}">Facebook</a>
                     {% endif %}
                     
                     {% if settings.ENABLE_SHARING_GOOGLE %}
-                     <a class="google-share icon" title="{% trans 'Share this question on google plus' %}">Google Plus</a>
+                     <a class="google-share icon" title="{% trans 'Share this on google plus' %}">Google Plus</a>
                     {% endif %}
                     
                     {% if settings.ENABLE_SHARING_LINKEDIN %}
-                    <a class="linkedin-share icon" title="{% trans 'Share this question on linkedin' %}">Linkedin</a>
+                    <a class="linkedin-share icon" title="{% trans 'Share this on linkedin' %}">Linkedin</a>
                     {% endif %}
 
                 </div>
@@ -70,14 +70,14 @@
                     </a>
                 {% endif %}
                 <p class="rss">
-                    <a href="{%url question_feed question.id %}" title="{% trans 'subscribe to this question rss feed' %}">{% trans 'subscribe to rss feed' %}</a>
+                    <a href="{%url question_feed question.id %}" title="{% trans "subscribe to this request's rss feed" %}">{% trans 'subscribe to rss feed' %}</a>
                 </p>
 
                 <div id="favorite-number" class="favorite-number{% if favorited %} my-favorite-number{% endif %}">
                     {% if thread.favourite_count = 0 %}
                     	{% trans 'No follower for the moment' %}
                    	{% else %}
-                        {% blocktrans count count=thread.favourite_count %}{{count}} follower{% plural %}{{count}} followers {% endblocktrans %}
+                        {% blocktrans count count=thread.favourite_count %}{{count}} follower{% plural %}{{count}} followers{% endblocktrans %}
                     {% endif %}
                 </div>
             </div>

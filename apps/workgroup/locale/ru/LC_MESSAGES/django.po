@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 10:41-0500\n"
+"POT-Creation-Date: 2013-02-13 15:27-0500\n"
 "PO-Revision-Date: 2013-02-09 21:58+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/"
@@ -20,11 +20,11 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: cms_plugins.py:48
-msgid "WorkGroup (un)subscribe button"
+msgid "Group (un)subscribe button"
 msgstr ""
 
 #: cms_plugins.py:61
-msgid "WorkGroup subscribers list"
+msgid "Group subscribers list"
 msgstr ""
 
 #: models.py:51
@@ -74,7 +74,7 @@ msgstr ""
 
 #: views.py:187
 #, python-format
-msgid "You couldn't be subscribed to this workgroup:%s"
+msgid "You couldn't be subscribed to this group:%s"
 msgstr ""
 
 #: views.py:218
@@ -86,7 +86,7 @@ msgstr ""
 
 #: views.py:225
 #, python-format
-msgid "You couldn't be unsubscribed from this workgroup:%s"
+msgid "You couldn't be unsubscribed from this group:%s"
 msgstr ""
 
 #: templates/workgroup/workgroup_list.html:10
@@ -143,7 +143,7 @@ msgid ""
 msgstr ""
 
 #: templates/workgroup/block/workgroup_sidebar.html:6
-msgid "Group projects"
+msgid "Related projects"
 msgstr ""
 
 #: templates/workgroup/block/workgroup_sidebar.html:9
@@ -151,7 +151,7 @@ msgid "Manage linked projects"
 msgstr ""
 
 #: templates/workgroup/layout/workgroup_base.html:17
-msgid "Workgroup"
+msgid "Group"
 msgstr ""
 
 #: templates/workgroup/page/group_create.html:9
@@ -159,7 +159,7 @@ msgid "Create a new group "
 msgstr ""
 
 #: templates/workgroup/page/group_edit.html:16
-msgid "Edit this group information"
+msgid "Edit this group's information"
 msgstr ""
 
 #: templates/workgroup/page/wiki_edit.html:14
@@ -194,14 +194,23 @@ msgid "Back to editor"
 msgstr ""
 
 #: templates/workgroup/page/workgroup_detail.html:24
+#, python-format
 msgid ""
-"This group uses a mailing list to discuss. You can take part to the "
-"discussion by sending an e-mail to the following address:"
+"This group uses a mailing list. You can take part in the discussion by "
+"sending an e-mail to the following address: %(workgroup.mailing_list.email)s"
 msgstr ""
 
 #: templates/workgroup/page/workgroup_detail.html:24
 msgid "Browse the Archives"
 msgstr ""
+
+#: templates/workgroup/page/workgroup_detail.html:39
+#, python-format
+msgid "Comment:"
+msgid_plural "%(num_comments)s comments:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: templates/workgroup/page/workgroup_members.html:27
 msgid "Subscribers list"

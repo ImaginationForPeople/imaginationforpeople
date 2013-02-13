@@ -1,35 +1,36 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
 # Simon Sarazin <simon.sarazin@gmail.com>, 2013.
+# Benoit Grégoire <benoitg@coeus.ca>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 10:41-0500\n"
-"PO-Revision-Date: 2013-02-09 23:33+0000\n"
-"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/fr/)\n"
+"POT-Creation-Date: 2013-02-13 15:27-0500\n"
+"PO-Revision-Date: 2013-02-13 15:27-0500\n"
+"Last-Translator: Benoit Grégoire <benoitg@coeus.ca>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"imaginationforpeople/language/fr/)\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: models.py:9
 msgid "project needs"
-msgstr "Besoins du projet"
+msgstr "besoins du projet"
 
 #: models.py:10
-msgid "project offers"
-msgstr "Offres au projet"
+msgid "help from the community"
+msgstr "aide spontanée"
 
 #: templates/project_support/project_support_form.html:19
-msgid "Please explain your need here"
-msgstr "Merci d'exprimer votre besoin ici"
+msgid "Please describe your project's need here"
+msgstr "SVP, décrire ici les besoins de votre projet"
 
 #: templates/project_support/project_support_form.html:27
 msgid "No selected category"
@@ -40,17 +41,16 @@ msgid "submit"
 msgstr "soumettre"
 
 #: templates/project_support/project_support_form.html:35
-#: templates/project_support/block/support_toolbar.html:25
 msgid "First signin"
 msgstr "Connecter vous pour continuer"
 
 #: templates/project_support/project_support_list.html:57
-msgid "Filter calls"
-msgstr "Filtrer les besoins/offres"
+msgid "Filter"
+msgstr "Filtrer"
 
 #: templates/project_support/project_support_list.html:61
 msgid "Enter a keyword"
-msgstr "Entrez un mot clé"
+msgstr "Entrer un mot clé"
 
 #: templates/project_support/project_support_list.html:66
 msgid "or"
@@ -101,25 +101,24 @@ msgstr "nouvelle"
 
 #: templates/project_support/project_support_thread.html:68
 msgid "most voted answers will be shown first"
-msgstr "les réponses les plus votées seront affichées en premier"
+msgstr "les réponses ayant le plus de vote seront affichées en premier"
 
 #: templates/project_support/project_support_thread.html:69
 msgid "most voted"
-msgstr "plus votées"
+msgstr "ayant le plus de vote"
 
 #: templates/project_support/project_support_thread.html:92
 msgid "this answer has been selected as correct"
-msgstr "cette réponse a été sélectionnée comme correcte"
+msgstr "cette réponse a été choisie comme correcte"
 
 #: templates/project_support/project_support_thread.html:94
 msgid "mark this answer as correct (click again to undo)"
-msgstr ""
-"Sélectionnez cette réponse comme correcte (cliquer à nouveau pour annuler)"
+msgstr "choisir cette réponse comme correcte (cliquer à nouveau pour annuler)"
 
 #: templates/project_support/project_support_thread.html:101
 #: templates/project_support/project_support_thread.html:102
 msgid "anonymous user"
-msgstr "Utilisateur anonyme"
+msgstr "utilisateur anonyme"
 
 #: templates/project_support/project_support_thread.html:112
 msgid "answered"
@@ -135,12 +134,12 @@ msgstr "(une seule réponse par question est autorisée)"
 
 #: templates/project_support/block/answer_controls.html:7
 msgid "remove offensive flag"
-msgstr "Enlever le drapeau \"contenu offensant\""
+msgstr "Enlever la marque \"contenu offensant\""
 
 #: templates/project_support/block/answer_controls.html:9
 #: templates/project_support/block/question_controls.html:7
 msgid "remove flag"
-msgstr "Enlever le drapeau"
+msgstr "Enlever la marque"
 
 #: templates/project_support/block/answer_controls.html:14
 #: templates/project_support/block/answer_controls.html:22
@@ -149,25 +148,25 @@ msgstr "Enlever le drapeau"
 #: templates/project_support/block/question_controls.html:17
 msgid ""
 "report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr "rapporter comme offensant (spam, publicité, texte malveillant, etc)"
+msgstr "marquer comme offensant (spam, publicité, texte malveillant, etc)"
 
 #: templates/project_support/block/answer_controls.html:16
 #: templates/project_support/block/answer_controls.html:24
 #: templates/project_support/block/question_controls.html:12
 #: templates/project_support/block/question_controls.html:18
 msgid "flag offensive"
-msgstr "rapporter comme offensant"
+msgstr "marquer comme offensant"
 
 #: templates/project_support/block/answer_controls.html:28
 #: templates/project_support/block/comment.html:63
 #: templates/project_support/block/question_controls.html:24
 msgid "edit"
-msgstr "Editer"
+msgstr "éditer"
 
 #: templates/project_support/block/answer_controls.html:32
 #: templates/project_support/block/question_controls.html:26
 msgid "undelete"
-msgstr "Annuler la suppression"
+msgstr "annuler la suppression"
 
 #: templates/project_support/block/answer_controls.html:32
 #: templates/project_support/block/comment.html:57
@@ -177,7 +176,7 @@ msgstr "supprimer"
 
 #: templates/project_support/block/answer_edit.html:7
 msgid "Edit answer"
-msgstr "Editer la réponse"
+msgstr "éditer la réponse"
 
 #: templates/project_support/block/answer_edit.html:7
 msgid "back"
@@ -189,7 +188,7 @@ msgstr "révision"
 
 #: templates/project_support/block/answer_edit.html:42
 msgid "Save edit"
-msgstr "Enregistrer l'édition"
+msgstr "Enregistrer les modifications"
 
 #: templates/project_support/block/answer_edit.html:43
 msgid "Cancel"
@@ -197,11 +196,11 @@ msgstr "Annuler"
 
 #: templates/project_support/block/comment.html:55
 msgid "delete this comment"
-msgstr "Supprimer ce commentaire"
+msgstr "supprimer ce commentaire"
 
 #: templates/project_support/block/comment.html:61
 msgid "edit this comment"
-msgstr "Editer ce commentaire"
+msgstr "éditer ce commentaire"
 
 #: templates/project_support/block/comment.html:72
 #: templates/project_support/block/comment.html:77
@@ -214,20 +213,20 @@ msgstr "Basculer la prévisualisation en temps réel de l'éditeur Markdown"
 
 #: templates/project_support/block/edit_post.html:20
 msgid "hide preview"
-msgstr "Cacher l'aperçu"
+msgstr "cacher l'aperçu"
 
 #: templates/project_support/block/new_answer_form.html:14
 msgid "Email me when there are any new answers"
-msgstr "Envoyez-moi un mail quand il ya de nouvelles réponses"
+msgstr "Envoyez-moi un courriel lorsqu'il y a de nouvelles réponses"
 
 #: templates/project_support/block/new_answer_form.html:20
 msgid ""
 "<span class=\"strong\">Here</span> (once you log in) you will be able to "
-"sign up for the periodic email updates about this question."
+"sign up for the periodic email updates about this request."
 msgstr ""
-"<span class=\"strong\">Ici</span> (une fois que vous vous connecté), vous "
-"serez en mesure de vous inscrire pour recevoir des mails périodiques sur "
-"cette question."
+"<span class=\"strong\">Ici</span> (une fois connecté), vous serez en mesure "
+"de vous inscrire pour être averti par courriel des mises à jour concernant "
+"cette demande."
 
 #: templates/project_support/block/new_answer_form.html:28
 msgid "Login/Signup to Answer"
@@ -238,8 +237,8 @@ msgid "Your answer"
 msgstr "Votre réponse"
 
 #: templates/project_support/block/new_answer_form.html:38
-msgid "Be the first one to answer this question!"
-msgstr "Soyez le premier à répondre à cette question ! "
+msgid "Be the first one to answer this request!"
+msgstr "Soyez le premier à répondre à cette demande! "
 
 #: templates/project_support/block/new_answer_form.html:43
 msgid ""
@@ -259,7 +258,7 @@ msgstr ""
 
 #: templates/project_support/block/new_answer_form.html:47
 msgid ""
-"<span class='big strong'>You are welcome to answer your own question</span>, "
+"<span class='big strong'>You are welcome to answer your own request</span>, "
 "but please make sure to give an <strong>answer</strong>. Remember that you "
 "can always <strong>revise your original question</strong>. Please "
 "<strong>use comments for discussions</strong>  and <strong>please don't "
@@ -267,9 +266,9 @@ msgid ""
 "not like)!"
 msgstr ""
 "<span class='big strong'>Vous êtes invités à répondre à votre propre "
-"question</span>, mais merci de vous assurer de donner une  <strong>réponse</"
+"demande</span>, mais merci de vous assurer de donner une  <strong>réponse</"
 "strong>. N'oubliez pas que vous pouvez toujours <strong>modifier votre "
-"question initiale</strong>. Merci <strong>d'utiliser les commentaires pour "
+"demande initiale</strong>. Merci <strong>d'utiliser les commentaires pour "
 "discuter</strong> et <strong>n'oubliez pas de voter</strong> pour les "
 "réponses que vous appréciez (ou peut-être celles que vous n'appréciez "
 "pas :) !"
@@ -277,18 +276,19 @@ msgstr ""
 #: templates/project_support/block/new_answer_form.html:49
 msgid ""
 "<span class='big strong'>Please try to give a substantial answer</span>. If "
-"you wanted to comment on the question or answer, just <strong>use the "
+"you wanted to comment on the request or answer, just <strong>use the "
 "commenting tool</strong>. Please remember that you can always <strong>revise "
 "your answers</strong> - no need to answer the same question twice. Also, "
 "please <strong>don't forget to vote</strong> - it really helps to select the "
 "best questions and answers!"
 msgstr ""
 "<span class='big strong'>Merci de donner une réponse substantielle</span>. "
-"Si vous souhaitez faire une réponse sur la question, merci "
-"<strong>d'utiliser l'outil de commentaire</strong>. Vous pouvez toujours "
-"<strong>réviser vos réponses</strong> - pas besoin de répondre deux fois à "
-"la même question. Aussi, merci <strong>de ne pas oublier de voter</strong> - "
-"cela aide vraiment à sélectionner les meilleures questions et réponses !"
+"Si vous souhaitez commenter la demande ou une réponse, vous n'avez qu'à "
+"<strong>utiliser l'outil de commentaire</strong>. Souvenez vous que vous "
+"pouvez toujours <strong>réviser vos réponses</strong> - pas besoin de "
+"répondre deux fois à la même demande. Aussi, merci <strong>de ne pas oublier "
+"de voter</strong> - cela aide vraiment à sélectionner les meilleures "
+"demandes et réponses !"
 
 #: templates/project_support/block/post_comments.html:12
 msgid "Add your comment"
@@ -304,23 +304,23 @@ msgstr "Commentaire"
 
 #: templates/project_support/block/post_vote_buttons.html:8
 msgid "current number of votes"
-msgstr "Nombre de votes actuels"
+msgstr "nombre de votes actuels"
 
 #: templates/project_support/block/question_card.html:14
-msgid "Share this question on twitter"
-msgstr "Partager cette question sur twitter"
+msgid "Share this on twitter"
+msgstr "Partager sur twitter"
 
 #: templates/project_support/block/question_card.html:18
-msgid "Share this question on facebook"
-msgstr "Partager cette question sur facebook"
+msgid "Share this on facebook"
+msgstr "Partager sur facebook"
 
 #: templates/project_support/block/question_card.html:22
-msgid "Share this question on google plus"
-msgstr "Partager cette question sur Google plus"
+msgid "Share this on google plus"
+msgstr "Partager sur Google plus"
 
 #: templates/project_support/block/question_card.html:26
-msgid "Share this question on linkedin"
-msgstr "Partager cette question sur linkedin"
+msgid "Share this on linkedin"
+msgstr "Partager sur linkedin"
 
 #: templates/project_support/block/question_card.html:65
 #: templates/project_support/block/question_card.html:111
@@ -333,24 +333,24 @@ msgid "Follow this need"
 msgstr "Suivre ce besoin"
 
 #: templates/project_support/block/question_card.html:73
-msgid "subscribe to this question rss feed"
-msgstr "souscrire au flux rss de cette question"
+msgid "subscribe to this request's rss feed"
+msgstr "m'abonner au flux rss de cette demande"
 
 #: templates/project_support/block/question_card.html:73
 msgid "subscribe to rss feed"
-msgstr "souscrire au flux rss"
+msgstr "m'abonner au flux rss"
 
 #: templates/project_support/block/question_card.html:78
 #: templates/project_support/block/question_card.html:133
 msgid "No follower for the moment"
-msgstr "Pas de suiveur de la question pour le moment"
+msgstr "Personne n'est abonné pour le moment"
 
 #: templates/project_support/block/question_card.html:80
 #, python-format
 msgid "%(count)s follower"
-msgid_plural "%(count)s followers "
-msgstr[0] "%(count)s suiveur"
-msgstr[1] "%(count)s suiveurs"
+msgid_plural "%(count)s followers"
+msgstr[0] "%(count)s abonné"
+msgstr[1] "%(count)s abonnés"
 
 #: templates/project_support/block/question_controls.html:22
 msgid "retag"
@@ -358,32 +358,39 @@ msgstr "retagger"
 
 #: templates/project_support/block/question_controls.html:29
 msgid "reopen"
-msgstr "réouvrir"
+msgstr "rouvrir"
 
 #: templates/project_support/block/question_controls.html:31
 msgid "close"
 msgstr "fermer"
 
 #: templates/project_support/block/question_list_item.html:24
-msgid "by"
-msgstr "par"
+#, python-format
+msgid "Added %(added_when)s by %(author_link)s"
+msgstr "Créé %(added_when)s par %(author_link)s"
 
-#: templates/project_support/block/question_list_item.html:29
+#: templates/project_support/block/question_list_item.html:27
+#, python-format
+msgid "Last modified %(last_activity_at)s by %(last_activity_author_link)s"
+msgstr ""
+"Dernière modification %(last_activity_at)s par %(last_activity_author_link)s"
+
+#: templates/project_support/block/question_list_item.html:30
 msgid "Answers"
 msgstr "Réponses"
 
-#: templates/project_support/block/question_list_item.html:30
+#: templates/project_support/block/question_list_item.html:31
 msgid "Viewed"
 msgstr "Vu"
 
-#: templates/project_support/block/question_list_item.html:31
+#: templates/project_support/block/question_list_item.html:32
 msgid "Votes"
 msgstr "Votes"
 
 #: templates/project_support/block/question_paginator.html:5
 #: templates/project_support/block/question_paginator.html:6
 msgid "previous"
-msgstr "précedent"
+msgstr "précédent"
 
 #: templates/project_support/block/question_paginator.html:17
 msgid "current page"
@@ -405,7 +412,7 @@ msgstr "Statistiques"
 
 #: templates/project_support/block/question_sidebar.html:12
 msgid "Asked on"
-msgstr "Posée le"
+msgstr "Demandé le"
 
 #: templates/project_support/block/question_sidebar.html:15
 msgid "answers"
@@ -424,8 +431,8 @@ msgid "Related needs"
 msgstr "Besoins liés"
 
 #: templates/project_support/block/support_activities.html:9
-msgid "Activities"
-msgstr "Activités"
+msgid "Activity"
+msgstr "Activité"
 
 #: templates/project_support/block/support_activities_item.html:8
 msgid "on"
@@ -440,12 +447,16 @@ msgid "Project needs"
 msgstr "Besoins du projet"
 
 #: templates/project_support/block/support_toolbar.html:13
-msgid "Project offers"
-msgstr "Offres au projet"
+msgid "Help from the community"
+msgstr "aide spontanée"
 
 #: templates/project_support/block/support_toolbar.html:22
-msgid "describe your need or offer your help"
-msgstr "Décrivez votre besoin ou offrez votre aide"
+msgid "add your project's needs / offer your help"
+msgstr "ajouter les besoins de votre projet / offrir votre aide"
+
+#: templates/project_support/block/support_toolbar.html:25
+msgid "You need to log-in to add a need"
+msgstr "Vous devez vous connecter pour ajouter une demande"
 
 #: templates/project_support/script/head_javascript.html:85
 msgid "post a comment / <strong>some</strong> more"
@@ -460,8 +471,8 @@ msgid "post a comment"
 msgstr "poster un commentaire"
 
 #: templates/project_support/script/head_javascript.html:110
-msgid "Answer Your Own Question"
-msgstr "Répondez à votre propre sujet"
+msgid "Answer your own request"
+msgstr "Répondre à votre propre demande"
 
 #: templates/project_support/script/head_javascript.html:115
 msgid "Post Your Answer"
@@ -469,4 +480,13 @@ msgstr "Postez votre réponse"
 
 #: templates/project_support/script/head_javascript.html:121
 msgid "Login/Signup to Post"
-msgstr "Connectez-vous / Inscrivez-vous pour poster"
+msgstr "Connectez-vous / Inscrivez-vous pour répondre"
+
+#~ msgid "project offers"
+#~ msgstr "Offres au projet"
+
+#~ msgid "by"
+#~ msgstr "par"
+
+#~ msgid "Project offers"
+#~ msgstr "Offres au projet"

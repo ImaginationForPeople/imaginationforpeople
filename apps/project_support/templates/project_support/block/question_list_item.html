@@ -18,13 +18,14 @@
             {% endfor %}
         </ul>   
     </div>
-
+    
     <div class="infos_question">
         <p>
-            <span class="date_question">{{ question.added_at|naturaltime }}</span>&nbsp;{% trans 'by' %}&nbsp;
-            <span class="auteur_question">{{thread.last_activity_by.username|escape}}</span>
+            {% blocktrans with added_when=question.added_at|naturaltime author_link=question.author.username|escape %}Added {{ added_when }} by {{author_link}}{% endblocktrans %}
         </p>
-        <p class="temps_restant">{{thread.last_activity_at}}</p>
+        <p>
+            {% blocktrans with last_activity_at=thread.last_activity_at|naturaltime last_activity_author_link=thread.last_activity_by.username|escape %}Last modified {{ last_activity_at }} by {{last_activity_author_link}}{% endblocktrans %}
+        </p>
         <div class="infos_pictos">
             <p class="tipsed nbr_answers" title="{% trans 'Answers' %}">{{thread.answer_count}}</p>
             <p class="tipsed nbr_views" title="{% trans 'Viewed' %}">{{thread.view_count}}</p>

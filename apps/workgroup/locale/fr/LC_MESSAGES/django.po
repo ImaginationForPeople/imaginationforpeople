@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 10:41-0500\n"
+"POT-Creation-Date: 2013-02-13 15:27-0500\n"
 "PO-Revision-Date: 2013-02-09 22:47+0000\n"
 "Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/"
@@ -20,11 +20,13 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cms_plugins.py:48
-msgid "WorkGroup (un)subscribe button"
+#, fuzzy
+msgid "Group (un)subscribe button"
 msgstr "Bouton de groupe de travail"
 
 #: cms_plugins.py:61
-msgid "WorkGroup subscribers list"
+#, fuzzy
+msgid "Group subscribers list"
 msgstr "Liste d'inscrits au groupe"
 
 #: models.py:51
@@ -77,8 +79,8 @@ msgstr ""
 "(%(user_email)s)"
 
 #: views.py:187
-#, python-format
-msgid "You couldn't be subscribed to this workgroup:%s"
+#, fuzzy, python-format
+msgid "You couldn't be subscribed to this group:%s"
 msgstr "Vous n'avez pas pu être inscrit au groupe de travail : %s"
 
 #: views.py:218
@@ -91,8 +93,8 @@ msgstr ""
 "%(workgroup_name)s  (%(user_email)s)"
 
 #: views.py:225
-#, python-format
-msgid "You couldn't be unsubscribed from this workgroup:%s"
+#, fuzzy, python-format
+msgid "You couldn't be unsubscribed from this group:%s"
 msgstr "Vous n'avez pas pu être désinscrit du groupe de travail : %s"
 
 #: templates/workgroup/workgroup_list.html:10
@@ -155,23 +157,26 @@ msgstr ""
 "\t"
 
 #: templates/workgroup/block/workgroup_sidebar.html:6
-msgid "Group projects"
-msgstr "Projets liés au groupe"
+#, fuzzy
+msgid "Related projects"
+msgstr "Groupes liés"
 
 #: templates/workgroup/block/workgroup_sidebar.html:9
 msgid "Manage linked projects"
 msgstr "Gérer les projets liés"
 
 #: templates/workgroup/layout/workgroup_base.html:17
-msgid "Workgroup"
-msgstr "Groupe de travail"
+#, fuzzy
+msgid "Group"
+msgstr "Editer le groupe"
 
 #: templates/workgroup/page/group_create.html:9
 msgid "Create a new group "
 msgstr "Créer un nouveau groupe"
 
 #: templates/workgroup/page/group_edit.html:16
-msgid "Edit this group information"
+#, fuzzy
+msgid "Edit this group's information"
 msgstr "Editer l'information du groupe"
 
 #: templates/workgroup/page/wiki_edit.html:14
@@ -208,9 +213,10 @@ msgid "Back to editor"
 msgstr "Retour à l'éditer"
 
 #: templates/workgroup/page/workgroup_detail.html:24
+#, fuzzy, python-format
 msgid ""
-"This group uses a mailing list to discuss. You can take part to the "
-"discussion by sending an e-mail to the following address:"
+"This group uses a mailing list. You can take part in the discussion by "
+"sending an e-mail to the following address: %(workgroup.mailing_list.email)s"
 msgstr ""
 "Ce groupe utilise une liste de discussion. Vous pouvez prendre part à cette "
 "discussion en envoyant un mail à l'adresse suivante: "
@@ -218,6 +224,13 @@ msgstr ""
 #: templates/workgroup/page/workgroup_detail.html:24
 msgid "Browse the Archives"
 msgstr "Parcourir les archives"
+
+#: templates/workgroup/page/workgroup_detail.html:39
+#, python-format
+msgid "Comment:"
+msgid_plural "%(num_comments)s comments:"
+msgstr[0] ""
+msgstr[1] ""
 
 #: templates/workgroup/page/workgroup_members.html:27
 msgid "Subscribers list"
@@ -230,3 +243,9 @@ msgstr "Il n'y a pas d'inscrits au groupe"
 #: templates/workgroup/page/workgroup_members.html:40
 msgid "Other mailing list subscribers"
 msgstr "Autres abonnés de la liste de discussion"
+
+#~ msgid "Group projects"
+#~ msgstr "Projets liés au groupe"
+
+#~ msgid "Workgroup"
+#~ msgstr "Groupe de travail"

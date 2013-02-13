@@ -184,7 +184,7 @@ class SubscribeView(View):
                                             )
                                  )
             except Exception, e:
-                messages.error(request, _(u"You couldn't be subscribed to this workgroup:%s" % unicode(e.message, encoding=ml.encoding)))
+                messages.error(request, _(u"You couldn't be subscribed to this group:%s" % unicode(e.message, encoding=ml.encoding)))
 
         next_url = request.GET.get('next_url', None)
         if next_url:
@@ -195,7 +195,7 @@ class SubscribeView(View):
 
 class UnsubscribeView(View):
     """
-    Unsubscribe a user to the workgroup
+    Unsubscribe a user to the group
     """
     @method_decorator(login_required)
     def get(self, request, workgroup_slug):
@@ -222,7 +222,7 @@ class UnsubscribeView(View):
                                             )
                                  )
             except Exception, e:
-                messages.error(request, _(u"You couldn't be unsubscribed from this workgroup:%s" % e.message))
+                messages.error(request, _(u"You couldn't be unsubscribed from this group:%s" % e.message))
 
         next_url = request.GET.get('next_url', None)
         if next_url:

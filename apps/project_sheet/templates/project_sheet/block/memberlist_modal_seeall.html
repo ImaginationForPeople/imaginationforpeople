@@ -50,7 +50,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_modal_seeall.js");
 			</div>
 			<div class="list-side span7">
 				<div class="member-add-block">
-					<h2>{% trans 'become an actor of the project' %}</h2>	
+					<h2>{% trans "I want to announce that I am a member of this project's team" %}</h2>	
 					<form method='POST' action='{% url project_sheet-instance-add-member project_translation.slug %}'>
 					    {% csrf_token %}
 					    {{ project_member_add_form.as_p }}
