@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 22:52+0100\n"
-"PO-Revision-Date: 2012-10-23 17:53+0000\n"
+"POT-Creation-Date: 2013-02-13 10:40-0500\n"
+"PO-Revision-Date: 2013-02-09 21:56+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "Language: el\n"
@@ -1109,7 +1109,7 @@ msgid "Clear filters"
 msgstr "Καθαρισμός φίλτρων"
 
 #: templates/filter-panel.html:60
-#: templates/cmsplugin_zinnia/_entry_detail.html:88
+#: templates/cmsplugin_zinnia/_entry_detail.html:99
 msgid "Tags"
 msgstr "Ετικέτες"
 
@@ -1212,9 +1212,8 @@ msgid ""
 msgstr ""
 
 #: templates/header.html:15
-#, fuzzy
 msgid "Log In with"
-msgstr "Σύνδεση"
+msgstr ""
 
 #: templates/header.html:22
 msgid "Member Login"
@@ -1225,9 +1224,8 @@ msgid "Sign in"
 msgstr "Είσοδος"
 
 #: templates/header.html:42
-#, fuzzy
 msgid "I lost my password!"
-msgstr "Ξεχάσατε τον κωδικό σας;"
+msgstr ""
 
 #: templates/header.html:50
 msgid "Not a member yet ?"
@@ -1238,9 +1236,8 @@ msgid "Sign-up with your email:"
 msgstr ""
 
 #: templates/header.html:52
-#, fuzzy
 msgid "Sign-up now !"
-msgstr "Εγγραφείτε τώρα!"
+msgstr ""
 
 #: templates/header.html:54
 msgid "Sign-up with a social networks:"
@@ -1574,114 +1571,114 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:33
+#: templates/cmsplugin_zinnia/_entry_detail.html:36
 msgid "Written by"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:37
+#: templates/cmsplugin_zinnia/_entry_detail.html:40
 #, python-format
 msgid "Show all %(author)s's entries"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:40
+#: templates/cmsplugin_zinnia/_entry_detail.html:43
 msgid "on"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:42
+#: templates/cmsplugin_zinnia/_entry_detail.html:45
 msgid "Written on"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:48
+#: templates/cmsplugin_zinnia/_entry_detail.html:51
 msgid "in"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:51
+#: templates/cmsplugin_zinnia/_entry_detail.html:54
 #, python-format
 msgid "Show all entries in %(category)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:57
+#: templates/cmsplugin_zinnia/_entry_detail.html:60
 msgid "Last update on"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:74
+#: templates/cmsplugin_zinnia/_entry_detail.html:85
 #, python-format
 msgid "Continue reading %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:76
+#: templates/cmsplugin_zinnia/_entry_detail.html:87
 msgid "Continue reading"
-msgstr ""
-
-#: templates/cmsplugin_zinnia/_entry_detail.html:91
-#, python-format
-msgid "Show all entries tagged by %(tag)s"
-msgstr ""
-
-#: templates/cmsplugin_zinnia/_entry_detail.html:94
-msgid "No tags"
-msgstr ""
-
-#: templates/cmsplugin_zinnia/_entry_detail.html:100
-msgid "Short url"
 msgstr ""
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:102
 #, python-format
+msgid "Show all entries tagged by %(tag)s"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:105
+msgid "No tags"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:111
+msgid "Short url"
+msgstr ""
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:113
+#, python-format
 msgid "Short URL to %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:110
+#: templates/cmsplugin_zinnia/_entry_detail.html:121
 msgid "Discussions"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:114
+#: templates/cmsplugin_zinnia/_entry_detail.html:125
 #, python-format
 msgid "Comments on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:115
+#: templates/cmsplugin_zinnia/_entry_detail.html:126
 #, python-format
 msgid "%(comment_count)s comment"
 msgid_plural "%(comment_count)s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:119
+#: templates/cmsplugin_zinnia/_entry_detail.html:130
 msgid "No comments yet."
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:121
+#: templates/cmsplugin_zinnia/_entry_detail.html:132
 #, python-format
 msgid "Leave a comment on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:122
+#: templates/cmsplugin_zinnia/_entry_detail.html:133
 msgid "Be first to comment!"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:125
+#: templates/cmsplugin_zinnia/_entry_detail.html:136
 msgid "Comments are closed."
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:131
+#: templates/cmsplugin_zinnia/_entry_detail.html:142
 #, python-format
 msgid "Pingbacks on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:132
+#: templates/cmsplugin_zinnia/_entry_detail.html:143
 #, python-format
 msgid "%(pingback_count)s pingback"
 msgid_plural "%(pingback_count)s pingbacks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:138
+#: templates/cmsplugin_zinnia/_entry_detail.html:149
 #, python-format
 msgid "Trackbacks on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:139
+#: templates/cmsplugin_zinnia/_entry_detail.html:150
 #, python-format
 msgid "%(trackback_count)s trackback"
 msgid_plural "%(trackback_count)s trackbacks"
@@ -1897,20 +1894,30 @@ msgstr ""
 msgid "Add a project"
 msgstr "Προσθέστε ένα έργο"
 
+#~ msgid "Enter your login"
+#~ msgstr "Enter your login"
+
 #~ msgid "You can also use"
-#~ msgstr "Μπορείς επίσης να χρησιμοποιήσεις"
+#~ msgstr "You can also use"
 
 #~ msgid "Interface language"
-#~ msgstr "Γλώσσα"
+#~ msgstr "Interface language"
 
 #~ msgid "My projects"
-#~ msgstr "Τα έργα μου"
+#~ msgstr "My projects"
 
 #~ msgid "You have no projects"
-#~ msgstr "Δεν έχετε έργα"
+#~ msgstr "You have no projects"
 
 #~ msgid "Close Panel"
-#~ msgstr "Κλείσιμο Panel"
+#~ msgstr "Close Panel"
+
+#~ msgid ""
+#~ "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
+#~ "<strong>register</strong> your project"
+#~ msgstr ""
+#~ "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
+#~ "<strong>register</strong> your project"
 
 #~ msgid "Get the code"
 #~ msgstr "Get the code"
