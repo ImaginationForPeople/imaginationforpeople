@@ -7,7 +7,7 @@ from apps.tags.models import TaggedCategory
 
 SUPPORT_TYPE_CHOICES = (
     ("CALL", _("project needs")),
-    ("PROP", _("project offers")),
+    ("PROP", _("help from the community")),
 )
 
 class ProjectSupport(models.Model):

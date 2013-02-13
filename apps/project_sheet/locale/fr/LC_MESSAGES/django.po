@@ -1,4 +1,3 @@
-# SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 #
@@ -6,20 +5,22 @@
 # Guillaume  <glibersat@sigill.org>, 2012.
 #   <simonsarazin@imaginationforpeople.org>, 2012.
 # Simon Sarazin <simon.sarazin@gmail.com>, 2012-2013.
+# Benoit Grégoire <benoitg@coeus.ca>, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 22:53+0100\n"
-"PO-Revision-Date: 2013-01-11 09:28+0000\n"
-"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/fr/)\n"
+"POT-Creation-Date: 2013-02-13 15:26-0500\n"
+"PO-Revision-Date: 2013-02-13 15:14-0500\n"
+"Last-Translator: Benoit Grégoire <benoitg@coeus.ca>\n"
+"Language-Team: French <kde-i18n-doc@kde.org>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"imaginationforpeople/language/fr/)\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Generator: Lokalize 1.5\n"
 
 #: cms_plugins.py:33
 msgid "Projects for a tag"
@@ -31,24 +32,23 @@ msgstr "Thèmes contiennent"
 
 #: filters.py:110
 msgid "With associated leaders"
-msgstr "Avec porteur de projet"
+msgstr "Avec porteurs de projet"
 
 #: filters.py:111
 msgid "Without associated leaders"
-msgstr "Sans porteur de projet"
+msgstr "Sans porteurs de projet"
 
 #: filters.py:269
 msgid "World"
 msgstr "Monde"
 
 #: forms.py:108
-#, fuzzy
 msgid "Specify your role in the project"
-msgstr "Sélectionner le type de projet"
+msgstr "Spécifier votre rôle dans le projet"
 
 #: forms.py:109
-msgid "Explain briefly your motivation about the project..."
-msgstr ""
+msgid "Describe briefly your work with this project..."
+msgstr "Décrire en quelques mots votre travail auprès de ce projet..."
 
 #: models.py:61 models.py:322
 msgid "description"
@@ -68,7 +68,7 @@ msgstr "Concept"
 
 #: models.py:107
 msgid "Starting"
-msgstr "Démarrage"
+msgstr "En démarrage"
 
 #: models.py:108
 msgid "In development"
@@ -89,7 +89,7 @@ msgstr "membres"
 
 #: models.py:120
 msgid "best of"
-msgstr "Favoris"
+msgstr "favoris"
 
 #: models.py:122 models.py:321
 msgid "creation date"
@@ -117,11 +117,11 @@ msgstr "emplacement"
 
 #: models.py:147
 msgid "topics"
-msgstr "modèles"
+msgstr "sujets"
 
 #: models.py:151
-msgid "The sites that the project sheet is accessible at."
-msgstr "Les sites sur lesquels la fiche projet est accessible."
+msgid "The sites on which this project sheet is accessible."
+msgstr "Les sites sur lesquels cette fiche projet est accessible."
 
 #: models.py:152
 msgid "sites"
@@ -136,8 +136,8 @@ msgid "Content"
 msgstr "Contenu"
 
 #: models.py:225
-msgid "In edition"
-msgstr "En cours d'édition"
+msgid "Currently being edited"
+msgstr "Présentement en cours d'édition"
 
 #: models.py:226
 msgid "Complete"
@@ -153,7 +153,7 @@ msgstr "titre"
 
 #: models.py:238
 msgid "My Project Title"
-msgstr "Le titre du projet"
+msgstr "Le titre de mon projet"
 
 #: models.py:249
 msgid "one line description"
@@ -165,11 +165,11 @@ msgstr "Description en une ligne"
 
 #: models.py:256
 msgid "about the project"
-msgstr "A propos du projet"
+msgstr "à propos du projet"
 
 #: models.py:257
 msgid "who are the partners of this project"
-msgstr "Qui sont les partenaires de ce projet "
+msgstr "qui sont les partenaires de ce projet "
 
 #: models.py:258
 msgid "Help request"
@@ -193,11 +193,11 @@ msgstr "rôle"
 
 #: models.py:358
 msgid "comment"
-msgstr "Commentaire"
+msgstr "commentaire"
 
 #: models.py:371
 msgid "New project/translation added"
-msgstr "Nouveau projet / traduction ajoutée"
+msgstr "Nouveau projet/traduction ajoutée"
 
 #: models.py:377
 msgid "A member has joined a project"
@@ -224,7 +224,7 @@ msgstr "Modifier"
 #: templates/project_sheet/block/about.html:67
 #: templates/project_sheet/block/detail-list.html:65
 msgid "Double-click to edit"
-msgstr "Double-cliquez pour éditer"
+msgstr "Double-cliquer pour modifier"
 
 #: templates/project_sheet/block/about.html:71
 #: templates/project_sheet/block/detail-list.html:69
@@ -266,7 +266,7 @@ msgid ""
 "located on the right of the screen. We'll try to help you as fast as "
 "possible."
 msgstr ""
-"A n'importe quel moment, si vous vous sentez perdu, cliquez sur l'ongle "
+"A n'importe quel moment, si vous vous sentez perdu, cliquez sur l'onglet "
 "<strong>Feedback</strong> situé à la droite de votre écran. Nous vous "
 "répondrons le plus rapidement possible."
 
@@ -276,7 +276,7 @@ msgstr "Voir le projet"
 
 #: templates/project_sheet/block/cardlist_fancy_wide.html:20
 msgid "No projects found"
-msgstr "Pas de projets trouvés"
+msgstr "Aucun projet trouvé"
 
 #: templates/project_sheet/block/comment-block.html:15
 #: templates/project_sheet/block/toolbar.html:49
@@ -297,7 +297,7 @@ msgstr ""
 #: templates/project_sheet/block/comment-block.html:66
 #: templates/project_sheet/obsolete/comments/comments-module.html:37
 msgid "Post comment"
-msgstr "Poster le commentaire"
+msgstr "Publier le commentaire"
 
 #: templates/project_sheet/block/comment-list.html:35
 msgid "Show all"
@@ -320,49 +320,41 @@ msgstr "Annuler"
 
 #: templates/project_sheet/block/gallery_fancy_thin.html:70
 msgid "No picture found"
-msgstr "Pas d'image trouvé"
+msgstr "Aucune image trouvée"
 
 #: templates/project_sheet/block/gallery_fancy_wide.html:22
 msgid "pictures"
-msgstr ""
+msgstr "Photos"
 
 #: templates/project_sheet/block/gallery_fancy_wide.html:49
 #: templates/project_sheet/page/gallery.html:81
-#, fuzzy
 msgid "This project has no pictures yet"
-msgstr ""
-"Ce projet n'a pas de partenaires connus pour le moment. Ajoutez les si vous "
-"êtes au courant des organisations associées à ce projet."
+msgstr "Ce projet n'a pas encore d'images"
 
 #: templates/project_sheet/block/gallery_fancy_wide.html:56
 msgid "videos"
-msgstr ""
+msgstr "vidéos"
 
 #: templates/project_sheet/block/gallery_fancy_wide.html:81
 #: templates/project_sheet/page/gallery.html:98
-#, fuzzy
 msgid "This project has no videos yet"
-msgstr ""
-"Ce projet n'a pas de partenaires connus pour le moment. Ajoutez les si vous "
-"êtes au courant des organisations associées à ce projet."
+msgstr "Ce projet n'a pas encore de vidéos"
 
 #: templates/project_sheet/block/gallery_modal.html:130
-#, fuzzy
 msgid "Previous"
-msgstr "précédent"
+msgstr "Précédent"
 
 #: templates/project_sheet/block/gallery_modal.html:135
 msgid "Next"
-msgstr ""
+msgstr "Suivant"
 
 #: templates/project_sheet/block/gallery_modal.html:150
 msgid "Delete this picture"
-msgstr ""
+msgstr "Supprimer cette image"
 
 #: templates/project_sheet/block/gallery_modal.html:154
-#, fuzzy
 msgid "View gallery"
-msgstr "Galerie"
+msgstr "Voir la galerie"
 
 #: templates/project_sheet/block/member_fancy_square.html:36
 #: templates/project_sheet/block/member_flat_wide.html:23
@@ -376,30 +368,28 @@ msgstr "Contact"
 
 #: templates/project_sheet/block/member_modal.html:34
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:41
-#, fuzzy
 msgid "Contact all members"
-msgstr "Contact équipe"
+msgstr "Contacter tous les membres"
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:47
-#, fuzzy
 msgid "Join the project"
-msgstr "A propos du projet"
+msgstr "Rejoindre le projet"
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:54
 #, fuzzy
-msgid "become an actor of the project"
-msgstr "Thèmes du projet"
+msgid "I want to announce that I am a member of this project's team"
+msgstr "Je suis un membre de l'équipe de ce projet"
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:58
 msgid "save"
-msgstr ""
+msgstr "enregistrer"
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:59
 msgid "close"
-msgstr ""
+msgstr "fermer"
 
 #: templates/project_sheet/block/menubar.html:16
 #: templates/project_sheet/block/toolbar.html:41
@@ -413,15 +403,15 @@ msgstr "Galerie"
 
 #: templates/project_sheet/block/menubar.html:20
 msgid "Needs"
-msgstr ""
+msgstr "Besoins"
 
 #: templates/project_sheet/block/menubar.html:42
 msgid "Lang"
-msgstr ""
+msgstr "Lang"
 
 #: templates/project_sheet/block/menubar.html:60
 msgid "Add new translation"
-msgstr ""
+msgstr "Ajouter une nouvelle traduction"
 
 #: templates/project_sheet/block/menubar.html:88
 #: templates/project_sheet/block/subheader-readonly.html:191
@@ -440,9 +430,7 @@ msgstr "modifier"
 
 #: templates/project_sheet/block/partner-list.html:45
 msgid "This project has no known partners."
-msgstr ""
-"Ce projet n'a pas de partenaires connus pour le moment. Ajoutez les si vous "
-"êtes au courant des organisations associées à ce projet."
+msgstr "Ce projet n'a pas de partenaires connus pour le moment."
 
 #: templates/project_sheet/block/reference-block.html:27
 #: templates/project_sheet/block/toolbar.html:45
@@ -456,11 +444,11 @@ msgstr "Liens"
 #: templates/project_sheet/block/reference-block.html:46
 #: templates/project_sheet/block/reference-block.html:49
 msgid "no references"
-msgstr "pas de références"
+msgstr "Aucune référence"
 
 #: templates/project_sheet/block/subheader-readonly.html:74
 msgid "my project title"
-msgstr "Mon titre de projet"
+msgstr "mon titre de projet"
 
 #: templates/project_sheet/block/subheader-readonly.html:130
 #: templates/project_sheet/block/subheader-readwrite.html:22
@@ -499,15 +487,15 @@ msgstr "Maturité"
 
 #: templates/project_sheet/block/subheader-readwrite.html:31
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: templates/project_sheet/layout/project_base.html:25
-msgid "start project"
+msgid "start a project"
 msgstr "ajouter un projet"
 
 #: templates/project_sheet/obsolete/all_recent_changes.html:26
 msgid "Latest 20 days changes"
-msgstr "Dernier 20 changements"
+msgstr "Changements depuis 20 jours"
 
 #: templates/project_sheet/obsolete/all_recent_changes.html:27
 #: templates/project_sheet/obsolete/project_list.html:73
@@ -522,10 +510,6 @@ msgstr "Votre recherche ne retourne aucun résultat."
 #: templates/project_sheet/obsolete/history.html:18
 msgid "Made on"
 msgstr "Fait le"
-
-#: templates/project_sheet/obsolete/history.html:18
-msgid "DATETIME_FORMAT"
-msgstr "DATETIME_FORMAT"
 
 #: templates/project_sheet/obsolete/history.html:18
 msgid "by"
@@ -543,10 +527,6 @@ msgstr "sur"
 msgid "and"
 msgstr "et"
 
-#: templates/project_sheet/obsolete/history.html:33
-msgid "\""
-msgstr "\""
-
 #: templates/project_sheet/obsolete/project_complete_card.html:18
 msgid "There is no description for this project"
 msgstr "Il n'y a pas de description pour ce projet"
@@ -554,22 +534,22 @@ msgstr "Il n'y a pas de description pour ce projet"
 #: templates/project_sheet/obsolete/project_id_card.html:16
 #: templates/project_sheet/obsolete/project_status.html:5
 msgid "associated team"
-msgstr "porteurs de projet associés"
+msgstr "équipe associée"
 
 #: templates/project_sheet/obsolete/project_id_card.html:19
 #: templates/project_sheet/obsolete/project_status.html:8
 msgid "in progress"
-msgstr "en cours d'édition"
+msgstr "en cours"
 
 #: templates/project_sheet/obsolete/project_id_card.html:22
 #: templates/project_sheet/obsolete/project_status.html:11
 msgid "popular"
-msgstr "populaires"
+msgstr "populaire"
 
 #: templates/project_sheet/obsolete/project_id_card.html:25
 #: templates/project_sheet/obsolete/project_status.html:14
 msgid "bestof"
-msgstr "best of"
+msgstr "favoris"
 
 #: templates/project_sheet/obsolete/project_list.html:7
 msgid ""
@@ -587,7 +567,7 @@ msgstr "Trouver des projets sur "
 
 #: templates/project_sheet/obsolete/project_list.html:68
 msgid "Order by:"
-msgstr "Ordonner par:"
+msgstr "Trier par:"
 
 #: templates/project_sheet/obsolete/project_list.html:70
 msgid "Newest projects"
@@ -609,29 +589,27 @@ msgstr "suivant"
 
 #: templates/project_sheet/obsolete/topic_select_fragment.html:11
 msgid "Select your type of project"
-msgstr "Sélectionner le type de projet"
+msgstr "Sélectionner votre type de projet"
 
 #: templates/project_sheet/obsolete/comments/comments-module.html:14
 msgid "View the"
 msgstr "Voir les"
 
 #: templates/project_sheet/page/gallery.html:77
-#, fuzzy
 msgid "cover picture"
-msgstr "Pas d'image trouvé"
+msgstr "Image du bandeau"
 
 #: templates/project_sheet/page/gallery.html:94
 msgid "cover video"
-msgstr ""
+msgstr "Vidéo du bandeau"
 
 #: templates/project_sheet/page/project_sheet.html:63
-#, fuzzy
 msgid "Project Community"
-msgstr "Le titre du projet"
+msgstr "Communauté du projet"
 
 #: templates/project_sheet/page/project_sheet.html:70
 msgid "See more"
-msgstr ""
+msgstr "En lire plus"
 
 #: templates/project_sheet/page/project_sheet.html:84
 msgid "Related projects"
@@ -644,265 +622,16 @@ msgid ""
 "suggest related projects."
 msgstr ""
 "Vous devez <a href=\"%(tags_url)s\">renseigner les tags</a> avant que nous "
-"puissions suggérer des projets liés."
+"puissions suggérer des projets similaires."
 
-#~ msgid "Save"
-#~ msgstr "Sauver"
+#~ msgid "In edition"
+#~ msgstr "En cours d'édition"
 
-#~ msgid "project description"
-#~ msgstr "Décrire le projet"
+#~ msgid "become an actor of the project"
+#~ msgstr "Devenir participant du projet"
 
-#~ msgid "click here to describe your project"
-#~ msgstr "Cliquez ici pour décrire votre projet"
+#~ msgid "DATETIME_FORMAT"
+#~ msgstr "DATETIME_FORMAT"
 
-#~ msgid "take action"
-#~ msgstr "Agissez"
-
-#~ msgid ""
-#~ "This project has not claimed its needs yet. Please edit if you are aware "
-#~ "of a requirement."
-#~ msgstr ""
-#~ "Ce projet n'a pas exprimé de besoins particuliers. Modifiez cet élément "
-#~ "si vous savez ce qui pourrait aider ce projet à se développer."
-
-#~ msgid "Spread the word:"
-#~ msgstr "Diffusez le projet :"
-
-#~ msgid "related"
-#~ msgstr "thématiques"
-
-#~ msgid "objectives:"
-#~ msgstr "objectifs :"
-
-#~ msgid ""
-#~ "Click here to set the <strong>categories</strong> and <strong>tags</"
-#~ "strong> of this project."
-#~ msgstr ""
-#~ "Cliquez ici pour définir les <strong>objectifs</strong> et les "
-#~ "<strong>tags</strong> de ce projet."
-
-#~ msgid "Tags:"
-#~ msgstr "Tags:"
-
-#~ msgid "Add a member"
-#~ msgstr "Ajouter un membre"
-
-#~ msgid "add"
-#~ msgstr "Ajouter"
-
-#~ msgid "The team"
-#~ msgstr "Equipe"
-
-#~ msgid ""
-#~ "\n"
-#~ "                            Use the messaging system to get in touch with "
-#~ "the team \n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto1.jpg\" alt=\"Contact team\" width=\"27\" height=\"15\" /"
-#~ ">\n"
-#~ "                            or one of its member\n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" /"
-#~ ">\n"
-#~ "                            .\n"
-#~ "                        "
-#~ msgstr ""
-#~ "\n"
-#~ "                            Utilisez la messagerie interne pour entrer en "
-#~ "contact avec l'équipe \n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto1.jpg\" alt=\"Contact team\" width=\"27\" height=\"15\" /"
-#~ ">\n"
-#~ "                            ou avec l'un de ses membres\n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" /"
-#~ ">\n"
-#~ "                            .\n"
-#~ "                        "
-
-#~ msgid "There is no registered team members: please to fill this section !"
-#~ msgstr ""
-#~ "Il n'y a pas de membres du projet inscrits: vous pouvez remplir cette "
-#~ "section."
-
-#~ msgid "Delete"
-#~ msgstr "Supprimer"
-
-#~ msgid "delete"
-#~ msgstr "supprimer"
-
-#~ msgid "Current partners"
-#~ msgstr "Partenaires actuels"
-
-#~ msgid "Want to get started on your project sheet ?"
-#~ msgstr "Comment démarrer une fiche projet ?"
-
-#~ msgid ""
-#~ "Click on the field you want to edit, edit it, and save the changes. Once "
-#~ "you’ve modified a field, your project sheet will be created."
-#~ msgstr ""
-#~ "Cliquez sur un champ pour le modifier, puis soumettre vos modifications. "
-#~ "Votre projet sera créé une fois un premier champ rempli."
-
-#~ msgid "upload a media"
-#~ msgstr "télécharger un média"
-
-#~ msgid "Image to upload :"
-#~ msgstr "Image à télécharger"
-
-#~ msgid "Upload"
-#~ msgstr "Upload"
-
-#~ msgid "Video link (youtube, dailymotion, etc): "
-#~ msgstr "Vidéo à ajouter (youtube, dailymotion, etc):"
-
-#~ msgid "Add"
-#~ msgstr "Ajouter"
-
-#~ msgid "Metadata - Click to edit"
-#~ msgstr "Métadonnées - Cliquez pour modifier"
-
-#~ msgid "Date :"
-#~ msgstr "Date :"
-
-#~ msgid "Description :"
-#~ msgstr "Description :"
-
-#~ msgid "Author :"
-#~ msgstr "Auteur :"
-
-#~ msgid "Source :"
-#~ msgstr "Source :"
-
-#~ msgid "Licence :"
-#~ msgstr "Licence :"
-
-#~ msgid "Sorry, video are temporary disabled on Internet Explorer"
-#~ msgstr ""
-#~ "Désolé, les vidéos sont temporairement désactivées sur Internet Explorer."
-
-#~ msgid "Yes"
-#~ msgstr "Oui"
-
-#~ msgid "No"
-#~ msgstr "Non"
-
-#~ msgid "who are the current partners of this project"
-#~ msgstr "quels sont les partenaires actuels de ce projet"
-
-#~ msgid "This field is blank. Don’t forget to complete it! "
-#~ msgstr "Ce bloc est vide : n'oubliez pas de le remplir !"
-
-#~ msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
-#~ msgstr ""
-#~ "Modifier les informations liées de &laquo;&nbsp;%(project_title)s&nbsp;"
-#~ "&raquo;"
-
-#~ msgid "Update"
-#~ msgstr "Mise à jour"
-
-#~ msgid "Type your message here and hit enter when done..."
-#~ msgstr "Saisissez votre message ici et appuyez sur entrée pour poster..."
-
-#~ msgid "This bloc is empty : don’t forget to fill it !"
-#~ msgstr "Ce bloc est vide: n'oubliez pas de le remplir!"
-
-#~ msgid ""
-#~ "\n"
-#~ "            Thank you for the interest you have shown in this project. "
-#~ "<br />\n"
-#~ "            Don't you want to <a class=\"login-slide-openner link\" href="
-#~ "\"#\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign "
-#~ "up</a> before editing?\n"
-#~ "            "
-#~ msgstr ""
-#~ "\n"
-#~ "Merci de l'intérêt que vous portez à ce projet.<br />\n"
-#~ "Pourquoi ne pas vous <a class=\"login-slide-openner link\" href=\"#"
-#~ "\">connecter</a> ou <a class=\"login-slide-openner link\" href=\"#\">vous "
-#~ "inscrire</a> avant d'éditer ?"
-
-#~ msgid ""
-#~ "\n"
-#~ "            This project sheet is a draft. Become in one click a co-"
-#~ "publisher of this project !\n"
-#~ "            <br />You can enrich it very simply by clicking on text boxes "
-#~ "which seem to be incomplete. You will then have access to a wiki field "
-#~ "allowing you to write additional content.\n"
-#~ "\t\t\t<br />Please feel free to ask for help through <a class=\"link\" "
-#~ "href=\"/feedback/list/\">feedback</a> or on <a class=\"link\" href="
-#~ "\"http://imaginationforpeople.org/conference/\">live chat</a>.\n"
-#~ "            "
-#~ msgstr ""
-#~ "\n"
-#~ "            Cette fiche projet est en cours d'écriture. Devenez, en un "
-#~ "clic, contributeur de ce projet !\n"
-#~ "            <br />Vous pouvez l'enrichir très simplement en cliquant sur "
-#~ "les champs qui vous semblent incomplets. Vous aurez alors l'accès à un "
-#~ "champ wiki vous permettant d'écrire du contenu additionnel.\n"
-#~ "\t\t\t<br />N'hésitez pas à demander de l'aide à travers les <a class="
-#~ "\"link\" href=\"/feedback/list/\">feedback</a> ou sur le <a class=\"link"
-#~ "\" href=\"http://imaginationforpeople.org/conference/\">chat en direct</"
-#~ "a>.\n"
-#~ "            "
-
-#~ msgid "anonymous"
-#~ msgstr "anonyme"
-
-#~ msgid "Location:"
-#~ msgstr "Lieu :"
-
-#~ msgid "Website:"
-#~ msgstr "Site Web :"
-
-#~ msgid ""
-#~ "\n"
-#~ "\t    This project sheet, except media, is licensed under the <a rel="
-#~ "\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-#~ "\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://"
-#~ "creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative "
-#~ "Commons\" style=\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-"
-#~ "sa3_80_25.png\" /></a>\n"
-#~ "\t  "
-#~ msgstr ""
-#~ "\n"
-#~ "\t    Cette page, en dehors des médias, est sous licence <a rel=\"license"
-#~ "\" href=\"http://creativecommons.org/licenses/by-sa/3.0/\">Creative "
-#~ "Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://creativecommons."
-#~ "org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative Commons\" style="
-#~ "\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></"
-#~ "a>\n"
-#~ "\t  "
-
-#~ msgid "references"
-#~ msgstr "références"
-
-#~ msgid "Cancel & close"
-#~ msgstr "Annuler et fermer"
-
-#~ msgid "Save & close"
-#~ msgstr "Enregistrer et fermer"
-
-#~ msgid "Objectives:"
-#~ msgstr "Objectifs :"
-
-#~ msgid "Themes:"
-#~ msgstr "Thèmes :"
-
-#~ msgid "select your tags from the cloud below"
-#~ msgstr "Sélectionnez vos tags dans le nuage ci-dessous"
-
-#~ msgid "Close &amp; discard"
-#~ msgstr "Fermer et annuler"
-
-#~ msgid "Add a team member"
-#~ msgstr "Ajouter un porteur du projet"
-
-#~ msgid "Close & discard"
-#~ msgstr "Fermer et annuler"
-
-#~ msgid "What is the social value of this project"
-#~ msgstr "Quelle est la plus-value sociale du projet"
-
-#~ msgid "Contributors"
-#~ msgstr "Contributeurs"
+#~ msgid "\""
+#~ msgstr "\""

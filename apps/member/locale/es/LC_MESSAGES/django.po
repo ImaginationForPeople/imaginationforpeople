@@ -4,7 +4,7 @@
 #
 # Translators:
 # Translators:
-# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011, 2012.
+# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011-2012.
 # Guillaume  <glibersat@sigill.org>, 2012.
 #   <maire.sylvain@gmail.com>, 2011.
 #   <simonsarazin@imaginationforpeople.org>, 2012.
@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 22:52+0100\n"
-"PO-Revision-Date: 2012-10-05 09:11+0000\n"
+"POT-Creation-Date: 2013-02-13 15:26-0500\n"
+"PO-Revision-Date: 2013-02-09 21:56+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Spanish <ip-es@lists.imaginationforpeople.org>\n"
 "Language: es\n"
@@ -89,7 +89,7 @@ msgstr "país"
 
 #: models.py:62
 msgid "registration site"
-msgstr ""
+msgstr "sitio de registro"
 
 #: models.py:65
 msgid "location"
@@ -102,7 +102,7 @@ msgstr "Nuevo usuario registrado"
 #: models.py:128
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
-msgstr ""
+msgstr "Nuevo mensaje de %(sender)s en Imagination For People"
 
 #: views.py:184
 msgid "Your profile has been updated."
@@ -154,7 +154,7 @@ msgstr "nuevo"
 
 #: templates/umessages/message_list.html:95
 msgid "you haven't received any message yet"
-msgstr ""
+msgstr "todavía no ha recibido ningún mensaje"
 
 #: templates/umessages/message_notification.txt:2
 #, python-format
@@ -162,6 +162,8 @@ msgid ""
 "\n"
 "%(sender)s has sent you a message:\n"
 msgstr ""
+"\n"
+"%(sender)s le ha enviado un mensaje:\n"
 
 #: templates/umessages/message_notification.txt:6
 #, python-format
@@ -170,6 +172,9 @@ msgid ""
 "You can view it online at:\n"
 "%(message_url)s\n"
 msgstr ""
+"\n"
+"Puede verlo en línea en:\n"
+"%(message_url)s\n"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -240,6 +245,8 @@ msgid ""
 "The following fields in your profile contains invalid data you need to "
 "correct:"
 msgstr ""
+"Los siguientes campos de su perfil contienen datos no válidos que debe "
+"corregir:"
 
 #: templates/userena/forms.html:59 templates/userena/forms.html.py:87
 msgid "Save changes"
@@ -397,7 +404,7 @@ msgstr "Iniciar sesión"
 
 #: templates/userena/signin_form.html:44
 msgid "Lost your password?"
-msgstr ""
+msgstr "¿Ha olvidado su contraseña?"
 
 #: templates/userena/signin_form.html:61
 msgid "Not a member yet?"
@@ -441,7 +448,7 @@ msgstr "Registrarse"
 
 #: templates/userena/signup_form.html:50
 msgid "You can also use"
-msgstr ""
+msgstr "Puede usar también"
 
 #: templates/userena/signup_form.html:61
 msgid "Already a member?"
@@ -451,7 +458,7 @@ msgstr "¿Ya es miembro?"
 #: templates/userena/social-networks.html:5
 #: templates/userena/social-networks.html:11
 msgid "Connect with"
-msgstr ""
+msgstr "Conectar con"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:2
 #, python-format
