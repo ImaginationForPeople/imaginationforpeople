@@ -18,8 +18,12 @@ Parameters for this block
 {% endaddtoblock %}
 
 <div class="person wide-flat">
-	<a href="{{ person.user.get_profile.get_absolute_url }}"><img class="avatar" src="{{ person.user.get_profile.get_mugshot_url }}" /></a>
-	<a class="fullname" href="{{ person.user.get_profile.get_absolute_url }}">{{ person.user.get_profile.get_full_name_or_username }}</a>
-	<a class="project" href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.translations.all.0.title }}</a>
-	<div class="country flag-{{ person.user.get_profile.country|lower }}"></div>
+    <a href="{{ person.user.get_profile.get_absolute_url }}"><img class="avatar" src="{{ person.user.get_profile.get_mugshot_url }}" /></a>
+    <p class="fullname">
+        <a href="{{ person.user.get_profile.get_absolute_url }}">{{ person.user.get_profile.get_full_name_or_username }}</a>
+    </p>
+    <p class="project">
+        <a href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.translations.all.0.title }}</a>
+    </p>
+    <div class="country flag-{{ person.user.get_profile.country|lower }}"></div>
 </div>

@@ -22,16 +22,16 @@ Parameters for this block
 {% endaddtoblock %}
 
 <div class="tag-list clearfix">
-	<h2>{% trans taglist_title|capfirst %}</h2>
-	<ul>
-		{% for tag in taglist_tags %}
-		<!-- FIXME: how do we get tag count on non-tag pages ? -->
-		<li><a href="{% url tags:tag-view tag.name|urlencode %}">{{ tag.name }}{% if tag.count %} ({{ tag.count }}){% endif %}</a></li>
-		{% endfor %}
-		{% if taglist_is_editable %}
-		<li class="edit">
-			<a href="{{ taglist_edit_action }}">{% trans "edit" %}</a>
-		</li>
-		{% endif %}
-	</ul>
+    <h2>{% trans taglist_title|capfirst %}</h2>
+    <ul>
+        {% for tag in taglist_tags %}
+        <!-- FIXME: how do we get tag count on non-tag pages ? -->
+        <li><a href="{% url tags:tag-view tag.name|urlencode %}">{{ tag.name }}{% if tag.count %} ({{ tag.count }}){% endif %}</a></li>
+        {% endfor %}
+        {% if taglist_is_editable %}
+        <li class="edit">
+            <a href="{{ taglist_edit_action }}">{% trans "edit" %}</a>
+        </li>
+        {% endif %}
+    </ul>
 </div> <!-- #tags-related -->
