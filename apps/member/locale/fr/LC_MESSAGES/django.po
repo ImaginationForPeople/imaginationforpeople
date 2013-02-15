@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 18:06-0500\n"
+"POT-Creation-Date: 2013-02-15 17:36-0500\n"
 "PO-Revision-Date: 2013-02-09 22:55+0000\n"
 "Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/"
@@ -120,15 +120,15 @@ msgstr "Profil"
 msgid "No user associated with this project."
 msgstr ""
 
-#: templates/umessages/base_message.html:20
+#: templates/umessages/base_message.html:24
 msgid "My Messages"
 msgstr "Mes messages"
 
-#: templates/umessages/base_message.html:34
+#: templates/umessages/base_message.html:39
 msgid "Inbox"
 msgstr "Messages"
 
-#: templates/umessages/base_message.html:43
+#: templates/umessages/base_message.html:48
 msgid "New Message"
 msgstr "Nouveau message"
 
@@ -247,7 +247,7 @@ msgstr ""
 msgid "Account setup"
 msgstr "Configuration du compte"
 
-#: templates/userena/forms.html:26
+#: templates/userena/forms.html:25
 msgid ""
 "The following fields in your profile contains invalid data you need to "
 "correct:"
@@ -255,19 +255,19 @@ msgstr ""
 "Les champs suivants dans votre profil contiennent des données invalides "
 "qu'il est nécessaire de corriger:"
 
-#: templates/userena/forms.html:59 templates/userena/forms.html.py:87
+#: templates/userena/forms.html:55 templates/userena/forms.html.py:77
 msgid "Save changes"
 msgstr "Enregistrer les modifications"
 
-#: templates/userena/forms.html:98
+#: templates/userena/forms.html:88
 msgid "Change password"
 msgstr "Changer le mot de passe"
 
-#: templates/userena/forms.html:103
+#: templates/userena/forms.html:93
 msgid "Your current email address is the following:"
 msgstr "Votre adresse e-mail actuelle est la suivante:"
 
-#: templates/userena/forms.html:108
+#: templates/userena/forms.html:98
 msgid "Change email"
 msgstr "Changer l'email"
 
@@ -290,48 +290,48 @@ msgid "Password reset"
 msgstr "Réinitialiser le mot de passe"
 
 #: templates/userena/password_reset_complete.html:6
-#: templates/userena/password_reset_complete.html:18
+#: templates/userena/password_reset_complete.html:16
 msgid "Your password has been reset"
 msgstr "Votre mot de passe a été réinitialisé"
 
-#: templates/userena/password_reset_complete.html:22
+#: templates/userena/password_reset_complete.html:20
 msgid "You can now "
 msgstr "Vous pouvez maintenant"
 
-#: templates/userena/password_reset_complete.html:22
+#: templates/userena/password_reset_complete.html:20
 msgid "signin"
 msgstr "signin"
 
-#: templates/userena/password_reset_complete.html:22
+#: templates/userena/password_reset_complete.html:20
 msgid "with your new password."
 msgstr "avec votre nouveau mot de passe."
 
 #: templates/userena/password_reset_confirm_form.html:4
-#: templates/userena/password_reset_confirm_form.html:24
+#: templates/userena/password_reset_confirm_form.html:21
 #: templates/userena/password_reset_form.html:4
 msgid "Reset password"
 msgstr "Réinitialiser le mot de passe"
 
-#: templates/userena/password_reset_confirm_form.html:16
-#: templates/userena/password_reset_confirm_form.html:21
-#: templates/userena/password_reset_form.html:16
+#: templates/userena/password_reset_confirm_form.html:13
+#: templates/userena/password_reset_confirm_form.html:18
+#: templates/userena/password_reset_form.html:14
 msgid "Reset Password"
 msgstr "Réinitialiser le mot de passe"
 
 #: templates/userena/password_reset_done.html:4
 #: templates/userena/password_reset_done.html:6
-#: templates/userena/password_reset_done.html:18
+#: templates/userena/password_reset_done.html:16
 msgid "Reset password email is send"
 msgstr "Un mail de réinitialisation du mot de passé a été envoyé"
 
-#: templates/userena/password_reset_done.html:22
+#: templates/userena/password_reset_done.html:20
 msgid ""
 "An e-mail has been send to you which explains how to reset your password."
 msgstr ""
 "Un e-mail vous a été envoyé, qui vous explique comment réinitialiser votre "
 "mot de passe."
 
-#: templates/userena/password_reset_form.html:25
+#: templates/userena/password_reset_form.html:23
 msgid "Send password"
 msgstr "Envoyer le mot de passe"
 
@@ -340,31 +340,31 @@ msgstr "Envoyer le mot de passe"
 msgid "%(username)s"
 msgstr "%(username)s"
 
-#: templates/userena/profile_detail.html:15
+#: templates/userena/profile_detail.html:12
 msgid "<i>This member has no description...</i>"
 msgstr "<i>Ce membre n'a pas de description ...</i>"
 
-#: templates/userena/profile_detail.html:23
+#: templates/userena/profile_detail.html:20
 msgid "My projects"
 msgstr "Mes projets"
 
-#: templates/userena/profile_detail.html:25
+#: templates/userena/profile_detail.html:22
 msgid "Her/His projects"
 msgstr "Ses projets"
 
-#: templates/userena/profile_detail.html:35
+#: templates/userena/profile_detail.html:30
 msgid "This user does not have any project yet."
 msgstr "Cet utilisateur n'a pas encore de projet."
 
-#: templates/userena/profile_detail.html:46
+#: templates/userena/profile_detail.html:40
 msgid "My contributions"
 msgstr "Mes contributions"
 
-#: templates/userena/profile_detail.html:48
+#: templates/userena/profile_detail.html:42
 msgid "Her/His contributions"
 msgstr "Ses contributions"
 
-#: templates/userena/profile_detail.html:58
+#: templates/userena/profile_detail.html:50
 msgid "No contributions yet."
 msgstr "Pas encore de contributions."
 
@@ -378,23 +378,21 @@ msgstr "Votre avatar"
 msgid "Anonymous"
 msgstr "Anonyme"
 
-#: templates/userena/profile_list.html:5
+#: templates/userena/profile_list.html:8
 msgid "Imagination For People Community"
 msgstr "Communauté ImaginationforPeople"
 
-#: templates/userena/profile_list.html:29
+#: templates/userena/profile_list.html:30
 msgid "Community"
 msgstr "Communauté"
 
-#: templates/userena/profile_list.html:42
+#: templates/userena/profile_list.html:39
 #, python-format
 msgid ""
 "\n"
-"\t\t  Page %(page)s of %(num_pages)s\n"
-"\t\t"
+"                            Page %(page)s of %(num_pages)s\n"
+"                        "
 msgstr ""
-"\n"
-"Page %(page)s  de %(num_pages)s "
 
 #: templates/userena/signin_form.html:4
 msgid "Signin"
@@ -420,21 +418,21 @@ msgstr "Inscription"
 
 #: templates/userena/signup_complete.html:4
 #: templates/userena/signup_complete.html:6
-#: templates/userena/signup_complete.html:18
+#: templates/userena/signup_complete.html:14
 msgid "Signup done!"
 msgstr "Connexion réussie !"
 
-#: templates/userena/signup_complete.html:22
+#: templates/userena/signup_complete.html:17
 msgid "Thank you for signing up with us!"
 msgstr "Merci pour cette inscription !"
 
-#: templates/userena/signup_complete.html:23
+#: templates/userena/signup_complete.html:18
 msgid ""
 "You have been sent an email with an activation link to the supplied email "
 "address."
 msgstr "Un mail vous a été envoyé avec un lien d'activation."
 
-#: templates/userena/signup_complete.html:24
+#: templates/userena/signup_complete.html:19
 #, python-format
 msgid ""
 "We will store your signup information for %(userena_activation_days)s days "
@@ -486,3 +484,11 @@ msgstr "Merci d'utiliser notre site !"
 #: templates/userena/emails/confirmation_email_message_new.txt:13
 msgid "Sincerely"
 msgstr "A très bientôt,"
+
+#~ msgid ""
+#~ "\n"
+#~ "\t\t  Page %(page)s of %(num_pages)s\n"
+#~ "\t\t"
+#~ msgstr ""
+#~ "\n"
+#~ "Page %(page)s  de %(num_pages)s "
