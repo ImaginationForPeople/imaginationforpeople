@@ -4,15 +4,13 @@
     {% block entry-image %}
     {% if object.image %}
     <div class="entry-image">
-      <p>
-        {% if continue_reading %}
-        <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
-          {% endif %}
-          <img src="{{ object.image.url }}" alt="{{ object.title }}" class="left" />
-          {% if continue_reading %}
-        </a>
-        {% endif %}
-      </p>
+      {% if continue_reading %}
+      <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+      {% endif %}
+      <img src="{{ object.image.url }}" alt="{{ object.title }}" class="left" />
+      {% if continue_reading %}
+      </a>
+      {% endif %}
     </div>{%comment%}DO NOT PUT SPACE OR CARRIAGE RETURN BETWEEN THESE TWO DIVS{%endcomment%}<div class="entry-main-details entry-main-details-image">
     {% else %}
     <div class="entry-main-details entry-main-details-noimage">

@@ -1,4 +1,4 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 {% load menu_tags %}
 {% load i18n cms_tags sekizai_tags %}
 {% load compress %}
@@ -10,10 +10,18 @@
 {% block style %}
 {% endblock %}
 
+{% block base_grid %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+{% endblock %}
+
 {% block content %}
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+{% endaddtoblock %}
+{% addtoblock "css" strip %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/onemenu.css" />
+{% endaddtoblock %}
+{% addtoblock "css" strip %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
 {% endaddtoblock %}
 
@@ -22,57 +30,39 @@
 {% endif %}
 
 
-	<div class="content">        
-
-		<div class="container_18">
-
-			<div class="grid_3 alpha omega">			
-			
-				<div class="left-menu">  	
-				{% ifequal current_page.parent.reverse_id "workgroups" %}
-					    
-					{% placeholder "menu_workgroups" or %}  
-					<h2>{% trans "MENU" %}</h2>
-					<ul>             
-					{% show_menu 1 100 0 100 %}
-					</ul>
-					{% endplaceholder %}
-					
-			  {% else %}
-               
-                 {% placeholder "menu_workgroups" inherit or %}
-                        
-					<h2>{% trans "MENU" %}</h2>
-					<ul>             
-						{% show_menu 1 100 0 100 %}
-					</ul>
-					{% endplaceholder %}
-					
-				{% endifequal %}
-				</div>
-				
-			</div>
-			
-			<div class="grid_14 alpha omega">			
-			
-				<div class="block-content">  			
-			      {% placeholder "page_title" or %}
-			      <h1>{% page_attribute "page_title" %}</h1>
-			      {% endplaceholder %}
-
-				  {% placeholder "content" or %}
-				  <iframe src="http://pad.imaginationforpeople.org/p/{% page_attribute "page_title" request.current_page.parent.id %}{% page_attribute "page_title" request.current_page %}?showChat=false&showLineNumbers=false&showControls=true" frameborder="0" width="755px" height="550px"></iframe>
-				  {% endplaceholder %}
-									
-				</div>
-				
-			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
-	</div>
-
-	
-
+<div class="content">        
+    <div class="container">
+        <div class="row">
+            <div class="span2">			
+                <div class="left-menu">  	
+                    {% ifequal current_page.parent.reverse_id "workgroups" %}
+                        {% placeholder "menu_workgroups" or %}  
+                            <h2>{% trans "MENU" %}</h2>
+                            <ul>
+                                {% show_menu 1 100 0 100 %}
+                            </ul>
+                        {% endplaceholder %}
+                    {% else %}
+                        {% placeholder "menu_workgroups" inherit or %}
+                            <h2>{% trans "MENU" %}</h2>
+                            <ul>
+                                {% show_menu 1 100 0 100 %}
+                            </ul>
+                        {% endplaceholder %}
+                    {% endifequal %}
+                </div>
+            </div>
+            <div class="span10">			
+                <div class="block-content">  			
+                    {% placeholder "page_title" or %}
+                        <h1>{% page_attribute "page_title" %}</h1>
+                    {% endplaceholder %}
+                    {% placeholder "content" or %}
+                        <iframe src="http://pad.imaginationforpeople.org/p/{% page_attribute "page_title" request.current_page.parent.id %}{% page_attribute "page_title" request.current_page %}?showChat=false&showLineNumbers=false&showControls=true" frameborder="0" width="755px" height="550px"></iframe>
+                    {% endplaceholder %}
+                </div>
+            </div>
+        </div>		
+    </div>
+</div>
 {% endblock %}

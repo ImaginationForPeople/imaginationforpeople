@@ -23,21 +23,21 @@ $flag-sprite-dimensions: true;
     margin-bottom: 12px;
 
     h2 {
-	font-family: $fontOpenSans;
-	font-size: $sizeTextLarge;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin-top: 5px;
-	margin-bottom: 5px;
+    font-family: $fontOpenSans;
+    font-size: $sizeTextLarge;
+    font-stretch: condensed;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
     }
 
     ul {
-	list-style: none;
+    list-style: none;
 
-	li {
-	    margin-bottom: 10px;
-	}
+    li {
+        margin-bottom: 10px;
+    }
     }
 }
 
@@ -46,53 +46,60 @@ $flag-sprite-dimensions: true;
     @include box-sizing(border-box);
     @include i4p-transition(all .5s ease);
     width: 100%;
-    padding: 5px;
+    padding: 0.8em;
 
     * {
-	margin-left: 50px;
+
     }
 
     .avatar {
-	width: 40px;
-	height: 40px;
-	float: left;
-	margin: 0;
-	border: 1px solid $colorMedLightGrey;
+    width: 40px;
+    height: 40px;
+    float: left;
+    margin: 0 1em 0 0;
+    border: 1px solid $colorMedLightGrey;
     }
 
     .fullname {
-	display: block;
-	color: black;
-	font-family: $fontOpenSans;
-	font-size: $sizeTextNormal;
-	font-weight: bold;
-	font-style: italic;
+        display: inline-block;
+        margin: 0 0 0 0;
+        a {
+            color: black;
+            @include i4p-font-base($sizeTextNormal);
+            font-weight: bold;
+            font-style: italic;
+            line-height: 80%;
+        }
     }
 
     .project {
-	display: block;
-	color: black;
-	font-family: $fontOpenSans;
-	font-size: $sizeTextNormal;
-	font-weight: bold;
+        display: block;
+        margin: 0 0 0 0;
+        a {
+            color: black;
+            @include i4p-font-base($sizeTextSmall);
+            font-weight: bold;
 
-	&:before {
-	    content: attr(data-memberof-str);
-	    font-style: italic;
-	    display: block;
-	    font-weight: normal;
-	}
+            &:before {
+                display: block;
+                content: attr(data-memberof-str);
+                font-style: italic;
+                font-weight: normal;
+                line-height: 70%;
+            }
+         
+    }
     }
 
     .country {
-	position: absolute;
-	display: block;
-	margin: 0;
-	top: 35px;
-	left: 30px;
+    position: absolute;
+    display: block;
+    margin: 0;
+    top: 35px;
+    left: 30px;
     }
 
     &:hover {
-	background-color: white;
+    background-color: white;
     }
 }

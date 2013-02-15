@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 18:06-0500\n"
+"POT-Creation-Date: 2013-02-15 17:36-0500\n"
 "PO-Revision-Date: 2013-02-09 21:57+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
@@ -260,7 +260,7 @@ msgstr ""
 msgid "See the project"
 msgstr ""
 
-#: templates/project_sheet/block/cardlist_fancy_wide.html:20
+#: templates/project_sheet/block/cardlist_fancy_wide.html:18
 msgid "No projects found"
 msgstr ""
 
@@ -342,7 +342,7 @@ msgid "View gallery"
 msgstr ""
 
 #: templates/project_sheet/block/member_fancy_square.html:36
-#: templates/project_sheet/block/member_flat_wide.html:23
+#: templates/project_sheet/block/member_flat_wide.html:26
 #: templates/project_sheet/block/member_modal.html:27
 msgid "Member of : "
 msgstr ""
@@ -416,6 +416,108 @@ msgstr ""
 msgid "This project has no known partners."
 msgstr ""
 
+#: templates/project_sheet/block/project_list_filter_panel.html:37
+msgid "Pin/Unpin the panel"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:41
+msgid "Filter results"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:42
+msgid "Help"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:50
+msgid "Order by:"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:52
+msgid "Newest"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:53
+msgid "Latest changes"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:55
+#: templates/project_sheet/obsolete/all_recent_changes.html:30
+msgid "RSS Feed"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:65
+msgid "Clear filters"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:68
+msgid "Tags"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:69
+#: templates/project_sheet/block/project_list_filter_panel.html:87
+msgid "invert"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:72
+#, python-format
+msgid "%(count)s project sheets"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:81
+#: templates/project_sheet/block/subheader-readonly.html:134
+msgid "Location"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:86
+msgid "Categories"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:93
+msgid "Sheet Status"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:97
+msgid "Best-of"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:102
+msgid "best-of"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:108
+msgid "progression"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:115
+msgid "Associated team"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:116
+msgid "Orphan project"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:119
+msgid "team"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:123
+msgid "Project Status"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_pagination.html:8
+#: templates/project_sheet/block/project_list_pagination.html:11
+msgid "previous"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_pagination.html:35
+#: templates/project_sheet/block/project_list_pagination.html:38
+msgid "next"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_project_card.html:24
+msgid "There is no description for this project"
+msgstr ""
+
 #: templates/project_sheet/block/reference-block.html:27
 #: templates/project_sheet/block/toolbar.html:45
 msgid "References"
@@ -438,10 +540,6 @@ msgstr ""
 #: templates/project_sheet/block/subheader-readwrite.html:22
 #: templates/project_sheet/block/toolbar.html:37
 msgid "Information"
-msgstr ""
-
-#: templates/project_sheet/block/subheader-readonly.html:134
-msgid "Location"
 msgstr ""
 
 #: templates/project_sheet/block/subheader-readonly.html:156
@@ -477,17 +575,12 @@ msgstr ""
 msgid "start a project"
 msgstr ""
 
-#: templates/project_sheet/obsolete/all_recent_changes.html:26
+#: templates/project_sheet/obsolete/all_recent_changes.html:29
 msgid "Latest 20 days changes"
 msgstr ""
 
-#: templates/project_sheet/obsolete/all_recent_changes.html:27
-#: templates/project_sheet/obsolete/project_list.html:73
-msgid "RSS Feed"
-msgstr ""
-
-#: templates/project_sheet/obsolete/all_recent_changes.html:49
-#: templates/project_sheet/obsolete/project_list.html:103
+#: templates/project_sheet/obsolete/all_recent_changes.html:52
+#: templates/project_sheet/page/project_list.html:54
 msgid "Your request did not return any result."
 msgstr ""
 
@@ -511,10 +604,6 @@ msgstr ""
 msgid "and"
 msgstr ""
 
-#: templates/project_sheet/obsolete/project_complete_card.html:18
-msgid "There is no description for this project"
-msgstr ""
-
 #: templates/project_sheet/obsolete/project_id_card.html:16
 #: templates/project_sheet/obsolete/project_status.html:5
 msgid "associated team"
@@ -535,39 +624,6 @@ msgstr ""
 msgid "bestof"
 msgstr ""
 
-#: templates/project_sheet/obsolete/project_list.html:7
-msgid ""
-"These experiences have a positive social impact and create social goodwill. "
-"they demonstrate a disruptive inventiveness and can be easily disseminated "
-"and scaled in other places or cultural contexts."
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list.html:8
-msgid "Find projects on "
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list.html:68
-msgid "Order by:"
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list.html:70
-msgid "Newest projects"
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list.html:71
-msgid "Recent changes"
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list_pagination.html:9
-#: templates/project_sheet/obsolete/project_list_pagination.html:12
-msgid "previous"
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list_pagination.html:36
-#: templates/project_sheet/obsolete/project_list_pagination.html:39
-msgid "next"
-msgstr ""
-
 #: templates/project_sheet/obsolete/topic_select_fragment.html:11
 msgid "Select your type of project"
 msgstr ""
@@ -582,6 +638,17 @@ msgstr ""
 
 #: templates/project_sheet/page/gallery.html:94
 msgid "cover video"
+msgstr ""
+
+#: templates/project_sheet/page/project_list.html:8
+msgid ""
+"These experiences have a positive social impact and create social goodwill. "
+"they demonstrate a disruptive inventiveness and can be easily disseminated "
+"and scaled in other places or cultural contexts."
+msgstr ""
+
+#: templates/project_sheet/page/project_list.html:9
+msgid "Find projects on "
 msgstr ""
 
 #: templates/project_sheet/page/project_sheet.html:63

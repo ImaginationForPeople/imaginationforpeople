@@ -2,13 +2,16 @@
 {% load i18n %}
 {% load compress %}
 
+{% block base_grid %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+{% endblock %}
 {% block title %}{% trans 'Imagination For People Community' %}{% endblock %}
 
 {% block style %}
   {{ block.super }}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/community.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/member/userena/profile_list.css" />
   {% endcompress %}
 {% endblock %}
 
@@ -19,56 +22,44 @@
   {% endcompress %}
 {% endblock %}
 
-{% block nav %}<div style="height:37px;"></div>{% endblock %}
+{% block nav %} {% include "nav.html" %} {% endblock %}
 
 {% block content %}
-  <div class="content">        
-    <div id="community" class="container_18">
+    <div class="content">        
+        <div id="community" class="container">
+            <h2>{% trans "Community" %}</h2>
+            <hr/>
+            {% if is_paginated %}
+                <div class="i4p_pagination">
+                    <span class="step-links">
+                    {% if page_obj.has_previous %}
+                        <a class="link" href="{% url userena_profile_list_paginated page_obj.previous_page_number %}">&laquo;</a>
+                    {% endif %}
+                    <span class="current">
+                        {% blocktrans with page_obj.number as page and page_obj.paginator.num_pages as num_pages %}
+                            Page {{ page }} of {{ num_pages }}
+                        {% endblocktrans %}
+                    </span>
+                    {% if page_obj.has_next %}
+                        <a class="link" href="{% url userena_profile_list_paginated  page_obj.next_page_number %}">&raquo;</a>
+                    {% endif %}
+                    </span>
+                </div>
+            {% endif %}
+        </div>
 
-      <div class="grid_18 alpha omega">
-	<h2>{% trans "Community" %}</h2>
-	<hr/>
-      </div>
-
-      <div class="grid_18 alpha omega">
-	{% if is_paginated %}
-	  <div class="pagination">
-	    <span class="step-links">
-	      {% if page_obj.has_previous %}
-		<a class="link" href="{% url userena_profile_list_paginated page_obj.previous_page_number %}">&laquo;</a>
-	      {% endif %}
-	      
-	      <span class="current">
-		{% blocktrans with page_obj.number as page and page_obj.paginator.num_pages as num_pages %}
-		  Page {{ page }} of {{ num_pages }}
-		{% endblocktrans %}
-	      </span>
-	      
-	      {% if page_obj.has_next %}
-		<a class="link" href="{% url userena_profile_list_paginated  page_obj.next_page_number %}">&raquo;</a>
-	      {% endif %}
-	    </span>
-	  </div>
-	  {% endif %}
-      </div>
-
-	<div class="clear"></div>
-
-	<div id="polaroid-wrapper">
-	  <div id="polaroidcontainer">
-	    {% for profile in profile_list %}
-	      <div class="polaroid">
-		<a href="{% url userena_profile_detail profile.user.username %}">
-		  <img src="{{ profile.get_mugshot_url }}" />
-		</a>
-		<p>{{ profile.user.username }}</p>
-	      </div>
-	    {% endfor %}
-	  </div>
-	</div>
-	
-	<div class="clear"></div>
+        <div id="polaroid-wrapper" class="container">
+            <div id="polaroidcontainer">
+                {% for profile in profile_list %}
+                    <div class="polaroid">
+                        <a href="{% url userena_profile_detail profile.user.username %}">
+                            <img src="{{ profile.get_mugshot_url }}" />
+                        </a>
+                        <p>{{ profile.user.username }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
     </div>
-  </div>
 
 {% endblock %}

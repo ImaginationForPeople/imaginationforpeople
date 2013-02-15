@@ -1,30 +1,29 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
+{% load sekizai_tags %}
 
+{% block base_grid %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+{% endblock %}
+
+{% comment %}For some reason sekizai just refuses to work here{% endcomment %}
 {% block style %}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/profile.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/member/userena/profile.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/member/userena/profile_detail.css" />
   {% endcompress %}
 {% endblock %}
 
+{% block nav %} {% include "nav.html" %} {% endblock %}
 {% block content %}
     <div class="content"> 
-        <div class="container_18">
-
-        {% block profile_type %}
-            <div id="profile">
-        {% endblock %}
-
-            {% include "userena/profile_idbar.html" %}
-            {% block profile_content %}{% endblock %}
-
-
+        <div class="container">
+            {% block profile_type %}<div id="profile">{% endblock %}
+                {% include "userena/profile_idbar.html" %}
+                {% block profile_content %}{% endblock %}
             </div>
-
-        <div class="clear"></div>
         </div>
     </div>
 {% endblock %}

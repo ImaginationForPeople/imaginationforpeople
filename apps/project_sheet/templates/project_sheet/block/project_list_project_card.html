@@ -1,5 +1,11 @@
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" strip %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_list_project_card.css" />
+{% endaddtoblock %}
+
 <div class="project_list_project">
     {% language project_translation.language_code %}
         <a href="{% url project_sheet-show project_translation.slug %}" class="project_list_project"  title="{{ project_translation.baseline}}">
