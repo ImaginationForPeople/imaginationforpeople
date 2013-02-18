@@ -24,7 +24,7 @@ from django.template.context import RequestContext
 from django.utils import translation
 
 from apps.project_sheet.models import I4pProject
-from apps.project_sheet.utils import get_project_translations_from_parents, build_filters_and_context
+from apps.project_sheet.utils import get_project_translations_from_parents
 
 def homepage(request):
     """
@@ -45,11 +45,6 @@ def homepage(request):
                'project_translations': project_translations,
                'last_members': latest_members,
                'about_tab_selected' : True}
-
-    filter_forms, extra_context = build_filters_and_context(data)
-    context.update(filter_forms)
-    context.update(extra_context)
-
 
     return render_to_response(template_name='pages/homepage.html',
                               dictionary=context,
