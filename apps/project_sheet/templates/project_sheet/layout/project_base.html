@@ -22,7 +22,7 @@
 : {{ project_translation.baseline }}
 {% endif %}
 {% else %}
-{% trans 'start project'|capfirst %}
+{% trans 'start a project'|capfirst %}
 {% endif %}
 | {{ site.name }}
 {% endblock %}
@@ -30,7 +30,7 @@
 {% block content %}	
 {% with gridsystem='bootstrap' %}
 
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
     <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
     {% if project_translation %}
     <script>
@@ -62,6 +62,8 @@
 {% endblock %}
 
 {% include "project_sheet/block/toolbar.html" %}
+
+{% block misc_toolbar %}{% endblock %}
 
 <div class="project-content">
 {% block project_content %}{% endblock %}

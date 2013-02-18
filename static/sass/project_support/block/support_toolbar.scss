@@ -1,0 +1,68 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for toolbar
+$toolbar-sprite-dimensions: true;
+@import "project_support/toolbar/*.png"; // */
+@include all-toolbar-sprites(true);
+
+.support-toolbar {
+  @include i4p-background-vertical-gradient(#3a3a3a, #252525);
+  clear: both;
+  height: 65px;
+  .row > ul {
+    margin-left:0;
+    border-left:1px solid #000;
+  }
+  .row > ul > li {
+    border-collapse: collapse;
+    border-left: 1px solid #575757;
+    border-right: 1px solid #000;
+    display: block;
+    float: left;
+    font-family: "OpenSans",Arial,Helvetica,sans-serif;
+    font-size: 1.25rem;
+    font-weight: bold;
+    font-stretch:condensed;
+    margin: 0;
+    padding: 20px 10px 20px 20px;
+    position: relative;
+    text-transform: uppercase;
+    color: white;
+    height:25px;
+    line-height:25px;
+
+    &.call {
+      background: image-url('project_support/toolbar/help-call.png') no-repeat 15px center;
+      padding-left:80px;
+    }
+    &.prop {
+      background: image-url('project_support/toolbar/help.png') no-repeat 15px center;
+      padding-left:80px;
+    }
+     &.right {
+      background: image-url('project_support/toolbar/add-help.png') no-repeat 15px center;
+      padding-left:80px;
+      line-height:1.6rem;
+      border-right:0;
+    }
+  }
+  a.propose-link {
+    color: $colorLinkGreen;
+    display:block;
+    width:80%;
+    &:hover {
+      color: $colorLightGreen;
+      text-decoration:none;
+    }
+  }
+  .badge {
+    background:white;
+    color:$colorMedDarkGrey;
+    margin:0 5px 0 28px;
+  }
+}

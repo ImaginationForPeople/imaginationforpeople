@@ -4,18 +4,19 @@
     {% block entry-image %}
     {% if object.image %}
     <div class="entry-image">
-      <p>
-        {% if continue_reading %}
-        <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
-          {% endif %}
-          <img src="{{ object.image.url }}" alt="{{ object.title }}" class="left" />
-          {% if continue_reading %}
-        </a>
-        {% endif %}
-      </p>
-    </div>{%comment%}DO NOT PUT SPACE OR CARRIAGE RETURN BETWEEN THESE TWO DIVS{%endcomment%}<div class="entry-main-details {% if object.image %}entry-main-details-image{% else %}entry-main-details-noimage{% endif %}">
+      {% if continue_reading %}
+      <a href="{{ object.get_absolute_url }}" title="{{ object.title }}" rel="bookmark">
+      {% endif %}
+      <img src="{{ object.image.url }}" alt="{{ object.title }}" class="left" />
+      {% if continue_reading %}
+      </a>
+      {% endif %}
+    </div>{%comment%}DO NOT PUT SPACE OR CARRIAGE RETURN BETWEEN THESE TWO DIVS{%endcomment%}<div class="entry-main-details entry-main-details-image">
+    {% else %}
+    <div class="entry-main-details entry-main-details-noimage">
     {% endif %}
     {% endblock %}
+    
   {% block entry-header %}
   <div class="entry-header">
     {% block entry-title %}
@@ -62,9 +63,17 @@
   {% block entry-body %}
   <div class="entry-body">
     {% block entry-content %}
+    {% if object.excerpt != "..." %}
+    <div class="entry-excerpt">
+      {% autoescape off %}
+      {{ object.excerpt }}
+      {% endautoescape on %}
+    </div>
+    {% else %}
     <div class="entry-content">
       {{ object_content }}
     </div>
+    {% endif %}
     {% endblock %}
     {% block continue-reading %}
     {% if continue_reading %}

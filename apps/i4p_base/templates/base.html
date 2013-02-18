@@ -20,15 +20,16 @@
     <title>{% block title_prefix %}{% endblock %}{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
     {% compress css %}
-	{% block base_grid %}
-	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
-	{% endblock %}
+    {% block base_grid %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
+    {% endblock %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/footer.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/i4p_base/backcap/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
@@ -40,9 +41,14 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
+
+    <!-- render_block "css" -->
     {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
-
-
+    <!-- /render_block "css" -->
+    <!-- render_block "ipcss" -->
+    {% render_block "ipcss" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    <!-- /render_block "ipcss" -->
+    
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
 	<script type="text/javascript">
@@ -163,7 +169,7 @@
         </div>
       {% endblock %}      
       
-      {% block header %} {% include "header.html" %} {% endblock %}			
+      {% block header %}{% include "header.html" %}{% endblock %}			
 
       {% block nav %}{% endblock %}
       
@@ -186,12 +192,11 @@
     </div>
 
 
-		<!-- INLINE JS -->
-		{% render_block "footer_js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    <!-- INLINE JS -->
+    {% render_block "footer_js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
     {% block inline_js %}
     {% endblock %}
-
-		<!-- /INLINE JS -->
+    <!-- /INLINE JS -->
   </body>
 
 </html>

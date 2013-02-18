@@ -39,17 +39,17 @@ class BaseWorkGroupPlugin(CMSPluginBase):
         return context
 
     def __unicode__(self):
-        return u"Workgroup %s" % self.workgroup.slug
+        return u"Group %s" % self.workgroup.slug
 
 class WorkGroupPlugin(BaseWorkGroupPlugin):
     """
     Workgroup (Un)subscribe button for the CMS
     """
-    name = _("WorkGroup (un)subscribe button")
+    name = _("Group (un)subscribe button")
     render_template = "workgroup/cms_subscribe_button.html"
     
     def __unicode__(self):
-        return u"Workgroup Button %s" % self.workgroup.slug
+        return u"Group Button %s" % self.workgroup.slug
     
 plugin_pool.register_plugin(WorkGroupPlugin)
 
@@ -58,10 +58,10 @@ class SubscribersWorkGroupPlugin(BaseWorkGroupPlugin):
     """
     Workgroup subscribers list for the CMS
     """
-    name = _("WorkGroup subscribers list")
+    name = _("Group subscribers list")
     render_template = "workgroup/cms_workgroup_subscribers.html"
 
     def __unicode__(self):
-        return u"Workgroup Subscribers %s" % self.workgroup.slug
+        return u"Group Subscribers %s" % self.workgroup.slug
 
 plugin_pool.register_plugin(SubscribersWorkGroupPlugin)

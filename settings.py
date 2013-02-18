@@ -289,11 +289,15 @@ INSTALLED_APPS = (
     'followit',
     'tastypie',
 
+    'categories',
+    'categories.editor',
+
     # Internal Apps
     'apps.forum',
     'apps.i4p_base',
     'apps.member',
     'apps.project_sheet',
+    'apps.project_support',
     'apps.partner',
     'apps.workgroup',
     'apps.tags',
@@ -520,6 +524,7 @@ ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
 ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 LIVESETTINGS_CACHE_TIMEOUT = 6000
+KEYEDCACHE_ALIAS = "askbot"
 CACHE_TIMEOUT = LIVESETTINGS_CACHE_TIMEOUT
 
 ## Celery Settings

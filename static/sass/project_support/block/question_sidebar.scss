@@ -1,0 +1,80 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+.question-page {
+	.box {
+		font-family: "OpenSans",Arial,Helvetica,sans-serif;
+
+		h2 {
+		    font-size: 1.6rem;
+		    font-stretch: condensed;
+		    text-transform: uppercase;
+		    line-height:22px;
+		    margin:0 0 3px;
+		}
+	}
+
+	.statsWidget {
+		margin:25px 0 20px 0;
+
+		.content {
+			@include border-radius(5px,5px);
+			background:#242424;
+			padding:8px 12px;
+			color:white; 
+			width: 275px;
+			margin:0 0 20px;
+
+			.date {
+				text-transform:uppercase;
+				font-weight:bold;
+				font-size:1rem;
+				margin:0 0 6px;
+			}
+
+			p {
+				padding:0 0 0 35px;
+				font-size:1.2rem;
+				margin:0;
+				line-height:28px;
+
+				strong {
+					font-weight:normal;
+				}
+
+				&.answers {
+					background:image-url('project_support/misc/answers.png') no-repeat 2px center;
+				}
+
+				&.views {
+					background:image-url('project_support/misc/eye.png') no-repeat center left;
+				}
+
+				&.votes {
+					background:image-url('project_support/misc/vote_up.png') no-repeat 2px center;
+				}
+			}
+		}
+	}
+
+	.questions-related {
+
+		margin-top:10px;
+		
+		p {
+			margin:0 0 0 5px;
+			font-size:1.1rem;
+
+			a {
+				color:#000;
+				font-weight:bold;
+
+				&:hover {
+					color:$colorMedBlue;
+					text-decoration:none;
+				}
+			}
+		}
+	}
+}

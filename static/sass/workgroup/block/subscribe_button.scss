@@ -3,7 +3,24 @@
 @import "i4p/fonts";
 
 #subscribe-button {
-
+	a .quit {
+		font-family:$fontOpenSans;
+		background: #4ab9e8; /* Old browsers */
+		background: -moz-linear-gradient(top,  #4ab9e8 0%, #3990b4 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4ab9e8), color-stop(100%,#3990b4)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #4ab9e8 0%,#3990b4 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 ); /* IE6-9 */
+		line-height:33px;
+		font-weight:bold;
+		text-align:center;
+		border:3px solid #b9d6dc !important;
+		height:33px !important;
+		width:197px !important;
+		/* FIXME LATER */
+	}
 	button {
 		font-family:$fontOpenSans;
 		position:absolute;

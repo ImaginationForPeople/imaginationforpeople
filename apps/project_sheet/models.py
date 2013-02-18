@@ -148,7 +148,7 @@ class I4pProject(models.Model):
                                     related_name='projects')
 
     # dynamicsites
-    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), 
+    site = models.ManyToManyField(Site, help_text=_('The sites on which this project sheet is accessible.'), 
                                   verbose_name=_("sites"),
                                   related_name='projects')
     objects = models.Manager()
@@ -222,7 +222,7 @@ class I4pProjectTranslation(models.Model):
     """
 
     PROGRESS_CHOICES = [
-        ("EDIT", _("In edition")),
+        ("EDIT", _("Currently being edited")),
         ("FULL", _("Complete")),
     ]
     class Meta:

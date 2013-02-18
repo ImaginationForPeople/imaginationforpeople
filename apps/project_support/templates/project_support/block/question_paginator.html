@@ -1,0 +1,33 @@
+{% load i18n %}
+{% if p.is_paginated %}
+    <div class="paginator" style="float:left">
+    {% if p.has_previous %}
+        <span class="prev"><a href="{{p.base_url}}page={{ p.previous }}" title="{% trans 'previous' %}">
+    &laquo; {% trans 'previous' %}</a></span>
+    {% endif %}
+    {% if not p.in_leading_range %}
+        {% for num in p.pages_outside_trailing_range %}
+            <span class="page"><a href="{{p.base_url}}page={{ num }}" >{{ num }}</a></span>
+        {% endfor %}
+    ...
+    {% endif %}
+     
+    {% for num in p.page_numbers %}
+      {% if num == p.page and p.pages != 1%}
+        <span class="curr" title="{% trans 'current page' %}">{{ num }}</span>
+      {% else %}
+        <span class="page"><a href="{{p.base_url}}page={{ num }}" title="{% blocktrans %}page {{num}}{% endblocktrans %}">{{ num }}</a></span>
+      {% endif %}
+    {% endfor %}
+     
+    {% if not p.in_trailing_range %}
+        ...
+        {% for num in p.pages_outside_leading_range reversed %}
+            <span class="page"><a href="{{p.base_url}}page={{ num }}" title="{% blocktrans %}page {{ num }}{% endblocktrans %}">{{ num }}</a></span>
+        {% endfor %}
+    {% endif %}
+    {% if p.has_next %}
+        <span class="next"><a href="{{p.base_url}}page={{ p.next }}" title="{% trans 'next page' %}">{% trans 'next page' %} &raquo;</a></span>
+    {% endif %}
+    </div>
+{% endif %}

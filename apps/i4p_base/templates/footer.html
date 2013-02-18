@@ -3,38 +3,29 @@
 {% load menu_tags %}	
 
 <div id="footer-zone-top">
-	<div class="footer-top container">
-		<img src="{{ STATIC_URL }}images/base/logo_footer.png" alt="{{ site.name }}" />
-		<p>Une communauté de citoyens créatifs pour repérer et soutenir les projets d'innovation sociale.</p>
+    <div class="footer-top container">
+        <a href="{% page_url 'homepage' %}">
+            {% if request.current_page.is_home  %}
+                {% placeholder "footer logo" inherit or %}{% trans "Please fill the footer logo section in the home page's admin page." %}{% endplaceholder %}                
+            {% else %}
+                {% show_placeholder "footer logo" "homepage" %}
+            {% endif %}
+        </a>
+        <div class="baseline">
+            {% if request.current_page.is_home  %}
+                {% placeholder "footer-baseline" or %}{% trans "Please fill the footer-baseline section in the home page's admin page." %}{% endplaceholder %}
+            {% else %}
+                {% show_placeholder "footer-baseline" "homepage" %}
+            {% endif %}
+        </div>
 	</div> <!-- end .footer-top -->
 	<div id="footer" class="center container">
 		<div class="row-fluid">
 			<div class="span4"> 
-				<a href="{% page_url 'homepage' %}">
-					{% if request.current_page.is_home  %}
-					{% placeholder "footer logo" inherit or %}<img src="{{ STATIC_URL }}images/base/footer-logo.png" alt="{{ site.name }}" width="197" height="68" />{% endplaceholder %}                
-					{% else %}
-					{% show_placeholder "footer logo" "homepage" %}
-					{% endif %}
-				</a>
-				<div class="baseline">
-					{% if request.current_page.is_home  %}
-					{% placeholder "footer-baseline" or %}{% trans "A community of imaginative citizens to detect and develop socially innovative projects." %}{% endplaceholder %}
-					{% else %}
-					{% show_placeholder "footer-baseline" "homepage" %}
-					{% endif %}
-				</div>
+
 
 				{% if request.current_page.is_home  %}
-				{% placeholder "footer-follow" inherit or %}
-				<a href="{% page_url 'manifesto' %}">{% trans 'Read the manifesto' %}</a> | <a href="{% page_url 'about_us' %}">{% trans 'About IP' %}</a>
-				<h1>{% trans 'Follow us' %}</h1>
-				<ul>
-					<li class="social-login"> <a href="https://www.facebook.com/imaginationforpeople.org"><img src="{{ STATIC_URL }}images/base/social-fb.png" alt="Facebook" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Facebook</strong>" /></a> </li>
-					<li class="social-login"> <a href="https://plus.google.com/100737503407974547401#100737503407974547401/posts"><img src="{{ STATIC_URL }}images/base/social-gplus.png" alt="Google +" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Google+</strong>" /></a> </li>
-					<li class="social-login"> <a href="http://twitter.com/#!/IPvoices"><img src="{{ STATIC_URL }}images/base/social-twitter.png" alt="Twitter" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Twitter</strong>" /></a> </li>
-					<li class="social-login"> <a href="http://www.scoop.it/t/imagination-for-people/"><img src="{{ STATIC_URL }}images/base/social-it.png" alt="Scoop it !" width="31" height="31" class="tipsed on" title="{% trans 'Follow us on' %} <strong>Scoopt it!</strong>" /></a> </li>
-				</ul>
+				{% placeholder "footer-follow" inherit or %}{% trans "Please fill the footer-follow section in the home page's admin page." %}
 				{% endplaceholder %}
 				{% else %}
 				{% show_placeholder "footer-follow" "homepage" %}
@@ -43,8 +34,7 @@
 
 			<div class="span4">
 				{% if request.current_page.is_home  %}
-				{% placeholder "footer-resources" or %}
-				{% endplaceholder %}
+				{% placeholder "footer-resources" or %}{% trans "Please fill the footer-resources section in the home page's admin page." %}{% endplaceholder %}
 				{% else %}
 				{% show_placeholder "footer-resources" "homepage" %}
 				{% endif %}
