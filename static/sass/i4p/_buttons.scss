@@ -79,20 +79,20 @@
     line-height: $sizeTextSmall * 1.3;
 }
 
-@mixin i4p-button-fancy-dotted {
+@mixin i4p-add-button-fancy-dotted {
     @include border-radius($sizeRadiusSmall);
     @include i4p-transition( all .5s ease );
     display: block;
     background-color: $colorLightBlue;
-
+    vertical-align: middle;
     box-shadow: inset 0 0 0 $colorLightBlue;
     background-image: image-url("tags/icon-plus-white-big.png"), image-url("base/background-white-dots.png");
 
     background-opacity: 1, 1, 0;
     background-repeat: no-repeat, repeat;
-    background-position: 190px center, top left;
-
-    padding: 15px;
+    background-position: 90% center, center center;
+    min-height: 46px; /* 46px background */
+    padding: 10px;
     padding-left: 10px;
     padding-right: 75px;
 

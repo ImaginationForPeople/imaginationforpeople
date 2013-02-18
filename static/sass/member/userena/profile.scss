@@ -9,7 +9,7 @@
 
 .nav-white {
     background-color:black;
-    background-image:url("../images/base/nav-white-bg.png");
+    background-image: image-url("base/nav-white-bg.png");
     background-position:center center;
     background-repeat:repeat-x;
     height:181px;
@@ -95,16 +95,14 @@
 
 #profile_bar{
     padding-right:180px;
-    position:relative;
-    top:-5px;
     text-align:right;
-    background-image:url("../images/profile/profile_bar.jpg");
+    background-image: image-url("profile/profile_bar.jpg");
     background-repeat:repeat-x;
     background-position:0px 29px;
     height:90px;
     
     #profile_contact{
-        background-image:url("../images/profile/profile_contact.png");
+        background-image: image-url("profile/profile_contact.png");
         background-repeat:no-repeat;
         width:31px;
         height:24px;
@@ -115,7 +113,7 @@
     }
     
     #profile_contact:hover{
-        background-image:url("../images/profile/profile_contact-hover.png");
+        background-image: image-url("profile/profile_contact-hover.png");
     }
     
     #profile_bar_middle{
@@ -139,7 +137,7 @@
 
 
 #profile_about{
-    background-image:url("../images/project/quote2-white.png"), url("../images/project/quote1-white.png");
+    background-image: image-url("project/quote2-white.png"),  image-url("project/quote1-white.png");
     background-position:right top, left bottom;
     background-repeat:no-repeat;
     min-height:55px;
@@ -150,24 +148,25 @@
     text-align:justify;
 }
 
-#profile_projects .separator{
-    margin-top:40px;
-}
-
-
-
 /* --Profile Edition-- */
 
 
 #profile_edit{
-    background-image:url("../images/profile/edit_profile-bg.png");
+    background-image: image-url("profile/edit_profile-bg.png");
     background-position:center top;
     background-repeat:no-repeat;
     width:981px;
     height:480px;
     position:relative;
-    top:-37px;
-    padding-top:35px;
+    top:-31px;
+    padding-top:31px;
+    .row {
+        width:981px;
+        .span4 {
+            margin: 0px;
+        }
+    }
+    
     ul{
         li{
             display:inline;
@@ -189,7 +188,7 @@
             }
             
             a.selected div{
-            background-image:url("../images/profile/title-bar.png");
+            background-image: image-url("profile/title-bar.png");
             background-position:left top;
             background-repeat:no-repeat;
             width:240px;
@@ -215,7 +214,25 @@
     }
     
     form{
-    
+        label{
+                @include i4p-font-base($sizeTextNormal);
+                color: $colorLightLightGrey;
+            }
+        ul {
+            margin: 0;
+            display: inline;
+            li {
+                label {
+                    display: inline;
+                    input {
+                        display: inline;
+                    }
+                }
+            }
+        }
+        textarea {
+            margin: 1px 0px;
+        }
         .overall_errorlist {
             border : 3px solid red;
             margin: 5px 20px;
@@ -237,12 +254,11 @@
         p{
             margin-top:8px;
             margin-bottom:8px;
-        
             label{
                 width:150px;
                 text-align:right;
                 float:left;
-                font-size:12px;
+
                 margin-right:15px;
                 position:relative;
                 top:3px;
@@ -275,12 +291,12 @@
             }
             
             #id_gender_0{
-            background-image:url("../images/profile/profil-edit-woman.png");
+            background-image: image-url("profile/profil-edit-woman.png");
             background-repeat:no-repeat;
             }
             
             #id_gender_1{
-            background-image:url("../images/profile/profil-edit-men.png");
+            background-image: image-url("profile/profil-edit-men.png");
             background-repeat:no-repeat;
             }
             
@@ -315,25 +331,9 @@
 
         
         .button{
-            float:right;
-            margin-right:184px;
-            color:#fff;
-            text-decoration:none;
-            text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
-            background-position:0 -30px;
-            background:url(../images/base/minibutton_blue.jpg);
-            border:1px solid #2a65a0;	
-            margin-top:10px;
+            @include i4p-button-fancy-bordered-small;
         }
         
-        .button:hover{
-            color:#5a5959;
-            text-decoration:none;
-            text-shadow:1px 1px 0 #fff; 
-            background-color:#eeeeee;
-            border:1px solid #bdbdbd;
-            background-image:none;
-        }
     }
     
     #password_change_form{
@@ -388,9 +388,13 @@
 #profile{
 
     #sign-row-big, #sign-row-tiny{
-    
         form{
-        
+            margin-top: 2em;
+            label {
+                @include i4p-font-base($sizeTextNormal);
+                color: $colorLightLightGrey;
+                display: inline;
+            }
             p{
                 float:left;
                 width:100%;
@@ -398,7 +402,7 @@
                 margin-bottom:2px;
                 
                 label{
-                    width:52%;
+                    width:48%;
                     float:left;
                     text-align:right;
                     padding-right:2%;
@@ -421,6 +425,8 @@
                     padding-right:2%;
                     
                     input{
+                        display: inline-block;
+                        float: none;
                         position:relative;
                         top:2px;
                     }
@@ -428,9 +434,8 @@
             }
             
             input.button{
+                @include i4p-button-fancy-bordered-small;
                 float:right;
-                top:15px;
-                margin-right:10px;
             }
 
             .errorlist {

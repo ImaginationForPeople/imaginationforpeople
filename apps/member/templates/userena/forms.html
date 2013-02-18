@@ -1,115 +1,104 @@
 {% load i18n %}
 
 
-<div id="profile_edit">
-
-       
-    <div class="grid_5 alpha menu">
-        <ul>
-            <li><a href="#about_me"><div><img src="{{ STATIC_URL }}images/profile/picto-aboutme.png" />A propos de moi</div></a></li>
-            <li><a href="#infos"><div><img src="{{ STATIC_URL }}images/profile/picto-infos.png" />Infos générales</div></a></li>
-            <li><a href="#pass"><div><img src="{{ STATIC_URL }}images/profile/picto-pass.png" />Mot de passe</div></a></li>
-            <li><a href="#mail"><div><img src="{{ STATIC_URL }}images/profile/picto-mail.png" />Email</div></a></li>
-        </ul> 
-    </div>
-
-
-    <div class="grid_13 omega">
-        
-        <form action="{% url userena_profile_edit user.username %}" method="post" enctype="multipart/form-data" class="profile_edition">
-
-            {% csrf_token %}                
-
-            {% if profile_form.is_bound %}
-                {% if profile_form.is_valid != True %}
-                    <div class=overall_errorlist>
-                        <p>{% trans 'The following fields in your profile contains invalid data you need to correct:' %} </p>
-                        {% for field in profile_form %}
-                            {% if field.errors %}
-                                <p>
-                                    <label for="id_first_name">{{ field.label_tag }}</label>
-                                </p>
-                                {{ field.errors }}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
+<div id="profile_edit" class="container">
+    <div class="row">
+        <div class="span4 menu">
+            <ul>
+                <li><a href="#about_me"><div><img src="{{ STATIC_URL }}images/profile/picto-aboutme.png" />A propos de moi</div></a></li>
+                <li><a href="#infos"><div><img src="{{ STATIC_URL }}images/profile/picto-infos.png" />Infos générales</div></a></li>
+                <li><a href="#pass"><div><img src="{{ STATIC_URL }}images/profile/picto-pass.png" />Mot de passe</div></a></li>
+                <li><a href="#mail"><div><img src="{{ STATIC_URL }}images/profile/picto-mail.png" />Email</div></a></li>
+            </ul> 
+        </div>
+    
+    
+        <div class="span7">
+            
+            <form action="{% url userena_profile_edit user.username %}" method="post" enctype="multipart/form-data" class="profile_edition">
+    
+                {% csrf_token %}                
+    
+                {% if profile_form.is_bound %}
+                    {% if profile_form.is_valid != True %}
+                        <div class=overall_errorlist>
+                            <p>{% trans 'The following fields in your profile contains invalid data you need to correct:' %} </p>
+                            {% for field in profile_form %}
+                                {% if field.errors %}
+                                    <p>
+                                        <label for="id_first_name">{{ field.label_tag }}</label>
+                                    </p>
+                                    {{ field.errors }}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-            
-            
-            <div id="about_me">
-                {{ profile_profile_form.gender.errors }}
-                <p>{{ profile_form.gender.label_tag }}{{ profile_form.gender}}</p>
-                {{ profile_form.first_name.errors }}
-                <p>{{ profile_form.first_name.label_tag }}{{ profile_form.first_name}}</p>
-                {{ profile_form.last_name.errors }}
-                <p>{{ profile_form.last_name.label_tag }}{{ profile_form.last_name}}</p>
-                {{ profile_form.mugshot.errors }}
-                <p class="mugshot">{{ profile_form.mugshot.label_tag }}<input type="file" id="id_mugshot" name="mugshot"></p>
                 
-                <br /><br />
                 
-                {{ profile_form.motto.errors }}
-                <p>{{ profile_form.motto.label_tag }}{{ profile_form.motto}}</p>
-                {{ profile_form.about.errors }}
-                <p>{{ profile_form.about.label_tag }}{{ profile_form.about}}</p>
-                {{ profile_form.privacy.errors }}
-                <p>{{ profile_form.privacy.label_tag }}{{ profile_form.privacy}}</p>
-                
-                <input type="submit" class="button" value="{% trans 'Save changes' %}" />
+                <div id="about_me">
+                    {{ profile_form.language.errors }}
+                    <p>{{ profile_form.language.label_tag }}{{ profile_form.language}}</p>
+                    {{ profile_profile_form.gender.errors }}
+                    <p>{{ profile_form.gender.label_tag }}{{ profile_form.gender}}</p>
+                    {{ profile_form.first_name.errors }}
+                    <p>{{ profile_form.first_name.label_tag }}{{ profile_form.first_name}}</p>
+                    {{ profile_form.last_name.errors }}
+                    <p>{{ profile_form.last_name.label_tag }}{{ profile_form.last_name}}</p>
+                    {{ profile_form.mugshot.errors }}
+                    <p class="mugshot">{{ profile_form.mugshot.label_tag }}<input type="file" id="id_mugshot" name="mugshot"></p>
+                    {{ profile_form.motto.errors }}
+                    <p>{{ profile_form.motto.label_tag }}{{ profile_form.motto}}</p>
+                    {{ profile_form.about.errors }}
+                    <p>{{ profile_form.about.label_tag }}{{ profile_form.about}}</p>
 
-            </div>
+                    <input type="submit" class="button" value="{% trans 'Save changes' %}" />
+    
+                </div>
+                
+                <div id="infos">
+                    {{ profile_form.privacy.errors }}
+                    <p>{{ profile_form.privacy.label_tag }}{{ profile_form.privacy}}</p>
+                    {{ profile_form.birthday.errors }}
+                    <p>{{ profile_form.birthday.label_tag }}{{ profile_form.birthday}}</p>
+                    {{ profile_form.address.errors }}
+                    <p>{{ profile_form.address.label_tag }}{{ profile_form.address}}</p>
+                    {{ profile_form.country.errors }}
+                    <p>{{ profile_form.country.label_tag }}{{ profile_form.country}}</p>
+                    {{ profile_form.website.errors }}
+                    <p>{{ profile_form.website.label_tag }}{{ profile_form.website}}</p>
+                    {{ profile_form.linkedin.errors }}
+                    <p>{{ profile_form.linkedin.label_tag }}{{ profile_form.linkedin}}</p>
+                    {{ profile_form.twitter.errors }}
+                    <p>{{ profile_form.twitter.label_tag }}{{ profile_form.twitter}}</p>
+                    {{ profile_form.facebook.errors }}
+                    <p>{{ profile_form.facebook.label_tag }}{{ profile_form.facebook}}</p>
+                    
+                    <input type="submit" class="button" value="{% trans 'Save changes' %}" />
+                    
+                </div>
+                
             
-            <div id="infos">
-                {{ profile_form.language.errors }}
-                <p>{{ profile_form.language.label_tag }}{{ profile_form.language}}</p>
-                {{ profile_form.birthday.errors }}
-                <p>{{ profile_form.birthday.label_tag }}{{ profile_form.birthday}}</p>
-                
-                <br /><br />
-                
-                {{ profile_form.address.errors }}
-                <p>{{ profile_form.address.label_tag }}{{ profile_form.address}}</p>
-                {{ profile_form.country.errors }}
-                <p>{{ profile_form.country.label_tag }}{{ profile_form.country}}</p>
-                
-                <br /><br />
-                
-                {{ profile_form.website.errors }}
-                <p>{{ profile_form.website.label_tag }}{{ profile_form.website}}</p>
-                {{ profile_form.linkedin.errors }}
-                <p>{{ profile_form.linkedin.label_tag }}{{ profile_form.linkedin}}</p>
-                {{ profile_form.twitter.errors }}
-                <p>{{ profile_form.twitter.label_tag }}{{ profile_form.twitter}}</p>
-                {{ profile_form.facebook.errors }}
-                <p>{{ profile_form.facebook.label_tag }}{{ profile_form.facebook}}</p>
-                
-                <input type="submit" class="button" value="{% trans 'Save changes' %}" />
-                
-            </div>
-            
-        
-        </form>
-        
-        <div id="pass">
-            <form action="{% url userena_password_change user.username %}" method="post" id="password_change_form" class="profile_edition">
-                {% csrf_token %}
-                {{ password_form.as_p }}
-                <input class="button" type="submit" value="{% trans 'Change password' %}" />
-            </form>                
-        </div>
-        
-        <div id="mail">
-            <p>{% trans 'Your current email address is the following:' %} <em>{{ user.email }}</em></p><br />
-            <form action="{% url userena_email_change user.username %}" method="post" id="email_change_form"  class="profile_edition">
-              
-                {% csrf_token %}
-                {{ email_form.as_p }}
-                <input type="submit" class="button" value="{% trans 'Change email' %}" />
             </form>
+            
+            <div id="pass">
+                <form action="{% url userena_password_change user.username %}" method="post" id="password_change_form" class="profile_edition">
+                    {% csrf_token %}
+                    {{ password_form.as_p }}
+                    <input class="button" type="submit" value="{% trans 'Change password' %}" />
+                </form>                
+            </div>
+            
+            <div id="mail">
+                <p>{% trans 'Your current email address is the following:' %} <em>{{ user.email }}</em></p><br />
+                <form action="{% url userena_email_change user.username %}" method="post" id="email_change_form"  class="profile_edition">
+                  
+                    {% csrf_token %}
+                    {{ email_form.as_p }}
+                    <input type="submit" class="button" value="{% trans 'Change email' %}" />
+                </form>
+            </div>
+    
         </div>
-
-        
     </div>
-
 </div>

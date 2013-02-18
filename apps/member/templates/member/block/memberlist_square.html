@@ -11,7 +11,7 @@ Parameters for this block
 {% load sekizai_tags %}
 {% load unique_counter_tag %}
 
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
@@ -19,7 +19,7 @@ Parameters for this block
 {% endaddtoblock %}
 
 {% comment %} SYNCHRONOUS JS LOADING {% endcomment %}
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider-1.8.6.js"></script>
 {% endaddtoblock %}
 

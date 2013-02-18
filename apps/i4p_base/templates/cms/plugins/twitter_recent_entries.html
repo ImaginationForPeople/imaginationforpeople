@@ -1,7 +1,7 @@
 {% load i18n sekizai_tags %}
-{% addtoblock "css" %}<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/home-blocks/twitter-box.css" />{% endaddtoblock %}
-{% addtoblock "js" %}<script type="text/javascript" src="{{ STATIC_URL }}cms/js/libs/jquery.tweet.js"></script>{% endaddtoblock %}
-{% addtoblock "js" %}
+{% addtoblock "css" strip %}<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/home-blocks/twitter-box.css" />{% endaddtoblock %}
+{% addtoblock "js" strip %}<script type="text/javascript" src="{{ STATIC_URL }}cms/js/libs/jquery.tweet.js"></script>{% endaddtoblock %}
+{% addtoblock "js" strip %}
 <script type="text/javascript">
 //<![CDATA[
 jQuery(document).ready(function ($) {

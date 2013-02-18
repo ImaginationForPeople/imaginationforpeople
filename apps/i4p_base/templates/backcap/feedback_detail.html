@@ -56,213 +56,165 @@
 
 {% block content %}
 
-	<div class="content">
-		<div class="container_18">
-			<div class="grid_18 alpha omega">
-				<div class="block-content">
-
-
-  <div id="text">
-    <h1><a class="link feedback-title" href="{% url feedback-list %}">Feedbacks</a> &raquo; {{ feedback.title|capfirst }}</h1>
-
-    <div class="grid_18 alpha omega">
-
+    <div class="content content-feedback">
+        <div class="container">
+            <div class="row">
+                <div id="span12">
+                    <h1><a class="link feedback-title" href="{% url feedback-list %}">{% trans "Feedbacks" %}</a> &raquo; {{ feedback.title|capfirst }}</h1>
+                    {% if feedback.status == 'C' %}
+                        <strong>{% trans "This issue is closed." %}</strong>
+                    {% endif %}
+                </div>
+                <div class="span2">
+                    {% score_for_object feedback as score %}
+                    <div class="feedback-votes ui-corner-all">
+                        <div class="score">{{ score.score|default:0 }}</div>
+                        <div class="numvotes">{{ score.num_votes }} vote{{ score.num_votes|pluralize }}</div>
+                        <div class="vote-actions">
+                            <form class="feedbackvote" id="feedbackup{{ feedback.id }}" action="
+                                {% if vote and vote.is_upvote %}
+                                    {% url feedback-vote feedback.id 'clear' %}
+                                {% else %}
+                                    {% url feedback-vote feedback.id 'up' %}
+                                {% endif %}
+                                " method="POST">
+                                {% csrf_token %}
+                                <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
+                            </form>
+                            <form class="feedbackvote" id="feedbackdown{{ feedback.id }}" action="
+                                {% if vote and vote.is_downvote %}
+                                    {% url feedback-vote feedback.id 'clear' %}
+                                {% else %}
+                                    {% url feedback-vote feedback.id 'down' %}
+                                {% endif %}
+                                " method="POST">
+                                {% csrf_token %}
+                                <input type="submit" class="ui-corner-all vote_button button redbutton nomargin" id="feedbackdownarrow{{ feedback.id }}" value="{% if vote and vote.is_downvote %}X{% else %}-{% endif %}"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
     
-    <br /><br />
-    <div class="feedback-entry alpha omega grid_18">
-	{% if feedback.status == 'C' %}
-	  <strong>{% trans "This issue is closed." %}</strong>
-	{% endif %}
-	<div class="alpha grid_2">
-	  {% score_for_object feedback as score %}
-	    
-	    <div class="feedback-votes ui-corner-all">
-	      <div class="score">{{ score.score|default:0 }}</div>
-	      <div class="numvotes">{{ score.num_votes }} vote{{ score.num_votes|pluralize }}</div>
-	      <div class="vote-actions">
-		
-		<form class="feedbackvote" id="feedbackup{{ feedback.id }}" action="{% if vote and vote.is_upvote %}
-										    {% url feedback-vote feedback.id 'clear' %}
-										  {% else %}
-										    {% url feedback-vote feedback.id 'up' %}
-										  {% endif %}
-										  " method="POST">
-          {% csrf_token %}
-		  <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
-		</form>
-		
-		<form class="feedbackvote" id="feedbackdown{{ feedback.id }}" action="{% if vote and vote.is_downvote %}
-										      {% url feedback-vote feedback.id 'clear' %}
-										    {% else %}
-										      {% url feedback-vote feedback.id 'down' %}
-										    {% endif %}
-										    " method="POST">
-            {% csrf_token %}
-		  
-		  <input type="submit" class="ui-corner-all vote_button button redbutton nomargin" id="feedbackdownarrow{{ feedback.id }}" value="{% if vote and vote.is_downvote %}X{% else %}-{% endif %}"/>
-		<div class="clear"></div>
-        </form>
-	      </div>
-	     
-	    </div>
-	</div>
-    
-    <div class="omega grid_16">
-        <div class="feedback-info">
-        
-            <div>
-                <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
-                <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
+                <div class="feedback-info span6">
+                    <div class="feedback-kind">
+                        <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
+                        <span class="title">{{ feedback.title|capfirst }}</span>
+                    </div>
+                    {% if feedback.status == 'A' %}
+                        <p>
+                            <strong><a href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> {% trans "is working on this. Poke him if you think it's taking too long !" %}</strong>
+                        </p>
+                    {% endif %}
+
+                    {% if feedback.status == 'D' %}
+                        <p>
+                            <strong>
+                                <em>
+                                    {% trans "This issue is a duplicate of" %} <a href="{{ feedback.duplicate_of.get_absolute_url }}">{{ feedback.duplicate_of }}</a>
+                                    {% trans "Please don't comment on this issue anymore." %}
+                                </em>
+                            </strong>
+                        </p>
+                    {% endif %}
+
+                    <p>
+                        <strong>{% trans "Description:" %}</strong>
+                        <div class="feedback-long-description"> {{ feedback.text|urlize|linebreaks }}</div>
+                    </p>
+                    <div id="feedback_infos">
+                        {% if feedback.status == 'A' %}
+                        {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
+                        {% else %}
+                        {{ feedback.get_status_display }} / 
+                        {% endif %}
+                        <span class="who">
+                            {% blocktrans with feedback.created_on|timesince as since %}
+                            Posted {{ since }} ago by
+                            {% endblocktrans %}
+                            <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
+                        </span>
+                    </div>
+                    {{ vote }}
+                    <hr/>
+                </div>
+
+                <div class="span3">
+                    <!-- following -->
+                    <h4>{% trans "Followers:" %} ({{ feedback.following_users|length }})</h4>
+                    <ul id="feedback-followers">
+                    {% for follower in feedback.followers.all %}
+                        <li><a href="{% url userena_profile_detail follower.user %}"><img src="{{ follower.user.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+                    {% endfor %}
+                    </ul>
+
+                    {% if not user.is_anonymous %}
+                        {% if request.user in feedback.following_users %}
+                            <form method='POST' action='{% url feedback-unfollow feedback.pk %}'>
+                                {% csrf_token %}
+                                <input type='submit' class="button nomargin" value='{% trans "Unfollow" %}'/>
+                            </form>
+                        {% else %}
+                            <form method='POST' action='{% url feedback-follow feedback.pk %}'>
+                                {% csrf_token %}
+                                <input type='submit' class="button nomargin" value='{% trans "Follow" %}'/>
+                            </form>
+                        {% endif %}
+                    {% endif %}
+                </div>
             </div>
-            <br />
-            <div class="feedback-desc">
-                {{ feedback.text|truncatewords:20 }}
-            </div>
-            <div id="feedback_infos">
-                {% if feedback.status == 'A' %}
-                {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
+            <div class="container">
+                <hr/>
+                <h2>{% trans "Comments:" %}</h2>
+                <ul id="feedback-comments-list">
+                {% get_comment_list for feedback as feedback_comments %}
+                {% for comment in feedback_comments %}
+                    {% if comment.user %}
+                        <li><a class="link" href="{% url userena_profile_detail comment.user %}"><img src="{{ comment.user.get_profile.get_mugshot_url }}" width="40px" height="40px"/> {{ comment.user.get_full_name|default:comment.user.username }}</a> {% trans "said:" %}<div>{{ comment.comment|urlize|linebreaks }}</div></li>
+                    {% else %}
+                        <li>{% trans "Anonymous said:" %}<div>{{ comment.comment|linebreaks }}</div></li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+
+                {% if not feedback.status == 'D' %}
+                    {% if not user.is_anonymous %}
+                        <hr/>
+                        <h3>{% trans "Post a new comment" %}</h3>
+                        {% get_comment_form for feedback as comment_form %}
+                        <form id="feedback-comment" action="{% comment_form_target %}" method="post">
+                            {% csrf_token %}
+                            {{ comment_form.content_type }}
+                            {{ comment_form.timestamp }}
+                            {{ comment_form.object_pk }}
+                            {{ comment_form.security_hash }}
+                            {{ comment_form.comment }}
+                            <input type="submit" class="button nomargin" value="{% trans 'Post' %}"/>  
+                            <input type="hidden" name="next" value="{% url feedback-detail feedback.id %}" />
+                        </form>
+                    {% else %}
+                        <hr />
+                        {% trans "You need to " %}<a id="login-open" class="open link" href="#">{% trans "Log In" %}</a>{% trans " to post a comment." %}   
+                    {% endif %}
                 {% else %}
-                {{ feedback.get_status_display }} / 
+                    {% trans "Comments closed." %}
                 {% endif %}
-                <span class="who">
-                    {% blocktrans with feedback.created_on|timesince as since %}
-                    Posted {{ since }} ago by
-                    {% endblocktrans %}
-                    <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
-                </span>
+                <hr/>
+                <p>{% trans "This issue is" %} {{ feedback.get_status_display|lower }}.
+                    <a href="{% url feedback-close feedback.id %}" class="button none"><span><span class="icon"></span>{% trans "Close issue" %}</span></a>
+                </p>
+                <p>{% trans "Reported from:" %} <a href="http://{{ request.get_host }}{{ feedback.referer }}" class="link">http://{{ request.get_host }}{{ feedback.referer }}</a></p>
+                {% if user.is_superuser %}
+                    <p>
+                        <a href="{% url feedback-update feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Edit" %}</span></a> -
+                        <a href="{% url feedback-ping-observers feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Ping observers" %}</span></a>
+                    </p>
+                {% endif %}
+                <p>
+                    <a href="{% url feedback-list %}" class="link">&larr; {% trans "See all feedbacks" %}</a>
+                </p>
             </div>
         </div>
     </div>
 
-    <div class="alpha omega grid_18">
-      <div class="alpha grid_13">
-	{{ vote }}
-	
-	<hr/>
-	
-	
-	{% if feedback.status == 'A' %}
-	  <p>
-	    <strong><a href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> {% trans "is working on this. Poke him if you think it's taking too long !" %}</strong>
-	  </p>
-	{% endif %}
-	
-	{% if feedback.status == 'D' %}
-	  <p>
-	    <strong>
-	      <em>
-		{% trans "This issue is a duplicate of" %} <a href="{{ feedback.duplicate_of.get_absolute_url }}">{{ feedback.duplicate_of }}</a>
-		{% trans "Please don't comment on this issue anymore." %}
-		  </em>
-	    </strong>
-	  </p>
-	{% endif %}
-
-	<p><strong>{% trans "Description:" %}<br /><br/></strong><div class="feedback-description"> {{ feedback.text|urlize|linebreaks }}</div></p>
-      </div>
-
-      <div class="grid_5 omega">
-	<!-- following -->
-	  <div>
-	    <h4>{% trans "Followers:" %} ({{ feedback.following_users|length }})</h4>
-	    <ul>
-	      {% for follower in feedback.followers.all %}
-		<li><a href="{% url userena_profile_detail follower.user %}"><img src="{{ follower.user.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
-	      {% endfor %}
-	    </ul>
-	    <br/>
-	    {% if not user.is_anonymous %}
-	    {% if request.user in feedback.following_users %}
-	      <form method='POST' action='{% url feedback-unfollow feedback.pk %}'>
-		{% csrf_token %}
-		<input type='submit' class="button nomargin" value='{% trans "Unfollow" %}'/>
-	      </form>
-	    {% else %}
-	      <form method='POST' action='{% url feedback-follow feedback.pk %}'>
-		{% csrf_token %}
-		<input type='submit' class="button nomargin" value='{% trans "Follow" %}'/>
-	      </form>
-	    {% endif %}
-	    {% endif %}
-	  </div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-  <div class="alpha omega grid_18">
-
-	  <hr/>
-
-
-	  <h4>{% trans "Comments:" %}</h4>
-	  <ul id="feedback-comments-list">
-	    {% get_comment_list for feedback as feedback_comments %}
-	      {% for comment in feedback_comments %}
-            {% if comment.user %}
-                <li><a class="link" href="{% url userena_profile_detail comment.user %}">{{ comment.user.get_full_name|default:comment.user.username }}</a> {% trans "said:" %}<div>{{ comment.comment|urlize|linebreaks }}</div></li>
-            {% else %}
-                <li>{% trans "Anonymous said:" %}<div>{{ comment.comment|linebreaks }}</div></li>
-            {% endif %}
-	      {% endfor %}
-	  </ul>
-
-	  {% if not feedback.status == 'D' %}
-      
-        {% if not user.is_anonymous %}
-            <hr/>
-            <h5>{% trans "Post a new comment" %}</h5>
-              {% get_comment_form for feedback as comment_form %}
-            <form id="feedback-comment" action="{% comment_form_target %}" method="post">
-              {% csrf_token %}
-              {{ comment_form.content_type }}
-              {{ comment_form.timestamp }}
-              {{ comment_form.object_pk }}
-              {{ comment_form.security_hash }}
-              {{ comment_form.comment }}
-              
-              <input type="submit" class="button nomargin" value="{% trans 'Post' %}"/>  
-              <input type="hidden" name="next" value="{% url feedback-detail feedback.id %}" />
-            </form>
-            <div class="clear"></div>
-        {% else %}
-            <hr />
-            {% trans "You need to " %}<a id="login-open" class="open link" href="#">{% trans "Log In" %}</a>{% trans " to post a comment." %}   
-        {% endif %}
-
-              {% else %}
-		{% trans "Comments closed." %}
-	      {% endif %}
-
-	      <hr/>
-
-	      <p>{% trans "This issue is" %} {{ feedback.get_status_display|lower }}.
-	      <a href="{% url feedback-close feedback.id %}" class="button none"><span><span class="icon"></span>{% trans "Close issue" %}</span></a>
-	      <br /><br />
-	      <p>{% trans "Reported from:" %} <a href="http://{{ request.get_host }}{{ feedback.referer }}" class="link">http://{{ request.get_host }}{{ feedback.referer }}</a></p>
-	      <br />
-	      {% if user.is_superuser %}
-		
-		<p>
-		  <a href="{% url feedback-update feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Edit" %}</span></a> -
-		  <a href="{% url feedback-ping-observers feedback.id %}" class="link"><span><span class="icon"></span>{% trans "Ping observers" %}</span></a>
-		</p>
-	      {% endif %}
-	      
-	      <p>
-		<a href="{% url feedback-list %}" class="link">&larr; {% trans "See all feedbacks" %}</a>
-	      </p>
-	      
-	    </div>
-	  </div>
-	  
-	</div>
-      </div>
-    </div>
-  </div>
-    
-    <div class="clear"></div>
-    
-  </div>		
-	
 {% endblock %}
 

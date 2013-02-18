@@ -3,6 +3,7 @@
 
 @mixin i4p-font-base($sizeText : $sizeTextNormal) {
     font-size: $sizeText;
+    line-height: $sizeText * 1.2;
     font-family: $fontOpenSans;
 }
 

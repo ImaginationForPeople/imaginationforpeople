@@ -35,57 +35,26 @@
 
 
 {% block content %}	
-	
-	<div class="content">        
-		<div class="container_18">
-			<div class="grid_18 alpha omega">			
-			
-				<div class="block-content feedback-new-page">  
-
-
-                
-                
-                    <div id="text">
-
-                        <div class="grid_12 alpha">
-                            <h1>{% trans "Leave feedback" %}</h1>
-                        <br />
-
+    <div class="content">        
+        <div class="container">
+            <div class="block-content feedback-new-page">  
+                <div id="row">
+                    <div class="span8">
+                        <h1>{% trans "Leave feedback" %}</h1>
                         {% include "backcap/feedback_new_form.html" %}
-
-
-                       <div id="feedback-tab-suggestions">
+                        <div id="feedback-tab-suggestions">
                             <div id="feedback-tab-suggestions-noresult"></div>
                             <div id="feedback-tab-suggestions-results"></div>
                         </div>
-
-                        </div>
-
                     </div>
-                    <div id="feedback-sidebar" class="grid_5 omega">
-                        {% blocktrans %}We are very eager you leave feedback to help us improve the website, thank you !{% endblocktrans %}
-                    
-                                            <div class="clear"></div>
-                        <br />
-                        <a class="link" href="{% url feedback-list %}">{% trans "See all feedbacks" %}</a>
-
+                    <div id="feedback-sidebar" class="span3">
+                        <p>{% blocktrans %}We are very eager you leave feedback to help us improve the website, thank you !{% endblocktrans %}</p>
+                        <p><a class="link" href="{% url feedback-list %}">{% trans "See all feedbacks" %}</a></p>
                     </div>
-                    
-
-                    </div>
-
-
-										
-				</div>
-				
-			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
-	</div>
-	
-	
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

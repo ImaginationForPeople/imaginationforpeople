@@ -1,0 +1,21 @@
+@import "i4p-mixins";
+@import "i4p/constants";
+
+#about .colonne a {
+    text-decoration: underline;
+}
+
+
+.profile_projects {
+
+    .separator{
+        margin-top:40px;
+    }
+        > a {
+            display: block;
+            width: 150px;
+            margin: 0.5em;
+            float: left;
+        }
+}
+
