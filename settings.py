@@ -289,6 +289,7 @@ INSTALLED_APPS = (
     'followit',
     'tastypie',
 
+    'categories',
     'categories.editor',
 
     # Internal Apps
