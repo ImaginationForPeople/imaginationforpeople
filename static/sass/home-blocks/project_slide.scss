@@ -55,7 +55,7 @@
                     position:absolute;
                     top:0px;
                     left:0px;
-                    background-image:url('../images/home/projectslide_cre.png');
+                    background-image:image-url('home/projectslide_cre.png');
                     width:195px;
                     height:290px;
                     z-index:200px;
@@ -64,7 +64,7 @@
                 /* hack for IE8 & 9 */
                 @media \0screen {
                     .project_title_cover{
-                        background-image:url('../images/home/projectslide_cre.gif');
+                        background-image:image-url('home/projectslide_cre.gif');
                     }                    
                 }
 
