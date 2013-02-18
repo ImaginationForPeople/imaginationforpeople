@@ -3,10 +3,6 @@
 {% load compress %}
 {% load sekizai_tags %}
 
-{% block base_grid %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
-{% endblock %}
-
 {% comment %}For some reason sekizai just refuses to work here{% endcomment %}
 {% block style %}
   {% compress css %}

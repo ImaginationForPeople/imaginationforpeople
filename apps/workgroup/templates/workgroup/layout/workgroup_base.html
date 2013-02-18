@@ -3,10 +3,6 @@
 {% load compress %}
 {% load sekizai_tags %}
 
-{% block base_grid %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
-{% endblock %}
-
 {% block style %}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/layout/workgroup_base.css" />
