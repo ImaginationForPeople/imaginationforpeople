@@ -9,7 +9,7 @@ class I4pProfileIndex(indexes.SearchIndex, indexes.Indexable):
     def get_model(self):
         return I4pProfile
 
-    def index_queryset(self):
+    def index_queryset(self, using=None):
         """
         Used when the entire index for model is updated.
         """
