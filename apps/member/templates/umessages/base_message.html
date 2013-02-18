@@ -3,9 +3,6 @@
 {% load compress %}
 {% load umessages_tags %}
 
-{% block base_grid %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
-{% endblock %}
 {% block style %}
   {{ block.super }}
   {% compress css %}
