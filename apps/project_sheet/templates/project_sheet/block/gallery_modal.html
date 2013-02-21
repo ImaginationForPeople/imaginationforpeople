@@ -18,7 +18,7 @@ FIXME: use picture list instead of project_translation
 {% load oembed_works_tags %}
 
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_modal.css" />
 {% endaddtoblock %}
 
@@ -28,7 +28,7 @@ FIXME: use picture list instead of project_translation
 {% endaddtoblock %}
 
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
-{% addtoblock "footer_js" %}
+{% addtoblock "footer_js" strip %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");  
 </script>

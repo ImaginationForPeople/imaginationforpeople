@@ -8,28 +8,13 @@ html {
 
 // then define desired font size for body
 body {
-    background-color: black; // FIXME : remove that line
-    padding: 0px; // FIXME: remove that line
-    margin: 0px; // FIXME: remove that line
-    font-family: Verdana, Arial, Helvetica, sans-serif; // FIXME: remove that line
-    font-size: 1.2rem;	
+    font-size: 1.2rem;
 }
 
 // END OF THE MINIMAL COMMON CSS STYLE FOR ALL PAGES.
 
-
-@import "compass_twitter_bootstrap/variables";
-@import "compass_twitter_bootstrap/mixins";
-
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
-
-// 
-// BOOTSTRAP STYLE FIXES SPECIFIC TO I4P
-// 
-.modal-backdrop {
-    @include bootstrap-opacity(40);
-}
 
 //
 // BIG FAT WARNING : ALL THE REST MUST BE DELETED OR MOVED ELSEWHERE.

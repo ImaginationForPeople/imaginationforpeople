@@ -46,9 +46,6 @@
     <!-- render_block "css" -->
     {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
     <!-- /render_block "css" -->
-    <!-- render_block "ipcss" -->
-    {% render_block "ipcss" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
-    <!-- /render_block "ipcss" -->
     
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
@@ -81,7 +78,11 @@
 	$.getScript(I4P_STATIC_URL+"js/base/panels.js");  
 	</script>
 
+    
+    <!-- render_block "js" -->
     {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    <!-- /render_block "js" -->
+    
 	<!-- FIXME: do not enable until directive/compile is fixed
 	<script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>
 	-->

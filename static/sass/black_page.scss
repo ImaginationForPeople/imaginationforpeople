@@ -1,9 +1,9 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 
 .content{
     background-color: $colorDarkGrey;
-    background-image:url(../images/base/content-bg.jpg);
+    background-image:image-url('base/content-bg.jpg');
     background-repeat:no-repeat;
     background-position: center top;
     color: $colorLightGrey;
@@ -24,7 +24,7 @@
 /* --HEADER---------------------------------------------------------------------------------------------------- */
 
 .header{
-	background-image:url(../images/base/header-bg.png);
+	background-image:image-url('base/header-bg.png');
 	color:black;
 	background-repeat:repeat-x;
 }

@@ -25,7 +25,12 @@ body {
 }
 
 // VARIOUS FIXES FOR CURRENT VERSION  (check & remove on updates?)
-
+// 
+// BOOTSTRAP STYLE FIXES SPECIFIC TO I4P
+// 
+.modal-backdrop {
+    @include ctb-opacity(40);
+}
 // BOOTSTRAP FIX PATH TO ICONS
 
 [class^="icon-"], [class*=" icon-"] {

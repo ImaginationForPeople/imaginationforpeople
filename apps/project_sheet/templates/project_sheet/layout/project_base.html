@@ -5,7 +5,7 @@
 
 {% block style %}
 {% compress css %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/layout/project_base.css" />
 {% endcompress %}
 {% endblock %}
 
@@ -24,10 +24,10 @@
 {% endblock %}
 
 {% block content %}	
-{% with gridsystem='bootstrap' %}
+{% addtoblock "js" strip %}
+{% endaddtoblock %}
 
 {% addtoblock "js" strip %}
-    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
     {% if project_translation %}
     <script>
     // Addthis configuration
@@ -47,7 +47,7 @@
 
 {% endaddtoblock %}
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_square.css" />
 {% endaddtoblock %}
 
@@ -66,5 +66,4 @@
 </div>
 
 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
-{% endwith %}
 {% endblock %}

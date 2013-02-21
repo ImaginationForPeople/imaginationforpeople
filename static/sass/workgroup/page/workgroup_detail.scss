@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 @import "i4p/fonts";
 
@@ -20,7 +20,7 @@
 			border-right:1px solid #dbdbdb;
 
 			#workgroup-card {
-				background: url("../../../images/workgroup/group.png?1359470529") no-repeat scroll left 10px transparent;
+				background: image-url('workgroup/group.png') no-repeat scroll left 10px transparent;
 			    margin: 18px 0 0 240px;
 			    padding: 0 0 0 65px;
 
@@ -75,7 +75,7 @@
 				}
 
 				a {
-					background: url("../../../images/workgroup/black_arrow.png?1359483311") no-repeat scroll right center transparent;
+					background: image-url('workgroup/black_arrow.png') no-repeat scroll right center transparent;
 				    color: #242424;
 				    font-size: 1rem;
 				    margin: 3px 0 0 90px;
