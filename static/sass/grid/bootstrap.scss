@@ -36,7 +36,7 @@ body {
     background-image: image-url("bootstrap/glyphicons-halflings-white.png");
 }
 
-// BOOTSTRAP FIX FOR DROPDOWN MISSING SUBMENUS
+// BOOTSTRAP FIX FOR DROPDOWN MISSING SUBMENUS (ex: Language menu on project page)
 
 .open .dropdown-menu {
     display: none;
@@ -55,9 +55,11 @@ body {
 }
 
 .dropdown-submenu > .dropdown-menu {
-    left: -95%;
+    width: 100%; /* Don't remove this, depending on translation submenu may be
+                    smaller than topmenu and be unreachable  if shifted left
+                    more than it's own width */
+    left: -100%;
     top: 0;
-    margin-top: -6px;
     margin-left: -1px;
 }
 
