@@ -1,12 +1,13 @@
-﻿{% extends "base_obsolete.html" %}
+﻿{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
 {% load cms_tags %}  
 
 {% block style %}
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/homepage.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/zinnia-i4p.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/home-blocks/project_slide.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
     {% endcompress %}
 {% endblock %}
@@ -178,29 +179,28 @@
          
         <div id="right_col">
             
+            {% placeholder "Right Column" %}
+            
             {% comment %}
-                {% include "search.html" %}            
-                <div class="clear"></div><br />
+                <span>
+                {% placeholder "Site Purpose" or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
+                </span>
             {% endcomment %}
             
-            <span>
-                {% placeholder "Site Purpose" or %}{% trans 'You can <strong>contribute</strong> , <strong>share</strong> your ideas,  <strong>register</strong> your project' %}{% endplaceholder %}
-            </span>
-            
-            <!-- Loginbox -->
-            {% include "pages/home-blocks/loginbox.html" %}     
-
-            <!-- Quick Project -->
-            <!-- FIXME -->
             {% comment %}
+                <!-- Loginbox -->
+                {% include "pages/home-blocks/loginbox.html" %}
+            {% endcomment %}
+            
+            {% comment %}
+                <!-- Quick Project -->
+                <!-- FIXME -->
                 {% include "pages/home-blocks/quick_project.html" %} 
             {% endcomment %}            
             
             <!-- Last members -->
             {% include "pages/home-blocks/last_members.html" %}     
 
-            
-            {% placeholder "Homepage Column" %}
             
         </div>
         

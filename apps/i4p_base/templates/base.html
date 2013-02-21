@@ -20,15 +20,17 @@
     <title>{% block title_prefix %}{% endblock %}{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
     {% compress css %}
-	{% block base_grid %}
-	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
-	{% endblock %}
+    {% block base_grid %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+    {% endblock %}
+
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/footer.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/i4p_base/backcap/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
@@ -40,43 +42,52 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
+
+    <!-- render_block "css" -->
     {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
-
-
+    <!-- /render_block "css" -->
+    <!-- render_block "ipcss" -->
+    {% render_block "ipcss" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    <!-- /render_block "ipcss" -->
+    
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
 	<script type="text/javascript">
 		var I4P_STATIC_URL="{{STATIC_URL}}";
 	</script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.reject.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script>
+	<!-- PLEASE: i4p-prefix & document overloaded classes <script type="text/javascript" src="{{ STATIC_URL }}js/buttons.js"></script> -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.slidePanel.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.tipsy.js"></script>
     <!--<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/slide.js"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/csrf-protection.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-
+    
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ba-throttle-debounce.js"></script>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/pure.js"></script>
-    
-    <script type="text/javascript" src="{{ STATIC_URL }}js/base/panels.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/pure.js"></script> 
     		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
     {% endcompress %}
 
+
     <!-- for i18n -->
     <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog "i4p_base" %}"></script>
-
     <script type="text/javascript">
-	i4p_globalsearch_complete_url = "{% url i4p-globalsearch-complete %}";
+		//FIXME: please use uppercase for constant 
+		var i4p_globalsearch_complete_url = "{% url i4p-globalsearch-complete %}";
     </script>										       
+	<script type="text/javascript">
+	$.getScript(I4P_STATIC_URL+"js/base/panels.js");  
+	</script>
 
     {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
-
-    <script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>
+	<!-- FIXME: do not enable until directive/compile is fixed
+	<script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>
+	-->
 
     <script type="text/javascript">
+		//FIXME: move IE-reject functions into an async-loaded js/i4p/ie-reject.js library
       $(document).ready(function(){
       
         // Reject for old browsers
@@ -93,9 +104,10 @@
         });
             
             
+		// FIXME: move base-specific JS into a js/...base/block/something.js library //
         $(".social-login img").tipsy({html: true });
-        
-        $("input[name=identification]").example("{% trans 'Enter your login'|escapejs %}");
+             
+        $("input[name=identification]").example("{% trans 'Enter your email'|escapejs %}");
         $("input[name=password]").example("{% trans 'Password'|escapejs %}");
         
         $("input[name=openid_identifier]").example("{% trans 'Enter your username'|escapejs %}");
@@ -105,19 +117,6 @@
         
         //Show new project topic popup when user click on add a project
         var popup_content = $("#new_project_style_popup_zone"); 
-
-        
-        /*
-        $("a.addproject_button").click(function(){
-            var url = $(this).attr("href");
-            
-            popup_content.load("{% url project_sheet-start %} #new_project_style_popup");
-            popup_content.removeClass("hidden");
-            $.getScript("{{ STATIC_URL }}js/project_sheet/topics_select_popup.js");
-            return false;
-        });
-        */
-        
         
         // Rollover for social networks links
         $("li.social-login a img").hover(function(){
@@ -135,7 +134,7 @@
         
     });
         
-    </script>
+</script>
     {% block extra_script %}{% endblock %}
     
     {% block extra_head %}{% endblock %}
@@ -171,7 +170,7 @@
         </div>
       {% endblock %}      
       
-      {% block header %} {% include "header.html" %} {% endblock %}			
+      {% block header %}{% include "header.html" %}{% endblock %}			
 
       {% block nav %}{% endblock %}
       
@@ -194,9 +193,11 @@
     </div>
 
 
+    <!-- INLINE JS -->
+    {% render_block "footer_js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
     {% block inline_js %}
     {% endblock %}
-
+    <!-- /INLINE JS -->
   </body>
 
 </html>

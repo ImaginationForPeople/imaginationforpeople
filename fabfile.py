@@ -11,20 +11,23 @@ from fabric.api import *
 from fabric.colors import cyan
 from fabric.contrib.files import *
 
+@task
 def reloadapp():
     """
     Touch the wsgi
     """
-    print(cyan('Reloading the application'))
-    venvcmd('touch apache/%(wsginame)s' % env)
-
+    print(cyan('Reloading all wsgi applications in : %s' % env.venvfullpath + '/' + env.projectname))
+    #this may accidentally reload staging environments and the like, but it's the only reliable way to 
+    #hit any multisites defined. 
+    with cd(env.venvfullpath + '/' + env.projectname):
+        run('touch apache/*')
 
 def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
     if not user:
         user = env.user
 
     with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
-        return sudo('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, user=user, pty=pty)
+        return run('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, pty=pty)
 
 def venv_prefix():
     return 'source %(venvfullpath)s/bin/activate' % env
@@ -84,7 +87,7 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
     env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
-    env.gitbranch = "release/restapi"
+    env.gitbranch = "feature/project-support"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -163,6 +166,10 @@ def collect_static_files():
     """
     print(cyan('Collecting static files'))
     venvcmd('./manage.py collectstatic --noinput')
+    
+    #Workaround for collectstatic bug on prod server
+    with cd(env.venvfullpath + '/' + env.projectname + '/static'):
+        run('cp -Rp compiled_sass/* css/')
 
 @task
 def make_messages():
@@ -202,8 +209,8 @@ def compile_stylesheets():
     Generate *.css files from *.scss
     """
     with cd(env.venvfullpath + '/' + env.projectname + '/static'):
-        sudo('rm -rf compiled_sass', user=env.user)
-        sudo('bundle exec compass compile --force', shell=True, user=env.user)
+        run('rm -rf compiled_sass')
+        run('bundle exec compass compile --force', shell=True)
             
 def tests():
     """
@@ -285,6 +292,7 @@ def app_fullupdate():
     execute(collect_static_files)
     # tests()
     execute(reloadapp)
+    execute(webservers_reload)
 
 @task
 def app_update():
@@ -298,6 +306,7 @@ def app_update():
     execute(collect_static_files)
     # tests()
     execute(reloadapp)
+    execute(webservers_reload)
 
 ## Webserver
 def configure_webservers():
@@ -328,17 +337,20 @@ def install_webservers():
     sudo('apt-get install apache2-mpm-prefork libapache2-mod-wsgi -y')
     sudo('apt-get install nginx -y')
 
+@task
 def webservers_reload():
     """
     Reload the webserver stack.
     """
     print(cyan("Reloading apache"))
-    # Apache
-    sudo('apache2ctl -k graceful')
+    # Apache (sudo is part of command line here because we don't have full
+    # sudo access
+    run('sudo /etc/init.d/apache2 reload')
 
-    # Nginx
+    # Nginx (sudo is part of command line here because we don't have full
+    # sudo access
     print(cyan("Reloading nginx"))
-    sudo('/etc/init.d/nginx restart')
+    run('sudo /etc/init.d/nginx reload')
 
 def webservers_stop():
     """

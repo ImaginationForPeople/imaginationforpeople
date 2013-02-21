@@ -1,4 +1,16 @@
 
+// Load and prepare helpers for i4p-action sprites
+
+$i4p-action-sprite-dimensions: true;
+$i4p-action-sprites: sprite-map("i4p-action/*.png");
+@import "i4p-action/*.png"; // */
+
+
+// PLEASE DOT NOT AUTO-INCLUDE & AUTO-GENERATE CSS CLASSES THERE !
+// USE CAREFULLY WITHIN FINAL SCSS FILES ONLY.
+//
+// ex: @include all-i4p-action-sprites; 
+
 @mixin i4p-sprite($classname) {
     [class^="#{$classname}-"],
     [class*=" #{$classname}-"] {
@@ -8,11 +20,20 @@
 
 }
 
+@mixin i4p-sprite-margin($classname) {
+    & > i[class^="#{$classname}-"],
+    & > i[class*=" #{$classname}-"] {
+	margin-right: .25em;
+    }
+}
+
+// FIXME: please mark as obsolete & remove wisely
 @mixin i4p-sprite-header($classname) {
     h1, h2, h3, h4, h5, h6 {
-	i[class^="#{$classname}-"],
-	i[class*=" #{$classname}-"] {
+	& > i[class^="#{$classname}-"],
+	& > i[class*=" #{$classname}-"] {
 	    margin-right: .25em;
 	}
     }
 }
+

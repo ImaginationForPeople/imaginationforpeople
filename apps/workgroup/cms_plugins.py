@@ -34,34 +34,22 @@ class BaseWorkGroupPlugin(CMSPluginBase):
    
     def render(self, context, instance, placeholder):
         workgroup = instance.workgroup
-        members = get_ml_members(workgroup)
-
-        context['ml_member_list'] = []
-        context['ml_nonmember_list'] = []        
-        for member in members:
-            try:
-                found_member = User.objects.get(email=member[0])
-                context['ml_member_list'].append(found_member)
-            except User.DoesNotExist:
-                context['ml_nonmember_list'].append(User(email=member[0]))
-
-
         context['workgroup'] = workgroup
 
         return context
 
     def __unicode__(self):
-        return u"Workgroup %s" % self.workgroup.slug
+        return u"Group %s" % self.workgroup.slug
 
 class WorkGroupPlugin(BaseWorkGroupPlugin):
     """
     Workgroup (Un)subscribe button for the CMS
     """
-    name = _("WorkGroup (un)subscribe button")
+    name = _("Group (un)subscribe button")
     render_template = "workgroup/cms_subscribe_button.html"
     
     def __unicode__(self):
-        return u"Workgroup Button %s" % self.workgroup.slug
+        return u"Group Button %s" % self.workgroup.slug
     
 plugin_pool.register_plugin(WorkGroupPlugin)
 
@@ -70,10 +58,10 @@ class SubscribersWorkGroupPlugin(BaseWorkGroupPlugin):
     """
     Workgroup subscribers list for the CMS
     """
-    name = _("WorkGroup subscribers list")
+    name = _("Group subscribers list")
     render_template = "workgroup/cms_workgroup_subscribers.html"
 
     def __unicode__(self):
-        return u"Workgroup Subscribers %s" % self.workgroup.slug
+        return u"Group Subscribers %s" % self.workgroup.slug
 
 plugin_pool.register_plugin(SubscribersWorkGroupPlugin)

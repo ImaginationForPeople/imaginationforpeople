@@ -1,0 +1,23 @@
+{% load i18n %}
+<div class='wmd-container'>
+    <div id="wmd-button-bar" class="wmd-panel"></div>
+    {{ post_form.text }}{# this element is resizable and will be wrapped by js #}
+</div>
+<div class="form-item">
+    <label for="editor" class="form-error">{{ post_form.text.errors }}</label>
+</div>
+{% if 'summary' in post_form.fields %}
+    <div class="form-item">
+        <strong>{{ post_form.summary.label_tag }}</strong> 
+        {{ post_form.summary }}
+        <div class="title-desc">{{ post_form.summary.help_text }}</div>
+        <div class="form-error" >{{ post_form.summary.errors }}</div>
+    </div>
+{% endif %}
+
+<div class="preview-toggle">
+    <p id="pre-collapse" title="{% trans 'Toggle the real time Markdown editor preview' %}">
+        [{% trans 'hide preview' %}]
+    </p>
+	<div id="previewer" class="wmd-preview"></div>
+</div>

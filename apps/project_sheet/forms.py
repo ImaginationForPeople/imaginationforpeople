@@ -20,6 +20,7 @@ Django Forms for a Project Sheet
 """
 from django import forms
 from django.forms.models import modelformset_factory
+from django.utils.translation import ugettext_lazy as _
 
 from ajax_select.fields import AutoCompleteSelectField
 from nani.forms import TranslatableModelForm
@@ -59,7 +60,7 @@ class I4pProjectInfoForm(forms.ModelForm):
     """
     class Meta:
         model = I4pProject
-        fields = ('website',)
+        fields = ('website', 'status')
 
 
 class I4pProjectLocationForm(forms.ModelForm):
@@ -96,16 +97,16 @@ class ProjectMemberChoiceField(forms.ModelChoiceField):
 
         return res
 
-class ProjectMemberForm(forms.ModelForm):
+class ProjectMemberAddForm(forms.ModelForm):
     """
-    A member for a project
+    Let a user adds her/hisself to the project
     """
     class Meta:
         model = ProjectMember
-        fields = ('user', 'role', 'comment')
+        fields = ('role', 'comment')
 
-    #user = ProjectMemberChoiceField(queryset=User.objects.filter(id__gt= -1).order_by('username'))
-    user = AutoCompleteSelectField("members", required=True)
+    role = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _("Specify your role in the project")}))
+    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly your work with this project...")}))
 
 ProjectMemberFormSet = modelformset_factory(ProjectMember, 
                                             extra=0, 

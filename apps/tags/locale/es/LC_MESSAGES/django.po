@@ -3,13 +3,15 @@
 # This file is distributed under the same license as the PACKAGE package.
 #
 # Translators:
+# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-10-23 19:52+0200\n"
-"PO-Revision-Date: 2012-10-05 09:15+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-02-15 17:36-0500\n"
+"PO-Revision-Date: 2012-10-05 14:54+0000\n"
+"Last-Translator: Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail."
+"com>\n"
 "Language-Team: Spanish <ip-es@lists.imaginationforpeople.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -20,81 +22,86 @@ msgstr ""
 #: views.py:53
 #, python-format
 msgid "No Tag found matching \"%s\"."
-msgstr ""
+msgstr "Ninguna etiqueta coincide con \"%s\"."
 
-#: templates/tags/tag_view.html:19
+#: templates/tags/tag_view.html:18
 #, python-format
 msgid "%(tag)s - thematic community | Imagination For People"
-msgstr ""
+msgstr "%(tag)s - comunidad temática | Imagination For People"
 
 #: templates/tags/tag_view.html:34
-#, python-format
-msgid "Picture of project: %(picture_project_translations.0.title)s."
+#, fuzzy
+msgid "Picture from project:"
+msgstr "Proyectos maduros"
+
+#: templates/tags/tag_view.html:59
+msgid "Edit this tag's description"
 msgstr ""
 
-#: templates/tags/tag_view.html:52 templates/tags/tag_view.html.py:71
-#: templates/tags/block/taglist.html:33
-msgid "edit"
-msgstr ""
-
-#: templates/tags/tag_view.html:71
-msgid "read"
-msgstr ""
-
-#: templates/tags/tag_view.html:80
+#: templates/tags/tag_view.html:76
 msgid "Mature projects"
-msgstr ""
+msgstr "Proyectos maduros"
 
-#: templates/tags/tag_view.html:81 templates/tags/tag_view.html.py:94
-#: templates/tags/tag_view.html:106 templates/tags/tag_view.html.py:142
+#: templates/tags/tag_view.html:77 templates/tags/tag_view.html.py:87
+#: templates/tags/tag_view.html:97 templates/tags/tag_view.html.py:135
 msgid "See more"
-msgstr ""
+msgstr "Ver más"
 
-#: templates/tags/tag_view.html:85 templates/tags/tag_view.html.py:98
-#: templates/tags/tag_view.html:110
+#: templates/tags/tag_view.html:81 templates/tags/tag_view.html.py:91
+#: templates/tags/tag_view.html:101
 msgid "No projects"
-msgstr ""
+msgstr "Ningún projecto"
 
-#: templates/tags/tag_view.html:93
+#: templates/tags/tag_view.html:86
 msgid "Starting projects"
-msgstr ""
+msgstr "Proyecto en fase inicial"
 
-#: templates/tags/tag_view.html:105
+#: templates/tags/tag_view.html:96
 msgid "Latest modifications"
-msgstr ""
+msgstr "Modificaciones recientes"
 
-#: templates/tags/tag_view.html:125
+#: templates/tags/tag_view.html:118
 msgid "People"
-msgstr ""
+msgstr "Gente"
 
-#: templates/tags/tag_view.html:134
+#: templates/tags/tag_view.html:127
 msgid "Be the first to appear here by joining a project!"
-msgstr ""
+msgstr "¡Únase al projecto y sea el primero en aparecer!"
 
-#: templates/tags/tag_view.html:140
+#: templates/tags/tag_view.html:133
 msgid "New project sheets"
-msgstr ""
+msgstr "Nuevas fichas de proyecto"
 
-#: templates/tags/tag_view.html:151
+#: templates/tags/tag_view.html:144
 msgid "Add a project in this category"
-msgstr ""
+msgstr "Añadir un proyecto a esta categoría"
 
 #: templates/tags/wiki_edit.html:5
 msgid "Edit"
-msgstr ""
+msgstr "Modificar"
 
-#: templates/tags/wiki_edit.html:28
+#: templates/tags/wiki_edit.html:34
 msgid "Preview"
-msgstr ""
+msgstr "Vista previa"
 
-#: templates/tags/wiki_edit.html:32 templates/tags/wiki_edit.html.py:54
+#: templates/tags/wiki_edit.html:38 templates/tags/wiki_edit.html.py:60
 msgid "Save changes"
-msgstr ""
+msgstr "Guardar cambios"
 
-#: templates/tags/wiki_edit.html:38
+#: templates/tags/wiki_edit.html:44
 msgid "Delete article"
-msgstr ""
+msgstr "Borrar artículo"
 
-#: templates/tags/wiki_edit.html:50
+#: templates/tags/wiki_edit.html:56
 msgid "Back to editor"
-msgstr ""
+msgstr "Volver al editor"
+
+#: templates/tags/block/taglist.html:33
+msgid "edit"
+msgstr "modificar"
+
+#~ msgid "Picture of project: %(picture_project_translations.0.title)s."
+#~ msgstr "Imagen del projecto: %(picture_project_translations.0.title)s."
+
+#~ msgid "read"
+#~ msgstr "leer"

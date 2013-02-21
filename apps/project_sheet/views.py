@@ -36,9 +36,11 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.utils import translation, simplejson
+from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
+
 
 from tagging.models import TaggedItem
 from reversion.models import Version
@@ -46,7 +48,7 @@ from reversion.models import Version
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
-from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm, ProjectVideoAddForm
+from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS, Question
 from .utils import build_filters_and_context
@@ -121,7 +123,7 @@ def project_sheet_list(request):
     extra_context["filters_tab_selected"] = True
 
     return object_list(request,
-                       template_name='project_sheet/obsolete/project_list.html',
+                       template_name='project_sheet/page/project_list.html',
                        queryset=ordered_project_sheets,
                        # paginate_by=12,
                        allow_empty=True,
@@ -202,7 +204,7 @@ class ProjectView(TemplateView):
         context = super(ProjectView, self).get_context_data(**kwargs)
             
         # Forms
-        # project_member_form = ProjectMemberForm()
+        project_member_add_form = ProjectMemberAddForm()
         # project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
         project_status_choices = OrderedDict((k, unicode(v)) 
                                              for k, v in I4pProject.STATUS_CHOICES)
@@ -230,6 +232,7 @@ class ProjectView(TemplateView):
             'project': project,
             'project_translation': self.project_translation,
             'project_status_choices': simplejson.dumps(project_status_choices),
+            'project_member_add_form': project_member_add_form,
             'project_tab' : True,
             'related_projects': related_projects,
         })
@@ -261,15 +264,24 @@ class ProjectEditInfoView(ProjectView):
     """
     def get(self, request, *args, **kwargs):
         self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.project)
+        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.project.location)
         return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
         # Misc info: website, ...
         self.project_info_form = I4pProjectInfoForm(request.POST,
                                                     instance=self.project_translation.project)
-        
-        if self.project_info_form.is_valid():
-            info = self.project_info_form.save()
+
+        self.project_location_form = I4pProjectLocationForm(request.POST,
+                                                            instance=self.project_translation.project.location)
+
+        if self.project_info_form.is_valid() and self.project_location_form.is_valid():
+            self.project_info_form.save()
+            location = self.project_location_form.save()
+            if not self.project_translation.project.location:
+                self.project_translation.project.location = location
+                self.project_translation.project.save()
+            
             return redirect(self.project_translation)
         else:
             return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
@@ -278,38 +290,10 @@ class ProjectEditInfoView(ProjectView):
         context = super(ProjectEditInfoView, self).get_context_data(slug, **kwargs)
         
         context['project_info_form'] = self.project_info_form
-        
-        return context
-
-class ProjectEditLocationView(ProjectView):
-    """
-    Edit Location
-    """
-    def get(self, request, *args, **kwargs):
-        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.project.location)
-        return super(ProjectEditLocationView, self).get(request, *args, **kwargs)
-        
-    def post(self, request, *args, **kwargs):
-        # Location
-        project_location_form = I4pProjectLocationForm(request.POST,
-                                                       instance=self.project_translation.project.location)
-
-        if request.method == 'POST' and project_location_form.is_valid():
-            location = project_location_form.save()
-            if not self.project_translation.project.location:
-                self.project_translation.project.location = location
-                self.project_translation.project.save()
-
-        return redirect(self.project_translation)
-
-    def get_context_data(self, slug, **kwargs):
-        context = super(ProjectEditLocationView, self).get_context_data(slug, **kwargs)
-        
         context['project_location_form'] = self.project_location_form
         
         return context
-        
-        
+
 @require_POST    
 @login_required
 def project_sheet_create_translation(request, project_slug):
@@ -320,7 +304,7 @@ def project_sheet_create_translation(request, project_slug):
     site = Site.objects.get_current()
 
     requested_language_code = request.POST.get("requested_language", None)
-    if None:
+    if requested_language_code is None:
         return HttpResponseForbidden()
 
     try:
@@ -435,13 +419,9 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
             form = FieldForm()
 
     if project_translation:
-        context['project_info_form'] = I4pProjectInfoForm(instance=project_translation.project)
-        context['project_themes_form'] = I4pProjectThemesForm(instance=project_translation)
-        context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
-        context['project_member_form'] = ProjectMemberForm()
-        context['project_location_form'] = I4pProjectLocationForm(instance=project_translation.project.location)
+        # context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
+        context['project_member_form'] = ProjectMemberAddForm()
         context['answer_form'] = AnswerForm()
-        context['reference_formset'] = ProjectReferenceFormSet(queryset=project_translation.project.references.all())
         context['project_tab'] = True
         context['project'] = project_translation.project
     elif topic_slug:
@@ -641,24 +621,39 @@ class ProjectEditReferencesView(ProjectView):
         return redirect(self.project_translation)
 
 
-def project_sheet_member_add(request, project_slug):
-    language_code = translation.get_language()
+class ProjectMemberAddView(ProjectView):
+    """
+    When someone wants to join a project
+    """
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProjectMemberAddView, self).dispatch(request, *args, **kwargs)
+        
+    def get(self, request, *args, **kwargs):
+        self.project_member_add_form = ProjectMemberAddForm()
+        return super(ProjectMemberAddView, self).get(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        self.project_member_add_form = ProjectMemberAddForm(request.POST, request.FILES)
 
-    # get the project translation and its base
-    try:
-        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                              language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
-
-    if request.method == 'POST' :
-        project_member_form = ProjectMemberForm(request.POST)
-        if project_member_form.is_valid():
-            project_member = project_member_form.save(commit=False)
-            project_member.project = project_translation.project
+        # check if not yet member
+        if request.user in self.project_translation.project.members.all():
+            return redirect(self.project_translation)
+        
+        if self.project_member_add_form.is_valid():
+            project_member = self.project_member_add_form.save(commit=False)
+            project_member.project = self.project_translation.project
+            project_member.user = request.user
             project_member.save()
 
-    return redirect(project_translation)
+            return redirect(self.project_translation)
+        else:
+            return super(ProjectMemberAddView, self).get(request, *args, **kwargs)
+        
+    def get_context_data(self, slug, *args, **kwargs):
+        context = super(ProjectMemberAddView, self).get_context_data(slug, *args, **kwargs)
+        context['project_member_add_form'] = self.project_member_add_form
+        return context
 
 @require_POST
 @login_required

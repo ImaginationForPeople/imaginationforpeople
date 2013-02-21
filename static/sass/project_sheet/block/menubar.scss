@@ -1,0 +1,214 @@
+
+// load reusable components
+@import "i4p-mixins";
+@import "i4p/constants";
+
+.project-menubar {
+    @include box-sizing(border-box);
+    background-color: $colorLightGrey;
+    clear: both;
+    height: 3.3rem;
+
+    .menubar-leftcolumn, .menubar-rightcolumn {
+	& > ul {
+	    list-style: none;
+	    margin: 0;
+
+	    & > li {
+		@include box-sizing(border-box);
+		margin: 0;
+		display: block;
+		float:left;
+		border-left: 1px solid white;
+		border-right: 1px solid $colorMedLightGrey;
+		position: relative;
+		font-size: $sizeTextSmall;
+		font-family: $fontOpenSans;
+		font-stretch: condensed;
+		text-transform: uppercase;
+		padding: 0;
+		height: 3.3rem;
+		border-collapse: collapse;
+
+		a {
+		    display: block;
+		    padding: 0.7 * $sizePaddingMedium;
+		    padding-left: 0.7 * $sizePaddingMedium;
+		    padding-right: 0.7 * $sizePaddingMedium;
+		    color: $colorMedGrey;
+		    font-weight: bold;
+		    height:19px;
+		    line-height:21px;
+
+		    i {
+			position: relative;
+			top: -2px;
+			display: inline-block;
+			vertical-align: middle;
+		    }
+
+		    &:hover {
+			color: white;
+			background-color: $colorMedLightGrey;
+		    }
+
+		    &.share {
+			&:focus ~ .submenu {
+			    opacity: 1;
+			    display: block;
+			}
+		    }
+		}
+
+		.submenu {
+		    @include i4p-transition;
+		    top: 30px;
+		    right: -$sizeMarginSmall;
+		    width: 60px;
+		    padding: $sizePaddingMedium;
+		    display: none;
+		    background-color: $colorLightLightGrey;
+		    opacity: 0;
+		    list-style: none;
+		    position: absolute;
+		    z-index: 1;
+
+		    li {
+			display: block;
+		    }
+		}
+
+		&:hover {
+		    background-color: $colorMedLightGrey;
+		    border-color: $colorMedLightGrey; // both left & right (flat effect)
+
+		    & > a {
+			color: white;
+			text-decoration: none;
+		    }
+		}
+
+		&.right {
+		    float:right;
+
+		    a {
+				padding: 6px $sizePaddingSmall;
+				height: 20px;
+	    		line-height: 21px;
+		    }
+		}
+
+
+		&.active {
+		    @include i4p-background-vertical-gradient($colorLightBlue, $colorDarkBlue);
+		    position: relative;
+		    border-right-color: $colorDarkBlue;
+
+		    a {
+			color: white;
+		    }
+
+		    &:before {
+			content:""; 
+			position: absolute; 
+			left: 50%; 
+			bottom: -10px; 
+			width: 0; 
+			height: 0; 
+			margin-left: -10px;
+			border-left: 10px solid transparent; 
+			border-top: 10px solid $colorDarkBlue; 
+			border-right: 10px solid transparent;
+		    }
+
+		    &:hover {
+			background-image: none;
+			background-color: $colorMedGrey;
+			border-color: $colorMedGrey; // both left & right (flat effect)
+
+			a { 
+			    color: white;
+			}
+
+			&:before {
+			    border-top-color: $colorMedGrey;
+			}
+		    }
+		}
+	    } // & > li 
+	} // & > ul
+    } // .menubar-leftcolumn, .menubar-rightcolumn
+
+    // specifics to left column
+    .menubar-leftcolumn {
+	margin-left: 0;
+	margin-right: 20px;
+
+	& > ul > li {
+	    &.right {
+		border: none;
+	    }
+	}
+    }
+
+    // specifics to right column
+    .menubar-rightcolumn {
+	& > ul > li > a {
+	    padding-left: $sizePaddingSmall;
+	    padding-right: $sizePaddingSmall;
+	}
+    }
+
+    .lang-menu {
+	.lang-code {
+	    display: inline-block;
+	    font-weight: bold;
+	    min-width: 3rem;
+	}
+	.lang-title {
+	    font-style: italic;
+	    font-weight: normal;
+	    text-transform: capitalize;
+	}
+	.lang-action {
+	    font-style: italic;
+	    font-weight: normal;
+	    text-transform: normal;
+	}
+	.lang-arrow {
+	    display: inline-block;
+	    min-width: 3rem;
+	    content: "<";
+	}
+    }
+
+    .dropdown-menu {
+		background-color: $colorLightGrey;
+
+		form {
+			margin:0
+		}
+		li a {
+			padding:0 5px !important;
+			margin:0 3px;
+			@include border-radius(4px,4px)
+		}
+
+		li button {
+			background:none;
+			border:0;
+			color: $colorMedGrey;
+			@include border-radius(4px,4px);
+			font-size:1rem;
+			margin:0 4px;
+			width:150px;
+			text-align:left;
+
+			&:hover {
+				background:$colorMedLightGrey;
+				color:white;
+			}
+		}
+    }
+}
+
