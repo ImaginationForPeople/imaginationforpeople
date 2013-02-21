@@ -8,16 +8,11 @@
     background-color: #0c0c0c;
     //border-top:1px solid #353535;
     //border-bottom:1px solid black;
-    padding:3px;
-    padding-top:5px;
-    padding-bottom:5px;
-    
+    height:36px;
+    line-height:36px;
     //@include i4p-shadow(4px, black); 
 	//@include border-radius(4px);
-    position:absolute;
-    right:0px;
-    top:3px;
-    
+     font-size:9px;
     h4{
         margin-top:8px;
     }
@@ -27,32 +22,57 @@
     #projectlist_sort_buttons {
         padding:0px;
         margin:0px;
+        display:inline-block;
         li{
             list-style-type:none;
             display:inline;
             padding:0px;
             margin:0px;
+            .button, .redbutton, .greenbutton{
+                background-color:#eeeeee;
+                border:1px solid #bdbdbd;
+                margin-left:0px;
+                margin-right:0px;
+                padding-top:1px;
+                padding-bottom:1px;
+                padding-left:5px;
+                padding-right:5px;
+                font-size:9px;
+                font-family : Verdana, Arial, Sans-serif;
+                font-weight:bold;
+                color:#5a5959;
+                text-shadow:1px 1px 0 #fff; 
+                text-align:center;
+                text-decoration:none;
+                text-transform:none;
+                font-style:normal;  
+
+                @include i4p-shadow(4px, #a1a1a1); 
+                @include border-radius(4px); 
+
+                img{
+                    position:relative;
+                }
+            }
+
+            .button:hover{
+                color:#fff;
+                text-decoration:none;
+                text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
+                background-position:0 -30px;
+                background:url(../../../images/base/minibutton_blue.jpg);
+                border:1px solid #2a65a0;   
+            }
+            .filter-on a.button {
+                background-image:url("../../../images/base/minibutton_red.jpg");
+                background-repeat:repeat-x;
+                border:1px solid #881B1B;
+                color:white;
+                text-shadow:-1px -1px 0 rgba(0, 0, 0, 0.3);
+                @include i4p-shadow(4px, black); 
+            }
         }
-    }
-    .button{
-        top:4px;
-        margin-left:3px;
-        margin-right:4px;
-        @include i4p-shadow(4px, black); 
-    }
-}
 
-
-#projectlist_sort_buttons{
-    display:inline-block;
-
-    
-    .filter-on a.button {
-        background-image:url("../images/base/minibutton_red.jpg");
-        background-repeat:repeat-x;
-        border:1px solid #881B1B;
-        color:white;
-        text-shadow:-1px -1px 0 rgba(0, 0, 0, 0.3);
     }
 }
 
@@ -104,32 +124,46 @@
 
 
 .categories {
-    background-image:url("../images/base/menu-bg.jpg");
+    background-image:url("../../../images/base/menu-bg.jpg");
+    background-repeat:repeat-x;
     background-color:#161616;
     height:36px;
     
     .menu{
-    ul{
-    padding:0px;
-    padding-top: 8px;
-    margin:0px;
-    li{
-        list-style-type:none;
-        display:inline;
-        padding:0px;
-        margin:0px;
-    }
-}
-        margin-left:34px;
-        
-        a {
-            width: 100%;
-            height: 30px;
-            display: block;
+        ul{
+            padding:0px;
+            margin:0px;
+            display: inline-block;
+            li{
+                list-style-type:none;
+                display:inline;
+                padding:0px;
+                margin:0px;
+                .categ-button {
+                    border-right: 1px solid #676665;
+                    
+                    a {
+                        height:36px;
+                        line-height:36px;
+                        display: block;
+                    }
+                    .selected {
+                        background-image:url(../../../images/base/categories-selected.png);   
+                        color:#888888;
+                        border:0px !important;
+                    }
+                    .selected:hover{
+                        color:white;
+                        text-decoration: none;
+                        }
+                }
+            }
         }
         
-        ul .selected {
-            color:#888888;
+        a {
+         /*   width: 100%;
+            height: 30px;
+            display: block;*/
         }
     }
 }
@@ -143,21 +177,18 @@
     top:-10px;
 }
 
-.filters_box{
-    background-color:#0e0e0e;
-    
-    @include border-radius(3px); 
-    margin-bottom:10px;
-}
-
 .filtersbox_content{
-    margin:10px;
+    background-color:#0e0e0e;
+    @include border-radius(3px); 
+    margin:0.5em;
+    padding:0.5em;
     color:#393939;
-    position:relative;
+
     #cloudtag_list{
         display:inline;
         padding:0px;
         margin:0px;
+        @include i4p-font-base($sizeTextSmall);
         li{
             list-style-type:none;
             display:inline;
@@ -196,6 +227,7 @@
     p{
         clear: both;
         display: block;
+        margin: 0px;
     }
     
     select{
@@ -212,6 +244,8 @@
     }
     
     .pictos-categ{
+        display: inline-block;
+        padding: 0px 0.5em;
         margin-bottom:10px;
         border-right:1px solid #393939;
         text-align:center;
@@ -264,7 +298,6 @@
     width:70px;
     margin-left:auto;
     margin-right:auto;
-    
     p {
         visibility: hidden;
         display: none;
@@ -286,40 +319,35 @@
     }
     
     #filter_val_edit .ez-checkbox{
-        background-image: url("../images/project/filters-picto-editing.jpg");
+        background-image: url("../../../images/project/filters-picto-editing.jpg");
     }
 
     #filter_val_full .ez-checkbox{
-        background-image: url("../images/project/filters-picto-complete.jpg");
+        background-image: url("../../../images/project/filters-picto-complete.jpg");
     }
 
     #bestof .ez-checkbox{
-        background-image: url("../images/project/filters-picto-bestof.jpg");
+        background-image: url("../../../images/project/filters-picto-bestof.jpg");
         left:17px;
         position:relative;
     }
 
     #popular .ez-checkbox{
-        background-image: url("../images/project/filters-picto-popular.jpg");
+        background-image: url("../../../images/project/filters-picto-popular.jpg");
     }
 
     #team .ez-checkbox{
-        background-image: url("../images/project/filters-picto-team.jpg");
+        background-image: url("../../../images/project/filters-picto-team.jpg");
     }
 
     #nobody .ez-checkbox{
-        background-image: url("../images/project/filters-picto-nobody.jpg");
+        background-image: url("../../../images/project/filters-picto-nobody.jpg");
     }
 }
 
 
 .filters-progress{
-    margin-bottom:10px;
-    position:relative;
-    font-size:10px;
-    position:relative;
-    margin-left:20px;
-    margin-top:12px;
+
     
     a{
         font-size:10px;
@@ -327,13 +355,13 @@
     
     ul{
         li{
-            width:90px;
+            width:85px;
             text-align:center;
             margin:0px !important;
             margin-bottom:15px !important;            
             input {
-                width:90px;
-                height: 20px;
+                width:85px;
+                height: 43px;
                 }
         }
         
@@ -347,8 +375,7 @@
         height: 20px;
         padding: 0 5px 0 0;
         display: block;
-        clear: left;
-        float: left;
+
         background-repeat:no-repeat;
         background-position:top center;
         cursor:pointer;
@@ -360,19 +387,19 @@
     }
     
     #filter_val_idea .ez-checkbox{
-        background-image: url("../images/project/filters-progressbar_25.jpg");
+        background-image: url("../../../images/project/filters-progressbar_25.jpg");
     }
 
     #filter_val_begin .ez-checkbox{
-        background-image: url("../images/project/filters-progressbar_50.jpg");
+        background-image: url("../../../images/project/filters-progressbar_50.jpg");
     }
 
     #filter_val_wip .ez-checkbox{
-        background-image: url("../images/project/filters-progressbar_75.jpg");
+        background-image: url("../../../images/project/filters-progressbar_75.jpg");
     }
 
     #filter_val_end .ez-checkbox{
-        background-image: url("../images/project/filters-progressbar_100.jpg");
+        background-image: url("../../../images/project/filters-progressbar_100.jpg");
     }
 }
 
@@ -400,12 +427,17 @@
 }
 .categories .menu {
     text-align: center;
+    > div {
+        height: 36px;
+        margin-left: 0px; /* Clear bootstrap's margin */
+        }
 }
-.categories .menu .pagination {
+.categories .menu .projectlist_pagination {
+    line-height: 36px;
     display: inline-block;
-
-    margin-bottom: 0;
-    margin-right: 300px;
+    .step-links {
+        display: inline;
+    }
     a {
         display: inline;
     }
@@ -435,129 +467,23 @@
     text-decoration:none;
     color:white;
 }
-
-
-
-/*---- About section ----*/
-
-
-.block-content {
-
-    .colonne:last-child {
-        width:310px !important;
-    }
-    
-    .colonne{ 
+#panel-lock-container {
+    display: inline-block;
+    #lock-picto{
         
-        h1:last-child {
+        display: block;
+        background-repeat:no-repeat;
+        width:24px;
+        height:24px;
 
-        }
+    }
+    #lock-picto.on{
+        background-image:url('../../../images/base/lock-on.png');
         
-        h1{
-            padding-left:30px;
-            position:relative;
-            
-            img{
-                position:absolute;
-                top:-5px;
-                left:-4px;
-            }
-        }
     }
-    
-    .colonne.omega h1{
-        padding-left:0px;
+
+    #lock-picto.off{
+        background-image:url('../../../images/base/lock-off.png');
     }
-    
-    p{
-        margin-top:10px;
-        margin-bottom:10px;
-        font-size:15px;
-        color:#BDBDBD;
-    }
-}
-
-
-
-.catchy{
-	position:relative;
-	margin-top:50px;
-	color:white;
-    
-     h1{
-        font-size:25px;    
-        @include i4p-shadow(2px, #181818); 
-    }
-    
-    .edito{
-        font-size:18px;
-        padding-right:20px;
-        
-        @include i4p-shadow(2px, #181818); 
-        text-align:left;
-    }
-}
-
-
-
-.manifesto-link{
-	color: $colorLightBlue;	
-    @include georgia(18px); 
-	border-bottom:1px solid #1b5e6c;
-	padding-top:5px;
-	margin-right:15px;
-	padding-bottom:3px;
-	float:right;    
-    @include i4p-shadow(2px, #181818); 
-}
-
-.manifesto-link:hover{
-	color:#65e4ff;
-    text-decoration:none;
-}
-
-
-
-.categories .search{
-    right:162px;
-}
-
-
-
-.footer{
-    top:11px;
-    margin-top:10px;
-    height:30px;
-    padding-top:10px;
-    background-color:black;
-    
-    ul {
-    
-    }
-}
-
-
-.social-networks a {
-    padding:3px;
-    top:-5px;
-    position:relative;
-}
-
-#lock-picto{
-    background-repeat:no-repeat;
-    width:24px;
-    height:24px;
-    position:absolute;
-    top:7px;
-    margin-left:8px;
-}
-
-#lock-picto.on{
-    background-image:url('../images/base/lock-on.png');
-    left:-4px;
-}
-
-#lock-picto.off{
-    background-image:url('../images/base/lock-off.png');
 }
 

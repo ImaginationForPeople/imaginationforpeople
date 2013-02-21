@@ -1,6 +1,6 @@
 $(document).ready(function(){ 
 
-    $(".filters_box input.styled").ezMark();
+    $(".filtersbox_content input.styled").ezMark();
     
     function blockPanel(){
     	$("div.categories").block({ message: '<h1>Filtering ...</h1>',
@@ -23,7 +23,7 @@ $(document).ready(function(){
         $("#filter_form").submit();
     });
     
-    $(".filters_box input.styled").change(function(event){
+    $(".filters-picto input.styled").change(function(event){
     	blockPanel();
         $("#filter_form").submit();
     });

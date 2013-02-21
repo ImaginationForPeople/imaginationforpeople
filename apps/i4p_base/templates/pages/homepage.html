@@ -1,12 +1,13 @@
-﻿{% extends "base_obsolete.html" %}
+﻿{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
 {% load cms_tags %}  
 
 {% block style %}
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/homepage.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/zinnia-i4p.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/home-blocks/project_slide.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
     {% endcompress %}
 {% endblock %}
@@ -179,11 +180,6 @@
         <div id="right_col">
             
             {% placeholder "Right Column" %}
-            
-            {% comment %}
-                {% include "search.html" %}            
-                <div class="clear"></div><br />
-            {% endcomment %}
             
             {% comment %}
                 <span>

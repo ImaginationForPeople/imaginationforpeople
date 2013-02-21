@@ -2,38 +2,24 @@
 @import "i4p/constants";
 
 .content{
-	background-color:#282828;
-	background-image:url(../images/base/content-bg.jpg);
-	background-repeat:no-repeat;
-	background-position:center top;
-	color:#bdbdbd;
+    background-color: $colorDarkGrey;
+    background-image:url(../images/base/content-bg.jpg);
+    background-repeat:no-repeat;
+    background-position: center top;
+    color: $colorLightGrey;
     min-height:240px;
+    
+    h1 {
+        @include georgia($sizeTextVeryLarge);
+        color: $colorMedLightGrey;
+        padding: 0px;
+        margin: 0px;
+        a {
+            @include georgia($sizeTextVeryLarge);
+        }
+    }
+
 }
-
-/* --MENU------- */
-
-.categories .menu ul  .selected {
-	background-image:url(../images/base/categories-selected.png);	
-	color:white;
-    border:0px !important;
-}
-
-
-.categories .menu ul li .categ-button .selected:hover{
-    background-image:url(../images/base/categories-selected.png);	
-    color:white;
-    width:109px;
-	height:40px;
-	top:-16px;
-	left:-1px;
-    border:0px;
-	padding-top:16px;
-	z-index:100;	
-	font-weight:bold;
-	text-align:center;
-    cursor:default;
-}
-
 
 /* --HEADER---------------------------------------------------------------------------------------------------- */
 

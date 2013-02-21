@@ -3,10 +3,6 @@
 {% load compress %}
 {% load sekizai_tags %}
 
-{% block base_grid %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
-{% endblock %}
-
 {% block style %}
 {% compress css %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/project_base.css" />
@@ -30,7 +26,7 @@
 {% block content %}	
 {% with gridsystem='bootstrap' %}
 
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
     <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
     {% if project_translation %}
     <script>

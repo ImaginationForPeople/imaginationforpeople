@@ -1,7 +1,7 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-<div class="container_18">
+<div class="container">
   <form method="POST" action="{% url project_sheet-instance-edit-question project_slug question_id %}">
     {% csrf_token %}
     {{ answer_form }}

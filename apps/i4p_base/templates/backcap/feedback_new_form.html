@@ -11,11 +11,8 @@
   <div id="subject">
     {% trans "And I want to tell you that:" %}
     {{ feedback_form.title }}
-    <div class="clear"></div>
-    <br />
-    <a href="#" class="link">{% trans "+ I have more to say !" %}</a>
-    <br /><br />
-    <div class="clear"></div>
+
+    <p><a href="#" class="link">{% trans "+ I have more to say !" %}</a></p>
 
     {{ feedback_form.text }}
     

@@ -3,7 +3,65 @@
 
 
 .content-feedback {
-    min-height:250px;
+        min-height:250px;
+        .button, .redbutton, .greenbutton {
+        background-color: #eeeeee;
+        border: 1px solid #bdbdbd;
+
+        margin: 0;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        padding-left: 5px;
+        padding-right: 5px;
+        @include i4p-font-base($sizeTextNormal);
+        color: #5a5959;
+        text-shadow: 1px 1px 0 #fff;
+        
+        text-decoration: none;
+        text-transform: none;
+        font-style:normal;  
+
+    
+        @include i4p-shadow(4px, #a1a1a1);
+        @include border-radius(4px);
+    }
+    
+    div, p, span, a {
+        @include i4p-font-base($sizeTextNormal);
+        color: $colorMedLightGrey;
+    }
+    a {
+        @include i4p-font-base($sizeTextNormal);
+    }
+    .title {
+        @include i4p-font-subtitle($sizeTextLarge);
+        color: $colorLightBlue;
+    }
+    
+    div#feedback-kind {
+        margin-bottom: 1em;
+    }
+    
+    .button:hover {
+        color: #fff;
+        text-decoration: none;
+        text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+        background-position: 0 -30px;
+        background: image-url('base/minibutton_blue.jpg');
+        border:1px solid #2a65a0;   
+    }
+
+
+    .redbutton:hover {
+        background: image-url('base/minibutton_red.jpg');
+        border:1px solid #881b1b;   
+    }
+    
+    .greenbutton:hover {
+        background: image-url('base/minibutton_green.jpg');
+        border:1px solid #01841f;   
+    }
+    
 }
 
 .feedback-title{
@@ -24,35 +82,40 @@
     @include i4p-shadow(4px, black); 
 	@include border-radius(4px);
     
-    position:fixed;
+
     width:80px;
+    
+    ul {
+        margin: 0px;
+        li {
+                text-align: left;
+        }
+    }
     
     h4{
         margin-top:8px;
     }
     
-    .button{
-    margin-left:0px;
-    margin-bottom:4px;
-    top:-5px;
-   
-    @include i4p-shadow(4px, black);  	
-    }
+
 }
 
 
 #feedback_infos{
-    margin-top:10px;
+    @include i4p-font-base($sizeTextSmall);
+    margin-top: 1em;
+    span, a {
+        @include i4p-font-base($sizeTextSmall);
+    }
 }
 
 #feedback-list{
     list-style-type: none;
     padding-top:5px;
-    
     li {
+        margin: 0px;
         padding-bottom: 5px;
         padding-top: 5px;
-        background-image:url(../images/base/separator.jpg);
+        background-image:image-url('base/separator.jpg');
         background-repeat:repeat-x;
         background-position:top;
         padding-left:20px;
@@ -61,17 +124,12 @@
 
 
 #feedback-pagination{
-    position:absolute;
+    position:fixed;
     right:0px;
     bottom:0px;
 }
 
-.vote-actions .button{
-    @include i4p-shadow(4px, black); 
-    margin-left:2px;
-    margin-right:2px;
-    left:1px;
-}
+
 
 .feedback-votes {
     background-color: #eee;
@@ -92,33 +150,27 @@
         font-size:10px;
         margin-bottom:3px;
     }
-}
-
-
-.feedback-entry .score {
-    font-size: 3em;
-    font-weight: bold;
+    .score {
+        font-size: 3em;
+        line-height: 1em;
+        font-weight: bold;
+    }
+    .vote_button {
+        width: 20px;
+        height: 20px;
+    }
+    form {
+        display: inline-block;
+        margin: 0px;
+    }
 }
 
 .feedback-entry {
 
-    form {
-        display: inline;
-    }
-    
-    .vote_button {
-        border:1px solid #666;
-        width: 20px;
-        height: 20px;
-    }
-    
     a {
-		color: #04ADD1;
-		font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
-		font-weight: bold;
-		font-style: italic;
-		font-size: 12px;
-	}
+        color: $colorLightBlue;
+        @include i4p-font-base($sizeTextNormal);
+    }
     ul{
         padding:0px;
         margin:0px;
@@ -151,8 +203,8 @@
             }            
         }
         
-        .feedback-desc { 
-            color: #666; 
+        .feedback-short-description { 
+            color: $colorLightDarkGrey; 
         }
         
         .who { 
@@ -169,6 +221,7 @@
 .feedback-info{
     margin-top:10px;
     margin-bottom:10px;
+    color: $colorMedLightGrey;
 }
 
 
@@ -198,7 +251,7 @@
 
 #feedback-order .order-on .button, #feedback-filter .filter-on .button
 {
-    background-image:url(../images/base/minibutton_red.jpg);
+    background-image:image-url('base/minibutton_red.jpg');
 	background-repeat:repeat-x;
     color:white;
     text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
@@ -216,17 +269,26 @@ form#feedback-new {
 
     #kind {
         margin-bottom: 10px;
+        display: inline;
     }
     
     ul {
         display: inline;
-        
+        margin: 0px;
         li {
             list-style-type: none;
             display: inline;
             vertical-align: middle;
             padding-left: 0px;
             margin-left: 5px;
+            input {
+                display: inline;
+            }
+            label {
+                display: inline;
+                color: inherit;
+                margin-bottom: inherit;
+            }
         }
     }
     
@@ -245,6 +307,13 @@ form#feedback-new {
     }
 }
 
+ul#feedback-followers {
+    list-style-type: none;
+    margin: 1em 0 1em 0;
+    li {
+        display: inline;
+    }
+}
 
 div#feedback-sidebar {
     color: #666;
@@ -263,8 +332,6 @@ div#feedback-sidebar {
     #id_comment{
         width:100%;
         border:1px solid black;
-        top:-10px;
-        position:relative;
     }
     
     input[type=submit]{
@@ -274,31 +341,49 @@ div#feedback-sidebar {
 
 
 #feedback-comments-list{
-	a {
-		color: #04ADD1;
-		font-family: Georgia, "Ma Georgia", "Century Schoolbook L", "URW Palladio L", Helvetica, serif, Arial;
-		font-weight: bold;
-		font-style: italic;
-		font-size: 12px;
-	}
-	
-	li div{
-    margin-bottom:15px;
-    font-size:12px;
-    color:#7F7E7E;
-	}
+    @include i4p-font-base($sizeTextNormal);
+    a {
+        color: $colorLightBlue;
+        @include i4p-font-base($sizeTextNormal);
+        font-style: italic;
+        img {
+            margin-right: 0.5em;
+            margin-bottom: 0.5em;
+        }
+    }
+    p {
+        @include i4p-font-base($sizeTextNormal);
+        color: $colorDarkGrey;
+    }
+    li{
+        @include border-radius($sizeRadiusSmall);
+        @include box-sizing(border-box);
+        background-color: white;
+        color: $colorDarkGrey;
+        list-style: none;
+        padding: 0.5em 0.5em 0.5em 0.5em;
+        div{
+            margin-bottom:15px;
+        }
+    }
 }
 
 #feedback-new #id_text{
     width:100%;
 }
 
-.feedback-description{
+.feedback-long-description{
     text-align:justify;
 }
 
-.feedback-new-page #id_title{
-    width:100% !important;
+.feedback-new-page {
+    margin-top: 1em;
+    #id_title{
+        width:100% !important;
+    }
+    #feedback-new .link {
+        display: none;
+    }
 }
 
 .feedback-edit-admin { 

@@ -127,7 +127,7 @@ ul.sf-main-menu li {
   height: 10px;
   text-indent: -999em;
   overflow: hidden;
-  background: url("../../images/arrows-i4p.png") no-repeat -10px -100px;
+  background: image-url("arrows-i4p.png") no-repeat -10px -100px;
   /* 8-bit indexed alpha png. IE6 gets solid image only */
 }
 
@@ -181,7 +181,7 @@ li {
 /*** shadows for all but IE6 ***/
 /*
 .sf-shadow ul {
-  background: url("../../images/shadow.png") no-repeat bottom right;
+  background: image-url("shadow.png") no-repeat bottom right;
   padding: 0 8px 9px 0;
   -moz-border-radius-bottomleft: 17px;
   -moz-border-radius-topright: 17px;
@@ -239,7 +239,7 @@ li {
       margin-left: 0px;
       padding:0px 5px 0px 15px;
       /* background image is 5px X 5px dot */
-      background:url('../../images/base/grey_dot.png') no-repeat 4px center;
+      background:image-url('base/grey_dot.png') no-repeat 4px center;
       > .sf-sub-indicator {
         top: 19px;
       }
