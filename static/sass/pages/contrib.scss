@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 
 
 body{
@@ -53,7 +53,7 @@ a{
 }
 
 .separatorv{
-	background-image:url(../../images/pages/contrib/separator-v.jpg);
+	background-image:image-url('i4p_base/pages/contrib/separator-v.jpg');
     background-repeat:no-repeat;
     width:2px;
     height:132px;
@@ -218,7 +218,7 @@ a{
         }
         
         li:hover{
-            background-image:url(../../images/pages/contrib/arrow.jpg);
+            background-image:image-url('i4p_base/pages/contrib/arrow.jpg');
             background-repeat:no-repeat;
             background-position:bottom center;
         }
@@ -251,7 +251,7 @@ a{
             position:absolute;
             right:20px;
             bottom:15px;
-            background-image:url(../../images/pages/contrib/button.jpg);
+            background-image:image-url('i4p_base/pages/contrib/button.jpg');
             background-repeat:repeat-x;
             height:25px;
             line-height:25px;

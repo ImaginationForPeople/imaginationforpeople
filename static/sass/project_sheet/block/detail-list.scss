@@ -1,5 +1,5 @@
 // load reusable components
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 @import "i4p/buttons";
 @import "i4p/fonts";
@@ -63,7 +63,7 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 	padding-left: 2rem;
 
 	.inline-edit {
-	    @include bootstrap-clearfix;
+	    @include ctb-clearfix;
 
 	    margin-left: -1rem;
 

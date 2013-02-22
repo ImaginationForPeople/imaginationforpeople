@@ -4,10 +4,12 @@
 {% load sekizai_tags %}
 
 {% block content %}
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/wiki_edit.css" />
 {% endaddtoblock %}
-
+{% addtoblock "js" strip %}
+    <script src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-modal.js"></script>
+{% endaddtoblock %}
 <div id="workgroup-wiki" class="container">
 {% if not user.is_authenticated %}
 <p class="alert alert-warning">
