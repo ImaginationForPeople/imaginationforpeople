@@ -17,14 +17,16 @@ FIXME: use picture list instead of project_translation
 {% addtoblock "js" strip %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider-1.8.6.js"></script>
 {% endaddtoblock %}
-
-{% addtoblock "footer_js" %}
+{% addtoblock "js" strip %}
+    <script src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-modal.js"></script>
+{% endaddtoblock %}
+{% addtoblock "footer_js" strip %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_fancy_thin.js");  
 </script>
 {% endaddtoblock %}
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy_thin.css" />
 {% endaddtoblock %}
 
