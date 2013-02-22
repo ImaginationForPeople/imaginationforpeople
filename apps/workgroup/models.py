@@ -91,10 +91,9 @@ class WorkGroup(models.Model):
                                      )
     # adding a M2M relationship to forum-questions
     questions = models.ManyToManyField(Thread,
-                                         verbose_name=_("Related questions"),
-                                         related_name='workgroups',
-                                         blank=True
-                                     )
+                                       verbose_name=_("Related questions"),
+                                       related_name='workgroups',
+                                       blank=True)
     
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
