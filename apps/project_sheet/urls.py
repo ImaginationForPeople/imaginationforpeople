@@ -82,7 +82,7 @@ urlpatterns = patterns('',
             r'(%s)?' % r'/page:(?P<page>\d+)' +
         r'/$'),
 
-        support_views.list_project_support, 
+        support_views.ProjectSupportListView.as_view(), 
         name='project_support_main'
     ),
     url(r'^(?P<project_slug>[-\w]+)/support/propose/$', support_views.propose_project_support, name='project_support_propose'),

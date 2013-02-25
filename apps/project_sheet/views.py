@@ -58,6 +58,23 @@ from .utils import get_project_project_translation_recent_changes, fields_diff
 from .utils import get_project_translation_by_any_translation_slug
 
 
+class CurrentProjectTranslationMixin(object):
+    
+    def get_project_translation(self, slug):
+        language_code = translation.get_language()
+        site = Site.objects.get_current()
+        
+        try:
+            project_translation = get_project_translation_by_any_translation_slug(
+                                                project_translation_slug=slug,
+                                                prefered_language_code=language_code,
+                                                site=site)
+            
+                        
+        except I4pProjectTranslation.DoesNotExist:
+            raise Http404
+        
+        return project_translation
 def project_sheet_list(request):
     """
     Display a listing of all projects
