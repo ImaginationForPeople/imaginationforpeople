@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from askbot.models.question import Thread
+from askbot.models.user import Activity
+from askbot.views.readers import QuestionsView
 """
 Django Views for a Project Sheet
 """
@@ -75,6 +78,7 @@ class CurrentProjectTranslationMixin(object):
             raise Http404
         
         return project_translation
+
 def project_sheet_list(request):
     """
     Display a listing of all projects
@@ -766,5 +770,40 @@ class ProjectRecentChangesView(TemplateView):
 
         return context
 
+
+class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView): 
+    template_name="project_sheet/page/project_discuss_list.html"
+    is_specific=False
+    jinja2_rendering=False
+    
+    def get_context_data(self, **kwargs):
+        context = QuestionsView.get_context_data(self, **kwargs)
+        
+        project_translation= self.get_project_translation(kwargs["project_slug"])
+    
+        self.questions_url=reverse('project_discussion_list', args=[project_translation.slug])
+        
+        threads = project_translation.project.discussions.filter(language_code=self.language_code)
+        self.thread_ids=threads.values_list('id', flat=True)
+    
+        activity_ids = []
+        for thread in threads:
+            for post in thread.posts.all():
+                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
+    
+        context.update({
+             'project' : project_translation.project,
+             'project_translation' : project_translation,
+             'active_tab' : 'discuss',
+             'activities' : activities,
+             'feed_url': reverse('project_discussion_list', args=[project_translation.slug])+"#TODO_RSS",
+        })
+    
+        return context
+        
+         
+                     
+                     
 
 
