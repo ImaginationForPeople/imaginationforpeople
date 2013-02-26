@@ -14,54 +14,94 @@ a:hover{
 /*---- BANNER ----*/
 
 #homepage-banner{
-    min-height:130px;
+    min-height:133px;
     background-color: $colorLightLightGrey;
     position:relative;
-    background-image: image-url('home/banner/bubbles_left.png'),image-url('home/banner/bubbles_right.png');
+    background-image: image-url('i4p_base/pages/homepage/banner/bubbles_left.png'),image-url('i4p_base/pages/homepage/banner/bubbles_right.png');
     background-repeat:no-repeat,no-repeat;
     background-position:left bottom, right bottom;
     @include i4p-font-base($sizeTextBig);
     text-align:center;
     vertical-align: top;
     horizontal-align: center;
-    
-    .i4p-block {
-        display: inline-block;
-        padding: 1em;
-        text-align: left;
-        }
-    img {
-        display: inline;
-        vertical-align: bottom;
+    .container {
+        
     }
-    h1 {
-        @include i4p-font-base($sizeTextVeryLarge);
-        text-transform: uppercase;
-        color: $colorMedBlue;
-    }
-    h2 {
-        @include i4p-font-base($sizeTextNormal);
-        text-transform: uppercase;
-    
-    }
-    hr {
-        @include i4p-shaded-separator;
-    }
-    ul {
-        @include i4p-font-base($sizeTextNormal);
-        font-weight: bold;
-        margin: 0.5em 0 0.5em 0;
-        li {
-            line-height: inherit;
-            list-style-type: none;
-            &:before {
-                content:">";
-                margin-right: 0.5em;
+    .block-container {
+        position: relative;
+
+        .i4p-block {
+            display: inline-block;
+            padding: 0 0.5em 0 0.5em;
+            text-align: left;
+            vertical-align: top;
+            min-height: 100%;
             }
-            a {
-                color: inherit;
-                &:hover {
-                    color: $colorMedBlue;
+        img {
+                margin-top: 3px;
+                display: inline;
+                vertical-align: bottom;
+            }
+        #home-video-lightbox-modal-link {
+            vertical-align: middle;
+            height: 133px;
+            margin: 0;
+            display: inline-block;
+            width: 172px;
+            /* 172x87px background*/
+            background-image: image-url('i4p_base/pages/homepage/banner/video_background.jpg');
+            background-repeat:no-repeat,no-repeat;
+            background-position:center center;
+            img {
+            /* 46x45px image*/
+                position: absolute;
+                top: 50%;
+                margin: -25px 0 0 -25px;
+                opacity: 0.5;
+            }
+            &:hover {
+                img {
+                    opacity: 1;
+                }
+            }
+        }
+        h1 {
+            @include i4p-font-base($sizeTextVeryLarge);
+            font-weight: bold;
+            text-transform: uppercase;
+            color: $colorMedBlue;
+            margin: 0.5em 0 0.1em 0;
+        }
+        h2 {
+            @include i4p-font-base($sizeTextNormal);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0.1em 0 0 0;
+            color: $colorDarkGrey;
+        
+        }
+        hr {
+            @include i4p-shaded-separator;
+            margin: 8px 0;
+        }
+        ul {
+            @include i4p-font-base($sizeTextNormal);
+            font-weight: bold;
+            color: $colorDarkGrey;
+            margin: 0.5em 0 0.5em 0;
+            li {
+                line-height: inherit;
+                list-style-type: none;
+                margin: 0.3em 0;
+                &:before {
+                    content:">";
+                    margin-right: 0.1em;
+                }
+                a {
+                    color: inherit;
+                    &:hover {
+                        color: $colorMedBlue;
+                    }
                 }
             }
         }

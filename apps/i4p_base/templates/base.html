@@ -24,7 +24,17 @@
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
     {% endblock %}
 
+    {% comment %}
+    This is to include our original version of OpenSans font family.  Unfortunately,
+    it leads to inconsistent rendering between browsers (especially firefox and chrome
+    on linux)
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
+    {% endcomment %}
+    {% comment %}
+    This uses google font services.  To switch from one to the other, uncomment the above, and 
+    change "Open Sans" to "OpenSans" in static/scss/_constants.scss.
+    {% endcomment %}
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/footer.css" />
@@ -34,7 +44,6 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/block/modal.css" />
     {% endcompress %}
 
     {% block style %}
