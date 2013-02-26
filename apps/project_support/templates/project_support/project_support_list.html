@@ -13,7 +13,7 @@
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_questions/page/questions_search.css" />
 {% endaddtoblock %}
 
 {% addtoblock "js" %}
@@ -80,7 +80,7 @@ $(document).ready(function(){
             <div>
             {% include_jinja "main_page/tab_bar.html" request %}
             </div>
-            {% include "project_support/block/question_list.html" %}
+            {% include "project_questions/block/question_list.html" %}
         </div>
 
         <div class="span4 project-sidebar"> 
@@ -89,7 +89,7 @@ $(document).ready(function(){
                 {% include "member/block/memberlist_square.html" with members=contributors %}
             </div>
 
-            {% include "project_support/block/support_activities.html" %}
+            {% include "project_questions/block/questions_activities.html" %}
         </div>
     </div>
 </div>
