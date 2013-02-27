@@ -19,11 +19,6 @@
 
     <title>{% block title_prefix %}{% endblock %}{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
-    {% compress css %}
-    {% block base_grid %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
-    {% endblock %}
-
     {% comment %}
     This is to include our original version of OpenSans font family.  Unfortunately,
     it leads to inconsistent rendering between browsers (especially firefox and chrome
@@ -35,6 +30,12 @@
     change "Open Sans" to "OpenSans" in static/scss/_constants.scss.
     {% endcomment %}
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    {% compress css %}
+    {% block base_grid %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+    {% endblock %}
+
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/footer.css" />
@@ -204,7 +205,10 @@
 
 
     <!-- INLINE JS -->
-    {% render_block "footer_js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    {% render_block "footer_js" %} 
+    {% comment %}Do NOT use the sekizai postprocessor here, will crash when 
+    compress is enabled.  (To test, put COMPRESS_ENABLED = True in your
+     site_settings.py){% endcomment %}
     {% block inline_js %}
     {% endblock %}
     <!-- /INLINE JS -->
