@@ -9,35 +9,10 @@
     {% endcompress %}
 {% endblock %}
 
-{% block extra_head %}
-  {{ block.super }}
-  
-  {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
-
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
-
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.cookie.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
-  
-  <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
-  <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/obsolete/filtersPanel.js"></script>
-  {% endcompress %}
-  
-  <script type="text/javascript">
-    $(document).ready(function() {
-    	$.cookie('i4p_bottom_panel', null, { expires: -1, path: '/' } );
-    });
-  </script>
-
-{% endblock %}
-
-{% block nav %}<div style="height:37px;"></div>{% endblock %}
 
 {% block content %}	
-
-    <div class="container_18">
+<div class="content">
+    <div class="container">
 
         <div id="error_page" class="page404">
             <div id="error_page_content">
@@ -51,11 +26,8 @@
                 <a class="link" href="{% url i4p-index %}">{% trans "Back to home &gt;" %}</a>
             </div>
         </div>
-
-        <div class="clear"></div>
-
-    </div>	
-
+    </div>
+</div>
 {% endblock %}
 
-{% block footer %} {% endblock %}
+
