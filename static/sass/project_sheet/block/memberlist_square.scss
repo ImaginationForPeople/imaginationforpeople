@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 @import "i4p/fonts";
 
@@ -124,7 +124,7 @@ $memberListFancySquare_sizeHeight: 52px;
 
 
 .memberlist.square.fancy {
-    @include bootstrap-clearfix;
+    @include ctb-clearfix;
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
     @include i4p-transition(all .5s ease);

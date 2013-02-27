@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 18:06-0500\n"
-"PO-Revision-Date: 2013-02-09 21:56+0000\n"
-"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"POT-Creation-Date: 2013-02-27 14:12-0500\n"
+"PO-Revision-Date: 2013-02-27 01:42+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: Italian <ip-it@lists.imaginationforpeople.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -996,31 +996,31 @@ msgstr "paese"
 msgid "address"
 msgstr "indirizzo"
 
-#: templates/404.html:45 templates/500.html:44
+#: templates/404.html:44 templates/500.html:43
 msgid "Ooops!"
 msgstr "Ooops!"
 
-#: templates/404.html:48
+#: templates/404.html:47
 msgid "It seems the page you are looking for doesn't exist..."
 msgstr "Sembra che la pagina che stavi cercando non esiste..."
 
-#: templates/404.html:49
+#: templates/404.html:48
 msgid "Have you tried using the search engine ?"
 msgstr "Hai provato ad usare il motore di ricerca?"
 
-#: templates/404.html:52 templates/500.html:51
+#: templates/404.html:51 templates/500.html:50
 msgid "Back to home &gt;"
 msgstr "Torna alla home &gt;"
 
-#: templates/500.html:47
+#: templates/500.html:46
 msgid "The page you requested encountered an error"
 msgstr "La pagina che hai richiesto ha riscontrato un errore"
 
-#: templates/500.html:48
+#: templates/500.html:47
 msgid "Thank you try again later."
 msgstr "Riprovare in seguito grazie."
 
-#: templates/base.html:14 templates/base_obsolete.html:14
+#: templates/base.html:14
 msgid ""
 "Imagination for People (IP) is a multilingual, Wikipedia-like open platform "
 "dedicated to disruptive social innovation. At a global scale, IP aims to "
@@ -1032,16 +1032,15 @@ msgstr ""
 "amplificare ed adattare esperienze inedite che riguardano l’innovazione "
 "sociale."
 
-#: templates/base.html:20 templates/base_obsolete.html:15
-#: templates/pages/homepage.html:17
+#: templates/base.html:20 templates/pages/homepage.html:19
 msgid "identify and support imaginative social projects"
 msgstr "identifica e supporta fantasiosi progetti sociali"
 
-#: templates/base.html:92 templates/base_obsolete.html:68
+#: templates/base.html:111
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Sai che il tuo browser internet non è aggiornato?"
 
-#: templates/base.html:93 templates/base_obsolete.html:69
+#: templates/base.html:112
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
@@ -1050,11 +1049,11 @@ msgstr ""
 "con il nostro sito. Una lista dei browser internet più diffusi si trova di "
 "seguito."
 
-#: templates/base.html:94 templates/base_obsolete.html:70
+#: templates/base.html:113
 msgid "Just click on the icons to get to the download page"
 msgstr "Clicca sulle icone per andare alla pagina di download"
 
-#: templates/base.html:95 templates/base_obsolete.html:71
+#: templates/base.html:114
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
@@ -1062,134 +1061,43 @@ msgstr ""
 "Chiudendo questa finestra sei a conoscenza che la tua esperienza su questo "
 "sito potrebbe essere degradata."
 
-#: templates/base.html:96 templates/base_obsolete.html:72
+#: templates/base.html:115
 msgid "Close This Window"
 msgstr "Chiudi questa finestra"
 
-#: templates/base.html:103 templates/base_obsolete.html:82
+#: templates/base.html:122
 msgid "Enter your email"
 msgstr ""
 
-#: templates/base.html:104 templates/base_obsolete.html:83
+#: templates/base.html:123
 msgid "Password"
 msgstr ""
 
-#: templates/base.html:106 templates/base_obsolete.html:85
+#: templates/base.html:125
 msgid "Enter your username"
 msgstr ""
 
-#: templates/base.html:108 templates/base_obsolete.html:87
+#: templates/base.html:127
 msgid "Enter your email adress"
 msgstr ""
 
-#: templates/base_obsolete.html:80
-msgid "Project search"
+#: templates/footer.html:9
+msgid "Please fill the footer logo section in the home page's admin page."
 msgstr ""
 
-#: templates/filter-panel.html:12
-msgid "Pin/Unpin the panel"
-msgstr "Blocca/Sblocca pannello"
-
-#: templates/filter-panel.html:17
-msgid "Filter results"
+#: templates/footer.html:16
+msgid "Please fill the footer-baseline section in the home page's admin page."
 msgstr ""
 
-#: templates/filter-panel.html:18
-msgid "Help"
-msgstr "Aiuto"
-
-#: templates/filter-panel.html:29
-msgid "Project view"
-msgstr "Vista progetto"
-
-#: templates/filter-panel.html:54
-msgid "Clear filters"
-msgstr "Pulisci filtri"
-
-#: templates/filter-panel.html:60
-#: templates/cmsplugin_zinnia/_entry_detail.html:99
-msgid "Tags"
-msgstr "Tags"
-
-#: templates/filter-panel.html:61 templates/filter-panel.html.py:82
-msgid "invert"
-msgstr "inverti"
-
-#: templates/filter-panel.html:64
-#, python-format
-msgid "%(count)s project sheets"
-msgstr "%(count)s schede progetto"
-
-#: templates/filter-panel.html:76
-msgid "Location"
-msgstr "Posizione"
-
-#: templates/filter-panel.html:81
-msgid "Categories"
-msgstr "Categorie"
-
-#: templates/filter-panel.html:91
-msgid "Sheet Status"
-msgstr "Stato schede"
-
-#: templates/filter-panel.html:95
-msgid "Best-of"
-msgstr "Meglio di"
-
-#: templates/filter-panel.html:96
-msgid "Popular project"
-msgstr "Progetto popolare"
-
-#: templates/filter-panel.html:99
-msgid "best-of"
-msgstr "meglio di"
-
-#: templates/filter-panel.html:106
-msgid "progression"
-msgstr "progresso"
-
-#: templates/filter-panel.html:113
-msgid "Associated team"
-msgstr "Squadra associata"
-
-#: templates/filter-panel.html:114
-msgid "Orphan project"
-msgstr "Progetto orfano"
-
-#: templates/filter-panel.html:117
-msgid "team"
-msgstr "squadra"
-
-#: templates/filter-panel.html:127
-msgid "Project Status"
-msgstr "Stato progetto"
-
-#: templates/footer.html:22 templates/footer_obsolete.html:20
-msgid ""
-"A community of imaginative citizens to detect and develop socially "
-"innovative projects."
-msgstr ""
-"Una comunità di cittadini fantasiosi per scovare e sviluppare progetti "
-"innovativi."
-
-#: templates/footer.html:30
-msgid "Read the manifesto"
+#: templates/footer.html:28
+msgid "Please fill the footer-follow section in the home page's admin page."
 msgstr ""
 
-#: templates/footer.html:30
-msgid "About IP"
+#: templates/footer.html:37
+msgid "Please fill the footer-resources section in the home page's admin page."
 msgstr ""
 
-#: templates/footer.html:31
-msgid "Follow us"
-msgstr ""
-
-#: templates/footer.html:33 templates/footer.html.py:34
-#: templates/footer.html:35 templates/footer.html.py:36
-msgid "Follow us on"
-msgstr ""
-
-#: templates/footer.html:56
+#: templates/footer.html:46
 #, python-format
 msgid ""
 "\n"
@@ -1197,16 +1105,6 @@ msgid ""
 "licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
 "\"\n"
 "\t\t\t\t"
-msgstr ""
-
-#: templates/footer_obsolete.html:63
-#, python-format
-msgid ""
-"\n"
-"                    \"<strong>%(url)s</strong> is powered by a set of free "
-"components licensed under <strong>AGPL</strong> and <strong>Creative "
-"Commons</strong>.\"\n"
-"\t            "
 msgstr ""
 
 #: templates/header.html:15
@@ -1246,7 +1144,7 @@ msgstr ""
 msgid "View my profile"
 msgstr "Vedi il mio profilo"
 
-#: templates/header.html:97 templates/backcap/feedback_detail.html:229
+#: templates/header.html:97 templates/backcap/feedback_detail.html:196
 msgid "Log In"
 msgstr "Connettiti"
 
@@ -1264,7 +1162,7 @@ msgstr ""
 msgid "Edit my profile"
 msgstr "Modifica il mio profilo"
 
-#: templates/header.html:112 templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:111 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr "Disconnettiti"
 
@@ -1272,130 +1170,116 @@ msgstr "Disconnettiti"
 msgid "Home"
 msgstr ""
 
-#: templates/nav_obsolete.html:31 templates/nav_obsolete.html.py:36
-msgid "Project"
-msgstr "Progetto"
-
-#: templates/nav_obsolete.html:33
-msgid "History"
-msgstr "Storia"
-
-#: templates/nav_obsolete.html:51
-msgid "other languages"
-msgstr "altre lingue"
-
-#: templates/nav_obsolete.html:64
-msgid "create a new translation"
-msgstr "crea una nuova traduzione"
-
 #: templates/backcap/feedback_detail.html:8
 msgid "Feedback"
 msgstr "Feedback"
 
-#: templates/backcap/feedback_detail.html:74
+#: templates/backcap/feedback_detail.html:63
+#: templates/backcap/feedback_list.html:45
+msgid "Feedbacks"
+msgstr "Feedback"
+
+#: templates/backcap/feedback_detail.html:65
 msgid "This issue is closed."
 msgstr "Questo problema è chiuso."
 
-#: templates/backcap/feedback_detail.html:123
-#: templates/backcap/feedback_list.html:137
-msgid "Assigned to"
-msgstr "Assegnato a"
-
-#: templates/backcap/feedback_detail.html:128
-#, python-format
-msgid ""
-"\n"
-"                    Posted %(since)s ago by\n"
-"                    "
-msgstr ""
-"\n"
-"Postato %(since)s fa da\n"
-" "
-
-#: templates/backcap/feedback_detail.html:146
+#: templates/backcap/feedback_detail.html:105
 msgid "is working on this. Poke him if you think it's taking too long !"
 msgstr ""
 "sta lavorandoci sopra. Attizzalo/a se pensi che ci stia mettendo troppo!"
 
-#: templates/backcap/feedback_detail.html:154
+#: templates/backcap/feedback_detail.html:113
 msgid "This issue is a duplicate of"
 msgstr "Questo problema è un duplicato di"
 
-#: templates/backcap/feedback_detail.html:155
+#: templates/backcap/feedback_detail.html:114
 msgid "Please don't comment on this issue anymore."
 msgstr "Non commentare più questo problema."
 
-#: templates/backcap/feedback_detail.html:161
+#: templates/backcap/feedback_detail.html:121
 msgid "Description:"
 msgstr "Descrizione:"
 
-#: templates/backcap/feedback_detail.html:167
+#: templates/backcap/feedback_detail.html:126
+#: templates/backcap/feedback_list.html:121
+msgid "Assigned to"
+msgstr "Assegnato a"
+
+#: templates/backcap/feedback_detail.html:131
+#, python-format
+msgid ""
+"\n"
+"                            Posted %(since)s ago by\n"
+"                            "
+msgstr ""
+
+#: templates/backcap/feedback_detail.html:143
 msgid "Followers:"
 msgstr "Seguaci:"
 
-#: templates/backcap/feedback_detail.html:178
+#: templates/backcap/feedback_detail.html:154
 msgid "Unfollow"
 msgstr "Non seguire"
 
-#: templates/backcap/feedback_detail.html:183
+#: templates/backcap/feedback_detail.html:159
 msgid "Follow"
 msgstr "Segui"
 
-#: templates/backcap/feedback_detail.html:197
+#: templates/backcap/feedback_detail.html:167
 msgid "Comments:"
 msgstr "Commenti;"
 
-#: templates/backcap/feedback_detail.html:202
+#: templates/backcap/feedback_detail.html:172
 msgid "said:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:204
+#: templates/backcap/feedback_detail.html:174
 msgid "Anonymous said:"
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:213
+#: templates/backcap/feedback_detail.html:182
 msgid "Post a new comment"
 msgstr "Posta un nuovo commento"
 
-#: templates/backcap/feedback_detail.html:223
+#: templates/backcap/feedback_detail.html:191
 msgid "Post"
 msgstr "Post"
 
-#: templates/backcap/feedback_detail.html:229
+#: templates/backcap/feedback_detail.html:196
 msgid "You need to "
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:229
+#: templates/backcap/feedback_detail.html:196
 msgid " to post a comment."
 msgstr ""
 
-#: templates/backcap/feedback_detail.html:233
+#: templates/backcap/feedback_detail.html:199
 msgid "Comments closed."
 msgstr "Commenti chiusi."
 
-#: templates/backcap/feedback_detail.html:238
+#: templates/backcap/feedback_detail.html:202
 msgid "This issue is"
 msgstr "Questo problema è"
 
-#: templates/backcap/feedback_detail.html:239
+#: templates/backcap/feedback_detail.html:203
 msgid "Close issue"
 msgstr "Chiudi problema"
 
-#: templates/backcap/feedback_detail.html:241
+#: templates/backcap/feedback_detail.html:205
 msgid "Reported from:"
 msgstr "Riportato da:"
 
-#: templates/backcap/feedback_detail.html:246
+#: templates/backcap/feedback_detail.html:208
 msgid "Edit"
 msgstr "Modifica"
 
-#: templates/backcap/feedback_detail.html:247
+#: templates/backcap/feedback_detail.html:209
 msgid "Ping observers"
 msgstr "Osservatori ping"
 
-#: templates/backcap/feedback_detail.html:252
-#: templates/backcap/feedback_new.html:70
-#: templates/backcap/feedback_tab.html:12
+#: templates/backcap/feedback_detail.html:213
+#: templates/backcap/feedback_new.html:52
+#: templates/backcap/feedback_tab.html:10
 msgid "See all feedbacks"
 msgstr "Vedi tutti i feedback"
 
@@ -1403,15 +1287,11 @@ msgstr "Vedi tutti i feedback"
 msgid "Help Center"
 msgstr "Centro Aiuto"
 
-#: templates/backcap/feedback_list.html:54
-msgid "Feedbacks"
-msgstr "Feedback"
-
-#: templates/backcap/feedback_list.html:61
+#: templates/backcap/feedback_list.html:48
 msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr "Questi sono tutti i feedback inviati da voi, gli utenti. Grazie."
 
-#: templates/backcap/feedback_list.html:73
+#: templates/backcap/feedback_list.html:60
 msgid ""
 "If you think one of these entries is important for you, then <strong>click "
 "on the '+' button</strong>. If you disagree or think this is not important "
@@ -1421,7 +1301,7 @@ msgstr ""
 "'+'</strong>. Se non sei d'accordo o credi che non sia per niente "
 "importante, <strong>clicca sul pulsante '-'</strong>."
 
-#: templates/backcap/feedback_list.html:77
+#: templates/backcap/feedback_list.html:64
 msgid ""
 "The <strong>highest the score</strong> an issue will get, the "
 "<strong>earlier we'll work on</strong> it."
@@ -1429,75 +1309,72 @@ msgstr ""
 "Il <strong>punteggio più alto</strong> che riceverà un problema, determinerà "
 "quanto <strong>velocemente ci lavoreremo sopra</strong>."
 
-#: templates/backcap/feedback_list.html:83
+#: templates/backcap/feedback_list.html:68
 msgid "New feedback"
 msgstr "Nuovo feedback"
 
-#: templates/backcap/feedback_list.html:107
-#: templates/backcap/feedback_list.html:118
+#: templates/backcap/feedback_list.html:92
+#: templates/backcap/feedback_list.html:103
 msgid "Clear my vote"
 msgstr "Azzera il mio voto"
 
-#: templates/backcap/feedback_list.html:107
+#: templates/backcap/feedback_list.html:92
 msgid "Vote for"
 msgstr "Vota per"
 
-#: templates/backcap/feedback_list.html:118
+#: templates/backcap/feedback_list.html:103
 msgid "Vote against"
 msgstr "Vota contro"
 
-#: templates/backcap/feedback_list.html:142
+#: templates/backcap/feedback_list.html:126
 #, python-format
 msgid ""
 "\n"
-"                                                Posted %(since)s ago by\n"
-"                                                "
+"                                            Posted %(since)s ago by\n"
+"                                            "
 msgstr ""
-"\n"
-"Postato %(since)s fa da\n"
-" "
 
-#: templates/backcap/feedback_list.html:152
+#: templates/backcap/feedback_list.html:136
 msgid "There's no feedback yet."
 msgstr "Non ci sono ancora feedback."
 
-#: templates/backcap/feedback_list.html:157
+#: templates/backcap/feedback_list.html:140
 msgid "previous"
 msgstr "precedente"
 
-#: templates/backcap/feedback_list.html:174
+#: templates/backcap/feedback_list.html:155
 msgid "next"
 msgstr "prossimo"
 
-#: templates/backcap/feedback_list.html:182
+#: templates/backcap/feedback_list.html:161
 msgid "Display"
 msgstr "Mostra"
 
-#: templates/backcap/feedback_list.html:185
+#: templates/backcap/feedback_list.html:163
 msgid "All"
 msgstr "Tutto"
 
-#: templates/backcap/feedback_list.html:186
+#: templates/backcap/feedback_list.html:164
 msgid "Questions"
 msgstr "Domande"
 
-#: templates/backcap/feedback_list.html:187
+#: templates/backcap/feedback_list.html:165
 msgid "Problems"
 msgstr "Problemi"
 
-#: templates/backcap/feedback_list.html:188
+#: templates/backcap/feedback_list.html:166
 msgid "Ideas"
 msgstr "Idee"
 
-#: templates/backcap/feedback_list.html:191
+#: templates/backcap/feedback_list.html:169
 msgid "Order by"
 msgstr "Ordinato da"
 
-#: templates/backcap/feedback_list.html:194
+#: templates/backcap/feedback_list.html:172
 msgid "Score"
 msgstr "Punteggio"
 
-#: templates/backcap/feedback_list.html:195
+#: templates/backcap/feedback_list.html:173
 msgid "Newest"
 msgstr "Più nuovo"
 
@@ -1505,11 +1382,11 @@ msgstr "Più nuovo"
 msgid "New Feedback"
 msgstr "Nuovo feedback"
 
-#: templates/backcap/feedback_new.html:51
+#: templates/backcap/feedback_new.html:43
 msgid "Leave feedback"
 msgstr "Lascia feedback"
 
-#: templates/backcap/feedback_new.html:66
+#: templates/backcap/feedback_new.html:51
 msgid ""
 "We are very eager you leave feedback to help us improve the website, thank "
 "you !"
@@ -1525,11 +1402,11 @@ msgstr "Ho un:"
 msgid "And I want to tell you that:"
 msgstr "E voglio dire che:"
 
-#: templates/backcap/feedback_new_form.html:16
+#: templates/backcap/feedback_new_form.html:15
 msgid "+ I have more to say !"
 msgstr "+ Ho altro da dire!"
 
-#: templates/backcap/feedback_new_form.html:27
+#: templates/backcap/feedback_new_form.html:24
 msgid "Send"
 msgstr "Invia"
 
@@ -1569,114 +1446,118 @@ msgstr ""
 msgid "Twitter"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:36
+#: templates/cmsplugin_zinnia/_entry_detail.html:34
 msgid "Written by"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:40
+#: templates/cmsplugin_zinnia/_entry_detail.html:38
 #, python-format
 msgid "Show all %(author)s's entries"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:43
+#: templates/cmsplugin_zinnia/_entry_detail.html:41
 msgid "on"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:45
+#: templates/cmsplugin_zinnia/_entry_detail.html:43
 msgid "Written on"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:51
+#: templates/cmsplugin_zinnia/_entry_detail.html:49
 msgid "in"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:54
+#: templates/cmsplugin_zinnia/_entry_detail.html:52
 #, python-format
 msgid "Show all entries in %(category)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:60
+#: templates/cmsplugin_zinnia/_entry_detail.html:58
 msgid "Last update on"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:85
+#: templates/cmsplugin_zinnia/_entry_detail.html:83
 #, python-format
 msgid "Continue reading %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:87
+#: templates/cmsplugin_zinnia/_entry_detail.html:85
 msgid "Continue reading"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:102
+#: templates/cmsplugin_zinnia/_entry_detail.html:97
+msgid "Tags"
+msgstr "Tags"
+
+#: templates/cmsplugin_zinnia/_entry_detail.html:100
 #, python-format
 msgid "Show all entries tagged by %(tag)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:105
+#: templates/cmsplugin_zinnia/_entry_detail.html:103
 msgid "No tags"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:111
+#: templates/cmsplugin_zinnia/_entry_detail.html:109
 msgid "Short url"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:113
+#: templates/cmsplugin_zinnia/_entry_detail.html:111
 #, python-format
 msgid "Short URL to %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:121
+#: templates/cmsplugin_zinnia/_entry_detail.html:119
 msgid "Discussions"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:125
+#: templates/cmsplugin_zinnia/_entry_detail.html:123
 #, python-format
 msgid "Comments on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:126
+#: templates/cmsplugin_zinnia/_entry_detail.html:124
 #, python-format
 msgid "%(comment_count)s comment"
 msgid_plural "%(comment_count)s comments"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:130
+#: templates/cmsplugin_zinnia/_entry_detail.html:128
 msgid "No comments yet."
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:132
+#: templates/cmsplugin_zinnia/_entry_detail.html:130
 #, python-format
 msgid "Leave a comment on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:133
+#: templates/cmsplugin_zinnia/_entry_detail.html:131
 msgid "Be first to comment!"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:136
+#: templates/cmsplugin_zinnia/_entry_detail.html:134
 msgid "Comments are closed."
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:142
+#: templates/cmsplugin_zinnia/_entry_detail.html:140
 #, python-format
 msgid "Pingbacks on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:143
+#: templates/cmsplugin_zinnia/_entry_detail.html:141
 #, python-format
 msgid "%(pingback_count)s pingback"
 msgid_plural "%(pingback_count)s pingbacks"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:149
+#: templates/cmsplugin_zinnia/_entry_detail.html:147
 #, python-format
 msgid "Trackbacks on %(object)s"
 msgstr ""
 
-#: templates/cmsplugin_zinnia/_entry_detail.html:150
+#: templates/cmsplugin_zinnia/_entry_detail.html:148
 #, python-format
 msgid "%(trackback_count)s trackback"
 msgid_plural "%(trackback_count)s trackbacks"
@@ -1687,92 +1568,72 @@ msgstr[1] ""
 msgid "No entries yet."
 msgstr ""
 
-#: templates/pages/contrib.html:45
+#: templates/pages/contrib.html:46
 msgid "A community dedicated to"
 msgstr "Una comunità dedicata a"
 
-#: templates/pages/contrib.html:46
+#: templates/pages/contrib.html:47
 msgid "citizen imagination"
 msgstr "immaginazione dei cittadini"
 
-#: templates/pages/contrib.html:57
+#: templates/pages/contrib.html:58
 msgid "Translator"
 msgstr "Traduttore"
 
-#: templates/pages/contrib.html:59
+#: templates/pages/contrib.html:60
 msgid "Developer"
 msgstr "Sviluppatore"
 
-#: templates/pages/contrib.html:61
+#: templates/pages/contrib.html:62
 msgid "Designer"
 msgstr "Designer"
 
-#: templates/pages/contrib.html:63
+#: templates/pages/contrib.html:64
 msgid "Writer"
 msgstr "Scrittore"
 
-#: templates/pages/contrib.html:65
+#: templates/pages/contrib.html:66
 msgid "Animator"
 msgstr ""
 
-#: templates/pages/contrib.html:67
+#: templates/pages/contrib.html:68
 msgid "Imagine"
 msgstr ""
 
-#: templates/pages/contrib.html:107
+#: templates/pages/contrib.html:108
 msgid "Une communauté dédiée à l'imagination citoyenne"
 msgstr "Una comunità dedicata a l'immaginazione dei cittadini"
 
-#: templates/pages/contrib.html:115
+#: templates/pages/contrib.html:116
 msgid "Latest activities"
 msgstr "Ultime attività"
 
-#: templates/pages/contrib.html:126
+#: templates/pages/contrib.html:127
 msgid "Latest commits"
 msgstr "Ultime commissioni"
 
-#: templates/pages/contrib.html:139 templates/pages/homepage.html:135
+#: templates/pages/contrib.html:140
 msgid "Join the community"
 msgstr "Entra nella comunità"
 
-#: templates/pages/contrib.html:149
+#: templates/pages/contrib.html:150
 msgid "News"
 msgstr ""
 
-#: templates/pages/flatpage.html:34
+#: templates/pages/flatpage.html:36
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr ""
 "Non c'è ancora contenuto. Passa alla modalità modifica e aggiungi un widget."
 
-#: templates/pages/homepage.html:37
+#: templates/pages/homepage.html:48
 msgid "My project title"
 msgstr ""
 
-#: templates/pages/homepage.html:38
+#: templates/pages/homepage.html:49
 msgid "One line description"
 msgstr ""
 
-#: templates/pages/homepage.html:127
-msgid " What is it ?"
-msgstr ""
-
-#: templates/pages/homepage.html:130
-msgid "Explore and contribute"
-msgstr ""
-
-#: templates/pages/homepage.html:131
-msgid "to social and cultural projects"
-msgstr ""
-
-#: templates/pages/homepage.html:136
-msgid "of citizens from more 30 countries"
-msgstr ""
-
-#: templates/pages/homepage.html:141
-msgid " Detect and develop socially innovative projects."
-msgstr ""
-
-#: templates/pages/onemenu.html:35 templates/pages/onemenu.html.py:45
+#: templates/pages/onemenu.html:36 templates/pages/onemenu.html.py:43
 msgid "MENU"
 msgstr ""
 
@@ -1789,6 +1650,10 @@ msgstr ""
 
 #: templates/pages/popups_notifications.html:21
 msgid "Popup shown on every project page if present."
+msgstr ""
+
+#: templates/pages/block/homepage-video-lightbox.html:10
+msgid "Close"
 msgstr ""
 
 #: templates/pages/home-blocks/blog-box.html:4
@@ -1890,6 +1755,102 @@ msgstr ""
 #: templates/pages/home-blocks/slider.html:49
 msgid "Add a project"
 msgstr "Aggiungi un progetto"
+
+#~ msgid "of citizens from more 30 countries"
+#~ msgstr "Connect with a community of citizens from over 30 countries."
+
+#~ msgid " Detect and develop socially innovative projects."
+#~ msgstr ""
+#~ "A community of imaginative citizens to detect and develop socially "
+#~ "innovative projects."
+
+#~ msgid "Project search"
+#~ msgstr "Project search"
+
+#~ msgid "Pin/Unpin the panel"
+#~ msgstr "Pin/Unpin the panel"
+
+#~ msgid "Filter results"
+#~ msgstr "Filters"
+
+#~ msgid "Help"
+#~ msgstr "Help"
+
+#~ msgid "Project view"
+#~ msgstr "Project view"
+
+#~ msgid "Clear filters"
+#~ msgstr "Clear filters"
+
+#~ msgid "invert"
+#~ msgstr "invert"
+
+#~ msgid "%(count)s project sheets"
+#~ msgstr "%(count)s project sheets"
+
+#~ msgid "Location"
+#~ msgstr "Location"
+
+#~ msgid "Categories"
+#~ msgstr "Categories"
+
+#~ msgid "Sheet Status"
+#~ msgstr "Sheet Status"
+
+#~ msgid "Best-of"
+#~ msgstr "Best-of"
+
+#~ msgid "Popular project"
+#~ msgstr "Popular project"
+
+#~ msgid "best-of"
+#~ msgstr "best-of"
+
+#~ msgid "progression"
+#~ msgstr "progression"
+
+#~ msgid "Associated team"
+#~ msgstr "Associated team"
+
+#~ msgid "Orphan project"
+#~ msgstr "Orphan project"
+
+#~ msgid "team"
+#~ msgstr "team"
+
+#~ msgid "Project Status"
+#~ msgstr "Project Status"
+
+#~ msgid ""
+#~ "A community of imaginative citizens to detect and develop socially "
+#~ "innovative projects."
+#~ msgstr ""
+#~ "A community of imaginative citizens to detect and develop socially "
+#~ "innovative projects."
+
+#~ msgid "Read the manifesto"
+#~ msgstr "Read the manifesto"
+
+#~ msgid "About IP"
+#~ msgstr "About IP"
+
+#~ msgid "Follow us"
+#~ msgstr "Follow us"
+
+#~ msgid "Follow us on"
+#~ msgstr "Follow us on"
+
+#~ msgid "Project"
+#~ msgstr "Project"
+
+#~ msgid "History"
+#~ msgstr "History"
+
+#~ msgid "other languages"
+#~ msgstr "other languages"
+
+#~ msgid "create a new translation"
+#~ msgstr "create a new translation"
 
 #~ msgid "Enter your login"
 #~ msgstr "Enter your login"

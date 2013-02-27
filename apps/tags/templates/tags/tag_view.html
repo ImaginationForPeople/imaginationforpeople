@@ -1,4 +1,4 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 
 {% load compress %}
 {% load wiki_tags %}
@@ -7,13 +7,8 @@
 
 {% block style %}
 {% compress css %}
-<!-- FIXME: remove this line once fonts is integrated in the base.html -->
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" /> 
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/tag_view.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/tags/tag_view.css" />
 {% endcompress %}
-{% endblock %}
-
-{% block nav %}
 {% endblock %}
 
 {% block title %}{% blocktrans with tag=tag|capfirst %}{{ tag }} - thematic community | Imagination For People{% endblocktrans %}{% endblock %}
@@ -24,134 +19,128 @@
 
 {% block content %}
 
-{% if picture_project_translations|length > 0 %}
-<div id="subheader-zone" class="clearfix">
-    <div id="pictured-zone">
-	<div class="container_18">
-	    <p class="prefix_1 grid_12 alpha tag-header">
-		<img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
-		<p class="credit">
-		    {% blocktrans %}Picture of project: {{ picture_project_translations.0.title }}.{% endblocktrans %}
-		</p>
-	    </p>
+    {% if picture_project_translations|length > 0 %}
+        <div id="subheader-zone" class="clearfix">
+            <div id="picture-zone">
+                <div class="container">
+                    <div class="row">
+                        <div class="prefix_1 span8 tag-header">
+                            <img src="{{ picture_project_translations.0.project.pictures.all.0.tag_header.url }}"/>
+                            <p class="credit">
+                                {% blocktrans %}Picture from project:{% endblocktrans %}
+                                <a href="{{ picture_project_translations.0.get_absolute_url }}" class="project">{{ picture_project_translations.0.title }}</a>
+                            </p>
+                        </div>
+                        <div class='span4'>
+                            {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=picture_project_translations|slice:'1:4' %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- #subheader-zone -->
+    {% endif %}
 
-	    {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=picture_project_translations|slice:'1:4' %}
-	    </div>
-	</div>
-    </div>
 
-
-    <div id="description-zone" >
-	<div class="container_18">
-	    <div class="grid_3 alpha icon-tag-big"></div>
-	    <div class="grid_8 omega tag-description-column">
-		<h1 class="grid_8 alpha omega tag-title">{{ tag }}</h1>
-
-		<p class="grid_8 alpha omega tag-description">
-		    {{ article.render|striptags|truncatechars:300 }}
-		    [<a href="{% url tags:wiki-edit tag %}">{% trans "edit" %}</a>]
-		</p>
-	    </div>
-	</div>
-	<div class="readmore"><a href="#FIXME-BAD-URL"></a></div>
-    </div>
-</div> <!-- #subheader-zone -->
-{% endif %}
 
 <div id="content-zone">
-    <div class="container_18 clearfix"> <!-- .container_18 -->
-
-	<div class="grid_12 alpha" >
-	    {% if picture_project_translations|length == 0 %}
-	    <div>
-		<h1 class="grid_12 alpha omega tag-title">{{ tag }}</h1>
-
-		<p class="grid_12 alpha omega tag-description">
-		    {{ article.render|striptags|truncatechars:300 }}
-		    [<a href="{% url tags:wiki-edit tag %}">{% trans "edit" %}</a>|<a href="#">{% trans "read" %}</a>]
-		</p>
-	    </div>
-	    {% endif %}
-	    <div id="tags-related">
-		{% include "tags/block/taglist.html" with taglist_title="Related tags" taglist_tags=related_tags %}
-	    </div>
-
-	    <div class="project-list fancy square clearfix">
-		<h2>{% trans "Mature projects" %}</h2>
-		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END&status=WIP" class="seemore">{% trans "See more" %}</a>
-		{% for project_translation in mature_project_translations %}
-		{% include "project_sheet/block/card_fancy_square.html" %}
-		{% empty %}
-		{% trans "No projects" %}
-		{% endfor %}
-	    </div> <!-- .project-list -->
-
-	    <hr class="shaded-separator" />
-
-
-	    <div class="project-list fancy square clearfix">
-		<h2>{% trans "Starting projects" %}</h2>
-		<a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA&status=BEGIN" class="seemore">{% trans "See more" %}</a>
-		{% for project_translation in starting_project_translations %}
-		{% include "project_sheet/block/card_fancy_square.html" %}
-		{% empty %}
-		{% trans "No projects" %}
-		{% endfor %}
-	    </div>
-
-	    <hr class="shaded-separator" />
-
-	    <div class="project-list fancy square clearfix">
-		<h2>{% trans "Latest modifications" %}</h2>
-		<a href="{% url project_sheet-list %}?order=modification&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
-		{% for project_translation in modified_project_translations %}
-		{% include "project_sheet/block/card_fancy_square.html" %}
-		{% empty %}
-		{% trans "No projects" %}
-		{% endfor %}
-	    </div>
-
-	</div> <!-- .grid_12 -->
-
-	<div class="prefix_1 grid_5 omega" >
-	    {% comment %}
-	    <a class="tag-follow-button" href="#FIXME-BAD-URL">
-		{% trans "Follow this topic" %}
-	    </a>
-	    {% endcomment %}
-
-	    <div class="people-list wide-flat">
-		<h2>{% trans "People" %} </h2>
-		<!-- FIXME: must show people count in "more" -->
-		{# <a href="#FIXME-BAD-URL" class="seemore">{% trans "See more" %}</a> #}
-		<ul>
-		    {% for p in people %}
-		    <li class="clearfix">
-			{% include "project_sheet/block/member_flat_wide.html" with person=p %}
-		    </li>
-		    {% empty %}
-		        {% trans "Be the first to appear here by joining a project!" %}
-		    {% endfor %}
-		</ul>
-	    </div>
-
-	    <div class="project-list wide-flat">
-		<h2>{% trans "New project sheets" %} </h2>
-		<!-- FIXME: must show people count in "more" -->
-		<a href="{% url project_sheet-list %}?order=creation&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
-		<ul>
-		    {% for p in new_project_translations %}
-		      {% include "project_sheet/block/card_flat_wide.html" with project_translation=p %}
-		    {% endfor %}
-		</ul>
-	    </div>
-
-	    <a class="tag-add-button" href="{% url project_sheet-start %}">
-		{% trans "Add a project in this category" %}
-	    </a>
-
-	</div> <!-- .grid_6 -->
-
-    </div> <!-- .container_18 -->
+    <div class="container">
+        <div class="row">
+            <div class="span8" >
+                <div class="row description-zone">
+                    <div class="span2 i4p-icon-tag-big"></div>
+                    <div class="span6  tag-description-column">
+                        <h1 class="tag-title">{{ tag }}</h1>
+                        <p class="tag-description">
+                            {{ article.render|striptags }}
+                            [ <a href="{% url tags:wiki-edit tag %}">{% trans "Edit this tag's description" %}</a> ]
+                        </p>
+                    </div>
+                    {% if  article.render|striptags|wordcount > 30 %}
+                        <div class="readmore">
+                            <a href="#FIXME-BAD-URL"></a>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div id="span8 tags-related">
+                        {% include "tags/block/taglist.html" with taglist_title="Related tags" taglist_tags=related_tags %}
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="project-list fancy square">
+                        <h2>{% trans "Mature projects" %}</h2>
+                        <a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END&status=WIP" class="seemore">{% trans "See more" %}</a>
+                        {% for project_translation in mature_project_translations %}
+                            {% include "project_sheet/block/card_fancy_square.html" %}
+                        {% empty %}
+                            {% trans "No projects" %}
+                        {% endfor %}
+                    </div> <!-- .project-list -->
+                    <hr class="shaded-separator" />
+                    <div class="project-list fancy square">
+                        <h2>{% trans "Starting projects" %}</h2>
+                        <a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA&status=BEGIN" class="seemore">{% trans "See more" %}</a>
+                        {% for project_translation in starting_project_translations %}
+                            {% include "project_sheet/block/card_fancy_square.html" %}
+                        {% empty %}
+                            {% trans "No projects" %}
+                        {% endfor %}
+                    </div>
+                    <hr class="shaded-separator" />
+                    <div class="project-list fancy square clearfix">
+                        <h2>{% trans "Latest modifications" %}</h2>
+                        <a href="{% url project_sheet-list %}?order=modification&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
+                        {% for project_translation in modified_project_translations %}
+                            {% include "project_sheet/block/card_fancy_square.html" %}
+                        {% empty %}
+                            {% trans "No projects" %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div> <!-- .span8 -->
+    
+            <div class="prefix_1 span4" >
+                
+                {% comment %}
+                    <div class="row">
+                    <a class="tag-follow-button" href="#FIXME-BAD-URL">
+                        {% trans "Follow this topic" %}
+                    </a>
+                    </div>
+                {% endcomment %}
+                <div class="row people-list wide-flat">
+                    <h2>{% trans "People" %} </h2>
+                    <!-- FIXME: must show people count in "more" -->
+                    {# <a href="#FIXME-BAD-URL" class="seemore">{% trans "See more" %}</a> #}
+                    <ul>
+                    {% for p in people %}
+                        <li class="clearfix">
+                            {% include "project_sheet/block/member_flat_wide.html" with person=p %}
+                        </li>
+                    {% empty %}
+                        {% trans "Be the first to appear here by joining a project!" %}
+                    {% endfor %}
+                    </ul>
+                </div>
+    
+                <div class="row project-list wide-flat">
+                    <h2>{% trans "New project sheets" %} </h2>
+                    <!-- FIXME: must show people count in "more" -->
+                    <a href="{% url project_sheet-list %}?order=creation&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
+                    <ul>
+                    {% for p in new_project_translations %}
+                        {% include "project_sheet/block/card_flat_wide.html" with project_translation=p %}
+                    {% endfor %}
+                    </ul>
+                </div>
+                <div class="row">
+                    <a class="tag-add-button" href="{% url project_sheet-start %}">
+                        {% trans "Add a project in this category" %}
+                    </a>
+                </div>
+            </div> <!-- .span4 -->
+        </div>
+    </div> <!-- .container -->
 </div> <!-- #content-zone -->
 {% endblock %}

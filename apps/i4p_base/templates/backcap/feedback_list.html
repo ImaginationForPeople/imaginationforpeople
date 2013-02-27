@@ -4,213 +4,178 @@
 {% load voting_tags %}
 
 {% block title %}
-  {% trans "Help Center" %}
+    {% trans "Help Center" %}
 {% endblock %}
 
 
 {% block javascript %}
 
-<script type="text/javascript">
-$(document).ready(function() {
-    $(".feedbackvote :submit").click(function() {
-	feedback_id = $(this).parent().parent().parent().parent().parent().attr("id");
+    <script type="text/javascript">
+    $(document).ready(
+            function() {
+                $(".feedbackvote :submit").click(
+                        function() {
+                            feedback_id = $(this).parent().parent().parent()
+                                    .parent().parent().attr("id");
+                            $.post($(this).parent().attr("action"), function(
+                                    data) {
+                                var selector = "#" + feedback_id + " .score";
+                                $(selector).fadeOut('slow', function() {
+                                    $(selector).html(data.score.score);
+                                    $(selector).fadeIn('slow');
+                                });
+                            }, "json");
+                            return false;
+                        });
 
-	$.post($(this).parent().attr("action"),
-	       function(data) {
-		   var selector = "#" + feedback_id + " .score";
-		   $(selector).fadeOut('slow',
-				       function() {
-					   $(selector).html(data.score.score);
-					   $(selector).fadeIn('slow');
-				       }
-				      );
-	       },
-	       "json"
-	      );
-
-	return false;
-    });
-
-    /* Tips on voting buttons */
-    $('input.button-tip').tipsy({gravity: $.fn.tipsy.south});
-});
-
-</script>
+                /* Tips on voting buttons */
+                $('input.button-tip').tipsy({
+                    gravity : $.fn.tipsy.south
+                });
+            });
+    </script>
 
 {% endblock %}
 
 
 {% block content %}	
-	
-	<div class="content content-feedback">        
-		<div class="container_18">
-			<div class="grid_18 alpha omega">			
-			
-				<div class="block-content">  
 
-
+    <div class="content content-feedback">        
+        <div class="container">
+            <h1>{% trans "Feedbacks" %}</h1>
+            <div id="feedback-text">
+                <p>
+                    {% trans "This is all the feedbacks submitted by you, the users. Thanks for that." %}
+                </p>
                 
-                    <div id="text">
-                    <h1>{% trans "Feedbacks" %}</h1>
+                {% comment %}
+                <p>
+                    {% url faq:question-list as faq %}
+                    {% blocktrans with faq as faq_url %}Before posting a feedback, make sure to <a href="{{ faq_url }}">read the FAQ</a>.{% endblocktrans %}
+                </p>
+                {% endcomment %}
+                
+                <p>
+                    {% trans "If you think one of these entries is important for you, then <strong>click on the '+' button</strong>. If you disagree or think this is not important at all, then <strong>click on '-'</strong>." %}
+                </p>
 
-                    <div class="alpha grid_15">
-                        
-                        <div id="feedback-text">
-                            <br />
-                            <p>
-                                {% trans "This is all the feedbacks submitted by you, the users. Thanks for that." %}
-                            </p>
-                            
-                            {% comment %}
-                            <p>
-                                {% url faq:question-list as faq %}
-                                {% blocktrans with faq as faq_url %}Before posting a feedback, make sure to <a href="{{ faq_url }}">read the FAQ</a>.{% endblocktrans %}
-                            </p>
-                            {% endcomment %}
-                            
-                            <p>
-                                {% trans "If you think one of these entries is important for you, then <strong>click on the '+' button</strong>. If you disagree or think this is not important at all, then <strong>click on '-'</strong>." %}
-                            </p>
+                <p>
+                    {% trans "The <strong>highest the score</strong> an issue will get, the <strong>earlier we'll work on</strong> it." %}
+                </p>
+            </div>
+            <p>
+                <a href="{% url feedback-new %}" class="link" title="{% trans "New feedback" %}"><span><span class="icon"></span>{% trans "New feedback" %}</span></a>
+            </p>
 
-                            <p>
-                                {% trans "The <strong>highest the score</strong> an issue will get, the <strong>earlier we'll work on</strong> it." %}
-                            </p>
-                            <br /><br /><br />
-                        </div>
-
-                        <p>
-                            <a href="{% url feedback-new %}" class="link" title="{% trans "New feedback" %}"><span><span class="icon"></span>{% trans "New feedback" %}</span></a>
-                        </p>
-                        
-
-                        {% votes_by_user request.user on feedback_list as vote_dict %}
-                        {% scores_for_objects feedback_list as score_dict %}
-
-                        <ul id="feedback-list" class="alpha omega grid_15">
-                            {% for feedback in feedback_list %}
-                            <li id="feedback_{{ feedback.id }}" class="feedback-entry alpha omega grid_15">
-                                <div class="alpha grid_2">
-                                    {% dict_entry_for_item feedback from vote_dict as vote %}
-                                    {% dict_entry_for_item feedback from score_dict as score %}
-                                    <div class="feedback-votes ui-corner-all">
-                                        <div class="score">{{ score.score|default:0 }}</div>
-                                        <div class="vote-actions">
-
-                                            <form class="feedbackvote" id="feedbackup{{ feedback.id }}" action="{% if vote and vote.is_upvote %}
-                                                                            {% url feedback-vote feedback.id 'clear' %}
-                                                                            {% else %}
-                                                                            {% url feedback-vote feedback.id 'up' %}
-                                                                            {% endif %}
-                                                                            " method="POST">
-                                                                            {% csrf_token %}
-                                                <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" title="{% if vote and vote.is_upvote %}{% trans "Clear my vote" %}{% else %}{% trans "Vote for" %}{% endif %}" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
-                                            </form>
-
-                                            <form class="feedbackvote" id="feedbackdown{{ feedback.id }}" action="{% if vote and vote.is_downvote %}
-                                                                              {% url feedback-vote feedback.id 'clear' %}
-                                                                              {% else %}
-                                                                              {% url feedback-vote feedback.id 'down' %}
-                                                                              {% endif %}
-                                                                              " method="POST">
-                                                                              {% csrf_token %}
-                                              
-                                              <input type="submit" class="ui-corner-all vote_button button redbutton nomargin" title="{% if vote and vote.is_downvote %}{% trans "Clear my vote" %}{% else %}{% trans "Vote against" %}{% endif %}" id="feedbackdownarrow{{ feedback.id }}" value="{% if vote and vote.is_downvote %}X{% else %}-{% endif %}"/>
-                                            </form>
-                                            <div class="clear"></div>
-                                        </div>
+            {% votes_by_user request.user on feedback_list as vote_dict %}
+            {% scores_for_objects feedback_list as score_dict %}
+            <div class="row">
+                <div class="span10">
+                    <ul id="feedback-list">
+                        {% for feedback in feedback_list %}
+                        <li id="feedback_{{ feedback.id }}" class="feedback-entry row">
+                            <div class="span1">
+                                {% dict_entry_for_item feedback from vote_dict as vote %}
+                                {% dict_entry_for_item feedback from score_dict as score %}
+                                <div class="feedback-votes ui-corner-all">
+                                    <div class="score">{{ score.score|default:0 }}</div>
+                                    <div class="vote-actions">
+    
+                                        <form class="feedbackvote" id="feedbackup{{ feedback.id }}" action="{% if vote and vote.is_upvote %}
+                                                                        {% url feedback-vote feedback.id 'clear' %}
+                                                                        {% else %}
+                                                                        {% url feedback-vote feedback.id 'up' %}
+                                                                        {% endif %}
+                                                                        " method="POST">
+                                                                        {% csrf_token %}
+                                            <input type="submit" class="ui-corner-all vote_button button greenbutton nomargin" title="{% if vote and vote.is_upvote %}{% trans "Clear my vote" %}{% else %}{% trans "Vote for" %}{% endif %}" id="feedbackuparrow{{ feedback.id }}" value="{% if vote and vote.is_upvote %}X{% else %}+{% endif %}"/>
+                                        </form>
+    
+                                        <form class="feedbackvote" id="feedbackdown{{ feedback.id }}" action="{% if vote and vote.is_downvote %}
+                                                                          {% url feedback-vote feedback.id 'clear' %}
+                                                                          {% else %}
+                                                                          {% url feedback-vote feedback.id 'down' %}
+                                                                          {% endif %}
+                                                                          " method="POST">
+                                                                          {% csrf_token %}
+                                          
+                                          <input type="submit" class="ui-corner-all vote_button button redbutton nomargin" title="{% if vote and vote.is_downvote %}{% trans "Clear my vote" %}{% else %}{% trans "Vote against" %}{% endif %}" id="feedbackdownarrow{{ feedback.id }}" value="{% if vote and vote.is_downvote %}X{% else %}-{% endif %}"/>
+                                        </form>
+                                        
                                     </div>
                                 </div>
-                                
-                                <div class="omega grid_13">
-                                    <div class="feedback-info">
-                                        <div>
-                                            <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
-                                            <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
-                                        </div>
-                                        <br />
-                                        <div class="feedback-desc">
-                                            {{ feedback.text|truncatewords:20 }}
-                                        </div>
-                                        <div id="feedback_infos">
-                                            {% if feedback.status == 'A' %}
-                                            {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
-                                            {% else %}
-                                            {{ feedback.get_status_display }} / 
-                                            {% endif %}
-                                            <span class="who">
-                                                {% blocktrans with feedback.created_on|timesince as since %}
-                                                Posted {{ since }} ago by
-                                                {% endblocktrans %}
-                                                <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
-                                            </span>
-                                        </div>
+                            </div>
+                            
+                            <div class="span8">
+                                <div class="feedback-info">
+                                    <div>
+                                        <span class="ui-corner-all type_{{ feedback.kind }}"><a class="info"><img src="{{ STATIC_URL }}images/feedback/picto-{{ feedback.kind }}.png" alt="{{ feedback.get_kind_display }}" /><span>{{ feedback.get_kind_display }}</span></a></span>
+                                        <span class="title"><a href="{% url feedback-detail feedback.id %}" class="link">{{ feedback.title|capfirst }}</a></span>
+                                    </div>
+                                    <div class="feedback-short-description">
+                                        {{ feedback.text|truncatewords:20 }}
+                                    </div>
+                                    <div id="feedback_infos">
+                                        {% if feedback.status == 'A' %}
+                                        {% trans "Assigned to" %} <a class="link" href="{{ feedback.assigned_to.get_profile.get_absolute_url }}">{{ feedback.assigned_to.first_name|default:feedback.assigned_to.username }}</a> /
+                                        {% else %}
+                                        {{ feedback.get_status_display }} / 
+                                        {% endif %}
+                                        <span class="who">
+                                            {% blocktrans with feedback.created_on|timesince as since %}
+                                            Posted {{ since }} ago by
+                                            {% endblocktrans %}
+                                            <a class="link" href="{{ feedback.user.get_profile.get_absolute_url }}">{{ feedback.user.get_full_name|default:feedback.user.username }}</a>
+                                        </span>
                                     </div>
                                 </div>
-                            </li>
-                            {% empty %}
-                            {% trans "There's no feedback yet." %}
-                            {% endfor %}
-                        </ul>
-
-                        {% if page_obj.has_previous %}
+                            </div>
+                        </li>
+                        {% empty %}
+                        {% trans "There's no feedback yet." %}
+                        {% endfor %}
+                    </ul>
+                    {% if page_obj.has_previous %}
                         &laquo; <a class="link" href="{% url feedback-list qtype %}?page={{ page_obj.previous_page_number }}&order={{ order }}">{% trans "previous" %}</a>
+                    {% endif %}
+                
+                    <div id="feedback-pagination" >
+                        {% for page_num in page_obj.paginator.page_range %}
+                       
+                            <a class="link" href="{% url feedback-list qtype %}?page={{ page_num }}&order={{ order }}">
+                                {% if page_num == page_obj.number %}<strong>{% endif %}
+                               {{ page_num }}
+                               {% if page_num == page_obj.number %}</strong>{% endif %}
+                            </a>
+                            {% if not forloop.last %}|{% endif %}
+                        {% endfor %}
+    
+                        {% if page_obj.has_next %}
+                            <a class="link" href="{% url feedback-list qtype %}?page={{ page_obj.next_page_number }}&order={{order}}">{% trans "next" %}</a> &raquo;
                         {% endif %}
-                        
-                            <div id="feedback-pagination" >
-                            {% for page_num in page_obj.paginator.page_range %}
-                           
-                                <a class="link" href="{% url feedback-list qtype %}?page={{ page_num }}&order={{ order }}">
-                                    {% if page_num == page_obj.number %}<strong>{% endif %}
-                                    {{ page_num }}
-                                    {% if page_num == page_obj.number %}</strong>{% endif %}
-                                </a>
-
-                                {% if not forloop.last %}|{% endif %}
-                                {% endfor %}
-
-
-                                {% if page_obj.has_next %}
-                                <a class="link" href="{% url feedback-list qtype %}?page={{ page_obj.next_page_number }}&order={{order}}">{% trans "next" %}</a> &raquo;
-                                {% endif %}
-                                
-                            </div>
-                            
-                        </div>
-                        <div class="grid_2 prefix_1 omega">
-                            <div id="feedback_filters" >
-                                <h4>{% trans "Display" %}</h4>
-
-                                <ul id="feedback-filter">
-                                    <li class="ui-corner-all {% if not qtype or qtype == 'all' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list %}?order={{order}}">{% trans "All" %}</a></li>
-                                    <li class="ui-corner-all {% if qtype == 'Q' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'Q' %}?order={{order}}">{% trans "Questions" %}</a></li>
-                                    <li class="ui-corner-all {% if qtype == 'P' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'P' %}?order={{order}}">{% trans "Problems" %}</a></li>
-                                    <li class="ui-corner-all {% if qtype == 'I' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'I' %}?order={{order}}">{% trans "Ideas" %}</a></li>
-                                </ul>
-                                <div class="clear"></div>
-                                <h4 style="display:block;">{% trans "Order by" %}</h4>
-                                <div class="clear"></div>
-                                <ul id="feedback-order">
-                                    <li class="ui-corner-all {% if order == 'score' %}order-on{% endif %}"><a class="button" href="{% url feedback-list qtype %}?order=score">{% trans "Score" %}</a></li>
-                                    <li class="ui-corner-all {% if order == 'newest' %}order-on{% endif %}"><a class="button" href="{% url feedback-list qtype %}?order=newest">{% trans "Newest" %}</a></li>
-                                </ul>
-                                <div class="clear"></div>
-                                
-                            </div>
-                        </div>
-
                     </div>
+                </div>
+        
+                <div id="feedback_filters" class="span2">
+                    <h4>{% trans "Display" %}</h4>
+                    <ul id="feedback-filter">
+                        <li class="ui-corner-all {% if not qtype or qtype == 'all' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list %}?order={{order}}">{% trans "All" %}</a></li>
+                        <li class="ui-corner-all {% if qtype == 'Q' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'Q' %}?order={{order}}">{% trans "Questions" %}</a></li>
+                        <li class="ui-corner-all {% if qtype == 'P' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'P' %}?order={{order}}">{% trans "Problems" %}</a></li>
+                        <li class="ui-corner-all {% if qtype == 'I' %}filter-on{% endif %}"><a class="button" href="{% url feedback-list 'I' %}?order={{order}}">{% trans "Ideas" %}</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                    <h4 style="display:block;">{% trans "Order by" %}</h4>
+                    <div class="clear"></div>
+                    <ul id="feedback-order">
+                        <li class="ui-corner-all {% if order == 'score' %}order-on{% endif %}"><a class="button" href="{% url feedback-list qtype %}?order=score">{% trans "Score" %}</a></li>
+                        <li class="ui-corner-all {% if order == 'newest' %}order-on{% endif %}"><a class="button" href="{% url feedback-list qtype %}?order=newest">{% trans "Newest" %}</a></li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-
-										
-				</div>
-				
-			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
-	</div>
-	
-	
 {% endblock %}
 

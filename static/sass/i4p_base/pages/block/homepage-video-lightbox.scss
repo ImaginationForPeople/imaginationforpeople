@@ -1,0 +1,18 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+#home-video-lightbox-modal {
+    width: 884px; /* 854px video player + 2x 15px margin */
+    max-height: auto;
+    margin-left: -442px;
+    .modal-body {
+        max-height: none;
+    }
+    button.close {
+        @include i4p-font-base($sizeTextBig);
+        text-transform: uppercase;
+        postion: absolute;
+        top: -8px;
+        right: -5px;
+    }
+}

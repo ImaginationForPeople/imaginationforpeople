@@ -1,8 +1,8 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 
 a.trigger {
     position: absolute;
-    background:url(../images/feedback/feedback-button.png) no-repeat;
+    background:image-url('feedback/feedback-button.png') no-repeat;
     width:34px;
     height:121px;
     color:#fff;
@@ -26,7 +26,7 @@ a.trigger:hover {
 }
 
 a.active.trigger {
-    background:url(../images/feedback/feedback-button-off.png) no-repeat;
+    background:image-url('feedback/feedback-button-off.png') no-repeat;
 }
 
 .feedback-panel {

@@ -22,12 +22,15 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from askbot.models.question import Thread
 from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from django_mailman.models import List
 from tagging.fields import TagField
 
+
 from apps.project_sheet.models import I4pProject
+
 
 def get_grouppicture_path(aWorkGroup, filename):
     """
@@ -86,6 +89,12 @@ class WorkGroup(models.Model):
                                          related_name='workgroups',
                                          blank=True
                                      )
+    # adding a M2M relationship to forum-questions
+    questions = models.ManyToManyField(Thread,
+                                       verbose_name=_("Related questions"),
+                                       related_name='workgroups',
+                                       blank=True)
+    
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
                              self.get_language_display())

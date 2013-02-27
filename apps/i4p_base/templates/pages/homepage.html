@@ -1,12 +1,14 @@
-﻿{% extends "base_obsolete.html" %}
+﻿{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
 {% load cms_tags %}  
+{% load sekizai_tags %}
 
 {% block style %}
     {% compress css %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/homepage.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/zinnia-i4p.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/pages/homepage.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/pages/block/homepage-zinnia.css" />
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/pages/block/project_slide.css" type="text/css" media="screen" />
     <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
     {% endcompress %}
 {% endblock %}
@@ -19,16 +21,25 @@
 
 {% block extra_head %}
   {{ block.super }}
-  
+    {% addtoblock "js" strip %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
+    {% endaddtoblock %}
+    {% addtoblock "js" strip %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
+    {% endaddtoblock %}
+    {% addtoblock "js" strip %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider.js" ></script>
+    {% endaddtoblock %}
+    {% addtoblock "js" strip %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/homepage/boxes.js" ></script>
+    {% endaddtoblock %}
+    {% addtoblock "js" strip %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/homepage/slider.js" ></script>
+    {% endaddtoblock %}
+    {% addtoblock "js" strip %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-modal.js" ></script>
+    {% endaddtoblock %}
     {% compress js %}
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
-
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider.js" ></script>
-    
-    <script type="text/javascript" src="{{ STATIC_URL }}js/homepage/boxes.js" ></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/homepage/slider.js" ></script>
-
 
     <script type="text/javascript">
     $(document).ready(function(){
@@ -115,35 +126,57 @@
     </script>
     {% endcompress %}
 
+
 {% endblock %}
+
 
 
 
 {% block nav %}
     {% cms_toolbar %}
-    <div id="video-zone">
-        <div id="video" class="center"> 
-            {% placeholder "Top video zone" or %}
-            <h1 class="what_is">{% trans ' What is it ?' %}</h1>
-
-            <div id="project_block">
-                <h1><a href="{% url project_sheet-list %}">{% trans 'Explore and contribute' %}</a></h1>
-                {% trans 'to social and cultural projects' %}
+    <div id="homepage-banner-outer-container">
+        {% include "pages/block/homepage-video-lightbox.html" %}
+        {% placeholder "Top homepage banner" or%}
+            <div id="homepage-banner">
+                            <h1>Customize this banner</h1>
+                            <p>To use, see this text in homepage.html as an example.
+                             and add in the "home banner" block in the homepage admin page</p>
+                            <p>For no banner at all, add an empty Fragment Snippet in the block</p>
+                            
+                <div class="container">
+                    <div class="block-container">
+                        <img src="{{ STATIC_URL }}images/i4p_base/pages/homepage/banner/mascot.png" />
+                        <div class="i4p-block">
+                            <h1>h1 title</h1>
+                            <h2>h2 title</h2>
+                            <hr>
+                            <ul>
+                                <li>
+                                    <a href='#'>A link in a list</a>
+                                </li>
+                                <li>
+                                    A list item
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="i4p-block">
+                            <p>Some text in a paragraph.</p>
+                            <hr>
+                            <p>Notice separator above..</p>
+                            <p>Notice image on the left.</p>
+                        </div>
+                        <!-- Button to trigger modal -->
+                        <a id="home-video-lightbox-modal-link" href="#home-video-lightbox-modal" role="button" data-toggle="modal" alt='Découvrez Imagination for People en vidéo'>
+                        </a>
+                        <!--                     <div class="i4p-block">
+                            <h1>h1</h1>
+                            <h2>h2</h2>
+                            Some text
+                        </div> -->
+                    </div>
+                </div>
             </div>
-            
-            <div id="network_block">
-                <h1><a href="{% url userena_signup %}">{% trans 'Join the community' %}</a></h1>
-                {% trans 'of citizens from more 30 countries' %}
-            </div>
-            
-            <div class="baseline">
-                {% placeholder baseline or %}
-                    "{% trans ' Detect and develop socially innovative projects.' %}"
-                {% endplaceholder %}
-            </div>
-            <img src="{{ STATIC_URL }}images/home/video.jpg" alt="video" width="982" height="132"/>
-            {% endplaceholder %}
-        </div>
+        {% endplaceholder %}
     </div>
     
     {% include "pages/home-blocks/focus-zone.html" %}     
@@ -179,11 +212,6 @@
         <div id="right_col">
             
             {% placeholder "Right Column" %}
-            
-            {% comment %}
-                {% include "search.html" %}            
-                <div class="clear"></div><br />
-            {% endcomment %}
             
             {% comment %}
                 <span>

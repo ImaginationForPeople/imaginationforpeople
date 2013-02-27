@@ -1,11 +1,10 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
 
 {% block style %}
     {% compress css %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/filters.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/error_pages.css" />
     {% endcompress %}
 {% endblock %}
@@ -37,7 +36,7 @@
 
 {% block content %}	
 
-    <div class="container_18">
+    <div class="container">
 
         <div id="error_page" class="page500">
             <div id="error_page_content">

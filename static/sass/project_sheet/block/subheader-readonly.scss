@@ -1,5 +1,5 @@
 // load reusable components
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 @import "i4p/buttons";
 @import "i4p/fonts";
@@ -39,7 +39,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     .subheader {
 	overflow: hidden;
 	position: relative;
-        /* necessary when the is no project image */
+        /* necessary when there is no project image */
         min-height: 150px;
 	margin-left: 0px;
 	height: 300px;

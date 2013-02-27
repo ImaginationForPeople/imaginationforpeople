@@ -1,0 +1,222 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+
+/* --Projects Cards-- */
+
+.project_list_project_container {
+    float: left;
+    position: relative;
+    margin: 0 0.5em;
+    width: 32%;
+}
+.project_list_project {
+
+    margin-bottom: 1em;
+    a {
+        display: block;
+        @include i4p-font-base($sizeTextNormal);
+        color: $colorLightGrey;
+        line-height: normal;
+        border: 1px solid transparent;
+        margin:0;
+        padding:0;
+        padding-right:5px;
+        @include i4p-shadow(8px, #181818);
+        @include border-radius(8px);
+    }
+    a:hover {
+        border: 1px solid #848484;
+        @include i4p-shadow(8px, #848484); 
+        @include border-radius(8px);
+        text-decoration: none;
+        color: #bdbdbd;
+    }
+    .project_infos_title{
+        display: table;
+        width:100%;
+        #background-color:black;
+        h2 {
+            height: 3em;
+            display: table-cell;
+            vertical-align: middle;
+            width:100%;
+            padding: 0 0.5em;
+            font-size:15px;
+            font-family : Tahoma, Verdana, Arial, Sans-serif;
+            font-weight:bold;
+            font-style:normal;
+            line-height:90%;
+            color:#c2c2c2;
+            text-align:left;
+        }
+    }
+    
+    .project_card{
+        float:left;
+        position:relative;
+        background-color:black;
+        margin-right: 0.5em;
+        border:0px;
+        padding:0px;
+        border:0px;
+        text-align:right;
+        width:137px;
+        height:190px;
+        border:0px !important;
+    
+        @include i4p-shadow(12px, #181818);
+    
+        .project-photo{
+            width:100%;
+            height:71px;
+            background-color:#BDBDBD;
+            background-image:image-url("project/no-picture.jpg");
+            background-position:center center;
+            background-repeat:no-repeat;
+            
+            img{
+                width:100%;
+                height:71px;
+            }
+        } 
+        
+        img, a{
+            border:0px;
+            padding:0px;
+        }    
+    }
+    
+    
+    .project_card:hover{
+        text-decoration:none;
+    }
+    
+    
+    .project_card_progress {
+        height: 20px;
+        position:relative;
+        
+        p {
+            font-size:10px;
+            color:white;
+            font-style:normal;
+            font-family:Arial, Helvetica, sans-serif;
+            font-weight:normal;
+            text-shadow:1px 1px 1px black;
+            position:absolute;
+            right:12px;
+            top:3px;
+            margin:0px;
+            padding:0px;
+        }
+        
+        img{
+            position:relative;
+            width:131px;
+            height:15px;
+            top:3px;
+            left:-3px;
+        }
+    }
+    
+    
+    .project_card_pictos{
+        font-family:Arial, Helvetica, sans-serif;
+        font-size:11px;
+        color:#7d3b09;
+        padding-top:1px;
+        padding-bottom:30px;
+        font-style:normal;
+        font-weight:normal;
+        margin-right:2px;
+        
+        ul, ul li{
+            margin:0px;
+            padding:0px;
+        }
+    }
+    
+    
+    .project_card_content{
+        position:relative;
+        padding-left:7px;
+        margin-right:7px;
+        margin-bottom:5px;
+        height:91px;
+        
+        .project_topic_mini{
+            position:absolute;
+            bottom:-5px;
+            right:-5px;
+        }    
+    }
+    
+    .project_card_infos li{
+        display:block;
+        list-style-type:none;
+        font-size:11px;
+        color:#a4a4a3;
+        text-decoration:none;
+    }
+    
+    
+    
+    .project_infos{
+        width:150px;    
+        margin-left:auto;
+        margin-right:auto;
+        float:right;
+        position:relative;
+        height:190px;
+        
+        a{
+            position:absolute;
+            bottom:0px;
+        }
+    }
+    
+    
+    
+    .project_infos_location{
+        font-size:11px;
+        font-family : Tahoma, Verdana, Arial, Sans-serif;
+        font-weight:normal;
+        font-style:normal;
+        color:#848484;
+        position:absolute;
+        bottom:0px;
+        text-align:left;
+    }
+    
+    .project_infos_baseline{
+        margin:0.5em 0;
+        font-size:11px;
+        font-family : Tahoma, Verdana, Arial, Sans-serif;
+        font-weight:bold;
+        font-style:normal;
+        color:#c2c2c2;
+    }
+    
+    .project_infos_description{
+        font-size:10px;
+        margin-bottom:27px;
+    }
+}
+.container > .projectlist_pagination {
+    text-align: center;
+    display: block;
+    width: 100%;
+    .step-links {
+        display: inline;
+    }
+    a{
+        display: inline;
+        color:#BDBDBD;
+    }
+    
+    span.current{
+        color: $colorLightBlue;
+    }
+
+}

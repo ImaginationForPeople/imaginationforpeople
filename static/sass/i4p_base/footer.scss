@@ -1,0 +1,133 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+#footer-zone-top {
+    clear: both;
+    background-color: $darkgrey;
+    border-top: 3px solid #0c0c0c;
+    margin: 15px 0 0 0;
+
+    .footer-top {
+
+        img {
+            float: left;
+            position: relative;
+            top: -10px;
+        }
+
+         .baseline {
+            @include i4p-font-base($sizeTextNormal);
+            margin: 10px 0 0 20px;
+            text-transform: uppercase;
+            color: white;
+            float: left;
+        }
+    }
+
+    #footer {
+    padding: 20px 0px;
+    color: #b4b4b4;
+    /*background: image-url('base/footer-bg.jpg') no-repeat center;*/
+
+    h1 {
+        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
+        font-size: 16px;
+        text-transform: uppercase;
+        font-style: normal;
+        padding: 5px 0 10px;
+        margin: 0;
+        color: white;
+    }
+
+
+
+    a {
+        font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        color: $colorLightBlue;
+    }
+
+    a:hover {
+        color: white;
+    }
+
+    .licences, .licenses p {
+
+        font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif !important;
+        font-size: 12px;
+    }
+
+    .contrib-links.right {
+        margin-right: 60px;
+    }
+
+    .contrib-links a {
+        font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif !important;
+        font-size: 12px;
+        color: #737373;
+        text-transform: uppercase;
+    }
+
+    .contrib-links a:hover {
+        color: white;
+    }
+
+    .newsletter {
+        float: left;
+        background: image-url('base/newsletter-bg.png') no-repeat left 0;
+        height: 22px;
+
+        input[type="text"] {
+        font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif !important;
+        background-color: transparent;
+        border: 0px solid #646464;
+        color: #7F7E7E;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 10px;
+        height: 19px;
+        padding: 2px;
+        padding-left: 4px;
+        text-indent: 0px;
+        width: 152px;
+        }
+
+        input[type="submit"] {
+        background-image: none;
+        background-color: transparent;
+        border: 0px;
+        margin: 0px;
+        width: 35px;
+        float: right;
+        }
+    }
+
+    .concept {
+        width: 100%;
+        position: relative;
+        float: left;
+        margin-bottom: 20px;
+
+        img {
+        float: left;
+        margin-top: 20px;
+        }
+
+        .concept_detail {
+        width: 250px;
+        float: right;
+
+        h1 {
+            padding: 5px 0px;
+        }
+
+        p {
+            margin-bottom: 5px;
+        }
+        }
+    }
+
+    .concept:hover {
+        color: white;
+    }
+    }
+}

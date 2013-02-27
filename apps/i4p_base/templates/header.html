@@ -98,17 +98,15 @@
 
                         {% if user.is_authenticated %}
                             <div id="tools">
-                                {% get_unread_message_count_for user as unread_message_count %}
-                                {% if unread_message_count != 0 %}
-                                    <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /><div class="message_count" >{{ unread_message_count }}</div></a></div>
-                                {% else %}
-                                    <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></div>
+                              {% get_unread_message_count_for user as unread_message_count %}
+                              {% if unread_message_count != 0 %}
+                                <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /><div class="message_count" >{{ unread_message_count }}</div></a></div>
+				{% else %}
+                              <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></div>
                                 {% endif %}
-                            <div id="view-profile-bt"><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}"><img src="{{ STATIC_URL }}images/base/mini_eye_ico.png" /></a></div>
-                            <div id="edit-profile-bt"><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'Edit my profile' %}"><img src="{{ STATIC_URL }}images/base/mini_pencil_ico.png" /></a></div>
-                            {% if user.is_staff %}
-                                <div id="logout-bt"><a href="{% url userena_signout %}?next={% page_url 'homepage' %}" class="tipsed on" title="{% trans 'Log out' %}"><img src="{{ STATIC_URL }}images/base/mini_deco_ico.png" /></a></div>
-                            {% endif %}
+			      <div id="view-profile-bt"><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}"><img src="{{ STATIC_URL }}images/base/mini_eye_ico.png" /></a></div>
+			      <div id="edit-profile-bt"><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'Edit my profile' %}"><img src="{{ STATIC_URL }}images/base/mini_pencil_ico.png" /></a></div>
+			      <div id="logout-bt"><a href="{% url userena_signout %}" class="tipsed on" title="{% trans 'Log out' %}"><img src="{{ STATIC_URL }}images/base/mini_deco_ico.png" /></a></div>
                             </div>
                         {% endif %}
                     </div>{% comment %} There must be no...

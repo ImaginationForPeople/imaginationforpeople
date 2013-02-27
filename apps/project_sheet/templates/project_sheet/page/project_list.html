@@ -1,0 +1,60 @@
+﻿{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+{% load tagging_tags %}
+{% load pagination_tags %}
+{% load sekizai_tags %}
+
+{% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
+{% block title %}{% trans 'Find projects on '%}{{ site.name }}{% endblock %}
+
+{% block style %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/page/project_list.css" />
+{% endblock %}
+
+{% block extra_head %}
+  {{ block.super }}
+
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url project_sheet-new-projects-rss %}" />
+
+  {% compress js %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js"></script>
+    
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.example.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.idTabs.min.js"></script>
+    {% endcompress %}    
+
+
+
+{% endblock %}
+
+
+{% block nav %}{% endblock %}
+
+
+{% block content %}
+
+    {% autopaginate project_translation_list 12 %}
+    <div class="content">
+        <div class="container">
+            {% include "project_sheet/block/project_list_filter_panel.html" %}
+            <div id="projects_list">
+                {% for project_translation in project_translation_list %}
+                    <!-- Affichage à choisir en fonction du type d'affichage désiré ! -->
+                    <div class="project_list_project_container">
+                        {% include "project_sheet/block/project_list_project_card.html" %}			
+                    </div>
+                    {% empty %}
+                    {% trans 'Your request did not return any result.'%}
+                {% endfor %}
+            </div>
+            {% paginate using "project_sheet/block/project_list_pagination.html" %}
+        </div>
+    </div>
+ 
+  
+{% endblock %}
+
+

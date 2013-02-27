@@ -3,10 +3,6 @@
 {% load compress %}
 {% load sekizai_tags %}
 
-{% block base_grid %}
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
-{% endblock %}
-
 {% block style %}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/layout/workgroup_base.css" />
@@ -14,16 +10,9 @@
 {% endblock %}
 
 {% block meta_desc %}{{ workgroup.name }} : {% spaceless %}{{ workgroup.description|safe|striptags|cut:"\n"|truncatewords:42 }}{% endspaceless %}{% endblock %}
-{% block title %}Imagination for People | {% trans 'Group'|capfirst %} | {{ workgroup.name }}{% endblock %}
+{% block title %}{{ workgroup.name }} | {% trans 'Group'|capfirst %} | Imagination for People{% endblock %}
 
 {% block content %}	
 
-{% with gridsystem='bootstrap' %}
-
-{% addtoblock "js" %}
-    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
-{% endaddtoblock %}
-
 <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
-{% endwith %}
 {% endblock %}
