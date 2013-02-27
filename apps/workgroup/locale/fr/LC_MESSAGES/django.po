@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-26 20:42-0500\n"
-"PO-Revision-Date: 2013-02-15 22:38+0000\n"
+"POT-Creation-Date: 2013-02-27 14:12-0500\n"
+"PO-Revision-Date: 2013-02-27 03:24+0000\n"
 "Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/"
 "imaginationforpeople/language/fr/)\n"
@@ -69,9 +69,8 @@ msgid "Subscribers"
 msgstr "Abonné"
 
 #: models.py:94
-#, fuzzy
 msgid "Related questions"
-msgstr "Projets liés"
+msgstr "Questions similaires"
 
 #: views.py:180
 #, python-format
@@ -210,14 +209,13 @@ msgid "Back to editor"
 msgstr "Retour à l'éditer"
 
 #: templates/workgroup/page/workgroup_detail.html:24
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This group uses a mailing list. You can take part in the discussion by "
 "sending an e-mail to the following address: %(ml_address)s"
 msgstr ""
-"Ce groupe utilise une liste de diffusion. Vous pouvez prendre part à cette "
-"discussion en envoyant un courriel à l'adresse suivante:  "
-"%(workgroup.mailing_list.email)s"
+"Ce groupe utilise une liste de diffusion.  Vous pouvez prendre part à la "
+"discussion en envoyant une courriel à l'adresse: %(ml_address)s"
 
 #: templates/workgroup/page/workgroup_detail.html:24
 msgid "Browse the Archives"
