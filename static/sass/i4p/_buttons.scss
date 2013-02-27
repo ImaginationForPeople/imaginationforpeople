@@ -41,6 +41,7 @@
 
     @include i4p-font-button($sizeTextNormal);
     @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
+    background-color: $colorLightBlue;
     @include i4p-transition;
     @include border-radius($sizeRadiusSmall);
 

@@ -48,21 +48,14 @@ a:hover{
             margin: 0;
             display: inline-block;
             width: 172px;
-            /* 172x87px background*/
-            background-image: image-url('i4p_base/pages/homepage/banner/video_background.jpg');
+            /* 172x87px background, 46x45px play button*/
+            background-image: image-url('i4p_base/pages/homepage/banner/play_button_transparent.png'), image-url('i4p_base/pages/homepage/banner/video_background.jpg');
             background-repeat:no-repeat,no-repeat;
             background-position:center center;
-            img {
-            /* 46x45px image*/
-                position: absolute;
-                top: 50%;
-                margin: -25px 0 0 -25px;
-                opacity: 0.5;
-            }
             &:hover {
-                img {
-                    opacity: 1;
-                }
+                background-image: image-url('i4p_base/pages/homepage/banner/play_button.png'), image-url('i4p_base/pages/homepage/banner/video_background.jpg');
+                background-repeat:no-repeat,no-repeat;
+                background-position:center center, center center;
             }
         }
         h1 {
@@ -137,108 +130,6 @@ a:hover{
                 background-color: $colorLightGrey;
                 color:$colorDarkGrey;
             }
-            /* cmsplugin-zinnia */
-            div.hentry {
-                margin: 10px 0px;
-                padding: 0px 0px;
-                background-color: $colorLightGrey;
-                overflow: hidden;
-                color:$colorDarkGrey;
-                display: table;
-                table-layout: fixed;
-                width: 100%;
-                
-                > .entry-image {
-                    width: 35%;
-                    display: table-cell;
-                    margin-right: 0px;
-                    vertical-align: middle;
-                    img {
-                            vertical-align: middle;
-                            max-width: 100%;
-                        }
-                    a {
-                        margin: 0px 0px;
-                        vertical-align: middle;
-                    }
-                }
-                .entry-main-details-image {
-                        width: 62%;
-                }
-                .entry-main-details {
-                    display: table-cell;
-                    vertical-align: middle;
-                    border-left: 3px solid $colorLightBlue;
-                    margin-left: -3px;
-                    padding: 0px 0px 0px 10px;
-                }
-    
-                a {
-                color: $colorLightBlue;
-                }
-                .entry-header {
-                    margin: 10px 0px;
-        
-                    .entry-info {
-                        font-size: 70%;
-                        color:$colorMedGrey;
-                    }
-                    h2 {
-                        margin:7px 0px;
-                        @include i4p-font-base($sizeTextLarge);
-                        text-transform:uppercase;
-                        font-weight:bold;
-                    }
-                }
-                .entry-footer {
-                    margin-top: 10px;
-                    font-size: 70%;
-                    display: none;
-                }
-                .continue-reading {
-                    margin: 8px 0px;
-                    font-weight: bold;
-                }
-                .entry-info {
-                    margin: 5px 5px;
-                    text-align: right;
-                            display: none;
-                }
-    
-    
-                .entry-content {
-                    img {
-                        float: left;
-                        max-width: 35%;
-                        height: auto;
-                        margin-right: 1em;
-                        /* -(margin left + border) */
-                        margin-left: -13px;
-                    }
-                }
-                    .entry-body {
-                    margin-right: 10px;
-                }
-
-                    p {
-                        margin: 8px 0px;
-                    }
-                        
-                        ul{
-                            padding-left:20px;
-                            color:$colorDarkGrey;
-                            margin-bottom:10px;
-
-                            li{
-                                float:none;
-                                list-style-image:image-url('base/blue_tick.png');
-                                display: list-item;
-                                margin:4px 0px;
-                            }
-                        }                    
-                    
-            }
-            
             
             #blog_box_zone{
                 padding: 0;

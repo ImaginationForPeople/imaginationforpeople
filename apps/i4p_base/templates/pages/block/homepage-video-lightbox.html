@@ -61,14 +61,12 @@
             }
           }
           function pauseVideo() {
-            //For some reason this isn't working on my firefox currently (Function
-            //neither works, nor returns!
             player.pauseVideo();
             //alert("Stopvideo returning");
           }
           function playVideo() {
-              player.playVideo();
-              //alert("Stopvideo returning");
+            player.playVideo();
+            //alert("Stopvideo returning");
             }
           $('#home-video-lightbox-modal').on('shown', function () {
               playVideo();

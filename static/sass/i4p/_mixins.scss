@@ -92,7 +92,7 @@
     background-image: -ms-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
     background-image: -o-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
     background-image: -webkit-linear-gradient(top, $colorTop 0%, $colorBottom 100%);
-
+    background-color: $colorBottom; /* For IE9 */
     background-image: -webkit-gradient(
 	linear,
 	left top,
