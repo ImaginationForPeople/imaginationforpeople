@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-15 17:36-0500\n"
-"PO-Revision-Date: 2013-02-09 21:58+0000\n"
-"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"POT-Creation-Date: 2013-02-26 20:42-0500\n"
+"PO-Revision-Date: 2013-02-15 22:38+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/"
 "imaginationforpeople/language/de/)\n"
 "Language: de\n"
@@ -26,42 +26,46 @@ msgstr ""
 msgid "Group subscribers list"
 msgstr ""
 
-#: models.py:51
+#: models.py:54
 msgid "name"
 msgstr ""
 
-#: models.py:54
+#: models.py:57
 msgid "spoken language"
 msgstr ""
 
-#: models.py:58
+#: models.py:61
 msgid "Description"
 msgstr ""
 
-#: models.py:66
+#: models.py:69
 msgid "visible"
 msgstr ""
 
-#: models.py:70
+#: models.py:73
 msgid "Linked Projects"
 msgstr ""
 
-#: models.py:74
+#: models.py:77
 msgid "Tags of the group"
 msgstr ""
 
-#: models.py:78
+#: models.py:81
 msgid "External URL"
 msgstr ""
 
-#: models.py:81
+#: models.py:84
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
 msgstr ""
 
-#: models.py:85
+#: models.py:88
 msgid "Subscribers"
+msgstr ""
+
+#: models.py:94
+msgid "Related questions"
 msgstr ""
 
 #: views.py:180
@@ -145,7 +149,7 @@ msgstr ""
 msgid "Manage linked projects"
 msgstr ""
 
-#: templates/workgroup/layout/workgroup_base.html:17
+#: templates/workgroup/layout/workgroup_base.html:13
 msgid "Group"
 msgstr ""
 
@@ -157,34 +161,34 @@ msgstr ""
 msgid "Edit this group's information"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:14
+#: templates/workgroup/page/wiki_edit.html:16
 msgid ""
 "<strong>Warning:</strong> You are not logged in. Your IP address will be "
 "logged."
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:15
+#: templates/workgroup/page/wiki_edit.html:17
 msgid "Click here to log in"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:22
+#: templates/workgroup/page/wiki_edit.html:24
 msgid "Edit this workgroup"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:43
+#: templates/workgroup/page/wiki_edit.html:45
 msgid "Preview"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:47
-#: templates/workgroup/page/wiki_edit.html:69
+#: templates/workgroup/page/wiki_edit.html:49
+#: templates/workgroup/page/wiki_edit.html:71
 msgid "Save changes"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:53
+#: templates/workgroup/page/wiki_edit.html:55
 msgid "Delete article"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:65
+#: templates/workgroup/page/wiki_edit.html:67
 msgid "Back to editor"
 msgstr ""
 
@@ -192,7 +196,7 @@ msgstr ""
 #, python-format
 msgid ""
 "This group uses a mailing list. You can take part in the discussion by "
-"sending an e-mail to the following address: %(workgroup.mailing_list.email)s"
+"sending an e-mail to the following address: %(ml_address)s"
 msgstr ""
 
 #: templates/workgroup/page/workgroup_detail.html:24

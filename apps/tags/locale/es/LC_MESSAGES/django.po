@@ -8,10 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-15 17:36-0500\n"
-"PO-Revision-Date: 2012-10-05 14:54+0000\n"
-"Last-Translator: Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail."
-"com>\n"
+"POT-Creation-Date: 2013-02-26 20:42-0500\n"
+"PO-Revision-Date: 2013-02-15 22:38+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: Spanish <ip-es@lists.imaginationforpeople.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -24,55 +23,54 @@ msgstr ""
 msgid "No Tag found matching \"%s\"."
 msgstr "Ninguna etiqueta coincide con \"%s\"."
 
-#: templates/tags/tag_view.html:18
+#: templates/tags/tag_view.html:14
 #, python-format
 msgid "%(tag)s - thematic community | Imagination For People"
 msgstr "%(tag)s - comunidad temática | Imagination For People"
 
-#: templates/tags/tag_view.html:34
-#, fuzzy
+#: templates/tags/tag_view.html:30
 msgid "Picture from project:"
-msgstr "Proyectos maduros"
+msgstr ""
 
-#: templates/tags/tag_view.html:59
+#: templates/tags/tag_view.html:55
 msgid "Edit this tag's description"
 msgstr ""
 
-#: templates/tags/tag_view.html:76
+#: templates/tags/tag_view.html:72
 msgid "Mature projects"
 msgstr "Proyectos maduros"
 
-#: templates/tags/tag_view.html:77 templates/tags/tag_view.html.py:87
-#: templates/tags/tag_view.html:97 templates/tags/tag_view.html.py:135
+#: templates/tags/tag_view.html:73 templates/tags/tag_view.html.py:83
+#: templates/tags/tag_view.html:93 templates/tags/tag_view.html.py:131
 msgid "See more"
 msgstr "Ver más"
 
-#: templates/tags/tag_view.html:81 templates/tags/tag_view.html.py:91
-#: templates/tags/tag_view.html:101
+#: templates/tags/tag_view.html:77 templates/tags/tag_view.html.py:87
+#: templates/tags/tag_view.html:97
 msgid "No projects"
 msgstr "Ningún projecto"
 
-#: templates/tags/tag_view.html:86
+#: templates/tags/tag_view.html:82
 msgid "Starting projects"
 msgstr "Proyecto en fase inicial"
 
-#: templates/tags/tag_view.html:96
+#: templates/tags/tag_view.html:92
 msgid "Latest modifications"
 msgstr "Modificaciones recientes"
 
-#: templates/tags/tag_view.html:118
+#: templates/tags/tag_view.html:114
 msgid "People"
 msgstr "Gente"
 
-#: templates/tags/tag_view.html:127
+#: templates/tags/tag_view.html:123
 msgid "Be the first to appear here by joining a project!"
 msgstr "¡Únase al projecto y sea el primero en aparecer!"
 
-#: templates/tags/tag_view.html:133
+#: templates/tags/tag_view.html:129
 msgid "New project sheets"
 msgstr "Nuevas fichas de proyecto"
 
-#: templates/tags/tag_view.html:144
+#: templates/tags/tag_view.html:140
 msgid "Add a project in this category"
 msgstr "Añadir un proyecto a esta categoría"
 
@@ -80,28 +78,22 @@ msgstr "Añadir un proyecto a esta categoría"
 msgid "Edit"
 msgstr "Modificar"
 
-#: templates/tags/wiki_edit.html:34
+#: templates/tags/wiki_edit.html:30
 msgid "Preview"
 msgstr "Vista previa"
 
-#: templates/tags/wiki_edit.html:38 templates/tags/wiki_edit.html.py:60
+#: templates/tags/wiki_edit.html:34 templates/tags/wiki_edit.html.py:56
 msgid "Save changes"
 msgstr "Guardar cambios"
 
-#: templates/tags/wiki_edit.html:44
+#: templates/tags/wiki_edit.html:40
 msgid "Delete article"
 msgstr "Borrar artículo"
 
-#: templates/tags/wiki_edit.html:56
+#: templates/tags/wiki_edit.html:52
 msgid "Back to editor"
 msgstr "Volver al editor"
 
 #: templates/tags/block/taglist.html:33
 msgid "edit"
 msgstr "modificar"
-
-#~ msgid "Picture of project: %(picture_project_translations.0.title)s."
-#~ msgstr "Imagen del projecto: %(picture_project_translations.0.title)s."
-
-#~ msgid "read"
-#~ msgstr "leer"

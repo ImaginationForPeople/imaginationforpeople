@@ -6,14 +6,14 @@
 # Translators:
 # Niki Lambropoulos <nikilambropoulos@yahoo.co.uk>, 2012.
 # Slyan  <maire.sylvain@gmail.com>, 2011.
-#   <vanessaner@gmail.com>, 2011, 2012.
+#   <vanessaner@gmail.com>, 2011-2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-15 17:35-0500\n"
-"PO-Revision-Date: 2013-02-09 21:56+0000\n"
-"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"POT-Creation-Date: 2013-02-26 20:41-0500\n"
+"PO-Revision-Date: 2013-02-15 22:37+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
@@ -1034,15 +1034,15 @@ msgstr ""
 "τη δημοσιοποίηση, την ενίσχυση και στην προσαρμογή δημιουργικών λύσεων στις "
 "νέες προκλήσεις της κοινής ζωής μας."
 
-#: templates/base.html:20 templates/pages/homepage.html:22
+#: templates/base.html:20 templates/pages/homepage.html:19
 msgid "identify and support imaginative social projects"
 msgstr "προσδιορίσει και να υποστηρίξει δημιουργικά κοινωνικά έργα"
 
-#: templates/base.html:98
+#: templates/base.html:111
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Ξέρατε ότι Browser σας στο Internet είναι ξεπερασμένος;"
 
-#: templates/base.html:99
+#: templates/base.html:112
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
@@ -1051,11 +1051,11 @@ msgstr ""
 "να μην είναι συμβατό με την ιστοσελίδα μας. Παρακάτω υπάρχει μια λίστα με τα "
 "πιο δημοφιλή προγράμματα περιήγησης στο Web."
 
-#: templates/base.html:100
+#: templates/base.html:113
 msgid "Just click on the icons to get to the download page"
 msgstr "Απλά κάντε κλικ στα εικονίδια για να μεταφερθείτε στην σελίδα λήψης"
 
-#: templates/base.html:101
+#: templates/base.html:114
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
@@ -1063,23 +1063,23 @@ msgstr ""
 "Με το κλείσιμο αυτού του παραθύρου σας πληροφορούμε ότι η εμπειρία σας σε "
 "αυτή την ιστοσελίδα μπορεί να υποβαθμιστεί"
 
-#: templates/base.html:102
+#: templates/base.html:115
 msgid "Close This Window"
 msgstr "Κλείστε αυτό το παράθυρο"
 
-#: templates/base.html:109
+#: templates/base.html:122
 msgid "Enter your email"
 msgstr ""
 
-#: templates/base.html:110
+#: templates/base.html:123
 msgid "Password"
 msgstr ""
 
-#: templates/base.html:112
+#: templates/base.html:125
 msgid "Enter your username"
 msgstr ""
 
-#: templates/base.html:114
+#: templates/base.html:127
 msgid "Enter your email adress"
 msgstr ""
 
@@ -1164,7 +1164,7 @@ msgstr "Τα μηνύματά μου"
 msgid "Edit my profile"
 msgstr "Επεξεργασία του προφίλ μου"
 
-#: templates/header.html:112 templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:111 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr "Αποσύνδεση"
 
@@ -1208,14 +1208,12 @@ msgid "Assigned to"
 msgstr "Ανατέθηκε σε"
 
 #: templates/backcap/feedback_detail.html:131
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                            Posted %(since)s ago by\n"
 "                            "
 msgstr ""
-"\n"
-"Δημοσιεύτηκε %(since)s  πριν από την"
 
 #: templates/backcap/feedback_detail.html:143
 msgid "Followers:"
@@ -1333,14 +1331,12 @@ msgid "Vote against"
 msgstr "Ψηφίστε κατά"
 
 #: templates/backcap/feedback_list.html:126
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                                            Posted %(since)s ago by\n"
 "                                            "
 msgstr ""
-"\n"
-"Δημοσιεύθηκε πριν %(since)s μέρες"
 
 #: templates/backcap/feedback_list.html:136
 msgid "There's no feedback yet."
@@ -1620,7 +1616,7 @@ msgstr "Τελευταίες δραστηριότητες"
 msgid "Latest commits"
 msgstr "Τελευταίες δεσμεύσεις"
 
-#: templates/pages/contrib.html:140 templates/pages/homepage.html:140
+#: templates/pages/contrib.html:140
 msgid "Join the community"
 msgstr "Γίνετε μέλος της κοινότητας"
 
@@ -1628,41 +1624,21 @@ msgstr "Γίνετε μέλος της κοινότητας"
 msgid "News"
 msgstr "Νέα"
 
-#: templates/pages/flatpage.html:40
+#: templates/pages/flatpage.html:36
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr ""
 "Δεν υπάρχει ακόμα περιεχόμενο. Αλλάξτε σε κατάσταση επεξεργασίας και "
 "προσθέστε ένα widget."
 
-#: templates/pages/homepage.html:42
+#: templates/pages/homepage.html:48
 msgid "My project title"
 msgstr ""
 
-#: templates/pages/homepage.html:43
+#: templates/pages/homepage.html:49
 msgid "One line description"
 msgstr ""
 
-#: templates/pages/homepage.html:132
-msgid " What is it ?"
-msgstr ""
-
-#: templates/pages/homepage.html:135
-msgid "Explore and contribute"
-msgstr ""
-
-#: templates/pages/homepage.html:136
-msgid "to social and cultural projects"
-msgstr ""
-
-#: templates/pages/homepage.html:141
-msgid "of citizens from more 30 countries"
-msgstr ""
-
-#: templates/pages/homepage.html:146
-msgid " Detect and develop socially innovative projects."
-msgstr ""
-
-#: templates/pages/onemenu.html:40 templates/pages/onemenu.html.py:47
+#: templates/pages/onemenu.html:36 templates/pages/onemenu.html.py:43
 msgid "MENU"
 msgstr ""
 
@@ -1680,6 +1656,11 @@ msgstr ""
 #: templates/pages/popups_notifications.html:21
 msgid "Popup shown on every project page if present."
 msgstr ""
+
+#: templates/pages/block/homepage-video-lightbox.html:10
+#, fuzzy
+msgid "Close"
+msgstr "Το ζήτημα έχει κλείσει"
 
 #: templates/pages/home-blocks/blog-box.html:4
 msgid "Last posts on blog"
@@ -1781,75 +1762,93 @@ msgstr ""
 msgid "Add a project"
 msgstr "Προσθέστε ένα έργο"
 
+#~ msgid "Project search"
+#~ msgstr "Project search"
+
 #~ msgid "Pin/Unpin the panel"
-#~ msgstr "Επιλογή / Ανάκληση επιλογής στο παράθυρο"
+#~ msgstr "Pin/Unpin the panel"
+
+#~ msgid "Filter results"
+#~ msgstr "Filters"
 
 #~ msgid "Help"
-#~ msgstr "Βοήθεια"
+#~ msgstr "Help"
 
 #~ msgid "Project view"
-#~ msgstr "Προεπισκόπηση έργου"
+#~ msgstr "Project view"
 
 #~ msgid "Clear filters"
-#~ msgstr "Καθαρισμός φίλτρων"
+#~ msgstr "Clear filters"
 
 #~ msgid "invert"
-#~ msgstr "αντιστρέψτε"
+#~ msgstr "invert"
 
 #~ msgid "%(count)s project sheets"
-#~ msgstr "%(count)s φύλλα έργου"
+#~ msgstr "%(count)s project sheets"
 
 #~ msgid "Location"
-#~ msgstr "Τοποθεσία"
+#~ msgstr "Location"
 
 #~ msgid "Categories"
-#~ msgstr "Κατηγορίες"
+#~ msgstr "Categories"
 
 #~ msgid "Sheet Status"
-#~ msgstr "Κατάσταση σελίδας"
+#~ msgstr "Sheet Status"
 
 #~ msgid "Best-of"
-#~ msgstr "Τα καλύτερα"
+#~ msgstr "Best-of"
 
 #~ msgid "Popular project"
-#~ msgstr "Δημοφιλές έργο"
+#~ msgstr "Popular project"
 
 #~ msgid "best-of"
 #~ msgstr "best-of"
 
 #~ msgid "progression"
-#~ msgstr "εξέλιξη"
+#~ msgstr "progression"
 
 #~ msgid "Associated team"
-#~ msgstr "Συνεργαζόμενη ομάδα"
+#~ msgstr "Associated team"
 
 #~ msgid "Orphan project"
-#~ msgstr "ορφανό έργο"
+#~ msgstr "Orphan project"
 
 #~ msgid "team"
-#~ msgstr "ομάδα"
+#~ msgstr "team"
 
 #~ msgid "Project Status"
-#~ msgstr "Κατάσταση Έργου"
+#~ msgstr "Project Status"
 
 #~ msgid ""
 #~ "A community of imaginative citizens to detect and develop socially "
 #~ "innovative projects."
 #~ msgstr ""
-#~ "Μια κοινότητα με οραματιστές πολίτες που ανακαλύπτουν και αναπτύσσουν "
-#~ "καινοτόμα κοινωνικά έργα."
+#~ "A community of imaginative citizens to detect and develop socially "
+#~ "innovative projects."
+
+#~ msgid "Read the manifesto"
+#~ msgstr "Read the manifesto"
+
+#~ msgid "About IP"
+#~ msgstr "About IP"
+
+#~ msgid "Follow us"
+#~ msgstr "Follow us"
+
+#~ msgid "Follow us on"
+#~ msgstr "Follow us on"
 
 #~ msgid "Project"
-#~ msgstr "Έργο"
+#~ msgstr "Project"
 
 #~ msgid "History"
-#~ msgstr "Ιστορία"
+#~ msgstr "History"
 
 #~ msgid "other languages"
-#~ msgstr "άλλες γλώσσες"
+#~ msgstr "other languages"
 
 #~ msgid "create a new translation"
-#~ msgstr "δημιουργήσετε μια νέα μετάφραση"
+#~ msgstr "create a new translation"
 
 #~ msgid "Enter your login"
 #~ msgstr "Enter your login"

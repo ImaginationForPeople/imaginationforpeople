@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-15 17:35-0500\n"
+"POT-Creation-Date: 2013-02-26 20:41-0500\n"
 "PO-Revision-Date: 2012-05-14 09:01+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1029,15 +1029,15 @@ msgstr ""
 "detect, publicize, amplify and adapt creative solutions to the new "
 "challenges of living together."
 
-#: templates/base.html:20 templates/pages/homepage.html:22
+#: templates/base.html:20 templates/pages/homepage.html:19
 msgid "identify and support imaginative social projects"
 msgstr "identify and support imaginative social projects"
 
-#: templates/base.html:98
+#: templates/base.html:111
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Did you know that your Internet Browser is out of date?"
 
-#: templates/base.html:99
+#: templates/base.html:112
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
@@ -1045,11 +1045,11 @@ msgstr ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
 
-#: templates/base.html:100
+#: templates/base.html:113
 msgid "Just click on the icons to get to the download page"
 msgstr "Just click on the icons to get to the download page"
 
-#: templates/base.html:101
+#: templates/base.html:114
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
@@ -1057,24 +1057,24 @@ msgstr ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
 
-#: templates/base.html:102
+#: templates/base.html:115
 msgid "Close This Window"
 msgstr "Close This Window"
 
-#: templates/base.html:109
+#: templates/base.html:122
 #, fuzzy
 msgid "Enter your email"
 msgstr "Enter your email adress"
 
-#: templates/base.html:110
+#: templates/base.html:123
 msgid "Password"
 msgstr "Password"
 
-#: templates/base.html:112
+#: templates/base.html:125
 msgid "Enter your username"
 msgstr "Enter your username"
 
-#: templates/base.html:114
+#: templates/base.html:127
 msgid "Enter your email adress"
 msgstr "Enter your email adress"
 
@@ -1162,7 +1162,7 @@ msgstr "My messages"
 msgid "Edit my profile"
 msgstr "Edit my profile"
 
-#: templates/header.html:112 templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:111 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr "Log out"
 
@@ -1626,7 +1626,7 @@ msgstr "Latest activities"
 msgid "Latest commits"
 msgstr "Latest commits"
 
-#: templates/pages/contrib.html:140 templates/pages/homepage.html:140
+#: templates/pages/contrib.html:140
 msgid "Join the community"
 msgstr "Join the community"
 
@@ -1634,43 +1634,19 @@ msgstr "Join the community"
 msgid "News"
 msgstr "News"
 
-#: templates/pages/flatpage.html:40
+#: templates/pages/flatpage.html:36
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr "There is no content yet. Switch to edit mode and add a widget."
 
-#: templates/pages/homepage.html:42
+#: templates/pages/homepage.html:48
 msgid "My project title"
 msgstr "My project title"
 
-#: templates/pages/homepage.html:43
+#: templates/pages/homepage.html:49
 msgid "One line description"
 msgstr "One line description"
 
-#: templates/pages/homepage.html:132
-msgid " What is it ?"
-msgstr ""
-
-#: templates/pages/homepage.html:135
-msgid "Explore and contribute"
-msgstr ""
-
-#: templates/pages/homepage.html:136
-msgid "to social and cultural projects"
-msgstr ""
-
-#: templates/pages/homepage.html:141
-#, fuzzy
-msgid "of citizens from more 30 countries"
-msgstr "Connect with a community of citizens from over 30 countries."
-
-#: templates/pages/homepage.html:146
-#, fuzzy
-msgid " Detect and develop socially innovative projects."
-msgstr ""
-"A community of imaginative citizens to detect and develop socially "
-"innovative projects."
-
-#: templates/pages/onemenu.html:40 templates/pages/onemenu.html.py:47
+#: templates/pages/onemenu.html:36 templates/pages/onemenu.html.py:43
 msgid "MENU"
 msgstr ""
 
@@ -1688,6 +1664,11 @@ msgstr ""
 #: templates/pages/popups_notifications.html:21
 msgid "Popup shown on every project page if present."
 msgstr ""
+
+#: templates/pages/block/homepage-video-lightbox.html:10
+#, fuzzy
+msgid "Close"
+msgstr "close"
 
 #: templates/pages/home-blocks/blog-box.html:4
 msgid "Last posts on blog"
@@ -1788,6 +1769,16 @@ msgstr "Add"
 #: templates/pages/home-blocks/slider.html:49
 msgid "Add a project"
 msgstr "Add a project"
+
+#, fuzzy
+#~ msgid "of citizens from more 30 countries"
+#~ msgstr "Connect with a community of citizens from over 30 countries."
+
+#, fuzzy
+#~ msgid " Detect and develop socially innovative projects."
+#~ msgstr ""
+#~ "A community of imaginative citizens to detect and develop socially "
+#~ "innovative projects."
 
 #~ msgid "Project search"
 #~ msgstr "Project search"
