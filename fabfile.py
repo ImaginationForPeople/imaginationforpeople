@@ -286,9 +286,9 @@ def app_fullupdate():
     """
     execute(updatemaincode)
     execute(compile_messages)
+    execute(update_compass)
     execute(compile_stylesheets)
     execute(update_requirements, force=False)
-    execute(update_compass)
     execute(app_db_update)
     execute(collect_static_files)
     # tests()
