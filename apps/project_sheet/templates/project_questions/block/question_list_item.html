@@ -5,7 +5,9 @@
 {% endblock %}
     <div class="wrap_question_description">
         <h2>
-            <a href="{{thread.projectsupport_set.all.0.get_absolute_url}}" title="{{thread.title}}">{{thread.title}}</a>
+        	{% block thread_anchor %}
+            <a href="{{thread.get_absolute_url}}" title="{{thread.title}}">{{thread.title}}</a>
+            {% endblock %}
         </h2>
         <p>{{question.summary|escape}}</p>
 

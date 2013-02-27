@@ -777,11 +777,11 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
     jinja2_rendering=False
     
     def get_context_data(self, **kwargs):
-        context = QuestionsView.get_context_data(self, **kwargs)
         
         project_translation= self.get_project_translation(kwargs["project_slug"])
-    
         self.questions_url=reverse('project_discussion_list', args=[project_translation.slug])
+        
+        context = QuestionsView.get_context_data(self, **kwargs)
         
         threads = project_translation.project.discussions.filter(language_code=self.language_code)
         self.thread_ids=threads.values_list('id', flat=True)
