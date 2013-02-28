@@ -20,6 +20,7 @@ from askbot.models.user import Activity
 from askbot.views.readers import QuestionsView
 
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -239,7 +240,6 @@ class GroupDiscussionListView(QuestionsView):
     View to list the discussions (forum threads) linked to the current group
     """
     template_name="workgroup/page/workgroup_discuss_list.html"
-    #is_specific=False
     jinja2_rendering=False
     #questions_url=None
 
@@ -257,13 +257,13 @@ class GroupDiscussionListView(QuestionsView):
             for post in thread.posts.all():
                 activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
         activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
-        print "======", threads
+        print "==="
         context.update({
              'active_tab' : 'discuss',
              'activities' : activities,
              'workgroup' : workgroup,
              'threads' : threads, 
-             #'feed_url': reverse('project_discussion_list', args=[project_translation.slug])+"#TODO_RSS",
+             'feed_url': reverse('workgroup-discussion', args=[workgroup.slug])+"#TODO_RSS",
         })
     
         return context

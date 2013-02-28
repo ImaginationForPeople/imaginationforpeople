@@ -1,0 +1,89 @@
+{% extends "workgroup/layout/workgroup_base.html" %}
+{% load i18n extra_tags support_tags humanize%}
+{% load sekizai_tags %}
+
+{% load wiki_tags %}
+{% load tagging_tags %}
+{% load comments %}
+{% load admin_urls %}
+{% load guardian_tags %}
+{% load thumbnail %}
+
+{% block content %}
+{{block.super}}
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_searchbar.css" />
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tabbar.css" />-->
+<!--- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" /> -->
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" /> -->
+<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />-->
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
+{% endaddtoblock %}
+{% addtoblock "css" %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_members.css" />
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/utils.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#queryForm input:submit').hide();
+	$("#queryForm").submit(function(){
+		var url = $(this).attr("action");
+		url = QSutils.patch_query_string(url, "query:"+$(this).find("input[name=query]").val());
+		window.location.replace("{%url workgroup-discussion workgroup.slug %}" + url);
+		return false;
+	});
+	
+	$("a.remove-tag-search").click(function(){
+		var url = $(this).attr("href");
+		url = QSutils.remove_search_tag(url, $(this).attr("data-tag-name"));
+		window.location.replace("{%url workgroup-discussion workgroup.slug %}" + url);
+		return false
+	});
+	
+	$("a.remove-query-search").click(function(){
+        var url = $(this).attr("href");
+        url = QSutils.patch_query_string(url, "query:"+$(this).attr("data-tag-name"), true);
+        window.location.replace("{%url workgroup-discussion workgroup.slug %}" + url);
+        return false
+    });
+});
+</script>
+{% endaddtoblock %}
+
+<div class="container" id="workgroup-detail">      
+    {% include "workgroup/block/workgroup_header.html" %}
+    <div class="row">
+        <div class="span8 project-main">
+            <!--TODO: FIXME<h2 class="title">{% trans "Filter"|upper %}</h2>
+            <div id="categorySearch">
+                <div class="form">
+                    <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
+                        <input type="text" name="query" placeholder="{% trans 'Enter a keyword' %}"/>
+                        <input type="submit">
+                    </form>
+                </div>
+            </div>
+            {% if search_tags or query %}
+            <ul class="search-tags">
+                {% if query %}
+                <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}">X</a></li>
+                {% endif %}
+                {% for tag in search_tags %}
+                <li>{{tag}}<a class="remove-tag-search" data-tag-name="{{tag}}" href="{{search_state.full_url}}">X</a></li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div>
+            {% include_jinja "main_page/tab_bar.html" request %}
+            </div>-->
+            {% include "workgroup/block/question_list.html" %}
+        </div>
+    </div>
+    
+</div>
+{% endblock %}
