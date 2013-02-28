@@ -46,10 +46,6 @@ $(document).ready(function(){
 {% endaddtoblock %}
 {% endblock %}
 
-{% block misc_toolbar %}
-    {% include "project_support/block/support_toolbar.html" %}
-{% endblock %}
-
 {% block project_content %}
 <div class="container">        
     <div class="row">
@@ -62,10 +58,6 @@ $(document).ready(function(){
                         <input type="submit">
                     </form>
                 </div>
-                <div class="middle">
-                    {% trans "or"%}
-                </div>
-                {% include "project_support/block/support_categories_menu.html" %}
             </div>
             {% if search_tags or query %}
             <ul class="search-tags">
@@ -80,7 +72,7 @@ $(document).ready(function(){
             <div>
             {% include_jinja "main_page/tab_bar.html" request %}
             </div>
-            {% include "project_support/block/question_list.html" %}
+            {% include "project_questions/block/question_list.html" %}
         </div>
 
         <div class="span4 project-sidebar"> 
