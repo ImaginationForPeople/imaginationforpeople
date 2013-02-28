@@ -1,55 +1,19 @@
 @import "i4p-mixins";
 @import "i4p/constants";
+@import "i4p/fonts";
 
 .nav-white {
     background-color: black;
     height:0px !important;
 }
 
-.block-content {
-	ul {
-		li {
-			list-style-type: square;
-			margin-left: 25px;
-			padding: 0;
-			display: list-item;
-			}
-	}
-
-}
-
-.left-menu {
-	
-	font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	font-size:13px;
-		
-	ul  {
-		li {
-			list-style-type: square;
-			margin-left: 19px;
-			display: list-item;
-			}
-		}
-	h1 {
-		font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
-		font-size: 17px;
-		text-transform: uppercase;
-		font-style: normal;
-		font-weight: bold;
-		margin: 7px 0px;
-		color: #5A5959 !important;
-		margin-left:10px;
-		}
-}
-
 .grid_14 {
 	margin-left: 30px !important;
 }
 
-.content {
-	
-	background-color: white;
+.content {	
+	font-family: $fontOpenSans;
+	background-color: $colorWhite;
 	background-image: none;
 	color: #424242 !important;
 	
@@ -57,42 +21,109 @@
         color: $colorLightBlue;
     }
 
+    a:hover {
+    	text-decoration:underline;
+    	color: $colorDarkBlue;
+    }
+
     h1{
         border-bottom:1px solid grey;
-		font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
-		font-size: 17px;
+		font-family: $fontOpenSans;
+		font-size: 1.7rem;
 		text-transform: uppercase;
 		font-style: normal;
 		font-weight: bold;
 		margin: 7px 0px;
 		color: #5A5959;
+		font-stretch:condensed;
     }
 
     h2{
-        font-size:15px;
-        font-family: "OpenSansSemibold_obsolete", Arial, Helvetica, sans-serif;
-        color:#5A5959 
+        font-size:1.6rem;
+        margin: 7px 0px;
+        font-stretch:condensed;
     }
 
     h3{
-        font-size:10px;
+        font-size:1.4rem;
+        margin: 5px 0px;
+    }
+
+    h4 {
+    	font-size:1.3rem;
+    	margin: 5px 0px;
     }
 
     p{
-        font-size:12px;
+        font-size:1.2rem;
         text-align:justify;
-        line-height:17px;
-        margin-right:30px;
-		margin-left: 0px;
+        line-height:1.7rem;
+		font-family: $fontOpenSans;
 	}
 
     hr{
-        margin-top:20px;
-        margin-bottom:20px;
+        margin:15px 0;
         background-image:url("../../images/base/separator.jpg");
         background-repeat:repeat-x;
         border:0px;
-        height:2px;
+        height:1px;
+    }
+
+    dd {
+    	margin-bottom:5px;
+    }
+
+    ul {
+    	list-style: disc outside none;
+    	margin: 0 0 9px 12px;
+
+    	ul {
+    		margin-bottom:0;
+    		list-style: circle outside none;
+    	}
+    }
+
+    ol {
+    	margin: 0 0 9px 17px;
+
+    	ol {
+    		margin-bottom:0;
+    	}
+    }
+
+    blockquote {
+    	p {
+    		margin-bottom:2px;
+    		font-style:italic;
+    		padding-right:30px;
+    	}
+    }
+
+    /* Form contact */
+
+    form {
+    	label {
+    		float:left;
+    		width:20%;
+    		font-family: $fontOpenSans;
+    		font-size:1.2rem;
+    		line-height:25px;
+    		padding:0 15px 0 0;
+    		text-align:right;
+    	}
+
+    	input[type="text"] {
+    		width:50%;
+    	}
+
+    	textarea {
+    		width:50%;
+    		height:100px;
+    	}
+
+    	input[type="submit"] {
+    		margin:0 0 0 22%;
+    	}
     }
 }
 
