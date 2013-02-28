@@ -15,26 +15,30 @@ $toolbar-sprite-dimensions: true;
   clear: both;
   height: 65px;
   .row > ul {
+    display: table;
     margin-left:0;
     border-left:1px solid #000;
+    
   }
   .row > ul > li {
+    display: table-cell;
+    vertical-align: middle;
     border-collapse: collapse;
     border-left: 1px solid #575757;
     border-right: 1px solid #000;
-    display: block;
-    float: left;
-    font-family: "OpenSans",Arial,Helvetica,sans-serif;
-    font-size: 1.25rem;
+    @include i4p-font-base($sizeTextBig);
     font-weight: bold;
     font-stretch:condensed;
     margin: 0;
-    padding: 20px 10px 20px 20px;
+    padding: 10px 10px 10px 20px;
     position: relative;
     text-transform: uppercase;
     color: white;
-    height:25px;
-    line-height:25px;
+    height:45px;
+    
+    .badge {
+        float: right;
+    }
 
     &.call {
       background: image-url('project_support/toolbar/help-call.png') no-repeat 15px center;
@@ -47,14 +51,13 @@ $toolbar-sprite-dimensions: true;
      &.right {
       background: image-url('project_support/toolbar/add-help.png') no-repeat 15px center;
       padding-left:80px;
-      line-height:1.6rem;
       border-right:0;
     }
   }
   a.propose-link {
     color: $colorLinkGreen;
-    display:block;
-    width:80%;
+    /* display:block;
+    width:80%; */
     &:hover {
       color: $colorLightGreen;
       text-decoration:none;
@@ -63,6 +66,6 @@ $toolbar-sprite-dimensions: true;
   .badge {
     background:white;
     color:$colorMedDarkGrey;
-    margin:0 5px 0 28px;
+    margin:10px 5px 10px 28px;
   }
 }
