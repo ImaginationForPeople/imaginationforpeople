@@ -9,8 +9,8 @@
     <div class="container">
         <div class="row">
             <ul class="span12">
-                <li class="call">{% trans 'Project needs'%} <span class="badge">{{ call_count }}</span></li>
-                <li class="prop">{% trans 'Help from the community' %} <span class="badge">{{ prop_count }}</span></li>
+                <li class="call"><span class="badge">{{ call_count }}</span>{% trans 'Project needs'%} </li>
+                <li class="prop"><span class="badge">{{ prop_count }}</span>{% trans 'Help from the community' %} </li>
                 <li class="right">
                     <a class="propose-link" 
                        {% if request.user.is_authenticated %}
