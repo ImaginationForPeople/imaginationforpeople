@@ -60,7 +60,7 @@ $(document).ready(function(){
     {% include "workgroup/block/workgroup_header.html" %}
     <div class="row">
         <div class="span8 project-main">
-            <!--TODO:FIXME<h2 class="title">{% trans "Filter"|upper %}</h2>                       
+           <h2 class="title">{% trans "Filter"|upper %}</h2>                       
             <div id="categorySearch">
                 <div class="form">
                     <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
@@ -79,7 +79,7 @@ $(document).ready(function(){
                 {% endfor %}
             </ul>
             {% endif %}
-            -->
+            
             <div>
             {% include_jinja "main_page/tab_bar.html" request %}
             </div>
