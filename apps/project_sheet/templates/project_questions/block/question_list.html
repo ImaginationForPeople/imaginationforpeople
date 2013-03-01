@@ -7,7 +7,7 @@
 <div id="support-list">
     <ul id="question-list">
     {% for thread in threads.object_list %}
-         {% include "project_support/block/question_list_item.html" with question=thread.question %}
+         {% include "project_questions/block/question_list_item.html" with question=thread.question %}
     {% endfor %}
     </ul>
 </div>
