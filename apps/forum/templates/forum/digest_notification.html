@@ -1,0 +1,20 @@
+<p>{% trans username=name %}Dear {{ username }},{% endtrans %}</p>
+
+<p>
+{% trans num=num %}
+The following question has been updated {{sitename}}:
+{% pluralize %}
+The following {{num}} questions have been updated on {{sitename}}:
+{% endtrans %} 
+</p>   
+             
+<ul>	
+{{action_list}}	
+</ul>
+<br />
+
+<p>If you believe that this message was sent in an error, 
+please email about it the forum administrator at {{admin_email}}.
+{% endtrans %}</p>
+<p>{% trans %}Sincerely,{% endtrans %}</p>
+<p>{% trans %}Your friendly {{sitename}} server.{% endtrans %}</p>
