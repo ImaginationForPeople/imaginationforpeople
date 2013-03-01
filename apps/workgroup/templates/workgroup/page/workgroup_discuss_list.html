@@ -13,10 +13,6 @@
 {{block.super}}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_searchbar.css" />
-<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tabbar.css" />-->
-<!--- <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_tags.css" /> -->
-<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_question_list.css" /> -->
-<!--<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support.css" />-->
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
@@ -24,6 +20,10 @@
 {% endaddtoblock %}
 {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_members.css" />
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_questions/page/questions_search.css" />
 {% endaddtoblock %}
 
 {% addtoblock "js" %}
@@ -34,6 +34,7 @@ $(document).ready(function(){
 	$("#queryForm").submit(function(){
 		var url = $(this).attr("action");
 		url = QSutils.patch_query_string(url, "query:"+$(this).find("input[name=query]").val());
+		console.log(url);
 		window.location.replace("{%url workgroup-discussion workgroup.slug %}" + url);
 		return false;
 	});
@@ -59,7 +60,7 @@ $(document).ready(function(){
     {% include "workgroup/block/workgroup_header.html" %}
     <div class="row">
         <div class="span8 project-main">
-            <!--TODO: FIXME<h2 class="title">{% trans "Filter"|upper %}</h2>
+           <h2 class="title">{% trans "Filter"|upper %}</h2>                       
             <div id="categorySearch">
                 <div class="form">
                     <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
@@ -78,10 +79,15 @@ $(document).ready(function(){
                 {% endfor %}
             </ul>
             {% endif %}
+            
             <div>
             {% include_jinja "main_page/tab_bar.html" request %}
-            </div>-->
-            {% include "workgroup/block/question_list.html" %}
+            </div>
+            {% include "project_questions/block/question_list.html" %}
+        </div>
+        <!-- INTEGRATION NEEDED -->
+        <div class="span4 project-sidebar"> 
+            {% include "project_questions/block/questions_activities.html" %}
         </div>
     </div>
     
