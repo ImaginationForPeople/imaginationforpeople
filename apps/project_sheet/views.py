@@ -772,19 +772,19 @@ class ProjectRecentChangesView(TemplateView):
 
 
 class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView): 
-    template_name="project_sheet/page/project_discuss_list.html"
-    is_specific=False
-    jinja2_rendering=False
+    template_name = "project_sheet/page/project_discuss_list.html"
+    is_specific = False
+    jinja2_rendering = False
     
     
     def get_context_data(self, **kwargs):
         language_code = translation.get_language()
         
-        project_translation= self.get_project_translation(kwargs["project_slug"])
-        self.questions_url=reverse('project_discussion_list', args=[project_translation.slug])
+        project_translation = self.get_project_translation(kwargs["project_slug"])
+        self.questions_url = reverse('project_discussion_list', args=[project_translation.slug])
         
         threads = project_translation.project.discussions.filter(language_code=language_code)
-        self.thread_ids=threads.values_list('id', flat=True)
+        self.thread_ids = threads.values_list('id', flat=True)
         
         context = QuestionsView.get_context_data(self, **kwargs)
     
@@ -803,9 +803,3 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
         })
     
         return context
-        
-         
-                     
-                     
-
-

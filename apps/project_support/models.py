@@ -21,7 +21,3 @@ class ProjectSupport(models.Model):
         if not self.thread.is_specific:
             self.thread.is_specific = True
             self.thread.save()
-            setattr(self.thread, 
-                    "get_absolute_url", 
-                    reverse("project_support_view", args=[self.project_translation.slug, 
-                                                          self.thread.question.id]))

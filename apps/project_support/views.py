@@ -21,15 +21,15 @@ from askbot.search.state_manager import SearchState
 from apps.project_sheet.views import CurrentProjectTranslationMixin
     
 class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
-    template_name="project_support/project_support_list.html"
-    is_specific=True
-    jinja2_rendering=False
+    template_name = "project_support/project_support_list.html"
+    is_specific = True
+    jinja2_rendering = False
     
     def get_context_data(self, **kwargs):
         project_translation = self.get_project_translation(kwargs["project_slug"])
         
-        self.questions_url=reverse('project_support_main', args=[project_translation.slug])
-        self.ask_url=reverse('project_support_propose', args=[project_translation.slug])
+        self.questions_url = reverse('project_support_main', args=[project_translation.slug])
+        self.ask_url = reverse('project_support_propose', args=[project_translation.slug])
         
         context = QuestionsView.get_context_data(self, **kwargs)
         
