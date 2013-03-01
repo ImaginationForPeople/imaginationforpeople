@@ -30,7 +30,7 @@
       <strong><span>{{ workgroup.subscribers.all|length}}</span> 
 	{% if workgroup.mailing_list %}
 	{% blocktrans with workgroup.subscribers.all|length|pluralize as member_plural and ml_nonmember_list|length as nonmember_count %}
-	member{{ member_plural|add:nonmember_count }} ({{ nonmember_count anonymous }})
+	member{{ member_plural|add:nonmember_count }}
 	{% endblocktrans %}
 	{% else %}
 	{% blocktrans with workgroup.subscribers.all|length|pluralize as member_plural %}
