@@ -45,7 +45,7 @@ urlpatterns = patterns('',
             r'(%s)?' % r'/page:(?P<page>\d+)' +
         r'/$'),
 
-        views.readers.questions, 
+        views.readers.QuestionsView.as_view(), 
         name='questions'
     ),
 

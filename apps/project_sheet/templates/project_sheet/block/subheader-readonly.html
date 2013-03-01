@@ -20,7 +20,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 <div class="span8 subheader">
 	<div class="background">
 		{% comment %} FIXME: cover image is simply the first of the list, not a special/selected one {% endcomment %}
+        {% if project_translation.project.pictures.count %}
 		<img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+        {% endif %}
 	</div>
 	<div class="overlay">
 		<h1 class="title"> <!-- TITLE -->

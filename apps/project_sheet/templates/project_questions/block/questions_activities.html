@@ -2,14 +2,14 @@
 {% load sekizai_tags %}
 
 {% addtoblock "css" %}
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/block/support_activities.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_questions/block/questions_activities.css" />
 {% endaddtoblock %}
 
 <div class="clearfix support-activities">
     <h2><i class="sheet-activities"></i>{% trans "Activity"|capfirst %}</h2>
     <ul id="all-support-activities">
         {% for activity in activities %}
-            {% include "project_support/block/support_activities_item.html" %}
+            {% include "project_questions/block/questions_activities_item.html" %}
         {% endfor %}
     </ul> 
 </div>
