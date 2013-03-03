@@ -6,10 +6,9 @@ from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import redirect, render_to_response
 from django.template.context import RequestContext
 from django.utils import translation
-from django.views.generic.base import TemplateView
 
 from askbot.models import Thread, Activity, Post
-from askbot.views.readers import question, questions
+from askbot.views.readers import question, QuestionsView
 from askbot.views.writers import answer, edit_answer
 
 from apps.project_sheet.models import I4pProjectTranslation
@@ -19,68 +18,44 @@ from apps.project_support.forms import ProjectSupportProposalForm
 from apps.project_support.models import ProjectSupport
 from apps.tags.models import TaggedCategory
 from askbot.search.state_manager import SearchState
-from askbot.templatetags.extra_filters_jinja import get_empty_search_state
+from apps.project_sheet.views import CurrentProjectTranslationMixin
     
-def list_project_support(request, 
-                         project_slug,
-                         scope=None, 
-                         sort=None, 
-                         query=None, 
-                         tags=None, 
-                         author=None, 
-                         page=None):
-    language_code = translation.get_language()
-    site = Site.objects.get_current()
+class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
+    template_name = "project_support/project_support_list.html"
+    is_specific = True
+    jinja2_rendering = False
+    
+    def get_context_data(self, **kwargs):
+        project_translation = self.get_project_translation(kwargs["project_slug"])
         
-    try:
-        project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=project_slug,
-                                            prefered_language_code=language_code,
-                                            site=site)
+        self.questions_url = reverse('project_support_main', args=[project_translation.slug])
+        self.ask_url = reverse('project_support_propose', args=[project_translation.slug])
         
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
-
-    if project_translation.language_code != language_code:
-        return redirect(project_translation, permanent=False)
-
-    project = project_translation.project
-    
-    thread_ids = project_translation.projectsupport_set.values_list('thread', flat=True)
-    threads = Thread.objects.filter(id__in=thread_ids)
-    
-    prop_count = project_translation.projectsupport_set.filter(type="PROP").count()
-    call_count = project_translation.projectsupport_set.filter(type="CALL").count()
-    
-    activity_ids = []
-    for thread in threads:
-        for post in thread.posts.all():
-            activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
-    activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
-    
-    extra_context = {
-         'project' : project,
-         'project_translation' : project_translation,
-         'active_tab' : 'support',
-         'prop_count' : prop_count,
-         'call_count' : call_count,
-         'activities' : activities,
-         'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
-         'feed_url': reverse('project_support_main', args=[project_translation.slug])+"#TODO_RSS",
-    }
-    
-    return questions(request, 
-                     template_name="project_support/project_support_list.html", 
-                     thread_ids=thread_ids,
-                     jinja2_rendering=False,
-                     extra_context=extra_context,
-                     questions_url=reverse('project_support_main', args=[project_translation.slug]),
-                     ask_url=reverse('project_support_propose', args=[project_translation.slug]),
-                     scope=scope, 
-                     sort=sort, 
-                     query=query,
-                     tags=tags, 
-                     author=author,
-                     page=page)
+        context = QuestionsView.get_context_data(self, **kwargs)
+        
+        self.thread_ids = project_translation.projectsupport_set.values_list('thread', flat=True)
+        threads = Thread.objects.filter(id__in=self.thread_ids)
+        
+        prop_count = project_translation.projectsupport_set.filter(type="PROP").count()
+        call_count = project_translation.projectsupport_set.filter(type="CALL").count()
+        
+        activity_ids = []
+        for thread in threads:
+            for post in thread.posts.all():
+                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
+        
+        context.update({
+             'project' : project_translation.project,
+             'project_translation' : project_translation,
+             'active_tab' : 'support',
+             'prop_count' : prop_count,
+             'call_count' : call_count,
+             'activities' : activities,
+             'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
+             'feed_url': reverse('project_support_main', args=[project_translation.slug])+"#TODO_RSS",
+        })
+        return context
     
 def propose_project_support(request, project_slug, question_id=None):
 
