@@ -42,3 +42,10 @@
     </div>
   </div>
 </div>
+<div id="workgroup-menubar">
+	<ul>
+		<li><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Description" %}</a></li>
+		<li><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Discussions" %}</a></li>
+		<li><a href="#">{% trans "Workgroup projects" %}</a></li>
+	</ul>
+</div>

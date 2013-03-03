@@ -1,0 +1,21 @@
+{% load i18n %}
+{% load comments %}
+
+<div class="box project_workgroups">
+	<h2>{% trans %}Related Groups{% endtrans %}</h2>
+	
+	<ul>
+		{% for group in thread.workgroups.all() %}
+			<li>
+				<a href="{% url workgroup-detail group.slug %}">
+					<div>
+						<span>{{ group.name }}</span>
+						<p>
+							{{ group.description|urlize }}
+						</p>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
