@@ -15,12 +15,12 @@
 			
 				<li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
 				<li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}"><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
-                <li class="{% iftab 'discuss' 'discuss' %}active{% endiftab %}">
+                <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %}">
                     <a href="{% url project_discussion_list project_translation.slug %}">
                     {% trans "Discussion" %}
                     </a>
                </li>
-                <li class="{% iftab 'support' 'support' %}active{% endiftab %}">
+                <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %}">
                     <a href="{% url project_support_main project_translation.slug %}">
                     {% trans "Needs" %}
                     <span class="badge">{{project_translation.projectsupport_set.count }}</span>
