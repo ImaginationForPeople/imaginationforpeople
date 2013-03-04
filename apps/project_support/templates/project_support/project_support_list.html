@@ -1,6 +1,13 @@
 {% extends "project_sheet/layout/project_base.html" %}
 {% load i18n extra_tags support_tags humanize%}
 {% load sekizai_tags %}
+{% load tabs %}
+
+
+{% block navigation %}
+{% tab 'project_sheet' 'support' %}
+{{ block.super }}
+{% endblock %}
 
 {% block content %}
 {{block.super}}

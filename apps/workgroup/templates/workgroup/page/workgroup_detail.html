@@ -7,8 +7,12 @@
 {% load admin_urls %}
 {% load sekizai_tags %}
 {% load guardian_tags %}
+{% load tabs %}
+
+
 
 {% block content %}
+   {% tab 'workgroup' 'description' %}
 
     {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />

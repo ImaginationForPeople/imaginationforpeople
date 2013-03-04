@@ -8,8 +8,11 @@
 {% load admin_urls %}
 {% load guardian_tags %}
 {% load thumbnail %}
+{% load tabs %}
 
 {% block content %}
+   {% tab 'workgroup' 'discussion' %}
+
 {{block.super}}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_searchbar.css" />
@@ -60,15 +63,6 @@ $(document).ready(function(){
     {% include "workgroup/block/workgroup_header.html" %}
     <div class="row">
         <div class="span8 project-main">
-           <h2 class="title">{% trans "Filter"|upper %}</h2>                       
-            <div id="categorySearch">
-                <div class="form">
-                    <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
-                        <input type="text" name="query" placeholder="{% trans 'Enter a keyword' %}"/>
-                        <input type="submit">
-                    </form>
-                </div>
-            </div>
             {% if search_tags or query %}
             <ul class="search-tags">
                 {% if query %}
