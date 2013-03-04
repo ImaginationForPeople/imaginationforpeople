@@ -13,13 +13,8 @@ $(document).ready(function(){
                 $('#toppanel #panel').stop().animate({height : '0'}, 100);
             } 
         }); 
-
         
     });
-    
-		    
-    $('.tipsed').tipsy({gravity: $.fn.tipsy.autoNS, delayIn: 300});
-
     // Support panel
     $('#feedback').slidePanel({
         triggerName: '#feedback-trigger',
