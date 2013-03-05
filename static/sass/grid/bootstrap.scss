@@ -34,6 +34,10 @@ body {
 .modal-backdrop {
     @include ctb-opacity(40);
 }
+
+li {
+    line-height: inherit; /* bootstrap uses 20px, regardless of font size */
+}
 // BOOTSTRAP FIX PATH TO ICONS
 
 [class^="icon-"], [class*=" icon-"] {
