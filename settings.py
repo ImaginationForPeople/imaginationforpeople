@@ -577,7 +577,7 @@ LOGGING = {
             'class': 'raven.contrib.django.handlers.SentryHandler',
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         }

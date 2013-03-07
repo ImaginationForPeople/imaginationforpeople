@@ -3,6 +3,9 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = True
+# Un-comment this to test static files, javascript and css compression, and 
+# 404 and 500 pages locally:
+#COMPRESS_ENABLED = True 
 
 DATABASES = {
     'default': {

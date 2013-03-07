@@ -1,6 +1,7 @@
 {% load guardian_tags %}
 {% load thumbnail %}
 {% load i18n %}
+{% load tabs %}
 
 {% if workgroup.picture %}
 <img src="{% thumbnail workgroup.picture 960x300 crop %}"/>
@@ -41,4 +42,11 @@
       <a href="{% url workgroup-members workgroup.slug %}">{% trans "See all" %}</a>
     </div>
   </div>
+</div>
+<div id="workgroup-menubar">
+	<ul>
+		<li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Description" %}</a></li>
+		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Discussions" %}</a></li>
+		<!-- <li><a href="#">{% trans "Workgroup projects" %}</a></li> -->
+	</ul>
 </div>
