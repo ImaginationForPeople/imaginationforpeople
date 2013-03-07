@@ -83,7 +83,10 @@ $(document).ready(function(){
             {% include "project_questions/block/question_list.html" %}
         </div>
         <!-- INTEGRATION NEEDED -->
-        <div class="span4 project-sidebar"> 
+        <div class="span4 project-sidebar">            
+            {% if request.user.is_staff and perms.workgroup.change_workgroup %}<!-- TODO:change this to an object-level permission check as soon as it's implemented in the admin interface -->
+            [<a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage Linked Questions" %}</a>]
+            {% endif %}    
             {% include "project_questions/block/questions_activities.html" %}
         </div>
     </div>
