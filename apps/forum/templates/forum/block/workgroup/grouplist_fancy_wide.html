@@ -7,7 +7,7 @@
 	<ul>
 		{% for group in thread.workgroups.all() %}
 			<li>
-				<a href="{% url workgroup-detail group.slug %}">
+				<a href="{% url workgroup-discussion group.slug %}">
 					<div>
 						<span>{{ group.name }}</span>
 						<p>
