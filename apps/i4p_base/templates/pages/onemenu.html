@@ -17,9 +17,6 @@
 {% addtoblock "css" strip %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/pages/onemenu.css" />
 {% endaddtoblock %}
-{% addtoblock "css" strip %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
-{% endaddtoblock %}
 
 {% if user.is_authenticated %}
     {% cms_toolbar %}
@@ -29,33 +26,38 @@
 <div class="content">        
     <div class="container">
         <div class="row">
-            <div class="span2">			
-                <div class="left-menu">  	
+            <div class="span2 left-column">
                     {% ifequal current_page.parent.reverse_id "workgroups" %}
+                        <div class="left-menu">
                         {% placeholder "menu_workgroups" or %}  
-                            <h2>{% trans "MENU" %}</h2>
                             <ul>
                                 {% show_menu 1 100 0 100 %}
                             </ul>
                         {% endplaceholder %}
+                        </div>
                     {% else %}
                         {% placeholder "menu_workgroups" inherit or %}
-                            <h2>{% trans "MENU" %}</h2>
+                        <div class="left-menu">
                             <ul>
                                 {% show_menu 1 100 0 100 %}
                             </ul>
+                        </div>
                         {% endplaceholder %}
                     {% endifequal %}
+                <div class="block-left-column">
+                    {% placeholder "Left Column" %}
                 </div>
             </div>
-            <div class="span10">			
-                <div class="block-content">  			
-                    {% placeholder "page_title" or %}
-                        <h1>{% page_attribute "page_title" %}</h1>
-                    {% endplaceholder %}
+            <div class="span8 block-content">
+                <div class="block-content">
                     {% placeholder "content" or %}
                         <iframe src="http://pad.imaginationforpeople.org/p/{% page_attribute "page_title" request.current_page.parent.id %}{% page_attribute "page_title" request.current_page %}?showChat=false&showLineNumbers=false&showControls=true" frameborder="0" width="755px" height="550px"></iframe>
                     {% endplaceholder %}
+                </div>
+            </div>
+            <div class="span2">
+                <div class="block-right-column">
+                    {% placeholder "Right Column" %}
                 </div>
             </div>
         </div>		

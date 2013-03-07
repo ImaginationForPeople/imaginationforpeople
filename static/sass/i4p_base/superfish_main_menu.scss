@@ -195,6 +195,7 @@ li {
   max-width: 700px;
   height: 48px;
   margin: 0px;
+  @include i4p-font-base($sizeTextNormal);
   img {
         vertical-align: middle;
   }
@@ -216,6 +217,7 @@ li {
         @include border-radius(4px, 4px);
     } 
   }
+  
 
 
 
@@ -231,11 +233,14 @@ li {
       text-transform:uppercase;
       border: none;
       margin-left: 0px;
-      padding:0px 5px 0px 15px;
+      padding:0px 0px 0px 15px;
       /* background image is 5px X 5px dot */
       background:image-url('base/grey_dot.png') no-repeat 4px center;
       > .sf-sub-indicator {
         top: 19px;
+      }
+      &.sf-with-ul {
+      padding-right: 1.75em;
       }
     }
     /* The home page link */
