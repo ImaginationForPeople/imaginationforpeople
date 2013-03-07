@@ -552,7 +552,7 @@ class ProjectGalleryAddVideoView(ProjectGalleryView):
     Add a video to a project
     """
     def get(self, request, *args, **kwargs):
-        self.picture_form = ProjectVideoAddForm()
+        self.video_form = ProjectVideoAddForm()
         return super(ProjectGalleryAddVideoView, self).get(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
@@ -568,7 +568,7 @@ class ProjectGalleryAddVideoView(ProjectGalleryView):
 
     def get_context_data(self, slug, **kwargs):
         context = super(ProjectGalleryAddVideoView, self).get_context_data(slug, **kwargs)
-        context['project_video_add'] = self.picture_form
+        context['project_video_add'] = self.video_form
         
         return context
 

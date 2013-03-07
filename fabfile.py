@@ -286,6 +286,7 @@ def app_fullupdate():
     """
     execute(updatemaincode)
     execute(compile_messages)
+    execute(update_compass)
     execute(compile_stylesheets)
     execute(update_requirements, force=False)
     execute(app_db_update)
@@ -442,8 +443,12 @@ def install_rbenv():
 @task
 def install_compass():
     with cd(env.venvfullpath + '/' + env.projectname + '/'):
-        sudo('rm -rf vendor/bundle', user=env.user)
-        sudo('bundle install --path=vendor/bundle', user=env.user)
+        run('rm -rf vendor/bundle')
+        execute(update_compass)
+@task
+def update_compass():
+    with cd(env.venvfullpath + '/' + env.projectname + '/'):
+        run('bundle install --path=vendor/bundle')
 
 @task
 def bootstrap_full():

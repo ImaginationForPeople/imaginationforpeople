@@ -1,5 +1,5 @@
-@import "i4p-mixins";
-
+@import "i4p/mixins";
+@import "i4p/constants";
 
 .categories{
     display:none;
@@ -65,7 +65,8 @@
     
     .separator h2{
         position:relative;
-        top:-11px;
+        top:-25px;
+        margin-bottom:15px;
         padding-right:15px;
         background-color:#282828;
         width:auto;

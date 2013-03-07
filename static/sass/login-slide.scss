@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 
 
@@ -24,7 +24,7 @@ Version: 1.0
 
 /* Panel Tab/button */
 .tab {
-  	background: url(../images/base/tab_b.png) repeat-x 0 0;
+  	background: image-url('base/tab_b.png') repeat-x 0 0;
 	height: 30px;
 	position: relative;
     top: -4px;
@@ -57,16 +57,16 @@ Version: 1.0
         }
 
         li.left {
-            background: url(../images/base/tab_l.png) no-repeat left 0;
+            background: image-url('base/tab_l.png') no-repeat left 0;
             width:28px;
         }
 
         li.right {
-            background: url(../images/base/tab_r.png) no-repeat left 0;
+            background: image-url('base/tab_r.png') no-repeat left 0;
         }
         
         li.middle {
-            background: url(../images/base/tab_c.png) no-repeat left 0;
+            background: image-url('base/tab_c.png') no-repeat left 0;
             width:17px;
         }
         
@@ -93,7 +93,7 @@ Version: 1.0
             display: block;
             float: left;
             height: 32px;
-            background: url(../images/base/tab_m.png) repeat-x 0 0;
+            background: image-url('base/tab_m.png') repeat-x 0 0;
             position:relative;
             position:relative;
             top:4px;
@@ -134,10 +134,10 @@ Version: 1.0
                 font-size:11px;
             }
             
-            a.open {/*background: url(../images/base/bt_open.png) no-repeat left 0;*/}
-            a.close {/*background: url(../images/base/bt_close.png) no-repeat left 0;*/}
-            a:hover.open {/*background: url(../images/base/bt_open.png) no-repeat left -19px;*/}
-            a:hover.close {/*background: url(../images/base/bt_close.png) no-repeat left -19px;*/}
+            a.open {/*background: image-url('base/bt_open.png') no-repeat left 0;*/}
+            a.close {/*background: image-url('base/bt_close.png') no-repeat left 0;*/}
+            a:hover.open {/*background: image-url('base/bt_open.png') no-repeat left -19px;*/}
+            a:hover.close {/*background: image-url('base/bt_close.png') no-repeat left -19px;*/}
         }
     }
 }

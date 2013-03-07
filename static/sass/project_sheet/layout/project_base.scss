@@ -1,7 +1,7 @@
 
 
 // load reusable components
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 @import "i4p/mixins";
 
@@ -68,7 +68,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     }
 
     .project-sidebar {
-	@include bootstrap-makeColumn(4,0);
+	@include ctb-makeColumn(4,0);
     }
 
     .project-members {

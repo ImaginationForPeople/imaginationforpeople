@@ -1,4 +1,5 @@
 {% load i18n %}
+{% load i4p_tags %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
 
@@ -66,7 +67,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/detail-list.js");
 	data-editable-save-url="{% if project_translation %}{% url project_sheet-ajax-field-save project_translation.slug %}{%   else %}{% url project_sheet-ajax-field-save %}{% endif %}" 
 	data-editable-placeholder="{% trans "This field is blank. Don’t forget to complete it!"|capfirst %}"
 	>
-		{{ a.content|linebreaksbr }}
+		{{ a.content|urlize|linebreaksbr|url_target_blank }}
 	</p>
 	{% endif %}
 </div>

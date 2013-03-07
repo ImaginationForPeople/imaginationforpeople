@@ -1,93 +1,110 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 
 
 body{
     background-color:#282828;
+    color: $colorDarkGrey;
 }
 
 a:hover{
     text-decoration:none;
 }
 
-hr{
-    border:1px solid #050505 !important;
-    border-bottom:1px solid #333333 !important;
-    background-image:none;
-    height:0px;
-}
+/*---- BANNER ----*/
 
-
-
-/*---- VIDEO ----*/
-
-#video-zone{
-    height:133px;
-    background-color:#e8e8e8;
+#homepage-banner{
+    min-height:133px;
+    background-color: $colorLightLightGrey;
     position:relative;
-    
-    h1.what_is{
-        font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
-        font-size:32px;
-        position:absolute;
-        top:40px;
-        left:0px;
-        width:255px; 
-        color:$colorDarkGrey;
-        z-index:60;
-        text-align:right;
-        font-style:normal;
-        text-transform:uppercase;
-    }
-    
-    #project_block, #network_block{
-        width:180px;
-        position:absolute;
-        top:30px;
-        font-family: "OpenSansRegular_obsolete", Arial, Helvetica, sans-serif;
-        font-size:13px;
-        text-transform:uppercase;
-        z-index:60;
+    background-image: image-url('i4p_base/pages/homepage/banner/bubbles_left.png'),image-url('i4p_base/pages/homepage/banner/bubbles_right.png');
+    background-repeat:no-repeat,no-repeat;
+    background-position:left bottom, right bottom;
+    @include i4p-font-base($sizeTextBig);
+    text-align:center;
+    vertical-align: top;
+    horizontal-align: center;
+    .container {
         
-        h1{
-            font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
-            font-size: 19px;
-            line-height: 23px;
-            text-shadow: 1px 1px white;
-            font-style:normal;
-            font-weight:normal;
-            color:$colorDarkGrey;
+    }
+    .block-container {
+        position: relative;
+
+        .i4p-block {
+            display: inline-block;
+            padding: 0 0.5em 0 0.5em;
+            text-align: left;
+            vertical-align: top;
+            min-height: 100%;
+            }
+        img {
+                margin-top: 3px;
+                display: inline;
+                vertical-align: bottom;
+            }
+        #home-video-lightbox-modal-link {
+            vertical-align: middle;
+            height: 133px;
+            margin: 0;
+            display: inline-block;
+            width: 172px;
+            /* 172x87px background, 46x45px play button*/
+            background-image: image-url('i4p_base/pages/homepage/banner/play_button_transparent.png'), image-url('i4p_base/pages/homepage/banner/video_background.jpg');
+            background-repeat:no-repeat,no-repeat;
+            background-position:center center;
+            &:hover {
+                background-image: image-url('i4p_base/pages/homepage/banner/play_button.png'), image-url('i4p_base/pages/homepage/banner/video_background.jpg');
+                background-repeat:no-repeat,no-repeat;
+                background-position:center center, center center;
+            }
         }
+        h1 {
+            @include i4p-font-base($sizeTextVeryLarge);
+            font-weight: bold;
+            text-transform: uppercase;
+            color: $colorMedBlue;
+            margin: 0.5em 0 0.1em 0;
+        }
+        h2 {
+            @include i4p-font-base($sizeTextNormal);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 0.1em 0 0 0;
+            color: $colorDarkGrey;
         
-        a{
-            font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
-            color:black;
         }
-    }
-    
-    #project_block{
-        left:375px;
-    }
-    
-    #network_block{
-        left:615px;
-    }
-    
-    .baseline{
-        font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
-        font-size:15px;
-        position:absolute;
-        right:0px;
-        bottom:30px;
-        width:180px;
-        text-align:right;
+        hr {
+            @include i4p-shaded-separator;
+            margin: 8px 0;
+        }
+        ul {
+            @include i4p-font-base($sizeTextNormal);
+            font-weight: bold;
+            color: $colorDarkGrey;
+            margin: 0.5em 0 0.5em 0;
+            li {
+                line-height: inherit;
+                list-style-type: none;
+                margin: 0.3em 0;
+                &:before {
+                    content:">";
+                    margin-right: 0.1em;
+                }
+                a {
+                    color: inherit;
+                    &:hover {
+                        color: $colorMedBlue;
+                    }
+                }
+            }
+        }
     }
 }
 
 /*---- FOCUS ----*/
 
 #focus-zone{
-  	background-image: url(../../images/home/focus-bg.jpg); 
+  	background-image: image-url('home/focus-bg.jpg'); 
     height:364px;
     
 
@@ -99,7 +116,7 @@ hr{
 #content-zone{
 
     #content{    
-        background: url(../../images/home/content-bg.jpg) repeat-y right; 
+        background: image-url('home/content-bg.jpg') repeat-y right; 
         padding:15px 0px;
         
         #left_col{
@@ -113,111 +130,6 @@ hr{
                 background-color: $colorLightGrey;
                 color:$colorDarkGrey;
             }
-            /* cmsplugin-zinnia */
-            div.hentry {
-                margin: 10px 0px;
-                padding: 0px 0px;
-                background-color: $colorLightGrey;
-                overflow: hidden;
-                color:$colorDarkGrey;
-                display: table;
-                table-layout: fixed;
-                width: 100%;
-                
-                > .entry-image {
-                    width: 35%;
-                    display: table-cell;
-                    margin-right: 0px;
-                    vertical-align: middle;
-                    img {
-                            vertical-align: middle;
-                            max-width: 100%;
-                        }
-                    a {
-                        margin: 0px 0px;
-                        vertical-align: middle;
-                    }
-                }
-                .entry-main-details-image {
-                        width: 62%;
-                }
-                .entry-main-details {
-                    display: table-cell;
-                    vertical-align: middle;
-                    border-left: 3px solid $colorLightBlue;
-                    margin-left: -3px;
-                    padding: 0px 0px 0px 10px;
-                }
-    
-                a {
-                color: $colorLightBlue;
-                }
-                .entry-header {
-                    margin: 10px 0px;
-        
-                    .entry-info {
-                        font-size: 70%;
-                        color:$colorMedGrey;
-                    }
-                    h2 {
-                    margin:7px 0px;
-                    font-family: "OpenSansRegular", Arial, Helvetica, sans-serif !important;
-                    font-size: 17px;
-                    line-height: 23px;
-                    text-transform:uppercase;
-                    font-style:normal;
-                    font-weight:bold;
-                    }
-                }
-                .entry-footer {
-                    margin-top: 10px;
-                    font-size: 70%;
-                    display: none;
-                }
-                .continue-reading {
-                    margin: 8px 0px;
-                    font-weight: bold;
-                }
-                .entry-info {
-                    margin: 5px 5px;
-                    text-align: right;
-                            display: none;
-                }
-    
-    
-                .entry-content {
-                    img {
-                        float: left;
-                        max-width: 35%;
-                        height: auto;
-                        margin-right: 1em;
-                        /* -(margin left + border) */
-                        margin-left: -13px;
-                    }
-                }
-                    .entry-body {
-                    margin-right: 10px;
-                }
-
-                    p {
-                        margin: 8px 0px;
-                    }
-                        
-                        ul{
-                            padding-left:20px;
-                            color:$colorDarkGrey;
-                            margin-bottom:10px;
-
-                            li{
-                                float:none;
-                                list-style-image:url('../../images/base/blue_tick.png');
-                                display: list-item;
-                                margin:4px 0px;
-                            }
-                        }                    
-                    
-            }
-            
             
             #blog_box_zone{
                 padding: 0;
@@ -243,31 +155,12 @@ hr{
             position:relative;
             color:$grey;
             
-            span{
-                font-family: "OpenSansItalic_obsolete", Arial, Helvetica, sans-serif;
-                font-size:11px;
-                margin:15px 0px;
-                margin-top:5px;
-                display:block;
-                
-                a{
-                    color:$grey;
-                }
-                
-                a:hover{
-                    color:white;
-                }
-            }
-            
             .homebox{
                 margin:15px 0px;
                 position:relative;
             
                 h1{
-                    font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
-                    font-size:14px;
-                    line-height: 18px;
-                    font-style:normal;
+                    @include i4p-font-base($sizeTextBig);
                     margin:0px;
                     padding:0px;
                     text-transform:uppercase;
@@ -282,20 +175,18 @@ hr{
                 }
                 
                 input[type=text], input[type=password], textarea{
+                    @include i4p-font-base($sizeTextTiny);
                     background-color:#242424;
                     color:#818181;
                     border:1px solid #343434;
                     margin: 3px 0px;
                     width:98%;
-                    font-family: "OpenSans_obsolete", Arial, Helvetica, sans-serif;
-                    font-size:10px;
                     padding:2px;
                     @include border-radius(4px); 
                 }
                 
                 input[type=submit], button{
-                    font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
-                    font-size:11px;
+                    @include i4p-font-base($sizeTextSmall);
                     padding:3px 6px;
                     margin:0px;
                     background-color:#303030;
@@ -320,14 +211,13 @@ hr{
             
             #loginbox{
                 background-color:#292929;
-                background-image: url("../../images/home/loginbox-bg.jpg");
+                background-image: image-url('home/loginbox-bg.jpg');
                 @include border-radius(4px);
                 padding:10px;
                 overflow:hidden;
                 
                 .loginlink{
-                    font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
-                    font-size:15px;
+                    @include i4p-font-base($sizeTextLarge);
                     text-transform:uppercase;
                     color:$grey;
                     margin:0px 3px;
@@ -363,7 +253,7 @@ hr{
                     }                   
 
                     input[type=submit], button{
-                        background-image: url('../../images/home/openid-button.jpg');
+                        background-image: image-url('home/openid-button.jpg');
                         color:white;
                     }
                 }
@@ -482,7 +372,7 @@ hr{
                     height:94px;                
                     
                     .name{
-                        background:url('../../images/base/membername.png') no-repeat;
+                        background:image-url('base/membername.png') no-repeat;
                         position:absolute;
                         top:0px;
                         left:0px;
@@ -517,7 +407,7 @@ hr{
             
             .fb-like-box{
                 background-color:#292929;
-                background-image: url("../../images/home/loginbox-bg.jpg");
+                background-image: image-url('home/loginbox-bg.jpg');
                 @include border-radius(4px);
                 padding:0px;
                 height:85px !important;
@@ -533,7 +423,7 @@ hr{
 
 
 #newsletter_popup{
-    background-image: url("../../images/home/newsletter-popup-bg.png");
+    background-image: image-url('home/newsletter-popup-bg.png');
     padding:10px;
     @include border-radius(4px);
     border:1px solid #9b9b9b;
@@ -546,9 +436,7 @@ hr{
     @include i4p-shadow(8px, black);
     
     h1{
-        font-size:17px;
-        font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
-        font-style:normal;
+        @include i4p-font-base($sizeTextLarge);
         color:white;
         margin:0px;
     }
@@ -584,8 +472,7 @@ hr{
             @include border-radius(4px);
             border:0px;
             color: #7F7E7E;
-            font-family: "OpenSans_obsolete",Arial,Helvetica,sans-serif !important;
-            font-size: 10px;
+            @include i4p-font-base($sizeTextTiny);
             padding:3px 0px;
         }
         
@@ -596,11 +483,11 @@ hr{
             border:0px;
             margin-top:5px;
             color:white;
-            background:url(../../images/base/minibutton_blue.jpg);
+            background:image-url('base/minibutton_blue.jpg');
         }
         
         input[type=submit]:hover{
-            background:url(../../images/base/minibutton_green.jpg);
+            background:image-url('base/minibutton_green.jpg');
         }
     }
 }

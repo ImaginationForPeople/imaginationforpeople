@@ -4,6 +4,7 @@
 #
 # Translators:
 # Translators:
+# Benoit Grégoire <benoitg@coeus.ca>, 2013.
 # Guillaume  <glibersat@sigill.org>, 2012.
 #   <maire.sylvain@gmail.com>, 2011.
 #   <simonsarazin@imaginationforpeople.org>, 2012.
@@ -13,9 +14,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-15 17:35-0500\n"
-"PO-Revision-Date: 2013-02-09 22:54+0000\n"
-"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
+"POT-Creation-Date: 2013-02-27 14:12-0500\n"
+"PO-Revision-Date: 2013-02-27 03:25+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/"
 "imaginationforpeople/language/fr/)\n"
 "Language: fr\n"
@@ -1036,15 +1037,15 @@ msgstr ""
 "émerger, à l’échelle mondiale, des expériences inédites en matière "
 "d’innovation sociale. "
 
-#: templates/base.html:20 templates/pages/homepage.html:22
+#: templates/base.html:20 templates/pages/homepage.html:19
 msgid "identify and support imaginative social projects"
 msgstr "repérer et soutenir les projets sociaux créatifs"
 
-#: templates/base.html:98
+#: templates/base.html:111
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Saviez-vous que votre navigateur n'est plus à jour ?"
 
-#: templates/base.html:99
+#: templates/base.html:112
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
@@ -1053,11 +1054,11 @@ msgstr ""
 "site internet. Une liste des navigateurs les plus populaires se trouve ci-"
 "dessous."
 
-#: templates/base.html:100
+#: templates/base.html:113
 msgid "Just click on the icons to get to the download page"
 msgstr "Cliquez sur les images pour aller à la page de téléchargement"
 
-#: templates/base.html:101
+#: templates/base.html:114
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
@@ -1065,23 +1066,23 @@ msgstr ""
 "En fermant cette fenêtre, vous êtes informés que la navigation sur le site "
 "pourrait être dégradée."
 
-#: templates/base.html:102
+#: templates/base.html:115
 msgid "Close This Window"
 msgstr "Ferme Cette Fenêtre"
 
-#: templates/base.html:109
+#: templates/base.html:122
 msgid "Enter your email"
 msgstr "Entrer son adresse maill"
 
-#: templates/base.html:110
+#: templates/base.html:123
 msgid "Password"
 msgstr "Mot de passe"
 
-#: templates/base.html:112
+#: templates/base.html:125
 msgid "Enter your username"
 msgstr "Entrer son nom d'utilisateur"
 
-#: templates/base.html:114
+#: templates/base.html:127
 msgid "Enter your email adress"
 msgstr "Entrer son adresse mail"
 
@@ -1171,7 +1172,7 @@ msgstr "Mes messages"
 msgid "Edit my profile"
 msgstr "Editer mon profil"
 
-#: templates/header.html:112 templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:111 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr "Se déconnecter"
 
@@ -1216,7 +1217,7 @@ msgid "Assigned to"
 msgstr "Assigné à"
 
 #: templates/backcap/feedback_detail.html:131
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                            Posted %(since)s ago by\n"
@@ -1339,7 +1340,7 @@ msgid "Vote against"
 msgstr "Voter contre"
 
 #: templates/backcap/feedback_list.html:126
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                                            Posted %(since)s ago by\n"
@@ -1626,7 +1627,7 @@ msgstr "Dernière activité"
 msgid "Latest commits"
 msgstr "Dernières modifications"
 
-#: templates/pages/contrib.html:140 templates/pages/homepage.html:140
+#: templates/pages/contrib.html:140
 msgid "Join the community"
 msgstr "Rejoignez la communauté"
 
@@ -1634,42 +1635,20 @@ msgstr "Rejoignez la communauté"
 msgid "News"
 msgstr "Actualités"
 
-#: templates/pages/flatpage.html:40
+#: templates/pages/flatpage.html:36
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr ""
 "Il n'y a pas encore de contenu. Passez en mode édition et ajoutez un élément."
 
-#: templates/pages/homepage.html:42
+#: templates/pages/homepage.html:48
 msgid "My project title"
 msgstr "Le titre du projet"
 
-#: templates/pages/homepage.html:43
+#: templates/pages/homepage.html:49
 msgid "One line description"
 msgstr "Description en une ligne"
 
-#: templates/pages/homepage.html:132
-msgid " What is it ?"
-msgstr "Qu'est-ce que c'est ?"
-
-#: templates/pages/homepage.html:135
-msgid "Explore and contribute"
-msgstr "Explorer et contribuer"
-
-#: templates/pages/homepage.html:136
-msgid "to social and cultural projects"
-msgstr "à des projets sociaux et culturels"
-
-#: templates/pages/homepage.html:141
-msgid "of citizens from more 30 countries"
-msgstr "Rejoignez une communauté de citoyens de plus de 30 pays."
-
-#: templates/pages/homepage.html:146
-msgid " Detect and develop socially innovative projects."
-msgstr ""
-"Une communauté de citoyens créatifs pour repérer et soutenir les projets "
-"d'innovation sociale."
-
-#: templates/pages/onemenu.html:40 templates/pages/onemenu.html.py:47
+#: templates/pages/onemenu.html:36 templates/pages/onemenu.html.py:43
 msgid "MENU"
 msgstr "MENU"
 
@@ -1692,6 +1671,10 @@ msgstr ""
 #: templates/pages/popups_notifications.html:21
 msgid "Popup shown on every project page if present."
 msgstr "Popup visible sur chaque page projet si présent."
+
+#: templates/pages/block/homepage-video-lightbox.html:10
+msgid "Close"
+msgstr "fermer"
 
 #: templates/pages/home-blocks/blog-box.html:4
 msgid "Last posts on blog"
@@ -1793,44 +1776,52 @@ msgstr "Ajouter"
 msgid "Add a project"
 msgstr "Ajouter un projet"
 
+#~ msgid "of citizens from more 30 countries"
+#~ msgstr "Connect with a community of citizens from over 30 countries."
+
+#~ msgid " Detect and develop socially innovative projects."
+#~ msgstr ""
+#~ "A community of imaginative citizens to detect and develop socially "
+#~ "innovative projects."
+
 #~ msgid "Project search"
-#~ msgstr "Recherche de projet"
+#~ msgstr "Project search"
 
 #~ msgid "Pin/Unpin the panel"
-#~ msgstr "Bloquer/Débloquer le bandeau"
+#~ msgstr "Pin/Unpin the panel"
 
 #~ msgid "Filter results"
-#~ msgstr "Filtres"
+#~ msgstr "Filters"
 
 #~ msgid "Help"
-#~ msgstr "Aide"
+#~ msgstr "Help"
 
 #~ msgid "Project view"
-#~ msgstr "Vue par projets"
+#~ msgstr "Project view"
 
 #~ msgid "Clear filters"
-#~ msgstr "Effacer les filtres"
+#~ msgstr "Clear filters"
 
 #~ msgid "invert"
-#~ msgstr "inverser"
+#~ msgstr "invert"
 
 #~ msgid "%(count)s project sheets"
-#~ msgstr "%(count)s fiches projets"
+#~ msgstr "%(count)s project sheets"
 
 #~ msgid "Location"
-#~ msgstr "Lieu"
+#~ msgstr "Location"
 
 #~ msgid "Categories"
-#~ msgstr "Catégories"
+#~ msgstr "Categories"
 
 #~ msgid "Sheet Status"
-#~ msgstr "État de la fiche"
+#~ msgstr "Sheet Status"
 
 #~ msgid "Best-of"
 #~ msgstr "Best-of"
 
 #~ msgid "Popular project"
-#~ msgstr "Les plus populaires"
+#~ msgstr "Popular project"
 
 #~ msgid "best-of"
 #~ msgstr "best-of"
@@ -1839,60 +1830,47 @@ msgstr "Ajouter un projet"
 #~ msgstr "progression"
 
 #~ msgid "Associated team"
-#~ msgstr "Porteur associé"
+#~ msgstr "Associated team"
 
 #~ msgid "Orphan project"
-#~ msgstr "Projet sans porteur"
+#~ msgstr "Orphan project"
 
 #~ msgid "team"
-#~ msgstr "Equipe"
+#~ msgstr "team"
 
 #~ msgid "Project Status"
-#~ msgstr "Statut du projet"
+#~ msgstr "Project Status"
 
 #~ msgid ""
 #~ "A community of imaginative citizens to detect and develop socially "
 #~ "innovative projects."
 #~ msgstr ""
-#~ "Une communauté de citoyens créatifs pour repérer et soutenir les projets "
-#~ "d'innovation sociale."
+#~ "A community of imaginative citizens to detect and develop socially "
+#~ "innovative projects."
 
 #~ msgid "Read the manifesto"
-#~ msgstr "Lire le manifeste"
+#~ msgstr "Read the manifesto"
 
 #~ msgid "About IP"
-#~ msgstr "À propos"
+#~ msgstr "About IP"
 
 #~ msgid "Follow us"
-#~ msgstr "Nous suivre"
+#~ msgstr "Follow us"
 
 #~ msgid "Follow us on"
-#~ msgstr "Nous suivre sur"
-
-#~ msgid ""
-#~ "\n"
-#~ "                    \"<strong>%(url)s</strong> is powered by a set of "
-#~ "free components licensed under <strong>AGPL</strong> and <strong>Creative "
-#~ "Commons</strong>.\"\n"
-#~ "\t            "
-#~ msgstr ""
-#~ "\n"
-#~ "                    \"<strong>%(url)s</strong> est propulsée par un "
-#~ "ensemble de composantes libres sous <strong>AGPL</strong> et "
-#~ "<strong>Creative Commons</strong>.\"\n"
-#~ "\t            "
+#~ msgstr "Follow us on"
 
 #~ msgid "Project"
-#~ msgstr "Projet"
+#~ msgstr "Project"
 
 #~ msgid "History"
-#~ msgstr "Historique"
+#~ msgstr "History"
 
 #~ msgid "other languages"
-#~ msgstr "Autres langues"
+#~ msgstr "other languages"
 
 #~ msgid "create a new translation"
-#~ msgstr "Créer une nouvelle traduction"
+#~ msgstr "create a new translation"
 
 #~ msgid "Enter your login"
 #~ msgstr "Enter your login"

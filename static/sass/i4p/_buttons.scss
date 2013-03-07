@@ -1,10 +1,6 @@
 // reset utilities
 @import "compass/utilities/general/reset";
 
-@import "i4p/mixins";
-@import "i4p/constants";
-@import "i4p/fonts";
-
 @mixin i4p-button-flat {
     @include reset-box-model;
     @include reset-font;
@@ -12,7 +8,7 @@
 
     @include i4p-font-title($sizeTextNormal);
     @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
-    @include bootstrap-makeColumn(3);
+    @include ctb-makeColumn(3);
     @include i4p-transition;
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
@@ -45,6 +41,7 @@
 
     @include i4p-font-button($sizeTextNormal);
     @include i4p-background-vertical-gradient( $colorLightBlue, $colorDarkBlue);
+    background-color: $colorLightBlue;
     @include i4p-transition;
     @include border-radius($sizeRadiusSmall);
 
