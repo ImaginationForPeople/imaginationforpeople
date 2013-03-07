@@ -5,12 +5,12 @@
 {% load unique_counter_tag %}
 
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/subheader-readonly.css" />
 {% endaddtoblock %}
 
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
-{% addtoblock "footer_js" %}
+{% addtoblock "footer_js" strip %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");  
 </script>
@@ -205,8 +205,8 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 		</tr>
 
 		<tr class="infotable-share">
-			<th>{% trans "Share" %}</th>
-			<td>
+			
+			<td colspan=2>
 				<!-- AddThis Button BEGIN -->
 					<div class="addthis_toolbox addthis_default_style">
 						<a class="addthis_button_tweet" tw:count="horizontal"></a>
