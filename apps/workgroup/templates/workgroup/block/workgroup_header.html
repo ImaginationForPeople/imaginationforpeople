@@ -28,16 +28,19 @@
       {% trans "Spoken language :" %} {{ workgroup.get_language_display }}
     </div>
     <div class="members">
-      <strong><span>{{ workgroup.subscribers.all|length}}</span> 
-	{% if workgroup.mailing_list %}
-	{% blocktrans with workgroup.subscribers.all|length|pluralize as member_plural and ml_nonmember_list|length as nonmember_count %}
-	member{{ member_plural }} (+ {{ nonmember_count }})
+    {% with subscribers_count=workgroup.subscribers.all|length nonmember_count=ml_nonmember_list|length %}      
+	{% if workgroup.mailing_list %}		
+	<strong><span>{{ subscribers_count|add:nonmember_count }}</span> 	
+	{% blocktrans with subscribers_count|pluralize as member_plural %}	
+	member{{ member_plural }}	
 	{% endblocktrans %}
 	{% else %}
-	{% blocktrans with workgroup.subscribers.all|length|pluralize as member_plural %}
+	<strong><span>{{ subscribers_count }}</span>
+	{% blocktrans with subscribers_count|pluralize as member_plural %}
 	member{{ member_plural }}
 	{% endblocktrans %}
 	{% endif %}
+	{% endwith %}
       </strong>
       <a href="{% url workgroup-members workgroup.slug %}">{% trans "See all" %}</a>
     </div>
@@ -45,7 +48,7 @@
 </div>
 <div id="workgroup-menubar">
 	<ul>
-		<li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Description" %}</a></li>
+		<li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Home" %}</a></li>
 		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Discussions" %}</a></li>
 		<!-- <li><a href="#">{% trans "Workgroup projects" %}</a></li> -->
 	</ul>
