@@ -50,6 +50,6 @@
 	<ul>
 		<li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Home" %}</a></li>
 		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Discussions" %}</a></li>
-		<!-- <li><a href="#">{% trans "Workgroup projects" %}</a></li> -->
+		<li class="{% iftab 'workgroup' 'members' %}active{% endiftab %}"><a href="{% url workgroup-members workgroup.slug %}">{% trans "Members" %}</a></li>
 	</ul>
 </div>
