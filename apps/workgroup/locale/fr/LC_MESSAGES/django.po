@@ -1,23 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Benoit Grégoire <benoitg@coeus.ca>, 2013.
 # Simon Sarazin <simon.sarazin@gmail.com>, 2012-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 14:12-0500\n"
-"PO-Revision-Date: 2013-02-27 03:24+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/fr/)\n"
-"Language: fr\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-03-08 11:13-0500\n"
+"PO-Revision-Date: 2013-03-08 16:31+0000\n"
+"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cms_plugins.py:48
@@ -60,9 +59,7 @@ msgstr "URL externe"
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
-msgstr ""
-"URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par "
-"l'outil du site (Ex : Url du groupe sur facebook)"
+msgstr "URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par l'outil du site (Ex : Url du groupe sur facebook)"
 
 #: models.py:88
 msgid "Subscribers"
@@ -72,30 +69,26 @@ msgstr "Abonné"
 msgid "Related questions"
 msgstr "Questions similaires"
 
-#: views.py:180
+#: views.py:185
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
-msgstr ""
-"Vous avez été abonné à la liste de diffusion %(workgroup_name)s  "
-"(%(user_email)s)"
+msgstr "Vous avez été abonné à la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
 
-#: views.py:187
+#: views.py:192
 #, python-format
 msgid "You couldn't be subscribed to this group:%s"
 msgstr "Vous n'avez pas pu être inscrit au groupe : %s"
 
-#: views.py:218
+#: views.py:223
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
-msgstr ""
-"Vous avez été désinscrit avec succès de la liste de diffusion "
-"%(workgroup_name)s  (%(user_email)s)"
+msgstr "Vous avez été désinscrit avec succès de la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
 
-#: views.py:225
+#: views.py:230
 #, python-format
 msgid "You couldn't be unsubscribed from this group:%s"
 msgstr "Vous n'avez pas pu être désinscrit du groupe : %s"
@@ -105,7 +98,7 @@ msgid "Related Groups"
 msgstr "Groupes liés"
 
 #: templates/workgroup/block/grouplist_fancy_wide.html:11
-#: templates/workgroup/block/workgroup_header.html:41
+#: templates/workgroup/block/workgroup_header.html:45
 msgid "See all"
 msgstr "Voir tous"
 
@@ -125,35 +118,41 @@ msgstr "Vous faites partie de ce groupe"
 msgid "Quit this group"
 msgstr "Quitter le groupe"
 
-#: templates/workgroup/block/workgroup_header.html:20
+#: templates/workgroup/block/workgroup_header.html:21
 msgid "Edit Group"
 msgstr "Editer le groupe"
 
-#: templates/workgroup/block/workgroup_header.html:27
+#: templates/workgroup/block/workgroup_header.html:28
 msgid "Spoken language :"
 msgstr "Langue parlée :"
 
-#: templates/workgroup/block/workgroup_header.html:32
+#: templates/workgroup/block/workgroup_header.html:34
 #, python-format
 msgid ""
-"\n"
-"\tmember%(member_plural)s (+ %(nonmember_count)s)\n"
+"\t\n"
+"\tmember%(member_plural)s\t\n"
 "\t"
-msgstr ""
-"\n"
-"\tmembre%(member_plural)s (+ %(nonmember_count)s)\n"
-"\t"
+msgstr "\t\n\tmembre%(member_plural)s\t\n\t"
 
-#: templates/workgroup/block/workgroup_header.html:36
+#: templates/workgroup/block/workgroup_header.html:39
 #, python-format
 msgid ""
 "\n"
 "\tmember%(member_plural)s\n"
 "\t"
-msgstr ""
-"\n"
-"\tmembre%(member_plural)s\n"
-"\t"
+msgstr "\n\tmembre%(member_plural)s\n\t"
+
+#: templates/workgroup/block/workgroup_header.html:51
+msgid "Home"
+msgstr "Accueil"
+
+#: templates/workgroup/block/workgroup_header.html:52
+msgid "Discussions"
+msgstr "Discussions"
+
+#: templates/workgroup/block/workgroup_header.html:53
+msgid "Members"
+msgstr "Membres"
 
 #: templates/workgroup/block/workgroup_sidebar.html:6
 msgid "Related projects"
@@ -179,9 +178,7 @@ msgstr "Éditer l'information de ce groupe"
 msgid ""
 "<strong>Warning:</strong> You are not logged in. Your IP address will be "
 "logged."
-msgstr ""
-"<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse "
-"va etre loguée."
+msgstr "<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse va etre loguée."
 
 #: templates/workgroup/page/wiki_edit.html:17
 msgid "Click here to log in"
@@ -208,34 +205,36 @@ msgstr "Supprimer l'article"
 msgid "Back to editor"
 msgstr "Retour à l'éditer"
 
-#: templates/workgroup/page/workgroup_detail.html:24
+#: templates/workgroup/page/workgroup_detail.html:28
 #, python-format
 msgid ""
 "This group uses a mailing list. You can take part in the discussion by "
 "sending an e-mail to the following address: %(ml_address)s"
-msgstr ""
-"Ce groupe utilise une liste de diffusion.  Vous pouvez prendre part à la "
-"discussion en envoyant une courriel à l'adresse: %(ml_address)s"
+msgstr "Ce groupe utilise une liste de diffusion.  Vous pouvez prendre part à la discussion en envoyant une courriel à l'adresse: %(ml_address)s"
 
-#: templates/workgroup/page/workgroup_detail.html:24
+#: templates/workgroup/page/workgroup_detail.html:28
 msgid "Browse the Archives"
 msgstr "Parcourir les archives"
 
-#: templates/workgroup/page/workgroup_detail.html:39
+#: templates/workgroup/page/workgroup_detail.html:43
 #, python-format
 msgid "Comment:"
 msgid_plural "%(num_comments)s comments:"
 msgstr[0] "Commentaire:"
 msgstr[1] "%(num_comments)s commentaires:"
 
-#: templates/workgroup/page/workgroup_members.html:27
+#: templates/workgroup/page/workgroup_discuss_list.html:67
+msgid "Ask your question"
+msgstr "Poser votre question"
+
+#: templates/workgroup/page/workgroup_members.html:28
 msgid "Subscribers list"
 msgstr "Liste des inscrits"
 
-#: templates/workgroup/page/workgroup_members.html:32
+#: templates/workgroup/page/workgroup_members.html:33
 msgid "There are no group subscribers."
 msgstr "Il n'y a pas d'inscrits au groupe"
 
-#: templates/workgroup/page/workgroup_members.html:40
+#: templates/workgroup/page/workgroup_members.html:41
 msgid "Other mailing list subscribers"
 msgstr "Autres abonnés de la liste de discussion"

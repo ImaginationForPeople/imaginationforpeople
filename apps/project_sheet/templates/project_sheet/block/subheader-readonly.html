@@ -5,12 +5,12 @@
 {% load unique_counter_tag %}
 
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/subheader-readonly.css" />
 {% endaddtoblock %}
 
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
-{% addtoblock "footer_js" %}
+{% addtoblock "footer_js" strip %}
 <script type="text/javascript">
 $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");  
 </script>
@@ -20,7 +20,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 <div class="span8 subheader">
 	<div class="background">
 		{% comment %} FIXME: cover image is simply the first of the list, not a special/selected one {% endcomment %}
+        {% if project_translation.project.pictures.count %}
 		<img src="{% thumbnail project_translation.project.pictures.all.0.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+        {% endif %}
 	</div>
 	<div class="overlay">
 		<h1 class="title"> <!-- TITLE -->
@@ -199,6 +201,18 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				<p class="progressbar progressbar-{{project_translation.project.status|lower }}">
 				<span class="status">{{ project_translation.project.get_status_display }}</span>
 				</p>
+			</td>
+		</tr>
+
+		<tr class="infotable-share">
+			
+			<td colspan=2>
+				<!-- AddThis Button BEGIN -->
+					<div class="addthis_toolbox addthis_default_style">
+						<a class="addthis_button_tweet" tw:count="horizontal"></a>
+					    <a class="addthis_button_facebook_like"></a>
+					</div>
+				<!-- AddThis Button END -->
 			</td>
 		</tr>
 	</table> <!-- .infotable -->

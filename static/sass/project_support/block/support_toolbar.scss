@@ -13,15 +13,15 @@ $toolbar-sprite-dimensions: true;
 .support-toolbar {
   @include i4p-background-vertical-gradient(#3a3a3a, #252525);
   clear: both;
-  height: 65px;
   .row > ul {
     display: table;
-    margin-left:0;
+    margin: 0 0 0 0;
     border-left:1px solid #000;
-    
+    position: relative;
   }
   .row > ul > li {
     display: table-cell;
+    position: relative;
     vertical-align: middle;
     border-collapse: collapse;
     border-left: 1px solid #575757;
@@ -34,24 +34,22 @@ $toolbar-sprite-dimensions: true;
     position: relative;
     text-transform: uppercase;
     color: white;
-    height:45px;
-    
-    .badge {
-        float: right;
-    }
 
     &.call {
       background: image-url('project_support/toolbar/help-call.png') no-repeat 15px center;
-      padding-left:80px;
+      padding-left:70px;
+      padding-right: 42px; /* For badge */
     }
     &.prop {
       background: image-url('project_support/toolbar/help.png') no-repeat 15px center;
-      padding-left:80px;
+      padding-left:70px;
+      padding-right: 42px; /* For badge */
     }
      &.right {
       background: image-url('project_support/toolbar/add-help.png') no-repeat 15px center;
-      padding-left:80px;
+      padding-left:70px;
       border-right:0;
+      float: none;
     }
   }
   a.propose-link {
@@ -66,6 +64,7 @@ $toolbar-sprite-dimensions: true;
   .badge {
     background:white;
     color:$colorMedDarkGrey;
-    margin:10px 5px 10px 28px;
+    float: right;
+    margin:10px -37px 10px 5px; /* 42px - 5px real margin = 37px */
   }
 }

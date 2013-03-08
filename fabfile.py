@@ -87,7 +87,7 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
     env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
-    env.gitbranch = "feature/project-support"
+    env.gitbranch = "release/almostspring"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -419,12 +419,22 @@ def install_builddeps():
 
 @task
 def install_rbenv():
+    """
+    Install the appropriate ruby environment for compass.
+    """
     # Install rbenv:
     sudo('git clone git://github.com/sstephenson/rbenv.git ~/.rbenv', user=env.user)
     # Add rbenv to the path:
     sudo('echo \'export PATH="$HOME/.rbenv/bin:$PATH"\' >> .bash_profile', user=env.user)
     sudo('echo \'eval "$(rbenv init -)"\' >> .bash_profile', user=env.user)
     sudo('source ~/.bash_profile', user=env.user)
+    # The above will work fine on a shell (such as on the server accessed using
+    # ssh for a developement machine running a GUI, you may need to run the 
+    # following from a shell (with your local user):
+    #    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.profile;
+    #    echo 'eval "$(rbenv init -)"' >> ~/.profile;
+    #    source ~/.profile;
+    
     # Install ruby-build:
     with cd('/tmp'):
         sudo('git clone git://github.com/sstephenson/ruby-build.git', user=env.user)
@@ -442,11 +452,17 @@ def install_rbenv():
 
 @task
 def install_compass():
+    """
+    (Re)Install compass, deleting current version 
+    """
     with cd(env.venvfullpath + '/' + env.projectname + '/'):
         run('rm -rf vendor/bundle')
         execute(update_compass)
 @task
 def update_compass():
+    """
+    Make sure compass version is up to date
+    """
     with cd(env.venvfullpath + '/' + env.projectname + '/'):
         run('bundle install --path=vendor/bundle')
 

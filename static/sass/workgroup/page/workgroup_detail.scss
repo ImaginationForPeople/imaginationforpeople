@@ -27,6 +27,7 @@
 			    h1 {
 			    	color:black;
 			    	text-transform:uppercase;
+			    	font-size:2.2rem;
 
 			    	a {
 			    		color:black;
@@ -84,6 +85,46 @@
 			}
 		}
 	}
+	
+	#workgroup-menubar {
+      height:40px;
+      line-height:40px;
+      background:#D6D6D6;
+      width:100%;
+      
+      ul {
+        height:40px;
+        margin:0;
+        padding:0 0 0 10px;
+        
+        li {
+          display:block;
+          float:left;
+          height:40px;
+          padding:0 20px;
+          
+          a {
+            display:block;
+            float:left;
+            height:40px;
+            line-height:40px;
+            color:#7F7F7F;
+            font-weight:bold;
+            font-family:$fontOpenSans;
+            font-size:1.15rem;
+          }
+           
+          &.active, &:hover {
+            @include i4p-background-vertical-gradient(#4BB7E5, #3b90b5);
+      
+            a {
+              color:white;
+              text-decoration:none;
+            }     
+          }
+        }
+      }
+    }
 
 	#workgroup-content {
 

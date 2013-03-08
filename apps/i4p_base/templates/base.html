@@ -116,7 +116,7 @@
             
             
 		// FIXME: move base-specific JS into a js/...base/block/something.js library //
-        $(".social-login img").tipsy({html: true });
+        $('.tipsed').tipsy({html: true, opacity: 0.95, gravity: $.fn.tipsy.autoNS, delayIn: 0, fade: false });
              
         $("input[name=identification]").example("{% trans 'Enter your email'|escapejs %}");
         $("input[name=password]").example("{% trans 'Password'|escapejs %}");
