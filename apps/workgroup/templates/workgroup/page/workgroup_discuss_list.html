@@ -59,10 +59,13 @@ $(document).ready(function(){
 </script>
 {% endaddtoblock %}
 
-<div class="container" id="workgroup-detail">      
+<div class="container project-content" id="workgroup-detail">      
     {% include "workgroup/block/workgroup_header.html" %}
     <div class="row">
-        <div class="span8 project-main">
+        <div class="span8">
+            <div id="categorySearch">
+                <a href="{{ search_state.full_ask_url }}" id="askButton"><i class="interrogation">&nbsp;</i>{% trans "Ask your question" %}</a>
+            </div>
             {% if search_tags or query %}
             <ul class="search-tags">
                 {% if query %}

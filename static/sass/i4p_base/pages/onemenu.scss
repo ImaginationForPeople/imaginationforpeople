@@ -1,65 +1,73 @@
 @import "i4p/mixins";
 @import "i4p/constants";
 @import "i4p/fonts";
+@import "compass/css3/box-sizing";
 
 .nav-white {
     background-color: black;
     height:0px !important;
 }
 
-.grid_14 {
-	margin-left: 30px !important;
-}
+.content > .container {
+    background-color: $colorLightGrey;
+    
+    
+    .block-content {
+        background-color: $colorWhite;
+        p, div, h1, h2, h3, h4, h5, h6, blockquote {
+            margin-left: 1rem;
+            margin-right: 1rem;
+        }
+            @include i4p-font-base($sizeTextNormal);
 
-.content {	
-	font-family: $fontOpenSans;
-	background-color: $colorWhite;
-	background-image: none;
-	color: #424242 !important;
-	
+    color: $colorMedDarkGrey !important;
+    
+    
     a{
-        color: $colorLightBlue;
+        color: $colorDarkBlue;
     }
 
     a:hover {
-    	text-decoration:underline;
-    	color: $colorDarkBlue;
+        text-decoration:underline;
+        color: $colorLightBlue;
     }
 
     h1{
         border-bottom:1px solid grey;
-		font-family: $fontOpenSans;
-		font-size: 1.7rem;
-		text-transform: uppercase;
-		font-style: normal;
-		font-weight: bold;
-		margin: 7px 0px;
-		color: #5A5959;
-		font-stretch:condensed;
+        @include i4p-font-base($sizeTextVeryLarge);
+        font-style: italic;
+        font-weight: bold;
+        margin-top: 7px;
+        padding-bottom: 0.2em;
+        margin-bottom:7px;
+        color: $colorMedDarkGrey;
+        font-stretch:condensed;
     }
 
     h2{
-        font-size:1.6rem;
-        margin: 7px 0px;
+        @include i4p-font-base($sizeTextLarge);
+        margin-top: 7px;
+        margin-bottom:7px;
         font-stretch:condensed;
     }
 
     h3{
-        font-size:1.4rem;
-        margin: 5px 0px;
+        @include i4p-font-base($sizeTextBig);
+        margin-top: 5px;
+        margin-bottom:5px;
     }
 
     h4 {
-    	font-size:1.3rem;
-    	margin: 5px 0px;
+        @include i4p-font-base($sizeTextNormal);
+        font-weight: bold;
+        margin-top: 5px;
+        margin-bottom:5px;
     }
 
     p{
-        font-size:1.2rem;
-        text-align:justify;
-        line-height:1.7rem;
-		font-family: $fontOpenSans;
-	}
+        @include i4p-font-base($sizeTextNormal);
+        text-align:left;
+    }
 
     hr{
         margin:15px 0;
@@ -70,99 +78,178 @@
     }
 
     dd {
-    	margin-bottom:5px;
+        margin-bottom:5px;
     }
 
     ul {
-    	list-style: disc outside none;
-    	margin: 0 0 9px 12px;
-
-    	ul {
-    		margin-bottom:0;
-    		list-style: circle outside none;
-    	}
+        list-style: disc outside none;
+        margin-bottom: 9px;
+        margin-left: 3rem;
+        li {
+            list-style-type: none;
+            margin-top: 0.2em;
+            &:before {
+                margin-top: 0.2em;
+                margin-left: -1em;
+                content: "\2799  "; /* &bull; */
+                line-height: inherit;
+            }
+        }
+        ul {
+            margin-bottom:0;
+            list-style: circle outside none;
+        }
     }
 
     ol {
-    	margin: 0 0 9px 17px;
-
-    	ol {
-    		margin-bottom:0;
-    	}
+        margin-bottom: 9px;
+        margin-left: 2.8em;
+        li {
+            margin-top: 0em;
+        }
+        ol {
+            margin-bottom:0;
+        }
     }
 
     blockquote {
-    	p {
-    		margin-bottom:2px;
-    		font-style:italic;
-    		padding-right:30px;
-    	}
+        border-left: 5px solid $colorLightGrey;
+        
+        padding: 0 0 0 15px;
+        p {
+            margin-left: 0;
+            margin-right: 0;
+            font-style:italic;
+            padding-right:2em;
+        }
     }
+    }
+}
+.content {
+    background-color: $colorWhite;
+    background-image: none;
 
+/* Left menu */
+    .left-menu {
+        width: 100%;
+        > ul {
+            width: 100%;
+            list-style-type: none;
+            
+            margin: 1rem 0 0 0;
+            li {
+                > a {
+                    @include i4p-font-base($sizeTextNormal);
+                    display: inline-block;
+                    @include box-sizing(border-box);
+                    padding: 0.5em;
+                    width: 100%;
+                    }
+            }
+            
+            > li { /* Top level */
+                width: 100%;
+                margin: 0.2em 1rem;
+                > a {
+                    @include border-radius($sizeRadiusSmall);
+                    @include i4p-font-menu($sizeTextBig);                    
+                    background-color: $colorLightBlue;
+                    color: white;
+                    &:hover {
+                        background-color: $colorDarkBlue;
+                        text-decoration: none;
+                    }
+                }
+                &.selected {
+                    > a {
+                        background-color: $colorDarkBlue;
+                    }
+                }
+                ul {
+                    margin-left: 0;
+                    li {
+                        background-color: none;
+                        border-bottom: 1px dotted $colorMedGrey;
+                        &:last-child {
+                            border-bottom:none;
+                        }
+                        > a {
+                            padding-left: 1em;
+                        }
+                        li {
+                            > a {
+                                padding-left: 2em;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
     /* Form contact */
 
     form {
-    	label {
-    		float:left;
-    		width:20%;
-    		font-family: $fontOpenSans;
-    		font-size:1.2rem;
-    		line-height:25px;
-    		padding:0 15px 0 0;
-    		text-align:right;
-    	}
+        label {
+            float:left;
+            width:20%;
+            font-family: $fontOpenSans;
+            font-size:1.2rem;
+            line-height:25px;
+            padding:0 15px 0 0;
+            text-align:right;
+        }
 
-    	input[type="text"] {
-    		width:50%;
-    	}
+        input[type="text"] {
+            width:50%;
+        }
 
-    	textarea {
-    		width:50%;
-    		height:100px;
-    	}
+        textarea {
+            width:50%;
+            height:100px;
+        }
 
-    	input[type="submit"] {
-    		margin:0 0 0 22%;
-    	}
+        input[type="submit"] {
+            margin:0 0 0 22%;
+        }
     }
 }
 
 
 #wg-ml-subscriber-list {
-		li {
-			list-style-type: none;
-			margin-left: 0px;
-			display: inline;
-			}
-		}
-		
+        li {
+            list-style-type: none;
+            margin-left: 0px;
+            display: inline;
+            }
+        }
+        
 #projects_list {
-				margin-top: -28px !important;
-				.grid_6 {
-					width: 235px;
-					}
-				}
-		
+                margin-top: -28px !important;
+                .grid_6 {
+                    width: 235px;
+                    }
+                }
+        
 .project_infos {
-		width: 33% !important;
-		}
+        width: 33% !important;
+        }
 
 .project_infos_baseline {
-		color: #424242 !important;
-		}
+        color: #424242 !important;
+        }
 
 .project_infos_title h2 {
 color: #5A5959 !important;
 }
 
 .project_list_project {
-		a 	{
-		box-shadow: none !important;
-			}
-		a:hover {
-		border-color: white !important;
-				}
-		}
+        a     {
+        box-shadow: none !important;
+            }
+        a:hover {
+        border-color: white !important;
+                }
+        }
 
 .project_infos_description {
 display: none;
