@@ -50,7 +50,8 @@ def commonenv():
     env.db_name = 'imaginationforpeople'
     env.dbdumps_dir = os.path.join(tempfile.gettempdir(), '%s_dumps' % env.projectname)
     
-    env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
+    #env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
+    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "master"
 
 
@@ -86,7 +87,6 @@ def stagenv():
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
-    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "release/almostspring"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
@@ -109,7 +109,7 @@ def devenv():
 
     current_path = local('pwd',capture=True)
     
-    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
+    env.gitrepo = "git@github.com:ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "develop"
 
     env.venvbasepath = os.path.normpath(os.path.join(current_path,"../../"))
@@ -264,7 +264,7 @@ def updatemaincode():
     with cd(os.path.join(env.venvfullpath, '%(projectname)s' % env)):
         run('git fetch')
         run('git checkout %s' % env.gitbranch)
-        run('git pull origin %s' % env.gitbranch)
+        run('git pull %s %s' % (env.gitrepo, env.gitbranch))
 
 @task
 def app_install():
