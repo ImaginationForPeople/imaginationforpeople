@@ -19,20 +19,32 @@
 
     <title>{% block title_prefix %}{% endblock %}{% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}</title>
 
-    {% compress css %}
-	{% block base_grid %}
-	<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/960gs-18cols.css" />
-	{% endblock %}
+    {% comment %}
+    This is to include our original version of OpenSans font family.  Unfortunately,
+    it leads to inconsistent rendering between browsers (especially firefox and chrome
+    on linux)
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
+    {% endcomment %}
+    {% comment %}
+    This uses google font services.  To switch from one to the other, uncomment the above, and 
+    change "Open Sans" to "OpenSans" in static/scss/_constants.scss.
+    {% endcomment %}
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+
+    {% compress css %}
+    {% block base_grid %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
+    {% endblock %}
+
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/footer.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/i4p_base/backcap/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/block/modal.css" />
     {% endcompress %}
 
     {% block style %}
@@ -40,9 +52,11 @@
       <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/white_page.css" />
       {% endcompress %}
     {% endblock %}
+
+    <!-- render_block "css" -->
     {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
-
-
+    <!-- /render_block "css" -->
+    
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
 	<script type="text/javascript">
@@ -74,7 +88,11 @@
 	$.getScript(I4P_STATIC_URL+"js/base/panels.js");  
 	</script>
 
+    
+    <!-- render_block "js" -->
     {% render_block "js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    <!-- /render_block "js" -->
+    
 	<!-- FIXME: do not enable until directive/compile is fixed
 	<script type="text/javascript" src="{{ STATIC_URL }}js/search.js"></script>
 	-->
@@ -98,9 +116,9 @@
             
             
 		// FIXME: move base-specific JS into a js/...base/block/something.js library //
-        $(".social-login img").tipsy({html: true });
+        $('.tipsed').tipsy({html: true, opacity: 0.95, gravity: $.fn.tipsy.autoNS, delayIn: 0, fade: false });
              
-        $("input[name=identification]").example("{% trans 'Enter your login'|escapejs %}");
+        $("input[name=identification]").example("{% trans 'Enter your email'|escapejs %}");
         $("input[name=password]").example("{% trans 'Password'|escapejs %}");
         
         $("input[name=openid_identifier]").example("{% trans 'Enter your username'|escapejs %}");
@@ -163,7 +181,7 @@
         </div>
       {% endblock %}      
       
-      {% block header %} {% include "header.html" %} {% endblock %}			
+      {% block header %}{% include "header.html" %}{% endblock %}			
 
       {% block nav %}{% endblock %}
       
@@ -186,12 +204,14 @@
     </div>
 
 
-		<!-- INLINE JS -->
-		{% render_block "footer_js" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
+    <!-- INLINE JS -->
+    {% render_block "footer_js" %} 
+    {% comment %}Do NOT use the sekizai postprocessor here, will crash when 
+    compress is enabled.  (To test, put COMPRESS_ENABLED = True in your
+     site_settings.py){% endcomment %}
     {% block inline_js %}
     {% endblock %}
-
-		<!-- /INLINE JS -->
+    <!-- /INLINE JS -->
   </body>
 
 </html>

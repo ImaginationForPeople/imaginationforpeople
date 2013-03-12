@@ -1,4 +1,6 @@
-{{ macros.post_vote_buttons(post = answer) }}
+{% with answer as post %}
+{% include "block/post/post_vote_buttons.html"%}
+{% endwith %}
 <div id="answer-img-accept-{{ answer.id }}"class="answer-img-accept"
     {% if answer.accepted() %}
     title="{% trans %}this answer has been selected as correct{% endtrans %}"

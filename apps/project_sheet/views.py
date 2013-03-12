@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from askbot.models.question import Thread
+from askbot.models.user import Activity
+from askbot.views.readers import QuestionsView
 """
 Django Views for a Project Sheet
 """
@@ -36,9 +39,11 @@ from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
 from django.utils import translation, simplejson
+from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
+
 
 from tagging.models import TaggedItem
 from reversion.models import Version
@@ -46,7 +51,7 @@ from reversion.models import Version
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
-from .forms import ProjectReferenceFormSet, ProjectMemberForm, AnswerForm, ProjectVideoAddForm
+from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
 from .models import ProjectMember, I4pProject, VERSIONNED_FIELDS, Question
 from .utils import build_filters_and_context
@@ -55,6 +60,24 @@ from .utils import get_project_translation_by_slug, get_project_translation_from
 from .utils import get_project_project_translation_recent_changes, fields_diff
 from .utils import get_project_translation_by_any_translation_slug
 
+
+class CurrentProjectTranslationMixin(object):
+    
+    def get_project_translation(self, slug):
+        language_code = translation.get_language()
+        site = Site.objects.get_current()
+        
+        try:
+            project_translation = get_project_translation_by_any_translation_slug(
+                                                project_translation_slug=slug,
+                                                prefered_language_code=language_code,
+                                                site=site)
+            
+                        
+        except I4pProjectTranslation.DoesNotExist:
+            raise Http404
+        
+        return project_translation
 
 def project_sheet_list(request):
     """
@@ -122,7 +145,7 @@ def project_sheet_list(request):
     extra_context["filters_tab_selected"] = True
 
     return object_list(request,
-                       template_name='project_sheet/obsolete/project_list.html',
+                       template_name='project_sheet/page/project_list.html',
                        queryset=ordered_project_sheets,
                        # paginate_by=12,
                        allow_empty=True,
@@ -203,8 +226,9 @@ class ProjectView(TemplateView):
         context = super(ProjectView, self).get_context_data(**kwargs)
             
         # Forms
-        # project_member_form = ProjectMemberForm()
-        # project_member_formset = ProjectMemberFormSet(queryset=project_translation.master.detailed_members.all())
+        project_member_add_form = ProjectMemberAddForm()
+        # project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
+        
         project_status_choices = OrderedDict((k, unicode(v)) 
                                              for k, v in I4pProject.STATUS_CHOICES)
         
@@ -231,6 +255,7 @@ class ProjectView(TemplateView):
             'project': project,
             'project_translation': self.project_translation,
             'project_status_choices': simplejson.dumps(project_status_choices),
+            'project_member_add_form': project_member_add_form,
             'project_tab' : True,
             'related_projects': related_projects,
         })
@@ -417,7 +442,7 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
 
     if project_translation:
         # context['project_objectives_form'] = I4pProjectObjectivesForm(instance=project_translation.project, prefix="objectives-form")
-        context['project_member_form'] = ProjectMemberForm()
+        context['project_member_form'] = ProjectMemberAddForm()
         context['answer_form'] = AnswerForm()
         context['project_tab'] = True
         context['project'] = project_translation.master
@@ -549,7 +574,7 @@ class ProjectGalleryAddVideoView(ProjectGalleryView):
     Add a video to a project
     """
     def get(self, request, *args, **kwargs):
-        self.picture_form = ProjectVideoAddForm()
+        self.video_form = ProjectVideoAddForm()
         return super(ProjectGalleryAddVideoView, self).get(request, *args, **kwargs)
     
     def post(self, request, *args, **kwargs):
@@ -565,7 +590,7 @@ class ProjectGalleryAddVideoView(ProjectGalleryView):
 
     def get_context_data(self, slug, **kwargs):
         context = super(ProjectGalleryAddVideoView, self).get_context_data(slug, **kwargs)
-        context['project_video_add'] = self.picture_form
+        context['project_video_add'] = self.video_form
         
         return context
 
@@ -618,24 +643,39 @@ class ProjectEditReferencesView(ProjectView):
         return redirect(self.project_translation.master)
 
 
-def project_sheet_member_add(request, project_slug):
-    language_code = translation.get_language()
+class ProjectMemberAddView(ProjectView):
+    """
+    When someone wants to join a project
+    """
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProjectMemberAddView, self).dispatch(request, *args, **kwargs)
+        
+    def get(self, request, *args, **kwargs):
+        self.project_member_add_form = ProjectMemberAddForm()
+        return super(ProjectMemberAddView, self).get(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        self.project_member_add_form = ProjectMemberAddForm(request.POST, request.FILES)
 
-    # get the project translation and its base
-    try:
-        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                              language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
-
-    if request.method == 'POST' :
-        project_member_form = ProjectMemberForm(request.POST)
-        if project_member_form.is_valid():
-            project_member = project_member_form.save(commit=False)
-            project_member.project = project_translation.master
+        # check if not yet member
+        if request.user in self.project_translation.project.members.all():
+            return redirect(self.project_translation)
+        
+        if self.project_member_add_form.is_valid():
+            project_member = self.project_member_add_form.save(commit=False)
+            project_member.project = self.project_translation.master
+            project_member.user = request.user
             project_member.save()
 
-    return redirect(project_translation)
+            return redirect(self.project_translation)
+        else:
+            return super(ProjectMemberAddView, self).get(request, *args, **kwargs)
+        
+    def get_context_data(self, slug, *args, **kwargs):
+        context = super(ProjectMemberAddView, self).get_context_data(slug, *args, **kwargs)
+        context['project_member_add_form'] = self.project_member_add_form
+        return context
 
 @require_POST
 @login_required
@@ -732,4 +772,35 @@ class ProjectRecentChangesView(TemplateView):
         return context
 
 
-
+class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView): 
+    template_name = "project_sheet/page/project_discuss_list.html"
+    is_specific = False
+    jinja2_rendering = False
+    
+    
+    def get_context_data(self, **kwargs):
+        language_code = translation.get_language()
+        
+        project_translation = self.get_project_translation(kwargs["project_slug"])
+        self.questions_url = reverse('project_discussion_list', args=[project_translation.slug])
+        
+        threads = project_translation.project.discussions.filter(language_code=language_code)
+        self.thread_ids = threads.values_list('id', flat=True)
+        
+        context = QuestionsView.get_context_data(self, **kwargs)
+    
+        activity_ids = []
+        for thread in threads:
+            for post in thread.posts.all():
+                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
+    
+        context.update({
+             'project' : project_translation.project,
+             'project_translation' : project_translation,
+             'active_tab' : 'discuss',
+             'activities' : activities,
+             'feed_url': reverse('project_discussion_list', args=[project_translation.slug])+"#TODO_RSS",
+        })
+    
+        return context

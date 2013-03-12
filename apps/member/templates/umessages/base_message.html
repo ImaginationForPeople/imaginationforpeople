@@ -1,4 +1,4 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
 {% load umessages_tags %}
@@ -7,60 +7,59 @@
   {{ block.super }}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/usermessages.css" />
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/member/umessages/usermessages.css" />
   {% endcompress %}
 {% endblock %}
 
 {% block content %}
     <div class="content usermessages_content"> 
-        <div class="container_18">
-        
-            <div class="grid_4 alpha">
-                <a href="{% url userena_umessages_list %}">
-                    <h1 class="title">{% trans 'My Messages' %}
-                        <img src="{{ STATIC_URL }}images/usermessages/my-messages-arrow.png" style="position:absolute; bottom:-4px; left:100px"/>
-                    </h1>
-                </a>
-                {% get_unread_message_count_for user as unread_message_count %}
-                
-                <a href="{% url userena_umessages_list %}">
-                    <div class="nb_messages">
-                        {% if unread_message_count == 0 %}
-                            <em>{{ unread_message_count }}</em>
-                        {% else %}
-                            <strong>{{ unread_message_count }}</strong>
-                        {% endif %}
-                        
-                        {% trans 'Inbox' %}
+        <div class="container">
+            <div class="row">
+                <div class="span3 i4p_left_menu">
+                    <div class="title_bar">
+                        <a href="{% url userena_umessages_list %}">
+                            <h1 class="title">{% trans 'My Messages' %}
+                                <img src="{{ STATIC_URL }}images/usermessages/my-messages-arrow.png" />
+                            </h1>
+                        </a>
                     </div>
-                </a>
-                
-            </div>
-        
-            <div class="grid_14 omega">
-                
-                <div class="title_bar">
-                   <a href="{% url userena_umessages_compose %}" class="new_message" >{% trans 'New Message' %}<img src="{{ STATIC_URL }}images/usermessages/arrow.png" style="position:absolute; right:0px; top:0px;"/></a>
-                   
-                   {% block discuss_beetween %}{% endblock %}  
-                   
-                   <!-- PREVIOUS / NEXT MESSAGE for DETAILLED MESSAGES PAGE -->
-                    {% comment %}
-                    <div class="mail_nav">
-                       <a href="#"><img src="{{ STATIC_URL }}images/usermessages/mail_nav-left.jpg" width="21" height="21" alt="{% trans 'Previous Message' %}"></a>
-                       <a href="#"><img src="{{ STATIC_URL }}images/usermessages/mail_nav-right.jpg" width="21" height="21" alt="{% trans 'Next Message' %}"></a>
-                    </div>
-                    {% endcomment %}
-                   
+                    {% get_unread_message_count_for user as unread_message_count %}
+                    
+                    <a href="{% url userena_umessages_list %}">
+                        <div class="nb_messages">
+                            {% if unread_message_count == 0 %}
+                                <em>{{ unread_message_count }}</em>
+                            {% else %}
+                                <strong>{{ unread_message_count }}</strong>
+                            {% endif %}
+                            
+                            {% trans 'Inbox' %}
+                        </div>
+                    </a>
+                    
                 </div>
-                
-                {% block usermessage_content %}
-                {% endblock %}  
             
+                <div class="span9">
+                    
+                    <div class="title_bar">
+                       <a href="{% url userena_umessages_compose %}" class="new_message" >{% trans 'New Message' %}<img src="{{ STATIC_URL }}images/usermessages/arrow.png" /></a>
+                       
+                       {% block discuss_beetween %}{% endblock %}  
+                       
+                       <!-- PREVIOUS / NEXT MESSAGE for DETAILLED MESSAGES PAGE -->
+                        {% comment %}
+                        <div class="mail_nav">
+                           <a href="#"><img src="{{ STATIC_URL }}images/usermessages/mail_nav-left.jpg" width="21" height="21" alt="{% trans 'Previous Message' %}"></a>
+                           <a href="#"><img src="{{ STATIC_URL }}images/usermessages/mail_nav-right.jpg" width="21" height="21" alt="{% trans 'Next Message' %}"></a>
+                        </div>
+                        {% endcomment %}
+                       
+                    </div>
+                    
+                    {% block usermessage_content %}
+                    {% endblock %}  
+                </div>
             </div>
-            
-            <div class="clear"></div>
-            
         </div>
     </div>
 {% endblock %}     

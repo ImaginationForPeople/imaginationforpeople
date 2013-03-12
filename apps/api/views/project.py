@@ -89,7 +89,7 @@ class ProjectPictureDetailResource(ModelResource):
     
 class I4pProjectListResource(ModelResource):
     location = fields.ForeignKey(LocationListResource, 'location', full=True, null=True)
-    pictures = fields.ToManyField(ProjectPictureListResource, 'pictures', full=True, null=True)
+    pictures = fields.ToManyField(ProjectPictureListResource, full=True, null=True, attribute=lambda bundle: ProjectPicture.objects.filter(project=bundle.obj)[:1])
     
     class Meta:
         queryset = I4pProject.objects.all()
@@ -132,13 +132,14 @@ class I4pProjectTranslationResource(ModelResource):
     themes = fields.CharField('themes', use_in='detail', null=True)
     
     class Meta:
-        queryset = I4pProjectTranslation.objects.all()
+        queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
         resource_name = 'project'
         throttle = CacheDBThrottle()
         
         bestof_allowed_methods = ['get']
         latest_allowed_methods = ['get']
         random_allowed_methods = ['get']
+        bycountry_allowed_methods = ['get']
         fields = ['id', 'slug','language_code','title','baseline']
         
     def dispatch_detail(self, request, **kwargs):
@@ -155,12 +156,16 @@ class I4pProjectTranslationResource(ModelResource):
     def dispatch_random(self, request, **kwargs):
         return self.dispatch('random', request, **kwargs)
     
+    def dispatch_bycountry(self, request, **kwargs):
+        return self.dispatch('bycountry', request, **kwargs)
+    
     def prepend_urls(self):
         array = []
         array.append(url(r"^(?P<resource_name>%s)/(?P<language_code>[\w]+)/(?P<slug>[\w\d_.-]+)%s$" % (self._meta.resource_name, trailing_slash()), self.wrap_view('dispatch_detail'), name="api_dispatch_detail"))
         array.append(url(r"^(?P<resource_name>%s)/bestof%s$" % (self._meta.resource_name, trailing_slash()), self.wrap_view('dispatch_bestof'), name="api_dispatch_bestof"))
         array.append(url(r"^(?P<resource_name>%s)/latest%s$" % (self._meta.resource_name, trailing_slash()), self.wrap_view('dispatch_latest'), name="api_dispatch_latest"))
         array.append(url(r"^(?P<resource_name>%s)/random%s$" % (self._meta.resource_name, trailing_slash()), self.wrap_view('dispatch_random'), name="api_dispatch_random"))
+        array.append(url(r"^(?P<resource_name>%s)/by-country/(?P<country_code>[\w]+)%s" % (self._meta.resource_name, trailing_slash()), self.wrap_view('dispatch_bycountry'), name="api_dispatch_bycountry"))
         return array
     
     def define_language_code(self, request):
@@ -180,21 +185,29 @@ class I4pProjectTranslationResource(ModelResource):
         return self.create_response(request, to_be_serialized)
     
     def get_bestof(self, request, **kwargs):
-        best_projects = I4pProject.objects.filter(best_of=True).order_by('?')[:80]
+        best_projects = I4pProject.on_site.filter(best_of=True).order_by('?')[:80]
         return self.get_custom(request, best_projects, **kwargs);
     
     def get_latest(self, request, **kwargs):
-        latest_projects = I4pProject.objects.order_by('-created')[:40]
+        latest_projects = I4pProject.on_site.order_by('-created')[:40]
         return self.get_custom(request, latest_projects, **kwargs)
     
     def get_random(self, request, **kwargs):
         self.define_language_code(request)
         
-        random_project = I4pProjectTranslation.objects.filter(language_code=self.language_code).order_by('?')[0]
+        random_project = I4pProjectTranslation.objects.filter(language_code=self.language_code, project__in=I4pProject.on_site.all()).order_by('?')[0]
         bundle = self.build_bundle(obj=random_project, request=request)
         to_be_serialized = self.full_dehydrate(bundle, for_list=False)
         to_be_serialized = self.alter_detail_data_to_serialize(request, to_be_serialized)
         return self.create_response(request, to_be_serialized)
+    
+    def get_bycountry(self, request, **kwargs):
+        limit = int(request.GET.get('limit', 50))
+        if limit > 50:
+            limit = 50
+        
+        found_projects = I4pProject.on_site.filter(location__country=kwargs["country_code"]).order_by('?')[:limit]
+        return self.get_custom(request, found_projects, **kwargs)
     
     def full_dehydrate(self, bundle, for_list=False):
         bundle = ModelResource.full_dehydrate(self, bundle, for_list=for_list)

@@ -1,3 +1,7 @@
+<!-- 
+BEGIN OF META/BOTTOM_SCRIPTS.HTML
+ -->
+
 {% if settings.ENABLE_MATHJAX %}
     <script type='text/javascript' src="{{settings.MATHJAX_BASE_URL}}/MathJax.js">
         MathJax.Hub.Config({
@@ -49,3 +53,6 @@
 {% if settings.USE_CUSTOM_JS %}
 <script src="{% url 'custom_js'%}" type="text/javascript"></script>
 {% endif %}
+<!-- 
+END OF META/BOTTOM_SCRIPTS.HTML
+ -->

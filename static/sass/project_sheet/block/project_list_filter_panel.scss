@@ -1,0 +1,489 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+
+/*---- Projects sorting ----*/
+
+#projectlist_sort {
+    background-color: #0c0c0c;
+    //border-top:1px solid #353535;
+    //border-bottom:1px solid black;
+    height:36px;
+    line-height:36px;
+    //@include i4p-shadow(4px, black); 
+	//@include border-radius(4px);
+     font-size:9px;
+    h4{
+        margin-top:8px;
+    }
+    .rss {
+        display: inline-block;
+    }
+    #projectlist_sort_buttons {
+        padding:0px;
+        margin:0px;
+        display:inline-block;
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+            .button, .redbutton, .greenbutton{
+                background-color:#eeeeee;
+                border:1px solid #bdbdbd;
+                margin-left:0px;
+                margin-right:0px;
+                padding-top:1px;
+                padding-bottom:1px;
+                padding-left:5px;
+                padding-right:5px;
+                font-size:9px;
+                font-family : Verdana, Arial, Sans-serif;
+                font-weight:bold;
+                color:#5a5959;
+                text-shadow:1px 1px 0 #fff; 
+                text-align:center;
+                text-decoration:none;
+                text-transform:none;
+                font-style:normal;  
+
+                @include i4p-shadow(4px, #a1a1a1); 
+                @include border-radius(4px); 
+
+                img{
+                    position:relative;
+                }
+            }
+
+            .button:hover{
+                color:#fff;
+                text-decoration:none;
+                text-shadow:-1px -1px 0 rgba(0,0,0,0.3);
+                background-position:0 -30px;
+                background:image-url('base/minibutton_blue.jpg');
+                border:1px solid #2a65a0;   
+            }
+            .filter-on a.button {
+                background-image:image-url('base/minibutton_red.jpg');
+                background-repeat:repeat-x;
+                border:1px solid #881B1B;
+                color:white;
+                text-shadow:-1px -1px 0 rgba(0, 0, 0, 0.3);
+                @include i4p-shadow(4px, black); 
+            }
+        }
+
+    }
+}
+
+
+/*---- Projects languages ----*/
+
+#langage-tool  {
+    position:relative !important;
+    width:90px;
+    top:-2px;
+}
+
+.sf-menu {
+    position:absolute;
+    
+    ul {
+        position: static !important;
+        width:auto !important;
+        border-top:0px solid #393939 !important;
+        
+         li {
+            width:80px;
+        }
+    }
+    
+    a {
+        padding:5px;
+        color:#979797;
+    }
+    
+    .sf-sub-indicator {
+        top:6px;
+    }
+}
+
+
+
+/*---- Filters ----*/
+
+
+.categories_project_page{
+    position:relative !important;
+    overflow:hidden;
+    top:auto;
+    bottom:0px;
+    margin-left:8px;
+    margin-right:7px;
+}
+
+
+.categories {
+    background-image:image-url('base/menu-bg.jpg');
+    background-repeat:repeat-x;
+    background-color:#161616;
+    height:36px;
+    
+    .menu{
+        ul{
+            padding:0px;
+            margin:0px;
+            display: inline-block;
+            li{
+                list-style-type:none;
+                display:inline;
+                padding:0px;
+                margin:0px;
+                .categ-button {
+                    border-right: 1px solid #676665;
+                    
+                    a {
+                        height:36px;
+                        line-height:36px;
+                        display: block;
+                    }
+                    .selected {
+                        background-image:image-url('base/categories-selected.png');   
+                        color:#888888;
+                        border:0px !important;
+                    }
+                    .selected:hover{
+                        color:white;
+                        text-decoration: none;
+                        }
+                }
+            }
+        }
+        
+        a {
+         /*   width: 100%;
+            height: 30px;
+            display: block;*/
+        }
+    }
+}
+
+
+
+#projects_filters{
+    padding-top:10px;
+    padding-bottom:10px;
+    position:relative;
+    top:-10px;
+}
+
+.filtersbox_content{
+    background-color:#0e0e0e;
+    @include border-radius(3px); 
+    margin:0.5em;
+    padding:0.5em;
+    color:#393939;
+
+    #cloudtag_list{
+        display:inline;
+        padding:0px;
+        margin:0px;
+        @include i4p-font-base($sizeTextSmall);
+        li{
+            list-style-type:none;
+            display:inline;
+            padding:0px;
+            margin:0px;
+        }
+}
+
+    h4{
+        color:#d3d3d1;
+        @include georgia(18px); 
+        display:block;
+        border-bottom:1px solid #393939;
+        margin:0px;
+        margin-bottom:10px;
+        padding-bottom:3px;
+    }
+    
+    .invert{
+        position:absolute;
+        top:6px;
+        right:0px;
+        cursor:pointer;
+    }
+    
+    .invert:hover{
+        text-decoration:none;
+        color:#d3d3d1;
+    }
+    
+    a{
+        font-size:11px;
+        color:#393939;
+    }
+    
+    p{
+        clear: both;
+        display: block;
+        margin: 0px;
+    }
+    
+    select{
+        width:100%;
+    }
+    
+    #id_objectives{
+        width:100%;
+        height: 83px;
+    }
+    
+    option[selected="selected"]{
+        background-color:red;
+    }
+    
+    .pictos-categ{
+        display: inline-block;
+        padding: 0px 0.5em;
+        margin-bottom:10px;
+        border-right:1px solid #393939;
+        text-align:center;
+        font-size:10px;
+    }
+    
+    .pictos-categ:last-child{
+        border-right:0px solid #393939;
+    }
+    
+    .filtersbox_choices{
+        position:absolute;
+        top:2px;
+        right:0px;
+        
+        a{
+            margin-left:5px;
+            cursor:pointer;
+        }
+        
+        a:hover{
+            text-decoration:none;
+            color:#d3d3d1;
+        }
+    }
+}
+
+
+
+/*---- Themes - Cloudtag ----*/
+
+#cloudtag_list{
+
+    li a {
+        color:#767676;
+        @include georgia(inherit); 
+        text-decoration:underline;
+    }
+    
+    li a.selected {
+        color:#119CBA;
+    }
+}
+
+
+
+/*---- Project Status - Checkboxes ----*/
+
+.filters-picto {
+    width:70px;
+    margin-left:auto;
+    margin-right:auto;
+    p {
+        visibility: hidden;
+        display: none;
+    }
+    
+    .ez-checkbox {
+        width: 19px;
+        height: 27px;
+        padding: 0 5px 0 0;
+        display: block;
+        clear: left;
+        float: left;
+        background-position:top center;
+        cursor:pointer;
+    }
+    
+    .ez-checked { 
+        background-position: -2px -25px !important; 
+    }
+    
+    #filter_val_edit .ez-checkbox{
+        background-image: image-url('project/filters-picto-editing.jpg');
+    }
+
+    #filter_val_full .ez-checkbox{
+        background-image: image-url('project/filters-picto-complete.jpg');
+    }
+
+    #bestof .ez-checkbox{
+        background-image: image-url('project/filters-picto-bestof.jpg');
+        left:17px;
+        position:relative;
+    }
+
+    #popular .ez-checkbox{
+        background-image: image-url('project/filters-picto-popular.jpg');
+    }
+
+    #team .ez-checkbox{
+        background-image: image-url('project/filters-picto-team.jpg');
+    }
+
+    #nobody .ez-checkbox{
+        background-image: image-url('project/filters-picto-nobody.jpg');
+    }
+}
+
+
+.filters-progress{
+
+    
+    a{
+        font-size:10px;
+    }
+    
+    ul{
+        li{
+            width:85px;
+            text-align:center;
+            margin:0px !important;
+            margin-bottom:15px !important;            
+            input {
+                width:85px;
+                height: 43px;
+                }
+        }
+        
+        li.selected p{
+            color:white;
+        }
+    }
+    
+    .ez-checkbox {
+        width: 90px;
+        height: 20px;
+        padding: 0 5px 0 0;
+        display: block;
+
+        background-repeat:no-repeat;
+        background-position:top center;
+        cursor:pointer;
+        margin-bottom:5px;
+    }
+    
+    .ez-checked { 
+        background-position: 3px -25px !important; 
+    }
+    
+    #filter_val_idea .ez-checkbox{
+        background-image: image-url('project/filters-progressbar_25.jpg');
+    }
+
+    #filter_val_begin .ez-checkbox{
+        background-image: image-url('project/filters-progressbar_50.jpg');
+    }
+
+    #filter_val_wip .ez-checkbox{
+        background-image: image-url('project/filters-progressbar_75.jpg');
+    }
+
+    #filter_val_end .ez-checkbox{
+        background-image: image-url('project/filters-progressbar_100.jpg');
+    }
+}
+
+
+.filters-picto ul, .filters-progress ul{
+    margin:0;
+    padding:0;
+}
+
+.filters-picto ul li , .filters-progress ul li{
+    display:inline;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    float:left;
+    margin-left:5px;
+    margin-right:5px;
+}
+
+
+.ez-hide { 
+    opacity: 0; 
+    filter:alpha(opacity=0); 
+    cursor:pointer;
+}
+.categories .menu {
+    text-align: center;
+    > div {
+        height: 36px;
+        margin-left: 0px; /* Clear bootstrap's margin */
+        }
+}
+.categories .menu .projectlist_pagination {
+    line-height: 36px;
+    display: inline-block;
+    .step-links {
+        display: inline;
+    }
+    a {
+        display: inline;
+    }
+}
+
+#reset_filters{
+    position:relative;
+    cursor:pointer;
+    font-size:11px;
+    display:inline;
+    font-style:normal;
+    font-family:Verdana,Arial,Helvetica,sans-serif;   
+    font-weight:normal;  
+    
+    img{
+        position:relative;
+        top:2px;
+        margin-right:5px;
+    }
+    
+    span{
+       text-decoration:underline;
+    }
+}
+
+#reset_filters:hover{
+    text-decoration:none;
+    color:white;
+}
+#panel-lock-container {
+    display: inline-block;
+    #lock-picto{
+        
+        display: block;
+        background-repeat:no-repeat;
+        width:24px;
+        height:24px;
+
+    }
+    #lock-picto.on{
+        background-image:image-url('base/lock-on.png');
+        
+    }
+
+    #lock-picto.off{
+        background-image:image-url('base/lock-off.png');
+    }
+}
+

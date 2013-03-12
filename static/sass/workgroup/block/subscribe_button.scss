@@ -1,0 +1,119 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/fonts";
+
+#subscribe-button {
+	a .quit {
+		font-family:$fontOpenSans;
+		background: #4ab9e8; /* Old browsers */
+		background: -moz-linear-gradient(top,  #4ab9e8 0%, #3990b4 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4ab9e8), color-stop(100%,#3990b4)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #4ab9e8 0%,#3990b4 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 ); /* IE6-9 */
+		line-height:33px;
+		font-weight:bold;
+		text-align:center;
+		border:3px solid #b9d6dc !important;
+		height:33px !important;
+		width:197px !important;
+		/* FIXME LATER */
+	}
+	button {
+		font-family:$fontOpenSans;
+		position:absolute;
+		text-transform:uppercase;
+		color:white;
+		left:20px;
+		top:115px;
+		width:202px;
+		padding:3px 0 0;
+		font-weight:bold;
+		height:38px;
+
+		span {
+			height:28px;
+			width: 100%;
+			display:block;
+		}
+
+		&.join {
+			@include border-radius(3px,3px);
+			border:3px solid #b9d6dc;
+			line-height:1.4rem;
+			font-size:1rem;
+			background: #4ab9e8; /* Old browsers */
+			background: -moz-linear-gradient(top,  #4ab9e8 0%, #3990b4 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#4ab9e8), color-stop(100%,#3990b4)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top,  #4ab9e8 0%,#3990b4 100%); /* IE10+ */
+			background: linear-gradient(to bottom,  #4ab9e8 0%,#3990b4 100%); /* W3C */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 ); /* IE6-9 */
+
+			span {
+				position:relative;
+				padding-left:30px;
+				width:162px;
+				background-image:image-url('workgroup/plus.png');
+				background-repeat: no-repeat;
+				background-position: 8px 0;
+			}
+		}
+	}
+
+	div.quit {
+		@include border-radius(3px,3px);
+	    border: 0 none;
+	    font-family:$fontOpenSans;
+		position:absolute;
+		text-transform:uppercase;
+		color:white;
+		left:20px;
+		top:115px;
+		width:202px;
+		height:38px;
+
+		span {
+			display:block;
+			height:32px;
+		    font-size: 0.9em;
+		    font-weight: bold;
+		    line-height: 1.4rem;
+		    padding: 6px 6px 0 34px;
+		    text-align: left;
+		    background:#706F6F image-url('workgroup/v.png') no-repeat 8px center;
+		    width:116px;
+		    border-right:1px solid #838282;
+		    float:left;
+		}
+
+		button {
+			border-left:1px solid #5f5e5e;
+			width:45px;
+		 	background:#706F6F image-url('workgroup/x.png') no-repeat center center;
+		 	text-indent:-999em;
+		 	position:static;
+		 	border:0;
+		}
+	}
+	
+}
+
+/* TEMP */
+
+.block-content #subscribe-button {
+	button {
+		position:static;
+		text-shadow:none;
+		margin-bottom:10px;
+	}
+	.quit {
+		position:relative;
+		left:15px;
+		top:0;
+		margin-bottom:10px;
+	}
+}

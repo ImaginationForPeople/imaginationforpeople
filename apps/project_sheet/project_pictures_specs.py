@@ -65,13 +65,13 @@ class AlphaGradient(ImageProcessor):
             for x in range(0, 255):
                 darken = x / 255.0
 
-                # Left one                
-                r, g, b = img.getpixel((x, y))
+                # Left one
+                r, g, b = img.getpixel((x, y))[0:3]
                 new_pix = (int(r*darken), int(g*darken), int(b*darken))
                 img.putpixel((x, y), new_pix)
 
                 # Right one
-                r, g, b = img.getpixel((width-1-x, y))
+                r, g, b = img.getpixel((width-1-x, y))[0:3]
                 new_pix = (int(r*darken), int(g*darken), int(b*darken))
                 img.putpixel((width-1-x, y), new_pix)
                 

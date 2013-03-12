@@ -1,11 +1,16 @@
 // load reusable components
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 
 $i4p-action-sprite-dimensions: true;
 $i4p-action-sprites: sprite-map("i4p-action/*.png");
 @import "i4p-action/*.png"; // */
 // @include all-i4p-action-sprites; // NO AUTO INCLUDE
+
+$i4p-form-action-sprite-dimensions: true;
+$i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
+@import "project_sheet/i4p-form-action/*.png"; // */
+// @include all-i4p-form-action-sprites; // NO AUTO INCLUDE
 
 // FIXME: DISABLED UNTIL FUNCTIONAL
 .references-block {
@@ -65,6 +70,61 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	    &:hover .action-add {
 		background: $i4p-action-sprites no-repeat; 
 		@include i4p-action-sprite('add-white'); 
+	    }
+	}
+
+	form {
+	    @include box-sizing(border-box);
+	    background-color: $colorLightBlue;
+	    color: white;
+	    padding: $sizePaddingMedium;
+	    text-align: left;
+
+	    label[for*="-desc"] {
+		clear: both;
+		margin-top: 1rem;
+		float: left;
+	    }
+
+	    label[for*="-DELETE"] {
+		float: right;
+	    }
+
+	    input[type="checkbox"] {
+		float: right;
+		margin-right: .25rem;
+	    }
+
+	    input[type="submit"] {
+		@include i4p-form-action-sprite('ok-white'); 
+
+		border: none;
+		clear: both;
+		content: "";
+		cursor: pointer;
+		display: block;
+		float: right;
+		font-size: 0;
+		margin-left: $sizeMarginMedium;
+		margin-top: 2rem;
+	    }
+
+	    input[type="text"] {
+		@include box-sizing(border-box);
+		width: 100%;
+		min-height: 2 * $sizeTextNormal;
+	    }
+
+	    .helptext {
+		float: left;
+		clear: both;
+		font-style: italic;
+	    }
+
+	    &:after {
+		display: block;
+		content: "";
+		clear: both;
 	    }
 	}
     }

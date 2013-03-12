@@ -28,15 +28,16 @@ from django.forms.models import modelform_factory
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
-from django.template.defaultfilters import linebreaksbr
+from django.template.defaultfilters import linebreaksbr, urlize
 from django.utils import simplejson, translation
+from django.utils.html import strip_tags
 from django.views.decorators.http import require_POST
 
 from honeypot.decorators import check_honeypot
 
 from .models import I4pProjectTranslation, Answer, Question
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm, AnswerForm
-from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug, create_parent_project
+from .forms import I4pProjectObjectivesForm, I4pProjectStatusForm
+from .utils import get_project_translation_by_slug
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -165,8 +166,13 @@ def _answer_save(language_code, project_slug, project_translation, question, val
                 answer.translate(language_code)
         except Answer.DoesNotExist:
             answer = Answer.objects.create(project=project, question=question)
+        # Remove html tags
+        value = strip_tags(value)
         answer.content = value
         answer.save()
+
+        # Make line breaks and link urls
+        value = linebreaksbr(urlize(value))
         response_dict = dict(text=value,
                              redirect=project_slug is None,
                              redirect_url=project.get_absolute_url())
@@ -181,6 +187,9 @@ def _textfield_save(language_code, project_slug, project_translation, section, v
     fieldname = TEXTFIELD_MAPPINGS[section]
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(fieldname,))
 
+    # prevent html tags from being saved
+    value = strip_tags(value)
+    
     form = FieldForm({fieldname: value}, instance=project_translation)
 
     if form.is_valid():
@@ -191,7 +200,8 @@ def _textfield_save(language_code, project_slug, project_translation, section, v
             if fieldname == "completion_progress":
                 response_dict["completion_progress"] = getattr(project_translation,fieldname)
         else:
-            text = linebreaksbr(value)
+            # Generate line breaks and link urls if found
+            text = linebreaksbr(urlize(value))
 
         response_dict.update({'text': text or '',
                               'redirect': project_slug is None,

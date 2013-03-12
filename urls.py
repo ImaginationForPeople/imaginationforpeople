@@ -4,6 +4,9 @@ from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+import autocomplete_light
+autocomplete_light.autodiscover() # Keep this before admin.autodiscover()
+
 from askbot.sitemap import QuestionsSitemap
 from dynamicsites.views import site_info
 from django_notify.urls import get_pattern as get_notify_pattern
@@ -51,16 +54,15 @@ if settings.DEBUG:
 ##Zinia (blog)
 urlpatterns += i18n_patterns('',
                         url(r'^blog/', include('zinnia.urls')),
-                        url(r'^comments/', include('django.contrib.comments.urls'))
                         )
 
 urlpatterns += i18n_patterns('',
-#    url(r'^', include('apps.i4p_base.urls')),
+    url(r'^', include('apps.i4p_base.urls')),
 
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
-    url(r'^workgroup/', include('apps.workgroup.urls')),
+    url(r'^group/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^tags/', include('apps.tags.urls', namespace='tags')),
@@ -107,6 +109,8 @@ urlpatterns += patterns('',
 
     (r'^tinymce/', include('tinymce.urls')),
     (r'^uploadify/', include('uploadify.urls')),
+
+    url(r'autocomplete/', include('autocomplete_light.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
                         

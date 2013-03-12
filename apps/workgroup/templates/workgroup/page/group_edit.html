@@ -1,0 +1,25 @@
+{% extends "workgroup/layout/workgroup_base.html" %}
+
+{% load i18n %}
+{% load compress %}
+{% load sekizai_tags %}
+
+{% block content %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/group_edit.css" />
+{% endaddtoblock %}
+
+<div class="container">
+	<div class="row">
+		<div id="workgroup-edit-form" class="span12">
+			<h1>{% trans "Edit this group's information" %}</h1>
+			<form method='POST' action='{% url workgroup-edit workgroup.slug %}' enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type='submit'/>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

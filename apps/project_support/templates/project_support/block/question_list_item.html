@@ -1,0 +1,9 @@
+{% extends "project_questions/block/question_list_item.html" %}
+
+{% block declaration %}
+<li id="question-{{question.id}}" class="short-summary {{thread.projectsupport_set.all.0.type|lower}}">
+{% endblock %}
+
+{% block thread_anchor %}
+<a href="{% url project_support_view project_translation.slug question.id%}" title="{{thread.title}}">{{thread.title}}</a>
+{% endblock %}

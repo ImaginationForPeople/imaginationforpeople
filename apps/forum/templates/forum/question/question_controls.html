@@ -21,8 +21,10 @@
         <a class="question-flag"><i class="icon-flag icon-white"> </i> {% trans %}flag offensive{% endtrans %}</a>
     </span>
 {% endif %}
+{% if not disable_retag %} {# use for call to helf #}
 <a id="retag" class="question-retag" href="{% url retag_question question.id %}"><i class="icon-tag icon-white"> </i>{% trans %}retag{% endtrans %}</a>
-<a id="post-{{question.id}}-edit" class="question-edit" href="{% url edit_question question.id %}"><i class="icon-pencil icon-white"> </i> {% trans %}edit{% endtrans %}</a>
+{% endif %}
+<a id="post-{{question.id}}-edit" class="question-edit" href="{{ edit_question_url }}"><i class="icon-pencil icon-white"> </i> {% trans %}edit{% endtrans %}</a>
 <a id="post-{{question.id}}-delete" class="question-delete">
 {% if question.deleted %}<i class="icon-trash icon-white"> </i> {% trans %}undelete{% endtrans %}{% else %}<i class="icon-trash icon-white"> </i> {% trans %}delete{% endtrans %}{% endif %}
 </a>

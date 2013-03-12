@@ -17,11 +17,15 @@
 #
 
 from haystack.forms import SearchForm
+from apps.project_sheet.utils import get_project_translations_from_parents, build_filters_and_context
 
 def search_form(request):
     additions = {
         'search_form': SearchForm(),
     }
+    filter_forms, extra_context = build_filters_and_context(request.GET)
+    additions.update(extra_context)
+    additions.update(filter_forms)
     return additions
 
 

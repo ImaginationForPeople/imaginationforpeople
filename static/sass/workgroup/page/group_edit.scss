@@ -1,0 +1,74 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/fonts";
+
+#workgroup-edit-form {
+	font-size:1.2rem;
+
+	h1 {
+		padding:15px 0 0 0;
+	}
+
+	p {
+		font-family:$fontOpenSans;
+		font-size:1.1rem;
+		width:100%;
+		float:left;
+		margin:0 0 10px;
+
+		a {
+			display:block;
+			padding:0 0 4px
+		}
+
+		label {
+			font-family:$fontOpenSans;
+			font-size:1.3rem;
+
+			&[for="picture-clear_id"] {
+				font-size:1.1rem;
+			}
+		}
+
+		input[type="text"] {
+			width:600px;
+			border-width:2px;
+		}
+
+		#picture-clear_id {
+			float: left;
+   			margin: 0 4px 0 0;
+   			position:relative;
+   			top:2px;
+		}
+
+		textarea {
+			width:600px;
+			border-width:2px;
+		}
+
+		.helptext {
+			font-size:1rem;
+			display:block;
+		}
+	}
+	input[type="submit"] {
+		background: #04add1; /* Old browsers */
+		background: -moz-linear-gradient(top,  #04add1 0%, #378cc2 100%); /* FF3.6+ */
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#04add1), color-stop(100%,#378cc2)); /* Chrome,Safari4+ */
+		background: -webkit-linear-gradient(top,  #04add1 0%,#378cc2 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-linear-gradient(top,  #04add1 0%,#378cc2 100%); /* Opera 11.10+ */
+		background: -ms-linear-gradient(top,  #04add1 0%,#378cc2 100%); /* IE10+ */
+		background: linear-gradient(to bottom,  #04add1 0%,#378cc2 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#04add1', endColorstr='#378cc2',GradientType=0 ); /* IE6-9 */
+		height:26px;
+		border:0;
+		color:white;
+		@include border-radius(13px,13px);
+		text-transform:uppercase;
+		font-weight:bold;
+		font-stretch:condensed;
+		font-family:$fontOpenSans;
+		padding:0 10px;
+	}
+}

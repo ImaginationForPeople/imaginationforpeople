@@ -1,6 +1,5 @@
 body {
-    background-image: url("../images/home/home-bg.jpg");
-    background-position: top center; 
+
 }
 
 #error_page{
@@ -9,8 +8,6 @@ body {
     background-repeat:no-repeat;
     background-position: top center;
     position:relative;
-    top:-37px;
-    left:-2px;
     
     #error_page_content{
         position:absolute;
@@ -32,9 +29,9 @@ body {
 
 
 #error_page.page404{
-    background-image: url("../images/404.jpg");
+    background-image: image-url('404.jpg');
 }
 
 #error_page.page500{
-    background-image: url("../images/500.jpg");
+    background-image: image-url('500.jpg');
 }

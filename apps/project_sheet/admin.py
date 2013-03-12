@@ -15,6 +15,7 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from askbot.models.question import Thread
 """
 Django Admin for a Project Sheet
 """
@@ -45,6 +46,11 @@ class I4pProjectAdmin(VersionAdmin):
     list_display = ('__unicode__', 'status', 'best_of', 'created')
     date_hierarchy = 'created'
     list_filter = ['site', 'status', 'best_of', 'topics']
+    
+    def formfield_for_manytomany(self, db_field, request=None, **kwargs):
+        if db_field.name == "discussions":
+            kwargs["queryset"] = Thread.objects.filter(is_specific=False)
+        return VersionAdmin.formfield_for_manytomany(self, db_field, request=request, **kwargs)
 
 class QuestionAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('topic', 'weight', 'all_translations')

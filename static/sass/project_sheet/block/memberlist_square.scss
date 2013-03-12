@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 @import "i4p/fonts";
 
@@ -25,6 +25,10 @@ $i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
 @import "project_sheet/i4p-slider/*.png"; // */
 // @include all-i4p-slider-sprites; // NO AUTO INCLUDE
 
+$i4p-memberlist-sprite-dimensions: true;
+$i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
+@import "project_sheet/i4p-memberlist/*.png"; // */
+
 
 $memberListFancySquare_sizeContainerWidth: 300px;
 $memberListFancySquare_sizeContainerHeight: 65px;
@@ -41,6 +45,8 @@ $memberListFancySquare_sizeHeight: 52px;
 
 
 .memberlist-overlay.square.fancy {
+    @include all-i4p-memberlist-sprites; // include all sprites within memberlist-modal
+
     @include i4p-transition(all .5s ease);
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
@@ -97,12 +103,12 @@ $memberListFancySquare_sizeHeight: 52px;
 	}
 
 	.contact, .profile {
-	    background-position: center left;
-	    background-repeat: no-repeat;
-	    display: block;
-	    padding-left: 20px;
-
+	    @include i4p-sprite-margin('i4p-memberlist');
+	    @include i4p-sprite('i4p-memberlist');
 	    @include i4p-transition(all .5s ease);
+
+	    display: block;
+
 	    color: $colorMedGrey;
 
 	    &:hover {
@@ -110,18 +116,15 @@ $memberListFancySquare_sizeHeight: 52px;
 		text-decoration: none;
 	    }
 	}
-	.contact {
-	    background-image: image-url('project_sheet/memberlist/contact.png');
-	}
-	.profile {
-	    background-image: image-url('project_sheet/memberlist/profile.png');
+	.contact, .profile {
+	    & > i { display: inline-block; }
 	}
     }
 }
 
 
 .memberlist.square.fancy {
-    @include bootstrap-clearfix;
+    @include ctb-clearfix;
     @include border-radius($sizeRadiusSmall);
     @include box-sizing(border-box);
     @include i4p-transition(all .5s ease);

@@ -3,6 +3,12 @@
 
 @mixin i4p-font-base($sizeText : $sizeTextNormal) {
     font-size: $sizeText;
+    /* There used not to be a line height defined here.  It is essential to have
+    a line-height defined, otherwise the line spacing won't match the font size 
+    when the mixin is used.  If for some reason you need a custom line-height
+    change it in your stylesheet, below the mixin, but DO NOT REMOVE IT FROM 
+    HERE */
+    line-height: $sizeText * 1.25;  
     font-family: $fontOpenSans;
 }
 
