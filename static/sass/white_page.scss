@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 
 
 #opened-sidebar, #opened-sidebar-team, #langage-tool ul li ul{
@@ -28,7 +28,7 @@ body{
 /* --MENU------- */
 
 .nav-white{
-	background-image:url(../images/base/nav-white-bg.png);	
+	background-image:image-url('base/nav-white-bg.png');	
 	height:150px;
 	background-repeat:repeat-x;		
 	width:100%;
@@ -40,7 +40,7 @@ body{
 
 
 .categories .menu ul  .selected{
-	background-image:url(../images/base/categories-selected-white.png)	!important;
+	background-image:image-url('base/categories-selected-white.png')	!important;
 	color:black !important;
     border:0px !important;	
 }
@@ -132,7 +132,7 @@ body{
  
  
 .grey_column_close{
-	background-image:url(../images/project/close-arrow.png);
+	background-image:image-url('project/close-arrow.png');
 	background-position:right;	
 	left:-20px; 
  }
@@ -140,7 +140,7 @@ body{
  
 .grey_column_save_close{
 	color:#119CBA;
-	background-image:url(../images/project/close-arrow-right.png);	
+	background-image:image-url('project/close-arrow-right.png');	
 	background-position:left;	
 	float:right;
 	right:-35px;

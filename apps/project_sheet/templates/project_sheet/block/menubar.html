@@ -8,17 +8,38 @@
 {% endaddtoblock %}
 
 <div class="project-menubar">
-	<div class="container">
-		<div class="row">
-			<div class="menubar-leftcolumn span8">
-				<ul>
-			
-				<li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}"><a href="{{ project_translation.master.get_absolute_url  }}">{% trans "Project" %}</a></li>
-				<li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}"><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
-				<li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %}"><a href="{% url project_sheet-instance-history project_translation.slug %}">{% trans "History" %}</a></li>
+  <div class="container">
+    <div class="row">
+      <div class="menubar-leftcolumn span8">
+	<ul>
+	  <!-- project -->
+	  <li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}">
+	    <a href="{{ project_translation.master.get_absolute_url  }}">{% trans "Project" %}</a>
+	  </li>
+	  <!-- gallery -->
+	  <li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}">
+	    <a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a>
+	  </li>
+	  <!-- discussion -->
+          <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %}">
+            <a href="{% url project_discussion_list project_translation.slug %}">
+              {% trans "Discussion" %}
+            </a>
+          </li>
+	  <!-- support -->
+          <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %}">
+            <a href="{% url project_support_main project_translation.slug %}">
+              {% trans "Needs" %}
+              <span class="badge">{{ project_translation.projectsupport_set.count }}</span>
+            </a>
+          </li>
+	  <!-- history -->
+	  <li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %}">
+	    <a href="{% url project_sheet-instance-history project_translation.slug %}">{% trans "History" %}</a>
+	  </li>
+	  
+	  
 				{% comment %}
-				<li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
-				<li><a href="#FIXME-BADURL">{% trans "Calls for help" %}</a></li>
 				<li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
 				<li class="right"><a href="#FIXME-BADURL">
 						<i class="i4p-toolbar-favorite"></i>
@@ -51,19 +72,27 @@
 						<li class="divider"></li>
 						<li class="dropdown-submenu">
 						<a tabindex="-1" href="#" >
-							<span class="lang-arrow"></span>
+							<span class="lang-arrow"><</span>
 							<span class="lang-action">{% trans "Add new translation" %}</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- FIXME: the submenu always show all language, even if they exist/are filled -->
 								{% for language in LANGUAGES %}
 								<li>
-									<form method='POST' tabindex="-1" action="{% url project_sheet-translate project_translation.slug %}">
+									<!--<form method='POST' tabindex="-1" action="{% url project_sheet-translate project_translation.slug %}">
 									  {% csrf_token %}
 										<span class="lang-code">{{ language.0 }}</span>
 										<span class="lang-title">{{ language.1 }}</span>
 										<input type='hidden' name='requested_language' value='{{ language.0 }}'/>
 										<input type='submit' value='{{ language.1 }}'/>
+									</form>-->
+									<form method='POST' tabindex="-1" action="{% url project_sheet-translate project_translation.slug %}">
+									  {% csrf_token %}
+										<input type='hidden' name='requested_language' value='{{ language.0 }}'/>
+									  	<button type="submit">
+											<span class="lang-code">{{ language.0 }}</span>
+											<span class="lang-title">{{ language.1 }}</span>
+										</button>
 									</form>
 								</li>
 								{% endfor %}
@@ -72,15 +101,15 @@
 					</ul>
 				</li>
 				<li class="right">
-					<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
+					<a class="addthis_button_compact share" data-target="#">{% trans "Share" %}
 						<i class="i4p-toolbar-dropdown"></i>
 					</a>
 
 					<!-- AddThis Button BEGIN -->
-					<ul class="addthis_toolbox addthis_default_style dropdown-menu">
-						<a class="addthis_button_facebook_like"  fb:like:layout="button_count"></a>
-						<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
-					</ul>
+					<!--<div class="addthis_toolbox addthis_default_style dropdown-menu">
+					    <a class="addthis_counter addthis_pill_style"></a>
+					    <a class="addthis_button_compact">Share</a>
+					</div>->
 					<!-- AddThis Button END -->
 				</li>
 			</ul>

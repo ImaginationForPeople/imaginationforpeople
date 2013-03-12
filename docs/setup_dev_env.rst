@@ -2,6 +2,26 @@
 Setting-up a development environment
 ====================================
 
+Bootstrapping an environment automatically
+==========================================
+
+There is a fabfile to help you.  The following commands should install and setup
+ everything on debian based Linux distributions.  All you need is fabric installed::
+
+  wget https://raw.github.com/ImaginationForPeople/imaginationforpeople/master/fabfile.py
+  fab devenv bootstrap_venv
+  fab devenv bootstrap_full
+
+Grabbing a copy of the production environnement
+-----------------------------------------------
+Working on a copy of the production database is the best way to avoid accidentally 
+breaking stuff::
+
+  fab prodenv database_download
+  fab devenv database_restore
+
+If you ran the above successfully, you can ignore the rest of this page.
+
 Bootstrapping an environment
 ============================
 
@@ -145,7 +165,17 @@ Thus, you will need to (re)generate assets (pictures, stylesheets, etc) to have 
 Installing compass
 ------------------
 
-To install Compass_, first make sure you have ruby and the bundle gem installed (the prefered way is to use rbenv_).
+There are fabric tasks to make this easier (if you didn't already run fab devenv
+ bootstrap_full):
+
+Setup rbenv::
+
+  fab devenv install_rbenv
+
+Setup compass::
+  fab devenv install_compass
+
+Manually, to install Compass_, first make sure you have ruby and the bundle gem installed (the prefered way is to use rbenv_).
 
 Then, from the project root run::
 
@@ -178,7 +208,7 @@ And finally, to delete all generated assets, simply type ::
   cd static && while true ; do bundle exec compass clean
 
   
-Instead of those complex command lines, you can also use the equivalent helper scripts :
+Instead of those complex command lines, you can also use the equivalent helper scripts (from the static/ directory):
 ``build.sh``, ``watch.sh``, ``clean.sh``.
     
 .. _Compass: http://compass-style.org/

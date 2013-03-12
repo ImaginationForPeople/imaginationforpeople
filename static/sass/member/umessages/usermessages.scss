@@ -1,0 +1,369 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+/*------------ GENERALS ------------*/
+
+.categories {
+    display: none;
+    visibility: hidden;
+}
+
+
+.content{
+    padding-top: 20px;
+    a{
+        color: $colorLightBlue;
+    }
+}
+
+
+/*------------ MESSAGES ------------*/
+
+.usermessages_content{
+
+    h1.title{
+        color:white;
+        margin-top:0px;
+        text-transform:none;
+        font-size:17px;
+        text-align:center;
+        height: 32px;
+        line-height: 32px;
+        @include i4p-shadow(4px, #181818);
+        background-image: image-url('usermessages/my-messages-title.jpg'); 
+        background-size: 100% auto;
+        background-color:transparent !important;
+        background-repeat:no-repeat;
+        padding-right:35px;
+    }
+    
+    h1.title:hover{
+        text-decoration:underline;
+    }
+    
+    i4p_left_menu .title_bar a{
+            width: 100%;
+        }
+    
+    .title_bar{
+        display:block;
+        background-color:#686868;
+
+        width:100%;
+        height:32px;
+        margin-bottom:20px;
+        @include i4p-shadow(4px, #181818);
+        
+        
+            
+        a.new_message{
+            display: inline-block;
+            padding-left:50px;
+            
+            height:32px;
+
+            background-image: image-url('usermessages/new_message.jpg'); 
+            background-repeat:no-repeat;
+            color:white;
+            @include georgia(17px);
+            > img {
+                padding-left:25px;
+            }
+        }
+        
+        h1.title > img {
+            position:absolute;
+            bottom:-4px;
+            left:50%;
+        }
+        
+        a.new_message:hover{
+            text-decoration:underline;
+        }
+        
+        div.mail_nav{
+            position:absolute;
+            right:-4px;
+            top:6px;
+        }
+    }
+    
+    a:hover{
+        text-decoration:none;
+    }
+    
+    .nb_messages{
+        background-color:#2b2b2b;
+        padding:4px;
+        color:white;
+        text-transform:uppercase;
+        
+        strong{
+            background-color: $colorLightBlue;
+            padding-left:3px;
+            padding-right:3px;
+            color:white;
+        }
+        
+        em{
+            background-color:grey;
+            padding-left:3px;
+            padding-right:3px;
+            color:white;
+            font-style:normal;
+        }
+    }
+    
+    #usermessage_list{
+        margin: 0px;
+        .usermessage{
+            width:100%;
+            min-height:107px;
+            float:left;
+            padding:5px;  
+            margin-bottom:10px;
+            background-image: image-url('usermessages/message-bg-see.jpg');
+            position:relative;
+            color:white;
+            list-style-type:none;
+                em{
+                    color:white;
+                    font-size:10px;
+                }
+                
+                h1{
+                    text-decoration:underline;
+                    margin-top:4px;
+                    font-size:14px;
+                }
+            
+                a{
+                    color:white;
+                }
+                
+                a:hover{
+                    text-decoration:none;
+                }
+                
+                p{
+                    color:grey;
+                    margin-top: 0.5em;
+                    margin-bottom:0.5em;
+                }
+                
+                .avatar{
+                    width:127px;
+                    height:117px;
+                    background-image: image-url('usermessages/avatar-bg.png');
+                    background-repeat:no-repeat;
+                    position:absolute;
+                    left:0px;
+                    top:0px;
+                    
+                    img{
+                        width:105px;
+                        height:105px;
+                        margin:6px;
+                    }
+                }
+                
+                .usermessage_body{
+                   margin-left:135px;
+                   color: grey;
+                }
+                
+                .message_actions{
+                    position:absolute;
+                    right:5px;
+                    top:5px;
+                
+                    .nb_news{
+                        background-color: $colorLightBlue;
+                        padding:2px 6px 2px 6px;
+                        text-align:center;
+                        @include georgia(14px);
+                        color:white;
+                        float:left;
+                        margin-right:5px;
+                    }  
+
+                    form#delete_message{
+                        float:left;
+                    
+                        input[type=image]{
+                            background-color:#595959;
+                            border:0px;
+                            padding-top:1px;
+                        }
+                    }
+                }
+                
+                
+        }
+        
+        .usermessage:hover{
+            background-image: image-url('usermessages/message-bg-see-over.png');
+        }
+        
+        .usermessage.unsee{
+            background-image: image-url('usermessages/message-bg-unsee.jpg');
+            color:black;
+            
+            em{
+                color:black;
+            }
+            
+            a{
+                color:black;
+            }
+            
+            p{
+                color:black;
+            }
+            
+            .avatar{
+                background-image: image-url('usermessages/avatar-bg2.png');
+            }
+        }
+        
+        #usermessage_compose{            
+            background-image:none;
+            padding:0px;
+            position:relative;
+            
+            .avatar{
+                display:none;
+                visibility:hidden;
+            }
+            
+            p{
+                width:628px !important;
+            
+                textarea{
+                    padding:5px;
+                    height:100px;
+                }
+                
+            }
+                
+            input[type=submit]{
+                left:10px;
+                position:relative;
+                cursor:pointer;
+            }
+        }
+
+    }
+    
+    #usermessage_compose{
+        
+        width:100%;
+        float:left;
+        padding:5px;  
+        margin-bottom:10px;  
+        background-image: image-url('usermessages/message-bg-see.jpg');
+        position:relative;
+        color:white;
+        
+        form{
+            margin-left:135px;
+            
+            p{
+                float:left;
+                margin-bottom:5px;
+                width:100%;
+                position:relative;
+                overflow:hidden;
+                background-color:white;
+                
+                label{
+                    position:relative;
+                    color:#403f3d;
+                    color:grey;
+                    float:left;
+                    padding:3px;
+                    background-color:white;
+                }
+                
+                
+                input[type=text]{
+                    padding-left:45px;
+                    width:100%;
+                    position:absolute;
+                    border:1px solid white;
+                    border-left:0px;
+                    padding:3px;
+                    padding-top:1px;
+                    line-height:10px;
+                }
+                
+                textarea{
+                    width:624px;
+                    border:1px solid white;
+                }
+            }
+            
+            p.help, .helptext, label[for=id_body]{
+                display:none;
+                visibility:hidden;
+            }
+            
+            input[type=submit]{
+                float:right;
+                background-color:#6b6b6b;
+                border:0px;
+                margin-right:2px;
+                @include georgia(14px);
+                color:white;
+                padding:2px;
+                cursor:pointer;
+                padding-left:20px;
+                padding-right:20px;
+                position:relative;
+                right:-2px;
+            }
+            
+            input[type=submit]:hover{
+                background-color:grey;
+            }
+            
+            #id_to_on_deck>div>div{
+                margin-left:45px;
+            }
+        }
+        
+        .avatar{
+            width:127px;
+            height:117px;
+            background-image: image-url('usermessages/avatar-bg.png');
+            background-repeat:no-repeat;
+            position:absolute;
+            left:0px;
+            top:0px;
+            
+            img{
+                width:97px;
+                height:97px;
+                margin:10px;
+            }
+        }
+    }
+
+
+}
+
+
+.ui-icon {
+    background-image: image-url('ui-icons_222222_256x240-white.png') !important;
+    position:absolute;
+    right:5px;
+    z-index:200;
+}
+
+.results_on_deck{
+    clear:both;
+}
+
+.ui-autocomplete{
+    width:500px !important;
+}

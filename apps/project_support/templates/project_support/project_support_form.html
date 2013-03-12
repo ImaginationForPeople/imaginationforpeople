@@ -1,0 +1,58 @@
+{% extends "project_sheet/layout/project_base.html" %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% block content %}
+{{block.super}}
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_form.css" />
+{% endaddtoblock %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
+{% endblock %}
+
+{% block project_content %}
+<div class="container">        
+    <div class="row">
+            <div class="span8 project-main">
+            <div id="support-form">
+                {% block inner_form %}
+                <h1>{% trans "Please describe your project's need here"%}</h1>
+                <div class="wrap-form">
+                    <form action="." method="post">{% csrf_token %}
+                        {% if form.errors %}<p class=errorlist>{% trans "We are sorry, you need to correct the highlighted problems in the form"%}</p>{% endif %}
+                        <p>{{form.type.label_tag}}{% if form.type.errors %}{{ form.type.errors }}{% endif %}{{form.type}}</p>
+                        <div id="categorySearch">
+                            <input type="hidden" name='category' value="{{form.category.value}}"/>
+                            {% include "project_support/block/support_categories_menu.html" %}
+                            <label id="categ_label">{% trans 'No selected category' %}</label>
+                            {% if form.category.errors %}{{ form.category.errors }}{% endif %}
+                        </div>
+                        <p class="title-field">{{form.title.label_tag}}{% if form.title.errors %}{{ form.title.errors }}{% endif %}{{form.title}}</p>
+                        <p>{{form.text.label_tag}}{% if form.text.errors %}{{ form.text.errors }}{% endif %}{{form.text}}</p>
+                        
+                        {% if request.user.is_authenticated %}
+                            <input type="submit" value="{% trans 'submit'%}">
+                            {% else %}
+                            <a href="{% url userena_signin %}?next={{request.get_full_path}}">{% trans 'First signin' %}</a>
+                            {% endif%}
+                    </form>
+                </div>
+                <script>
+                    $(document).ready(function(){
+                        var current_cat = "{{form.category.value}}"
+                        if(current_cat){
+                            $("#categ_label").html($("#"+current_cat+".tag-selector").html())
+                        }
+                        $(".tag-selector").click(function(){
+                            $("#categ_label").html($(this).html());
+                            $("input[name=category]").val($(this).attr('id'));
+                            return false;
+                        });
+                    });
+                </script>
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

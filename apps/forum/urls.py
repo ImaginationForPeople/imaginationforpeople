@@ -45,7 +45,7 @@ urlpatterns = patterns('',
             r'(%s)?' % r'/page:(?P<page>\d+)' +
         r'/$'),
 
-        views.readers.questions, 
+        views.readers.QuestionsView.as_view(), 
         name='questions'
     ),
 
@@ -287,7 +287,12 @@ urlpatterns = patterns('',
         views.commands.join_or_leave_group,
         name = 'join_or_leave_group'
     ),
-    
+    url(#ajax only
+        r'^rev/$',
+        views.readers.get_revision, 
+        name='get_revision'
+    ),
+
     url(r'^questions/rss/$', RssLastestQuestionsFeed(), name="latest_questions_feed"),
     url(r'^question/(?P<question_id>\d+)/rss/$', RssIndividualQuestionFeed(), name="question_feed"),
     

@@ -1,4 +1,4 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 
 {% load compress %}
 {% load i18n %}
@@ -8,7 +8,6 @@
 {% block style %}
   {% compress css %}
   <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />
   {% endcompress %}
 {% endblock %}
 
@@ -22,7 +21,7 @@
 {% block content %}
 
   <div class="content">
-    <div class="container_18 relative">
+    <div class="container">
 
     <h2>{% trans "Latest project changes" %}     
         <a href="{% url project_sheet-recent-changes-rss %}" class="rss" style="float:right; top:3px; position:relative;"><img src="{{ STATIC_URL }}images/base/picto_rss.gif" alt="{% trans 'RSS Feed' %}" /></a>
@@ -35,8 +34,6 @@
 	  {% endfor %}
 	</ul>
       </div>
-      
-      <div class="clear"></div>
     </div>
 
   </div>

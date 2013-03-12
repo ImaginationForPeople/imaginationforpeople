@@ -2,9 +2,11 @@
 from django.conf.urls.defaults import patterns, url
 
 from . import views
+from apps.project_support import views as support_views
 from . import ajax
 
 import feeds
+
 
 PROJECT_AUTHORIZED_FIELDS = "|".join([
     'title',
@@ -52,13 +54,14 @@ urlpatterns = patterns('',
 
     # Members
     url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
-    url(r'^(?P<project_slug>[-\w]+)/member/add/$', views.project_sheet_member_add, name='project_sheet-instance-add-member'),
+    url(r'^(?P<slug>[-\w]+)/member/add/$', views.ProjectMemberAddView.as_view(), name='project_sheet-instance-add-member'),
 
     # Translations
     url(r'^(?P<project_slug>[-\w]+)/translate/$', views.project_sheet_create_translation, name='project_sheet-translate'),
 
     # Ajax views
-    url(r'^(?P<project_slug>[-\w]+)/update/related/$', ajax.project_update_related, name='project_sheet-project_update_related'),                  url(r'^start/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
+    url(r'^(?P<project_slug>[-\w]+)/update/related/$', ajax.project_update_related, name='project_sheet-project_update_related'),                  
+    url(r'^start/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
     url(r'^start/ajax/field/load/$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
     url(r'^(?P<project_slug>[-\w]+)/ajax/field/load/$', ajax.project_textfield_load, name='project_sheet-ajax-field-load'),
     url(r'^(?P<project_slug>[-\w]+)/ajax/field/save/$', ajax.project_textfield_save, name='project_sheet-ajax-field-save'),
@@ -66,5 +69,40 @@ urlpatterns = patterns('',
     # RSS Feeds
     url(r'^list/new-projects\.rss$', feeds.NewProjectsFeed(), name='project_sheet-new-projects-rss'),
     url(r'^recent-changes\.rss$', feeds.LatestChangesFeed(), name='project_sheet-recent-changes-rss'),
+    
+    
+    # Supports
+    url( #from askbot
+        (r'^(?P<project_slug>[-\w]+)/support' +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + 
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+        r'/$'),
 
+        support_views.ProjectSupportListView.as_view(), 
+        name='project_support_main'
+    ),
+    url(r'^(?P<project_slug>[-\w]+)/support/propose/$', support_views.propose_project_support, name='project_support_propose'),
+    url(r'(?P<project_slug>[-\w]+)/support/(?P<question_id>\d+)/', support_views.view_project_support, name='project_support_view'),
+    url(r'(?P<project_slug>[-\w]+)/support/edit/(?P<question_id>\d+)/', support_views.propose_project_support, name='project_support_edit'),
+    url(r'(?P<project_slug>[-\w]+)/support/answer/(?P<question_id>\d+)/', support_views.answer_project_support, name='project_support_answer'),
+    url(r'(?P<project_slug>[-\w]+)/support/answer/edit/(?P<answer_id>\d+)/', support_views.edit_support_answer, name='project_support_edit_answer'),
+    
+    #Discuss
+    url( #from askbot
+        (r'^(?P<project_slug>[-\w]+)/discuss' +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + 
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+        r'/$'),
+
+        views.ProjectDiscussionListView.as_view(), 
+        name='project_discussion_list'
+    ),
 )

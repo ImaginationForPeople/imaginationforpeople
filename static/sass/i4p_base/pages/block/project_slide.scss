@@ -1,0 +1,185 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+#focus{
+    background-color:black;
+    color:#737373;
+    position:relative;
+    
+    #focus-menu{
+        height:37px;
+        position:relative;
+        
+        ul.focus-filters{
+            float:left;
+            padding:6px 0px;
+            padding-top:10px;
+            position:relative;
+            
+            li{
+                position:relative;
+            }
+        }
+        
+        .allprojects{
+            float:right;
+        }
+    }
+    
+    #projects_slide{
+        height:290px;
+        width:977px;
+        overflow:hidden;
+        padding:0px;
+        
+        .project_slider{
+            ul{
+                padding:0px;
+                margin:0px;
+                li{
+                    list-style-type:none;
+                    display:inline;
+                    padding:0px;
+                    margin:0px;
+                }
+            }
+        
+            .focus_project{
+                position:relative;
+                float:left;
+                width:195px;
+                height:290px;
+                /*margin-right:1px;*/
+            
+                .project_title_cover{
+                    position:absolute;
+                    top:0px;
+                    left:0px;
+                    background-image:image-url('home/projectslide_cre.png');
+                    width:195px;
+                    height:290px;
+                    z-index:200px;
+                } 
+               
+                /* hack for IE8 & 9 */
+                @media \0screen {
+                    .project_title_cover{
+                        background-image:image-url('home/projectslide_cre.gif');
+                    }                    
+                }
+
+                .project_photo{
+                    width:195px;
+                    height:290px;
+                    background-color:$normalgrey;
+                    background-position: center bottom;
+                    background-repeat: no-repeat;
+                
+                    table{
+                        width:110px;
+                        height:90px;
+                        margin:0px auto;
+                        position:relative;
+                        top:75px;
+                        text-align:center;
+                        
+                        span{
+                            text-align:center;
+                            position:relative;
+                            font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
+                            font-size:15px;
+                            text-transform:uppercase;
+                            background-color:white;
+                            font-style:normal;
+                            font-weight:normal;
+                            color:$colorDarkGrey;
+                            line-height:20px;
+                            
+                            a{
+                                color:$colorDarkGrey;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .focus_project.addproject{
+                
+                h1{
+                    font-family: "OpenSansCondensedBold_obsolete", Arial, Helvetica, sans-serif;
+                    font-size:23px;
+                    font-style:normal;
+                    position:absolute;
+                    right:0px;
+                    top:119px;
+                    width:50%; 
+                    margin-right:15px;
+                    color:white;
+                    text-transform:uppercase;
+                }
+            }
+        }
+    }
+
+    #loading{
+        width:32px;
+        height:32px;
+        position:absolute;
+        text-align: center; 
+        visibility: hidden;
+        z-index:999;
+        top:160px;
+        left:470px;
+        @include border-radius(20px);
+        background-color:black;
+        
+        img{
+            position:relative;
+            top:9px;
+        }
+    }        
+
+    #focus-nav{
+        height:37px;
+        
+        .previous, .next{
+            position:relative;
+            top:10px;
+        }
+        
+        .previous{
+            float:left;
+        }
+        
+        .next{
+            float:right;
+        }            
+    } 
+
+    #focus-menu a, #focus-nav a{
+        font-family: "OpenSansBold_obsolete", Arial, Helvetica, sans-serif;
+        font-size:15px;
+        text-transform:uppercase;
+        color:$greymenu;
+        padding:8px 10px;
+        padding-bottom:5px;
+    }
+    
+    #focus-menu a:hover{
+        color:white;
+    }
+    
+    #focus-menu a.selected{
+        color:white;
+        border-bottom:4px solid  $colorLightBlue;
+    }
+    
+     #focus-nav a:hover{
+        color:white;
+    }
+    
+    .allprojects{
+        padding:6px 0px;
+        padding-top:10px;
+    }        
+}

@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 
 .project-list.wide-flat {
@@ -14,17 +14,18 @@
     margin-bottom: 12px;
 
     h2 {
-	font-family: $fontOpenSans;
-	font-size: $sizeTextLarge;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin-top: 5px;
-	margin-bottom: 5px;
+     font-family: $fontOpenSans;
+     font-size: $sizeTextLarge;
+     font-stretch: condensed;
+     font-weight: bold;
+     text-transform: uppercase;
+     margin-top: 5px;
+     margin-bottom: 5px;
     }
 
     ul {
-	list-style: none;
+        list-style: none;
+        margin: 0;
     }
 }
 
@@ -37,37 +38,34 @@
     background-image: image-url("tags/icon-arrow-white-big.png");
     background-repeat: no-repeat;
     background-position: 400px center;
-    background-size: 25px 25px;
+    background-size: auto 100%;
 
     display: block;
-    padding: 5px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+
     height: 47px;
     overflow: hidden;
-
+    
+    padding: 0.8em 66px 0.8em 0.8em;
+    p {
+        margin: 0px;
+    }
     .title {
-	@include i4p-transition(all .5s ease);
-	font-family: $fontOpenSans;
-	font-size: $sizeTextBig;
-	font-stretch: condensed;
-	font-weight: bold;
-	text-transform: uppercase;
-	color: white;
+     @include i4p-transition(all .5s ease);
+     @include i4p-font-base($sizeTextNormal);
+     text-transform: uppercase;
+     font-weight: bold;
+     color: white;
     }
 
     .description {
-	@include i4p-transition(all .5s ease);
-
-	font-family: $fontOpenSans;
-	font-size: $sizeTextNormal;
-	font-style: italic;
-	color: white;
+        @include i4p-transition(all .5s ease);
+        @include i4p-font-base($sizeTextSmall);
+        font-style: italic;
+        color: white;
     }
 
     &:hover {
-	padding-right: 40px;
-	background-color: $colorLightBlue;
-	background-position: 200px center;
+        background-color: $colorLightBlue;
+        background-position: right center;
     }
 }

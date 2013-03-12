@@ -1,0 +1,54 @@
+{% load i18n extra_tags %}
+{% load humanize %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/block/post_comments.css" />
+{% endaddtoblock %}
+
+<div class="comments" id="comments-for-{{post.post_type}}-{{post.id}}">
+	<div class="content">
+		<div id="add-comment-form" class="comment-form controls">
+				<label for="comment-text">{% trans 'Add your comment' %}</label>
+				<textarea row="1" name="comment-text" id="comment-text" placeholder="{% trans 'Add your comment...' %}"></textarea>
+				<input type="submit" class="submit" value="{% trans 'Comment' %}" />
+            <script>
+            $(document).ready(function() {
+            	askbot['data']['comments-for-{{post.post_type}}-{{post.id}}'] = {truncated: false};
+            	$("#comments-for-{{post.post_type}}-{{post.id}} .comment-form input[type=submit]").click(function(){
+                	var post_data = {
+                            comment: $('#comments-for-{{post.post_type}}-{{post.id}} textarea').val(),
+                            post_type : "{{post.post_type}}",
+                            post_id : {{post.id}},
+                            post_url : askbot['urls']['postComments'],
+                            template_name : "project_support/block/comment.html",
+                    }
+                	
+                	$.ajax({
+                        type: "POST",
+                        url: askbot['urls']['postComments'],
+                        dataType: "html",
+                        data: post_data,
+                        success: function(data) {
+                            $("#comments-for-{{post.post_type}}-{{post.id}} .comments-list").prepend(data);
+                        },
+                        error: function(xhr, textStatus, errorThrown) {
+                        	console.log(xhr);
+                        	console.log(textStatus);
+                        	console.log(errorThrown);
+                            alert(xhr.responseText);
+                        }
+                    });
+            	});
+            	return false;
+    	    });
+            </script>
+		</div>
+		<div class="comments-list">
+            {% for comment in post.get_cached_comments reversed %}
+			{% include "project_support/block/comment.html" %}
+            {% endfor %}
+		</div>
+	</div>
+</div>
+

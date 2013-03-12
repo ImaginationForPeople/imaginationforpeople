@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load compress %}
+{% load sekizai_tags %}
+
+{% block style %}
+  {% compress css %}
+  <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/layout/workgroup_base.css" />
+  {% endcompress %}
+{% endblock %}
+
+{% block meta_desc %}{{ workgroup.name }} : {% spaceless %}{{ workgroup.description|safe|striptags|cut:"\n"|truncatewords:42 }}{% endspaceless %}{% endblock %}
+{% block title %}{{ workgroup.name }} | {% trans 'Group'|capfirst %} | Imagination for People{% endblock %}
+
+{% block content %}	
+
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+{% endblock %}

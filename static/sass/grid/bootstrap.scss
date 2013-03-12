@@ -14,6 +14,9 @@
 // @import "compass_twitter_bootstrap_responsive";
 @import "compass_twitter_bootstrap";
 
+@import "i4p/mixins";
+@import "i4p/constants";
+
 html {
     // the default font size for browsers is 16px, so we adjust it to 10px.for easy calculations.
     font-size: 62.5%;
@@ -21,11 +24,20 @@ html {
 
 // then define desired font size for body
 body {
-    font-size: 1.2rem;
+    @include i4p-font-base(1.2rem);
 }
 
 // VARIOUS FIXES FOR CURRENT VERSION  (check & remove on updates?)
+// 
+// BOOTSTRAP STYLE FIXES SPECIFIC TO I4P
+// 
+.modal-backdrop {
+    @include ctb-opacity(40);
+}
 
+li {
+    line-height: inherit; /* bootstrap uses 20px, regardless of font size */
+}
 // BOOTSTRAP FIX PATH TO ICONS
 
 [class^="icon-"], [class*=" icon-"] {
@@ -36,7 +48,7 @@ body {
     background-image: image-url("bootstrap/glyphicons-halflings-white.png");
 }
 
-// BOOTSTRAP FIX FOR DROPDOWN MISSING SUBMENUS
+// BOOTSTRAP FIX FOR DROPDOWN MISSING SUBMENUS (ex: Language menu on project page)
 
 .open .dropdown-menu {
     display: none;
@@ -55,9 +67,11 @@ body {
 }
 
 .dropdown-submenu > .dropdown-menu {
-    left: -95%;
+    width: 100%; /* Don't remove this, depending on translation submenu may be
+                    smaller than topmenu and be unreachable  if shifted left
+                    more than it's own width */
+    left: -100%;
     top: 0;
-    margin-top: -6px;
     margin-left: -1px;
 }
 

@@ -1,0 +1,58 @@
+/* =============================================================================
+                                   TAGS
+============================================================================== */
+ul.tag_list{
+    display:inline-block;
+    margin:0;
+    padding:0;
+    margin-top:10px;
+    zoom:1;
+    }
+    
+ul.tag_list:after{
+    clear: both;
+    content: "";
+    display: block;}
+
+ul.tag_list{
+    zoom:1;}
+
+ul.tag_list li{
+    position:relative;
+    float:left;
+    height:18px;
+    padding-left:18px;
+    padding-right:20px;
+    border-top:1px solid #ffffff;
+    border-bottom:1px solid #ffffff;
+    background-color:#c9c9c9;}
+
+ul.tag_list li:first-child{
+    padding-left:10px;
+    border-left:1px solid  #ffffff;
+    -webkit-border-radius: 6px 0px 0px 6px;
+    border-radius: 6px 0px 0px 6px;
+    }
+
+ul.tag_list li div.part_tag{}
+
+ul.tag_list li div.part_tag a{
+    font-family: 'OpenSans', Arial, sans-serif;
+    font-style:italic;
+    font-weight:bold;
+    color:#706f6f;
+    line-height:18px;
+    font-size:11px;}
+
+ul.tag_list li div.part_pointe{
+    position:absolute;
+    z-index:2;
+    width:9px;
+    height:20px;
+    top:-1px;
+    right:-9px;
+    background: url(../images/taglist/arrow_part_grey.png) no-repeat;}
+
+/* =============================================================================
+                                  FIN TAGS
+============================================================================== */

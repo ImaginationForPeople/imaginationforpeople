@@ -1,0 +1,27 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/fonts";
+
+#subscribers-list {
+    background: none repeat scroll 0 0 #D6D6D6;
+    background-image: image-url('workgroup/usermosaic_bg.jpg');
+    background-position:center;
+    border: 1px solid white;
+    box-shadow: 0 2px 5px #AAAAAA;
+    height: 200px;
+    left: 20px;
+    position: absolute;
+    top: -100px;
+    width: 200px;
+
+	ul {
+		list-style-type:none;
+		margin:0;
+		
+		li {
+			float:left;
+			width: 40px; /* If not set explicitly if image aspect ratio isn't 1*/
+			height: 40px;
+		}
+	}
+}

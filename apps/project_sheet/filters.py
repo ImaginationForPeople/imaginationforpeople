@@ -290,7 +290,6 @@ class ProjectLocationFilterForm(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("country")
             if data:
-                print data
                 q_objects = None
                 # Dirty Fix: switch depending on type. Loop if list.
                 if isinstance(data, unicode):

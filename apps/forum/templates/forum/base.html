@@ -8,15 +8,17 @@
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
     <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/generals.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/jquery/tipsy.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/backcap.css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/i4p_base/backcap/backcap.css" media="screen, projection" />
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/grouplist_fancy_wide.css" />
     
     {% block before_css %}{% endblock %}
     {% include "meta/html_head_stylesheets.html" %}
@@ -82,7 +84,7 @@
         // Text example for forms
         $(".search input[type=text]").example("{% trans %}Project search{% endtrans %}");
         
-        $("input[name=identification]").example("{% trans %}Enter your login{% endtrans %}");
+        $("input[name=identification]").example("{% trans %}Enter your email{% endtrans %}");
         $("input[name=password]").example("{% trans %}Password{% endtrans %}");
         
         $("input[name=openid_identifier]").example("{% trans %}Enter your username{% endtrans %}");

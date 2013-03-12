@@ -1,0 +1,10 @@
+{% if not search_state %} 
+{% set search_state=search_state|get_empty_search_state %}
+{% endif %}
+<a href="{{ search_state.add_tag(tag).full_url() }}"
+   title="{% trans tag=tag|escape %}see questions tagged '{{ tag }}'{% endtrans %}"
+   rel="tag"
+   data-tag-name="{{ tag|replace('*', '&#10045;')|escape }}">
+            {{ tag|replace('*', '&#10045;')|truncate(17, True)|escape }}
+</a>
+
