@@ -784,7 +784,7 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
         project_translation = self.get_project_translation(kwargs["project_slug"])
         self.questions_url = reverse('project_discussion_list', args=[project_translation.slug])
         
-        threads = project_translation.project.discussions.filter(language_code=language_code)
+        threads = project_translation.master.discussions.filter(language_code=language_code)
         self.thread_ids = threads.values_list('id', flat=True)
         
         context = QuestionsView.get_context_data(self, **kwargs)
@@ -796,7 +796,7 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
         activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
     
         context.update({
-             'project' : project_translation.project,
+             'project' : project_translation.master,
              'project_translation' : project_translation,
              'active_tab' : 'discuss',
              'activities' : activities,
