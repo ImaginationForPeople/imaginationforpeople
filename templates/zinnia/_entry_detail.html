@@ -1,0 +1,22 @@
+{% extends "zinnia/_entry_detail_base.html" %}
+
+    {% block entry-tags %}
+    {% include "addthis.html" %}
+    {% comment %}We extend entry-tags because it's the first footer block {% endcomment %}
+    <div class="entry-addthis">
+        <div class="addthis_toolbox addthis_default_style" 
+        addthis:url="http://{{ site.domain }}{{ object.get_absolute_url }}"
+        addthis:title="{{ object.title }}"
+        {% if object.excerpt != "..." %}
+            addthis:description="{{ object.excerpt }}"
+        {% endif %}
+        >
+            <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+            <a class="addthis_button_tweet"></a>
+            <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+            <a class="addthis_counter addthis_pill_style" style="cursor:pointer"></a>
+        </div>
+    </div>
+    {{ block.super }}
+
+    {% endblock %}
