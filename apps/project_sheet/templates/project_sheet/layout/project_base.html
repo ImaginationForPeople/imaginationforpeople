@@ -26,7 +26,7 @@
 {% block content %}	
 {% addtoblock "js" strip %}
 {% endaddtoblock %}
-
+{% include "addthis.html" %}
 {% addtoblock "js" strip %}
     {% if project_translation %}
     <script>
@@ -36,12 +36,6 @@
             twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
         }
     }
-
-    // load only when all assets are ready
-    $(window).load(function() {
-	// Addthis
-	addthis.init(); 
-    });
     </script>
     {% endif %}
 
@@ -65,5 +59,4 @@
 {% block project_content %}{% endblock %}
 </div>
 
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
 {% endblock %}
