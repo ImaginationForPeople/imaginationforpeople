@@ -58,9 +58,6 @@ $(document).ready(function(){
 {% endaddtoblock %}
 
 {% block project_content %}
- {% for thread in threads.object_list %}
-    {{ thread }}
- {% endfor %}
 <div class="container">        
     <div class="row">
         <div class="span8 project-main">
@@ -88,19 +85,12 @@ $(document).ready(function(){
             </ul>
             {% endif %}
             <div>
-           {% include_jinja "main_page/tab_bar.html" request %}
-            </div>            
-              <div id="support-list">
-                <ul id="question-list">
-                {% for thread in threads.object_list %}                  
-                    <li id="question-{{thread.question.id}}" class="short-summary {{thread.projectsupport_set.all.0.type|lower}}">
-                    <a href="{% url project_support_list_all question.id%}" title="{{thread.title}}">{{thread.title}}</a>
-                {% endfor %}
-                </ul>
-             </div>
+            {% include_jinja "main_page/tab_bar.html" request %}
+            </div>                
+            {% include "project_support/block/supports_list.html" %}
         </div>
 
-        <!--
+        
         <div class="span4 project-sidebar"> 
             <div class="project-members member-block">
                 <h2><i class="sheet-members"></i>{% trans "Contributors"|capfirst %}</h2>
@@ -108,7 +98,7 @@ $(document).ready(function(){
             </div>
 
             {% include "project_questions/block/questions_activities.html" %}
-        </div>-->
+        </div>
     </div>
 </div>
 {% endblock %}
