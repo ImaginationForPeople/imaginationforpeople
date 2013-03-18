@@ -264,7 +264,7 @@ def updatemaincode():
     with cd(os.path.join(env.venvfullpath, '%(projectname)s' % env)):
         run('git fetch')
         run('git checkout %s' % env.gitbranch)
-        run('git pull origin %s' % env.gitbranch)
+        run('git pull %s %s' % (env.gitrepo, env.gitbranch))
 
 @task
 def app_install():
