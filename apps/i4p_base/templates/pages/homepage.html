@@ -136,6 +136,7 @@
     {% cms_toolbar %}
     <div id="homepage-banner-outer-container">
         {% include "pages/block/homepage-video-lightbox.html" %}
+        {% comment %}LANGUAGE FALLBACK DOESN'T CURRENTLY WORK WITH OR
         {% placeholder "Top homepage banner" or%}
             <div id="homepage-banner">
                             <h1>Customize this banner</h1>
@@ -177,6 +178,8 @@
                 </div>
             </div>
         {% endplaceholder %}
+        {% endcomment %}
+        {% placeholder "Top homepage banner" %}
     </div>
     
     {% include "pages/home-blocks/focus-zone.html" %}     

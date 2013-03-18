@@ -216,3 +216,23 @@ class I4pProjectTranslationResource(ModelResource):
             fk = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
             bundle.data['project'] = fk.dehydrate(bundle)
         return bundle
+
+class I4pProjectTranslationListResource(ModelResource):
+    """
+    Resource used to list I4pProjectTranslation when called from another resource (using ToManyField for example)
+    This resource is NOT used to display I4pProjectTranslation as a front end (like using /project/bestof).
+    The classic I4pProjectTranslationResource is used for these cases.
+    """
+    project = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
+    
+    class Meta:
+        queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
+        include_resource_uri = True
+        throttle = CacheDBThrottle()
+        
+        fields = ['slug','language_code','title','baseline']
+        
+    def detail_uri_kwargs(self, bundle_or_obj):
+        kwargs = ModelResource.detail_uri_kwargs(self, bundle_or_obj)
+        kwargs["resource_name"] = I4pProjectTranslationResource.Meta.resource_name
+        return kwargs
