@@ -154,7 +154,38 @@
 	}
 
 	a.rss { display:none }
+}
+a#askButton{
+   	float:right;
+    text-transform:uppercase;
+    font-family:$fontOpenSans;
+    padding: 5px 10px 4px 6px;
+    font-weight:bold; 
+    font-size:12px;
+    @include border-radius(15px,15px);
+    height:auto;
+    @include i4p-background-vertical-gradient(#4BB7E5, #3b90b5);
+    color:#ffffff;
 
+      i.interrogation {
+          background: image-url("project_questions/question/picto_question.png") no-repeat scroll 0 0 transparent;
+          display: inline-block;
+          height: 20px;
+          margin-top: -2px;
+          vertical-align: text-top;
+          width: 21px;
+          margin-right:4px;
+      }
+
+      &:hover {
+        @include i4p-background-vertical-gradient(rgb(57,144,180), rgba(73,182,228,1));
+        text-decoration:none;
+      }
+} 
+	    
+#workgroup-detail #askButton {
+  margin:10px 0
+} 
 	/* ------------------------------------------------------------------ */
 	/* --------------------- TAB BAR ------------------------------------ */
 	/* ------------------------------------------------------------------ */
@@ -216,4 +247,4 @@
 	    content: "";
 	    display: block;
 	    clear: both;}
-	}
+	
