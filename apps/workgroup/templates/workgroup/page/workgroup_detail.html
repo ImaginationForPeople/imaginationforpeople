@@ -9,10 +9,10 @@
 {% load guardian_tags %}
 {% load tabs %}
 
-
+{% block tab %} {% endblock %}
 
 {% block content %}
-   {% tab 'workgroup' 'description' %}
+  {% tab 'workgroup' 'home' %}
 
     {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
@@ -32,10 +32,10 @@
           {% include 'tags/block/taglist.html' with taglist_tags=group_tags taglist_title='themes' %}
 
 
-
+           
           <div class="wiki">
             {{ wiki_article.render|default:"..." }}
-            [<a href="{% url workgroup-wiki-edit workgroup.slug %}">edit</a>]
+             {% block edit_link %}[<a href="{% url workgroup-wiki-edit workgroup.slug %}">edit</a>] {% endblock %}
           </div>
 
           <div class="shoutbox-box">

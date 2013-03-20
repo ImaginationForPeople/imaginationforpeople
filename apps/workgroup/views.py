@@ -131,6 +131,36 @@ class GroupDetailView(DetailView):
             
         return context
 
+class GroupDescriptionDetailView(GroupDetailView):
+    """
+    View to display the group description article which is a sub-article of the home article
+    of the group (which is either fetched or created in GroupDetailView)
+    """
+    template_name = 'workgroup/page/workgroup_description.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(GroupDescriptionDetailView, self).get_context_data(**kwargs)
+        workgroup = context['workgroup']
+         # First be sure that the home Wiki article already exists
+        try:
+            home_article = Article.get_for_object(workgroup)            
+        except ArticleForObject.DoesNotExist:
+            return redirect('workgroup-detail', slug=workgroup.slug)
+        # now check that the description article exists
+        try:
+            desc_article = Article.get_for_object(home_article) 
+        except ArticleForObject.DoesNotExist:    
+            desc_article = Article.objects.create()
+            desc_article.add_object_relation(home_article)
+            revision = ArticleRevision(title="description of "+workgroup.name, content='')
+            desc_article.add_revision(revision)
+
+        context.update({
+             'wiki_article' : desc_article,                        
+        })
+        
+        return context
+
 class GroupMembersView(GroupDetailView):
     """
     List all members of the given group
@@ -156,6 +186,22 @@ class GroupWikiEdit(WikiEdit):
 
     def get_success_url(self):
         return redirect(self.workgroup)
+        
+class GroupDescriptionWikiEdit(GroupWikiEdit):
+    template_name = "workgroup/page/workgroup_description_edit.html"
+    
+    def dispatch(self, request, workgroup_slug, *args, **kwargs):   
+        self.workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)         
+        article = Article.get_for_object(Article.get_for_object(self.workgroup)) 
+        
+        self.sidebar_plugins = plugin_registry.get_sidebar()
+        self.sidebar = []
+  
+        return super(WikiEdit, self).dispatch(request, article, *args, **kwargs)
+    
+    def get_success_url(self):
+        return redirect('workgroup-description', slug=self.workgroup.slug)
+    
 
 class SubscribeView(View):
     """
