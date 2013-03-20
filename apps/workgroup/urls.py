@@ -35,7 +35,7 @@ urlpatterns = patterns('',
             views.GroupDiscussionCreateView.as_view(), 
             name='workgroup-discussion-open'),
                        
-    url(r'(?P<project_slug>[-\w]+)/discuss/(?P<question_id>\d+)/', 
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/(?P<question_id>\d+)/', 
             views.GroupDiscussionThreadView.as_view(), 
             name='workgroup-discussion-view'),
     

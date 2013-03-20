@@ -44,7 +44,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
     qtypes=['pj-need', 'pj-help']
     
     def get_success_url(self):
-        return reverse('project_support_main', args=[self.project_translation.slug])
+        return reverse('project_support_main', args=[self.context_instance.slug])
 
     def get_context_data(self, **kwargs):
         context = ProjectDiscussionCreateView.get_context_data(self, **kwargs)

@@ -960,7 +960,7 @@ class ProjectDiscussionCreateView(CurrentProjectTranslationMixin, SpecificQuesti
         return context
     
     def get_cleaned_tags(self, request):
-        return "%s,%s", _("discuss"), self.context_instance.slug
+        return "%s,%s" % ("discussion", self.context_instance.slug)
     
     def get_context_object_instance(self, **kwargs):
         return self.get_project_translation(kwargs["project_slug"])
