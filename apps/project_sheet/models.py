@@ -148,8 +148,6 @@ class I4pProject(models.Model):
     topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'),
                                     related_name='projects')
     
-    discussions = models.ManyToManyField(Thread, related_name='projects')
-
     # dynamicsites
     site = models.ManyToManyField(Site, help_text=_('The sites on which this project sheet is accessible.'), 
                                   verbose_name=_("sites"),

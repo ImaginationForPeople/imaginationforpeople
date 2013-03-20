@@ -47,11 +47,6 @@ class I4pProjectAdmin(VersionAdmin):
     date_hierarchy = 'created'
     list_filter = ['site', 'status', 'best_of', 'topics']
     
-    def formfield_for_manytomany(self, db_field, request=None, **kwargs):
-        if db_field.name == "discussions":
-            kwargs["queryset"] = Thread.objects.filter(is_specific=False)
-        return VersionAdmin.formfield_for_manytomany(self, db_field, request=request, **kwargs)
-
 class QuestionAdmin(nani_admin.TranslatableAdmin):
     list_display = ('topic', 'weight',)
 

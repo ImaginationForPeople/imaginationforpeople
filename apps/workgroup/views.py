@@ -17,7 +17,7 @@
 #
 from askbot.models.question import Thread
 from askbot.models.user import Activity
-from askbot.views.readers import QuestionsView
+from askbot.views.readers import QuestionsView, QuestionView
 
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
@@ -42,6 +42,12 @@ from apps.project_sheet.utils import get_project_translations_from_parents
 from .models import WorkGroup
 from .forms import GroupCreateForm, GroupEditForm
 from .utils import get_ml_members
+from apps.project_sheet.views import SpecificQuestionListView,\
+    SpecificQuestionCreateView, ProjectDiscussionThreadView
+from apps.forum.models import SpecificQuestion
+from django.contrib.contenttypes.models import ContentType
+from askbot.models.post import Post
+from askbot.search.state_manager import SearchState
 
 class GroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
@@ -236,33 +242,77 @@ class UnsubscribeView(View):
             return redirect(workgroup)
 
 
-class GroupDiscussionListView(QuestionsView):
+class GroupDiscussionListView(SpecificQuestionListView):
     """
     View to list the discussions (forum threads) linked to the current group
     """
     template_name = "workgroup/page/workgroup_discuss_list.html"
-    jinja2_rendering = False
-    is_specific = False
+    qtypes = ["wg-discuss"]
     
-    def get_context_data(self, workgroup_slug, **kwargs):
-        language_code = translation.get_language() 
-        
-        workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)  
-        threads = workgroup.questions.filter(language_code=language_code)
-        self.thread_ids = threads.values_list('id', flat=True)
-        
-        context = QuestionsView.get_context_data(self, **kwargs)
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
     
-        activity_ids = []
-        for thread in threads:
-            for post in thread.posts.all():
-                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
-        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
-
+    def get_questions_url(self):
+        return reverse('workgroup-discussion', args=[self.context_object.slug])
+    
+    def get_ask_url(self):
+        return reverse('workgroup-discussion-open', args=[self.context_object.slug])
+    
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionListView.get_context_data(self, **kwargs)
+        
         context.update({
              'active_tab' : 'discuss',
-             'activities' : activities,
-             'workgroup' : workgroup,             
+             'workgroup' : self.context_object,             
         })
     
+        return context
+    
+class GroupDiscussionCreateView(SpecificQuestionCreateView):
+    template_name = "workgroup/page/group_discuss_form.html"
+    qtypes = ["wg-discuss"]
+    
+    def get_success_url(self):
+        return reverse('workgroup-discussion', args=[self.context_instance.slug])
+
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionCreateView.get_context_data(self, **kwargs)
+
+        context.update({
+            'workgroup' : self.context_instance,
+        })
+        
+        return context
+    
+    def get_cleaned_tags(self, request):
+        return "%s,%s", _("workgroup"), self.context_instance.slug
+    
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
+    
+class GroupDiscussionThreadView(QuestionView):
+    template_name = "workgroup/page/group_discuss_thread.html"
+    jinja2_rendering = False
+    
+    def get_context_data(self, **kwargs):
+        context = QuestionView.get_context_data(self, **kwargs)
+        
+        workgroup = get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
+        
+        search_state = SearchState.get_empty()
+        search_state._questions_url = reverse('workgroup-discussion', args=[workgroup.slug])
+        
+        context.update({
+             'workgroup' : workgroup,
+             'active_tab' : 'discussion',
+#             'form_answer_url' : reverse('project_discussion_answer', 
+#                                         args=[kwargs["project_slug"], 
+#                                               kwargs["question_id"]]),
+#             'edit_question_url' : reverse('project_discussion_edit', 
+#                                           args=[kwargs["project_slug"], 
+#                                                 kwargs["question_id"]]),
+             'search_state' : search_state,
+             'disable_retag' : True,
+        })
+        
         return context

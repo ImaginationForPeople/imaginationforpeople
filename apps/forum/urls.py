@@ -316,5 +316,5 @@ urlpatterns = patterns('',
         },
         name = 'custom_js'
     ),
-    url(r'^%s(?P<id>\d+)/' % _('question/'), views.readers.question, name='question'),
+    url(r'^%s(?P<question_id>\d+)/' % _('question/'), views.readers.QuestionView.as_view(), name='question'),
 )
