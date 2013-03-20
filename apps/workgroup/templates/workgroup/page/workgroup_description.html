@@ -1,9 +1,7 @@
 {% extends "workgroup/page/workgroup_detail.html" %}
 {% load tabs %}
 
-
-{% block tab %} {% tab 'workgroup' 'description' %}{% endblock %}
-
+ {% block header %}{% tab 'workgroup' 'description' %}{% include "workgroup/block/workgroup_header.html" %}{% endblock %}
 
 
 {% block edit_link %}[<a href="{% url workgroup-description-edit workgroup.slug %}">edit</a>] {% endblock %}

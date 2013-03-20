@@ -4,9 +4,9 @@
 {% load sekizai_tags %}
 {% load tabs %}
 
- {% block tab %} {% tab 'workgroup' 'home' %}{% endblock %}
+ 
 {% block content %}
-
+{% tab 'workgroup' 'home' %}
 {% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/wiki_edit.css" />
 {% endaddtoblock %}
