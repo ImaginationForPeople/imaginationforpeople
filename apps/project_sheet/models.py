@@ -16,6 +16,7 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 # -*- coding: utf-8 -*-
+from askbot.models.question import Thread
 """
 Models for Project Sheet
 """
@@ -146,9 +147,11 @@ class I4pProject(models.Model):
 
     topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'),
                                     related_name='projects')
+    
+    discussions = models.ManyToManyField(Thread, related_name='projects')
 
     # dynamicsites
-    site = models.ManyToManyField(Site, help_text=_('The sites that the project sheet is accessible at.'), 
+    site = models.ManyToManyField(Site, help_text=_('The sites on which this project sheet is accessible.'), 
                                   verbose_name=_("sites"),
                                   related_name='projects')
     objects = models.Manager()
@@ -222,7 +225,7 @@ class I4pProjectTranslation(models.Model):
     """
 
     PROGRESS_CHOICES = [
-        ("EDIT", _("In edition")),
+        ("EDIT", _("Currently being edited")),
         ("FULL", _("Complete")),
     ]
     class Meta:

@@ -1,6 +1,13 @@
 {% extends "project_sheet/layout/project_base.html" %}
 {% load i18n extra_tags support_tags humanize%}
 {% load sekizai_tags %}
+{% load tabs %}
+
+
+{% block navigation %}
+{% tab 'project_sheet' 'support' %}
+{{ block.super }}
+{% endblock %}
 
 {% block content %}
 {{block.super}}
@@ -13,7 +20,7 @@
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
-<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_questions/page/questions_search.css" />
 {% endaddtoblock %}
 
 {% addtoblock "js" %}
@@ -54,7 +61,7 @@ $(document).ready(function(){
 <div class="container">        
     <div class="row">
         <div class="span8 project-main">
-            <h2 class="title">{% trans "Filter calls"|upper %}</h2>
+            <h2 class="title">{% trans "Filter"|upper %}</h2>
             <div id="categorySearch">
                 <div class="form">
                     <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
@@ -89,7 +96,7 @@ $(document).ready(function(){
                 {% include "member/block/memberlist_square.html" with members=contributors %}
             </div>
 
-            {% include "project_support/block/support_activities.html" %}
+            {% include "project_questions/block/questions_activities.html" %}
         </div>
     </div>
 </div>

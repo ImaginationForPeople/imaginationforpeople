@@ -57,3 +57,30 @@ changes) - is much faster::
    fab --user=yoursudouser stagenv app_update
 
 etc ...
+
+
+Before you deploy a release, stage locally
+------------------------------------------
+
+Before a major release in prod (this is usually not needed for hotfixes), you 
+need to test locally the our css and javascript compression will not crash and 
+burn on the server.  There are many reasons why it can break, and you wouldn't 
+see it in a development environment.
+
+Make sure you have EVERYTHING commited under /static, as the following WILL 
+mangle your static directory
+   
+   Add COMPRESS_ENABLED = True in your site_settings.py
+   
+   ./manage.py collectstatic
+
+   ./manage.py runserver --insecure
+
+Run your tests...
+
+Once done:
+
+   Remove COMPRESS_ENABLED = True in your site_settings.py
+
+   Run git clean -f -d static
+   

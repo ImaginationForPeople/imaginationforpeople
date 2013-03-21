@@ -1,0 +1,47 @@
+@import "i4p/mixins";
+
+
+/* --Partners------- */
+
+#partner_detail{
+
+    div.title{
+        position:relative;
+
+        h1{
+            font-size:20px;
+        }
+        
+        a{
+            position:absolute;
+            right:0px;
+            bottom:5px;
+        }
+    }
+    
+    .logo{
+        width:100%;
+    }
+    
+    div.description > p{
+        padding-left:20px;
+    }
+    
+    #partner_projects {
+        > a {
+            display: block;
+            width: 150px;
+            margin: 0.5em;
+            float: left;
+        }
+        .separator h2{
+            background-color: #282828;
+            display: inline;
+            padding-right: 15px;
+            position: relative;
+            top: -11px;
+            width: auto;
+        }    
+    }
+
+}

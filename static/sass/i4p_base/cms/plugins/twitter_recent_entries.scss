@@ -1,0 +1,17 @@
+@import "i4p/mixins";
+
+// FIXME: should be defined as a mixin
+@import "twittblogboxes.scss";
+
+#twitter_box{
+    
+    h1{
+        padding-left:40px;
+        background-repeat:no-repeat;
+        background-position:5px 2px;
+        margin-top: 0; 
+        a{
+            color:black;
+        }
+    }
+}

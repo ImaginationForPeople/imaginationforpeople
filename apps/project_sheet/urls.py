@@ -82,7 +82,7 @@ urlpatterns = patterns('',
             r'(%s)?' % r'/page:(?P<page>\d+)' +
         r'/$'),
 
-        support_views.list_project_support, 
+        support_views.ProjectSupportListView.as_view(), 
         name='project_support_main'
     ),
     url(r'^(?P<project_slug>[-\w]+)/support/propose/$', support_views.propose_project_support, name='project_support_propose'),
@@ -90,4 +90,19 @@ urlpatterns = patterns('',
     url(r'(?P<project_slug>[-\w]+)/support/edit/(?P<question_id>\d+)/', support_views.propose_project_support, name='project_support_edit'),
     url(r'(?P<project_slug>[-\w]+)/support/answer/(?P<question_id>\d+)/', support_views.answer_project_support, name='project_support_answer'),
     url(r'(?P<project_slug>[-\w]+)/support/answer/edit/(?P<answer_id>\d+)/', support_views.edit_support_answer, name='project_support_edit_answer'),
+    
+    #Discuss
+    url( #from askbot
+        (r'^(?P<project_slug>[-\w]+)/discuss' +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + 
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+        r'/$'),
+
+        views.ProjectDiscussionListView.as_view(), 
+        name='project_discussion_list'
+    ),
 )

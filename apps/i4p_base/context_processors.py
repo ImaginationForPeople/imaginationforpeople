@@ -17,14 +17,32 @@
 #
 
 from haystack.forms import SearchForm
+from apps.project_sheet.utils import get_project_translations_from_parents, build_filters_and_context
+from site_settings import *
 
 def search_form(request):
     additions = {
         'search_form': SearchForm(),
     }
+    filter_forms, extra_context = build_filters_and_context(request.GET)
+    additions.update(extra_context)
+    additions.update(filter_forms)
     return additions
 
+def settings(request):
+    additions = {}
+    
+    try:
+        additions['ADDTHIS_USERNAME'] = ADDTHIS_USERNAME
+    except NameError:
+        additions['ADDTHIS_USERNAME'] = None
 
+    try:
+        additions['GOOGLE_ANALYTICS_ACCOUNT'] = GOOGLE_ANALYTICS_ACCOUNT
+    except NameError:
+        additions['GOOGLE_ANALYTICS_ACCOUNT'] = None
+        
+    return additions
 
 
 

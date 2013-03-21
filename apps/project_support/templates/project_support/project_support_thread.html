@@ -128,7 +128,7 @@
             {% include "project_support/block/question_paginator.html"  %}
         {% endif %}
         
-        {% if user_already_gave_answer %}
+        {% if user_already_gave_answer and previous_answer%}
             <div class="previous-answer">
                 <i class="icon-pencil"></i><a class="submit" href="{% url project_support_edit_answer support.project_translation.slug previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
                 <span>{% trans '(only one answer per question is allowed)' %}</span>

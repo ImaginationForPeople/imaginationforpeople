@@ -1,0 +1,44 @@
+﻿{% load i18n %}
+
+{% if is_paginated %}
+    <div class="projectlist_pagination">
+        <div class="step-links">
+            {% block previouslink %}
+                {% if page_obj.has_previous %}
+                    <a href="?page{{ page_suffix }}={{ page_obj.previous_page_number }}{{ getvars }}" class="prev"><img src="{{ STATIC_URL }}images/project/page_previous.png" alt="previous" />&nbsp;{% trans "previous" %}</a>
+                {% else %}
+                    {% if display_disabled_previous_link %}
+                        <span class="disabled prev"><img src="{{ STATIC_URL }}images/project/page_previous-off.png" alt="previous" />&nbsp;{% trans "previous" %}</span>
+                    {% endif %}
+                {% endif %}
+            {% endblock previouslink %}
+            {% block pagelinks %}
+                {% if display_page_links %}
+                    {% for page in pages %}
+                        {% if page %}
+                            {% ifequal page page_obj.number %}
+                                <span class="current page">{{ page }}</span>
+                                {% if not forloop.last %}|{% endif %}
+                            {% else %}
+                                <a href="?page{{ page_suffix }}={{ page }}{{ getvars }}" class="page">{{ page }}</a>
+                                {% if not forloop.last %}|{% endif %}
+                            {% endifequal %}
+                        {% else %}
+                            ...
+                            {% if not forloop.last %}|{% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endblock pagelinks %}
+            {% block nextlink %}
+                {% if page_obj.has_next %}
+                    <a href="?page{{ page_suffix }}={{ page_obj.next_page_number }}{{ getvars }}" class="next">{% trans "next" %}&nbsp;<img src="{{ STATIC_URL }}images/project/page_next.png" alt="next" /></a>
+                {% else %}
+                    {% if display_disabled_next_link %}
+                        <span class="disabled next">{% trans "next" %}&nbsp;<img src="{{ STATIC_URL }}images/project/page_next-off.png" alt="previous" /></span>
+                    {% endif %}
+                {% endif %}
+            {% endblock nextlink %}
+        </div>
+    </div>
+{% endif %}

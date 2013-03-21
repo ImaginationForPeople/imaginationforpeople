@@ -1,0 +1,28 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+#projects_list{
+    position:relative;
+    margin-top:20px;
+    width: 100%;
+    /*padding-bottom:15px;*/
+
+}
+
+.container > .projectlist_pagination {
+    text-align: center;
+    display: block;
+    width: 100%;
+    .step-links {
+        display: inline;
+    }
+    a{
+        display: inline;
+        color:#BDBDBD;
+    }
+    
+    span.current{
+        color: $colorLightBlue;
+    }
+
+}

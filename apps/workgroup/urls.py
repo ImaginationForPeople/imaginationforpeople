@@ -16,8 +16,22 @@ urlpatterns = patterns('',
      url(r'^(?P<workgroup_slug>[-\w]+)/unsubscribe/$', views.UnsubscribeView.as_view(), name='workgroup-unsubscribe'),
                        
     # Wiki
-     url(r'^(?P<workgroup_slug>[-\w]+)/wiki/edit$', views.GroupWikiEdit.as_view(), name='workgroup-wiki-edit'),                                                                     
+     url(r'^(?P<workgroup_slug>[-\w]+)/wiki/edit$', views.GroupWikiEdit.as_view(), name='workgroup-wiki-edit'), 
+     # Group discussion
+     url(
+         (r'^(?P<workgroup_slug>[-\w]+)/discuss' +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + 
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+         r'/$'),
+         views.GroupDiscussionListView.as_view(),
+         name='workgroup-discussion'), 
 )
+     
+     
 
 
 

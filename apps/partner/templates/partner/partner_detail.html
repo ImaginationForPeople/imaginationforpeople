@@ -1,11 +1,11 @@
-{% extends "base_obsolete.html" %}
+{% extends "base.html" %}
 {% load i18n %}
 {% load compress %}
 
 {% block style %}
   {% compress css %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/partners.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/partner/partner_detail.css" />
     {% endcompress %}
 {% endblock %}
 
@@ -14,34 +14,34 @@
 {% block content %}	  
 
 <div class="content" id="partner_detail"> 
-    <div class="container_18">
+    <div class="container">
     
         <br /><br />
     
-        <div class="grid_18 alpha omega title">
+        <div class="row title">
             <h1>{{ partner.name }}</h1>                            
             <a href="{{ partner.website }}" class="link">{{ partner.website }}</a>         
         </div>
         <br />
         <div class="separator"></div>
-
-        <div class="grid_6 alpha">
-            <img class="logo" src="{{ MEDIA_URL }}{{ partner.picture.original_image }}"/>
+        <div class="row">
+            <div class="span4">
+                <img class="logo" src="{{ MEDIA_URL }}{{ partner.picture.original_image }}"/>
+            </div>
+            
+            <div class="span8 omega description">
+                {{ partner.description|safe|linebreaks }}
+            </div>
         </div>
-        
-        <div class="grid_12 omega description">
-            {{ partner.description|safe|linebreaks }}
-        </div>
-        
         <div class="clear"></div>
 
-        <div id="partner_projects">                
+        <div id="partner_projects" class="container">                
           <h2>{% trans 'Supported projects' %}</h2>
-	    {% for project_translation in partner_projects %}
-	    {% include "project_sheet/block/card_fancy_square.html" %}
-	    {% empty %}
-	    {% trans "No projects" %}
-	    {% endfor %}
+        {% for project_translation in partner_projects %}
+        {% include "project_sheet/block/card_fancy_square.html" %}
+        {% empty %}
+        {% trans "No projects" %}
+        {% endfor %}
         </div>
 
         <div class="clear"></div>

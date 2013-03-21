@@ -17,7 +17,7 @@
     {% else %}
         <p>
             {{ answer.email_notify }}
-            <label>{% trans '<span class="strong">Here</span> (once you log in) you will be able to sign up for the periodic email updates about this question.' %}</label>
+            <label>{% trans '<span class="strong">Here</span> (once you log in) you will be able to sign up for the periodic email updates about this request.' %}</label>
         </p>
     {% endif %}
     
@@ -35,7 +35,7 @@
                         {% if answers %}
                             {% trans 'Your answer' %}
                         {% else %}
-                            {% trans 'Be the first one to answer this question!' %}
+                            {% trans 'Be the first one to answer this request!' %}
                         {% endif %}
                     </h2>
             </div>
@@ -44,9 +44,9 @@
             {% else %}
                 <p class="message">
                     {% if request.user = question.author  %}
-                        {% trans "<span class='big strong'>You are welcome to answer your own question</span>, but please make sure to give an <strong>answer</strong>. Remember that you can always <strong>revise your original question</strong>. Please <strong>use comments for discussions</strong>  and <strong>please don't forget to vote :)</strong> for the answers that you liked (or perhaps did not like)!" %}
+                        {% trans "<span class='big strong'>You are welcome to answer your own request</span>, but please make sure to give an <strong>answer</strong>. Remember that you can always <strong>revise your original question</strong>. Please <strong>use comments for discussions</strong>  and <strong>please don't forget to vote :)</strong> for the answers that you liked (or perhaps did not like)!" %}
                     {% else %}
-                        {% trans "<span class='big strong'>Please try to give a substantial answer</span>. If you wanted to comment on the question or answer, just <strong>use the commenting tool</strong>. Please remember that you can always <strong>revise your answers</strong> - no need to answer the same question twice. Also, please <strong>don't forget to vote</strong> - it really helps to select the best questions and answers!" %}
+                        {% trans "<span class='big strong'>Please try to give a substantial answer</span>. If you wanted to comment on the request or answer, just <strong>use the commenting tool</strong>. Please remember that you can always <strong>revise your answers</strong> - no need to answer the same question twice. Also, please <strong>don't forget to vote</strong> - it really helps to select the best questions and answers!" %}
                     {% endif %}
                 </p>
             {% endif %}

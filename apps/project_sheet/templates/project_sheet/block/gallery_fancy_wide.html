@@ -11,8 +11,11 @@
 {% load tabs %}
 
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy_wide.css" />
+{% endaddtoblock %}
+{% addtoblock "js" strip %}
+    <script src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-modal.js"></script>
 {% endaddtoblock %}
 
 {% unique_counter gallery_fancy_wide %}

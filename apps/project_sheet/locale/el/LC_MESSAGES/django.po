@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Niki Lambropoulos <nikilambropoulos@yahoo.co.uk>, 2012.
 # Slyan  <maire.sylvain@gmail.com>, 2011.
@@ -9,15 +9,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 22:53+0100\n"
-"PO-Revision-Date: 2012-10-23 17:53+0000\n"
-"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-03-08 17:13-0500\n"
+"PO-Revision-Date: 2013-03-08 22:19+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
-"Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cms_plugins.py:33
@@ -45,187 +45,218 @@ msgid "Specify your role in the project"
 msgstr ""
 
 #: forms.py:109
-msgid "Explain briefly your motivation about the project..."
+msgid "Describe briefly your work with this project..."
 msgstr ""
 
-#: models.py:61 models.py:322
+#: models.py:62 models.py:325
 msgid "description"
 msgstr "περιγραφή"
 
-#: models.py:61
+#: models.py:62
 msgid "Insert your reference here (URL, books, etc)"
 msgstr "Εισάγετε την πηγή αναφοράς σας εδώ (URL, βιβλία, κλπ)"
 
-#: models.py:75
+#: models.py:76
 msgid "Untranslated name"
 msgstr ""
 
-#: models.py:106
+#: models.py:107
 msgid "Concept"
 msgstr "Έννοια"
 
-#: models.py:107
+#: models.py:108
 msgid "Starting"
 msgstr "Εκκίνηση"
 
-#: models.py:108
+#: models.py:109
 msgid "In development"
 msgstr "Στην ανάπτυξη"
 
-#: models.py:109
+#: models.py:110
 msgid "Mature"
 msgstr "Ώριμο"
 
-#: models.py:111 models.py:323
+#: models.py:112 models.py:326
 msgid "author"
 msgstr "συγγραφέας"
 
-#: models.py:115 templates/project_sheet/block/memberlist_modal_seeall.html:36
+#: models.py:116 templates/project_sheet/block/memberlist_modal_seeall.html:36
 #: templates/project_sheet/block/memberlist_modal_seeall.html:63
 msgid "members"
 msgstr "μέλη"
 
-#: models.py:120
+#: models.py:121
 msgid "best of"
 msgstr "Τα καλύτερα"
 
-#: models.py:122 models.py:321
+#: models.py:123 models.py:324
 msgid "creation date"
 msgstr "ημερομηνία δημιουργίας"
 
-#: models.py:125
+#: models.py:126
 msgid "objectives"
 msgstr "στόχοι"
 
-#: models.py:127
+#: models.py:128
 msgid "website"
 msgstr "δικτυακός τόπος"
 
-#: models.py:133 models.py:243
+#: models.py:134 models.py:246
 msgid "status"
 msgstr "κατάσταση"
 
-#: models.py:137
+#: models.py:138
 msgid "project leader information"
 msgstr "Πληροφορίες του συντονιστή"
 
-#: models.py:141
+#: models.py:142
 msgid "location"
 msgstr "τοποθεσία"
 
-#: models.py:147
+#: models.py:148
 msgid "topics"
 msgstr ""
 
-#: models.py:151
-msgid "The sites that the project sheet is accessible at."
+#: models.py:154
+msgid "The sites on which this project sheet is accessible."
 msgstr ""
 
-#: models.py:152
+#: models.py:155
 msgid "sites"
 msgstr ""
 
-#: models.py:198
+#: models.py:201
 msgid "Weight"
 msgstr ""
 
-#: models.py:200 models.py:210
+#: models.py:203 models.py:213
 msgid "Content"
 msgstr ""
 
-#: models.py:225
-msgid "In edition"
-msgstr "Υπό έκδοση"
+#: models.py:228
+msgid "Currently being edited"
+msgstr ""
 
-#: models.py:226
+#: models.py:229
 msgid "Complete"
 msgstr "Πλήρης"
 
-#: models.py:233
+#: models.py:236
 msgid "language"
 msgstr "γλώσσα"
 
-#: models.py:237
+#: models.py:240
 msgid "title"
 msgstr "τίτλος"
 
-#: models.py:238
+#: models.py:241
 msgid "My Project Title"
 msgstr "Τίτλος Έργου"
 
-#: models.py:249
+#: models.py:252
 msgid "one line description"
 msgstr "Σύντομη περιγραφή"
 
-#: models.py:253 templates/project_sheet/block/subheader-readonly.html:117
+#: models.py:256 templates/project_sheet/block/subheader-readonly.html:119
 msgid "One line description"
 msgstr "Μια σύντομη περιγραφή"
 
-#: models.py:256
+#: models.py:259
 msgid "about the project"
 msgstr "σχετικά με το έργο"
 
-#: models.py:257
+#: models.py:260
 msgid "who are the partners of this project"
 msgstr "Ποιοι είναι οι εταίροι αυτού του έργου"
 
-#: models.py:258
+#: models.py:261
 msgid "Help request"
 msgstr "Αίτηση για βοήθεια"
 
-#: models.py:260
+#: models.py:263
 msgid "Themes of the project"
 msgstr "Θέματα του έργου"
 
-#: models.py:324
+#: models.py:327
 msgid "source"
 msgstr "πηγή"
 
-#: models.py:325
+#: models.py:328
 msgid "license"
 msgstr "άδεια"
 
-#: models.py:353
+#: models.py:356
 msgid "role"
 msgstr "ρόλος"
 
-#: models.py:358
+#: models.py:361
 msgid "comment"
 msgstr "σχόλιο"
 
-#: models.py:371
+#: models.py:374
 msgid "New project/translation added"
 msgstr "Προστέθηκε νέο έργο ή νέα μετάφραση "
 
-#: models.py:377
+#: models.py:380
 msgid "A member has joined a project"
 msgstr "Ένα μέλος έχει ενταχθεί σε ένα έργο"
+
+#: templates/project_questions/block/question_list_item.html:28
+#, python-format
+msgid "Added %(added_when)s by %(author_link)s"
+msgstr ""
+
+#: templates/project_questions/block/question_list_item.html:31
+#, python-format
+msgid "Last modified %(last_activity_at)s by %(last_activity_author_link)s"
+msgstr ""
+
+#: templates/project_questions/block/question_list_item.html:34
+msgid "Answers"
+msgstr ""
+
+#: templates/project_questions/block/question_list_item.html:35
+msgid "Viewed"
+msgstr ""
+
+#: templates/project_questions/block/question_list_item.html:36
+msgid "Votes"
+msgstr ""
+
+#: templates/project_questions/block/questions_activities.html:9
+msgid "Activity"
+msgstr ""
+
+#: templates/project_questions/block/questions_activities_item.html:8
+#: templates/project_sheet/obsolete/history.html:24
+msgid "on"
+msgstr "στο"
 
 #: templates/project_sheet/block/about.html:46
 msgid "About the project"
 msgstr ""
 
 #: templates/project_sheet/block/about.html:52
-#: templates/project_sheet/block/detail-list.html:43
+#: templates/project_sheet/block/detail-list.html:44
 #: templates/project_sheet/block/partner-block.html:28
 #: templates/project_sheet/block/reference-block.html:58
-#: templates/project_sheet/block/subheader-readonly.html:61
-#: templates/project_sheet/block/subheader-readonly.html:73
-#: templates/project_sheet/block/subheader-readonly.html:113
-#: templates/project_sheet/block/subheader-readonly.html:118
-#: templates/project_sheet/block/subheader-readonly.html:153
-#: templates/project_sheet/block/subheader-readonly.html:175
+#: templates/project_sheet/block/subheader-readonly.html:63
+#: templates/project_sheet/block/subheader-readonly.html:75
+#: templates/project_sheet/block/subheader-readonly.html:115
+#: templates/project_sheet/block/subheader-readonly.html:120
+#: templates/project_sheet/block/subheader-readonly.html:155
+#: templates/project_sheet/block/subheader-readonly.html:177
 #: templates/project_sheet/block/subheader-readwrite.html:60
 msgid "Edit"
 msgstr "Επεξεργασία"
 
 #: templates/project_sheet/block/about.html:67
-#: templates/project_sheet/block/detail-list.html:65
+#: templates/project_sheet/block/detail-list.html:66
 msgid "Double-click to edit"
 msgstr ""
 
 #: templates/project_sheet/block/about.html:71
-#: templates/project_sheet/block/detail-list.html:69
+#: templates/project_sheet/block/detail-list.html:70
 msgid "This field is blank. Don’t forget to complete it!"
 msgstr "Αυτό το πεδίο είναι κενό. Μην ξεχάσετε να το συμπληρώσετε!"
 
@@ -247,8 +278,9 @@ msgstr ""
 #: templates/project_sheet/block/about.html:85
 msgid ""
 "You will then <strong>have access to the whole sheet</strong> where you can "
-"fill in all the details of your project, the same way you did for the title. "
-"If you've already used a <strong>wiki</strong> before, you'll feel at home. "
+"fill in all the details of your project, the same way you did for the title."
+" If you've already used a <strong>wiki</strong> before, you'll feel at home."
+" "
 msgstr ""
 
 #: templates/project_sheet/block/about.html:88
@@ -262,7 +294,7 @@ msgstr ""
 msgid "See the project"
 msgstr ""
 
-#: templates/project_sheet/block/cardlist_fancy_wide.html:20
+#: templates/project_sheet/block/cardlist_fancy_wide.html:18
 msgid "No projects found"
 msgstr ""
 
@@ -295,44 +327,41 @@ msgstr ""
 msgid "comments"
 msgstr "σχόλια"
 
-#: templates/project_sheet/block/detail-list.html:56
-#: templates/project_sheet/block/subheader-readonly.html:39
+#: templates/project_sheet/block/detail-list.html:57
+#: templates/project_sheet/block/subheader-readonly.html:41
 msgid "Ok"
 msgstr "Εντάξει"
 
-#: templates/project_sheet/block/detail-list.html:57
-#: templates/project_sheet/block/subheader-readonly.html:38
+#: templates/project_sheet/block/detail-list.html:58
+#: templates/project_sheet/block/subheader-readonly.html:40
 msgid "Cancel"
 msgstr "Ακύρωση"
 
-#: templates/project_sheet/block/gallery_fancy_thin.html:70
+#: templates/project_sheet/block/gallery_fancy_thin.html:72
 msgid "No picture found"
 msgstr ""
 
-#: templates/project_sheet/block/gallery_fancy_wide.html:22
+#: templates/project_sheet/block/gallery_fancy_wide.html:25
 msgid "pictures"
 msgstr ""
 
-#: templates/project_sheet/block/gallery_fancy_wide.html:49
+#: templates/project_sheet/block/gallery_fancy_wide.html:52
 #: templates/project_sheet/page/gallery.html:81
-#, fuzzy
 msgid "This project has no pictures yet"
-msgstr "Το έργο αυτό δεν έχει γνωστούς συνεργάτες."
+msgstr ""
 
-#: templates/project_sheet/block/gallery_fancy_wide.html:56
+#: templates/project_sheet/block/gallery_fancy_wide.html:59
 msgid "videos"
 msgstr ""
 
-#: templates/project_sheet/block/gallery_fancy_wide.html:81
+#: templates/project_sheet/block/gallery_fancy_wide.html:84
 #: templates/project_sheet/page/gallery.html:98
-#, fuzzy
 msgid "This project has no videos yet"
-msgstr "Το έργο αυτό δεν έχει γνωστούς συνεργάτες."
+msgstr ""
 
 #: templates/project_sheet/block/gallery_modal.html:130
-#, fuzzy
 msgid "Previous"
-msgstr "προηγούμενο"
+msgstr ""
 
 #: templates/project_sheet/block/gallery_modal.html:135
 msgid "Next"
@@ -343,12 +372,11 @@ msgid "Delete this picture"
 msgstr ""
 
 #: templates/project_sheet/block/gallery_modal.html:154
-#, fuzzy
 msgid "View gallery"
-msgstr "Δες το"
+msgstr ""
 
 #: templates/project_sheet/block/member_fancy_square.html:36
-#: templates/project_sheet/block/member_flat_wide.html:23
+#: templates/project_sheet/block/member_flat_wide.html:26
 #: templates/project_sheet/block/member_modal.html:27
 msgid "Member of : "
 msgstr ""
@@ -362,19 +390,16 @@ msgid "Profile"
 msgstr ""
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:41
-#, fuzzy
 msgid "Contact all members"
-msgstr "Επικοινωνήστε με την ομάδα"
+msgstr ""
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:47
-#, fuzzy
 msgid "Join the project"
-msgstr "σχετικά με το έργο"
+msgstr ""
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:54
-#, fuzzy
-msgid "become an actor of the project"
-msgstr "Θέματα του έργου"
+msgid "I want to announce that I am a member of this project's team"
+msgstr ""
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:58
 msgid "save"
@@ -395,19 +420,23 @@ msgid "Gallery"
 msgstr ""
 
 #: templates/project_sheet/block/menubar.html:20
+msgid "Discussion"
+msgstr ""
+
+#: templates/project_sheet/block/menubar.html:25
 msgid "Needs"
 msgstr ""
 
-#: templates/project_sheet/block/menubar.html:42
+#: templates/project_sheet/block/menubar.html:46
 msgid "Lang"
 msgstr ""
 
-#: templates/project_sheet/block/menubar.html:60
+#: templates/project_sheet/block/menubar.html:64
 msgid "Add new translation"
 msgstr ""
 
-#: templates/project_sheet/block/menubar.html:88
-#: templates/project_sheet/block/subheader-readonly.html:191
+#: templates/project_sheet/block/menubar.html:92
+#: templates/project_sheet/block/subheader-readonly.html:193
 #: templates/project_sheet/block/subheader-readwrite.html:94
 msgid "Share"
 msgstr ""
@@ -425,6 +454,108 @@ msgstr "Επεξεργασία"
 msgid "This project has no known partners."
 msgstr "Το έργο αυτό δεν έχει γνωστούς συνεργάτες."
 
+#: templates/project_sheet/block/project_list_filter_panel.html:37
+msgid "Pin/Unpin the panel"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:41
+msgid "Filter results"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:42
+msgid "Help"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:50
+msgid "Order by:"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:52
+msgid "Newest"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:53
+msgid "Latest changes"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:55
+#: templates/project_sheet/obsolete/all_recent_changes.html:26
+msgid "RSS Feed"
+msgstr "RSS Feed"
+
+#: templates/project_sheet/block/project_list_filter_panel.html:65
+msgid "Clear filters"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:68
+msgid "Tags"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:69
+#: templates/project_sheet/block/project_list_filter_panel.html:87
+msgid "invert"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:72
+#, python-format
+msgid "%(count)s project sheets"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:81
+#: templates/project_sheet/block/subheader-readonly.html:136
+msgid "Location"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:86
+msgid "Categories"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:93
+msgid "Sheet Status"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:97
+msgid "Best-of"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:102
+msgid "best-of"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:108
+msgid "progression"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:115
+msgid "Associated team"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:116
+msgid "Orphan project"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:119
+msgid "team"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_filter_panel.html:123
+msgid "Project Status"
+msgstr ""
+
+#: templates/project_sheet/block/project_list_pagination.html:8
+#: templates/project_sheet/block/project_list_pagination.html:11
+msgid "previous"
+msgstr "προηγούμενο"
+
+#: templates/project_sheet/block/project_list_pagination.html:35
+#: templates/project_sheet/block/project_list_pagination.html:38
+msgid "next"
+msgstr "Επόμενη"
+
+#: templates/project_sheet/block/project_list_project_card.html:24
+msgid "There is no description for this project"
+msgstr "Δεν υπάρχει περιγραφή για αυτό το έργο"
+
 #: templates/project_sheet/block/reference-block.html:27
 #: templates/project_sheet/block/toolbar.html:45
 msgid "References"
@@ -439,42 +570,38 @@ msgstr ""
 msgid "no references"
 msgstr "Δεν υπάρχουν πηγές"
 
-#: templates/project_sheet/block/subheader-readonly.html:74
+#: templates/project_sheet/block/subheader-readonly.html:76
 msgid "my project title"
 msgstr "τίτλος του έργου μου"
 
-#: templates/project_sheet/block/subheader-readonly.html:130
+#: templates/project_sheet/block/subheader-readonly.html:132
 #: templates/project_sheet/block/subheader-readwrite.html:22
 #: templates/project_sheet/block/toolbar.html:37
 msgid "Information"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:134
-msgid "Location"
-msgstr ""
-
-#: templates/project_sheet/block/subheader-readonly.html:156
-#: templates/project_sheet/block/subheader-readonly.html:172
-#: templates/project_sheet/block/subheader-readonly.html:181
+#: templates/project_sheet/block/subheader-readonly.html:158
+#: templates/project_sheet/block/subheader-readonly.html:174
+#: templates/project_sheet/block/subheader-readonly.html:183
 #: templates/project_sheet/block/subheader-readwrite.html:63
 msgid "unknown"
 msgstr "άγνωστο"
 
-#: templates/project_sheet/block/subheader-readonly.html:164
+#: templates/project_sheet/block/subheader-readonly.html:166
 #: templates/project_sheet/block/subheader-readwrite.html:77
 msgid "Web"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:187
+#: templates/project_sheet/block/subheader-readonly.html:189
 #: templates/project_sheet/block/subheader-readwrite.html:90
 msgid "Follow"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:197
+#: templates/project_sheet/block/subheader-readonly.html:199
 msgid "Movecommons"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:202
+#: templates/project_sheet/block/subheader-readonly.html:204
 msgid "Maturity"
 msgstr ""
 
@@ -482,31 +609,22 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: templates/project_sheet/layout/project_base.html:25
-msgid "start project"
-msgstr "έναρξη έργου"
+#: templates/project_sheet/layout/project_base.html:21
+msgid "start a project"
+msgstr ""
 
-#: templates/project_sheet/obsolete/all_recent_changes.html:26
+#: templates/project_sheet/obsolete/all_recent_changes.html:25
 msgid "Latest 20 days changes"
 msgstr "Οι αλλαγες των τελευταίων 20 ημέρων"
 
-#: templates/project_sheet/obsolete/all_recent_changes.html:27
-#: templates/project_sheet/obsolete/project_list.html:73
-msgid "RSS Feed"
-msgstr "RSS Feed"
-
-#: templates/project_sheet/obsolete/all_recent_changes.html:49
-#: templates/project_sheet/obsolete/project_list.html:103
+#: templates/project_sheet/obsolete/all_recent_changes.html:48
+#: templates/project_sheet/page/project_list.html:50
 msgid "Your request did not return any result."
 msgstr "Δεν βρέθηκαν αποτελέσματα για το αίτημά σας."
 
 #: templates/project_sheet/obsolete/history.html:18
 msgid "Made on"
 msgstr "Κατασκευασμένο στο"
-
-#: templates/project_sheet/obsolete/history.html:18
-msgid "DATETIME_FORMAT"
-msgstr "ΗΜΕΡΟΜΗΝΙΑ/ΩΡΑ_FORMAT"
 
 #: templates/project_sheet/obsolete/history.html:18
 msgid "by"
@@ -516,21 +634,9 @@ msgstr "από"
 msgid "Anonymous"
 msgstr "Ανώνυμος"
 
-#: templates/project_sheet/obsolete/history.html:24
-msgid "on"
-msgstr "στο"
-
 #: templates/project_sheet/obsolete/history.html:30
 msgid "and"
 msgstr "και"
-
-#: templates/project_sheet/obsolete/history.html:33
-msgid "\""
-msgstr "\""
-
-#: templates/project_sheet/obsolete/project_complete_card.html:18
-msgid "There is no description for this project"
-msgstr "Δεν υπάρχει περιγραφή για αυτό το έργο"
 
 #: templates/project_sheet/obsolete/project_id_card.html:16
 #: templates/project_sheet/obsolete/project_status.html:5
@@ -552,42 +658,6 @@ msgstr "δημοφιλής"
 msgid "bestof"
 msgstr "Τα καλύτερα"
 
-#: templates/project_sheet/obsolete/project_list.html:7
-msgid ""
-"These experiences have a positive social impact and create social goodwill. "
-"they demonstrate a disruptive inventiveness and can be easily disseminated "
-"and scaled in other places or cultural contexts."
-msgstr ""
-"Αυτές οι εμπειρίες έχουν θετικό κοινωνικό αντίκτυπο και δημιουργούν "
-"κοινωνική υπεραξία. Αποδεικνύουν ριζική καινοτομία και μπορούν εύκολα να "
-"διαδοθούν και να κλιμακωθούν σε άλλους χώρους ή πολιτισμικά πλαίσια."
-
-#: templates/project_sheet/obsolete/project_list.html:8
-msgid "Find projects on "
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list.html:68
-msgid "Order by:"
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list.html:70
-msgid "Newest projects"
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list.html:71
-msgid "Recent changes"
-msgstr ""
-
-#: templates/project_sheet/obsolete/project_list_pagination.html:9
-#: templates/project_sheet/obsolete/project_list_pagination.html:12
-msgid "previous"
-msgstr "προηγούμενο"
-
-#: templates/project_sheet/obsolete/project_list_pagination.html:36
-#: templates/project_sheet/obsolete/project_list_pagination.html:39
-msgid "next"
-msgstr "Επόμενη"
-
 #: templates/project_sheet/obsolete/topic_select_fragment.html:11
 msgid "Select your type of project"
 msgstr ""
@@ -595,6 +665,14 @@ msgstr ""
 #: templates/project_sheet/obsolete/comments/comments-module.html:14
 msgid "View the"
 msgstr "Δες το"
+
+#: templates/project_sheet/page/gallery.html:34
+msgid "Add picture"
+msgstr ""
+
+#: templates/project_sheet/page/gallery.html:38
+msgid "Add video"
+msgstr ""
 
 #: templates/project_sheet/page/gallery.html:77
 msgid "cover picture"
@@ -604,17 +682,43 @@ msgstr ""
 msgid "cover video"
 msgstr ""
 
+#: templates/project_sheet/page/project_discuss_list.html:59
+msgid "Filter"
+msgstr ""
+
+#: templates/project_sheet/page/project_discuss_list.html:63
+msgid "Enter a keyword"
+msgstr ""
+
+#: templates/project_sheet/page/project_discuss_list.html:67
+msgid "Ask your question"
+msgstr ""
+
+#: templates/project_sheet/page/project_discuss_list.html:87
+msgid "Contributors"
+msgstr ""
+
+#: templates/project_sheet/page/project_list.html:8
+msgid ""
+"These experiences have a positive social impact and create social goodwill. "
+"they demonstrate a disruptive inventiveness and can be easily disseminated "
+"and scaled in other places or cultural contexts."
+msgstr "Αυτές οι εμπειρίες έχουν θετικό κοινωνικό αντίκτυπο και δημιουργούν κοινωνική υπεραξία. Αποδεικνύουν ριζική καινοτομία και μπορούν εύκολα να διαδοθούν και να κλιμακωθούν σε άλλους χώρους ή πολιτισμικά πλαίσια."
+
+#: templates/project_sheet/page/project_list.html:9
+msgid "Find projects on "
+msgstr ""
+
 #: templates/project_sheet/page/project_sheet.html:63
-#, fuzzy
 msgid "Project Community"
-msgstr "Τίτλος Έργου"
+msgstr ""
 
 #: templates/project_sheet/page/project_sheet.html:70
 msgid "See more"
 msgstr ""
 
 #: templates/project_sheet/page/project_sheet.html:84
-msgid "Related projects"
+msgid "You might also like"
 msgstr ""
 
 #: templates/project_sheet/page/project_sheet.html:92
@@ -623,258 +727,3 @@ msgid ""
 "You need to <a href=\"%(tags_url)s\">tag this project</a> before we can "
 "suggest related projects."
 msgstr ""
-
-#~ msgid "project description"
-#~ msgstr "περιγραφή έργου"
-
-#~ msgid "click here to describe your project"
-#~ msgstr "Κάντε κλικ εδώ για να περιγράψετε το έργο σας"
-
-#~ msgid "take action"
-#~ msgstr "ανέλαβε δράση"
-
-#~ msgid ""
-#~ "This project has not claimed its needs yet. Please edit if you are aware "
-#~ "of a requirement."
-#~ msgstr ""
-#~ "Δεν έχουν οριστεί οι απαιτήσεις του έργου. Παρακαλείστε να τις "
-#~ "συμπληρώσετε εφόσον τις γνωρίζετε."
-
-#~ msgid "Spread the word:"
-#~ msgstr "Διάδωσέ το:"
-
-#~ msgid "related"
-#~ msgstr "σχετικό"
-
-#~ msgid "objectives:"
-#~ msgstr "στόχοι:"
-
-#~ msgid ""
-#~ "Click here to set the <strong>categories</strong> and <strong>tags</"
-#~ "strong> of this project."
-#~ msgstr ""
-#~ "Κάντε κλικ εδώ για να ορίσετε τις <strong>κατηγορίες</strong> και τις "
-#~ "<strong>ετικέτες</strong> του έργου αυτού."
-
-#~ msgid "Tags:"
-#~ msgstr "Ετικέτες:"
-
-#~ msgid "Add a member"
-#~ msgstr "Προσθέστε ένα μέλος"
-
-#~ msgid "add"
-#~ msgstr "Προσθήκη"
-
-#~ msgid "The team"
-#~ msgstr "Η ομάδα"
-
-#~ msgid ""
-#~ "\n"
-#~ "                            Use the messaging system to get in touch with "
-#~ "the team \n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto1.jpg\" alt=\"Contact team\" width=\"27\" height=\"15\" /"
-#~ ">\n"
-#~ "                            or one of its member\n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto2.jpg\" alt=\"Contact member\" width=\"25\" height=\"15\" /"
-#~ ">\n"
-#~ "                            .\n"
-#~ "                        "
-#~ msgstr ""
-#~ "\n"
-#~ "⏎\n"
-#~ "                           Χρησιμοποιήστε το σύστημα ανταλλαγής μηνυμάτων "
-#~ "για να έρθετε σε επαφή με την ομάδα ⏎\n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto1.jpg\" alt=\"Επικοινωνία με την ομάδα\" width=\"27\" "
-#~ "height=\"15\" />⏎\n"
-#~ "                            ή με ένα από τα μέλη της⏎\n"
-#~ "                            <img src=\"%(STATIC_URL)simages/project/"
-#~ "team_info-picto2.jpg\" alt=\"Επικοινωνία με μέλος\" width=\"25\" height="
-#~ "\"15\" />⏎\n"
-#~ "                            .⏎\n"
-#~ "                        "
-
-#~ msgid "There is no registered team members: please to fill this section !"
-#~ msgstr ""
-#~ "Δεν υπάρχουν εγγεγραμμένα μέλη της ομάδας: παρακαλούμε να συμπληρώσετε "
-#~ "αυτό το τμήμα!"
-
-#~ msgid "Delete"
-#~ msgstr "Διαγραφή"
-
-#~ msgid "delete"
-#~ msgstr "διαγραφή"
-
-#~ msgid "Want to get started on your project sheet ?"
-#~ msgstr "Θέλετε να ξεκινήσετε το δικό σας έργο;"
-
-#~ msgid ""
-#~ "Click on the field you want to edit, edit it, and save the changes. Once "
-#~ "you’ve modified a field, your project sheet will be created."
-#~ msgstr ""
-#~ "Επιλέξτε το πεδίο που θέλετε να επεξεργαστείτε, και όταν ολοκληρώσετε "
-#~ "αποθηκεύσετε τις αλλαγές. Μόλιε τροποποιήσετε ένα πεδίο, το έργο σας θα "
-#~ "δημιουργηθεί."
-
-#~ msgid "upload a media"
-#~ msgstr "ανεβάστε ένα πολυμέσο"
-
-#~ msgid "Image to upload :"
-#~ msgstr "Εικόνα για ανέβασμα"
-
-#~ msgid "Upload"
-#~ msgstr "Ανέβασε"
-
-#~ msgid "Video link (youtube, dailymotion, etc): "
-#~ msgstr "Σύνδεσμος (YouTube, Dailymotion, κλπ):"
-
-#~ msgid "Add"
-#~ msgstr "Προσθήκη"
-
-#~ msgid "Metadata - Click to edit"
-#~ msgstr "Μεταδεδομένα - κλίκ για επεξεργασία"
-
-#~ msgid "Date :"
-#~ msgstr "Ημερομηνία:"
-
-#~ msgid "Description :"
-#~ msgstr "Περιγραφή:"
-
-#~ msgid "Author :"
-#~ msgstr "Συγγραφέας:"
-
-#~ msgid "Source :"
-#~ msgstr "Πηγή:"
-
-#~ msgid "Licence :"
-#~ msgstr "Άδεια:"
-
-#~ msgid "Sorry, video are temporary disabled on Internet Explorer"
-#~ msgstr ""
-#~ "Λυπούμαστε, το βίντεο είναι προσωρινά απενεργοποιημένο στον Internet "
-#~ "Explorer"
-
-#~ msgid "Yes"
-#~ msgstr "Ναί"
-
-#~ msgid "No"
-#~ msgstr "Όχι"
-
-#~ msgid "This field is blank. Don’t forget to complete it! "
-#~ msgstr "Αυτό το πεδίο είναι κενό. Μην ξεχάσετε να το ολοκληρώσετε!"
-
-#~ msgid "Edit related infos of &laquo;&nbsp;%(project_title)s&nbsp;&raquo;"
-#~ msgstr "Επεξεργασία πληροφοριών του « %(project_title)s »"
-
-#~ msgid "Update"
-#~ msgstr "Ενημέρωση"
-
-#~ msgid "Type your message here and hit enter when done..."
-#~ msgstr ""
-#~ "Πληκτρολογήστε το μήνυμά σας εδώ και όταν ολοκληρώσετε επιλέξτε το "
-#~ "Εισαγωγή..."
-
-#~ msgid "This bloc is empty : don’t forget to fill it !"
-#~ msgstr "Αυτή η ομάδα είναι κενή. Μην ξεχάσετε να την συμπληρώσετε!"
-
-#~ msgid ""
-#~ "\n"
-#~ "            Thank you for the interest you have shown in this project. "
-#~ "<br />\n"
-#~ "            Don't you want to <a class=\"login-slide-openner link\" href="
-#~ "\"#\">log in</a> or <a class=\"login-slide-openner link\" href=\"#\">sign "
-#~ "up</a> before editing?\n"
-#~ "            "
-#~ msgstr ""
-#~ "\n"
-#~ "Σας ευχαριστούμε για το ενδιαφέρον που έχετε δείξει σε αυτό το έργο. <br /"
-#~ "> Θέλετε να <a class=\"login-slide-openner link\" href=\"#\">συνδεθείτε</"
-#~ "a> ή να <a class=\"login-slide-openner link\" href=\"#\">εγγραφείτε</a> "
-#~ "πριν από την επεξεργασία;"
-
-#~ msgid ""
-#~ "\n"
-#~ "            This project sheet is a draft. Become in one click a co-"
-#~ "publisher of this project !\n"
-#~ "            <br />You can enrich it very simply by clicking on text boxes "
-#~ "which seem to be incomplete. You will then have access to a wiki field "
-#~ "allowing you to write additional content.\n"
-#~ "\t\t\t<br />Please feel free to ask for help through <a class=\"link\" "
-#~ "href=\"/feedback/list/\">feedback</a> or on <a class=\"link\" href="
-#~ "\"http://imaginationforpeople.org/conference/\">live chat</a>.\n"
-#~ "            "
-#~ msgstr ""
-#~ "\n"
-#~ "\n"
-#~ "⏎\n"
-#~ "            Αυτό το έργο είναι ακόμα σε εξελικτικό στάδιο. Γίνετε με ένα "
-#~ "κλικ συνεργάτης στο έργο αυτό!⏎\n"
-#~ "            <br />Μπορείς να το εμπλουτίσεις κάνοντας απλά κλικ στα "
-#~ "πλαίσια του κειμένου που φαίνεται να είναι ελλιπή. Στη συνέχεια θα έχεις "
-#~ "πρόσβαση σε ένα πεδίο wiki επιτρέποντάς σου να γράψεις επιπλέον "
-#~ "περιεχόμενο.⏎\n"
-#~ "»»»<br />Παρακαλούμε μη διστάσετε να ζητήσετε βοήθεια μέσω <a class=\"link"
-#~ "\" href=\"/feedback/list/\">feedback</a> ή στο <a class=\"link\" href="
-#~ "\"http://imaginationforpeople.org/conference/\">live chat</a>.⏎\n"
-#~ "            "
-
-#~ msgid "anonymous"
-#~ msgstr "ανώνυμος"
-
-#~ msgid "Location:"
-#~ msgstr "Τοποθεσία:"
-
-#~ msgid "Website:"
-#~ msgstr "Ιστότοπος:"
-
-#~ msgid ""
-#~ "\n"
-#~ "\t    This project sheet, except media, is licensed under the <a rel="
-#~ "\"license\" href=\"http://creativecommons.org/licenses/by-sa/3.0/"
-#~ "\">Creative Commons CC-BY-SA 3.0</a> <a rel=\"license\" href=\"http://"
-#~ "creativecommons.org/licenses/by-sa/3.0/\"><img alt=\"Contrat Creative "
-#~ "Commons\" style=\"border-width:0\" src=\"%(STATIC_URL)simages/cc-by-"
-#~ "sa3_80_25.png\" /></a>\n"
-#~ "\t  "
-#~ msgstr ""
-#~ "\n"
-#~ "⏎\n"
-#~ "»    Αυτό το φύλλο έργου, εκτός από τα πολυμέσα, έχει άδεια πνευματικής "
-#~ "ιδιοκτησίας κάτω από την ομπρέλα του <a rel=\"license\" href=\"http://"
-#~ "creativecommons.org/ομπρέλα/by-sa/3.0/\">Creative Commons CC-BY-SA 3.0</"
-#~ "a> <a rel=\"license\" href=\"http://creativecommons.org/licenses/by-"
-#~ "sa/3.0/\"><img alt=\"Contrat Creative Commons\" style=\"border-width:0\" "
-#~ "src=\"%(STATIC_URL)simages/cc-by-sa3_80_25.png\" /></a>⏎\n"
-#~ "»  "
-
-#~ msgid "references"
-#~ msgstr "αναφορές"
-
-#~ msgid "Cancel & close"
-#~ msgstr "Ακύρωση & Κλείσιμο"
-
-#~ msgid "Save & close"
-#~ msgstr "Αποθήκευση & Κλείσιμο"
-
-#~ msgid "Objectives:"
-#~ msgstr "Στόχοι:"
-
-#~ msgid "Themes:"
-#~ msgstr "Θέματα:"
-
-#~ msgid "select your tags from the cloud below"
-#~ msgstr "Επιλέξτε τις ετικέτες σας από το παρακάτω σύννεφο"
-
-#~ msgid "Close &amp; discard"
-#~ msgstr "Κλείσιμο και απόρριψη"
-
-#~ msgid "Add a team member"
-#~ msgstr "Προσθήκη μέλους ομάδας"
-
-#~ msgid "Close & discard"
-#~ msgstr "Κλείσιμο και Απόρριψη"
-
-#~ msgid "What is the social value of this project"
-#~ msgstr "Ποιά είναι η κοινωνική αξία του έργου"

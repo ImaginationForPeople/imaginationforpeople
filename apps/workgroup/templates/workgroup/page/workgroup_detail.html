@@ -7,8 +7,12 @@
 {% load admin_urls %}
 {% load sekizai_tags %}
 {% load guardian_tags %}
+{% load tabs %}
+
+
 
 {% block content %}
+   {% tab 'workgroup' 'description' %}
 
     {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
@@ -21,7 +25,7 @@
         <div class="span8">
 
           {% if workgroup.mailing_list %}
-             <em class="workgroup_email">{% trans "This group uses a mailing list to discuss. You can take part to the discussion by sending an e-mail to the following address:" %} {{ workgroup.mailing_list.email }}</em> - [<a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">{% trans "Browse the Archives" %}</a>]
+             <em class="workgroup_email">{% blocktrans with ml_address=workgroup.mailing_list.email %}This group uses a mailing list. You can take part in the discussion by sending an e-mail to the following address: {{ ml_address }}{% endblocktrans %}</em> - [<a class="workgroup_archive" href="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}">{% trans "Browse the Archives" %}</a>]
           {% endif %}
 
           {% tags_for_object workgroup as group_tags %}
@@ -36,7 +40,7 @@
 
           <div class="shoutbox-box">
             {% get_comment_count for workgroup as comment_count %}
-            <h3>Shoutbox ({{ comment_count }})</h3> 
+            <h3>{% blocktrans count num_comments=comment_count %}Comment:{% plural %}{{ num_comments }} comments:{% endblocktrans %}</h3> 
             {% if comment_count %}
             {% render_comment_list for workgroup %}
             {% endif %}

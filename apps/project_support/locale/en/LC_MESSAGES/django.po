@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 22:54+0100\n"
+"POT-Creation-Date: 2013-03-08 17:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,39 +22,42 @@ msgid "project needs"
 msgstr ""
 
 #: models.py:10
-msgid "project offers"
+msgid "help from the community"
 msgstr ""
 
 #: templates/project_support/project_support_form.html:19
-msgid "Please explain your need here"
+msgid "Please describe your project's need here"
+msgstr ""
+
+#: templates/project_support/project_support_form.html:22
+msgid "We are sorry, you need to correct the highlighted problems in the form"
 msgstr ""
 
 #: templates/project_support/project_support_form.html:27
 msgid "No selected category"
 msgstr ""
 
-#: templates/project_support/project_support_form.html:33
+#: templates/project_support/project_support_form.html:34
 msgid "submit"
 msgstr ""
 
-#: templates/project_support/project_support_form.html:35
-#: templates/project_support/block/support_toolbar.html:25
+#: templates/project_support/project_support_form.html:36
 msgid "First signin"
 msgstr ""
 
-#: templates/project_support/project_support_list.html:57
-msgid "Filter calls"
+#: templates/project_support/project_support_list.html:64
+msgid "Filter"
 msgstr ""
 
-#: templates/project_support/project_support_list.html:61
+#: templates/project_support/project_support_list.html:68
 msgid "Enter a keyword"
 msgstr ""
 
-#: templates/project_support/project_support_list.html:66
+#: templates/project_support/project_support_list.html:73
 msgid "or"
 msgstr ""
 
-#: templates/project_support/project_support_list.html:88
+#: templates/project_support/project_support_list.html:95
 msgid "Contributors"
 msgstr ""
 
@@ -149,18 +152,18 @@ msgstr ""
 msgid "flag offensive"
 msgstr ""
 
-#: templates/project_support/block/answer_controls.html:28
+#: templates/project_support/block/answer_controls.html:29
 #: templates/project_support/block/comment.html:63
 #: templates/project_support/block/question_controls.html:24
 msgid "edit"
 msgstr ""
 
-#: templates/project_support/block/answer_controls.html:32
+#: templates/project_support/block/answer_controls.html:34
 #: templates/project_support/block/question_controls.html:26
 msgid "undelete"
 msgstr ""
 
-#: templates/project_support/block/answer_controls.html:32
+#: templates/project_support/block/answer_controls.html:34
 #: templates/project_support/block/comment.html:57
 #: templates/project_support/block/question_controls.html:26
 msgid "delete"
@@ -214,7 +217,7 @@ msgstr ""
 #: templates/project_support/block/new_answer_form.html:20
 msgid ""
 "<span class=\"strong\">Here</span> (once you log in) you will be able to "
-"sign up for the periodic email updates about this question."
+"sign up for the periodic email updates about this request."
 msgstr ""
 
 #: templates/project_support/block/new_answer_form.html:28
@@ -226,7 +229,7 @@ msgid "Your answer"
 msgstr ""
 
 #: templates/project_support/block/new_answer_form.html:38
-msgid "Be the first one to answer this question!"
+msgid "Be the first one to answer this request!"
 msgstr ""
 
 #: templates/project_support/block/new_answer_form.html:43
@@ -241,7 +244,7 @@ msgstr ""
 
 #: templates/project_support/block/new_answer_form.html:47
 msgid ""
-"<span class='big strong'>You are welcome to answer your own question</span>, "
+"<span class='big strong'>You are welcome to answer your own request</span>, "
 "but please make sure to give an <strong>answer</strong>. Remember that you "
 "can always <strong>revise your original question</strong>. Please "
 "<strong>use comments for discussions</strong>  and <strong>please don't "
@@ -252,7 +255,7 @@ msgstr ""
 #: templates/project_support/block/new_answer_form.html:49
 msgid ""
 "<span class='big strong'>Please try to give a substantial answer</span>. If "
-"you wanted to comment on the question or answer, just <strong>use the "
+"you wanted to comment on the request or answer, just <strong>use the "
 "commenting tool</strong>. Please remember that you can always <strong>revise "
 "your answers</strong> - no need to answer the same question twice. Also, "
 "please <strong>don't forget to vote</strong> - it really helps to select the "
@@ -276,19 +279,19 @@ msgid "current number of votes"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:14
-msgid "Share this question on twitter"
+msgid "Share this on twitter"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:18
-msgid "Share this question on facebook"
+msgid "Share this on facebook"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:22
-msgid "Share this question on google plus"
+msgid "Share this on google plus"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:26
-msgid "Share this question on linkedin"
+msgid "Share this on linkedin"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:65
@@ -302,7 +305,7 @@ msgid "Follow this need"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:73
-msgid "subscribe to this question rss feed"
+msgid "subscribe to this request's rss feed"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:73
@@ -317,7 +320,7 @@ msgstr ""
 #: templates/project_support/block/question_card.html:80
 #, python-format
 msgid "%(count)s follower"
-msgid_plural "%(count)s followers "
+msgid_plural "%(count)s followers"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -331,22 +334,6 @@ msgstr ""
 
 #: templates/project_support/block/question_controls.html:31
 msgid "close"
-msgstr ""
-
-#: templates/project_support/block/question_list_item.html:24
-msgid "by"
-msgstr ""
-
-#: templates/project_support/block/question_list_item.html:29
-msgid "Answers"
-msgstr ""
-
-#: templates/project_support/block/question_list_item.html:30
-msgid "Viewed"
-msgstr ""
-
-#: templates/project_support/block/question_list_item.html:31
-msgid "Votes"
 msgstr ""
 
 #: templates/project_support/block/question_paginator.html:5
@@ -392,14 +379,6 @@ msgstr ""
 msgid "Related needs"
 msgstr ""
 
-#: templates/project_support/block/support_activities.html:9
-msgid "Activities"
-msgstr ""
-
-#: templates/project_support/block/support_activities_item.html:8
-msgid "on"
-msgstr ""
-
 #: templates/project_support/block/support_categories_menu.html:5
 msgid "Browse categories"
 msgstr ""
@@ -409,11 +388,15 @@ msgid "Project needs"
 msgstr ""
 
 #: templates/project_support/block/support_toolbar.html:13
-msgid "Project offers"
+msgid "Help from the community"
 msgstr ""
 
 #: templates/project_support/block/support_toolbar.html:22
-msgid "describe your need or offer your help"
+msgid "add your project's needs / offer your help"
+msgstr ""
+
+#: templates/project_support/block/support_toolbar.html:25
+msgid "You need to log-in to add a need"
 msgstr ""
 
 #: templates/project_support/script/head_javascript.html:85
@@ -429,7 +412,7 @@ msgid "post a comment"
 msgstr ""
 
 #: templates/project_support/script/head_javascript.html:110
-msgid "Answer Your Own Question"
+msgid "Answer your own request"
 msgstr ""
 
 #: templates/project_support/script/head_javascript.html:115

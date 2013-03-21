@@ -50,7 +50,8 @@ def commonenv():
     env.db_name = 'imaginationforpeople'
     env.dbdumps_dir = os.path.join(tempfile.gettempdir(), '%s_dumps' % env.projectname)
     
-    env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
+    #env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
+    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "master"
 
 
@@ -86,8 +87,7 @@ def stagenv():
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
-    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
-    env.gitbranch = "feature/project-support"
+    env.gitbranch = "release/almostspring"
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -109,7 +109,7 @@ def devenv():
 
     current_path = local('pwd',capture=True)
     
-    env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
+    env.gitrepo = "git@github.com:ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "develop"
 
     env.venvbasepath = os.path.normpath(os.path.join(current_path,"../../"))
@@ -264,7 +264,7 @@ def updatemaincode():
     with cd(os.path.join(env.venvfullpath, '%(projectname)s' % env)):
         run('git fetch')
         run('git checkout %s' % env.gitbranch)
-        run('git pull origin %s' % env.gitbranch)
+        run('git pull %s %s' % (env.gitrepo, env.gitbranch))
 
 @task
 def app_install():
@@ -286,6 +286,7 @@ def app_fullupdate():
     """
     execute(updatemaincode)
     execute(compile_messages)
+    execute(update_compass)
     execute(compile_stylesheets)
     execute(update_requirements, force=False)
     execute(app_db_update)
@@ -418,12 +419,22 @@ def install_builddeps():
 
 @task
 def install_rbenv():
+    """
+    Install the appropriate ruby environment for compass.
+    """
     # Install rbenv:
     sudo('git clone git://github.com/sstephenson/rbenv.git ~/.rbenv', user=env.user)
     # Add rbenv to the path:
     sudo('echo \'export PATH="$HOME/.rbenv/bin:$PATH"\' >> .bash_profile', user=env.user)
     sudo('echo \'eval "$(rbenv init -)"\' >> .bash_profile', user=env.user)
     sudo('source ~/.bash_profile', user=env.user)
+    # The above will work fine on a shell (such as on the server accessed using
+    # ssh for a developement machine running a GUI, you may need to run the 
+    # following from a shell (with your local user):
+    #    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.profile;
+    #    echo 'eval "$(rbenv init -)"' >> ~/.profile;
+    #    source ~/.profile;
+    
     # Install ruby-build:
     with cd('/tmp'):
         sudo('git clone git://github.com/sstephenson/ruby-build.git', user=env.user)
@@ -441,9 +452,19 @@ def install_rbenv():
 
 @task
 def install_compass():
+    """
+    (Re)Install compass, deleting current version 
+    """
     with cd(env.venvfullpath + '/' + env.projectname + '/'):
-        sudo('rm -rf vendor/bundle', user=env.user)
-        sudo('bundle install --path=vendor/bundle', user=env.user)
+        run('rm -rf vendor/bundle')
+        execute(update_compass)
+@task
+def update_compass():
+    """
+    Make sure compass version is up to date
+    """
+    with cd(env.venvfullpath + '/' + env.projectname + '/'):
+        run('bundle install --path=vendor/bundle')
 
 @task
 def bootstrap_full():

@@ -13,48 +13,49 @@ $toolbar-sprite-dimensions: true;
 .support-toolbar {
   @include i4p-background-vertical-gradient(#3a3a3a, #252525);
   clear: both;
-  height: 65px;
   .row > ul {
-    margin-left:0;
+    display: table;
+    margin: 0 0 0 0;
     border-left:1px solid #000;
+    position: relative;
   }
   .row > ul > li {
+    display: table-cell;
+    position: relative;
+    vertical-align: middle;
     border-collapse: collapse;
     border-left: 1px solid #575757;
     border-right: 1px solid #000;
-    display: block;
-    float: left;
-    font-family: "OpenSans",Arial,Helvetica,sans-serif;
-    font-size: 1.25rem;
+    @include i4p-font-base($sizeTextBig);
     font-weight: bold;
     font-stretch:condensed;
     margin: 0;
-    padding: 20px 10px 20px 20px;
+    padding: 10px 10px 10px 20px;
     position: relative;
     text-transform: uppercase;
     color: white;
-    height:25px;
-    line-height:25px;
 
     &.call {
       background: image-url('project_support/toolbar/help-call.png') no-repeat 15px center;
-      padding-left:80px;
+      padding-left:70px;
+      padding-right: 42px; /* For badge */
     }
     &.prop {
       background: image-url('project_support/toolbar/help.png') no-repeat 15px center;
-      padding-left:80px;
+      padding-left:70px;
+      padding-right: 42px; /* For badge */
     }
      &.right {
       background: image-url('project_support/toolbar/add-help.png') no-repeat 15px center;
-      padding-left:80px;
-      line-height:1.6rem;
+      padding-left:70px;
       border-right:0;
+      float: none;
     }
   }
   a.propose-link {
     color: $colorLinkGreen;
-    display:block;
-    width:80%;
+    /* display:block;
+    width:80%; */
     &:hover {
       color: $colorLightGreen;
       text-decoration:none;
@@ -63,6 +64,7 @@ $toolbar-sprite-dimensions: true;
   .badge {
     background:white;
     color:$colorMedDarkGrey;
-    margin:0 5px 0 28px;
+    float: right;
+    margin:10px -37px 10px 5px; /* 42px - 5px real margin = 37px */
   }
 }

@@ -3,6 +3,9 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = True
+# Un-comment this to test static files, javascript and css compression, and 
+# 404 and 500 pages locally:
+#COMPRESS_ENABLED = True 
 
 DATABASES = {
     'default': {
@@ -21,8 +24,15 @@ DATABASES = {
 # If you're using a dev server, just use '/site_media/'
 MEDIA_URL = 'http://imaginationforpeople.org/site_media/'
 
+#Optional, leave None if you don't have/don't want to use a AddThis account.
+#Addthis will still work without it
+ADDTHIS_USERNAME = None
+
 FACEBOOK_APP_ID = "TO_COMPLETE"
 FACEBOOK_API_SECRET = "TO_COMPLETE"
+
+# Optional, leave None if you don't have a google analytics account
+GOOGLE_ANALYTICS_ACCOUNT = None #Example:  UA-21778007-2
 
 GOOGLE_OAUTH2_CLIENT_ID = "TO_COMPLETE"
 GOOGLE_OAUTH2_CLIENT_SECRET = "TO_COMPLETE"

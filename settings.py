@@ -174,6 +174,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         
     'django.core.context_processors.static',
     'apps.i4p_base.context_processors.search_form',
+    'apps.i4p_base.context_processors.settings',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',
@@ -289,6 +290,7 @@ INSTALLED_APPS = (
     'followit',
     'tastypie',
 
+    'categories',
     'categories.editor',
 
     # Internal Apps
@@ -553,7 +555,7 @@ LOGGING = {
 
     'root': {
         'level': 'WARNING',
-        'handlers': ['sentry'],
+        'handlers': ['console'],
     },
     'formatters': {
         'verbose': {
@@ -576,7 +578,7 @@ LOGGING = {
             'class': 'raven.contrib.django.handlers.SentryHandler',
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         }

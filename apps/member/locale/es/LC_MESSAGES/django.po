@@ -1,10 +1,10 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
-# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011, 2012.
+# Carolina Pérez Garrido <carolinadelpilarperezgarrido@gmail.com>, 2011-2012.
 # Guillaume  <glibersat@sigill.org>, 2012.
 #   <maire.sylvain@gmail.com>, 2011.
 #   <simonsarazin@imaginationforpeople.org>, 2012.
@@ -12,15 +12,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 22:52+0100\n"
-"PO-Revision-Date: 2012-10-05 09:11+0000\n"
-"Last-Translator: Guillaume <glibersat@sigill.org>\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-03-08 17:12-0500\n"
+"PO-Revision-Date: 2013-02-15 22:38+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: Spanish <ip-es@lists.imaginationforpeople.org>\n"
-"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: fields.py:43
@@ -89,7 +89,7 @@ msgstr "país"
 
 #: models.py:62
 msgid "registration site"
-msgstr ""
+msgstr "sitio de registro"
 
 #: models.py:65
 msgid "location"
@@ -102,7 +102,7 @@ msgstr "Nuevo usuario registrado"
 #: models.py:128
 #, python-format
 msgid "New message from %(sender)s on Imagination For People"
-msgstr ""
+msgstr "Nuevo mensaje de %(sender)s en Imagination For People"
 
 #: views.py:184
 msgid "Your profile has been updated."
@@ -116,15 +116,19 @@ msgstr ""
 msgid "Profile"
 msgstr ""
 
-#: templates/umessages/base_message.html:20
+#: templates/member/block/memberlist_square.html:69
+msgid "No user associated with this project."
+msgstr ""
+
+#: templates/umessages/base_message.html:21
 msgid "My Messages"
 msgstr "Mis mensajes"
 
-#: templates/umessages/base_message.html:34
+#: templates/umessages/base_message.html:36
 msgid "Inbox"
 msgstr "Bandeja de entrada"
 
-#: templates/umessages/base_message.html:43
+#: templates/umessages/base_message.html:45
 msgid "New Message"
 msgstr "Nuevo mensaje"
 
@@ -154,14 +158,14 @@ msgstr "nuevo"
 
 #: templates/umessages/message_list.html:95
 msgid "you haven't received any message yet"
-msgstr ""
+msgstr "todavía no ha recibido ningún mensaje"
 
 #: templates/umessages/message_notification.txt:2
 #, python-format
 msgid ""
 "\n"
 "%(sender)s has sent you a message:\n"
-msgstr ""
+msgstr "\n%(sender)s le ha enviado un mensaje:\n"
 
 #: templates/umessages/message_notification.txt:6
 #, python-format
@@ -169,7 +173,7 @@ msgid ""
 "\n"
 "You can view it online at:\n"
 "%(message_url)s\n"
-msgstr ""
+msgstr "\nPuede verlo en línea en:\n%(message_url)s\n"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -189,9 +193,7 @@ msgstr "Se le ha enviado un email a su nueva dirección de correo electrónico"
 msgid ""
 "To associate this email address with your account (%(username)s) click on "
 "the link provided in this email."
-msgstr ""
-"Para asociar esta dirección de correo electrónico con su cuenta "
-"(%(username)s), haga clic en el enlace proporcionado en dicho email."
+msgstr "Para asociar esta dirección de correo electrónico con su cuenta (%(username)s), haga clic en el enlace proporcionado en dicho email."
 
 #: templates/userena/email_change_complete.html:24
 #: templates/userena/email_confirm_complete.html:23
@@ -213,9 +215,7 @@ msgstr "Nueva dirección de correo electrónico"
 msgid ""
 "Your new email address is saved. You can continue using userena with this "
 "email."
-msgstr ""
-"Su nueva dirección ha sido guardada. Puede seguir utilizando su cuenta con "
-"este correo electrónico."
+msgstr "Su nueva dirección ha sido guardada. Puede seguir utilizando su cuenta con este correo electrónico."
 
 #: templates/userena/email_confirm_fail.html:4
 msgid "Email verification failed."
@@ -235,25 +235,25 @@ msgstr "Intente cambiarla de nuevo en la configuración de su cuenta."
 msgid "Account setup"
 msgstr "Configuración de cuenta"
 
-#: templates/userena/forms.html:26
+#: templates/userena/forms.html:25
 msgid ""
 "The following fields in your profile contains invalid data you need to "
 "correct:"
-msgstr ""
+msgstr "Los siguientes campos de su perfil contienen datos no válidos que debe corregir:"
 
-#: templates/userena/forms.html:59 templates/userena/forms.html.py:87
+#: templates/userena/forms.html:55 templates/userena/forms.html.py:77
 msgid "Save changes"
 msgstr "Guardar los cambios"
 
-#: templates/userena/forms.html:98
+#: templates/userena/forms.html:88
 msgid "Change password"
 msgstr "Modificar contraseña"
 
-#: templates/userena/forms.html:103
+#: templates/userena/forms.html:93
 msgid "Your current email address is the following:"
 msgstr "Su dirección de correo electrónico actual es la siguiente:"
 
-#: templates/userena/forms.html:108
+#: templates/userena/forms.html:98
 msgid "Change email"
 msgstr "Cambiar correo electrónico"
 
@@ -268,56 +268,53 @@ msgstr "Su contraseña ha sido modificada"
 
 #: templates/userena/password_complete.html:21
 msgid "From now on you can use your new password to signin"
-msgstr ""
-"Desde este momento puede utilizar su nueva contraseña para iniciar sesion"
+msgstr "Desde este momento puede utilizar su nueva contraseña para iniciar sesion"
 
 #: templates/userena/password_reset_complete.html:4
 msgid "Password reset"
 msgstr "Restablecer contraseña"
 
 #: templates/userena/password_reset_complete.html:6
-#: templates/userena/password_reset_complete.html:18
+#: templates/userena/password_reset_complete.html:16
 msgid "Your password has been reset"
 msgstr "Su contraseña se ha restablecido"
 
-#: templates/userena/password_reset_complete.html:22
+#: templates/userena/password_reset_complete.html:20
 msgid "You can now "
 msgstr "Ahora puede "
 
-#: templates/userena/password_reset_complete.html:22
+#: templates/userena/password_reset_complete.html:20
 msgid "signin"
 msgstr "iniciar sesión"
 
-#: templates/userena/password_reset_complete.html:22
+#: templates/userena/password_reset_complete.html:20
 msgid "with your new password."
 msgstr "con su nueva contraseña."
 
 #: templates/userena/password_reset_confirm_form.html:4
-#: templates/userena/password_reset_confirm_form.html:24
+#: templates/userena/password_reset_confirm_form.html:21
 #: templates/userena/password_reset_form.html:4
 msgid "Reset password"
 msgstr "Restablecer contraseña"
 
-#: templates/userena/password_reset_confirm_form.html:16
-#: templates/userena/password_reset_confirm_form.html:21
-#: templates/userena/password_reset_form.html:16
+#: templates/userena/password_reset_confirm_form.html:13
+#: templates/userena/password_reset_confirm_form.html:18
+#: templates/userena/password_reset_form.html:14
 msgid "Reset Password"
 msgstr "Restablecer contraseña"
 
 #: templates/userena/password_reset_done.html:4
 #: templates/userena/password_reset_done.html:6
-#: templates/userena/password_reset_done.html:18
+#: templates/userena/password_reset_done.html:16
 msgid "Reset password email is send"
 msgstr "Se ha enviado un correo electrónico para restablecer la contraseña"
 
-#: templates/userena/password_reset_done.html:22
+#: templates/userena/password_reset_done.html:20
 msgid ""
 "An e-mail has been send to you which explains how to reset your password."
-msgstr ""
-"Se le ha enviado un correo electrónico explicándole cómo restablecer su "
-"contraseña."
+msgstr "Se le ha enviado un correo electrónico explicándole cómo restablecer su contraseña."
 
-#: templates/userena/password_reset_form.html:25
+#: templates/userena/password_reset_form.html:23
 msgid "Send password"
 msgstr "Enviar contraseña"
 
@@ -326,31 +323,31 @@ msgstr "Enviar contraseña"
 msgid "%(username)s"
 msgstr "%(username)s"
 
-#: templates/userena/profile_detail.html:15
+#: templates/userena/profile_detail.html:12
 msgid "<i>This member has no description...</i>"
 msgstr "<i>Este miembro no tiene ninguna descripción...</i>"
 
-#: templates/userena/profile_detail.html:23
+#: templates/userena/profile_detail.html:20
 msgid "My projects"
 msgstr "Mis proyectos"
 
-#: templates/userena/profile_detail.html:25
+#: templates/userena/profile_detail.html:22
 msgid "Her/His projects"
 msgstr "Sus proyectos"
 
-#: templates/userena/profile_detail.html:35
+#: templates/userena/profile_detail.html:30
 msgid "This user does not have any project yet."
 msgstr "Este usuario no tiene ningún proyecto todavía."
 
-#: templates/userena/profile_detail.html:46
+#: templates/userena/profile_detail.html:40
 msgid "My contributions"
 msgstr "Mis contribuciones"
 
-#: templates/userena/profile_detail.html:48
+#: templates/userena/profile_detail.html:42
 msgid "Her/His contributions"
 msgstr "Sus contribuciones"
 
-#: templates/userena/profile_detail.html:58
+#: templates/userena/profile_detail.html:50
 msgid "No contributions yet."
 msgstr "No hay contribuciones todavía."
 
@@ -368,23 +365,17 @@ msgstr "Anónimo"
 msgid "Imagination For People Community"
 msgstr "Comunidad de Imagination For People"
 
-#: templates/userena/profile_list.html:29
+#: templates/userena/profile_list.html:27
 msgid "Community"
 msgstr "Comunidad"
 
-#: templates/userena/profile_list.html:42
+#: templates/userena/profile_list.html:36
 #, python-format
 msgid ""
 "\n"
-"\t\t  Page %(page)s of %(num_pages)s\n"
-"\t\t"
+"                            Page %(page)s of %(num_pages)s\n"
+"                        "
 msgstr ""
-"\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span><span class="
-"\"whitespace other\" title=\"Tab\">»</span>  Página %(page)s de "
-"%(num_pages)s\n"
-"<span class=\"whitespace other\" title=\"Tab\">»</span><span class="
-"\"whitespace other\" title=\"Tab\">»</span>"
 
 #: templates/userena/signin_form.html:4
 msgid "Signin"
@@ -397,7 +388,7 @@ msgstr "Iniciar sesión"
 
 #: templates/userena/signin_form.html:44
 msgid "Lost your password?"
-msgstr ""
+msgstr "¿Ha olvidado su contraseña?"
 
 #: templates/userena/signin_form.html:61
 msgid "Not a member yet?"
@@ -410,30 +401,26 @@ msgstr "Registrarse"
 
 #: templates/userena/signup_complete.html:4
 #: templates/userena/signup_complete.html:6
-#: templates/userena/signup_complete.html:18
+#: templates/userena/signup_complete.html:14
 msgid "Signup done!"
 msgstr "¡Se ha registrado correctamente!"
 
-#: templates/userena/signup_complete.html:22
+#: templates/userena/signup_complete.html:17
 msgid "Thank you for signing up with us!"
 msgstr "¡Gracias por registrarse con nosotros!"
 
-#: templates/userena/signup_complete.html:23
+#: templates/userena/signup_complete.html:18
 msgid ""
 "You have been sent an email with an activation link to the supplied email "
 "address."
-msgstr ""
-"Se le ha enviado un correo electrónico con un enlace para activar la "
-"dirección de correo."
+msgstr "Se le ha enviado un correo electrónico con un enlace para activar la dirección de correo."
 
-#: templates/userena/signup_complete.html:24
+#: templates/userena/signup_complete.html:19
 #, python-format
 msgid ""
 "We will store your signup information for %(userena_activation_days)s days "
 "on our server. "
-msgstr ""
-"Su información de registro quedará almacenada en nuestro servidor durante "
-"%(userena_activation_days)s días."
+msgstr "Su información de registro quedará almacenada en nuestro servidor durante %(userena_activation_days)s días."
 
 #: templates/userena/signup_form.html:5
 msgid "Signup"
@@ -441,7 +428,7 @@ msgstr "Registrarse"
 
 #: templates/userena/signup_form.html:50
 msgid "You can also use"
-msgstr ""
+msgstr "Puede usar también"
 
 #: templates/userena/signup_form.html:61
 msgid "Already a member?"
@@ -451,7 +438,7 @@ msgstr "¿Ya es miembro?"
 #: templates/userena/social-networks.html:5
 #: templates/userena/social-networks.html:11
 msgid "Connect with"
-msgstr ""
+msgstr "Conectar con"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:2
 #, python-format
@@ -465,9 +452,7 @@ msgstr "Solicitó cambiar su dirección de correo electrónico en %(site)s."
 
 #: templates/userena/emails/confirmation_email_message_new.txt:7
 msgid "Please confirm this email address by clicking on the link below:"
-msgstr ""
-"Confirme esta dirección de correo electrónico haciendo clic en el siguiente "
-"enlace:"
+msgstr "Confirme esta dirección de correo electrónico haciendo clic en el siguiente enlace:"
 
 #: templates/userena/emails/confirmation_email_message_new.txt:11
 msgid "Thanks for using our site!"
@@ -476,3 +461,12 @@ msgstr "¡Gracias por utilizar nuestro sitio web!"
 #: templates/userena/emails/confirmation_email_message_new.txt:13
 msgid "Sincerely"
 msgstr "Atentamente"
+
+#~ msgid ""
+#~ "\n"
+#~ "\t\t  Page %(page)s of %(num_pages)s\n"
+#~ "\t\t"
+#~ msgstr ""
+#~ "\n"
+#~ "\t\t  Page %(page)s of %(num_pages)s\n"
+#~ "\t\t"

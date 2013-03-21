@@ -1,101 +1,100 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
+# Benoit Grégoire <benoitg@coeus.ca>, 2013.
+# Simon Sarazin <simon.sarazin@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-09 22:54+0100\n"
-"PO-Revision-Date: 2012-10-05 09:15+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/fr/)\n"
-"Language: fr\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-03-08 17:13-0500\n"
+"PO-Revision-Date: 2013-02-27 03:25+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: views.py:53
 #, python-format
 msgid "No Tag found matching \"%s\"."
-msgstr ""
+msgstr "Aucun tag trouvé correspondant à \"%s\"."
 
-#: templates/tags/tag_view.html:19
+#: templates/tags/tag_view.html:14
 #, python-format
 msgid "%(tag)s - thematic community | Imagination For People"
-msgstr ""
+msgstr "%(tag)s - communauté thématique | Imagination For People"
 
-#: templates/tags/tag_view.html:34
-#, python-format
-msgid "Picture of project: %(picture_project_translations.0.title)s."
-msgstr ""
+#: templates/tags/tag_view.html:30
+msgid "Picture from project:"
+msgstr "Photo provenant du projet:"
 
-#: templates/tags/tag_view.html:52 templates/tags/tag_view.html.py:71
-#: templates/tags/block/taglist.html:33
-msgid "edit"
-msgstr ""
+#: templates/tags/tag_view.html:55
+msgid "Edit this tag's description"
+msgstr "Éditer la description de ce tag"
 
-#: templates/tags/tag_view.html:71
-msgid "read"
-msgstr ""
-
-#: templates/tags/tag_view.html:80
+#: templates/tags/tag_view.html:72
 msgid "Mature projects"
-msgstr ""
+msgstr "Projets matures"
 
-#: templates/tags/tag_view.html:81 templates/tags/tag_view.html.py:94
-#: templates/tags/tag_view.html:106 templates/tags/tag_view.html.py:142
+#: templates/tags/tag_view.html:73 templates/tags/tag_view.html.py:83
+#: templates/tags/tag_view.html:93 templates/tags/tag_view.html.py:131
 msgid "See more"
-msgstr ""
+msgstr "Voir plus"
 
-#: templates/tags/tag_view.html:85 templates/tags/tag_view.html.py:98
-#: templates/tags/tag_view.html:110
+#: templates/tags/tag_view.html:77 templates/tags/tag_view.html.py:87
+#: templates/tags/tag_view.html:97
 msgid "No projects"
-msgstr ""
+msgstr "Pas de projets"
 
-#: templates/tags/tag_view.html:93
+#: templates/tags/tag_view.html:82
 msgid "Starting projects"
-msgstr ""
+msgstr "Projets en démarrage"
 
-#: templates/tags/tag_view.html:105
+#: templates/tags/tag_view.html:92
 msgid "Latest modifications"
-msgstr ""
+msgstr "Dernières modifications"
 
-#: templates/tags/tag_view.html:125
+#: templates/tags/tag_view.html:114
 msgid "People"
-msgstr ""
+msgstr "Personnes"
 
-#: templates/tags/tag_view.html:134
+#: templates/tags/tag_view.html:123
 msgid "Be the first to appear here by joining a project!"
-msgstr ""
+msgstr "Soyez le premier à apparaître ici en rejoignant le projet !"
+
+#: templates/tags/tag_view.html:129
+msgid "New project sheets"
+msgstr "Nouvelle fiches projets"
 
 #: templates/tags/tag_view.html:140
-msgid "New project sheets"
-msgstr ""
-
-#: templates/tags/tag_view.html:151
 msgid "Add a project in this category"
-msgstr ""
+msgstr "Ajouter un projet dans cette catégorie"
 
 #: templates/tags/wiki_edit.html:5
 msgid "Edit"
-msgstr ""
+msgstr "Editer"
 
-#: templates/tags/wiki_edit.html:28
+#: templates/tags/wiki_edit.html:30
 msgid "Preview"
-msgstr ""
+msgstr "Prévisualisation"
 
-#: templates/tags/wiki_edit.html:32 templates/tags/wiki_edit.html.py:54
+#: templates/tags/wiki_edit.html:34 templates/tags/wiki_edit.html.py:56
 msgid "Save changes"
-msgstr ""
+msgstr "Enregistrer les changements"
 
-#: templates/tags/wiki_edit.html:38
+#: templates/tags/wiki_edit.html:40
 msgid "Delete article"
-msgstr ""
+msgstr "Supprimer l'article"
 
-#: templates/tags/wiki_edit.html:50
+#: templates/tags/wiki_edit.html:52
 msgid "Back to editor"
-msgstr ""
+msgstr "Retour à l'éditeur"
+
+#: templates/tags/block/taglist.html:33
+msgid "edit"
+msgstr "éditer"

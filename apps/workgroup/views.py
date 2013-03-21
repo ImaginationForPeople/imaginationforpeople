@@ -15,7 +15,12 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from askbot.models.question import Thread
+from askbot.models.user import Activity
+from askbot.views.readers import QuestionsView
+
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -184,7 +189,7 @@ class SubscribeView(View):
                                             )
                                  )
             except Exception, e:
-                messages.error(request, _(u"You couldn't be subscribed to this workgroup:%s" % unicode(e.message, encoding=ml.encoding)))
+                messages.error(request, _(u"You couldn't be subscribed to this group:%s" % unicode(e.message, encoding=ml.encoding)))
 
         next_url = request.GET.get('next_url', None)
         if next_url:
@@ -195,7 +200,7 @@ class SubscribeView(View):
 
 class UnsubscribeView(View):
     """
-    Unsubscribe a user to the workgroup
+    Unsubscribe a user to the group
     """
     @method_decorator(login_required)
     def get(self, request, workgroup_slug):
@@ -222,7 +227,7 @@ class UnsubscribeView(View):
                                             )
                                  )
             except Exception, e:
-                messages.error(request, _(u"You couldn't be unsubscribed from this workgroup:%s" % e.message))
+                messages.error(request, _(u"You couldn't be unsubscribed from this group:%s" % e.message))
 
         next_url = request.GET.get('next_url', None)
         if next_url:
@@ -230,5 +235,34 @@ class UnsubscribeView(View):
         else:
             return redirect(workgroup)
 
-            
+
+class GroupDiscussionListView(QuestionsView):
+    """
+    View to list the discussions (forum threads) linked to the current group
+    """
+    template_name = "workgroup/page/workgroup_discuss_list.html"
+    jinja2_rendering = False
+    is_specific = False
+    
+    def get_context_data(self, workgroup_slug, **kwargs):
+        language_code = translation.get_language() 
         
+        workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)  
+        threads = workgroup.questions.filter(language_code=language_code)
+        self.thread_ids = threads.values_list('id', flat=True)
+        
+        context = QuestionsView.get_context_data(self, **kwargs)
+    
+        activity_ids = []
+        for thread in threads:
+            for post in thread.posts.all():
+                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
+
+        context.update({
+             'active_tab' : 'discuss',
+             'activities' : activities,
+             'workgroup' : workgroup,             
+        })
+    
+        return context

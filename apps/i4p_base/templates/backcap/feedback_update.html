@@ -3,42 +3,24 @@
 {% load i18n %}
 
 {% block title %}
-  {% trans "Edit Feedback" %}
+    {% trans "Edit Feedback" %}
 {% endblock %}
 
-
 {% block content %}	
-	
-	<div class="content">        
-		<div class="container_18">
-			<div class="grid_18 alpha omega">			
-			
-				<div class="block-content feedback-edit-admin">  
 
-
-                    <h3>Edit feedback</h3>
-
+    <div class="content">        
+        <div class="container">
+            <div class="block-content feedback-edit-admin">  
+                <h3>Edit feedback</h3>
                     <form action="" method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
                         <input class="button greenbutton" type="submit">
                     </form>
-
-
                 </div>
-
-
-										
-				</div>
-				
-			</div>
-			
-			<div class="clear"></div>
-			
-		</div>		
-	</div>
-	
-	
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 
