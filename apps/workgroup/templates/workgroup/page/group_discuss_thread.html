@@ -2,6 +2,14 @@
 {% load i18n extra_tags humanize%}
 {% load sekizai_tags %}
 
+{% block extra_body_class %}{{block.super}} question-page{% endblock %}
+
+{% block extra_script %}
+{{block.super}}
+{% include_jinja "meta/html_head_javascript.html" request%}
+{% include "project_support/script/head_javascript.html" %}
+{% endblock %}
+
 {% block content %}
 {{block.super}}
 
@@ -21,17 +29,8 @@
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/page/support_thread.css" />
 {% endaddtoblock %}
-{% endblock %}
 
-{% block extra_body_class %}{{block.super}} question-page{% endblock %}
-
-{% block extra_script %}
-{{block.super}}
-{% include_jinja "meta/html_head_javascript.html" request%}
-{% include "project_support/script/head_javascript.html" %}
-{% endblock %}
-
-{% block group_content %}
+{% include "workgroup/block/workgroup_header.html" %}
 
 {% include "project_support/block/question_card.html" %}
 <div class="container">        
