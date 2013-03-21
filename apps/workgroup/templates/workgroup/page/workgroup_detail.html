@@ -17,10 +17,14 @@
     {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
     {% endaddtoblock %}
+           
+<div id="workgroup-header">
+    <div id="workgroup-header-inner">
+        {% include "workgroup/block/workgroup_header.html" %}
+    </div>
+</div>
 
 <div class="container" id="workgroup-detail">
-    {% include "workgroup/block/workgroup_header.html" %}
-
       <div id="workgroup-content" class="row">
         <div class="span8">
 

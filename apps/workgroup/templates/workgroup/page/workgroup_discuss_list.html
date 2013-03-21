@@ -59,8 +59,14 @@ $(document).ready(function(){
 </script>
 {% endaddtoblock %}
 
+           
+<div id="workgroup-header">
+    <div id="workgroup-header-inner">
+        {% include "workgroup/block/workgroup_header.html" %}
+    </div>
+</div>
+
 <div class="container project-content" id="workgroup-detail">      
-    {% include "workgroup/block/workgroup_header.html" %}
     <div class="row">
         <div class="span8 project-main">
             <div id="category_search">

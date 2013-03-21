@@ -26,11 +26,24 @@
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/support_question.css" />
 {% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/support_question.css" />
+{% endaddtoblock %}
+
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/page/support_thread.css" />
 {% endaddtoblock %}
 
-{% include "workgroup/block/workgroup_header.html" %}
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
+{% endaddtoblock %}
+
+<div id="workgroup-header">
+    <div id="workgroup-header-inner">
+        {% include "workgroup/block/workgroup_header.html" %}
+    </div>
+</div>
 
 {% include "project_support/block/question_card.html" %}
 <div class="container">        
