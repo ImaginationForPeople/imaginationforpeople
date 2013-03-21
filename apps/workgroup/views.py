@@ -141,18 +141,20 @@ class GroupDescriptionDetailView(GroupDetailView):
     def get_context_data(self, **kwargs):
         context = super(GroupDescriptionDetailView, self).get_context_data(**kwargs)
         workgroup = context['workgroup']
-         # First be sure that the home Wiki article already exists
+        
+        # First be sure that the home Wiki article already exists
         try:
             home_article = Article.get_for_object(workgroup)            
         except ArticleForObject.DoesNotExist:
             return redirect('workgroup-detail', slug=workgroup.slug)
+        
         # now check that the description article exists
         try:
             desc_article = Article.get_for_object(home_article) 
         except ArticleForObject.DoesNotExist:    
             desc_article = Article.objects.create()
             desc_article.add_object_relation(home_article)
-            revision = ArticleRevision(title="description of "+workgroup.name, content='')
+            revision = ArticleRevision(title="description of %s" %workgroup.name, content='')
             desc_article.add_revision(revision)
 
         context.update({
@@ -188,6 +190,9 @@ class GroupWikiEdit(WikiEdit):
         return redirect(self.workgroup)
         
 class GroupDescriptionWikiEdit(GroupWikiEdit):
+    """
+    View to edit the description article
+    """
     template_name = "workgroup/page/workgroup_description_edit.html"
     
     def dispatch(self, request, workgroup_slug, *args, **kwargs):   
