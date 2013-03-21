@@ -20,6 +20,45 @@ from apps.tags.models import TaggedCategory
 from askbot.search.state_manager import SearchState
 from apps.project_sheet.views import CurrentProjectTranslationMixin
     
+
+class ProjectSupportListAll(QuestionsView):
+    template_name = "project_support/project_support_list_all.html"
+    is_specific = True
+    jinja2_rendering = False
+
+    def get_context_data(self, **kwargs):
+        #project_translation = self.get_project_translation(kwargs["project_slug"])
+        
+        self.questions_url = reverse('project_support_list_all')
+        self.ask_url = reverse('project_support_list_all')
+        
+        threads = Thread.objects.all().filter(projectsupport__isnull=False)
+        self.thread_ids = threads.values_list('id', flat=True)
+        
+        context = QuestionsView.get_context_data(self, **kwargs)   
+        
+        prop_count = ProjectSupport.objects.all().filter(type='PROP').count()
+        call_count = ProjectSupport.objects.all().filter(type='CALL').count()
+        
+        activity_ids = []
+        for thread in threads:
+            for post in thread.posts.all():
+                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
+        
+        context.update({
+             #'project' : project_translation.project,
+            # 'project_translation' : project_translation,
+             'active_tab' : 'support',
+             'prop_count' : prop_count,
+             'call_count' : call_count,
+             'activities' : activities,
+             'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
+             #'feed_url': reverse('project_support_main', args=[project_translation.slug])+"#TODO_RSS",
+        })
+        return context
+    
+        
 class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
     template_name = "project_support/project_support_list.html"
     is_specific = True
