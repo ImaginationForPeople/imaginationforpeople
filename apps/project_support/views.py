@@ -126,6 +126,6 @@ def edit_support_answer(request, project_slug, answer_id):
     return edit_answer(request, 
                        answer_id,
                        jinja2_rendering=False,
-                       template_name="project_support/block/answer_edit.html",
+                       template_name="project_support/project_support_answer_edit.html",
                        extra_context=extra_context)
 
