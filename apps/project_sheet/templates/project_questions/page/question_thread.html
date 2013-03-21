@@ -31,7 +31,6 @@
 {% endblock %}
 
 {% block project_content %}
-{% with support=thread.projectsupport_set.all.0%}
 
 {% include "project_support/block/question_card.html" %}
 <div class="container">        
@@ -40,7 +39,7 @@
     <div class="span8">
     
         <div id="question-table">
-            {% with question as post %}
+            {% with current_question.thread.post as post %}
             {% include "project_support/block/post_comments.html" %}
             {% endwith %}
         </div>
@@ -56,15 +55,15 @@
                 </h2>
                 <div class="tabsA">
                     <span class="label">{% trans 'Sort by :' %}</span>
-                    <a id="oldest" href="{{ support.get_absolute_url }}?sort=oldest#answer-sort"
+                    <a id="oldest" href="{{ current_question_url }}?sort=oldest#answer-sort"
                        title="{% trans 'oldest answers will be shown first' %}">
                        <span>{% trans 'oldest' %}</span>
                     </a>
-                    <a id="latest" href="{{ support.get_absolute_url }}?sort=latest#answer-sort"
+                    <a id="latest" href="{{ current_question_url }}?sort=latest#answer-sort"
                        title="{% trans 'newest answers will be shown first' %}">
                        <span>{% trans 'newest' %}</span>
                     </a>
-                    <a id="votes" href="{{ support.get_absolute_url }}?sort=votes#answer-sort"
+                    <a id="votes" href="{{ current_question_url }}?sort=votes#answer-sort"
                        title="{% trans 'most voted answers will be shown first' %}">
                        <span>{% trans 'most voted' %}</span>
                     </a>
@@ -130,7 +129,9 @@
         
         {% if user_already_gave_answer and previous_answer%}
             <div class="previous-answer">
-                <i class="icon-pencil"></i><a class="submit" href="{% url project_support_edit_answer support.project_translation.slug previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
+                <i class="icon-pencil"></i>
+                <a class="submit" 
+                	href="#FIXME">{% trans 'Edit Your Previous Answer' %}</a>
                 <span>{% trans '(only one answer per question is allowed)' %}</span>
             </div>
         {% else %}
@@ -142,7 +143,6 @@
         </div>
     </div>
 </div>
-{% endwith %}
 {% endblock %}
 
 {% block inline_js %}

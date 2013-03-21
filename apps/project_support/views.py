@@ -2,13 +2,16 @@ from apps.project_sheet.models import I4pProjectTranslation
 from apps.project_sheet.utils import \
     get_project_translation_by_any_translation_slug
 from apps.project_sheet.views import ProjectDiscussionListView, \
-    ProjectDiscussionCreateView, ProjectDiscussionThreadView
+    ProjectDiscussionCreateView, ProjectDiscussionThreadView,\
+    CurrentProjectTranslationMixin
 from apps.tags.models import TaggedCategory
-from askbot.views.writers import answer, edit_answer
+from askbot.views.writers import PostNewAnswerView, edit_answer
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.utils import translation
 from django.http import Http404
+from django.utils.http import urlquote
+from django.template.defaultfilters import slugify
 
     
 class ProjectSupportListView(ProjectDiscussionListView): 
@@ -69,25 +72,53 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
 
 
 class ProjectSupportThreadView(ProjectDiscussionThreadView):
+    qtypes=['pj-need', 'pj-help']
+    
+    def get_question_url(self):
+        return reverse('project_support_view', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_answer_url(self):
+        return reverse('project_support_answer', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_edit_url(self):
+        return reverse('project_support_edit', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_context_object_instance(self, **kwargs):
+        return self.get_project_translation(kwargs["project_slug"])
+    
+    def get_questions_url(self):
+        return reverse('project_support_main', args=[self.context_instance.slug])
+    
     
     def get_context_data(self, **kwargs):
         context = ProjectDiscussionThreadView.get_context_data(self, **kwargs)
         
-        context["search_state"]._questions_url = reverse('project_support_main', 
-                                                         args=[context["project_translation"].slug])
-        
         context.update({
              'active_tab' : 'support',
-             'form_answer_url' : reverse('project_support_answer', args=[kwargs["project_slug"], kwargs["question_id"]]),
-             'edit_question_url' : reverse('project_support_edit', args=[kwargs["project_slug"], kwargs["question_id"]]),
         })
         
         return context
 
-def answer_project_support(request, project_slug, question_id):
-    return answer(request, 
-                  question_id, 
-                  redirect_to=reverse('project_support_view', args=[project_slug, question_id]))
+class ProjectSupportNewAnswer(CurrentProjectTranslationMixin, PostNewAnswerView):
+    
+    def get_success_url(self):
+        return reverse('project_support_view', args=[self.project_translation.slug, 
+                                                     self.current_question.id])
+    
+    def get_answer_url(self, answer):
+        return u'%(base)s%(slug)s/?answer=%(id)d#post-id-%(id)d' % {
+                'base': reverse('project_support_view', args=[self.project_translation.slug, 
+                                                     self.current_question.id]),
+                'slug': urlquote(slugify(answer.thread.title)),
+                'id': answer.id
+            }
+        
+    def post(self, request, project_slug, question_id, **kwargs):
+        self.project_translation = self.get_project_translation(project_slug)
+        return PostNewAnswerView.post(self, request, question_id, **kwargs)
     
 def edit_support_answer(request, project_slug, answer_id):
     language_code = translation.get_language()

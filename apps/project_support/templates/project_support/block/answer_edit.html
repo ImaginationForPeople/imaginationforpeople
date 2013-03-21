@@ -7,9 +7,9 @@
     {% trans 'Edit answer' %} [<a href="#" onclick="history.back(-1);">{% trans 'back' %}</a>]
 </h1>
 <form id="fmedit" 
-	  action="{% url project_support_edit_answer project_translation.slug answer.id %}" 
+	  action="#FIXME" 
 	  method="post" >{% csrf_token %}
-	  <input type="hidden" name="next" value="{% url project_support_view project_translation.slug answer.thread.question.id %}#post-id-{{answer.id}}"/>
+	  <input type="hidden" name="next" value="{{current_question_url}}#post-id-{{answer.id}}"/>
     <label for="id_revision" >{% trans 'revision' %}:</label> <br/> 
     {% if revision_form.revision.errors %}{{ revision_form.revision.errors.as_ul }}{% endif %}
     <div style="vertical-align:middle">

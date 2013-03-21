@@ -844,9 +844,10 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
     def get_current_question(self, **kwargs):
         question_id = kwargs.get("question_id", None)
         if question_id:
-            current_question = SpecificQuestion.objects.get(content_type=ContentType.objects.get_for_model(self.context_instance),
-                                                                 object_id=self.context_instance.id,
-                                                                 thread=Post.objects.get(id=question_id).thread)
+            current_question = SpecificQuestion.objects.get(type__in=self.get_specific_types(),
+                                                            content_type=ContentType.objects.get_for_model(self.context_instance),
+                                                            object_id=self.context_instance.id,
+                                                            thread=Post.objects.get(id=question_id).thread)
         else:
             current_question = None
         return current_question
@@ -918,6 +919,50 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
         self.current_question = self.get_current_question(**kwargs)
         return FormView.post(self, request)
 
+class SpecificQuestionThreadView(SpecificQuestionTypeMixin, QuestionView):
+    template_name = "project_questions/page/question_thread.html"
+    jinja2_rendering = False
+    
+    def get_question_url(self):
+        raise "Must be implemented"
+    
+    def get_answer_url(self):
+        raise "Must be implemented"
+    
+    def get_edit_url(self):
+        raise "Must be implemented"
+    
+    def get_context_object_instance(self, **kwargs):
+        raise "Must be implemented"
+    
+    def get_questions_url(self):
+        raise "Must be implemented"
+    
+    def get_context_data(self, **kwargs):
+        context = QuestionView.get_context_data(self, **kwargs)
+        
+        self.context_instance = self.get_context_object_instance(**kwargs)
+        
+        self.current_question = SpecificQuestion.objects.get(type__in=self.get_specific_types(),
+                                                             content_type=ContentType.objects.get_for_model(self.context_instance),
+                                                             object_id=self.context_instance.id,
+                                                             thread=Post.objects.get(id=kwargs["question_id"]).thread)
+        
+        search_state = SearchState.get_empty()
+        search_state._questions_url = self.get_questions_url()
+        
+        context.update({
+            'current_question' : self.current_question,
+            'current_question_url' : self.get_question_url(),
+            'form_answer_url' : self.get_answer_url(),
+            'edit_question_url' : self.get_edit_url(),
+            'search_state' : search_state,
+            'disable_retag' : True,
+        })
+        
+        return context
+
+
 class ProjectDiscussionListView(CurrentProjectTranslationMixin, SpecificQuestionListView): 
     template_name = "project_questions/page/global_question_list.html"
     qtypes=['pj-discuss']
@@ -965,30 +1010,36 @@ class ProjectDiscussionCreateView(CurrentProjectTranslationMixin, SpecificQuesti
     def get_context_object_instance(self, **kwargs):
         return self.get_project_translation(kwargs["project_slug"])
     
-class ProjectDiscussionThreadView(CurrentProjectTranslationMixin, QuestionView):
-    template_name = "project_questions/page/question_thread.html"
-    jinja2_rendering = False
+
+class ProjectDiscussionThreadView(CurrentProjectTranslationMixin, SpecificQuestionThreadView):
+    qtypes=['pj-discuss']
+    
+    def get_question_url(self):
+        return reverse('project_discussion_view', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_answer_url(self):
+        return reverse('project_discussion_answer', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_edit_url(self):
+        return reverse('project_discussion_edit', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_context_object_instance(self, **kwargs):
+        return self.get_project_translation(kwargs["project_slug"])
+    
+    def get_questions_url(self):
+        return reverse('project_discussion_list', args=[self.context_instance.slug])
+    
     
     def get_context_data(self, **kwargs):
-        context = QuestionView.get_context_data(self, **kwargs)
-        
-        project_translation = self.get_project_translation(kwargs["project_slug"])
-    
-        search_state = SearchState.get_empty()
-        search_state._questions_url = reverse('project_discussion_list', args=[project_translation.slug])
+        context = SpecificQuestionThreadView.get_context_data(self, **kwargs)
         
         context.update({
-             'project' : project_translation.project,
-             'project_translation' : project_translation,
+             'project' : self.context_instance.project,
+             'project_translation' : self.context_instance,
              'active_tab' : 'discussion',
-             'form_answer_url' : reverse('project_discussion_answer', 
-                                         args=[kwargs["project_slug"], 
-                                               kwargs["question_id"]]),
-             'edit_question_url' : reverse('project_discussion_edit', 
-                                           args=[kwargs["project_slug"], 
-                                                 kwargs["question_id"]]),
-             'search_state' : search_state,
-             'disable_retag' : True,
         })
         
         return context

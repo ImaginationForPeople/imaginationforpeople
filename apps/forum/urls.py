@@ -87,8 +87,8 @@ urlpatterns = patterns('',
         name='reopen'
     ),
     url(
-        r'^%s(?P<id>\d+)/%s$' % (_('questions/'), _('answer/')), 
-        views.writers.answer, 
+        r'^%s(?P<question_id>\d+)/%s$' % (_('questions/'), _('answer/')), 
+        views.writers.PostNewAnswerView.as_view(), 
         name='answer'
     ),
     url(#ajax only

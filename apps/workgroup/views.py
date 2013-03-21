@@ -43,7 +43,8 @@ from .models import WorkGroup
 from .forms import GroupCreateForm, GroupEditForm
 from .utils import get_ml_members
 from apps.project_sheet.views import SpecificQuestionListView,\
-    SpecificQuestionCreateView, ProjectDiscussionThreadView
+    SpecificQuestionCreateView, ProjectDiscussionThreadView,\
+    SpecificQuestionThreadView
 from apps.forum.models import SpecificQuestion
 from django.contrib.contenttypes.models import ContentType
 from askbot.models.post import Post
@@ -290,29 +291,37 @@ class GroupDiscussionCreateView(SpecificQuestionCreateView):
     def get_context_object_instance(self, **kwargs):
         return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
     
-class GroupDiscussionThreadView(QuestionView):
+class GroupDiscussionThreadView(SpecificQuestionThreadView):
     template_name = "workgroup/page/group_discuss_thread.html"
-    jinja2_rendering = False
+    qtypes = ["wg-discuss"]
+    
+    def get_question_url(self):
+        return reverse('workgroup-discussion-view', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_answer_url(self):
+        #FIXME : set up the right URL
+        return reverse('workgroup-discussion-view', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_edit_url(self):
+        #FIXME : set up the right URL
+        return reverse('workgroup-discussion-view', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"]) 
+    
+    def get_questions_url(self):
+        return reverse('workgroup-discussion', args=[self.context_instance.slug])
+    
     
     def get_context_data(self, **kwargs):
-        context = QuestionView.get_context_data(self, **kwargs)
-        
-        workgroup = get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
-        
-        search_state = SearchState.get_empty()
-        search_state._questions_url = reverse('workgroup-discussion', args=[workgroup.slug])
+        context = SpecificQuestionThreadView.get_context_data(self, **kwargs)
         
         context.update({
-             'workgroup' : workgroup,
+             'workgroup' : self.context_instance,
              'active_tab' : 'discussion',
-#             'form_answer_url' : reverse('project_discussion_answer', 
-#                                         args=[kwargs["project_slug"], 
-#                                               kwargs["question_id"]]),
-#             'edit_question_url' : reverse('project_discussion_edit', 
-#                                           args=[kwargs["project_slug"], 
-#                                                 kwargs["question_id"]]),
-             'search_state' : search_state,
-             'disable_retag' : True,
         })
         
         return context

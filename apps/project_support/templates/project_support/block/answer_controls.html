@@ -24,11 +24,14 @@
     <a class="question-flag"><i class="icon-flag"> </i> {% trans 'flag offensive' %}</a>
 </span>
 {% endif %}
+
 {% if user_already_gave_answer and previous_answer %}
 <span id='post-{{answer.id}}-edit' class="action-link">
-    <a class="question-edit" href="{% url project_support_edit_answer support.project_translation.slug previous_answer.id %}"><i class="icon-pencil"></i> {% trans 'edit' %}</a>
+    <a class="question-edit" 
+    	href="#FIXME"><i class="icon-pencil"></i> {% trans 'edit' %}</a>
 </span>
 {% endif %}
+
 <span id='post-{{answer.id}}-delete' class="action-link delete-post">
     <a class="question-delete"
     > {% if answer.deleted %}<i class="icon-trash"> </i>  {% trans 'undelete' %}{% else %}<i class="icon-trash"> </i> {% trans 'delete' %}{% endif %}</a>
