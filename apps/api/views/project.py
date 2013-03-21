@@ -226,7 +226,7 @@ class I4pProjectTranslationListResource(ModelResource):
     project = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
     
     class Meta:
-        queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
+        queryset = I4pProjectTranslation.objects.filter(master__in=I4pProject.on_site.all())
         include_resource_uri = True
         throttle = CacheDBThrottle()
         
