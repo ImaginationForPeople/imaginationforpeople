@@ -38,6 +38,12 @@ urlpatterns = patterns('',
     url(r'(?P<workgroup_slug>[-\w]+)/discuss/(?P<question_id>\d+)/', 
             views.GroupDiscussionThreadView.as_view(), 
             name='workgroup-discussion-view'),
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/edit/(?P<question_id>\d+)/', 
+            views.GroupDiscussionCreateView.as_view(), 
+            name='workgroup-discussion-edit'),
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/answer/(?P<question_id>\d+)/', 
+            views.GroupDiscussionNewAnswerView.as_view(),
+            name='workgroup-discussion-answer'),
     
 )
      

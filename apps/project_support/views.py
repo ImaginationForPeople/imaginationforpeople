@@ -1,11 +1,9 @@
 from apps.project_sheet.models import I4pProjectTranslation
 from apps.project_sheet.utils import \
     get_project_translation_by_any_translation_slug
-from apps.project_sheet.views import ProjectDiscussionListView, \
-    ProjectDiscussionCreateView, ProjectDiscussionThreadView,\
-    CurrentProjectTranslationMixin
+from apps.project_sheet.views import ProjectDiscussionListView, ProjectDiscussionCreateView, ProjectDiscussionThreadView,ProjectDiscussionNewAnswerView
 from apps.tags.models import TaggedCategory
-from askbot.views.writers import PostNewAnswerView, edit_answer
+from askbot.views.writers import edit_answer
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.utils import translation
@@ -102,23 +100,11 @@ class ProjectSupportThreadView(ProjectDiscussionThreadView):
         
         return context
 
-class ProjectSupportNewAnswer(CurrentProjectTranslationMixin, PostNewAnswerView):
-    
+class ProjectSupportNewAnswerView(ProjectDiscussionNewAnswerView):
+
     def get_success_url(self):
-        return reverse('project_support_view', args=[self.project_translation.slug, 
+        return reverse('project_support_view', args=[self.context_instance.slug, 
                                                      self.current_question.id])
-    
-    def get_answer_url(self, answer):
-        return u'%(base)s%(slug)s/?answer=%(id)d#post-id-%(id)d' % {
-                'base': reverse('project_support_view', args=[self.project_translation.slug, 
-                                                     self.current_question.id]),
-                'slug': urlquote(slugify(answer.thread.title)),
-                'id': answer.id
-            }
-        
-    def post(self, request, project_slug, question_id, **kwargs):
-        self.project_translation = self.get_project_translation(project_slug)
-        return PostNewAnswerView.post(self, request, question_id, **kwargs)
     
 def edit_support_answer(request, project_slug, answer_id):
     language_code = translation.get_language()

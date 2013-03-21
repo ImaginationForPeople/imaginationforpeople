@@ -43,12 +43,14 @@ from .models import WorkGroup
 from .forms import GroupCreateForm, GroupEditForm
 from .utils import get_ml_members
 from apps.project_sheet.views import SpecificQuestionListView,\
-    SpecificQuestionCreateView, ProjectDiscussionThreadView,\
+    SpecificQuestionCreateView, SpecificQuestionNewAnswerView,\
     SpecificQuestionThreadView
 from apps.forum.models import SpecificQuestion
 from django.contrib.contenttypes.models import ContentType
 from askbot.models.post import Post
 from askbot.search.state_manager import SearchState
+from django.utils.http import urlquote
+from django.template.defaultfilters import slugify
 
 class GroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
@@ -301,12 +303,12 @@ class GroupDiscussionThreadView(SpecificQuestionThreadView):
     
     def get_answer_url(self):
         #FIXME : set up the right URL
-        return reverse('workgroup-discussion-view', args=[self.context_instance.slug,
+        return reverse('workgroup-discussion-answer', args=[self.context_instance.slug,
                                                         self.current_question.thread.question.id])
     
     def get_edit_url(self):
         #FIXME : set up the right URL
-        return reverse('workgroup-discussion-view', args=[self.context_instance.slug,
+        return reverse('workgroup-discussion-edit', args=[self.context_instance.slug,
                                                         self.current_question.thread.question.id])
     
     def get_context_object_instance(self, **kwargs):
@@ -325,3 +327,11 @@ class GroupDiscussionThreadView(SpecificQuestionThreadView):
         })
         
         return context
+
+class GroupDiscussionNewAnswerView(SpecificQuestionNewAnswerView):
+    def get_success_url(self):
+        return reverse('workgroup-discussion-view', args=[self.context_instance.slug, 
+                                                     self.current_question.id])
+
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"]) 

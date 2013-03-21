@@ -21,7 +21,10 @@ from django.views.generic.edit import FormView
 from apps.forum.forms import SpecificQuestionForm
 from askbot.search.state_manager import SearchState
 from askbot.views.readers import QuestionView, QuestionsView
+from askbot.views.writers import PostNewAnswerView
 from askbot.models.post import Post
+from django.utils.http import urlquote
+from django.template.defaultfilters import slugify
 
 """
 Django Views for a Project Sheet
@@ -1043,3 +1046,32 @@ class ProjectDiscussionThreadView(CurrentProjectTranslationMixin, SpecificQuesti
         })
         
         return context
+
+class SpecificQuestionNewAnswerView(PostNewAnswerView):
+    def get_success_url(self):
+        raise "Must be implemented"
+    
+    def get_answer_url(self, answer):
+        url = u'%(base)s%(slug)s/?answer=%(id)d#post-id-%(id)d' % {
+                'base': self.get_success_url(),
+                'slug': urlquote(slugify(answer.thread.title)),
+                'id': answer.id
+            }
+        print url
+        return url
+    
+    def get_context_object_instance(self, **kwargs):
+        raise "Must be implemented"
+        
+    def post(self, request, **kwargs):
+        self.context_instance = self.get_context_object_instance(**kwargs)
+        return PostNewAnswerView.post(self, request, **kwargs)
+
+class ProjectDiscussionNewAnswerView(CurrentProjectTranslationMixin, SpecificQuestionNewAnswerView):
+    
+    def get_success_url(self):
+        return reverse('project_discussion_view', args=[self.context_instance.slug, 
+                                                     self.current_question.id])
+    
+    def get_context_object_instance(self, **kwargs):
+        return self.get_project_translation(kwargs["project_slug"])
