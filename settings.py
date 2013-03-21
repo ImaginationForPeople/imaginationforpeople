@@ -23,7 +23,7 @@ ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Support', 'support@imaginationforpeople.org'),
     ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),

@@ -480,7 +480,7 @@ def bootstrap_full():
     execute(install_rbenv)
     execute(install_compass)
     
-    execute(deploy_bootstrap)
+    execute(bootstrap_venv)
     
     if(env.wsginame == 'dev.wsgi'):
         execute(install_devdeps);
