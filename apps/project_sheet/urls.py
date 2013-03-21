@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     #List all existing supports of all projects
     # url(r'^list-all-supports$',support_views.ProjectSupportListAll.as_view(),name='project_support_list_all'),
     url(# Note that all parameters, even if optional, are provided to the view. Non-present ones have None value.
-        (r'^list-all-supports' +
+        (r'^supports' +
             r'(%s)?' % r'/scope:(?P<scope>\w+)' +
             r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
             r'(%s)?' % r'/query:(?P<query>[^/]+)' +  
