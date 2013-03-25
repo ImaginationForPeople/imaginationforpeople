@@ -24,7 +24,22 @@ urlpatterns = patterns('',
     # Listing
     url(r'^list/$', views.project_sheet_list, name='project_sheet-list'),
     url(r'^recent-changes/$', views.ProjectRecentChangesView.as_view(), name='project_sheet-recent-changes'),
-
+    #List all existing supports of all projects
+    # url(r'^list-all-supports$',support_views.ProjectSupportListAll.as_view(),name='project_support_list_all'),
+    url(# Note that all parameters, even if optional, are provided to the view. Non-present ones have None value.
+        (r'^supports' +
+            r'(%s)?' % r'/scope:(?P<scope>\w+)' +
+            r'(%s)?' % r'/sort:(?P<sort>[\w\-]+)' +
+            r'(%s)?' % r'/query:(?P<query>[^/]+)' +  
+            r'(%s)?' % r'/tags:(?P<tags>[\w+.#,-]+)' + 
+            r'(%s)?' % r'/author:(?P<author>\d+)' +
+            r'(%s)?' % r'/page:(?P<page>\d+)' +
+        r'/$'),
+        
+        support_views.ProjectSupportListAll.as_view(),
+        name='project_support_list_all'
+    ),
+    
     # Show
     url(r'^(?P<slug>[-\w]+)/$', views.ProjectView.as_view(), name='project_sheet-show'),
 
@@ -71,7 +86,8 @@ urlpatterns = patterns('',
     url(r'^recent-changes\.rss$', feeds.LatestChangesFeed(), name='project_sheet-recent-changes-rss'),
     
     
-    # Supports
+    
+    # Supports 
     url( #from askbot
         (r'^(?P<project_slug>[-\w]+)/support' +
             r'(%s)?' % r'/scope:(?P<scope>\w+)' +

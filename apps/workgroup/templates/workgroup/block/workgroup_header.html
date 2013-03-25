@@ -48,7 +48,8 @@
 </div>
 <div id="workgroup-menubar">
 	<ul>
-		<li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Home" %}</a></li>
+		<li class="{% iftab 'workgroup' 'home' %}active{% endiftab %}"><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Home" %}</a></li>
+	    <li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-description workgroup.slug %}">{% trans "Description" %}</a></li>
 		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Discussions" %}</a></li>
 		<li class="{% iftab 'workgroup' 'members' %}active{% endiftab %}"><a href="{% url workgroup-members workgroup.slug %}">{% trans "Members" %}</a></li>
 	</ul>
