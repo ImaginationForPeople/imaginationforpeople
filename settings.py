@@ -16,6 +16,9 @@ import apps.i4p_base.mdx_i4p as mdx_i4p
 # Import settings for the given site
 from site_settings import *
 
+#from django.utils.translation import gettext
+gettext = lambda s: s
+
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
@@ -63,6 +66,39 @@ LANGUAGES = (
   ('ru', u'Русский'),
   ('zh-cn', u'中文'),
 )
+
+CMS_LANGUAGES = {
+    1: [
+        {
+            'code': 'en',
+            'name': gettext('English'),
+            'fallbacks': ['fr', 'de'],
+            'hide_untranslated': False,
+            'redirect_on_fallback':True,
+        },
+        {
+            'code': 'de',
+            'name': gettext('Deutsch'),
+            'fallbacks': ['en', 'fr'],
+        },
+        {
+            'code': 'fr',
+            'name': gettext('French'),
+            'fallbacks': ['en', 'es'],
+        },
+        {
+            'code': 'es',
+            'name': gettext('Spanish'),
+            'fallbacks': ['fr', 'en'],
+        },
+    ],
+    'default': {
+        'fallbacks': ['en', 'fr', 'es'],
+        'redirect_on_fallback':True,
+        'public': True,
+        'hide_untranslated': False,
+    }
+} 
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -513,7 +549,6 @@ CMS_TEMPLATES = (
 )
 
 CMS_REDIRECTS = True
-CMS_HIDE_UNTRANSLATED = False
 CMS_SOFTROOT = True
 CMS_SEO_FIELDS = True
 CMS_MODERATOR = False
