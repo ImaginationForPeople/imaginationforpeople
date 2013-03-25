@@ -77,7 +77,7 @@ django-social-auth==0.6.9
 
 -e git+https://github.com/SpreadBand/django-backcap.git@16e072aa77d130268dbaff55a66d59948d8545cc#egg=django-backcap
 
-django-reversion==1.6.1
+django-reversion==1.6.5
 
 # django-mailman
 -e git://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
@@ -87,7 +87,7 @@ django-reversion==1.6.1
 # For Sentry
 raven==2.0.3
 
--e git+https://github.com/ojii/django-nani.git@bb47153e05b46b775658887f214a486412fe25a5#egg=django-nani
+django-hvad==0.2
 
 feedparser==5.1.2
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
@@ -105,6 +105,11 @@ django-simplegravatar==0.2
 
 # REST API
 -e git://github.com/ImaginationForPeople/django-tastypie.git@2794c04f568c417279b2a48381e85b87cbec7274#egg=django-tastypie
+
+# Google diff patch
+diff-match-patch==20120106
+
+django-activity-stream==0.4.4
 
 # Testing tools
 coverage<3.4

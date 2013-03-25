@@ -85,7 +85,7 @@ class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
         activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
         
         context.update({
-             'project' : project_translation.project,
+             'project' : project_translation.master,
              'project_translation' : project_translation,
              'active_tab' : 'support',
              'prop_count' : prop_count,

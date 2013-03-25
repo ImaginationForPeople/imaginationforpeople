@@ -1,0 +1,51 @@
+﻿{% extends "project_sheet/layout/project_base.html" %}
+
+{% load i18n %}
+{% load tagging_tags %}
+{% load compress %}
+{% load honeypot %}
+{% load sekizai_tags %}
+{% load comments %}
+{% load thumbnail %}
+{% load oembed_works_tags %}
+{% load tabs %}
+{% load activity_tags %}
+
+{% block navigation %}
+{% tab 'project_sheet' 'history' %}
+{{ block.super }}
+{% endblock %}
+
+
+{% block project_content %}	
+<div class="container">        
+    <div class="row">
+      <h3>{% trans "Recent Activity" %}</h3>
+      <ul>
+	{% for action in activity %}
+	  {% ifchanged action.timestamp|date:"SHORT_DATE_FORMAT" %}
+	    <li><h4>{% blocktrans with action.timestamp|timesince as timesince %}{{ timesince }} ago{% endblocktrans %}</h4></li>
+          {% endifchanged %}
+	    <li>{% display_action action %}
+	      {% if action.version %}
+	      {% if action.version.checked_by %}
+	      [{% trans "Reviewed by" %} <a href="{{ action.version.checked_by.get_profile.get_absolute_url }}">{{ action.version.checked_by }}</a> {{ action.version.checked_on|timesince }} ago]
+	      {% else %}
+	      {% if user.is_staff %}
+	      [<a href="{% url history-check-version action.version.pk %}">{% trans "Mark as reviewed" %}</a>]
+	      {% endif %}
+	      {% endif %}
+	      {% endif %}
+	    </li>
+	    {% if action.version.diffs %}
+	      <ul>
+		<li>{{ action.version.diffs_html|safe }}</li>
+		<br/>
+	      </ul>
+	    {% endif %}
+	{% endfor %}
+      </ul>
+    </div>
+</div>
+
+{% endblock %}

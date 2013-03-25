@@ -23,7 +23,7 @@ from django.forms.models import modelformset_factory
 from django.utils.translation import ugettext_lazy as _
 
 from ajax_select.fields import AutoCompleteSelectField
-from nani.forms import TranslatableModelForm
+from hvad.forms import TranslatableModelForm
 
 from apps.i4p_base.models import Location
 
