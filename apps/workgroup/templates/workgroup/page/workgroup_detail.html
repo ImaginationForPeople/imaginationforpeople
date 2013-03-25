@@ -12,14 +12,16 @@
 
 
 {% block content %}
-   {% tab 'workgroup' 'description' %}
-
+  
+    
+  
     {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
     {% endaddtoblock %}
 
 <div class="container" id="workgroup-detail">
-    {% include "workgroup/block/workgroup_header.html" %}
+    
+    {% block workgroup_header %}{% tab 'workgroup' 'home' %}{% include "workgroup/block/workgroup_header.html" %}{% endblock %}
 
       <div id="workgroup-content" class="row">
         <div class="span8">
@@ -32,10 +34,10 @@
           {% include 'tags/block/taglist.html' with taglist_tags=group_tags taglist_title='themes' %}
 
 
-
+           
           <div class="wiki">
             {{ wiki_article.render|default:"..." }}
-            [<a href="{% url workgroup-wiki-edit workgroup.slug %}">edit</a>]
+             {% block edit_link %}[<a href="{% url workgroup-wiki-edit workgroup.slug %}">edit</a>] {% endblock %}
           </div>
 
           <div class="shoutbox-box">
