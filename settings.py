@@ -23,7 +23,7 @@ ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Support', 'support@imaginationforpeople.org'),
     ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
@@ -174,6 +174,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         
     'django.core.context_processors.static',
     'apps.i4p_base.context_processors.search_form',
+    'apps.i4p_base.context_processors.settings',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',

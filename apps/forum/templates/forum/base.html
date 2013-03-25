@@ -130,11 +130,11 @@
     
     {{ include_django("sites_specs.html", request) }}
     
-    {% if not debug %}
+    {% if GOOGLE_ANALYTICS_ACCOUNT and not debug  %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(["_setAccount", "UA-21778007-2"]);
-      _gaq.push(["_setDomainName", "imaginationforpeople.org"]);
+      _gaq.push(["_setAccount", "{{GOOGLE_ANALYTICS_ACCOUNT}}"]);
+      _gaq.push(["_setDomainName", "{{ site.domain }}"]);
       _gaq.push(["_trackPageview"]);
    
      (function() {
