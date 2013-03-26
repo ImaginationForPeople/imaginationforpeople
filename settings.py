@@ -71,30 +71,48 @@ CMS_LANGUAGES = {
     1: [
         {
             'code': 'en',
-            'name': gettext('English'),
+            'name': u'English',
             'fallbacks': ['fr', 'de'],
-            'hide_untranslated': False,
-            'redirect_on_fallback':True,
-        },
-        {
-            'code': 'de',
-            'name': gettext('Deutsch'),
-            'fallbacks': ['en', 'fr'],
         },
         {
             'code': 'fr',
-            'name': gettext('French'),
+            'name': u'Français',
             'fallbacks': ['en', 'es'],
         },
         {
+            'code': 'el',
+            'name': u'Ελληνικά',
+        },
+        {
             'code': 'es',
-            'name': gettext('Spanish'),
+            'name': u'Español',
             'fallbacks': ['fr', 'en'],
+        },
+        {
+            'code': 'pt',
+            'name': u'Português',
+        },
+        {
+            'code': 'de',
+            'name': u'Deutsch',
+        },
+        {
+            'code': 'it',
+            'name': u'Italiano',
+            'fallbacks': ['fr', 'en', 'es'],
+        },
+        {
+            'code': 'ru',
+            'name': u'Русский',
+        },
+        {
+            'code': 'zh',
+            'name': u'中文',
         },
     ],
     'default': {
         'fallbacks': ['en', 'fr', 'es'],
-        'redirect_on_fallback':True,
+        'redirect_on_fallback': False,
         'public': True,
         'hide_untranslated': False,
     }
@@ -551,7 +569,6 @@ CMS_TEMPLATES = (
 CMS_REDIRECTS = True
 CMS_SOFTROOT = True
 CMS_SEO_FIELDS = True
-CMS_MODERATOR = False
 
 APPEND_SLASH = True
 
