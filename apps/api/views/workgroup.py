@@ -16,11 +16,16 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+from django.conf.urls import url
+
+from easy_thumbnails.files import get_thumbnailer
 from tagging.models import Tag
 from tastypie import fields
 from tastypie.resources import ModelResource
+from tastypie.utils.urls import trailing_slash
 from tastypie.throttle import CacheDBThrottle
 
+from apps.project_sheet.project_pictures_specs import ResizeThumbApi
 from apps.project_sheet.models import I4pProjectTranslation
 from apps.workgroup.models import WorkGroup
 
@@ -37,12 +42,23 @@ class WorkgroupResource(ModelResource):
         queryset = WorkGroup.objects.all()
         resource_name = "workgroup"
         throttle = CacheDBThrottle()
-        fields = ["name", "description", "language"]
+        fields = ["name", "description", "language", "slug"]
         filtering = {
             "language": 'exact',
         }
+    
+    def prepend_urls(self):
+        array = []
+        array.append(url(r"^(?P<resource_name>%s)/(?P<slug>[\w\d_.-]+)%s$" % (self._meta.resource_name, trailing_slash()), self.wrap_view('dispatch_detail'), name="api_dispatch_detail"))
+        return array
         
     def dehydrate(self, bundle):
         bundle.data["tags"] = [tag.name for tag in Tag.objects.get_for_object(bundle.obj)]
-        bundle.data["image"] = bundle.obj.picture and bundle.obj.picture.url or None
+        if(bundle.obj.picture):
+            bundle.data["image"] = bundle.obj.picture.url
+            thumbnailer = get_thumbnailer(bundle.obj.picture)
+            thumbnail_options = {'size': (ResizeThumbApi.width, ResizeThumbApi.height)}
+            bundle.data["thumb"] = thumbnailer.get_thumbnail(thumbnail_options).url
+        else:
+            bundle.data["image"] = bundle.data["thumb"] = None
         return bundle
