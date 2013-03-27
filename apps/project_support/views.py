@@ -70,9 +70,10 @@ class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
         self.questions_url = reverse('project_support_main', args=[project_translation.slug])
         self.ask_url = reverse('project_support_propose', args=[project_translation.slug])
         
+        self.thread_ids = project_translation.projectsupport_set.values_list('thread', flat=True)
+        
         context = QuestionsView.get_context_data(self, **kwargs)
         
-        self.thread_ids = project_translation.projectsupport_set.values_list('thread', flat=True)
         threads = Thread.objects.filter(id__in=self.thread_ids)
         
         prop_count = project_translation.projectsupport_set.filter(type="PROP").count()
