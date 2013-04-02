@@ -111,7 +111,7 @@ def propose_project_support(request, project_slug, question_id=None):
             raise Http404
     
         if project_translation.language_code != language_code:
-            return redirect(project_translation, permanent=False)
+            return redirect(project_translation.master, permanent=False)
         
         question = None
         initial = {}
@@ -191,7 +191,7 @@ def view_project_support(request, project_slug, question_id):
     if project_translation.language_code != language_code:
         return redirect(project_translation, permanent=False)
 
-    project = project_translation.project
+    project = project_translation.master #mref to ancestor class in Hvad is .master (was .project)
     
     search_state = SearchState.get_empty()
     search_state._questions_url = reverse('project_support_main', args=[project_translation.slug])
