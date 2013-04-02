@@ -111,7 +111,7 @@ def propose_project_support(request, project_slug, question_id=None):
             raise Http404
     
         if project_translation.language_code != language_code:
-            return redirect(project_translation, permanent=False)
+            return redirect(project_translation.master, permanent=False)
         
         question = None
         initial = {}
