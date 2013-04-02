@@ -25,7 +25,7 @@ from tastypie.resources import ModelResource
 from tastypie.utils.urls import trailing_slash
 from tastypie.throttle import CacheDBThrottle
 
-from apps.project_sheet.project_pictures_specs import ResizeThumbApi
+from apps.project_sheet.project_pictures_specs import ResizeThumbApi,ResizeDisplay
 from apps.project_sheet.models import I4pProjectTranslation
 from apps.workgroup.models import WorkGroup
 
@@ -55,13 +55,17 @@ class WorkgroupResource(ModelResource):
         
     def full_dehydrate(self, bundle, for_list=False):
         bundle = ModelResource.full_dehydrate(self, bundle, for_list)
-        if for_list is False:
-            bundle.data["tags"] = [tag.name for tag in Tag.objects.get_for_object(bundle.obj)]
-            bundle.data["image"] = bundle.obj.picture and bundle.obj.picture.url or None
         if(bundle.obj.picture):
             thumbnailer = get_thumbnailer(bundle.obj.picture)
             thumbnail_options = {'size': (ResizeThumbApi.width, ResizeThumbApi.height)}
             bundle.data["thumb"] = thumbnailer.get_thumbnail(thumbnail_options).url
         else:
             bundle.data["thumb"] = None
+        if for_list is False:
+            bundle.data["tags"] = [tag.name for tag in Tag.objects.get_for_object(bundle.obj)]
+            if(bundle.obj.picture):
+                thumbnail_options = {'size': (ResizeDisplay.width, ResizeDisplay.width)}
+                bundle.data["image"] = thumbnailer.get_thumbnail(thumbnail_options).url
+            else:
+                bundle.data["image"] = None
         return bundle
