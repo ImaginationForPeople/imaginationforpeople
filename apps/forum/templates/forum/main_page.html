@@ -9,7 +9,18 @@
     there is no html markup in this file
 #}
 <!-- questions.html -->
-{% block title %}{% spaceless %}{% trans %}Questions{% endtrans %}{% endspaceless %}{% endblock %}
+{% block title %}{% spaceless %}
+{% trans %}Questions{% endtrans %}
+{% if search_tags %}
+    {% trans %}tagged{% endtrans %}
+    {% for tag in search_tags -%}
+        {%- if not loop.first -%}
+            {% trans %} and {% endtrans %}
+        {%- endif -%}
+        {{ tag|replace('*', '&#10045;')|escape }}
+    {%- endfor %}
+{%- endif %}
+{% endspaceless %}{% endblock %}
 {% block content %}
     {% include "main_page/tab_bar.html" %}
     {% include "main_page/headline.html" %}
