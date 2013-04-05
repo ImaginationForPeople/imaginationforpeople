@@ -109,7 +109,8 @@ django-simplegravatar==0.2
 # Google diff patch
 diff-match-patch==20120106
 
-django-activity-stream==0.4.4
+# Our version of actstream, patched to register models manually
+-e git://github.com/ImaginationForPeople/django-activity-stream.git@master#egg=django-activity-stream
 
 # Testing tools
 coverage<3.4
