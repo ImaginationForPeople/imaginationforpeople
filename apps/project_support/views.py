@@ -44,7 +44,7 @@ class ProjectSupportListAll(QuestionsView):
         for thread in threads:
             for post in thread.posts.all():
                 activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
-        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('-active_at')[:15]
         
         context.update({
              #'project' : project_translation.project,
