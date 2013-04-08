@@ -23,7 +23,7 @@ ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Support', 'support@imaginationforpeople.org'),
     ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
@@ -61,7 +61,7 @@ LANGUAGES = (
   ('de', u'Deutsch'),
   ('it', u'Italiano'),
   ('ru', u'Русский'),
-  ('zh', u'中文'),
+  ('zh-cn', u'中文'),
 )
 
 # If you set this to False, Django will make some optimizations so as not
@@ -174,6 +174,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         
     'django.core.context_processors.static',
     'apps.i4p_base.context_processors.search_form',
+    'apps.i4p_base.context_processors.settings',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',
@@ -206,7 +207,7 @@ INSTALLED_APPS = (
     'userena',
     'userena.contrib.umessages',
     'guardian',
-    'nani',
+    'hvad',
     'honeypot',
     'serializers',
     'tabs',
@@ -235,11 +236,14 @@ INSTALLED_APPS = (
     'simplegravatar',
     'social_auth',
 
+    'actstream',
+    
     'django_notify',
     'wiki',
     'wiki.plugins.notifications',
     'wiki.plugins.attachments',
     'filebrowser',
+
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -537,7 +541,16 @@ CELERY_ALWAYS_EAGER = DEBUG
 
 djcelery.setup_loader()
 
+# HVAD (yes, it's still prefixed with 'NANI')
 NANI_TABLE_NAME_SEPARATOR = ''
+
+# ACTIVITY STREAM
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('project_sheet.I4pProject', 'project_sheet.I4pProjectTranslation', 'auth.User', 'project_sheet.Answer'),
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 # WIKI
 markdown_i4p = mdx_i4p.makeExtension()

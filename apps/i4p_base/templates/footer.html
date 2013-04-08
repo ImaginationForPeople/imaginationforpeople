@@ -1,63 +1,67 @@
-{% load i18n %}	
-{% load cms_tags %}	
-{% load menu_tags %}	
+{% load i18n %}    
+{% load cms_tags %}    
+{% load menu_tags %}    
 
 <div id="footer-zone-top">
     <div class="footer-top container">
         <a href="{% page_url 'homepage' %}">
             {% if request.current_page.is_home  %}
-                {% placeholder "footer logo" inherit or %}{% trans "Please fill the footer logo section in the home page's admin page." %}{% endplaceholder %}                
+                {% comment %}LANGUAGE FALLBACK DOESN'T CURRENTLY WORK WITH OR{% placeholder "footer logo" inherit or %}{% trans "Please fill the footer logo section in the home page's admin page." %}{% endplaceholder %}{% endcomment %}
+                {% placeholder "footer logo" inherit %}
             {% else %}
                 {% show_placeholder "footer logo" "homepage" %}
             {% endif %}
         </a>
         <div class="baseline">
             {% if request.current_page.is_home  %}
-                {% placeholder "footer-baseline" or %}{% trans "Please fill the footer-baseline section in the home page's admin page." %}{% endplaceholder %}
+                {% comment %}LANGUAGE FALLBACK DOESN'T CURRENTLY WORK WITH OR{% placeholder "footer-baseline" inherit or %}{% trans "Please fill the footer-baseline section in the home page's admin page." %}{% endplaceholder %}{% endcomment %}
+                {% placeholder "footer-baseline" inherit %}
             {% else %}
                 {% show_placeholder "footer-baseline" "homepage" %}
             {% endif %}
         </div>
-	</div> <!-- end .footer-top -->
-	<div id="footer" class="center container">
-		<div class="row-fluid">
-			<div class="span4"> 
+    </div> <!-- end .footer-top -->
+    <div id="footer" class="center container">
+        <div class="row-fluid">
+            <div class="span4"> 
 
 
-				{% if request.current_page.is_home  %}
-				{% placeholder "footer-follow" inherit or %}{% trans "Please fill the footer-follow section in the home page's admin page." %}
-				{% endplaceholder %}
-				{% else %}
-				{% show_placeholder "footer-follow" "homepage" %}
-				{% endif %}
-			</div>
+                {% if request.current_page.is_home  %}
+                {% comment %}LANGUAGE FALLBACK DOESN'T CURRENTLY WORK WITH OR{% placeholder "footer-follow" inherit or %}{% trans "Please fill the footer-follow section in the home page's admin page." %}{% endplaceholder %}{% endcomment %}
+                {% placeholder "footer-follow" inherit %}
+                
+                {% else %}
+                {% show_placeholder "footer-follow" "homepage" %}
+                {% endif %}
+            </div>
 
-			<div class="span4">
-				{% if request.current_page.is_home  %}
-				{% placeholder "footer-resources" or %}{% trans "Please fill the footer-resources section in the home page's admin page." %}{% endplaceholder %}
-				{% else %}
-				{% show_placeholder "footer-resources" "homepage" %}
-				{% endif %}
-			</div>
+            <div class="span4">
+                {% if request.current_page.is_home  %}
+                {% comment %}LANGUAGE FALLBACK DOESN'T CURRENTLY WORK WITH OR{% placeholder "footer-resources" or %}{% trans "Please fill the footer-resources section in the home page's admin page." %}{% endplaceholder %}{% endcomment %}
+                {% placeholder "footer-resources" %}
+                {% else %}
+                {% show_placeholder "footer-resources" "homepage" %}
+                {% endif %}
+            </div>
 
-			<div class="span4">
-				<p class="licences">
+            <div class="span4">
+                <p class="licences">
 
-				{% blocktrans with site.name as url %}
-				"<strong>{{ url }}</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
-				{% endblocktrans %}
-				<img src="{{ STATIC_URL }}images/base/licences-logo.png" alt="Creative Commons | AGPL" width="188" height="42" />
-				</p>
+                {% blocktrans with site.name as url %}
+                "<strong>{{ url }}</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
+                {% endblocktrans %}
+                <img src="{{ STATIC_URL }}images/base/licences-logo.png" alt="Creative Commons | AGPL" width="188" height="42" />
+                </p>
 
-				{% comment %}
-				<h1>{% trans 'Newsletter' %}</h1>
-				<form action="#" class="newsletter">
-					<input type="submit" value="&nbsp;">
-					<input type="text" maxlength="100" name="text" id="id_text" class="example">
-				</form>            
-				{% endcomment %}
+                {% comment %}
+                <h1>{% trans 'Newsletter' %}</h1>
+                <form action="#" class="newsletter">
+                    <input type="submit" value="&nbsp;">
+                    <input type="text" maxlength="100" name="text" id="id_text" class="example">
+                </form>            
+                {% endcomment %}
 
-			</div>            
-		</div>
-	</div> <!-- end #footer -->
+            </div>            
+        </div>
+    </div> <!-- end #footer -->
 </div> <!-- end #footer-zone-top -->

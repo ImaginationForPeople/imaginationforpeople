@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
 # Luca Manlio De Lisi <lukefiltroman@gmail.com>, 2011.
@@ -9,15 +9,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 14:12-0500\n"
-"PO-Revision-Date: 2013-02-27 01:42+0000\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-03-08 17:12-0500\n"
+"PO-Revision-Date: 2013-03-08 16:14+0000\n"
 "Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: Italian <ip-it@lists.imaginationforpeople.org>\n"
-"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cms_app.py:6
@@ -996,27 +996,27 @@ msgstr "paese"
 msgid "address"
 msgstr "indirizzo"
 
-#: templates/404.html:44 templates/500.html:43
+#: templates/404.html:19 templates/500.html:21
 msgid "Ooops!"
 msgstr "Ooops!"
 
-#: templates/404.html:47
+#: templates/404.html:22
 msgid "It seems the page you are looking for doesn't exist..."
 msgstr "Sembra che la pagina che stavi cercando non esiste..."
 
-#: templates/404.html:48
+#: templates/404.html:23
 msgid "Have you tried using the search engine ?"
 msgstr "Hai provato ad usare il motore di ricerca?"
 
-#: templates/404.html:51 templates/500.html:50
+#: templates/404.html:26 templates/500.html:28
 msgid "Back to home &gt;"
 msgstr "Torna alla home &gt;"
 
-#: templates/500.html:46
+#: templates/500.html:24
 msgid "The page you requested encountered an error"
 msgstr "La pagina che hai richiesto ha riscontrato un errore"
 
-#: templates/500.html:47
+#: templates/500.html:25
 msgid "Thank you try again later."
 msgstr "Riprovare in seguito grazie."
 
@@ -1026,58 +1026,49 @@ msgid ""
 "dedicated to disruptive social innovation. At a global scale, IP aims to "
 "detect, publicize, amplify and adapt creative solutions to the new "
 "challenges of living together."
-msgstr ""
-"Imagination for People (IP) è una piattaforma web multilingue dedicata alla "
-"fantasia cittadina. Su scala mondiale, IP mira a scovare, pubblicizzare, "
-"amplificare ed adattare esperienze inedite che riguardano l’innovazione "
-"sociale."
+msgstr "Imagination for People (IP) è una piattaforma web multilingue dedicata alla fantasia cittadina. Su scala mondiale, IP mira a scovare, pubblicizzare, amplificare ed adattare esperienze inedite che riguardano l’innovazione sociale."
 
 #: templates/base.html:20 templates/pages/homepage.html:19
 msgid "identify and support imaginative social projects"
 msgstr "identifica e supporta fantasiosi progetti sociali"
 
-#: templates/base.html:111
+#: templates/base.html:112
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Sai che il tuo browser internet non è aggiornato?"
 
-#: templates/base.html:112
+#: templates/base.html:113
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
-msgstr ""
-"Il tuo browser internet non è aggiornato, e potrebbe non essere compatibile "
-"con il nostro sito. Una lista dei browser internet più diffusi si trova di "
-"seguito."
+msgstr "Il tuo browser internet non è aggiornato, e potrebbe non essere compatibile con il nostro sito. Una lista dei browser internet più diffusi si trova di seguito."
 
-#: templates/base.html:113
+#: templates/base.html:114
 msgid "Just click on the icons to get to the download page"
 msgstr "Clicca sulle icone per andare alla pagina di download"
 
-#: templates/base.html:114
+#: templates/base.html:115
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
-msgstr ""
-"Chiudendo questa finestra sei a conoscenza che la tua esperienza su questo "
-"sito potrebbe essere degradata."
+msgstr "Chiudendo questa finestra sei a conoscenza che la tua esperienza su questo sito potrebbe essere degradata."
 
-#: templates/base.html:115
+#: templates/base.html:116
 msgid "Close This Window"
 msgstr "Chiudi questa finestra"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "Enter your email"
 msgstr ""
 
-#: templates/base.html:123
+#: templates/base.html:124
 msgid "Password"
 msgstr ""
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "Enter your username"
 msgstr ""
 
-#: templates/base.html:127
+#: templates/base.html:128
 msgid "Enter your email adress"
 msgstr ""
 
@@ -1094,16 +1085,15 @@ msgid "Please fill the footer-follow section in the home page's admin page."
 msgstr ""
 
 #: templates/footer.html:37
-msgid "Please fill the footer-resources section in the home page's admin page."
+msgid ""
+"Please fill the footer-resources section in the home page's admin page."
 msgstr ""
 
 #: templates/footer.html:46
 #, python-format
 msgid ""
 "\n"
-"\t\t\t\t\"<strong>%(url)s</strong> is powered by a set of free components "
-"licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>."
-"\"\n"
+"\t\t\t\t\"<strong>%(url)s</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.\"\n"
 "\t\t\t\t"
 msgstr ""
 
@@ -1185,8 +1175,7 @@ msgstr "Questo problema è chiuso."
 
 #: templates/backcap/feedback_detail.html:105
 msgid "is working on this. Poke him if you think it's taking too long !"
-msgstr ""
-"sta lavorandoci sopra. Attizzalo/a se pensi che ci stia mettendo troppo!"
+msgstr "sta lavorandoci sopra. Attizzalo/a se pensi che ci stia mettendo troppo!"
 
 #: templates/backcap/feedback_detail.html:113
 msgid "This issue is a duplicate of"
@@ -1288,7 +1277,8 @@ msgid "Help Center"
 msgstr "Centro Aiuto"
 
 #: templates/backcap/feedback_list.html:48
-msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
+msgid ""
+"This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr "Questi sono tutti i feedback inviati da voi, gli utenti. Grazie."
 
 #: templates/backcap/feedback_list.html:60
@@ -1296,18 +1286,13 @@ msgid ""
 "If you think one of these entries is important for you, then <strong>click "
 "on the '+' button</strong>. If you disagree or think this is not important "
 "at all, then <strong>click on '-'</strong>."
-msgstr ""
-"Se pensi che una di queste voci è importante, <strong>clicca sul pulsante "
-"'+'</strong>. Se non sei d'accordo o credi che non sia per niente "
-"importante, <strong>clicca sul pulsante '-'</strong>."
+msgstr "Se pensi che una di queste voci è importante, <strong>clicca sul pulsante '+'</strong>. Se non sei d'accordo o credi che non sia per niente importante, <strong>clicca sul pulsante '-'</strong>."
 
 #: templates/backcap/feedback_list.html:64
 msgid ""
 "The <strong>highest the score</strong> an issue will get, the "
 "<strong>earlier we'll work on</strong> it."
-msgstr ""
-"Il <strong>punteggio più alto</strong> che riceverà un problema, determinerà "
-"quanto <strong>velocemente ci lavoreremo sopra</strong>."
+msgstr "Il <strong>punteggio più alto</strong> che riceverà un problema, determinerà quanto <strong>velocemente ci lavoreremo sopra</strong>."
 
 #: templates/backcap/feedback_list.html:68
 msgid "New feedback"
@@ -1390,9 +1375,7 @@ msgstr "Lascia feedback"
 msgid ""
 "We are very eager you leave feedback to help us improve the website, thank "
 "you !"
-msgstr ""
-"Siamo impazienti di ricevere vostri feedback per aiutarci a migliorare il "
-"sito, grazie!"
+msgstr "Siamo impazienti di ricevere vostri feedback per aiutarci a migliorare il sito, grazie!"
 
 #: templates/backcap/feedback_new_form.html:6
 msgid "I have a:"
@@ -1622,8 +1605,7 @@ msgstr ""
 
 #: templates/pages/flatpage.html:36
 msgid "There is no content yet. Switch to edit mode and add a widget."
-msgstr ""
-"Non c'è ancora contenuto. Passa alla modalità modifica e aggiungi un widget."
+msgstr "Non c'è ancora contenuto. Passa alla modalità modifica e aggiungi un widget."
 
 #: templates/pages/homepage.html:48
 msgid "My project title"
@@ -1631,10 +1613,6 @@ msgstr ""
 
 #: templates/pages/homepage.html:49
 msgid "One line description"
-msgstr ""
-
-#: templates/pages/onemenu.html:36 templates/pages/onemenu.html.py:43
-msgid "MENU"
 msgstr ""
 
 #: templates/pages/popups_notifications.html:13
@@ -1645,7 +1623,8 @@ msgid ""
 msgstr ""
 
 #: templates/pages/popups_notifications.html:16
-msgid "Popup shown on every project page if present and the user is logged-in."
+msgid ""
+"Popup shown on every project page if present and the user is logged-in."
 msgstr ""
 
 #: templates/pages/popups_notifications.html:21

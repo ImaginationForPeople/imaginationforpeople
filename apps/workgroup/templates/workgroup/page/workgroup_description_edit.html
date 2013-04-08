@@ -1,0 +1,12 @@
+{% extends "workgroup/page/wiki_edit.html" %}
+{% load tabs %}
+
+{% tab 'workgroup' 'description' %}
+
+ {% block save_button_main %}
+        <a class="btn btn-large btn-primary" onclick="document.getElementById('article_edit_form').target=''; document.getElementById('article_edit_form').action='{% url workgroup-description-edit workgroup.slug %}'; document.getElementById('article_edit_form').submit();" href="#">
+        {% endblock %}
+        
+{% block save_button_preview %}
+        <a class="btn btn-large btn-primary" onclick="document.getElementById('article_edit_form').target=''; document.getElementById('article_edit_form').action='{% url workgroup-description-edit workgroup.slug %}'; document.getElementById('article_edit_form').submit();" href="#">
+        {% endblock %}

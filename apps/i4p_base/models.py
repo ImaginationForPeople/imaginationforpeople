@@ -17,10 +17,16 @@
 #
 # -*- coding: utf-8 -*-
 
+from diff_match_patch import diff_match_patch
+
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from actstream.models import Action
 from django_countries import CountryField
+from django_extensions.db.fields import json
+import reversion
 
 I4P_COUNTRIES = (
     ('AF', _(u'Afghanistan')),
@@ -294,7 +300,23 @@ class Location(models.Model):
                                     self.get_country_display(),
                                     self.lon,
                                     self.lat)
-
+        
+class VersionActivity(models.Model):
+    """
+    A metadata class to link an Action with a Revision
+    """
+    revision = models.ForeignKey(reversion.models.Revision)
+    action = models.OneToOneField(Action, related_name='version')
+    diffs = json.JSONField()
+    checked_by = models.ForeignKey(User, null=True, blank=True)
+    checked_on = models.DateTimeField(blank=True, null=True)
+    
+    def diffs_html(self):
+      """
+      Outputs the "diffs" field as an HTML report
+      """
+      dmp = diff_match_patch()
+      return dmp.diff_prettyHtml(self.diffs)
 
 
 

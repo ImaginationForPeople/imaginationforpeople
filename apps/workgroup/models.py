@@ -49,7 +49,7 @@ class WorkGroup(models.Model):
     A workgroup in a given language, for a given thematic.
     """
     slug = AutoSlugField(populate_from='name',
-                         always_update=True)
+                         always_update=False)
 
     name = models.CharField(verbose_name=_('name'),
                             max_length=150)

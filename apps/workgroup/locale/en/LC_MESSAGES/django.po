@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-27 14:12-0500\n"
+"POT-Creation-Date: 2013-03-08 17:13-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,26 +67,26 @@ msgstr ""
 msgid "Related questions"
 msgstr ""
 
-#: views.py:180
+#: views.py:185
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
 msgstr ""
 
-#: views.py:187
+#: views.py:192
 #, python-format
 msgid "You couldn't be subscribed to this group:%s"
 msgstr ""
 
-#: views.py:218
+#: views.py:223
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
 msgstr ""
 
-#: views.py:225
+#: views.py:230
 #, python-format
 msgid "You couldn't be unsubscribed from this group:%s"
 msgstr ""
@@ -96,7 +96,7 @@ msgid "Related Groups"
 msgstr ""
 
 #: templates/workgroup/block/grouplist_fancy_wide.html:11
-#: templates/workgroup/block/workgroup_header.html:41
+#: templates/workgroup/block/workgroup_header.html:45
 msgid "See all"
 msgstr ""
 
@@ -116,28 +116,40 @@ msgstr ""
 msgid "Quit this group"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:20
+#: templates/workgroup/block/workgroup_header.html:21
 msgid "Edit Group"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:27
+#: templates/workgroup/block/workgroup_header.html:28
 msgid "Spoken language :"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:32
+#: templates/workgroup/block/workgroup_header.html:34
 #, python-format
 msgid ""
-"\n"
-"\tmember%(member_plural)s (+ %(nonmember_count)s)\n"
+"\t\n"
+"\tmember%(member_plural)s\t\n"
 "\t"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:36
+#: templates/workgroup/block/workgroup_header.html:39
 #, python-format
 msgid ""
 "\n"
 "\tmember%(member_plural)s\n"
 "\t"
+msgstr ""
+
+#: templates/workgroup/block/workgroup_header.html:51
+msgid "Home"
+msgstr ""
+
+#: templates/workgroup/block/workgroup_header.html:52
+msgid "Discussions"
+msgstr ""
+
+#: templates/workgroup/block/workgroup_header.html:53
+msgid "Members"
 msgstr ""
 
 #: templates/workgroup/block/workgroup_sidebar.html:6
@@ -191,32 +203,36 @@ msgstr ""
 msgid "Back to editor"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:24
+#: templates/workgroup/page/workgroup_detail.html:28
 #, python-format
 msgid ""
 "This group uses a mailing list. You can take part in the discussion by "
 "sending an e-mail to the following address: %(ml_address)s"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:24
+#: templates/workgroup/page/workgroup_detail.html:28
 msgid "Browse the Archives"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:39
+#: templates/workgroup/page/workgroup_detail.html:43
 #, python-format
 msgid "Comment:"
 msgid_plural "%(num_comments)s comments:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/workgroup/page/workgroup_members.html:27
+#: templates/workgroup/page/workgroup_discuss_list.html:67
+msgid "Ask your question"
+msgstr ""
+
+#: templates/workgroup/page/workgroup_members.html:28
 msgid "Subscribers list"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_members.html:32
+#: templates/workgroup/page/workgroup_members.html:33
 msgid "There are no group subscribers."
 msgstr ""
 
-#: templates/workgroup/page/workgroup_members.html:40
+#: templates/workgroup/page/workgroup_members.html:41
 msgid "Other mailing list subscribers"
 msgstr ""

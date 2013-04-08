@@ -69,7 +69,9 @@ django_compressor==1.2
 -e hg+https://bitbucket.org/atiberghien/django-licenses@365f65fa7148312372783af370e37f80bd3787d5#egg=django-licenses
 
 -e git+https://github.com/ImaginationForPeople/django-oembed-works#egg=django-oembed-works
-django-userena==1.2.0
+#django-userena==1.2.0
+#Recent snapshot, fixes missing messages
+-e git://github.com/bread-and-pepper/django-userena.git@13edb3cd5613cc022d5f887f734b36f0e3c7256c#egg=django-userena
 django-social-auth==0.6.9
 
 -e git+https://github.com/jorgebastida/django-dajaxice.git@d5a70654fbcd7241fbdfaf5a89fea2746cd25369#egg=django-dajaxice
@@ -77,7 +79,7 @@ django-social-auth==0.6.9
 
 -e git+https://github.com/SpreadBand/django-backcap.git@16e072aa77d130268dbaff55a66d59948d8545cc#egg=django-backcap
 
-django-reversion==1.6.1
+django-reversion==1.6.5
 
 # django-mailman
 -e git://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
@@ -87,7 +89,7 @@ django-reversion==1.6.1
 # For Sentry
 raven==2.0.3
 
--e git+https://github.com/ojii/django-nani.git@bb47153e05b46b775658887f214a486412fe25a5#egg=django-nani
+django-hvad==0.2
 
 feedparser==5.1.2
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
@@ -97,7 +99,7 @@ django-simplegravatar==0.2
 
 # Askbot
 -e hg+https://atiberghien@bitbucket.org/atiberghien/django-keyedcache#egg=django-keyedcache
--e git://github.com/atiberghien/askbot-devel.git@cae11d5f7a49f755bb706ebad0c558857b06f302#egg=askbot
+-e git://github.com/atiberghien/askbot-devel.git@0876cd618d2e44e61a2a0c9fc27b903e7cbc72b5#egg=askbot
 
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.1#egg=django-blog-zinnia
@@ -105,6 +107,12 @@ django-simplegravatar==0.2
 
 # REST API
 -e git://github.com/ImaginationForPeople/django-tastypie.git@2794c04f568c417279b2a48381e85b87cbec7274#egg=django-tastypie
+
+# Google diff patch
+diff-match-patch==20120106
+
+# Our version of actstream, patched to register models manually
+-e git://github.com/ImaginationForPeople/django-activity-stream.git@master#egg=django-activity-stream
 
 # Testing tools
 coverage<3.4
@@ -115,6 +123,7 @@ pylint
 -e git+https://github.com/lamby/django-lint.git@b3a67edce69da9f532dfa0c1624c835b6a51fafb#egg=django-lint
 
 # Dev tools
+pyparsing==1.5.6
 werkzeug
 django-debug-toolbar
 sphinx

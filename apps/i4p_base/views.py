@@ -16,6 +16,7 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 # -*- coding: utf-8 -*-
+from datetime import datetime
 import random
 
 from django.contrib.auth.models import User
@@ -50,3 +51,39 @@ def homepage(request):
                               dictionary=context,
                               context_instance=RequestContext(request)
                               )
+
+
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic.base import RedirectView
+
+from .models import VersionActivity
+
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
+from urlparse import urlsplit
+
+class VersionActivityCheckView(RedirectView):
+    """
+    Approves a Version Activity (an admin reviewed it).
+    """
+    permanent = False
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(VersionActivityCheckView, self).dispatch(*args, **kwargs)
+        
+    def get_redirect_url(self, pk):
+        activity_revision = get_object_or_404(VersionActivity, pk=pk)
+
+        activity_revision.checked_by = self.request.user
+        activity_revision.checked_on = datetime.now()
+        activity_revision.save()
+        
+        referer = self.request.META.get('HTTP_REFERER', None)
+        if referer:
+            try:
+                redirect_to = urlsplit(referer, 'http', False)[2]
+            except IndexError:
+                pass
+                
+            return redirect_to
