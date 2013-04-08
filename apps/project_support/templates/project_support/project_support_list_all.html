@@ -62,11 +62,13 @@ $(document).ready(function(){
     <div class="row">
         <div class="span8 project-main">
             <h2 class="title">{% trans "Filter"|upper %}</h2>
+            
             <div id="categorySearch">
                 <div class="form">
-                    <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
+                    <form id="queryForm" action="{{search_state.full_url}}" method="get">
                         <input type="text" name="query" placeholder="{% trans 'Enter a keyword' %}"/>
                         <input type="submit">
+                        {% csrf_token %}
                     </form>
                 </div>
                 <div class="middle">
