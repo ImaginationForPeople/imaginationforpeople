@@ -16,7 +16,8 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 from askbot.models.user import Activity
-from apps.forum.models import SpecificQuestionType, SpecificQuestion
+from apps.forum.models import SpecificQuestionType, SpecificQuestion,\
+    QUESTION_TYPE_CHOICES
 from django.views.generic.edit import FormView
 from apps.forum.forms import SpecificQuestionForm
 from askbot.search.state_manager import SearchState
@@ -741,14 +742,20 @@ class SpecificQuestionTypeMixin(object):
     
     def get_specific_types(self):
         assert self.qtypes != None
-        query = None
         for t in self.qtypes:
-            if query:
-                query |= Q(key=t)
-            else:
-                query = Q(key=t)
-                
-        return SpecificQuestionType.objects.filter(query)
+            assert t in [k for (k,v) in QUESTION_TYPE_CHOICES]
+        
+        if len(self.qtypes) == 1:
+            qs = SpecificQuestionType.objects.filter(**{"type" : self.qtypes[0]})
+        else:
+            query = None
+            for t in self.qtypes:
+                if query:
+                    query |= Q(type=t)
+                else:
+                    query = Q(type=t)
+            qs = SpecificQuestionType.objects.filter(query)
+        return qs
 
 class SpecificQuestionListView(SpecificQuestionTypeMixin, QuestionsView):
     template_name = None
@@ -941,7 +948,7 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, SpecificQuestion
         context = SpecificQuestionListView.get_context_data(self, **kwargs)
           
         context.update({  
-            'project' : self.context_object.project,
+            'project' : self.context_object.master,
             'project_translation' : self.context_object,
             'tab_context' : 'project_sheet',
             'tab_name' : 'discuss',

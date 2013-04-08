@@ -2,7 +2,8 @@ from apps.project_sheet.models import I4pProjectTranslation
 from apps.project_sheet.utils import \
     get_project_translation_by_any_translation_slug
 from apps.project_sheet.views import ProjectDiscussionListView, ProjectDiscussionCreateView, ProjectDiscussionThreadView,ProjectDiscussionNewAnswerView,\
-    CurrentProjectTranslationMixin
+    CurrentProjectTranslationMixin, SpecificQuestionTypeMixin,\
+    SpecificQuestionListView
 from apps.tags.models import TaggedCategory
 from askbot.views.writers import edit_answer
 from django.contrib.sites.models import Site
@@ -11,49 +12,12 @@ from django.utils import translation
 from django.http import Http404
 from django.utils.http import urlquote
 from django.template.defaultfilters import slugify
-from askbot.views.readers import QuestionsView
+from askbot.views.readers import QuestionsView, QuestionView
 from askbot.models.question import Thread
-
-
-class ProjectSupportListAll(QuestionsView):
-    template_name = "project_support/project_support_list_all.html"
-    is_specific = True
-    jinja2_rendering = False
-
-    def get_context_data(self, **kwargs):
-        #project_translation = self.get_project_translation(kwargs["project_slug"])
+from apps.forum.models import SpecificQuestion
+from askbot.models.user import Activity
         
-        self.questions_url = reverse('project_support_list_all')
-        self.ask_url = reverse('project_support_list_all')
-        
-        threads = Thread.objects.all().filter(projectsupport__isnull=False)
-        self.thread_ids = threads.values_list('id', flat=True)
-        
-        context = QuestionsView.get_context_data(self, **kwargs)   
-        
-        prop_count = ProjectSupport.objects.all().filter(type='PROP').count()
-        call_count = ProjectSupport.objects.all().filter(type='CALL').count()
-        
-        activity_ids = []
-        for thread in threads:
-            for post in thread.posts.all():
-                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
-        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('-active_at')[:15]
-        
-        context.update({
-             #'project' : project_translation.project,
-            # 'project_translation' : project_translation,
-             'active_tab' : 'support',
-             'prop_count' : prop_count,
-             'call_count' : call_count,
-             'activities' : activities,
-             'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
-             #'feed_url': reverse('project_support_main', args=[project_translation.slug])+"#TODO_RSS",
-        })
-        return context
-    
-        
-class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
+class ProjectSupportListView(ProjectDiscussionListView) :
     template_name = "project_support/project_support_list.html"
     qtypes=['pj-need', 'pj-help']
     
@@ -73,8 +37,42 @@ class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
         
         context.update({
             'tab_name' : 'support',
-            'prop_count' : self.get_specific_questions().filter(type__key="pj-help").count(),
-            'call_count' : self.get_specific_questions().filter(type__key="pj-need").count(),
+            'prop_count' : self.get_specific_questions().filter(type__type="pj-help").count(),
+            'call_count' : self.get_specific_questions().filter(type__type="pj-need").count(),
+            'need_count' : self.get_specific_questions().count(),
+            'root_category' : root_category,
+        })
+        
+        return context
+
+class ProjectSupportListAll(SpecificQuestionListView):
+    template_name = "project_support/project_support_list_all.html"
+    qtypes=['pj-need', 'pj-help']
+
+    def get_questions_url(self):
+        return reverse('project_support_list_all')
+
+    def get_ask_url(self):
+        return reverse('project_support_list_all')
+    
+    def get_context_object_instance(self, **kwargs):
+        return None
+    
+    def get_specific_questions(self):
+        return SpecificQuestion.objects.filter(type__in=self.get_specific_types())
+    
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionListView.get_context_data(self, **kwargs)
+        
+        allowed_categories = self.get_specific_types().values_list('allowed_category_tree', flat=True).distinct()
+        root_category = None
+        if allowed_categories.count():
+            root_category = TaggedCategory.objects.get(id=allowed_categories[0])
+        
+        context.update({
+            'tab_name' : 'support',
+            'prop_count' : self.get_specific_questions().filter(type__type="pj-help").count(),
+            'call_count' : self.get_specific_questions().filter(type__type="pj-need").count(),
             'need_count' : self.get_specific_questions().count(),
             'root_category' : root_category,
         })

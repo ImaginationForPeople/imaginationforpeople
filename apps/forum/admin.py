@@ -12,8 +12,7 @@ class SpecificQuestionAdmin(admin.ModelAdmin):
     context_object.short_description = 'Context object'
 
 class SpecificQuestionTypeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'key', 'label', 'allowed_category_tree')
-    list_editable = ('key', 'label', 'allowed_category_tree')
+    list_display = ('id', 'type', 'allowed_category_tree')
     
     def formfield_for_foreignkey(self, db_field, request, **kwargs):
         if db_field.name == "allowed_category_tree":

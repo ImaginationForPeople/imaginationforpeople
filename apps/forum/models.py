@@ -5,14 +5,25 @@ from django.contrib.contenttypes import generic
 from askbot.models.question import Thread
 
 from apps.tags.models import TaggedCategory
+from django.utils.translation import ugettext_lazy as _
+
+QUESTION_TYPE_CHOICES = (
+    ('generic', _('generic')),
+    ('pj-need', _('project needs')),
+    ('pj-help', _('help from the community')),
+    ('pj-discuss', _('project discussion')),
+    ('wg-discuss', _('workgroup discussion')),
+)
+
 
 class SpecificQuestionType(models.Model):
-    key = models.CharField(max_length=30, unique=True)
-    label = models.CharField(max_length=30)
+    #key = models.CharField(max_length=30, unique=True)
+    #label = models.CharField(max_length=30)
+    type = models.CharField(max_length="10", choices=QUESTION_TYPE_CHOICES, unique=True, null=True)
     allowed_category_tree = models.ForeignKey(TaggedCategory, null=True, blank=True)
     
     def __unicode__(self):
-        return self.label
+        return self.get_type_display()
 
 class SpecificQuestion(models.Model):
     type = models.ForeignKey(SpecificQuestionType)
