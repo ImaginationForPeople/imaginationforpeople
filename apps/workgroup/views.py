@@ -288,7 +288,7 @@ class GroupDiscussionCreateView(SpecificQuestionCreateView):
         return context
     
     def get_cleaned_tags(self, request):
-        return "%s,%s" % ("workgroup", self.context_instance.slug)
+        return "%s %s" % ("workgroup", self.context_instance.slug)
     
     def get_context_object_instance(self, **kwargs):
         return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
