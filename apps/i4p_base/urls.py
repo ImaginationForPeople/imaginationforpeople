@@ -10,5 +10,6 @@ urlpatterns = patterns('',
     url(r'^homepage/ajax/slider/latest/$', ajax.slider_latest, name='i4p-homepage-ajax-slider-latest'),
     url(r'^homepage/ajax/slider/commented/$', ajax.slider_most_commented, name='i4p-homepage-ajax-slider-commented'),
 
+    url(r'^history/check_version/(?P<pk>[\d]+)$', views.VersionActivityCheckView.as_view(), name='history-check-version'),
 )
 

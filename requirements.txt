@@ -79,7 +79,7 @@ django-social-auth==0.6.9
 
 -e git+https://github.com/SpreadBand/django-backcap.git@16e072aa77d130268dbaff55a66d59948d8545cc#egg=django-backcap
 
-django-reversion==1.6.1
+django-reversion==1.6.5
 
 # django-mailman
 -e git://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman
@@ -89,7 +89,7 @@ django-reversion==1.6.1
 # For Sentry
 raven==2.0.3
 
--e git+https://github.com/ojii/django-nani.git@bb47153e05b46b775658887f214a486412fe25a5#egg=django-nani
+django-hvad==0.2
 
 feedparser==5.1.2
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
@@ -99,7 +99,7 @@ django-simplegravatar==0.2
 
 # Askbot
 -e hg+https://atiberghien@bitbucket.org/atiberghien/django-keyedcache#egg=django-keyedcache
--e git://github.com/atiberghien/askbot-devel.git@083b4eded62f8f402a2502078c9c2f35c4baa508#egg=askbot
+-e git://github.com/ImaginationForPeople/askbot-devel.git@0ea4fc253c3b8dae883afbd759da1d4d1c45dba9#egg=askbot
 
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.1#egg=django-blog-zinnia
@@ -107,6 +107,12 @@ django-simplegravatar==0.2
 
 # REST API
 -e git://github.com/ImaginationForPeople/django-tastypie.git@2794c04f568c417279b2a48381e85b87cbec7274#egg=django-tastypie
+
+# Google diff patch
+diff-match-patch==20120106
+
+# Our version of actstream, patched to register models manually
+-e git://github.com/ImaginationForPeople/django-activity-stream.git@master#egg=django-activity-stream
 
 # Testing tools
 coverage<3.4

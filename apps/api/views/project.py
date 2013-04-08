@@ -132,7 +132,7 @@ class I4pProjectTranslationResource(ModelResource):
     themes = fields.CharField('themes', use_in='detail', null=True)
     
     class Meta:
-        queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
+        queryset = I4pProjectTranslation.objects.filter(master__in=I4pProject.on_site.all())
         resource_name = 'project'
         throttle = CacheDBThrottle()
         
@@ -195,7 +195,7 @@ class I4pProjectTranslationResource(ModelResource):
     def get_random(self, request, **kwargs):
         self.define_language_code(request)
         
-        random_project = I4pProjectTranslation.objects.filter(language_code=self.language_code, project__in=I4pProject.on_site.all()).order_by('?')[0]
+        random_project = I4pProjectTranslation.objects.filter(language_code=self.language_code, master__in=I4pProject.on_site.all()).order_by('?')[0]
         bundle = self.build_bundle(obj=random_project, request=request)
         to_be_serialized = self.full_dehydrate(bundle, for_list=False)
         to_be_serialized = self.alter_detail_data_to_serialize(request, to_be_serialized)
@@ -226,7 +226,7 @@ class I4pProjectTranslationListResource(ModelResource):
     project = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
     
     class Meta:
-        queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
+        queryset = I4pProjectTranslation.objects.filter(master__in=I4pProject.on_site.all())
         include_resource_uri = True
         throttle = CacheDBThrottle()
         
