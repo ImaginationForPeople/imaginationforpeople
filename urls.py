@@ -2,17 +2,16 @@ from django.conf import settings
 from django.conf.urls.defaults import patterns, url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-
-from dynamicsites.views import site_info
-#from i18nurls.i18n import i18n_patterns # XXX: update when moving to dj1.4
-from userena.contrib.umessages import views as messages_views
+import autocomplete_light
+autocomplete_light.autodiscover() # Keep this before admin.autodiscover()
 
 from askbot.sitemap import QuestionsSitemap
-
+from dynamicsites.views import site_info
 from django_notify.urls import get_pattern as get_notify_pattern
+from userena.contrib.umessages import views as messages_views
 from wiki.urls import get_pattern as get_wiki_pattern
-
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
@@ -46,22 +45,24 @@ urlpatterns = i18n_patterns('',
 if settings.DEBUG:
     urlpatterns += patterns('',
       (r'^site_media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-      (r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT, 'show_indexes': True}),
       url(r'^site-info$', site_info),
     )
+    
+    urlpatterns += staticfiles_urlpatterns()
+    
+    
 ##Zinia (blog)
 urlpatterns += i18n_patterns('',
                         url(r'^blog/', include('zinnia.urls')),
-                        url(r'^comments/', include('django.contrib.comments.urls'))
                         )
 
 urlpatterns += i18n_patterns('',
-#    url(r'^', include('apps.i4p_base.urls')),
+    url(r'^', include('apps.i4p_base.urls')),
 
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
-    url(r'^workgroup/', include('apps.workgroup.urls')),
+    url(r'^group/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^tags/', include('apps.tags.urls', namespace='tags')),
@@ -108,6 +109,10 @@ urlpatterns += patterns('',
 
     (r'^tinymce/', include('tinymce.urls')),
     (r'^uploadify/', include('uploadify.urls')),
+                        
+    ('^activity/', include('actstream.urls')),
+
+    url(r'autocomplete/', include('autocomplete_light.urls')),
 
     url('^robots\.txt$', include('robots.urls')),
                         

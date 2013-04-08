@@ -47,7 +47,7 @@ class I4pProfile(UserenaLanguageBaseProfile, AskbotBaseProfile):
        ('M', _('male')),
        ('F', _('female'))
     )
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, related_name='profile')
     gender = models.CharField(max_length=1, choices=GENDER_TYPE, null=True, blank=True)
     motto = models.TextField(_("motto"), null=True, blank=True)
     about = models.TextField(_("about"), null=True, blank=True)

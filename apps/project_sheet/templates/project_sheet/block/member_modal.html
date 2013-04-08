@@ -1,0 +1,38 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* member : member of member list (FIXME: object type ?)
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" strip %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/member_fancy_square.css" />
+{% endaddtoblock %}
+
+<li id="member-{{ member.id }}" class="member" >
+
+	<img src="{{ member.user.get_profile.get_mugshot_url }}" alt="{{ member.user.username }}" class="avatar"/>
+	<div class="details">
+		<h3 class="fullname">{{ member.user.get_full_name|default:member.user.username }}</h3>
+		<div class="country flag-{{ person.user.get_profile.country|lower }}">{{ person.user.get_profile.country|lower }}</div>
+		<div class="position">{{ member.role }}</div>
+		<a class="project" href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.translations.all.0.title }}</a>
+		<a href="{% url userena_umessages_compose_to member.user %}" class="contact">
+			<i class="i4p-memberlist-sprite i4p-memberlist-contact-grey"></i>
+			{% trans 'Contact' %}
+		</a>
+		<a href="{{ member.user.get_profile.get_absolute_url }}" class="profile">
+			<i class="i4p-memberlist-sprite i4p-memberlist-profile-grey"></i>
+			{% trans 'Profile' %}
+		</a>
+		<!-- FIXME: what is the url for the delete member action ? -->
+	</div>
+</li> 

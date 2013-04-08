@@ -8,7 +8,6 @@ Depending on who you are, you'll find here guidelines and tips to get you starte
    :maxdepth: 2
 
    coders.rst
-   integrators.rst
    translators.rst
 
 Open Process

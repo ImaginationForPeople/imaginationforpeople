@@ -1,0 +1,39 @@
+// load reusable components
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
+
+$i4p-form-action-sprite-dimensions: true;
+$i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
+@import "project_sheet/i4p-form-action/*.png"; // */
+// @include all-i4p-form-action-sprites; // NO AUTO INCLUDE
+
+.form-buttons {
+    display: block;
+    text-align: right;
+
+    .submit-button {
+	@include i4p-form-action-sprite('ok-white'); 
+
+	border: none;
+	display: block;
+	float: right;
+	font-size: 0;
+	margin-left: $sizeMarginMedium;
+	cursor: pointer;
+    }
+
+    .cancel-button {
+	@include i4p-form-action-sprite('cancel-white'); 
+
+	border: none;
+	display: block;
+	float: right;
+	font-size: 0;
+	margin-left: $sizeMarginMedium;
+	cursor: pointer;
+    }
+
+}
+

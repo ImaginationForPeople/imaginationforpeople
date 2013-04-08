@@ -15,32 +15,35 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-
-import re
-
-from django.views.decorators.csrf import csrf_exempt
-from django.core.urlresolvers import reverse
-from tagging.models import Tag
 """
 Ajax views for handling project sheet creation and edition.
 """
+
+import re
+
+from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.forms.models import modelform_factory
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseBadRequest, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
 from django.template.context import RequestContext
-from django.template.defaultfilters import linebreaksbr
+from django.template.defaultfilters import linebreaksbr, urlize
 from django.utils import simplejson, translation
+from django.utils.html import strip_tags
 from django.views.decorators.http import require_POST
 
 from honeypot.decorators import check_honeypot
+from reversion import revision
 
-import nani
+from apps.i4p_base.models import VersionActivity
+from apps.i4p_base.utils import action_create, make_diffs_for_object
 
 from .models import I4pProjectTranslation, Answer, Question
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, I4pProjectStatusForm, AnswerForm
-from .utils import get_or_create_project_translation_by_slug, get_project_translation_by_slug, create_parent_project
+from .forms import I4pProjectObjectivesForm, I4pProjectStatusForm
+from .utils import get_project_translation_by_slug
 
 TEXTFIELD_MAPPINGS = {
     'about_section_txt': 'about_section',
@@ -115,8 +118,8 @@ def _answer_load(language_code, project_slug, question):
     project_translation = get_object_or_404(I4pProjectTranslation,
                                             slug=project_slug,
                                             language_code=language_code,
-                                            project__site=site)
-    project = project_translation.project
+                                            master__site=site)
+    project = project_translation.master
     answer = get_object_or_404(Answer, project__id=project.id,
                                question__id=question)
 
@@ -145,61 +148,86 @@ def project_textfield_save(request, project_slug=None):
     # Check if we allow this field
     section = id
     if section in TEXTFIELD_MAPPINGS:
-        return _textfield_save(language_code, project_slug,
+        return _textfield_save(request, language_code, project_slug,
                                project_translation, section, value)
 
     # Check if it's an answer to a question
     question = _ANSWER_RE.search(id)
     if question:
-        return _answer_save(language_code, project_slug, project_translation,
+        return _answer_save(request, language_code, project_slug, project_translation,
                             question.groups()[0], value)
 
     return HttpResponseNotFound()
 
-
-def _answer_save(language_code, project_slug, project_translation, question, value):
-    project = project_translation.project
+    
+@revision.create_on_success
+def _answer_save(request, language_code, project_slug, project_translation, question, value):
+    project = project_translation.master
     question = get_object_or_404(Question, id=question)
 
     if value:
-        try:
-            answer = Answer.objects.untranslated().get(project=project,
-                                                       question=question)
-            if not language_code in answer.get_available_languages():
-                answer.translate(language_code)
-        except Answer.DoesNotExist:
-            answer = Answer.objects.create(project=project, question=question)
+        answer, created = Answer.objects.language(language_code).get_or_create(project=project,
+                                                                               question=question)
+        # Remove html tags
+        value = strip_tags(value)
         answer.content = value
         answer.save()
-        response_dict = dict(text=value,
+        
+        # Generate a diff
+        diffs = make_diffs_for_object(answer.translations.get(language_code=language_code),
+                                      'content',
+                                      answer.content)
+
+        if request.user.is_anonymous():
+            revision.user = User.objects.get(id=settings.ANONYMOUS_USER_ID)
+        else:
+            revision.user = request.user
+
+        # Create an action
+        answer_action = action_create(actor=request.user, verb='edit_pjquestion', action_object=answer, target=project)
+        revision.add_meta(VersionActivity, action=answer_action, diffs=diffs)
+        
+        response_dict = dict(text=linebreaksbr(urlize(value)), # Make line breaks and link urls
                              redirect=project_slug is None,
-                             redirect_url=project_translation.get_absolute_url())
+                             redirect_url=project.get_absolute_url())
 
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
         return HttpResponseNotFound()
 
-
-def _textfield_save(language_code, project_slug, project_translation, section, value):
+@revision.create_on_success
+def _textfield_save(request, language_code, project_slug, project_translation, section, value):
     # Resolve the fieldname
     fieldname = TEXTFIELD_MAPPINGS[section]
     FieldForm = modelform_factory(I4pProjectTranslation, fields=(fieldname,))
 
+    # prevent html tags from being saved
+    value = strip_tags(value)
+    
     form = FieldForm({fieldname: value}, instance=project_translation)
 
     if form.is_valid():
         response_dict = {}
-        form.save()
+        project_translation = form.save()
         if project_translation._meta.get_field(fieldname).choices:
             text = getattr(project_translation, "get_%s_display" % fieldname)()
             if fieldname == "completion_progress":
                 response_dict["completion_progress"] = getattr(project_translation,fieldname)
         else:
-            text = linebreaksbr(value)
+            # Generate line breaks and link urls if found
+            text = linebreaksbr(urlize(value))
 
+        if request.user.is_anonymous():
+            revision.user = User.objects.get(id=settings.ANONYMOUS_USER_ID)
+        else:
+            revision.user = request.user
+        project = project_translation.master
+        pj_translation_action = action_create(actor=request.user, verb='edit_pjfield', action_object=project_translation, target=project)
+        revision.add_meta(VersionActivity, action=pj_translation_action)
+            
         response_dict.update({'text': text or '',
                               'redirect': project_slug is None,
-                              'redirect_url': project_translation.get_absolute_url()})
+                              'redirect_url': project_translation.master.get_absolute_url()})
 
         return HttpResponse(simplejson.dumps(response_dict), 'application/json')
     else:
@@ -222,7 +250,7 @@ def project_sheet_edit_status(request, slug):
 
     # Status
     project_status_form = I4pProjectStatusForm(request.POST,
-                                               instance=project_translation.project)
+                                               instance=project_translation.master)
 
     if request.method == 'POST' and project_status_form.is_valid():
         project_status_form.save()
@@ -249,7 +277,7 @@ def project_update_related(request, project_slug):
     project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
                                                           language_code=language_code)
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     themes = ", ".join(request.POST.getlist('themes'))
     project_translation.themes = themes

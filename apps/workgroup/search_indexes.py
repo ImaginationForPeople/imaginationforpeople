@@ -20,7 +20,7 @@ class WorkGroupIndex(indexes.SearchIndex, indexes.Indexable):
     def get_model(self):
         return WorkGroup
 
-    def index_queryset(self):
+    def index_queryset(self, using=None):
         """
         Used when the entire index for model is updated.
         """

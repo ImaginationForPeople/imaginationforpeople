@@ -13,7 +13,7 @@ Parameters for this block
 
 <!-- REFERENCES - Viewable version -->
 
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
@@ -35,10 +35,10 @@ Parameters for this block
 			  {{ reference_formset }}
 			  <input type="submit"/>
 			</form>
-			{% endif %}
+			{% else %}
 			<ul>
 				{% if project_translation %}
-				{% for ref in project_translation.project.references.all %}
+				{% for ref in project_translation.master.references.all %}
 				<li class="link-item">{{ ref.desc|urlize|url_target_blank}}
 				</li> 
 				{% empty %}
@@ -56,6 +56,7 @@ Parameters for this block
 				<i class="action-add"></i>
 				{% trans "Edit" %}
 			</a>
+			{% endif %}
 			{% endif %}
 		</div> <!-- .references-links link-list -->
 

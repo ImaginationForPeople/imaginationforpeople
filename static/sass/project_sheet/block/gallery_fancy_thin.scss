@@ -1,0 +1,136 @@
+
+
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
+
+$gallery_sizeImageHeight: 197px;
+$gallery_sizeImageSmallWidth: 150px;
+$gallery_sizeImageBigWidth: 300px;
+
+$gallery_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
+$gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
+
+// act as a bootstrap "container"
+
+
+
+.project-gallery-widget {
+    ul {
+	margin:0;
+    }
+
+    .picture {
+	width: 100%;
+	position: relative;
+	height: $gallery_sizeImageHeight;
+	overflow: hidden;
+
+
+	&.picture-big {
+	    clear: both;
+	    display: block;
+	    width: 100%;
+
+	    .overlay-one {
+		background-position: (($gallery_sizeImageBigWidth - $gallery_sizeOverlayWidth) / 2) (($gallery_sizeImageHeight - $gallery_sizeOverlayHeight)/2 );
+	    }
+	}
+
+	&.picture-small {
+	    float: left;
+	    width: 150px;
+
+	    .image {
+		margin-left: -50%;
+	    }
+
+	    .overlay-one {
+		background-position: (($gallery_sizeImageSmallWidth - $gallery_sizeOverlayWidth) / 2) (($gallery_sizeImageHeight - $gallery_sizeOverlayHeight)/2 );
+	    }
+	}
+
+	a {
+	    width: inherit;
+	    height: inherit;
+	}
+
+	.image {
+	    position: absolute;
+	    height: inherit;
+	    width: 300px;
+
+	    img {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		&.color {
+		    @include i4p-transition(all .5s ease);
+		    opacity: 1;
+		}
+
+		&.bw {
+		    @include i4p-transition(all .5s ease);
+		    opacity: 1;
+		}
+	    }
+	}
+
+
+	.overlay-one {
+	    @include i4p-transition(all .5s ease);
+	    display: block;
+	    position: absolute;
+	    height: inherit;
+	    width: inherit;
+	    background-image: image-url($gallery_strOverlayUrl);
+	    background-repeat: no-repeat;
+	    opacity: 0;
+	}
+
+	.overlay-two {
+	    @include i4p-transition(all .5s ease);
+	    display: block;
+	    position: absolute;
+	    height: inherit;
+	    width: inherit;
+	    background-image: image-url('base/background-white-dots.png');
+	    opacity: 1;
+	}
+
+	.description {
+	    @include i4p-transition(all .5s ease);
+	    @include box-sizing(border-box);
+	    opacity: 0;
+	    position: absolute;
+	    display: block;
+	    background-color: rgba(0,0,0,0.7);
+	    min-height: 2rem;
+	    width: 100%;
+	    bottom: 0;
+	    padding: .5rem;
+	    color: white;
+	}
+
+	&:hover {
+	    .description {
+		opacity: 1;
+	    }
+	    .overlay-one {
+		opacity: 1;
+	    }
+	    .overlay-two {
+		opacity: 0;
+	    }
+	    .image {
+		.color { opacity: 1; }
+		.bw { opacity: 0; }
+	    }
+	}
+    }
+
+}
+

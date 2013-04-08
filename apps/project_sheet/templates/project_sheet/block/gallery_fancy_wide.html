@@ -1,0 +1,90 @@
+﻿
+{% load i18n %}
+{% load tagging_tags %}
+{% load compress %}
+{% load honeypot %}
+{% load sekizai_tags %}
+{% load comments %}
+{% load thumbnail %}
+{% load oembed_works_tags %}
+{% load unique_counter_tag %}
+{% load tabs %}
+
+
+{% addtoblock "css" strip %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/gallery_fancy_wide.css" />
+{% endaddtoblock %}
+{% addtoblock "js" strip %}
+    <script src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-modal.js"></script>
+{% endaddtoblock %}
+
+{% unique_counter gallery_fancy_wide %}
+{% with gallery_modal_unique_counter=gallery_fancy_wide_counter %}
+
+<div class="gallery-fancy-wide-block">
+	<h2><span>{% trans 'pictures' %}</span></h2>
+	<div class="row">
+		{% for picture in project.pictures.all %}
+		<div class="picture span2" 
+			data-slider-index="{{ forloop.counter }}"
+			data-modal-target-id="gallery-{{ gallery_modal_unique_counter }}" 
+			data-slider-view-id="gallery-modal-view-{{ gallery_modal_unique_counter }}"
+			data-toggle="i4p-gallery-modal" 
+			>
+			<!-- <img src="{{ MEDIA_URL }}{{ picture.original_image }}"/> -->
+
+			<div class="image">
+				<img src="{% thumbnail picture.original_image.name 140x120 upscale=1 crop='50,50' %}" class="color" alt="">
+			</div>
+
+			<div class="description">
+				{{picture.desc}}
+			</div>
+			{% comment %}
+			<a href="{% url project_sheet-instance-picture-del project_translation.slug picture.id %}" class="delete">
+				<i class="icon-remove icon-white"></i>
+			</a>
+			{% endcomment %}
+		</div>
+		{% empty %}
+		<div class="no-picture span8">
+		{% trans 'This project has no pictures yet' %}
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="vidgallery-fancy-wide-block">
+	<h2><span>{% trans 'videos' %}</span></h2>
+	<div class="row">
+		{% for video in project.videos.all %}
+		<div class="video span2" 
+			data-slider-index="{{ project.pictures.all|length|add:forloop.counter }}"
+			data-modal-target-id="gallery-{{ gallery_modal_unique_counter }}" 
+			data-slider-view-id="gallery-modal-view-{{ gallery_modal_unique_counter }}"
+			data-toggle="i4p-gallery-modal" 
+			>
+			<div class="remotevideo">
+				<!-- FIXME: extract video thumbnail as specified there : http://stackoverflow.com/questions/2068344/how-to-get-thumbnail-of-youtube-video-link-using-youtube-api -->
+				<img  src="{{ STATIC_URL }}images/play_video.png"  class="color" alt="">
+				<!-- { oembed 140x120 %}{{ video.video_url }}{% endoembed } -->
+			</div>
+
+			<div class="description">
+				{{video.desc}}
+			</div>
+			{% comment %}
+			[<a href="{% url project_sheet-instance-video-del project_translation.slug video.id %}">delete</a>]
+			{% endcomment %}
+		</div>
+		{% empty %}
+		<div class="no-video span8">
+			{% trans 'This project has no videos yet' %}
+		</div>
+		{% endfor %}
+	</div>
+</div>
+
+{% include "project_sheet/block/gallery_modal.html" %}
+
+{% endwith %}

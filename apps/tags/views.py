@@ -111,8 +111,8 @@ class TagPageView(TemplateView):
         # use a trick
         hilighted_projects= TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
             language_code=current_language_code,            
-            project__site=current_site,
-            project__pictures__isnull=False
+            master__site=current_site,
+            master__pictures__isnull=False
         ).distinct(), tag_instance).distinct()
         context['picture_project_translations'] = random.sample(hilighted_projects, min(4, len(hilighted_projects)))
 
@@ -120,39 +120,39 @@ class TagPageView(TemplateView):
         # Mature projects
         mature_project_translations = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
             language_code=current_language_code,
-            project__site=current_site,
-            project__status__in=('WIP', 'END')
+            master__site=current_site,
+            master__status__in=('WIP', 'END')
         ).distinct(), tag_instance).distinct()
         context['mature_project_translations'] = random.sample(mature_project_translations, min(4, len(mature_project_translations)))
 
         # Starting projects
         starting_project_translations = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
             language_code=current_language_code,            
-            project__site=current_site,
-            project__status__in=('IDEA', 'BEGIN')
+            master__site=current_site,
+            master__status__in=('IDEA', 'BEGIN')
         ).distinct(), tag_instance).distinct()
         context['starting_project_translations'] = random.sample(starting_project_translations, min(4, len(starting_project_translations)))
          
         # New projects
         context['new_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
             language_code=current_language_code,            
-            project__site=current_site,
-        ).distinct(), tag_instance).order_by('-project__created')[:4]
+            master__site=current_site,
+        ).distinct(), tag_instance).order_by('-master__created')[:4]
         
         # Latest modifications
         context['modified_project_translations'] = TaggedItem.objects.get_by_model(I4pProjectTranslation.objects.filter(
             language_code=current_language_code,            
-            project__site=current_site,
+            master__site=current_site,
         ).distinct(), tag_instance).order_by('-modified')[:4]
 
         # Related people
         project_translations = ModelTaggedItemManager().with_any([tag_instance.name],
                                                                  I4pProjectTranslation.objects.filter(
                                                                      language_code=current_language_code,
-                                                                     project__site=current_site,
+                                                                     master__site=current_site,
                                                                  )
                                                              ).distinct()
-        projects = [p.project for p in project_translations]
+        projects = [p.master for p in project_translations]
         
         context['people'] = ProjectMember.objects.filter(
             project__in=projects

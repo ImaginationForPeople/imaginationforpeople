@@ -1,0 +1,108 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/sprites";
+
+$gallery_strOverlayUrl: 'project_sheet/gallery_fancy/view-overlay.png';
+$gallery_sizeOverlayHeight: image-height($gallery_strOverlayUrl);
+$gallery_sizeOverlayWidth: image-width($gallery_strOverlayUrl);
+$gallery_sizeThumbImageHeight: 120px;
+$gallery_sizeThumbImageWidth: 140px;
+$gallery_sizeThumbTextHeight: 60px;
+
+
+.gallery-fancy-wide-block,
+.vidgallery-fancy-wide-block {
+     @include i4p-layout-block;
+
+    h2 {
+	@include i4p-font-title;
+    }
+
+    .picture,
+    .video {
+	width: $gallery_sizeThumbImageWidth;
+	height: $gallery_sizeThumbImageHeight + $gallery_sizeThumbTextHeight;
+	position: relative;
+
+	.delete {
+	    @include border-radius($sizeRadiusSmall);
+	    z-index: 2;
+	    position: absolute;
+	    top: 1px;
+	    right: 0px;
+	    background-color: rgba(0,0,0,0.5);
+	    width: $sizeTextNormal;
+	    height: $sizeTextNormal;
+	}
+
+	.remotevideo,
+	.image {
+	    z-index: 1;
+	    @include i4p-transition(all .5s ease);
+	    @include border-radius($sizeRadiusSmall);
+	    @include box-sizing(border-box);
+
+	    position: absolute;
+	    border: 1px solid $colorLightGrey;
+	    top: 0;
+	    height: $gallery_sizeThumbImageHeight + 2;
+
+	    img {
+		@include border-radius($sizeRadiusSmall);
+		width: 100%;
+		height: 100%;
+	    }
+
+
+	    // in before, we put the view icon
+	    &:before {
+		@include i4p-transition(all .5s ease);
+		background-image: image-url($gallery_strOverlayUrl);
+		background-position: center center;
+		background-repeat: no-repeat;
+		content: "";
+		display: block;
+		height: $gallery_sizeThumbImageHeight + 2;
+		left: 0;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		width: $gallery_sizeThumbImageWidth + 2;
+		z-index: 3;
+	    }
+
+	    &:after {
+		@include i4p-transition(all .5s ease);
+		background-color: rgba(255,255,255,0.1);
+		content: "";
+		display: block;
+		height: $gallery_sizeThumbImageHeight + 2;
+		left: 0;
+		opacity: 1;
+		position: absolute;
+		top: 0;
+		width: $gallery_sizeThumbImageWidth + 2;
+		z-index: 2;
+	    }
+
+	    &:hover {
+		border: 1px solid $colorMedGrey;
+		&:before {
+		    opacity: 1;
+		}
+
+		&:after {
+		    opacity: 0;
+		}
+	    }
+	}
+
+	.description {
+	    position: absolute;
+	    top: 128px;
+	    height: 40px;
+	    overflow: hidden;
+	}
+    }
+}

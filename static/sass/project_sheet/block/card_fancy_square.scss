@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 
 $sprite-layout: smart;
@@ -21,303 +21,308 @@ $topic-sprite-dimensions: true;
 
 .project-list.square.fancy {
     @include i4p-seemore-class;
-
     position: relative;
     margin-bottom: 20px;
     padding: 0;
     padding-top: 5px;
 
     h2 {
-	margin-top: 5px;
-	text-transform: uppercase;
-	font-size: $sizeTextLarge;
-	font-family: $fontOpenSans;
-	font-stretch: condensed;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-size: $sizeTextLarge;
+    font-family: $fontOpenSans;
+    font-stretch: condensed;
     }
 }
 
 .project.square.fancy {
     @include i4p-box-shadow-bottomleft;
     @include border-radius($sizeRadiusSmall);
+    display: inline-block;
+    width: 150px;
     height: 150px;
+    margin: 3px;
     position: relative;
 
     .summary {
-	@include border-radius($sizeRadiusSmall);
-	@include i4p-transition(all .5s ease);
-	position: relative;
-	height: 150px;
+    @include border-radius($sizeRadiusSmall);
+    @include i4p-transition(all .5s ease);
+    position: relative;
+    height: 150px;
 
-	background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-50.png");
-	background-repeat: no-repeat, repeat;
-	background-position: 200px 110px, top left;
-	background-size: 25px 25px, auto;
+    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-50.png");
+    background-repeat: no-repeat, repeat;
+    background-position: 200px 110px, top left;
+    background-size: 25px 25px, auto;
 
-	z-index: 2;
+    z-index: 2;
 
-	.title {
-	    @include i4p-transition(all .5s ease);
-	    position: absolute;
+    .title {
+        @include i4p-transition(all .5s ease);
+        position: absolute;
 
-	    font-family: $fontOpenSans;
-	    font-size: $sizeTextBig;
-	    font-stretch: condensed;
-	    font-weight: bold;
-	    line-height: $sizeTextBig * 1.2;
+        font-family: $fontOpenSans;
+        font-size: $sizeTextNormal;
+        font-stretch: condensed;
+        font-weight: bold;
+        line-height: $sizeTextNormal * 1.2;
 
-	    bottom: 55px;
-	    margin-left: 10px;
-	    margin-right: 10px;
-	    color: black;
-	    text-transform: uppercase;
-	    z-index: 2;
-	    opacity: 1;
-	    padding-left: 5px;
-	    padding-right: 5px;
+        bottom: 65px;
+        margin-left: 10px;
+        margin-right: 10px;
+        color: black;
+        text-transform: uppercase;
+        z-index: 2;
+        opacity: 1;
+        padding-left: 5px;
+        padding-right: 5px;
 
-	    span {
-		background-color: white;
-	    }
-	}
-
-	.description {
-	    opacity: 0;
-	    font-family: $fontOpenSans;
-	    font-size: $sizeTextSmall;
-	    font-style: italic;
-	    visibility: hidden;
-	    height: 50px;
-	    overflow: hidden;
-	}
-
-	&:before { // the SEE THE PROJECT label
-	    display: block;
-	    position: absolute;
-	    content: attr(data-action-1);
-	    text-transform: uppercase;
-
-	    font-family: $fontOpenSans;
-	    font-size: $sizeTextNormal;
-	    font-weight: bold;
-
-	    text-decoration: none;
-	    visibility: hidden;
-	    top: 105px;
-	    left: 10px;
-	    font-size: 80%;
-	    width: 65%;
-	    opacity: 0;
-	    color: white;
-	}
+        span {
+        background-color: $colorLightLightGrey;
+        }
     }
 
-    .progress {
-	@include i4p-transition(all .5s ease);
-	font-family: $fontOpenSans;
-	font-size: $sizeTextTiny;
-	position: absolute;
-	top: 90px;
-	left: 0;
-	width: 100%;
-	height: 25px;
-	color: white;
-	text-shadow: 0 0 $sizeRadiusSmall black;
-	padding-top: 10px;
-	background-image: image-url("project/front-uprounded-rectangle.png");
-	opacity: 1;
-	z-index: 3;
+    .description {
+        visibility: hidden;
+        position: absolute;
+        top: 30px;
+        height: 50px;
+        overflow: hidden;
+        padding: 10px;
+        text-decoration: none;
+        color: white;
+        z-index: 7;
+        opacity: 1;
+        
+        @include i4p-font-base($sizeTextSmall);
+        font-style: italic;
+        line-height: $sizeTextSmall;
+        
 
-	.status {
-	    display: block;
-	    position: absolute;
-	    width: 100px;
-	    top: 15px;
-	    left: 5px;
-	    font-style: italic;
-	    background-size: 100px 60px; // resize progressbar icon
-	    text-align: right;
-	    padding-right: 10px;
-	}
+    }
+
+    &:before { // the SEE THE PROJECT label
+        display: block;
+        position: absolute;
+        content: attr(data-action-1);
+        text-transform: uppercase;
+
+        font-family: $fontOpenSans;
+        font-size: $sizeTextNormal;
+        font-weight: bold;
+
+        text-decoration: none;
+        visibility: hidden;
+        top: 105px;
+        left: 10px;
+        font-size: 80%;
+        width: 65%;
+        opacity: 0;
+        color: white;
+    }
+    }
+
+    .project-progress {
+        @include i4p-transition(all .5s ease);
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        height: 15px;
+        line-height: 15px;
+        color: white;
+        padding-bottom: 5px;
+        padding-top: 15px;
+        background-image: image-url("project/front-uprounded-rectangle.png");
+        opacity: 1;
+        z-index: 3;
+        .status {
+            @include i4p-font-base($sizeTextTiny);
+            display: block;
+            position: relative;
+            width: 100px;
+            padding-right:0px;
+            height: 15px;
+            line-height: 15px;
+            font-style: italic;
+            background-size: 100px 60px; // resize progressbar icon
+            text-align: right;
+            margin: 0;
+        }
     }
 
     .location {
-	@include border-radius(0 0 $sizeRadiusSmall $sizeRadiusSmall);
-	@include box-sizing(border-box);
-	@include i4p-transition(all .5s ease);
-	position: absolute;
-	top: 125px;
-	color: white;
-	font-family: $fontOpenSans;
-	font-size: $sizeTextTiny;
-	width: 100%;
-	height: 25px;
-	background: black;
-	padding-left: 10px;
-	z-index: 3;
-	opacity: 1;
+    @include border-radius(0 0 $sizeRadiusSmall $sizeRadiusSmall);
+    @include box-sizing(border-box);
+    @include i4p-transition(all .5s ease);
+    position: absolute;
+    top: 130px;
+    color: white;
+    font-family: $fontOpenSans;
+    font-size: $sizeTextTiny;
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    background: black;
+    padding-left: 10px;
+    z-index: 3;
+    opacity: 1;
 
-	.flag {
-	    float: left;
-	    margin-right: 5px;
-	}
+    .flag {
+        margin: auto;
+        margin-right: 5px;
+    }
     }
 
 
     .pictos {
-	position: absolute;
-	@include i4p-transition(all .5s ease);
-	top: 0;
-	left: 0;
-	z-index: 5;
-	width: 100%;
-	height: 100%;
-	opacity: 1;
+    position: absolute;
+    @include i4p-transition(all .5s ease);
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
 
-	.picto-team {
-	    position: absolute;
-	    top: 105px;
-	    right: 25px;
-	}
+    .picto-team {
+        position: absolute;
+        top: 115px;
+        right: 25px;
+    }
 
-	.picto-editing {
-	    position: absolute;
-	    top: 105px;
-	    right: 10px;
-	}
+    .picto-editing {
+        position: absolute;
+        top: 115px;
+        right: 10px;
+    }
 
-	.picto-bestof {
-	    display: block;
-	    position: absolute;
-	    top: -2px;
-	    left: 5px;
-	}
+    .picto-bestof {
+        display: block;
+        position: absolute;
+        top: -2px;
+        left: 5px;
+    }
     }
 
     .topic {
-	@include i4p-transition(all .5s ease);
-	background-image: image-url("project/card-top-handler.png");
-	background-repeat: no-repeat;
-	background-position: top center;
-	background-opacity: 1;
-	opacity: 1;
-	z-index: 4;
-	position: absolute;
-	top: 0px;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
+    @include i4p-transition(all .5s ease);
+    background-image: image-url("project/card-top-handler.png");
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-opacity: 1;
+    opacity: 1;
+    z-index: 4;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 
-	.illustration {
-	    @include i4p-transition(all .5s ease);
-	    position: absolute;
-	    top: 2px;
-	    left: 65px;
-	}
-
-	.description {
-	    @include i4p-transition(all .5s ease);
-	    position: absolute;
-	    // FIXME: add left-size icon
-	    top: -20px;
-	    padding: 10px;
-	    text-align: center;
-	    font-family: $fontOpenSans;
-	    font-size: $sizeTextTiny;
-	    font-weight: bold;
-	    color: white;
-	    opacity: 0;
-	    visibility: hidden;
-	}
+    .illustration {
+        @include i4p-transition(all .5s ease);
+        position: absolute;
+        top: 2px;
+        left: 65px;
     }
 
+    .description {
+        @include i4p-transition(all .5s ease);
+        position: absolute;
+        // FIXME: add left-size icon
+        top: -20px;
+        padding: 10px;
+        text-align: center;
+        font-family: $fontOpenSans;
+        font-size: $sizeTextTiny;
+        font-weight: bold;
+        color: white;
+        opacity: 0;
+        visibility: hidden;
+    }
+    }
+    .card {
+        
+    }
     .photo {
-	@include border-radius($sizeRadiusSmall);
-	overflow: hidden;
-	position: absolute;
-	z-index: 1;
+    @include border-radius($sizeRadiusSmall);
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
 
-	top: 0px;
-	left: 0px;
-	width: 100%;
-	height: 100%;
 
-
-	img {
-	    @include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
-	    width: auto;
-	    height: 100%;
-	    margin-left: -50%;
-	}
+    img {
+        @include border-radius($sizeRadiusSmall $sizeRadiusSmall 0 0);
+        width: auto;
+        height: 100%;
+    }
 
     }
 
     &:hover {
 
-	.summary {
-	    height: 150px;
+    .summary {
+        height: 150px;
 
-	    background-color: rgba($colorLightBlue,0.7);
-	    background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-12.png");
-	    background-repeat: no-repeat , repeat;
-	    background-position: 100px 110px, 0 0;
+        background-color: rgba($colorLightBlue,0.7);
+        background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-12.png");
+        background-repeat: no-repeat , repeat;
+        background-position: 110px 100px, 0 0;
 
-	    .title {
-		visibility: hidden;
-		opacity: 0;
-	    }
+        .title {
+        visibility: hidden;
+        opacity: 0;
+        }
 
-	    .description {
-		position: absolute;
-		top: 30px;
-		padding: 10px;
-		visibility: visible;
-		text-decoration: none;
-		color: white;
-		z-index: 7;
-		opacity: 1;
-	    }
+        .description {
+        visibility: visible;
+        }
 
-	    &:before { // the SEE THE PROJECT label
-		visibility: visible;
-		opacity: 1;
-	    }
+        &:before { // the SEE THE PROJECT label
+        visibility: visible;
+        opacity: 1;
+        }
 
-	}
+    }
 
-	.location {
-	    opacity: 0;
-	}
+    .location {
+        opacity: 0;
+    }
 
-	.progress {
-	    opacity: 0;
-	}
+    .project-progress {
+        opacity: 0;
+    }
 
-	.photo {
-	    &:after {
-		opacity: 0;
-	    }
-	}
+    .photo {
+        &:after {
+        opacity: 0;
+        }
+    }
 
-	.topic {
-	    background-position: center -100px;
+    .topic {
+        background-position: center -100px;
 
-	    .illustration {
-		top: -100px;
-		opacity: 0;
-		visibility: hidden;
-	    }
+        .illustration {
+        top: -100px;
+        opacity: 0;
+        visibility: hidden;
+        }
 
-	    .description {
-		top: 0px;
-		opacity: 1;
-		visibility: visible;
-	    }
-	}
+        .description {
+        top: 0px;
+        opacity: 1;
+        visibility: visible;
+        }
+    }
 
-	.pictos {
-	    opacity: 0;
-	}
+    .pictos {
+        opacity: 0;
+    }
 
     } // hover
 

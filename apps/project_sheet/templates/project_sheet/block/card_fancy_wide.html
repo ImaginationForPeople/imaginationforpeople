@@ -10,16 +10,17 @@ Parameters for this block
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
 
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 {% endaddtoblock %}
 
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_fancy_wide.css" />
 {% endaddtoblock %}
 
-<a href="{{ project_translation.get_absolute_url }}" 
-	class="{% if gridsystem == "bootstrap" %}span-2{% else %}grid_5 alpha omega{% endif %} project wide-card">
-	<img src="{{ project_translation.project.pictures.all.0.small_pano_header.url }}"/>
+<a href="{{ project_translation.master.get_absolute_url }}" 
+	class="project wide-card">
+	<img src="{{ project_translation.master.pictures.all.0.small_pano_header.url }}"/>
+
 	<div class="project-information">
 		<p class="title"><span>{{ project_translation.title }}</span></p>
 		<p class="description">{{ project_translation.baseline }}</p>

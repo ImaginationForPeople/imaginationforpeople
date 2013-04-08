@@ -11,6 +11,8 @@ import djcelery
 
 from django.utils.translation import ugettext_lazy as _
 
+import apps.i4p_base.mdx_i4p as mdx_i4p
+
 # Import settings for the given site
 from site_settings import *
 
@@ -21,7 +23,7 @@ ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Support', 'support@imaginationforpeople.org'),
     ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
@@ -59,7 +61,7 @@ LANGUAGES = (
   ('de', u'Deutsch'),
   ('it', u'Italiano'),
   ('ru', u'Русский'),
-  ('zh', u'中文'),
+  ('zh-cn', u'中文'),
 )
 
 # If you set this to False, Django will make some optimizations so as not
@@ -172,6 +174,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         
     'django.core.context_processors.static',
     'apps.i4p_base.context_processors.search_form',
+    'apps.i4p_base.context_processors.settings',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',
@@ -204,10 +207,11 @@ INSTALLED_APPS = (
     'userena',
     'userena.contrib.umessages',
     'guardian',
-    'nani',
+    'hvad',
     'honeypot',
     'serializers',
     'tabs',
+    'logentry_admin',
 
     'raven.contrib.django',
     'tinymce',
@@ -232,11 +236,14 @@ INSTALLED_APPS = (
     'simplegravatar',
     'social_auth',
 
+    'actstream',
+    
     'django_notify',
     'wiki',
     'wiki.plugins.notifications',
-    #'grappelli',
+    'wiki.plugins.attachments',
     'filebrowser',
+
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -258,6 +265,7 @@ INSTALLED_APPS = (
     'mptt',
     'menus',
     'sekizai',
+    'autocomplete_light',
     
     'zinnia',
     'cmsplugin_zinnia',
@@ -275,8 +283,9 @@ INSTALLED_APPS = (
     'cmsplugin_iframe',
     'cmsplugin_contact',
 
-    'askbot',
     'askbot.deps.livesettings',
+    'askbot',
+    
     'longerusername',
     'keyedcache',
     'djcelery',
@@ -284,11 +293,15 @@ INSTALLED_APPS = (
     'followit',
     'tastypie',
 
+    'categories',
+    'categories.editor',
+
     # Internal Apps
     'apps.forum',
     'apps.i4p_base',
     'apps.member',
     'apps.project_sheet',
+    'apps.project_support',
     'apps.partner',
     'apps.workgroup',
     'apps.tags',
@@ -515,6 +528,8 @@ ALLOW_UNICODE_SLUGS = False
 ASKBOT_USE_STACKEXCHANGE_URLS = False 
 ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 LIVESETTINGS_CACHE_TIMEOUT = 6000
+KEYEDCACHE_ALIAS = "askbot"
+CACHE_TIMEOUT = LIVESETTINGS_CACHE_TIMEOUT
 
 ## Celery Settings
 # TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge
@@ -525,7 +540,20 @@ CELERY_ALWAYS_EAGER = DEBUG
 
 djcelery.setup_loader()
 
+# HVAD (yes, it's still prefixed with 'NANI')
 NANI_TABLE_NAME_SEPARATOR = ''
+
+# ACTIVITY STREAM
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('project_sheet.I4pProject', 'project_sheet.I4pProjectTranslation', 'auth.User', 'project_sheet.Answer'),
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'GFK_FETCH_DEPTH': 1,
+}
+
+# WIKI
+markdown_i4p = mdx_i4p.makeExtension()
+WIKI_MARKDOWN_EXTENSIONS = ['extra', 'toc', markdown_i4p]
 
 LOGGING = {
     'version': 1,
@@ -539,7 +567,7 @@ LOGGING = {
 
     'root': {
         'level': 'WARNING',
-        'handlers': ['sentry'],
+        'handlers': ['console'],
     },
     'formatters': {
         'verbose': {
@@ -562,7 +590,7 @@ LOGGING = {
             'class': 'raven.contrib.django.handlers.SentryHandler',
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         }

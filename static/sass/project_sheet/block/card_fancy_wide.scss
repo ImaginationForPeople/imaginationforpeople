@@ -1,4 +1,4 @@
-@import "i4p-mixins";
+@import "i4p/mixins";
 @import "i4p/constants";
 
 .project-list.wide-card {
@@ -43,11 +43,9 @@
 	.title {
 	    display: block;
 	    position: absolute;
-	    font-family: $fontOpenSans;
-	    font-size: $sizeTextNormal;
+	    @include i4p-font-base($sizeTextNormal);
 	    font-stretch: condensed;
 	    font-weight: bold;
-	    line-height: $sizeTextBig * 1.2;
 	    text-transform: uppercase;
 	    visibility: visible;
 	    color: black;
@@ -62,8 +60,7 @@
 
 	.description {
 	    padding-right: 70px;
-	    font-family: $fontOpenSans;
-	    font-size: $sizeTextNormal;
+	    @include i4p-font-base($sizeTextNormal);
 	    font-style: italic;
 	    opacity: 0;
 	}
@@ -78,7 +75,7 @@
 	visibility: visible;
 	background-color: rgba($colorLightBlue,0.7);
 	background-image: image-url("tags/icon-arrow-white-big.png"), image-url("base/background-black-dots-opacity-12.png");
-	background-position: 200px center, top left;
+	background-position: 230px center, top left;
 	color: white;
 
 	.title {

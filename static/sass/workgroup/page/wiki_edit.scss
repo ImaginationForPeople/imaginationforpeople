@@ -1,0 +1,37 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/fonts";
+
+#workgroup-wiki {
+	font-size:1.2rem;
+
+	h1 {
+		padding:15px 0 0 0;
+	}
+
+	.form-horizontal .controls {
+		margin-left:0;
+	}
+
+	label {
+		font-family:$fontOpenSans;
+		font-size:1.3rem;
+		float:none;
+		text-align:left;
+	}
+
+	textarea {
+		width:600px;
+		border-width:2px;
+		height:150px;
+	}
+
+	input[type="text"] {
+		width:600px;
+		border-width:2px;
+	}
+
+	.asteriskField {
+		display:none
+	}
+}

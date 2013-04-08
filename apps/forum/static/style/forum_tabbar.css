@@ -1,0 +1,57 @@
+/*===================================================================================
+                             TAB BAR +  RSS BTN + QUESTION COUNT
+====================================================================================*/
+
+div.tabBar{
+    zoom:1;
+    margin:0;
+    padding-top:15px;
+    padding-bottom:15px;}
+
+div.tabBar:after {  
+    content: "";
+    display: block;
+    clear: both;}
+
+div.tabBar a,
+div.tabBar span.label{
+    font-family: 'OpenSans',Arial,sans-serif;
+    text-transform:uppercase;
+    font-weight:bold;
+    font-size:12px; 
+    color:#706f6f;
+    background-color: transparent;
+}
+    
+div.tabBar a{
+    margin-left:10px;}
+    
+div.tabBar a:hover,
+div.tabBar a.on{
+    color:#242424;
+    text-decoration:none;}
+
+div.tabBar h2#questionCount{
+  float:left;
+  padding:0;
+  margin:0;
+  padding-top:2px;
+  text-transform:uppercase;
+  font-weight: bold;
+  font-size: 12px;
+  color: #242424;
+  font-family: 'OpenSans',Arial,sans-serif;}
+   
+div#sort_tabs,
+div.tabsA{
+    zoom:1;
+    float:right;}
+div#sort_tabs:after,
+div.tabsA:after {   
+    content: "";
+    display: block;
+    clear: both;}
+
+/*===================================================================================
+                             TAB BAR +  RSS BTN + QUESTION COUNT
+====================================================================================*/

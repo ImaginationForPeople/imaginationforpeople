@@ -91,7 +91,7 @@ class TestUtils(TestCase):
         # Get an existing translation and project
         translation_fr = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
                                                          language_code='fr')
-        parent = translation_fr.project
+        parent = translation_fr.master
 
         # Existing one
         requested_translation = get_project_translation_from_parent(parent=parent,
@@ -140,7 +140,7 @@ class TestUtils(TestCase):
                                                                     fallback_any=True)
 
         self.assertTrue(isinstance(requested_translation, I4pProjectTranslation))
-        self.assertEqual(requested_translation.project, parent)
+        self.assertEqual(requested_translation.master, parent)
 
 
     def test_get_project_translations_from_parents(self):
@@ -199,7 +199,7 @@ class TestUtils(TestCase):
         project_translation = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
                                                               language_code='fr')
 
-        project = project_translation.project
+        project = project_translation.master
 
         # Request to create a translation that already exists. That should fail.
         self.assertRaises(DatabaseError,
@@ -216,14 +216,14 @@ class TestUtils(TestCase):
 
         self.assertTrue(requested_translation.pk > 0)
         self.assertEqual(requested_translation.language_code, 'pt')
-        self.assertEqual(requested_translation.project, project)
+        self.assertEqual(requested_translation.master, project)
 
 
     def test_get_or_create_project_translation_by_slug(self):
         project_translation = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
                                                               language_code='fr')
 
-        project = project_translation.project
+        project = project_translation.master
 
         # Request to get or create a translation that already exists.
         requested_translation = get_or_create_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
@@ -242,14 +242,14 @@ class TestUtils(TestCase):
 
         self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'en']), 1)
         self.assertEqual(new_translation.slug, 'boby-at-the-sea')
-        self.assertEqual(new_translation.project, project)
+        self.assertEqual(new_translation.master, project)
 
 
     def test_get_or_create_project_translation_from_parent(self):
         project_translation = get_project_translation_by_slug(project_translation_slug='boby-a-la-mer',
                                                               language_code='fr')
 
-        project = project_translation.project
+        project = project_translation.master
 
 
         # already existing translation
@@ -266,7 +266,7 @@ class TestUtils(TestCase):
 
         self.assertEqual(len([t for t in project.translations.all() if t.language_code == 'pt']), 1)
         self.assertEqual(new_translation.slug, 'new-one')
-        self.assertEqual(new_translation.project, project)
+        self.assertEqual(new_translation.master, project)
 
 
     def test_delete_last_translation(self):

@@ -2,6 +2,26 @@
 Setting-up a development environment
 ====================================
 
+Bootstrapping an environment automatically
+==========================================
+
+There is a fabfile to help you.  The following commands should install and setup
+ everything on debian based Linux distributions.  All you need is fabric installed::
+
+  wget https://raw.github.com/ImaginationForPeople/imaginationforpeople/master/fabfile.py
+  fab devenv bootstrap_venv
+  fab devenv bootstrap_full
+
+Grabbing a copy of the production environnement
+-----------------------------------------------
+Working on a copy of the production database is the best way to avoid accidentally 
+breaking stuff::
+
+  fab prodenv database_download
+  fab devenv database_restore
+
+If you ran the above successfully, you can ignore the rest of this page.
+
 Bootstrapping an environment
 ============================
 
@@ -29,7 +49,9 @@ Your prompt should update to something like (note the prefix)::
 
   (i4p-env)glibersat@carpe:~/Source/i4p-env
 
-**Note**: For the next steps, you need to be in an activated environment.
+.. warning::
+
+  For all next steps, you need to be in an activated environment.
 
 
 Getting the code
@@ -48,6 +70,10 @@ dependencies using::
   pip install -U -r requirements.txt
 
 *It may be the right to fetch a cup of coffee! :-)*
+
+.. note::
+
+  From now on, the ``imaginationforpeople`` directory will be called **the project root** (or **PROJECT_ROOT**).
 
 
 Populating the Database
@@ -125,3 +151,66 @@ Once you're done, restart the server.
 .. _Ruby: http://www.ruby-lang.org/
 .. _gems: http://rubygems.org/
 .. _PostGreSQL: http://www.postgresql.org/
+
+
+Compass and assets management
+=============================
+
+The `I4P` project uses many pretty features for developpers, like SCSS_, CSS-Sprites for icons, etc and we decided 
+to use the Compass_ tool to help us do it automagically.
+
+Thus, you will need to (re)generate assets (pictures, stylesheets, etc) to have a fully functional web site.
+
+
+Installing compass
+------------------
+
+There are fabric tasks to make this easier (if you didn't already run fab devenv
+ bootstrap_full):
+
+Setup rbenv::
+
+  fab devenv install_rbenv
+
+Setup compass::
+  fab devenv install_compass
+
+Manually, to install Compass_, first make sure you have ruby and the bundle gem installed (the prefered way is to use rbenv_).
+
+Then, from the project root run::
+
+  bundle install --path=vendor/bundle
+
+
+Automatically generating assets
+-------------------------------
+
+
+To do one-time compilation of assets, use the following command ::
+
+  cd static && bundle exec compass compile static
+
+  
+To make an automaticall assets (re)generation when you edit files, use the following command while modifying
+CSSes::
+
+   cd static && bundle exec compass watch
+
+   
+Depending on your system environment, compass may crash when trying to regenerate files you are still editing.
+The following command can be a work-around ::
+
+  cd static && while true ; do bundle exec compass watch static ; done
+
+
+And finally, to delete all generated assets, simply type ::
+
+  cd static && while true ; do bundle exec compass clean
+
+  
+Instead of those complex command lines, you can also use the equivalent helper scripts (from the static/ directory):
+``build.sh``, ``watch.sh``, ``clean.sh``.
+    
+.. _Compass: http://compass-style.org/
+.. _Scss: http://sass-lang.com/
+.. _RbEnv: https://github.com/sstephenson/rbenv

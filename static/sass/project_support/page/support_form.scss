@@ -1,0 +1,104 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+.project-main {
+	margin-left:0;
+}
+.project-content {
+	background:$colorWhite;
+
+	#support-form {
+		background:$colorLightLightGrey; 
+		@include border-radius(4px,4px);
+		padding:1px 0 0 0;
+		margin:0 0 20px;
+		width:100%;
+		float:left;
+
+		h1 {
+			font-family: $fontOpenSans;
+			font-size: $sizeTextLarge;
+			font-stretch: condensed;
+			font-weight: bold;
+			text-transform: uppercase;
+			margin:10px;
+			line-height:52px;
+			font-style:normal;
+			color:$colorDarkGrey;
+			background:image-url('base/ressources-picto.png') no-repeat top left;
+			padding:0 0 0 60px;
+		}
+
+		p {
+			padding:0 15px;
+			margin-bottom:10px;
+
+			.helptext {
+				font-size:1rem;
+				padding:0 0 0 20%
+			}
+		}
+
+		#categorySearch {
+			padding:0 0 0 130px;
+			position:relative;
+			top:10px;
+
+			label {
+				font-family:$fontOpenSans;
+			    padding: 0 0 0 14px;
+			    text-transform: none;
+			    width: 300px;
+			    font-style:italic;
+			}
+		}
+
+		p.title-field {
+			float:left;
+
+			label {
+				width:119px;
+			}
+		}
+
+		label {
+			color: $colorMedDarkGrey;
+		    font-family: 'OpenSans',Arial,sans-serif;
+		    font-size: $sizeTextNormal;
+		    font-weight: bold;
+		    text-transform: uppercase;
+		    margin:0;
+		    display:block;
+		    float:left;
+		    width:20%;
+		    line-height:27px;
+		}
+
+		select {
+			width:75%;
+			border:1px solid $colorLightDarkGrey;
+			margin-bottom:0
+		}
+
+		input[type='text'], textarea {
+			width:73.5%;
+			border:1px solid $colorLightDarkGrey;
+			margin-bottom:0
+		}
+
+		input[type='submit'] {
+			@include i4p-background-vertical-gradient(#4AB9E8,#3990B4);
+			border:0;
+			height:22px;
+			@include border-radius(11px,11px);
+			color:white;
+			font-family: 'OpenSans',Arial,sans-serif;
+		    font-size: $sizeTextNormal;
+		    font-stretch:condensed;
+		    text-transform:uppercase;
+		    padding:0 20px;
+		    margin:5px 0 0 22%
+		}
+	}
+}

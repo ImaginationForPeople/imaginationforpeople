@@ -1,0 +1,39 @@
+// load reusable components
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/buttons";
+@import "i4p/fonts";
+
+
+
+.project-subheader {
+    @include i4p-sprite('sheet');
+    @include i4p-sprite-header('sheet');
+
+    background-color: $colorLightBlue;
+    border-bottom: 1px solid white;
+    color: white;
+    position: relative;
+    padding-top: $sizePaddingMedium;
+
+
+    color: white;
+
+
+    h2 {
+	@include i4p-font-title($sizeTextBig);
+	color: white;
+    }
+
+    .infotable {
+	th {
+	    background-color: $colorMedBlue;
+	    width: 90px;
+	}
+
+	td {
+	    color: white;
+	}
+    }
+}
+

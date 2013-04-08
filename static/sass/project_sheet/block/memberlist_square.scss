@@ -1,0 +1,283 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+@import "i4p/fonts";
+
+$sprite-layout: smart;
+@import "compass/utilities/sprites/base";
+
+// create sprites for progressbar
+$progressbar-sprite-dimensions: true;
+@import "project/progressbar/*.png"; // */
+@include all-progressbar-sprites(true);
+
+// @import "project/topic/*.png"; // */
+
+$picto-sprite-dimensions: true;
+@import "project/picto/*.png"; // */
+@include all-picto-sprites(true);
+
+$topic-sprite-dimensions: true;
+@import "project/topic/*.png"; // */
+@include all-topic-sprites(true);
+
+$i4p-slider-sprite-dimensions: true;
+$i4p-slider-sprites: sprite-map("project_sheet/i4p-slider/*.png");
+@import "project_sheet/i4p-slider/*.png"; // */
+// @include all-i4p-slider-sprites; // NO AUTO INCLUDE
+
+$i4p-memberlist-sprite-dimensions: true;
+$i4p-memberlist-sprites: sprite-map("project_sheet/i4p-memberlist/*.png");
+@import "project_sheet/i4p-memberlist/*.png"; // */
+
+
+$memberListFancySquare_sizeContainerWidth: 300px;
+$memberListFancySquare_sizeContainerHeight: 65px;
+
+$memberListFancySquare_sizeItemMargin: 10px;
+
+$memberListFancySquare_sizeWindowMarginWidth: 30px;
+$memberListFancySquare_sizeWindowWidth: $memberListFancySquare_sizeContainerWidth - (2 * $memberListFancySquare_sizeWindowMarginWidth);
+$memberListFancySquare_sizeWindowHeight: 65px;
+
+
+$memberListFancySquare_sizeWidth: 88px;
+$memberListFancySquare_sizeHeight: 52px;
+
+
+.memberlist-overlay.square.fancy {
+    @include all-i4p-memberlist-sprites; // include all sprites within memberlist-modal
+
+    @include i4p-transition(all .5s ease);
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
+    @include i4p-box-shadow-bottomleft;
+
+    display: none;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    opacity: 0;
+    z-index: 99;
+
+    background-color: $colorDarkGrey;
+    min-width: 200px;
+    min-height: 60px;
+    padding: $sizePaddingMedium;
+
+    &.open-member,
+    &.open-overlay {
+	display: block;
+	opacity: 1;
+    }
+
+    .avatar {
+	@include border-radius($sizeRadiusSmall);
+	display: block;
+	float: left;
+	width: 60px;
+	height: 60px;
+	overflow: hidden;
+	border: 1px solid $colorMedGrey;
+    }
+
+    .details {
+	margin-left: 75px;
+	font-size: $sizeTextSmall;
+
+	.fullname {
+	    @include i4p-font-subtitle($sizeTextNormal);
+	    line-height: $sizeTextNormal;
+	    font-style: italic;
+	    color: white;
+	    white-space: nowrap;
+	    margin: 0;
+	}
+	.position {
+	    @include i4p-font-subtitle($sizeTextTiny);
+	    font-weight: normal;
+	    display: block;
+	    margin-bottom: $sizeMarginSmall;
+	    white-space: nowrap;
+	    font-style: italic;
+	    color: white;
+	}
+
+	.contact, .profile {
+	    @include i4p-sprite-margin('i4p-memberlist');
+	    @include i4p-sprite('i4p-memberlist');
+	    @include i4p-transition(all .5s ease);
+
+	    display: block;
+
+	    color: $colorMedGrey;
+
+	    &:hover {
+		color: $colorLightGrey;
+		text-decoration: none;
+	    }
+	}
+	.contact, .profile {
+	    & > i { display: inline-block; }
+	}
+    }
+}
+
+
+.memberlist.square.fancy {
+    @include ctb-clearfix;
+    @include border-radius($sizeRadiusSmall);
+    @include box-sizing(border-box);
+    @include i4p-transition(all .5s ease);
+
+    width: $memberListFancySquare_sizeContainerWidth;
+    // width: inherit;
+    height: 70px;
+
+    overflow: hidden;
+    background-color: $colorLightGrey;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+
+    // hide block before anythingSlider initialization
+    & > .memberlist-slider {
+	visibility: hidden;
+	display: none;
+	// FIXME: add a loader as a background image
+    }
+
+
+    // NOTE: do not style the slider itself, the JS overrides everything.
+    .anythingSlider {
+	// height: $memberListFancySquare_sizeContainerHeight;
+	// width: $memberListFancySquare_sizeContainerWidth;
+	// padding-left: 22px;
+	// padding-right: 22px;
+		height:67px !important;
+
+	.anythingWindow {
+	    height: 100%;
+	    overflow: hidden;
+	    position: relative;
+	    width: $memberListFancySquare_sizeWindowWidth;
+	    margin-left: $memberListFancySquare_sizeWindowMarginWidth;
+	    margin-right: $memberListFancySquare_sizeWindowMarginWidth;
+	}
+
+	.anythingBase {
+	    position: absolute;
+	    margin: 0;
+	    // padding-left: ;
+	    // background-color: red;
+
+
+	    & > li {
+		@include box-sizing(border-box);
+		@include i4p-transition(all .5s ease);
+
+		display: block;
+		float: left;
+		margin: 0;
+		position: relative;
+		width: 60px;
+		opacity: 1;
+		visibility: visible;
+
+		img {
+		    position: absolute;
+		    left: 5px;
+		}
+
+		&.cloned {
+		    visibility: hidden;
+		    opacity: 0;
+		}
+	    }
+	}
+
+	.anythingControls {
+	    position: absolute;
+	    top: 100px;
+	    left: 0;
+	    display: block;
+	    height: $memberListFancySquare_sizeContainerHeight;
+	    width: $memberListFancySquare_sizeContainerWidth;
+	}
+
+	.arrow {
+	    position: absolute;
+	    top: 25px;
+
+	    &.back {
+		left: 10px;
+		background: $i4p-slider-sprites no-repeat;
+		@include i4p-slider-sprite(prev); 
+	    }
+
+	    &.forward {
+		right: 10px;
+		background: $i4p-slider-sprites no-repeat;
+		@include i4p-slider-sprite(next); 
+	    }
+
+	    & > a {
+		@include i4p-transition(all .5s ease);
+		font-size: $sizeTextLarge;
+		font-family: $fontOpenSans;
+		font-stretch: condensed;
+		font-size: $sizeTextHuge;
+		color: $colorMedGrey;
+
+		&:hover {
+		    color: $colorDarkGrey;
+		    text-decoration: none;
+		}
+	    }
+	}
+
+	.panel {
+	    height: $memberListFancySquare_sizeContainerHeight + 2;
+
+	    img {
+		@include i4p-transition(all .5s ease);
+		outline: 1px solid rgba(255,255,255,0);
+	    }
+
+	    &.activePage {
+		img {
+		    outline: 1px solid rgba(255,255,255,0.5);
+		}
+	    }
+
+	    .description, .source, .licence, .delete {
+		position: absolute;
+		top: 0;
+		height: 1px;
+		display: none;
+		visibility: hidden;
+	    }
+
+	}
+    }
+
+    input {
+	display: none;
+    }
+
+
+    .slide-input {
+	display: none;
+    }
+
+}
+
+// FIXME: move block rules elsewhere
+.member-block {
+    @include i4p-layout-block;
+    @include i4p-seemore-class;
+
+    h2 {
+	@include i4p-font-title;
+    }
+}

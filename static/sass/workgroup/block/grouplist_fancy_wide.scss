@@ -1,0 +1,63 @@
+@import "i4p/mixins";
+@import "i4p/constants";
+
+.project_workgroups {
+	margin:0 0 15px;
+
+	h2 {
+		font-family: $fontOpenSans;
+	    font-size: 1.6rem;
+	    font-stretch: condensed;
+	    text-transform: uppercase;
+	    background:image-url('workgroup/related_groups.png') no-repeat center left;
+	    padding:0 0 0 32px;
+	}
+
+	ul {
+		list-style-type:none;
+		margin:0;
+
+		li {
+			background:$colorLightLightGrey image-url('workgroup/group_ico.png') no-repeat 12px center;
+			padding-left:48px;
+			margin:0 0 5px;
+
+			a:hover {
+				text-decoration:none;
+
+				span {
+					text-decoration:underline;
+				}
+
+				p {
+					text-decoration:none;
+				}
+			}
+
+			div {
+				border-left:1px solid white;
+				padding:5px 5px 8px;
+
+				span {
+					font-family: $fontOpenSans;
+					color:black;
+					font-weight:bold;
+					font-size:1.1rem;
+				}
+
+				p {
+					font-family: $fontOpenSans;
+					font-size: 1.1rem;
+				    font-style: italic;
+				    line-height: 1.3rem;
+				    margin: 0;
+				    height:53px;
+				    overflow:hidden;
+				    color:black;
+				}
+			}
+		}
+	}
+
+	@include i4p-seemore-class;
+}

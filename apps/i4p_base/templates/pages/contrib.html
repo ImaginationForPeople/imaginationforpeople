@@ -1,9 +1,9 @@
-﻿{% extends "base_obsolete.html" %}
+﻿{% extends "base.html" %}
 {% load i18n cms_tags sekizai_tags %}
 {% load cache feeds %}
 
 {% block extra_head %}
-    {% addtoblock "js" %}
+    {% addtoblock "js" strip %}
         <script type="text/javascript">
             jQuery(document).ready(function($){
                 
@@ -30,9 +30,10 @@
 {% endblock %}
 
 {% block content %}  
-{% addtoblock "css" %}
-
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/pages/contrib.css" />
+{% addtoblock "css" strip %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/pages/contrib.css" />
+{% endaddtoblock %}
+{% addtoblock "css" strip %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/no-nav.css" />
 {% endaddtoblock %}
 

@@ -1,0 +1,130 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+form#fmanswer {
+  margin-top: 20px;
+  padding-top: 30px;
+  background: image-url('project_support/misc/ombre_questions.png') center top no-repeat;
+  font-family:$fontOpenSans;
+
+  p {
+    font-family:$fontOpenSans;
+
+    label {
+      font-size:1.1rem;
+    }
+  }
+
+  .message {
+    font-size:1.1rem;
+    line-height:1.5rem;
+
+    strong {
+      font-size:1.1rem;
+      font-weight:normal;
+    }
+  }
+
+  #question-subscribe-updates {
+    float: left;
+    margin: 0 5px 0 0;
+    position: relative;
+    top: 2px;
+  }
+
+  h2 {
+    font-family: $fontOpenSans;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin-top: 8px;
+    color: #04add1;
+    font-stretch:condensed;
+  }
+  div {
+    &.wmd-container {
+      margin-top: 20px;
+      border: 2px solid #87cad9;
+      background-color: #ffffff;
+      margin-bottom: 20px;
+    }
+    &#wmd-button-bar {
+      border-bottom: 1px solid #dedede;
+    }
+  }
+  textarea {
+    border: none;
+    width:93%
+  }
+  div {
+    &.preview-toggle {
+      padding-bottom: 20px;
+      p#pre-collapse {
+        text-transform: uppercase;
+        font-family: $fontOpenSans;
+        font-size: 1.4rem;
+        font-weight: bold;
+        color: #706f6f;
+        padding-bottom: 5px;
+        cursor: pointer;
+        font-stretch:condensed;
+      }
+    }
+    &.wmd-preview {
+      padding: 5px;
+      min-height: 60px;
+      height: auto !important;
+      height: 60px;
+      @include border-radius(5px,5px);
+      background-color: #fff;
+    }
+  }
+  table.proxy-user-info div.form-item {
+    padding-bottom: 10px;
+  }
+  input[type="text"] {
+    border: 2px solid #87CAD9;
+  }
+  table.proxy-user-info label {
+    color: #242424;
+    display: block;
+    font-family: $fontOpenSans;
+    font-size: 1.4rem;
+    font-weight: bold;
+    padding-bottom: 5px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  input#add-answer-btn {
+    text-transform: uppercase;
+    font-family: $fontOpenSans;
+    margin-top: 10px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 12px;
+    @include border-radius(15px,15px);
+    border: none;
+    @include box-shadow('none');
+    text-shadow: none;
+    height: auto;
+    color: #ffffff;
+    background: rgb(74, 185, 232);
+    background: -moz-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(74, 185, 232, 1)), color-stop(100%, rgba(57, 144, 180, 1)));
+    background: -webkit-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: -o-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    background: linear-gradient(to bottom, rgba(74, 185, 232, 1) 0%, rgba(57, 144, 180, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4ab9e8', endColorstr='#3990b4',GradientType=0 );
+  }
+  div.checkbox {
+    float: left;
+    margin-top: 20px;
+    label {
+      color: #706F6F;
+    }
+  }
+}

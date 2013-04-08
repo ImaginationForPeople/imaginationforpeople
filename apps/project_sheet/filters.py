@@ -239,7 +239,7 @@ class ProjectProgressFilterForm(FilterForm):
     """
 
     progress = forms.TypedMultipleChoiceField(required=False, coerce=str,
-                                              choices=I4pProjectTranslation.PROGRESS_CHOICES,
+                                              choices=I4pProject.PROGRESS_CHOICES,
                                               widget=MyCheckboxSelectMultiple)
 
     def apply_to(self, queryset, model_class):
@@ -290,7 +290,6 @@ class ProjectLocationFilterForm(FilterForm):
         if model_class == I4pProject:
             data = self.cleaned_data.get("country")
             if data:
-                print data
                 q_objects = None
                 # Dirty Fix: switch depending on type. Loop if list.
                 if isinstance(data, unicode):
