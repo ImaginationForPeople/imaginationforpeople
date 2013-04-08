@@ -50,7 +50,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					>
 
 					{% comment %} IMAGE LOOP {% endcomment %}
-					{% for project_picture in project_translation.project.pictures.all %}
+					{% for project_picture in project_translation.master.pictures.all %}
 					<li data-slider-index="{{ forloop.counter }}">
 						<img src="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}"  
 						alt="image-{{ forloop.counter }}" /> 
@@ -62,7 +62,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					{% endfor %}
 
 					{% comment %} VIDEO LOOP {% endcomment %}
-					{% for project_video in project_translation.project.videos.all %}
+					{% for project_video in project_translation.master.videos.all %}
 					<li data-slider-index="{{ forloop.counter }}">
 						{% oembed 520x400 %}{{ project_video.video_url }}{% endoembed %}
 						<div class="description">{{project_video.desc}}</div>
@@ -100,7 +100,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					class="gallery-slider" 
 					data-toggle="i4p-gallery-fancy-slider" 
 					data-slider-view-id="gallery-modal-view-{{ modal_unique_counter }}">
-					{% for project_picture in project_translation.project.pictures.all %}
+					{% for project_picture in project_translation.master.pictures.all %}
 					<li data-slider-index="{{ forloop.counter }}">
 					<a href="{% thumbnail project_picture.original_image.name 520x400 upscale=1 crop='50,50' %}">
 						<img src="{% thumbnail project_picture.original_image.name 88x58 upscale=1 crop='50,50' %}"  
@@ -109,8 +109,8 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 					</li>
 					{% endfor %}
 
-					{% for project_video in project_translation.project.videos.all %}
-					<li data-slider-index="{{ project_translation.project.pictures.all|length|add:forloop.counter }}">
+					{% for project_video in project_translation.master.videos.all %}
+					<li data-slider-index="{{ project_translation.master.pictures.all|length|add:forloop.counter }}">
 					<a href="#">
 						<img  src="{{ STATIC_URL }}images/play_video.png" class="color" alt="" />
 

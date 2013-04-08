@@ -15,7 +15,6 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from askbot.models.question import Thread
 from askbot.models.user import Activity
 from askbot.views.readers import QuestionsView
 """
@@ -27,13 +26,11 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
-from django.db.models import Q
 from django.forms.models import modelform_factory
 from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
 from django.shortcuts import render_to_response, get_object_or_404, redirect
@@ -46,15 +43,15 @@ from django.views.generic import TemplateView
 
 from django.contrib.auth.models import User
 from guardian.decorators import permission_required_or_403
+from actstream.models import target_stream, model_stream
 from tagging.models import TaggedItem
-from reversion.models import Version
 
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
 from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, ProjectFanAddForm, AnswerForm, ProjectVideoAddForm
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
-from .models import ProjectMember, ProjectFan, I4pProject, VERSIONNED_FIELDS, Question
+from .models import ProjectMember, ProjectFan, I4pProject, Question
 from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -90,7 +87,7 @@ def project_sheet_list(request):
 
     filter_forms_dict, extra_context = build_filters_and_context(data)
 
-    ordered_project_sheets = I4pProjectTranslation.objects.none()
+    ordered_project_sheets = I4pProject.objects.none()
     filters = FilterSet(filter_forms_dict.values())
 
     if filters.is_valid():
@@ -113,7 +110,7 @@ def project_sheet_list(request):
 
         # Fourth pass to order sheet
         if data.get("order") == "creation":
-            ordered_project_sheets = filtered_project_sheets.order_by('-project__created')
+            ordered_project_sheets = filtered_project_sheets.order_by('-master__created')
             extra_context["order"] = "creation"
         elif data.get("order") == "modification":
             ordered_project_sheets = filtered_project_sheets.order_by('-modified')
@@ -128,14 +125,15 @@ def project_sheet_list(request):
             # Here the number of buckets (m) is determined by the day of the
             # year
             day_of_year = int(datetime.now().strftime('%j'))
-            pseudo_random_field = "(project_id * (project_id + 3)) %% {0:d}".format(day_of_year)
-            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field}, order_by = ['-project__best_of','pseudo_random'])
+            pseudo_random_field = "(master_id * (master_id + 3)) %% {0:d}".format(day_of_year)
+            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field},
+                                                                   order_by=['-master__best_of','pseudo_random'])
 
         if data.has_key('page'):
             del data["page"]
         extra_context["getparams"] = data.urlencode()
-        extra_context["orderparams"] = extra_context["getparams"]\
-                                        .replace("order=creation", "")\
+        extra_context["orderparams"] = extra_context["getparams"] \
+                                        .replace("order=creation", "") \
                                         .replace("order=modification", "")
 
         extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].cleaned_data["themes"]]
@@ -211,14 +209,14 @@ class ProjectView(TemplateView):
             raise Http404
 
         if self.project_translation.language_code != language_code:
-            return redirect(self.project_translation, permanent=False)
+            return redirect(self.project_translation.master, permanent=False)
 
         return super(ProjectView, self).dispatch(request, *args, **kwargs)
             
     def post(self, request, slug, *args, **kwargs):
         # Info form
         project_info_form = I4pProjectInfoForm(request.POST,
-                                               instance=self.project_translation.project)
+                                               instance=self.project_translation.master)
         if project_info_form.is_valid():
             project_info_form.save()
     
@@ -228,29 +226,30 @@ class ProjectView(TemplateView):
         # Forms
         project_member_add_form = ProjectMemberAddForm()
         # project_member_formset = ProjectMemberFormSet(queryset=project_translation.project.detailed_members.all())
+        
         project_status_choices = OrderedDict((k, unicode(v)) 
                                              for k, v in I4pProject.STATUS_CHOICES)
         
-        project = self.project_translation.project
+        project = self.project_translation.master
 
         # Fetch questions
-        topics = []
+        self.topics = []
         for topic in Topic.objects.filter(site_topics=project.topics.all()):
             questions = []
             for question in topic.questions.all().order_by('weight'):
                 answers = Answer.objects.filter(project=project, question=question)
                 questions.append([question, answers and answers[0] or None])
-            topics.append([topic, questions])
+            self.topics.append([topic, questions])
                 
-        project_status_choices['selected'] = self.project_translation.project.status
+        project_status_choices['selected'] = self.project_translation.master.status
 
         # Related projects
         related_projects = TaggedItem.objects.get_related(self.project_translation,
-                                                          I4pProjectTranslation.objects.exclude(project__id=project.id),
+                                                          I4pProjectTranslation.objects.exclude(master__id=project.id),
                                                           num=3)
 
         context.update({
-            'topics': topics,
+            'topics': self.topics,
             'project': project,
             'project_translation': self.project_translation,
             'project_status_choices': simplejson.dumps(project_status_choices),
@@ -285,24 +284,24 @@ class ProjectEditInfoView(ProjectView):
     Edit Misc Info (website, ...)
     """
     def get(self, request, *args, **kwargs):
-        self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.project)
-        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.project.location)
+        self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.master)
+        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.master.location)
         return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
         # Misc info: website, ...
         self.project_info_form = I4pProjectInfoForm(request.POST,
-                                                    instance=self.project_translation.project)
+                                                    instance=self.project_translation.master)
 
         self.project_location_form = I4pProjectLocationForm(request.POST,
-                                                            instance=self.project_translation.project.location)
+                                                            instance=self.project_translation.master.location)
 
         if self.project_info_form.is_valid() and self.project_location_form.is_valid():
             self.project_info_form.save()
             location = self.project_location_form.save()
-            if not self.project_translation.project.location:
-                self.project_translation.project.location = location
-                self.project_translation.project.save()
+            if not self.project_translation.master.location:
+                self.project_translation.master.location = location
+                self.project_translation.master.save()
             
             return redirect(self.project_translation)
         else:
@@ -335,7 +334,7 @@ def project_sheet_create_translation(request, project_slug):
     except I4pProjectTranslation.DoesNotExist:
         return Http404
 
-    requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.project,
+    requested_project_translation = get_or_create_project_translation_from_parent(parent_project=current_project_translation.master,
                                                                                   language_code=requested_language_code,
                                                                                   default_title=current_project_translation.title)
 
@@ -344,7 +343,6 @@ def project_sheet_create_translation(request, project_slug):
     url = reverse('project_sheet-show', args=[requested_project_translation.slug])
     translation.activate(current_language)
     return redirect(url)
-
 
 def project_sheet_edit_question(request, slug, question_id):
     """
@@ -366,15 +364,15 @@ def project_sheet_edit_question(request, slug, question_id):
 
     # Lookup the answer. If does not exist, create it.
     try:
-        untrans_answer = Answer.objects.untranslated().get(project=project_translation.project,
+        untrans_answer = Answer.objects.untranslated().get(project=project_translation.master,
                                                            question=question)
         if not language_code in untrans_answer.get_available_languages():
             untrans_answer.translate(language_code)
             untrans_answer.save()
     except Answer.DoesNotExist:
-        answer = Answer.objects.create(project=project_translation.project, question=question)
+        answer = Answer.objects.create(project=project_translation.master, question=question)
 
-    answer = Answer.objects.get(project=project_translation.project,
+    answer = Answer.objects.get(project=project_translation.master,
                                 question=question)
 
     answer_form = AnswerForm(request.POST or None, instance=answer)
@@ -445,7 +443,7 @@ def project_sheet_edit_field(request, field, slug=None, topic_slug=None):
         context['project_member_form'] = ProjectMemberAddForm()
         context['answer_form'] = AnswerForm()
         context['project_tab'] = True
-        context['project'] = project_translation.project
+        context['project'] = project_translation.master
     elif topic_slug:
         context['topic'] = topic
 
@@ -473,7 +471,7 @@ class ProjectEditTagsView(ProjectView):
     def get(self, request, *args, **kwargs):
         self.project_sheet_themes_form = I4pProjectThemesForm(instance=self.project_translation)
 
-        self.project_sheet_objectives_form = I4pProjectObjectivesForm(instance=self.project_translation.project,
+        self.project_sheet_objectives_form = I4pProjectObjectivesForm(instance=self.project_translation.master,
                                                                       prefix="objectives-form")
 
         return super(ProjectEditTagsView, self).get(request, *args, **kwargs)
@@ -483,14 +481,14 @@ class ProjectEditTagsView(ProjectView):
                                                               instance=self.project_translation)
 
         self.project_sheet_objectives_form = I4pProjectObjectivesForm(request.POST,
-                                                                      instance=self.project_translation.project,
+                                                                      instance=self.project_translation.master,
                                                                       prefix="objectives-form")
 
         if self.project_sheet_themes_form.is_valid() and self.project_sheet_objectives_form.is_valid():
             self.project_sheet_themes_form.save()
             self.project_sheet_objectives_form.save()
 
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         else:
             return super(ProjectEditTagsView, self).post(request, *args, **kwargs)
 
@@ -536,7 +534,7 @@ class ProjectGalleryAddPictureView(ProjectGalleryView):
         self.picture_form = ProjectPictureAddForm(request.POST, request.FILES)
         if self.picture_form.is_valid():
             picture = self.picture_form.save(commit=False)
-            picture.project = self.project_translation.project
+            picture.project = self.project_translation.master
             picture.save()
 
             return redirect('project_sheet-instance-gallery', self.project_translation.slug, permanent=False)
@@ -563,7 +561,7 @@ def project_sheet_del_picture(request, slug, pic_id):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    picture = ProjectPicture.objects.filter(project=project_translation.project, id=pic_id)
+    picture = ProjectPicture.objects.filter(project=project_translation.master, id=pic_id)
     picture.delete()
 
     return redirect('project_sheet-instance-gallery', project_translation.slug, permanent=False)
@@ -581,7 +579,7 @@ class ProjectGalleryAddVideoView(ProjectGalleryView):
         self.video_form = ProjectVideoAddForm(request.POST, request.FILES)
         if self.video_form.is_valid():
             video = self.video_form.save(commit=False)
-            video.project = self.project_translation.project
+            video.project = self.project_translation.master
             video.save()
 
             return redirect('project_sheet-instance-gallery', self.project_translation.slug, permanent=False)
@@ -608,7 +606,7 @@ def project_sheet_del_video(request, slug, vid_id):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    video = ProjectVideo.objects.filter(project=project_translation.project, id=vid_id)
+    video = ProjectVideo.objects.filter(project=project_translation.master, id=vid_id)
     video.delete()
 
     return redirect('project_sheet-instance-gallery', project_translation.slug, permanent=False)
@@ -624,23 +622,23 @@ class ProjectEditReferencesView(ProjectView):
         return context
     
     def get(self, request, *args, **kwargs):
-        self.reference_formset = ProjectReferenceFormSet(queryset=self.project_translation.project.references.all())
+        self.reference_formset = ProjectReferenceFormSet(queryset=self.project_translation.master.references.all())
         return super(ProjectEditReferencesView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
         self.reference_formset = ProjectReferenceFormSet(request.POST,
-                                                         queryset=self.project_translation.project.references.all())
+                                                         queryset=self.project_translation.master.references.all())
 
         if self.reference_formset.is_valid():
             refs = self.reference_formset.save()
             for ref in refs:
-                self.project_translation.project.references.add(ref)
+                self.project_translation.master.references.add(ref)
 
         next_url = request.POST.get("next", None)
         if next_url:
             return redirect(next_url)
 
-        return redirect(self.project_translation)
+        return redirect(self.project_translation.master)
 
 
 class ProjectMemberAddView(ProjectView):
@@ -664,7 +662,7 @@ class ProjectMemberAddView(ProjectView):
         
         if self.project_member_add_form.is_valid():
             project_member = self.project_member_add_form.save(commit=False)
-            project_member.project = self.project_translation.project
+            project_member.project = self.project_translation.master
             project_member.user = request.user
             project_member.save()
 
@@ -692,7 +690,7 @@ def project_sheet_member_delete(request, project_slug, username):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     project_member = get_object_or_404(ProjectMember,
                                        user__username=username,
@@ -762,56 +760,21 @@ def project_sheet_fan_delete(request, project_slug, username):
 
     return redirect(project_translation)
 
-def project_sheet_history(request, project_slug):
+class ProjectHistoryView(ProjectView):
     """
-    Show the history of a project member
+    Display a page of the modifications of the project
     """
-    language_code = translation.get_language()
+    template_name = 'project_sheet/page/history.html'
 
-    # get the project translation and its base
-    try:
-        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
-                                                              language_code=language_code)
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
-
-    parent_project = project_translation.project
-
-    #versions = Version.objects.get_for_object(project_translation).order_by('revision__date_created')
-
-    project_translation_ct = ContentType.objects.get_for_model(project_translation)
-    parent_project_ct = ContentType.objects.get_for_model(parent_project)
-
-    versions = Version.objects.filter(Q(content_type=project_translation_ct,
-                                        object_id=unicode(project_translation.id)) |
-                                      Q(content_type=parent_project_ct,
-                                        object_id=unicode(parent_project.id))).order_by('-revision__date_created')
-
-    project_translation_previous_version = None
-    parent_project_previous_version = None
-
-    for version in versions:
-        #Directly modify object in query set in order to keep order
-        if version.content_type == project_translation_ct:
-            if project_translation_previous_version:
-                version.diff = fields_diff(project_translation_previous_version,
-                                           version,
-                                           VERSIONNED_FIELDS[project_translation_ct.model_class()])
-            project_translation_previous_version = version
-        else:# version.content_type == parent_project_ct:
-            if parent_project_previous_version:
-                version.diff = fields_diff(parent_project_previous_version,
-                                           version,
-                                           VERSIONNED_FIELDS[parent_project_ct.model_class()])
-            parent_project_previous_version = version
-
-
-    return render_to_response('project_sheet/obsolete/history.html',
-                              {'project_translation' : project_translation,
-                               'versions' : versions,
-                               'history_tab' : True},
-                              context_instance=RequestContext(request))
-
+    def get_context_data(self, slug, **kwargs):    
+        context = super(ProjectHistoryView, self).get_context_data(slug, **kwargs)
+        
+        parent_project = self.project_translation.master
+        
+        context['activity'] = target_stream(parent_project)
+            
+        return context
+        
 
 class ProjectRecentChangesView(TemplateView):
     template_name = 'project_sheet/obsolete/all_recent_changes.html'
@@ -819,14 +782,7 @@ class ProjectRecentChangesView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
 
-        twenty_days_ago = datetime.now() - timedelta(days=30)
-
-        project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
-        parent_project_ct = ContentType.objects.get_for_model(I4pProject)
-        
-        versions = Version.objects.filter(Q(content_type=project_translation_ct) | Q(content_type=parent_project_ct)).filter(revision__date_created__gt=twenty_days_ago).order_by('-revision__date_created')
-
-        context['history'] = get_project_project_translation_recent_changes(versions)
+        context['activity'] = model_stream(I4pProject)
 
         return context
 
@@ -843,7 +799,7 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
         project_translation = self.get_project_translation(kwargs["project_slug"])
         self.questions_url = reverse('project_discussion_list', args=[project_translation.slug])
         
-        threads = project_translation.project.discussions.filter(language_code=language_code)
+        threads = project_translation.master.discussions.filter(language_code=language_code)
         self.thread_ids = threads.values_list('id', flat=True)
         
         context = QuestionsView.get_context_data(self, **kwargs)
@@ -855,7 +811,7 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
         activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
     
         context.update({
-             'project' : project_translation.project,
+             'project' : project_translation.master,
              'project_translation' : project_translation,
              'active_tab' : 'discuss',
              'activities' : activities,

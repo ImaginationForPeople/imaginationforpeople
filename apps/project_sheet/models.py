@@ -31,19 +31,21 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.core.urlresolvers import reverse
 from django.core.mail import mail_managers
 from django.db import models
-from django.db.models.signals import post_save, post_delete
+from django.db.models.signals import post_save, post_delete, class_prepared
 from django.dispatch import receiver
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 
+
 from autoslug.fields import AutoSlugField
 from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
-from nani.models import TranslatableModel, TranslatedFields
+from hvad.models import TranslatableModel, TranslatedFields, TranslationManager
 import reversion
-from reversion.models import Version
+import reversion.models
+
 from south.modelsinspector import add_introspection_rules
 from south.modelsinspector import add_ignored_fields
 from tagging.fields import TagField
@@ -51,9 +53,25 @@ from tagging.models import Tag
 
 from apps.member.models import I4pProfile
 from apps.i4p_base.models import Location
+from apps.i4p_base.managers import CurrentSiteTranslationManager
 
 # Add Introspector for south: django-licenses field
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
+
+VERSIONED_FIELDS = {
+    'I4pProject' : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
+    'I4pProjectTranslation': ['title', 'baseline', 'language_code', 'about_section', 'themes', 'completion_progress', 'master'],
+    'AnswerTranslation': ['content', 'master']
+}
+    
+# Keep this before classes, otherwise I4pProject won't be caught
+@receiver(signal=class_prepared)
+def register_versioned_models(sender, **kwargs):
+    if sender.__name__ in VERSIONED_FIELDS:
+        fields = VERSIONED_FIELDS[sender.__name__]
+        if not reversion.is_registered(sender):
+            reversion.register(sender, fields=fields)
+
 
 class ProjectReference(models.Model):
     """
@@ -98,7 +116,7 @@ class SiteTopic(models.Model):
     def __unicode__(self):
         return '%s & %s' % (self.site, self.topic) 
 
-class I4pProject(models.Model):
+class I4pProject(TranslatableModel):
     """
     Root object for a project. Holds only shared data
     """
@@ -109,6 +127,12 @@ class I4pProject(models.Model):
         ('WIP', _('In development')),
         ('END', _('Mature')),
     ]
+    
+    PROGRESS_CHOICES = [
+        ("EDIT", _("In edition")),
+        ("FULL", _("Complete")),
+    ]
+    
     author = models.ForeignKey(I4pProfile, verbose_name=_("author"), null=True, blank=True)
     ip_addr = models.CharField(max_length=15, null=True, blank=True)
 
@@ -160,12 +184,47 @@ class I4pProject(models.Model):
     site = models.ManyToManyField(Site, help_text=_('The sites on which this project sheet is accessible.'), 
                                   verbose_name=_("sites"),
                                   related_name='projects')
-    objects = models.Manager()
-    on_site = CurrentSiteManager()
+    objects = TranslationManager()
+    on_site = CurrentSiteTranslationManager()
     
     add_ignored_fields(["^dynamicsites\.fields\.FolderNameField"])
     add_ignored_fields(["^dynamicsites\.fields\.SubdomainListField"])
     
+    translations = TranslatedFields(
+        meta = {'unique_together' : [('language_code', 'slug')]},
+        
+        language_code = models.CharField(_('language'),
+                                         max_length=6,
+                                         choices=settings.LANGUAGES),
+        
+        title = models.CharField(_("title"), max_length=80,
+                                 default=_("My Project Title")),
+        
+        slug = AutoSlugField(populate_from="title",
+                             always_update=True,
+                             unique_with=['language_code']),
+        
+        completion_progress = models.CharField(verbose_name=_('status'),
+                                               max_length=5, choices=PROGRESS_CHOICES, default="EDIT",
+                                               null=True, blank=True),
+        
+        modified = models.DateTimeField(null=True, blank=True),
+        
+        baseline = models.CharField(verbose_name=_("one line description"),
+                                    max_length=180,
+                                    null=True,
+                                    blank=True,
+                                    default=_("One line description")
+                                ),
+        
+        about_section = models.TextField(_("about the project"), null=True, blank=True),
+        partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True),
+        callto_section = models.TextField(_("Help request"), null=True, blank=True),
+        
+        themes = TagField(_("Themes of the project"), null=True, blank=True),
+        
+    )
+
     def get_primary_picture(self):
         """
         Return the first picture, if available
@@ -176,28 +235,20 @@ class I4pProject(models.Model):
             return None
     
     def __unicode__(self):
-        res = u"Parent project %d" % self.id
-        if self.translations.all().count():
-            res = "%s (%s)" % (res,
-                               self.translations.all()[0].slug)
-
-        return res
-
+        return self.lazy_translation_getter('title', 'Project: %s' % self.pk)
 
     def get_absolute_url(self):
-        # Don't move this, or you get in trouble with cyclic imports
-        from .utils import get_project_translation_from_parent
+        current_language = translation.get_language()
 
-        language_code = translation.get_language()
-        project_translation = get_project_translation_from_parent(parent=self,
-                                                                  language_code=language_code,
-                                                                  fallback_language='en',
-                                                                  fallback_any=True)
+        # Don't move this into the 'activate' block or hvad will get
+        # crazy with the language change
+        slug = self.lazy_translation_getter('slug') 
 
-        return project_translation.get_absolute_url()
-
-
-
+        translation.activate(self.language_code)
+        url = reverse('project_sheet-show', kwargs={'slug': slug})
+        translation.activate(current_language)
+        
+        return url
 
 class Question(TranslatableModel):
     """
@@ -222,88 +273,33 @@ class Answer(TranslatableModel):
         unique_together = (("question", "project"), )
         
     def __unicode__(self):
-        return 'Answer to: [%s]' % (self.question,)
+        return u'Answer to: [%s] (Project %s)' % (self.question, self.project)
 
 
-class I4pProjectTranslation(models.Model):
-    """
-    A translation of a project
-    """
+# XXX HVAD
+# def last_modification_date(sender, instance, **kwargs):
+#     if sender == Version:
+#         version = instance
+#         ct_project = ContentType.objects.get_for_model(I4pProject)
+#         ct_sheet = ContentType.objects.get_for_model(I4pProjectTranslation)
 
-    PROGRESS_CHOICES = [
-        ("EDIT", _("Currently being edited")),
-        ("FULL", _("Complete")),
-    ]
-    class Meta:
-        unique_together = ('language_code', 'slug')
+#         if version.content_type == ct_sheet:
+#             try:
+#                 project_sheet = ct_sheet.model_class().objects.get(id=version.object_id)
+#                 project_sheet.modified = version.revision.date_created
+#                 project_sheet.save()
+#             except:
+#                 pass
+#         elif version.content_type == ct_project:
+#             try:
+#                 project = ct_project.model_class().objects.get(id=version.object_id)
+#                 for project_sheet in project.translations.all():
+#                     project_sheet.modified = version.revision.date_created
+#                     project_sheet.save()
+#             except:
+#                 pass
 
-    project = models.ForeignKey(I4pProject, related_name='translations')
-
-    language_code = models.CharField(_('language'),
-                                     max_length=6,
-                                     choices=settings.LANGUAGES)
-
-    title = models.CharField(_("title"), max_length=80,
-                             default=_("My Project Title"))
-    slug = AutoSlugField(populate_from="title",
-                         always_update=True,
-                         unique_with=['language_code'])
-
-    completion_progress = models.CharField(verbose_name=_('status'),
-                                max_length=5, choices=PROGRESS_CHOICES, default="EDIT",
-                                null=True, blank=True)
-
-    modified = models.DateTimeField(null=True, blank=True)
-
-    baseline = models.CharField(verbose_name=_("one line description"),
-                                max_length=180,
-                                null=True,
-                                blank=True,
-                                default=_("One line description")
-                                )
-
-    about_section = models.TextField(_("about the project"), null=True, blank=True)
-    partners_section = models.TextField(_("who are the partners of this project"), null=True, blank=True)
-    callto_section = models.TextField(_("Help request"), null=True, blank=True)
-
-    themes = TagField(_("Themes of the project"), null=True, blank=True)
-
-    # @models.permalink
-    def get_absolute_url(self):
-        current_language = translation.get_language()
-        translation.activate(self.language_code)
-        url = reverse('project_sheet-show', kwargs={'slug': self.slug})
-        translation.activate(current_language)
-        return url
-
-
-    def __unicode__(self):
-        return u"Translation of '%d' in '%s' : %s" % (self.project.id, self.language_code, self.slug)
-
-
-def last_modification_date(sender, instance, **kwargs):
-    if sender == Version:
-        version = instance
-        ct_project = ContentType.objects.get_for_model(I4pProject)
-        ct_sheet = ContentType.objects.get_for_model(I4pProjectTranslation)
-
-        if version.content_type == ct_sheet:
-            try:
-                project_sheet = ct_sheet.model_class().objects.get(id=version.object_id)
-                project_sheet.modified = version.revision.date_created
-                project_sheet.save()
-            except:
-                pass
-        elif version.content_type == ct_project:
-            try:
-                project = ct_project.model_class().objects.get(id=version.object_id)
-                for project_sheet in project.translations.all():
-                    project_sheet.modified = version.revision.date_created
-                    project_sheet.save()
-            except:
-                pass
-
-post_save.connect(last_modification_date, sender=Version)
+# post_save.connect(last_modification_date, sender=Version)
 
 
 
@@ -389,48 +385,44 @@ class ProjectFan(models.Model):
         return u"%s - %s" % (self.project, self.user)
 
 
+# XXX: HVAD
 # Email on events
-@receiver(post_save, sender=I4pProjectTranslation, dispatch_uid='email-on-new-project-translation')
-def email_managers_on_new_translation(sender, instance, created, **kwargs):
-    if created:
-        body = render_to_string('project_sheet/emails/new_translation.txt', {'project_translation': instance})
-        mail_managers(subject=_(u'New project/translation added'), message=body)
+# @receiver(post_save, sender=I4pProjectTranslation, dispatch_uid='email-on-new-project-translation')
+# def email_managers_on_new_translation(sender, instance, created, **kwargs):
+#     if created:
+#         body = render_to_string('project_sheet/emails/new_translation.txt', {'project_translation': instance})
+#         mail_managers(subject=_(u'New project/translation added'), message=body)
 
-@receiver(post_save, sender=ProjectMember, dispatch_uid='email-on-member-project-association')
-def email_managers_when_a_member_joins_a_project(sender, instance, created, **kwargs):
-    if created:
-        body = render_to_string('project_sheet/emails/member_joined_project.txt', {'project_member': instance})
-        mail_managers(subject=_(u'A member has joined a project'), message=body)
+# @receiver(post_save, sender=ProjectMember, dispatch_uid='email-on-member-project-association')
+# def email_managers_when_a_member_joins_a_project(sender, instance, created, **kwargs):
+#     if created:
+#         body = render_to_string('project_sheet/emails/member_joined_project.txt', {'project_member': instance})
+#         mail_managers(subject=_(u'A member has joined a project'), message=body)
 
 
-@receiver(post_delete, sender=I4pProjectTranslation, 
-          dispatch_uid='delete-parent-project-when-deleting-last-translation')
-def delete_parent_if_last_translation(sender, instance, **kwargs):
-    """
-    When the last translation of a project is deleted, delete the project.
-    """
-    try:
-        project = instance.project
-    except I4pProject.DoesNotExist:
-        # Can happen if the parent when already deleted
-        return
+# @receiver(post_delete, sender=I4pProjectTranslation, 
+#           dispatch_uid='delete-parent-project-when-deleting-last-translation')
+# def delete_parent_if_last_translation(sender, instance, **kwargs):
+#     """
+#     When the last translation of a project is deleted, delete the project.
+#     """
+#     try:
+#         project = instance.master
+#     except I4pProject.DoesNotExist:
+#         # Can happen if the parent when already deleted
+#         return
         
-    if project.translations.count() == 0:
-        project.delete()
-
-
-# Reversions
-VERSIONNED_FIELDS = {
-    I4pProject : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
-    I4pProjectTranslation : ['title', 'baseline', 'about_section', 'themes', 'completion_progress']
-}
-
-for model, fields in VERSIONNED_FIELDS.iteritems():
-    if not reversion.is_registered(model):
-        reversion.register(model, fields=fields)
+#     if project.translations.count() == 0:
+#         project.delete()
 
 class TagCMS(CMSPlugin):
     tag = models.ForeignKey(Tag) #models.CharField(_('Tag'), choices=gen_tag_list(), max_length=50) 
         
     def copy_relations(self, oldinstance):
         self.tag = oldinstance.tag
+
+from actstream.models import actstream_register_model
+actstream_register_model(I4pProject)
+actstream_register_model(I4pProject.objects.translations_model)
+actstream_register_model(User)
+actstream_register_model(Answer)

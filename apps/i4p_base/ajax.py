@@ -86,7 +86,7 @@ class ProjectSerializer(ModelSerializer):
 
     @staticmethod
     def get_mosaic(obj):
-        p = obj.project.get_primary_picture()
+        p = obj.master.get_primary_picture()
         if p:
             return p.mosaic_tile.url
         else:

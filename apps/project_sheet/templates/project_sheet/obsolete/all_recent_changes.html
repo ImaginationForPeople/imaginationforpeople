@@ -3,6 +3,7 @@
 {% load compress %}
 {% load i18n %}
 {% load humanize %}
+{% load activity_tags %}
 
 {% block style %}
   {% compress css %}
@@ -22,31 +23,16 @@
   <div class="content">
     <div class="container">
 
-    <h2>{% trans "Latest 20 days changes" %}     
+    <h2>{% trans "Latest project changes" %}     
         <a href="{% url project_sheet-recent-changes-rss %}" class="rss" style="float:right; top:3px; position:relative;"><img src="{{ STATIC_URL }}images/base/picto_rss.gif" alt="{% trans 'RSS Feed' %}" /></a>
     </h2>
 
       <div id="changes_list">
-	
-	{% for entry in history %}
-	  {% ifchanged entry.revision.date_created.date %}<hr/>{% endifchanged %}
-	  {% ifchanged entry.revision.date_created.date %}<h3>{{ entry.revision.date_created.date|naturalday|capfirst }}</h3>{% endifchanged %}
-
-	  {% with entry.object as the_object %}
-	    {% if the_object.title %} {# that's a project translation #}
-	    {% ifchanged %}<h4><a href="{% language entry.language_code %}{% url project_sheet-show entry.slug %}{% endlanguage %}" class="link">{{ the_object.title }}</a></h4>{% endifchanged %}
-
-	      <ul>
-		<li>{{ entry.revision.date_created.time }}: {{ entry.diff|join:", " }}<br/></li>
-	      </ul>
-	    {% else %}
-	      dd
-	    {% endif %}
-	  {% endwith %}
-	  
-	{% empty %}
-        {% trans 'Your request did not return any result.'%}
-	{% endfor %}
+	<ul>
+	  {% for action in activity %}
+	  <li>{% display_action action %}<br/></li>
+	  {% endfor %}
+	</ul>
       </div>
     </div>
 
