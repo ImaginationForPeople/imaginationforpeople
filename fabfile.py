@@ -264,7 +264,7 @@ def updatemaincode():
     with cd(os.path.join(env.venvfullpath, '%(projectname)s' % env)):
         run('git fetch')
         run('git checkout %s' % env.gitbranch)
-        run('git pull origin %s' % env.gitbranch)
+        run('git pull %s %s' % (env.gitrepo, env.gitbranch))
 
 @task
 def app_install():
@@ -480,7 +480,7 @@ def bootstrap_full():
     execute(install_rbenv)
     execute(install_compass)
     
-    execute(deploy_bootstrap)
+    execute(bootstrap_venv)
     
     if(env.wsginame == 'dev.wsgi'):
         execute(install_devdeps);

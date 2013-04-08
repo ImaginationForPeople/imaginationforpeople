@@ -1,0 +1,32 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "js" strip %}
+<script type="text/javascript">
+var addthis_config =
+{
+    {% if ADDTHIS_USERNAME %}
+    username: '{{ADDTHIS_USERNAME}}',
+    {% endif %}
+    {% if GOOGLE_ANALYTICS_ACCOUNT %}
+    data_ga_property: '{{GOOGLE_ANALYTICS_ACCOUNT}}',
+    {% endif %}
+    {% get_current_language as LANGUAGE_CODE %}
+    ui_language: '{{LANGUAGE_CODE|truncatechars:2 }}'
+};
+</script>
+{% endaddtoblock %}
+
+{% addtoblock "footer_js" strip %}
+<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
+{% endaddtoblock %}
+
+{% addtoblock "footer_js" strip %}
+<script type="text/javascript">
+// load only when all assets are ready
+$(window).load(function() {
+// Addthis
+addthis.init(); 
+});
+</script>
+{% endaddtoblock %}

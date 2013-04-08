@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
-    
+    <title>{% block title %}{% endblock %} - {{ settings.APP_TITLE|escape }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
     <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
@@ -130,11 +130,11 @@
     
     {{ include_django("sites_specs.html", request) }}
     
-    {% if not debug %}
+    {% if GOOGLE_ANALYTICS_ACCOUNT and not debug  %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(["_setAccount", "UA-21778007-2"]);
-      _gaq.push(["_setDomainName", "imaginationforpeople.org"]);
+      _gaq.push(["_setAccount", "{{GOOGLE_ANALYTICS_ACCOUNT}}"]);
+      _gaq.push(["_setDomainName", "{{ site.domain }}"]);
       _gaq.push(["_trackPageview"]);
    
      (function() {

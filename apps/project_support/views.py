@@ -20,6 +20,45 @@ from apps.tags.models import TaggedCategory
 from askbot.search.state_manager import SearchState
 from apps.project_sheet.views import CurrentProjectTranslationMixin
     
+
+class ProjectSupportListAll(QuestionsView):
+    template_name = "project_support/project_support_list_all.html"
+    is_specific = True
+    jinja2_rendering = False
+
+    def get_context_data(self, **kwargs):
+        #project_translation = self.get_project_translation(kwargs["project_slug"])
+        
+        self.questions_url = reverse('project_support_list_all')
+        self.ask_url = reverse('project_support_list_all')
+        
+        threads = Thread.objects.all().filter(projectsupport__isnull=False)
+        self.thread_ids = threads.values_list('id', flat=True)
+        
+        context = QuestionsView.get_context_data(self, **kwargs)   
+        
+        prop_count = ProjectSupport.objects.all().filter(type='PROP').count()
+        call_count = ProjectSupport.objects.all().filter(type='CALL').count()
+        
+        activity_ids = []
+        for thread in threads:
+            for post in thread.posts.all():
+                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
+        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('-active_at')[:15]
+        
+        context.update({
+             #'project' : project_translation.project,
+            # 'project_translation' : project_translation,
+             'active_tab' : 'support',
+             'prop_count' : prop_count,
+             'call_count' : call_count,
+             'activities' : activities,
+             'root_category' : TaggedCategory.objects.get_or_create(name='support')[0],
+             #'feed_url': reverse('project_support_main', args=[project_translation.slug])+"#TODO_RSS",
+        })
+        return context
+    
+        
 class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
     template_name = "project_support/project_support_list.html"
     is_specific = True
@@ -31,9 +70,10 @@ class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
         self.questions_url = reverse('project_support_main', args=[project_translation.slug])
         self.ask_url = reverse('project_support_propose', args=[project_translation.slug])
         
+        self.thread_ids = project_translation.projectsupport_set.values_list('thread', flat=True)
+        
         context = QuestionsView.get_context_data(self, **kwargs)
         
-        self.thread_ids = project_translation.projectsupport_set.values_list('thread', flat=True)
         threads = Thread.objects.filter(id__in=self.thread_ids)
         
         prop_count = project_translation.projectsupport_set.filter(type="PROP").count()
@@ -46,7 +86,7 @@ class ProjectSupportListView(CurrentProjectTranslationMixin, QuestionsView) :
         activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
         
         context.update({
-             'project' : project_translation.project,
+             'project' : project_translation.master,
              'project_translation' : project_translation,
              'active_tab' : 'support',
              'prop_count' : prop_count,
@@ -71,7 +111,7 @@ def propose_project_support(request, project_slug, question_id=None):
             raise Http404
     
         if project_translation.language_code != language_code:
-            return redirect(project_translation, permanent=False)
+            return redirect(project_translation.master, permanent=False)
         
         question = None
         initial = {}
@@ -151,7 +191,7 @@ def view_project_support(request, project_slug, question_id):
     if project_translation.language_code != language_code:
         return redirect(project_translation, permanent=False)
 
-    project = project_translation.project
+    project = project_translation.master #mref to ancestor class in Hvad is .master (was .project)
     
     search_state = SearchState.get_empty()
     search_state._questions_url = reverse('project_support_main', args=[project_translation.slug])
