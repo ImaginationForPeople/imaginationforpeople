@@ -5,6 +5,8 @@
         <h2>
             <a href="{{questions_url}}{{question.id}}/" title="{{specific_question.thread.title}}">{{specific_question.thread.title}}</a>
         </h2>
+        {% block extra_description %}
+        {% endblock %}
         <p>{{question.summary|escape}}</p>
 
         <ul class="tag_list">
