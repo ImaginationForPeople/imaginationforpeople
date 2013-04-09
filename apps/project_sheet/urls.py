@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^add/(?P<topic_slug>[-\w]+)/$', views.ProjectStartView.as_view(), name='project_sheet-start'),
 
     # Listing
-    url(r'^list/$', views.project_sheet_list, name='project_sheet-list'),
+    url(r'^list/$', views.ProjectList.as_view(), name='project_sheet-list'),
     url(r'^recent-changes/$', views.ProjectRecentChangesView.as_view(), name='project_sheet-recent-changes'),
     #List all existing supports of all projects
     # url(r'^list-all-supports$',support_views.ProjectSupportListAll.as_view(),name='project_support_list_all'),

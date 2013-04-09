@@ -75,78 +75,86 @@ class CurrentProjectTranslationMixin(object):
         
         return project_translation
 
-def project_sheet_list(request):
+class ProjectList(TemplateView):
     """
     Display a listing of all projects
     """
-    language_code = translation.get_language()
 
-    data = request.GET.copy()
+    template_name = 'project_sheet/page/project_list.html'
+    
+    def get(self, request, *args, **kwargs):
+        data = request.GET.copy()
 
-    filter_forms_dict, extra_context = build_filters_and_context(data)
+        filter_forms_dict, extra_context = build_filters_and_context(data)
+        
+        ordered_project_sheets = I4pProject.objects.none()
+        filters = FilterSet(filter_forms_dict.values())
+        
+        language_code = translation.get_language()
+        
+        if filters.is_valid():
+            # First pass to filter project
+            filtered_projects = filters.apply_to(queryset=I4pProject.on_site.all(),
+                                                 model_class=I4pProject)
+            # Second pass to select language and site
+            project_sheet_ids = []
+            for project in filtered_projects:
+                project_sheet = get_project_translation_from_parent(project,
+                                                                    language_code,
+                                                                    fallback_language='en',
+                                                                    fallback_any=True)
+                project_sheet_ids.append(project_sheet.id)
+                
+            i18n_project_sheets = I4pProjectTranslation.objects.filter(id__in=project_sheet_ids)
+            
+            # Third pass to filter sheet
+            filtered_project_sheets = filters.apply_to(queryset=i18n_project_sheets,
+                                                       model_class=I4pProjectTranslation)
+            
+            # Fourth pass to order sheet
+            if data.get("order") == "creation":
+                ordered_project_sheets = filtered_project_sheets.order_by('-master__created')
+                extra_context["order"] = "creation"
+            elif data.get("order") == "modification":
+                ordered_project_sheets = filtered_project_sheets.order_by('-modified')
+                extra_context["order"] = "modification"
+            else:
+                # By default, display the project listing using the following order: 
+                # best_of, random().
+                # We need the ordering to be stable within a user session session.
+                # As a hashing function, use a hopefully portable pure SQL
+                # implementation (using only basic sql operators) of 
+                # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
+                # Here the number of buckets (m) is determined by the day of the
+                # year
+                day_of_year = int(datetime.now().strftime('%j'))
+                pseudo_random_field = "(master_id * (master_id + 3)) %% {0:d}".format(day_of_year)
+                self.ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field},
+                                                                       order_by=['-master__best_of','pseudo_random'])
 
-    ordered_project_sheets = I4pProject.objects.none()
-    filters = FilterSet(filter_forms_dict.values())
+            if data.has_key('page'):
+                del data["page"]
 
-    if filters.is_valid():
-        # First pass to filter project
-        filtered_projects = filters.apply_to(queryset=I4pProject.on_site.all(),
-                                             model_class=I4pProject)
-        # Second pass to select language and site
-        project_sheet_ids = []
-        for project in filtered_projects:
-            project_sheet = get_project_translation_from_parent(project,
-                                                                language_code,
-                                                                fallback_language='en',
-                                                                fallback_any=True)
-            project_sheet_ids.append(project_sheet.id)
-        i18n_project_sheets = I4pProjectTranslation.objects.filter(id__in=project_sheet_ids)
+            self.data = data
+            self.filter_forms_dict = filter_forms_dict
 
-        # Third pass to filter sheet
-        filtered_project_sheets = filters.apply_to(queryset=i18n_project_sheets,
-                                                   model_class=I4pProjectTranslation)
+        return super(ProjectList, self).get(request, *args, **kwargs)
+    
+    def get_context_data(self, **kwargs):
+        context = super(ProjectList, self).get_context_data(**kwargs)
 
-        # Fourth pass to order sheet
-        if data.get("order") == "creation":
-            ordered_project_sheets = filtered_project_sheets.order_by('-master__created')
-            extra_context["order"] = "creation"
-        elif data.get("order") == "modification":
-            ordered_project_sheets = filtered_project_sheets.order_by('-modified')
-            extra_context["order"] = "modification"
-        else:
-            # By default, display the project listing using the following order: 
-            # best_of, random().
-            # We need the ordering to be stable within a user session session.
-            # As a hashing function, use a hopefully portable pure SQL
-            # implementation (using only basic sql operators) of 
-            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
-            # Here the number of buckets (m) is determined by the day of the
-            # year
-            day_of_year = int(datetime.now().strftime('%j'))
-            pseudo_random_field = "(master_id * (master_id + 3)) %% {0:d}".format(day_of_year)
-            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field},
-                                                                   order_by=['-master__best_of','pseudo_random'])
+        context["getparams"] = self.data.urlencode()
+        context["orderparams"] = context["getparams"].replace("order=creation", "") \
+                                                     .replace("order=modification", "")
 
-        if data.has_key('page'):
-            del data["page"]
-        extra_context["getparams"] = data.urlencode()
-        extra_context["orderparams"] = extra_context["getparams"] \
-                                        .replace("order=creation", "") \
-                                        .replace("order=modification", "")
+        context["selected_tags"] = [int(t.id) for t in self.filter_forms_dict["themes_filter"].cleaned_data["themes"]]
+        context.update(self.filter_forms_dict)
+        context["filters_tab_selected"] = True
 
-        extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].cleaned_data["themes"]]
+        context['project_translation_list'] = self.ordered_project_sheets
 
+        return context
 
-    extra_context.update(filter_forms_dict)
-    extra_context["filters_tab_selected"] = True
-
-    return object_list(request,
-                       template_name='project_sheet/page/project_list.html',
-                       queryset=ordered_project_sheets,
-                       # paginate_by=12,
-                       allow_empty=True,
-                       template_object_name='project_translation',
-                       extra_context=extra_context)
 
 class ProjectStartView(TemplateView):
     """
