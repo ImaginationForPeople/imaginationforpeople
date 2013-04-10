@@ -655,7 +655,7 @@ class ProjectMemberAddView(ProjectView):
         self.project_member_add_form = ProjectMemberAddForm(request.POST, request.FILES)
 
         # check if not yet member
-        if request.user in self.project_translation.project.members.all():
+        if request.user in self.project_translation.master.members.all():
             return redirect(self.project_translation)
         
         if self.project_member_add_form.is_valid():
@@ -664,7 +664,7 @@ class ProjectMemberAddView(ProjectView):
             project_member.user = request.user
             project_member.save()
 
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         else:
             return super(ProjectMemberAddView, self).get(request, *args, **kwargs)
         
