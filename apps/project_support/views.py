@@ -111,7 +111,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
 
 class ProjectSupportThreadView(ProjectDiscussionThreadView):
     qtypes=['pj-need', 'pj-help']
-    answer_controls_template_name = "project_support/block/answer_controls.html"
+    template_name = "project_support/project_support_question_thread.html"
     
     def get_question_url(self):
         return reverse('project_support_view', args=[self.context_instance.slug,

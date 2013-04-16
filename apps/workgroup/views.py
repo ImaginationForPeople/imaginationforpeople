@@ -352,7 +352,6 @@ class GroupDiscussionCreateView(SpecificQuestionCreateView):
     
 class GroupDiscussionThreadView(SpecificQuestionThreadView):
     template_name = "workgroup/page/group_discuss_thread.html"
-    answer_controls_template_name = "workgroup/block/answer_controls.html"
     qtypes = ["wg-discuss"]
     
     def get_question_url(self):

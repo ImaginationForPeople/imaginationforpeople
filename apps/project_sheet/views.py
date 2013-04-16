@@ -890,7 +890,6 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
 
 class SpecificQuestionThreadView(SpecificQuestionTypeMixin, QuestionView):
     template_name = "project_questions/page/question_thread.html"
-    answer_controls_template_name = "project_questions/block/answer_controls.html"
     jinja2_rendering = False
     
     def get_question_url(self):
@@ -928,8 +927,6 @@ class SpecificQuestionThreadView(SpecificQuestionTypeMixin, QuestionView):
             'edit_question_url' : self.get_edit_url(),
             'search_state' : search_state,
             'disable_retag' : True,
-            'answer_controls_template_name' : self.answer_controls_template_name
-            
         })
         
         return context
