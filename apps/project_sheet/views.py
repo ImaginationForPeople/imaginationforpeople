@@ -1005,7 +1005,7 @@ class ProjectDiscussionThreadView(CurrentProjectTranslationMixin, SpecificQuesti
         context = SpecificQuestionThreadView.get_context_data(self, **kwargs)
         
         context.update({
-             'project' : self.context_instance.project,
+             'project' : self.context_instance.master,
              'project_translation' : self.context_instance,
              'active_tab' : 'discussion',
         })
