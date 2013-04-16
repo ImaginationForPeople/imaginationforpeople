@@ -1,0 +1,35 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project_translation_list : list of I4pProjectTranslation
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card_list.css" />
+{% endaddtoblock %}
+
+{% comment %}
+<div class="project-list wide-card">
+	{% for project_translation in project_translation_list %}
+	{% include "project_sheet/block/project_card.html" %}
+	{% empty %}
+	{% trans "No projects found" %}
+	{% endfor %}
+</div>
+{% endcomment %}
+
+<section id="projects-list">
+    <header>
+        <h1>Projets</h1>
+        <a href="#">Voir tout (15)</a>
+    </header>
+
+{% include "project_sheet/block/project_card.html" %}
+
+</section>
