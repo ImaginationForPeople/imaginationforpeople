@@ -5,6 +5,7 @@ from django.forms.widgets import HiddenInput
 from django.contrib.contenttypes.models import ContentType
 
 class SpecificQuestionForm(forms.ModelForm):
+    # implicit field : type from SpecificQuestion
     title = TitleField()
     text = QuestionEditorField()
     
