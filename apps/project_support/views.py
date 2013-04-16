@@ -16,6 +16,7 @@ from askbot.views.readers import QuestionsView, QuestionView
 from askbot.models.question import Thread
 from apps.forum.models import SpecificQuestion
 from askbot.models.user import Activity
+from apps.project_support.forms import ProjectSheetNeedForm
         
 class ProjectSupportListView(ProjectDiscussionListView) :
     template_name = "project_support/project_support_list.html"
@@ -81,7 +82,8 @@ class ProjectSupportListAll(SpecificQuestionListView):
 
 class ProjectSupportCreateView(ProjectDiscussionCreateView):
     template_name = 'project_support/project_support_form.html'
-    qtypes=['pj-need', 'pj-help']
+    qtypes = ['pj-need', 'pj-help']
+    form_class = ProjectSheetNeedForm
     
     def get_success_url(self):
         return reverse('project_support_main', args=[self.context_instance.slug])
@@ -110,6 +112,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
 
 class ProjectSupportThreadView(ProjectDiscussionThreadView):
     qtypes=['pj-need', 'pj-help']
+    answer_controls_template_name = "project_support/block/answer_controls.html"
     
     def get_question_url(self):
         return reverse('project_support_view', args=[self.context_instance.slug,

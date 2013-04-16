@@ -1,5 +1,6 @@
 #-- encoding: utf-8 --
 from django.conf.urls.defaults import patterns, url
+from apps.project_support import views as support_views
 
 import views
 
@@ -46,6 +47,9 @@ urlpatterns = patterns('',
     url(r'(?P<workgroup_slug>[-\w]+)/discuss/answer/(?P<question_id>\d+)/', 
             views.GroupDiscussionNewAnswerView.as_view(),
             name='workgroup-discussion-answer'),
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/answer/edit/(?P<answer_id>\d+)/', 
+            views.edit_discussion_answer, 
+            name='workgroup-edit_answer'),
     
 )
      

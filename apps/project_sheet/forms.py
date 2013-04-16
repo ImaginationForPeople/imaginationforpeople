@@ -15,6 +15,9 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from apps.forum.forms import SpecificQuestionForm
+from django.forms.widgets import HiddenInput
+from apps.forum.models import SpecificQuestionType
 """
 Django Forms for a Project Sheet
 """
@@ -129,3 +132,9 @@ class ProjectVideoAddForm(forms.ModelForm):
     class Meta:
         model = ProjectVideo
         fields = ('video_url', )
+
+
+class ProjectSheetDiscussionForm(SpecificQuestionForm):
+    type = forms.ModelChoiceField(widget=HiddenInput(), 
+                                  queryset=SpecificQuestionType.objects.filter(type="pj-discuss"),
+                                  initial=SpecificQuestionType.objects.get(type="pj-discuss"))

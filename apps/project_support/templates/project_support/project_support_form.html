@@ -5,25 +5,9 @@
 {% block form_title%}
 <h1>{% trans "Please describe your project's need here"%}</h1>
 {% endblock %}
-                       
-{% block tags_block %}
-<div id="categorySearch">
-    <input type="hidden" name='category' value="{{current_category}}"/>
-    {% include "project_questions/block/categories_menu.html" %}
-    <label id="categ_label">{% trans 'No selected category' %}</label>
-</div>
-<script>
-$(document).ready(function(){
-    var current_cat = $("#categorySearch input[name=category]").val()
-    if(current_cat){
-        $("#categ_label").html($("#"+current_cat+".tag-selector").html())
-    }
-    $(".tag-selector").click(function(){
-        $("#categ_label").html($(this).html());
-        $("input[name=category]").val($(this).attr('id'));
-        return false;
-    });
-});
-</script>
-{% endblock %}
+
+{% block inner_form %}
+	{% include "project_support/block/support_form.html" %}
+{% endblock %}        
+
                         

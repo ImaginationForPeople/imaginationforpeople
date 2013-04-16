@@ -37,7 +37,8 @@ from wiki.core.plugins import registry as plugin_registry
 from wiki.models.article import Article, ArticleForObject, ArticleRevision
 from wiki.views.article import Edit as WikiEdit
 
-from apps.project_sheet.utils import get_project_translations_from_parents
+from apps.project_sheet.utils import get_project_translations_from_parents,\
+    get_project_translation_by_any_translation_slug
 
 from .models import WorkGroup
 from .forms import GroupCreateForm, GroupEditForm
@@ -51,6 +52,10 @@ from askbot.models.post import Post
 from askbot.search.state_manager import SearchState
 from django.utils.http import urlquote
 from django.template.defaultfilters import slugify
+from apps.workgroup.forms import WorkgroupDiscussionForm
+from django.contrib.sites.models import Site
+from django.http import Http404
+from askbot.views.writers import edit_answer
 
 class GroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
@@ -324,6 +329,7 @@ class GroupDiscussionListView(SpecificQuestionListView):
     
 class GroupDiscussionCreateView(SpecificQuestionCreateView):
     template_name = "workgroup/page/group_discuss_form.html"
+    form_class = WorkgroupDiscussionForm
     qtypes = ["wg-discuss"]
     
     def get_success_url(self):
@@ -346,6 +352,7 @@ class GroupDiscussionCreateView(SpecificQuestionCreateView):
     
 class GroupDiscussionThreadView(SpecificQuestionThreadView):
     template_name = "workgroup/page/group_discuss_thread.html"
+    answer_controls_template_name = "workgroup/block/answer_controls.html"
     qtypes = ["wg-discuss"]
     
     def get_question_url(self):
@@ -386,3 +393,21 @@ class GroupDiscussionNewAnswerView(SpecificQuestionNewAnswerView):
 
     def get_context_object_instance(self, **kwargs):
         return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"]) 
+
+def edit_discussion_answer(request, workgroup_slug, answer_id):
+    try:
+        workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)
+        
+    except WorkGroup.DoesNotExist:
+        raise Http404
+
+    extra_context = {
+         'workgroup' : workgroup,
+         'active_tab' : 'workgroup',
+    }
+    
+    return edit_answer(request, 
+                       answer_id,
+                       jinja2_rendering=False,
+                       template_name="workgroup/page/group_discuss_answer_edit.html",
+                       extra_context=extra_context)

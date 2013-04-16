@@ -11,8 +11,9 @@
     	{% for hidden in form.hidden_fields %}
 	    {{ hidden }}
 	    {% endfor %}
-        {% if form.errors %}<p class=errorlist>{% trans "We are sorry, you need to correct the highlighted problems in the form"%}</p>{% endif %}
-        <p>{{form.type.label_tag}}{% if form.type.errors %}{{ form.type.errors }}{% endif %}{{form.type}}</p>
+        {% if form.errors %}
+        	<p class=errorlist>{% trans "We are sorry, you need to correct the highlighted problems in the form"%}</p>
+        {% endif %}
         {% block tags_block %}
 		{% endblock %}
         <p class="title-field">{{form.title.label_tag}}{% if form.title.errors %}{{ form.title.errors }}{% endif %}{{form.title}}</p>
@@ -20,8 +21,8 @@
         
         {% if request.user.is_authenticated %}
             <input type="submit" value="{% trans 'submit'%}">
-            {% else %}
+        {% else %}
             <a href="{% url userena_signin %}?next={{request.get_full_path}}">{% trans 'First signin' %}</a>
-            {% endif%}
+        {% endif%}
     </form>
 </div>

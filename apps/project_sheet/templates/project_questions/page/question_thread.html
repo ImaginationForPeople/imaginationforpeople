@@ -2,6 +2,14 @@
 {% load i18n extra_tags humanize%}
 {% load sekizai_tags %}
 
+{% block extra_body_class %}{{block.super}} question-page{% endblock %}
+
+{% block extra_script %}
+{{block.super}}
+{% include_jinja "meta/html_head_javascript.html" request%}
+{% include "project_support/script/head_javascript.html" %}
+{% endblock %}
+
 {% block content %}
 {{block.super}}
 
@@ -18,17 +26,12 @@
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/support_question.css" />
 {% endaddtoblock %}
+
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/page/support_thread.css" />
 {% endaddtoblock %}
 {% endblock %}
-{% block extra_body_class %}{{block.super}} question-page{% endblock %}
 
-{% block extra_script %}
-{{block.super}}
-{% include_jinja "meta/html_head_javascript.html" request%}
-{% include "project_support/script/head_javascript.html" %}
-{% endblock %}
 
 {% block project_content %}
 
@@ -39,8 +42,8 @@
     <div class="span8">
     
         <div id="question-table">
-            {% with current_question.thread.post as post %}
-            {% include "project_support/block/post_comments.html" %}
+            {% with current_question.thread.question as post %}
+            {% include "project_questions/block/post_comments.html" %}
             {% endwith %}
         </div>
         
@@ -113,11 +116,11 @@
                                 </div>
                                 <div class="answer_txt">{{ answer.html|safe }}</div>
                                 <div class="answer-controls post-controls">
-                                    {% include "project_support/block/answer_controls.html" %}
+                                    {% include answer_controls_template_name %}
                                 </div>
                             </div>
                             {% with answer as post %}
-                                {% include "project_support/block/post_comments.html" %}
+                                {% include "project_questions/block/post_comments.html" %}
                             {% endwith %}
                         </div>
                     </div>

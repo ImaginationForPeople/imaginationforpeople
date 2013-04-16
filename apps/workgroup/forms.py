@@ -15,12 +15,16 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+
 """
 Django Forms for Groups
 """
 from django import forms
+from django.forms.widgets import HiddenInput
 
 from .models import WorkGroup
+from apps.forum.forms import SpecificQuestionForm
+from apps.forum.models import SpecificQuestionType
 
 class GroupCreateForm(forms.ModelForm):
     class Meta:
@@ -31,4 +35,8 @@ class GroupEditForm(forms.ModelForm):
     class Meta:
         model = WorkGroup
         fields = ('name', 'description', 'language', 'tags', 'picture', 'outside_url')
-        
+
+class WorkgroupDiscussionForm(SpecificQuestionForm):
+    type = forms.ModelChoiceField(widget=HiddenInput(), 
+                                  queryset=SpecificQuestionType.objects.filter(type="wg-discuss"),
+                                  initial=SpecificQuestionType.objects.get(type="wg-discuss"))

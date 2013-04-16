@@ -27,6 +27,7 @@ from askbot.models.post import Post
 from django.utils.http import urlquote
 from django.template.defaultfilters import slugify
 from django.contrib.contenttypes.models import ContentType
+from apps.project_sheet.forms import ProjectSheetDiscussionForm
 
 """
 Django Views for a Project Sheet
@@ -889,6 +890,7 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
 
 class SpecificQuestionThreadView(SpecificQuestionTypeMixin, QuestionView):
     template_name = "project_questions/page/question_thread.html"
+    answer_controls_template_name = "project_questions/block/answer_controls.html"
     jinja2_rendering = False
     
     def get_question_url(self):
@@ -926,6 +928,8 @@ class SpecificQuestionThreadView(SpecificQuestionTypeMixin, QuestionView):
             'edit_question_url' : self.get_edit_url(),
             'search_state' : search_state,
             'disable_retag' : True,
+            'answer_controls_template_name' : self.answer_controls_template_name
+            
         })
         
         return context
@@ -959,6 +963,7 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, SpecificQuestion
 class ProjectDiscussionCreateView(CurrentProjectTranslationMixin, SpecificQuestionCreateView):
     template_name = "project_questions/page/open_discussion_form.html"
     qtypes=['pj-discuss']
+    form_class = ProjectSheetDiscussionForm
     
     def get_success_url(self):
         return reverse('project_discussion_list', args=[self.context_instance.slug])
