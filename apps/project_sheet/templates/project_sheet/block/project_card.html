@@ -1,0 +1,36 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project_translation : I4pProjectTranslation
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+{% endaddtoblock %}
+
+<div class="project-card">
+    <div class="cocarde">&nbsp;</div>
+    <div class="top">
+        <img src="../../../static/images/i4p_base/search/_TEMP/pirate.png" alt="" />
+        <h2>Mutinerie</h2>
+        <div class="progressbar"><span>Projet mature</span></div>
+        <p>
+            Mutinerie est un espace de coworking parisien destiné à coworking parisien destiné à fournir aux indépendants...
+        </p>
+    </div>
+    <div class="bottom">
+        <span class="supported" title="project supported">Project supported</span>
+        <span class="country"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</span>
+        <p>
+            <span class="comments" title="8 comments">8</span>
+            <span class="needs" title="73 needs">73</span>
+            <span class="fav" title="10 favorites">10</span>
+        </p>
+    </div>
+</div>
