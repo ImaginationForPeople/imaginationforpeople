@@ -3,8 +3,12 @@
 {% load sekizai_tags %}
 {% load tabs %}
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/menubar.css" />
+{% endaddtoblock %}
+
+{% addtoblock "js" strip %}
+<script src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-dropdown.js"></script>
 {% endaddtoblock %}
 
 <div class="project-menubar">
