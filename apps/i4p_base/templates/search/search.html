@@ -1,44 +1,192 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
+{% load compress %}
+{% load wiki_tags %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+
 
 {% block content %}
-<div class="grid_18" style="height: 1000px">
-    <h2>Search</h2>
 
-    <form method="get" action=".">
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td>&nbsp;</td>
-                <td>
-                    <input type="submit" value="Search">
-                </td>
-            </tr>
-        </table>
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/search.css" />
+{% endaddtoblock %}
 
-        {% if query %}
-        <h3>Results</h3>
-	{% for result in page.object_list %}
-	  {% if result.content_type == "project_sheet.i4pprojecttranslation" %}
-        	{% include "search/includes/project_sheet/i4pprojecttranslation.html" %}
-          {% endif %}
-	    {% empty %}
-	<p>No results found.</p>
-	{% endfor %}
-
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
-        {% else %}
-            {# Show some example queries to run, maybe query syntax, something else? #}
-        {% endif %}
+<section id="search-block">
+    <form method="post" action="#">
+        <label for="search-field">Rechercher des projets inspirants, des groupes de travail, des membres, des besoins...</label>
+        <input type="text" id="search-field" name="search-field" placeholder="Entrez votre recherche ..." />
+        <button type="submit"><span>Rechercher</span></button>
     </form>
+</section>
 
-    {{ suggestions }}
+<nav id="categories">
+    <ul>
+        <li id="all" class="active"><a href="#"><span>Tous (298)</span></a></li>
+        <li id="projects"><a href="#"><span>Projets (220)</span></a></li>
+        <li id="needs"><a href="#"><span>Besoins (10)</span></a></li>
+        <li id="groups"><a href="#"><span>Groupes (16)</span></a></li>
+        <li id="members"><a href="#"><span>Membres (12)</span></a></li>
+        <li id="discussions"><a href="#"><span>Discussions (40)</span></a></li>
+    </ul>
+</nav>
 
+<div id="wrap-content-panel">
+    <div id="content-panel">
+        <div id="col">
+            <header>
+                <a class="active" id="discover-button" href="#"><span>Découvrir</span></a>
+                <span class="hidden">|</span>
+                <a id="filter-button" href="#"><span>Filtrer</span></a>
+            </header>
+
+            <section id="more-search">
+                <div class="inner">
+                    <a href="#" title="Switch to filter panel" class="switch">Switch</a>
+                    <h1>Affiner<br /> votre recherche</h1>
+                    <div id="tags-list">
+                        <p><strong>Recherche actuelle</strong> <a href="#">Tout effacer</a></p>
+                        <ul>
+                            <li><a href="#">Coworking</a></li>
+                            <li><a href="#">Télétravail</a></li>
+                        </ul>
+                    </div>
+                    <form method="post" action="#">
+                        <input type="text" id="tag-search" name="tag-search" placeholder="Entrez un mot clé, un thème..." />
+                        <input type="checkbox" id="check-interest" name="check-interest" />
+                        <label for="check-interest">Mes centres d'intêret</label>
+                    </form>
+                </div>
+            </section>
+
+            <section id="languages">
+                <header>
+                    <h1>Langue(s)</h1>
+                    <a href="#" title="refresh">Refresh</a>
+                </header>
+                <div class="inner">
+                    <a href="#" class="select">Sélectionnez vos langues</a>
+                    <ul class="selected">
+                        <li><a href="#"><span>FR</span> Français</a></li>
+                        <li><a href="#"><span>ENG</span> Anglais</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="localisations">
+                <header>
+                    <h1>Localisation(s)</h1>
+                    <a href="#" title="refresh">Refresh</a>
+                </header>
+                <div class="inner">
+                    <a href="#" class="select">Sélectionnez un pays</a>
+                    <ul class="selected">
+                        <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>
+                        <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="CAN" /> Canada</a></li>
+                    </ul>
+                </div>
+            </section>
+
+            <section id="project-state">
+                <header>
+                    <h1>Statut du projet</h1>
+                    <a href="#" title="refresh">Refresh</a>
+                </header>
+                <div class="inner">
+                    <p class="progressbar progressbar-wip"><span>Projet mature</span></p>
+                </div>
+            </section>
+
+            <section id="card-state">
+                <header>
+                    <h1>État de la fiche</h1>
+                    <a href="#" title="refresh">Refresh</a>
+                </header>
+                <div class="inner">
+                    <form method="post" action="#">
+                        <ul>
+                            <li class="bestof"><input type="checkbox" /><label for="">Best-of</label></li>
+                            <li class="users"><input type="checkbox" /><label for="">Porteur(s) associé(s)</label></li>
+                            <li class="inprogress"><input type="checkbox" /><label for="">En cours de rédaction</label></li>
+                            <li class="discussions"><input type="checkbox" /><label for="">Discussion(s)</label></li>
+                            <li class="needs"><input type="checkbox" /><label for="">Besoin(s)</label></li>
+                        </ul>
+                    </form>
+                </div>
+            </section>
+        </div>
+
+        <div id="main">
+            <section id="projects-list">
+                <header>
+                    <h1>Projets</h1>
+                    <a href="#">Voir tout (15)</a>
+                </header>
+                <div class="project-card">
+                    <div class="cocarde">&nbsp;</div>
+                    <div class="top">
+                        <img src="../../../static/images/i4p_base/search/_TEMP/pirate.png" alt="" />
+                        <h2>Mutinerie</h2>
+                        <div class="progressbar"><span>Projet mature</span></div>
+                        <p>
+                            Mutinerie est un espace de coworking parisien destiné à coworking parisien destiné à fournir aux indépendants...
+                        </p>
+                    </div>
+                    <div class="bottom">
+                        <span class="supported" title="project supported">Project supported</span>
+                        <span class="country"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</span>
+                        <p>
+                            <span class="comments" title="8 comments">8</span>
+                            <span class="needs" title="73 needs">73</span>
+                            <span class="fav" title="10 favorites">10</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="cocarde">&nbsp;</div>
+                    <div class="top">
+                        <img src="../../../static/images/i4p_base/search/_TEMP/pirate.png" alt="" />
+                        <h2>Mutinerie</h2>
+                        <div class="progressbar"><span>Projet mature</span></div>
+                        <p>
+                            Mutinerie est un espace de coworking parisien destiné à coworking parisien destiné à fournir aux indépendants...
+                        </p>
+                    </div>
+                    <div class="bottom">
+                        <span class="supported" title="project supported">Project supported</span>
+                        <span class="country"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</span>
+                        <p>
+                            <span class="comments" title="8 comments">8</span>
+                            <span class="needs" title="73 needs">73</span>
+                            <span class="fav" title="10 favorites">10</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="cocarde">&nbsp;</div>
+                    <div class="top">
+                        <img src="../../../static/images/i4p_base/search/_TEMP/pirate.png" alt="" />
+                        <h2>Mutinerie</h2>
+                        <div class="progressbar"><span>Projet mature</span></div>
+                        <p>
+                            Mutinerie est un espace de coworking parisien destiné à coworking parisien destiné à fournir aux indépendants...
+                        </p>
+                    </div>
+                    <div class="bottom">
+                        <span class="supported" title="project supported">Project supported</span>
+                        <span class="country"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</span>
+                        <p>
+                            <span class="comments" title="8 comments">8</span>
+                            <span class="needs" title="73 needs">73</span>
+                            <span class="fav" title="10 favorites">10</span>
+                        </p>
+                    </div>
+                </div>
+            </section> 
+
+        </div>
+    </div>
 </div>
-<div class="clear"></div>
 {% endblock %}
+
