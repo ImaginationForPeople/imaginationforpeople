@@ -6,12 +6,18 @@
 {% addtoblock "css" strip %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_list_filter_panel.css" />
 {% endaddtoblock %}
+{% addtoblock "js"%}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.history.js"></script>
+{% endaddtoblock %}
 {% addtoblock "js" strip %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.ezmark.js"></script>
 {% endaddtoblock %}
 {% addtoblock "js" strip %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/project_list_filter_panel.js"></script>
 {% endaddtoblock %}
+
+
+
 {% addtoblock "footer_js" strip %}
     <script type="text/javascript">
     $.getScript(I4P_STATIC_URL+"js/jquery/jquery.ezmark.js");  
