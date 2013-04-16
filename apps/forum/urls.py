@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     (r'^followit/', include('followit.urls')),
     (r'^cache/', include('keyedcache.urls')),
 
-    url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('edit/')), views.writers.edit_answer, name='edit_answer'),
+    url(r'^%s(?P<answer_id>\d+)/%s$' % (_('answers/'), _('edit/')), views.writers.EditAnswerView.as_view(), name='edit_answer'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('revisions/')), views.readers.revisions, kwargs = {'post_type': 'answer'}, name='answer_revisions'),
 
     # BEGIN Questions (main page) urls. All this urls work both normally and through ajax

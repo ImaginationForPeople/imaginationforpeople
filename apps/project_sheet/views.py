@@ -22,7 +22,7 @@ from django.views.generic.edit import FormView
 from apps.forum.forms import SpecificQuestionForm
 from askbot.search.state_manager import SearchState
 from askbot.views.readers import QuestionView, QuestionsView
-from askbot.views.writers import PostNewAnswerView
+from askbot.views.writers import PostNewAnswerView, EditAnswerView
 from askbot.models.post import Post
 from django.utils.http import urlquote
 from django.template.defaultfilters import slugify
@@ -1045,3 +1045,27 @@ class ProjectDiscussionNewAnswerView(CurrentProjectTranslationMixin, SpecificQue
     
     def get_context_object_instance(self, **kwargs):
         return self.get_project_translation(kwargs["project_slug"])
+    
+
+class ProjectDiscussionEditAnswerView(CurrentProjectTranslationMixin, EditAnswerView):
+    jinja2_rendering = False
+    template_name="project_questions/page/question_answer_edit.html"
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.project_translation = self.get_project_translation(kwargs["project_slug"])
+        return EditAnswerView.dispatch(self, request, *args, **kwargs)
+    
+    def get_success_url(self):
+        return reverse('project_discussion_view', args=[self.project_translation.slug, 
+                                                     self.current_question.id])
+    
+    def get_context_data(self, answer_id, **kwargs):
+        context = EditAnswerView.get_context_data(self, answer_id, **kwargs)
+        
+        context.update({
+         'project_translation' : self.project_translation,
+         'active_tab' : 'support',
+         })
+
+        return context
+

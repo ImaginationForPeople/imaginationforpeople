@@ -48,7 +48,7 @@ urlpatterns = patterns('',
             views.GroupDiscussionNewAnswerView.as_view(),
             name='workgroup-discussion-answer'),
     url(r'(?P<workgroup_slug>[-\w]+)/discuss/answer/edit/(?P<answer_id>\d+)/', 
-            views.edit_discussion_answer, 
+            views.GroupDiscussionEditAnswerView.as_view(), 
             name='workgroup-edit_answer'),
     
 )

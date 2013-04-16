@@ -55,7 +55,7 @@ from django.template.defaultfilters import slugify
 from apps.workgroup.forms import WorkgroupDiscussionForm
 from django.contrib.sites.models import Site
 from django.http import Http404
-from askbot.views.writers import edit_answer
+from askbot.views.writers import EditAnswerView
 
 class GroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
@@ -394,20 +394,24 @@ class GroupDiscussionNewAnswerView(SpecificQuestionNewAnswerView):
     def get_context_object_instance(self, **kwargs):
         return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"]) 
 
-def edit_discussion_answer(request, workgroup_slug, answer_id):
-    try:
-        workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)
-        
-    except WorkGroup.DoesNotExist:
-        raise Http404
 
-    extra_context = {
-         'workgroup' : workgroup,
-         'active_tab' : 'workgroup',
-    }
+class GroupDiscussionEditAnswerView(EditAnswerView):
+    template_name="workgroup/page/group_discuss_answer_edit.html"
     
-    return edit_answer(request, 
-                       answer_id,
-                       jinja2_rendering=False,
-                       template_name="workgroup/page/group_discuss_answer_edit.html",
-                       extra_context=extra_context)
+    def dispatch(self, request, *args, **kwargs):
+        self.workgroup = get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])
+        return EditAnswerView.dispatch(self, request, *args, **kwargs)
+    
+    def get_success_url(self):
+        return reverse('workgroup-discussion-view', args=[self.workgroup.slug, 
+                                                     self.current_question.id])
+        
+    def get_context_data(self, answer_id, **kwargs):
+        context = EditAnswerView.get_context_data(self, answer_id, **kwargs)
+        
+        context.update({
+            'workgroup' : self.workgroup,
+            'active_tab' : 'workgroup',
+         })
+
+        return context

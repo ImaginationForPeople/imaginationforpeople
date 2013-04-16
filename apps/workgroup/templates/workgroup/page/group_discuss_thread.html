@@ -1,5 +1,6 @@
 {% extends "workgroup/layout/workgroup_base.html" %}
 {% load i18n extra_tags humanize%}
+{% load compress %}
 {% load sekizai_tags %}
 
 {% block extra_body_class %}{{block.super}} question-page{% endblock %}
@@ -30,11 +31,11 @@
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/page/support_thread.css" />
 {% endaddtoblock %}
-{% endblock %}
 
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
 {% endaddtoblock %}
+
 
 <div id="workgroup-header">
     <div id="workgroup-header-inner">
@@ -153,9 +154,10 @@
         </div>
     </div>
 </div>
+{% include_jinja "question/bottom_javascript.html" request %}
 {% endblock %}
 
 {% block inline_js %}
 {{block.super}}
-{% include_jinja "question/bottom_javascript.html" request %}
+
 {% endblock %}

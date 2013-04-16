@@ -114,7 +114,7 @@ urlpatterns = patterns('',
         support_views.ProjectSupportNewAnswerView.as_view(), 
         name='project_support_answer'),
     url(r'(?P<project_slug>[-\w]+)/support/answer/edit/(?P<answer_id>\d+)/', 
-        support_views.edit_support_answer, 
+        support_views.ProjectSupportEditAnswerView.as_view(), 
         name='project_support_edit_answer'),
     
     #Discuss
@@ -144,7 +144,7 @@ urlpatterns = patterns('',
             views.ProjectDiscussionNewAnswerView.as_view(),
             name='project_discussion_answer'),
     url(r'(?P<project_slug>[-\w]+)/discuss/answer/edit/(?P<answer_id>\d+)/', 
-            support_views.edit_support_answer, 
+            views.ProjectDiscussionEditAnswerView.as_view(), 
             name='project_discussion_edit_answer'),
    
     

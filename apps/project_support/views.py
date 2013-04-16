@@ -3,9 +3,8 @@ from apps.project_sheet.utils import \
     get_project_translation_by_any_translation_slug
 from apps.project_sheet.views import ProjectDiscussionListView, ProjectDiscussionCreateView, ProjectDiscussionThreadView,ProjectDiscussionNewAnswerView,\
     CurrentProjectTranslationMixin, SpecificQuestionTypeMixin,\
-    SpecificQuestionListView
+    SpecificQuestionListView, ProjectDiscussionEditAnswerView
 from apps.tags.models import TaggedCategory
-from askbot.views.writers import edit_answer
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 from django.utils import translation
@@ -148,26 +147,9 @@ class ProjectSupportNewAnswerView(ProjectDiscussionNewAnswerView):
         return reverse('project_support_view', args=[self.context_instance.slug, 
                                                      self.current_question.id])
     
-def edit_support_answer(request, project_slug, answer_id):
-    language_code = translation.get_language()
-    site = Site.objects.get_current()
-        
-    try:
-        project_translation = get_project_translation_by_any_translation_slug(project_translation_slug=project_slug,
-                                            prefered_language_code=language_code,
-                                            site=site)
-        
-    except I4pProjectTranslation.DoesNotExist:
-        raise Http404
-
-    extra_context = {
-         'project_translation' : project_translation,
-         'active_tab' : 'support',
-    }
+class ProjectSupportEditAnswerView(ProjectDiscussionEditAnswerView):
     
-    return edit_answer(request, 
-                       answer_id,
-                       jinja2_rendering=False,
-                       template_name="project_support/project_support_answer_edit.html",
-                       extra_context=extra_context)
-
+    def get_success_url(self):
+        return reverse('project_support_view', args=[self.project_translation.slug, 
+                                                     self.current_question.id])
+    
