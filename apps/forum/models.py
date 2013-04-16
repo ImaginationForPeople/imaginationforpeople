@@ -21,6 +21,7 @@ class SpecificQuestionType(models.Model):
     #label = models.CharField(max_length=30)
     type = models.CharField(max_length="10", choices=QUESTION_TYPE_CHOICES, unique=True, null=True)
     allowed_category_tree = models.ForeignKey(TaggedCategory, null=True, blank=True)
+    picto = models.ImageField(upload_to="question_picto/", null=True, blank=True)
     
     def __unicode__(self):
         return self.get_type_display()

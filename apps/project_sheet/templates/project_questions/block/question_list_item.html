@@ -1,7 +1,10 @@
 {% load i18n extra_tags humanize %}
 
-<li id="question-{{question.id}}" class="short-summary {{specific_question.type|lower}}">
+<li id="question-{{question.id}}" class="short-summary">
     <div class="wrap_question_description">
+    	{% if specific_question.type.picto %}
+    	<img src="{{MEDIA_URL}}{{specific_question.type.picto}}" />
+    	{% endif %}
         <h2>
             <a href="{{questions_url}}{{question.id}}/" title="{{specific_question.thread.title}}">{{specific_question.thread.title}}</a>
         </h2>
