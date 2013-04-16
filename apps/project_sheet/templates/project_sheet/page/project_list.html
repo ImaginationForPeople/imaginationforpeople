@@ -36,17 +36,19 @@
 
 {% block content %}
 
-    {% autopaginate project_translation_list 12 %}
+    {% autopaginate page.object_list 12 %}
     <div class="content">
         <div class="container">
             {% include "project_sheet/block/project_list_filter_panel.html" %}
             <div id="projects_list">
-                {% for project_translation in project_translation_list %}
-                    <!-- Affichage à choisir en fonction du type d'affichage désiré ! -->
-                    <div class="project_list_project_container">
+                {% for project_translation in page.object_list %}
+		    {% if project_translation.content_type == "project_sheet.i4pproject" %}
+                      <!-- Affichage à choisir en fonction du type d'affichage désiré ! -->
+                      <div class="project_list_project_container">
                         {% include "project_sheet/block/project_list_project_card.html" %}			
-                    </div>
-                    {% empty %}
+                      </div>
+		    {% endif %}
+                {% empty %}
                     {% trans 'Your request did not return any result.'%}
                 {% endfor %}
             </div>

@@ -1,0 +1,16 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+#projects-list {
+	header {
+		h1 {
+			font-family:$fontOpenSans;
+			font-stretch:condensed;
+			font-size:1.7rem;
+			text-transform:uppercase;
+			background:image-url('i4p_base/search/light2.png') no-repeat left center;
+			padding-left:20px;
+		}
+	}
+}
