@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
+{% comment %}
+
+form : criterion form
+page : pagination object
+
+{% endcomment %}
+
+
 {% load compress %}
-{% load wiki_tags %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
@@ -14,21 +21,22 @@
 {% endaddtoblock %}
 
 <section id="search-block">
-    <form method="post" action="#">
-        <label for="search-field">Rechercher des projets inspirants, des groupes de travail, des membres, des besoins...</label>
-        <input type="text" id="search-field" name="search-field" placeholder="Entrez votre recherche ..." />
+    <form method="get" action="{% url i4p-search %}">
+        <label for="{{ form.q.name }}">Rechercher des projets inspirants, des groupes de travail, des membres, des besoins...</label>
+        <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="Entrez votre recherche ..." value="{{ form.q.value }}"/>
         <button type="submit"><span>Rechercher</span></button>
     </form>
 </section>
 
 <nav id="categories">
     <ul>
-        <li id="all" class="active"><a href="#"><span>Tous (298)</span></a></li>
-        <li id="projects"><a href="#"><span>Projets (220)</span></a></li>
+        <li id="projects"><a href="#"><span>Projets ({{ page.paginator.count }})</span></a></li>
+      {% comment %}<li id="all" class="active"><a href="#"><span>Tous (298)</span></a></li>
         <li id="needs"><a href="#"><span>Besoins (10)</span></a></li>
         <li id="groups"><a href="#"><span>Groupes (16)</span></a></li>
         <li id="members"><a href="#"><span>Membres (12)</span></a></li>
         <li id="discussions"><a href="#"><span>Discussions (40)</span></a></li>
+	{% endcomment %}
     </ul>
 </nav>
 
@@ -54,8 +62,10 @@
                     </div>
                     <form method="post" action="#">
                         <input type="text" id="tag-search" name="tag-search" placeholder="Entrez un mot clé, un thème..." />
+			{% comment %}
                         <input type="checkbox" id="check-interest" name="check-interest" />
                         <label for="check-interest">Mes centres d'intêret</label>
+			{% endcomment %}
                     </form>
                 </div>
             </section>
@@ -118,7 +128,7 @@
         </div>
 
         <div id="main">
-            {% include "project_sheet/block/project_card_list.html" %}
+            {% include "project_sheet/block/project_card_list.html" with project_list=page.object_list %}
         </div>
     </div>
 </div>

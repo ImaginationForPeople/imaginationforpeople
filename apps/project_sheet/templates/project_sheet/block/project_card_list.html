@@ -3,7 +3,7 @@
 Parameters for this block
 =========================
 
-* project_translation_list : list of I4pProjectTranslation
+* project_list : list of I4pProject
 
 {% endcomment %}
 {% load i18n %}
@@ -16,20 +16,19 @@ Parameters for this block
 
 {% comment %}
 <div class="project-list wide-card">
-	{% for project_translation in project_translation_list %}
-	{% include "project_sheet/block/project_card.html" %}
-	{% empty %}
-	{% trans "No projects found" %}
-	{% endfor %}
 </div>
 {% endcomment %}
 
 <section id="projects-list">
     <header>
         <h1>Projets</h1>
-        <a href="#">Voir tout (15)</a>
+        {% comment %}<a href="#">Voir tout (15)</a>{% endcomment %}
     </header>
 
-{% include "project_sheet/block/project_card.html" %}
+    {% for project in project_list %}
+	{% include "project_sheet/block/project_card.html" %}
+    {% empty %}
+	{% trans "No projects found" %}
+    {% endfor %}
 
 </section>

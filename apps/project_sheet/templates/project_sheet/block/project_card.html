@@ -3,7 +3,7 @@
 Parameters for this block
 =========================
 
-* project_translation : I4pProjectTranslation
+* project : I4pProject
 
 {% endcomment %}
 {% load i18n %}
@@ -15,18 +15,20 @@ Parameters for this block
 {% endaddtoblock %}
 
 <div class="project-card">
-    <div class="cocarde">&nbsp;</div>
+    {% if project.best_of %}
+      <div class="cocarde">&nbsp;</div>
+    {% endif %}
     <div class="top">
         <img src="../../../static/images/i4p_base/search/_TEMP/pirate.png" alt="" />
-        <h2>Mutinerie</h2>
+        <h2>{{ project.title }}</h2>
         <div class="progressbar"><span>Projet mature</span></div>
         <p>
-            Mutinerie est un espace de coworking parisien destiné à coworking parisien destiné à fournir aux indépendants...
+            {{ project.baseline|truncatechars:110 }}
         </p>
     </div>
     <div class="bottom">
         <span class="supported" title="project supported">Project supported</span>
-        <span class="country"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</span>
+        <span class="country"><img src="../../../static/images/flags/{{ project.language_code }}.gif" alt="FR" /> France</span>
         <p>
             <span class="comments" title="8 comments">8</span>
             <span class="needs" title="73 needs">73</span>

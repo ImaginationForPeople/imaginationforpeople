@@ -178,7 +178,7 @@ class SearchView(FacetedSearchView):
     """
     Search projects, members, etc ; using haystack
     """
-    template_name = 'project_sheet/page/project_list.html'
+    template_name = 'i4p_base/search/search.html'
     filter_models = [I4pProject]
     
     def get(self, request, *args, **kwargs):

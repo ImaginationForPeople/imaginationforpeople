@@ -8,6 +8,7 @@ from .models import I4pProject
 
 class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
+    title = indexes.CharField(model_attr='title')
     baseline = indexes.CharField(model_attr='baseline')
     language_code = indexes.CharField(model_attr='language_code')
     slug = indexes.CharField(model_attr='slug')
