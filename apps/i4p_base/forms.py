@@ -6,6 +6,7 @@ from haystack.forms import FacetedSearchForm
 class ProjectSearchForm(FacetedSearchForm):
     q = forms.CharField(required=False, label=_('Search'), initial='')
     best_of = forms.BooleanField(required=False, label=_('Best of'))
+    has_team = forms.BooleanField(required=False, label=_('Has team'))    
     
     def search(self):
         sqs = self.searchqueryset
@@ -20,6 +21,9 @@ class ProjectSearchForm(FacetedSearchForm):
         # I4P Project sheet criterions
         if self.cleaned_data.get('best_of'):
             sqs = sqs.filter(best_of=self.cleaned_data['best_of'])
+
+        if self.cleaned_data.get('has_team'):
+            sqs = sqs.filter(has_team=self.cleaned_data['has_team'])
 
         if self.load_all:
             sqs = sqs.load_all()

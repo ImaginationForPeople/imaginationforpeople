@@ -15,6 +15,9 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     content_auto = indexes.EdgeNgramField(model_attr='title')
     best_of = indexes.BooleanField(model_attr='best_of')
     sites = indexes.MultiValueField()
+    tags = indexes.MultiValueField(faceted=True, model_attr='themes')
+    has_team = indexes.BooleanField()
+    has_needs = indexes.BooleanField()
     
     def get_model(self):
         return I4pProject
@@ -60,3 +63,9 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
         
     def prepare_sites(self, obj):
         return [obj.id for obj in obj.site.all()]
+
+    def prepare_has_team(self, obj):
+        """
+        If there is at least one user associated with this project
+        """
+        return obj.members.count() > 0
