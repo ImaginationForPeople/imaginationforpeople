@@ -103,4 +103,52 @@
 			}
 		}
 	}
+
+	.hover {
+		height:320px;
+		width:200px;
+		position:absolute;
+		top:-5px;
+		left:-5px;
+		background:#04add1 image-url('i4p_base/search/card_over.jpg') no-repeat 0 48px;
+		border:5px solid #b9e5ee;
+		@include border-radius(5px);
+
+		.name {
+			font-size: 1.2rem;
+		    font-weight: bold;
+		    line-height: 1.3rem;
+		    margin: 0;
+		    padding: 18px 14px 0;
+		    text-transform: uppercase;
+		    color:white;
+		    height:30px;
+		}
+
+		p {
+			padding:10px 14px;
+			line-height:1.5rem;
+			color:white;
+			text-align:justify;
+			margin:0;
+			height:196px;
+			border-bottom:1px solid #038eab;
+		}
+
+		.more {
+			border-top:1px solid #9dd6e7;
+
+			a {
+				display:block;
+				padding:20px 56px 10px 0;
+				text-align:right;
+				font-size: 1.2rem;
+			    font-weight: bold;
+			    line-height: 1.3rem;
+			    color:white;
+			    text-transform: uppercase; 
+			    background:image-url('i4p_base/search/see.png') no-repeat 82% 20px;
+			}
+		}
+	}
 }

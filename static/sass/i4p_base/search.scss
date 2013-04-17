@@ -188,6 +188,7 @@ nav#categories {
 
 		section {
 			background:#e5e5e5;
+			padding-bottom:2px;
 
 			.inner {
 				padding:12px;
@@ -197,6 +198,7 @@ nav#categories {
 				height:29px;
 				background:#706f6f;
 				position:relative;
+				cursor:pointer;
 				
 				h1 {
 					margin:0;
@@ -407,8 +409,6 @@ section#localisations {
 }
 
 section#project-state {
-	padding-bottom:5px;
-
 	p {
 		background:image-url('i4p_base/search/progressbar.png') no-repeat bottom left;
 		width:114px;

@@ -27,6 +27,10 @@ page : pagination object
 {% endaddtoblock %}
 
 
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/i4p_base/search.js"></script>
+{% endaddtoblock %}
+
 <section id="search-block">
     <form id="search_form" method="get" action="{% url i4p-search %}">
         <label for="{{ form.q.name }}">Rechercher des projets inspirants, des groupes de travail, des membres, des besoins...</label>
