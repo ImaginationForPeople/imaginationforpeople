@@ -803,6 +803,7 @@ class SpecificQuestionListView(SpecificQuestionTypeMixin, QuestionsView):
 class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
     template_name = None
     form_class = SpecificQuestionForm
+    is_specific=False
     
     def get_success_url(self):
         raise "Must be implemented"
@@ -874,6 +875,8 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
             )
             form.instance.thread = post.thread
             form.save()
+            post.thread.is_specific = self.is_specific
+            post.thread.save()
             
         return FormView.form_valid(self, form)
     

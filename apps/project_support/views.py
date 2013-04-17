@@ -20,6 +20,7 @@ from apps.project_support.forms import ProjectSheetNeedForm
 class ProjectSupportListView(ProjectDiscussionListView) :
     template_name = "project_support/project_support_list.html"
     qtypes=['pj-need', 'pj-help']
+    is_specific = True
     
     def get_questions_url(self):
         return reverse('project_support_main', args=[self.context_object.slug])
@@ -83,6 +84,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
     template_name = 'project_support/project_support_form.html'
     qtypes = ['pj-need', 'pj-help']
     form_class = ProjectSheetNeedForm
+    is_specific=True
     
     def get_success_url(self):
         return reverse('project_support_main', args=[self.context_instance.slug])
