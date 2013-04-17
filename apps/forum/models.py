@@ -6,6 +6,8 @@ from askbot.models.question import Thread
 
 from apps.tags.models import TaggedCategory
 from django.utils.translation import ugettext_lazy as _
+from django.db.models.signals import post_delete
+from django.dispatch.dispatcher import receiver
 
 QUESTION_TYPE_CHOICES = (
     ('generic', _('generic')),
@@ -36,4 +38,10 @@ class SpecificQuestion(models.Model):
     
     class Meta:
         unique_together = ("type", "thread", "content_type", "object_id")
+
+@receiver(post_delete, sender=SpecificQuestion)
+def purge_specific_thread(sender, instance, **kwargs):
+    if instance.thread.is_specific:
+        instance.thread.delete()
+
         
