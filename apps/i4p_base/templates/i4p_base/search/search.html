@@ -36,7 +36,7 @@ page : pagination object
         <label for="{{ form.q.name }}">Rechercher des projets inspirants, des groupes de travail, des membres, des besoins...</label>
         <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="Entrez votre recherche ..." value="{{ form.q.value }}"/>
         <button type="submit"><span>Rechercher</span></button>
-    </form>
+    
 </section>
 
 <nav id="categories">
@@ -60,7 +60,7 @@ page : pagination object
                 <a id="filter-button" href="#"><span>Filtrer</span></a>
             </header>
 
-            <form method="post" action="#">
+           {% comment %} <form method="post" action="#">{% endcomment %}
                 <section id="more-search">
                     <div class="inner">
                         <a href="#" title="Switch to filter panel" class="switch">Switch</a>
@@ -105,6 +105,7 @@ page : pagination object
                         <ul class="selected">
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="CAN" /> Canada</a></li>
+                             
 
                         </ul>
                     </div>
@@ -127,11 +128,12 @@ page : pagination object
                     </header>
                     <div class="inner">
                             <ul>
-                                <li class="bestof"><input type="checkbox" /><label for="">Best-of</label></li>
-                                <li class="users"><input type="checkbox" /><label for="">Porteur(s) associé(s)</label></li>
-                                <li class="inprogress"><input type="checkbox" /><label for="">En cours de rédaction</label></li>
+                                <li class="bestof">{{form.best_of}}<label for="">Best-of</label></li>
+                                <li class="users">{{form.has_team}}<label for="">Porteur(s) associé(s)</label></li>
+                                {% comment %}<li class="inprogress"><input type="checkbox" /><label for="">En cours de rédaction</label></li>
                                 <li class="discussions"><input type="checkbox" /><label for="">Discussion(s)</label></li>
                                 <li class="needs"><input type="checkbox" /><label for="">Besoin(s)</label></li>
+                                {% endcomment %}
                             </ul>
                     </div>
                 </section>

@@ -3,22 +3,30 @@ $(document).ready(function(){
    function refresh_results(){
    // Refresh search results by submitting form via Ajax call   
       var get_data = $("#search_form").serialize();
-      var callback_url = $("#search_form").attr("action")+get_data;
-      var updated_bar_url = callback_url // to update the bar url according to selected filters FIXME when a proper templating mechanism will be used with specific Json callback
+      var callback_url = $("#search_form").attr("action")+"?"+get_data;
+      var updated_bar_url = callback_url; // to update the bar url according to selected filters FIXME when a proper templating mechanism will be used with specific Json callback
     
       //$('div.content').load('/fr/project/list/?'+get_data+ ' div.content > *', function(){$("div.categories").unblock();});
       $.get(callback_url, function(data) {
          //replacing project listing
-         var projects_list = $(data).find('#projects_list').children();
-         $('#projects_list').empty().append(projects_list);
+         var projects_list = $(data).find('#projects-list').children();
+         $('#projects-list').empty().append(projects_list);
+         // update projects count
+         $("#projects").empty().append($(data).find('#projects').children());
+         // Update style for each element of class .hover
+         $('.project-card .hover').hide();
+        // $('.hover').each(function(){
+          //   console.log("==changing===");
+            // $(this).attr('style', 'display : none;');
+         //});
+         //$('.hover').attr('style', 'display : none;');
          //replacing paginations
-         var pagination = $(data).find('div.projectlist_pagination').children();
-         $('div.projectlist_pagination').empty().append(pagination[0]);
+         //var pagination = $(data).find('div.projectlist_pagination').children();
+         //$('div.projectlist_pagination').empty().append(pagination[0]);
          
          // update URL
          var History = window.History; // Note: We are using a capital H instead of a lower h
          if ( !History.enabled ) {// History.js is disabled for this browser. This is because we can optionally choose to support HTML4 browsers or not.
-            $("div.categories").unblock();
             return false;
          }
          History.pushState('', $('title').text(), updated_bar_url); // logs {state:3}, "State 3", "?state=3"
@@ -26,7 +34,12 @@ $(document).ready(function(){
       });
    }
    
-   // filter 
+   // Triger refresh when a checkbox is selected
+   $('[type=checkbox]').click(function(event){
+      console.log($("#search_form").serialize());
+      refresh_results();
+   
+   });
    
     $(".filtersbox_content select#id_country").change(function(){
     	blockPanel();
