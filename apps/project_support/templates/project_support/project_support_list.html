@@ -77,10 +77,10 @@ $(document).ready(function(){
             {% if search_tags or query %}
             <ul class="search-tags">
                 {% if query %}
-                <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}">X</a></li>
+                <li>{{query}}<a class="remove-query-search" data-tag-name="{{query}}" href="{{search_state.full_url}}" rel="nofollow">X</a></li>
                 {% endif %}
                 {% for tag in search_tags %}
-                <li>{{tag}}<a class="remove-tag-search" data-tag-name="{{tag}}" href="{{search_state.full_url}}">X</a></li>
+                <li>{{tag}}<a class="remove-tag-search" data-tag-name="{{tag}}" href="{{search_state.full_url}}" rel="nofollow">X</a></li>
                 {% endfor %}
             </ul>
             {% endif %}
