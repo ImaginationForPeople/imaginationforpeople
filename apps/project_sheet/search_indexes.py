@@ -15,7 +15,8 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     content_auto = indexes.EdgeNgramField(model_attr='title')
     best_of = indexes.BooleanField(model_attr='best_of')
     sites = indexes.MultiValueField()
-    tags = indexes.MultiValueField(faceted=True, model_attr='themes')
+    tags = indexes.MultiValueField(indexed=True, stored=True, model_attr='themes')
+    location = indexes.CharField()
     has_team = indexes.BooleanField()
     has_needs = indexes.BooleanField()
     
@@ -35,6 +36,9 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
             queryset |= language_queryset
 
         return queryset
+
+    def read_queryset(self, using=None):
+        return I4pProject.objects.all()
 
     def prepare(self, obj):
         """Fetches and adds/alters data before indexing.
@@ -69,3 +73,21 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
         If there is at least one user associated with this project
         """
         return obj.members.count() > 0
+
+    def prepare_has_needs(self, obj):
+        """
+        If the project has expressed needs
+        """
+        return obj.lazy_translation_getter('projectsupport_set').count() > 0
+
+    def prepare_tags(self, obj):
+        """
+        Split tags by comma
+        """
+        return obj.themes.split(',')
+
+    def prepare_location(self, obj):
+        if obj.location:
+            return obj.location.country.code
+        else:
+            return None
