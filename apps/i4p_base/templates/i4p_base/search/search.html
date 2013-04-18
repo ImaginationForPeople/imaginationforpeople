@@ -34,7 +34,7 @@ page : pagination object
 <section id="search-block">
     <form id="search_form" method="get" action="{% url i4p-search %}">
         <label for="{{ form.q.name }}">Rechercher des projets inspirants, des groupes de travail, des membres, des besoins...</label>
-        <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="Entrez votre recherche ..." value="{{ form.q.value }}"/>
+        <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="Entrez votre recherche ..." value="{{ form.q.value|default:"" }}"/>
         <button type="submit"><span>Rechercher</span></button>
     
 </section>
@@ -141,7 +141,7 @@ page : pagination object
         </div>
 
         <div id="main">
-            {% include "project_sheet/block/project_card_list.html" with project_list=page.object_list %}
+            {% include "project_sheet/block/project_card_list.html" with project_list=project_list %}
         </div>
     </div>
 </div>
