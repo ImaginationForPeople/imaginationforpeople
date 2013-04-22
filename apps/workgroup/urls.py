@@ -1,6 +1,5 @@
 #-- encoding: utf-8 --
 from django.conf.urls.defaults import patterns, url
-from apps.project_support import views as support_views
 
 import views
 

@@ -4,6 +4,8 @@ from django.contrib.contenttypes.models import ContentType
 from apps.forum.models import SpecificQuestion
 from apps.workgroup.models import WorkGroup
 
+import re
+
 register = template.Library()
 
 class WorkgroupsNode(template.Node):
@@ -19,7 +21,6 @@ class WorkgroupsNode(template.Node):
         context[self.workgroup_var_name] = [q.context_object for q in specific_questions]
         return ''
 
-import re
 def workgroups(parser, token):
     # This version uses a regular expression to parse tag contents.
     try:

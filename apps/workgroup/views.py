@@ -15,10 +15,6 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from askbot.models.question import Thread
-from askbot.models.user import Activity
-from askbot.views.readers import QuestionsView, QuestionView
-
 from django.core.cache import cache
 from django.core.urlresolvers import reverse
 from django.contrib import messages
@@ -36,26 +32,16 @@ from guardian.shortcuts import assign
 from wiki.core.plugins import registry as plugin_registry        
 from wiki.models.article import Article, ArticleForObject, ArticleRevision
 from wiki.views.article import Edit as WikiEdit
+from askbot.views.writers import EditAnswerView
 
-from apps.project_sheet.utils import get_project_translations_from_parents,\
-    get_project_translation_by_any_translation_slug
-
-from .models import WorkGroup
-from .forms import GroupCreateForm, GroupEditForm
-from .utils import get_ml_members
-from apps.project_sheet.views import SpecificQuestionListView,\
+from apps.project_sheet.utils import get_project_translations_from_parents
+from apps.forum.views import SpecificQuestionListView,\
     SpecificQuestionCreateView, SpecificQuestionNewAnswerView,\
     SpecificQuestionThreadView
-from apps.forum.models import SpecificQuestion
-from django.contrib.contenttypes.models import ContentType
-from askbot.models.post import Post
-from askbot.search.state_manager import SearchState
-from django.utils.http import urlquote
-from django.template.defaultfilters import slugify
-from apps.workgroup.forms import WorkgroupDiscussionForm
-from django.contrib.sites.models import Site
-from django.http import Http404
-from askbot.views.writers import EditAnswerView
+    
+from .models import WorkGroup
+from .forms import GroupCreateForm, GroupEditForm, WorkgroupDiscussionForm
+from .utils import get_ml_members
 
 class GroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
@@ -319,13 +305,16 @@ class GroupDiscussionListView(SpecificQuestionListView):
         context = SpecificQuestionListView.get_context_data(self, **kwargs)
         
         context.update({
-             'active_tab' : 'discuss',
-             'workgroup' : self.context_object,             
+             'active_tab': 'discuss',
+             'workgroup': self.context_object,             
         })
     
         return context
     
 class GroupDiscussionCreateView(SpecificQuestionCreateView):
+    """
+    Create a discussion for a given workgroup
+    """
     template_name = "workgroup/page/group_discuss_form.html"
     form_class = WorkgroupDiscussionForm
     qtypes = ["wg-discuss"]
@@ -337,18 +326,21 @@ class GroupDiscussionCreateView(SpecificQuestionCreateView):
         context = SpecificQuestionCreateView.get_context_data(self, **kwargs)
 
         context.update({
-            'workgroup' : self.context_instance,
+            'workgroup': self.context_instance,
         })
         
         return context
     
     def get_cleaned_tags(self, request):
-        return "%s %s" % ("workgroup", self.context_instance.slug)
+        return u"%s %s" % ("workgroup", self.context_instance.slug)
     
     def get_context_object_instance(self, **kwargs):
         return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
     
 class GroupDiscussionThreadView(SpecificQuestionThreadView):
+    """
+    Display a discussion thread for a given workgroup
+    """
     template_name = "workgroup/page/group_discuss_thread.html"
     qtypes = ["wg-discuss"]
     
@@ -377,13 +369,16 @@ class GroupDiscussionThreadView(SpecificQuestionThreadView):
         context = SpecificQuestionThreadView.get_context_data(self, **kwargs)
         
         context.update({
-             'workgroup' : self.context_instance,
-             'active_tab' : 'discussion',
+             'workgroup': self.context_instance,
+             'active_tab': 'discussion',
         })
         
         return context
 
 class GroupDiscussionNewAnswerView(SpecificQuestionNewAnswerView):
+    """
+    Answer to a given workgroup discussion question
+    """
     def get_success_url(self):
         return reverse('workgroup-discussion-view', args=[self.context_instance.slug, 
                                                      self.current_question.id])
@@ -393,6 +388,9 @@ class GroupDiscussionNewAnswerView(SpecificQuestionNewAnswerView):
 
 
 class GroupDiscussionEditAnswerView(EditAnswerView):
+    """
+    Edit a given workgroup discussion answer
+    """
     template_name="workgroup/page/group_discuss_answer_edit.html"
     
     def dispatch(self, request, *args, **kwargs):
@@ -407,8 +405,8 @@ class GroupDiscussionEditAnswerView(EditAnswerView):
         context = EditAnswerView.get_context_data(self, answer_id, **kwargs)
         
         context.update({
-            'workgroup' : self.workgroup,
-            'active_tab' : 'workgroup',
+            'workgroup': self.workgroup,
+            'active_tab': 'workgroup',
          })
 
         return context

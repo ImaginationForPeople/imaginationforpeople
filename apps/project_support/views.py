@@ -1,25 +1,22 @@
-from apps.project_sheet.models import I4pProjectTranslation
-from apps.project_sheet.utils import \
-    get_project_translation_by_any_translation_slug
-from apps.project_sheet.views import ProjectDiscussionListView, ProjectDiscussionCreateView, ProjectDiscussionThreadView,ProjectDiscussionNewAnswerView,\
-    CurrentProjectTranslationMixin, SpecificQuestionTypeMixin,\
-    SpecificQuestionListView, ProjectDiscussionEditAnswerView
-from apps.tags.models import TaggedCategory
-from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
-from django.utils import translation
-from django.http import Http404
-from django.utils.http import urlquote
-from django.template.defaultfilters import slugify
-from askbot.views.readers import QuestionsView, QuestionView
-from askbot.models.question import Thread
+
 from apps.forum.models import SpecificQuestion
-from askbot.models.user import Activity
-from apps.project_support.forms import ProjectSheetNeedForm
-        
+from apps.forum.views import SpecificQuestionListView
+from apps.project_sheet.views import ProjectDiscussionListView, \
+    ProjectDiscussionCreateView, ProjectDiscussionThreadView, \
+    ProjectDiscussionNewAnswerView, \
+    ProjectDiscussionEditAnswerView
+from apps.project_sheet.models import I4pProjectTranslation
+from apps.tags.models import TaggedCategory
+from .forms import ProjectSheetNeedForm
+
+ 
 class ProjectSupportListView(ProjectDiscussionListView) :
+    """
+    List all supports related to a project sheet translation
+    """
     template_name = "project_support/project_support_list.html"
-    qtypes=['pj-need', 'pj-help']
+    qtypes = ['pj-need', 'pj-help']
     is_specific = True
     
     def get_questions_url(self):
@@ -47,8 +44,11 @@ class ProjectSupportListView(ProjectDiscussionListView) :
         return context
 
 class ProjectSupportListAll(SpecificQuestionListView):
+    """
+    List all supports for all project sheets
+    """
     template_name = "project_support/project_support_list_all.html"
-    qtypes=['pj-need', 'pj-help']
+    qtypes = ['pj-need', 'pj-help']
 
     def get_questions_url(self):
         return reverse('project_support_list_all')
@@ -81,10 +81,13 @@ class ProjectSupportListAll(SpecificQuestionListView):
         return context
 
 class ProjectSupportCreateView(ProjectDiscussionCreateView):
+    """
+    Create a support for a given project sheet translation
+    """
     template_name = 'project_support/project_support_form.html'
     qtypes = ['pj-need', 'pj-help']
     form_class = ProjectSheetNeedForm
-    is_specific=True
+    is_specific = True
     
     def get_success_url(self):
         return reverse('project_support_main', args=[self.context_instance.slug])
@@ -98,7 +101,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
             root_category = TaggedCategory.objects.get(id=allowed_categories[0])
         
         context.update({
-            'root_category' : root_category,
+            'root_category': root_category,
         })
         
         if self.current_question:
@@ -107,12 +110,18 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
         return context
     
     def get_cleaned_tags(self, request):
-        category = TaggedCategory.objects.get(id=self.request.POST['category'])
-        return category.tag.name
+        if request.method == "POST":
+            category = TaggedCategory.objects.get(id=request.POST['category'])
+            return category.tag.name
 
+        #Should never be called by GET
+        return ""
 
 class ProjectSupportThreadView(ProjectDiscussionThreadView):
-    qtypes=['pj-need', 'pj-help']
+    """
+    Display a support thread for a given project sheet translation
+    """
+    qtypes = ['pj-need', 'pj-help']
     template_name = "project_support/project_support_question_thread.html"
     
     def get_question_url(self):
@@ -138,20 +147,24 @@ class ProjectSupportThreadView(ProjectDiscussionThreadView):
         context = ProjectDiscussionThreadView.get_context_data(self, **kwargs)
         
         context.update({
-             'active_tab' : 'support',
+             'active_tab': 'support',
         })
         
         return context
 
 class ProjectSupportNewAnswerView(ProjectDiscussionNewAnswerView):
-
+    """
+    Answer to a given project sheet support question
+    """
     def get_success_url(self):
-        return reverse('project_support_view', args=[self.context_instance.slug, 
+        return reverse('project_support_view', args=[self.context_instance.slug,
                                                      self.current_question.id])
     
 class ProjectSupportEditAnswerView(ProjectDiscussionEditAnswerView):
-    
+    """
+    Edit a given project sheet support answer
+    """
     def get_success_url(self):
-        return reverse('project_support_view', args=[self.project_translation.slug, 
+        return reverse('project_support_view', args=[self.project_translation.slug,
                                                      self.current_question.id])
     

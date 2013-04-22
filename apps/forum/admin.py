@@ -1,15 +1,16 @@
 from django.contrib import admin
-from .models import SpecificQuestion, SpecificQuestionType
-from apps.tags.models import TaggedCategory
 from django.contrib.contenttypes.models import ContentType
 
+from apps.tags.models import TaggedCategory
+from .models import SpecificQuestion, SpecificQuestionType
 
 class SpecificQuestionAdmin(admin.ModelAdmin):
-    list_display = ('thread', 'type', 'context_object')
+    list_display = ('thread', 'type', 'display_context_object')
+    form = SpecificQuestionForm
     
-    def context_object(self, obj):
-        return "%s : %s " % (ContentType.objects.get_for_model(obj.context_object), obj.context_object)
-    context_object.short_description = 'Context object'
+    def display_context_object(self, obj):
+        return u"%s : %s" % (ContentType.objects.get_for_model(obj.context_object), obj.context_object)
+    display_context_object.short_description = u"Context object"
 
 class SpecificQuestionTypeAdmin(admin.ModelAdmin):
     list_display = ('id', 'type', 'allowed_category_tree')
