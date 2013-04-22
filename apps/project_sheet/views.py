@@ -53,6 +53,10 @@ from .utils import get_project_translation_by_any_translation_slug
 
 
 class CurrentProjectTranslationMixin(object):
+    """
+    A mixin that provides a way to get an I4pProjectTranslation for
+    a given slug, in the current language.
+    """
     def get_project_translation(self, slug):
         language_code = translation.get_language()
         site = Site.objects.get_current()
@@ -194,6 +198,9 @@ class ProjectView(TemplateView):
         return context
 
 class ProjectAddMediaView(ProjectView):
+    """
+    A view to add pictures or videos to a project
+    """
     def get_context_data(self, **kwargs):
         context = super(ProjectAddMediaView, self).get_context_data(**kwargs)
         
@@ -650,6 +657,9 @@ class ProjectHistoryView(ProjectView):
         
 
 class ProjectRecentChangesView(TemplateView):
+    """
+    Display a list of recent changes from the project pages
+    """
     template_name = 'project_sheet/obsolete/all_recent_changes.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -660,7 +670,10 @@ class ProjectRecentChangesView(TemplateView):
         return context
 
 
-class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView): 
+class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
+    """
+    A view with all the discussions of a project, in a given language
+    """
     template_name = "project_sheet/page/project_discuss_list.html"
     is_specific = False
     jinja2_rendering = False
