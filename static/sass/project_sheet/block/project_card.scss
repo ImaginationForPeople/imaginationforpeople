@@ -1,3 +1,4 @@
+@import "compass/css3/transition";
 @import "i4p/_mixins";
 @import "i4p/_fonts";
 @import "i4p/_constants";
@@ -8,6 +9,7 @@
 	height:320px;
 	position:relative;
 	margin:0 16px 25px 0;
+	cursor:pointer;
 	@include box-shadow(0 1px 3px #999);
 	@include border-radius(5px);
 
@@ -19,6 +21,7 @@
 		position:absolute;
 		top:-4px;
 		left:-9px;
+		z-index:2000
 	}
 
 	.top {
@@ -136,7 +139,7 @@
 		}
 
 		.more {
-			border-top:1px solid #9dd6e7;
+			border-top: 1px solid rgba(255, 255, 255, 0.3);
 
 			a {
 				display:block;
@@ -148,6 +151,12 @@
 			    color:white;
 			    text-transform: uppercase; 
 			    background:image-url('i4p_base/search/see.png') no-repeat 82% 20px;
+			    @include transition(background 0.2s ease-in);
+
+			    &:hover {
+			    	background-position:85% 20px;
+			    	text-decoration:none;
+			    }
 			}
 		}
 	}

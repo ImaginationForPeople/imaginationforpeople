@@ -7,9 +7,9 @@ $(document).ready(function () {
 	});
 	$('.project-card .hover').hide();
 	$('.project-card').hover(function(){
-		$(this).children('.hover').show(100);
+		$(this).children('.hover').fadeIn(100);
 	},function(){
-		$(this).children('.hover').hide(100);
+		$(this).children('.hover').fadeOut(100);
 	});
 });
 

@@ -22,7 +22,7 @@ Parameters for this block
     {% endif %}
     <div class="top">
         <img src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" />
-        <h2>{{ project.title }}</h2>
+        <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
         <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
         <p>
             {{ project.baseline|truncatechars:110 }}
