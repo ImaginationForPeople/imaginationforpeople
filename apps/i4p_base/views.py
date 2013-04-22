@@ -181,29 +181,32 @@ class SearchView(FacetedSearchView):
     template_name = 'i4p_base/search/search.html'
     filter_models = [I4pProject]
     
-    def get(self, request, *args, **kwargs):
-        self.filter_data = request.GET.copy()
+    def create_response(self):
+        """
+        Generates the actual HttpResponse to send back to the user.
+        """
+        (paginator, page) = self.build_page()
 
-        return super(SearchView, self).get(request, *args, **kwargs)
+        context = {
+            'query': self.query,
+            'form': self.form,
+            'page': page,
+            'paginator': paginator,
+            'suggestion': None,
+        }
 
-    def get_search_queryset(self, queryset=None, models=None):
-        project_sheets_queryset = super(SearchView, self).get_search_queryset(queryset, models)
+        self.page = page
         
-        language_code = translation.get_language()
+        if getattr(settings, 'HAYSTACK_INCLUDE_SPELLING', False):
+            context['suggestion'] = self.form.get_suggestion()
         
-        return project_sheets_queryset
-    
+        context.update(self.extra_context())
+        return render_to_response(self.template, context, context_instance=self.context_class(self.request))
+
+        
     def get_context_data(self, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
 
-        context["getparams"] = self.filter_data.urlencode()
-        context["orderparams"] = context["getparams"].replace("order=creation", "") \
-                                                     .replace("order=modification", "")
-
-        # context["selected_tags"] = [int(t.id) for t in self.filter_forms_dict["themes_filter"].cleaned_data["themes"]]
-        # context.update(self.filter_forms_dict)
-        # context["filters_tab_selected"] = True
-
-        context['project_translation_list'] = self.searchqueryset
+        context['project_list'] = [result.object for result in self.page.object_list]
 
         return context

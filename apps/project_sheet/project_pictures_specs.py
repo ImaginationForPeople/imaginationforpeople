@@ -98,8 +98,8 @@ class ResizeIDCard(processors.Resize):
     """
     Resizing processor providing profile ID card
     """
-    width = 137
-    height = 71
+    width = 200
+    height = 120
     crop = True
 
 class ResizeDisplay(processors.Resize):

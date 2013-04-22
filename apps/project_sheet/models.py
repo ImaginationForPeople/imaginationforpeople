@@ -25,15 +25,11 @@ import os
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
-from django.contrib.sites.managers import CurrentSiteManager
 from django.core.urlresolvers import reverse
-from django.core.mail import mail_managers
 from django.db import models
 from django.db.models.signals import post_save, post_delete, class_prepared
 from django.dispatch import receiver
-from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 
@@ -43,6 +39,7 @@ from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
 from hvad.models import TranslatableModel, TranslatedFields, TranslationManager
+from hvad.utils import get_cached_translation
 import reversion
 import reversion.models
 
@@ -227,6 +224,14 @@ class I4pProject(TranslatableModel):
             return self.pictures.all()[0]
         else:
             return None
+
+
+    def get_current_translation(self):
+        """
+        Get the translation model (hvad) from the current shared
+        model instance
+        """
+        return get_cached_translation(self)
     
     def __unicode__(self):
         return self.lazy_translation_getter('title', 'Project: %s' % self.pk)

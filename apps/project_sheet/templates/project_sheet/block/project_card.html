@@ -9,30 +9,37 @@ Parameters for this block
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
+{% load comments %}
 
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
 {% endaddtoblock %}
 
+<a href="{{ project.get_absolute_url }}">
 <div class="project-card">
     {% if project.best_of %}
       <div class="cocarde">&nbsp;</div>
     {% endif %}
     <div class="top">
-        <img src="../../../static/images/i4p_base/search/_TEMP/pirate.png" alt="" />
+        <img src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" />
         <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
-        <div class="progressbar"><span>Projet mature</span></div>
+        <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
         <p>
             {{ project.baseline|truncatechars:110 }}
         </p>
     </div>
     <div class="bottom">
-        <span class="supported" title="project supported">Project supported</span>
-        <span class="country"><img src="../../../static/images/flags/{{ project.language_code }}.gif" alt="FR" /> France</span>
+        {% if project.members.count %}
+          <span class="supported" title="project supported">Project supported</span>
+	{% endif %}
+        <span class="country"><img src="{{ project.location.country.flag }}" alt="{{ project.location.country.code }}" /> {{ project.location.country.name }}</span>
         <p>
-            <span class="comments" title="8 comments">8</span>
-            <span class="needs" title="73 needs">73</span>
-            <span class="fav" title="10 favorites">10</span>
+	  {% get_comment_count for project.get_current_translation as comment_count %}
+            <span class="comments" title="{{ comment_coun }} comments">{{ comment_count }}</span>
+	    {% with project.get_current_translation.projectsupport_set.count as need_count %}
+            <span class="needs" title="{{ need_count }} needs">{{ need_count }}</span>
+	    {% endwith %}
+            {% comment %}<span class="fav" title="10 favorites">10</span>{% endcomment %}
         </p>
     </div>
     <div class="hover">
@@ -43,3 +50,4 @@ Parameters for this block
         <div class="more"><a href="#">{% trans 'See the project' %}</a></div>
     </div>
 </div>
+</a>
