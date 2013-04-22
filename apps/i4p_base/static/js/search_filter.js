@@ -34,6 +34,32 @@ $(document).ready(function(){
       });
    }
    
+   // add tags filter to id_tags value attribute when entering text, separated by space
+   $("#tag-search").keydown(function(e){if(e.keyCode == 13){e.preventDefault();}}); //prevent form submission
+   $("#tag-search").keyup(function(event){      
+      if(event.keyCode == 13){
+        event.preventDefault();//prevent form submission
+        var tokens = $("#tag-search").val().split(" ");        
+        $.each(tokens, function(){
+            // add each token in tag lists
+            console.log(this);
+            $('#tags-list > ul').append("<li><a href='javascript:;'>"+this+"</a></li>");
+            // add each token to value attr of tags input, TODO: checking for duplicates
+            var tmp = $('#id_tags').val();
+            $('#id_tags').val(tmp+" "+this);
+            // empty text field
+            $("#tag-search").val('');
+        });
+      }
+   });
+   // TODO remove tag from input and tag list when cliked
+   // TODO mirror tags-list with values in id_tags hidden input
+   function mirror_tag_values(){
+      // reads values
+      // replace elements in tag lists
+   
+   }
+   
    // Triger refresh when a checkbox is selected
    $('[type=checkbox]').click(function(event){
       console.log($("#search_form").serialize());

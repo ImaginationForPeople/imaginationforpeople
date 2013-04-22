@@ -52,7 +52,7 @@ page : pagination object
 </nav>
 
 <div id="wrap-content-panel">
-    <div id="content-panel">
+   <div id="content-panel">
         <div id="col">
             <header>
                 <a class="active" id="discover-button" href="#"><span>Découvrir</span></a>
@@ -68,11 +68,11 @@ page : pagination object
                         <div id="tags-list">
                             <p><strong>Recherche actuelle</strong> <a href="#">Tout effacer</a></p>
                             <ul>
-                                <li><a href="#">Coworking</a></li>
-                                <li><a href="#">Télétravail</a></li>
+                                <li><a href="">Coworking</a></li>                                
                             </ul>
                         </div>
-                            <input type="text" id="tag-search" name="tag-search" placeholder="Entrez un mot clé, un thème..." />
+                            <input type="text" id="tag-search" placeholder="Entrez un mot clé, un thème..." />
+                            {{form.tags.as_hidden}}
     			{% comment %}
                             <input type="checkbox" id="check-interest" name="check-interest" />
                             <label for="check-interest">Mes centres d'intêret</label>
