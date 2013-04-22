@@ -26,16 +26,24 @@ from django.utils import translation
 
 from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents
+from django.core.cache import cache
 
 def homepage(request):
     """
     I4P Homepage
     """
-    project_sheets = I4pProject.on_site.filter(best_of=True).order_by('?')[:14]
-    project_translations = get_project_translations_from_parents(project_sheets,
+    cache_key = 'project_slider'
+    res = cache.get(cache_key, None)
+    if not res:
+        project_sheets = I4pProject.on_site.filter(best_of=True).order_by('?')[:14]
+        project_translations = get_project_translations_from_parents(project_sheets,
                                                                  language_code=translation.get_language()
                                                                  )
-
+        res = project_sheets, project_translations
+        cache.set(cache_key, res, 3600)
+    else:
+        project_sheets, project_translations = res
+    
     latest_members = list(User.objects.filter(is_active=True).order_by('-date_joined')[:7])
     random.shuffle(latest_members)
 
