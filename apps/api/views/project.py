@@ -125,7 +125,7 @@ class I4pProjectDetailResource(ModelResource):
         return bundle
 
 class I4pProjectTranslationResource(ModelResource):
-    project = fields.ForeignKey(I4pProjectDetailResource, use_in='detail', attribute='project', full=True)
+    project = fields.ForeignKey(I4pProjectDetailResource, use_in='detail', attribute='master', full=True)
     about_section = fields.CharField('about_section', use_in='detail', null=True)
     callto_section = fields.CharField('callto_section', use_in='detail', null=True)
     partners_section = fields.CharField('partners_section', use_in='detail', null=True)
@@ -213,7 +213,7 @@ class I4pProjectTranslationResource(ModelResource):
         bundle = ModelResource.full_dehydrate(self, bundle, for_list=for_list)
         bundle.related_obj = self
         if for_list is True:
-            fk = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
+            fk = fields.ForeignKey(I4pProjectListResource, attribute='master', full=True)
             bundle.data['project'] = fk.dehydrate(bundle)
         return bundle
 
@@ -223,7 +223,7 @@ class I4pProjectTranslationListResource(ModelResource):
     This resource is NOT used to display I4pProjectTranslation as a front end (like using /project/bestof).
     The classic I4pProjectTranslationResource is used for these cases.
     """
-    project = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
+    project = fields.ForeignKey(I4pProjectListResource, attribute='master', full=True)
     
     class Meta:
         queryset = I4pProjectTranslation.objects.filter(master__in=I4pProject.on_site.all())
