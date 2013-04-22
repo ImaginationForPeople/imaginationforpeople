@@ -1,4 +1,4 @@
-django==1.4
+django==1.4.5
 psycopg2==2.4.1
 south==0.7.5
 pygraphviz==1.1
@@ -13,13 +13,8 @@ django-autocomplete-light==1.1.13
 
 easy-thumbnails==1.0.3
 
-# Django cms 2.3rc2.post0
-
-#-e git://github.com/ImaginationForPeople/django-cms.git@dj14#egg=django-cms
-#First commit with new i18n implementation
-#-e git://github.com/divio/django-cms.git@4b968ce1ff5715f5011bd6d622a84be453977f46#egg=django-cms
-#develop snapshot of 2.4, 2012-04-08:
--e git://github.com/divio/django-cms.git@36107ae09ae9f83b8d89383cd8a3c77854da6cfa#egg=django-cms
+# Django cms
+-e git://github.com/divio/django-cms.git@2.4.1#egg=django-cms
 
 # Wiki
 -e git://github.com/benjaoming/django-wiki.git@64a22a81807898f3fb1d60c86a9c13bb26fe4ac8#egg=django-wiki
@@ -84,7 +79,7 @@ django-social-auth==0.6.9
 
 -e git+https://github.com/SpreadBand/django-backcap.git@16e072aa77d130268dbaff55a66d59948d8545cc#egg=django-backcap
 
-django-reversion==1.6.5
+django-reversion==1.6.6
 
 # django-mailman
 -e git://github.com/ImaginationForPeople/django-mailman.git#egg=django-mailman

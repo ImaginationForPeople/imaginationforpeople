@@ -7,7 +7,7 @@ pip install django-cms==2.3.3
 git pull feature/djangocms_upgrade
 #You WILL corrupt the database if you don't do this:
 Put SITE_ID = 1 in site_settings.py
-fab devenv update_requirements
+fab devenv update_requirements (pip install -r requirements.txt in production)
 ./manage.py syncdb --migrate
 ./manage.py cms delete_orphaned_plugins
 #The following will take several minutes:
