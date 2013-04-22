@@ -57,14 +57,17 @@
                 <div class="tabsA">
                     <span class="label">{% trans 'Sort by :' %}</span>
                     <a id="oldest" href="{{ support.get_absolute_url }}?sort=oldest#answer-sort"
+                       rel="nofollow"
                        title="{% trans 'oldest answers will be shown first' %}">
                        <span>{% trans 'oldest' %}</span>
                     </a>
                     <a id="latest" href="{{ support.get_absolute_url }}?sort=latest#answer-sort"
+                       rel="nofollow"
                        title="{% trans 'newest answers will be shown first' %}">
                        <span>{% trans 'newest' %}</span>
                     </a>
                     <a id="votes" href="{{ support.get_absolute_url }}?sort=votes#answer-sort"
+                       rel="nofollow"
                        title="{% trans 'most voted answers will be shown first' %}">
                        <span>{% trans 'most voted' %}</span>
                     </a>

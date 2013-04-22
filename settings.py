@@ -146,12 +146,18 @@ MIDDLEWARE_CLASSES = (
 if DEBUG:
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
     )
     LETTUCE_APPS = (
             'apps.member',
             'apps.project_sheet',
             'apps.i4p_base',
             )
+
+if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
+    MIDDLEWARE_CLASSES += (
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
+    )
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
@@ -383,7 +389,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    #'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )
