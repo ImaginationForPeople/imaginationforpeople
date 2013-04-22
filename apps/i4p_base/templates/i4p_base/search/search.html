@@ -35,13 +35,10 @@ page : pagination object
 {% endaddtoblock %}
 
 <section id="search-block">
-
-    <form id="search_form" method="get" action="{% url i4p-search %}">
+   <form id="search_form" method="get" action="{% url i4p-search %}">
         <label for="{{ form.q.name }}">{% trans 'Search for inspiring projects, workgroups, members, needs...' %}</label>
         <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="{% trans 'Enter your research...' %}" value="{{ form.q.value|default:"" }}"/>
         <button type="submit"><span>{% trans 'Search' %}</span></button>
-   
-
 </section>
 
 <nav id="categories">
@@ -71,7 +68,7 @@ page : pagination object
                         <a href="javascript:void(0)" title="Switch to filter panel" class="switch">Switch</a>
                         <h1>{% trans 'Precise <br /> your research' %}</h1>
                         <div id="tags-list">
-                            <p><strong>{% trans 'Current search' %}</strong> <a href="#">{% trans 'Erase all' %}</a></p>
+                            <p><strong>{% trans 'Current search' %}</strong> <a id="erase-tags" href="javascript:;">{% trans 'Erase all' %}</a></p>
                             <ul>
                                 <li><a href="">Coworking</a></li>                                
                             </ul>
@@ -91,11 +88,18 @@ page : pagination object
                         <a href="#" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
-                        <a href="#" class="select">{% trans 'Select your languages' %}</a>
+                        {% comment %}<a href="#" class="select">{% trans 'Select your languages' %}</a>{% endcomment %}
+                        <select id="id_language" class="select" name="language">
+                           <option selected="selected" value="">{% trans 'Any language' %}</option>
+                           <option value="fr">{% trans 'French' %}</option>
+                           <option value="en">{% trans 'English' %}</option>
+                           <option value="es">{% trans 'Spanish' %}</option>
+                        </select>
+                         {% comment %}
                         <ul class="selected">
                             <li><a href="#"><span>FR</span> Français</a></li>
                             <li><a href="#"><span>ENG</span> Anglais</a></li>
-                        </ul>
+                        </ul> {% endcomment %}
                     </div>
 
                 </section>
@@ -103,19 +107,38 @@ page : pagination object
                 <section id="localisations">
                     <header>
                         <h1>{% trans 'Localisations' %}</h1>
-                        <a href="#" title="refresh">Refresh</a>
+                        <a href="javascript:;" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
-                        <a href="#" class="select">{% trans 'Select a country' %}</a>
+                        {% comment %}<a href="#" class="select">{% trans 'Select a country' %}</a>{% endcomment %}
+                        {{location_filter.country}}
+                        {% comment %}
                         <ul class="selected">
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="CAN" /> Canada</a></li>
-                             
-
                         </ul>
+                        {% endcomment %}
                     </div>
                 </section>
+                <section id="card-state">
+                    <header>
+                        <h1>{% trans 'File status' %}</h1>
+                        <a id="refresh-file-status" href="javascript:;" title="refresh">Refresh</a>
+                    </header>
+                    <div class="inner">
+                            <ul>
+                                <li class="bestof">{{form.best_of}}<label for="">{% trans 'Best of' %}</label></li>
+                                <li class="users">{{form.has_team}}<label for="">{% trans 'Supporters' %}</label></li>
+                                <li class="needs">{{form.has_needs}}<label for="">{% trans 'Needs' %}</label></li>
+                                {% comment %}
+                                <li class="inprogress"><input type="checkbox" /><label for="">{% trans 'In progress' %}</label></li>
+                                <li class="discussions"><input type="checkbox" /><label for="">{% trans 'Discussions' %}</label></li>
+                                {% endcomment %}
 
+                         </ul>
+                     </div>
+                 </section>
+                {% comment %}  
                 <section id="project-state">
                     <header>
                         <h1>{% trans 'Project status' %}</h1>
@@ -125,24 +148,7 @@ page : pagination object
                         <p class="progressbar progressbar-wip"><span>Projet mature</span></p>
                     </div>
                 </section>
-
-                <section id="card-state">
-                    <header>
-                        <h1>{% trans 'File status' %}</h1>
-                        <a href="#" title="refresh">Refresh</a>
-                    </header>
-                    <div class="inner">
-                            <ul>
-                                <li class="bestof">{{form.best_of}}<label for="">{% trans 'Best of' %}</label></li>
-                                <li class="users">{{form.has_team}}<label for="">{% trans 'Supporters' %}</label></li>
-                                {% comment %}<li class="inprogress"><input type="checkbox" /><label for="">{% trans 'In progress' %}</label></li>
-                                <li class="discussions"><input type="checkbox" /><label for="">{% trans 'Discussions' %}</label></li>
-                                <li class="needs"><input type="checkbox" /><label for="">{% trans 'Needs' %}</label></li>
-                                {% endcomment %}
-
-                         </ul>
-                     </div>
-                 </section>
+               {% endcomment %}
                </form>
             </div>
             

@@ -81,6 +81,11 @@ $(document).ready(function(){
        rebuild_tag_list();
        refresh_results();
    });
+   // REMOVING ALL TAGS
+   $('#erase-tags').click(function(){
+      $('#id_tags').val("");
+      rebuild_tag_list();
+   });
    // REBUILDING TAGS LIST with values in hidden input
    function rebuild_tag_list(){
       // reads values from id_tags and lowercase everything
@@ -99,7 +104,17 @@ $(document).ready(function(){
        });
           
    }
+   // LOCALISATION
+   $('#id_country').attr('name', 'location'); // change name to match filter name FIXME
+   $('#id_country').addClass("select");
+   $('#id_country').change(function(){
+      refresh_results();
+   });
    
+   //LANGUAGE
+   $('#id_language').change(function(){
+      refresh_results();
+   });
    // Triger refresh when a checkbox is selected
    $('[type=checkbox]').click(function(event){
       console.log($("#search_form").serialize());
