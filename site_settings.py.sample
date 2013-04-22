@@ -7,6 +7,10 @@ TEMPLATE_DEBUG = True
 # 404 and 500 pages locally:
 #COMPRESS_ENABLED = True 
 
+# Enables on-page code profiling.  To use, uncomment the following and
+# add ?prof at the end of the URL to see profiling output.
+#DEBUG_PROFILE_MIDDLEWARE_ENABLED == True
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
