@@ -30,7 +30,7 @@ $(document).ready(function(){
          // update projects count
          $("#projects").empty().append($(data).find('#projects').children());
          // Update style for each element of class .hover
-        
+        $('.project-card .hover').hide();
         // $('.hover').each(function(){
           //   console.log("==changing===");
             // $(this).attr('style', 'display : none;');

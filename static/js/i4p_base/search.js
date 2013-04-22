@@ -24,13 +24,128 @@ $(document).ready(function () {
 
 	// PROJECT CARD
 	$('.project-card .hover').hide();
-	$('.project-card').hover(function(){
-		$(this).children('.hover').fadeIn(100);
-	},function(){
-		$(this).children('.hover').fadeOut(100);
-	});
+	//$('.project-card').on(
+	//{  mouseenter : function(){
+	//	   $(this).children('.hover').fadeIn(100);},
+	//   mouseleave: function(){
+	//	   $(this).children('.hover').fadeOut(100);}
+	//});
+	$(document).on('mouseenter', '.project-card', function() {
+      $(this).children('.hover').fadeIn(100);
+   });
+   $(document).on('mouseleave', '.project-card', function() {
+      $(this).children('.hover').fadeOut(100);
+   });
 	$('.project-card .hover').not('a').click(function(){
 		window.location.href=$(this).children('.more').children('a').attr('href');
 	});
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
