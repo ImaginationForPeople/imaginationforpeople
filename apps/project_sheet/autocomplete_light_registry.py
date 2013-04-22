@@ -9,7 +9,7 @@ class AutocompleteI4pProject(autocomplete_light.AutocompleteModelTemplate):
     def choices_for_request(self):
         q = self.request.GET.get('q', '')
         project_translations = I4pProjectTranslation.objects.filter(title__icontains=q)
-        return [project_translation.project for project_translation in project_translations]
+        return [project_translation.master for project_translation in project_translations]
 
 autocomplete_light.register(I4pProject, AutocompleteI4pProject) 
 
