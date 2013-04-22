@@ -35,21 +35,23 @@ page : pagination object
 {% endaddtoblock %}
 
 <section id="search-block">
+
     <form id="search_form" method="get" action="{% url i4p-search %}">
-        <label for="{{ form.q.name }}">Rechercher des projets inspirants, des groupes de travail, des membres, des besoins...</label>
-        <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="Entrez votre recherche ..." value="{{ form.q.value|default:"" }}"/>
-        <button type="submit"><span>Rechercher</span></button>
-    
+        <label for="{{ form.q.name }}">{% trans 'Search for inspiring projects, workgroups, members, needs...' %}</label>
+        <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="{% trans 'Enter your research...' %}" value="{{ form.q.value|default:"" }}"/>
+        <button type="submit"><span>{% trans 'Search' %}</span></button>
+   
+
 </section>
 
 <nav id="categories">
     <ul>
-        <li id="projects"><a href="#"><span>Projets ({{ page.paginator.count }})</span></a></li>
-      {% comment %}<li id="all" class="active"><a href="#"><span>Tous (298)</span></a></li>
-        <li id="needs"><a href="#"><span>Besoins (10)</span></a></li>
-        <li id="groups"><a href="#"><span>Groupes (16)</span></a></li>
-        <li id="members"><a href="#"><span>Membres (12)</span></a></li>
-        <li id="discussions"><a href="#"><span>Discussions (40)</span></a></li>
+        <li id="projects"><a href="#"><span>{% trans 'Projects' %} ({{ page.paginator.count }})</span></a></li>
+      {% comment %}<li id="all" class="active"><a href="#"><span>{% trans 'All' %} (298)</span></a></li>
+        <li id="needs"><a href="#"><span>{% trans 'Needs' %} (10)</span></a></li>
+        <li id="groups"><a href="#"><span>{% trans 'Groups' %} (16)</span></a></li>
+        <li id="members"><a href="#"><span>{% trans 'Members' %} (12)</span></a></li>
+        <li id="discussions"><a href="#"><span>{% trans 'Discussions' %} (40)</span></a></li>
 	{% endcomment %}
     </ul>
 </nav>
@@ -58,38 +60,38 @@ page : pagination object
    <div id="content-panel">
         <div id="col">
             <header>
-                <a class="active" id="discover-button" href="#"><span>Découvrir</span></a>
+                <a class="active" id="discover-button" href="javascript:void(0)"><span>{% trans 'Discover' %}</span></a>
                 <span class="hidden">|</span>
-                <a id="filter-button" href="#"><span>Filtrer</span></a>
+                <a id="filter-button" href="javascript:void(0)"><span>{% trans 'Filter' %}</span></a>
             </header>
 
-           {% comment %} <form method="post" action="#">{% endcomment %}
+           <div class="panel1">
                 <section id="more-search">
                     <div class="inner">
-                        <a href="#" title="Switch to filter panel" class="switch">Switch</a>
-                        <h1>Affiner<br /> votre recherche</h1>
+                        <a href="javascript:void(0)" title="Switch to filter panel" class="switch">Switch</a>
+                        <h1>{% trans 'Precise <br /> your research' %}</h1>
                         <div id="tags-list">
-                            <p><strong>Recherche actuelle</strong> <a href="#">Tout effacer</a></p>
+                            <p><strong>{% trans 'Current search' %}</strong> <a href="#">{% trans 'Erase all' %}</a></p>
                             <ul>
                                 <li><a href="">Coworking</a></li>                                
                             </ul>
                         </div>
-                            <input type="text" id="tag-search" placeholder="Entrez un mot clé, un thème..." />
+                            <input type="text" id="tag-search" placeholder="{% trans 'Enter a keyword, a theme...' %}" />
                             {{form.tags.as_hidden}}
     			{% comment %}
                             <input type="checkbox" id="check-interest" name="check-interest" />
-                            <label for="check-interest">Mes centres d'intêret</label>
+                            <label for="check-interest">{% trans 'My centers of interests' %}</label>
     			{% endcomment %}
                     </div>
                 </section>
 
                 <section id="languages">
                     <header>
-                        <h1>Langue(s)</h1>
+                        <h1>{% trans 'Languages' %}</h1>
                         <a href="#" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
-                        <a href="#" class="select">Sélectionnez vos langues</a>
+                        <a href="#" class="select">{% trans 'Select your languages' %}</a>
                         <ul class="selected">
                             <li><a href="#"><span>FR</span> Français</a></li>
                             <li><a href="#"><span>ENG</span> Anglais</a></li>
@@ -100,11 +102,11 @@ page : pagination object
 
                 <section id="localisations">
                     <header>
-                        <h1>Localisation(s)</h1>
+                        <h1>{% trans 'Localisations' %}</h1>
                         <a href="#" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
-                        <a href="#" class="select">Sélectionnez un pays</a>
+                        <a href="#" class="select">{% trans 'Select a country' %}</a>
                         <ul class="selected">
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="CAN" /> Canada</a></li>
@@ -116,7 +118,7 @@ page : pagination object
 
                 <section id="project-state">
                     <header>
-                        <h1>Statut du projet</h1>
+                        <h1>{% trans 'Project status' %}</h1>
                         <a href="#" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
@@ -126,21 +128,43 @@ page : pagination object
 
                 <section id="card-state">
                     <header>
-                        <h1>État de la fiche</h1>
+                        <h1>{% trans 'File status' %}</h1>
                         <a href="#" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
                             <ul>
-                                <li class="bestof">{{form.best_of}}<label for="">Best-of</label></li>
-                                <li class="users">{{form.has_team}}<label for="">Porteur(s) associé(s)</label></li>
-                                {% comment %}<li class="inprogress"><input type="checkbox" /><label for="">En cours de rédaction</label></li>
-                                <li class="discussions"><input type="checkbox" /><label for="">Discussion(s)</label></li>
-                                <li class="needs"><input type="checkbox" /><label for="">Besoin(s)</label></li>
+                                <li class="bestof">{{form.best_of}}<label for="">{% trans 'Best of' %}</label></li>
+                                <li class="users">{{form.has_team}}<label for="">{% trans 'Supporters' %}</label></li>
+                                {% comment %}<li class="inprogress"><input type="checkbox" /><label for="">{% trans 'In progress' %}</label></li>
+                                <li class="discussions"><input type="checkbox" /><label for="">{% trans 'Discussions' %}</label></li>
+                                <li class="needs"><input type="checkbox" /><label for="">{% trans 'Needs' %}</label></li>
                                 {% endcomment %}
-                            </ul>
+
+                         </ul>
+                     </div>
+                 </section>
+               </form>
+            </div>
+            
+            <div class="panel2">
+                <section id="more-filters">
+                    <h1>{% trans 'Browse the <br /> different categories' %}</h1>
+                    <ul>
+                        <li class="best"><a href="#">{% trans 'Best of' %}</a></li>
+                        <li><a href="#">{% trans 'Last projects' %}</a></li>
+                        <li class="comm"><a href="#">{% trans 'Most commented' %}</a></li>
+                    </ul>
+                    <div class="categ">
+                        <h2>{% trans 'Categories' %}</h2>
+                        <ul>
+                            <li><a href="#">Arts contributifs</a></li>
+                            <li><a href="#">Arts contributifs</a></li>
+                            <li><a href="#">Arts contributifs</a></li>
+                            <li><a href="#">Arts contributifs</a></li>
+                        </ul>
                     </div>
                 </section>
-            </form>
+            </div>
         </div>
 
         <div id="main">

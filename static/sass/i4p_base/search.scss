@@ -455,6 +455,62 @@ section#card-state {
 	}
 }
 
+section#more-filters {
+	position:relative;
+	color:#706f6f;
+	padding:12px;
+	padding-bottom:25px !important;
+
+	h1 {
+		border-bottom: 1px dashed #706F6F;
+	    color: #706F6F;
+	    font-size: 1.9rem;
+	    font-weight: normal;
+	    line-height: 2.3rem;
+	    margin: 2px 0 20px;
+	    padding: 0 0 12px;
+	}
+
+	.categ {
+		margin-top:15px;
+	}
+
+	h2 {
+		margin:0 0 10px 5px;
+		padding:0 0 0 33px;
+		color:#242424;
+		font-size:1.2rem;
+		font-weight:bold;
+		background:image-url('i4p_base/search/categ.png') no-repeat 11px center; 
+		border-bottom:1px solid #e9e9e9;
+		line-height:3rem;
+	}
+
+	ul {
+		margin:0 0 5px 10px;
+	}
+
+	li {
+		color: #706F6F;
+	    display: block;
+	    font-size: 1.2rem;
+	    padding:3px 0 3px 28px;
+
+	    a {
+	    	color: #313131;
+	    	padding:2px 0;
+	    }
+
+	    &.best {
+	    	background:image-url('i4p_base/search/bestof.png') no-repeat 5px center; 
+	    }
+
+	    &.comm {
+			background:image-url('i4p_base/search/comments.png') no-repeat 5px center; 
+	    }
+	}
+}
+
 #main {
 	float:left;
 	margin:0 0 0 50px;

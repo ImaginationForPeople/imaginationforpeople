@@ -15,13 +15,12 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
 {% endaddtoblock %}
 
-<a href="{{ project.get_absolute_url }}">
 <div class="project-card">
     {% if project.best_of %}
       <div class="cocarde">&nbsp;</div>
     {% endif %}
     <div class="top">
-        <img src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" />
+        <a href="{{ project.get_absolute_url }}"><img src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" /></a>
         <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
         <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
         <p>
@@ -47,7 +46,6 @@ Parameters for this block
         <p>
             {{ project.text|truncatechars:200 }}
         </p>
-        <div class="more"><a href="#">{% trans 'See the project' %}</a></div>
+        <div class="more"><a href="{{ project.get_absolute_url }}">{% trans 'See the project' %}</a></div>
     </div>
 </div>
-</a>
