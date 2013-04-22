@@ -235,7 +235,7 @@ class ProjectEditInfoView(ProjectView):
                 self.project_translation.master.location = location
                 self.project_translation.master.save()
             
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         else:
             return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
 
@@ -590,7 +590,7 @@ class ProjectMemberAddView(ProjectView):
 
         # check if not yet member
         if request.user in self.project_translation.project.members.all():
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         
         if self.project_member_add_form.is_valid():
             project_member = self.project_member_add_form.save(commit=False)
@@ -598,7 +598,7 @@ class ProjectMemberAddView(ProjectView):
             project_member.user = request.user
             project_member.save()
 
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         else:
             return super(ProjectMemberAddView, self).get(request, *args, **kwargs)
         
