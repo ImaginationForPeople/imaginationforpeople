@@ -97,7 +97,7 @@ class GroupEditView(UpdateView):
 class GroupDetailView(DetailView):
     template_name = 'workgroup/page/workgroup_detail.html'
     context_object_name = 'workgroup'
-    model = WorkGroup
+    queryset = WorkGroup.objects.prefetch_related('subscribers__profile')
 
     def get_context_data(self, **kwargs):
         """
@@ -112,17 +112,15 @@ class GroupDetailView(DetailView):
             context['ml_member_list'] = [] # Both on I4P & the ML
             context['ml_nonmember_list'] = [] # Only subscribed to the ML
             members = get_ml_members(workgroup)
-            
-            for member in members:
-                try:
-                    found_member = User.objects.get(email=member[0])
-                    context['ml_member_list'].append(found_member)
-                    
-                    # Subscribe the user to the workgroup if not yet
-                    if found_member not in workgroup.subscribers.all():
-                        workgroup.subscribers.add(found_member)
-                except User.DoesNotExist:
-                    context['ml_nonmember_list'].append(User(email=member[0]))
+            emails = [member[0] for member in members]
+            found_members = User.objects.filter(email__in=emails)
+            for found_member in found_members:
+                context['ml_member_list'].append(found_member)
+                emails.remove(found_member.email)
+                # Subscribe the user to the workgroup if not yet
+                if found_member not in workgroup.subscribers.all():
+                    workgroup.subscribers.add(found_member)
+            context['ml_nonmember_list'] = [User(email=nonmember_email) for nonmember_email in emails]
 
         # Wiki
         try:
