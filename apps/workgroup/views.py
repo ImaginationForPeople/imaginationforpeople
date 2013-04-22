@@ -349,12 +349,10 @@ class GroupDiscussionThreadView(SpecificQuestionThreadView):
                                                         self.current_question.thread.question.id])
     
     def get_answer_url(self):
-        #FIXME : set up the right URL
         return reverse('workgroup-discussion-answer', args=[self.context_instance.slug,
                                                         self.current_question.thread.question.id])
     
     def get_edit_url(self):
-        #FIXME : set up the right URL
         return reverse('workgroup-discussion-edit', args=[self.context_instance.slug,
                                                         self.current_question.thread.question.id])
     

@@ -22,9 +22,9 @@ Django Forms for Groups
 from django import forms
 from django.forms.widgets import HiddenInput
 
-from .models import WorkGroup
 from apps.forum.forms import SpecificQuestionForm
 from apps.forum.models import SpecificQuestionType
+from .models import WorkGroup
 
 class GroupCreateForm(forms.ModelForm):
     class Meta:
@@ -37,6 +37,9 @@ class GroupEditForm(forms.ModelForm):
         fields = ('name', 'description', 'language', 'tags', 'picture', 'outside_url')
 
 class WorkgroupDiscussionForm(SpecificQuestionForm):
+    """
+    Form to create a workgroup discussion
+    """
     type = forms.ModelChoiceField(widget=HiddenInput(), 
                                   queryset=SpecificQuestionType.objects.filter(type="wg-discuss"),
                                   initial=SpecificQuestionType.objects.get(type="wg-discuss"))
