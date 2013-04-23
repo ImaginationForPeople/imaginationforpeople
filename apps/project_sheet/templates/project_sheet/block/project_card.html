@@ -1,0 +1,55 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project : I4pProject
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+{% load comments %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+{% endaddtoblock %}
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/project_card.js"></script>
+{% endaddtoblock %}
+
+<div class="project-card">
+    {% if project.best_of %}
+      <div class="cocarde">&nbsp;</div>
+    {% endif %}
+    <div class="top">
+        <a href="{{ project.get_absolute_url }}"><img height="120" width="200" src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" /></a>
+        <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
+        <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
+        <p>
+            {{ project.baseline|truncatechars:110 }}
+        </p>
+    </div>
+    <div class="bottom">
+        {% if project.members.count %}
+          <span class="supported" title="project supported">Project supported</span>
+	{% endif %}
+        <span class="country"><img src="{{ project.location.country.flag }}" alt="{{ project.location.country.code }}" /> {{ project.location.country.name }}</span>
+        <p>
+	  {% get_comment_count for project.get_current_translation as comment_count %}
+            <span class="comments" title="{{ comment_coun }} comments">{{ comment_count }}</span>
+	    {% with project.get_current_translation.projectsupport_set.count as need_count %}
+            <span class="needs" title="{{ need_count }} needs">{{ need_count }}</span>
+	    {% endwith %}
+            {% comment %}<span class="fav" title="10 favorites">10</span>{% endcomment %}
+        </p>
+    </div>
+    <div class="hover">
+        <div class="name" title="{{ project.title }}">{{ project.title|truncatechars:40 }}</div>
+        <p>
+            {{ project.text|truncatechars:200 }}
+        </p>
+        <div class="more"><a href="{{ project.get_absolute_url }}">{% trans 'See the project' %}</a></div>
+    </div>
+</div>

@@ -17,16 +17,29 @@
 #
 # -*- coding: utf-8 -*-
 from datetime import datetime
+from functools import update_wrapper
 import random
+from urlparse import urlsplit
 
+from django.conf import settings
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils import translation
+from django.utils.decorators import classonlymethod, method_decorator
+from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.base import RedirectView
+
+from haystack.query import SearchQuerySet
+from haystack.views import FacetedSearchView as HaystackFacetedSearchView
 
 from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents
 from django.core.cache import cache
+
+from .models import VersionActivity
+from .forms import ProjectSearchForm
 
 def homepage(request):
     """
@@ -61,15 +74,6 @@ def homepage(request):
                               )
 
 
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic.base import RedirectView
-
-from .models import VersionActivity
-
-from django.contrib.admin.views.decorators import staff_member_required
-from django.utils.decorators import method_decorator
-from urlparse import urlsplit
-
 class VersionActivityCheckView(RedirectView):
     """
     Approves a Version Activity (an admin reviewed it).
@@ -95,3 +99,122 @@ class VersionActivityCheckView(RedirectView):
                 pass
                 
             return redirect_to
+        
+class FacetedSearchView(TemplateResponseMixin, HaystackFacetedSearchView):
+    template_name = None
+    facets = None
+    filter_models = None
+    order_by = None
+    paginate_by = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
+    form_class = ProjectSearchForm
+
+    def __init__(self, *args, **kwargs):
+        form_class = kwargs.get('form_class', self.form_class)
+        super(FacetedSearchView, self).__init__(*args, **kwargs)
+        # Needed to switch out the default form class.
+        self.form_class = form_class
+        if not self.results_per_page and self.paginate_by:
+            self.results_per_page = self.paginate_by
+
+    def get_context_data(self):
+        return {}
+
+    def extra_context(self):
+        ctx = super(FacetedSearchView, self).extra_context()
+        ctx.update(self.get_context_data())
+        return ctx
+
+    def get_facets(self):
+        if not self.facets:
+            return []
+        return self.facets
+
+    def get_filter_model(self, models=None):
+        if models:
+            return (models + self.filter_models)
+        return self.filter_models
+
+    def get_order_by_fields(self):
+        return self.order_by
+
+    def get_extra_filters(self):
+        return {}
+
+    def get_search_queryset(self, queryset=None, models=None):
+        searchqueryset = queryset or self.searchqueryset or SearchQuerySet()
+        searchqueryset = searchqueryset.filter(
+            **self.get_extra_filters()
+        )
+        for facet_field in self.get_facets():
+            searchqueryset = searchqueryset.facet(facet_field)
+        # check we should filter by model
+        filter_models = self.get_filter_model(models)
+        if filter_models:
+            searchqueryset = searchqueryset.models(*filter_models)
+        # check for defined order by list
+        if self.get_order_by_fields():
+            searchqueryset = searchqueryset.order_by(
+                *self.get_order_by_fields()
+            )
+        return searchqueryset
+
+    @property
+    def template(self):
+        """ Provide property to be backwards compatible with haystack. """
+        template_names = self.get_template_names()
+        if template_names:
+            return template_names[0]
+        return None
+
+    def get(self, request, *args, **kwargs):
+        self.searchqueryset = self.get_search_queryset()
+        return super(FacetedSearchView, self).__call__(request)
+
+    def __call__(self, request, *args, **kwargs):
+        self.request = request
+        self.kwargs = kwargs
+        return self.get(request, *args, **kwargs)
+
+    @classonlymethod
+    def as_view(cls, *initargs, **initkwargs):
+        def view(request, *args, **kwargs):
+            return cls(*initargs, **initkwargs)(request, *args, **kwargs)
+        update_wrapper(view, cls, updated=())
+        return view
+        
+class SearchView(FacetedSearchView):
+    """
+    Search projects, members, etc ; using haystack
+    """
+    template_name = 'i4p_base/search/search.html'
+    filter_models = [I4pProject]
+    
+    def create_response(self):
+        """
+        Generates the actual HttpResponse to send back to the user.
+        """
+        (paginator, page) = self.build_page()
+
+        context = {
+            'query': self.query,
+            'form': self.form,
+            'page': page,
+            'paginator': paginator,
+            'suggestion': None,
+        }
+
+        self.page = page
+        
+        if getattr(settings, 'HAYSTACK_INCLUDE_SPELLING', False):
+            context['suggestion'] = self.form.get_suggestion()
+        
+        context.update(self.extra_context())
+        return render_to_response(self.template, context, context_instance=self.context_class(self.request))
+
+        
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+
+        context['project_list'] = [result.object for result in self.page.object_list]
+
+        return context

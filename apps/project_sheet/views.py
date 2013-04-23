@@ -15,8 +15,6 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from askbot.models.user import Activity
-from askbot.views.readers import QuestionsView
 """
 Django Views for a Project Sheet
 """
@@ -25,8 +23,6 @@ try:
 except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
-
-from datetime import datetime
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -38,27 +34,29 @@ from django.template.context import RequestContext
 from django.utils import translation, simplejson
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
-from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
+from django.views.generic.base import RedirectView
 
 from actstream.models import target_stream, model_stream
+from askbot.models.user import Activity
+from askbot.views.readers import QuestionsView
 from tagging.models import TaggedItem
 
-from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
 from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm
 from .models import ProjectMember, I4pProject, Question
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
-from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
-from .utils import get_project_translation_by_slug, get_project_translation_from_parent
-from .utils import get_project_project_translation_recent_changes, fields_diff
+from .utils import get_project_translation_by_slug
 from .utils import get_project_translation_by_any_translation_slug
 
 
 class CurrentProjectTranslationMixin(object):
-    
+    """
+    A mixin that provides a way to get an I4pProjectTranslation for
+    a given slug, in the current language.
+    """
     def get_project_translation(self, slug):
         language_code = translation.get_language()
         site = Site.objects.get_current()
@@ -75,78 +73,18 @@ class CurrentProjectTranslationMixin(object):
         
         return project_translation
 
-def project_sheet_list(request):
+class ProjectListView(RedirectView):
     """
-    Display a listing of all projects
+    Since we used to filter only projects, this view is here to
+    mimic the old behaviour and forwarding to the real search
+    engine
     """
-    language_code = translation.get_language()
+    permanent = True
+    query_string = True
 
-    data = request.GET.copy()
+    def get_redirect_url(self):
+        return reverse('i4p-search')
 
-    filter_forms_dict, extra_context = build_filters_and_context(data)
-
-    ordered_project_sheets = I4pProject.objects.none()
-    filters = FilterSet(filter_forms_dict.values())
-
-    if filters.is_valid():
-        # First pass to filter project
-        filtered_projects = filters.apply_to(queryset=I4pProject.on_site.all(),
-                                             model_class=I4pProject)
-        # Second pass to select language and site
-        project_sheet_ids = []
-        for project in filtered_projects:
-            project_sheet = get_project_translation_from_parent(project,
-                                                                language_code,
-                                                                fallback_language='en',
-                                                                fallback_any=True)
-            project_sheet_ids.append(project_sheet.id)
-        i18n_project_sheets = I4pProjectTranslation.objects.filter(id__in=project_sheet_ids)
-
-        # Third pass to filter sheet
-        filtered_project_sheets = filters.apply_to(queryset=i18n_project_sheets,
-                                                   model_class=I4pProjectTranslation)
-
-        # Fourth pass to order sheet
-        if data.get("order") == "creation":
-            ordered_project_sheets = filtered_project_sheets.order_by('-master__created')
-            extra_context["order"] = "creation"
-        elif data.get("order") == "modification":
-            ordered_project_sheets = filtered_project_sheets.order_by('-modified')
-            extra_context["order"] = "modification"
-        else:
-            # By default, display the project listing using the following order: 
-            # best_of, random().
-            # We need the ordering to be stable within a user session session.
-            # As a hashing function, use a hopefully portable pure SQL
-            # implementation (using only basic sql operators) of 
-            # Knuth Variant on Division hashing algorithm: h(k) = k(k+3) mod m
-            # Here the number of buckets (m) is determined by the day of the
-            # year
-            day_of_year = int(datetime.now().strftime('%j'))
-            pseudo_random_field = "(master_id * (master_id + 3)) %% {0:d}".format(day_of_year)
-            ordered_project_sheets = filtered_project_sheets.extra(select={'pseudo_random': pseudo_random_field},
-                                                                   order_by=['-master__best_of','pseudo_random'])
-
-        if data.has_key('page'):
-            del data["page"]
-        extra_context["getparams"] = data.urlencode()
-        extra_context["orderparams"] = extra_context["getparams"] \
-                                        .replace("order=creation", "") \
-                                        .replace("order=modification", "")
-
-        extra_context["selected_tags"] = [int(t.id) for t in filter_forms_dict["themes_filter"].cleaned_data["themes"]]
-
-
-    extra_context.update(filter_forms_dict)
-    extra_context["filters_tab_selected"] = True
-
-    return object_list(request,
-                       template_name='project_sheet/page/project_list.html',
-                       queryset=ordered_project_sheets,
-                       # paginate_by=12,
-                       allow_empty=True,
-                       template_object_name='project_translation',
-                       extra_context=extra_context)
 
 class ProjectStartView(TemplateView):
     """
@@ -260,6 +198,9 @@ class ProjectView(TemplateView):
         return context
 
 class ProjectAddMediaView(ProjectView):
+    """
+    A view to add pictures or videos to a project
+    """
     def get_context_data(self, **kwargs):
         context = super(ProjectAddMediaView, self).get_context_data(**kwargs)
         
@@ -301,7 +242,7 @@ class ProjectEditInfoView(ProjectView):
                 self.project_translation.master.location = location
                 self.project_translation.master.save()
             
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         else:
             return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
 
@@ -656,7 +597,7 @@ class ProjectMemberAddView(ProjectView):
 
         # check if not yet member
         if request.user in self.project_translation.master.members.all():
-            return redirect(self.project_translation)
+            return redirect(self.project_translation.master)
         
         if self.project_member_add_form.is_valid():
             project_member = self.project_member_add_form.save(commit=False)
@@ -716,6 +657,9 @@ class ProjectHistoryView(ProjectView):
         
 
 class ProjectRecentChangesView(TemplateView):
+    """
+    Display a list of recent changes from the project pages
+    """
     template_name = 'project_sheet/obsolete/all_recent_changes.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -726,7 +670,10 @@ class ProjectRecentChangesView(TemplateView):
         return context
 
 
-class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView): 
+class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
+    """
+    A view with all the discussions of a project, in a given language
+    """
     template_name = "project_sheet/page/project_discuss_list.html"
     is_specific = False
     jinja2_rendering = False
