@@ -93,10 +93,10 @@
                 {% include "member/block/memberlist_square.html" with members=project.detailed_fans.all %}
             {% endif %}
         
-                    {% if not request.user in project_translation.project.fans.all %}
+                    {% if not request.user in project.fans.all %}
                     <div class="fans-not-a-fan-block">
                     {% trans "Become a fan of this project" %}
-                    <form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project_translation.slug %}'>
+                    <form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project.slug %}'>
                         {% csrf_token %}
                         {{ project_fan_add_form.as_p }}
                         <input height="29" width="30" type="image" src="{{ STATIC_URL }}images/project_sheet/valid.png" alt="{% trans 'Become a fan' %}" />
@@ -127,7 +127,7 @@
 		</h2>
 		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
 		{% if related_projects %}
-		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
+		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_list=related_projects %}
 		{% else %}
 		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
 		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}

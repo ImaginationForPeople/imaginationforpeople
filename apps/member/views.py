@@ -44,7 +44,7 @@ from guardian.decorators import permission_required_or_403
 from reversion.models import Version
 
 from apps.project_sheet.utils import get_project_translations_from_parents
-from apps.project_sheet.models import I4pProject, I4pProjectTranslation
+from apps.project_sheet.models import I4pProject
 
 from .forms import I4PEditProfileForm, I4PSignupForm
 
@@ -95,25 +95,21 @@ def profile_detail(request, username):
     """
     user = get_object_or_404(User, username__iexact=username)
 
-    project_translation_list = get_project_translations_from_parents(user.projects.all().distinct()[:3],
-                                                                     language_code=translation.get_language()
-                                                                     )
+    project_member_list = user.projects.all()
 
-    project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
+    project_translation_ct = ContentType.objects.get_for_model(I4pProject)
 
     # FIXME : UGLY AND DOESN'T WORK !
     version_ids = [int(id["object_id"]) for id in Version.objects.filter(content_type=project_translation_ct, revision__user=user).values('object_id').distinct()[:30]]
-    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=version_ids)
+    project_contrib_list = I4pProject.objects.filter(id__in=version_ids)
 
-    project_fan_list = get_project_translations_from_parents(I4pProject.objects.filter(fans__id=user.id),
-                                                                     language_code=translation.get_language()
-                                                                     )
+    project_fan_list = I4pProject.objects.filter(fans__id=user.id)
     
 
     return userena_views.profile_detail(request,
                                         username,
                                         template_name='userena/profile_detail.html',
-                                        extra_context={'project_translation_list': project_translation_list,
+                                        extra_context={'project_list': project_member_list,
                                                        'project_contrib_list' : project_contrib_list,
                                                        'project_fan_list' : project_fan_list}
                                         )

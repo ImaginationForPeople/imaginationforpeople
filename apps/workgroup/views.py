@@ -121,13 +121,7 @@ class GroupDetailView(DetailView):
 
         context['wiki_article'] = article
         
-        language_code = translation.get_language()
-        project_translations = get_project_translations_from_parents(parents_qs=workgroup.projects.all(),
-                                                                     language_code=language_code,
-                                                                     fallback_language='en',
-                                                                     fallback_any=True)
-        
-        context['group_projects'] = project_translations
+        context['group_projects'] = workgroup.projects.all()
             
         return context
 

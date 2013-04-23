@@ -244,9 +244,10 @@ class ProjectView(TemplateView):
         project_status_choices['selected'] = self.project_translation.master.status
 
         # Related projects
-        related_projects = TaggedItem.objects.get_related(self.project_translation,
+        related_projects_translation = TaggedItem.objects.get_related(self.project_translation,
                                                           I4pProjectTranslation.objects.exclude(master__id=project.id),
                                                           num=3)
+        related_projects = [project_translation.master for project_translation in related_projects_translation]
 
         context.update({
             'topics': self.topics,
@@ -717,16 +718,16 @@ class ProjectFanAddView(ProjectView):
         self.project_fan_add_form = ProjectFanAddForm(request.POST, request.FILES)
 
         # check if not yet fan
-        if request.user in self.project_translation.project.fans.all():
-            return redirect(self.project_translation)
+        if request.user in self.project_translation.master.fans.all():
+            return redirect(self.project_translation.master)
         
         if self.project_fan_add_form.is_valid():
             project_fan = self.project_fan_add_form.save(commit=False)
-            project_fan.project = self.project_translation.project
+            project_fan.project = self.project_translation.master
             project_fan.user = request.user
             project_fan.save()
-
-            return redirect(self.project_translation)
+            tmp = self.project_translation.master
+            return redirect(tmp)
         else:
             return super(ProjectFanAddView, self).get(request, *args, **kwargs)
         
@@ -750,7 +751,7 @@ def project_sheet_fan_delete(request, project_slug, username):
     except I4pProjectTranslation.DoesNotExist:
         raise Http404
 
-    parent_project = project_translation.project
+    parent_project = project_translation.master
 
     project_fan = get_object_or_404(ProjectFan,
                                        user__username=username,
@@ -758,7 +759,7 @@ def project_sheet_fan_delete(request, project_slug, username):
 
     project_fan.delete()
 
-    return redirect(project_translation)
+    return redirect(project_translation.master)
 
 class ProjectHistoryView(ProjectView):
     """

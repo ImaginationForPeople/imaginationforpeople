@@ -24,7 +24,7 @@
             </h2>
         </div>
       
-        {% for project_translation in project_translation_list %}      
+        {% for project in project_member_list %}      
             {% include "project_sheet/block/card_fancy_square.html" %}            
         {% empty %}
             {% trans "This user does not have any project yet." %}
@@ -44,7 +44,7 @@
             </h2>
         </div>
         
-        {% for project_translation in project_contrib_list %}   
+        {% for project in project_contrib_list %}   
             {% include "project_sheet/block/card_fancy_square.html" %}          
         {% empty %}
             {% trans "No contributions yet." %}
@@ -72,11 +72,11 @@
             </h2>
         </div>
       
-        {% for project_translation in project_fan_list %}
+        {% for project in project_fan_list %}
             <div class="fan_container">
             {% include "project_sheet/block/card_fancy_square.html" %}
-            {% language project_translation.language_code %}
-                {% url project_sheet-instance-del-fan project_translation.slug request.user as unfan_url %}
+            {% language project.language_code %}
+                {% url project_sheet-instance-del-fan project.slug request.user as unfan_url %}
             {% endlanguage %}
             <p class="unfan_link">
             {% blocktrans %}
