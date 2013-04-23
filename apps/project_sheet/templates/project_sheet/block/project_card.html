@@ -48,7 +48,7 @@ Parameters for this block
     <div class="hover">
         <div class="name" title="{{ project.title }}">{{ project.title|truncatechars:40 }}</div>
         <p>
-            {{ project.text|truncatechars:200 }}
+            {{ project.about_section|truncatechars:300 }}
         </p>
         <div class="more"><a href="{{ project.get_absolute_url }}">{% trans 'See the project' %}</a></div>
     </div>
