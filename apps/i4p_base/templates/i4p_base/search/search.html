@@ -12,6 +12,7 @@ page : pagination object
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
+{% load cms_tags menu_tags %} 
 
 
 {% block content %}
@@ -65,12 +66,14 @@ page : pagination object
            <div class="panel1">
                 <section id="more-search">
                     <div class="inner">
+                    
                         <a href="javascript:void(0)" title="Switch to filter panel" class="switch">Switch</a>
                         <h1>{% trans 'Precise <br /> your research' %}</h1>
                         <div id="tags-list">
-                            <p><strong>{% trans 'Current search' %}</strong> <a id="erase-tags" href="javascript:;">{% trans 'Erase all' %}</a></p>
+                            <p><strong>{% trans 'Filter by tags' %}</strong> <a id="erase-tags" href="javascript:;">{% trans 'Erase all' %}</a></p>
                             <ul>
-                                <li><a href="">Coworking</a></li>                                
+                                <li><a href="">Coworking</a></li>      
+                                                         
                             </ul>
                         </div>
                             <input type="text" id="tag-search" placeholder="{% trans 'Enter a keyword, a theme...' %}" />
@@ -85,7 +88,7 @@ page : pagination object
                 <section id="languages">
                     <header>
                         <h1>{% trans 'Languages' %}</h1>
-                        <a href="#" title="refresh">Refresh</a>
+                        <a href="javascript:;" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
                         {% comment %}<a href="#" class="select">{% trans 'Select your languages' %}</a>{% endcomment %}
@@ -122,7 +125,7 @@ page : pagination object
                 </section>
                 <section id="card-state">
                     <header>
-                        <h1>{% trans 'File status' %}</h1>
+                        <h1>{% trans 'Project sheet status' %}</h1>
                         <a id="refresh-file-status" href="javascript:;" title="refresh">Refresh</a>
                     </header>
                     <div class="inner">
@@ -161,12 +164,10 @@ page : pagination object
                         <li class="comm"><a href="#">{% trans 'Most commented' %}</a></li>
                     </ul>
                     <div class="categ">
-                        <h2>{% trans 'Categories' %}</h2>
+                        <h2>{% trans 'Hot topics' %}</h2>
                         <ul>
-                            <li><a href="#">Arts contributifs</a></li>
-                            <li><a href="#">Arts contributifs</a></li>
-                            <li><a href="#">Arts contributifs</a></li>
-                            <li><a href="#">Arts contributifs</a></li>
+                            {% show_placeholder "content" "hottags" %} 
+                             {% comment %}<li><a href="/search/?tags=web">web</a></li> {% endcomment %} 
                         </ul>
                     </div>
                 </section>
