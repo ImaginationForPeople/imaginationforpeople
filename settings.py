@@ -426,6 +426,23 @@ LOCALE_INDEPENDENT_PATHS = (
 COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
 
 
+### HAYSTACK
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+	     'URL': 'http://127.0.0.1:8983/solr',
+        #'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
+        #'STORAGE': 'file',
+        #'POST_LIMIT': 128 * 1024 * 1024,
+        #'INCLUDE_SPELLING': True,
+        #'BATCH_SIZE': 500,
+    },
+}
+
+HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
+
+
+
 ### STATIC FILES
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')

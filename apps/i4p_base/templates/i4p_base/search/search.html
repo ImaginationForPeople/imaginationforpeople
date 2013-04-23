@@ -19,17 +19,26 @@ page : pagination object
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/search.css" />
 {% endaddtoblock %}
+{% addtoblock "js"%}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.blockUI.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js"%}
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.history.js"></script>
+{% endaddtoblock %}
+{% addtoblock "js"%}
+<script type="text/javascript" src="{{ STATIC_URL }}js/search_filter.js"></script>
+{% endaddtoblock %}
+
 
 {% addtoblock "js" %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/i4p_base/search.js"></script>
 {% endaddtoblock %}
 
 <section id="search-block">
-    <form method="get" action="{% url i4p-search %}">
+   <form id="search_form" method="get" action="{% url i4p-search %}">
         <label for="{{ form.q.name }}">{% trans 'Search for inspiring projects, workgroups, members, needs...' %}</label>
         <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="{% trans 'Enter your research...' %}" value="{{ form.q.value|default:"" }}"/>
         <button type="submit"><span>{% trans 'Search' %}</span></button>
-    </form>
 </section>
 
 <nav id="categories">
@@ -45,7 +54,7 @@ page : pagination object
 </nav>
 
 <div id="wrap-content-panel">
-    <div id="content-panel">
+   <div id="content-panel">
         <div id="col">
             <header>
                 <a class="active" id="discover-button" href="javascript:void(0)"><span>{% trans 'Discover' %}</span></a>
@@ -53,82 +62,99 @@ page : pagination object
                 <a id="filter-button" href="javascript:void(0)"><span>{% trans 'Filter' %}</span></a>
             </header>
 
-            <div class="panel1">
-                <form method="post" action="#">
-                    <section id="more-search">
-                        <div class="inner">
-                            <a href="javascript:void(0)" title="Switch to filter panel" class="switch">{% trans 'Switch' %}</a>
-                            <h1>{% trans 'Precise <br /> your research' %}</h1>
-                            <div id="tags-list">
-                                <p><strong>{% trans 'Current search' %}</strong> <a href="#">{% trans 'Erase all' %}</a></p>
-                                <ul>
-                                    <li><a href="#">Coworking</a></li>
-                                    <li><a href="#">Télétravail</a></li>
-                                </ul>
-                            </div>
-                                <input type="text" id="tag-search" name="tag-search" placeholder="{% trans 'Enter a keyword, a theme...' %}" />
-        			{% comment %}
-                                <input type="checkbox" id="check-interest" name="check-interest" />
-                                <label for="check-interest">{% trans 'My centers of interests' %}</label>
-        			{% endcomment %}
-                        </div>
-                    </section>
-
-                    <section id="languages">
-                        <header>
-                            <h1>{% trans 'Languages' %}</h1>
-                            <a href="#" title="refresh">Refresh</a>
-                        </header>
-                        <div class="inner">
-                            <a href="#" class="select">{% trans 'Select your languages' %}</a>
-                            <ul class="selected">
-                                <li><a href="#"><span>FR</span> Français</a></li>
-                                <li><a href="#"><span>ENG</span> Anglais</a></li>
+           <div class="panel1">
+                <section id="more-search">
+                    <div class="inner">
+                        <a href="javascript:void(0)" title="Switch to filter panel" class="switch">Switch</a>
+                        <h1>{% trans 'Precise <br /> your research' %}</h1>
+                        <div id="tags-list">
+                            <p><strong>{% trans 'Current search' %}</strong> <a id="erase-tags" href="javascript:;">{% trans 'Erase all' %}</a></p>
+                            <ul>
+                                <li><a href="">Coworking</a></li>                                
                             </ul>
                         </div>
-                    </section>
+                        <input type="text" id="tag-search" placeholder="{% trans 'Enter a keyword, a theme...' %}" />
+                            {{form.tags.as_hidden}}
+                        {% comment %}
+                        <input type="checkbox" id="check-interest" name="check-interest" />
+                        <label for="check-interest">{% trans 'My centers of interests' %}</label>
+                        {% endcomment %}
+                    </div>
+                </section>
 
-                    <section id="localisations">
-                        <header>
-                            <h1>{% trans 'Locations' %}</h1>
-                            <a href="#" title="refresh">Refresh</a>
-                        </header>
-                        <div class="inner">
-                            <a href="#" class="select">{% trans 'Select a country' %}</a>
-                            <ul class="selected">
-                                <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>
-                                <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="CAN" /> Canada</a></li>
-                            </ul>
-                        </div>
-                    </section>
-                    {% comment %}
-                    <section id="project-state">
-                        <header>
-                            <h1>{% trans 'Project status' %}</h1>
-                            <a href="#" title="refresh">Refresh</a>
-                        </header>
-                        <div class="inner">
-                            <p class="progressbar progressbar-wip"><span>Projet mature</span></p>
-                        </div>
-                    </section>
-                    {% endcomment %}
-                    <section id="card-state">
-                        <header>
-                            <h1>{% trans 'File status' %}</h1>
-                            <a href="#" title="refresh">Refresh</a>
-                        </header>
-                        <div class="inner">
-                                <ul>
-                                    <li class="bestof"><input type="checkbox" /><label for="">{% trans 'Best of' %}</label></li>
-                                    <li class="users"><input type="checkbox" /><label for="">{% trans 'Supporters' %}</label></li>
-                                    <li class="inprogress"><input type="checkbox" /><label for="">{% trans 'In progress' %}</label></li>
-                                    <li class="discussions"><input type="checkbox" /><label for="">{% trans 'Discussions' %}</label></li>
-                                    <li class="needs"><input type="checkbox" /><label for="">{% trans 'Needs' %}</label></li>
-                                </ul>
-                        </div>
-                    </section>
-                </form>
+                <section id="languages">
+                    <header>
+                        <h1>{% trans 'Languages' %}</h1>
+                        <a href="#" title="refresh">{% trans 'Refresh' %}</a>
+                    </header>
+                    <div class="inner">
+                        {% comment %}<a href="#" class="select">{% trans 'Select your languages' %}</a>{% endcomment %}
+                        <select id="id_language" class="select" name="language">
+                           <option selected="selected" value="">{% trans 'Any language' %}</option>
+                           <option value="fr">{% trans 'French' %}</option>
+                           <option value="en">{% trans 'English' %}</option>
+                           <option value="es">{% trans 'Spanish' %}</option>
+                        </select>
+                         {% comment %}
+                        <ul class="selected">
+                            <li><a href="#"><span>FR</span> Français</a></li>
+                            <li><a href="#"><span>ENG</span> Anglais</a></li>
+                        </ul> {% endcomment %}
+                    </div>
+
+                </section>
+
+                <section id="localisations">
+                    <header>
+                        <h1>{% trans 'Locations' %}</h1>
+                        <a href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
+                    </header>
+                    <div class="inner">
+                        {% comment %}<a href="#" class="select">{% trans 'Select a country' %}</a>{% endcomment %}
+                        {{location_filter.country}}
+                        {% comment %}
+                        <ul class="selected">
+                            <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>
+                            <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="CAN" /> Canada</a></li>
+                        </ul>
+                        {% endcomment %}
+                    </div>
+                </section>
+
+                <section id="card-state">
+                    <header>
+                        <h1>{% trans 'File status' %}</h1>
+                        <a id="refresh-file-status" href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
+                    </header>
+                    <div class="inner">
+                            <ul>
+                                <li class="bestof">{{form.best_of}}<label for="">{% trans 'Best of' %}</label></li>
+                                <li class="users">{{form.has_team}}<label for="">{% trans 'Supporters' %}</label></li>
+                                <li class="needs">{{form.has_needs}}<label for="">{% trans 'Needs' %}</label></li>
+                                {% comment %}
+                                <li class="inprogress"><input type="checkbox" /><label for="">{% trans 'In progress' %}</label></li>
+                                <li class="discussions"><input type="checkbox" /><label for="">{% trans 'Discussions' %}</label></li>
+                                {% endcomment %}
+
+                         </ul>
+                     </div>
+                 </section>
+
+                {% comment %}  
+                <section id="project-state">
+                    <header>
+                        <h1>{% trans 'Project status' %}</h1>
+                        <a href="#" title="refresh">{% trans 'Refresh' %}</a>
+                    </header>
+                    <div class="inner">
+                        <p class="progressbar progressbar-wip"><span>Projet mature</span></p>
+                    </div>
+                </section>
+               {% endcomment %}
+
+               </form>
             </div>
+            
             <div class="panel2">
                 <section id="more-filters">
                     <h1>{% trans 'Browse the <br /> different categories' %}</h1>
