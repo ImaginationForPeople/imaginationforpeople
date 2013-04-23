@@ -15,6 +15,10 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
 {% endaddtoblock %}
 
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/project_card.js"></script>
+{% endaddtoblock %}
+
 <div class="project-card">
     {% if project.best_of %}
       <div class="cocarde">&nbsp;</div>
