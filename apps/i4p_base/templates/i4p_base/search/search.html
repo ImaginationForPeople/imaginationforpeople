@@ -27,7 +27,7 @@ page : pagination object
 <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.history.js"></script>
 {% endaddtoblock %}
 {% addtoblock "js"%}
-<script type="text/javascript" src="{{ STATIC_URL }}js/search_filter.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/search/search_filter.js"></script>
 {% endaddtoblock %}
 
 
@@ -76,19 +76,19 @@ page : pagination object
                                                          
                             </ul>
                         </div>
-                            <input type="text" id="tag-search" placeholder="{% trans 'Enter a keyword, a theme...' %}" />
+                        <input type="text" id="tag-search" placeholder="{% trans 'Enter a keyword, a theme...' %}" />
                             {{form.tags.as_hidden}}
-    			{% comment %}
-                            <input type="checkbox" id="check-interest" name="check-interest" />
-                            <label for="check-interest">{% trans 'My centers of interests' %}</label>
-    			{% endcomment %}
+                        {% comment %}
+                        <input type="checkbox" id="check-interest" name="check-interest" />
+                        <label for="check-interest">{% trans 'My centers of interests' %}</label>
+                        {% endcomment %}
                     </div>
                 </section>
 
                 <section id="languages">
                     <header>
                         <h1>{% trans 'Languages' %}</h1>
-                        <a href="javascript:;" title="refresh">Refresh</a>
+                        <a href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
                     </header>
                     <div class="inner">
                         {% comment %}<a href="#" class="select">{% trans 'Select your languages' %}</a>{% endcomment %}
@@ -109,8 +109,8 @@ page : pagination object
 
                 <section id="localisations">
                     <header>
-                        <h1>{% trans 'Localisations' %}</h1>
-                        <a href="javascript:;" title="refresh">Refresh</a>
+                        <h1>{% trans 'Locations' %}</h1>
+                        <a href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
                     </header>
                     <div class="inner">
                         {% comment %}<a href="#" class="select">{% trans 'Select a country' %}</a>{% endcomment %}
@@ -123,10 +123,12 @@ page : pagination object
                         {% endcomment %}
                     </div>
                 </section>
+
                 <section id="card-state">
                     <header>
-                        <h1>{% trans 'Project sheet status' %}</h1>
+                     <h1>{% trans 'Project sheet status' %}</h1>
                         <a id="refresh-file-status" href="javascript:;" title="refresh">Refresh</a>
+
                     </header>
                     <div class="inner">
                             <ul>
@@ -141,17 +143,19 @@ page : pagination object
                          </ul>
                      </div>
                  </section>
+
                 {% comment %}  
                 <section id="project-state">
                     <header>
                         <h1>{% trans 'Project status' %}</h1>
-                        <a href="#" title="refresh">Refresh</a>
+                        <a href="#" title="refresh">{% trans 'Refresh' %}</a>
                     </header>
                     <div class="inner">
                         <p class="progressbar progressbar-wip"><span>Projet mature</span></p>
                     </div>
                 </section>
                {% endcomment %}
+
                </form>
             </div>
             
@@ -159,8 +163,8 @@ page : pagination object
                 <section id="more-filters">
                     <h1>{% trans 'Browse the <br /> different categories' %}</h1>
                     <ul>
-                        <li class="best"><a href="#">{% trans 'Best of' %}</a></li>
-                        <li><a href="#">{% trans 'Last projects' %}</a></li>
+                        <li class="best"><a href="/search/?best_of=on">{% trans 'Best of' %}</a></li>
+                        <li><a href="#">{% trans 'Latest projects' %}</a></li>
                         <li class="comm"><a href="#">{% trans 'Most commented' %}</a></li>
                     </ul>
                     <div class="categ">

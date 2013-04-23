@@ -17,7 +17,7 @@
 		display:block;
 		width:19px;
 		height:28px;
-		background:image-url('i4p_base/search/cocarde.png') no-repeat top left;
+		background:image-url('project_sheet/project_card/cocarde.png') no-repeat top left;
 		position:absolute;
 		top:-4px;
 		left:-9px;
@@ -43,7 +43,7 @@
 		}
 
 		.progressbar {
-			background:image-url('i4p_base/search/progressbar.png') no-repeat bottom left;
+			background:image-url('project_sheet/project_card/progressbar.png') no-repeat bottom left;
 			width:114px;
 			height:9px;
 			margin:12px 0 0 14px;
@@ -77,7 +77,7 @@
 			position:absolute;
 			top:9px;
 			right:15px;
-			background:image-url('i4p_base/search/single_guy.png') no-repeat bottom left;
+			background:image-url('project_sheet/project_card/single_guy.png') no-repeat bottom left;
 			text-indent:-999em;
 		}
 
@@ -100,9 +100,9 @@
 				margin: 0 6px 0 0;
     			padding: 0 0 0 20px;
 
-				&.comments { background:image-url('i4p_base/search/discussion.png') no-repeat center left; }
-				&.needs { background:image-url('i4p_base/search/speaker.png') no-repeat center left; }
-				&.fav { background:image-url('i4p_base/search/star.png') no-repeat center left; }
+				&.comments { background:image-url('project_sheet/project_card/discussion.png') no-repeat center left; }
+				&.needs { background:image-url('project_sheet/project_card/speaker.png') no-repeat center left; }
+				&.fav { background:image-url('project_sheet/project_card/star.png') no-repeat center left; }
 			}
 		}
 	}
@@ -113,7 +113,7 @@
 		position:absolute;
 		top:-5px;
 		left:-5px;
-		background:#04add1 image-url('i4p_base/search/card_over.jpg') no-repeat 0 48px;
+		background:#04add1 image-url('project_sheet/project_card/card_over.jpg') no-repeat 0 48px;
 		border:5px solid #b9e5ee;
 		@include border-radius(5px);
 
@@ -150,7 +150,7 @@
 			    line-height: 1.3rem;
 			    color:white;
 			    text-transform: uppercase; 
-			    background:image-url('i4p_base/search/see.png') no-repeat 82% 20px;
+			    background:image-url('project_sheet/project_card/see.png') no-repeat 82% 20px;
 			    @include transition(background 0.2s ease-in);
 
 			    &:hover {
