@@ -44,7 +44,7 @@ from guardian.decorators import permission_required_or_403
 from reversion.models import Version
 
 from apps.project_sheet.utils import get_project_translations_from_parents
-from apps.project_sheet.models import I4pProjectTranslation
+from apps.project_sheet.models import I4pProject, I4pProjectTranslation
 
 from .forms import I4PEditProfileForm, I4PSignupForm
 
@@ -105,11 +105,17 @@ def profile_detail(request, username):
     version_ids = [int(id["object_id"]) for id in Version.objects.filter(content_type=project_translation_ct, revision__user=user).values('object_id').distinct()[:30]]
     project_contrib_list = I4pProjectTranslation.objects.filter(id__in=version_ids)
 
+    project_fan_list = get_project_translations_from_parents(I4pProject.objects.filter(fans__id=user.id),
+                                                                     language_code=translation.get_language()
+                                                                     )
+    
+
     return userena_views.profile_detail(request,
                                         username,
                                         template_name='userena/profile_detail.html',
                                         extra_context={'project_translation_list': project_translation_list,
-                                                       'project_contrib_list' : project_contrib_list}
+                                                       'project_contrib_list' : project_contrib_list,
+                                                       'project_fan_list' : project_fan_list}
                                         )
 
 

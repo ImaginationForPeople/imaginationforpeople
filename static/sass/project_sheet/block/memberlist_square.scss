@@ -278,6 +278,21 @@ $memberListFancySquare_sizeHeight: 52px;
     @include i4p-seemore-class;
 
     h2 {
-	@include i4p-font-title;
+	@include i4p-font-title($sizeTextLarge);
+    }
+    
+    h3 {
+    @include i4p-font-title($sizeTextBig);
+    }
+    .fans-is-fan-block {
+        .addthis_toolbox {
+            display: inline-block;
+        }
+    }
+    .fans-not-a-fan-block {
+        form {
+            display: inline-block;
+            margin: 0;
+        }
     }
 }

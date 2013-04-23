@@ -41,15 +41,17 @@ from django.views.decorators.http import require_POST
 from django.views.generic.list_detail import object_list
 from django.views.generic import TemplateView
 
+from django.contrib.auth.models import User
+from guardian.decorators import permission_required_or_403
 from actstream.models import target_stream, model_stream
 from tagging.models import TaggedItem
 
 from .filters import FilterSet
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
-from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm
-from .models import ProjectMember, I4pProject, Question
+from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, ProjectFanAddForm, AnswerForm, ProjectVideoAddForm
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
+from .models import ProjectMember, ProjectFan, I4pProject, Question
 from .utils import build_filters_and_context
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug, get_project_translation_from_parent
@@ -698,6 +700,65 @@ def project_sheet_member_delete(request, project_slug, username):
 
     return redirect(project_translation)
 
+
+class ProjectFanAddView(ProjectView):
+    """
+    When someone wants to become a fan of a project
+    """
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProjectFanAddView, self).dispatch(request, *args, **kwargs)
+        
+    def get(self, request, *args, **kwargs):
+        self.project_fan_add_form = ProjectFanAddForm()
+        return super(ProjectFanAddView, self).get(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        self.project_fan_add_form = ProjectFanAddForm(request.POST, request.FILES)
+
+        # check if not yet fan
+        if request.user in self.project_translation.project.fans.all():
+            return redirect(self.project_translation)
+        
+        if self.project_fan_add_form.is_valid():
+            project_fan = self.project_fan_add_form.save(commit=False)
+            project_fan.project = self.project_translation.project
+            project_fan.user = request.user
+            project_fan.save()
+
+            return redirect(self.project_translation)
+        else:
+            return super(ProjectFanAddView, self).get(request, *args, **kwargs)
+        
+    def get_context_data(self, slug, *args, **kwargs):
+        context = super(ProjectFanAddView, self).get_context_data(slug, *args, **kwargs)
+        context['project_fan_add_form'] = self.project_fan_add_form
+        return context
+
+@login_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
+def project_sheet_fan_delete(request, project_slug, username):
+    """
+    Delete a project fan
+    """
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    parent_project = project_translation.project
+
+    project_fan = get_object_or_404(ProjectFan,
+                                       user__username=username,
+                                       project=parent_project)
+
+    project_fan.delete()
+
+    return redirect(project_translation)
 
 class ProjectHistoryView(ProjectView):
     """

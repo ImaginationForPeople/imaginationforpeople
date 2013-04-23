@@ -28,7 +28,7 @@ from hvad.forms import TranslatableModelForm
 from apps.i4p_base.models import Location
 
 from .models import I4pProject, I4pProjectTranslation, ProjectPicture, ProjectVideo
-from .models import ProjectReference, ProjectMember, Answer
+from .models import ProjectReference, ProjectMember, ProjectFan, Answer
 
 class I4pProjectThemesForm(forms.ModelForm):
     """
@@ -112,6 +112,22 @@ ProjectMemberFormSet = modelformset_factory(ProjectMember,
                                             extra=0, 
                                             can_delete=True, 
                                             fields=('role', 'comment')
+                                            )
+
+class ProjectFanAddForm(forms.ModelForm):
+    """
+    Let a user adds her/hisself to the project
+    """
+    class Meta:
+        model = ProjectFan
+        fields = ()
+
+    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly why you are a fan of this project...")}), required=False)
+
+ProjectFanFormSet = modelformset_factory(ProjectFan, 
+                                            extra=0, 
+                                            can_delete=True, 
+                                            fields=('comment', )
                                             )
 
 class AnswerForm(TranslatableModelForm):
