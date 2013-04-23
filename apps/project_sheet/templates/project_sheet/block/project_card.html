@@ -20,7 +20,7 @@ Parameters for this block
       <div class="cocarde">&nbsp;</div>
     {% endif %}
     <div class="top">
-        <a href="{{ project.get_absolute_url }}"><img src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" /></a>
+        <a href="{{ project.get_absolute_url }}"><img height="120" width="200" src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" /></a>
         <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
         <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
         <p>
