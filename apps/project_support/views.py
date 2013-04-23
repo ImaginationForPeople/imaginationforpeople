@@ -89,6 +89,8 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
     form_class = ProjectSheetNeedForm
     is_specific = True
     
+    http_method_names = ['post']
+    
     def get_success_url(self):
         return reverse('project_support_main', args=[self.context_instance.slug])
 
@@ -110,12 +112,8 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
         return context
     
     def get_cleaned_tags(self, request):
-        if request.method == "POST":
-            category = TaggedCategory.objects.get(id=request.POST['category'])
-            return category.tag.name
-
-        #Should never be called by GET
-        return ""
+        category = TaggedCategory.objects.get(id=request.POST['category'])
+        return category.tag.name
 
 class ProjectSupportThreadView(ProjectDiscussionThreadView):
     """
