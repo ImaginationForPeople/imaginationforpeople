@@ -81,7 +81,7 @@ class ProjectSerializer(ModelSerializer):
     """
     class Meta:
         fields = ('title', 'get_absolute_url', 'image')
-    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.master.get_absolute_url())
     image = Field(source='*', convert=lambda obj: ProjectSerializer.get_mosaic(obj))
 
     @staticmethod

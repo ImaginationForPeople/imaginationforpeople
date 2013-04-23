@@ -36,7 +36,7 @@ class WorkgroupResource(ModelResource):
     Resource used to display WorkGroup model using the API
     """
     subscribers = fields.ToManyField(UserResource, "subscribers", full=True, null=True)
-    projects = fields.ToManyField(I4pProjectTranslationListResource, full=True, null=True, attribute=lambda bundle:I4pProjectTranslation.objects.filter(project__in=bundle.obj.projects.all(), language_code=bundle.obj.language))
+    projects = fields.ToManyField(I4pProjectTranslationListResource, full=True, null=True, attribute=lambda bundle:I4pProjectTranslation.objects.filter(master__in=bundle.obj.projects.all(), language_code=bundle.obj.language))
     
     class Meta:
         queryset = WorkGroup.objects.all()
