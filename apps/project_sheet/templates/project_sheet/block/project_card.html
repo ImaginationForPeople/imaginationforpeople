@@ -15,14 +15,17 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
 {% endaddtoblock %}
 
-<a href="{{ project.get_absolute_url }}">
+{% addtoblock "js" %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/project_card.js"></script>
+{% endaddtoblock %}
+
 <div class="project-card">
     {% if project.best_of %}
       <div class="cocarde">&nbsp;</div>
     {% endif %}
     <div class="top">
-        <img src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" />
-        <h2>{{ project.title }}</h2>
+        <a href="{{ project.get_absolute_url }}"><img height="120" width="200" src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" /></a>
+        <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
         <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
         <p>
             {{ project.baseline|truncatechars:110 }}
@@ -42,5 +45,11 @@ Parameters for this block
             {% comment %}<span class="fav" title="10 favorites">10</span>{% endcomment %}
         </p>
     </div>
+    <div class="hover">
+        <div class="name" title="{{ project.title }}">{{ project.title|truncatechars:40 }}</div>
+        <p>
+            {{ project.text|truncatechars:200 }}
+        </p>
+        <div class="more"><a href="{{ project.get_absolute_url }}">{% trans 'See the project' %}</a></div>
+    </div>
 </div>
-</a>
