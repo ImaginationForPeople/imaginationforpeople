@@ -92,8 +92,8 @@ page : pagination object
                     </header>
                     <div class="inner">
                         {% comment %}<a href="#" class="select">{% trans 'Select your languages' %}</a>{% endcomment %}
-                        <select id="id_language" class="select" name="language">
-                           <option selected="selected" value="">{% trans 'Any language' %}</option>
+                        <select id="id_language" class="select" name="language_code">                           
+                           <option value="">{% trans 'Any language' %}</option>
                            <option value="fr">{% trans 'French' %}</option>
                            <option value="en">{% trans 'English' %}</option>
                            <option value="es">{% trans 'Spanish' %}</option>
@@ -163,15 +163,17 @@ page : pagination object
                 <section id="more-filters">
                     <h1>{% trans 'Browse the <br /> different categories' %}</h1>
                     <ul>
-                        <li class="best"><a href="/search/?best_of=on">{% trans 'Best of' %}</a></li>
-                        <li><a href="#">{% trans 'Latest projects' %}</a></li>
-                        <li class="comm"><a href="#">{% trans 'Most commented' %}</a></li>
+                        <li class="best"><a href="{% url i4p-search %}?best_of=on">{% trans 'Best of' %}</a></li>
+                        <li><a href="{% url i4p-search %}?order=creation">{% trans 'Latest projects' %}</a></li>
+                        <li class="comm"><a href="{% url i4p-search %}?order=commented">{% trans 'Most commented' %}</a></li>
                     </ul>
                     <div class="categ">
                         <h2>{% trans 'Hot topics' %}</h2>
                         <ul>
-                            {% show_placeholder "content" "hottags" %} 
-                             {% comment %}<li><a href="/search/?tags=web">web</a></li> {% endcomment %} 
+                            {% for tag in project_sheet_tags|slice:"2:11" %}
+                                <li><a title="{% blocktrans with count=tag.count %}{{ count }} project sheets{% endblocktrans %}" href="{% url i4p-search %}?tags={{tag|urlencode}}" id="tag_{{tag.id}}">{{ tag|capfirst }}</a></li>
+                            {% endfor %}
+                             {% comment %}{% show_placeholder "content" "hottags" %} <li><a href="/search/?tags=web">web</a></li> {% endcomment %} 
                         </ul>
                     </div>
                 </section>
