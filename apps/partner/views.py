@@ -37,10 +37,7 @@ class PartnerDetailView(DetailView):
 
         partner = context['partner']
         language_code = translation.get_language()
-        context['partner_projects'] = get_project_translations_from_parents(parents_qs=partner.projects.all(),
-                                                                            language_code=language_code,
-                                                                            fallback_language='en',
-                                                                            fallback_any=True)
+        context['partner_projects'] = partner.projects.all()
 
         return context
 

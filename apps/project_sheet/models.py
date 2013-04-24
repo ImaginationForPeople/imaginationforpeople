@@ -139,6 +139,12 @@ class I4pProject(TranslatableModel):
                                      related_name='projects',
                                      )
 
+    fans = models.ManyToManyField(User,
+                                     verbose_name=_("fans"),
+                                     through='ProjectFan',
+                                     related_name='fan_of_projects',
+                                     )
+
     best_of = models.BooleanField(verbose_name=_('best of'), default=False)
 
     created = models.DateTimeField(verbose_name=_("creation date"),
@@ -359,6 +365,23 @@ class ProjectMember(models.Model):
                             blank=True,
                             null=True)
 
+    comment = models.TextField(verbose_name=_("comment"),
+                               blank=True,
+                               null=True)
+
+    def __unicode__(self):
+        return u"%s - %s" % (self.project, self.user)
+
+class ProjectFan(models.Model):
+    """
+    A public fan of a project
+    """
+    class Meta:
+        unique_together = ('project', 'user')
+
+    project = models.ForeignKey(I4pProject, related_name="detailed_fans")
+    user = models.ForeignKey(User, related_name="project_fans")
+    fan_since = models.DateField(_("fan since date"), auto_now_add=True)
     comment = models.TextField(verbose_name=_("comment"),
                                blank=True,
                                null=True)
