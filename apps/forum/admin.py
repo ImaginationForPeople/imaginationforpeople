@@ -6,7 +6,7 @@ from .models import SpecificQuestion, SpecificQuestionType
 
 class SpecificQuestionAdmin(admin.ModelAdmin):
     list_display = ('thread', 'type', 'display_context_object')
-    form = SpecificQuestionForm
+    #form = SpecificQuestionForm
     
     def display_context_object(self, obj):
         return u"%s : %s" % (ContentType.objects.get_for_model(obj.context_object), obj.context_object)
