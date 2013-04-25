@@ -1,22 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-03-08 17:12-0500\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-25 16:04+0200\n"
 "PO-Revision-Date: 2013-02-15 22:38+0000\n"
 "Last-Translator: benoitg <benoitg@coeus.ca>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/imaginationforpeople/language/ru/)\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/"
+"imaginationforpeople/language/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: fields.py:43
 msgid "Recipients not found"
@@ -99,7 +101,7 @@ msgstr ""
 msgid "New message from %(sender)s on Imagination For People"
 msgstr ""
 
-#: views.py:184
+#: views.py:186
 msgid "Your profile has been updated."
 msgstr ""
 
@@ -344,6 +346,47 @@ msgstr ""
 
 #: templates/userena/profile_detail.html:50
 msgid "No contributions yet."
+msgstr ""
+
+#: templates/userena/profile_detail.html:59
+#, python-format
+msgid ""
+"\n"
+"                        I am a fan of the following project\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        I am a fan of the following %(num_fans)s projects\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: templates/userena/profile_detail.html:65
+#, python-format
+msgid ""
+"\n"
+"                        He/She is a fan of the following project\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        He/She is a fan of the following %(num_fans)s "
+"projects\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: templates/userena/profile_detail.html:82
+#, python-format
+msgid ""
+"\n"
+"                I am <a href=\"%(unfan_url)s\"> no longer a fan</a>.\n"
+"            "
+msgstr ""
+
+#: templates/userena/profile_detail.html:88
+msgid "This user isn't fan of any project yet."
 msgstr ""
 
 #: templates/userena/profile_idbar.html:15
