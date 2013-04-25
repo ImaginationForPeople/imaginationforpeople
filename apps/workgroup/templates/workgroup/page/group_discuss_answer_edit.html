@@ -1,0 +1,68 @@
+{% extends "workgroup/layout/workgroup_base.html" %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% block content %}
+{{block.super}}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
+{% endaddtoblock %}
+       
+<div id="workgroup-header">
+    <div id="workgroup-header-inner">
+        {% include "workgroup/block/workgroup_header.html" %}
+    </div>
+</div>
+
+<div class="container"> 
+	<div class="row">
+        <div class="span8 workgroup-form">
+            <div id="support-form">
+            	<h1 class="section-title">
+    			{% trans 'Edit answer' %} [<a href="#" onclick="history.back(-1);">{% trans 'back' %}</a>]
+				</h1>
+				<form id="fmedit"  action="#FIXME" method="post" >{% csrf_token %}
+				<input type="hidden" name="next" value="{{current_question_url}}#post-id-{{answer.id}}"/>
+				<label for="id_revision" >{% trans 'revision' %}:</label> <br/> 
+				{% if revision_form.revision.errors %}{{ revision_form.revision.errors.as_ul }}{% endif %}
+	    		<div style="vertical-align:middle">
+		        {{ revision_form.revision }} 
+		        <script>
+		        	$(document).ready(function(){
+		        		$("#id_revision").change(function(){
+		        			$.ajax({
+						        type: 'GET',
+						        url: '{% url get_revision %}',
+						        data: {'rev_id' : $(this).val(),
+						        	   'post_id' : {{answer.id}}},
+						        success: function(data) {
+						            $("textarea#editor").html(data.text)
+						        },
+						        dataType: 'json'
+						    });
+		        		});
+		        	});
+		        </script>
+			    </div>
+			    <div class="wrap-form">
+			    	{{ form.text }}
+			        <strong>{{ form.summary.label_tag }}</strong> 
+			        {{ form.summary }}
+			        <div class="title-desc">{{ form.summary.help_text }}</div>
+			        <div class="form-error" >{{ form.summary.errors }}</div>
+			    </div>
+			    <div class="after-editor">
+			        <input type="submit" value="{% trans 'Save edit' %}" class="submit" />&nbsp;
+			        <input type="button" value="{% trans 'Cancel' %}" class="submit" onclick="history.back(-1);" />
+			    </div>
+			</form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

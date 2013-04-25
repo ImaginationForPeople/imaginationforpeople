@@ -34,15 +34,13 @@
           <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %}">
             <a href="{% url project_support_main project_translation.slug %}">
               {% trans "Needs" %}
-              <span class="badge">{{ project_translation.projectsupport_set.count }}</span>
+              <span class="badge">{{need_count}}</span>
             </a>
           </li>
 	  <!-- history -->
 	  <li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %}">
 	    <a href="{% url project_sheet-instance-history project_translation.slug %}">{% trans "History" %}</a>
 	  </li>
-	  
-	  
 				{% comment %}
 				<li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
 				<li class="right"><a href="#FIXME-BADURL">

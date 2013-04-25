@@ -45,7 +45,7 @@
             </script>
 		</div>
 		<div class="comments-list">
-            {% for comment in post.get_cached_comments reversed %}
+            {% for comment in post.comments.all reversed %}
 			{% include "project_support/block/comment.html" %}
             {% endfor %}
 		</div>

@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     (r'^followit/', include('followit.urls')),
     (r'^cache/', include('keyedcache.urls')),
 
-    url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('edit/')), views.writers.edit_answer, name='edit_answer'),
+    url(r'^%s(?P<answer_id>\d+)/%s$' % (_('answers/'), _('edit/')), views.writers.EditAnswerView.as_view(), name='edit_answer'),
     url(r'^%s(?P<id>\d+)/%s$' % (_('answers/'), _('revisions/')), views.readers.revisions, kwargs = {'post_type': 'answer'}, name='answer_revisions'),
 
     # BEGIN Questions (main page) urls. All this urls work both normally and through ajax
@@ -87,8 +87,8 @@ urlpatterns = patterns('',
         name='reopen'
     ),
     url(
-        r'^%s(?P<id>\d+)/%s$' % (_('questions/'), _('answer/')), 
-        views.writers.answer, 
+        r'^%s(?P<question_id>\d+)/%s$' % (_('questions/'), _('answer/')), 
+        views.writers.PostNewAnswerView.as_view(), 
         name='answer'
     ),
     url(#ajax only
@@ -316,5 +316,5 @@ urlpatterns = patterns('',
         },
         name = 'custom_js'
     ),
-    url(r'^%s(?P<id>\d+)/' % _('question/'), views.readers.question, name='question'),
+    url(r'^%s(?P<question_id>\d+)/' % _('question/'), views.readers.QuestionView.as_view(), name='question'),
 )
