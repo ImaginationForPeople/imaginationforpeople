@@ -1,14 +1,10 @@
 from django import forms
-from askbot.forms import TitleField, QuestionEditorField
-from apps.project_sheet.models import I4pProjectTranslation
-from apps.tags.models import TaggedCategory
-from django.forms import widgets
-from .models import SUPPORT_TYPE_CHOICES, ProjectSupport
 
-class ProjectSupportProposalForm(forms.ModelForm):
-    title = TitleField()
-    text = QuestionEditorField()
-    
-    class Meta:
-        model = ProjectSupport
-        exclude=('project_translation', 'thread',)
+from apps.forum.models import SpecificQuestionType
+from apps.forum.forms import SpecificQuestionForm
+
+class ProjectSheetNeedForm(SpecificQuestionForm):
+    """
+    Form to create a project sheet support
+    """
+    type = forms.ModelChoiceField(queryset=SpecificQuestionType.objects.filter(type__in=['pj-need', 'pj-help']))

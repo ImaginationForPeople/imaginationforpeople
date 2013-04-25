@@ -18,6 +18,7 @@
 """
 Django Views for a Project Sheet
 """
+
 try:
     from collections import OrderedDict
 except ImportError:
@@ -26,6 +27,7 @@ except ImportError:
 
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.forms.models import modelform_factory
 from django.http import HttpResponseRedirect, HttpResponseForbidden, Http404
@@ -37,15 +39,18 @@ from django.views.decorators.http import require_POST
 from django.views.generic import TemplateView
 from django.views.generic.base import RedirectView
 
+from askbot.views.writers import EditAnswerView
+from guardian.decorators import permission_required_or_403
 from actstream.models import target_stream, model_stream
-from askbot.models.user import Activity
-from askbot.views.readers import QuestionsView
 from tagging.models import TaggedItem
 
+from apps.forum.views import SpecificQuestionListView, SpecificQuestionCreateView, SpecificQuestionThreadView,\
+    SpecificQuestionNewAnswerView
+
 from .forms import I4pProjectInfoForm, I4pProjectLocationForm
-from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm
-from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm
-from .models import ProjectMember, I4pProject, Question
+from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm, ProjectSheetDiscussionForm
+from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm, ProjectFanAddForm
+from .models import ProjectMember, ProjectFan, I4pProject, Question
 from .models import Answer, I4pProjectTranslation, ProjectPicture, ProjectVideo, SiteTopic, Topic
 from .utils import get_or_create_project_translation_from_parent, get_or_create_project_translation_by_slug, create_parent_project
 from .utils import get_project_translation_by_slug
@@ -180,9 +185,10 @@ class ProjectView(TemplateView):
         project_status_choices['selected'] = self.project_translation.master.status
 
         # Related projects
-        related_projects = TaggedItem.objects.get_related(self.project_translation,
+        related_projects_translation = TaggedItem.objects.get_related(self.project_translation,
                                                           I4pProjectTranslation.objects.exclude(master__id=project.id),
                                                           num=3)
+        related_projects = [project_translation.master for project_translation in related_projects_translation]
 
         context.update({
             'topics': self.topics,
@@ -640,6 +646,65 @@ def project_sheet_member_delete(request, project_slug, username):
     return redirect(project_translation)
 
 
+class ProjectFanAddView(ProjectView):
+    """
+    When someone wants to become a fan of a project
+    """
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super(ProjectFanAddView, self).dispatch(request, *args, **kwargs)
+        
+    def get(self, request, *args, **kwargs):
+        self.project_fan_add_form = ProjectFanAddForm()
+        return super(ProjectFanAddView, self).get(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        self.project_fan_add_form = ProjectFanAddForm(request.POST, request.FILES)
+
+        # check if not yet fan
+        if request.user in self.project_translation.master.fans.all():
+            return redirect(self.project_translation.master)
+        
+        if self.project_fan_add_form.is_valid():
+            project_fan = self.project_fan_add_form.save(commit=False)
+            project_fan.project = self.project_translation.master
+            project_fan.user = request.user
+            project_fan.save()
+            tmp = self.project_translation.master
+            return redirect(tmp)
+        else:
+            return super(ProjectFanAddView, self).get(request, *args, **kwargs)
+        
+    def get_context_data(self, slug, *args, **kwargs):
+        context = super(ProjectFanAddView, self).get_context_data(slug, *args, **kwargs)
+        context['project_fan_add_form'] = self.project_fan_add_form
+        return context
+
+@login_required
+@permission_required_or_403('change_user', (User, 'username', 'username'))
+def project_sheet_fan_delete(request, project_slug, username):
+    """
+    Delete a project fan
+    """
+    language_code = translation.get_language()
+
+    # get the project translation and its base
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=project_slug,
+                                                              language_code=language_code)
+    except I4pProjectTranslation.DoesNotExist:
+        raise Http404
+
+    parent_project = project_translation.master
+
+    project_fan = get_object_or_404(ProjectFan,
+                                       user__username=username,
+                                       project=parent_project)
+
+    project_fan.delete()
+
+    return redirect(project_translation.master)
+
 class ProjectHistoryView(ProjectView):
     """
     Display a page of the modifications of the project
@@ -670,38 +735,131 @@ class ProjectRecentChangesView(TemplateView):
         return context
 
 
-class ProjectDiscussionListView(CurrentProjectTranslationMixin, QuestionsView):
+class ProjectDiscussionListView(CurrentProjectTranslationMixin, SpecificQuestionListView): 
     """
-    A view with all the discussions of a project, in a given language
+    List all discussions related to a project sheet translation
     """
-    template_name = "project_sheet/page/project_discuss_list.html"
-    is_specific = False
-    jinja2_rendering = False
+    template_name = "project_questions/page/global_question_list.html"
+    qtypes=['pj-discuss']
     
-    
+    def get_context_object_instance(self, **kwargs):
+        return self.get_project_translation(kwargs["project_slug"])
+        
+    def get_questions_url(self):
+        return reverse('project_discussion_list', args=[self.context_object.slug])
+
+    def get_ask_url(self):
+        return reverse('project_discussion_open', args=[self.context_object.slug])
+
     def get_context_data(self, **kwargs):
-        language_code = translation.get_language()
-        
-        project_translation = self.get_project_translation(kwargs["project_slug"])
-        self.questions_url = reverse('project_discussion_list', args=[project_translation.slug])
-        
-        threads = project_translation.master.discussions.filter(language_code=language_code)
-        self.thread_ids = threads.values_list('id', flat=True)
-        
-        context = QuestionsView.get_context_data(self, **kwargs)
-    
-        activity_ids = []
-        for thread in threads:
-            for post in thread.posts.all():
-                activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
-        activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
-    
-        context.update({
-             'project' : project_translation.master,
-             'project_translation' : project_translation,
-             'active_tab' : 'discuss',
-             'activities' : activities,
-             'feed_url': reverse('project_discussion_list', args=[project_translation.slug])+"#TODO_RSS",
+        context = SpecificQuestionListView.get_context_data(self, **kwargs)
+          
+        context.update({  
+            'project': self.context_object.master,
+            'project_translation': self.context_object,
+            'tab_context': 'project_sheet',
+            'tab_name': 'discuss',
         })
     
         return context
+    
+class ProjectDiscussionCreateView(CurrentProjectTranslationMixin, SpecificQuestionCreateView):
+    """
+    Create a discussion for a given project sheet translation
+    """
+    template_name = "project_questions/page/open_discussion_form.html"
+    qtypes=['pj-discuss']
+    form_class = ProjectSheetDiscussionForm
+    
+    def get_success_url(self):
+        return reverse('project_discussion_list', args=[self.context_instance.slug])
+
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionCreateView.get_context_data(self, **kwargs)
+
+        context.update({
+            'project_translation': self.context_instance,
+        })
+        
+        return context
+    
+    def get_cleaned_tags(self, request):
+        return u"%s %s" % ("discussion", self.context_instance.slug)
+    
+    def get_context_object_instance(self, **kwargs):
+        return self.get_project_translation(kwargs["project_slug"])
+    
+
+class ProjectDiscussionThreadView(CurrentProjectTranslationMixin, SpecificQuestionThreadView):
+    """
+    Display a discussion thread for a given project sheet translation
+    """
+    qtypes=['pj-discuss']
+    
+    def get_question_url(self):
+        return reverse('project_discussion_view', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_answer_url(self):
+        return reverse('project_discussion_answer', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_edit_url(self):
+        return reverse('project_discussion_edit', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_context_object_instance(self, **kwargs):
+        return self.get_project_translation(kwargs["project_slug"])
+    
+    def get_questions_url(self):
+        return reverse('project_discussion_list', args=[self.context_instance.slug])
+    
+    
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionThreadView.get_context_data(self, **kwargs)
+        
+        context.update({
+             'project': self.context_instance.master,
+             'project_translation': self.context_instance,
+             'active_tab': 'discussion',
+        })
+        
+        return context
+
+class ProjectDiscussionNewAnswerView(CurrentProjectTranslationMixin, SpecificQuestionNewAnswerView):
+    """
+    Answer to a given project sheet discussion question
+    """
+    def get_success_url(self):
+        return reverse('project_discussion_view', args=[self.context_instance.slug, 
+                                                     self.current_question.id])
+    
+    def get_context_object_instance(self, **kwargs):
+        return self.get_project_translation(kwargs["project_slug"])
+    
+
+class ProjectDiscussionEditAnswerView(CurrentProjectTranslationMixin, EditAnswerView):
+    """
+    Edit a given project sheet discussion answer
+    """
+    jinja2_rendering = False
+    template_name="project_questions/page/question_answer_edit.html"
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.project_translation = self.get_project_translation(kwargs["project_slug"])
+        return EditAnswerView.dispatch(self, request, *args, **kwargs)
+    
+    def get_success_url(self):
+        return reverse('project_discussion_view', args=[self.project_translation.slug, 
+                                                     self.current_question.id])
+    
+    def get_context_data(self, answer_id, **kwargs):
+        context = EditAnswerView.get_context_data(self, answer_id, **kwargs)
+        
+        context.update({
+         'project_translation': self.project_translation,
+         'active_tab': 'support',
+         })
+
+        return context
+

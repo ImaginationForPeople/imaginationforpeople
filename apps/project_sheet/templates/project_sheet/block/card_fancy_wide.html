@@ -3,7 +3,7 @@
 Parameters for this block
 =========================
 
-* project_translation : I4pProjectTranslation
+* project : I4pProject
 
 {% endcomment %}
 {% load i18n %}
@@ -17,12 +17,12 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/card_fancy_wide.css" />
 {% endaddtoblock %}
 
-<a href="{{ project_translation.master.get_absolute_url }}" 
+<a href="{{ project.get_absolute_url }}" 
 	class="project wide-card">
-	<img src="{{ project_translation.master.pictures.all.0.small_pano_header.url }}"/>
+	<img src="{{ project.pictures.all.0.small_pano_header.url }}"/>
 
 	<div class="project-information">
-		<p class="title"><span>{{ project_translation.title }}</span></p>
-		<p class="description">{{ project_translation.baseline }}</p>
+		<p class="title"><span>{{ project.title }}</span></p>
+		<p class="description">{{ project.baseline }}</p>
 	</div>
 </a>

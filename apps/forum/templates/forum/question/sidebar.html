@@ -93,7 +93,7 @@
         </p>
     </div> 
 </div>-->
-{% include "block/workgroup/grouplist_fancy_wide.html" %}
+{{ include_django("forum/block/workgroup/grouplist_fancy_wide.html",request, thread=thread) }}
 
 {% if settings.SIDEBAR_QUESTION_SHOW_META %}
 <div class="box statsWidget">
