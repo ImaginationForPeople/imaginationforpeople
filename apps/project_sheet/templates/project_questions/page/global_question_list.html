@@ -4,7 +4,7 @@
 {% load tabs %}
 
 {% block navigation %}
-{% tab 'project_sheet' 'discuss' %}
+{% tab tab_context tab_name %}
 {{ block.super }}
 {% endblock %}
 
@@ -30,21 +30,21 @@ $(document).ready(function(){
 	$("#queryForm").submit(function(){
 		var url = $(this).attr("action");
 		url = QSutils.patch_query_string(url, "query:"+$(this).find("input[name=query]").val());
-		window.location.replace("{%url project_support_main project_translation.slug %}" + url);
+		window.location.replace("{{questions_url}}" + url);
 		return false;
 	});
 	
 	$("a.remove-tag-search").click(function(){
 		var url = $(this).attr("href");
 		url = QSutils.remove_search_tag(url, $(this).attr("data-tag-name"));
-		window.location.replace("{%url project_support_main project_translation.slug %}" + url);
+		window.location.replace("{{questions_url}}" + url);
 		return false
 	});
 	
 	$("a.remove-query-search").click(function(){
         var url = $(this).attr("href");
         url = QSutils.patch_query_string(url, "query:"+$(this).attr("data-tag-name"), true);
-        window.location.replace("{%url project_support_main project_translation.slug %}" + url);
+        window.location.replace("{{questions_url}}" + url);
         return false
     });
 });
@@ -64,7 +64,16 @@ $(document).ready(function(){
                         <input type="submit">
                     </form>
                 </div>
-                <a href="{{ search_state.full_ask_url }}" id="askButton"><i class="interrogation">&nbsp;</i>{% trans "Ask your question" %}</a>
+                {% block ask_button %}
+                <a href="{{ search_state.full_ask_url }}" id="askButton"><i class="interrogation">&nbsp;</i>{% trans "Ask your question" %}</a> 
+                {% endblock %}
+                
+                {% if root_category %}
+                <div class="middle">
+                    {% trans "or"%}
+                </div>
+                {% include "project_questions/block/categories_menu.html" %}
+                {% endif %}
             </div>
             {% if search_tags or query %}
             <ul class="search-tags">

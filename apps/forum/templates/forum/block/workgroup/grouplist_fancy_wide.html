@@ -1,11 +1,12 @@
 {% load i18n %}
-{% load comments %}
+{% load workgroup_tags %}
 
 <div class="box project_workgroups">
-	<h2>{% trans %}Related Groups{% endtrans %}</h2>
+	<h2>{% trans 'Related Groups' %}</h2>
 	
 	<ul>
-		{% for group in thread.workgroups.all() %}
+		{% workgroups thread as wg_list %}
+		{% for group in wg_list %}
 			<li>
 				<a href="{% url workgroup-discussion group.slug %}">
 					<div>

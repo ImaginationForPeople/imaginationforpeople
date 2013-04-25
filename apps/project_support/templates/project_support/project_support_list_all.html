@@ -62,19 +62,19 @@ $(document).ready(function(){
     <div class="row">
         <div class="span8 project-main">
             <h2 class="title">{% trans "Filter"|upper %}</h2>
-            
             <div id="categorySearch">
                 <div class="form">
-                    <form id="queryForm" action="{{search_state.full_url}}" method="get">
+                    <form id="queryForm" action="{{search_state.full_url}}" method="post">{% csrf_token %}
                         <input type="text" name="query" placeholder="{% trans 'Enter a keyword' %}"/>
                         <input type="submit">
-                        {% csrf_token %}
                     </form>
                 </div>
+                {% if root_category %}
                 <div class="middle">
                     {% trans "or"%}
                 </div>
-                {% include "project_support/block/support_categories_menu.html" %}
+                {% include "project_questions/block/categories_menu.html" %}
+                {% endif %}
             </div>
             {% if search_tags or query %}
             <ul class="search-tags">
@@ -88,11 +88,10 @@ $(document).ready(function(){
             {% endif %}
             <div>
             {% include_jinja "main_page/tab_bar.html" request %}
-            </div>                
+            </div>
             {% include "project_support/block/supports_list.html" %}
         </div>
 
-        
         <div class="span4 project-sidebar"> 
             <div class="project-members member-block">
                 <h2><i class="sheet-members"></i>{% trans "Contributors"|capfirst %}</h2>
