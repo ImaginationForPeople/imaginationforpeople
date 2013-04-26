@@ -124,7 +124,8 @@ Installing SolR search engine
 
 SolR is the search engine used in production environement (while Whoos backend is the default option in dev environment).
 Be sure that java is installed on your server before starting. Official Download Location: http://www.apache.org/dyn/closer.cgi/lucene/solr/
-Then choose a mirror and copy the link for a 3.* version. Create a solr dir in your virtual-env: 
+Then choose a mirror and copy the link for a 3.* version. Create a solr dir in your virtual-env::
+
 	web@i4p-prod:~/virtualenvs$ mkdir solr   
 	web@i4p-prod:~/virtualenvs$ cd solr    
 	web@i4p-prod:~/virtualenvs/solr$ wget http://apache.mirrors.hoobly.com/lucene/solr/3.6.2/apache-solr-3.6.2.tgz   
