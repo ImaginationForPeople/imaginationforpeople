@@ -42,8 +42,11 @@ $(document).ready(function(){
         event.preventDefault();//prevent form submission
         var tokens = $("#tag-search").val().toLowerCase().split(" ");              
         $.each(tokens, function(){
+            //check for duplicate
             var tmp = $('#id_tags').val();
-            $('#id_tags').val($.trim(tmp+" "+this));
+            if (tmp.search(this) == -1){
+               $('#id_tags').val($.trim(tmp+" "+this));
+            }
         });
         // empty text field and 
         $("#tag-search").val('');  
@@ -65,9 +68,11 @@ $(document).ready(function(){
    $('#erase-tags').click(function(){
       $('#id_tags').val("");
       rebuild_tag_list();
+      refresh_results();
    });
    // REBUILDING TAGS LIST with values in hidden input
    function rebuild_tag_list(){
+      console.log('rebuilding tag list');
       var tokens = $('#id_tags').val().toLowerCase().split(" ");
       // replace elements in tag lists
       $('#tags-list > ul').empty();
@@ -77,23 +82,45 @@ $(document).ready(function(){
                $('#tags-list > ul').append("<li><a href='javascript:;'>"+this.toLowerCase()+"</a></li>");
             }
        });
-          
+       if ($('#tags-list > ul > li').length == 0){
+         $('#tags-list > ul').hide()
+       }
+       else {$('#tags-list > ul').show()}       
    }
-   // LOCALISATION
+   // LOCATION
    $('#id_country').attr('name', 'location'); // change name to match filter name FIXME
    $('#id_country').addClass("select");
    $('#id_country').change(function(){
       refresh_results();
+   });
+   $('#localisation_refresh').click(function(){
+      $('#id_country').prop('selectedIndex',0);
    });
    
    //LANGUAGE
    $('#id_language').change(function(){
       refresh_results();
    });
+   $('#language_refresh').click(function(){
+      $('#id_language').prop('selectedIndex',0);
+   });
    // Triger refresh when a checkbox is selected
    $('[type=checkbox]').click(function(event){
       console.log($("#search_form").serialize());
-      refresh_results();
-   
-   });   
+      refresh_results();   
+   });
+   // Refresh all filters
+   $('#reset_all_filters').click(function(){
+      //reset tags
+      $('#id_tags').val("");
+      rebuild_tag_list();
+      //location
+      $('#id_country').prop('selectedIndex',0);
+      //language
+      $('#id_language').prop('selectedIndex',0);
+      //Project card status
+      $('[type=checkbox]').removeAttr('checked');    
+      refresh_results();   
+   });
+      
 });
