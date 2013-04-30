@@ -37,7 +37,7 @@ page : pagination object
 
 <section id="search-block">
    <form id="search_form" method="get" action="{% url i4p-search %}">
-        <label for="{{ form.q.name }}">{% trans 'Search for inspiring projects, workgroups, members, needs...' %}</label>
+        <label for="{{ form.q.name }}">{% trans 'Search for inspiring projects' %}</label>
         <input type="text" id="{{ form.q.name }}" name="{{ form.q.name }}" placeholder="{% trans 'Enter your research...' %}" value="{{ form.q.value|default:"" }}"/>
         <button type="submit"><span>{% trans 'Search' %}</span></button>
 </section>
@@ -67,10 +67,10 @@ page : pagination object
                 <section id="more-search">
                     <div class="inner">
                     
-                        <a href="javascript:void(0)" title="Switch to filter panel" class="switch">Switch</a>
+                        <a id="reset_all_filters" href="javascript:void(0)" title="Reset all filters" class="switch">Reset all</a>
                         <h1>{% trans 'Precise <br /> your research' %}</h1>
                         <div id="tags-list">
-                            <p><strong>{% trans 'Filter by tags' %}</strong> <a id="erase-tags" href="javascript:;">{% trans 'Erase all' %}</a></p>
+                            <p><strong>{% trans 'Filter by tags' %}</strong> <a id="erase-tags" href="javascript:;">{% trans 'Erase tags' %}</a></p>
                             <ul>
                                 <li><a href="">Coworking</a></li>      
                                                          
@@ -88,7 +88,7 @@ page : pagination object
                 <section id="languages">
                     <header>
                         <h1>{% trans 'Languages' %}</h1>
-                        <a href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
+                        <a id="language_refresh" href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
                     </header>
                     <div class="inner">
                         {% comment %}<a href="#" class="select">{% trans 'Select your languages' %}</a>{% endcomment %}
@@ -110,11 +110,11 @@ page : pagination object
                 <section id="localisations">
                     <header>
                         <h1>{% trans 'Locations' %}</h1>
-                        <a href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
+                        <a id="location_refresh" href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
                     </header>
                     <div class="inner">
                         {% comment %}<a href="#" class="select">{% trans 'Select a country' %}</a>{% endcomment %}
-                        {{location_filter.country}}
+                        {{location_filter.location}}
                         {% comment %}
                         <ul class="selected">
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>
@@ -127,13 +127,13 @@ page : pagination object
                 <section id="card-state">
                     <header>
                      <h1>{% trans 'Project sheet status' %}</h1>
-                        <a id="refresh-file-status" href="javascript:;" title="refresh">Refresh</a>
+                        <a id="file-status_refresh" href="javascript:;" title="refresh">Refresh</a>
 
                     </header>
                     <div class="inner">
                             <ul>
                                 <li class="bestof">{{form.best_of}}<label for="">{% trans 'Best of' %}</label></li>
-                                <li class="users">{{form.has_team}}<label for="">{% trans 'Supporters' %}</label></li>
+                                <li class="users">{{form.has_team}}<label for="">{% trans 'Members' %}</label></li>
                                 <li class="needs">{{form.has_needs}}<label for="">{% trans 'Needs' %}</label></li>
                                 {% comment %}
                                 <li class="inprogress"><input type="checkbox" /><label for="">{% trans 'In progress' %}</label></li>
