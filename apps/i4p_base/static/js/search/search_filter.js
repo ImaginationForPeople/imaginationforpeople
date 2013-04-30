@@ -87,13 +87,18 @@ $(document).ready(function(){
        }
        else {$('#tags-list > ul').show()}       
    }
+
    // LOCATION      
    $('#id_location').change(function(){
       refresh_results();
    });
    $('#location_refresh').click(function(){
       $('#id_location').prop('selectedIndex',0);
+
       refresh_results();
+   });
+   $('#localisation_refresh').click(function(){
+      $('#id_country').prop('selectedIndex',0);
    });
    
    //LANGUAGE
@@ -114,6 +119,7 @@ $(document).ready(function(){
       $('[type=checkbox]').removeAttr('checked');    
       refresh_results();   
    });
+
    // Refresh all filters
    $('#reset_all_filters').click(function(){
       //reset tags
