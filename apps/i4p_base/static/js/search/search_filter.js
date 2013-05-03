@@ -96,11 +96,7 @@ $(document).ready(function(){
       $('#id_location').prop('selectedIndex',0);
 
       refresh_results();
-   });
-   $('#localisation_refresh').click(function(){
-      $('#id_country').prop('selectedIndex',0);
-   });
-   
+   });   
    //LANGUAGE
    $('#id_language').change(function(){
       refresh_results();
