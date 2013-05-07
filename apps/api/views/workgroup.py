@@ -24,6 +24,7 @@ from tastypie import fields
 from tastypie.resources import ModelResource
 from tastypie.utils.urls import trailing_slash
 from tastypie.throttle import CacheDBThrottle
+from wiki.models.article import Article, ArticleForObject
 
 from apps.project_sheet.project_pictures_specs import ResizeThumbApi,ResizeDisplay
 from apps.project_sheet.models import I4pProjectTranslation
@@ -55,7 +56,7 @@ class WorkgroupResource(ModelResource):
         
     def full_dehydrate(self, bundle, for_list=False):
         bundle = ModelResource.full_dehydrate(self, bundle, for_list)
-        if(bundle.obj.picture):
+        if bundle.obj.picture:
             thumbnailer = get_thumbnailer(bundle.obj.picture)
             thumbnail_options = {'size': (ResizeThumbApi.width, ResizeThumbApi.height)}
             bundle.data["thumb"] = thumbnailer.get_thumbnail(thumbnail_options).url
@@ -68,4 +69,8 @@ class WorkgroupResource(ModelResource):
                 bundle.data["image"] = thumbnailer.get_thumbnail(thumbnail_options).url
             else:
                 bundle.data["image"] = None
+            try:
+                bundle.data["article"] = Article.get_for_object(bundle.obj).render()
+            except ArticleForObject.DoesNotExist:
+                bundle.data["article"] = None
         return bundle
