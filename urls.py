@@ -67,7 +67,6 @@ urlpatterns += i18n_patterns('',
     url(r'^member/', include('apps.member.urls')),
     url(r'^tags/', include('apps.tags.urls', namespace='tags')),
     url(r'^feedback/', include('backcap.urls')),
-    url(r'^search/', haystack.views.basic_search, name='i4p-search'),
     url(r'^ajax/search$', apps.i4p_base.ajax.globalsearch_autocomplete, name='i4p-globalsearch-complete'),
     url(r'^%s/' % settings.ASKBOT_URL , include('apps.forum.urls')),
 

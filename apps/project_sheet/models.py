@@ -25,15 +25,11 @@ import os
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.sites.models import Site
-from django.contrib.sites.managers import CurrentSiteManager
 from django.core.urlresolvers import reverse
-from django.core.mail import mail_managers
 from django.db import models
 from django.db.models.signals import post_save, post_delete, class_prepared
 from django.dispatch import receiver
-from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
 from django.utils import translation
 
@@ -43,6 +39,7 @@ from cms.models.pluginmodel import CMSPlugin
 from imagekit.models import ImageModel
 from licenses.fields import LicenseField
 from hvad.models import TranslatableModel, TranslatedFields, TranslationManager
+from hvad.utils import get_cached_translation
 import reversion
 import reversion.models
 
@@ -142,6 +139,12 @@ class I4pProject(TranslatableModel):
                                      related_name='projects',
                                      )
 
+    fans = models.ManyToManyField(User,
+                                     verbose_name=_("fans"),
+                                     through='ProjectFan',
+                                     related_name='fan_of_projects',
+                                     )
+
     best_of = models.BooleanField(verbose_name=_('best of'), default=False)
 
     created = models.DateTimeField(verbose_name=_("creation date"),
@@ -172,8 +175,6 @@ class I4pProject(TranslatableModel):
     topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'),
                                     related_name='projects')
     
-    discussions = models.ManyToManyField(Thread, related_name='projects')
-
     # dynamicsites
     site = models.ManyToManyField(Site, help_text=_('The sites on which this project sheet is accessible.'), 
                                   verbose_name=_("sites"),
@@ -227,6 +228,14 @@ class I4pProject(TranslatableModel):
             return self.pictures.all()[0]
         else:
             return None
+
+
+    def get_current_translation(self):
+        """
+        Get the translation model (hvad) from the current shared
+        model instance
+        """
+        return get_cached_translation(self)
     
     def __unicode__(self):
         return self.lazy_translation_getter('title', 'Project: %s' % self.pk)
@@ -354,6 +363,23 @@ class ProjectMember(models.Model):
                             blank=True,
                             null=True)
 
+    comment = models.TextField(verbose_name=_("comment"),
+                               blank=True,
+                               null=True)
+
+    def __unicode__(self):
+        return u"%s - %s" % (self.project, self.user)
+
+class ProjectFan(models.Model):
+    """
+    A public fan of a project
+    """
+    class Meta:
+        unique_together = ('project', 'user')
+
+    project = models.ForeignKey(I4pProject, related_name="detailed_fans")
+    user = models.ForeignKey(User, related_name="project_fans")
+    fan_since = models.DateField(_("fan since date"), auto_now_add=True)
     comment = models.TextField(verbose_name=_("comment"),
                                blank=True,
                                null=True)

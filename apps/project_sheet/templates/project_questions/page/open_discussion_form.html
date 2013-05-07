@@ -1,0 +1,28 @@
+{% extends "project_sheet/layout/project_base.html" %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% block content %}
+{{block.super}}
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_form.css" />
+{% endaddtoblock %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_search.css" />
+{% endblock %}
+
+{% block project_content %}
+<div class="container">        
+    <div class="row">
+            <div class="span8 project-main">
+            <div id="support-form">
+            	{% block form_title%}
+            	<h1>{% trans "Please ask your question here"%}</h1>
+            	{% endblock %}
+                {% block inner_form %}
+                {% include "project_questions/block/question_form.html" %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

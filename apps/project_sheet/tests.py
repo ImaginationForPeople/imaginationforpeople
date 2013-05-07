@@ -16,14 +16,15 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 """
-Example on how to use tests for TDD
+TDD for project sheet
 """
 from django.contrib.sites.models import Site
 from django.db import DatabaseError
 from django.http import QueryDict
 from django.test import TestCase
 
-from apps.project_sheet.models import I4pProject, I4pProjectTranslation, Topic, SiteTopic
+from apps.project_sheet.models import I4pProject, Topic, SiteTopic
+I4pProjectTranslation = I4pProject.objects.translations_model
 
 from .utils import create_parent_project, get_project_translation_by_slug
 from .utils import get_project_translation_from_parent, get_project_translations_from_parents
@@ -33,6 +34,11 @@ from .filters import FilterSet, WithMembersFilterForm
 
 
 class TestUtils(TestCase):
+    """
+    Testing utils of project sheet. Mainly translation related. I'm
+    not sure this is still useful since we now rely on hvad for this
+    job. We may just want to remove them.
+    """
     fixtures = ["test_pjsheet"]
 
     def setUp(self):

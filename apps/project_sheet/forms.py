@@ -20,15 +20,17 @@ Django Forms for a Project Sheet
 """
 from django import forms
 from django.forms.models import modelformset_factory
+from django.forms.widgets import HiddenInput
 from django.utils.translation import ugettext_lazy as _
 
-from ajax_select.fields import AutoCompleteSelectField
 from hvad.forms import TranslatableModelForm
 
+from apps.forum.forms import SpecificQuestionForm
+from apps.forum.models import SpecificQuestionType
 from apps.i4p_base.models import Location
 
-from .models import I4pProject, I4pProjectTranslation, ProjectPicture, ProjectVideo
-from .models import ProjectReference, ProjectMember, Answer
+from .models import I4pProject, I4pProjectTranslation, ProjectPicture, \
+    ProjectVideo, ProjectReference, ProjectFan, ProjectMember, Answer
 
 class I4pProjectThemesForm(forms.ModelForm):
     """
@@ -114,6 +116,22 @@ ProjectMemberFormSet = modelformset_factory(ProjectMember,
                                             fields=('role', 'comment')
                                             )
 
+class ProjectFanAddForm(forms.ModelForm):
+    """
+    Let a user adds her/hisself to the project
+    """
+    class Meta:
+        model = ProjectFan
+        fields = ()
+
+    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly why you are a fan of this project...")}), required=False)
+
+ProjectFanFormSet = modelformset_factory(ProjectFan, 
+                                            extra=0, 
+                                            can_delete=True, 
+                                            fields=('comment', )
+                                            )
+
 class AnswerForm(TranslatableModelForm):
     class Meta:
         model = Answer
@@ -129,3 +147,9 @@ class ProjectVideoAddForm(forms.ModelForm):
     class Meta:
         model = ProjectVideo
         fields = ('video_url', )
+
+
+class ProjectSheetDiscussionForm(SpecificQuestionForm):
+    type = forms.ModelChoiceField(widget=HiddenInput(), 
+                                  queryset=SpecificQuestionType.objects.filter(type="pj-discuss"),
+                                  initial=SpecificQuestionType.objects.get(type="pj-discuss"))

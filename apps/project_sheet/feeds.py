@@ -50,8 +50,7 @@ class LatestChangesFeed(Feed):
         return item.timestamp
 
     def item_link(self, item):
-        translation.activate(item.action_object.language_code)
-        return reverse('project_sheet-show', kwargs={'slug': item.target.slug})
+        return item.target.get_absolute_url()
 
     def link(self):
         return reverse('project_sheet-recent-changes')
