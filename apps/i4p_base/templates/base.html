@@ -26,11 +26,11 @@
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     {% endcomment %}
     {% comment %}
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     This uses google font services.  To switch from one to the other, uncomment the above, and 
     change "Open Sans" to "OpenSans" in static/scss/_constants.scss.
     {% endcomment %}
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
-
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     {% compress css %}
     {% block base_grid %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
@@ -116,7 +116,7 @@
             
             
 		// FIXME: move base-specific JS into a js/...base/block/something.js library //
-        $(".social-login img").tipsy({html: true });
+        $('.tipsed').tipsy({html: true, opacity: 0.95, gravity: $.fn.tipsy.autoNS, delayIn: 0, fade: false });
              
         $("input[name=identification]").example("{% trans 'Enter your email'|escapejs %}");
         $("input[name=password]").example("{% trans 'Password'|escapejs %}");
@@ -152,11 +152,11 @@
     
     {% include "sites_specs.html" %}
     
-    {% if not debug %}
+    {% if GOOGLE_ANALYTICS_ACCOUNT and not debug  %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(["_setAccount", "UA-21778007-2"]);
-      _gaq.push(["_setDomainName", "imaginationforpeople.org"]);
+      _gaq.push(["_setAccount", "{{GOOGLE_ANALYTICS_ACCOUNT}}"]);
+      _gaq.push(["_setDomainName", "{{ site.domain }}"]);
       _gaq.push(["_trackPageview"]);
    
      (function() {

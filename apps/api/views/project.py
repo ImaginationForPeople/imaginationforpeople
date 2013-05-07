@@ -125,14 +125,14 @@ class I4pProjectDetailResource(ModelResource):
         return bundle
 
 class I4pProjectTranslationResource(ModelResource):
-    project = fields.ForeignKey(I4pProjectDetailResource, use_in='detail', attribute='project', full=True)
+    project = fields.ForeignKey(I4pProjectDetailResource, use_in='detail', attribute='master', full=True)
     about_section = fields.CharField('about_section', use_in='detail', null=True)
     callto_section = fields.CharField('callto_section', use_in='detail', null=True)
     partners_section = fields.CharField('partners_section', use_in='detail', null=True)
     themes = fields.CharField('themes', use_in='detail', null=True)
     
     class Meta:
-        queryset = I4pProjectTranslation.objects.filter(project__in=I4pProject.on_site.all())
+        queryset = I4pProjectTranslation.objects.filter(master__in=I4pProject.on_site.all())
         resource_name = 'project'
         throttle = CacheDBThrottle()
         
@@ -195,7 +195,7 @@ class I4pProjectTranslationResource(ModelResource):
     def get_random(self, request, **kwargs):
         self.define_language_code(request)
         
-        random_project = I4pProjectTranslation.objects.filter(language_code=self.language_code, project__in=I4pProject.on_site.all()).order_by('?')[0]
+        random_project = I4pProjectTranslation.objects.filter(language_code=self.language_code, master__in=I4pProject.on_site.all()).order_by('?')[0]
         bundle = self.build_bundle(obj=random_project, request=request)
         to_be_serialized = self.full_dehydrate(bundle, for_list=False)
         to_be_serialized = self.alter_detail_data_to_serialize(request, to_be_serialized)
@@ -213,6 +213,26 @@ class I4pProjectTranslationResource(ModelResource):
         bundle = ModelResource.full_dehydrate(self, bundle, for_list=for_list)
         bundle.related_obj = self
         if for_list is True:
-            fk = fields.ForeignKey(I4pProjectListResource, attribute='project', full=True)
+            fk = fields.ForeignKey(I4pProjectListResource, attribute='master', full=True)
             bundle.data['project'] = fk.dehydrate(bundle)
         return bundle
+
+class I4pProjectTranslationListResource(ModelResource):
+    """
+    Resource used to list I4pProjectTranslation when called from another resource (using ToManyField for example)
+    This resource is NOT used to display I4pProjectTranslation as a front end (like using /project/bestof).
+    The classic I4pProjectTranslationResource is used for these cases.
+    """
+    project = fields.ForeignKey(I4pProjectListResource, attribute='master', full=True)
+    
+    class Meta:
+        queryset = I4pProjectTranslation.objects.filter(master__in=I4pProject.on_site.all())
+        include_resource_uri = True
+        throttle = CacheDBThrottle()
+        
+        fields = ['slug','language_code','title','baseline']
+        
+    def detail_uri_kwargs(self, bundle_or_obj):
+        kwargs = ModelResource.detail_uri_kwargs(self, bundle_or_obj)
+        kwargs["resource_name"] = I4pProjectTranslationResource.Meta.resource_name
+        return kwargs

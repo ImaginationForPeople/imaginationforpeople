@@ -15,12 +15,13 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
+from askbot.models.question import Thread
 """
 Django Admin for a Project Sheet
 """
 from django.contrib import admin
 
-from nani import admin as nani_admin
+import hvad.admin
 from oembed_works.models import StoredOEmbedResponse
 from reversion.admin import VersionAdmin
 
@@ -42,25 +43,26 @@ class I4pProjectAdmin(VersionAdmin):
         PartnerInline,
         TranslationInline,
         )
-    list_display = ('__str__', 'status', 'best_of', 'created')
+    list_display = ('__unicode__', 'status', 'best_of', 'created')
     date_hierarchy = 'created'
     list_filter = ['site', 'status', 'best_of', 'topics']
+    
+class QuestionAdmin(hvad.admin.TranslatableAdmin):
+    list_display = ('topic', 'weight', 'all_translations')
 
-class QuestionAdmin(nani_admin.TranslatableAdmin):
-    list_display = ('topic', 'weight',)
-
-class TopicAdmin(nani_admin.TranslatableAdmin):
+class TopicAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('__str__', 'all_translations')
 
 class SiteTopicAdmin(VersionAdmin):
     list_display = ('topic', 'order', 'site')
 
-class AnswerAdmin(nani_admin.TranslatableAdmin):
-    pass
-
-class ObjectiveAdmin(nani_admin.TranslatableAdmin):
+class AnswerAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('__str__', 'all_translations')
 
+class ObjectiveAdmin(hvad.admin.TranslatableAdmin):
+    list_display = ('__str__', 'all_translations')
+
+    
 admin.site.register(I4pProject, I4pProjectAdmin)
 
 admin.site.register(Topic, TopicAdmin)
@@ -72,8 +74,6 @@ admin.site.register(Answer, AnswerAdmin)
 admin.site.register(SiteTopic, SiteTopicAdmin)
 
 admin.site.register(Objective, ObjectiveAdmin)
-
-admin.site.register(I4pProjectTranslation, VersionAdmin)
 
 admin.site.register(ProjectVideo, admin.ModelAdmin)
 admin.site.register(ProjectPicture, admin.ModelAdmin)

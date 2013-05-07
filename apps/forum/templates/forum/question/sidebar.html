@@ -93,6 +93,7 @@
         </p>
     </div> 
 </div>-->
+{{ include_django("forum/block/workgroup/grouplist_fancy_wide.html",request, thread=thread) }}
 
 {% if settings.SIDEBAR_QUESTION_SHOW_META %}
 <div class="box statsWidget">
@@ -110,6 +111,7 @@
     </div>
 </div>
 {% endif %}
+
 
 {% if similar_threads.data() and settings.SIDEBAR_QUESTION_SHOW_RELATED %}
     {#% cache 1800 "related_questions" related_questions question.id language_code %#}

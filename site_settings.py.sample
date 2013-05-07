@@ -1,6 +1,5 @@
 # Sample site configuration
 # Edit as needed
-
 DEBUG = True
 TEMPLATE_DEBUG = True
 
@@ -9,7 +8,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'imaginationforpeople', # Or path to database file if using sqlite3.
         'USER': 'imaginationforpeople', # Not used with sqlite3.
-        'PASSWORD': 'plop', # Not used with sqlite3.
+        'PASSWORD': 'imagination', # Not used with sqlite3.
         'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
@@ -40,6 +39,30 @@ ENV_HOSTNAMES = {
   'localhost': 'imaginationforpeople.org',
 }
 
+### HAYSTACK
+# We use Whoosh in dev env and SolR in prod/staging
+# If you want to force SolR in debug env, set USESOLR = True
+USESOLR = True
+if (not DEBUG) or USESOLR:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+           'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+	        'URL': 'http://127.0.0.1:8983/solr',           
+       },
+   }
+elif DEBUG:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+         'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
+         'STORAGE': 'file',
+         'POST_LIMIT': 128 * 1024 * 1024,
+         'INCLUDE_SPELLING': True,
+         'BATCH_SIZE': 500,
+       },
+   }
+
+HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
 # If you need error reporting via Raven, configure this
 # RAVEN_CONFIG = {
 #     'dsn': 'http://public:secret@example.com/1',

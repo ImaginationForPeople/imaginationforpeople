@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
+{% load tagging_tags %}
 
 {% block style %}
 {% compress css %}
@@ -10,6 +11,17 @@
 {% endblock %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
+
+{% block extra_meta %}<meta property="og:url" content="{{ project_translation.master.get_absolute_url  }}" />{% endblock %}
+{% block meta_keywords %}
+    {% tags_for_object project_translation as project_tags %}
+    {% for tag in project_tags %}
+        {% if not forloop.first %}, {% endif %}
+        {{ tag.name }}
+        {% if forloop.last %}, {% endif %}
+    {% endfor %}
+    {{ block.super }}
+{% endblock meta_keywords%}
 
 {% block title %}
 {% if project_translation.title %}
@@ -26,7 +38,7 @@
 {% block content %}	
 {% addtoblock "js" strip %}
 {% endaddtoblock %}
-
+{% include "addthis.html" %}
 {% addtoblock "js" strip %}
     {% if project_translation %}
     <script>
@@ -35,13 +47,7 @@
         templates : {
             twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
         }
-    }
-
-    // load only when all assets are ready
-    $(window).load(function() {
-	// Addthis
-	addthis.init(); 
-    });
+    };
     </script>
     {% endif %}
 
@@ -65,5 +71,4 @@
 {% block project_content %}{% endblock %}
 </div>
 
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#async=1"></script>
 {% endblock %}

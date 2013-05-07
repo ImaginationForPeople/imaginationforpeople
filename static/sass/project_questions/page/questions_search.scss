@@ -1,0 +1,253 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+.project-content {
+	background:$colorWhite;
+}
+
+.project-main {
+	h2.title {
+		font-family: $fontOpenSans;
+		font-size: $sizeTextLarge;
+		font-stretch: condensed;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin:0 0 0 10px;
+		line-height:3rem;
+	}
+
+	.project-main {
+		margin:0 20px 0 0;
+	}
+
+	#categorySearch {
+
+		.form, .middle, .category {
+			float:left;
+		}
+
+		#queryForm input[type='text'] {
+			height:22px;
+			background:image-url('project_questions/misc/search.png') no-repeat 8px center white;
+			@include border-radius(11px,11px);
+			padding:0 10px 0 25px;
+			margin-left:10px;
+			width:155px;
+			font-family: 'OpenSans',Arial,sans-serif;
+		    font-size: 1rem;
+		    font-style: italic;
+		    line-height: normal;
+		    border:0;
+		    @include box-shadow(1px 1px 0 #ccc inset);
+		}
+
+		.middle {
+			font-family: $fontOpenSans;
+			font-size: $sizeTextTiny;
+			font-stretch: condensed;
+			font-weight: bold;
+			text-transform: uppercase;
+			color:$colorMedDarkGrey;
+			padding:0 15px;
+			line-height:22px;
+		}
+
+		.category {
+			ul {
+				list-style-type:none;
+			}
+
+			ul li {
+				background:none !important
+			}
+
+			> ul > li > a {
+				height:22px;
+				line-height:22px;
+				display:block;
+				border:1px solid #d0d0d0;
+				@include border-radius(11px,11px);
+				font-family: 'OpenSans',Arial,sans-serif;
+				color:$colorMedGrey;
+				text-transform:uppercase;
+				font-size:1.1rem;
+				padding:0 30px 0 10px;
+				font-weight:bold;
+				font-stretch:condensed;
+				background:image-url('project_questions/misc/arrow_down.png') no-repeat 94% center white;
+				@include box-shadow(0 -6px 5px rgba(100, 100, 100, 0.1) inset);
+				position:relative;
+				top:-1px;
+
+				&:hover {
+					text-decoration:none
+				}
+			}
+
+			ul ul {
+				background:white;
+				padding:3px 5px;
+				@include border-radius(4px,4px);
+				@include box-shadow(0 3px 3px rgba(100, 100, 100, 0.3));
+
+				li {
+					display:block;
+					
+					a {
+						padding:0 24px;
+						display:block;
+						background:none;
+						@include border-radius(3px,3px);
+						font-family: 'OpenSans',Arial,sans-serif;
+					    font-size: $sizeTextNormal;
+					    font-style: italic;
+					    line-height: normal;
+					    color:$colorMedDarkGrey;
+					    line-height:22px;
+
+						&:hover {
+							background:#04add1;
+							color:white;
+						}
+					}
+				}
+			}
+
+			.sf-main-menu li:hover ul, .sf-main-menu li.sfHover ul {
+				top:27px;
+			}
+
+			.sf-main-menu li:hover ul ul, .sf-main-menu li.sfHover ul ul{
+				top:0;
+			}
+
+			.sf-sub-indicator {
+			  	top: 7px !important;
+			}
+		}
+
+		a#askButton{
+			  float:right;
+			  text-transform:uppercase;
+			  font-family:$fontOpenSans;
+			  padding: 5px 10px 4px 6px;
+			  font-weight:bold; 
+			  font-size:12px;
+			  @include border-radius(15px,15px);
+			  height:auto;
+			  @include i4p-background-vertical-gradient(#4BB7E5, #3b90b5);
+			  color:#ffffff;
+	
+			i.interrogation {
+			    background: image-url("project_questions/question/picto_question.png") no-repeat scroll 0 0 transparent;
+			    display: inline-block;
+			    height: 20px;
+			    margin-top: -2px;
+			    vertical-align: text-top;
+			    width: 21px;
+			    margin-right:4px;
+			}
+
+			&:hover {
+				@include i4p-background-vertical-gradient(rgb(57,144,180), rgba(73,182,228,1));
+				text-decoration:none;
+			}
+		}
+	}
+	
+	ul.search-tags {
+		float:left;
+		clear:left;
+		list-style-type:none;
+		font-family:$fontOpenSans;
+		font-style:italic;
+		font-stretch:condensed;
+		position:relative;
+		top:-5px;
+
+		li {
+			margin: 0 2px;
+			float:left;
+			background:$colorLightDarkGrey;
+			color:#888;
+			padding:0 8px;
+			@include border-radius(5px,5px);
+
+			a {
+				color:#706F6F;
+				font-stretch:normal;
+				margin: 0 0 0 6px;
+				font-style:normal;
+			}
+		}
+	}
+
+	a.rss { display:none }
+}
+
+#workgroup-detail #askButton {
+	margin:10px 0
+}
+
+	/* ------------------------------------------------------------------ */
+	/* --------------------- TAB BAR ------------------------------------ */
+	/* ------------------------------------------------------------------ */
+
+	div.tabBar a, div.tabBar span.label {
+		text-shadow:none;
+	}
+
+	div.tabBar{
+	    zoom:1;
+	    margin:0 0 20px;
+		@include border-radius(5px,5px);
+		background:$colorLightDarkGrey;
+		padding: 3px 20px 3px 10px;
+		float:left;
+		width:95%
+	}
+
+	div.tabBar:after {  
+	    content: "";
+	    display: block;
+	    clear: both;}
+
+	div.tabBar a,
+	div.tabBar span.label{
+	    font-family: 'OpenSans',Arial,sans-serif;
+	    text-transform:uppercase;
+	    font-weight:bold;
+	    font-size:12px; 
+	    color:#706f6f;
+	    background-color: transparent;
+	}
+	    
+	div.tabBar a{
+	    margin-left:10px;}
+	    
+	div.tabBar a:hover,
+	div.tabBar a.on{
+	    color:#242424;
+	    text-decoration:none;}
+
+	div.tabBar h2#questionCount{
+	  float:left;
+	  padding:0;
+	  margin:0;
+	  padding-top:2px;
+	  text-transform:uppercase;
+	  font-weight: bold;
+	  font-size: 12px;
+	  color: #242424;
+	  font-family: 'OpenSans',Arial,sans-serif;}
+	   
+	div#sort_tabs,
+	div.tabsA{
+	    zoom:1;
+	    float:right;}
+	div#sort_tabs:after,
+	div.tabsA:after {   
+	    content: "";
+	    display: block;
+	    clear: both;}

@@ -1,0 +1,22 @@
+{% load i18n %}
+{% load workgroup_tags %}
+
+<div class="box project_workgroups">
+	<h2>{% trans 'Related Groups' %}</h2>
+	
+	<ul>
+		{% workgroups thread as wg_list %}
+		{% for group in wg_list %}
+			<li>
+				<a href="{% url workgroup-discussion group.slug %}">
+					<div>
+						<span>{{ group.name }}</span>
+						<p>
+							{{ group.description|urlize }}
+						</p>
+					</div>
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

@@ -14,6 +14,9 @@
 // @import "compass_twitter_bootstrap_responsive";
 @import "compass_twitter_bootstrap";
 
+@import "i4p/mixins";
+@import "i4p/constants";
+
 html {
     // the default font size for browsers is 16px, so we adjust it to 10px.for easy calculations.
     font-size: 62.5%;
@@ -21,7 +24,7 @@ html {
 
 // then define desired font size for body
 body {
-    font-size: 1.2rem;
+    @include i4p-font-base(1.2rem);
 }
 
 // VARIOUS FIXES FOR CURRENT VERSION  (check & remove on updates?)
@@ -30,6 +33,10 @@ body {
 // 
 .modal-backdrop {
     @include ctb-opacity(40);
+}
+
+li {
+    line-height: inherit; /* bootstrap uses 20px, regardless of font size */
 }
 // BOOTSTRAP FIX PATH TO ICONS
 

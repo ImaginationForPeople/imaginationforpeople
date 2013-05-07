@@ -16,6 +16,9 @@ import apps.i4p_base.mdx_i4p as mdx_i4p
 # Import settings for the given site
 from site_settings import *
 
+#from django.utils.translation import gettext
+gettext = lambda s: s
+
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
 
@@ -23,7 +26,7 @@ ASKBOT_ROOT = os.path.abspath(os.path.dirname(askbot.__file__))
 site.addsitedir(os.path.join(ASKBOT_ROOT, 'deps'))
 
 ADMINS = (
-    ('Simon Sarazin', 'simonsarazin@imaginationforpeople.org'),
+    ('Support', 'support@imaginationforpeople.org'),
     ('Sylvain Maire', 'sylvainmaire@imaginationforpeople.org'),
     ('Guillaume Libersat', 'guillaumelibersat@imaginationforpeople.org'),
     ('Alban Tiberghien', 'albantiberghien@imaginationforpeople.org'),
@@ -61,8 +64,59 @@ LANGUAGES = (
   ('de', u'Deutsch'),
   ('it', u'Italiano'),
   ('ru', u'Русский'),
-  ('zh', u'中文'),
+  ('zh-cn', u'中文'),
 )
+
+CMS_LANGUAGES = {
+    1: [
+        {
+            'code': 'en',
+            'name': u'English',
+            'fallbacks': ['fr', 'de'],
+        },
+        {
+            'code': 'fr',
+            'name': u'Français',
+            'fallbacks': ['en', 'es'],
+        },
+        {
+            'code': 'el',
+            'name': u'Ελληνικά',
+        },
+        {
+            'code': 'es',
+            'name': u'Español',
+            'fallbacks': ['fr', 'en'],
+        },
+        {
+            'code': 'pt',
+            'name': u'Português',
+        },
+        {
+            'code': 'de',
+            'name': u'Deutsch',
+        },
+        {
+            'code': 'it',
+            'name': u'Italiano',
+            'fallbacks': ['fr', 'en', 'es'],
+        },
+        {
+            'code': 'ru',
+            'name': u'Русский',
+        },
+        {
+            'code': 'zh',
+            'name': u'中文',
+        },
+    ],
+    'default': {
+        'fallbacks': ['en', 'fr', 'es'],
+        'redirect_on_fallback': False,
+        'public': True,
+        'hide_untranslated': False,
+    }
+} 
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -146,12 +200,18 @@ MIDDLEWARE_CLASSES = (
 if DEBUG:
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
     )
     LETTUCE_APPS = (
             'apps.member',
             'apps.project_sheet',
             'apps.i4p_base',
             )
+
+if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
+    MIDDLEWARE_CLASSES += (
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
+    )
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
@@ -174,6 +234,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
         
     'django.core.context_processors.static',
     'apps.i4p_base.context_processors.search_form',
+    'apps.i4p_base.context_processors.settings',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',
@@ -206,7 +267,7 @@ INSTALLED_APPS = (
     'userena',
     'userena.contrib.umessages',
     'guardian',
-    'nani',
+    'hvad',
     'honeypot',
     'serializers',
     'tabs',
@@ -235,11 +296,14 @@ INSTALLED_APPS = (
     'simplegravatar',
     'social_auth',
 
+    'actstream',
+    
     'django_notify',
     'wiki',
     'wiki.plugins.notifications',
     'wiki.plugins.attachments',
     'filebrowser',
+
 
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -301,6 +365,7 @@ INSTALLED_APPS = (
     'apps.partner',
     'apps.workgroup',
     'apps.tags',
+    'apps.forum',
 )
 
 # django-ajax_select
@@ -379,7 +444,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    #'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )
@@ -420,20 +485,6 @@ LOCALE_INDEPENDENT_PATHS = (
 
 ## Flags
 COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
-
-### HAYSTACK
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
-        'STORAGE': 'file',
-        'POST_LIMIT': 128 * 1024 * 1024,
-        'INCLUDE_SPELLING': True,
-        'BATCH_SIZE': 500,
-    },
-}
-
-HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
 
 
 ### STATIC FILES
@@ -509,7 +560,6 @@ CMS_TEMPLATES = (
 )
 
 CMS_REDIRECTS = True
-CMS_HIDE_UNTRANSLATED = False
 CMS_SOFTROOT = True
 CMS_SEO_FIELDS = True
 
@@ -536,7 +586,16 @@ CELERY_ALWAYS_EAGER = DEBUG
 
 djcelery.setup_loader()
 
+# HVAD (yes, it's still prefixed with 'NANI')
 NANI_TABLE_NAME_SEPARATOR = ''
+
+# ACTIVITY STREAM
+ACTSTREAM_SETTINGS = {
+    'MODELS': ('project_sheet.I4pProject', 'project_sheet.I4pProjectTranslation', 'auth.User', 'project_sheet.Answer'),
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 # WIKI
 markdown_i4p = mdx_i4p.makeExtension()
@@ -577,7 +636,7 @@ LOGGING = {
             'class': 'raven.contrib.django.handlers.SentryHandler',
         },
         'console': {
-            'level': 'DEBUG',
+            'level': 'WARNING',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
         }

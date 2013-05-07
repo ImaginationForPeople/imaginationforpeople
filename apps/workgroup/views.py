@@ -16,6 +16,7 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.core.cache import cache
+from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -31,11 +32,15 @@ from guardian.shortcuts import assign
 from wiki.core.plugins import registry as plugin_registry        
 from wiki.models.article import Article, ArticleForObject, ArticleRevision
 from wiki.views.article import Edit as WikiEdit
+from askbot.views.writers import EditAnswerView
 
 from apps.project_sheet.utils import get_project_translations_from_parents
-
+from apps.forum.views import SpecificQuestionListView,\
+    SpecificQuestionCreateView, SpecificQuestionNewAnswerView,\
+    SpecificQuestionThreadView
+    
 from .models import WorkGroup
-from .forms import GroupCreateForm, GroupEditForm
+from .forms import GroupCreateForm, GroupEditForm, WorkgroupDiscussionForm
 from .utils import get_ml_members
 
 class GroupListView(ListView):
@@ -78,7 +83,7 @@ class GroupEditView(UpdateView):
 class GroupDetailView(DetailView):
     template_name = 'workgroup/page/workgroup_detail.html'
     context_object_name = 'workgroup'
-    model = WorkGroup
+    queryset = WorkGroup.objects.prefetch_related('subscribers__profile')
 
     def get_context_data(self, **kwargs):
         """
@@ -93,17 +98,15 @@ class GroupDetailView(DetailView):
             context['ml_member_list'] = [] # Both on I4P & the ML
             context['ml_nonmember_list'] = [] # Only subscribed to the ML
             members = get_ml_members(workgroup)
-            
-            for member in members:
-                try:
-                    found_member = User.objects.get(email=member[0])
-                    context['ml_member_list'].append(found_member)
-                    
-                    # Subscribe the user to the workgroup if not yet
-                    if found_member not in workgroup.subscribers.all():
-                        workgroup.subscribers.add(found_member)
-                except User.DoesNotExist:
-                    context['ml_nonmember_list'].append(User(email=member[0]))
+            emails = [member[0] for member in members]
+            found_members = User.objects.filter(email__in=emails)
+            for found_member in found_members:
+                context['ml_member_list'].append(found_member)
+                emails.remove(found_member.email)
+                # Subscribe the user to the workgroup if not yet
+                if found_member not in workgroup.subscribers.all():
+                    workgroup.subscribers.add(found_member)
+            context['ml_nonmember_list'] = [User(email=nonmember_email) for nonmember_email in emails]
 
         # Wiki
         try:
@@ -116,14 +119,40 @@ class GroupDetailView(DetailView):
 
         context['wiki_article'] = article
         
-        language_code = translation.get_language()
-        project_translations = get_project_translations_from_parents(parents_qs=workgroup.projects.all(),
-                                                                     language_code=language_code,
-                                                                     fallback_language='en',
-                                                                     fallback_any=True)
-        
-        context['group_projects'] = project_translations
+        context['group_projects'] = workgroup.projects.all()
             
+        return context
+
+class GroupDescriptionDetailView(GroupDetailView):
+    """
+    View to display the group description article which is a sub-article of the home article
+    of the group (which is either fetched or created in GroupDetailView)
+    """
+    template_name = 'workgroup/page/workgroup_description.html'
+    
+    def get_context_data(self, **kwargs):
+        context = super(GroupDescriptionDetailView, self).get_context_data(**kwargs)
+        workgroup = context['workgroup']
+        
+        # First be sure that the home Wiki article already exists
+        try:
+            home_article = Article.get_for_object(workgroup)            
+        except ArticleForObject.DoesNotExist:
+            return redirect('workgroup-detail', slug=workgroup.slug)
+        
+        # now check that the description article exists
+        try:
+            desc_article = Article.get_for_object(home_article) 
+        except ArticleForObject.DoesNotExist:    
+            desc_article = Article.objects.create()
+            desc_article.add_object_relation(home_article)
+            revision = ArticleRevision(title="description of %s" %workgroup.name, content='')
+            desc_article.add_revision(revision)
+
+        context.update({
+             'wiki_article' : desc_article,                        
+        })
+        
         return context
 
 class GroupMembersView(GroupDetailView):
@@ -151,6 +180,25 @@ class GroupWikiEdit(WikiEdit):
 
     def get_success_url(self):
         return redirect(self.workgroup)
+        
+class GroupDescriptionWikiEdit(GroupWikiEdit):
+    """
+    View to edit the description article
+    """
+    template_name = "workgroup/page/workgroup_description_edit.html"
+    
+    def dispatch(self, request, workgroup_slug, *args, **kwargs):   
+        self.workgroup = get_object_or_404(WorkGroup, slug=workgroup_slug)         
+        article = Article.get_for_object(Article.get_for_object(self.workgroup)) 
+        
+        self.sidebar_plugins = plugin_registry.get_sidebar()
+        self.sidebar = []
+  
+        return super(WikiEdit, self).dispatch(request, article, *args, **kwargs)
+    
+    def get_success_url(self):
+        return redirect('workgroup-description', slug=self.workgroup.slug)
+    
 
 class SubscribeView(View):
     """
@@ -230,5 +278,127 @@ class UnsubscribeView(View):
         else:
             return redirect(workgroup)
 
-            
+
+class GroupDiscussionListView(SpecificQuestionListView):
+    """
+    View to list the discussions (forum threads) linked to the current group
+    """
+    template_name = "workgroup/page/workgroup_discuss_list.html"
+    qtypes = ["wg-discuss"]
+    
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
+    
+    def get_questions_url(self):
+        return reverse('workgroup-discussion', args=[self.context_object.slug])
+    
+    def get_ask_url(self):
+        return reverse('workgroup-discussion-open', args=[self.context_object.slug])
+    
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionListView.get_context_data(self, **kwargs)
         
+        context.update({
+             'active_tab': 'discuss',
+             'workgroup': self.context_object,             
+        })
+    
+        return context
+    
+class GroupDiscussionCreateView(SpecificQuestionCreateView):
+    """
+    Create a discussion for a given workgroup
+    """
+    template_name = "workgroup/page/group_discuss_form.html"
+    form_class = WorkgroupDiscussionForm
+    qtypes = ["wg-discuss"]
+    
+    def get_success_url(self):
+        return reverse('workgroup-discussion', args=[self.context_instance.slug])
+
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionCreateView.get_context_data(self, **kwargs)
+
+        context.update({
+            'workgroup': self.context_instance,
+        })
+        
+        return context
+    
+    def get_cleaned_tags(self, request):
+        return u"%s %s" % ("workgroup", self.context_instance.slug)
+    
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])  
+    
+class GroupDiscussionThreadView(SpecificQuestionThreadView):
+    """
+    Display a discussion thread for a given workgroup
+    """
+    template_name = "workgroup/page/group_discuss_thread.html"
+    qtypes = ["wg-discuss"]
+    
+    def get_question_url(self):
+        return reverse('workgroup-discussion-view', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_answer_url(self):
+        return reverse('workgroup-discussion-answer', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_edit_url(self):
+        return reverse('workgroup-discussion-edit', args=[self.context_instance.slug,
+                                                        self.current_question.thread.question.id])
+    
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"]) 
+    
+    def get_questions_url(self):
+        return reverse('workgroup-discussion', args=[self.context_instance.slug])
+    
+    
+    def get_context_data(self, **kwargs):
+        context = SpecificQuestionThreadView.get_context_data(self, **kwargs)
+        
+        context.update({
+             'workgroup': self.context_instance,
+             'active_tab': 'discussion',
+        })
+        
+        return context
+
+class GroupDiscussionNewAnswerView(SpecificQuestionNewAnswerView):
+    """
+    Answer to a given workgroup discussion question
+    """
+    def get_success_url(self):
+        return reverse('workgroup-discussion-view', args=[self.context_instance.slug, 
+                                                     self.current_question.id])
+
+    def get_context_object_instance(self, **kwargs):
+        return get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"]) 
+
+
+class GroupDiscussionEditAnswerView(EditAnswerView):
+    """
+    Edit a given workgroup discussion answer
+    """
+    template_name="workgroup/page/group_discuss_answer_edit.html"
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.workgroup = get_object_or_404(WorkGroup, slug=kwargs["workgroup_slug"])
+        return EditAnswerView.dispatch(self, request, *args, **kwargs)
+    
+    def get_success_url(self):
+        return reverse('workgroup-discussion-view', args=[self.workgroup.slug, 
+                                                     self.current_question.id])
+        
+    def get_context_data(self, answer_id, **kwargs):
+        context = EditAnswerView.get_context_data(self, answer_id, **kwargs)
+        
+        context.update({
+            'workgroup': self.workgroup,
+            'active_tab': 'workgroup',
+         })
+
+        return context

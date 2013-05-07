@@ -1,0 +1,11 @@
+{% load i18n support_tags %}
+<div class="category">
+    <ul class="sf-main-menu">
+        <li>
+            <a href="#">{%trans 'Browse categories' %}</a>
+            <ul>
+                {% categories_tree root_category search_state %}
+            </ul>
+        </li>
+    </ul>
+</div>

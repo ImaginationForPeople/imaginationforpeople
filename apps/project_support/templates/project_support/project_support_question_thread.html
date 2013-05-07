@@ -1,0 +1,19 @@
+{% extends "project_questions/page/question_thread.html" %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% block answer_edit_link %}
+<span id='post-{{answer.id}}-edit' class="action-link">
+    <a class="question-edit" 
+    	href="{% url project_support_edit_answer project_translation.slug answer.id %}"><i class="icon-pencil"></i> {% trans 'edit' %}</a>
+</span>
+{% endblock %}
+                    
+                    
+{% block previous_answer_edit_link %}
+<div class="previous-answer">
+    <i class="icon-pencil"></i>
+    <a class="submit"  href="{% url project_support_edit_answer project_translation.slug previous_answer.id %}">{% trans 'Edit Your Previous Answer' %}</a>
+    <span>{% trans '(only one answer per question is allowed)' %}</span>
+</div>
+{% endblock %}    

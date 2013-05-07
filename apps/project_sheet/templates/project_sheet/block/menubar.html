@@ -3,26 +3,45 @@
 {% load sekizai_tags %}
 {% load tabs %}
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/menubar.css" />
 {% endaddtoblock %}
 
+{% addtoblock "js" strip %}
+<script src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-dropdown.js"></script>
+{% endaddtoblock %}
+
 <div class="project-menubar">
-	<div class="container">
-		<div class="row">
-			<div class="menubar-leftcolumn span8">
-				<ul>
-			
-				<li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}"><a href="{{ project_translation.get_absolute_url  }}">{% trans "Project" %}</a></li>
-				<li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}"><a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a></li>
-                <li class="{% iftab 'support' 'support' %}active{% endiftab %}">
-                    <a href="{% url project_support_main project_translation.slug %}">
-                    {% trans "Needs" %}
-                    <span class="badge">{{project_translation.projectsupport_set.count }}</span>
-                    </a>
-               </li>
+  <div class="container">
+    <div class="row">
+      <div class="menubar-leftcolumn span8">
+	<ul>
+	  <!-- project -->
+	  <li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}">
+	    <a href="{{ project_translation.master.get_absolute_url  }}">{% trans "Project" %}</a>
+	  </li>
+	  <!-- gallery -->
+	  <li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}">
+	    <a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a>
+	  </li>
+	  <!-- discussion -->
+          <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %}">
+            <a href="{% url project_discussion_list project_translation.slug %}">
+              {% trans "Discussion" %}
+            </a>
+          </li>
+	  <!-- support -->
+          <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %}">
+            <a href="{% url project_support_main project_translation.slug %}">
+              {% trans "Needs" %}
+              <span class="badge">{{need_count}}</span>
+            </a>
+          </li>
+	  <!-- history -->
+	  <li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %}">
+	    <a href="{% url project_sheet-instance-history project_translation.slug %}">{% trans "History" %}</a>
+	  </li>
 				{% comment %}
-				<li><a href="#FIXME-BADURL">{% trans "Discussion" %}</a></li>
 				<li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
 				<li class="right"><a href="#FIXME-BADURL">
 						<i class="i4p-toolbar-favorite"></i>
@@ -42,7 +61,7 @@
 						<i class="i4p-toolbar-dropdown"></i>
 					</a>
 					<ul class="dropdown-menu lang-menu">
-						{% for translation in project_translation.project.translations.all %}
+						{% for translation in project_translation.master.translations.all %}
 						<li>
 						<a tabindex="-1" 
 							href="{% language translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %}" 
@@ -84,15 +103,15 @@
 					</ul>
 				</li>
 				<li class="right">
-					<a class="share dropdown-toggle" data-target="#" data-toggle="dropdown">{% trans "Share" %}
+					<a class="addthis_button_compact share" data-target="#">{% trans "Share" %}
 						<i class="i4p-toolbar-dropdown"></i>
 					</a>
 
 					<!-- AddThis Button BEGIN -->
-					<ul class="addthis_toolbox addthis_default_style dropdown-menu">
-						<a class="addthis_button_facebook_like"  fb:like:layout="button_count"></a>
-						<a class="addthis_button_tweet" tw:via="ipvoices" ></a>
-					</ul>
+					<!--<div class="addthis_toolbox addthis_default_style dropdown-menu">
+					    <a class="addthis_counter addthis_pill_style"></a>
+					    <a class="addthis_button_compact">Share</a>
+					</div>->
 					<!-- AddThis Button END -->
 				</li>
 			</ul>

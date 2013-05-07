@@ -3,11 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{ LANGUAGE_CODE }}" lang="{{ LANGUAGE_CODE }}">  
 
 <head>  
-    
+    <title>{% block title %}{% endblock %} - {{ settings.APP_TITLE|escape }}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}" /> 
     <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/style.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/header.css" />
@@ -17,6 +18,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/support-panel.css" media="screen, projection" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/login-slide.css" />
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/superfish_main_menu.css" />
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/grouplist_fancy_wide.css" />
     
     {% block before_css %}{% endblock %}
     {% include "meta/html_head_stylesheets.html" %}
@@ -128,11 +130,11 @@
     
     {{ include_django("sites_specs.html", request) }}
     
-    {% if not debug %}
+    {% if GOOGLE_ANALYTICS_ACCOUNT and not debug  %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
-      _gaq.push(["_setAccount", "UA-21778007-2"]);
-      _gaq.push(["_setDomainName", "imaginationforpeople.org"]);
+      _gaq.push(["_setAccount", "{{GOOGLE_ANALYTICS_ACCOUNT}}"]);
+      _gaq.push(["_setDomainName", "{{ site.domain }}"]);
       _gaq.push(["_trackPageview"]);
    
      (function() {
