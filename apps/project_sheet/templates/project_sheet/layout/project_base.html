@@ -14,12 +14,14 @@
 
 {% block extra_meta %}<meta property="og:url" content="{{ project_translation.master.get_absolute_url  }}" />{% endblock %}
 {% block meta_keywords %}
-    {% tags_for_object project_translation as project_tags %}
-    {% for tag in project_tags %}
-        {% if not forloop.first %}, {% endif %}
-        {{ tag.name }}
-        {% if forloop.last %}, {% endif %}
-    {% endfor %}
+    {% if project_translation %}
+      {% tags_for_object project_translation.master as project_tags %}
+         {% for tag in project_tags %}
+           {% if not forloop.first %}, {% endif %}
+           {{ tag.name }}
+           {% if forloop.last %}, {% endif %}
+         {% endfor %}
+    {% endif %}
     {{ block.super }}
 {% endblock meta_keywords%}
 
