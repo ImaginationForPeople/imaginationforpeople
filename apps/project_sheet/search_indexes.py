@@ -18,4 +18,4 @@ class I4pProjectTranslationIndex(indexes.SearchIndex, indexes.Indexable):
         return self.get_model().objects.all()
     
     def prepare_sites(self, obj):
-        return [obj.id for obj in obj.project.site.all()]
+        return [obj.id for obj in obj.master.site.all()]
