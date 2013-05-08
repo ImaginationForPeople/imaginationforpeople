@@ -21,12 +21,19 @@ from diff_match_patch import diff_match_patch
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.gis.db import models as geomodels
 from django.utils.translation import ugettext_lazy as _
+from django.db.models.signals import pre_save
 
 from actstream.models import Action
 from django_countries import CountryField
 from django_extensions.db.fields import json
+
+from geopy import geocoders
+
 import reversion
+from django.contrib.gis.geos.point import Point
+
 
 I4P_COUNTRIES = (
     ('AF', _(u'Afghanistan')),
@@ -279,15 +286,15 @@ I4P_COUNTRIES = (
 
 
 
-class Location(models.Model):
+class Location(geomodels.Model):
     """
     A generic location model designed to be used to localize any object
     """
-    lat = models.FloatField(verbose_name=_('latitude'),
-                            null=True, blank=True)
-
-    lon = models.FloatField(verbose_name=_('longitude'),
-                            null=True, blank=True)
+#     lat = models.FloatField(verbose_name=_('latitude'),
+#                             null=True, blank=True)
+# 
+#     lon = models.FloatField(verbose_name=_('longitude'),
+#                             null=True, blank=True)
 
     country = CountryField(verbose_name=_('country'), choices=I4P_COUNTRIES,
                            null=True, blank=True)
@@ -295,12 +302,33 @@ class Location(models.Model):
     address = models.TextField(verbose_name=_('address'),
                                null=True, blank=True)
 
+    geom = geomodels.PointField(null=True, blank=True)
+    objects = geomodels.GeoManager()
+    
+    @property
+    def full_addr(self):
+        addr = u""
+        if self.address:
+            addr += "%s," % self.address
+        if self.country:
+            addr += self.get_country_display()
+        return addr
+    
     def __unicode__(self):
-        return u"%s %s (%s, %s)" % (self.address,
-                                    self.get_country_display(),
-                                    self.lon,
-                                    self.lat)
-        
+        return self.full_addr
+
+def update_geolocation(sender, instance, **kwargs):
+    if instance.full_addr:
+        g = geocoders.GoogleV3()
+        try:
+            place, (lat, lng) = g.geocode(instance.full_addr)
+            instance.geom = Point(lng, lat)
+        except:
+            instance.geom = None
+
+pre_save.connect(update_geolocation, sender=Location)
+
+
 class VersionActivity(models.Model):
     """
     A metadata class to link an Action with a Revision
