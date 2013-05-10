@@ -29,8 +29,10 @@
 	    }
 
 	    .location-form {
-		label { visibility: hidden; display: none; }
-
+		label {  }
+        textarea {
+            height: 100px;
+        }
 		#id_address {
 		    max-height: $sizeTextNormal * 5;
 		}

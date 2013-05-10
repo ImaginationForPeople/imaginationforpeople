@@ -71,8 +71,15 @@ class I4pProjectLocationForm(forms.ModelForm):
     """
     class Meta:
         model = Location
-        fields = ('address', 'country',)
+        fields = ('address', 'country', 'lat', 'lon')
+        widgets={'lat': HiddenInput(),
+                                                          'lon': HiddenInput()}
 
+I4pProjectLocationFormSet = modelformset_factory(Location,
+                                                 extra=1,
+                                                 can_delete=True,
+                                                 form=I4pProjectLocationForm
+                                                 )
 
 class I4pProjectStatusForm(forms.ModelForm):
     """
