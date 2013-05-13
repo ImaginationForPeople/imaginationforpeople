@@ -22,28 +22,26 @@
  
 {% block content %}
 {% leaflet_map "projectsMap" %}
-<script src="{{STATIC_URL}}projects.geojson"></script>
 <script type="text/javascript">
 
     function projectsMapInit(map, bounds) {
     	$("#beta-logo").hide();
     	
     	var markers = new L.MarkerClusterGroup();
-
-		var geoJsonLayer = L.geoJson(geoJsonData, {
-			onEachFeature: function (feature, layer) {
-				layer.on('mouseover', function(e) {
-					layer.unbindPopup();
-					$.get("{% url get-project-card %}", { project_id: feature.id }, function (data){
-						layer.bindPopup(data);
+		
+		$.get("{% url projects-json %}", function(data){
+			$.each(data, function(index, value){
+				var marker = new L.Marker(new L.LatLng(value[2], value[1]));
+				marker.on('mouseover', function(e) {
+					marker.unbindPopup();
+					$.get("{% url get-project-card %}", { project_id: value[0] }, function (data){
+						marker.bindPopup(data);
 					});
 				});
-			}
-		});
-		markers.addLayer(geoJsonLayer);
-
-		map.addLayer(markers);
-		map.fitBounds(markers.getBounds());
+				markers.addLayer(marker);
+			});
+			map.addLayer(markers);
+		}, "json");
     }
 </script>
 {% endblock %}

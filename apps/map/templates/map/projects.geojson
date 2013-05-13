@@ -1,7 +1,0 @@
-var geoJsonData = {
-	"type": "FeatureCollection", 
-	"features": [
-		{% for project in projects %}{ "type": "Feature", "id":"{{project.id}}", "properties": {}, "geometry": {{project.location.geom.json|safe}} },
-		{% endfor %}
-	]
-};
