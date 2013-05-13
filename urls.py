@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import autocomplete_light
+from django.views.generic.base import TemplateView
 autocomplete_light.autodiscover() # Keep this before admin.autodiscover()
 
 from askbot.sitemap import QuestionsSitemap
@@ -15,6 +16,7 @@ from wiki.urls import get_pattern as get_wiki_pattern
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
+from apps.map.views import ProjectListJsonView, ProjectCardAjaxView
 from apps.tags.sitemaps import TagSitemap
 
 
@@ -62,6 +64,11 @@ urlpatterns += i18n_patterns('',
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
+    
+    url(r'^projects/map/$', TemplateView.as_view(template_name='map/global_map.html')),
+    url(r'^projects.json$', ProjectListJsonView.as_view(), name='projects-json'),
+    url(r'^get-project-card$', ProjectCardAjaxView.as_view(), name='get-project-card'),
+    
     url(r'^group/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),

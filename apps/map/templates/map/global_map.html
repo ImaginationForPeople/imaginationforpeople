@@ -1,0 +1,47 @@
+{%extends "base.html" %}
+{% load leaflet_tags %}
+{% load i18n %}
+
+{% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
+{% block title %}{% trans 'Map of projects'%}{% endblock %}
+
+{% block extra_head %}
+{% leaflet_js  plugins="markercluster" %}
+{% leaflet_css plugins="markercluster"%}
+
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+
+<style>
+
+    #projectsMap {
+        height: 600px;
+    }
+
+</style>
+{% endblock %}
+ 
+{% block content %}
+{% leaflet_map "projectsMap" %}
+<script type="text/javascript">
+
+    function projectsMapInit(map, bounds) {
+    	$("#beta-logo").hide();
+    	
+    	var markers = new L.MarkerClusterGroup();
+		
+		$.get("{% url projects-json %}", function(data){
+			$.each(data, function(index, value){
+				var marker = new L.Marker(new L.LatLng(value[2], value[1]));
+				marker.on('mouseover', function(e) {
+					marker.unbindPopup();
+					$.get("{% url get-project-card %}", { project_id: value[0] }, function (data){
+						marker.bindPopup(data);
+					});
+				});
+				markers.addLayer(marker);
+			});
+			map.addLayer(markers);
+		}, "json");
+    }
+</script>
+{% endblock %}
