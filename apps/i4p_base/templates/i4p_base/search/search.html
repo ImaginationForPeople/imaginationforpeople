@@ -13,6 +13,7 @@ page : pagination object
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
 {% load cms_tags menu_tags %} 
+{% load pagination_tags %}
 
 
 {% block content %}
@@ -179,8 +180,12 @@ page : pagination object
                 </section>
             </div>
         </div>
-
+         
         <div id="main">
+      {% with page as page_obj %}
+{% paginate using "i4p_base/search/search_pagination.html"%}
+{% endwith %}
+
             {% include "project_sheet/block/project_card_list.html" with project_list=project_list %}
         </div>
     </div>

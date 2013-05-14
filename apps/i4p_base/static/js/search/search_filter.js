@@ -22,6 +22,10 @@ $(document).ready(function(){
          //replacing project listing
          var projects_list = $(data).find('#projects-list').children();
          $('#projects-list').empty().append(projects_list);
+         // replacing pagination
+         var pagination = $(data).find('div.pagination').children();
+         
+         $('div.pagination').empty().append(pagination);
          // update projects count
          $("#projects").empty().append($(data).find('#projects').children());
          // Update style for each element of class .hover
