@@ -400,7 +400,7 @@ def install_database_server():
     Install a postgresql DB
     """
     print(cyan('Installing Postgresql'))
-    sudo('apt-get install -y postgresql-8.4 postgresql-8.4')
+    sudo('apt-get install -y postgresql-8.4 postgresql-8.4 postgresql-8.4-postgis')
 
 def setup_database():
     """

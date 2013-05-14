@@ -3,6 +3,10 @@ from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
 from haystack.forms import FacetedSearchForm
+from django.forms.models import modelformset_factory
+from django.forms.widgets import HiddenInput
+
+from .models import Location
 
 class ProjectSearchForm(FacetedSearchForm):
     q = forms.CharField(required=False, label=_('Search'))
@@ -37,3 +41,18 @@ class ProjectSearchForm(FacetedSearchForm):
             sqs = sqs.load_all()
 
         return sqs
+
+class I4pLocationForm(forms.ModelForm):
+    """
+    Edit the location info of an Object
+    """
+    class Meta:
+        model = Location
+        fields = ('address', 'country', 'geom')
+        #widgets={'geom': HiddenInput()}
+
+I4pLocationFormSet = modelformset_factory(Location,
+                                                 extra=1,
+                                                 can_delete=True,
+                                                 form=I4pLocationForm
+                                                 )

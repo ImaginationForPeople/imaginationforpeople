@@ -4,6 +4,7 @@ from django.views.generic.base import View
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 
+from apps.i4p_base.models import Location
 from apps.project_sheet.models import I4pProject
 
 import json
@@ -18,16 +19,20 @@ class ProjectListJsonView(View):
         site = Site.objects.get_current()
         
         begin = datetime.now()                                
-        projects = I4pProject.objects.language(language_code=language_code).filter(site=site, 
-                                                                                   location__geom__isnull=False)
+        #projects = I4pProject.objects.language(language_code=language_code).filter(site=site, locations__geom__isnull=False)
+        locations = Location.objects.filter(geom__isnull=False,
+                                            i4pproject__site=site,
+                                            i4pproject__id__isnull=False
+                                            ).prefetch_related('i4pproject_set')
+        
         
         step = datetime.now()
         print step - begin
         
-        data = [[project.id, 
-                 project.location.geom.coords[0], 
-                 project.location.geom.coords[1]] 
-                for project in projects]
+        data = [[location.i4pproject_set.all()[0].id, 
+                 location.geom.coords[0], 
+                 location.geom.coords[1]] 
+                for location in locations]
 
         
         print datetime.now() - step

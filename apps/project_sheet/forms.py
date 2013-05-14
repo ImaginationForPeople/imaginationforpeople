@@ -27,7 +27,6 @@ from hvad.forms import TranslatableModelForm
 
 from apps.forum.forms import SpecificQuestionForm
 from apps.forum.models import SpecificQuestionType
-from apps.i4p_base.models import Location
 
 from .models import I4pProject, I4pProjectTranslation, ProjectPicture, \
     ProjectVideo, ProjectReference, ProjectFan, ProjectMember, Answer
@@ -63,23 +62,6 @@ class I4pProjectInfoForm(forms.ModelForm):
     class Meta:
         model = I4pProject
         fields = ('website', 'status')
-
-
-class I4pProjectLocationForm(forms.ModelForm):
-    """
-    Edit the location info of a Project
-    """
-    class Meta:
-        model = Location
-        fields = ('address', 'country', 'lat', 'lon')
-        widgets={'lat': HiddenInput(),
-                                                          'lon': HiddenInput()}
-
-I4pProjectLocationFormSet = modelformset_factory(Location,
-                                                 extra=1,
-                                                 can_delete=True,
-                                                 form=I4pProjectLocationForm
-                                                 )
 
 class I4pProjectStatusForm(forms.ModelForm):
     """

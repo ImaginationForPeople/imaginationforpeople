@@ -47,7 +47,8 @@ from tagging.models import TaggedItem
 from apps.forum.views import SpecificQuestionListView, SpecificQuestionCreateView, SpecificQuestionThreadView,\
     SpecificQuestionNewAnswerView
 
-from .forms import I4pProjectInfoForm, I4pProjectLocationForm, I4pProjectLocationFormSet
+from .forms import I4pProjectInfoForm
+from apps.i4p_base.forms import I4pLocationForm, I4pLocationFormSet
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm, ProjectSheetDiscussionForm
 from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm, ProjectFanAddForm
 from .models import ProjectMember, ProjectFan, I4pProject, Question
@@ -230,7 +231,7 @@ class ProjectEditInfoView(ProjectView):
     """
     def get(self, request, *args, **kwargs):
         self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.master)
-        self.project_location_formset = I4pProjectLocationFormSet(queryset=self.project_translation.master.locations.all())
+        self.project_location_formset = I4pLocationFormSet(queryset=self.project_translation.master.locations.all())
         return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
@@ -239,7 +240,7 @@ class ProjectEditInfoView(ProjectView):
                                                     instance=self.project_translation.master)
 
         project_locations_qs=self.project_translation.master.locations.all()
-        self.project_location_formset = I4pProjectLocationFormSet(request.POST,
+        self.project_location_formset = I4pLocationFormSet(request.POST,
                                                             queryset=project_locations_qs)
 
 
