@@ -165,7 +165,7 @@ page : pagination object
                     <h1>{% trans 'Browse the <br /> different categories' %}</h1>
                     <ul>
                         <li class="best"><a href="{% url i4p-search %}?best_of=on">{% trans 'Best of' %}</a></li>
-                        <li><a href="{% url i4p-search %}?order=creation">{% trans 'Latest projects' %}</a></li>                        
+                        <li><a href="{% url i4p-search %}?order=created">{% trans 'Latest projects' %}</a></li>                        
                         <li class="rss" style="background:url('/static/images/base/picto_rss.gif') no-repeat scroll 5px center transparent"><a href="/en/project/list/new-projects.rss">{% trans 'RSS feed' %}</a></li>
                         {% comment %}<li class="comm"><a href="{% url i4p-search %}?order=commented">{% trans 'Most commented' %}</a></li>{% endcomment %}
                     </ul>
