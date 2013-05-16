@@ -95,11 +95,11 @@
         
                     {% if not request.user in project.fans.all %}
                     <div class="fans-not-a-fan-block">
-                    {% trans "Become a fan of this project" %}
+                    <!-- {% trans "Become a fan of this project" %} -->
                     <form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project.slug %}'>
                         {% csrf_token %}
                         {{ project_fan_add_form.as_p }}
-                        <input height="29" width="30" type="image" src="{{ STATIC_URL }}images/project_sheet/valid.png" alt="{% trans 'Become a fan' %}" />
+                        <input type="submit" value="{% trans 'Become a fan of this project' %}" />
                     </form>
                     </div>
                     {% else %}

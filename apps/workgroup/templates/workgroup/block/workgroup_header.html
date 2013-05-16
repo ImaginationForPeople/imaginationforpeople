@@ -4,7 +4,7 @@
 {% load tabs %}
 
 {% if workgroup.picture %}
-<img src="{% thumbnail workgroup.picture 960x300 crop %}"/>
+<img height="300" width="960" src="{% thumbnail workgroup.picture 960x300 crop %}"/>
 {% else %}
 <img src="{{ STATIC_URL }}images/workgroup/group_nopicture.jpg"/>
 {% endif %}
