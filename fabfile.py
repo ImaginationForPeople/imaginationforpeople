@@ -64,6 +64,9 @@ def commonenv():
     #env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
     env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "master"
+    
+    #Used to compute paths
+    env.postgis_version  = "1.5"
 
 
 @task
@@ -539,6 +542,96 @@ def database_dump():
     with cd(env.dbdumps_dir):
         run('ln -sf %s current_database.sql.bz2' % compressed_filename)
 
+@task
+def database_postgis_dump():
+    """
+    Dumps the database on remote site
+    """
+    if not exists(env.dbdumps_dir):
+        run('mkdir -m700 %s' % env.dbdumps_dir)
+
+    filename = 'db_%s.sql' % time.strftime('%Y%m%d')
+    compressed_filename = '%s.pgdump' % filename
+    absolute_path = os.path.join(env.dbdumps_dir, compressed_filename)
+
+    # Dump
+    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+        run('grep "DATABASE" -A 8 site_settings.py')
+        run('pg_dump -U%s -Fc -b %s > %s' % (env.db_user,
+                                                 env.db_name,
+                                                 absolute_path)
+            )
+
+    # Make symlink to latest
+    with cd(env.dbdumps_dir):
+        run('ln -sf %s current_database.pgdump' % compressed_filename)
+        
+@task
+def database_postgis_setup():
+    """
+    """
+    env.postgres_sharedir_path = run('pg_config --sharedir')
+    env.postgis_script_path = os.path.join(env.postgres_sharedir_path, 'contrib/postgis-%s' % env.postgis_version)
+
+    run('ls %s' % env.postgis_script_path)
+    sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
+    with settings(warn_only=True):
+        sudo('su - postgres -c "createlang plpgsql %s"' % (env.db_name))
+    run('psql -d %s -f %s' % (env.db_name, os.path.join(env.postgis_script_path, 'postgis.sql')))
+    run('psql -d %s -f %s' % (env.db_name, os.path.join(env.postgis_script_path, 'spatial_ref_sys.sql')))
+    
+    define_roles_sql = """CREATE ROLE postgis_reader INHERIT;
+                            GRANT SELECT ON geometry_columns TO postgis_reader;
+                            GRANT SELECT ON geography_columns TO postgis_reader;
+                            GRANT SELECT ON spatial_ref_sys TO postgis_reader;
+                            CREATE ROLE postgis_writer;
+                            GRANT postgis_reader TO postgis_writer;
+                            GRANT INSERT,UPDATE,DELETE ON spatial_ref_sys TO postgis_writer;
+                            GRANT INSERT,UPDATE,DELETE ON geometry_columns TO postgis_writer;
+                            GRANT INSERT,UPDATE,DELETE ON geography_columns TO postgis_writer;
+                            GRANT postgis_writer TO imaginationforpeople;"""
+    with settings(warn_only=True):
+        sudo('echo "%s" | psql %s' % (define_roles_sql, env.db_name), user='postgres')
+
+
+@task    
+def database_postgis_restore():
+    """
+    Restores the database to the remote server.  THIS IS NOT FUNCTIONNAL YET!
+    """
+    postgis_restore_script = '/usr/share/postgresql-9.1-postgis/utils/postgis_restore.pl'
+    assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
+
+    if(env.wsginame == 'dev.wsgi'):
+        remote_db_path = os.path.join(env.venvfullpath, env.projectname, 'current_database.pgdump')
+    else:
+        remote_db_path = os.path.join(env.venvfullpath, 'current_database.pgdump')
+
+    if(env.wsginame != 'dev.wsgi'):
+        put('current_database.pgdump', remote_db_path)
+
+    if(env.wsginame != 'dev.wsgi'):
+        execute(webservers_stop)
+    
+    # Drop db
+    with settings(warn_only=True):
+        sudo('su - postgres -c "dropdb %s"' % (env.db_name))
+        
+    # Create db
+    execute(database_postgis_setup)
+
+    # Restore data
+    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+        run('grep "DATABASE" -A 8 site_settings.py')
+        run('%s %s %s %s' % (postgis_restore_script,
+                                         os.path.join(env.postgis_script_path, 'postgis.sql'),
+                                         env.db_name,
+                                         remote_db_path)
+        )
+
+    if(env.wsginame != 'dev.wsgi'):
+        execute(webservers_start)
+
 
 @task
 def database_download():
@@ -571,8 +664,8 @@ def database_restore():
         sudo('su - postgres -c "dropdb imaginationforpeople"')
 
     # Create db
-    sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
-    run('pwd')
+    execute(database_postgis_setup)
+    
     # Restore data
     with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
         run('grep "DATABASE" -A 8 site_settings.py')
