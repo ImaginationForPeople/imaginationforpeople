@@ -358,6 +358,7 @@ INSTALLED_APPS = (
 
     'django.contrib.gis',
     'leaflet',
+    'floppyforms',
     
     # Internal Apps
     'apps.forum',

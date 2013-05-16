@@ -1,4 +1,4 @@
-from django import forms
+import floppyforms as forms
 from django.utils import translation
 from django.utils.translation import ugettext_lazy as _
 
@@ -41,6 +41,12 @@ class ProjectSearchForm(FacetedSearchForm):
             sqs = sqs.load_all()
 
         return sqs
+    
+    
+class OsmPointWidget(forms.gis.BaseGMapWidget,
+                          forms.gis.PointWidget):
+    pass
+
 
 class I4pLocationForm(forms.ModelForm):
     """
@@ -49,7 +55,7 @@ class I4pLocationForm(forms.ModelForm):
     class Meta:
         model = Location
         fields = ('address', 'country', 'geom')
-        #widgets={'geom': HiddenInput()}
+        widgets={'geom': OsmPointWidget()}
 
 I4pLocationFormSet = modelformset_factory(Location,
                                                  extra=1,
