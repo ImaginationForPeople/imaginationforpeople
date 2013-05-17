@@ -14,18 +14,13 @@
 {% block content %}  
     {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
-    {% endaddtoblock %}
-{%comment%}           
+    {% endaddtoblock %} 
 <div id="workgroup-header">
     <div id="workgroup-header-inner">
-        {% include "workgroup/block/workgroup_header.html" %}
+        {% block workgroup_header %}{% tab 'workgroup' 'home' %}{% include "workgroup/block/workgroup_header.html" %}{% endblock %}
     </div>
 </div>
-{%endcomment%}
 <div class="container" id="workgroup-detail">
-
-    {% block workgroup_header %}{% tab 'workgroup' 'home' %}{% include "workgroup/block/workgroup_header.html" %}{% endblock %}
-
       <div id="workgroup-content" class="row">
         <div class="span8">
 
