@@ -23,8 +23,7 @@ $(document).ready(function(){
          var projects_list = $(data).find('#projects-list').children();
          $('#projects-list').empty().append(projects_list);
          // replacing pagination
-         var pagination = $(data).find('div.search_pagination').children();
-         
+         var pagination = $(data).find('div.search_pagination').children();         
          $('div.search_pagination').empty().append(pagination);
          // update projects count
          $("#projects").empty().append($(data).find('#projects').children());
@@ -37,8 +36,7 @@ $(document).ready(function(){
          History.pushState('', $('title').text(), updated_bar_url); // logs {state:3}, "State 3", "?state=3"
          $('#col').unblock();
       });
-   }
-   
+   }   
    // ADDING TAGS to id_tags value attribute when entering text, separated by space
    $("#tag-search").keydown(function(e){if(e.keyCode == 13){e.preventDefault();}}); //prevent form submission
    $("#tag-search").keyup(function(event){
@@ -91,14 +89,12 @@ $(document).ready(function(){
        }
        else {$('#tags-list > ul').show()}       
    }
-
    // LOCATION      
    $('#id_location').change(function(){
       refresh_results();
    });
    $('#location_refresh').click(function(){
       $('#id_location').prop('selectedIndex',0);
-
       refresh_results();
    });   
    //LANGUAGE
@@ -119,7 +115,6 @@ $(document).ready(function(){
       $('[type=checkbox]').removeAttr('checked');    
       refresh_results();   
    });
-
    // Refresh all filters
    $('#reset_all_filters').click(function(){
       //reset tags
@@ -132,6 +127,5 @@ $(document).ready(function(){
       //Project card status
       $('[type=checkbox]').removeAttr('checked');    
       refresh_results();   
-   });
-      
+   });      
 });
