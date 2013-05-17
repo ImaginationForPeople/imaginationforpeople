@@ -62,11 +62,11 @@
                 
             	{% if favorited %}
                     <a class="button unfollow-need" alt="">
-                        <span>{% trans 'Unfollow this need' %}</span>
+                        <span>{% trans 'Unfollow this discussion' %}</span>
                     </a>
                 {% else %}
                     <a class="button follow-need" alt="">
-                        <span>{%trans 'Follow this need' %}</span>
+                        <span>{%trans 'Follow this discussion' %}</span>
                     </a>
                 {% endif %}
                 <p class="rss">
@@ -103,12 +103,12 @@
 				success: function(data){
 					if(data.success === 1){
 						if(button.hasClass("unfollow-need")){
-							button.find("span").html("{%trans 'Follow this need' %}");
+							button.find("span").html("{%trans 'Follow this discussion' %}");
 							button.removeClass("unfollow-need").addClass("follow-need");
 							mail_subscription_type = 11;
 						}
 						else if(button.hasClass("follow-need")){
-							button.find("span").html("{%trans 'Unfollow this need' %}");
+							button.find("span").html("{%trans 'Unfollow this discussion' %}");
 							button.removeClass("follow-need").addClass("unfollow-need");
 							mail_subscription_type = 12;
 						}
