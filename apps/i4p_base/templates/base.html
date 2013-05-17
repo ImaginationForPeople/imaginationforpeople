@@ -25,12 +25,11 @@
     on linux)
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     {% endcomment %}
-    {% comment %}
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
+    {% comment %}
     This uses google font services.  To switch from one to the other, uncomment the above, and 
     change "Open Sans" to "OpenSans" in static/scss/_constants.scss.
     {% endcomment %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     {% compress css %}
     {% block base_grid %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />

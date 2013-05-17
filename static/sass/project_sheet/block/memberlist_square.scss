@@ -294,5 +294,16 @@ $memberListFancySquare_sizeHeight: 52px;
             display: inline-block;
             margin: 0;
         }
+
+        #fans-add-form input {
+        	 border: 0 none;
+    		@include border-radius(5px);
+		    color: #242424;
+		    font-size: 1.2rem;
+		    font-weight: bold;
+		    height: 35px;
+		    padding: 0 40px 0 10px;
+        	background:#EBEBEB image-url('project_sheet/valid.png') no-repeat 98% 42%;
+        }
     }
 }
