@@ -89,7 +89,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
     form_class = ProjectSheetNeedForm
     is_specific = True
     
-    http_method_names = ['post']
+#     http_method_names = ['post']
     
     def get_success_url(self):
         return reverse('project_support_main', args=[self.context_instance.slug])
