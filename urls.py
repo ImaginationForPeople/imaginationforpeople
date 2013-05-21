@@ -12,6 +12,7 @@ from dynamicsites.views import site_info
 from django_notify.urls import get_pattern as get_notify_pattern
 from userena.contrib.umessages import views as messages_views
 from wiki.urls import get_pattern as get_wiki_pattern
+from filebrowser.sites import site
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
@@ -115,7 +116,7 @@ urlpatterns += patterns('',
 
     url('^robots\.txt$', include('robots.urls')),
                         
-    url(r'^admin/filebrowser/', include('filebrowser.urls')),
+    url(r'^admin/filebrowser/', include(site.urls)),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),

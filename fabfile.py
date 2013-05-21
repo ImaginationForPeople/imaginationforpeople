@@ -21,6 +21,17 @@ def reloadapp():
     #hit any multisites defined. 
     with cd(env.venvfullpath + '/' + env.projectname):
         run('touch apache/*')
+    if(env.wsginame == 'prod.wsgi'):
+        flushmemcache()
+
+@task
+def flushmemcache():
+    """
+    Resetting all data in memcached
+    """
+    print(cyan('Resetting all data in memcached :'))
+    run('echo "flush_all" | /bin/netcat -q 2 127.0.0.1 11211')
+
 
 def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
     if not user:
