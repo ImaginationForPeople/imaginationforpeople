@@ -7,7 +7,7 @@
 %}
     {% spaceless %}
         {{ start_quote(quote_level) }}
-            {% set author = post.author.username|escape %}
+            {% set author = post.author.get_profile().get_full_name_or_username()|escape %}
             {% if post.post_type == 'question' %}
                 <p>
                     {% if format == 'parent_subthread' %}
@@ -28,13 +28,6 @@
                         {% trans %}Asked by {{ author }}:{% endtrans %}
                     {% endif %}
                 </p>
-                {% set tag_names = post.get_tag_names() %}
-                {% if tag_names %}
-                <p>
-                    {% trans %}Tags:{% endtrans %}
-                    {{ tag_names|join(', ') }}.
-                </p>
-                {% endif %}
             {% elif post.post_type == 'answer' %}
                 <p>
                     {% if format == 'parent_subthread' %}
