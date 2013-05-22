@@ -12,69 +12,69 @@
 		height:164px;
 		margin-left:0;
 		position:relative;
+	}
 
-		.span8, .span4 {
-			height:164px;
-			margin-left:0;
-		}	
+	.span8 {
+		border-right:1px solid #dbdbdb;
 
-		.span8 {
-			border-right:1px solid #dbdbdb;
+		#workgroup-card {
+			background: image-url('workgroup/group.png') no-repeat scroll left 10px transparent;
+		    margin: 18px 0 0 240px;
+		    padding: 0 0 0 65px;
 
-			#workgroup-card {
-				background: image-url('workgroup/group.png') no-repeat scroll left 10px transparent;
-			    margin: 18px 0 0 240px;
-			    padding: 0 0 0 65px;
+		    h1 {
+		    	color:black;
+		    	text-transform:uppercase;
+		    	font-size:2.2rem;
 
-			    h1 {
-			    	color:black;
-			    	text-transform:uppercase;
-			    	font-size:2.2rem;
+		    	a {
+		    		color:black;
+		    		font-style:normal;
+		    		font-family:$fontOpenSans;
+		    	}
+		    }
 
-			    	a {
-			    		color:black;
-			    		font-style:normal;
-			    		font-family:$fontOpenSans;
-			    	}
-			    }
+		    .workgroup_desc {
+		    	display: block;
+			    font-family: $fontOpenSans;
+			    font-size: 1.1rem;
+			    height: 78px;
+			    line-height: 1.5rem;
+			    overflow: hidden;
+			    padding: 5px 10px 0 0;
+		    }
+		}
+	}
 
-			    .workgroup_desc {
-			    	display: block;
-				    font-family: $fontOpenSans;
-				    font-size: 1.1rem;
-				    height: 78px;
-				    line-height: 1.5rem;
-				    overflow: hidden;
-				    padding: 5px 10px 0 0;
-			    }
+	.workgroup-lang {
+		font-size:1.1rem;
+		padding:15px 0 0 15px;
+	}
+
+	.members {
+		padding:15px 0 0 15px;
+
+		strong {
+			padding:0 0 0 40px;
+			background:image-url('workgroup/members.png') no-repeat center left;
+			font-weight:bold;
+			color:#706f6f;
+			text-transform:uppercase;
+			font-size:1.6rem;
+			font-family:$fontOpenSans;
+			display:block;
+
+			span {
+				color:#54a2da
 			}
 		}
 
-		.members {
-			padding:15px 0 0 15px;
-
-			strong {
-				padding:0 0 0 40px;
-				background:image-url('workgroup/members.png') no-repeat center left;
-				font-weight:bold;
-				color:#706f6f;
-				text-transform:uppercase;
-				font-size:1.6rem;
-				font-family:$fontOpenSans;
-				display:block;
-
-				span {
-					color:#54a2da
-				}
-			}
-
-			a {
-				background: image-url('workgroup/black_arrow.png') no-repeat scroll right center transparent;
-			    color: #242424;
-			    font-size: 1rem;
-			    margin: 3px 0 0 90px;
-			    padding: 0 12px 0 0;
-			}
+		a {
+			background: image-url('workgroup/black_arrow.png') no-repeat scroll right center transparent;
+		    color: #242424;
+		    font-size: 1rem;
+		    margin: 3px 0 0 90px;
+		    padding: 0 12px 0 0;
 		}
 	}
 }

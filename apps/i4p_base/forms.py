@@ -16,6 +16,7 @@ class ProjectSearchForm(FacetedSearchForm):
     location = forms.CharField(required=False, label=_('Location'))
     language_code = forms.CharField(required=False, label=_('Language'))
     tags = forms.CharField(required=False, label=_('Tags'))    
+    order = forms.CharField(required=False, label=_('Order')) 
     
     def search(self):
         sqs = self.searchqueryset
