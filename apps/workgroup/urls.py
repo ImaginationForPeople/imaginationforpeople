@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     # Wiki
      url(r'^(?P<workgroup_slug>[-\w]+)/wiki/edit$', views.GroupWikiEdit.as_view(), name='workgroup-wiki-edit'), 
      url(r'^(?P<workgroup_slug>[-\w]+)/description/edit$', views.GroupDescriptionWikiEdit.as_view(), name='workgroup-description-edit'),
+     
      # Group discussion
      url(
          (r'^(?P<workgroup_slug>[-\w]+)/discuss' +
@@ -30,7 +31,25 @@ urlpatterns = patterns('',
             r'(%s)?' % r'/page:(?P<page>\d+)' +
          r'/$'),
          views.GroupDiscussionListView.as_view(),
-         name='workgroup-discussion'), 
+         name='workgroup-discussion'),
+    
+    url(r'^(?P<workgroup_slug>[-\w]+)/discuss/open/$', 
+            views.GroupDiscussionCreateView.as_view(), 
+            name='workgroup-discussion-open'),
+                       
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/(?P<question_id>\d+)/', 
+            views.GroupDiscussionThreadView.as_view(), 
+            name='workgroup-discussion-view'),
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/edit/(?P<question_id>\d+)/', 
+            views.GroupDiscussionCreateView.as_view(), 
+            name='workgroup-discussion-edit'),
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/answer/(?P<question_id>\d+)/', 
+            views.GroupDiscussionNewAnswerView.as_view(),
+            name='workgroup-discussion-answer'),
+    url(r'(?P<workgroup_slug>[-\w]+)/discuss/answer/edit/(?P<answer_id>\d+)/', 
+            views.GroupDiscussionEditAnswerView.as_view(), 
+            name='workgroup-edit_answer'),
+    
 )
      
      

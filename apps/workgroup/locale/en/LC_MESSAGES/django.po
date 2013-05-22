@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-03-08 17:13-0500\n"
+"POT-Creation-Date: 2013-04-25 16:06+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "spoken language"
 msgstr ""
 
-#: models.py:61
+#: models.py:61 templates/workgroup/block/workgroup_header.html:52
 msgid "Description"
 msgstr ""
 
@@ -63,30 +63,26 @@ msgstr ""
 msgid "Subscribers"
 msgstr ""
 
-#: models.py:94
-msgid "Related questions"
-msgstr ""
-
-#: views.py:185
+#: views.py:228
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
 msgstr ""
 
-#: views.py:192
+#: views.py:235
 #, python-format
 msgid "You couldn't be subscribed to this group:%s"
 msgstr ""
 
-#: views.py:223
+#: views.py:266
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
 msgstr ""
 
-#: views.py:230
+#: views.py:273
 #, python-format
 msgid "You couldn't be unsubscribed from this group:%s"
 msgstr ""
@@ -144,11 +140,11 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:52
+#: templates/workgroup/block/workgroup_header.html:53
 msgid "Discussions"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:53
+#: templates/workgroup/block/workgroup_header.html:54
 msgid "Members"
 msgstr ""
 
@@ -168,53 +164,174 @@ msgstr ""
 msgid "Create a new group "
 msgstr ""
 
+#: templates/workgroup/page/group_discuss_answer_edit.html:27
+msgid "Edit answer"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:27
+msgid "back"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:31
+msgid "revision"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:60
+msgid "Save edit"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:61
+msgid "Cancel"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_form.html:27
+msgid "Please ask your question here"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:61
+#, python-format
+msgid ""
+"\n"
+"                        %(counter)s Answer\n"
+"                        "
+msgid_plural ""
+"\n"
+"                        %(counter)s Answers\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/workgroup/page/group_discuss_thread.html:68
+msgid "Sort by :"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:70
+msgid "oldest answers will be shown first"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:71
+msgid "oldest"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:74
+msgid "newest answers will be shown first"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:75
+msgid "newest"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:78
+msgid "most voted answers will be shown first"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:79
+msgid "most voted"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:102
+msgid "this answer has been selected as correct"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:104
+msgid "mark this answer as correct (click again to undo)"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:111
+#: templates/workgroup/page/group_discuss_thread.html:112
+msgid "anonymous user"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:122
+msgid "answered"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:131
+msgid "remove offensive flag"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:133
+msgid "remove flag"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:138
+#: templates/workgroup/page/group_discuss_thread.html:145
+msgid ""
+"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:140
+#: templates/workgroup/page/group_discuss_thread.html:146
+msgid "flag offensive"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:154
+msgid "edit"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:162
+msgid "undelete"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:162
+msgid "delete"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:184
+msgid "Edit Your Previous Answer"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:185
+msgid "(only one answer per question is allowed)"
+msgstr ""
+
 #: templates/workgroup/page/group_edit.html:16
 msgid "Edit this group's information"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:16
+#: templates/workgroup/page/wiki_edit.html:19
 msgid ""
 "<strong>Warning:</strong> You are not logged in. Your IP address will be "
 "logged."
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:17
+#: templates/workgroup/page/wiki_edit.html:20
 msgid "Click here to log in"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:24
+#: templates/workgroup/page/wiki_edit.html:27
 msgid "Edit this workgroup"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:45
+#: templates/workgroup/page/wiki_edit.html:48
 msgid "Preview"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:49
-#: templates/workgroup/page/wiki_edit.html:71
+#: templates/workgroup/page/wiki_edit.html:54
+#: templates/workgroup/page/wiki_edit.html:78
 msgid "Save changes"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:55
+#: templates/workgroup/page/wiki_edit.html:60
 msgid "Delete article"
 msgstr ""
 
-#: templates/workgroup/page/wiki_edit.html:67
+#: templates/workgroup/page/wiki_edit.html:72
 msgid "Back to editor"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_detail.html:36
 #, python-format
 msgid ""
 "This group uses a mailing list. You can take part in the discussion by "
 "sending an e-mail to the following address: %(ml_address)s"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_detail.html:36
 msgid "Browse the Archives"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:43
+#: templates/workgroup/page/workgroup_detail.html:51
 #, python-format
 msgid "Comment:"
 msgid_plural "%(num_comments)s comments:"

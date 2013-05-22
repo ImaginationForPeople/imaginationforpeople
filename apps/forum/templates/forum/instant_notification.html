@@ -1,7 +1,5 @@
-{{ reply_separator }}
-<div>{{ content_preview }}</div>
-{# {% trans %}
-<p>Please note - you can easily <a href="{{user_subscriptions_url}}">change</a>
-how often you receive these notifications or unsubscribe. Thank you for your interest in our forum!</p>
-{% endtrans %} #}
+{% spaceless %}
+{{ user_action }}
+{{ content_preview }}
 {% trans %}<p>Sincerely,<br/>The Imagination for People support team</p>{% endtrans %}
+{% endspaceless %}

@@ -61,19 +61,66 @@
 		<h2>
 		    <i class="sheet-members"></i>
 		    {% trans "Project Community"|capfirst %}</h2>
+        
+		<h3>{% trans "The team"|capfirst %}</h3>
+        {% with num_team_member=project.detailed_members.all.count %}
+            {% include "member/block/memberlist_square.html" with members=project.detailed_members.all %}
+            {% if num_team_member > 0 %}
+                {% unique_counter memberlist_modal %}
+                {% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
+                {% include "project_sheet/block/memberlist_modal_seeall.html" %}
+                <a  href="#" class="seemore"
+                    data-modal-target-id="memberlist-modal-seeall-{{ memberlist_modal_seeall_unique_counter }}" 
+                    data-toggle="i4p-memberlist-modal-seeall" 
+                    >{% trans "More info about the team" %}</a>
+                {% endwith %}
+            {% else %}               
+               {% unique_counter memberlist_modal %}
+               {% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
+                  {% include "project_sheet/block/memberlist_modal_seeall.html" %}
+                  <a data-toggle="i4p-memberlist-modal-seeall" data-modal-target-id="memberlist-modal-seeall-1" class="seemore" href="#" onclick="$('.member-add-block').slideDown();">{% trans 'Add yourself!'%}</a>
+               {% endwith %}
+            {% endif %}
+            
+        {% endwith %}
+        
+        {% with num_fans=project.detailed_fans.count %}
+        
+            {% if num_fans == 0 %}
+                <h3>{% trans "The fans" %}</h3>
+                <p class="fans-no-fans-yet">{% trans "No fans yet" %}
+            {% else %}
+                <h3>{% blocktrans count num_fans=num_fans %}
+                The fans
+                {% plural %}
+                The {{ num_fans }} fans
+                {% endblocktrans %}
+                </h3>
+                {% include "member/block/memberlist_square.html" with members=project.detailed_fans.all %}
+            {% endif %}
+        
+                    {% if not request.user in project.fans.all %}
+                    <div class="fans-not-a-fan-block">
+                    <!-- {% trans "Become a fan of this project" %} -->
+                    <form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project.slug %}'>
+                        {% csrf_token %}
+                        {{ project_fan_add_form.as_p }}
+                        <input type="submit" value="{% trans 'Become a fan of this project' %}" />
+                    </form>
+                    </div>
+                    {% else %}
+                        <div class="fans-is-fan-block">
+                        You are now a fan of this project. Share it with your friends!  
+                           <div class="addthis_toolbox addthis_default_style">
+                               <a class="addthis_button_compact share"></a>
+                           </div>                        
+                        </div>
 
-		{% unique_counter memberlist_modal %}
-		{% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
-		<a  href="#" class="seemore"
-		    data-modal-target-id="memberlist-modal-seeall-{{ memberlist_modal_seeall_unique_counter }}" 
-		    data-toggle="i4p-memberlist-modal-seeall" 
-		    >{% trans "See more" %}</a>
-
-		{% include "project_sheet/block/memberlist_modal_seeall.html" %}
-
-		{% endwith %}
-		{% include "member/block/memberlist_square.html" with members=project.detailed_members.all %}
-	    </div>
+                    {% endif %}
+        {% endwith %}
+       
+       
+      </div>
 
 	    {% include "workgroup/block/grouplist_fancy_wide.html" %}
 
@@ -85,7 +132,7 @@
 		</h2>
 		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
 		{% if related_projects %}
-		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
+		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_list=related_projects %}
 		{% else %}
 		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
 		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}

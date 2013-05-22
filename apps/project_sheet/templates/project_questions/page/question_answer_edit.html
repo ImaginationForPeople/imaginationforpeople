@@ -1,0 +1,49 @@
+{% extends "project_questions/page/open_discussion_form.html" %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% block form_title%}
+<h1 class="section-title">
+    {% trans 'Edit answer' %} [<a href="#" onclick="history.back(-1);">{% trans 'back' %}</a>]
+</h1>
+{% endblock %}
+
+{% block inner_form %}
+
+<form id="fmedit" 
+	  action="#post-id-{{answer.id}}" 
+	  method="post" >{% csrf_token %}
+    <label for="id_revision" >{% trans 'revision' %}:</label> <br/> 
+    {% if revision_form.revision.errors %}{{ revision_form.revision.errors.as_ul }}{% endif %}
+    <div style="vertical-align:middle">
+        {{ revision_form.revision }} 
+        <script>
+        	$(document).ready(function(){
+        		$("#id_revision").change(function(){
+        			$.ajax({
+				        type: 'GET',
+				        url: '{% url get_revision %}',
+				        data: {'rev_id' : $(this).val(),
+				        	   'post_id' : {{answer.id}}},
+				        success: function(data) {
+				            $("textarea#editor").html(data.text)
+				        },
+				        dataType: 'json'
+				    });
+        		});
+        	});
+        </script>
+    </div>
+    <div class="wrap-form">
+    	{{ form.text }}
+        <strong>{{ form.summary.label_tag }}</strong> 
+        {{ form.summary }}
+        <div class="title-desc">{{ form.summary.help_text }}</div>
+        <div class="form-error" >{{ form.summary.errors }}</div>
+    </div>
+    <div class="after-editor">
+        <input type="submit" value="{% trans 'Save edit' %}" class="submit" />&nbsp;
+        <input type="button" value="{% trans 'Cancel' %}" class="submit" onclick="history.back(-1);" />
+    </div>
+</form>
+{% endblock %}

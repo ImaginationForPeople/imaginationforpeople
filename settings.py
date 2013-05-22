@@ -200,12 +200,18 @@ MIDDLEWARE_CLASSES = (
 if DEBUG:
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
     )
     LETTUCE_APPS = (
             'apps.member',
             'apps.project_sheet',
             'apps.i4p_base',
             )
+
+if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
+    MIDDLEWARE_CLASSES += (
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
+    )
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
@@ -359,6 +365,7 @@ INSTALLED_APPS = (
     'apps.partner',
     'apps.workgroup',
     'apps.tags',
+    'apps.forum',
 )
 
 # django-ajax_select
@@ -437,7 +444,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    #'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )
@@ -480,19 +487,26 @@ LOCALE_INDEPENDENT_PATHS = (
 COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
 
 ### HAYSTACK
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
-        'STORAGE': 'file',
-        'POST_LIMIT': 128 * 1024 * 1024,
-        'INCLUDE_SPELLING': True,
-        'BATCH_SIZE': 500,
-    },
-}
+if (not DEBUG) or USESOLR:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+           'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+          'URL': 'http://127.0.0.1:8983/solr',           
+       },
+   }
+elif DEBUG:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+         'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
+         'STORAGE': 'file',
+         'POST_LIMIT': 128 * 1024 * 1024,
+         'INCLUDE_SPELLING': True,
+         'BATCH_SIZE': 500,
+       },
+   }
 
 HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
-
 
 ### STATIC FILES
 STATIC_URL = '/static/'
@@ -537,7 +551,7 @@ BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
 ## TINYMCE
 TINYMCE_DEFAULT_CONFIG = {
                           'theme': "advanced",
-                          'plugins': 'contextmenu,table,template,blockquote,paste',
+                          'plugins': 'contextmenu,table,template,paste',
                           'relative_urls': False,
                           'remove_script_host': 0,
                           'convert_urls': False,
@@ -603,6 +617,8 @@ ACTSTREAM_SETTINGS = {
     'USE_PREFETCH': True,
     'GFK_FETCH_DEPTH': 1,
 }
+
+
 
 # WIKI
 markdown_i4p = mdx_i4p.makeExtension()

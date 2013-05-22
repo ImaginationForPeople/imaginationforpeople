@@ -2,130 +2,124 @@
 @import "i4p/constants";
 @import "i4p/fonts";
 
+#workgroup-infos {
+	height:164px;
+	background:#e6e6e6;
+	margin-left:0;
+	position:relative;
 
-#workgroup-detail {
-
-	#workgroup-infos {
+	.span8, .span4 {
 		height:164px;
-		background:#e6e6e6;
 		margin-left:0;
 		position:relative;
+	}
 
-		.span8, .span4 {
-			height:164px;
-			margin-left:0;
-		}	
+	.span8 {
+		border-right:1px solid #dbdbdb;
 
-		.span8 {
-			border-right:1px solid #dbdbdb;
+		#workgroup-card {
+			background: image-url('workgroup/group.png') no-repeat scroll left 10px transparent;
+		    margin: 18px 0 0 240px;
+		    padding: 0 0 0 65px;
 
-			#workgroup-card {
-				background: image-url('workgroup/group.png') no-repeat scroll left 10px transparent;
-			    margin: 18px 0 0 240px;
-			    padding: 0 0 0 65px;
+		    h1 {
+		    	color:black;
+		    	text-transform:uppercase;
+		    	font-size:2.2rem;
 
-			    h1 {
-			    	color:black;
-			    	text-transform:uppercase;
-			    	font-size:2.2rem;
+		    	a {
+		    		color:black;
+		    		font-style:normal;
+		    		font-family:$fontOpenSans;
+		    	}
+		    }
 
-			    	a {
-			    		color:black;
-			    		font-style:normal;
-			    		font-family:$fontOpenSans;
-			    	}
-			    }
-
-			    .workgroup_desc {
-			    	display: block;
-				    font-family: $fontOpenSans;
-				    font-size: 1.1rem;
-				    height: 78px;
-				    line-height: 1.5rem;
-				    overflow: hidden;
-				    padding: 5px 10px 0 0;
-			    }
-			}
-		}
-
-		.span4 {
-			border-left:1px solid #fff;
-
-			.workgroup-lang {
-				font-family:$fontOpenSans;
-				font-size:1.1rem;
-				padding:25px 0 0 15px;
-			}
-
-			.members {
-				padding:15px 0 0 15px;
-
-				strong {
-					padding:0 0 0 40px;
-					background:image-url('workgroup/members.png') no-repeat center left;
-					font-weight:bold;
-					color:#706f6f;
-					text-transform:uppercase;
-					font-size:1.6rem;
-					font-family:$fontOpenSans;
-					display:block;
-
-					span {
-						color:#54a2da
-					}
-				}
-
-				a {
-					background: image-url('workgroup/black_arrow.png') no-repeat scroll right center transparent;
-				    color: #242424;
-				    font-size: 1rem;
-				    margin: 3px 0 0 90px;
-				    padding: 0 12px 0 0;
-				}
-			}
+		    .workgroup_desc {
+		    	display: block;
+			    font-family: $fontOpenSans;
+			    font-size: 1.1rem;
+			    height: 78px;
+			    line-height: 1.5rem;
+			    overflow: hidden;
+			    padding: 5px 10px 0 0;
+		    }
 		}
 	}
-	
-	#workgroup-menubar {
+
+	.workgroup-lang {
+		font-size:1.1rem;
+		padding:15px 0 0 15px;
+	}
+
+	.members {
+		padding:15px 0 0 15px;
+
+		strong {
+			padding:0 0 0 40px;
+			background:image-url('workgroup/members.png') no-repeat center left;
+			font-weight:bold;
+			color:#706f6f;
+			text-transform:uppercase;
+			font-size:1.6rem;
+			font-family:$fontOpenSans;
+			display:block;
+
+			span {
+				color:#54a2da
+			}
+		}
+
+		a {
+			background: image-url('workgroup/black_arrow.png') no-repeat scroll right center transparent;
+		    color: #242424;
+		    font-size: 1rem;
+		    margin: 3px 0 0 90px;
+		    padding: 0 12px 0 0;
+		}
+	}
+}
+
+#workgroup-menubar {
+  height:40px;
+  line-height:40px;
+  background:#D6D6D6;
+  width:100%;
+  
+  ul {
+    height:40px;
+    margin:0;
+    padding:0 0 0 10px;
+    
+    li {
+      display:block;
+      float:left;
       height:40px;
-      line-height:40px;
-      background:#D6D6D6;
-      width:100%;
+      padding:0 20px;
       
-      ul {
+      a {
+        display:block;
+        float:left;
         height:40px;
-        margin:0;
-        padding:0 0 0 10px;
-        
-        li {
-          display:block;
-          float:left;
-          height:40px;
-          padding:0 20px;
-          
-          a {
-            display:block;
-            float:left;
-            height:40px;
-            line-height:40px;
-            color:#7F7F7F;
-            font-weight:bold;
-            font-family:$fontOpenSans;
-            font-size:1.15rem;
-          }
-           
-          &.active, &:hover {
-            @include i4p-background-vertical-gradient(#4BB7E5, #3b90b5);
-      
-            a {
-              color:white;
-              text-decoration:none;
-            }     
-          }
-        }
+        line-height:40px;
+        color:#7F7F7F;
+        font-weight:bold;
+        font-family:$fontOpenSans;
+        font-size:1.15rem;
+      }
+       
+      &.active, &:hover {
+        @include i4p-background-vertical-gradient(#4BB7E5, #3b90b5);
+  
+        a {
+          color:white;
+          text-decoration:none;
+        }     
       }
     }
+  }
+}
 
+#workgroup-detail {
 	#workgroup-content {
 
 		padding-top:10px;
@@ -246,5 +240,16 @@
 			padding-left:26px;
 			background:image-url('workgroup/link.png') no-repeat center left;
 		}
+	}
+}
+
+#workgroup-header {
+	background:#E6E6E6;
+
+	// TODO : FIX AND LINK TO WORKGROUP HEADER BLOCK ONLY
+
+	#workgroup-header-inner {
+		margin:0 auto;
+		width:960px;
 	}
 }

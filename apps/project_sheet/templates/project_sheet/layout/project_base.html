@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load compress %}
 {% load sekizai_tags %}
+{% load tagging_tags %}
 
 {% block style %}
 {% compress css %}
@@ -10,6 +11,19 @@
 {% endblock %}
 
 {% block meta_desc %}{{project_translation.about_section|truncatewords:60}}{% endblock %}
+
+{% block extra_meta %}<meta property="og:url" content="{{ project_translation.master.get_absolute_url  }}" />{% endblock %}
+{% block meta_keywords %}
+    {% if project_translation %}
+      {% tags_for_object project_translation.master as project_tags %}
+         {% for tag in project_tags %}
+           {% if not forloop.first %}, {% endif %}
+           {{ tag.name }}
+           {% if forloop.last %}, {% endif %}
+         {% endfor %}
+    {% endif %}
+    {{ block.super }}
+{% endblock meta_keywords%}
 
 {% block title %}
 {% if project_translation.title %}

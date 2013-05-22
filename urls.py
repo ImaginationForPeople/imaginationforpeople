@@ -12,6 +12,7 @@ from dynamicsites.views import site_info
 from django_notify.urls import get_pattern as get_notify_pattern
 from userena.contrib.umessages import views as messages_views
 from wiki.urls import get_pattern as get_wiki_pattern
+from filebrowser.sites import site
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
@@ -67,7 +68,6 @@ urlpatterns += i18n_patterns('',
     url(r'^member/', include('apps.member.urls')),
     url(r'^tags/', include('apps.tags.urls', namespace='tags')),
     url(r'^feedback/', include('backcap.urls')),
-    url(r'^search/', haystack.views.basic_search, name='i4p-search'),
     url(r'^ajax/search$', apps.i4p_base.ajax.globalsearch_autocomplete, name='i4p-globalsearch-complete'),
     url(r'^%s/' % settings.ASKBOT_URL , include('apps.forum.urls')),
 
@@ -116,7 +116,7 @@ urlpatterns += patterns('',
 
     url('^robots\.txt$', include('robots.urls')),
                         
-    url(r'^admin/filebrowser/', include('filebrowser.urls')),
+    url(r'^admin/filebrowser/', include(site.urls)),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),

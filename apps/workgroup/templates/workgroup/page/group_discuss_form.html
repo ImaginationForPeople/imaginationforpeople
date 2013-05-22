@@ -1,0 +1,36 @@
+{% extends "workgroup/layout/workgroup_base.html" %}
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% block content %}
+{{block.super}}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/project_support/page/support_form.css" />
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
+{% endaddtoblock %}
+       
+<div id="workgroup-header">
+    <div id="workgroup-header-inner">
+        {% include "workgroup/block/workgroup_header.html" %}
+    </div>
+</div>
+
+<div class="container"> 
+    <div class="row">
+            <div class="span8 workgroup-form">
+            <div id="support-form">
+            	{% block form_title%}
+            	<h1>{% trans "Please ask your question here"%}</h1>
+            	{% endblock %}
+                {% block inner_form %}
+                {% include "project_questions/block/question_form.html" %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

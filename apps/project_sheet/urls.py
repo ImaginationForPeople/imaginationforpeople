@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^add/(?P<topic_slug>[-\w]+)/$', views.ProjectStartView.as_view(), name='project_sheet-start'),
 
     # Listing
-    url(r'^list/$', views.project_sheet_list, name='project_sheet-list'),
+    url(r'^list/$', views.ProjectListView.as_view(), name='project_sheet-list'),
     url(r'^recent-changes/$', views.ProjectRecentChangesView.as_view(), name='project_sheet-recent-changes'),
     #List all existing supports of all projects
     # url(r'^list-all-supports$',support_views.ProjectSupportListAll.as_view(),name='project_support_list_all'),
@@ -71,6 +71,11 @@ urlpatterns = patterns('',
     url(r'^(?P<project_slug>[-\w]+)/member/delete/(?P<username>[-\w]+)/$', views.project_sheet_member_delete, name='project_sheet-instance-del-member'),
     url(r'^(?P<slug>[-\w]+)/member/add/$', views.ProjectMemberAddView.as_view(), name='project_sheet-instance-add-member'),
 
+    # Fans
+    url(r'^(?P<project_slug>[-\w]+)/fan/delete/(?P<username>[-\w]+)/$', views.project_sheet_fan_delete, name='project_sheet-instance-del-fan'),
+    url(r'^(?P<slug>[-\w]+)/fan/add/$', views.ProjectFanAddView.as_view(), name='project_sheet-instance-add-fan'),
+
+
     # Translations
     url(r'^(?P<project_slug>[-\w]+)/translate/$', views.project_sheet_create_translation, name='project_sheet-translate'),
 
@@ -101,11 +106,21 @@ urlpatterns = patterns('',
         support_views.ProjectSupportListView.as_view(), 
         name='project_support_main'
     ),
-    url(r'^(?P<project_slug>[-\w]+)/support/propose/$', support_views.propose_project_support, name='project_support_propose'),
-    url(r'(?P<project_slug>[-\w]+)/support/(?P<question_id>\d+)/', support_views.view_project_support, name='project_support_view'),
-    url(r'(?P<project_slug>[-\w]+)/support/edit/(?P<question_id>\d+)/', support_views.propose_project_support, name='project_support_edit'),
-    url(r'(?P<project_slug>[-\w]+)/support/answer/(?P<question_id>\d+)/', support_views.answer_project_support, name='project_support_answer'),
-    url(r'(?P<project_slug>[-\w]+)/support/answer/edit/(?P<answer_id>\d+)/', support_views.edit_support_answer, name='project_support_edit_answer'),
+    url(r'^(?P<project_slug>[-\w]+)/support/propose/$', 
+        support_views.ProjectSupportCreateView.as_view(), 
+        name='project_support_propose'),
+    url(r'(?P<project_slug>[-\w]+)/support/(?P<question_id>\d+)/', 
+        support_views.ProjectSupportThreadView.as_view(), 
+        name='project_support_view'),
+    url(r'(?P<project_slug>[-\w]+)/support/edit/(?P<question_id>\d+)/', 
+        support_views.ProjectSupportCreateView.as_view(), 
+        name='project_support_edit'),
+    url(r'(?P<project_slug>[-\w]+)/support/answer/(?P<question_id>\d+)/', 
+        support_views.ProjectSupportNewAnswerView.as_view(), 
+        name='project_support_answer'),
+    url(r'(?P<project_slug>[-\w]+)/support/answer/edit/(?P<answer_id>\d+)/', 
+        support_views.ProjectSupportEditAnswerView.as_view(), 
+        name='project_support_edit_answer'),
     
     #Discuss
     url( #from askbot
@@ -121,4 +136,21 @@ urlpatterns = patterns('',
         views.ProjectDiscussionListView.as_view(), 
         name='project_discussion_list'
     ),
+    url(r'^(?P<project_slug>[-\w]+)/discuss/open/$', 
+            views.ProjectDiscussionCreateView.as_view(), 
+            name='project_discussion_open'),
+    url(r'(?P<project_slug>[-\w]+)/discuss/(?P<question_id>\d+)/', 
+            views.ProjectDiscussionThreadView.as_view(), 
+            name='project_discussion_view'),
+    url(r'(?P<project_slug>[-\w]+)/discuss/edit/(?P<question_id>\d+)/', 
+            views.ProjectDiscussionCreateView.as_view(), 
+            name='project_discussion_edit'),
+    url(r'(?P<project_slug>[-\w]+)/discuss/answer/(?P<question_id>\d+)/', 
+            views.ProjectDiscussionNewAnswerView.as_view(),
+            name='project_discussion_answer'),
+    url(r'(?P<project_slug>[-\w]+)/discuss/answer/edit/(?P<answer_id>\d+)/', 
+            views.ProjectDiscussionEditAnswerView.as_view(), 
+            name='project_discussion_edit_answer'),
+   
+    
 )

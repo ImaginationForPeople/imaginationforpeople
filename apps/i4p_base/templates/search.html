@@ -1,9 +1,9 @@
 {% load i18n %}
     <div class="search">
         
-        <form action="{% url project_sheet-list %}">
-            <input type="submit" value="&nbsp;" />
-            {{ project_sheet_search_form.text }}
+        <form action="{% url i4p-search %}">
+            <input type="submit" value="&nbsp;" />            
+            <input id="id_text" type="text" maxlength="100" name="q">
         </form>
         
     </div>
