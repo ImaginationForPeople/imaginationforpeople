@@ -1,22 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Benoit Grégoire <benoitg@coeus.ca>, 2013.
 # Simon Sarazin <simon.sarazin@gmail.com>, 2012-2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-03-08 17:13-0500\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-25 16:07+0200\n"
 "PO-Revision-Date: 2013-03-08 16:31+0000\n"
 "Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
+"Language-Team: French (http://www.transifex.com/projects/p/"
+"imaginationforpeople/language/fr/)\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cms_plugins.py:48
@@ -35,7 +36,7 @@ msgstr "Nom"
 msgid "spoken language"
 msgstr "langue parlée"
 
-#: models.py:61
+#: models.py:61 templates/workgroup/block/workgroup_header.html:52
 msgid "Description"
 msgstr "Description"
 
@@ -59,36 +60,38 @@ msgstr "URL externe"
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
-msgstr "URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par l'outil du site (Ex : Url du groupe sur facebook)"
+msgstr ""
+"URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par "
+"l'outil du site (Ex : Url du groupe sur facebook)"
 
 #: models.py:88
 msgid "Subscribers"
 msgstr "Abonné"
 
-#: models.py:94
-msgid "Related questions"
-msgstr "Questions similaires"
-
-#: views.py:185
+#: views.py:228
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
-msgstr "Vous avez été abonné à la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
+msgstr ""
+"Vous avez été abonné à la liste de diffusion %(workgroup_name)s  "
+"(%(user_email)s)"
 
-#: views.py:192
+#: views.py:235
 #, python-format
 msgid "You couldn't be subscribed to this group:%s"
 msgstr "Vous n'avez pas pu être inscrit au groupe : %s"
 
-#: views.py:223
+#: views.py:266
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
-msgstr "Vous avez été désinscrit avec succès de la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
+msgstr ""
+"Vous avez été désinscrit avec succès de la liste de diffusion "
+"%(workgroup_name)s  (%(user_email)s)"
 
-#: views.py:230
+#: views.py:273
 #, python-format
 msgid "You couldn't be unsubscribed from this group:%s"
 msgstr "Vous n'avez pas pu être désinscrit du groupe : %s"
@@ -132,7 +135,10 @@ msgid ""
 "\t\n"
 "\tmember%(member_plural)s\t\n"
 "\t"
-msgstr "\t\n\tmembre%(member_plural)s\t\n\t"
+msgstr ""
+"\t\n"
+"\tmembre%(member_plural)s\t\n"
+"\t"
 
 #: templates/workgroup/block/workgroup_header.html:39
 #, python-format
@@ -140,17 +146,20 @@ msgid ""
 "\n"
 "\tmember%(member_plural)s\n"
 "\t"
-msgstr "\n\tmembre%(member_plural)s\n\t"
+msgstr ""
+"\n"
+"\tmembre%(member_plural)s\n"
+"\t"
 
 #: templates/workgroup/block/workgroup_header.html:51
 msgid "Home"
 msgstr "Accueil"
 
-#: templates/workgroup/block/workgroup_header.html:52
+#: templates/workgroup/block/workgroup_header.html:53
 msgid "Discussions"
 msgstr "Discussions"
 
-#: templates/workgroup/block/workgroup_header.html:53
+#: templates/workgroup/block/workgroup_header.html:54
 msgid "Members"
 msgstr "Membres"
 
@@ -170,53 +179,179 @@ msgstr "Groupe"
 msgid "Create a new group "
 msgstr "Créer un nouveau groupe"
 
+#: templates/workgroup/page/group_discuss_answer_edit.html:27
+msgid "Edit answer"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:27
+msgid "back"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:31
+msgid "revision"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:60
+msgid "Save edit"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_answer_edit.html:61
+msgid "Cancel"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_form.html:27
+#, fuzzy
+msgid "Please ask your question here"
+msgstr "Poser votre question"
+
+#: templates/workgroup/page/group_discuss_thread.html:61
+#, python-format
+msgid ""
+"\n"
+"                        %(counter)s Answer\n"
+"                        "
+msgid_plural ""
+"\n"
+"                        %(counter)s Answers\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/workgroup/page/group_discuss_thread.html:68
+msgid "Sort by :"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:70
+msgid "oldest answers will be shown first"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:71
+msgid "oldest"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:74
+msgid "newest answers will be shown first"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:75
+msgid "newest"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:78
+msgid "most voted answers will be shown first"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:79
+msgid "most voted"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:102
+msgid "this answer has been selected as correct"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:104
+msgid "mark this answer as correct (click again to undo)"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:111
+#: templates/workgroup/page/group_discuss_thread.html:112
+msgid "anonymous user"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:122
+msgid "answered"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:131
+msgid "remove offensive flag"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:133
+msgid "remove flag"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:138
+#: templates/workgroup/page/group_discuss_thread.html:145
+msgid ""
+"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:140
+#: templates/workgroup/page/group_discuss_thread.html:146
+msgid "flag offensive"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:154
+msgid "edit"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:162
+msgid "undelete"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:162
+msgid "delete"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:184
+msgid "Edit Your Previous Answer"
+msgstr ""
+
+#: templates/workgroup/page/group_discuss_thread.html:185
+msgid "(only one answer per question is allowed)"
+msgstr ""
+
 #: templates/workgroup/page/group_edit.html:16
 msgid "Edit this group's information"
 msgstr "Éditer l'information de ce groupe"
 
-#: templates/workgroup/page/wiki_edit.html:16
+#: templates/workgroup/page/wiki_edit.html:19
 msgid ""
 "<strong>Warning:</strong> You are not logged in. Your IP address will be "
 "logged."
-msgstr "<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse va etre loguée."
+msgstr ""
+"<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse "
+"va etre loguée."
 
-#: templates/workgroup/page/wiki_edit.html:17
+#: templates/workgroup/page/wiki_edit.html:20
 msgid "Click here to log in"
 msgstr "Cliquer ici pour se connecter"
 
-#: templates/workgroup/page/wiki_edit.html:24
+#: templates/workgroup/page/wiki_edit.html:27
 msgid "Edit this workgroup"
 msgstr "Éditer ce groupe"
 
-#: templates/workgroup/page/wiki_edit.html:45
+#: templates/workgroup/page/wiki_edit.html:48
 msgid "Preview"
 msgstr "Précedent"
 
-#: templates/workgroup/page/wiki_edit.html:49
-#: templates/workgroup/page/wiki_edit.html:71
+#: templates/workgroup/page/wiki_edit.html:54
+#: templates/workgroup/page/wiki_edit.html:78
 msgid "Save changes"
 msgstr "Enregistrer les changements"
 
-#: templates/workgroup/page/wiki_edit.html:55
+#: templates/workgroup/page/wiki_edit.html:60
 msgid "Delete article"
 msgstr "Supprimer l'article"
 
-#: templates/workgroup/page/wiki_edit.html:67
+#: templates/workgroup/page/wiki_edit.html:72
 msgid "Back to editor"
 msgstr "Retour à l'éditer"
 
-#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_detail.html:36
 #, python-format
 msgid ""
 "This group uses a mailing list. You can take part in the discussion by "
 "sending an e-mail to the following address: %(ml_address)s"
-msgstr "Ce groupe utilise une liste de diffusion.  Vous pouvez prendre part à la discussion en envoyant une courriel à l'adresse: %(ml_address)s"
+msgstr ""
+"Ce groupe utilise une liste de diffusion.  Vous pouvez prendre part à la "
+"discussion en envoyant une courriel à l'adresse: %(ml_address)s"
 
-#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_detail.html:36
 msgid "Browse the Archives"
 msgstr "Parcourir les archives"
 
-#: templates/workgroup/page/workgroup_detail.html:43
+#: templates/workgroup/page/workgroup_detail.html:51
 #, python-format
 msgid "Comment:"
 msgid_plural "%(num_comments)s comments:"
@@ -238,3 +373,6 @@ msgstr "Il n'y a pas d'inscrits au groupe"
 #: templates/workgroup/page/workgroup_members.html:41
 msgid "Other mailing list subscribers"
 msgstr "Autres abonnés de la liste de discussion"
+
+#~ msgid "Related questions"
+#~ msgstr "Questions similaires"

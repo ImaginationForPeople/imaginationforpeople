@@ -19,6 +19,7 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     location = indexes.CharField()
     has_team = indexes.BooleanField()
     has_needs = indexes.BooleanField()
+    created = indexes.DateTimeField(model_attr='created')
     
     def get_model(self):
         return I4pProject

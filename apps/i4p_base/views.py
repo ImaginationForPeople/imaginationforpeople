@@ -152,7 +152,7 @@ class FacetedSearchView(TemplateResponseMixin, HaystackFacetedSearchView):
         if filter_models:
             searchqueryset = searchqueryset.models(*filter_models)
         # check for defined order by list
-        if self.get_order_by_fields():
+        if self.get_order_by_fields():            
             searchqueryset = searchqueryset.order_by(
                 *self.get_order_by_fields()
             )
@@ -188,6 +188,17 @@ class SearchView(FacetedSearchView):
     """
     template_name = 'i4p_base/search/search.html'
     filter_models = [I4pProject]
+    # more order parameters to be added later
+    sort_by = {
+       'created': '-created',       
+    }
+    
+    def get_order_by_fields(self):
+        order = self.request.GET.get('order')
+        if order in self.sort_by.keys():
+            return [self.sort_by[order]]
+        else:
+            return None
     
     def create_response(self):
         """

@@ -6,7 +6,6 @@ from apps.project_sheet.views import ProjectDiscussionListView, \
     ProjectDiscussionCreateView, ProjectDiscussionThreadView, \
     ProjectDiscussionNewAnswerView, \
     ProjectDiscussionEditAnswerView
-from apps.project_sheet.models import I4pProjectTranslation
 from apps.tags.models import TaggedCategory
 from .forms import ProjectSheetNeedForm
 
@@ -35,9 +34,9 @@ class ProjectSupportListView(ProjectDiscussionListView) :
         
         context.update({
             'tab_name' : 'support',
-            'prop_count' : self.get_specific_questions().filter(type__type="pj-help").count(),
-            'call_count' : self.get_specific_questions().filter(type__type="pj-need").count(),
-            'need_count' : self.get_specific_questions().count(),
+            'prop_count' : len([q for q in context["specific_questions"] if q.type.type == "pj-help"]),
+            'call_count' : len([q for q in context["specific_questions"] if q.type.type == "pj-need"]),
+            'need_count' : len(context["specific_questions"]),
             'root_category' : root_category,
         })
         
@@ -89,7 +88,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
     form_class = ProjectSheetNeedForm
     is_specific = True
     
-    http_method_names = ['post']
+#     http_method_names = ['post']
     
     def get_success_url(self):
         return reverse('project_support_main', args=[self.context_instance.slug])
