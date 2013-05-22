@@ -577,8 +577,8 @@ def database_postgis_setup():
     sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
     with settings(warn_only=True):
         sudo('su - postgres -c "createlang plpgsql %s"' % (env.db_name))
-    run('psql -d %s -f %s' % (env.db_name, os.path.join(env.postgis_script_path, 'postgis.sql')))
-    run('psql -d %s -f %s' % (env.db_name, os.path.join(env.postgis_script_path, 'spatial_ref_sys.sql')))
+    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'postgis.sql')))
+    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'spatial_ref_sys.sql')))
     
     define_roles_sql = """CREATE ROLE postgis_reader INHERIT;
                             GRANT SELECT ON geometry_columns TO postgis_reader;

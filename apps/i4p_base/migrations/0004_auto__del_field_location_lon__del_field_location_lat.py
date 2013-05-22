@@ -6,7 +6,9 @@ from django.db import models
 
 
 class Migration(SchemaMigration):
-
+    depends_on = (
+                  ('project_sheet', '0031_auto__add_locations.py'),
+                  )
     def forwards(self, orm):
         # Deleting field 'Location.lon'
         db.delete_column('i4p_base_location', 'lon')
