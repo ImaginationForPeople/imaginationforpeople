@@ -1,5 +1,15 @@
 {% spaceless %}
-{{ user_action }}
+
+{% trans %}Dear{% endtrans %}{{receiving_user.get_full_name_or_username()}}, 
+
+<a href="http://imaginationforpeople.org/{{update_author.get_absolute_url()}}">
+	{{update_author.get_full_name_or_username()}}
+</a>
+{{user_action}}
+<a href="http://imaginationforpeople.org/{{post.get_absolute_url()}}">
+{{post_type}}
+</a>
+
 {{ content_preview }}
 {% trans %}<p>Sincerely,<br/>The Imagination for People support team</p>{% endtrans %}
 {% endspaceless %}
