@@ -551,7 +551,7 @@ BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
 ## TINYMCE
 TINYMCE_DEFAULT_CONFIG = {
                           'theme': "advanced",
-                          'plugins': 'contextmenu,table,template,blockquote,paste',
+                          'plugins': 'contextmenu,table,template,paste',
                           'relative_urls': False,
                           'remove_script_host': 0,
                           'convert_urls': False,
