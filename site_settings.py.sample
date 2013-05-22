@@ -3,6 +3,7 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = True
+
 ### HAYSTACK
 # We use Whoosh in dev env and SolR in prod/staging. If you want to force SolR in debug env, set USESOLR = True
 USESOLR = True
@@ -20,6 +21,21 @@ DATABASES = {
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# If set, OVERRIDE_CACHE_BACKEND will unconditionally change the cache backends
+# to the one set in, in OVERRIDE_CACHE_BACKEND, including when DEBUG=True.  This 
+# is used for two purposes:
+# 1- To change the backend in development from the DummyCache backend to debug 
+# cache problems 
+# 2- To change the backend in production from the LocMemCache default (typically
+# to MemcacheD.
+# Default value: None
+# Usefull values:
+# {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}
+# {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+# {'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 'LOCATION': '127.0.0.1:11211',}
+#
+# OVERRIDE_CACHE_BACKEND = {'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 'LOCATION': '127.0.0.1:11211',}
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
