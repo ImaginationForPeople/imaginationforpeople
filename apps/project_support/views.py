@@ -48,6 +48,7 @@ class ProjectSupportListAll(SpecificQuestionListView):
     """
     template_name = "project_support/project_support_list_all.html"
     qtypes = ['pj-need', 'pj-help']
+    is_specific = True
 
     def get_questions_url(self):
         return reverse('project_support_list_all')
