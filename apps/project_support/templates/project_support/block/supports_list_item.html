@@ -1,6 +1,13 @@
 {% extends "project_questions/block/question_list_item.html" %}
 {% load i18n extra_tags humanize %}
 
+
+{% block question_url %}
+<h2>
+   <a href="{% url project_support_main specific_question.context_object.slug %}{{question.id}}/" title="{{specific_question.thread.title}}">{{specific_question.thread.title}}</a>
+</h2>
+{% endblock %}
+
 {% block extra_description %}
 <p>
 	{% trans "Project " %}<b><a href="{% url project_sheet-show specific_question.context_object.slug %}">{{specific_question.context_object.title}}</a></b>

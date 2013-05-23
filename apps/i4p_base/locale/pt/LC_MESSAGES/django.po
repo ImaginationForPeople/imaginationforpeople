@@ -1,43 +1,41 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Translators:
-# Simon Sarazin <simon.sarazin@gmail.com>, 2012.
-# Slyan  <maire.sylvain@gmail.com>, 2011.
+# Simon Sarazin <simon.sarazin@gmail.com>, 2012
+# Slyan <maire.sylvain@gmail.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-25 16:04+0200\n"
-"PO-Revision-Date: 2013-03-08 16:14+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-05-23 11:52+0200\n"
+"PO-Revision-Date: 2013-05-23 09:56+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
-"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cms_app.py:6
 msgid "I4PBase App"
 msgstr ""
 
-#: forms.py:8 templates/i4p_base/search/search.html:42
+#: forms.py:8 templates/i4p_base/search/search.html:43
 msgid "Search"
 msgstr ""
 
-#: forms.py:9 templates/i4p_base/search/search.html:141
-#: templates/i4p_base/search/search.html:174
-#, fuzzy
+#: forms.py:9 templates/i4p_base/search/search.html:142
+#: templates/i4p_base/search/search.html:175
 msgid "Best of"
-msgstr "Best-of"
+msgstr ""
 
 #: forms.py:10
-#, fuzzy
 msgid "Has team"
-msgstr "team"
+msgstr ""
 
 #: forms.py:11
 msgid "Has needs"
@@ -45,15 +43,18 @@ msgstr ""
 
 #: forms.py:12
 msgid "Location"
-msgstr "Location"
+msgstr ""
 
 #: forms.py:13
-#, fuzzy
 msgid "Language"
-msgstr "other languages"
+msgstr ""
 
 #: forms.py:14 templates/cmsplugin_zinnia/_entry_detail.html:97
 msgid "Tags"
+msgstr ""
+
+#: forms.py:15
+msgid "Order"
 msgstr ""
 
 #: models.py:32
@@ -1064,43 +1065,43 @@ msgstr ""
 msgid "identify and support imaginative social projects"
 msgstr ""
 
-#: templates/base.html:112
+#: templates/base.html:111
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr ""
 
-#: templates/base.html:113
+#: templates/base.html:112
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
 msgstr ""
 
-#: templates/base.html:114
+#: templates/base.html:113
 msgid "Just click on the icons to get to the download page"
 msgstr ""
 
-#: templates/base.html:115
+#: templates/base.html:114
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
 msgstr ""
 
-#: templates/base.html:116
+#: templates/base.html:115
 msgid "Close This Window"
 msgstr ""
 
-#: templates/base.html:123
+#: templates/base.html:122
 msgid "Enter your email"
 msgstr ""
 
-#: templates/base.html:124
+#: templates/base.html:123
 msgid "Password"
 msgstr ""
 
-#: templates/base.html:126
+#: templates/base.html:125
 msgid "Enter your username"
 msgstr ""
 
-#: templates/base.html:128
+#: templates/base.html:127
 msgid "Enter your email adress"
 msgstr ""
 
@@ -1108,9 +1109,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                \"<strong>%(url)s</strong> is powered by a set of free "
-"components licensed under <strong>AGPL</strong> and <strong>Creative "
-"Commons</strong>.\"\n"
+"                \"<strong>%(url)s</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.\"\n"
 "                "
 msgstr ""
 
@@ -1294,7 +1293,8 @@ msgid "Help Center"
 msgstr ""
 
 #: templates/backcap/feedback_list.html:48
-msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
+msgid ""
+"This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr ""
 
 #: templates/backcap/feedback_list.html:60
@@ -1340,10 +1340,14 @@ msgid "There's no feedback yet."
 msgstr ""
 
 #: templates/backcap/feedback_list.html:140
+#: templates/i4p_base/search/search_pagination.html:8
+#: templates/i4p_base/search/search_pagination.html:11
 msgid "previous"
 msgstr ""
 
 #: templates/backcap/feedback_list.html:155
+#: templates/i4p_base/search/search_pagination.html:35
+#: templates/i4p_base/search/search_pagination.html:38
 msgid "next"
 msgstr ""
 
@@ -1563,112 +1567,103 @@ msgstr[1] ""
 msgid "No entries yet."
 msgstr ""
 
-#: templates/i4p_base/search/search.html:40
-msgid "Search for inspiring projects, workgroups, members, needs..."
+#: templates/i4p_base/search/search.html:41
+msgid "Search for inspiring projects"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:41
+#: templates/i4p_base/search/search.html:42
 msgid "Enter your research..."
 msgstr ""
 
-#: templates/i4p_base/search/search.html:47
+#: templates/i4p_base/search/search.html:48
 msgid "Projects"
-msgstr "Projects"
+msgstr ""
 
-#: templates/i4p_base/search/search.html:62
-#, fuzzy
+#: templates/i4p_base/search/search.html:63
 msgid "Discover"
-msgstr "Recent projects"
+msgstr ""
 
-#: templates/i4p_base/search/search.html:64
-#, fuzzy
+#: templates/i4p_base/search/search.html:65
 msgid "Filter"
-msgstr "Filters"
+msgstr ""
 
-#: templates/i4p_base/search/search.html:72
+#: templates/i4p_base/search/search.html:73
 msgid "Precise <br /> your research"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:74
-#, fuzzy
+#: templates/i4p_base/search/search.html:75
 msgid "Filter by tags"
-msgstr "Filters"
-
-#: templates/i4p_base/search/search.html:74
-msgid "Erase all"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:80
+#: templates/i4p_base/search/search.html:75
+msgid "Erase tags"
+msgstr ""
+
+#: templates/i4p_base/search/search.html:81
 msgid "Enter a keyword, a theme..."
 msgstr ""
 
-#: templates/i4p_base/search/search.html:92
-#, fuzzy
-msgid "Languages"
-msgstr "other languages"
-
 #: templates/i4p_base/search/search.html:93
-#: templates/i4p_base/search/search.html:117
+msgid "Languages"
+msgstr ""
+
+#: templates/i4p_base/search/search.html:94
+#: templates/i4p_base/search/search.html:118
 msgid "Refresh"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:99
-#, fuzzy
-msgid "Any language"
-msgstr "other languages"
-
 #: templates/i4p_base/search/search.html:100
-msgid "French"
+msgid "Any language"
 msgstr ""
 
 #: templates/i4p_base/search/search.html:101
-msgid "English"
+msgid "French"
 msgstr ""
 
 #: templates/i4p_base/search/search.html:102
+msgid "English"
+msgstr ""
+
+#: templates/i4p_base/search/search.html:103
 msgid "Spanish"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:116
-#, fuzzy
+#: templates/i4p_base/search/search.html:117
 msgid "Locations"
-msgstr "Location"
+msgstr ""
 
-#: templates/i4p_base/search/search.html:135
-#, fuzzy
+#: templates/i4p_base/search/search.html:136
 msgid "Project sheet status"
-msgstr "Project Status"
-
-#: templates/i4p_base/search/search.html:142
-msgid "Supporters"
 msgstr ""
 
 #: templates/i4p_base/search/search.html:143
+msgid "Members"
+msgstr ""
+
+#: templates/i4p_base/search/search.html:144
 msgid "Needs"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:172
+#: templates/i4p_base/search/search.html:173
 msgid "Browse the <br /> different categories"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:175
-#, fuzzy
-msgid "Latest projects"
-msgstr "projects"
-
 #: templates/i4p_base/search/search.html:176
-#: templates/pages/home-blocks/focus-zone.html:12
-msgid "Most commented"
+msgid "Latest projects"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:179
+#: templates/i4p_base/search/search.html:177
+msgid "RSS feed"
+msgstr ""
+
+#: templates/i4p_base/search/search.html:180
 msgid "Hot topics"
 msgstr ""
 
-#: templates/i4p_base/search/search.html:182
+#: templates/i4p_base/search/search.html:183
 #, python-format
 msgid "%(count)s project sheets"
-msgstr "%(count)s project sheets"
+msgstr ""
 
 #: templates/pages/contrib.html:46
 msgid "A community dedicated to"
@@ -1742,7 +1737,8 @@ msgid ""
 msgstr ""
 
 #: templates/pages/popups_notifications.html:16
-msgid "Popup shown on every project page if present and the user is logged-in."
+msgid ""
+"Popup shown on every project page if present and the user is logged-in."
 msgstr ""
 
 #: templates/pages/popups_notifications.html:21
@@ -1763,6 +1759,10 @@ msgstr ""
 
 #: templates/pages/home-blocks/focus-zone.html:11
 msgid "Recent projects"
+msgstr ""
+
+#: templates/pages/home-blocks/focus-zone.html:12
+msgid "Most commented"
 msgstr ""
 
 #: templates/pages/home-blocks/focus-zone.html:15
@@ -2061,6 +2061,9 @@ msgstr ""
 
 #~ msgid "My favorites"
 #~ msgstr "My favorites"
+
+#~ msgid "Discover projects"
+#~ msgstr "Recent projects"
 
 #~ msgid "Ressources (WIP)"
 #~ msgstr "Ressources (WIP)"
