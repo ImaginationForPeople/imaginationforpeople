@@ -1,22 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
-# Slyan  <maire.sylvain@gmail.com>, 2012.
+# Slyan <maire.sylvain@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-25 16:06+0200\n"
-"PO-Revision-Date: 2013-03-08 22:19+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
-"Language-Team: Wolof (Senegal) (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/wo_SN/)\n"
-"Language: wo_SN\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-05-23 11:52+0200\n"
+"PO-Revision-Date: 2013-05-23 09:56+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
+"Language-Team: Wolof (Senegal) (http://www.transifex.com/projects/p/imaginationforpeople/language/wo_SN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: wo_SN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: cms_plugins.py:33
@@ -466,8 +465,9 @@ msgstr ""
 #: templates/project_sheet/block/about.html:85
 msgid ""
 "You will then <strong>have access to the whole sheet</strong> where you can "
-"fill in all the details of your project, the same way you did for the title. "
-"If you've already used a <strong>wiki</strong> before, you'll feel at home. "
+"fill in all the details of your project, the same way you did for the title."
+" If you've already used a <strong>wiki</strong> before, you'll feel at home."
+" "
 msgstr ""
 
 #: templates/project_sheet/block/about.html:88
@@ -599,12 +599,12 @@ msgid "Project"
 msgstr ""
 
 #: templates/project_sheet/block/menubar.html:25
-#: templates/project_sheet/page/project_sheet.html:141
+#: templates/project_sheet/page/project_sheet.html:146
 msgid "Gallery"
 msgstr ""
 
 #: templates/project_sheet/block/menubar.html:30
-msgid "Discussion"
+msgid "Discussions"
 msgstr ""
 
 #: templates/project_sheet/block/menubar.html:36
@@ -709,7 +709,7 @@ msgstr ""
 msgid "Address"
 msgstr ""
 
-#: templates/project_sheet/layout/project_base.html:33
+#: templates/project_sheet/layout/project_base.html:35
 msgid "start a project"
 msgstr ""
 
@@ -820,15 +820,19 @@ msgstr ""
 msgid "More info about the team"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:84
+#: templates/project_sheet/page/project_sheet.html:81
+msgid "Add yourself!"
+msgstr ""
+
+#: templates/project_sheet/page/project_sheet.html:90
 msgid "The fans"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:85
+#: templates/project_sheet/page/project_sheet.html:91
 msgid "No fans yet"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:87
+#: templates/project_sheet/page/project_sheet.html:93
 #, python-format
 msgid ""
 "\n"
@@ -840,19 +844,16 @@ msgid_plural ""
 "                "
 msgstr[0] ""
 
-#: templates/project_sheet/page/project_sheet.html:98
+#: templates/project_sheet/page/project_sheet.html:104
+#: templates/project_sheet/page/project_sheet.html:108
 msgid "Become a fan of this project"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:102
-msgid "Become a fan"
-msgstr ""
-
-#: templates/project_sheet/page/project_sheet.html:126
+#: templates/project_sheet/page/project_sheet.html:131
 msgid "You might also like"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:134
+#: templates/project_sheet/page/project_sheet.html:139
 #, python-format
 msgid ""
 "You need to <a href=\"%(tags_url)s\">tag this project</a> before we can "
