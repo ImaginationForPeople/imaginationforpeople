@@ -13,6 +13,10 @@ from django.utils.translation import ugettext_lazy as _
 
 import apps.i4p_base.mdx_i4p as mdx_i4p
 
+# Default values for site_settings
+
+OVERRIDE_CACHE_BACKEND = None
+
 # Import settings for the given site
 from site_settings import *
 
@@ -138,20 +142,22 @@ SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 CACHE_PREFIX ='imaginationforpeople'
 
 # Cache
-if DEBUG:
-    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
-else:
-    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
-CACHES = {
-    'default': {
-        'BACKEND': CACHE_BACKEND,
-    },
-    'askbot': {
-        #XXX: DO NOT CHANGE THIS SETTING
-       'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache',
+if OVERRIDE_CACHE_BACKEND:
+    CACHES = {
+    'default': OVERRIDE_CACHE_BACKEND,
+    'askbot': OVERRIDE_CACHE_BACKEND
     }
-          
-}
+else:
+    if DEBUG:
+        CACHES = {
+        'default': {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'},
+        'askbot': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+        }
+    else:
+        CACHES = {
+        'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'},
+        'askbot': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+        }
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
