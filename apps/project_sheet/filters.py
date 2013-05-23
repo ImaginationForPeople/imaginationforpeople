@@ -279,11 +279,11 @@ def current_countries():
                 break
     return result
 
-class ProjectLocationFilterForm(FilterForm):
+class ProjectCountriesFilterForm(FilterForm):
     """
     Implements a filter on I4pProject location
     """
-    location = forms.ChoiceField(required=False, choices=current_countries())
+    countries = forms.ChoiceField(required=False, choices=current_countries())
 
     def apply_to(self, queryset, model_class):
         qs = queryset

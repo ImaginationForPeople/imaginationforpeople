@@ -13,7 +13,7 @@ class ProjectSearchForm(FacetedSearchForm):
     best_of = forms.BooleanField(required=False, label=_('Best of'))
     has_team = forms.BooleanField(required=False, label=_('Has team'))
     has_needs = forms.BooleanField(required=False, label=_('Has needs'))
-    location = forms.CharField(required=False, label=_('Location'))
+    countries = forms.CharField(required=False, label=_('Location'))
     language_code = forms.CharField(required=False, label=_('Language'))
     tags = forms.CharField(required=False, label=_('Tags'))    
     order = forms.CharField(required=False, label=_('Order')) 
@@ -31,7 +31,7 @@ class ProjectSearchForm(FacetedSearchForm):
 
         # I4P Project sheet criteria
         filters = {}
-        for field in ('best_of', 'has_team', 'has_needs', 'location', 'language_code', 'tags'):
+        for field in ('best_of', 'has_team', 'has_needs', 'countries', 'language_code', 'tags'):
             data = self.cleaned_data.get(field)
             if data and data != "":
                 filters[field] = self.cleaned_data[field]

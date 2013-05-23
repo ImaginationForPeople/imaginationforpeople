@@ -89,12 +89,12 @@ $(document).ready(function(){
        }
        else {$('#tags-list > ul').show()}       
    }
-   // LOCATION      
-   $('#id_location').change(function(){
+   // countries      
+   $('#id_countries').change(function(){
       refresh_results();
    });
-   $('#location_refresh').click(function(){
-      $('#id_location').prop('selectedIndex',0);
+   $('#countries_refresh').click(function(){
+      $('#id_countries').prop('selectedIndex',0);
       refresh_results();
    });   
    //LANGUAGE
@@ -120,8 +120,8 @@ $(document).ready(function(){
       //reset tags
       $('#id_tags').val("");
       rebuild_tag_list();
-      //location
-      $('#id_location').prop('selectedIndex',0);
+      //countries
+      $('#id_countries').prop('selectedIndex',0);
       //language
       $('#id_language').prop('selectedIndex',0);
       //Project card status

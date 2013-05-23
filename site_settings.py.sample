@@ -6,7 +6,7 @@ TEMPLATE_DEBUG = True
 
 ### HAYSTACK
 # We use Whoosh in dev env and SolR in prod/staging. If you want to force SolR in debug env, set USESOLR = True
-USESOLR = True
+USESOLR = False
 # Un-comment this to test static files, javascript and css compression, and 
 # 404 and 500 pages locally:
 #COMPRESS_ENABLED = True 

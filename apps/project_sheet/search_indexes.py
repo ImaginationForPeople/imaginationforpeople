@@ -16,7 +16,7 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     best_of = indexes.BooleanField(model_attr='best_of')
     sites = indexes.MultiValueField()
     tags = indexes.MultiValueField(indexed=True, stored=True, model_attr='themes')
-    location = indexes.CharField()
+    countries = indexes.MultiValueField(indexed=True, stored=True)
     has_team = indexes.BooleanField()
     has_needs = indexes.BooleanField()
     created = indexes.DateTimeField(model_attr='created')
@@ -87,8 +87,8 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
         """
         return obj.themes.split(',')
 
-    def prepare_location(self, obj):
-        if obj.location:
-            return obj.location.country.code
+    def prepare_countries(self, obj):
+        if obj.locations:
+            return [location.country.code for location in obj.locations.all()]
         else:
             return None
