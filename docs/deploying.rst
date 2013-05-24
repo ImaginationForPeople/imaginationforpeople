@@ -84,3 +84,61 @@ Once done:
 
    Run git clean -f -d static
    
+Deploying on production server
+==============================
+
+As this is typicaly critical, here is a guide on how to put the latest release on the production server.
+
+* Merge current release branch into upstream/develop and upstream/master. Make sure your develop and master are sync with upstream server::
+
+   me@mylocalmachine/i4p$ git flow release finish release_name
+
+* push these updates on upstream repository::
+   me@mylocalmachine/i4p$ git push upstream
+ 
+* put production server on maintenance by commenting out these lines on the apache conf file:: 
+   nano /etc/apache2/sites-available/www.imaginationforpeople.org
+Comment out the following lines::
+   #RewriteCond %{REQUEST_URI} !/maintenance/
+   #RewriteCond %{REMOTE_HOST} !^88\.185\.104\.130
+   #RewriteCond %{REMOTE_HOST} !^213\.243\.180\.2
+   #RewriteCond %{REMOTE_HOST} !^82\.225\.123\.163
+   #RewriteRule $ /maintenance/maintenance.htm [R=302,L]
+
+* dump production database::
+   me@mylocalmachine/i4p$ fab prodenv database_dump
+
+Then, 2 scenarios:
+
+1 Automatic update using fab
+____________________________
+
+* run full update prod server::
+
+   mylocalmachine/i4p$ fab prodenv app_fullupdate
+
+If everything went well, go to last step, else proceed to scenario 2. In case of a fail, you generally just need to checkout on the production server, and then lauch again the fab script.
+
+2 Manual update
+_______________
+
+The most generic way to update manually is the following::
+
+   web@prodserver$ git fetch origin
+   web@prodserver$ git merge origin/master
+   web@prodserver$ pip install -r requirements.txt
+   web@prodserver$ ./manage.py syncdb --migrate
+   web@prodserver$ ./manage.py collectstatic
+   web@prodserver$ cd static/
+   web@prodserver/static/$./build.sh
+   
+On specific cases, there might be other manual work that will be documented (for example, tricky migrations)
+
+3 Last steps 
+____________
+
+When everything on production server is up to date with master upstream repository, you just have to reload apache::
+   sudo /etc/init.d/apache2 reload
+
+Then put main site back online by commenting back relevant lines
+
