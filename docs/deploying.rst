@@ -85,7 +85,7 @@ Once done:
    Run git clean -f -d static
    
 Deploying on production server
-==============================
+______________________________
 
 As this is typicaly critical, here is a guide on how to put the latest release on the production server.
 
@@ -94,11 +94,14 @@ As this is typicaly critical, here is a guide on how to put the latest release o
    me@mylocalmachine/i4p$ git flow release finish release_name
 
 * push these updates on upstream repository::
+   
    me@mylocalmachine/i4p$ git push upstream
  
 * put production server on maintenance by commenting out these lines on the apache conf file:: 
+   
    nano /etc/apache2/sites-available/www.imaginationforpeople.org
 Comment out the following lines::
+   
    #RewriteCond %{REQUEST_URI} !/maintenance/
    #RewriteCond %{REMOTE_HOST} !^88\.185\.104\.130
    #RewriteCond %{REMOTE_HOST} !^213\.243\.180\.2
@@ -106,6 +109,7 @@ Comment out the following lines::
    #RewriteRule $ /maintenance/maintenance.htm [R=302,L]
 
 * dump production database::
+   
    me@mylocalmachine/i4p$ fab prodenv database_dump
 
 Then, 2 scenarios:
@@ -138,6 +142,7 @@ On specific cases, there might be other manual work that will be documented (for
 ____________
 
 When everything on production server is up to date with master upstream repository, you just have to reload apache::
+   
    sudo /etc/init.d/apache2 reload
 
 Then put main site back online by commenting back relevant lines
