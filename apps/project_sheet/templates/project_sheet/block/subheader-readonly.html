@@ -1,9 +1,10 @@
 {% load i18n %}
+{% load l10n %}
 {% load compress %}
 {% load sekizai_tags %}
 {% load thumbnail %}
 {% load unique_counter_tag %}
-
+{% load leaflet_tags %}
 
 {% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/subheader-readonly.css" />
@@ -131,29 +132,59 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
 			<th>{% trans "Location" %}</th>
 			<td>
+{% if project_translation.master.locations.all %}
+    {% addtoblock "css" strip %}
+        {% leaflet_css plugins="markercluster" %}
+    {% endaddtoblock %}
+    {% addtoblock "js" strip %}
+        {% leaflet_js plugins="markercluster" %}
+    {% endaddtoblock %}
+    {% leaflet_map "projectLocationsMap" %}
+
+    {% localize off %}
+<script type="text/javascript">
+    function projectLocationsMapInit(map, bounds) {
+        var markers = new L.MarkerClusterGroup();
+        {% for location in project_translation.master.locations.all %}
+        {% if location.geom %}
+        var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
+        markers.addLayer(marker);
+        popup_html = '' +
+        '<div class="location-address">' +
+        '{{ location.address|escapejs }}' +
+        '</div>' +
+        '<div class="location-country">' +
+        '<img src="{{ location.country.flag|escapejs }}" alt="{{ location.country|escapejs }}"/> {{ location.country.name|escapejs }}'
+        '</div>'
+        marker.bindPopup(popup_html).openPopup();
+        {% endif %}
+        {% endfor %}
+        map.addLayer(markers);
+        map.fitBounds(markers.getBounds());
+    }
+</script>
+    {% endlocalize %}
 				<!-- LOCATION/READONLY filled-->
                 {% for location in project_translation.master.locations.all %}
-				<div class="location-address">
-					{% if location %}
-					<!-- Add the script for GPS coordonates on hover of the picture + add the GPS coordonates in alt text  -->
-					{% if location.address %}
-					{{ location.address }}
-					{% endif %}
-					{% endif %}
-				</div>
-				<div class="location-country">
-					{% if location.country %}
-					<img src="{{ location.country.flag }}" alt="{{ location.country }}"/> {{ location.country.name }}
-					{% endif %}
-					{% if location.lat %}
-					<img src="{{ STATIC_URL }}images/project/globe.png" alt="#"/>
-					{% endif %}
-					
-				</div> <!-- .location-address -->
-				{% empty %}<!-- LOCATION/READONLY/EMPTY mode -->
-				<em>{% trans 'unknown'|capfirst %}</em>
-				{% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"></a>{% endcomment %}
-				{% endfor %}
+				    {% if not location.geom %}
+                    <div class="location-address">
+    					{{ location.address }}
+    				</div>
+    				<div class="location-country">
+    					{% if location.country %}
+    					<img src="{{ location.country.flag }}" alt="{{ location.country }}"/> {{ location.country.name }}
+    					{% endif %}
+    				</div>
+                    {% endif %}
+                {% endfor %}
+{% else %}
+<em>{% trans 'unknown'|capfirst %}</em>
+<!-- LOCATION/READONLY/EMPTY mode -->
+                
+                {% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"></a>
+                We now have a url now to edit locations individually:  see i45_base/url.py, but not as a group.
+                {% endcomment %}
+{% endif %}
                 <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"></a>
 			</td>
 		</tr>

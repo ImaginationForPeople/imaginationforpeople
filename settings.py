@@ -16,6 +16,8 @@ import apps.i4p_base.mdx_i4p as mdx_i4p
 # Default values for site_settings
 
 OVERRIDE_CACHE_BACKEND = None
+GEONAMES_USERNAME = None
+MAPQUEST_API_KEY = None
 
 # Import settings for the given site
 from site_settings import *

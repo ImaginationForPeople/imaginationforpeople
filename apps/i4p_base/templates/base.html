@@ -56,9 +56,6 @@
     {% render_block "css" postprocessor "apps.i4p_base.sekizai_postprocessors.compress" %}
     <!-- /render_block "css" -->
     
-    <script type="text/javascript" src="http://openlayers.org/dev/OpenLayers.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-    
     {% compress js %}
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.2.js"></script>
 	<script type="text/javascript">
@@ -77,8 +74,6 @@
 	<script type="text/javascript" src="{{ STATIC_URL }}js/pure.js"></script> 
     		<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/hoverIntent.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery/superfish.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}floppyforms/js/MapWidget.js"></script>
-
     {% endcompress %}
 
 
@@ -154,6 +149,10 @@
     
     {% block extra_head %}{% endblock %}
     
+    <!-- render_block "sekizai_extra_head" -->
+    {% render_block "sekizai_extra_head" %}
+    <!-- /render_block "sekizai_extra_head" -->
+    
     {% include "sites_specs.html" %}
     
     {% if GOOGLE_ANALYTICS_ACCOUNT and not debug  %}
@@ -175,7 +174,6 @@
 
 
   <body class="{% block extra_body_class %}{% endblock %}">
-    
     <div id="beta-logo"></div>
     
     <div class="global">   

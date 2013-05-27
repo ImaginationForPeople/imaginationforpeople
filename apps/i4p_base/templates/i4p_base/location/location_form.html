@@ -1,0 +1,11 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+
+
+{% addtoblock "sekizai_extra_head" strip %}
+{{ location_form.media }}
+{% endaddtoblock %}
+    
+    {{ location_form.as_p }}
+

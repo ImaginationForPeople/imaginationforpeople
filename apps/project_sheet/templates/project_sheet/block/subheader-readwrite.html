@@ -31,7 +31,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 			<td>
 				{% if project_location_form %}<!-- LOCATION/READWRITE -->
 				<div class="location-form">
-						{{ project_location_form.as_p }}
+						{% include "i4p_base/location/location_form.html" with location_form=project_location_form %}
 						<div class="clear"></div>
 						{% comment %} FIXME: include form button for degraded view 
 						{% include "project_sheet/block/form-buttons.html" %}

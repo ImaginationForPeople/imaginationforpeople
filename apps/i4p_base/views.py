@@ -30,6 +30,7 @@ from django.utils import translation
 from django.utils.decorators import classonlymethod, method_decorator
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView
 
 from haystack.query import SearchQuerySet
 from haystack.views import FacetedSearchView as HaystackFacetedSearchView
@@ -38,8 +39,8 @@ from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents
 from django.core.cache import cache
 
-from .models import VersionActivity
-from .forms import ProjectSearchForm
+from .models import VersionActivity, Location
+from .forms import ProjectSearchForm, I4pLocationForm
 
 def homepage(request):
     """
@@ -229,3 +230,41 @@ class SearchView(FacetedSearchView):
         context['project_list'] = [result.object for result in self.page.object_list]
 
         return context
+    
+class LocationEditView(TemplateView):
+    """
+    Edit a location (any geographic place or area)
+    """
+    template_name = 'i4p_base/location/location_edit.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.location_id = kwargs['location_id']
+
+        self.location = Location.objects.get(id=self.location_id)
+
+        return super(TemplateView, self).dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        self.location_form = I4pLocationForm(instance=self.location)
+        return super(LocationEditView, self).get(request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+        POST = request.POST.copy() #Make this mutable for form redisplay
+        self.location_form = I4pLocationForm(POST, instance=self.location)
+        if self.location_form.is_valid():
+            location = self.location_form.save(commit=False);
+            location.save();
+            # Yes, it's insane, and yes, it's the least insane choice in django
+            # http://stackoverflow.com/questions/4662848/disabled-field-is-not-passed-through-workaround-needed/4664866#4664866
+            POST['geom']=location.geom.ewkt
+            POST['geocode_picker']=''
+
+        return super(LocationEditView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(LocationEditView, self).get_context_data(**kwargs)
+        context['location_id'] = self.location_id
+        context['location_form'] = self.location_form
+        
+        return context
+

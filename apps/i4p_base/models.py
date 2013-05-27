@@ -29,10 +29,8 @@ from actstream.models import Action
 from django_countries import CountryField
 from django_extensions.db.fields import json
 
-from geopy import geocoders
 
 import reversion
-from django.contrib.gis.geos.point import Point
 
 
 I4P_COUNTRIES = (
@@ -316,17 +314,6 @@ class Location(geomodels.Model):
     
     def __unicode__(self):
         return self.full_addr
-
-def update_geolocation(sender, instance, **kwargs):
-    if instance.full_addr:
-        g = geocoders.GoogleV3()
-        try:
-            place, (lat, lng) = g.geocode(instance.full_addr)
-            instance.geom = Point(lng, lat)
-        except:
-            instance.geom = None
-
-pre_save.connect(update_geolocation, sender=Location)
 
 
 class VersionActivity(models.Model):
