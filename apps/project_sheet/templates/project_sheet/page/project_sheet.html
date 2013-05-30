@@ -45,13 +45,13 @@
 
 	    {% include "project_sheet/block/reference-block.html" with reference_block_extra_class="project-references" %}
 
-
+        {%comment%}
 	    <hr class="shaded-separator" />
 
 	    <div id="project-comments" class="project-comments comment-block">
 		{% include "project_sheet/block/comment-block.html" %}
 	    </div> <!-- .project-comments -->
-
+        {%endcomment%}
 	    {% endif %}
 
 	</div> <!-- .project-main -->
@@ -125,21 +125,6 @@
 
 	    {% include "workgroup/block/grouplist_fancy_wide.html" %}
 
-	    <div class="project-related clearfix">
-		<!-- FIXME: use real data for related project list once in the datamodel -->
-		<h2>
-		    <i class="sheet-related"></i>
-		    {% trans "You might also like"|capfirst %}
-		</h2>
-		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% if related_projects %}
-		  {% include "project_sheet/block/cardlist_card_wide.html" with project_list=related_projects %}
-		{% else %}
-		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
-		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
-		{% endif %}
-	    </div>
-
 	    <div class="project-gallery gallery-block clearfix">
 		<h2>
 		    <i class="sheet-gallery"></i>
@@ -150,9 +135,30 @@
 
 	    </div> <!-- .project-gallery -->
 
-	    {% include "project_sheet/block/partner-block.html" %}
 	    {% endif %}
 	</div> <!-- .project-sidebar -->
+    </div>
+</div>
+
+<div class="project-related clearfix">
+    <div class="container">
+        <!-- FIXME: use real data for related project list once in the datamodel -->
+        <h2>
+            {% trans "You might also like"|capfirst %}
+        </h2>
+        {% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
+        {% if related_projects %}
+          {% include "project_sheet/block/cardlist_card_wide.html" with project_list=related_projects %}
+        {% else %}
+           {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
+           {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="wrap-partners clearfix">
+    <div class="container">
+        {% include "project_sheet/block/partner-block.html" %}
     </div>
 </div>
 

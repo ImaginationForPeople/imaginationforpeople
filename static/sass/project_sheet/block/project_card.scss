@@ -27,6 +27,8 @@
 	.top {
 		height:270px;
 		color:#242424;
+		background:white;
+		@include border-radius(5px 5px 0 0);
 
 		img {
 			@include border-radius(5px 5px 0 0);

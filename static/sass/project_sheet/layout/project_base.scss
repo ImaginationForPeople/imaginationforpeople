@@ -36,6 +36,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
     .shaded-separator {
 	@include i4p-shaded-separator;
+	display:none;
     }
 
     .project-comments {
@@ -44,6 +45,9 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	}
     }
 
+    .wrap-partners {
+    	background:white;
+    }
     .project-partners {
 	@include i4p-layout-block;
 	@include i4p-seemore-class;
@@ -61,13 +65,25 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     }
 
     .project-related {
-	@include i4p-layout-block;
-	@include i4p-seemore-class;
-	width: inherit;
+    	background:black image-url('project_sheet/black_texture.png');
+		@include i4p-layout-block;
+		@include i4p-seemore-class;
+		width: inherit;
+		margin:0;
+		padding-bottom:25px;
 
-	h2 {
-	    @include i4p-font-title;
-	}
+		> .container > h2 {
+		    @include i4p-font-title;
+		    color:white;
+		    padding-left:30px;
+		    background:image-url('project_sheet/project-related.png') no-repeat center left;
+		    margin:30px 0 25px;
+		}
+
+		.project-card {
+			margin-right:30px;
+			@include box-shadow(0 0 2px #555555);
+		}
     }
 
     .project-sidebar {
@@ -133,9 +149,3 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 	}
     }
 }
-
-
-
-.project-references {
-}
-

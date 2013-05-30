@@ -14,27 +14,20 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 		@include i4p-transition(all .5s ease);
 
 		.i4p-button {
-		    //@include i4p-button-fancy-bordered-small;
+			@include i4p-transition(all .5s ease);
 		    display:block;
 		    position:absolute;
 		    top:0;
 		    right:0;
-		    background:image-url('project_sheet/edit-corner.png') no-repeat top left;
+		    background:image-url('project_sheet/edit-corner.png') no-repeat 70px 0;
 		    width:70px;
 		    height:66px;
 		    text-indent:-999em;
-
-		    /*&:before {
-			display: inline-block;
-			background-image: image-url('project_sheet/edit-icon.png');
-			content: "";
-			background-position: right center;
-			background-repeat: no-repeat;
-			width: 17px;
-			height: 20px;
-			vertical-align: middle;
-		    }*/
 		}
+    }
+
+    &:hover .i4p-button {
+    	background:image-url('project_sheet/edit-corner.png') no-repeat top left;
     }
 
     &.editing {
