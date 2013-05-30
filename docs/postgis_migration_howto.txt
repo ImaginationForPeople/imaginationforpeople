@@ -1,14 +1,3 @@
-createlang plpgsql imaginationforpeople
-psql -d imaginationforpeople -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
-psql -d imaginationforpeople -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
-sudo -u postgres psql imaginationforpeople
-CREATE ROLE postgis_reader INHERIT;
-GRANT SELECT ON geometry_columns TO postgis_reader;
-GRANT SELECT ON geography_columns TO postgis_reader;
-GRANT SELECT ON spatial_ref_sys TO postgis_reader;
-CREATE ROLE postgis_writer;
-GRANT postgis_reader TO postgis_writer;
-GRANT INSERT,UPDATE,DELETE ON spatial_ref_sys TO postgis_writer;
-GRANT INSERT,UPDATE,DELETE ON geometry_columns TO postgis_writer;
-GRANT INSERT,UPDATE,DELETE ON geography_columns TO postgis_writer;
-GRANT postgis_writer TO imaginationforpeople;
+sudo apt-get -o APT::Install-Suggests="true" install postgis
+
+fab devenv database_postgis_setup

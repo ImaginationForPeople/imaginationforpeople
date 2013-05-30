@@ -129,9 +129,8 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 	<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
 	<table class="infotable">
 		<tr class="infotable-location location">
-			<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
-			<th>{% trans "Location" %}</th>
-			<td>
+			<td colspan=2>
+
 {% if project_translation.master.locations.all %}
     {% addtoblock "css" strip %}
         {% leaflet_css plugins="markercluster" %}

@@ -43,6 +43,9 @@ def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
 def venv_prefix():
     return 'source %(venvfullpath)s/bin/activate' % env
 
+def remote_db_path():
+    return os.path.join(env.venvfullpath, env.projectname, 'current_database.sql.bz2')
+
 def printenv():
     """
     Print shell env
@@ -101,7 +104,10 @@ def stagenv():
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
-    env.gitbranch = "release/almostspring"
+    #env.gitbranch = "release/almostspring"
+    #env.gitbranch = "develop"
+    env.gitbranch = "feature/gis"
+
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -403,16 +409,15 @@ def install_database_server():
     Install a postgresql DB
     """
     print(cyan('Installing Postgresql'))
-    sudo('apt-get install -y postgresql-8.4 postgresql-8.4 postgresql-8.4-postgis')
+    sudo('apt-get install -y postgresql-8.4 postgresql-8.4 postgresql-8.4-postgis postgis')
 
-def setup_database():
+def create_database_user():
     """
     Create a user and a DB for the project
     """
     # FIXME: pg_hba has to be changed by hand (see doc)
     # FIXME: Password has to be set by hand (see doc)
     sudo('createuser %s -D -R -S' % env.projectname, user='postgres')
-    sudo('createdb -O%s %s' % (env.projectname, env.projectname), user='postgres')
     
 ## Server packages    
 def install_basetools():
@@ -540,7 +545,12 @@ def database_dump():
 
     # Make symlink to latest
     with cd(env.dbdumps_dir):
-        run('ln -sf %s current_database.sql.bz2' % compressed_filename)
+        run('ln -sf %s %s' % (compressed_filename, remote_db_path()))
+
+def database_create():
+    """
+    """
+    sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
 
 @task
 def database_postgis_dump():
@@ -569,12 +579,13 @@ def database_postgis_dump():
 @task
 def database_postgis_setup():
     """
+    Setup or upgrade a database to postgis.  Normally run BEFORE restoring a 
+    database dump, except the first time a postgis migration is done.
     """
     env.postgres_sharedir_path = run('pg_config --sharedir')
     env.postgis_script_path = os.path.join(env.postgres_sharedir_path, 'contrib/postgis-%s' % env.postgis_version)
 
     run('ls %s' % env.postgis_script_path)
-    sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
     with settings(warn_only=True):
         sudo('su - postgres -c "createlang plpgsql %s"' % (env.db_name))
     sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'postgis.sql')))
@@ -602,13 +613,8 @@ def database_postgis_restore():
     postgis_restore_script = '/usr/share/postgresql-9.1-postgis/utils/postgis_restore.pl'
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
 
-    if(env.wsginame == 'dev.wsgi'):
-        remote_db_path = os.path.join(env.venvfullpath, env.projectname, 'current_database.pgdump')
-    else:
-        remote_db_path = os.path.join(env.venvfullpath, 'current_database.pgdump')
-
     if(env.wsginame != 'dev.wsgi'):
-        put('current_database.pgdump', remote_db_path)
+        put('current_database.pgdump', remote_db_path())
 
     if(env.wsginame != 'dev.wsgi'):
         execute(webservers_stop)
@@ -618,6 +624,7 @@ def database_postgis_restore():
         sudo('su - postgres -c "dropdb %s"' % (env.db_name))
         
     # Create db
+    execute(database_create)
     execute(database_postgis_setup)
 
     # Restore data
@@ -626,7 +633,7 @@ def database_postgis_restore():
         run('%s %s %s %s' % (postgis_restore_script,
                                          os.path.join(env.postgis_script_path, 'postgis.sql'),
                                          env.db_name,
-                                         remote_db_path)
+                                         remote_db_path())
         )
 
     if(env.wsginame != 'dev.wsgi'):
@@ -641,20 +648,20 @@ def database_download():
     execute(database_dump)
     get(os.path.join(env.dbdumps_dir, 'current_database.sql.bz2'), 'current_database.sql.bz2')
 
+@task
+def database_upload():
+    """
+    Uploads a local database backup to the target environment's server
+    """
+    if(env.wsginame != 'dev.wsgi'):
+        put('current_database.sql.bz2', remote_db_path())
+
 @task    
 def database_restore():
     """
-    Restores the database to the remote server
+    Restores the database backed up on the remote server
     """
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
-
-    if(env.wsginame == 'dev.wsgi'):
-        remote_db_path = os.path.join(env.venvfullpath, env.projectname, 'current_database.sql.bz2')
-    else:
-        remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
-
-    if(env.wsginame != 'dev.wsgi'):
-        put('current_database.sql.bz2', remote_db_path)
 
     if(env.wsginame != 'dev.wsgi'):
         execute(webservers_stop)
@@ -664,12 +671,13 @@ def database_restore():
         sudo('su - postgres -c "dropdb imaginationforpeople"')
 
     # Create db
+    execute(database_create)
     execute(database_postgis_setup)
     
     # Restore data
     with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
         run('grep "DATABASE" -A 8 site_settings.py')
-        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path,
+        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path(),
                                               env.db_user,
                                               env.db_name)
         )

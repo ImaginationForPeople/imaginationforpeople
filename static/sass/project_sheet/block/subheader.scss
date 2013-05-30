@@ -26,11 +26,21 @@
 	    td {
 		color: white;
 		padding: $sizePaddingSmall;
-		#projectLocationsMap {
-		    color: $colorMedDarkGrey;
-		    }
 	    }
-
+        tr.location {
+            td {
+                padding: 0;
+                margin: 0;
+            }
+            div#projectLocationsMap {
+                color: $colorMedDarkGrey;
+                height: 150px;
+                min-height: 100px;
+                width: 260px;
+                min-width: 100px;
+                display: inline-block;
+            }
+        }
 	    .location-form {
 		label {  }
         textarea {
