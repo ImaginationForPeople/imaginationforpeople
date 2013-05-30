@@ -28,8 +28,11 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     @include i4p-sprite('sheet');
     @include i4p-sprite-header('sheet');
     background-color: $colorWhite;
-    padding-top: 3rem;
+    padding-top: 20px;
 
+    .project-main {
+    	margin-left:0 !important;
+    }
 
     .shaded-separator {
 	@include i4p-shaded-separator;
@@ -82,17 +85,22 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 
 
 
+.wrap-about {
+	background:white;
+	padding:20px 30px;
+	position:relative;
+	@include border-radius(5px 5px 0 0);
+}
 
 .project-about {
     & > h2 {
-	@include i4p-font-title;
-
-	margin-bottom: 1em;
+		@include i4p-font-title;
+		margin:0 0 15px;
     }
 
     p {
 	@include box-sizing(border-box);
-	padding-left: 2rem;
+	padding-left: 0;
 	position: relative;
 	margin-bottom: 2em;
 

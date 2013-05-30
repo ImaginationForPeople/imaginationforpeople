@@ -8,127 +8,69 @@ $taglist_sizeBlockHeight: $sizeTextSmall * 1.3;
     margin-bottom: 2em;
 
     h2 {
-	@include border-radius($sizeRadiusSmall 0 0 $sizeRadiusSmall);
-	background-image: image-url("tags/icon-tag-white-small.png");
-	background-position: 5px center;
-	background-repeat: no-repeat;
-	height: $taglist_sizeBlockHeight;
-	font-family: $fontOpenSans;
-	font-weight: bold;
-	font-style: italic;
-	font-size: $sizeTextSmall;
-	display: inline;
-	color: white;
-	float: left;
-	background-color: $colorMedDarkGrey;
-	padding-left: 20px; // icon size
-	padding-right: $sizePaddingSmall;
-	margin: 0;
-	margin-right: .25em;
-	line-height: $taglist_sizeBlockHeight;
+		@include border-radius($sizeRadiusSmall);
+		background-image: image-url("tags/icon-tag-grey-bg.png");
+		background-position:0 center;
+		background-repeat: no-repeat;
+		height: 22px;
+		font-family: $fontOpenSans;
+		font-weight: bold;
+		font-style: italic;
+		font-size: $sizeTextSmall;
+		display: inline;
+		color: white;
+		float: left;
+		background-color: #706f6f;
+		padding-left: 32px; // icon size
+		padding-right: 5px;
+		margin: 0;
+		margin-right: .25em;
+		line-height: 22px;
     }
 
     ul {
-	display: block;
-	list-style: none;
-	margin-left: $sizeMarginSmall;
-
-	&:after {
-	    content: "";
-	    clear: both;
-	}
-
-	li {
-	    @include i4p-transition(all .5s ease);
-
-	    background-color: $colorMedLightGrey;
-	    color: $colorMedDarkGrey;
-	    display: block;
-	    float: left;
-	    font-family: $fontOpenSans;
-	    font-style: italic;
-	    font-weight: bold;
-	    height: $taglist_sizeBlockHeight;
-	    line-height: $taglist_sizeBlockHeight;
-	    margin-bottom: $sizeMarginSmall;
-	    margin-right: $sizeMarginMedium;
-	    padding-left: $sizePaddingSmall;
-	    padding-right: $sizePaddingSmall;
-	    position: relative;
-
-	    &.edit {
-		background-color: $colorMedDarkGrey;
-		color: white;
-
-		&:before {
-		    border-bottom-color: $colorMedDarkGrey;
-		    border-top-color: $colorMedDarkGrey;
-		}
+		display: block;
+		list-style: none;
+		margin-left: $sizeMarginSmall;
 
 		&:after {
-		    border-left-color: $colorMedDarkGrey;
-		}
-	    }
-
-	    a {
-		@include i4p-transition(all .5s ease);
-
-		font-size: $sizeTextSmall;
-		color: inherit;
-		margin-right: 0.2em;
-		text-decoration: none;
-	    }
-
-	    &:first-child:before {
-		border-left: none;
-		display: inline;
-	    }
-
-	    &:before {
-		@include box-sizing(border-box);
-		@include i4p-transition(all .5s ease);
-
-		border-bottom: ($taglist_sizeBlockHeight / 2) solid $colorMedLightGrey;
-		border-left: ($taglist_sizeBlockHeight / 3.2) solid transparent;
-		border-top: ($taglist_sizeBlockHeight / 2) solid $colorMedLightGrey;
-		content:"";
-		display: inline;
-		height: 0;
-		left: -($taglist_sizeBlockHeight / 3.7);
-		position: absolute;
-		top: 0;
-		width: 0;
-	    }
-
-	    &:after {
-		@include box-sizing(border-box);
-		@include i4p-transition(all .5s ease);
-
-		border-bottom: ($taglist_sizeBlockHeight / 2) solid transparent;
-		border-left: ($taglist_sizeBlockHeight / 3.2) solid $colorMedLightGrey;
-		border-top: ($taglist_sizeBlockHeight / 2) solid transparent;
-		content:"";
-		height: 0;
-		position: absolute;
-		right: -($taglist_sizeBlockHeight / 3.7);
-		top: 0;
-		width: 0;
-	    }
-
-	    &:hover {
-		background-color: $colorMedGrey;
-		color: $colorLightLightGrey;
-
-		&:before {
-		    border-bottom-color: $colorMedGrey;
-		    border-top-color: $colorMedGrey;
+		    content: "";
+		    clear: both;
 		}
 
-		&:after {
-		    border-left-color: $colorMedGrey;
-		}
-	    }
-	}
+		li {
+		    @include i4p-transition(all .5s ease);
+		    @include border-radius(5px);
+		    background-color: #e6e6e6;
+		    color: #706f6f;
+		    display: block;
+		    float: left;
+		    font-family: $fontOpenSans;
+		    font-style: italic;
+		    font-weight: bold;
+		    height: 22px;
+		    line-height: 22px;
+		    margin:0 5px 4px 0;
+		    position: relative;
 
+		    &.edit {
+			background-color: $colorMedDarkGrey;
+			color: white;
+		    }
+
+		    a {
+			@include i4p-transition(all .5s ease);
+
+			font-size: $sizeTextSmall;
+			color: inherit;
+			margin-right: 0.2em;
+			text-decoration: none;
+		    }
+
+		    &:hover {
+			background-color: $colorMedGrey;
+			color: $colorLightLightGrey;
+		    }
+		}
     }
 }

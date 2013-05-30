@@ -32,9 +32,10 @@
     <div class="row">
 	<div class="span8 project-main">
 
-
-	    {% include "project_sheet/block/about.html" %}
-
+        <div class="wrap-about">
+	        {% include "project_sheet/block/about.html" %}
+        </div>
+        
 	    <div class="project-details detail-list">
 		{% include "project_sheet/block/detail-list.html" %}
 	    </div> <!-- .project-details -->
@@ -127,7 +128,7 @@
 		</h2>
 		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
 		{% if related_projects %}
-		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_list=related_projects %}
+		  {% include "project_sheet/block/cardlist_card_wide.html" with project_list=related_projects %}
 		{% else %}
 		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
 		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
