@@ -17,10 +17,10 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/member_fancy_square.css" />
 {% endaddtoblock %}
 
-<li id="member-{{ member.id }}" class="member square fancy" 
+<li id="member-{{ member.id }}" class="member square fancy {% if member.role %}team_member{%elif member.fan_since%}fan{%endif%}" 
 	data-slider-index="{{ forloop.counter }}"
 	data-toggle="i4p-member-overlay-hook"
-	data-member-position="{{ member.role }}"
+	data-member-position="{% if member.role %}{{member.role}}{%elif member.fan_since%}Fan{%endif%}"
 	data-member-fullname="{{ member.user.get_full_name|default:member.user.username }}"
 	data-member-profile="{{ member.user.get_profile.get_absolute_url }}"
 	data-member-contact="{% url userena_umessages_compose_to member.user %}"
