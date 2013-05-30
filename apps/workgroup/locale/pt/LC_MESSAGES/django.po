@@ -1,20 +1,20 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-25 16:07+0200\n"
-"PO-Revision-Date: 2013-03-08 16:14+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-05-23 11:52+0200\n"
+"PO-Revision-Date: 2013-05-23 09:56+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
-"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cms_plugins.py:48
@@ -63,26 +63,26 @@ msgstr ""
 msgid "Subscribers"
 msgstr ""
 
-#: views.py:228
+#: views.py:216
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
 msgstr ""
 
-#: views.py:235
+#: views.py:223
 #, python-format
 msgid "You couldn't be subscribed to this group:%s"
 msgstr ""
 
-#: views.py:266
+#: views.py:254
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
 msgstr ""
 
-#: views.py:273
+#: views.py:261
 #, python-format
 msgid "You couldn't be unsubscribed from this group:%s"
 msgstr ""
@@ -320,25 +320,30 @@ msgstr ""
 msgid "Back to editor"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:36
+#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_discuss_list.html:68
 #, python-format
-msgid ""
-"This group uses a mailing list. You can take part in the discussion by "
-"sending an e-mail to the following address: %(ml_address)s"
+msgid "This group uses a mailing list:&nbsp;</em>%(ml_address)s"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:36
-msgid "Browse the Archives"
+#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_discuss_list.html:68
+msgid "Find history of messages exchanged"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:51
+#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_discuss_list.html:68
+msgid "To subscribe/unsubscribe to this list, click the button above."
+msgstr ""
+
+#: templates/workgroup/page/workgroup_detail.html:43
 #, python-format
 msgid "Comment:"
 msgid_plural "%(num_comments)s comments:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/workgroup/page/workgroup_discuss_list.html:67
+#: templates/workgroup/page/workgroup_discuss_list.html:71
 msgid "Ask your question"
 msgstr ""
 
