@@ -47,7 +47,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");
 		   {% include "project_sheet/block/member_fancy_square.html" %}
 		{% endfor %}
 		{% for member in fans %}
-		   {% include "project_sheet/block/member_fancy_square.html" %}
+		   {% if member not in member.project.members %}
+		      {% include "project_sheet/block/member_fancy_square.html" %}
+		   {% endif %}
 		{% endfor %}
 	</ul>
 </div>
