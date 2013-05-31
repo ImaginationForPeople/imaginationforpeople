@@ -41,6 +41,7 @@
 				markers.addLayer(marker);
 			});
 			map.addLayer(markers);
+			map.fitBounds(markers.getBounds());
 		}, "json");
     }
 </script>
