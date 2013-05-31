@@ -5,9 +5,18 @@
 
 .project-menubar {
     @include box-sizing(border-box);
+    @include i4p-transition(box-shadow 1.5s ease);
     background-color: $colorLightGrey;
     clear: both;
-    height: 3.3rem;
+    height: 43px;
+
+    &.fixed {
+    	position:fixed;
+    	top:0;
+    	width:100%;
+    	z-index:8000;
+    	@include box-shadow(0 3px 8px #aaa);
+    }
 
     .menubar-leftcolumn, .menubar-rightcolumn {
 	& > ul {
@@ -19,7 +28,6 @@
 		margin: 0;
 		display: block;
 		float:left;
-		border-left: 1px solid white;
 		border-right: 1px solid $colorMedLightGrey;
 		position: relative;
 		font-size: $sizeTextSmall;
@@ -27,18 +35,16 @@
 		font-stretch: condensed;
 		text-transform: uppercase;
 		padding: 0;
-		height: 3.3rem;
+		height: 43px;
 		border-collapse: collapse;
 
 		a {
 		    display: block;
-		    padding: 0.7 * $sizePaddingMedium;
-		    padding-left: 0.7 * $sizePaddingMedium;
-		    padding-right: 0.7 * $sizePaddingMedium;
+		    padding: 0 7px 0 30px;
 		    color: $colorMedGrey;
-		    font-weight: bold;
-		    height:19px;
-		    line-height:21px;
+		    font-weight: 500;
+		    height:43px;
+		    line-height:43px;
 
 		    i {
 			position: relative;
@@ -60,6 +66,21 @@
 		    }
 		}
 
+		&.project a { background:image-url('project_sheet/menubar/project_ico.png') no-repeat 10px center; }
+		&.project a:hover, &.project.active a { background:image-url('project_sheet/menubar/project_ico_hover.png') no-repeat 10px center; }
+
+		&.gallery a { background:image-url('project_sheet/menubar/photo_ico.png') no-repeat 5px center; }
+		&.gallery a:hover, &.gallery.active a { background:image-url('project_sheet/menubar/photo_ico_hover.png') no-repeat 5px center; }
+
+		&.discuss a { background:image-url('project_sheet/menubar/discu_ico.png') no-repeat 5px center; padding-left:40px; }
+		&.discuss a:hover, &.discuss.active a { background:image-url('project_sheet/menubar/discu_ico_hover.png') no-repeat 5px center; }
+
+		&.support a { background:image-url('project_sheet/menubar/need_ico.png') no-repeat 5px center; }
+		&.support a:hover, &.support.active a { background:image-url('project_sheet/menubar/need_ico_hover.png') no-repeat 5px center; }
+
+		&.history a { background:image-url('project_sheet/menubar/activ_ico.png') no-repeat 8px center; }
+		&.history a:hover, &.history.active a { background:image-url('project_sheet/menubar/activ_ico_hover.png') no-repeat 8px center; }
+		
 		.submenu {
 		    @include i4p-transition;
 		    top: 30px;
@@ -90,11 +111,12 @@
 
 		&.right {
 		    float:right;
+		    margin-left:20px;
 
 		    a {
 				padding: 6px $sizePaddingSmall;
-				height: 20px;
-	    		line-height: 21px;
+				height: 31px;
+   				line-height: 31px;
 		    }
 		}
 
@@ -108,7 +130,7 @@
 			color: white;
 		    }
 
-		    &:before {
+		    /*&:before {
 			content:""; 
 			position: absolute; 
 			left: 50%; 
@@ -119,7 +141,7 @@
 			border-left: 10px solid transparent; 
 			border-top: 10px solid $colorDarkBlue; 
 			border-right: 10px solid transparent;
-		    }
+		    }*/
 
 		    &:hover {
 			background-image: none;
@@ -191,6 +213,8 @@
 		li a {
 			padding:0 5px !important;
 			margin:0 3px;
+			height:21px;
+			line-height:21px;
 			@include border-radius(4px,4px)
 		}
 
@@ -210,5 +234,7 @@
 			}
 		}
     }
+
+    .dropdown-submenu > a:after { display:none }
 }
 

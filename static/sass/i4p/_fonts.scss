@@ -26,6 +26,7 @@
 
 @mixin i4p-font-title($sizeText : $sizeTextLarge) {
     @include i4p-font-subtitle($sizeText);
+    font-family:$fontOpenSansCondensed;
     text-transform: uppercase;
 }
 
