@@ -65,6 +65,12 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_modal_seeall.js");
 						{% include "project_sheet/block/member_modal.html" %}
 						{% endfor %}
 					</ul>
+					<h2>{% trans 'Fans' %}</h2>
+					<ul>
+						{% for member in project.detailed_fans.all %}
+						{% include "project_sheet/block/member_modal.html" %}
+						{% endfor %}
+					</ul>
 				</div>
 
 				<!-- FIXME: information about founders/supporters/users is missing
