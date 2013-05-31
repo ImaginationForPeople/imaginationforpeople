@@ -64,7 +64,9 @@
 		    {% trans "Project Community"|capfirst %}</h2>
         
 		
-        {% with num_team_member=project.detailed_members.all.count num_fans=project.detailed_fans.all.count %}
+        {% with num_team_member=project.detailed_members.all.count num_fans=project.detailed_fans.all.count %}            
+            <p>{{ num_fans }} fan{{ num_fans|pluralize }} and  {{num_team_member}} member{{num_team_member|pluralize}}</p>             
+                
             {% include "member/block/memberfanlist_square.html" with members=project.detailed_members.all fans=project.detailed_fans.all %}
             {% if num_team_member > 0 %}
                 {% unique_counter memberlist_modal %}
@@ -83,16 +85,7 @@
                {% endwith %}
             {% endif %}
             
-            {% if num_fans == 0 %}               
-                <p class="fans-no-fans-yet">{% trans "No fans yet" %}
-            {% else %}
-                <p>{% blocktrans count num_fans=num_fans %}
-                The fans
-                {% plural %}
-                The {{ num_fans }} fans
-                {% endblocktrans %}
-                </p>                
-            {% endif %}
+           
         
             {% if not request.user in project.fans.all %}
                <div class="fans-not-a-fan-block">
