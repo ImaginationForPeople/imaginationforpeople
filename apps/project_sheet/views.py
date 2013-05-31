@@ -257,12 +257,8 @@ class ProjectEditInfoView(ProjectView):
                 location.save()
                 if location not in project_locations_qs:
                     self.project_translation.master.locations.add(location)
+            self.project_location_formset.save_m2m()
 
-            #location = self.project_location_form.save()
-            #if not self.project_translation.master.location:
-            #    self.project_translation.master.location = location
-            #    self.project_translation.master.save()
-            
             return redirect(self.project_translation.master)
         else:
             return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
