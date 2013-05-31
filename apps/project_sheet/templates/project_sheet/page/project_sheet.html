@@ -87,26 +87,36 @@
             
            
         
-            {% if not request.user in project.fans.all %}
+            {% if not request.user in project.fans.all and not request.user in project.members.all %}
                <div class="fans-not-a-fan-block">
                <!-- {% trans "Become a fan of this project" %} -->
                <form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project.slug %}'>
                {% csrf_token %}
                {{ project_fan_add_form.as_p }}
-               <button type="button"><span>{% trans 'Become a fan' %}</span></button>
+               <button type="submit"><span>{% trans 'Become a fan' %}</span></button>
                </form>
                </div>
-            {% else %}
-               <div class="fans-is-fan-block">
-               You are now a fan of this project. Share it with your friends!  
-               <div class="addthis_toolbox addthis_default_style">
-                   <a class="addthis_button_compact share"></a>
-               </div>                        
-               </div>
+               {%comment%} 
+              {% else %}
+                 <div class="fans-is-fan-block">
+                 You are now a fan of this project. Share it with your friends!  
+                 <div class="addthis_toolbox addthis_default_style">
+                     <a class="addthis_button_compact share"></a>
+                 </div>                        
+                 </div>
+               {%endcomment%} 
+            {% endif %}
+
+            {% if request.user in project.fans.all %}
+            <span>Vous êtes fans !</span>
+            {% endif %}
+
+            {% if request.user in project.members.all %}
+            <span>Vous êtes membres !</span>
             {% endif %}
             
         {% endwith %}
-{%comment%}        
+        {%comment%}        
         {% with num_fans=project.detailed_fans.count %}
         
             {% if num_fans == 0 %}
