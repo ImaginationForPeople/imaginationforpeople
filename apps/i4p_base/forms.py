@@ -55,8 +55,9 @@ class OsmPointWidget(forms.gis.BaseGMapWidget,
     pass
 
 class GeocodeResultPickerField(forms.ChoiceField):
-    #widget = forms.widgets.Select
-    #widget = forms.widgets.HiddenInput
+    """
+    A non database field to represent geocoder results
+    """
     def to_python(self, value):
         "Normalize data to a Point or none."
 
@@ -123,10 +124,17 @@ class I4pLocationForm(forms.ModelForm):
             cleaned_data['geom']=changed_geom
         if not geocode_results:
             del self.fields['geocode_picker']
-        #data=self.data
-        #raise ValueError('DOH')
         return cleaned_data
-
+    
+    def save(self, *args, **kwargs):
+        retval = super(I4pLocationForm, self).save(*args, **kwargs)
+        # Yes, it's insane, and yes, it's the least insane choice in django
+        # http://stackoverflow.com/questions/4662848/disabled-field-is-not-passed-through-workaround-needed/4664866#4664866
+        self.data=self.data.copy()
+        self.data['geom']=self.instance.geom.ewkt
+        self.data['geocode_picker']=''
+        return retval
+        
     def count_results(self, geocode_results):
         return sum([len(v['result_list']) for v in geocode_results.values()])
 

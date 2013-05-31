@@ -254,10 +254,6 @@ class LocationEditView(TemplateView):
         if self.location_form.is_valid():
             location = self.location_form.save(commit=False);
             location.save();
-            # Yes, it's insane, and yes, it's the least insane choice in django
-            # http://stackoverflow.com/questions/4662848/disabled-field-is-not-passed-through-workaround-needed/4664866#4664866
-            POST['geom']=location.geom.ewkt
-            POST['geocode_picker']=''
 
         return super(LocationEditView, self).get(request, *args, **kwargs)
 
