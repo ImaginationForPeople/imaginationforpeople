@@ -248,9 +248,7 @@ class ProjectEditInfoView(ProjectView):
             self.project_info_form.save()
             
             for deleted_location_form in self.project_location_formset.deleted_forms:
-                deleted_location = deleted_location_form.save();
                 self.project_translation.master.locations.remove(deleted_location_form.instance)
-                #deleted_location_form.instance.delete()
                 
             locations = self.project_location_formset.save(commit=False)
             for location in locations:
