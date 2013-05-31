@@ -5,7 +5,7 @@
 
 .project-menubar {
     @include box-sizing(border-box);
-    @include i4p-transition(box-shadow .5s ease);
+    @include i4p-transition(box-shadow 1.5s ease);
     background-color: $colorLightGrey;
     clear: both;
     height: 43px;
@@ -15,7 +15,7 @@
     	top:0;
     	width:100%;
     	z-index:8000;
-    	@include box-shadow(0 -3px 8px #666);
+    	@include box-shadow(0 3px 8px #aaa);
     }
 
     .menubar-leftcolumn, .menubar-rightcolumn {
