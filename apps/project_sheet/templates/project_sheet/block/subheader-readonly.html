@@ -135,7 +135,11 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
     {% addtoblock "css" strip %}
         {% leaflet_css plugins="markercluster" %}
     {% endaddtoblock %}
-    {% addtoblock "js" strip %}
+    {% addtoblock "sekizai_extra_head" strip %}
+        {% comment %}
+        Do NOT put this in the js block, it does
+        not tolerate compress
+        {% endcomment %} 
         {% leaflet_js plugins="markercluster" %}
     {% endaddtoblock %}
     {% leaflet_map "projectLocationsMap" %}
