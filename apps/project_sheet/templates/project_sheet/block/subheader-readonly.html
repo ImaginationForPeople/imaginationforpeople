@@ -148,6 +148,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 <script type="text/javascript">
     function projectLocationsMapInit(map, bounds) {
         var markers = new L.MarkerClusterGroup();
+        var marker = null;
         {% for location in project_translation.master.locations.all %}
         {% if location.geom %}
         var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
@@ -159,11 +160,25 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         '<div class="location-country">' +
         '<img src="{{ location.country.flag|escapejs }}" alt="{{ location.country|escapejs }}"/> {{ location.country.name|escapejs }}'
         '</div>'
-        marker.bindPopup(popup_html).openPopup();
+        var popup = L.popup().setContent(popup_html);
+        marker.bindPopup(popup_html);
         {% endif %}
         {% endfor %}
+        var numLocations = {{ project_translation.master.locations.all|length }}
         map.addLayer(markers);
-        map.fitBounds(markers.getBounds());
+        
+        if (numLocations == 1) {
+            
+            
+            if (marker != null) {
+                map.setView(marker.getLatLng(),14);
+                //This doesn't autopan if we don't give a delay
+                setTimeout(function(){          marker.openPopup();}, 250);
+            }
+        }
+        else {
+            map.fitBounds(markers.getBounds());
+        }
     }
 </script>
     {% endlocalize %}
