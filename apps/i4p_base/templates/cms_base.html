@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load cms_tags %}
+
+{% block title %}
+    {% page_attribute "page_title" as page_title %}
+    {% if page_title %}
+        {{ page_title }}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_keywords %}
+    {% page_attribute "meta_keywords" as meta_keywords %}
+    {% if meta_keywords|length %}
+        {{ meta_keywords }}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block meta_desc %}
+    {% page_attribute "meta_description" as meta_description %}
+    {% if meta_description %}
+        {{ meta_description }}
+    {% else %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}"
