@@ -13,7 +13,8 @@ class ProjectSearchForm(FacetedSearchForm):
     language_codes = forms.CharField(required=False, label=_('Language'))
     tags = forms.CharField(required=False, label=_('Tags'))    
     order = forms.CharField(required=False, label=_('Order')) 
-    
+    status = forms.CharField(required=False, label=_('Status'), widget=forms.widgets.HiddenInput) 
+        
     def search(self):
         sqs = self.searchqueryset
         
@@ -27,7 +28,7 @@ class ProjectSearchForm(FacetedSearchForm):
 
         # I4P Project sheet criteria
         filters = {}
-        for field in ('best_of', 'has_team', 'has_needs', 'location', 'language_codes', 'tags'):
+        for field in ('best_of', 'has_team', 'has_needs', 'location', 'language_codes', 'tags', 'status'):
             data = self.cleaned_data.get(field)
             if data and data != "":
                 filters[field] = self.cleaned_data[field]

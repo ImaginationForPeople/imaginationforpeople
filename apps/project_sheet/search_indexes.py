@@ -17,6 +17,7 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     #slug = indexes.CharField(model_attr='slug')
     content_auto = indexes.EdgeNgramField(model_attr='title')
     best_of = indexes.BooleanField(model_attr='best_of')
+    status = indexes.CharField(model_attr='status', null=True)
     sites = indexes.MultiValueField()
     tags = indexes.MultiValueField(indexed=True, stored=True, model_attr='themes')
     location = indexes.CharField()
