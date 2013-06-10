@@ -225,7 +225,8 @@ class SearchView(FacetedSearchView):
         
     def get_context_data(self, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
-
-        context['project_list'] = [result.object for result in self.page.object_list]
-
+        context['project_list']=[]
+        for result in self.page.object_list:
+            if(result):
+                context['project_list'].append(result.object)
         return context
