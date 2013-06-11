@@ -19,7 +19,7 @@ easy-thumbnails==1.0.3
 # Wiki
 -e git://github.com/benjaoming/django-wiki.git@64a22a81807898f3fb1d60c86a9c13bb26fe4ac8#egg=django-wiki
 
--e git://github.com/CommOnEcoute/cmsplugin_facebook.git@6c92c68533bbcff98cff57bd48278cfd773473ac#egg=cmsplugin-facebook
+-e git://github.com/chrisglass/cmsplugin_facebook.git@38b562f3004576ffd2d9a4502c395fea4ea64385#egg=cmsplugin-facebook
 
 -e git://github.com/divio/cmsplugin-iframe.git@8427d128d8bdadc276ce19b433f46792b8b3a0d8#egg=cmsplugin-iframe
 
@@ -33,10 +33,11 @@ Pillow==1.7.4
 
 django-serializers==0.5.1
 
-whoosh==1.8.4
+whoosh==2.4.1
+#That's pretty far from current pysolr...
 pysolr==2.1.0-beta
-# Haystack 2.0.0-beta
--e git://github.com/toastdriven/django-haystack.git@master#egg=django-haystack
+# Haystack 2.0.0
+-e git://github.com/toastdriven/django-haystack.git@v2.0.0#egg=django-haystack
 
 django-voting==0.1
 django-annoying==0.7.4

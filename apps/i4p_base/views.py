@@ -24,6 +24,7 @@ from urlparse import urlsplit
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils import translation
@@ -142,6 +143,10 @@ class FacetedSearchView(TemplateResponseMixin, HaystackFacetedSearchView):
 
     def get_search_queryset(self, queryset=None, models=None):
         searchqueryset = queryset or self.searchqueryset or SearchQuerySet()
+        current_site = Site.objects.get_current()
+        # Multisite handling
+        searchqueryset = searchqueryset.filter(sites=current_site.id)
+        
         searchqueryset = searchqueryset.filter(
             **self.get_extra_filters()
         )
@@ -225,7 +230,8 @@ class SearchView(FacetedSearchView):
         
     def get_context_data(self, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
-
-        context['project_list'] = [result.object for result in self.page.object_list]
-
+        context['project_list']=[]
+        for result in self.page.object_list:
+            if(result):
+                context['project_list'].append(result.object)
         return context
