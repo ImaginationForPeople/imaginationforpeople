@@ -20,7 +20,6 @@ class ProjectSearchForm(FacetedSearchForm):
         
         if not self.is_valid():
             # FIXME Would need a random here
-            # FIXME Probably multisite handling also
             return sqs.load_all()
 
         if self.cleaned_data.get('q'):
