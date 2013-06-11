@@ -142,11 +142,10 @@ class TagPageView(TemplateView):
         ).distinct(), tag_instance).order_by('-modified')[:4]
 
         # Related people
-        projects = ModelTaggedItemManager().with_any([tag_instance.name],
-                                                                 I4pProject.objects.using_translations().filter(
-                                                                     master__site=current_site,
-                                                                 )
-                                                             ).distinct()
+        # List is to force evaluation to avoid a sql bug in queryset combining later (project__in=projects)
+        projects = list(TaggedItem.objects.get_by_model(I4pProject.objects.using_translations().filter(
+            master__site=current_site,
+        ).distinct(), tag_instance).all())
         
         context['people'] = ProjectMember.objects.filter(
             project__in=projects

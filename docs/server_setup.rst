@@ -130,7 +130,7 @@ Then choose a mirror and copy the link for a 3.* version. Create a solr dir in y
 	web@i4p-prod:~/virtualenvs$ cd solr    
 	web@i4p-prod:~/virtualenvs/solr$ wget http://apache.mirrors.hoobly.com/lucene/solr/3.6.2/apache-solr-3.6.2.tgz   
 	web@i4p-prod:~/virtualenvs/solr$ tar xvzf apache-solr-3.6.2.tgz    
-	web@i4p-prod:~/virtualenvs/solr$ cd apache-solr-3.5.0    
+	web@i4p-prod:~/virtualenvs/solr$ cd apache-solr-3.6.2    
 	web@i4p-prod:~/virtualenvs/solr/apache-solr-3.6.2$ cd example    
 	web@i4p-prod:~/virtualenvs/solr/apache-solr-3.6.2/example$ java -jar start.jar    
 

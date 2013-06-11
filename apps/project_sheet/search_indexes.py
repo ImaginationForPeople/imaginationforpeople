@@ -2,18 +2,21 @@ from django.conf import settings
 from django.utils.encoding import force_unicode
 
 from haystack import indexes
-from haystack.constants import ID, DJANGO_CT, DJANGO_ID
 
-from .models import I4pProject
+from .models import I4pProject, Topic, Answer
 
 class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
-    text = indexes.CharField(document=True, use_template=True)
-    title = indexes.CharField(model_attr='title')
-    baseline = indexes.CharField(model_attr='baseline')
-    language_code = indexes.CharField(model_attr='language_code')
-    slug = indexes.CharField(model_attr='slug')
+    #text = indexes.MultiValueField(document=True, use_template=False)
+    text = indexes.CharField(document=True, use_template=False)
+    #title = indexes.CharField(model_attr='title')
+    #baseline = indexes.CharField(model_attr='baseline')
+    #For some reason MultiValueField doesn't work properly with whoosh
+    #language_codes = indexes.CharField(indexed=True, stored=True)
+    language_codes = indexes.MultiValueField(indexed=True, stored=True)
+    #slug = indexes.CharField(model_attr='slug')
     content_auto = indexes.EdgeNgramField(model_attr='title')
     best_of = indexes.BooleanField(model_attr='best_of')
+    status = indexes.CharField(model_attr='status', null=True)
     sites = indexes.MultiValueField()
     tags = indexes.MultiValueField(indexed=True, stored=True, model_attr='themes')
     location = indexes.CharField()
@@ -24,51 +27,41 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     def get_model(self):
         return I4pProject
 
-    def index_queryset(self, using=None):
-        """
-        Used when the entire index for model is updated.
-        
-        We loop over all the declared languages to index the
-        variations of every Hvad translations.
-        """
-        queryset = I4pProject.objects.none()
-        for language_code, language_desc in settings.LANGUAGES:
-            language_queryset = self.get_model().objects.language(language_code).all()
-            queryset |= language_queryset
-
-        return queryset
-
     def read_queryset(self, using=None):
-        return I4pProject.objects.all()
-
-    def prepare(self, obj):
-        """Fetches and adds/alters data before indexing.
-
-        HACKY: I had to update the "ID" field so that it suffixes the
-        language code. For example, "i4pproject.145" becomes
-        "i4pproject.145-fr" and so can be indexed as many times as
-        there are language variations -- @glibersat.
-        """
-        self.prepared_data = {
-            ID: u"%s.%s.%s-%s" % (obj._meta.app_label, obj._meta.module_name, obj._get_pk_val(), obj.language_code), # The change is here
-            DJANGO_CT: "%s.%s" % (obj._meta.app_label, obj._meta.module_name),
-            DJANGO_ID: force_unicode(obj.pk),
-        }
-
-        for field_name, field in self.fields.items():
-            # Use the possibly overridden name, which will default to the
-            # variable name of the field.
-            self.prepared_data[field.index_fieldname] = field.prepare(obj)
-
-            if hasattr(self, "prepare_%s" % field_name):
-                value = getattr(self, "prepare_%s" % field_name)(obj)
-                self.prepared_data[field.index_fieldname] = value
-
-        return self.prepared_data
+        return I4pProject.objects.untranslated().all()
         
     def prepare_sites(self, obj):
         return [obj.id for obj in obj.site.all()]
 
+    def prepare_language_codes(self, obj):
+        return obj.get_available_languages()
+
+    def prepare_text(self, obj):
+        """
+        The textual content of the project
+        """
+        languages = obj.get_available_languages()
+        retval = []
+        for language in languages:
+            translated_project = self.get_model().objects.language(language).get(pk=obj.pk)
+            retval.append(translated_project.title)
+            retval.append(translated_project.baseline)
+            # Fetch questions
+            questions_content = []
+            
+            for topic in Topic.objects.language(language).filter(site_topics__projects=translated_project):
+                questions_content.append(topic.label)
+                for question in topic.questions.language(language).all().order_by('weight'):
+                    answers = Answer.objects.language(language).filter(project=translated_project, question=question)
+                    if len(answers) >= 1:
+                        #We only want the question text if there are answers
+                        questions_content.append(question.content)
+                        questions_content.extend([answer.content for answer in answers])
+            retval.extend(questions_content)
+        #import logging
+        #logger = logging.getLogger(__name__)
+        #logger.error('\n'.join(retval))
+        return '\n'.join(retval)
     def prepare_has_team(self, obj):
         """
         If there is at least one user associated with this project

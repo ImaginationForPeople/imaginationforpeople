@@ -23,7 +23,7 @@ Parameters for this block
         <a href="{{ person.user.get_profile.get_absolute_url }}">{{ person.user.get_profile.get_full_name_or_username }}</a>
     </p>
     <p class="project">
-        <a href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.translations.all.0.title }}</a>
+        <a href="{{ person.project.get_absolute_url }}" data-memberof-str="{% trans "Member of : " %}">{{ person.project.title }}</a>
     </p>
     <div class="country flag-{{ person.user.get_profile.country|lower }}"></div>
 </div>
