@@ -2,17 +2,16 @@ from django.conf import settings
 from django.utils.encoding import force_unicode
 
 from haystack import indexes
-from haystack.constants import ID, DJANGO_CT, DJANGO_ID
 
-from .models import I4pProject
+from .models import I4pProject, Topic, Answer
 
 class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     #text = indexes.MultiValueField(document=True, use_template=False)
     text = indexes.CharField(document=True, use_template=False)
     #title = indexes.CharField(model_attr='title')
     #baseline = indexes.CharField(model_attr='baseline')
-    #For some reason MultiValueField doesn't work properly with whoosh, language_codes
-    #language_code = indexes.CharField(model_attr='language_code')
+    #For some reason MultiValueField doesn't work properly with whoosh
+    #language_codes = indexes.CharField(indexed=True, stored=True)
     language_codes = indexes.MultiValueField(indexed=True, stored=True)
     #slug = indexes.CharField(model_attr='slug')
     content_auto = indexes.EdgeNgramField(model_attr='title')
@@ -44,9 +43,25 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
         languages = obj.get_available_languages()
         retval = []
         for language in languages:
-            translated_obj = self.get_model().objects.language(language).get(pk=obj.pk)
-            retval.append(' '.join((translated_obj.title, translated_obj.baseline)))
-        return ' '.join(retval)
+            translated_project = self.get_model().objects.language(language).get(pk=obj.pk)
+            retval.append(translated_project.title)
+            retval.append(translated_project.baseline)
+            # Fetch questions
+            questions_content = []
+            
+            for topic in Topic.objects.language(language).filter(site_topics__projects=translated_project):
+                questions_content.append(topic.label)
+                for question in topic.questions.language(language).all().order_by('weight'):
+                    answers = Answer.objects.language(language).filter(project=translated_project, question=question)
+                    if len(answers) >= 1:
+                        #We only want the question text if there are answers
+                        questions_content.append(question.content)
+                        questions_content.extend([answer.content for answer in answers])
+            retval.extend(questions_content)
+        #import logging
+        #logger = logging.getLogger(__name__)
+        #logger.error('\n'.join(retval))
+        return '\n'.join(retval)
     def prepare_has_team(self, obj):
         """
         If there is at least one user associated with this project
