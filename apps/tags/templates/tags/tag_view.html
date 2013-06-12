@@ -70,7 +70,7 @@
                 <div class="row">
                     <div class="project-list fancy square">
                         <h2>{% trans "Mature projects" %}</h2>
-                        <a href="{% url i4p-search %}?tags={{ tag.name }}&status=END&status=WIP" class="seemore">{% trans "See more" %}</a>
+                        <a href="{% url i4p-search %}?tags={{ tag.name }}&status=END&status=WIP" class="seemore">{% blocktrans with tag=tag|capfirst %}See all {{ num_mature_projects_projects_with_tag }} mature projects tagged {{ tag }}{% endblocktrans %}</a>
                         {% for project in mature_projects %}
                             {% include "project_sheet/block/card_fancy_square.html" %}
                         {% empty %}
@@ -80,7 +80,7 @@
                     <hr class="shaded-separator" />
                     <div class="project-list fancy square">
                         <h2>{% trans "Starting projects" %}</h2>
-                        <a href="{% url i4p-search %}?tags={{ tag.name }}&status=IDEA&status=BEGIN" class="seemore">{% trans "See more" %}</a>
+                        <a href="{% url i4p-search %}?tags={{ tag.name }}&status=IDEA&status=BEGIN" class="seemore">{% blocktrans with tag=tag|capfirst %}See all {{ num_starting_projects_projects_with_tag }} starting projects tagged {{ tag }}{% endblocktrans %}</a>
                         {% for project in starting_projects %}
                             {% include "project_sheet/block/card_fancy_square.html" %}
                         {% empty %}
@@ -130,12 +130,12 @@
                 <div class="row project-list wide-flat">
                     <h2>{% trans "New project sheets" %} </h2>
                     <!-- FIXME: must show people count in "more" -->
-                    <a href="{% url project_sheet-list %}?order=created&tags={{ tag.name }}" class="seemore">{% trans "See more" %}</a>
-                    <ul>
+                    <a href="{% url i4p-search %}?order=created&tags={{ tag.name }}" class="seemore">
+                    {% blocktrans with tag=tag|capfirst %}See all {{ num_projects_with_tag }} projects tagged {{ tag }}{% endblocktrans %}</a>
+                    
                     {% for p in new_projects %}
                         {% include "project_sheet/block/card_flat_wide.html" with project=p %}
                     {% endfor %}
-                    </ul>
                 </div>
                 <div class="row">
                     <a class="tag-add-button" href="{% url project_sheet-start %}">
