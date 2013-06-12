@@ -122,6 +122,7 @@ class TagPageView(TemplateView):
             master__site=current_site,
             master__status__in=('WIP', 'END')
         ).distinct(), tag_instance).distinct()
+        context['num_mature_projects_projects_with_tag']=len(mature_projects)
         context['mature_projects'] = random.sample(mature_projects, min(4, len(mature_projects)))
 
         # Starting projects
@@ -129,6 +130,7 @@ class TagPageView(TemplateView):
             master__site=current_site,
             master__status__in=('IDEA', 'BEGIN')
         ).distinct(), tag_instance).distinct()
+        context['num_starting_projects_projects_with_tag']=len(starting_projects)
         context['starting_projects'] = random.sample(starting_projects, min(4, len(starting_projects)))
          
         # New projects
@@ -146,6 +148,8 @@ class TagPageView(TemplateView):
         projects = list(TaggedItem.objects.get_by_model(I4pProject.objects.using_translations().filter(
             master__site=current_site,
         ).distinct(), tag_instance).all())
+        # While we're at it, let's count them for free
+        context['num_projects_with_tag']=len(projects)
         
         context['people'] = ProjectMember.objects.filter(
             project__in=projects
