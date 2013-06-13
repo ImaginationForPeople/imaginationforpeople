@@ -37,11 +37,11 @@ from django.views.decorators.http import require_POST
 
 from honeypot.decorators import check_honeypot
 from reversion import revision
-
+from hvad.utils import get_translation_aware_manager
 from apps.i4p_base.models import VersionActivity
 from apps.i4p_base.utils import action_create, make_diffs_for_object
 
-from .models import I4pProjectTranslation, Answer, Question
+from .models import I4pProjectTranslation, I4pProject, Answer, Question
 from .forms import I4pProjectObjectivesForm, I4pProjectStatusForm
 from .utils import get_project_translation_by_slug
 
@@ -115,15 +115,23 @@ def _textfield_load(language_code, project_slug, section):
 
 def _answer_load(language_code, project_slug, question):
     site = Site.objects.get_current()
-    project_translation = get_object_or_404(I4pProjectTranslation,
+    # Activate requested language
+    translation.activate(language_code)
+    project = get_object_or_404(get_translation_aware_manager(I4pProject),
                                             slug=project_slug,
                                             language_code=language_code,
-                                            master__site=site)
-    project = project_translation.master
-    answer = get_object_or_404(Answer, project__id=project.id,
-                               question__id=question)
+                                            site=site)
 
-    return HttpResponse(answer.content)
+    try:
+        answer_content = get_translation_aware_manager(Answer).get(project__id=project.id,
+                               question__id=question).content
+    except Answer.DoesNotExist:
+        # The answer translation may not exist yet, (new project sheet)
+        # The answer may not be translated yet (new translation)
+        # Both are normal, we don't create the answer yet to respect REST
+        # principles
+        answer_content = ''
+    return HttpResponse(answer_content)
 
 
 @check_honeypot(field_name='description')
@@ -166,8 +174,20 @@ def _answer_save(request, language_code, project_slug, project_translation, ques
     question = get_object_or_404(Question, id=question)
 
     if value:
-        answer, created = Answer.objects.language(language_code).get_or_create(project=project,
-                                                                               question=question)
+        #It looks like there are unforeseen consequences to a nani changeset:https://github.com/KristianOellegaard/django-hvad/commit/aba974f79bdaf9fff46c01b1d4b3e941032d02dd
+        #It tries to create duplicate entries in the db
+        #answer, created = Answer.objects.language(language_code).get_or_create(project=project,
+        #                                                                       question=question)
+        #Let's work around it:
+        base_answer, created = Answer.objects.untranslated().get_or_create(project=project,
+                                                                      question=question)
+
+        if created or language_code not in base_answer.get_available_languages():
+            answer = base_answer.translate(language_code)
+        else:
+            answer = Answer.objects.language(language_code).get(pk=base_answer.pk)
+        #End workaround
+        
         # Remove html tags
         value = strip_tags(value)
         answer.content = value
