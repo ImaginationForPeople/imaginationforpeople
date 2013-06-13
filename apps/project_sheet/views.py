@@ -175,7 +175,7 @@ class ProjectView(TemplateView):
 
         # Fetch questions
         self.topics = []
-        for topic in Topic.objects.filter(site_topics=project.topics.all()):
+        for topic in Topic.objects.filter(site_topics__in=project.topics.all()):
             questions = []
             for question in topic.questions.all().order_by('weight'):
                 answers = Answer.objects.filter(project=project, question=question)
