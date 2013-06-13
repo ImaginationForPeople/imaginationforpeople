@@ -149,6 +149,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
     function projectLocationsMapInit(map, bounds) {
         var markers = new L.MarkerClusterGroup();
         var marker = null;
+        map.removeControl(map.attributionControl);
         {% for location in project_translation.master.locations.all %}
         {% if location.geom %}
         var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
