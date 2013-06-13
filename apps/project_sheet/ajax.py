@@ -37,7 +37,6 @@ from django.views.decorators.http import require_POST
 
 from honeypot.decorators import check_honeypot
 from reversion import revision
-from hvad.utils import get_translation_aware_manager
 from apps.i4p_base.models import VersionActivity
 from apps.i4p_base.utils import action_create, make_diffs_for_object
 
@@ -117,13 +116,16 @@ def _answer_load(language_code, project_slug, question):
     site = Site.objects.get_current()
     # Activate requested language
     translation.activate(language_code)
-    project = get_object_or_404(get_translation_aware_manager(I4pProject),
-                                            slug=project_slug,
+    try:
+        project = I4pProject.objects.language(language_code).get(slug=project_slug,
                                             language_code=language_code,
                                             site=site)
+    except I4pProject.DoesNotExist:
+        raise Http404
+
 
     try:
-        answer_content = get_translation_aware_manager(Answer).get(project__id=project.id,
+        answer_content = Answer.objects.language(language_code).get(project__id=project.id,
                                question__id=question).content
     except Answer.DoesNotExist:
         # The answer translation may not exist yet, (new project sheet)
@@ -132,7 +134,6 @@ def _answer_load(language_code, project_slug, question):
         # principles
         answer_content = ''
     return HttpResponse(answer_content)
-
 
 @check_honeypot(field_name='description')
 @require_POST
