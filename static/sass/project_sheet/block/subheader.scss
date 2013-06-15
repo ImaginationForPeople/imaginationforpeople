@@ -28,7 +28,6 @@
 		padding: $sizePaddingSmall;
 	    }
         tr.location {
-            border: 0;
             td {
                 padding: 0;
                 margin: 0;
@@ -43,14 +42,15 @@
                 display: inline-block;
             }
         }
-	    .location-form {
-		label {  }
-        textarea {
-            height: 100px;
-        }
-		#id_address {
-		    max-height: $sizeTextNormal * 5;
-		}
+        .location-formset {
+            padding: 5px;
+            label {  }
+            textarea {
+                height: 100px;
+            }
+            #id_address {
+                max-height: $sizeTextNormal * 5;
+            }
 	    }
 	}
 }

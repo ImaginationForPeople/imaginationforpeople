@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<ul>
+    {% for location in locations %}
+    <li>
+    <a href="{{ location.id }}/"}>{{location.address|escape}}</a>
+    </li>
+    {% endfor %}
+
+</ul>
+{% endblock %}

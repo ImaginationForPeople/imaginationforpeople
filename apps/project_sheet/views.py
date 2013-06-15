@@ -242,11 +242,8 @@ class ProjectEditInfoView(ProjectView):
         project_locations_qs=self.project_translation.master.locations.all()
         self.project_location_formset = I4pLocationFormSet(request.POST,
                                                             queryset=project_locations_qs)
-
-
         if self.project_info_form.is_valid() and self.project_location_formset.is_valid():
             self.project_info_form.save()
-            
             for deleted_location_form in self.project_location_formset.deleted_forms:
                 self.project_translation.master.locations.remove(deleted_location_form.instance)
                 
@@ -265,7 +262,7 @@ class ProjectEditInfoView(ProjectView):
         context = super(ProjectEditInfoView, self).get_context_data(slug, **kwargs)
         
         context['project_info_form'] = self.project_info_form
-        context['project_location_form'] = self.project_location_formset
+        context['project_location_formset'] = self.project_location_formset
         
         return context
 

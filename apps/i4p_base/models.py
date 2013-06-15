@@ -295,12 +295,22 @@ class Location(geomodels.Model):
 #                             null=True, blank=True)
 
     country = CountryField(verbose_name=_('country'), choices=I4P_COUNTRIES,
-                           null=True, blank=True)
+                           null=True,
+                           blank=True,
+                           help_text=_(u"The country this location is in.  Set before geocoding,you'll get more accurate results")
+                           )
 
     address = models.TextField(verbose_name=_('address'),
-                               null=True, blank=True)
+                               null=True,
+                               blank=True,
+                               help_text=_(u'The textual description of the Location to be displayed to the user.  Typically a full address such as \"880 rue Roy Est, espace 300 - Montréal (Québec) H2L 1E6)\", but can also be a less precise description of a location "Lake Champlain, Canada", or the name of a place location \"Museum of Fine Arts, Montréal, Québec, Canada\"')
+                               )
 
-    geom = geomodels.PointField(null=True, blank=True)
+    geom = geomodels.PointField(verbose_name=_('map'),
+                                null=True,
+                                blank=True,
+                                help_text=_(u"You can chose a point on the map manually, or refine the one that was geocoded")
+                                )
     objects = geomodels.GeoManager()
     
     @property

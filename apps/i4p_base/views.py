@@ -270,3 +270,22 @@ class LocationEditView(TemplateView):
         
         return context
 
+class LocationListView(TemplateView):
+    """
+    Show all locations
+    """
+    template_name = 'i4p_base/location/location_list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.locations = Location.objects.all()
+        return super(LocationListView, self).dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return super(LocationListView, self).get(request, *args, **kwargs)
+        
+    def get_context_data(self, **kwargs):
+        context = super(LocationListView, self).get_context_data(**kwargs)
+        context['locations'] = self.locations
+        
+        return context
+

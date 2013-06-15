@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from haystack.forms import FacetedSearchForm
 from django.forms.models import modelformset_factory
-from django.forms.widgets import HiddenInput
+from django.forms.formsets import DELETION_FIELD_NAME
 
 from .models import Location
 from geopy import geocoders
@@ -77,13 +77,19 @@ class I4pLocationForm(forms.ModelForm):
     """
     Edit the location info of an Object
     """
-    geocode_picker = GeocodeResultPickerField(required=False)
+    geocode_picker = GeocodeResultPickerField(required=False,
+                                              help_text=_("Multiple results were found.  Please chose the best one (you can refine it afterwards using the map)")
+                                              )
+    force_geocode = forms.BooleanField(required=False,
+                                       widget=forms.widgets.HiddenInput,
+                                       initial=False
+                                       )
     def __init__(self, *args, **kwargs):
         super(I4pLocationForm, self).__init__(*args, **kwargs)
         self.fields['country'].required = True
         if not self.is_bound:
             del self.fields['geocode_picker']
-            
+        
     class Meta:
         model = Location
         fields = ('country', 'address', 'geocode_picker', 'geom',)
@@ -96,34 +102,41 @@ class I4pLocationForm(forms.ModelForm):
         changed_geom = None
         geocode_results = None
         address = cleaned_data.get("address")
-        if address and not geom:
-            # Only geocode if we haven't already set a map.
-            geocode_picker_data = cleaned_data.get("geocode_picker")
-            
-            if not geocode_picker_data:
-                geocode_results = self.geocode(address)
-                geocode_results_count = self.count_results(geocode_results)
-                if geocode_results_count == 1:
-                    for geocoder_result in geocode_results.values():
-                        if not 'error' in geocoder_result.keys():
-                            for result in geocoder_result['result_list']:
-                                # We know will execute this line once (there was
-                                # only one result.
-                                changed_geom=result['geom']
-                else:
-                    self._errors["geocode_picker"] = self.error_class([_('%d locations were returned by the geocoders, please select the most appropriate one.  You may also select from the map below if none are appropriate.') % geocode_results_count])
-                    if 'cleaned_data' in cleaned_data.keys():
-                        del(cleaned_data["geocode_picker"])
-                    self.fill_geocode_picker(geocode_results)
+        geocode_picker_data = cleaned_data.get("geocode_picker")
+        if geocode_picker_data and not cleaned_data.get("force_geocode"):
+            #This replaces the map information, will be saved later
+            changed_geom=geocode_picker_data
+        elif address and (not geom or cleaned_data.get("force_geocode")):
+            # Only geocode if we haven't already set a map, or forced geocoding
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error("About to geocode")
+            geocode_results = self.geocode(address)
+            geocode_results_count = self.count_results(geocode_results)
+            if geocode_results_count == 1:
+                for geocoder_result in geocode_results.values():
+                    if not 'error' in geocoder_result.keys():
+                        for result in geocoder_result['result_list']:
+                            # We know will execute this line once (there was
+                            # only one result).
+                            changed_geom=result['geom']
             else:
-                #This replaces the map information, will be saved later
-                changed_geom=geocode_picker_data
+                self._errors["geocode_picker"] = self.error_class([_('%d locations were returned by the geocoders, please select the most appropriate one.  You can refine in the map after saving if none are appropriate.') % geocode_results_count])
+                if 'cleaned_data' in cleaned_data.keys():
+                    del(cleaned_data["geocode_picker"])
+                self.fill_geocode_picker(geocode_results)
+
 
         if changed_geom:
             # We replace the map information, will be saved later
             cleaned_data['geom']=changed_geom
         if not geocode_results:
             del self.fields['geocode_picker']
+        #Reset force geocoding
+        # Yes, it's insane, and yes, it's the least insane choice in django
+        # http://stackoverflow.com/questions/4662848/disabled-field-is-not-passed-through-workaround-needed/4664866#4664866
+        self.data=self.data.copy()
+        self.data['force_geocode']=False
         return cleaned_data
     
     def save(self, *args, **kwargs):
@@ -207,8 +220,13 @@ class I4pLocationForm(forms.ModelForm):
                 results[geocoder_name]['error'] = str(error)
         return results
 
-I4pLocationFormSet = modelformset_factory(Location,
+BaseI4pLocationFormSet = modelformset_factory(Location,
                                                  extra=1,
                                                  can_delete=True,
                                                  form=I4pLocationForm
                                                  )
+
+class I4pLocationFormSet(BaseI4pLocationFormSet):
+    def add_fields(self, form, index):
+        super(I4pLocationFormSet, self).add_fields(form,index)
+        form.fields[DELETION_FIELD_NAME].widget = forms.HiddenInput()
