@@ -58,9 +58,6 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
                         questions_content.append(question.content)
                         questions_content.extend([answer.content for answer in answers])
             retval.extend(questions_content)
-        #import logging
-        #logger = logging.getLogger(__name__)
-        #logger.error('\n'.join(retval))
         return '\n'.join(retval)
     def prepare_has_team(self, obj):
         """

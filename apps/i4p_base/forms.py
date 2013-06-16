@@ -108,9 +108,6 @@ class I4pLocationForm(forms.ModelForm):
             changed_geom=geocode_picker_data
         elif address and (not geom or cleaned_data.get("force_geocode")):
             # Only geocode if we haven't already set a map, or forced geocoding
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.error("About to geocode")
             geocode_results = self.geocode(address)
             geocode_results_count = self.count_results(geocode_results)
             if geocode_results_count == 1:
