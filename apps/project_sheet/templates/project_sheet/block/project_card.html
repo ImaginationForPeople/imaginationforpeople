@@ -24,7 +24,11 @@ Parameters for this block
       <div class="cocarde">&nbsp;</div>
     {% endif %}
     <div class="top">
+        {% if project.get_primary_picture.thumbnail_idcard.url %}
         <a href="{{ project.get_absolute_url }}"><img height="120" width="200" src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" /></a>
+        {% else %}
+         <a href="{{ project.get_absolute_url }}"><img height="120" width="200" src="{{ STATIC_URL }}images/project_sheet/project_card/img_projcard.jpg" alt="" /></a>
+         {% endif %}
         <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
         <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
         <p>

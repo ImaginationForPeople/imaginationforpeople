@@ -132,7 +132,7 @@ $memberListFancySquare_sizeHeight: 52px;
     width: $memberListFancySquare_sizeContainerWidth;
     // width: inherit;
     height: 70px;
-
+    margin-bottom:12px;
     overflow: hidden;
     background-color: $colorLightGrey;
 
@@ -286,9 +286,12 @@ $memberListFancySquare_sizeHeight: 52px;
 .member-block {
     @include i4p-layout-block;
     @include i4p-seemore-class;
+    position:relative;
 
     .seemore {
-    	top:-4px;
+    	position:absolute;
+    	top:10px;
+    	right:0;
     }
 
     h2 {
@@ -405,6 +408,6 @@ $memberListFancySquare_sizeHeight: 52px;
     }
 
     p.counts {
-    	font-size:1rem;
+    	font-size:1.1rem;
     }
 }
