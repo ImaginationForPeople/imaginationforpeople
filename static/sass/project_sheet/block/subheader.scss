@@ -10,6 +10,22 @@
 	.infotable {
 	    width: 100%;
 
+	    label {
+	    	font-size:1.2rem;
+
+	    	&[for$="DELETE"] {
+	    		display:inline;
+	    	}
+
+	    	&[for$="geom"] {
+	    		display:none;
+	    	}
+	    }
+
+	    a {
+	    	color:white;
+	    }
+
 	    tr {
 		border-bottom: $sizeMarginSmall solid transparent;
 	    }
@@ -30,7 +46,6 @@
         tr.location {
             border: 0;
             td {
-                padding: 0;
                 margin: 0;
                 border: 0;
             }

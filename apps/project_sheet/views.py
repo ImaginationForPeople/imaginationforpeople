@@ -188,7 +188,7 @@ class ProjectView(TemplateView):
         # Related projects
         related_projects_translation = TaggedItem.objects.get_related(self.project_translation,
                                                           I4pProjectTranslation.objects.exclude(master__id=project.id),
-                                                          num=3)
+                                                          num=4)
         related_projects = [project_translation.master for project_translation in related_projects_translation]
 
         context.update({
