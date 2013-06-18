@@ -25,6 +25,8 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
+from datetime import datetime, timedelta
+
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -729,8 +731,9 @@ class ProjectRecentChangesView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
-
-        context['activity'] = model_stream(I4pProject)
+        # limiting to actions less then 1 month old
+        threshold = datetime.now() - timedelta(days=30)
+        context['activity'] = model_stream(I4pProject).filter(timestamp__gte=threshold)
 
         return context
 
