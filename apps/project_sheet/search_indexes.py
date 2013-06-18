@@ -19,7 +19,7 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     status = indexes.CharField(model_attr='status', null=True)
     sites = indexes.MultiValueField()
     tags = indexes.MultiValueField(indexed=True, stored=True, model_attr='themes')
-    location = indexes.CharField()
+    countries = indexes.MultiValueField(indexed=True, stored=True)
     has_team = indexes.BooleanField()
     has_needs = indexes.BooleanField()
     created = indexes.DateTimeField(model_attr='created')
@@ -58,9 +58,6 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
                         questions_content.append(question.content)
                         questions_content.extend([answer.content for answer in answers])
             retval.extend(questions_content)
-        #import logging
-        #logger = logging.getLogger(__name__)
-        #logger.error('\n'.join(retval))
         return '\n'.join(retval)
     def prepare_has_team(self, obj):
         """
@@ -80,8 +77,8 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
         """
         return obj.themes.split(',')
 
-    def prepare_location(self, obj):
-        if obj.location:
-            return obj.location.country.code
+    def prepare_countries(self, obj):
+        if obj.locations:
+            return [location.country.code for location in obj.locations.all()]
         else:
             return None

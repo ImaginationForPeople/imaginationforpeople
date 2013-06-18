@@ -267,11 +267,11 @@ def current_countries():
     Build the list of countries used in project location 
     """
     result = [("", _("World"))]
-    project_countries = I4pProject.on_site.exclude(location__country='').\
-                                           exclude(location__country__isnull=True).\
+    project_countries = I4pProject.on_site.exclude(locations__country='').\
+                                           exclude(locations__country__isnull=True).\
                                            distinct().\
-                                           order_by('location__country').\
-                                           values_list('location__country', flat=True)
+                                           order_by('locations__country').\
+                                           values_list('locations__country', flat=True)
     for country in project_countries:
         for code, name in I4P_COUNTRIES:
             if country == code:
@@ -279,11 +279,11 @@ def current_countries():
                 break
     return result
 
-class ProjectLocationFilterForm(FilterForm):
+class ProjectCountriesFilterForm(FilterForm):
     """
     Implements a filter on I4pProject location
     """
-    location = forms.ChoiceField(required=False, choices=current_countries())
+    countries = forms.ChoiceField(required=False, choices=current_countries())
 
     def apply_to(self, queryset, model_class):
         qs = queryset
@@ -293,11 +293,11 @@ class ProjectLocationFilterForm(FilterForm):
                 q_objects = None
                 # Dirty Fix: switch depending on type. Loop if list.
                 if isinstance(data, unicode):
-                    lookup = {"location__country" : data}
+                    lookup = {"locations__country" : data}
                     q_objects = Q(**lookup)
                 else:
                     for val in data:
-                        lookup = {"location__country" : val}
+                        lookup = {"locations__country" : val}
                         if q_objects :
                             q_objects |= Q(**lookup)
                         else :
