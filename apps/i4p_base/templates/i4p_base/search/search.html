@@ -111,11 +111,11 @@ page : pagination object
                 <section id="localisations">
                     <header>
                         <h1>{% trans 'Locations' %}</h1>
-                        <a id="location_refresh" href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
+                        <a id="countries_refresh" href="javascript:;" title="refresh">{% trans 'Refresh' %}</a>
                     </header>
                     <div class="inner">
                         {% comment %}<a href="#" class="select">{% trans 'Select a country' %}</a>{% endcomment %}
-                        {{location_filter.location}}
+                        {{countries_filter.countries}}
                         {% comment %}
                         <ul class="selected">
                             <li><a href="#"><img src="../../../static/images/flags/ae.gif" alt="FR" /> France</a></li>

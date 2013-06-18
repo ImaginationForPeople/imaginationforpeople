@@ -1,0 +1,3 @@
+sudo apt-get -o APT::Install-Suggests="true" install postgis
+
+fab devenv database_postgis_setup

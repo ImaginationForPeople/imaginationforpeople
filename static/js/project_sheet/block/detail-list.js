@@ -28,5 +28,12 @@ $(document).ready(function () {
 			$(itemThis).removeClass('editing');
 		});
 	});
+
+	/*$('.i4p-button').hide();
+	$('.detail-item, .project-about').hover(function(){
+		$(this).children('h2').children('.i4p-button').show();
+	}, function(){
+		$(this).children('h2').children('.i4p-button').hide();
+	});*/
 });
 

@@ -6,14 +6,15 @@ TEMPLATE_DEBUG = True
 
 ### HAYSTACK
 # We use Whoosh in dev env and SolR in prod/staging. If you want to force SolR in debug env, set USESOLR = True
-USESOLR = True
+USESOLR = False
 # Un-comment this to test static files, javascript and css compression, and 
 # 404 and 500 pages locally:
 #COMPRESS_ENABLED = True 
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'imaginationforpeople', # Or path to database file if using sqlite3.
         'USER': 'imaginationforpeople', # Not used with sqlite3.
         'PASSWORD': 'plop', # Not used with sqlite3.
@@ -55,6 +56,11 @@ GOOGLE_ANALYTICS_ACCOUNT = None #Example:  UA-21778007-2
 
 GOOGLE_OAUTH2_CLIENT_ID = "TO_COMPLETE"
 GOOGLE_OAUTH2_CLIENT_SECRET = "TO_COMPLETE"
+
+# Geocoder API keys.  Enables the corresponding geocoders for location edition if
+# present 
+# MAPQUEST_API_KEY = 'TO_COMPLETE'
+# GEONAMES_USERNAME = 'TO_COMPLETE'
 
 ## Dynamicsites
 DEFAULT_HOST = 'imaginationforpeople.org'

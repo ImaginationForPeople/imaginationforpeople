@@ -16,6 +16,8 @@ import apps.i4p_base.mdx_i4p as mdx_i4p
 # Default values for site_settings
 
 OVERRIDE_CACHE_BACKEND = None
+GEONAMES_USERNAME = None
+MAPQUEST_API_KEY = None
 
 # Import settings for the given site
 from site_settings import *
@@ -362,6 +364,10 @@ INSTALLED_APPS = (
     'categories',
     'categories.editor',
 
+    'django.contrib.gis',
+    'leaflet',
+    'floppyforms',
+    
     # Internal Apps
     'apps.forum',
     'apps.i4p_base',
@@ -372,6 +378,7 @@ INSTALLED_APPS = (
     'apps.workgroup',
     'apps.tags',
     'apps.forum',
+    'apps.map',
 )
 
 # django-ajax_select
@@ -629,6 +636,18 @@ ACTSTREAM_SETTINGS = {
 # WIKI
 markdown_i4p = mdx_i4p.makeExtension()
 WIKI_MARKDOWN_EXTENSIONS = ['extra', 'toc', markdown_i4p]
+
+#LEAFLET
+LEAFLET_CONFIG = {
+    'TILES_URL': 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'PLUGINS': {
+        'markercluster': {
+            'css': [os.path.join(STATIC_URL, 'css/MarkerCluster.css'), 
+                    os.path.join(STATIC_URL, 'css/MarkerCluster.Default.css')],
+            'js': os.path.join(STATIC_URL, 'js/leaflet.markercluster.js'),
+        },
+    }
+}
 
 LOGGING = {
     'version': 1,

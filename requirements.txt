@@ -14,7 +14,7 @@ django-autocomplete-light==1.1.13
 easy-thumbnails==1.0.3
 
 # Django cms
--e git://github.com/divio/django-cms.git@2.4.1#egg=django-cms
+-e git://github.com/divio/django-cms.git@2.4.2#egg=django-cms
 
 # Wiki
 -e git://github.com/benjaoming/django-wiki.git@64a22a81807898f3fb1d60c86a9c13bb26fe4ac8#egg=django-wiki
@@ -115,6 +115,14 @@ diff-match-patch==20120106
 
 # Our version of actstream, patched to register models manually
 -e git://github.com/ImaginationForPeople/django-activity-stream.git@master#egg=django-activity-stream
+
+# GIS/mapping tools
+-e git://github.com/benoitg/geopy.git@7ab1b236fc2f36ec20e482c7574074d9fcb36b9e#egg=geopy
+django-leaflet==0.5.1
+django-floppyforms==1.1
+# Do NOT specify a version here, as the appropriate one depends on your GDAL version
+# Actually, it doesn't seem required on recent systems
+GDAL
 
 # Testing tools
 coverage<3.4

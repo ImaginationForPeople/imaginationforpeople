@@ -124,4 +124,5 @@ $(document).ready(function () {
 
 	}); // lower slider init
 
+	$('.memberlist-slider .team_member').append('<span class="icomember">&nbsp;</span>');
 });

@@ -111,16 +111,15 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
             }
     
             .infotable-maturity {
-                height: 2rem;
+                height: 1.5rem;
     
                 .progressbar {
-                    margin-top: 1rem;
+                    position: relative;
+                    top: 1.2rem;
                 }
                 .status {
                     position: relative;
-                    margin-top: 1rem;
-                    top: -1rem;
-                    margin-bottom: 1rem;
+                    top: -1.4rem;
                     text-shadow: 0px 0px $sizeBorderSmall rgba(0,0,0,0.5);
                     font-style: italic;
                     padding-left: $sizePaddingSmall;
@@ -129,7 +128,10 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
             .infotable-share {
                 td {
                     text-align: center;
-                    padding-top: 2em;
+                    vertical-align: center;
+                    .addthis_toolbox {
+                        margin-top: 5px; /* Compensate for space at the bottom of iframes */
+                    }
                 }
             }
         }

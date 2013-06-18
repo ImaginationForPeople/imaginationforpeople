@@ -24,6 +24,12 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
         
 .references-block {
     @include i4p-layout-block;
+    @include box-sizing(border-box);
+    float:left;
+    padding:20px 30px;
+    background:#F1F1F1;
+    margin:30px 0 20px 0;
+    width:100%;
 
     h2 {
 	@include i4p-font-title;
@@ -34,43 +40,36 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
     }
 
     .references-links {
-	position: relative;
+		position: relative;
 
-	ul {
-	    margin-bottom: 1em;
+		ul {
+		    margin:0 0 15px;
+		    width:82%;
+			list-style-type:disc;
 
-	    .link-item {
-		@include i4p-transition;
-		display: block;
-		padding-left: 1em;
-		background-color: white;
+		    .link-item {
+				@include i4p-transition;
+				display: block;
+				padding-left: 1em;
+				margin:0 0 5px;
 
-		&:hover {
-		    background-color: $colorLightDarkGrey;
+				&:hover {
+				    background-color: $colorLightDarkGrey;
+				}
+
+				a {
+				    color: #8b8b8b;
+				    text-decoration: none;
+				}
+		    }
 		}
-
-		a {
-		    color: black;
-		    text-decoration: none;
-		}
-	    }
-	}
 
 	.button {
-	    @include i4p-button-flat;
-
-	    .action-add {
-		display: inline-block;
-		position: relative;
-		vertical-align: middle;
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite(add-black); 
-	    }
-
-	    &:hover .action-add {
-		background: $i4p-action-sprites no-repeat; 
-		@include i4p-action-sprite('add-white'); 
-	    }
+		color:#04add1;
+		background:image-url('i4p_base/search/black_arrow.png') no-repeat center right;
+		padding:0 12px;
+		font-weight:bold;
+		font-size:1.15rem;
 	}
 
 	form {
@@ -79,6 +78,7 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 	    color: white;
 	    padding: $sizePaddingMedium;
 	    text-align: left;
+	    width:89%;
 
 	    label[for*="-desc"] {
 		clear: both;
