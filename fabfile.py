@@ -4,6 +4,7 @@ from __future__ import with_statement
 
 import os.path
 import time
+import pipes
 
 import fabric.operations
 from fabric.operations import put, get
@@ -587,9 +588,9 @@ def database_postgis_setup():
 
     run('ls %s' % env.postgis_script_path)
     with settings(warn_only=True):
-        sudo('su - postgres -c "createlang plpgsql %s"' % (env.db_name))
-    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'postgis.sql')))
-    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'spatial_ref_sys.sql')))
+        sudo('su - postgres -c "createlang plpgsql %s"' % (env.db_name), shell=False)
+    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'postgis.sql')), shell=False)
+    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'spatial_ref_sys.sql')), shell=False)
     
     define_roles_sql = """CREATE ROLE postgis_reader INHERIT;
                             GRANT SELECT ON geometry_columns TO postgis_reader;
@@ -601,8 +602,9 @@ def database_postgis_setup():
                             GRANT INSERT,UPDATE,DELETE ON geometry_columns TO postgis_writer;
                             GRANT INSERT,UPDATE,DELETE ON geography_columns TO postgis_writer;
                             GRANT postgis_writer TO imaginationforpeople;"""
+    
     with settings(warn_only=True):
-        sudo('echo "%s" | psql %s' % (define_roles_sql, env.db_name), user='postgres')
+        sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(define_roles_sql)), shell=False)
 
 
 @task    
@@ -662,7 +664,8 @@ def database_restore():
     Restores the database backed up on the remote server
     """
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
-
+    env.debug = True
+    
     if(env.wsginame != 'dev.wsgi'):
         execute(webservers_stop)
     
