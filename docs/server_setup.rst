@@ -142,3 +142,14 @@ Take the output from that command and place it in apache-solr-3.5.0/example/solr
 KNOWN BUG: With the current setting (Haystack 2.* + SolR 3.6), SolR will normally complain it does not find stopword file
 (stopwords_en.txt e.g) in solr conf dir. This path is written in schema.xml. You should then either copy the 
 named file from conf/lang in /conf or change the path in schema.xml
+
+Upgrading the schema after installing solr with the procedure above would go something like
+
+   cd ~/virtualenvs
+   source ../bin/activate
+   ./manage.py build_solr_schema > ../solr/apache-solr-3.6.2/example/solr/conf/schema.xml
+   screen -r running_solr
+   C-c
+   java -jar start.jar
+   C-a d
+   ./manage.py rebuild_index

@@ -1,10 +1,42 @@
 {% extends "base.html" %}
 
+{% load i18n %}
+
 {% block content %}
+<p>{% blocktrans with locations|length as count %}{{ count }} locations {%endblocktrans %}
+
+<ul>
+    <li>
+        <a href="{% url i4p-location-list %}"}>
+            {% blocktrans  %}Show all locations{% endblocktrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{% url i4p-location-missing-list 'geom' %}"}>
+            {% blocktrans  %}Show only locations with geometry information missing{% endblocktrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{% url i4p-location-missing-list 'address' %}"}>
+            {% blocktrans  %}Show only locations with address missing{% endblocktrans %}
+        </a>
+    </li>
+    <li>
+        <a href="{% url i4p-location-missing-list 'country' %}"}>
+            {% blocktrans  %}Show only locations with country missing{% endblocktrans %}
+        </a>
+    </li>    
+</ul>
+
 <ul>
     {% for location in locations %}
     <li>
-    <a href="{{ location.id }}/"}>{{location.address|escape}}</a>
+        <a href="{% url i4p-location-edit location.id %}"}>
+            {% blocktrans with location.id as id %}Edit location {{ id }}{%endblocktrans %}
+        </a>: 
+        {{location.address|escape|default:"<span class='errorlist'>Address missing</span>"}},
+        {{location.country.name|escape|default:"<span class='errorlist'>Country missing</span>"}}
+        {{location.geom|default:"<span class='errorlist'>Geometry missing</span>"}}
     </li>
     {% endfor %}
 
