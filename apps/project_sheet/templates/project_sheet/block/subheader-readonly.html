@@ -206,29 +206,31 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
                 We now have a url now to edit locations individually:  see i45_base/url.py, but not as a group.
                 {% endcomment %}
 {% endif %}
+{% if project_translation %}
                 <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"></a>
+{% endif %}		
 			</td>
 		</tr>
 
 		<tr class="infotable-website">
 			<th>{% trans "Web" %}</th>
 			<td>
-				{% if project_translation %}<!-- WEBSITE/READONLY filled -->
+				<!-- WEBSITE/READONLY filled -->
 				{% if project_translation.master.website %}
 				<a href="{{ project.website }}" target="_blank" rel="nofollow">
 					{{ project_translation.master.website }}
 				</a>
 				{% else %}
-				{% trans 'unknown'|capfirst %}
+				   {% trans 'unknown'|capfirst %}
 				{% endif %}
-
+            {% if project_translation %}
 				<a title="{% trans 'Edit'|capfirst %}" 
 					href="{% url project_sheet-instance-edit-info project_translation.slug %}" 
 					class="button editing-button right"
 					></a>
 
 				{% else %}<!-- WEBSITE/READONLY empty -->
-				{% trans 'unknown'|capfirst %}
+				   {% trans 'unknown'|capfirst %}
 				{% endif %}
 			</td>
 		</tr>
