@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-05-23 11:52+0200\n"
-"PO-Revision-Date: 2013-05-23 09:56+0000\n"
+"POT-Creation-Date: 2013-06-19 14:32+0200\n"
+"PO-Revision-Date: 2013-06-19 13:40+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -25,1010 +25,1061 @@ msgstr ""
 msgid "I4PBase App"
 msgstr ""
 
-#: forms.py:8 templates/i4p_base/search/search.html:43
+#: forms.py:18 templates/i4p_base/search/search.html:43
 msgid "Search"
 msgstr ""
 
-#: forms.py:9 templates/i4p_base/search/search.html:142
+#: forms.py:19 templates/i4p_base/search/search.html:142
 #: templates/i4p_base/search/search.html:175
 msgid "Best of"
 msgstr ""
 
-#: forms.py:10
+#: forms.py:20
 msgid "Has team"
 msgstr ""
 
-#: forms.py:11
+#: forms.py:21
 msgid "Has needs"
 msgstr ""
 
-#: forms.py:12
+#: forms.py:22
 msgid "Location"
 msgstr ""
 
-#: forms.py:13
+#: forms.py:23
 msgid "Language"
 msgstr ""
 
-#: forms.py:14 templates/cmsplugin_zinnia/_entry_detail.html:97
+#: forms.py:24 templates/cmsplugin_zinnia/_entry_detail.html:97
 msgid "Tags"
 msgstr "Ετικέτες"
 
-#: forms.py:15
+#: forms.py:25
 msgid "Order"
 msgstr ""
 
-#: models.py:32
+#: forms.py:26
+msgid "Status"
+msgstr ""
+
+#: forms.py:81
+msgid ""
+"Multiple results were found.  Please chose the best one (you can refine it "
+"afterwards using the map)"
+msgstr ""
+
+#: forms.py:121
+#, python-format
+msgid ""
+"%d locations were returned by the geocoders, please select the most "
+"appropriate one.  You can refine in the map after saving if none are "
+"appropriate."
+msgstr ""
+
+#: forms.py:176
+msgid "Google geocoder"
+msgstr ""
+
+#: forms.py:181
+msgid "MapQuest geocoder"
+msgstr ""
+
+#: forms.py:186
+msgid "Geonames places database"
+msgstr ""
+
+#: forms.py:190
+msgid "Nominatim database"
+msgstr ""
+
+#: models.py:37
 msgid "Afghanistan"
 msgstr "Αφγανιστάν"
 
-#: models.py:33
+#: models.py:38
 msgid "Åland Islands"
 msgstr "Νησιά Åland"
 
-#: models.py:34
+#: models.py:39
 msgid "Albania"
 msgstr "Αλβανία"
 
-#: models.py:35
+#: models.py:40
 msgid "Algeria"
 msgstr "Αλγερία"
 
-#: models.py:36
+#: models.py:41
 msgid "American Samoa"
 msgstr "Αμερικανική Σαμόα"
 
-#: models.py:37
+#: models.py:42
 msgid "Andorra"
 msgstr "Ανδόρα"
 
-#: models.py:38
+#: models.py:43
 msgid "Angola"
 msgstr "Ανγκόλα"
 
-#: models.py:39
+#: models.py:44
 msgid "Anguilla"
 msgstr "Ανγκουίλα"
 
-#: models.py:40
+#: models.py:45
 msgid "Antarctica"
 msgstr "Ανταρκτική"
 
-#: models.py:41
+#: models.py:46
 msgid "Antigua and Barbuda"
 msgstr "Αντίγκουα και Μπαρμπούντα"
 
-#: models.py:42
+#: models.py:47
 msgid "Argentina"
 msgstr "Αργεντινή"
 
-#: models.py:43
+#: models.py:48
 msgid "Armenia"
 msgstr "Αρμενία"
 
-#: models.py:44
+#: models.py:49
 msgid "Aruba"
 msgstr "Αρούμπα"
 
-#: models.py:45
+#: models.py:50
 msgid "Australia"
 msgstr "Αυστραλία"
 
-#: models.py:46
+#: models.py:51
 msgid "Austria"
 msgstr "Αυστρία"
 
-#: models.py:47
+#: models.py:52
 msgid "Azerbaijan"
 msgstr "Αζερμπαϊτζάν"
 
-#: models.py:48
+#: models.py:53
 msgid "Bahamas"
 msgstr "Μπαχάμες"
 
-#: models.py:49
+#: models.py:54
 msgid "Bahrain"
 msgstr "Μπαχρέιν"
 
-#: models.py:50
+#: models.py:55
 msgid "Bangladesh"
 msgstr "Μπαγκλαντές"
 
-#: models.py:51
+#: models.py:56
 msgid "Barbados"
 msgstr "Μπαρμπάντος"
 
-#: models.py:52
+#: models.py:57
 msgid "Belarus"
 msgstr "Λευκορωσία"
 
-#: models.py:53
+#: models.py:58
 msgid "Belgium"
 msgstr "Βέλγιο"
 
-#: models.py:54
+#: models.py:59
 msgid "Belize"
 msgstr "Μπελίζ"
 
-#: models.py:55
+#: models.py:60
 msgid "Benin"
 msgstr "Μπενίν"
 
-#: models.py:56
+#: models.py:61
 msgid "Bermuda"
 msgstr "Βερμούδα"
 
-#: models.py:57
+#: models.py:62
 msgid "Bhutan"
 msgstr "Μπουτάν"
 
-#: models.py:58
+#: models.py:63
 msgid "Bolivia"
 msgstr "Βολιβία"
 
-#: models.py:59
+#: models.py:64
 msgid "Bosnia and Herzegovina"
 msgstr "Βοσνία-Ερζεγοβίνη"
 
-#: models.py:60
+#: models.py:65
 msgid "Botswana"
 msgstr "Μποτσουάνα"
 
-#: models.py:61
+#: models.py:66
 msgid "Bouvet Island"
 msgstr "Νήσος Μπουβέ"
 
-#: models.py:62
+#: models.py:67
 msgid "Brazil"
 msgstr "Βραζιλία"
 
-#: models.py:64
+#: models.py:69
 msgid "Brunei Darussalam"
 msgstr "Μπρουνέι Νταρουσαλάμ"
 
-#: models.py:65
+#: models.py:70
 msgid "Bulgaria"
 msgstr "Βουλγαρία"
 
-#: models.py:66
+#: models.py:71
 msgid "Burkina Faso"
 msgstr "Μπουρκίνα Φάσο"
 
-#: models.py:67
+#: models.py:72
 msgid "Burundi"
 msgstr "Μπουρούντι"
 
-#: models.py:68
+#: models.py:73
 msgid "Cambodia"
 msgstr "Καμπότζη"
 
-#: models.py:69
+#: models.py:74
 msgid "Cameroon"
 msgstr "Καμερούν"
 
-#: models.py:70
+#: models.py:75
 msgid "Canada"
 msgstr "Καναδάς"
 
-#: models.py:71
+#: models.py:76
 msgid "Cape Verde"
 msgstr "Πράσινο Ακρωτήριο"
 
-#: models.py:72
+#: models.py:77
 msgid "Cayman Islands"
 msgstr "Νησιά Καϊμάν"
 
-#: models.py:73
+#: models.py:78
 msgid "Central African Republic"
 msgstr "Κεντροαφρικανική Δημοκρατία"
 
-#: models.py:74
+#: models.py:79
 msgid "Chad"
 msgstr "Τσαντ"
 
-#: models.py:75
+#: models.py:80
 msgid "Chile"
 msgstr "Χιλή"
 
-#: models.py:76
+#: models.py:81
 msgid "China"
 msgstr "Κίνα"
 
-#: models.py:77
+#: models.py:82
 msgid "Christmas Island"
 msgstr "Νήσος των Χριστουγέννων"
 
-#: models.py:78
+#: models.py:83
 msgid "Cocos (Keeling) Islands"
 msgstr "Κόκος (Κίλινγκ)"
 
-#: models.py:79
+#: models.py:84
 msgid "Colombia"
 msgstr "Κολομβία"
 
-#: models.py:80
+#: models.py:85
 msgid "Comoros"
 msgstr "Κομόρες"
 
-#: models.py:81
+#: models.py:86
 msgid "Congo"
 msgstr "Κογκό"
 
-#: models.py:82
+#: models.py:87
 msgid "Congo, The Democratic Republic of the"
 msgstr "Κονγκό, Λαϊκή Δημοκρατία του"
 
-#: models.py:83
+#: models.py:88
 msgid "Cook Islands"
 msgstr "Νήσοι Κουκ"
 
-#: models.py:84
+#: models.py:89
 msgid "Costa Rica"
 msgstr "Κόστα Ρίκα"
 
-#: models.py:85
+#: models.py:90
 msgid "Côte D'ivoire"
 msgstr "Ακτή του Ελεφαντοστού"
 
-#: models.py:86
+#: models.py:91
 msgid "Croatia"
 msgstr "Κροατία"
 
-#: models.py:87
+#: models.py:92
 msgid "Cuba"
 msgstr "Κούβα"
 
-#: models.py:88
+#: models.py:93
 msgid "Cyprus"
 msgstr "Κύπρος"
 
-#: models.py:89
+#: models.py:94
 msgid "Czech Republic"
 msgstr "Δημοκρατία της Τσεχίας"
 
-#: models.py:90
+#: models.py:95
 msgid "Denmark"
 msgstr "Δανία"
 
-#: models.py:91
+#: models.py:96
 msgid "Djibouti"
 msgstr "Τζιμπουτί"
 
-#: models.py:92
+#: models.py:97
 msgid "Dominica"
 msgstr "Ντομίνικα"
 
-#: models.py:93
+#: models.py:98
 msgid "Dominican Republic"
 msgstr "Δομινικανή Δημοκρατία"
 
-#: models.py:94
+#: models.py:99
 msgid "Ecuador"
 msgstr "Εκουαδόρ"
 
-#: models.py:95
+#: models.py:100
 msgid "Egypt"
 msgstr "Αίγυπτος"
 
-#: models.py:96
+#: models.py:101
 msgid "El Salvador"
 msgstr "Ελ Σαλβαδόρ"
 
-#: models.py:97
+#: models.py:102
 msgid "Equatorial Guinea"
 msgstr "Ισημερινή Γουινέα"
 
-#: models.py:98
+#: models.py:103
 msgid "Eritrea"
 msgstr "Ερυθραία"
 
-#: models.py:99
+#: models.py:104
 msgid "Estonia"
 msgstr "Εσθονία"
 
-#: models.py:100
+#: models.py:105
 msgid "Ethiopia"
 msgstr "Αιθιοπία"
 
-#: models.py:101
+#: models.py:106
 msgid "Falkland Islands (Malvinas)"
 msgstr "Νησιά Φώκλαντ (Μαλβίνες)"
 
-#: models.py:102
+#: models.py:107
 msgid "Faroe Islands"
 msgstr "Νησιά Φερόε"
 
-#: models.py:103
+#: models.py:108
 msgid "Fiji"
 msgstr "Φίτζι"
 
-#: models.py:104
+#: models.py:109
 msgid "Finland"
 msgstr "Φινλανδία"
 
-#: models.py:105
+#: models.py:110
 msgid "France"
 msgstr "Γαλλία"
 
-#: models.py:106
+#: models.py:111
 msgid "French Guiana"
 msgstr "Γαλλική Γουιάνα"
 
-#: models.py:107
+#: models.py:112
 msgid "French Polynesia"
 msgstr "Γαλλική Πολυνησία"
 
-#: models.py:108
+#: models.py:113
 msgid "French Southern Territories"
 msgstr "Γαλλικά Νότια Εδάφη"
 
-#: models.py:109
+#: models.py:114
 msgid "Gabon"
 msgstr "Γκαμπόν"
 
-#: models.py:110
+#: models.py:115
 msgid "Gambia"
 msgstr "Γκάμπια"
 
-#: models.py:111
+#: models.py:116
 msgid "Georgia"
 msgstr "Γεωργία"
 
-#: models.py:112
+#: models.py:117
 msgid "Germany"
 msgstr "Γερμανία"
 
-#: models.py:113
+#: models.py:118
 msgid "Ghana"
 msgstr "Γκάνα"
 
-#: models.py:114
+#: models.py:119
 msgid "Gibraltar"
 msgstr "Γιβραλτάρ"
 
-#: models.py:115
+#: models.py:120
 msgid "Greece"
 msgstr "Ελλάδα"
 
-#: models.py:116
+#: models.py:121
 msgid "Greenland"
 msgstr "Γροιλανδία"
 
-#: models.py:117
+#: models.py:122
 msgid "Grenada"
 msgstr "Γρενάδα"
 
-#: models.py:118
+#: models.py:123
 msgid "Guadeloupe"
 msgstr "Γουαδελούπη"
 
-#: models.py:119
+#: models.py:124
 msgid "Guam"
 msgstr "Γκουάμ"
 
-#: models.py:120
+#: models.py:125
 msgid "Guatemala"
 msgstr "Γουατεμάλα"
 
-#: models.py:121
+#: models.py:126
 msgid "Guernsey"
 msgstr "Γκέρνσεϊ"
 
-#: models.py:122
+#: models.py:127
 msgid "Guinea"
 msgstr "Γουινέα"
 
-#: models.py:123
+#: models.py:128
 msgid "Guinea-bissau"
 msgstr "Γουινέα-Μπισάου"
 
-#: models.py:124
+#: models.py:129
 msgid "Guyana"
 msgstr "Γουιάνα"
 
-#: models.py:125
+#: models.py:130
 msgid "Haiti"
 msgstr "Αϊτή"
 
-#: models.py:128
+#: models.py:133
 msgid "Honduras"
 msgstr "Ονδούρα"
 
-#: models.py:129
+#: models.py:134
 msgid "Hong Kong"
 msgstr "Χονγκ Κονγκ"
 
-#: models.py:130
+#: models.py:135
 msgid "Hungary"
 msgstr "Ουγγαρία"
 
-#: models.py:131
+#: models.py:136
 msgid "Iceland"
 msgstr "Ισλανδία"
 
-#: models.py:132
+#: models.py:137
 msgid "India"
 msgstr "Ινδία"
 
-#: models.py:133
+#: models.py:138
 msgid "Indonesia"
 msgstr "Ινδονησία"
 
-#: models.py:134
+#: models.py:139
 msgid "Iran"
 msgstr "Ιράν"
 
-#: models.py:135
+#: models.py:140
 msgid "Iraq"
 msgstr "Ιράκ"
 
-#: models.py:136
+#: models.py:141
 msgid "Ireland"
 msgstr "Ιρλανδία"
 
-#: models.py:137
+#: models.py:142
 msgid "Isle of Man"
 msgstr "Νήσος του Μαν"
 
-#: models.py:138
+#: models.py:143
 msgid "Israel"
 msgstr "Ισραήλ"
 
-#: models.py:139
+#: models.py:144
 msgid "Italy"
 msgstr "Ιταλία"
 
-#: models.py:140
+#: models.py:145
 msgid "Jamaica"
 msgstr "Ιαμαϊκή"
 
-#: models.py:141
+#: models.py:146
 msgid "Japan"
 msgstr "Ιαπωνία"
 
-#: models.py:142
+#: models.py:147
 msgid "Jersey"
 msgstr "Φανέλα"
 
-#: models.py:143
+#: models.py:148
 msgid "Jordan"
 msgstr "Ιορδανία"
 
-#: models.py:144
+#: models.py:149
 msgid "Kazakhstan"
 msgstr "Καζακστάν"
 
-#: models.py:145
+#: models.py:150
 msgid "Kenya"
 msgstr "Κένυα"
 
-#: models.py:146
+#: models.py:151
 msgid "Kiribati"
 msgstr "Κιριμπάτι"
 
-#: models.py:147
+#: models.py:152
 msgid "North Korea"
 msgstr "Βόρεια Κορέα"
 
-#: models.py:148
+#: models.py:153
 msgid "South Korea"
 msgstr "Νότια Κορέα"
 
-#: models.py:149
+#: models.py:154
 msgid "Kuwait"
 msgstr "Κουβέιτ"
 
-#: models.py:150
+#: models.py:155
 msgid "Kyrgyzstan"
 msgstr "Κιργιστάν"
 
-#: models.py:151
+#: models.py:156
 msgid "Lao People's Democratic Republic"
 msgstr "Δημοκρατική Λάος Δημοκρατία"
 
-#: models.py:152
+#: models.py:157
 msgid "Latvia"
 msgstr "Λετονία"
 
-#: models.py:153
+#: models.py:158
 msgid "Lebanon"
 msgstr "Λίβανος"
 
-#: models.py:154
+#: models.py:159
 msgid "Lesotho"
 msgstr "Λεσόθο"
 
-#: models.py:155
+#: models.py:160
 msgid "Liberia"
 msgstr "Λιβερία"
 
-#: models.py:156
+#: models.py:161
 msgid "Libyan Arab Jamahiriya"
 msgstr "Αραβική Δημοκρατία της Λιβύης"
 
-#: models.py:157
+#: models.py:162
 msgid "Liechtenstein"
 msgstr "Λιχτενστάιν"
 
-#: models.py:158
+#: models.py:163
 msgid "Lithuania"
 msgstr "Λιθουανία"
 
-#: models.py:159
+#: models.py:164
 msgid "Luxembourg"
 msgstr "Λουξεμβούργο"
 
-#: models.py:160
+#: models.py:165
 msgid "Macao"
 msgstr "Μακάο"
 
-#: models.py:161
+#: models.py:166
 msgid "Macedonia"
 msgstr "Μακεδονίας"
 
-#: models.py:162
+#: models.py:167
 msgid "Madagascar"
 msgstr "Μαδαγασκάρη"
 
-#: models.py:163
+#: models.py:168
 msgid "Malawi"
 msgstr "Μαλάουι"
 
-#: models.py:164
+#: models.py:169
 msgid "Malaysia"
 msgstr "Μαλαισία"
 
-#: models.py:165
+#: models.py:170
 msgid "Maldives"
 msgstr "Μαλδίβες"
 
-#: models.py:166
+#: models.py:171
 msgid "Mali"
 msgstr "Μάλι"
 
-#: models.py:167
+#: models.py:172
 msgid "Malta"
 msgstr "Μάλτα"
 
-#: models.py:168
+#: models.py:173
 msgid "Marshall Islands"
 msgstr "Νησιά Μάρσαλ"
 
-#: models.py:169
+#: models.py:174
 msgid "Martinique"
 msgstr "Μαρτινίκα"
 
-#: models.py:170
+#: models.py:175
 msgid "Mauritania"
 msgstr "Μαυριτανία"
 
-#: models.py:171
+#: models.py:176
 msgid "Mauritius"
 msgstr "Μαυρίκιος"
 
-#: models.py:172
+#: models.py:177
 msgid "Mayotte"
 msgstr "Μαγιότ"
 
-#: models.py:173
+#: models.py:178
 msgid "Mexico"
 msgstr "Μεξικό"
 
-#: models.py:175
+#: models.py:180
 msgid "Moldova, Republic of"
 msgstr "Μολδαβία, Δημοκρατία της"
 
-#: models.py:176
+#: models.py:181
 msgid "Monaco"
 msgstr "Μονακό"
 
-#: models.py:177
+#: models.py:182
 msgid "Mongolia"
 msgstr "Μογγολία"
 
-#: models.py:178
+#: models.py:183
 msgid "Montenegro"
 msgstr "Μαυροβούνιο"
 
-#: models.py:179
+#: models.py:184
 msgid "Montserrat"
 msgstr "Μονσεράτ"
 
-#: models.py:180
+#: models.py:185
 msgid "Morocco"
 msgstr "Μαρόκο"
 
-#: models.py:181
+#: models.py:186
 msgid "Mozambique"
 msgstr "Μοζαμβίκη"
 
-#: models.py:182
+#: models.py:187
 msgid "Myanmar"
 msgstr "Μιανμάρ"
 
-#: models.py:183
+#: models.py:188
 msgid "Namibia"
 msgstr "Ναμίμπια"
 
-#: models.py:184
+#: models.py:189
 msgid "Nauru"
 msgstr "Ναουρού"
 
-#: models.py:185
+#: models.py:190
 msgid "Nepal"
 msgstr "Νεπάλ"
 
-#: models.py:186
+#: models.py:191
 msgid "Netherlands"
 msgstr "Ολλανδία"
 
-#: models.py:187
+#: models.py:192
 msgid "Netherlands Antilles"
 msgstr "Ολλανδικές Αντίλλες"
 
-#: models.py:188
+#: models.py:193
 msgid "New Caledonia"
 msgstr "Νέα Καληδονία"
 
-#: models.py:189
+#: models.py:194
 msgid "New Zealand"
 msgstr "Νέα Ζηλανδία"
 
-#: models.py:190
+#: models.py:195
 msgid "Nicaragua"
 msgstr "Νικαράγουα"
 
-#: models.py:191
+#: models.py:196
 msgid "Niger"
 msgstr "Νίγηρας"
 
-#: models.py:192
+#: models.py:197
 msgid "Nigeria"
 msgstr "Νιγηρία"
 
-#: models.py:193
+#: models.py:198
 msgid "Niue"
 msgstr "Νιούε"
 
-#: models.py:194
+#: models.py:199
 msgid "Norfolk Island"
 msgstr "Νησί Νόρφολκ"
 
-#: models.py:195
+#: models.py:200
 msgid "Northern Mariana Islands"
 msgstr "Βόρειες Μαριάνες"
 
-#: models.py:196
+#: models.py:201
 msgid "Norway"
 msgstr "Νορβηγία"
 
-#: models.py:197
+#: models.py:202
 msgid "Oman"
 msgstr "Ομάν"
 
-#: models.py:198
+#: models.py:203
 msgid "Pakistan"
 msgstr "Πακιστάν"
 
-#: models.py:199
+#: models.py:204
 msgid "Palau"
 msgstr "Παλάου"
 
-#: models.py:200
+#: models.py:205
 msgid "Palestinian Territory, Occupied"
 msgstr "Παλαιστινιακά Εδάφη, Κατεχόμενα"
 
-#: models.py:201
+#: models.py:206
 msgid "Panama"
 msgstr "Παναμάς"
 
-#: models.py:202
+#: models.py:207
 msgid "Papua New Guinea"
 msgstr "Παπούα Νέα Γουινέα"
 
-#: models.py:203
+#: models.py:208
 msgid "Paraguay"
 msgstr "Παραγουάη"
 
-#: models.py:204
+#: models.py:209
 msgid "Peru"
 msgstr "Περού"
 
-#: models.py:205
+#: models.py:210
 msgid "Philippines"
 msgstr "Φιλιππίνες"
 
-#: models.py:206
+#: models.py:211
 msgid "Pitcairn"
 msgstr "Πίτκερν"
 
-#: models.py:207
+#: models.py:212
 msgid "Poland"
 msgstr "Πολωνία"
 
-#: models.py:208
+#: models.py:213
 msgid "Portugal"
 msgstr "Πορτογαλία"
 
-#: models.py:209
+#: models.py:214
 msgid "Puerto Rico"
 msgstr "Πουέρτο Ρίκο"
 
-#: models.py:210
+#: models.py:215
 msgid "Qatar"
 msgstr "Κατάρ"
 
-#: models.py:211
+#: models.py:216
 msgid "Réunion"
 msgstr "Επανένωση"
 
-#: models.py:212
+#: models.py:217
 msgid "Romania"
 msgstr "Ρουμανία"
 
-#: models.py:213
+#: models.py:218
 msgid "Russian Federation"
 msgstr "Ρωσική Ομοσπονδία"
 
-#: models.py:214
+#: models.py:219
 msgid "Rwanda"
 msgstr "Ρουάντα"
 
-#: models.py:215
+#: models.py:220
 msgid "Saint Barthélemy"
 msgstr "Άγιος Βαρθολομαίος"
 
-#: models.py:217
+#: models.py:222
 msgid "Saint Kitts and Nevis"
 msgstr "Άγιος Χριστόφορος και Νέβις"
 
-#: models.py:218
+#: models.py:223
 msgid "Saint Lucia"
 msgstr "Αγία Λουκία"
 
-#: models.py:219
+#: models.py:224
 msgid "Saint Martin"
 msgstr "Άγιος Μαρτίνος"
 
-#: models.py:220
+#: models.py:225
 msgid "Saint Pierre and Miquelon"
 msgstr "Σεν Πιερ και Μικελόν"
 
-#: models.py:221
+#: models.py:226
 msgid "Saint Vincent and the Grenadines"
 msgstr "Άγιος Βικέντιος και Γρεναδίνες"
 
-#: models.py:222
+#: models.py:227
 msgid "Samoa"
 msgstr "Σαμόα"
 
-#: models.py:223
+#: models.py:228
 msgid "San Marino"
 msgstr "Σαν Μαρίνο"
 
-#: models.py:224
+#: models.py:229
 msgid "Sao Tome and Principe"
 msgstr "Σάο Τομέ και Πρίνσιπε"
 
-#: models.py:225
+#: models.py:230
 msgid "Saudi Arabia"
 msgstr "Σαουδική Αραβία"
 
-#: models.py:226
+#: models.py:231
 msgid "Senegal"
 msgstr "Σενεγάλη"
 
-#: models.py:227
+#: models.py:232
 msgid "Serbia"
 msgstr "Σερβία"
 
-#: models.py:228
+#: models.py:233
 msgid "Seychelles"
 msgstr "Σεϋχέλλες"
 
-#: models.py:229
+#: models.py:234
 msgid "Sierra Leone"
 msgstr "Σιέρα Λεόνε"
 
-#: models.py:230
+#: models.py:235
 msgid "Singapore"
 msgstr "Σιγκαπούρη"
 
-#: models.py:231
+#: models.py:236
 msgid "Slovakia"
 msgstr "Σλοβακία"
 
-#: models.py:232
+#: models.py:237
 msgid "Slovenia"
 msgstr "Σλοβενία"
 
-#: models.py:233
+#: models.py:238
 msgid "Solomon Islands"
 msgstr "Νησιά Σολομώντα"
 
-#: models.py:234
+#: models.py:239
 msgid "Somalia"
 msgstr "Σομαλία"
 
-#: models.py:235
+#: models.py:240
 msgid "South Africa"
 msgstr "Νότια Αφρική"
 
-#: models.py:237
+#: models.py:242
 msgid "Spain"
 msgstr "Ισπανία"
 
-#: models.py:238
+#: models.py:243
 msgid "Sri Lanka"
 msgstr "Σρι Λάνκα"
 
-#: models.py:239
+#: models.py:244
 msgid "Sudan"
 msgstr "Σουδάν"
 
-#: models.py:240
+#: models.py:245
 msgid "Suriname"
 msgstr "Σουρινάμ"
 
-#: models.py:241
+#: models.py:246
 msgid "Svalbard and Jan Mayen"
 msgstr "Σβάλμπαρντ και Γιάν Μαγιέν"
 
-#: models.py:242
+#: models.py:247
 msgid "Swaziland"
 msgstr "Ζουαζιλάνδη"
 
-#: models.py:243
+#: models.py:248
 msgid "Sweden"
 msgstr "Σουηδία"
 
-#: models.py:244
+#: models.py:249
 msgid "Switzerland"
 msgstr "Ελβετία"
 
-#: models.py:245
+#: models.py:250
 msgid "Syrian Arab Republic"
 msgstr "Αραβική Δημοκρατία της Συρίας"
 
-#: models.py:246
+#: models.py:251
 msgid "Taiwan"
 msgstr "Ταϊβάν"
 
-#: models.py:247
+#: models.py:252
 msgid "Tajikistan"
 msgstr "Τατζικιστάν"
 
-#: models.py:248
+#: models.py:253
 msgid "Tanzania"
 msgstr "Τανζανία"
 
-#: models.py:249
+#: models.py:254
 msgid "Thailand"
 msgstr "Ταϊλάνδη"
 
-#: models.py:250
+#: models.py:255
 msgid "Timor-leste"
 msgstr "Ανατολικό Τιμόρ"
 
-#: models.py:251
+#: models.py:256
 msgid "Togo"
 msgstr "Τόγκο"
 
-#: models.py:252
+#: models.py:257
 msgid "Tokelau"
 msgstr "Τοκελάου"
 
-#: models.py:253
+#: models.py:258
 msgid "Tonga"
 msgstr "Τόνγκα"
 
-#: models.py:254
+#: models.py:259
 msgid "Trinidad and Tobago"
 msgstr "Τρινιντάντ και Τομπάγκο"
 
-#: models.py:255
+#: models.py:260
 msgid "Tunisia"
 msgstr "Τυνησία"
 
-#: models.py:256
+#: models.py:261
 msgid "Turkey"
 msgstr "Τουρκία"
 
-#: models.py:257
+#: models.py:262
 msgid "Turkmenistan"
 msgstr "Τουρκμενιστάν"
 
-#: models.py:258
+#: models.py:263
 msgid "Turks and Caicos Islands"
 msgstr "Τερκς και Κάικος"
 
-#: models.py:259
+#: models.py:264
 msgid "Tuvalu"
 msgstr "Τουβαλού"
 
-#: models.py:260
+#: models.py:265
 msgid "Uganda"
 msgstr "Ουγκάντα"
 
-#: models.py:261
+#: models.py:266
 msgid "Ukraine"
 msgstr "Ουκρανία"
 
-#: models.py:262
+#: models.py:267
 msgid "United Arab Emirates"
 msgstr "Ηνωμένα Αραβικά Εμιράτα"
 
-#: models.py:263
+#: models.py:268
 msgid "United Kingdom"
 msgstr "Ηνωμένο Βασίλειο"
 
-#: models.py:264
+#: models.py:269
 msgid "United States"
 msgstr "Ηνωμένες Πολιτείες"
 
-#: models.py:266
+#: models.py:271
 msgid "Uruguay"
 msgstr "Ουρουγουάη"
 
-#: models.py:267
+#: models.py:272
 msgid "Uzbekistan"
 msgstr "Ουζμπεκιστάν"
 
-#: models.py:268
+#: models.py:273
 msgid "Vanuatu"
 msgstr "Βανουάτου"
 
-#: models.py:269
+#: models.py:274
 msgid "Venezuela"
 msgstr "Βενεζουέλα"
 
-#: models.py:270
+#: models.py:275
 msgid "Viet Nam"
 msgstr "Βιετνάμ"
 
-#: models.py:271
+#: models.py:276
 msgid "Virgin Islands, British"
 msgstr "Βρετανικοί Παρθένοι Νήσοι"
 
-#: models.py:272
+#: models.py:277
 msgid "Virgin Islands, U.S."
 msgstr "Αμερικανικές Παρθένοι Νήσοι"
 
-#: models.py:273
+#: models.py:278
 msgid "Wallis and Futuna"
 msgstr "Ουόλις και Φουτούνα"
 
-#: models.py:274
+#: models.py:279
 msgid "Western Sahara"
 msgstr "Δυτική Σαχάρα"
 
-#: models.py:275
+#: models.py:280
 msgid "Yemen"
 msgstr "Υεμένη"
 
-#: models.py:276
+#: models.py:281
 msgid "Zambia"
 msgstr "Ζάμπια"
 
-#: models.py:277
+#: models.py:282
 msgid "Zimbabwe"
 msgstr "Ζιμπάμπουε"
 
-#: models.py:286
-msgid "latitude"
-msgstr "γεωγραφικό πλάτος"
-
-#: models.py:289
-msgid "longitude"
-msgstr "γεωγραφικό μήκος"
-
-#: models.py:292
+#: models.py:297
 msgid "country"
 msgstr "χώρα"
 
-#: models.py:295
+#: models.py:300
+msgid ""
+"The country this location is in.  Set before geocoding,you'll get more "
+"accurate results"
+msgstr ""
+
+#: models.py:303
 msgid "address"
 msgstr "διεύθυνση"
+
+#: models.py:306
+msgid ""
+"The textual description of the Location to be displayed to the user.  "
+"Typically a full address such as \"880 rue Roy Est, espace 300 - Montréal "
+"(Québec) H2L 1E6)\", but can also be a less precise description of a "
+"location \"Lake Champlain, Canada\", or the name of a place location "
+"\"Museum of Fine Arts, Montréal, Québec, Canada\""
+msgstr ""
+
+#: models.py:309
+msgid "map"
+msgstr ""
+
+#: models.py:312
+msgid ""
+"You can chose a point on the map manually, or refine the one that was "
+"geocoded"
+msgstr ""
 
 #: templates/404.html:19 templates/500.html:21
 msgid "Ooops!"
@@ -1062,47 +1113,47 @@ msgid ""
 "challenges of living together."
 msgstr "Δημιουργία για τον Κόσμο (ΔΚ) (Imagination for People, ΙΡ) είναι μια πολύγλωσση, η συνεργατική και ανοιχτή πλατφόρμα αφιερωμένη στη ριζική κοινωνική καινοτομία. Σε παγκόσμια κλίμακα, η ΦΚ/IP αποσκοπεί στη διάγνωση, τη δημοσιοποίηση, την ενίσχυση και στην προσαρμογή δημιουργικών λύσεων στις νέες προκλήσεις της κοινής ζωής μας."
 
-#: templates/base.html:20 templates/pages/homepage.html:19
+#: templates/base.html:20
 msgid "identify and support imaginative social projects"
 msgstr "προσδιορίσει και να υποστηρίξει δημιουργικά κοινωνικά έργα"
 
-#: templates/base.html:111
+#: templates/base.html:112
 msgid "Did you know that your Internet Browser is out of date?"
 msgstr "Ξέρατε ότι Browser σας στο Internet είναι ξεπερασμένος;"
 
-#: templates/base.html:112
+#: templates/base.html:113
 msgid ""
 "Your browser is out of date, and may not be compatible with our website. A "
 "list of the most popular web browsers can be found below."
 msgstr "Το πρόγραμμα περιήγησης που χρησιμοποιείτε δεν είναι ενημερωμένο, και μπορεί να μην είναι συμβατό με την ιστοσελίδα μας. Παρακάτω υπάρχει μια λίστα με τα πιο δημοφιλή προγράμματα περιήγησης στο Web."
 
-#: templates/base.html:113
+#: templates/base.html:114
 msgid "Just click on the icons to get to the download page"
 msgstr "Απλά κάντε κλικ στα εικονίδια για να μεταφερθείτε στην σελίδα λήψης"
 
-#: templates/base.html:114
+#: templates/base.html:115
 msgid ""
 "By closing this window you acknowledge that your experience on this website "
 "may be degraded"
 msgstr "Με το κλείσιμο αυτού του παραθύρου σας πληροφορούμε ότι η εμπειρία σας σε αυτή την ιστοσελίδα μπορεί να υποβαθμιστεί"
 
-#: templates/base.html:115
+#: templates/base.html:116
 msgid "Close This Window"
 msgstr "Κλείστε αυτό το παράθυρο"
 
-#: templates/base.html:122
+#: templates/base.html:123
 msgid "Enter your email"
 msgstr ""
 
-#: templates/base.html:123
+#: templates/base.html:124
 msgid "Password"
 msgstr ""
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "Enter your username"
 msgstr ""
 
-#: templates/base.html:127
+#: templates/base.html:128
 msgid "Enter your email adress"
 msgstr ""
 
@@ -1568,6 +1619,32 @@ msgstr[1] ""
 msgid "No entries yet."
 msgstr ""
 
+#: templates/i4p_base/location/location_form.html:17
+#, python-format
+msgid "Location %(count)s"
+msgstr ""
+
+#: templates/i4p_base/location/location_form.html:19
+msgid "New location"
+msgstr ""
+
+#: templates/i4p_base/location/location_form.html:23
+msgid "Add a new location"
+msgstr ""
+
+#: templates/i4p_base/location/location_form.html:49
+msgid "Geocode again"
+msgstr ""
+
+#: templates/i4p_base/location/location_form.html:51
+msgid "Geocode"
+msgstr ""
+
+#: templates/i4p_base/location/location_form.html:66
+#, python-format
+msgid "Delete location %(count)s"
+msgstr ""
+
 #: templates/i4p_base/search/search.html:41
 msgid "Search for inspiring projects"
 msgstr ""
@@ -1718,15 +1795,15 @@ msgstr "Γίνετε μέλος της κοινότητας"
 msgid "News"
 msgstr "Νέα"
 
-#: templates/pages/flatpage.html:36
+#: templates/pages/flatpage.html:28
 msgid "There is no content yet. Switch to edit mode and add a widget."
 msgstr "Δεν υπάρχει ακόμα περιεχόμενο. Αλλάξτε σε κατάσταση επεξεργασίας και προσθέστε ένα widget."
 
-#: templates/pages/homepage.html:48
+#: templates/pages/homepage.html:42
 msgid "My project title"
 msgstr ""
 
-#: templates/pages/homepage.html:49
+#: templates/pages/homepage.html:43
 msgid "One line description"
 msgstr ""
 
@@ -1850,6 +1927,12 @@ msgstr ""
 msgid "Add a project"
 msgstr "Προσθέστε ένα έργο"
 
+#~ msgid "latitude"
+#~ msgstr "latitude"
+
+#~ msgid "longitude"
+#~ msgstr "longitude"
+
 #~ msgid "of citizens from more 30 countries"
 #~ msgstr "Connect with a community of citizens from over 30 countries."
 
@@ -1878,9 +1961,6 @@ msgstr "Προσθέστε ένα έργο"
 
 #~ msgid "Categories"
 #~ msgstr "Categories"
-
-#~ msgid "Sheet Status"
-#~ msgstr "Sheet Status"
 
 #~ msgid "Popular project"
 #~ msgstr "Popular project"
@@ -1950,9 +2030,6 @@ msgstr "Προσθέστε ένα έργο"
 #~ "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
 #~ "<strong>register</strong> your project"
 
-#~ msgid "Get the code"
-#~ msgstr "Get the code"
-
 #~ msgid "Report a bug"
 #~ msgstr "Report a bug"
 
@@ -2010,9 +2087,6 @@ msgstr "Προσθέστε ένα έργο"
 
 #~ msgid "Projects &gt;"
 #~ msgstr "Projects &gt;"
-
-#~ msgid "Add a new project &gt;"
-#~ msgstr "Add a new project &gt;"
 
 #~ msgid "community"
 #~ msgstr "community"
