@@ -106,8 +106,8 @@ def stagenv():
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
     #env.gitbranch = "release/almostspring"
-    #env.gitbranch = "develop"
-    env.gitbranch = "feature/gis"
+    env.gitbranch = "develop"
+    #env.gitbranch = "feature/gis"
 
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
