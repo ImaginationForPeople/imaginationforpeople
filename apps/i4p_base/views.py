@@ -41,6 +41,7 @@ from apps.project_sheet.utils import get_project_translations_from_parents
 from django.core.cache import cache
 
 from .models import VersionActivity, Location
+from django.db.models.fields import FieldDoesNotExist
 from .forms import ProjectSearchForm, I4pLocationForm
 
 def homepage(request):
@@ -237,7 +238,7 @@ class SearchView(FacetedSearchView):
                 context['project_list'].append(result.object)
         return context
     
-class LocationEditView(TemplateView):
+class LocationEditView(TemplateView, ):
     """
     Edit a location (any geographic place or area)
     """
@@ -275,9 +276,27 @@ class LocationListView(TemplateView):
     Show all locations
     """
     template_name = 'i4p_base/location/location_list.html'
-
     def dispatch(self, request, *args, **kwargs):
-        self.locations = Location.objects.all()
+        location_qs = Location.objects
+        if kwargs.has_key('missing_field_name'):
+            missing_field_name = kwargs['missing_field_name']
+        else:
+            missing_field_name = None
+        if missing_field_name:
+            try:
+                Location._meta.get_field_by_name(missing_field_name)
+            except FieldDoesNotExist:
+                raise ValueError
+            variable_column = missing_field_name
+            if(missing_field_name=='geom'):
+                search_type = 'isnull'
+                search_value = True
+            else:
+                search_type = 'exact'
+                search_value = ''
+            filter = variable_column + '__' + search_type
+            location_qs=location_qs.filter(**{ filter: search_value })
+        self.locations = location_qs.all()
         return super(LocationListView, self).dispatch(request, *args, **kwargs)
     
     def get(self, request, *args, **kwargs):
