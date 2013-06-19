@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-25 16:06+0200\n"
+"POT-Creation-Date: 2013-06-19 16:20+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,37 +63,41 @@ msgstr ""
 msgid "Subscribers"
 msgstr ""
 
-#: views.py:228
+#: views.py:216
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
 msgstr ""
 
-#: views.py:235
+#: views.py:223
 #, python-format
 msgid "You couldn't be subscribed to this group:%s"
 msgstr ""
 
-#: views.py:266
+#: views.py:254
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
 msgstr ""
 
-#: views.py:273
+#: views.py:261
 #, python-format
 msgid "You couldn't be unsubscribed from this group:%s"
 msgstr ""
 
-#: templates/workgroup/block/grouplist_fancy_wide.html:10
+#: templates/workgroup/block/grouplist_fancy_wide.html:11
 msgid "Related Groups"
 msgstr ""
 
-#: templates/workgroup/block/grouplist_fancy_wide.html:11
+#: templates/workgroup/block/grouplist_fancy_wide.html:12
 #: templates/workgroup/block/workgroup_header.html:45
 msgid "See all"
+msgstr ""
+
+#: templates/workgroup/block/grouplist_fancy_wide.html:27
+msgid "No related groups found."
 msgstr ""
 
 #: templates/workgroup/block/subscribe_button.html:17
@@ -320,25 +324,30 @@ msgstr ""
 msgid "Back to editor"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:36
+#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_discuss_list.html:68
 #, python-format
-msgid ""
-"This group uses a mailing list. You can take part in the discussion by "
-"sending an e-mail to the following address: %(ml_address)s"
+msgid "This group uses a mailing list:&nbsp;</em>%(ml_address)s"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:36
-msgid "Browse the Archives"
+#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_discuss_list.html:68
+msgid "Find history of messages exchanged"
 msgstr ""
 
-#: templates/workgroup/page/workgroup_detail.html:51
+#: templates/workgroup/page/workgroup_detail.html:28
+#: templates/workgroup/page/workgroup_discuss_list.html:68
+msgid "To subscribe/unsubscribe to this list, click the button above."
+msgstr ""
+
+#: templates/workgroup/page/workgroup_detail.html:43
 #, python-format
 msgid "Comment:"
 msgid_plural "%(num_comments)s comments:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/workgroup/page/workgroup_discuss_list.html:67
+#: templates/workgroup/page/workgroup_discuss_list.html:71
 msgid "Ask your question"
 msgstr ""
 
