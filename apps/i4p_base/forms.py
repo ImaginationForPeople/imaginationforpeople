@@ -109,7 +109,7 @@ class I4pLocationForm(forms.ModelForm):
         elif address and (not geom or cleaned_data.get("force_geocode")):
             # Only geocode if we haven't already set a map, or forced geocoding
             geocode_results = self.geocode(address)
-            geocode_results_count = self.count_results(geocode_results)
+            geocode_results_count = self.count_geocode_results(geocode_results)
             if geocode_results_count == 1:
                 for geocoder_result in geocode_results.values():
                     if not 'error' in geocoder_result.keys():
@@ -144,9 +144,14 @@ class I4pLocationForm(forms.ModelForm):
         self.data['geom']=self.instance.geom.ewkt
         self.data['geocode_picker']=''
         return retval
-        
-    def count_results(self, geocode_results):
-        return sum([len(v['result_list']) for v in geocode_results.values()])
+    
+    @staticmethod
+    def count_geocode_results(geocode_results, exact_only=False):
+        if(exact_only):
+            results = [v for v in geocode_results.values() if v['geocoder_description']['is_exact']==True]
+        else:
+            results = geocode_results.values()
+        return sum([len(v['result_list']) for v in results])
 
     def fill_geocode_picker(self, geocode_results):
         choices=[]
@@ -164,14 +169,8 @@ class I4pLocationForm(forms.ModelForm):
                     geocoder_name, result_list
                     ])
         self.fields['geocode_picker'].choices = choices
-        
-    def geocode(self, addr, **kwargs):
-        results = {}
-        # The result first Geocoder with is_exact=true to return exactly one
-        # result (if any) will be silently used as coordinates.
-        # The reason we don't simply use the first one that returns exactly one
-        # result is that some (such as mapquest) return only the street for
-        # non-us adresses
+    @staticmethod
+    def get_active_geocoders():
         active_geocoders = []
         active_geocoders.append({'name': _('Google geocoder'),
                                  'geocoder': geocoders.GoogleV3(),
@@ -191,11 +190,22 @@ class I4pLocationForm(forms.ModelForm):
                                  'geocoder': geocoders.OpenMapQuest(),
                                  'is_exact': False,
                                 })
+        return active_geocoders
+    @staticmethod    
+    def geocode(addr, **kwargs):
+        results = {}
+        active_geocoders=I4pLocationForm.get_active_geocoders();
+        # The result first Geocoder with is_exact=true to return exactly one
+        # result (if any) will be silently used as coordinates.
+        # The reason we don't simply use the first one that returns exactly one
+        # result is that some (such as mapquest) return only the street for
+        # non-us adresses
+
         for geocoder_description in active_geocoders:
             geocoder_name = geocoder_description['name']
             results[geocoder_name]={}
             results[geocoder_name]['result_list']=[]
-            
+            results[geocoder_name]['geocoder_description']=geocoder_description
             try:
                 query_result = geocoder_description['geocoder'].geocode(addr, exactly_one=False)
                 if query_result:
@@ -206,6 +216,7 @@ class I4pLocationForm(forms.ModelForm):
                             # We have an unambiguous result
                             results = {}
                             results[geocoder_name]={}
+                            results[geocoder_name]['geocoder_description']=geocoder_description
                             results[geocoder_name]['result_list']=[]
                             results[geocoder_name]['result_list'].append({'place' : place, 'geom': geom})
                             return results
@@ -214,6 +225,9 @@ class I4pLocationForm(forms.ModelForm):
                         
                             
             except GeocoderResultError as error:
+                results[geocoder_name]['error'] = str(error)
+            except Exception as error:
+                #This should normally be caught by geopy, but isn't sometimes
                 results[geocoder_name]['error'] = str(error)
         return results
 
