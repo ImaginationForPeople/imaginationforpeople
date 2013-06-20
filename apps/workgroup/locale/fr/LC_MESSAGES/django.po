@@ -1,24 +1,24 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # benoitg <benoitg@coeus.ca>, 2013
 # FrancoisBurra <francoisburra@imaginationforpeople.org>, 2013
+# freddy.limpens <freddy.limpens@gmail.com>, 2013
 # Simon Sarazin <simon.sarazin@gmail.com>, 2012-2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
 "POT-Creation-Date: 2013-06-19 16:20+0200\n"
-"PO-Revision-Date: 2013-06-19 14:06+0000\n"
-"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/fr/)\n"
-"Language: fr\n"
+"PO-Revision-Date: 2013-06-19 14:26+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cms_plugins.py:48
@@ -61,9 +61,7 @@ msgstr "URL externe"
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
-msgstr ""
-"URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par "
-"l'outil du site (Ex : Url du groupe sur facebook)"
+msgstr "URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par l'outil du site (Ex : Url du groupe sur facebook)"
 
 #: models.py:88
 msgid "Subscribers"
@@ -74,9 +72,7 @@ msgstr "Abonné"
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
-msgstr ""
-"Vous avez été abonné à la liste de diffusion %(workgroup_name)s  "
-"(%(user_email)s)"
+msgstr "Vous avez été abonné à la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
 
 #: views.py:223
 #, python-format
@@ -88,9 +84,7 @@ msgstr "Vous n'avez pas pu être inscrit au groupe : %s"
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
-msgstr ""
-"Vous avez été désinscrit avec succès de la liste de diffusion "
-"%(workgroup_name)s  (%(user_email)s)"
+msgstr "Vous avez été désinscrit avec succès de la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
 
 #: views.py:261
 #, python-format
@@ -107,9 +101,8 @@ msgid "See all"
 msgstr "Voir tous"
 
 #: templates/workgroup/block/grouplist_fancy_wide.html:27
-#, fuzzy
 msgid "No related groups found."
-msgstr "Groupes liés"
+msgstr "Pas encore de groupes reliés"
 
 #: templates/workgroup/block/subscribe_button.html:17
 msgid "Open Group Page"
@@ -141,10 +134,7 @@ msgid ""
 "\t\n"
 "\tmember%(member_plural)s\t\n"
 "\t"
-msgstr ""
-"\t\n"
-"\tmembre%(member_plural)s\t\n"
-"\t"
+msgstr "\t\n\tmembre%(member_plural)s\t\n\t"
 
 #: templates/workgroup/block/workgroup_header.html:39
 #, python-format
@@ -152,10 +142,7 @@ msgid ""
 "\n"
 "\tmember%(member_plural)s\n"
 "\t"
-msgstr ""
-"\n"
-"\tmembre%(member_plural)s\n"
-"\t"
+msgstr "\n\tmembre%(member_plural)s\n\t"
 
 #: templates/workgroup/block/workgroup_header.html:51
 msgid "Home"
@@ -219,14 +206,8 @@ msgid_plural ""
 "\n"
 "                        %(counter)s Answers\n"
 "                    "
-msgstr[0] ""
-"\n"
-"                        %(counter)s Réponse\n"
-"                        "
-msgstr[1] ""
-"\n"
-"                        %(counter)s Réponses\n"
-"                    "
+msgstr[0] "\n                        %(counter)s Réponse\n                        "
+msgstr[1] "\n                        %(counter)s Réponses\n                    "
 
 #: templates/workgroup/page/group_discuss_thread.html:68
 msgid "Sort by :"
@@ -262,8 +243,7 @@ msgstr "cette réponse a été sélectionnée comme correcte"
 
 #: templates/workgroup/page/group_discuss_thread.html:104
 msgid "mark this answer as correct (click again to undo)"
-msgstr ""
-"Sélectionnez cette réponse comme correcte (cliquer à nouveau pour annuler)"
+msgstr "Sélectionnez cette réponse comme correcte (cliquer à nouveau pour annuler)"
 
 #: templates/workgroup/page/group_discuss_thread.html:111
 #: templates/workgroup/page/group_discuss_thread.html:112
@@ -321,9 +301,7 @@ msgstr "Éditer l'information de ce groupe"
 msgid ""
 "<strong>Warning:</strong> You are not logged in. Your IP address will be "
 "logged."
-msgstr ""
-"<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse "
-"va etre loguée."
+msgstr "<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse va etre loguée."
 
 #: templates/workgroup/page/wiki_edit.html:20
 msgid "Click here to log in"
@@ -354,17 +332,17 @@ msgstr "Retour à l'éditer"
 #: templates/workgroup/page/workgroup_discuss_list.html:68
 #, python-format
 msgid "This group uses a mailing list:&nbsp;</em>%(ml_address)s"
-msgstr ""
+msgstr "Ce groupe utilise une liste de discussion:&nbsp;</em>%(ml_address)s"
 
 #: templates/workgroup/page/workgroup_detail.html:28
 #: templates/workgroup/page/workgroup_discuss_list.html:68
 msgid "Find history of messages exchanged"
-msgstr ""
+msgstr "Retrouver l'historique des mails échangés"
 
 #: templates/workgroup/page/workgroup_detail.html:28
 #: templates/workgroup/page/workgroup_discuss_list.html:68
 msgid "To subscribe/unsubscribe to this list, click the button above."
-msgstr ""
+msgstr "Pour vous inscrire ou désinscrire à cette liste, cliquer sur le bouton au dessus."
 
 #: templates/workgroup/page/workgroup_detail.html:43
 #, python-format
@@ -388,13 +366,3 @@ msgstr "Il n'y a pas d'inscrits au groupe"
 #: templates/workgroup/page/workgroup_members.html:41
 msgid "Other mailing list subscribers"
 msgstr "Autres abonnés de la liste de discussion"
-
-#~ msgid ""
-#~ "This group uses a mailing list. You can take part in the discussion by "
-#~ "sending an e-mail to the following address: %(ml_address)s"
-#~ msgstr ""
-#~ "Ce groupe utilise une liste de discussion. Vous pouvez prendre part à "
-#~ "cette discussion en envoyant un mail à l'adresse suivante : %(ml_address)s"
-
-#~ msgid "Browse the Archives"
-#~ msgstr "Parcourir les archives"
