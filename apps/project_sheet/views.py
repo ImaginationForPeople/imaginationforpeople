@@ -48,6 +48,7 @@ from tagging.models import TaggedItem
 
 from apps.forum.views import SpecificQuestionListView, SpecificQuestionCreateView, SpecificQuestionThreadView,\
     SpecificQuestionNewAnswerView
+from apps.forum.models import SpecificQuestion, SpecificQuestionType
 
 from .forms import I4pProjectInfoForm
 from apps.i4p_base.forms import I4pLocationForm, I4pLocationFormSet
@@ -192,7 +193,9 @@ class ProjectView(TemplateView):
                                                           I4pProjectTranslation.objects.exclude(master__id=project.id),
                                                           num=4)
         related_projects = [project_translation.master for project_translation in related_projects_translation]
-
+        #Discussion count
+        discussion_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-discuss"), object_id=self.project_translation.pk).count()
+        
         context.update({
             'topics': self.topics,
             'project': project,
@@ -201,6 +204,7 @@ class ProjectView(TemplateView):
             'project_member_add_form': project_member_add_form,
             'project_tab' : True,
             'related_projects': related_projects,
+            'discussion_count': discussion_count,
         })
         
 

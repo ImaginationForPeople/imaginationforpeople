@@ -87,6 +87,7 @@ class SpecificQuestionListView(SpecificQuestionTypeMixin, QuestionsView):
         context.update({
             'specific_questions' : specific_questions,
             'activities' : activities,
+            'discussion_count':specific_questions.__len__(),
         })
         
         return context
