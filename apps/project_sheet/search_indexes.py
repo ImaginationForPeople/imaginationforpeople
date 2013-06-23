@@ -3,7 +3,7 @@ from django.utils.encoding import force_unicode
 
 from haystack import indexes
 
-from .models import I4pProject, Topic, Answer
+from .models import I4pProject, I4pProjectTranslation, Topic, Answer
 
 class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     #text = indexes.MultiValueField(document=True, use_template=False)
@@ -14,11 +14,11 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
     #language_codes = indexes.CharField(indexed=True, stored=True)
     language_codes = indexes.MultiValueField(indexed=True, stored=True)
     #slug = indexes.CharField(model_attr='slug')
-    content_auto = indexes.EdgeNgramField(model_attr='title')
+    #content_auto = indexes.EdgeNgramField(model_attr='title')
     best_of = indexes.BooleanField(model_attr='best_of')
     status = indexes.CharField(model_attr='status', null=True)
     sites = indexes.MultiValueField()
-    tags = indexes.MultiValueField(indexed=True, stored=True, model_attr='themes')
+    tags = indexes.MultiValueField(indexed=True, stored=True)
     countries = indexes.MultiValueField(indexed=True, stored=True)
     has_team = indexes.BooleanField()
     has_needs = indexes.BooleanField()
@@ -69,13 +69,24 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
         """
         If the project has expressed needs
         """
-        return obj.lazy_translation_getter('projectsupport_set').count() > 0
+        #FIXME:  django-hvad does NOT support foreign keys on translated models
+        #At least we don't try to use it until this is ported properly
+        translations = I4pProjectTranslation.objects.filter(master=obj.id)
+        projectsupport_count = 0
+        for translated_project in translations:
+            projectsupport_count += translated_project.projectsupport_set.count()
+        return projectsupport_count > 0
 
     def prepare_tags(self, obj):
         """
-        Split tags by comma
+        Split tags by comma, strip and remove empty
         """
-        return obj.themes.split(',')
+        languages = obj.get_available_languages()
+        taglist = []
+        for language in languages:
+            translated_project = self.get_model().objects.language(language).get(pk=obj.pk)
+            taglist.extend(translated_project.themes.split(','))
+        return set([tag.strip() for tag in taglist if tag.strip()])
 
     def prepare_countries(self, obj):
         if obj.locations:
