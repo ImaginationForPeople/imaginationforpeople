@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # benoitg <benoitg@coeus.ca>, 2013
 # FrancoisBurra <francoisburra@imaginationforpeople.org>, 2013
@@ -11,16 +11,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
 "POT-Creation-Date: 2013-06-19 16:20+0200\n"
-"PO-Revision-Date: 2013-06-19 14:04+0000\n"
+"PO-Revision-Date: 2013-06-19 14:33+0000\n"
 "Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/fr/)\n"
-"Language: fr\n"
+"Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cms_plugins.py:33
@@ -129,9 +128,8 @@ msgid "project leader information"
 msgstr "Information du porteur de projet"
 
 #: models.py:169
-#, fuzzy
 msgid "locations"
-msgstr "emplacement"
+msgstr "emplacements"
 
 #: models.py:174
 msgid "topics"
@@ -241,9 +239,7 @@ msgstr "Commentaire"
 
 #: templates/project_questions/block/question_form.html:15
 msgid "We are sorry, you need to correct the highlighted problems in the form"
-msgstr ""
-"Nous sommes désolés, vous devez corriger les problèmes en surbrillance dans "
-"le formulaire"
+msgstr "Nous sommes désolés, vous devez corriger les problèmes en surbrillance dans le formulaire"
 
 #: templates/project_questions/block/question_form.html:23
 msgid "submit"
@@ -261,8 +257,7 @@ msgstr "Créé %(added_when)s par %(author_link)s"
 #: templates/project_questions/block/question_list_item.html:34
 #, python-format
 msgid "Last modified %(last_activity_at)s by %(last_activity_author_link)s"
-msgstr ""
-"Dernière modification %(last_activity_at)s par %(last_activity_author_link)s"
+msgstr "Dernière modification %(last_activity_at)s par %(last_activity_author_link)s"
 
 #: templates/project_questions/block/question_list_item.html:37
 msgid "Answers"
@@ -341,14 +336,8 @@ msgid_plural ""
 "\n"
 "                        %(counter)s Answers\n"
 "                    "
-msgstr[0] ""
-"\n"
-"                        %(counter)s Réponse\n"
-"                        "
-msgstr[1] ""
-"\n"
-"                        %(counter)s Réponses\n"
-"                    "
+msgstr[0] "\n                        %(counter)s Réponse\n                        "
+msgstr[1] "\n                        %(counter)s Réponses\n                    "
 
 #: templates/project_questions/page/question_thread.html:60
 msgid "Sort by :"
@@ -384,8 +373,7 @@ msgstr "cette réponse a été sélectionnée comme correcte"
 
 #: templates/project_questions/page/question_thread.html:99
 msgid "mark this answer as correct (click again to undo)"
-msgstr ""
-"Sélectionnez cette réponse comme correcte (cliquer à nouveau pour annuler)"
+msgstr "Sélectionnez cette réponse comme correcte (cliquer à nouveau pour annuler)"
 
 #: templates/project_questions/page/question_thread.html:106
 #: templates/project_questions/page/question_thread.html:107
@@ -476,31 +464,22 @@ msgid ""
 "To do that, <strong>hover your mouse on 'My Project Title'</strong> so you "
 "can see the pencil. Then, <strong>click on it</strong> and fill in your "
 "project title."
-msgstr ""
-"Pour faire ceci, <strong>passez votre souris sur 'Mon titre de projet'</"
-"strong> de manière à voir le pinceau. Ensuite, <strong>cliquez dessus</"
-"strong> et indiquez le titre de votre projet."
+msgstr "Pour faire ceci, <strong>passez votre souris sur 'Mon titre de projet'</strong> de manière à voir le pinceau. Ensuite, <strong>cliquez dessus</strong> et indiquez le titre de votre projet."
 
 #: templates/project_sheet/block/about.html:85
 msgid ""
 "You will then <strong>have access to the whole sheet</strong> where you can "
-"fill in all the details of your project, the same way you did for the title. "
-"If you've already used a <strong>wiki</strong> before, you'll feel at home. "
-msgstr ""
-"Vous aurez ensuite <strong>accès à l'intégralité de la page</strong> où vous "
-"pourrez renseigner tous les détails de votre projet, de la même manière que "
-"pour le titre. Si vous avez déjà utilisé un <strong>wiki</strong> avant, "
-"vous vous sentirez à l'aise."
+"fill in all the details of your project, the same way you did for the title."
+" If you've already used a <strong>wiki</strong> before, you'll feel at home."
+" "
+msgstr "Vous aurez ensuite <strong>accès à l'intégralité de la page</strong> où vous pourrez renseigner tous les détails de votre projet, de la même manière que pour le titre. Si vous avez déjà utilisé un <strong>wiki</strong> avant, vous vous sentirez à l'aise."
 
 #: templates/project_sheet/block/about.html:88
 msgid ""
 "At any time, if you feel lost, just use the <strong>Feedback</strong> tab, "
 "located on the right of the screen. We'll try to help you as fast as "
 "possible."
-msgstr ""
-"A n'importe quel moment, si vous vous sentez perdu, cliquez sur l'onglet "
-"<strong>Feedback</strong> situé à la droite de votre écran. Nous vous "
-"répondrons le plus rapidement possible."
+msgstr "A n'importe quel moment, si vous vous sentez perdu, cliquez sur l'onglet <strong>Feedback</strong> situé à la droite de votre écran. Nous vous répondrons le plus rapidement possible."
 
 #: templates/project_sheet/block/card_fancy_square.html:23
 #: templates/project_sheet/block/project_card.html:58
@@ -525,8 +504,7 @@ msgstr "Votre avatar"
 
 #: templates/project_sheet/block/comment-block.html:58
 msgid "Add your comment there and press enter to send..."
-msgstr ""
-"Ajouter votre commentaire ici et appuyez sur \"Entrée\" pour envoyer..."
+msgstr "Ajouter votre commentaire ici et appuyez sur \"Entrée\" pour envoyer..."
 
 #: templates/project_sheet/block/comment-block.html:66
 #: templates/project_sheet/obsolete/comments/comments-module.html:37
@@ -621,7 +599,7 @@ msgstr "fermer"
 
 #: templates/project_sheet/block/memberlist_modal_seeall.html:69
 msgid "Fans"
-msgstr ""
+msgstr "Fans"
 
 #: templates/project_sheet/block/menubar.html:26
 #: templates/project_sheet/block/toolbar.html:41
@@ -634,9 +612,8 @@ msgid "Gallery"
 msgstr "Galerie"
 
 #: templates/project_sheet/block/menubar.html:35
-#, fuzzy
 msgid "Discussions"
-msgstr "Discussion"
+msgstr "Discussions"
 
 #: templates/project_sheet/block/menubar.html:41
 msgid "Needs"
@@ -694,9 +671,8 @@ msgid "no references"
 msgstr "Aucune référence"
 
 #: templates/project_sheet/block/reference-block.html:57
-#, fuzzy
 msgid "Edit the references"
-msgstr "Aucune référence"
+msgstr "Editer les références"
 
 #: templates/project_sheet/block/subheader-readonly.html:80
 msgid "my project title"
@@ -734,9 +710,8 @@ msgid "Maturity"
 msgstr "Maturité"
 
 #: templates/project_sheet/block/subheader-readwrite.html:31
-#, fuzzy
 msgid "Locations"
-msgstr "Lieu"
+msgstr "Emplacements"
 
 #: templates/project_sheet/layout/project_base.html:35
 msgid "start a project"
@@ -829,10 +804,7 @@ msgid ""
 "These experiences have a positive social impact and create social goodwill. "
 "they demonstrate a disruptive inventiveness and can be easily disseminated "
 "and scaled in other places or cultural contexts."
-msgstr ""
-"Ces expériences ont un impact social positif et créent du bien-être social. "
-"Ils démontrent une inventivité disruptive et peuvent être facilement "
-"diffusées et adaptés dans d'autres lieux ou contextes culturels."
+msgstr "Ces expériences ont un impact social positif et créent du bien-être social. Ils démontrent une inventivité disruptive et peuvent être facilement diffusées et adaptés dans d'autres lieux ou contextes culturels."
 
 #: templates/project_sheet/page/project_list.html:9
 msgid "Find projects on "
@@ -848,12 +820,11 @@ msgstr "Communauté du projet"
 
 #: templates/project_sheet/page/project_sheet.html:79
 msgid "More info"
-msgstr ""
+msgstr "En savoir plus"
 
 #: templates/project_sheet/page/project_sheet.html:87
-#, fuzzy
 msgid "Join the team"
-msgstr "Rejoindre le projet"
+msgstr "Rejoindre l'équipe"
 
 #: templates/project_sheet/page/project_sheet.html:94
 msgid "Become a fan of this project"
@@ -864,23 +835,20 @@ msgid "Become a fan"
 msgstr "Devenir un fan"
 
 #: templates/project_sheet/page/project_sheet.html:114
-#, fuzzy
 msgid "You are a fan"
-msgstr "Devenir un fan"
+msgstr "Vous êtes un fan"
 
 #: templates/project_sheet/page/project_sheet.html:118
-#, fuzzy
 msgid "You are a member"
-msgstr "Contacter tous les membres"
+msgstr "Vous êtes un membre"
 
 #: templates/project_sheet/page/project_sheet.html:180
 msgid "You find this project inspiring ?"
-msgstr ""
+msgstr "Vous trouvez ce projet inspirant ?"
 
 #: templates/project_sheet/page/project_sheet.html:186
-#, fuzzy
 msgid "Become a fan, discuss, share ..."
-msgstr "Devenir fan du projet"
+msgstr "Devenez fan, discutez, partagez ..."
 
 #: templates/project_sheet/page/project_sheet.html:194
 msgid "You might also like"
@@ -891,41 +859,4 @@ msgstr "Vous pourriez aimer"
 msgid ""
 "You need to <a href=\"%(tags_url)s\">tag this project</a> before we can "
 "suggest related projects."
-msgstr ""
-"Vous devez <a href=\"%(tags_url)s\">renseigner les tags</a> avant que nous "
-"puissions suggérer des projets similaires."
-
-#~ msgid "Links"
-#~ msgstr "Liens"
-
-#~ msgid "Address"
-#~ msgstr "Adresse"
-
-#~ msgid "The team"
-#~ msgstr "L'équipe"
-
-#~ msgid "More info about the team"
-#~ msgstr "Plus d'information sur l'équipe"
-
-#~ msgid "The fans"
-#~ msgstr "Les fans"
-
-#~ msgid "No fans yet"
-#~ msgstr "Pas encore de fans"
-
-#~ msgid ""
-#~ "\n"
-#~ "                The fans\n"
-#~ "                "
-#~ msgid_plural ""
-#~ "\n"
-#~ "                The %(num_fans)s fans\n"
-#~ "                "
-#~ msgstr[0] ""
-#~ "\n"
-#~ "                Les fans\n"
-#~ "                "
-#~ msgstr[1] ""
-#~ "\n"
-#~ "                Les %(num_fans)s fans\n"
-#~ "                "
+msgstr "Vous devez <a href=\"%(tags_url)s\">renseigner les tags</a> avant que nous puissions suggérer des projets similaires."
