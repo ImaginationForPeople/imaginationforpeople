@@ -83,11 +83,10 @@ class SpecificQuestionListView(SpecificQuestionTypeMixin, QuestionsView):
             for post in thread.posts.all():
                 activity_ids.extend(list(post.activity_set.values_list('id', flat=True)))
         activities = Activity.objects.filter(id__in=set(activity_ids)).order_by('active_at')[:5]
-    
+        
         context.update({
             'specific_questions' : specific_questions,
-            'activities' : activities,
-            'discussion_count':specific_questions.__len__(),
+            'activities' : activities,            
         })
         
         return context

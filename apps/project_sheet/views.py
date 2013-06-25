@@ -195,6 +195,9 @@ class ProjectView(TemplateView):
         related_projects = [project_translation.master for project_translation in related_projects_translation]
         #Discussion count
         discussion_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-discuss"), object_id=self.project_translation.pk).count()
+        prop_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-help"), object_id=self.project_translation.pk).count() 
+        call_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-need"), object_id=self.project_translation.pk).count()
+        need_count = prop_count + call_count
         
         context.update({
             'topics': self.topics,
@@ -205,6 +208,7 @@ class ProjectView(TemplateView):
             'project_tab' : True,
             'related_projects': related_projects,
             'discussion_count': discussion_count,
+            'need_count': need_count,
         })
         
 
@@ -766,12 +770,18 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, SpecificQuestion
 
     def get_context_data(self, **kwargs):
         context = SpecificQuestionListView.get_context_data(self, **kwargs)
-          
+        
+        prop_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-help"), object_id=self.context_object.pk).count() 
+        call_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-need"), object_id=self.context_object.pk).count()
+        need_count = prop_count + call_count
+        
         context.update({  
             'project': self.context_object.master,
             'project_translation': self.context_object,
             'tab_context': 'project_sheet',
             'tab_name': 'discuss',
+            'discussion_count': len(context['specific_questions']),
+            'need_count': need_count,
         })
     
         return context

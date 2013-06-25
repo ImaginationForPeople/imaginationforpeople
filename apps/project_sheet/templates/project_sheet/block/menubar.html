@@ -40,9 +40,7 @@
           <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %} support">
             <a href="{% url project_support_main project_translation.slug %}">
               {% trans "Needs" %}
-              {% with project.get_current_translation.projectsupport_set.count as need_count %}
               <span class="badge">{{need_count}}</span>
-              {% endwith %}
             </a>
           </li>
 	  <!-- history -->
