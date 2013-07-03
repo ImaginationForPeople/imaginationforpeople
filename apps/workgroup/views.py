@@ -136,7 +136,7 @@ class GroupDescriptionDetailView(GroupDetailView):
             desc_article.add_object_relation(home_article)
             revision = ArticleRevision(title="description of %s" %workgroup.name, content='')
             desc_article.add_revision(revision)
-
+        
         context.update({
              'wiki_article' : desc_article,                        
         })
