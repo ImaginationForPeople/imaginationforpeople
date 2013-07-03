@@ -546,7 +546,7 @@ def database_dump():
 
     # Make symlink to latest
     with cd(env.dbdumps_dir):
-        run('ln -sf %s %s' % (compressed_filename, remote_db_path()))
+        run('ln -sf %s %s' % (absolute_path, remote_db_path()))
 
 def database_create():
     """
@@ -648,7 +648,7 @@ def database_download():
     Dumps and downloads the database from the target server
     """
     execute(database_dump)
-    get(os.path.join(env.dbdumps_dir, 'current_database.sql.bz2'), 'current_database.sql.bz2')
+    get(remote_db_path(), 'current_database.sql.bz2')
 
 @task
 def database_upload():
