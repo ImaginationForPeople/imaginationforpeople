@@ -57,7 +57,11 @@
 	</div> <!-- .project-main -->
 
 	<div class="span4 project-sidebar">
-	  {% if project_translation %}
+	  <!-- Direct link to project admin for staff members -->
+	  {% if request.user.is_staff %}
+         [<a href="{% url admin:project_sheet_i4pproject_change project.pk  %}">{% trans "Manage project" %}</a>]
+     {% endif %}
+     {% if project_translation %}
 	    <div class="project-members member-block clearfix">
 		<h2>
 		    <i class="sheet-members"></i>
