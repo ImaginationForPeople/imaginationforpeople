@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.utils.http import urlquote
 from django.template.defaultfilters import slugify
+from django.http import Http404
 
 from askbot.models.user import Activity
 from askbot.search.state_manager import SearchState
@@ -214,10 +215,13 @@ class SpecificQuestionThreadView(SpecificQuestionTypeMixin, QuestionView):
         
         self.context_instance = self.get_context_object_instance(**kwargs)
         
-        self.current_question = SpecificQuestion.objects.get(type__in=self.get_specific_types(),
+        try:
+            self.current_question = SpecificQuestion.objects.get(type__in=self.get_specific_types(),
                                                              content_type=ContentType.objects.get_for_model(self.context_instance),
                                                              object_id=self.context_instance.id,
                                                              thread=Post.objects.get(id=kwargs["question_id"]).thread)
+        except SpecificQuestion.DoesNotExist: 
+            raise Http404
         
         search_state = SearchState.get_empty()
         search_state._questions_url = self.get_questions_url()
