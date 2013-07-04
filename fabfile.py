@@ -546,7 +546,7 @@ def database_dump():
 
     # Make symlink to latest
     with cd(env.dbdumps_dir):
-        run('ln -sf %s %s' % (compressed_filename, remote_db_path()))
+        run('ln -sf %s %s' % (absolute_path, remote_db_path()))
 
 def database_create():
     """
@@ -562,20 +562,20 @@ def database_postgis_dump():
         run('mkdir -m700 %s' % env.dbdumps_dir)
 
     filename = 'db_%s.sql' % time.strftime('%Y%m%d')
-    compressed_filename = '%s.pgdump' % filename
+    compressed_filename = '%s.postgisdump' % filename
     absolute_path = os.path.join(env.dbdumps_dir, compressed_filename)
 
     # Dump
     with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
         run('grep "DATABASE" -A 8 site_settings.py')
-        run('pg_dump -U%s -Fc -b %s > %s' % (env.db_user,
+        run('pg_dump -U%s --format=custom -b %s > %s' % (env.db_user,
                                                  env.db_name,
                                                  absolute_path)
             )
 
     # Make symlink to latest
     with cd(env.dbdumps_dir):
-        run('ln -sf %s current_database.pgdump' % compressed_filename)
+        run('ln -sf %s %s' % (absolute_path, remote_db_path()))
         
 @task
 def database_postgis_setup():
@@ -608,38 +608,62 @@ def database_postgis_setup():
 
 
 @task    
-def database_postgis_restore():
+def database_postgis_restore_1_5():
     """
     Restores the database to the remote server.  THIS IS NOT FUNCTIONNAL YET!
     """
-    postgis_restore_script = '/usr/share/postgresql-9.1-postgis/utils/postgis_restore.pl'
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
-
-    if(env.wsginame != 'dev.wsgi'):
-        put('current_database.pgdump', remote_db_path())
-
+    env.debug = True
+    
     if(env.wsginame != 'dev.wsgi'):
         execute(webservers_stop)
     
     # Drop db
     with settings(warn_only=True):
-        sudo('su - postgres -c "dropdb %s"' % (env.db_name))
-        
+        sudo('su - postgres -c "dropdb imaginationforpeople"')
+
     # Create db
     execute(database_create)
     execute(database_postgis_setup)
 
     # Restore data
-    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
-        run('grep "DATABASE" -A 8 site_settings.py')
-        run('%s %s %s %s' % (postgis_restore_script,
+#    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+#        run('grep "DATABASE" -A 8 site_settings.py')
+#        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path(),
+#                                              env.db_user,
+#                                              env.db_name)
+#        )
+    # Restore data
+    postgis_restore_script = os.path.join(env.venvfullpath, env.projectname, 'tools', 'postgis_restore-1.5.pl')
+        
+    run('%s %s %s %s' % (postgis_restore_script,
                                          os.path.join(env.postgis_script_path, 'postgis.sql'),
                                          env.db_name,
                                          remote_db_path())
         )
+    drop_geometry_columns_sql = "DROP TABLE geometry_columns;"
+    sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(drop_geometry_columns_sql)), shell=False)    
+    drop_spatial_ref_sys_sql = "DROP TABLE spatial_ref_sys;"
+    sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(drop_spatial_ref_sys_sql)), shell=False)    
+    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+        run('grep "DATABASE" -A 8 site_settings.py')
+    run('cat %s | psql -U%s %s' % (remote_db_path()+'.ascii',
+                                              env.db_user,
+                                              env.db_name)
+        )
 
     if(env.wsginame != 'dev.wsgi'):
         execute(webservers_start)
+
+
+
+@task
+def database_postgis_download():
+    """
+    Dumps and downloads the database from the target server
+    """
+    execute(database_postgis_dump)
+    get(remote_db_path(), 'current_database.sql.bz2')
 
 
 @task
@@ -648,7 +672,7 @@ def database_download():
     Dumps and downloads the database from the target server
     """
     execute(database_dump)
-    get(os.path.join(env.dbdumps_dir, 'current_database.sql.bz2'), 'current_database.sql.bz2')
+    get(remote_db_path(), 'current_database.sql.bz2')
 
 @task
 def database_upload():

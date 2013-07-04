@@ -1,5 +1,10 @@
 {% extends "project_questions/page/global_question_list.html" %}
 
+{% block cannonical_link %}
+    {% comment %}Completely override the block from global_question_list.html, we aren't called from the same url {% endcomment %}
+    <link rel="canonical" href="{{settings.APP_URL|strip_path}}{% url project_support_main project.slug %}" />
+{% endblock %}
+
 {% block ask_button %}
 {% endblock %}
 
