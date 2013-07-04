@@ -46,6 +46,7 @@ class I4pProjectAdmin(VersionAdmin):
     list_display = ('__unicode__', 'status', 'best_of', 'created')
     date_hierarchy = 'created'
     list_filter = ['site', 'status', 'best_of', 'topics']
+    search_fields = ['translations__title', 'translations__baseline', 'translations__about_section']
     
 class QuestionAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('topic', 'weight', 'all_translations')
