@@ -148,6 +148,12 @@ class GroupMembersView(GroupDetailView):
     List all members of the given group
     """
     template_name = 'workgroup/page/workgroup_members.html'
+
+class GroupLinkedProjectsView(GroupDetailView):
+    """
+    List all members of the given group
+    """
+    template_name = 'workgroup/page/workgroup_linked_projects.html'
         
 class GroupWikiEdit(WikiEdit):
     template_name = "workgroup/page/wiki_edit.html"

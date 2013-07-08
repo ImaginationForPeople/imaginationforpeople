@@ -52,5 +52,6 @@
 	    <li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-description workgroup.slug %}">{% trans "Description" %}</a></li>
 		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Discussions" %}</a></li>
 		<li class="{% iftab 'workgroup' 'members' %}active{% endiftab %}"><a href="{% url workgroup-members workgroup.slug %}">{% trans "Members" %}</a></li>
+		<li class="{% iftab 'workgroup' 'projects' %}active{% endiftab %}"><a href="{% url workgroup-projects workgroup.slug %}">{% trans "Projects" %}</a></li>
 	</ul>
 </div>

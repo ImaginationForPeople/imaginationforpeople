@@ -1,0 +1,48 @@
+{% extends "workgroup/layout/workgroup_base.html" %}
+
+{% load i18n %}
+{% load wiki_tags %}
+{% load tagging_tags %}
+{% load comments %}
+{% load admin_urls %}
+{% load guardian_tags %}
+{% load thumbnail %}
+{% load sekizai_tags %}
+{% load tabs %}
+
+{% block content %}
+   {% tab 'workgroup' 'projects' %}
+    {% addtoblock "css" %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
+    {% endaddtoblock %}
+    {% addtoblock "css" %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_members.css" />
+    {% endaddtoblock %}
+    {% addtoblock "css" %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card_list.css" />
+   {% endaddtoblock %}
+
+    <div class="container" id="workgroup-detail">
+      {% include "workgroup/block/workgroup_header.html" %}
+
+      <div id="workgroup-content" class="row">
+	      <div class="span8">
+            <section id="projects-list">
+               <header>
+                  <h1>{% trans "Projects Linked to the group" %}</h1>               
+               </header>
+               {% for project in workgroup.projects.all %}
+                  {% include "project_sheet/block/project_card.html" %}
+               {% empty %}
+                  {% trans "No projects found" %}
+               {% endfor %}
+	         </section>
+	      </div>
+      </div>
+   </div>
+    
+{% endblock %}
+
+
+
+

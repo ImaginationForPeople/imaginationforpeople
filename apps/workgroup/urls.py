@@ -9,6 +9,7 @@ urlpatterns = patterns('',
                        
      url(r'^(?P<slug>[-\w]+)/$', views.GroupDetailView.as_view(), name='workgroup-detail'),
      url(r'^(?P<slug>[-\w]+)/members$', views.GroupMembersView.as_view(), name='workgroup-members'),
+     url(r'^(?P<slug>[-\w]+)/projects$', views.GroupLinkedProjectsView.as_view(), name='workgroup-projects'),
      url(r'^(?P<slug>[-\w]+)/edit/$', views.GroupEditView.as_view(), name='workgroup-edit'),
      url(r'^(?P<slug>[-\w]+)/description/$', views.GroupDescriptionDetailView.as_view(), name='workgroup-description'),
      
