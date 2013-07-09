@@ -1,5 +1,23 @@
 $(document).ready(function(){ 
+   "use strict";
    // mirror filter tags in URL to tag list
+    // REBUILDING TAGS LIST with values in hidden input
+   function rebuild_tag_list(){
+      console.log('rebuilding tag list');
+      var tokens = $('#id_tags').val().toLowerCase().split(" ");
+      // replace elements in tag lists
+      $('#tags-list > ul').empty();
+      $.each(tokens, function(){
+            if (this.length > 0){
+               console.log('= not space!= ');
+               $('#tags-list > ul').append("<li><a href='javascript:;'>"+this.toLowerCase()+"</a></li>");
+            }
+       });
+       if ($('#tags-list > ul > li').length === 0){
+         $('#tags-list > ul').hide();
+       }
+       else {$('#tags-list > ul').show();}       
+   }
    rebuild_tag_list();
    
    function blockPanel(){
@@ -8,7 +26,7 @@ $(document).ready(function(){
 						                border: '1px solid #676665', 
 						                padding: '1px', 
 						                backgroundColor: '#000', 
-						                opacity: .6,
+						                opacity: '.6',
 						                color: '#fff' 
 						            }});
     }
@@ -18,6 +36,7 @@ $(document).ready(function(){
       var get_data = $("#search_form").serialize();
       var callback_url = $("#search_form").attr("action")+"?"+get_data;
       var updated_bar_url = callback_url; // to update the bar url according to selected filters FIXME when a proper templating mechanism will be used with specific Json callback
+      console.log("callback URL= " + callback_url);
       $.get(callback_url, function(data) {
          //replacing project listing
          var projects_list = $(data).find('#projects-list').children();
@@ -71,24 +90,7 @@ $(document).ready(function(){
       $('#id_tags').val("");
       rebuild_tag_list();
       refresh_results();
-   });
-   // REBUILDING TAGS LIST with values in hidden input
-   function rebuild_tag_list(){
-      console.log('rebuilding tag list');
-      var tokens = $('#id_tags').val().toLowerCase().split(" ");
-      // replace elements in tag lists
-      $('#tags-list > ul').empty();
-      $.each(tokens, function(){
-            if (this.length > 0){
-               console.log('= not space!= ');
-               $('#tags-list > ul').append("<li><a href='javascript:;'>"+this.toLowerCase()+"</a></li>");
-            }
-       });
-       if ($('#tags-list > ul > li').length == 0){
-         $('#tags-list > ul').hide()
-       }
-       else {$('#tags-list > ul').show()}       
-   }
+   });  
    // countries      
    $('#id_countries').change(function(){
       refresh_results();
