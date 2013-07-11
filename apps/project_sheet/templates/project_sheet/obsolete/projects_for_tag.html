@@ -1,6 +1,5 @@
 {% load sekizai_tags %}
 {% load pagination_tags %}
-{% addtoblock "css" %}<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />{% endaddtoblock %}
 <div style="position:relative; top:25px; height:35px;">
 	{% autopaginate project_list 12 %}
 	{% paginate using "project_sheet/obsolete/project_list_pagination.html" %}
