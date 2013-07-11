@@ -2,15 +2,13 @@
 {% load pagination_tags %}
 {% addtoblock "css" %}<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_card.css" />{% endaddtoblock %}
 <div style="position:relative; top:25px; height:35px;">
-	{% autopaginate tag 12 %}
+	{% autopaginate project_list 12 %}
 	{% paginate using "project_sheet/obsolete/project_list_pagination.html" %}
 </div>
 <div id="projects_list">
-{% for project_translation in tag %}
-	<div class="colonne grid_6">
-	{% include "project_sheet/obsolete/project_complete_card.html" %}
-	</div>
-{% endfor %}
+
+	{% include "project_sheet/block/cardlist_fancy_square.html" %}
+
 </div>
 <div class="clear"></div>
 	
