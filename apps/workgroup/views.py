@@ -136,7 +136,7 @@ class GroupDescriptionDetailView(GroupDetailView):
             desc_article.add_object_relation(home_article)
             revision = ArticleRevision(title="description of %s" %workgroup.name, content='')
             desc_article.add_revision(revision)
-
+        
         context.update({
              'wiki_article' : desc_article,                        
         })
@@ -148,6 +148,18 @@ class GroupMembersView(GroupDetailView):
     List all members of the given group
     """
     template_name = 'workgroup/page/workgroup_members.html'
+
+class GroupListArchiveView(GroupDetailView):
+    """
+    Display mailing lisy archives
+    """
+    template_name = 'workgroup/page/workgroup_list_archive.html'
+
+class GroupLinkedProjectsView(GroupDetailView):
+    """
+    List all members of the given group
+    """
+    template_name = 'workgroup/page/workgroup_linked_projects.html'
         
 class GroupWikiEdit(WikiEdit):
     template_name = "workgroup/page/wiki_edit.html"

@@ -83,12 +83,24 @@ class WorkGroup(models.Model):
                                   blank=True,
                                   help_text=_("A URL that points to the real discussion tool, if we're not using the built-in (eg Facebook group URL).")
                               )
+    
+    iframe_home_src = models.URLField(_('iframe for home page source URL'),
+                                 null=True,
+                                 blank=True,
+                                 help_text=_("A URL that points to the collaborative tool used by the group. If not null, will replace the built-in wiki")
+                              )
+                              
+    iframe_description_src = models.URLField(_('iframe for description page source URL'),
+                                 null=True,
+                                 blank=True,
+                                 help_text=_("A URL that points to the collaborative tool used by the group. If not null, will replace the built-in wiki")
+                               )
 
     subscribers = models.ManyToManyField(User,
                                          verbose_name=_("Subscribers"),
                                          related_name='workgroups',
                                          blank=True
-                                     )
+                                      )
     
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
