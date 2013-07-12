@@ -12,6 +12,8 @@ urlpatterns = patterns('',
      url(r'^(?P<slug>[-\w]+)/projects$', views.GroupLinkedProjectsView.as_view(), name='workgroup-projects'),
      url(r'^(?P<slug>[-\w]+)/edit/$', views.GroupEditView.as_view(), name='workgroup-edit'),
      url(r'^(?P<slug>[-\w]+)/description/$', views.GroupDescriptionDetailView.as_view(), name='workgroup-description'),
+     url(r'^(?P<slug>[-\w]+)/archive$', views.GroupListArchiveView.as_view(), name='workgroup-list-archive'),
+     
      
     # Subscriptions
      url(r'^(?P<workgroup_slug>[-\w]+)/subscribe/$', views.SubscribeView.as_view(), name='workgroup-subscribe'),

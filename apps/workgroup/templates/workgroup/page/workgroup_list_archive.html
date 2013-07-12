@@ -20,7 +20,12 @@
     <div class="container" id="workgroup-detail">
       {% include "workgroup/block/workgroup_header.html" %}
       <div id="workgroup-content" class="row">
+         {% if workgroup.mailing_list %}
          <iframe src="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}" frameborder="0" width="980" height="1400" ></iframe>
+         {% else %}
+         {% trans "This group has no mailing list" %}
+         {% endif %}
+         
       </div>
    </div>
    

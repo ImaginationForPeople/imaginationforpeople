@@ -149,6 +149,12 @@ class GroupMembersView(GroupDetailView):
     """
     template_name = 'workgroup/page/workgroup_members.html'
 
+class GroupListArchiveView(GroupDetailView):
+    """
+    Display mailing lisy archives
+    """
+    template_name = 'workgroup/page/workgroup_list_archive.html'
+
 class GroupLinkedProjectsView(GroupDetailView):
     """
     List all members of the given group

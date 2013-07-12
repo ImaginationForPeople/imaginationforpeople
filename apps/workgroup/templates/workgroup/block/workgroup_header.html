@@ -50,7 +50,10 @@
 	<ul>
 		<li class="{% iftab 'workgroup' 'home' %}active{% endiftab %}"><a href="{% url workgroup-detail workgroup.slug %}">{% trans "Home" %}</a></li>
 	    <li class="{% iftab 'workgroup' 'description' %}active{% endiftab %}"><a href="{% url workgroup-description workgroup.slug %}">{% trans "Description" %}</a></li>
-		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Discussions" %}</a></li>
+	    {% if workgroup.mailing_list %}
+	    <li class="{% iftab 'workgroup' 'list_archive' %}active{% endiftab %}"><a href="{% url workgroup-list-archive workgroup.slug %}">{% trans "List Archive" %}</a></li>
+	    {% endif %}
+		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Group Forum" %}</a></li>
 		<li class="{% iftab 'workgroup' 'members' %}active{% endiftab %}"><a href="{% url workgroup-members workgroup.slug %}">{% trans "Members" %}</a></li>
 		<li class="{% iftab 'workgroup' 'projects' %}active{% endiftab %}"><a href="{% url workgroup-projects workgroup.slug %}">{% trans "Projects" %}</a></li>
 	</ul>
