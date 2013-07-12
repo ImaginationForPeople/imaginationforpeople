@@ -9,115 +9,115 @@
     
     .block-content {
         background-color: $colorWhite;
-        p, div, h1, h2, h3, h4, h5, h6, blockquote {
+        > p, > div, > h1, > h2, > h3, > h4, > h5, > h6, > blockquote, > iframe {
             margin-left: 1rem;
             margin-right: 1rem;
         }
+        @include i4p-font-base($sizeTextNormal);
+
+        color: $colorMedDarkGrey !important;
+    
+    
+        a{
+            color: $colorDarkBlue;
+        }
+    
+        a:hover {
+            text-decoration:underline;
+            color: $colorLightBlue;
+        }
+    
+        h1{
+            border-bottom:1px solid grey;
+            @include i4p-font-base($sizeTextVeryLarge);
+            font-style: italic;
+            font-weight: bold;
+            margin-top: 7px;
+            padding-bottom: 0.2em;
+            margin-bottom:7px;
+            color: $colorMedDarkGrey;
+            font-stretch:condensed;
+        }
+    
+        h2{
+            @include i4p-font-base($sizeTextLarge);
+            margin-top: 7px;
+            margin-bottom:7px;
+            font-stretch:condensed;
+        }
+    
+        h3{
+            @include i4p-font-base($sizeTextBig);
+            margin-top: 5px;
+            margin-bottom:5px;
+        }
+    
+        h4 {
             @include i4p-font-base($sizeTextNormal);
-
-    color: $colorMedDarkGrey !important;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom:5px;
+        }
     
-    
-    a{
-        color: $colorDarkBlue;
-    }
-
-    a:hover {
-        text-decoration:underline;
-        color: $colorLightBlue;
-    }
-
-    h1{
-        border-bottom:1px solid grey;
-        @include i4p-font-base($sizeTextVeryLarge);
-        font-style: italic;
-        font-weight: bold;
-        margin-top: 7px;
-        padding-bottom: 0.2em;
-        margin-bottom:7px;
-        color: $colorMedDarkGrey;
-        font-stretch:condensed;
-    }
-
-    h2{
-        @include i4p-font-base($sizeTextLarge);
-        margin-top: 7px;
-        margin-bottom:7px;
-        font-stretch:condensed;
-    }
-
-    h3{
-        @include i4p-font-base($sizeTextBig);
-        margin-top: 5px;
-        margin-bottom:5px;
-    }
-
-    h4 {
-        @include i4p-font-base($sizeTextNormal);
-        font-weight: bold;
-        margin-top: 5px;
-        margin-bottom:5px;
-    }
-
-    p{
-        @include i4p-font-base($sizeTextNormal);
-        text-align:left;
-    }
-
-    hr{
-        margin:15px 0;
-        background-image:url("../../images/base/separator.jpg");
-        background-repeat:repeat-x;
-        border:0px;
-        height:1px;
-    }
-
-    dd {
-        margin-bottom:5px;
-    }
-
-    ul {
-        list-style: disc outside none;
-        margin-bottom: 9px;
-        margin-left: 3rem;
-        li {
-            list-style-type: none;
-            margin-top: 0.2em;
-            &:before {
-                content: "➤  ";
-                line-height: inherit;
-                margin-left: -1.5em;
-                margin-top: 0.2em;
+        p{
+            @include i4p-font-base($sizeTextNormal);
+            text-align:left;
+        }
+        
+        p,li{
+            img {
+                float: left;
+                margin-right: 10px;
+                margin-bottom: 2px;
             }
         }
+    
+        hr{
+            margin:15px 0;
+            background-image:url("../../images/base/separator.jpg");
+            background-repeat:repeat-x;
+            border:0px;
+            height:1px;
+        }
+    
+        dd {
+            margin-bottom:5px;
+        }
+    
         ul {
-            margin-bottom:0;
-            list-style: circle outside none;
+            list-style: disc outside none;
+            margin-bottom: 9px;
+            li {
+                margin-top: 0.2em;
+            }
+            ul {
+                margin-bottom:0;
+                list-style: circle outside none;
+            }
         }
-    }
-
-    ol {
-        margin-bottom: 9px;
-        margin-left: 2.8em;
-        li {
-            margin-top: 0em;
-        }
+    
         ol {
-            margin-bottom:0;
+            margin-bottom: 9px;
+            margin-left: 2.8em;
+            li {
+                margin-top: 0em;
+            }
+            ol {
+                margin-bottom:0;
+            }
         }
-    }
-
-    blockquote {
-        border-left: 5px solid $colorLightGrey;
-        
-        padding: 0 0 0 15px;
-        p {
-            margin-left: 0;
-            margin-right: 0;
-            font-style:italic;
-            padding-right:2em;
+    
+        blockquote {
+            border-left: 5px solid $colorLightGrey;
+            
+            padding: 0 0 0 15px;
+            p {
+                margin-left: 0;
+                margin-right: 0;
+                font-style:italic;
+                padding-right:2em;
+            }
         }
-    }
     }
 }
 .content {

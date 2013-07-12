@@ -83,7 +83,7 @@
                                 {% get_available_languages as languages %}
                                     {% for lang_code, lang_name in languages %}
                                         {% language lang_code %}
-                                        <li><a href="{{ request.path|chlocale:lang_code }}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                                        <li><a href="{% if current_page %}{% page_language_url lang_code %}{% else %}{{ request.path|chlocale:lang_code }}{% endif %}" title="{{ lang_name }}">{{ lang_name }}</a></li>
                                         {% endlanguage %}
                                     {% endfor %}
                             </ul>
