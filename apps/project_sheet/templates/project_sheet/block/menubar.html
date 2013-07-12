@@ -33,6 +33,7 @@
           <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %} discuss">
             <a href="{% url project_discussion_list project_translation.slug %}">
               {% trans "Discussions" %}
+              <span class="badge">{{discussion_count}}</span>
             </a>
           </li>
 	  <!-- support -->
