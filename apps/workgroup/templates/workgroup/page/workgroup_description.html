@@ -41,7 +41,7 @@
             {{ wiki_article.render|default:"..." }}
              {% block edit_link %}[<a href="{% url workgroup-description-edit workgroup.slug %}">edit</a>] {% endblock %}
           </div>
-
+{% comment %}
           <div class="shoutbox-box">
             {% get_comment_count for workgroup as comment_count %}
             <h3>{% blocktrans count num_comments=comment_count %}Comment:{% plural %}{{ num_comments }} comments:{% endblocktrans %}</h3> 
@@ -57,6 +57,7 @@
               </form>
             </div>
           </div>
+{% endcomment %}
         </div>
         {% include "workgroup/block/workgroup_sidebar.html" %}
         {% endif %}
