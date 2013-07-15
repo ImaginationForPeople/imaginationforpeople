@@ -27,21 +27,22 @@
 	    }
 
 	    tr {
-		border-bottom: $sizeMarginSmall solid transparent;
+			border-bottom: 3px solid black;
 	    }
 
 	    th {
 		@include i4p-font-title($sizeTextNormal);
 		@include box-sizing(border-box);
-
-		padding: $sizePaddingSmall;
+		width:72px;
+		padding:8px 5px;
 		vertical-align: top; // FIXME: should be middle in the future
 		text-align: left;
+		font-size:1.2rem;
 	    }
 
 	    td {
 		color: white;
-		padding: $sizePaddingSmall;
+		padding:0 0 0 5px;
 	    }
         tr.location {
             td {
