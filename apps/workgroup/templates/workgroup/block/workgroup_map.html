@@ -1,0 +1,58 @@
+{% load i18n %}
+{% load l10n %}
+{% load sekizai_tags %}
+{% load leaflet_tags %}
+
+    {% addtoblock "css" strip %}
+        {% leaflet_css plugins="markercluster" %}
+    {% endaddtoblock %}
+    {% addtoblock "sekizai_extra_head" strip %}
+        {% comment %}
+        Do NOT put this in the js block, it does
+        not tolerate compress
+        {% endcomment %} 
+        {% leaflet_js plugins="markercluster" %}
+    {% endaddtoblock %}
+    {% leaflet_map "groupProjectLocationsMap" %}
+
+    {% localize off %}
+<script type="text/javascript">
+    function groupProjectLocationsMapInit(map, bounds) {
+        var markers = new L.MarkerClusterGroup();
+        var marker = null;
+        var geoJsonOutline = $.parseJSON('{% autoescape off %}{{ workgroup.geom.json }}{% endautoescape %}');
+        // See http://leafletjs.com/reference.html#path for styling options
+        var outline = new L.geoJson(geoJsonOutline, {
+            style: function (feature) {
+                return {
+                    color: '#04ADD1',
+                    opacity: 1,
+                    dashArray: '10, 10, 1, 10',
+                    fillOpacity: 0.1,
+                    clickable: false};
+            }
+        });
+        map.fitBounds(outline.getBounds());
+        map.addLayer(outline);
+        map.removeControl(map.attributionControl);
+        {% for project in project_list %}
+        {% for location in project.locations.all %}
+        {% if location.geom %}
+        var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
+        markers.addLayer(marker);
+        popup_html = '' +
+        '<div class="location-address">' +
+        '{{ location.address|escapejs }}' +
+        '</div>' +
+        '<div class="location-country">' +
+        '<img src="{{ location.country.flag|escapejs }}" alt="{{ location.country|escapejs }}"/> {{ location.country.name|escapejs }}'
+        '</div>'
+        var popup = L.popup().setContent(popup_html);
+        marker.bindPopup(popup_html);
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+        map.addLayer(markers);
+    }
+</script>
+    {% endlocalize %}
