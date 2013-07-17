@@ -145,8 +145,8 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 
 {% if project_translation.master.locations.all %}
 	<!-- LOCATION/READONLY filled-->
+    <a class="map-button" title="{% trans 'locate on map' %}" href="#"><img src="{{ STATIC_URL }}images/project_sheet/map_ico.jpg" /></a>
     {% for location in project_translation.master.locations.all %}
-    	<a class="map-button" title="{% trans 'locate on map' %}" href="#"><img src="{{ STATIC_URL }}images/project_sheet/map_ico.jpg" /></a>
         <div class="location-address">
 			{{ location.address }}
 		</div>

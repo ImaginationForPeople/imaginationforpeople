@@ -142,8 +142,8 @@ $memberListFancySquare_sizeHeight: 52px;
 
     // hide block before anythingSlider initialization
     & > .memberlist-slider {
-	visibility: hidden;
-	display: none;
+	/*visibility: hidden;
+	display: none;*/
 	// FIXME: add a loader as a background image
     }
 
@@ -192,16 +192,6 @@ $memberListFancySquare_sizeHeight: 52px;
 		&.cloned {
 		    visibility: hidden;
 		    opacity: 0;
-		}
-
-		.icomember {
-			display:block;
-			position:absolute;
-			top:34px;
-			right:7px;
-			background:image-url('project_sheet/icomember.png') no-repeat top left;
-			width:10px;
-			height:14px;
 		}
 	    }
 	}
@@ -279,6 +269,18 @@ $memberListFancySquare_sizeHeight: 52px;
     .slide-input {
 	display: none;
     }
+
+
+
+	.icomember {
+		display:block;
+		position:absolute;
+		top:34px;
+		right:7px;
+		background:image-url('project_sheet/icomember.png') no-repeat top left;
+		width:10px;
+		height:14px;
+	}
 
 }
 

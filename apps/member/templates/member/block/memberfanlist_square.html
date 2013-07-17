@@ -20,9 +20,6 @@ Parameters for this block
 {% endaddtoblock %}
 
 {% comment %} SYNCHRONOUS JS LOADING {% endcomment %}
-{% addtoblock "js" strip %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/jquery/jquery.anythingslider-1.8.6.js"></script>
-{% endaddtoblock %}
 
 {% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
 {% addtoblock "footer_js" %}
@@ -42,7 +39,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");
 	data-toggle="i4p-memberlist-overlay" 
 	data-overlay-view-id="memberlist-overlay-{{ overlay_unique_counter }}"
 	>
-	<ul class="memberlist-slider" data-toggle="i4p-memberlist-slider" >
+	<ul class="memberlist-slider">
 		{% for member in members %}
 		   {% include "project_sheet/block/member_fancy_square.html" %}
 		{% endfor %}
