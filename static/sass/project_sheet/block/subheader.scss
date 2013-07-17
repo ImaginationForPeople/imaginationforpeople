@@ -51,9 +51,9 @@
             }
             div#projectLocationsMap {
                 color: $colorMedDarkGrey;
-                height: 120px;
-                min-height: 100px;
-                width: 260px;
+                height: 230px;
+                min-height: 230px;
+                width: 300px;
                 min-width: 100px;
                 display: inline-block;
             }
@@ -68,6 +68,25 @@
                 max-height: $sizeTextNormal * 5;
             }
 	    }
+	}
+
+	.infolocationmap {
+		display:none;
+
+		div#projectLocationsMap {
+            color: $colorMedDarkGrey;
+            height: 230px;
+            min-height: 230px;
+            width: 300px;
+            min-width: 100px;
+            display: inline-block;
+        }
+
+        a.back {
+        	color:white;
+        	font-size:0.9em;
+        	font-style:italic;
+        }
 	}
 }
 

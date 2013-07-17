@@ -39,6 +39,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");
 	data-toggle="i4p-memberlist-overlay" 
 	data-overlay-view-id="memberlist-overlay-{{ overlay_unique_counter }}"
 	>
+	<div class="see-all-button">
+		<a data-toggle="i4p-memberlist-modal-seeall" data-modal-target-id="memberlist-modal-seeall-1" href="#"><span>{% trans 'See all the community project' %}</span></a>
+	</div>
 	<ul class="memberlist-slider">
 		{% if project_community %}
 		   {% for member in project_community|slice:":4" %}
