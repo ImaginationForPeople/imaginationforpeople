@@ -192,7 +192,13 @@ class ProjectView(TemplateView):
                                                           I4pProjectTranslation.objects.exclude(master__id=project.id),
                                                           num=4)
         related_projects = [project_translation.master for project_translation in related_projects_translation]
-
+        # Join members and fans in a unique list named community
+        project_community = []
+        for member in project.detailed_members.all():
+            project_community.append(member)
+        for member in project.detailed_fans.all():
+            project_community.append(member)
+        
         context.update({
             'topics': self.topics,
             'project': project,
@@ -201,6 +207,7 @@ class ProjectView(TemplateView):
             'project_member_add_form': project_member_add_form,
             'project_tab' : True,
             'related_projects': related_projects,
+            'project_community': project_community,            
         })
         
 

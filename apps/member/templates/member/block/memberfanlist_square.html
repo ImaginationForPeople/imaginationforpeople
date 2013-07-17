@@ -40,14 +40,20 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");
 	data-overlay-view-id="memberlist-overlay-{{ overlay_unique_counter }}"
 	>
 	<ul class="memberlist-slider">
-		{% for member in members %}
-		   {% include "project_sheet/block/member_fancy_square.html" %}
-		{% endfor %}
-		{% for member in fans %}
-		   {% if member not in member.project.members.all %}
+		{% if project_community %}
+		   {% for member in project_community|slice:":4" %}
 		      {% include "project_sheet/block/member_fancy_square.html" %}
-		   {% endif %}
-		{% endfor %}
+		   {% endfor %}
+		{% else %}   
+		   {% for member in members %}
+		      {% include "project_sheet/block/member_fancy_square.html" %}
+		   {% endfor %}
+		   {% for member in fans %}
+		      {% if member not in member.project.members.all %}
+		         {% include "project_sheet/block/member_fancy_square.html" %}
+		      {% endif %}
+		   {% endfor %}
+		{% endif %}
 	</ul>
 </div>
 
