@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-06-19 16:19+0200\n"
-"PO-Revision-Date: 2013-06-19 13:40+0000\n"
+"POT-Creation-Date: 2013-07-19 10:42+0200\n"
+"PO-Revision-Date: 2013-07-19 08:44+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -75,19 +75,19 @@ msgid ""
 "appropriate."
 msgstr ""
 
-#: forms.py:176
+#: forms.py:175
 msgid "Google geocoder"
 msgstr ""
 
-#: forms.py:181
+#: forms.py:180
 msgid "MapQuest geocoder"
 msgstr ""
 
-#: forms.py:186
+#: forms.py:185
 msgid "Geonames places database"
 msgstr ""
 
-#: forms.py:190
+#: forms.py:189
 msgid "Nominatim database"
 msgstr ""
 
@@ -1196,30 +1196,30 @@ msgstr ""
 msgid "Sign-up with a social networks:"
 msgstr ""
 
-#: templates/header.html:95 templates/header.html.py:109
+#: templates/header.html:113 templates/header.html.py:127
 #: templates/pages/home-blocks/loginbox.html:88
 msgid "View my profile"
 msgstr ""
 
-#: templates/header.html:97 templates/backcap/feedback_detail.html:196
+#: templates/header.html:115 templates/backcap/feedback_detail.html:196
 msgid "Log In"
 msgstr ""
 
-#: templates/header.html:97
+#: templates/header.html:115
 msgid "Register"
 msgstr ""
 
-#: templates/header.html:105 templates/header.html.py:107
+#: templates/header.html:123 templates/header.html.py:125
 #: templates/pages/home-blocks/loginbox.html:83
 #: templates/pages/home-blocks/loginbox.html:85
 msgid "My messages"
 msgstr ""
 
-#: templates/header.html:110 templates/pages/home-blocks/loginbox.html:89
+#: templates/header.html:128 templates/pages/home-blocks/loginbox.html:89
 msgid "Edit my profile"
 msgstr ""
 
-#: templates/header.html:111 templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:129 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr ""
 
@@ -1642,6 +1642,32 @@ msgstr ""
 #: templates/i4p_base/location/location_form.html:66
 #, python-format
 msgid "Delete location %(count)s"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:6
+#, python-format
+msgid "%(count)s locations "
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:11
+msgid "Show all locations"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:16
+msgid "Show only locations with geometry information missing"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:21
+msgid "Show only locations with address missing"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:26
+msgid "Show only locations with country missing"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:35
+#, python-format
+msgid "Edit location %(id)s"
 msgstr ""
 
 #: templates/i4p_base/search/search.html:41
