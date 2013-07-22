@@ -9,7 +9,7 @@
 {% load guardian_tags %}
 {% load tabs %}
 
-
+{% block title %}{% blocktrans with group_name=workgroup.name %}{{ group_name }} group home | Imagination for People{% endblocktrans %}{% endblock %}
 
 {% block content %}  
     {% addtoblock "css" %}

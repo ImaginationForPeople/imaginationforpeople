@@ -3,6 +3,7 @@ from django.conf.urls.defaults import patterns, url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.decorators.cache import cache_page
 
 import autocomplete_light
 from django.views.generic.base import TemplateView
@@ -68,7 +69,7 @@ urlpatterns += i18n_patterns('',
     
     url(r'^projects/map/$', TemplateView.as_view(template_name='map/global_map.html')),
     url(r'^projects.json$', ProjectListJsonView.as_view(), name='projects-json'),
-    url(r'^get-project-card$', ProjectCardAjaxView.as_view(), name='get-project-card'),
+    url(r'^get-project-card$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), name='get-project-card'),
     
     url(r'^group/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),

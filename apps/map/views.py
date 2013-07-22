@@ -1,6 +1,7 @@
 from django.utils import translation
 from django.contrib.sites.models import Site
 from django.views.generic.base import View
+
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 
@@ -38,7 +39,7 @@ class ProjectListJsonView(View):
         print datetime.now() - step
         return HttpResponse(json.dumps(data),
                             mimetype='application/json')
-        
+
 class ProjectCardAjaxView(View):  
 
     def get(self, request, *args, **kwargs):

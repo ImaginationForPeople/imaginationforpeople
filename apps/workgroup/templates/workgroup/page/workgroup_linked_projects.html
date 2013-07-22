@@ -10,6 +10,8 @@
 {% load sekizai_tags %}
 {% load tabs %}
 
+{% block title %}{% blocktrans with group_name=workgroup.name %}{{ group_name }} group projects | Imagination for People{% endblocktrans %}{% endblock %}
+
 {% block content %}
    {% tab 'workgroup' 'projects' %}
     {% addtoblock "css" %}
@@ -29,9 +31,14 @@
 	      <div class="span8">
             <section id="projects-list" class="group">
                <header>
-                  <h1>{% trans "Projects Linked to the group" %}</h1>               
+                  <h1>
+                  {% blocktrans count num_projects=group_projects|length %}
+{{ num_projects }} projects Linked to the group
+{% plural %}
+{{ num_projects }} projects Linked to the group
+{% endblocktrans %}</h1>               
                </header>
-               {% for project in workgroup.projects.all %}
+               {% for project in group_projects %}
                   {% include "project_sheet/block/project_card.html" %}
                {% empty %}
                   {% trans "No projects found" %}

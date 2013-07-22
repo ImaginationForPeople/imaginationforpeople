@@ -3,20 +3,22 @@
 @import "i4p/fonts";
 
 #subscribers-list-full {
-	h3 {
-		padding-left:32px;
-		background:image-url('workgroup/members.png') no-repeat center left;
-	}
+    h3 {
+        padding-left:32px;
+        background:image-url('workgroup/members.png') no-repeat center left;
+    }
 
-	ul {
-		list-style-type:none;
-		padding:20px 0; 
-		float:left;
-		width: 100%;
+    ul {
+        list-style-type:none;
+        padding:20px 0; 
+        float:left;
+        width: 100%;
 
-		li {
-			float:left;
-			margin:0 2px 2px 0;
-		}
-	}
+        li {
+            float:left;
+            margin:0 2px 2px 0;
+            width: 40px;
+            height: 40px;
+        }
+    }
 }

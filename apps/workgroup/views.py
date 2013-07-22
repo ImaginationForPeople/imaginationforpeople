@@ -107,7 +107,7 @@ class GroupDetailView(DetailView):
 
         context['wiki_article'] = article
         
-        context['group_projects'] = workgroup.projects.prefetch_related('locations').all()
+        context['group_projects'] = workgroup.projects.prefetch_related('locations').all().order_by('?')
             
         return context
 

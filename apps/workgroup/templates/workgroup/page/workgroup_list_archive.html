@@ -10,6 +10,8 @@
 {% load sekizai_tags %}
 {% load tabs %}
 
+{% block title %}{% blocktrans with group_name=workgroup.name %}{{ group_name }} group archive | Imagination for People{% endblocktrans %}{% endblock %}
+
 {% block content %}
    {% tab 'workgroup' 'list_archive' %}
     {% addtoblock "css" %}

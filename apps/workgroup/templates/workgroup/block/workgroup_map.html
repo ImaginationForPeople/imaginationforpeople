@@ -6,6 +6,9 @@
     {% addtoblock "css" strip %}
         {% leaflet_css plugins="markercluster" %}
     {% endaddtoblock %}
+    {% addtoblock "css" strip %}
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+    {% endaddtoblock %}
     {% addtoblock "sekizai_extra_head" strip %}
         {% comment %}
         Do NOT put this in the js block, it does
@@ -39,16 +42,13 @@
         {% for location in project.locations.all %}
         {% if location.geom %}
         var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
+        marker.on('mouseover', function(e) {
+            e.target.unbindPopup();
+            $.get("{% url get-project-card %}", { project_id: {{ project.id }} }, function (data){
+                e.target.bindPopup(data);
+            });
+        });
         markers.addLayer(marker);
-        popup_html = '' +
-        '<div class="location-address">' +
-        '{{ location.address|escapejs }}' +
-        '</div>' +
-        '<div class="location-country">' +
-        '<img src="{{ location.country.flag|escapejs }}" alt="{{ location.country|escapejs }}"/> {{ location.country.name|escapejs }}'
-        '</div>'
-        var popup = L.popup().setContent(popup_html);
-        marker.bindPopup(popup_html);
         {% endif %}
         {% endfor %}
         {% endfor %}

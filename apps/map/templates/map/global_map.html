@@ -1,4 +1,5 @@
-{%extends "base.html" %}
+{% extends "base.html" %}
+{% load sekizai_tags %}
 {% load leaflet_tags %}
 {% load i18n %}
 
@@ -6,10 +7,19 @@
 {% block title %}{% trans 'Map of projects'%}{% endblock %}
 
 {% block extra_head %}
-{% leaflet_js  plugins="markercluster" %}
-{% leaflet_css plugins="markercluster"%}
-
-<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+    {% addtoblock "css" strip %}
+        {% leaflet_css plugins="markercluster" %}
+    {% endaddtoblock %}
+    {% addtoblock "css" strip %}
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+    {% endaddtoblock %}
+    {% addtoblock "sekizai_extra_head" strip %}
+        {% comment %}
+        Do NOT put this in the js block, it does
+        not tolerate compress
+        {% endcomment %} 
+        {% leaflet_js plugins="markercluster" %}
+    {% endaddtoblock %}
 
 <style>
 
@@ -25,7 +35,6 @@
 <script type="text/javascript">
 
     function projectsMapInit(map, bounds) {
-    	$("#beta-logo").hide();
     	
     	var markers = new L.MarkerClusterGroup();
 		
