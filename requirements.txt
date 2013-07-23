@@ -23,6 +23,8 @@ easy-thumbnails==1.0.3
 
 -e git://github.com/divio/cmsplugin-iframe.git@8427d128d8bdadc276ce19b433f46792b8b3a0d8#egg=cmsplugin-iframe
 
+-e git://github.com/changer/cmsplugin-twitter.git@5806f912ebd79da0e195566a8ebc57a903b0661c#egg=cmsplugin-twitter
+
 # Show everybody actions in admin
 -e git+https://github.com/vaal-/django-logentry-admin.git@654bf834bb2593b074222a114a3984d873e68bde#egg=django-logentry-admin
 
@@ -79,7 +81,7 @@ django-social-auth==0.6.9
 -e git+https://github.com/jorgebastida/django-dajaxice.git@d5a70654fbcd7241fbdfaf5a89fea2746cd25369#egg=django-dajaxice
 -e git+https://github.com/jorgebastida/django-dajax.git@510a6c3e267ce7b2a5423a7e8bcca191956247ed#egg=django-dajax
 
--e git+https://github.com/SpreadBand/django-backcap.git@master#egg=django-backcap
+-e git+https://github.com/SpreadBand/django-backcap.git@25b2b07b53f23956d481d6276bf505d962c7266a#egg=django-backcap
 
 django-reversion==1.6.6
 
@@ -101,7 +103,7 @@ django-simplegravatar==0.2
 
 # Askbot
 -e hg+https://atiberghien@bitbucket.org/atiberghien/django-keyedcache#egg=django-keyedcache
--e git://github.com/atiberghien/askbot-devel.git@1fc0ecb9370d1037622d9c3517af95c92513943c#egg=askbot
+-e git://github.com/atiberghien/askbot-devel.git@854ea8d9251630cc69ecc7848432b3c62ce56dd1#egg=askbot
 
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.1#egg=django-blog-zinnia
@@ -138,4 +140,5 @@ werkzeug
 django-debug-toolbar
 sphinx
 dozer==0.1
+django-mptt==0.5.2
 
