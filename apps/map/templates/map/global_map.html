@@ -40,10 +40,10 @@
 		
 		$.get("{% url projects-json %}", function(data){
 			$.each(data, function(index, value){
-				var marker = new L.Marker(new L.LatLng(value[2], value[1]));
+				var marker = new L.Marker(new L.LatLng(value[3], value[2]));
 				marker.on('mouseover', function(e) {
 					marker.unbindPopup();
-					$.get("{% url get-project-card %}", { project_id: value[0] }, function (data){
+					$.get("{% url get-project-card %}", { project_id: value[0], location_id: value[1] }, function (data){
 						marker.bindPopup(data);
 					});
 				});

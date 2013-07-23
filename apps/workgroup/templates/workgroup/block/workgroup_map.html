@@ -6,9 +6,6 @@
     {% addtoblock "css" strip %}
         {% leaflet_css plugins="markercluster" %}
     {% endaddtoblock %}
-    {% addtoblock "css" strip %}
-        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
-    {% endaddtoblock %}
     {% addtoblock "sekizai_extra_head" strip %}
         {% comment %}
         Do NOT put this in the js block, it does
@@ -44,7 +41,7 @@
         var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
         marker.on('mouseover', function(e) {
             e.target.unbindPopup();
-            $.get("{% url get-project-card %}", { project_id: {{ project.id }} }, function (data){
+            $.get("{% url get-project-card-location %}", { project_id: {{ project.id }}, location_id: {{ location.id }} }, function (data){
                 e.target.bindPopup(data);
             });
         });

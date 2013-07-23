@@ -30,9 +30,11 @@ class ProjectListJsonView(View):
         step = datetime.now()
         print step - begin
         
-        data = [[location.i4pproject_set.all()[0].id, 
+        data = [[location.i4pproject_set.all()[0].id,
+                 location.id,
                  location.geom.coords[0], 
-                 location.geom.coords[1]] 
+                 location.geom.coords[1],
+                 ] 
                 for location in locations]
 
         
@@ -49,8 +51,10 @@ class ProjectCardAjaxView(View):
                                               
         project = I4pProject.objects.get(id=request.GET.get("project_id"),
                                          site=site)
-        
-        card = render_to_string("map/project_card.html", 
-                                {'project' : project})
+        location = Location.objects.get(id=request.GET.get("location_id"))
+                
+        card = render_to_string(kwargs['template_name'], 
+                                {'project' : project,
+                                 'location' : location})
         return HttpResponse(card,
                             mimetype='application/html')

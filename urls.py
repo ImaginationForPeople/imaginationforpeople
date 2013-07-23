@@ -69,7 +69,8 @@ urlpatterns += i18n_patterns('',
     
     url(r'^projects/map/$', TemplateView.as_view(template_name='map/global_map.html')),
     url(r'^projects.json$', ProjectListJsonView.as_view(), name='projects-json'),
-    url(r'^get-project-card$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), name='get-project-card'),
+    url(r'^get-project-card$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), {'template_name': 'map/project_card.html'}, name='get-project-card'),
+    url(r'^get-project-card-location$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), {'template_name': 'map/project_location_popup.html'}, name='get-project-card-location'),
     
     url(r'^group/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
