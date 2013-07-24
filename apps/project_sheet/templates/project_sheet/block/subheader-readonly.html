@@ -265,8 +265,8 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			<td colspan=2>
 				<!-- AddThis Button BEGIN -->
 					<div class="addthis_toolbox addthis_default_style">
-						<a class="addthis_button_tweet" tw:count="horizontal" {% if project_translation %}tw:url="{{ request.META.HTTP_HOST }}{% url project_sheet-show project_translation.slug %}" {% endif %}></a>
-					    <a class="addthis_button_facebook_like" {% if project_translation %}fb:like:href="{{ request.META.HTTP_HOST }}{% url project_sheet-show project_translation.slug %}" {% endif %}></a>
+						<a class="addthis_button_tweet" tw:count="horizontal" {% if project_translation %}tw:url="http://{{ request.META.HTTP_HOST }}{% url project_sheet-show project_translation.slug %}" {% endif %}></a>
+					    <a class="addthis_button_facebook_like" {% if project_translation %}fb:like:href="http://{{ request.META.HTTP_HOST }}{% url project_sheet-show project_translation.slug %}" {% endif %}></a>
 					</div>
 				<!-- AddThis Button END -->
 			</td>
