@@ -42,7 +42,7 @@
 	member{{ member_plural }}
 	{% endblocktrans %}
 	{% endif %}
-	{% endwith %}
+
       </strong>
       <a href="{% url workgroup-members workgroup.slug %}">{% trans "See all" %}</a>
     </div>
@@ -56,7 +56,18 @@
 	    <li class="{% iftab 'workgroup' 'list_archive' %}active{% endiftab %}"><a href="{% url workgroup-list-archive workgroup.slug %}">{% trans "List Archive" %}</a></li>
 	    {% endif %}
 		<li class="{% iftab 'workgroup' 'discussion' %}active{% endiftab %}"><a href="{% url workgroup-discussion workgroup.slug %}">{% trans "Group Forum" %}</a></li>
-		<li class="{% iftab 'workgroup' 'members' %}active{% endiftab %}"><a href="{% url workgroup-members workgroup.slug %}">{% trans "Members" %}</a></li>
-		<li class="{% iftab 'workgroup' 'projects' %}active{% endiftab %}"><a href="{% url workgroup-projects workgroup.slug %}">{% trans "Projects" %}</a></li>
+		<li class="{% iftab 'workgroup' 'members' %}active{% endiftab %}"><a href="{% url workgroup-members workgroup.slug %}">
+    {% blocktrans count subscribers_count=subscribers_count %}
+{{ subscribers_count }} member
+{% plural %}
+{{ subscribers_count }} members
+{% endblocktrans %}</a></li>
+		<li class="{% iftab 'workgroup' 'projects' %}active{% endiftab %}"><a href="{% url workgroup-projects workgroup.slug %}">
+{% blocktrans count num_projects=workgroup.projects.all|length %}
+{{ num_projects }} project
+{% plural %}
+{{ num_projects }} projects
+{% endblocktrans %}</a></li>
 	</ul>
+    {% endwith %}
 </div>

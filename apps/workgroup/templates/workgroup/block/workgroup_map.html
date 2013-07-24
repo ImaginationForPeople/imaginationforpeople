@@ -39,16 +39,13 @@
         {% for location in project.locations.all %}
         {% if location.geom %}
         var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
+        marker.on('mouseover', function(e) {
+            e.target.unbindPopup();
+            $.get("{% url get-project-card-location %}", { project_id: {{ project.id }}, location_id: {{ location.id }} }, function (data){
+                e.target.bindPopup(data);
+            });
+        });
         markers.addLayer(marker);
-        popup_html = '' +
-        '<div class="location-address">' +
-        '{{ location.address|escapejs }}' +
-        '</div>' +
-        '<div class="location-country">' +
-        '<img src="{{ location.country.flag|escapejs }}" alt="{{ location.country|escapejs }}"/> {{ location.country.name|escapejs }}'
-        '</div>'
-        var popup = L.popup().setContent(popup_html);
-        marker.bindPopup(popup_html);
         {% endif %}
         {% endfor %}
         {% endfor %}

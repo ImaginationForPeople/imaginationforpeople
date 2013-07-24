@@ -3,11 +3,18 @@
 
 <div class="span4">
   <div class="group-projects">
-    <h3>{% trans "Related projects" %}</h3>
+    <h3>
+{% blocktrans count num_projects=group_projects|length %}
+{{ num_projects }} related project
+{% plural %}
+{{ num_projects }} related projects
+{% endblocktrans %}</h3>
     {% get_obj_perms request.user for workgroup as "workgroup_perms" %}
     {% if request.user.is_staff and "change_workgroup" in workgroup_perms %}
     [<a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage linked projects" %}</a>]
     {% endif %}
-    {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_list=group_projects %}
+    {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_list=group_projects|slice:":3" %}
+    <p><a href="{% url workgroup-projects workgroup.slug %}">{% trans "See all related projects" %}</a></p>
+
   </div>
 </div>
