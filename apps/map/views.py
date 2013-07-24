@@ -1,6 +1,7 @@
 from django.utils import translation
 from django.contrib.sites.models import Site
 from django.views.generic.base import View
+
 from django.template.loader import render_to_string
 from django.http import HttpResponse
 
@@ -29,16 +30,18 @@ class ProjectListJsonView(View):
         step = datetime.now()
         print step - begin
         
-        data = [[location.i4pproject_set.all()[0].id, 
+        data = [[location.i4pproject_set.all()[0].id,
+                 location.id,
                  location.geom.coords[0], 
-                 location.geom.coords[1]] 
+                 location.geom.coords[1],
+                 ] 
                 for location in locations]
 
         
         print datetime.now() - step
         return HttpResponse(json.dumps(data),
                             mimetype='application/json')
-        
+
 class ProjectCardAjaxView(View):  
 
     def get(self, request, *args, **kwargs):
@@ -48,8 +51,10 @@ class ProjectCardAjaxView(View):
                                               
         project = I4pProject.objects.get(id=request.GET.get("project_id"),
                                          site=site)
-        
-        card = render_to_string("map/project_card.html", 
-                                {'project' : project})
+        location = Location.objects.get(id=request.GET.get("location_id"))
+                
+        card = render_to_string(kwargs['template_name'], 
+                                {'project' : project,
+                                 'location' : location})
         return HttpResponse(card,
                             mimetype='application/html')

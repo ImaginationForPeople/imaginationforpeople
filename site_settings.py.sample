@@ -4,6 +4,14 @@
 DEBUG = True
 TEMPLATE_DEBUG = True
 
+# Un-comment this to test static files, javascript and css compression, and 
+# 404 and 500 pages locally:
+#COMPRESS_ENABLED = True 
+
+# Enables on-page code profiling.  To use, uncomment the following and
+# add ?prof at the end of the URL to see profiling output.
+#DEBUG_PROFILE_MIDDLEWARE_ENABLED == True
+ 
 ### HAYSTACK
 # We use Whoosh in dev env and SolR in prod/staging. If you want to force SolR in debug env, set USESOLR = True
 USESOLR = False

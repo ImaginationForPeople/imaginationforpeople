@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU Affero Public License
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
-from django.contrib import admin
+from django.contrib.gis import admin
 
 import autocomplete_light
 from django_mailman.models import List
@@ -25,7 +25,7 @@ from .models import WorkGroup
 class MailingListAdmin(admin.ModelAdmin):
     model = List
     
-class WorkGroupAdmin(admin.ModelAdmin):
+class WorkGroupAdmin(admin.OSMGeoAdmin):
     form = autocomplete_light.modelform_factory(WorkGroup)
 
 

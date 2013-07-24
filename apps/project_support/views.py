@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse
 
-from apps.forum.models import SpecificQuestion
+from apps.forum.models import SpecificQuestion, SpecificQuestionType
 from apps.forum.views import SpecificQuestionListView
 from apps.project_sheet.views import ProjectDiscussionListView, \
     ProjectDiscussionCreateView, ProjectDiscussionThreadView, \
@@ -31,12 +31,18 @@ class ProjectSupportListView(ProjectDiscussionListView) :
         root_category = None
         if allowed_categories.count():
             root_category = TaggedCategory.objects.get(id=allowed_categories[0])
+       
+        prop_count = len([q for q in context["specific_questions"] if q.type.type == "pj-help"])
+        call_count = len([q for q in context["specific_questions"] if q.type.type == "pj-need"])
+        need_count = prop_count + call_count
+        discussion_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-discuss"), object_id=self.context_object.pk).count()
         
         context.update({
             'tab_name' : 'support',
-            'prop_count' : len([q for q in context["specific_questions"] if q.type.type == "pj-help"]),
-            'call_count' : len([q for q in context["specific_questions"] if q.type.type == "pj-need"]),
-            'need_count' : len(context["specific_questions"]),
+            'prop_count' : prop_count,
+            'call_count' : call_count,
+            'need_count' : need_count,
+            'discussion_count' : discussion_count,
             'root_category' : root_category,
         })
         
