@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-05-23 11:52+0200\n"
-"PO-Revision-Date: 2013-05-23 10:01+0000\n"
+"POT-Creation-Date: 2013-06-19 16:19+0200\n"
+"PO-Revision-Date: 2013-06-19 14:30+0000\n"
 "Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -109,10 +109,12 @@ msgstr "Nouveau message de %(sender)s sur Imagination For People"
 msgid "Your profile has been updated."
 msgstr "Votre profil a été mis à jour."
 
+#: templates/member/block/memberfanlist_square.html:66
 #: templates/member/block/memberlist_square.html:60
 msgid "Contact"
 msgstr "Contact"
 
+#: templates/member/block/memberfanlist_square.html:69
 #: templates/member/block/memberlist_square.html:63
 msgid "Profile"
 msgstr "Profil"
@@ -378,15 +380,15 @@ msgid_plural ""
 msgstr[0] "\n                        Il/Elle est fan du projet suivant\n                    "
 msgstr[1] "\n                        Il/Elle est fan des %(num_fans)s projets suivant\n                    "
 
-#: templates/userena/profile_detail.html:82
+#: templates/userena/profile_detail.html:83
 #, python-format
 msgid ""
 "\n"
-"                I am <a href=\"%(unfan_url)s\"> no longer a fan</a>.\n"
-"            "
+"                    I am <a href=\"%(unfan_url)s\"> no longer a fan</a>.\n"
+"                "
 msgstr "\n              Je ne suis <a href=\"%(unfan_url)s\"> plus un fan </a>.\n            "
 
-#: templates/userena/profile_detail.html:88
+#: templates/userena/profile_detail.html:90
 msgid "This user isn't fan of any project yet."
 msgstr "Cet utilisateur n'a pas encore de projet."
 
@@ -404,11 +406,11 @@ msgstr "Anonyme"
 msgid "Imagination For People Community"
 msgstr "Communauté ImaginationforPeople"
 
-#: templates/userena/profile_list.html:27
+#: templates/userena/profile_list.html:29
 msgid "Community"
 msgstr "Communauté"
 
-#: templates/userena/profile_list.html:36
+#: templates/userena/profile_list.html:38
 #, python-format
 msgid ""
 "\n"

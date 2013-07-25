@@ -24,19 +24,25 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 
 <form action="{% url project_sheet-instance-edit-info project_translation.slug %}" method="post">
 {% csrf_token %}
-<div class="span4 location-card">
+<div class="span12 location-card">
 	<table class="infotable">
 		<tr class="infotable-location location">
-			<th>{% trans "Address" %}</th>
+			<th>{% trans "Locations" %}</th>
 			<td>
-				{% if project_location_form %}<!-- LOCATION/READWRITE -->
-				<div class="location-form">
-						{{ project_location_form.as_p }}
+				{% if project_location_formset %}<!-- LOCATION/READWRITE -->
+				<div class="location-formset">
+                        {{ project_location_formset.management_form }}
+                        {% for form in project_location_formset %}
+
+                            {{ form.id }}
+                            {% include "i4p_base/location/location_form.html" with formset=project_location_formset %}
+
+                        {% endfor %}
 						<div class="clear"></div>
 						{% comment %} FIXME: include form button for degraded view 
 						{% include "project_sheet/block/form-buttons.html" %}
 						{% endcomment %}
-				</div> <!-- .location-form -->
+				</div> <!-- .location-formset -->
 				{% else %}
 				{% if project_translation %}
 				<!-- LOCATION/READONLY filled-->
@@ -65,10 +71,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readwrite.js");
 			</td>
 		</tr>
 	</table>
-	<!-- FIXME: integrate mini-map (googlemap ? other ?) -->
 </div>
 
-<div class="span4 web-card">
+<div class="span12 web-card">
 	<table class="infotable">
 		<tr class="infotable-website">
 			<th>{% trans "Web" %}</th>

@@ -24,12 +24,14 @@ from urlparse import urlsplit
 from django.conf import settings
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils import translation
 from django.utils.decorators import classonlymethod, method_decorator
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView
 
 from haystack.query import SearchQuerySet
 from haystack.views import FacetedSearchView as HaystackFacetedSearchView
@@ -38,8 +40,9 @@ from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents
 from django.core.cache import cache
 
-from .models import VersionActivity
-from .forms import ProjectSearchForm
+from .models import VersionActivity, Location
+from django.db.models.fields import FieldDoesNotExist
+from .forms import ProjectSearchForm, I4pLocationForm
 
 def homepage(request):
     """
@@ -142,6 +145,10 @@ class FacetedSearchView(TemplateResponseMixin, HaystackFacetedSearchView):
 
     def get_search_queryset(self, queryset=None, models=None):
         searchqueryset = queryset or self.searchqueryset or SearchQuerySet()
+        current_site = Site.objects.get_current()
+        # Multisite handling
+        searchqueryset = searchqueryset.filter(sites=current_site.id)
+        
         searchqueryset = searchqueryset.filter(
             **self.get_extra_filters()
         )
@@ -225,7 +232,79 @@ class SearchView(FacetedSearchView):
         
     def get_context_data(self, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
-
-        context['project_list'] = [result.object for result in self.page.object_list]
-
+        context['project_list']=[]
+        for result in self.page.object_list:
+            if(result):
+                context['project_list'].append(result.object)
         return context
+    
+class LocationEditView(TemplateView, ):
+    """
+    Edit a location (any geographic place or area)
+    """
+    template_name = 'i4p_base/location/location_edit.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.location_id = kwargs['location_id']
+
+        self.location = Location.objects.get(id=self.location_id)
+
+        return super(TemplateView, self).dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        self.location_form = I4pLocationForm(instance=self.location)
+        return super(LocationEditView, self).get(request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+        POST = request.POST.copy() #Make this mutable for form redisplay
+        self.location_form = I4pLocationForm(POST, instance=self.location)
+        if self.location_form.is_valid():
+            location = self.location_form.save(commit=False);
+            location.save();
+
+        return super(LocationEditView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(LocationEditView, self).get_context_data(**kwargs)
+        context['location_id'] = self.location_id
+        context['location_form'] = self.location_form
+        
+        return context
+
+class LocationListView(TemplateView):
+    """
+    Show all locations
+    """
+    template_name = 'i4p_base/location/location_list.html'
+    def dispatch(self, request, *args, **kwargs):
+        location_qs = Location.objects
+        if kwargs.has_key('missing_field_name'):
+            missing_field_name = kwargs['missing_field_name']
+        else:
+            missing_field_name = None
+        if missing_field_name:
+            try:
+                Location._meta.get_field_by_name(missing_field_name)
+            except FieldDoesNotExist:
+                raise ValueError
+            variable_column = missing_field_name
+            if(missing_field_name=='geom'):
+                search_type = 'isnull'
+                search_value = True
+            else:
+                search_type = 'exact'
+                search_value = ''
+            filter = variable_column + '__' + search_type
+            location_qs=location_qs.filter(**{ filter: search_value })
+        self.locations = location_qs.all()
+        return super(LocationListView, self).dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return super(LocationListView, self).get(request, *args, **kwargs)
+        
+    def get_context_data(self, **kwargs):
+        context = super(LocationListView, self).get_context_data(**kwargs)
+        context['locations'] = self.locations
+        
+        return context
+

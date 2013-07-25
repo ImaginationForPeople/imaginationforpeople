@@ -130,7 +130,7 @@ Then choose a mirror and copy the link for a 3.* version. Create a solr dir in y
 	web@i4p-prod:~/virtualenvs$ cd solr    
 	web@i4p-prod:~/virtualenvs/solr$ wget http://apache.mirrors.hoobly.com/lucene/solr/3.6.2/apache-solr-3.6.2.tgz   
 	web@i4p-prod:~/virtualenvs/solr$ tar xvzf apache-solr-3.6.2.tgz    
-	web@i4p-prod:~/virtualenvs/solr$ cd apache-solr-3.5.0    
+	web@i4p-prod:~/virtualenvs/solr$ cd apache-solr-3.6.2    
 	web@i4p-prod:~/virtualenvs/solr/apache-solr-3.6.2$ cd example    
 	web@i4p-prod:~/virtualenvs/solr/apache-solr-3.6.2/example$ java -jar start.jar    
 
@@ -142,3 +142,14 @@ Take the output from that command and place it in apache-solr-3.5.0/example/solr
 KNOWN BUG: With the current setting (Haystack 2.* + SolR 3.6), SolR will normally complain it does not find stopword file
 (stopwords_en.txt e.g) in solr conf dir. This path is written in schema.xml. You should then either copy the 
 named file from conf/lang in /conf or change the path in schema.xml
+
+Upgrading the schema after installing solr with the procedure above would go something like
+
+   cd ~/virtualenvs
+   source ../bin/activate
+   ./manage.py build_solr_schema > ../solr/apache-solr-3.6.2/example/solr/conf/schema.xml
+   screen -r running_solr
+   C-c
+   java -jar start.jar
+   C-a d
+   ./manage.py rebuild_index

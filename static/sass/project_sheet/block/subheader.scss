@@ -10,6 +10,22 @@
 	.infotable {
 	    width: 100%;
 
+	    label {
+	    	font-size:1.2rem;
+
+	    	&[for$="DELETE"] {
+	    		display:inline;
+	    	}
+
+	    	&[for$="geom"] {
+	    		display:none;
+	    	}
+	    }
+
+	    a {
+	    	color:white;
+	    }
+
 	    tr {
 		border-bottom: $sizeMarginSmall solid transparent;
 	    }
@@ -27,13 +43,29 @@
 		color: white;
 		padding: $sizePaddingSmall;
 	    }
-
-	    .location-form {
-		label { visibility: hidden; display: none; }
-
-		#id_address {
-		    max-height: $sizeTextNormal * 5;
-		}
+        tr.location {
+            td {
+                margin: 0;
+                border: 0;
+            }
+            div#projectLocationsMap {
+                color: $colorMedDarkGrey;
+                height: 120px;
+                min-height: 100px;
+                width: 260px;
+                min-width: 100px;
+                display: inline-block;
+            }
+        }
+        .location-formset {
+            padding: 5px;
+            label {  }
+            textarea {
+                height: 100px;
+            }
+            #id_address {
+                max-height: $sizeTextNormal * 5;
+            }
 	    }
 	}
 }

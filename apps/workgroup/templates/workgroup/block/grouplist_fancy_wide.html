@@ -6,6 +6,7 @@
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/block/grouplist_fancy_wide.css" />
 {% endaddtoblock %}
 
+{% if project.workgroups.all.count %}
 <div class="project_workgroups clearfix">
 	<h2>{% trans "Related Groups"|capfirst %}</h2>
 	<!--<a class="seemore" href="#">{% trans "See all" %}</a>-->
@@ -22,6 +23,9 @@
 					</div>
 				</a>
 			</li>
+		{% empty %}
+		{% trans "No related groups found." %}
 		{% endfor %}
 	</ul>
 </div>
+{% endif %}
