@@ -22,6 +22,9 @@ from django.contrib.auth.models import User
 from django.utils import translation
 
 from tastypie import fields
+from tastypie.authorization import Authorization
+from tastypie.bundle import Bundle
+from tastypie.exceptions import ApiFieldError
 from tastypie.resources import ModelResource
 from tastypie.utils.urls import trailing_slash
 from tastypie.throttle import CacheDBThrottle
@@ -30,6 +33,7 @@ from apps.i4p_base.models import Location
 from apps.project_sheet.models import Answer, Objective, I4pProject, I4pProjectTranslation, Topic,\
     ProjectPicture, ProjectReference, ProjectVideo
 from apps.project_sheet.utils import get_project_translations_from_parents
+from settings import LANGUAGES
 
 class ProjectReferenceDetailResource(ModelResource):
     class Meta:
@@ -236,3 +240,73 @@ class I4pProjectTranslationListResource(ModelResource):
         kwargs = ModelResource.detail_uri_kwargs(self, bundle_or_obj)
         kwargs["resource_name"] = I4pProjectTranslationResource.Meta.resource_name
         return kwargs
+    
+class I4pProjectEditResource(ModelResource):
+    """
+    Resource used when we have to make edit in database (create, update…) a project sheet
+    """
+    lang = fields.CharField(null = False)
+    class Meta:
+        queryset = I4pProject.objects.all()
+        fields = [ "created", "website", "status" ]
+        include_resource_uri = False
+        authorization = Authorization()
+        throttle = CacheDBThrottle()
+        
+        new_allowed_methods = ['post']
+        
+    def prepend_urls(self):
+        array = []
+        array.append(url(r"^project/new%s" % trailing_slash(), self.wrap_view('dispatch_new'), name="api_dispatch_new"))
+        return array
+    
+    def dispatch_new(self, request, **kwargs):
+        return self.dispatch('new', request, **kwargs)
+    
+    def get_new(self, request, **kwargs):
+        return self.get_list(request, **kwargs)
+        
+    def post_new(self, request, **kwargs):
+        return self.post_list(request, **kwargs)
+    
+    def hydrate_lang(self, bundle):
+        if "lang" not in bundle.data:
+            raise ApiFieldError("The 'lang' parameter is mandatory to create a new project'")
+        elif len(bundle.data["lang"]) < 1:
+            raise ApiFieldError("The 'lang' paramater requires at least one translation")
+        else:
+            translated_bundle = Bundle()
+            translation_resource = I4pProjectTranslationEditResource()
+            
+            valid_lang = 0
+            for language_code, language_data in bundle.data['lang'].iteritems():
+                if language_code not in dict(LANGUAGES):
+                    continue
+                if "title" not in language_data:
+                    raise ApiFieldError("A translation requires a least a 'title' parameter")
+                else:
+                    valid_lang += 1
+                    translated_bundle.data = language_data
+                    translated_bundle.obj = bundle.obj.translate(language_code)
+                    translation_resource.obj_create(translated_bundle)      
+            if valid_lang == 0:
+                raise ApiFieldError("No valid translation sent")
+            
+        return bundle
+
+class I4pProjectTranslationEditResource(ModelResource):
+    """
+    Internal resource to create translations with API POST
+    """
+    innovation_section = fields.CharField(attribute = "innovation_section", null = True)
+    about_section = fields.CharField(attribute = "about_section", null = True)
+    baseline = fields.CharField(attribute = "baseline", null = True)
+    title = fields.CharField(attribute = "title")
+    themes = fields.CharField(attribute = "themes", null = True)
+    class Meta:
+        queryset = I4pProject.objects.all()
+        
+    def obj_create(self, bundle, **kwargs):
+        bundle = self.full_hydrate(bundle)
+        bundle.obj.save()
+        return bundle
