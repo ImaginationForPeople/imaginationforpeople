@@ -344,12 +344,14 @@ INSTALLED_APPS = (
     'cms.plugins.picture',
     'cms.plugins.googlemap',
     'cms.plugins.video',
+    #Deprecated, remove me as soon as all data has been removed
     'cms.plugins.twitter',
     'cms.plugins.teaser',
     'cms.plugins.snippet',
     'cmsplugin_facebook',
     'cmsplugin_iframe',
     'cmsplugin_contact',
+    'cmsplugin_twitter',
 
     'askbot.deps.livesettings',
     'askbot',

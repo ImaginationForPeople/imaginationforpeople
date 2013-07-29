@@ -6,18 +6,22 @@ Parameters for this block
 * project : I4pProject
 
 {% endcomment %}
+{% load cache %}
 {% load i18n %}
 {% load word_boundary_aware_truncate_chars %}
 {% load sekizai_tags %}
 {% load comments %}
 
-{% addtoblock "css" %}
+{% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
 {% endaddtoblock %}
 
-{% addtoblock "js" %}
+{% addtoblock "js" strip %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/project_card.js"></script>
 {% endaddtoblock %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% cache 3600 "project" project.id LANGUAGE_CODE site %}
 
 <div class="project-card">
     {% if project.best_of %}
@@ -57,3 +61,4 @@ Parameters for this block
         <div class="more"><a href="{{ project.get_absolute_url }}">{% trans 'See the project' %}</a></div>
     </div>
 </div>
+{% endcache %}

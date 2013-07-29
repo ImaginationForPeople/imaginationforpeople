@@ -68,7 +68,7 @@ class NewProjectsFeed(Feed):
         return I4pProject.objects.untranslated().use_fallbacks().order_by('-created')[:20]
 
     def link(self):
-        return reverse('project_sheet-list')
+        return reverse('i4p-search')
 
     def item_link(self, item):
         translation.activate(item.language_code)

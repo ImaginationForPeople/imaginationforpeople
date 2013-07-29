@@ -3,17 +3,17 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Translators:
 # Niki Lambropoulos <nikilambropoulos@yahoo.co.uk>, 2012
 # Slyan <maire.sylvain@gmail.com>, 2011
+# vaner <vanessaner@gmail.com>, 2013
 # vaner <vanessaner@gmail.com>, 2011-2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-06-19 16:19+0200\n"
-"PO-Revision-Date: 2013-06-19 13:40+0000\n"
-"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
+"POT-Creation-Date: 2013-07-24 15:50-0400\n"
+"PO-Revision-Date: 2013-07-24 19:52+0000\n"
+"Last-Translator: benoitg <benoitg@coeus.ca>\n"
 "Language-Team: Greek <ip-el@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -76,19 +76,19 @@ msgid ""
 "appropriate."
 msgstr ""
 
-#: forms.py:176
+#: forms.py:175
 msgid "Google geocoder"
 msgstr ""
 
-#: forms.py:181
+#: forms.py:180
 msgid "MapQuest geocoder"
 msgstr ""
 
-#: forms.py:186
+#: forms.py:185
 msgid "Geonames places database"
 msgstr ""
 
-#: forms.py:190
+#: forms.py:189
 msgid "Nominatim database"
 msgstr ""
 
@@ -1143,19 +1143,19 @@ msgstr "Κλείστε αυτό το παράθυρο"
 
 #: templates/base.html:123
 msgid "Enter your email"
-msgstr ""
+msgstr "Εισάγετε την ηλεκτρονική σας διέυθυνση"
 
 #: templates/base.html:124
 msgid "Password"
-msgstr ""
+msgstr "Κωδικός"
 
 #: templates/base.html:126
 msgid "Enter your username"
-msgstr ""
+msgstr "Εισάγετε το όνομα χρήστη"
 
 #: templates/base.html:128
 msgid "Enter your email adress"
-msgstr ""
+msgstr "Εισάγετε την διεύθυνση ηλεκτρονικού ταχυδρομίου"
 
 #: templates/footer.html:54
 #, python-format
@@ -1179,7 +1179,7 @@ msgstr "Είσοδος"
 
 #: templates/header.html:42
 msgid "I lost my password!"
-msgstr ""
+msgstr "Χάσατε τον κωδικό σας;"
 
 #: templates/header.html:50
 msgid "Not a member yet ?"
@@ -1187,7 +1187,7 @@ msgstr "Δεν είσαι ακόμα μέλος;"
 
 #: templates/header.html:51
 msgid "Sign-up with your email:"
-msgstr ""
+msgstr "Συνδεθείτε με τον email σας"
 
 #: templates/header.html:52
 msgid "Sign-up now !"
@@ -1197,30 +1197,30 @@ msgstr ""
 msgid "Sign-up with a social networks:"
 msgstr ""
 
-#: templates/header.html:95 templates/header.html.py:109
+#: templates/header.html:113 templates/header.html.py:127
 #: templates/pages/home-blocks/loginbox.html:88
 msgid "View my profile"
 msgstr "Προβολή του προφίλ μου"
 
-#: templates/header.html:97 templates/backcap/feedback_detail.html:196
+#: templates/header.html:115 templates/backcap/feedback_detail.html:196
 msgid "Log In"
 msgstr "Σύνδεση"
 
-#: templates/header.html:97
+#: templates/header.html:115
 msgid "Register"
 msgstr "Εγγραφή"
 
-#: templates/header.html:105 templates/header.html.py:107
+#: templates/header.html:123 templates/header.html.py:125
 #: templates/pages/home-blocks/loginbox.html:83
 #: templates/pages/home-blocks/loginbox.html:85
 msgid "My messages"
 msgstr "Τα μηνύματά μου"
 
-#: templates/header.html:110 templates/pages/home-blocks/loginbox.html:89
+#: templates/header.html:128 templates/pages/home-blocks/loginbox.html:89
 msgid "Edit my profile"
 msgstr "Επεξεργασία του προφίλ μου"
 
-#: templates/header.html:111 templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:129 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr "Αποσύνδεση"
 
@@ -1487,7 +1487,7 @@ msgstr ""
 
 #: templates/cms/plugins/twitter_recent_entries.html:16
 msgid "we replied to"
-msgstr ""
+msgstr "απαντήσαμε στο "
 
 #: templates/cms/plugins/twitter_recent_entries.html:17
 msgid "we were checking out"
@@ -1560,7 +1560,7 @@ msgstr ""
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:119
 msgid "Discussions"
-msgstr ""
+msgstr "Ερωτήσεις"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:123
 #, python-format
@@ -1643,6 +1643,32 @@ msgstr ""
 #: templates/i4p_base/location/location_form.html:66
 #, python-format
 msgid "Delete location %(count)s"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:6
+#, python-format
+msgid "%(count)s locations "
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:11
+msgid "Show all locations"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:16
+msgid "Show only locations with geometry information missing"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:21
+msgid "Show only locations with address missing"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:26
+msgid "Show only locations with country missing"
+msgstr ""
+
+#: templates/i4p_base/location/location_list.html:35
+#, python-format
+msgid "Edit location %(id)s"
 msgstr ""
 
 #: templates/i4p_base/search/search.html:41
@@ -1849,15 +1875,15 @@ msgstr ""
 
 #: templates/pages/home-blocks/focus-zone.html:29
 msgid "< Previous"
-msgstr ""
+msgstr "Προηγούμενο"
 
 #: templates/pages/home-blocks/focus-zone.html:30
 msgid "Next >"
-msgstr ""
+msgstr "Επόμενο>"
 
 #: templates/pages/home-blocks/last_members.html:4
 msgid "New members"
-msgstr ""
+msgstr "Νέα μέλη"
 
 #: templates/pages/home-blocks/loginbox.html:11
 msgid "Connexion"
@@ -1876,7 +1902,7 @@ msgstr ""
 #: templates/pages/home-blocks/loginbox.html:29
 #: templates/pages/home-blocks/loginbox.html:55
 msgid "close"
-msgstr ""
+msgstr "Κλείσιμο"
 
 #: templates/pages/home-blocks/loginbox.html:38
 msgid "Remember me"
@@ -1908,11 +1934,11 @@ msgstr ""
 
 #: templates/pages/home-blocks/newsletter-popup.html:13
 msgid "Subscribe to the newsletter and receive the latest news."
-msgstr ""
+msgstr "Εγγραφείτε στο newsletter για να λαμβάνετε τα τελευταία νέα"
 
 #: templates/pages/home-blocks/newsletter-popup.html:20
 msgid "Subscribe"
-msgstr ""
+msgstr "Εγγραφή"
 
 #: templates/pages/home-blocks/quick_project.html:4
 msgid "Add your project"
@@ -1920,225 +1946,9 @@ msgstr ""
 
 #: templates/pages/home-blocks/quick_project.html:12
 msgid "Add"
-msgstr ""
+msgstr "Προσθήκη"
 
 #: templates/pages/home-blocks/slider.html:36
 #: templates/pages/home-blocks/slider.html:49
 msgid "Add a project"
 msgstr "Προσθέστε ένα έργο"
-
-#~ msgid "latitude"
-#~ msgstr "latitude"
-
-#~ msgid "longitude"
-#~ msgstr "longitude"
-
-#~ msgid "of citizens from more 30 countries"
-#~ msgstr "Connect with a community of citizens from over 30 countries."
-
-#~ msgid " Detect and develop socially innovative projects."
-#~ msgstr ""
-#~ "A community of imaginative citizens to detect and develop socially "
-#~ "innovative projects."
-
-#~ msgid "Project search"
-#~ msgstr "Project search"
-
-#~ msgid "Pin/Unpin the panel"
-#~ msgstr "Pin/Unpin the panel"
-
-#~ msgid "Help"
-#~ msgstr "Help"
-
-#~ msgid "Project view"
-#~ msgstr "Project view"
-
-#~ msgid "Clear filters"
-#~ msgstr "Clear filters"
-
-#~ msgid "invert"
-#~ msgstr "invert"
-
-#~ msgid "Categories"
-#~ msgstr "Categories"
-
-#~ msgid "Popular project"
-#~ msgstr "Popular project"
-
-#~ msgid "best-of"
-#~ msgstr "best-of"
-
-#~ msgid "progression"
-#~ msgstr "progression"
-
-#~ msgid "Associated team"
-#~ msgstr "Associated team"
-
-#~ msgid "Orphan project"
-#~ msgstr "Orphan project"
-
-#~ msgid ""
-#~ "A community of imaginative citizens to detect and develop socially "
-#~ "innovative projects."
-#~ msgstr ""
-#~ "A community of imaginative citizens to detect and develop socially "
-#~ "innovative projects."
-
-#~ msgid "Read the manifesto"
-#~ msgstr "Read the manifesto"
-
-#~ msgid "About IP"
-#~ msgstr "About IP"
-
-#~ msgid "Follow us"
-#~ msgstr "Follow us"
-
-#~ msgid "Follow us on"
-#~ msgstr "Follow us on"
-
-#~ msgid "Project"
-#~ msgstr "Project"
-
-#~ msgid "History"
-#~ msgstr "History"
-
-#~ msgid "create a new translation"
-#~ msgstr "create a new translation"
-
-#~ msgid "Enter your login"
-#~ msgstr "Enter your login"
-
-#~ msgid "You can also use"
-#~ msgstr "You can also use"
-
-#~ msgid "Interface language"
-#~ msgstr "Interface language"
-
-#~ msgid "My projects"
-#~ msgstr "My projects"
-
-#~ msgid "You have no projects"
-#~ msgstr "You have no projects"
-
-#~ msgid "Close Panel"
-#~ msgstr "Close Panel"
-
-#~ msgid ""
-#~ "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
-#~ "<strong>register</strong> your project"
-#~ msgstr ""
-#~ "You can <strong>contribute</strong> , <strong>share</strong> your ideas,  "
-#~ "<strong>register</strong> your project"
-
-#~ msgid "Report a bug"
-#~ msgstr "Report a bug"
-
-#~ msgid "Network"
-#~ msgstr "Network"
-
-#~ msgid "About"
-#~ msgstr "About"
-
-#~ msgid "Get Involved"
-#~ msgstr "Get Involved"
-
-#~ msgid "About us"
-#~ msgstr "About us"
-
-#~ msgid "Workgroups"
-#~ msgstr "Workgroups"
-
-#~ msgid "Contribute"
-#~ msgstr "Contribute"
-
-#~ msgid "Explore and contribute to social projects around the world."
-#~ msgstr "Explore and contribute to social projects around the world."
-
-#~ msgid "Groups"
-#~ msgstr "Groupes"
-
-#~ msgid "Connect with a community of citizens from over 30 countries."
-#~ msgstr "Connect with a community of citizens from over 30 countries."
-
-#~ msgid "The community"
-#~ msgstr "The community"
-
-#~ msgid "Ressources"
-#~ msgstr "Ressources"
-
-#~ msgid "Resources"
-#~ msgstr "Ressources"
-
-#~ msgid ""
-#~ "Discover the latest tools, methods and debates in the world of social "
-#~ "innovation."
-#~ msgstr ""
-#~ "Discover the latest tools, methods and debates in the world of social "
-#~ "innovation."
-
-#~ msgid "Seeder"
-#~ msgstr "Seeder"
-
-#~ msgid "Q&A"
-#~ msgstr "Q&A"
-
-#~ msgid "projects"
-#~ msgstr "projects"
-
-#~ msgid "Projects &gt;"
-#~ msgstr "Projects &gt;"
-
-#~ msgid "community"
-#~ msgstr "community"
-
-#~ msgid "The community &gt;"
-#~ msgstr "The community &gt;"
-
-#~ msgid "Join the community &gt;"
-#~ msgstr "Join the community &gt;"
-
-#~ msgid "resources"
-#~ msgstr "resources"
-
-#~ msgid ""
-#~ "Discover the latest tools, methods and debates in the world of social "
-#~ "innovation"
-#~ msgstr ""
-#~ "Discover the latest tools, methods and debates in the world of social "
-#~ "innovation"
-
-#~ msgid "Work-in-Progress"
-#~ msgstr "Work-in-Progress"
-
-#~ msgid "Resources (WIP)"
-#~ msgstr "Resources (WIP)"
-
-#~ msgid "Join a group &gt;"
-#~ msgstr "Join a group &gt;"
-
-#~ msgid "Read the manifesto &gt;"
-#~ msgstr "Read the manifesto &gt;"
-
-#~ msgid "About IP &gt;"
-#~ msgstr "About IP &gt;"
-
-#~ msgid "All the projects"
-#~ msgstr "All the projects"
-
-#~ msgid "All the tags"
-#~ msgstr "All the tags"
-
-#~ msgid "Grid view"
-#~ msgstr "Grid view"
-
-#~ msgid "Map view"
-#~ msgstr "Map view"
-
-#~ msgid "My favorites"
-#~ msgstr "My favorites"
-
-#~ msgid "Discover projects"
-#~ msgstr "Recent projects"
-
-#~ msgid "Ressources (WIP)"
-#~ msgstr "Ressources (WIP)"

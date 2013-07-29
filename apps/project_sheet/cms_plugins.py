@@ -35,7 +35,7 @@ class ProjectsForTagPlugin(CMSPluginBase):
     model = TagCMS
     
     def render(self, context, instance, placeholder):
-        context["tag"] = TaggedItem.objects.get_by_model(I4pProjectTranslation, instance.tag)
+        context["project_list"] = [translation.master for translation in TaggedItem.objects.get_by_model(I4pProjectTranslation, instance.tag)]
 
         return context
 

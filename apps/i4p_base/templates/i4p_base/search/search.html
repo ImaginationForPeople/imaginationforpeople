@@ -171,7 +171,7 @@ page : pagination object
                     <div class="categ">
                         <h2>{% trans 'Hot topics' %}</h2>
                         <ul>
-                            {% for tag in project_sheet_tags|slice:"2:11" %}
+                            {% for tag in project_sheet_tags|slice:"1:10" %}
                                 <li><a title="{% blocktrans with count=tag.count %}{{ count }} project sheets{% endblocktrans %}" href="{% url i4p-search %}?tags={{tag|urlencode}}" id="tag_{{tag.id}}">{{ tag|capfirst }}</a></li>
                             {% endfor %}
                              {% comment %}{% show_placeholder "content" "hottags" %} <li><a href="/search/?tags=web">web</a></li> {% endcomment %} 

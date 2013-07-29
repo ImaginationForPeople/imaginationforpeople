@@ -80,12 +80,27 @@
                         <div id="interface_lang">
                             <a class="open-panel" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
                             <ul>
+                            {% spaceless %}
                                 {% get_available_languages as languages %}
                                     {% for lang_code, lang_name in languages %}
                                         {% language lang_code %}
-                                        <li><a href="{{ request.path|chlocale:lang_code }}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                                        {% if current_page %}
+                                            {% comment %}We are on a CMS page, get the right slug for translations{% endcomment %}
+                                            <li><a href="{% page_language_url lang_code %}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                                        {% elif project_translation %}
+                                            {% comment %}Projects currently conflate interface language and data language, only show languages with available project translations (inconsistent, but it beats 404s){% endcomment %}
+                                            {% for translation in project_translation.master.translations.all %}
+                                                {% if translation.language_code == lang_code %} 
+                                                    <li><a href="{% url project_sheet-show project_translation.slug %}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            {% comment %}Fallback to django standard mecanism{% endcomment %}
+                                            <li><a href="{{ request.path|chlocale:lang_code }}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                                        {% endif %}
                                         {% endlanguage %}
                                     {% endfor %}
+                            {% endspaceless %}
                             </ul>
                         </div>
                         <div id="user-bt">
