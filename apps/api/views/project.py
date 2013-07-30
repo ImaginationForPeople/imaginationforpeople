@@ -22,6 +22,7 @@ from django.contrib.auth.models import User
 from django.utils import translation
 
 from tastypie import fields
+from tastypie.authentication import ApiKeyAuthentication
 from tastypie.authorization import Authorization
 from tastypie.bundle import Bundle
 from tastypie.exceptions import ApiFieldError
@@ -250,6 +251,7 @@ class I4pProjectEditResource(ModelResource):
         queryset = I4pProject.objects.all()
         fields = [ "created", "website", "status" ]
         include_resource_uri = False
+        authentication = ApiKeyAuthentication()
         authorization = Authorization()
         throttle = CacheDBThrottle()
         
