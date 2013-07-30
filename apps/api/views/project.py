@@ -264,9 +264,6 @@ class I4pProjectEditResource(ModelResource):
     
     def dispatch_new(self, request, **kwargs):
         return self.dispatch('new', request, **kwargs)
-    
-    def get_new(self, request, **kwargs):
-        return self.get_list(request, **kwargs)
         
     def post_new(self, request, **kwargs):
         return self.post_list(request, **kwargs)
