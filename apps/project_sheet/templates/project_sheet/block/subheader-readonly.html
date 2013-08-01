@@ -200,14 +200,18 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 	<!-- LOCATION/READONLY filled-->
     <a class="map-button" title="{% trans 'locate on map' %}" href="#"><img src="{{ STATIC_URL }}images/project_sheet/map_ico.jpg" /></a>
     {% for location in project_translation.master.locations.all %}
-        <div class="location-address">
-			{{ location.address }}
-		</div>
-		<div class="location-country">
-			{% if location.country %}
-			<img src="{{ location.country.flag }}" alt="{{ location.country }}"/> {{ location.country.name }}
-			{% endif %}
-		</div>
+      {% if forloop.counter <= 1 %}
+         <div class="location-address">
+			   {{ location.address }}
+		   </div>
+		   <div class="location-country">
+			   {% if location.country %}
+			   <img src="{{ location.country.flag }}" alt="{{ location.country }}"/> {{ location.country.name }}
+			   {% endif %}
+		   </div>
+		 {% elif forloop.counter == 2 %}
+		   <br/ ><a class="map-button">{% trans "More"%}</a>
+		 {% endif %}
     {% endfor %}
 {% else %}
 <em>{% trans 'unknown'|capfirst %}</em>
