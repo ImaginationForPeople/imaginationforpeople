@@ -83,9 +83,9 @@
                             </div>
                             <div class="bottom">
                                 <ul>
-                                    <li class="msg"><a href="#">{% trans "Messages" %}</a></li>
-                                    <li class="proj"><a href="#">{% trans "My projects" %}</a></li>
-                                    <li class="fav"><a href="#">{% trans "My favourites" %}</a></li>
+                                    <li class="msg"><a href="{% url userena_umessages_list %}">{% trans "Messages" %}</a></li>
+                                    <li class="proj"><a href="{% url userena_profile_detail request.user %}">{% trans "My projects" %}</a></li>
+                                    <li class="fav"><a href="{% url userena_profile_detail request.user %}">{% trans "My favourites" %}</a></li>
                                 </ul>
                             </div>
                             <a id="logout-bt" href="{% url userena_signout %}">{% trans 'Log out' %}</a>

@@ -138,7 +138,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 	{% if project_translation %}
 	    <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"></a>
 	{% endif %}	
-	<div class="infolocationmap">
+	
 		{% if project_translation.master.locations.all %}
     {% addtoblock "css" strip %}
         {% leaflet_css plugins="markercluster" %}
@@ -177,8 +177,6 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         map.addLayer(markers);
         
         if (numLocations == 1) {
-            
-            
             if (marker != null) {
                 map.setView(marker.getLatLng(),14);
                 //This doesn't autopan if we don't give a delay
@@ -188,12 +186,13 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         else {
             map.fitBounds(markers.getBounds());
         }
+        $('#projectLocationsMap, .infocard a.back').hide();   
     }
 </script>
     	{% endlocalize %}
 	{% endif %}
 	<a class="back" href="#">&larr; {% trans "back to informations" %}</a>
-	</div>
+	
 	<table class="infotable">
 		<tr class="infotable-location location">
 			<td colspan=2>

@@ -167,6 +167,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
             top: 0;
             @include i4p-transition(all .5s ease);
             width: 70px;
+            z-index:2000;
         }
 
         .infotable {
