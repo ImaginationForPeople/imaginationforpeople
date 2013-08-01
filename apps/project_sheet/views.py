@@ -198,6 +198,7 @@ class ProjectView(TemplateView):
         prop_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-help"), object_id=self.project_translation.pk).count() 
         call_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-need"), object_id=self.project_translation.pk).count()
         need_count = prop_count + call_count
+
         
         context.update({
             'topics': self.topics,
@@ -209,7 +210,7 @@ class ProjectView(TemplateView):
             'related_projects': related_projects,
             'discussion_count': discussion_count,
             'need_count': need_count,
-        })
+          })
         
 
         return context

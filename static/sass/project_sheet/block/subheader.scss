@@ -27,34 +27,27 @@
 	    }
 
 	    tr {
-		border-bottom: $sizeMarginSmall solid transparent;
+			border-bottom: 3px solid black;
 	    }
 
 	    th {
 		@include i4p-font-title($sizeTextNormal);
 		@include box-sizing(border-box);
-
-		padding: $sizePaddingSmall;
+		width:72px;
+		padding:8px 5px;
 		vertical-align: top; // FIXME: should be middle in the future
 		text-align: left;
+		font-size:1.2rem;
 	    }
 
 	    td {
 		color: white;
-		padding: $sizePaddingSmall;
+		padding:0 0 0 5px;
 	    }
         tr.location {
             td {
                 margin: 0;
                 border: 0;
-            }
-            div#projectLocationsMap {
-                color: $colorMedDarkGrey;
-                height: 120px;
-                min-height: 100px;
-                width: 260px;
-                min-width: 100px;
-                display: inline-block;
             }
         }
         .location-formset {
@@ -68,5 +61,21 @@
             }
 	    }
 	}
+
+
+
+		div#projectLocationsMap {
+            color: $colorMedDarkGrey;
+            min-height: 230px;
+            min-width: 300px;
+            display: block;
+        }
+
+        a.back {
+        	color:white;
+        	font-size:0.9em;
+        	font-style:italic;
+        }
+	
 }
 

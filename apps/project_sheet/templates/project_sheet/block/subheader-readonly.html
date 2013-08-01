@@ -20,6 +20,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 
 <div class="span8 subheader">
 	<div class="background">
+		<a href="{% url project_sheet-instance-gallery project_translation.slug %}" class="i4p-button">{% trans "Edit the project gallery" %}</a>
 		{% comment %} FIXME: cover image is simply the first of the list, not a special/selected one {% endcomment %}
 
         {% if project_translation.master.pictures.count %}
@@ -72,7 +73,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			{% else %}
 			<!-- TITLE/READONLY empty -->
 
-			<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'title' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/base/edit.png"/></a>
+			<a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-edit-field topic.slug 'title' %}" class="button editing-button right"><img src="{{ STATIC_URL }}images/project_sheet/edit_ico.png"/></a>
 			{% trans 'my project title'|capfirst %}
 
 			{% endif %}
@@ -121,6 +122,10 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			{% endif %}	
 		</div><!-- /BASELINE -->
 
+		<div class="links">
+			<a class="video-link" href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "See the video" %}</a> <span>|</span>
+			<a data-slider-index="1" data-toggle="i4p-gallery-modal" data-slider-view-id="gallery-modal-view-1" data-modal-target-id="gallery-1" href="#">{% trans "See the gallery" %}</a>
+		</div>
 		<!-- FIXME: missing long description of the project for header -->
 		<div class="details"></div>
 	</div> <!-- .overlay -->
@@ -129,11 +134,12 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 <div class="span4 infocard">
 	<a name="project-information"></a>
 	<h2><i class="sheet-information-white"></i>{% trans "Information" %}</h2>
-	<table class="infotable">
-		<tr class="infotable-location location">
-			<td colspan=2>
 
-{% if project_translation.master.locations.all %}
+	{% if project_translation %}
+	    <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"></a>
+	{% endif %}	
+	
+		{% if project_translation.master.locations.all %}
     {% addtoblock "css" strip %}
         {% leaflet_css plugins="markercluster" %}
     {% endaddtoblock %}
@@ -141,7 +147,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         {% comment %}
         Do NOT put this in the js block, it does
         not tolerate compress
-        {% endcomment %} 
+        {% endcomment %}
         {% leaflet_js plugins="markercluster" %}
     {% endaddtoblock %}
     {% leaflet_map "projectLocationsMap" %}
@@ -171,44 +177,41 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         map.addLayer(markers);
         
         if (numLocations == 1) {
-            
-            
             if (marker != null) {
                 map.setView(marker.getLatLng(),14);
                 //This doesn't autopan if we don't give a delay
-                setTimeout(function(){          marker.openPopup();}, 250);
+                setTimeout(function(){ marker.openPopup();}, 250);
             }
         }
         else {
             map.fitBounds(markers.getBounds());
         }
+        $('#projectLocationsMap, .infocard a.back').hide();   
     }
 </script>
-    {% endlocalize %}
-				<!-- LOCATION/READONLY filled-->
-                {% for location in project_translation.master.locations.all %}
-				    {% if not location.geom %}
-                    <div class="location-address">
-    					{{ location.address }}
-    				</div>
-    				<div class="location-country">
-    					{% if location.country %}
-    					<img src="{{ location.country.flag }}" alt="{{ location.country }}"/> {{ location.country.name }}
-    					{% endif %}
-    				</div>
-                    {% endif %}
-                {% endfor %}
+    	{% endlocalize %}
+	{% endif %}
+	<a class="back" href="#">&larr; {% trans "back to informations" %}</a>
+	
+	<table class="infotable">
+		<tr class="infotable-location location">
+			<td colspan=2>
+{% if project_translation.master.locations.all %}
+	<!-- LOCATION/READONLY filled-->
+    <a class="map-button" title="{% trans 'locate on map' %}" href="#"><img src="{{ STATIC_URL }}images/project_sheet/map_ico.jpg" /></a>
+    {% for location in project_translation.master.locations.all %}
+        <div class="location-address">
+			{{ location.address }}
+		</div>
+		<div class="location-country">
+			{% if location.country %}
+			<img src="{{ location.country.flag }}" alt="{{ location.country }}"/> {{ location.country.name }}
+			{% endif %}
+		</div>
+    {% endfor %}
 {% else %}
 <em>{% trans 'unknown'|capfirst %}</em>
-<!-- LOCATION/READONLY/EMPTY mode -->
-                
-                {% comment %}<a title="{% trans 'Edit'|capfirst %}" href="#FIXME: no edit url defined for location ?" class="button editing-button right"></a>
-                We now have a url now to edit locations individually:  see i45_base/url.py, but not as a group.
-                {% endcomment %}
 {% endif %}
-{% if project_translation %}
-                <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"></a>
-{% endif %}		
 			</td>
 		</tr>
 
@@ -223,15 +226,17 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 				{% else %}
 				   {% trans 'unknown'|capfirst %}
 				{% endif %}
-            {% if project_translation %}
-				<a title="{% trans 'Edit'|capfirst %}" 
-					href="{% url project_sheet-instance-edit-info project_translation.slug %}" 
-					class="button editing-button right"
-					></a>
 
-				{% else %}<!-- WEBSITE/READONLY empty -->
-				   {% trans 'unknown'|capfirst %}
-				{% endif %}
+				{% comment %}
+	            	{% if project_translation %}
+					<a title="{% trans 'Edit'|capfirst %}" 
+						href="{% url project_sheet-instance-edit-info project_translation.slug %}" 
+						class="button editing-button right"
+						></a>
+					{% else %}<!-- WEBSITE/READONLY empty -->
+					   {% trans 'unknown'|capfirst %}
+					{% endif %}
+				{% endcomment %}
 			</td>
 		</tr>
 		<!-- FIXME: re-enable whell data will be in the object model
