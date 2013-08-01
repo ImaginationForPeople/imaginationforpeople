@@ -49,14 +49,6 @@
                 margin: 0;
                 border: 0;
             }
-            div#projectLocationsMap {
-                color: $colorMedDarkGrey;
-                height: 230px;
-                min-height: 230px;
-                width: 300px;
-                min-width: 100px;
-                display: inline-block;
-            }
         }
         .location-formset {
             padding: 5px;
@@ -75,11 +67,9 @@
 
 		div#projectLocationsMap {
             color: $colorMedDarkGrey;
-            height: 230px;
             min-height: 230px;
-            width: 300px;
-            min-width: 100px;
-            display: inline-block;
+            min-width: 300px;
+            display: block;
         }
 
         a.back {
