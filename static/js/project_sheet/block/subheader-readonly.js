@@ -13,9 +13,11 @@ $(document).ready(function () {
 	});
 
 	if($('#gallery-modal-view-1 .video-item').length > 0) {
-		index = $('#gallery-modal-view-1 .video-item:first').attr('data-slider-index');
+	   console.log("There's videos!");
+		var index = $('#gallery-modal-view-1 .video-item:first').attr('data-slider-index');
 		$('.links .video-link').attr('data-slider-index',index);
 	} else {
+	   console.log("No video!");
 		$('.links .video-link').hide();
 	}
 });
