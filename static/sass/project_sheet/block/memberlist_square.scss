@@ -134,7 +134,7 @@ $memberListFancySquare_sizeHeight: 52px;
     height: 70px;
     margin-bottom:12px;
     overflow: hidden;
-    background-color: $colorLightGrey;
+    background-color: #f2f2f2;
 
     padding-top: 10px;
     padding-bottom: 10px;
@@ -142,8 +142,10 @@ $memberListFancySquare_sizeHeight: 52px;
 
     // hide block before anythingSlider initialization
     & > .memberlist-slider {
-	visibility: hidden;
-	display: none;
+		height:54px;
+		overflow:hidden;
+		margin:0 0 0 10px;
+		background:image-url('project_sheet/members_empty.png') no-repeat -8px -8px;
 	// FIXME: add a loader as a background image
     }
 
@@ -192,16 +194,6 @@ $memberListFancySquare_sizeHeight: 52px;
 		&.cloned {
 		    visibility: hidden;
 		    opacity: 0;
-		}
-
-		.icomember {
-			display:block;
-			position:absolute;
-			top:34px;
-			right:7px;
-			background:image-url('project_sheet/icomember.png') no-repeat top left;
-			width:10px;
-			height:14px;
 		}
 	    }
 	}
@@ -270,7 +262,7 @@ $memberListFancySquare_sizeHeight: 52px;
 
 	}
     }
-
+@include border-radius($sizeRadiusSmall);
     input {
 	display: none;
     }
@@ -280,6 +272,55 @@ $memberListFancySquare_sizeHeight: 52px;
 	display: none;
     }
 
+
+
+	.icomember {
+		display:block;
+		position:absolute;
+		top:34px;
+		right:7px;
+		background:image-url('project_sheet/icomember.png') no-repeat top left;
+		width:10px;
+		height:14px;
+	}
+
+	.see-all-button {
+		position:absolute;
+		overflow:hidden;
+		z-index:1000;
+		width:25px;
+		height:100%;
+		top:0;
+		right:0;
+		background:#303030;
+		@include border-radius(0 $sizeRadiusSmall $sizeRadiusSmall 0);
+		@include i4p-transition(all .5s ease);
+
+		a {
+			color:white;
+			position:absolute;
+			right:0;
+			top:0;
+			display:block;
+			height:100%;
+			background:image-url('project_sheet/members_seeall_bt.png') no-repeat 3px 1px;
+			text-decoration:none;
+
+			span {
+				display:block;
+				height:100%;
+				padding:20px 70px 0 80px;
+				width:300px;
+				@include box-sizing(border-box);
+				background:image-url('project_sheet/members_seeall_arrow.png') no-repeat 98% 30px;
+			}
+		}
+
+		&:hover {
+			width:100%;
+			@include border-radius($sizeRadiusSmall);
+		}
+	}
 }
 
 // FIXME: move block rules elsewhere
@@ -326,13 +367,13 @@ $memberListFancySquare_sizeHeight: 52px;
 
     .join-link {
     	display:block;
-    	width:138px;
+    	width:135px;
     	border:1px solid #dadada;
     	height:27px;
     	line-height:27px;
     	color:#706f6f;
     	float:left;
-    	margin:0 10px 0 0;
+    	margin:0 22px 0 0;
     	@include i4p-background-vertical-gradient(#f1f1f1, #dadada);
     	@include border-radius(4px);
 
@@ -408,6 +449,6 @@ $memberListFancySquare_sizeHeight: 52px;
     }
 
     p.counts {
-    	font-size:1.1rem;
+    	font-size:1.25rem;
     }
 }
