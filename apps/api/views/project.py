@@ -31,7 +31,7 @@ from tastypie.utils.urls import trailing_slash
 from tastypie.throttle import CacheDBThrottle
 
 from apps.i4p_base.models import Location
-from apps.project_sheet.models import Answer, Objective, I4pProject, I4pProjectTranslation, Topic,\
+from apps.project_sheet.models import Answer, I4pProject, I4pProjectTranslation, Topic,\
     ProjectPicture, ProjectReference, ProjectVideo, Site, SiteTopic
 from apps.project_sheet.utils import get_project_translations_from_parents
 from settings import LANGUAGES
