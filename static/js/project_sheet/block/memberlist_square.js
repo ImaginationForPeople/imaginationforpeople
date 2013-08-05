@@ -95,7 +95,7 @@ $(document).ready(function () {
 	// Set up the slider
 	//
 	// enable lower slider
-	$('*[data-toggle="i4p-memberlist-slider"]').each(function () {
+	/*$('*[data-toggle="i4p-memberlist-slider"]').each(function () {
 		var memberSlider = this;
 		//	viewId = $(this).attr('data-slider-view-id');
 
@@ -123,6 +123,7 @@ $(document).ready(function () {
 		jdebug('initialized bottom slider !');
 
 	}); // lower slider init
-
+	*/
+	
 	$('.memberlist-slider .team_member').append('<span class="icomember">&nbsp;</span>');
 });

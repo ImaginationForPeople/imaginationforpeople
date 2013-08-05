@@ -1,9 +1,9 @@
 {% load i18n %}
     <div class="search">
         
-        <form action="{% url i4p-search %}">
-            <input type="submit" value="&nbsp;" />            
-            <input id="id_text" type="text" maxlength="100" name="q">
+        <form action="{% url i4p-search %}">    
+            <input id="id_text" type="text" maxlength="100" placeholder="{% trans 'Search' %} ..." name="q">
+            <input type="submit" value="{% trans 'Search' %}" />        
         </form>
         
     </div>
