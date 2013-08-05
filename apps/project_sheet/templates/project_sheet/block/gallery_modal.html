@@ -63,7 +63,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 
 					{% comment %} VIDEO LOOP {% endcomment %}
 					{% for project_video in project_translation.master.videos.all %}
-					<li data-slider-index="{{ forloop.counter }}">
+					<li data-slider-index="{{ project.pictures.all|length|add:forloop.counter }}" class="video-item">
 						{% oembed 520x400 %}{{ project_video.video_url }}{% endoembed %}
 						<div class="description">{{project_video.desc}}</div>
 						<div class="source">{{project_video.source}}</div>
