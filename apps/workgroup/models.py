@@ -22,6 +22,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.gis.db import models as geomodels
+from cms.models.fields import PlaceholderField
 
 from askbot.models.question import Thread
 from autoslug.fields import AutoSlugField
@@ -85,6 +86,8 @@ class WorkGroup(models.Model):
 
     picture = models.ImageField(upload_to=get_grouppicture_path, null=True, blank=True)
 
+    sidebar = PlaceholderField('Sidebar content')
+    
     outside_url = models.URLField(_('External URL'),
                                   null=True,
                                   blank=True,

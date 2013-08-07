@@ -16,6 +16,7 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 from django.contrib.gis import admin
+from cms.admin.placeholderadmin import PlaceholderAdmin
 
 import autocomplete_light
 from django_mailman.models import List
@@ -25,7 +26,7 @@ from .models import WorkGroup
 class MailingListAdmin(admin.ModelAdmin):
     model = List
     
-class WorkGroupAdmin(admin.OSMGeoAdmin):
+class WorkGroupAdmin(admin.OSMGeoAdmin, PlaceholderAdmin):
     form = autocomplete_light.modelform_factory(WorkGroup)
 
 
