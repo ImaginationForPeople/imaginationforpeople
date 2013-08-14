@@ -3,8 +3,8 @@
 $(document).ready(function () {
 	// COL
 	$('#col section .inner').not(':first-child').hide();
-	$('#col section header').click(function(){
-		$(this).siblings('.inner').slideToggle();
+	$('#col section header h1').click(function(){
+		$(this).parent('header').siblings('.inner').slideToggle();
 	});
 	$('.panel1').hide();
 	$('#filter-button, #more-search .switch').click(function(){

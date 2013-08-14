@@ -1,4 +1,4 @@
-﻿{% extends "base.html" %}
+﻿{% extends "cms_base.html" %}
 {% load i18n %}
 {% load compress %}
 {% load cms_tags %}  
@@ -12,12 +12,6 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/anythingslider.css" type="text/css" media="screen" />
     {% endcompress %}
 {% endblock %}
-
-
-    {% block meta_keywords %}{% page_attribute meta_description %}{% endblock %}
-    {% block meta_desc %}{% page_attribute meta_keywords %}{% endblock %}" /> 
-    {% block title %}{{ site.name }} | {% trans 'identify and support imaginative social projects'|capfirst%}{% endblock %}
-
 
 {% block extra_head %}
   {{ block.super }}
@@ -132,7 +126,7 @@
 
 
 
-{% block nav %}
+{% block subheader %}
     {% cms_toolbar %}
     <div id="homepage-banner-outer-container">
         {% include "pages/block/homepage-video-lightbox.html" %}
@@ -184,7 +178,7 @@
     
     {% include "pages/home-blocks/focus-zone.html" %}     
 
-{% endblock %}
+{% endblock subheader %}
 
 {% block content %}
 

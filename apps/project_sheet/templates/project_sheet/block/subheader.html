@@ -16,10 +16,10 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader.js");
 </script>
 {% endaddtoblock %}
 
-<div class="project-subheader {% if project_location_form or project_info_form %}readwrite{%else%}readonly{%endif%}">
+<div class="project-subheader {% if project_location_formset or project_info_form %}readwrite{%else%}readonly{%endif%}">
 	<div class="container">
 		<div class="row">
-			{% if project_location_form or project_info_form %}
+			{% if project_location_formset or project_info_form %}
 				{% include "project_sheet/block/subheader-readwrite.html" %}
 			{% else %}
 				{% include "project_sheet/block/subheader-readonly.html" %}

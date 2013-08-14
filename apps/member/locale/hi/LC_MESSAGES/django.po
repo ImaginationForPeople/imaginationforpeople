@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-03-08 17:12-0500\n"
-"PO-Revision-Date: 2013-02-15 22:38+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"POT-Creation-Date: 2013-07-24 15:50-0400\n"
+"PO-Revision-Date: 2013-06-19 14:22+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Hindi <ip-hi@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -99,20 +99,22 @@ msgstr ""
 msgid "New message from %(sender)s on Imagination For People"
 msgstr ""
 
-#: views.py:184
+#: views.py:186
 msgid "Your profile has been updated."
 msgstr ""
 
+#: templates/member/block/memberfanlist_square.html:66
 #: templates/member/block/memberlist_square.html:60
 msgid "Contact"
 msgstr ""
 
+#: templates/member/block/memberfanlist_square.html:69
 #: templates/member/block/memberlist_square.html:63
 msgid "Profile"
 msgstr ""
 
 #: templates/member/block/memberlist_square.html:69
-msgid "No user associated with this project."
+msgid "No members yet."
 msgstr ""
 
 #: templates/umessages/base_message.html:21
@@ -346,6 +348,44 @@ msgstr ""
 msgid "No contributions yet."
 msgstr ""
 
+#: templates/userena/profile_detail.html:59
+#, python-format
+msgid ""
+"\n"
+"                        I am a fan of the following project\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        I am a fan of the following %(num_fans)s projects\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/userena/profile_detail.html:65
+#, python-format
+msgid ""
+"\n"
+"                        He/She is a fan of the following project\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        He/She is a fan of the following %(num_fans)s projects\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/userena/profile_detail.html:83
+#, python-format
+msgid ""
+"\n"
+"                    I am <a href=\"%(unfan_url)s\"> no longer a fan</a>.\n"
+"                "
+msgstr ""
+
+#: templates/userena/profile_detail.html:90
+msgid "This user isn't fan of any project yet."
+msgstr ""
+
 #: templates/userena/profile_idbar.html:15
 #: templates/userena/profile_idbar.html:17
 msgid "Your avatar"
@@ -360,11 +400,11 @@ msgstr ""
 msgid "Imagination For People Community"
 msgstr ""
 
-#: templates/userena/profile_list.html:27
+#: templates/userena/profile_list.html:29
 msgid "Community"
 msgstr ""
 
-#: templates/userena/profile_list.html:36
+#: templates/userena/profile_list.html:38
 #, python-format
 msgid ""
 "\n"

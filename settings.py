@@ -13,6 +13,12 @@ from django.utils.translation import ugettext_lazy as _
 
 import apps.i4p_base.mdx_i4p as mdx_i4p
 
+# Default values for site_settings
+
+OVERRIDE_CACHE_BACKEND = None
+GEONAMES_USERNAME = None
+MAPQUEST_API_KEY = None
+
 # Import settings for the given site
 from site_settings import *
 
@@ -138,20 +144,22 @@ SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 CACHE_PREFIX ='imaginationforpeople'
 
 # Cache
-if DEBUG:
-    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
-else:
-    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
-CACHES = {
-    'default': {
-        'BACKEND': CACHE_BACKEND,
-    },
-    'askbot': {
-        #XXX: DO NOT CHANGE THIS SETTING
-       'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache',
+if OVERRIDE_CACHE_BACKEND:
+    CACHES = {
+    'default': OVERRIDE_CACHE_BACKEND,
+    'askbot': OVERRIDE_CACHE_BACKEND
     }
-          
-}
+else:
+    if DEBUG:
+        CACHES = {
+        'default': {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'},
+        'askbot': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+        }
+    else:
+        CACHES = {
+        'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'},
+        'askbot': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+        }
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -336,12 +344,14 @@ INSTALLED_APPS = (
     'cms.plugins.picture',
     'cms.plugins.googlemap',
     'cms.plugins.video',
+    #Deprecated, remove me as soon as all data has been removed
     'cms.plugins.twitter',
     'cms.plugins.teaser',
     'cms.plugins.snippet',
     'cmsplugin_facebook',
     'cmsplugin_iframe',
     'cmsplugin_contact',
+    'cmsplugin_twitter',
 
     'askbot.deps.livesettings',
     'askbot',
@@ -356,6 +366,10 @@ INSTALLED_APPS = (
     'categories',
     'categories.editor',
 
+    'django.contrib.gis',
+    'leaflet',
+    'floppyforms',
+    
     # Internal Apps
     'apps.forum',
     'apps.i4p_base',
@@ -366,6 +380,7 @@ INSTALLED_APPS = (
     'apps.workgroup',
     'apps.tags',
     'apps.forum',
+    'apps.map',
 )
 
 # django-ajax_select
@@ -486,6 +501,27 @@ LOCALE_INDEPENDENT_PATHS = (
 ## Flags
 COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
 
+### HAYSTACK
+if (not DEBUG) or USESOLR:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+           'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+          'URL': 'http://127.0.0.1:8983/solr',           
+       },
+   }
+elif DEBUG:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+         'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
+         'STORAGE': 'file',
+         'POST_LIMIT': 128 * 1024 * 1024,
+         'INCLUDE_SPELLING': True,
+         'BATCH_SIZE': 500,
+       },
+   }
+
+HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
 
 ### STATIC FILES
 STATIC_URL = '/static/'
@@ -597,9 +633,23 @@ ACTSTREAM_SETTINGS = {
     'GFK_FETCH_DEPTH': 1,
 }
 
+
+
 # WIKI
 markdown_i4p = mdx_i4p.makeExtension()
 WIKI_MARKDOWN_EXTENSIONS = ['extra', 'toc', markdown_i4p]
+
+#LEAFLET
+LEAFLET_CONFIG = {
+    'TILES_URL': 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'PLUGINS': {
+        'markercluster': {
+            'css': [os.path.join(STATIC_URL, 'css/MarkerCluster.css'), 
+                    os.path.join(STATIC_URL, 'css/MarkerCluster.Default.css')],
+            'js': os.path.join(STATIC_URL, 'js/leaflet.markercluster.js'),
+        },
+    }
+}
 
 LOGGING = {
     'version': 1,

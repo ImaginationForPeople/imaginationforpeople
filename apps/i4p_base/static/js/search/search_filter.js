@@ -1,5 +1,25 @@
 $(document).ready(function(){ 
+   "use strict";
+   if (!window.console) console = {};
+   if (!window.console.log) console.log = function () { };
    // mirror filter tags in URL to tag list
+    // REBUILDING TAGS LIST with values in hidden input
+   function rebuild_tag_list(){
+      console.log('rebuilding tag list');
+      var tokens = $('#id_tags').val().toLowerCase().split(" ");
+      // replace elements in tag lists
+      $('#tags-list > ul').empty();
+      $.each(tokens, function(){
+            if (this.length > 0){
+               console.log('= not space!= ');
+               $('#tags-list > ul').append("<li><a href='javascript:;'>"+this.toLowerCase()+"</a></li>");
+            }
+       });
+       if ($('#tags-list > ul > li').length === 0){
+         $('#tags-list > ul').hide();
+       }
+       else {$('#tags-list > ul').show();}       
+   }
    rebuild_tag_list();
    
    function blockPanel(){
@@ -8,7 +28,7 @@ $(document).ready(function(){
 						                border: '1px solid #676665', 
 						                padding: '1px', 
 						                backgroundColor: '#000', 
-						                opacity: .6,
+						                opacity: '.6',
 						                color: '#fff' 
 						            }});
     }
@@ -18,23 +38,27 @@ $(document).ready(function(){
       var get_data = $("#search_form").serialize();
       var callback_url = $("#search_form").attr("action")+"?"+get_data;
       var updated_bar_url = callback_url; // to update the bar url according to selected filters FIXME when a proper templating mechanism will be used with specific Json callback
+      console.log("callback URL= " + callback_url);
       $.get(callback_url, function(data) {
          //replacing project listing
          var projects_list = $(data).find('#projects-list').children();
          $('#projects-list').empty().append(projects_list);
+         // replacing pagination
+         var pagination = $(data).find('div.search_pagination').children();         
+         $('div.search_pagination').empty().append(pagination);
          // update projects count
          $("#projects").empty().append($(data).find('#projects').children());
          // Update style for each element of class .hover
         $('.project-card .hover').hide();
-         // update URL
-         var History = window.History; // Note: We are using a capital H instead of a lower h
+         // update URL         
          if ( !History.enabled ) {// History.js is disabled for this browser. This is because we can optionally choose to support HTML4 browsers or not.
+            $('#col').unblock();
             return false;}
+         var History = window.History; // Note: We are using a capital H instead of a lower h
          History.pushState('', $('title').text(), updated_bar_url); // logs {state:3}, "State 3", "?state=3"
          $('#col').unblock();
       });
-   }
-   
+   }   
    // ADDING TAGS to id_tags value attribute when entering text, separated by space
    $("#tag-search").keydown(function(e){if(e.keyCode == 13){e.preventDefault();}}); //prevent form submission
    $("#tag-search").keyup(function(event){
@@ -42,8 +66,11 @@ $(document).ready(function(){
         event.preventDefault();//prevent form submission
         var tokens = $("#tag-search").val().toLowerCase().split(" ");              
         $.each(tokens, function(){
+            //check for duplicate
             var tmp = $('#id_tags').val();
-            $('#id_tags').val($.trim(tmp+" "+this));
+            if (tmp.search(this) == -1){
+               $('#id_tags').val($.trim(tmp+" "+this));
+            }
         });
         // empty text field and 
         $("#tag-search").val('');  
@@ -65,35 +92,45 @@ $(document).ready(function(){
    $('#erase-tags').click(function(){
       $('#id_tags').val("");
       rebuild_tag_list();
-   });
-   // REBUILDING TAGS LIST with values in hidden input
-   function rebuild_tag_list(){
-      var tokens = $('#id_tags').val().toLowerCase().split(" ");
-      // replace elements in tag lists
-      $('#tags-list > ul').empty();
-      $.each(tokens, function(){
-            if (this.length > 0){
-               console.log('= not space!= ');
-               $('#tags-list > ul').append("<li><a href='javascript:;'>"+this.toLowerCase()+"</a></li>");
-            }
-       });
-          
-   }
-   // LOCALISATION
-   $('#id_country').attr('name', 'location'); // change name to match filter name FIXME
-   $('#id_country').addClass("select");
-   $('#id_country').change(function(){
+      refresh_results();
+   });  
+   // countries      
+   $('#id_countries').change(function(){
       refresh_results();
    });
-   
+   $('#countries_refresh').click(function(){
+      $('#id_countries').prop('selectedIndex',0);
+      refresh_results();
+   });   
    //LANGUAGE
    $('#id_language').change(function(){
+      refresh_results();
+   });
+   $('#language_refresh').click(function(){
+      $('#id_language').prop('selectedIndex',0);
       refresh_results();
    });
    // Triger refresh when a checkbox is selected
    $('[type=checkbox]').click(function(event){
       console.log($("#search_form").serialize());
-      refresh_results();
-   
-   });   
+      refresh_results();   
+   });
+   // refresh card status
+   $('#file-status_refresh').click(function(){
+      $('[type=checkbox]').removeAttr('checked');    
+      refresh_results();   
+   });
+   // Refresh all filters
+   $('#reset_all_filters').click(function(){
+      //reset tags
+      $('#id_tags').val("");
+      rebuild_tag_list();
+      //countries
+      $('#id_countries').prop('selectedIndex',0);
+      //language
+      $('#id_language').prop('selectedIndex',0);
+      //Project card status
+      $('[type=checkbox]').removeAttr('checked');    
+      refresh_results();   
+   });      
 });

@@ -27,7 +27,6 @@ from hvad.forms import TranslatableModelForm
 
 from apps.forum.forms import SpecificQuestionForm
 from apps.forum.models import SpecificQuestionType
-from apps.i4p_base.models import Location
 
 from .models import I4pProject, I4pProjectTranslation, ProjectPicture, \
     ProjectVideo, ProjectReference, ProjectFan, ProjectMember, Answer
@@ -64,16 +63,6 @@ class I4pProjectInfoForm(forms.ModelForm):
         model = I4pProject
         fields = ('website', 'status')
 
-
-class I4pProjectLocationForm(forms.ModelForm):
-    """
-    Edit the location info of a Project
-    """
-    class Meta:
-        model = Location
-        fields = ('address', 'country',)
-
-
 class I4pProjectStatusForm(forms.ModelForm):
     """
     Edit the status of a Project
@@ -107,8 +96,8 @@ class ProjectMemberAddForm(forms.ModelForm):
         model = ProjectMember
         fields = ('role', 'comment')
 
-    role = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _("Specify your role in the project")}))
-    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly your work with this project...")}))
+    role = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _("Specify your role in the project")}), required=False)
+    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly your work with this project...")}), required=False)
 
 ProjectMemberFormSet = modelformset_factory(ProjectMember, 
                                             extra=0, 

@@ -56,7 +56,7 @@ from apps.i4p_base.managers import CurrentSiteTranslationManager
 add_introspection_rules([], ["^licenses\.fields\.LicenseField"])
 
 VERSIONED_FIELDS = {
-    'I4pProject' : ['author', 'objectives', 'website', 'project_leader_info', 'location', 'status', 'best_of'],
+    'I4pProject' : ['author', 'objectives', 'website', 'project_leader_info', 'locations', 'status', 'best_of'],
     'I4pProjectTranslation': ['title', 'baseline', 'language_code', 'about_section', 'themes', 'completion_progress', 'master'],
     'AnswerTranslation': ['content', 'master']
 }
@@ -165,11 +165,10 @@ class I4pProject(TranslatableModel):
     project_leader_info = models.TextField(verbose_name=_('project leader information'),
                                            null=True, blank=True)
 
-    location = models.OneToOneField(Location,
-                                    verbose_name=_('location'),
-                                    null=True, blank=True
+    locations = models.ManyToManyField(Location,
+                                    verbose_name=_('locations'),
                                     )
-
+    
     references = models.ManyToManyField(ProjectReference, null=True, blank=True)
 
     topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'),

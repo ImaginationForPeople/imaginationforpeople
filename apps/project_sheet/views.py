@@ -25,6 +25,8 @@ except ImportError:
     # Python < 2.7 compatibility
     from ordereddict import OrderedDict
 
+from datetime import datetime, timedelta
+
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -46,8 +48,10 @@ from tagging.models import TaggedItem
 
 from apps.forum.views import SpecificQuestionListView, SpecificQuestionCreateView, SpecificQuestionThreadView,\
     SpecificQuestionNewAnswerView
+from apps.forum.models import SpecificQuestion, SpecificQuestionType
 
-from .forms import I4pProjectInfoForm, I4pProjectLocationForm
+from .forms import I4pProjectInfoForm
+from apps.i4p_base.forms import I4pLocationForm, I4pLocationFormSet
 from .forms import I4pProjectObjectivesForm, I4pProjectThemesForm, ProjectPictureAddForm, ProjectSheetDiscussionForm
 from .forms import ProjectReferenceFormSet, ProjectMemberAddForm, AnswerForm, ProjectVideoAddForm, ProjectFanAddForm
 from .models import ProjectMember, ProjectFan, I4pProject, Question
@@ -175,7 +179,7 @@ class ProjectView(TemplateView):
 
         # Fetch questions
         self.topics = []
-        for topic in Topic.objects.filter(site_topics=project.topics.all()):
+        for topic in Topic.objects.filter(site_topics__in=project.topics.all()):
             questions = []
             for question in topic.questions.all().order_by('weight'):
                 answers = Answer.objects.filter(project=project, question=question)
@@ -187,9 +191,15 @@ class ProjectView(TemplateView):
         # Related projects
         related_projects_translation = TaggedItem.objects.get_related(self.project_translation,
                                                           I4pProjectTranslation.objects.exclude(master__id=project.id),
-                                                          num=3)
+                                                          num=4)
         related_projects = [project_translation.master for project_translation in related_projects_translation]
+        #Discussion count
+        discussion_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-discuss"), object_id=self.project_translation.pk).count()
+        prop_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-help"), object_id=self.project_translation.pk).count() 
+        call_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-need"), object_id=self.project_translation.pk).count()
+        need_count = prop_count + call_count
 
+        
         context.update({
             'topics': self.topics,
             'project': project,
@@ -198,7 +208,9 @@ class ProjectView(TemplateView):
             'project_member_add_form': project_member_add_form,
             'project_tab' : True,
             'related_projects': related_projects,
-        })
+            'discussion_count': discussion_count,
+            'need_count': need_count,
+          })
         
 
         return context
@@ -230,7 +242,7 @@ class ProjectEditInfoView(ProjectView):
     """
     def get(self, request, *args, **kwargs):
         self.project_info_form = I4pProjectInfoForm(instance=self.project_translation.master)
-        self.project_location_form = I4pProjectLocationForm(instance=self.project_translation.master.location)
+        self.project_location_formset = I4pLocationFormSet(queryset=self.project_translation.master.locations.all())
         return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
         
     def post(self, request, *args, **kwargs):
@@ -238,16 +250,21 @@ class ProjectEditInfoView(ProjectView):
         self.project_info_form = I4pProjectInfoForm(request.POST,
                                                     instance=self.project_translation.master)
 
-        self.project_location_form = I4pProjectLocationForm(request.POST,
-                                                            instance=self.project_translation.master.location)
-
-        if self.project_info_form.is_valid() and self.project_location_form.is_valid():
+        project_locations_qs=self.project_translation.master.locations.all()
+        self.project_location_formset = I4pLocationFormSet(request.POST,
+                                                            queryset=project_locations_qs)
+        if self.project_info_form.is_valid() and self.project_location_formset.is_valid():
             self.project_info_form.save()
-            location = self.project_location_form.save()
-            if not self.project_translation.master.location:
-                self.project_translation.master.location = location
-                self.project_translation.master.save()
-            
+            for deleted_location_form in self.project_location_formset.deleted_forms:
+                self.project_translation.master.locations.remove(deleted_location_form.instance)
+                
+            locations = self.project_location_formset.save(commit=False)
+            for location in locations:
+                location.save()
+                if location not in project_locations_qs:
+                    self.project_translation.master.locations.add(location)
+            self.project_location_formset.save_m2m()
+
             return redirect(self.project_translation.master)
         else:
             return super(ProjectEditInfoView, self).get(request, *args, **kwargs)
@@ -256,7 +273,7 @@ class ProjectEditInfoView(ProjectView):
         context = super(ProjectEditInfoView, self).get_context_data(slug, **kwargs)
         
         context['project_info_form'] = self.project_info_form
-        context['project_location_form'] = self.project_location_form
+        context['project_location_formset'] = self.project_location_formset
         
         return context
 
@@ -729,8 +746,9 @@ class ProjectRecentChangesView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(ProjectRecentChangesView, self).get_context_data(**kwargs)
-
-        context['activity'] = model_stream(I4pProject)
+        # limiting to actions less then 1 month old
+        threshold = datetime.now() - timedelta(days=30)
+        context['activity'] = model_stream(I4pProject).filter(timestamp__gte=threshold)
 
         return context
 
@@ -753,12 +771,18 @@ class ProjectDiscussionListView(CurrentProjectTranslationMixin, SpecificQuestion
 
     def get_context_data(self, **kwargs):
         context = SpecificQuestionListView.get_context_data(self, **kwargs)
-          
+        
+        prop_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-help"), object_id=self.context_object.pk).count() 
+        call_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-need"), object_id=self.context_object.pk).count()
+        need_count = prop_count + call_count
+        
         context.update({  
             'project': self.context_object.master,
             'project_translation': self.context_object,
             'tab_context': 'project_sheet',
             'tab_name': 'discuss',
+            'discussion_count': len(context['specific_questions']),
+            'need_count': need_count,
         })
     
         return context

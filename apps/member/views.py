@@ -109,7 +109,7 @@ def profile_detail(request, username):
     return userena_views.profile_detail(request,
                                         username,
                                         template_name='userena/profile_detail.html',
-                                        extra_context={'project_list': project_member_list,
+                                        extra_context={'project_member_list': project_member_list,
                                                        'project_contrib_list' : project_contrib_list,
                                                        'project_fan_list' : project_fan_list}
                                         )

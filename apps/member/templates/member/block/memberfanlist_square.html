@@ -1,0 +1,79 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* members : member list (FIXME: object type ?)
+* fans : fan list
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+{% load unique_counter_tag %}
+
+{% addtoblock "js" strip %}
+{% endaddtoblock %}
+
+{% addtoblock "css" %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_square.css" />
+{% endaddtoblock %}
+
+{% comment %} SYNCHRONOUS JS LOADING {% endcomment %}
+
+{% comment %} ASYNCHRONOUS JS LOADING {% endcomment %}
+{% addtoblock "footer_js" %}
+<script type="text/javascript">
+$.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");  
+</script>
+{% endaddtoblock %}
+
+{% unique_counter memberlist_overlay %}
+{% with overlay_unique_counter=memberlist_overlay_counter %}
+
+{% unique_counter memberlist_modal %}
+{% with modal_addmember_unique_counter=memberlist_modal_counter %}
+
+{% if members or fans %}
+<div class="memberlist square fancy" 
+	data-toggle="i4p-memberlist-overlay" 
+	data-overlay-view-id="memberlist-overlay-{{ overlay_unique_counter }}"
+	>
+	<div class="see-all-button">
+		<a data-toggle="i4p-memberlist-modal-seeall" data-modal-target-id="memberlist-modal-seeall-1" href="#"><span>{% trans 'See all the community project' %}</span></a>
+	</div>
+	<ul class="memberlist-slider">
+		{% if project_community %}
+		   {% for member in project_community|slice:":4" %}
+		      {% include "project_sheet/block/member_fancy_square.html" %}
+		   {% endfor %}
+		{% else %}   
+		   {% for member in members %}
+		      {% include "project_sheet/block/member_fancy_square.html" %}
+		   {% endfor %}
+		   {% for member in fans %}
+		      {% if member not in member.project.members.all %}
+		         {% include "project_sheet/block/member_fancy_square.html" %}
+		      {% endif %}
+		   {% endfor %}
+		{% endif %}
+	</ul>
+</div>
+
+<div id="memberlist-overlay-{{ overlay_unique_counter }}" class="memberlist-overlay square fancy">
+	<img class="avatar" />
+	<div class="details">
+		<h3 class="fullname"></h3>
+		<span class="position"></span>
+		<a href="#" class="contact">
+			<i class="i4p-memberlist-sprite i4p-memberlist-contact"></i>
+			{% trans 'Contact' %}</a>
+		<a href="#" class="profile">
+			<i class="i4p-memberlist-sprite i4p-memberlist-profile"></i>
+			{% trans 'Profile' %}</a>
+	</div>
+</div>
+{% endif %}
+
+{% endwith %}
+{% endwith %}

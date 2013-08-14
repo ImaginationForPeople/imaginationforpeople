@@ -12,19 +12,12 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
 
 .project-details {
     h2 {
-	@include i4p-font-title;
+		@include i4p-font-title;
     }
 
     .detail-question {
-	margin-top: 1em;
-	margin-bottom: 1em;
-
-	span {
-	    padding-left: .5em;
-	    padding-right: .5em;
-	    background-color: $colorMedDarkGrey;
-	    color: white;
-	}
+		margin:0 0 15px;
+		text-transform:none;
     }
 
 
@@ -33,86 +26,90 @@ $i4p-form-action-sprites: sprite-map("project_sheet/i4p-form-action/*.png");
     }
 
     .detail-question {
-	.i4p-button {
-	    @include i4p-button-fancy-bordered-small;
-
-	    margin-top: 0.4rem;
-	    padding-top: $sizePaddingTiny;
-	    padding-bottom: $sizePaddingTiny;
-
-	    span {
-		padding: 0;
-		@include i4p-transition(all .5s ease);
-		background-color: transparent;
-	    }
-
-	    &:before {
-		display: inline-block;
-		background-image: image-url('project_sheet/edit-icon.png');
-		content: "";
-		background-position: right center;
-		background-repeat: no-repeat;
-		width: 17px;
-		height: 20px;
-		vertical-align: middle;
-	    }
-	}
+		.i4p-button {
+			@include i4p-transition(all .5s ease);
+		    display:block;
+		    position:absolute;
+		    top:0;
+		    right:0;
+		    background:image-url('project_sheet/edit-corner.png') no-repeat 70px 0;
+		    width:70px;
+		    height:66px;
+		    text-indent:-999em;
+		}
     }
 
     .detail-answer {
-	padding-left: 2rem;
+		.inline-edit {
+		    @include ctb-clearfix;
 
-	.inline-edit {
-	    @include ctb-clearfix;
+		    margin-left: -1rem;
 
-	    margin-left: -1rem;
+		    // background-color: $colorLightBlue;
+		    padding: $sizePaddingSmall;
 
-	    // background-color: $colorLightBlue;
-	    padding: $sizePaddingSmall;
+		    textarea {
+			@include box-sizing(border-box);
 
-	    textarea {
-		@include box-sizing(border-box);
-
-		font-size: $sizeTextNormal;
-		line-height: $sizeTextNormal * 1.3;
-		min-height: $sizeTextNormal * 1.3 * 4;
-		resize: vertical;
-		-moz-resize: vertical;
-	    }
-	}
+			font-size: $sizeTextNormal;
+			line-height: $sizeTextNormal * 1.3;
+			min-height: $sizeTextNormal * 1.3 * 4;
+			resize: vertical;
+			-moz-resize: vertical;
+		    }
+		}
     }
 
     .detail-item {
-	&.editing {
-	    @include i4p-transition(all .5s ease);
-	    background-color: $colorLightBlue;
+    	@include box-sizing(border-box);
+    	float: left;
+	    padding: 20px 30px;
+	    position: relative;
+	    width: 100%;
 
-	    h2{
-		padding-top: 0;
-	    }
-	}
+    	&:nth-child(odd) {
+    		background:#f1f1f1;
+    	}
+
+    	&:nth-child(even) {
+    		background:white;
+    	}
+
+		&:hover .i4p-button {
+			background:image-url('project_sheet/edit-corner.png') no-repeat top left;
+		}
+
+		&.editing {
+		    @include i4p-transition(all .5s ease);
+		    background-color: $colorLightBlue;
+
+		    h2{
+			padding-top: 0;
+			color:white;
+		    }
+		}
     }
 
     button[type='submit'] {
-	@include i4p-form-action-sprite('ok-white'); 
+		@include i4p-form-action-sprite('ok-white'); 
 
-	border: none;
-	display: block;
-	float: right;
-	font-size: 0;
-	margin-left: $sizeMarginMedium;
-	cursor: pointer;
+		border: none;
+		display: block;
+		float: right;
+		font-size: 0;
+		margin-left: $sizeMarginMedium;
+		cursor: pointer;
     }
 
     button[type='cancel'] {
-	@include i4p-form-action-sprite('cancel-white'); 
+		@include i4p-form-action-sprite('cancel-white'); 
 
-	border: none;
-	display: block;
-	float: right;
-	font-size: 0;
-	margin-left: $sizeMarginMedium;
-	cursor: pointer;
+		border: none;
+		display: block;
+		float: right;
+		font-size: 0;
+		margin-left: $sizeMarginMedium;
+		cursor: pointer;
     }
 }
 

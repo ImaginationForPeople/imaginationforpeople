@@ -1,18 +1,50 @@
 # Sample site configuration
 # Edit as needed
+
 DEBUG = True
 TEMPLATE_DEBUG = True
 
+# Un-comment this to test static files, javascript and css compression, and 
+# 404 and 500 pages locally:
+#COMPRESS_ENABLED = True 
+
+# Enables on-page code profiling.  To use, uncomment the following and
+# add ?prof at the end of the URL to see profiling output.
+#DEBUG_PROFILE_MIDDLEWARE_ENABLED == True
+ 
+### HAYSTACK
+# We use Whoosh in dev env and SolR in prod/staging. If you want to force SolR in debug env, set USESOLR = True
+USESOLR = False
+# Un-comment this to test static files, javascript and css compression, and 
+# 404 and 500 pages locally:
+#COMPRESS_ENABLED = True 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'imaginationforpeople', # Or path to database file if using sqlite3.
         'USER': 'imaginationforpeople', # Not used with sqlite3.
-        'PASSWORD': 'imagination', # Not used with sqlite3.
+        'PASSWORD': 'plop', # Not used with sqlite3.
         'HOST': '', # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# If set, OVERRIDE_CACHE_BACKEND will unconditionally change the cache backends
+# to the one set in, in OVERRIDE_CACHE_BACKEND, including when DEBUG=True.  This 
+# is used for two purposes:
+# 1- To change the backend in development from the DummyCache backend to debug 
+# cache problems 
+# 2- To change the backend in production from the LocMemCache default (typically
+# to MemcacheD.
+# Default value: None
+# Usefull values:
+# {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}
+# {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+# {'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 'LOCATION': '127.0.0.1:11211',}
+#
+# OVERRIDE_CACHE_BACKEND = {'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 'LOCATION': '127.0.0.1:11211',}
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -20,11 +52,23 @@ DATABASES = {
 # If you're using a dev server, just use '/site_media/'
 MEDIA_URL = 'http://imaginationforpeople.org/site_media/'
 
+#Optional, leave None if you don't have/don't want to use a AddThis account.
+#Addthis will still work without it
+ADDTHIS_USERNAME = None
+
 FACEBOOK_APP_ID = "TO_COMPLETE"
 FACEBOOK_API_SECRET = "TO_COMPLETE"
 
+# Optional, leave None if you don't have a google analytics account
+GOOGLE_ANALYTICS_ACCOUNT = None #Example:  UA-21778007-2
+
 GOOGLE_OAUTH2_CLIENT_ID = "TO_COMPLETE"
 GOOGLE_OAUTH2_CLIENT_SECRET = "TO_COMPLETE"
+
+# Geocoder API keys.  Enables the corresponding geocoders for location edition if
+# present 
+# MAPQUEST_API_KEY = 'TO_COMPLETE'
+# GEONAMES_USERNAME = 'TO_COMPLETE'
 
 ## Dynamicsites
 DEFAULT_HOST = 'imaginationforpeople.org'
@@ -39,30 +83,6 @@ ENV_HOSTNAMES = {
   'localhost': 'imaginationforpeople.org',
 }
 
-### HAYSTACK
-# We use Whoosh in dev env and SolR in prod/staging
-# If you want to force SolR in debug env, set USESOLR = True
-USESOLR = True
-if (not DEBUG) or USESOLR:
-   HAYSTACK_CONNECTIONS = {
-       'default': {
-           'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-	        'URL': 'http://127.0.0.1:8983/solr',           
-       },
-   }
-elif DEBUG:
-   HAYSTACK_CONNECTIONS = {
-       'default': {
-         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-         'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
-         'STORAGE': 'file',
-         'POST_LIMIT': 128 * 1024 * 1024,
-         'INCLUDE_SPELLING': True,
-         'BATCH_SIZE': 500,
-       },
-   }
-
-HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
 # If you need error reporting via Raven, configure this
 # RAVEN_CONFIG = {
 #     'dsn': 'http://public:secret@example.com/1',

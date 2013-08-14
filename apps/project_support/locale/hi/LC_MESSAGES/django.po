@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-03-08 17:13-0500\n"
-"PO-Revision-Date: 2013-03-08 16:14+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"POT-Creation-Date: 2013-07-24 15:51-0400\n"
+"PO-Revision-Date: 2013-06-19 14:23+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Hindi <ip-hi@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,180 +17,47 @@ msgstr ""
 "Language: hi\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: models.py:9
-msgid "project needs"
-msgstr ""
-
-#: models.py:10
-msgid "help from the community"
-msgstr ""
-
-#: templates/project_support/project_support_form.html:19
+#: templates/project_support/project_support_form.html:6
 msgid "Please describe your project's need here"
 msgstr ""
 
-#: templates/project_support/project_support_form.html:22
-msgid "We are sorry, you need to correct the highlighted problems in the form"
-msgstr ""
-
-#: templates/project_support/project_support_form.html:27
-msgid "No selected category"
-msgstr ""
-
-#: templates/project_support/project_support_form.html:34
-msgid "submit"
-msgstr ""
-
-#: templates/project_support/project_support_form.html:36
-msgid "First signin"
-msgstr ""
-
-#: templates/project_support/project_support_list.html:64
+#: templates/project_support/project_support_list_all.html:64
 msgid "Filter"
 msgstr ""
 
-#: templates/project_support/project_support_list.html:68
+#: templates/project_support/project_support_list_all.html:68
 msgid "Enter a keyword"
 msgstr ""
 
-#: templates/project_support/project_support_list.html:73
+#: templates/project_support/project_support_list_all.html:74
 msgid "or"
 msgstr ""
 
-#: templates/project_support/project_support_list.html:95
+#: templates/project_support/project_support_list_all.html:97
 msgid "Contributors"
 msgstr ""
 
-#: templates/project_support/project_support_thread.html:51
-#, python-format
-msgid ""
-"\n"
-"                        %(counter)s Answer\n"
-"                        "
-msgid_plural ""
-"\n"
-"                        %(counter)s Answers\n"
-"                    "
-msgstr[0] ""
-msgstr[1] ""
-
-#: templates/project_support/project_support_thread.html:58
-msgid "Sort by :"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:60
-msgid "oldest answers will be shown first"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:61
-msgid "oldest"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:64
-msgid "newest answers will be shown first"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:65
-msgid "newest"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:68
-msgid "most voted answers will be shown first"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:69
-msgid "most voted"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:92
-msgid "this answer has been selected as correct"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:94
-msgid "mark this answer as correct (click again to undo)"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:101
-#: templates/project_support/project_support_thread.html:102
-msgid "anonymous user"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:112
-msgid "answered"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:133
-msgid "Edit Your Previous Answer"
-msgstr ""
-
-#: templates/project_support/project_support_thread.html:134
-msgid "(only one answer per question is allowed)"
-msgstr ""
-
-#: templates/project_support/block/answer_controls.html:7
-msgid "remove offensive flag"
-msgstr ""
-
-#: templates/project_support/block/answer_controls.html:9
-#: templates/project_support/block/question_controls.html:7
-msgid "remove flag"
-msgstr ""
-
-#: templates/project_support/block/answer_controls.html:14
-#: templates/project_support/block/answer_controls.html:22
-#: templates/project_support/block/question_controls.html:6
-#: templates/project_support/block/question_controls.html:11
-#: templates/project_support/block/question_controls.html:17
-msgid ""
-"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr ""
-
-#: templates/project_support/block/answer_controls.html:16
-#: templates/project_support/block/answer_controls.html:24
-#: templates/project_support/block/question_controls.html:12
-#: templates/project_support/block/question_controls.html:18
-msgid "flag offensive"
-msgstr ""
-
-#: templates/project_support/block/answer_controls.html:29
+#: templates/project_support/project_support_question_thread.html:8
 #: templates/project_support/block/comment.html:63
 #: templates/project_support/block/question_controls.html:24
 msgid "edit"
 msgstr ""
 
-#: templates/project_support/block/answer_controls.html:34
-#: templates/project_support/block/question_controls.html:26
-msgid "undelete"
+#: templates/project_support/project_support_question_thread.html:16
+msgid "Edit Your Previous Answer"
 msgstr ""
 
-#: templates/project_support/block/answer_controls.html:34
-#: templates/project_support/block/comment.html:57
-#: templates/project_support/block/question_controls.html:26
-msgid "delete"
-msgstr ""
-
-#: templates/project_support/block/answer_edit.html:7
-msgid "Edit answer"
-msgstr ""
-
-#: templates/project_support/block/answer_edit.html:7
-msgid "back"
-msgstr ""
-
-#: templates/project_support/block/answer_edit.html:13
-msgid "revision"
-msgstr ""
-
-#: templates/project_support/block/answer_edit.html:42
-msgid "Save edit"
-msgstr ""
-
-#: templates/project_support/block/answer_edit.html:43
-msgid "Cancel"
+#: templates/project_support/project_support_question_thread.html:17
+msgid "(only one answer per question is allowed)"
 msgstr ""
 
 #: templates/project_support/block/comment.html:55
 msgid "delete this comment"
+msgstr ""
+
+#: templates/project_support/block/comment.html:57
+#: templates/project_support/block/question_controls.html:26
+msgid "delete"
 msgstr ""
 
 #: templates/project_support/block/comment.html:61
@@ -229,7 +96,7 @@ msgid "Your answer"
 msgstr ""
 
 #: templates/project_support/block/new_answer_form.html:38
-msgid "Be the first one to answer this request!"
+msgid "Be the first to answer this request!"
 msgstr ""
 
 #: templates/project_support/block/new_answer_form.html:43
@@ -262,18 +129,6 @@ msgid ""
 " best questions and answers!"
 msgstr ""
 
-#: templates/project_support/block/post_comments.html:12
-msgid "Add your comment"
-msgstr ""
-
-#: templates/project_support/block/post_comments.html:13
-msgid "Add your comment..."
-msgstr ""
-
-#: templates/project_support/block/post_comments.html:14
-msgid "Comment"
-msgstr ""
-
 #: templates/project_support/block/post_vote_buttons.html:8
 msgid "current number of votes"
 msgstr ""
@@ -296,12 +151,12 @@ msgstr ""
 
 #: templates/project_support/block/question_card.html:65
 #: templates/project_support/block/question_card.html:111
-msgid "Unfollow this need"
+msgid "Unfollow this discussion"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:69
 #: templates/project_support/block/question_card.html:106
-msgid "Follow this need"
+msgid "Follow this discussion"
 msgstr ""
 
 #: templates/project_support/block/question_card.html:73
@@ -324,8 +179,28 @@ msgid_plural "%(count)s followers"
 msgstr[0] ""
 msgstr[1] ""
 
+#: templates/project_support/block/question_controls.html:6
+#: templates/project_support/block/question_controls.html:11
+#: templates/project_support/block/question_controls.html:17
+msgid ""
+"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+msgstr ""
+
+#: templates/project_support/block/question_controls.html:7
+msgid "remove flag"
+msgstr ""
+
+#: templates/project_support/block/question_controls.html:12
+#: templates/project_support/block/question_controls.html:18
+msgid "flag offensive"
+msgstr ""
+
 #: templates/project_support/block/question_controls.html:22
 msgid "retag"
+msgstr ""
+
+#: templates/project_support/block/question_controls.html:26
+msgid "undelete"
 msgstr ""
 
 #: templates/project_support/block/question_controls.html:29
@@ -376,11 +251,11 @@ msgid "votes"
 msgstr ""
 
 #: templates/project_support/block/question_sidebar.html:28
-msgid "Related needs"
+msgid "Related discussions"
 msgstr ""
 
-#: templates/project_support/block/support_categories_menu.html:5
-msgid "Browse categories"
+#: templates/project_support/block/support_form.html:11
+msgid "No selected category"
 msgstr ""
 
 #: templates/project_support/block/support_toolbar.html:12
@@ -397,6 +272,10 @@ msgstr ""
 
 #: templates/project_support/block/support_toolbar.html:25
 msgid "You need to log-in to add a need"
+msgstr ""
+
+#: templates/project_support/block/supports_list_item.html:13
+msgid "Project "
 msgstr ""
 
 #: templates/project_support/script/head_javascript.html:85

@@ -13,7 +13,7 @@
     <meta name="author" content="{{ site }}" />
     <meta name="description" content="{% block meta_desc %}{% trans 'Imagination for People (IP) is a multilingual, Wikipedia-like open platform dedicated to disruptive social innovation. At a global scale, IP aims to detect, publicize, amplify and adapt creative solutions to the new challenges of living together.' %}{% endblock %}" /> 
     {% block extra_meta %}{% endblock %}
-
+    {% block cannonical_link %}{% endblock %}
     <link rel="shortcut icon" type="image/x-icon" href="{{ STATIC_URL }}images/favicon.ico">
     {% block extra_link %}{% endblock %}
 
@@ -25,12 +25,12 @@
     on linux)
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     {% endcomment %}
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,500,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300' rel='stylesheet' type='text/css'>
     {% comment %}
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     This uses google font services.  To switch from one to the other, uncomment the above, and 
     change "Open Sans" to "OpenSans" in static/scss/_constants.scss.
     {% endcomment %}
-    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/common/fonts.css" />
     {% compress css %}
     {% block base_grid %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/grid/bootstrap.css" />
@@ -150,6 +150,10 @@
     
     {% block extra_head %}{% endblock %}
     
+    <!-- render_block "sekizai_extra_head" -->
+    {% render_block "sekizai_extra_head" %}
+    <!-- /render_block "sekizai_extra_head" -->
+    
     {% include "sites_specs.html" %}
     
     {% if GOOGLE_ANALYTICS_ACCOUNT and not debug  %}
@@ -172,8 +176,6 @@
 
   <body class="{% block extra_body_class %}{% endblock %}">
     
-    <div id="beta-logo"></div>
-    
     <div class="global">   
        
       {% block newproject_popup %} 
@@ -183,7 +185,7 @@
       
       {% block header %}{% include "header.html" %}{% endblock %}			
 
-      {% block nav %}{% endblock %}
+      {% block subheader %}{% endblock %}
       
       {% if user.is_authenticated %}
       <div>

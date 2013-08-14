@@ -1,0 +1,19 @@
+div.location_form {
+    label {
+        display: inline;
+    }
+    .field {
+        display: block;
+        width: auto;
+        margin-top:5px;
+    }
+    .field_geom {
+        float: right;
+        width: 600px;
+    }
+    &.location_hide {
+        position: absolute !important;
+        top: -9999px !important;
+        left: -9999px !important;
+    }
+}

@@ -1,0 +1,35 @@
+{% extends "workgroup/layout/workgroup_base.html" %}
+
+{% load i18n %}
+{% load wiki_tags %}
+{% load tagging_tags %}
+{% load comments %}
+{% load admin_urls %}
+{% load guardian_tags %}
+{% load thumbnail %}
+{% load sekizai_tags %}
+{% load tabs %}
+
+{% block title %}{% blocktrans with group_name=workgroup.name %}{{ group_name }} group archive | Imagination for People{% endblocktrans %}{% endblock %}
+
+{% block content %}
+   {% tab 'workgroup' 'list_archive' %}
+    {% addtoblock "css" %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
+    {% endaddtoblock %}
+    
+
+    <div class="container" id="workgroup-detail">
+      {% include "workgroup/block/workgroup_header.html" %}
+      <div id="workgroup-content" class="row">
+         {% if workgroup.mailing_list %}
+         <iframe src="{{ workgroup.mailing_list.main_url }}/../../../pipermail/{{ workgroup.mailing_list.name }}" frameborder="0" width="980" height="1400" ></iframe>
+         {% else %}
+         {% trans "This group has no mailing list" %}
+         {% endif %}
+         
+      </div>
+   </div>
+   
+    
+{% endblock %}

@@ -3,8 +3,10 @@ from django.conf.urls.defaults import patterns, url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.decorators.cache import cache_page
 
 import autocomplete_light
+from django.views.generic.base import TemplateView
 autocomplete_light.autodiscover() # Keep this before admin.autodiscover()
 
 from askbot.sitemap import QuestionsSitemap
@@ -16,6 +18,7 @@ from filebrowser.sites import site
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
+from apps.map.views import ProjectListJsonView, ProjectCardAjaxView
 from apps.tags.sitemaps import TagSitemap
 
 
@@ -63,6 +66,12 @@ urlpatterns += i18n_patterns('',
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
+    
+    url(r'^projects/map/$', TemplateView.as_view(template_name='map/global_map.html')),
+    url(r'^projects.json$', ProjectListJsonView.as_view(), name='projects-json'),
+    url(r'^get-project-card$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), {'template_name': 'map/project_card.html'}, name='get-project-card'),
+    url(r'^get-project-card-location$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), {'template_name': 'map/project_location_popup.html'}, name='get-project-card-location'),
+    
     url(r'^group/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),

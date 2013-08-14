@@ -4,118 +4,125 @@
 {% load honeypot %}
 {% load umessages_tags %}               
 {% load i4p_tags %}
+    
 
     
-    {% if not user.is_authenticated %}     
-    <div id="top-zone">
-		<div class="container container_18"> <!-- for both 960gs && bootstrap -->
-            <div class="row">
-            <div id="social-sign-in" class="span4 pagination-centered">
-            
-                <h1 class="padlock">{% trans "Log In with" %}</h1>
-                {% with redirect_url=request.path %}
-                    {% include "userena/social-networks.html" %}
-                {% endwith %}
-            </div>
-            <div id="form-user" class="span4 pagination-centered">
-                <form action="{% url userena_signin %}?next={{ request.path }}" method="post" class="profile_edition">
-                     <h1 class="padlock">{% trans "Member Login" %}</h1>
-                    
-                    {% csrf_token %}
-                        {{ signin_form.non_field_errors }}
-                        {% for field in signin_form %}
-                            {{ field.errors }}
-                            {% comment %} Displaying checkboxes differently {% endcomment %}
-                            {% if field.name == 'remember_me' %}
-                            <p class="checkbox">
-                                <label for="id_{{ field.name }}">{{ field }} {{ field.label }}</label>
-                            </p>
-                            {% else %}
-                            <p>
-                                {{ field.label_tag }} 
-                                {{ field }}
-                            </p>
-                            {% endif %}
-                        {% endfor %}
-                    <p><input type="submit" id="top-signin" value="{% trans 'Sign in' %}" /></p>
-                    <p><a class="password_lost" href="{% url userena_password_reset %}">{% trans "I lost my password!" %}</a></p>
-
-                </form>
-            </div>
-    
-            <div id="social-sign-up" class="span4 pagination-centered">
-            
-                <div id="not-yet">
-                    <h1 class="padlock">{% trans "Not a member yet ?" %}</h1>
-                    <h2>{% trans "Sign-up with your email:" %}</h2>
-                    <a class="link" href="{% url userena_signup %}">{% trans "Sign-up now !" %}</a>        
-                </div>
-                <h2>{% trans "Sign-up with a social networks:" %}</h2>
-                {% with redirect_url=request.path %}
-                    {% include "userena/social-networks.html" %}
-                {% endwith %}
-                
-
-
-
-                
-            </div>
-            <div class="clear"></div>
-        </div>
-        </div>
-    </div>     
-    {% endif %}
-
     <div id="header-zone">
         <div id="header" class="container">
             <div id="header-bar">
-                <div class="logo">
-                    <a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/{% if site.folder_name %}{{ site.folder_name }}/{% endif %}logo.png" alt="{{ site.name }}" border="0"/></a>
-                </div>
-            
-                <div class="header-right">
-                     
-                    <div class="header-right-pre-top"></div>{% comment %} There must be no...
-                    ... white space here{% endcomment %}<div class="header-right-top">
-                        <div id="interface_lang">
-                            <a class="open-panel" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
-                            <ul>
-                                {% get_available_languages as languages %}
-                                    {% for lang_code, lang_name in languages %}
-                                        {% language lang_code %}
-                                        <li><a href="{{ request.path|chlocale:lang_code }}" title="{{ lang_name }}">{{ lang_name }}</a></li>
-                                        {% endlanguage %}
-                                    {% endfor %}
-                            </ul>
-                        </div>
-                        <div id="user-bt">
-                            {% if user.is_authenticated %}  
-                                <a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}">{{ user.username }}</a>
-                            {% else %}
-                                <a class="open link open-panel" href="javascript:;">{% trans "Log In" %} | {% trans "Register" %}</a>
-                            {% endif %}
-                        </div>
-
-                        {% if user.is_authenticated %}
-                            <div id="tools">
-                              {% get_unread_message_count_for user as unread_message_count %}
-                              {% if unread_message_count != 0 %}
-                                <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-on.png" /><div class="message_count" >{{ unread_message_count }}</div></a></div>
-				{% else %}
-                              <div id="messages-bt"><a href="{% url userena_umessages_list %}" class="tipsed on" title="{% trans 'My messages' %}"><img src="{{ STATIC_URL }}images/base/message-count-off.png" /></a></div>
-                                {% endif %}
-			      <div id="view-profile-bt"><a href="{% url userena_profile_detail request.user %}" class="tipsed on" title="{% trans 'View my profile' %}"><img src="{{ STATIC_URL }}images/base/mini_eye_ico.png" /></a></div>
-			      <div id="edit-profile-bt"><a href="{% url userena_profile_edit user.username %}" class="tipsed on" title="{% trans 'Edit my profile' %}"><img src="{{ STATIC_URL }}images/base/mini_pencil_ico.png" /></a></div>
-			      <div id="logout-bt"><a href="{% url userena_signout %}" class="tipsed on" title="{% trans 'Log out' %}"><img src="{{ STATIC_URL }}images/base/mini_deco_ico.png" /></a></div>
+                <div id="header-right">
+                    {% include "search.html" %}
+                    {% if not user.is_authenticated %}   
+                    <div id="connect-link">
+                        <a class="open-panel" href="javascript:void(0)">{% trans 'Connexion' %} / {% trans 'Inscription' %}</a>  
+                        <div id="connect-block">
+                            <div id="social-sign-in">
+                                <h1>{% trans "Log In" %}</h1>
+                                {% with redirect_url=request.path %}
+                                    {% include "userena/social-networks.html" %}
+                                {% endwith %}
+                                <div id="form-user">
+                                    <form action="{% url userena_signin %}?next={{ request.path }}" method="post" class="profile_edition">                    
+                            {% csrf_token %}
+                                {{ signin_form.non_field_errors }}
+                                {% for field in signin_form %}
+                                    {{ field.errors }}
+                                    {% comment %} Displaying checkboxes differently {% endcomment %}
+                                    {% if field.name == 'remember_me' %}
+                                        <p class="checkbox">
+                                            {{ field }} <label for="id_{{ field.name }}">{{ field.label }}</label>
+                                        </p>
+                                    {% else %}
+                                        <p>
+                                            {{ field.label_tag }} 
+                                            {{ field }}
+                                        </p>
+                                    {% endif %}
+                                {% endfor %}
+                                        <p>
+                                            <input type="submit" id="top-signin" value="{% trans 'Sign in' %}" />
+                                        </p>
+                                        <p>
+                                            <a class="password_lost" href="{% url userena_password_reset %}">{% trans "I lost my password!" %}</a>
+                                        </p>
+                                    </form>
+                                </div>
                             </div>
+                            <div id="social-sign-up">
+                                <div id="not-yet">
+                                    <h1>{% trans "Not a member yet ?" %}</h1>
+                                    <h2>{% trans "Sign-up with your email:" %}</h2>
+                                    <a class="link" href="{% url userena_signup %}">{% trans "Sign-up now !" %}</a>
+                                    <h2>{% trans "Sign-up with a social networks:" %}</h2>
+                                    {% with redirect_url=request.path %}
+                                        {% include "userena/social-networks.html" %}
+                                    {% endwith %}
+                                </div>
+                            </div>
+                        </div>     
+                    </div>
+                    {% endif %}
+                    {% if user.is_authenticated %}  
+                    <div id="me-link">
+                      {% get_unread_message_count_for user as unread_message_count %}
+                      {% if unread_message_count != 0 %}
+                        <div id="messages-count">{{ unread_message_count }}</div>
                         {% endif %}
-                    </div>{% comment %} There must be no...
-                    ... white space here{% endcomment %}<div class="header-right-post-top"></div>
-                    <div class="header-right-bottom">
-                        {% include "search.html" %}
+                        <img src="{{ user.get_profile.get_mugshot_url }}" alt="" height="26" width="26" />
+                        <a class="open-panel" href="javascript:void(0)">{% trans 'Me' %}</a>
+                        <div id="me-block">
+                            <div class="top">
+                                <div class="avatar">
+                                    <img src="{{ user.get_profile.get_mugshot_url }}" alt="" height="87" width="87" />
+                                </div>
+                                <p>
+                                    <strong>{{ user.username }}</strong>
+                                    <em>{{ user.email }}</em>
+                                    <a href="{% url userena_profile_detail request.user %}">{% trans 'View my profile' %}</a>
+                                </p>
+                            </div>
+                            <div class="bottom">
+                                <ul>
+                                    <li class="msg"><a href="{% url userena_umessages_list %}">{% trans "Messages" %}</a></li>
+                                    <li class="proj"><a href="{% url userena_profile_detail request.user %}">{% trans "My projects" %}</a></li>
+                                    <li class="fav"><a href="{% url userena_profile_detail request.user %}">{% trans "My favourites" %}</a></li>
+                                </ul>
+                            </div>
+                            <a id="logout-bt" href="{% url userena_signout %}">{% trans 'Log out' %}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div id="interface_lang">
+                        <a class="open-panel" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
+                        <ul>
+                            {% get_available_languages as languages %}
+                            {% for lang_code, lang_name in languages %}
+                                {% language lang_code %}
+                                {% if current_page %}
+                                {% comment %}We are on a CMS page, get the right slug for translations{% endcomment %}
+                                  <li><a href="{% page_language_url lang_code %}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                                  {% elif project_translation %}
+                                      {% comment %}Projects currently conflate interface language and data language, only show languages with available project translations (inconsistent, but it beats 404s){% endcomment %}
+                                      {% for translation in project_translation.master.translations.all %}
+                                          {% if translation.language_code == lang_code %} 
+                                              <li><a href="{% url project_sheet-show project_translation.slug %}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                                          {% endif %}
+                                      {% endfor %}
+                                  {% else %}
+                                      {% comment %}Fallback to django standard mecanism{% endcomment %}
+                                      <li><a href="{{ request.path|chlocale:lang_code }}" title="{{ lang_name }}">{{ lang_name }}</a></li>
+                               {% endif %}                                 
+                               {% endlanguage %}
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
+                <div class="logo">
+                    <a href="{% page_url 'homepage' %}"><img src="{{ STATIC_URL }}images/{% if site.folder_name %}{{ site.folder_name }}/{% endif %}logo2.png" alt="{{ site.name }}" border="0"/></a>
+                </div>
                 {% include "menu.html" %}
+
+                
             </div>
         </div>
         <div class="clear"></div>

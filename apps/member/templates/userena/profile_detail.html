@@ -50,7 +50,7 @@
             {% trans "No contributions yet." %}
         {% endfor %}
     </div>
-    
+    <div class="clear"></div>
     <div class="profile_projects">
         <div class="separator">
             <h2>
@@ -75,14 +75,16 @@
         {% for project in project_fan_list %}
             <div class="fan_container">
             {% include "project_sheet/block/card_fancy_square.html" %}
-            {% language project.language_code %}
-                {% url project_sheet-instance-del-fan project.slug request.user as unfan_url %}
-            {% endlanguage %}
-            <p class="unfan_link">
-            {% blocktrans %}
-                I am <a href="{{unfan_url}}"> no longer a fan</a>.
-            {% endblocktrans %}
-            </p>
+            {% if user.username == profile.user.username %}
+                {% language project.language_code %}
+                    {% url project_sheet-instance-del-fan project.slug request.user as unfan_url %}
+                {% endlanguage %}
+                <p class="unfan_link">
+                {% blocktrans %}
+                    I am <a href="{{unfan_url}}"> no longer a fan</a>.
+                {% endblocktrans %}
+                </p>
+            {% endif %}
             </div>
         {% empty %}
             {% trans "This user isn't fan of any project yet." %}

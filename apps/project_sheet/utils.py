@@ -32,7 +32,7 @@ from .models import I4pProject, SiteTopic, VERSIONED_FIELDS
 I4pProjectTranslation = I4pProject.objects.translations_model
 
 from .filters import BestOfFilterForm, NameBaselineFilterForm, TopicFilterForm
-from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectLocationFilterForm
+from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectCountriesFilterForm
 from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilterForm
 
 deprecation_warning_text = "You should now use HVAD instead of this function."
@@ -208,7 +208,7 @@ def build_filters_and_context(request_data):
     filter_forms = {
         'topic_filter' : TopicFilterForm(request_data),
         'themes_filter' : ThemesFilterForm(request_data),
-        'location_filter' : ProjectLocationFilterForm(request_data),
+        'countries_filter' : ProjectCountriesFilterForm(request_data),
         'best_of_filter' : BestOfFilterForm(request_data),
         'status_filter' : ProjectStatusFilterForm(request_data),
         'members_filter' : WithMembersFilterForm(request_data),

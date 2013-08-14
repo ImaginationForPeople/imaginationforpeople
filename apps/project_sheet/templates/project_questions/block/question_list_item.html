@@ -3,11 +3,13 @@
 <li id="question-{{question.id}}" class="short-summary">
     <div class="wrap_question_description">
     	{% if specific_question.type.picto %}
-    	<img src="{{MEDIA_URL}}{{specific_question.type.picto}}" />
+    	<img class="tiotico" src="{{MEDIA_URL}}{{specific_question.type.picto}}" />
     	{% endif %}
+    	   {% block question_url %}
         <h2>
             <a href="{{questions_url}}{{question.id}}/" title="{{specific_question.thread.title}}">{{specific_question.thread.title}}</a>
         </h2>
+        {% endblock %}
         {% block extra_description %}
         {% endblock %}
         <p>{{question.summary|escape}}</p>

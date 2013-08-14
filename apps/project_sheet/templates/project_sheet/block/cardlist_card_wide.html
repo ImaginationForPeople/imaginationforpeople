@@ -1,0 +1,20 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project_list : list of I4pProject
+
+{% endcomment %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+
+
+
+<div class="project-list wide-card">
+	{% for project in project_list %}
+	{% include "project_sheet/block/project_card.html" %}
+	{% empty %}
+	{% trans "No projects found" %}
+	{% endfor %}
+</div>

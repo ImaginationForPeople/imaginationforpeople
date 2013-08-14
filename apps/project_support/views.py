@@ -1,12 +1,11 @@
 from django.core.urlresolvers import reverse
 
-from apps.forum.models import SpecificQuestion
+from apps.forum.models import SpecificQuestion, SpecificQuestionType
 from apps.forum.views import SpecificQuestionListView
 from apps.project_sheet.views import ProjectDiscussionListView, \
     ProjectDiscussionCreateView, ProjectDiscussionThreadView, \
     ProjectDiscussionNewAnswerView, \
     ProjectDiscussionEditAnswerView
-from apps.project_sheet.models import I4pProjectTranslation
 from apps.tags.models import TaggedCategory
 from .forms import ProjectSheetNeedForm
 
@@ -32,12 +31,18 @@ class ProjectSupportListView(ProjectDiscussionListView) :
         root_category = None
         if allowed_categories.count():
             root_category = TaggedCategory.objects.get(id=allowed_categories[0])
+       
+        prop_count = len([q for q in context["specific_questions"] if q.type.type == "pj-help"])
+        call_count = len([q for q in context["specific_questions"] if q.type.type == "pj-need"])
+        need_count = prop_count + call_count
+        discussion_count = SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-discuss"), object_id=self.context_object.pk).count()
         
         context.update({
             'tab_name' : 'support',
-            'prop_count' : self.get_specific_questions().filter(type__type="pj-help").count(),
-            'call_count' : self.get_specific_questions().filter(type__type="pj-need").count(),
-            'need_count' : self.get_specific_questions().count(),
+            'prop_count' : prop_count,
+            'call_count' : call_count,
+            'need_count' : need_count,
+            'discussion_count' : discussion_count,
             'root_category' : root_category,
         })
         
@@ -49,6 +54,7 @@ class ProjectSupportListAll(SpecificQuestionListView):
     """
     template_name = "project_support/project_support_list_all.html"
     qtypes = ['pj-need', 'pj-help']
+    is_specific = True
 
     def get_questions_url(self):
         return reverse('project_support_list_all')
@@ -89,7 +95,7 @@ class ProjectSupportCreateView(ProjectDiscussionCreateView):
     form_class = ProjectSheetNeedForm
     is_specific = True
     
-    http_method_names = ['post']
+#     http_method_names = ['post']
     
     def get_success_url(self):
         return reverse('project_support_main', args=[self.context_instance.slug])

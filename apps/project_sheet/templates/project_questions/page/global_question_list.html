@@ -3,6 +3,10 @@
 {% load sekizai_tags %}
 {% load tabs %}
 
+{% block cannonical_link %}
+    <link rel="canonical" href="{{settings.APP_URL|strip_path}}{% url project_discussion_list project.slug %}" />
+{% endblock %}
+
 {% block navigation %}
 {% tab tab_context tab_name %}
 {{ block.super }}

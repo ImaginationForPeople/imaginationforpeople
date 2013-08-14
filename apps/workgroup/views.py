@@ -41,7 +41,7 @@ from apps.forum.views import SpecificQuestionListView,\
     
 from .models import WorkGroup
 from .forms import GroupCreateForm, GroupEditForm, WorkgroupDiscussionForm
-from .utils import get_ml_members
+from .utils import lookup_ml_membership
 
 class GroupListView(ListView):
     template_name = 'workgroup/workgroup_list.html'
@@ -94,19 +94,7 @@ class GroupDetailView(DetailView):
         workgroup = context['workgroup']
 
         # Look up mailing list members
-        if workgroup.mailing_list:
-            context['ml_member_list'] = [] # Both on I4P & the ML
-            context['ml_nonmember_list'] = [] # Only subscribed to the ML
-            members = get_ml_members(workgroup)
-            emails = [member[0] for member in members]
-            found_members = User.objects.filter(email__in=emails)
-            for found_member in found_members:
-                context['ml_member_list'].append(found_member)
-                emails.remove(found_member.email)
-                # Subscribe the user to the workgroup if not yet
-                if found_member not in workgroup.subscribers.all():
-                    workgroup.subscribers.add(found_member)
-            context['ml_nonmember_list'] = [User(email=nonmember_email) for nonmember_email in emails]
+        context.update(lookup_ml_membership(workgroup))
 
         # Wiki
         try:
@@ -119,7 +107,7 @@ class GroupDetailView(DetailView):
 
         context['wiki_article'] = article
         
-        context['group_projects'] = workgroup.projects.all()
+        context['group_projects'] = workgroup.projects.prefetch_related('locations').all().order_by('?')
             
         return context
 
@@ -148,7 +136,7 @@ class GroupDescriptionDetailView(GroupDetailView):
             desc_article.add_object_relation(home_article)
             revision = ArticleRevision(title="description of %s" %workgroup.name, content='')
             desc_article.add_revision(revision)
-
+        
         context.update({
              'wiki_article' : desc_article,                        
         })
@@ -160,6 +148,18 @@ class GroupMembersView(GroupDetailView):
     List all members of the given group
     """
     template_name = 'workgroup/page/workgroup_members.html'
+
+class GroupListArchiveView(GroupDetailView):
+    """
+    Display mailing lisy archives
+    """
+    template_name = 'workgroup/page/workgroup_list_archive.html'
+
+class GroupLinkedProjectsView(GroupDetailView):
+    """
+    List all members of the given group
+    """
+    template_name = 'workgroup/page/workgroup_linked_projects.html'
         
 class GroupWikiEdit(WikiEdit):
     template_name = "workgroup/page/wiki_edit.html"
@@ -298,6 +298,8 @@ class GroupDiscussionListView(SpecificQuestionListView):
     def get_context_data(self, **kwargs):
         context = SpecificQuestionListView.get_context_data(self, **kwargs)
         
+        context.update(lookup_ml_membership(self.context_object))
+        
         context.update({
              'active_tab': 'discuss',
              'workgroup': self.context_object,             
@@ -319,6 +321,8 @@ class GroupDiscussionCreateView(SpecificQuestionCreateView):
     def get_context_data(self, **kwargs):
         context = SpecificQuestionCreateView.get_context_data(self, **kwargs)
 
+        context.update(lookup_ml_membership(self.context_instance))
+        
         context.update({
             'workgroup': self.context_instance,
         })
@@ -360,6 +364,8 @@ class GroupDiscussionThreadView(SpecificQuestionThreadView):
     def get_context_data(self, **kwargs):
         context = SpecificQuestionThreadView.get_context_data(self, **kwargs)
         
+        context.update(lookup_ml_membership(self.context_instance))
+        
         context.update({
              'workgroup': self.context_instance,
              'active_tab': 'discussion',
@@ -395,6 +401,8 @@ class GroupDiscussionEditAnswerView(EditAnswerView):
         
     def get_context_data(self, answer_id, **kwargs):
         context = EditAnswerView.get_context_data(self, answer_id, **kwargs)
+        
+        context.update(lookup_ml_membership(self.workgroup))
         
         context.update({
             'workgroup': self.workgroup,

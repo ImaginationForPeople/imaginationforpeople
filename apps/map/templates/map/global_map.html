@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load sekizai_tags %}
+{% load leaflet_tags %}
+{% load i18n %}
+
+{% block meta_desc %}{% trans 'These experiences have a positive social impact and create social goodwill. they demonstrate a disruptive inventiveness and can be easily disseminated and scaled in other places or cultural contexts.'%}{% endblock %}
+{% block title %}{% trans 'Map of projects'%}{% endblock %}
+
+{% block extra_head %}
+    {% addtoblock "css" strip %}
+        {% leaflet_css plugins="markercluster" %}
+    {% endaddtoblock %}
+    {% addtoblock "css" strip %}
+        <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+    {% endaddtoblock %}
+    {% addtoblock "sekizai_extra_head" strip %}
+        {% comment %}
+        Do NOT put this in the js block, it does
+        not tolerate compress
+        {% endcomment %} 
+        {% leaflet_js plugins="markercluster" %}
+    {% endaddtoblock %}
+
+<style>
+
+    #projectsMap {
+        height: 600px;
+    }
+
+</style>
+{% endblock %}
+ 
+{% block content %}
+{% leaflet_map "projectsMap" %}
+<script type="text/javascript">
+
+    function projectsMapInit(map, bounds) {
+    	
+    	var markers = new L.MarkerClusterGroup();
+		
+		$.get("{% url projects-json %}", function(data){
+			$.each(data, function(index, value){
+				var marker = new L.Marker(new L.LatLng(value[3], value[2]));
+				marker.on('mouseover', function(e) {
+					marker.unbindPopup();
+					$.get("{% url get-project-card %}", { project_id: value[0], location_id: value[1] }, function (data){
+						marker.bindPopup(data);
+					});
+				});
+				markers.addLayer(marker);
+			});
+			map.addLayer(markers);
+			map.fitBounds(markers.getBounds());
+		}, "json");
+    }
+</script>
+{% endblock %}
