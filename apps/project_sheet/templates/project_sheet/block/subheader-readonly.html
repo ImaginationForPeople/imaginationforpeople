@@ -210,7 +210,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 			   {% endif %}
 		   </div>
 		 {% elif forloop.counter == 2 %}
-		   <br/ ><a class="map-button">{% trans "More"%}</a>
+		   <br/ ><a class="map-button">{% blocktrans with nb_loc=project_translation.master.locations.all|length %}See all the {{nb_loc}} locations {%endblocktrans%}</a>
 		 {% endif %}
     {% endfor %}
 {% else %}
