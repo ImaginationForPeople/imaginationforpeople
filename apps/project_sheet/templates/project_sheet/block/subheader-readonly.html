@@ -150,6 +150,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         {% endcomment %}
         {% leaflet_js plugins="markercluster" %}
     {% endaddtoblock %}
+   <div id="map_div">
     {% leaflet_map "projectLocationsMap" %}
 
     {% localize off %}
@@ -185,13 +186,14 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         }
         else {
             map.fitBounds(markers.getBounds());
-        }        
+        }
+        $('#projectLocationsMap, .infocard a.back').hide();
     }
 </script>
     	{% endlocalize %}
 	{% endif %}
 	<a class="back" href="#">&larr; {% trans "back to informations" %}</a>
-	
+	</div>
 	<table class="infotable">
 		<tr class="infotable-location location">
 			<td colspan=2>
