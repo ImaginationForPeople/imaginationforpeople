@@ -1,7 +1,18 @@
 {% load i18n %}
 {% load guardian_tags %}
+{% load placeholder_tags %}
+{% load sekizai_tags %}
+{% load cms_tags %}
 
+
+
+
+{% addtoblock "sekizai_extra_head" %}
+     {% cms_toolbar %}
+{% endaddtoblock %} 
+ 
 <div class="span4">
+   {% render_placeholder workgroup.sidebar "100%" %}
   <div class="group-projects">
     <h3>
 {% blocktrans count num_projects=group_projects|length %}

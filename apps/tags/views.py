@@ -38,7 +38,7 @@ class TagEditWikiView(Edit):
 class TagPageView(TemplateView):
     template_name = 'tags/tag_view.html'
 
-    @method_decorator(cache_page(60*60)) # One hour
+#    @method_decorator(cache_page(60*60)) # One hour
     def dispatch(self, *args, **kwargs):
         return super(TagPageView, self).dispatch(*args, **kwargs)
     
