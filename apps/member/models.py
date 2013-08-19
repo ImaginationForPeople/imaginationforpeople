@@ -38,9 +38,6 @@ from apps.i4p_base.models import Location, I4P_COUNTRIES
 
 from .social import fetch_profile_data
 
-from tastypie.models import create_api_key 
-
-models.signals.post_save.connect(create_api_key, sender=User)
 
 class I4pProfile(UserenaLanguageBaseProfile, AskbotBaseProfile):
     """
