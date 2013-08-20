@@ -156,6 +156,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
     {% localize off %}
 <script type="text/javascript">
     function projectLocationsMapInit(map, bounds) {
+        
         var markers = new L.MarkerClusterGroup();
         var marker = null;
         map.removeControl(map.attributionControl);
@@ -187,7 +188,22 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
         else {
             map.fitBounds(markers.getBounds());
         }
-        $('#projectLocationsMap, .infocard a.back').hide();
+        //$('#projectLocationsMap, .infocard a.back').hide();
+        $('.infotable .map-button').click(function(){
+            $('.infotable').fadeOut(300);            
+            $('#projectLocationsMap, .infocard a.back').css('display',  'block');		  
+            map.invalidateSize(true);
+            if (numLocations == 1) {
+               if (marker != null) {
+                   map.setView(marker.getLatLng(),14);
+                   //This doesn't autopan if we don't give a delay
+                   setTimeout(function(){ marker.openPopup();}, 250);
+               }
+           }
+           else {
+               map.fitBounds(markers.getBounds());
+           }
+         });
     }
 </script>
     	{% endlocalize %}

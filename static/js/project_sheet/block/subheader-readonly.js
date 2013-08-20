@@ -2,14 +2,9 @@
 
 $(document).ready(function () {
    
-   $('.infotable .map-button').click(function(){
-		$('.infotable').fadeOut(300);
-		$('#projectLocationsMap, .infocard a.back').fadeIn(300);		  
-	});
-
 	$('.infocard .back').click(function(){
 		$('.infotable').fadeIn(300);
-		$('#projectLocationsMap, .infocard a.back').fadeOut(300);
+		$('#projectLocationsMap, .infocard a.back').css('display',  'none');
 	});
 
 	if($('#gallery-modal-view-1 .video-item').length > 0) {
