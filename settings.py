@@ -188,7 +188,7 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-    'honeypot.middleware.HoneypotMiddleware',
+    'apps.i4p_base.middleware.i4phoneypot.I4pHoneypotMiddleware',
 
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
