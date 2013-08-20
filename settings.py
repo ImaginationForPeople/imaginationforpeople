@@ -612,6 +612,7 @@ ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 LIVESETTINGS_CACHE_TIMEOUT = 6000
 KEYEDCACHE_ALIAS = "askbot"
 CACHE_TIMEOUT = LIVESETTINGS_CACHE_TIMEOUT
+ASKBOT_DEBUG_INCOMING_EMAIL = DEBUG
 
 ## Celery Settings
 # TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge
