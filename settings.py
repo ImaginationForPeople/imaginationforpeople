@@ -280,6 +280,7 @@ INSTALLED_APPS = (
     'serializers',
     'tabs',
     'logentry_admin',
+    'django_lamson',
 
     'raven.contrib.django',
     'tinymce',
@@ -478,7 +479,10 @@ if not 'EMAIL_SUBJECT_PREFIX' in locals():
 
 # Write emails to console if in development mode
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = 'localhost'
+    EMAIL_PORT = 1025
 # else, use SMTP
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -612,6 +616,13 @@ ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 LIVESETTINGS_CACHE_TIMEOUT = 6000
 KEYEDCACHE_ALIAS = "askbot"
 CACHE_TIMEOUT = LIVESETTINGS_CACHE_TIMEOUT
+
+## REPLY BY MAIL IN ASKBOT 
+#LAMSON_RECEIVER_CONFIG = {'host': '88.190.216.147', 'port': 25}
+LAMSON_RECEIVER_CONFIG = {'host': '127.0.0.1', 'port': 8025}
+LAMSON_HANDLERS = ['askbot.mail.lamson_handlers']
+LAMSON_ROUTER_DEFAULTS = {'host': '.+'}
+
 
 ## Celery Settings
 # TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge
