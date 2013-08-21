@@ -7,11 +7,11 @@ import time
 import pipes
 
 import fabric.operations
-from fabric.operations import put, get
+from fabric.operations import put, get, env
 from fabric.api import *
 from fabric.colors import cyan
 from fabric.contrib.files import *
-
+from os.path import expanduser
 @task
 def reloadapp():
     """
@@ -123,8 +123,8 @@ def devenv():
     commonenv()
     env.wsginame = "dev.wsgi"
     env.urlhost = "localhost"
-    #env.user = "webapp"
-    #env.home = "webapp"
+    env.user = env.local_user
+    env.home = expanduser("~")
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['localhost']
 
@@ -135,6 +135,28 @@ def devenv():
 
     env.venvbasepath = os.path.normpath(os.path.join(current_path,"../../"))
     env.venvfullpath = os.path.normpath(os.path.join(current_path,"../"))
+
+@task
+def devenv2():
+    """
+    [ENVIRONMENT] Developpement (must be run from the project path: 
+    the one where the fabfile is)
+    """
+    commonenv()
+    env.wsginame = "dev.wsgi"
+    env.urlhost = "localhost"
+    #env.user = "webapp"
+    #env.home = "webapp"
+    require('venvname', provided_by=('commonenv',))
+    env.hosts = ['127.0.0.1']
+
+    current_path = local('pwd',capture=True)
+    
+    env.gitrepo = "git@github.com:ImaginationForPeople/imaginationforpeople.git"
+    env.gitbranch = "develop"
+
+    env.venvbasepath = os.path.normpath("/home/benoitg/development/assembl/venv")
+    env.venvfullpath = os.path.normpath("/home/benoitg/development/assembl/venv")
 
 ## Virtualenv
 def build_virtualenv():
@@ -147,6 +169,144 @@ def build_virtualenv():
     run('virtualenv --no-site-packages --distribute %(venvfullpath)s' % env)
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
+def _get_package_list():
+    """
+    Get the list of currently installed packages and versions via pip freeze
+    """
+    with settings(
+        hide('warnings', 'running', 'stdout', 'stderr'),
+        warn_only=True
+    ):
+        print(repr(env.hosts))
+        return venvcmd("pip freeze -l")
+
+def _execute_pip(cmd, dry_run=False):
+    if dry_run:
+        print "Dry run, would execute the following on host %s:" % (env.host_string)
+        print cmd
+        
+    else:
+        return venvcmd(cmd)
+        
+@task
+def clone_package_versions(source=None, destination=None, dry_run=False):
+    """
+    Clone python packages between virtualenv ex: fab clone_package_versions:source='prodenv',destination='devenv',dry_run=True
+    fab clone_environment:source='prodenv',destination='devenv' 
+    """
+    if dry_run == 'True':
+        dry_run = True
+    elif dry_run == 'False':
+        dry_run = False
+    print "Cloning environment %s to %s" % (source, destination)
+    (packages, environments) = _check_package_versions([source, destination]);
+    #WHATEVER YOU DO, do NOT remove this line.  Its the one that sets the 
+    #Environment where pip commands will be executed.
+    execute(destination)
+    multi_versions = {}
+    missing_servers = []
+    for package, versions in packages.items():
+        for version, version_info in versions.items():
+            for host in version_info['environments']:
+                if host == source:
+                    source_version = version
+                    pip_package_string = version_info['raw_package_string']
+                elif host == destination:
+                    destination_host = host
+                    current_destination_version = version
+        
+        if len(versions.keys()) > 1:
+            # There is more than one version installed on the servers
+            print "Wrong version (%s) of package %s installed on %s.  Replacing with version %s"% (current_destination_version, package, destination, source_version)
+            execute(_execute_pip, "pip install %s" % (pip_package_string), dry_run)
+        elif len(versions[versions.keys()[0]]['environments']) != len(environments):
+            # The package is not installed on all the environments
+            missing_hosts = set(tuple(environments)) - set(versions[versions.keys()[0]]['environments'])
+            for host in missing_hosts:
+                if host == source:
+                    print "Package %s installed on destination %s, but not on source %s.  Removing."% (package, destination, source)
+                    execute(_execute_pip, "pip uninstall %s" % (package), dry_run)
+                elif host == destination:
+                    print "Package %s installed on source %s, missing on destination %s.  Installing."% (package, source, destination)
+                    execute(_execute_pip, "pip install %s" % (pip_package_string), dry_run)
+
+
+@task
+def compare_package_versions(source=None, destination=None):
+    """
+    Compare python package versions on different environments ex: fab compare_package_versions:source='prodenv',destination='devenv'
+    prints the out of sync packages
+    """
+    (packages, environments) = _check_package_versions([source, destination])
+    return _process_packages(packages, environments)
+
+@runs_once
+def _check_package_versions(environments):
+    """
+    Check the versions of all the packages on all the servers and print out
+    the out of sync packages
+    """
+    packages = {}
+    for env_name in environments:
+        env_task = globals()[env_name]
+        execute(env_name)
+        assert(len(env.hosts) == 1)
+        #Only one host per env supported, as the goal is to compare environments
+
+        print "Getting packages on %s for environment %s" % (env.hosts[0], env_name)
+        result = execute(_get_package_list)[env.hosts[0]]
+        pkg_list = result.splitlines()
+        for package in pkg_list:
+            if package.startswith("-e"):
+                version, package_name = package.split("#egg=")
+                index = package_name.find("-")
+                if index:
+                    pkg = package_name[:index]
+                else:
+                    pkg = package_name
+            else:
+                pkg, version = package.split("==")
+            if pkg not in packages:
+                packages[pkg] = {}
+            if version not in packages[pkg]:
+                packages[pkg][version] = {}
+                packages[pkg][version]["environments"]=[]
+            packages[pkg][version]["raw_package_string"]=package
+            packages[pkg][version]["environments"].append(env_name)
+    return (packages, environments)
+    
+def _process_packages(packages, environments):
+    """
+    Convert the packages datastructure into the multiple versions and missing
+    servers lists and output the result
+    """
+    multi_versions = {}
+    missing_servers = []
+    for package, versions in packages.items():
+        if len(versions.keys()) > 1:
+            # There is more than one version installed on the servers
+            multi_versions[package] = versions
+        elif len(versions[versions.keys()[0]]['environments']) != len(environments):
+            # The package is not installed on all the environments
+            missing_hosts = set(tuple(environments)) - set(versions[versions.keys()[0]]['environments'])
+            missing_servers.append(
+                "%s: %s" % (package, ", ".join(missing_hosts))
+            )
+    if missing_servers or multi_versions:
+        print ""
+        print "Packages out-of-sync:"
+    if multi_versions:
+        print ""
+        print "Multiple versions found of these packages:"
+        for package, versions in multi_versions.items():
+            print package
+            for ver, version_info in versions.items():
+                print "  %s: %s" % (ver, ", ".join(version_info['environments']))
+    if missing_servers:
+        print ""
+        print "These packages are missing on these servers:"
+        for item in missing_servers:
+            print item
 
 @task
 def update_requirements(force=False):

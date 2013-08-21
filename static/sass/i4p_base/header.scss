@@ -371,6 +371,15 @@ $sizeTextSmall: 11px;
                 width:100%;
                 font-size:1.25rem;
                 text-align:center;
+
+                &.edit {
+                    background:none;
+                    @include border-radius(0);
+                    color:#04ADD1;
+                    height:20px;
+                    font-size:1.1rem;
+                    line-height:20px;
+                }
             }
         }
     }
@@ -426,6 +435,10 @@ $sizeTextSmall: 11px;
     background:white;
     z-index:10000;
     border-top:5px solid #777;
+
+    &:hover {
+        display:block;
+    }
 
     @include box-shadow(1px 1px 3px #3c3c3c);
 

@@ -79,6 +79,7 @@
                                     <strong>{{ user.username }}</strong>
                                     <em>{{ user.email }}</em>
                                     <a href="{% url userena_profile_detail request.user %}">{% trans 'View my profile' %}</a>
+                                    <a class="edit" href="{% url userena_profile_detail request.user %}edit">{% trans 'Edit my profile' %}</a>
                                 </p>
                             </div>
                             <div class="bottom">
