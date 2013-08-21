@@ -1,13 +1,19 @@
+from django.contrib.auth.models import User
 from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.db.models.signals import post_delete
+from django.db.models.signals import post_delete, post_save
 from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext_lazy as _
 
-from askbot.models.question import Thread
+from askbot.models.question import Thread, FavoriteQuestion
 
 from apps.tags.models import TaggedCategory
+
+import datetime
+from askbot.models.post import Post
+from askbot.tasks import record_post_update
+
 
 QUESTION_TYPE_CHOICES = (
     ('generic', _('generic')),
@@ -52,4 +58,34 @@ def purge_specific_thread(sender, instance, **kwargs):
     if instance.thread.is_specific:
         instance.thread.delete()
 
-        
+@receiver(post_save, sender=SpecificQuestion)
+def subscribe_context_object_members(sender, instance, created, **kwargs):
+    specific_question = instance
+    context = specific_question.context_object
+    if created:
+        timestamp = datetime.datetime.now()
+        if hasattr(context, 'get_members'):
+            for member in context.get_members():
+                if isinstance(member, User):
+                    member = member.get_profile()
+             
+                FavoriteQuestion.objects.create(thread=specific_question.thread,
+                                                user=member.user,
+                                                added_at=timestamp,
+                )
+                specific_question.thread.update_favorite_count()
+                
+                member.user.followed_threads.add(specific_question.thread)
+                
+                specific_question.thread.invalidate_cached_data()
+            
+            post = Post.objects.get(post_type="question", 
+                                    thread=specific_question.thread)
+
+        record_post_update(post=post,
+                           updated_by=post.author,
+                           timestamp=timestamp,
+                           newly_mentioned_users=[],
+                           created=True,
+                           diff=post.text)
+                            

@@ -32,6 +32,7 @@ from tagging.fields import TagField
 
 
 from apps.project_sheet.models import I4pProject
+from apps.workgroup.utils import lookup_ml_membership
 
 
 def get_grouppicture_path(aWorkGroup, filename):
@@ -111,6 +112,12 @@ class WorkGroup(models.Model):
                                          related_name='workgroups',
                                          blank=True
                                       )
+    
+    def get_members(self):
+        """
+        Required by specific question auto-subscription
+        """
+        return lookup_ml_membership(self)["ml_member_list"]
     
     def __unicode__(self):
         return u"%s (%s)" % (self.name,

@@ -1,5 +1,5 @@
 {% load i18n extra_tags %}
-{% if favorited %}
+{% if request.user.is_authenticated and request.user in question.thread.followed_by.all %}
     <a class="button unfollow-question" alt="">
         <span>{% trans 'Unfollow this discussion' %}</span>
     </a>
@@ -9,10 +9,10 @@
     </a>
 {% endif %}
 <div id="favorite-number" class="favorite-number{% if favorited %} my-favorite-number{% endif %}">
-    {% if thread.favourite_count = 0 %}
+    {% if question.thread.followed_by.count = 0 %}
     	{% trans 'No follower for the moment' %}
    	{% else %}
-        {% blocktrans count count=thread.favourite_count %}{{count}} follower{% plural %}{{count}} followers{% endblocktrans %}
+        {% blocktrans count count=question.thread.followed_by.count %}{{count}} follower{% plural %}{{count}} followers{% endblocktrans %}
     {% endif %}
 </div>
 <p class="rss">
