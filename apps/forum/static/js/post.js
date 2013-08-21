@@ -354,7 +354,7 @@ var Vote = function(){
         questionUnsubscribeUpdates:12
     };
 
-    var getFavoriteButton = function(){
+    /*var getFavoriteButton = function(){
         var favoriteButton = 'div.'+ voteContainerId +' a[class="'+ classPrefixFollow +'"]';
         favoriteButton += ', div.'+ voteContainerId +' a[class="'+ classPrefixFollowed +'"]';
         return $(favoriteButton);
@@ -362,7 +362,8 @@ var Vote = function(){
     var getFavoriteNumber = function(){
         var favoriteNumber = '#'+ divIdFavorite ;
         return $(favoriteNumber);
-    };
+    };*/
+   
     var getQuestionVoteUpButton = function(){
         var questionVoteUpButton = 'div.'+ voteContainerId +' div[id^="'+ imgIdPrefixQuestionVoteup +'"]';
         return $(questionVoteUpButton);
@@ -463,11 +464,34 @@ var Vote = function(){
            Vote.accept($(event.target));
         });
         // set favorite question
-        var favoriteButton = getFavoriteButton();
+        /*var favoriteButton = getFavoriteButton();
         favoriteButton.unbind('click').click(function(event){
            //Vote.favorite($(event.target));
            Vote.favorite(favoriteButton);
         });
+        
+        getquestionSubscribeUpdatesCheckbox().unbind('click').click(function(event){
+            //despeluchar esto
+            if (this.checked){
+                getquestionSubscribeSidebarCheckbox().attr({'checked': true});
+                Vote.vote($(event.target), VoteType.questionSubscribeUpdates);
+            }
+            else {
+                getquestionSubscribeSidebarCheckbox().attr({'checked': false});
+                Vote.vote($(event.target), VoteType.questionUnsubscribeUpdates);
+            }
+        });
+
+        getquestionSubscribeSidebarCheckbox().unbind('click').click(function(event){
+            if (this.checked){
+                getquestionSubscribeUpdatesCheckbox().attr({'checked': true});
+                Vote.vote($(event.target), VoteType.questionSubscribeUpdates);
+            }
+            else {
+                getquestionSubscribeUpdatesCheckbox().attr({'checked': false});
+                Vote.vote($(event.target), VoteType.questionUnsubscribeUpdates);
+            }
+        });*/
 
         // question vote up
         var questionVoteUpButton = getQuestionVoteUpButton();
@@ -512,29 +536,6 @@ var Vote = function(){
 
         getRemoveAllOffensiveAnswerFlag().unbind('click').click(function(event){
            Vote.remove_all_offensive(this, VoteType.removeAllOffensiveAnswer);
-        });
-
-        getquestionSubscribeUpdatesCheckbox().unbind('click').click(function(event){
-            //despeluchar esto
-            if (this.checked){
-                getquestionSubscribeSidebarCheckbox().attr({'checked': true});
-                Vote.vote($(event.target), VoteType.questionSubscribeUpdates);
-            }
-            else {
-                getquestionSubscribeSidebarCheckbox().attr({'checked': false});
-                Vote.vote($(event.target), VoteType.questionUnsubscribeUpdates);
-            }
-        });
-
-        getquestionSubscribeSidebarCheckbox().unbind('click').click(function(event){
-            if (this.checked){
-                getquestionSubscribeUpdatesCheckbox().attr({'checked': true});
-                Vote.vote($(event.target), VoteType.questionSubscribeUpdates);
-            }
-            else {
-                getquestionSubscribeUpdatesCheckbox().attr({'checked': false});
-                Vote.vote($(event.target), VoteType.questionUnsubscribeUpdates);
-            }
         });
 
         getremoveAnswersLinks().unbind('click').click(function(event){
@@ -586,7 +587,7 @@ var Vote = function(){
         }
     };
 
-    var callback_favorite = function(object, voteType, data){
+    /*var callback_favorite = function(object, voteType, data){
         if(data.allowed == "0" && data.success == "0"){
             showMessage(
                 object,
@@ -624,7 +625,7 @@ var Vote = function(){
         else{
             showMessage(object, data.message);
         }
-    };
+    };*/
 
     var callback_vote = function(object, voteType, data){
         if (data.success == '0'){
@@ -786,7 +787,7 @@ var Vote = function(){
             submit(object, VoteType.acceptAnswer, callback_accept);
         },
         //mark question as favorite
-        favorite: function(object){
+        /*favorite: function(object){
             if (!currentUserId || currentUserId.toUpperCase() == "NONE"){
                 showMessage(
                     object,
@@ -801,7 +802,7 @@ var Vote = function(){
                 return false;
             }
             submit(object, VoteType.favorite, callback_favorite);
-        },
+        },*/
 
         vote: function(object, voteType){
             if (!currentUserId || currentUserId.toUpperCase() == "NONE"){

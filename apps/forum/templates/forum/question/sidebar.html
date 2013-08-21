@@ -9,90 +9,10 @@
         {% with question.author.get_profile() as profile %} 
         {% include "question/question_author_info.html" %}
         {% endwith %}
-        {% if favorited %}
-            <a class="button followed" alt="{% trans %}click to unfollow this question{% endtrans %}">
-                <span>{% trans %}Following this question{% endtrans %}</span>
-                <span class='unfollow'>({% trans %}click to unfollow{% endtrans %})</span>
-            </a>
-        {% else %}
-            <a class="button followed" alt="{% trans %}click to follow this question{% endtrans %}">
-                {%trans %}Follow this question{%endtrans%}
-            </a>
-        {% endif %}
-        <div id="favorite-number" class="favorite-number{% if favorited %} my-favorite-number{% endif %}">
-            {% set follower_count = thread.favourite_count %}
-            {% if follower_count > 0 %}
-                {% trans count=follower_count %}{{count}} follower{% pluralize %}{{count}} followers{% endtrans %}
-            {% endif %}
-        </div>
-        <div class="notify-sidebar">
-            {%if request.user.is_authenticated() %}
-            <input 
-                type="checkbox"
-                id="question-subscribe-sidebar"
-                {% if thread.is_followed_by(request.user) %}
-                    checked="checked"
-                {% endif %}
-            />
-            <label for="question-subscribe-sidebar">{% trans %}email the updates{% endtrans %}</label>
-            {%else%}
-            <input type="checkbox" id="question-subscribe-sidebar"/>
-            <label for="question-subscribe-sidebar">{% trans %}<strong>Here</strong> (once you log in) you will be able to sign up for the periodic email updates about this question.{% endtrans %}</label>
-            {%endif%}
-            <p class="rss">
-                <a
-                    href="{%url question_feed question.id %}"
-                    title="{% trans %}subscribe to this question rss feed{% endtrans %}"
-                    >{% trans %}subscribe to rss feed{% endtrans %}</a>
-            </p>
-        </div>
+        {{ include_django("project_questions/block/mail_subscription.html",request, thread=thread, question=question) }}
         
 </div><!-- end div.box author_and_follow_question-->
 
-
-<!--<div class="box vote-buttons">
-    <h2 >{% trans %}Question tools{% endtrans %}</h2>
-    {{ macros.follow_user_toggle(visitor=request.user, subject=question.author) }}
-    <div class="clearfix"></div>
-    {% if favorited %}
-        <a class="button followed" alt="{% trans %}click to unfollow this question{% endtrans %}">
-            <div>{% trans %}Following this question{% endtrans %}</div>
-            <div class='unfollow'>{% trans %}Unfollow this question{% endtrans %}</div>
-        </a>
-    {% else %}
-        <a class="button followed" alt="{% trans %}click to follow this question{% endtrans %}">
-            {%trans %}Follow this question{%endtrans%}
-        </a>
-    {% endif %}
-    <div class="clearfix"></div>
-    <div id="favorite-number" class="favorite-number{% if favorited %} my-favorite-number{% endif %}">
-        {% set follower_count = thread.favourite_count %}
-        {% if follower_count > 0 %}
-            {% trans count=follower_count %}{{count}} follower{% pluralize %}{{count}} followers{% endtrans %}
-        {% endif %}
-    </div>
-    <div class="notify-sidebar">
-        {%if request.user.is_authenticated() %}
-        <input 
-            type="checkbox"
-            id="question-subscribe-sidebar"
-            {% if thread.is_followed_by(request.user) %}
-                checked="checked"
-            {% endif %}
-        />
-        <label for="question-subscribe-sidebar">{% trans %}email the updates{% endtrans %}</label>
-        {%else%}
-        <input type="checkbox" id="question-subscribe-sidebar"/>
-        <label for="question-subscribe-sidebar">{% trans %}<strong>Here</strong> (once you log in) you will be able to sign up for the periodic email updates about this question.{% endtrans %}</label>
-        {%endif%}
-        <p class="rss">
-            <a
-                href="{%url question_feed question.id %}"
-                title="{% trans %}subscribe to this question rss feed{% endtrans %}"
-                >{% trans %}subscribe to rss feed{% endtrans %}</a>
-        </p>
-    </div> 
-</div>-->
 {{ include_django("forum/block/workgroup/grouplist_fancy_wide.html",request, thread=thread) }}
 
 {% if settings.SIDEBAR_QUESTION_SHOW_META %}

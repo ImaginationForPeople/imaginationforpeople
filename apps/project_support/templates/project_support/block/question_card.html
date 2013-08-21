@@ -60,85 +60,16 @@
                 {% include_jinja "question/question_author_info.html" request %}
                 {% endwith %}
                 
-            	{% if favorited %}
-                    <a class="button unfollow-need" alt="">
-                        <span>{% trans 'Unfollow this discussion' %}</span>
-                    </a>
-                {% else %}
-                    <a class="button follow-need" alt="">
-                        <span>{%trans 'Follow this discussion' %}</span>
-                    </a>
-                {% endif %}
-                <p class="rss">
-                    <a href="{%url question_feed question.id %}" title="{% trans "subscribe to this request's rss feed" %}">{% trans 'subscribe to rss feed' %}</a>
-                </p>
-
-                <div id="favorite-number" class="favorite-number{% if favorited %} my-favorite-number{% endif %}">
-                    {% if thread.favourite_count = 0 %}
-                    	{% trans 'No follower for the moment' %}
-                   	{% else %}
-                        {% blocktrans count count=thread.favourite_count %}{{count}} follower{% plural %}{{count}} followers{% endblocktrans %}
-                    {% endif %}
-                </div>
+            	{% include "project_questions/block/mail_subscription.html" %}
             </div>
         </div>
     </div>
     <script type="text/javascript"> 
-    $(document).ready(function(){
-        if (askbot['data']['userIsAuthenticated'] === false){
-            var ctrl = document.getElementById('question-controls')
-            ctrl.parentNode.removeChild(ctrl);
-        }
-        
-        
-        $(".unfollow-need, .follow-need").click(function(){
-        	var button = $(this);
-        	var mail_subscription_type = 0; //11 for subscribtion else 12
-        	$.ajax({
-				type: "POST",
-				url: "{% url vote question.id %}",
-				data: {'type' : 4,
-					   'postId' : {{question.id}}
-					   },
-				success: function(data){
-					if(data.success === 1){
-						if(button.hasClass("unfollow-need")){
-							button.find("span").html("{%trans 'Follow this discussion' %}");
-							button.removeClass("unfollow-need").addClass("follow-need");
-							mail_subscription_type = 11;
-						}
-						else if(button.hasClass("follow-need")){
-							button.find("span").html("{%trans 'Unfollow this discussion' %}");
-							button.removeClass("follow-need").addClass("unfollow-need");
-							mail_subscription_type = 12;
-						}
-						if(mail_subscription_type == 11 || mail_subscription_type == 12){
-							$.ajax({
-								type: "POST",
-								url: "{% url vote question.id %}",
-								data: {'type' : mail_subscription_type,
-									   'postId' : {{question.id}}
-									   },
-						 	});
-					 	}
-						if(data.count > 0){
-							if(data.count == 1){
-								$("#favorite-number").html("1 follower");
-							}
-							else {
-								$("#favorite-number").html(data.count + "followers");
-							}
-						}
-						else{
-							$("#favorite-number").html("{% trans 'No follower for the moment' %}");
-						}
-					}
-				},
-				dataType: 'json'
-				});
-        	return false;
-        });
-        
-    });
+	    $(document).ready(function(){
+	        if (askbot['data']['userIsAuthenticated'] === false){
+	            var ctrl = document.getElementById('question-controls')
+	            ctrl.parentNode.removeChild(ctrl);
+	        }
+	    });
      </script>
  </div>

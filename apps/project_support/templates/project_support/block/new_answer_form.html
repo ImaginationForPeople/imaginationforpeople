@@ -7,21 +7,6 @@
 
 <form id="fmanswer" action="{{form_answer_url}}" method="post">{% csrf_token %}
     <div style="clear:both"></div>
-    {% if request.user.is_authenticated %}
-        <p>
-            {{ answer.email_notify }}
-            <label for="question-subscribe-updates">
-                {% trans 'Email me when there are any new answers' %}
-            </label>
-        </p>
-    {% else %}
-        <p>
-            {{ answer.email_notify }}
-            <label>{% trans '<span class="strong">Here</span> (once you log in) you will be able to sign up for the periodic email updates about this request.' %}</label>
-        </p>
-    {% endif %}
-    
-    <div style="clear:both"></div>
     {% if request.user.is_anonymous and not settings.ALLOW_POSTING_BEFORE_LOGGING_IN %}
         {% if not thread.closed %}
             <a class="submit" href="{{settings.LOGIN_URL}}?next={% url question question.id %}">

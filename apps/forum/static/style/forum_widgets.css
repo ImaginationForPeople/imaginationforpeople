@@ -489,7 +489,8 @@ div.author_info_question div.wrapper_country_badges ul li.bronze_badge{
 
 
     /*--- Follow the question ---*/
-div.author_and_follow_question a.followed{  
+div.author_and_follow_question a.follow-question, 
+div.author_and_follow_question a.unfollow-question {  
     float:none;
     display:block;  
     text-transform:uppercase;
@@ -527,7 +528,7 @@ div.author_and_follow_question div.notify-sidebar label {
     color:#ffffff; 
 }
 
-div.author_and_follow_question div.notify-sidebar p.rss{
+/*div.author_and_follow_question div.notify-sidebar p.rss{
     padding-left:25px;
     padding-top:5px;
     margin-top:10px;
@@ -535,7 +536,15 @@ div.author_and_follow_question div.notify-sidebar p.rss{
 div.author_and_follow_question div.notify-sidebar p a{
     font-family: 'OpenSans', Arial, sans-serif;
     font-size:12px;
-    color:#ffffff; }
+    color:#ffffff; }*/
+
+div.author_and_follow_question p.rss {
+	display: block;
+	height: 21px;
+	width: 21px;
+	text-indent: -9999em;
+	background: url('../../../../static/images/project_support/misc/rss.png') no-repeat top left;
+}
     
     
     /*--- End follow question ---*/
