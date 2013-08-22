@@ -11,7 +11,7 @@
 		<div id="add-comment-form" class="comment-form controls">
 		      {% if request.user.is_anonymous%}               
                <label for="comment-text">{% trans 'Login to add your comment' %}</label>
-               <textarea row="1" name="comment-text" id="comment-text" placeholder="{% trans 'Login to add your comment...' %}"></textarea>               
+               <textarea disabled row="1" name="comment-text" id="comment-text" placeholder="{% trans 'Login to add your comment...' %}"></textarea>               
                <a class="submit" alt="you must login to comment" href="{{settings.LOGIN_URL}}?next={{request.get_full_path}}">
                {% trans 'Comment' %}
                </a>                            
