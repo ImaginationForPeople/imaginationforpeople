@@ -16,6 +16,7 @@ from askbot.search.state_manager import SearchState
 from askbot.views.readers import QuestionView, QuestionsView
 from askbot.models.post import Post
 from askbot.views.writers import PostNewAnswerView
+from askbot.utils import decorators
 
 from .models import SpecificQuestionType, SpecificQuestion, QUESTION_TYPE_CHOICES
 from .forms import SpecificQuestionForm
@@ -118,6 +119,7 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
             current_question = None
         return current_question
     
+    
     def get_initial(self):
         initial = FormView.get_initial(self)
         
@@ -134,6 +136,7 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
             })
         
         return initial
+    
     
     def get_context_data(self, **kwargs):
         context = FormView.get_context_data(self, **kwargs)
@@ -177,6 +180,7 @@ class SpecificQuestionCreateView(SpecificQuestionTypeMixin, FormView):
             
         return FormView.form_valid(self, form)
     
+    @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
         self.context_instance = self.get_context_object_instance(**kwargs)
         self.current_question = self.get_current_question(**kwargs)
