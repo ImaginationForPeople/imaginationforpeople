@@ -9,9 +9,17 @@
 <div class="comments" id="comments-for-{{post.post_type}}-{{post.id}}">
 	<div class="content">
 		<div id="add-comment-form" class="comment-form controls">
-				<label for="comment-text">{% trans 'Add your comment' %}</label>
-				<textarea row="1" name="comment-text" id="comment-text" placeholder="{% trans 'Add your comment...' %}"></textarea>
-				<input type="submit" class="submit" value="{% trans 'Comment' %}" />
+		      {% if request.user.is_anonymous%}               
+               <label for="comment-text">{% trans 'Login to add your comment' %}</label>
+               <textarea disabled row="1" name="comment-text" id="comment-text" placeholder="{% trans 'Login to add your comment...' %}"></textarea>               
+               <a class="submit" alt="you must login to comment" href="{{settings.LOGIN_URL}}?next={{request.get_full_path}}">
+               {% trans 'Comment' %}
+               </a>                            
+            {% else %}
+				   <label for="comment-text">{% trans 'Add your comment' %}</label>
+				   <textarea row="1" name="comment-text" id="comment-text" placeholder="{% trans 'Add your comment...' %}"></textarea>
+				   <input type="submit" class="submit" value="{% trans 'Comment' %}" />				
+            {% endif %}
             <script>
             $(document).ready(function() {
             	askbot['data']['comments-for-{{post.post_type}}-{{post.id}}'] = {truncated: false};
