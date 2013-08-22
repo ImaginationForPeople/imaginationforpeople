@@ -1,3 +1,5 @@
+from django.views.generic.base import TemplateView
+from apps.member.models import I4pProfile
 
 #-- encoding: utf-8 --
 #
@@ -313,3 +315,14 @@ def direct_to_user_template(request, username, template_name,
                               template_name,
                               extra_context=extra_context)
 
+
+class MembersQuoteView(TemplateView):
+    template_name = "member/quote.html"
+    
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
+        members = {}
+        for member in I4pProfile.objects.filter(motto__isnull=False).exclude(motto__exact='').order_by("?"):
+            members[member.get_full_name_or_username] = member.motto.replace('"', '').capitalize()
+        context["members"] = members
+        return context

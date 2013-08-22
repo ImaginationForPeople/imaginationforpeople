@@ -1,0 +1,25 @@
+{% extends "userena/profile_list.html" %}
+
+{% block content %}
+<div class="content">
+<ul style="list-style: none; text-align: center;">
+{% for member, quote in members.iteritems %}
+	<li style="padding-top: 10px;">
+	{% if forloop.counter|divisibleby:"2" %}
+	<span style="font-size: 12px;">
+		<a href="{{member.get_absolute_url}}">{{member}}</a>
+	</span>
+	&nbsp;
+	<span style="font-size: 20px;">&ldquo;{{quote}}&rdquo;</span>
+	{% else %}
+	<span style="font-size: 20px;">&ldquo;{{quote}}&rdquo;</span>
+	&nbsp;
+	<span style="font-size: 12px;">
+		<a href="{{member.get_absolute_url}}">{{member}}</a>
+	</span>
+	{% endif %}
+	</li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
