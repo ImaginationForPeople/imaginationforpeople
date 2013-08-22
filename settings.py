@@ -479,11 +479,8 @@ if not 'EMAIL_SUBJECT_PREFIX' in locals():
 
 # Write emails to console if in development mode
 if DEBUG:
-    #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-    EMAIL_HOST = 'localhost'
-    EMAIL_PORT = 1025
-# else, use SMTP
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    # else, use SMTP
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'localhost'
@@ -619,7 +616,6 @@ CACHE_TIMEOUT = LIVESETTINGS_CACHE_TIMEOUT
 ASKBOT_DEBUG_INCOMING_EMAIL = DEBUG
 
 ## REPLY BY MAIL IN ASKBOT 
-#LAMSON_RECEIVER_CONFIG = {'host': '88.190.216.147', 'port': 25}
 LAMSON_RECEIVER_CONFIG = {'host': '127.0.0.1', 'port': 8025}
 LAMSON_HANDLERS = ['askbot.mail.lamson_handlers']
 LAMSON_ROUTER_DEFAULTS = {'host': '.+'}
