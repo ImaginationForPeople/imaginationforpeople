@@ -117,7 +117,7 @@ class WorkGroup(models.Model):
         """
         Required by specific question auto-subscription
         """
-        return lookup_ml_membership(self)["ml_member_list"]
+        return self.subscribers.all()
     
     def __unicode__(self):
         return u"%s (%s)" % (self.name,

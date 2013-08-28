@@ -82,10 +82,10 @@ def subscribe_context_object_members(sender, instance, created, **kwargs):
             post = Post.objects.get(post_type="question", 
                                     thread=specific_question.thread)
 
-        record_post_update(post=post,
-                           updated_by=post.author,
-                           timestamp=timestamp,
-                           newly_mentioned_users=[],
-                           created=True,
-                           diff=post.text)
+            record_post_update(post=post,
+                               updated_by=post.author,
+                               timestamp=timestamp,
+                               newly_mentioned_users=[],
+                               created=True,
+                               diff=post.text)
                             
