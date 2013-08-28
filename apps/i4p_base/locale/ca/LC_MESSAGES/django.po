@@ -1,28 +1,30 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Slyan <maire.sylvain@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-07-24 15:50-0400\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-08-28 12:57+0200\n"
 "PO-Revision-Date: 2013-07-24 19:52+0000\n"
 "Last-Translator: benoitg <benoitg@coeus.ca>\n"
-"Language-Team: Catalan (http://www.transifex.com/projects/p/imaginationforpeople/language/ca/)\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/"
+"imaginationforpeople/language/ca/)\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ca\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cms_app.py:6
 msgid "I4PBase App"
 msgstr ""
 
-#: forms.py:18 templates/i4p_base/search/search.html:43
+#: forms.py:18 templates/search.html:5 templates/search.html.py:6
+#: templates/i4p_base/search/search.html:43
 msgid "Search"
 msgstr ""
 
@@ -1158,71 +1160,74 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"                \"<strong>%(url)s</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.\"\n"
+"                \"<strong>%(url)s</strong> is powered by a set of free "
+"components licensed under <strong>AGPL</strong> and <strong>Creative "
+"Commons</strong>.\"\n"
 "                "
 msgstr ""
 
-#: templates/header.html:15
-msgid "Log In with"
+#: templates/header.html:17 templates/pages/home-blocks/loginbox.html:11
+msgid "Connexion"
 msgstr ""
 
-#: templates/header.html:22
-msgid "Member Login"
+#: templates/header.html:17 templates/pages/home-blocks/loginbox.html:12
+msgid "Inscription"
 msgstr ""
 
-#: templates/header.html:41
-msgid "Sign in"
-msgstr ""
-
-#: templates/header.html:42
-msgid "I lost my password!"
-msgstr ""
-
-#: templates/header.html:50
-msgid "Not a member yet ?"
-msgstr ""
-
-#: templates/header.html:51
-msgid "Sign-up with your email:"
-msgstr ""
-
-#: templates/header.html:52
-msgid "Sign-up now !"
-msgstr ""
-
-#: templates/header.html:54
-msgid "Sign-up with a social networks:"
-msgstr ""
-
-#: templates/header.html:113 templates/header.html.py:127
-#: templates/pages/home-blocks/loginbox.html:88
-msgid "View my profile"
-msgstr ""
-
-#: templates/header.html:115 templates/backcap/feedback_detail.html:196
+#: templates/header.html:20 templates/backcap/feedback_detail.html:196
 msgid "Log In"
 msgstr ""
 
-#: templates/header.html:115
-msgid "Register"
+#: templates/header.html:44
+msgid "Sign in"
 msgstr ""
 
-#: templates/header.html:123 templates/header.html.py:125
-#: templates/pages/home-blocks/loginbox.html:83
-#: templates/pages/home-blocks/loginbox.html:85
-msgid "My messages"
+#: templates/header.html:47
+msgid "I lost my password!"
 msgstr ""
 
-#: templates/header.html:128 templates/pages/home-blocks/loginbox.html:89
+#: templates/header.html:54
+msgid "Not a member yet ?"
+msgstr ""
+
+#: templates/header.html:55
+msgid "Sign-up with your email:"
+msgstr ""
+
+#: templates/header.html:56
+msgid "Sign-up now !"
+msgstr ""
+
+#: templates/header.html:57
+msgid "Sign-up with a social networks:"
+msgstr ""
+
+#: templates/header.html:73
+msgid "Me"
+msgstr ""
+
+#: templates/header.html:82 templates/pages/home-blocks/loginbox.html:88
+msgid "View my profile"
+msgstr ""
+
+#: templates/header.html:83 templates/pages/home-blocks/loginbox.html:89
 msgid "Edit my profile"
 msgstr ""
 
-#: templates/header.html:129 templates/pages/home-blocks/loginbox.html:90
-msgid "Log out"
+#: templates/header.html:88
+msgid "Messages"
 msgstr ""
 
-#: templates/menu.html:20
-msgid "Home"
+#: templates/header.html:89
+msgid "My projects"
+msgstr ""
+
+#: templates/header.html:90
+msgid "My favourites"
+msgstr ""
+
+#: templates/header.html:93 templates/pages/home-blocks/loginbox.html:90
+msgid "Log out"
 msgstr ""
 
 #: templates/backcap/feedback_detail.html:8
@@ -1342,8 +1347,7 @@ msgid "Help Center"
 msgstr ""
 
 #: templates/backcap/feedback_list.html:48
-msgid ""
-"This is all the feedbacks submitted by you, the users. Thanks for that."
+msgid "This is all the feedbacks submitted by you, the users. Thanks for that."
 msgstr ""
 
 #: templates/backcap/feedback_list.html:60
@@ -1838,8 +1842,7 @@ msgid ""
 msgstr ""
 
 #: templates/pages/popups_notifications.html:16
-msgid ""
-"Popup shown on every project page if present and the user is logged-in."
+msgid "Popup shown on every project page if present and the user is logged-in."
 msgstr ""
 
 #: templates/pages/popups_notifications.html:21
@@ -1882,14 +1885,6 @@ msgstr ""
 msgid "New members"
 msgstr ""
 
-#: templates/pages/home-blocks/loginbox.html:11
-msgid "Connexion"
-msgstr ""
-
-#: templates/pages/home-blocks/loginbox.html:12
-msgid "Inscription"
-msgstr ""
-
 #: templates/pages/home-blocks/loginbox.html:15
 #: templates/pages/home-blocks/loginbox.html:16
 #: templates/pages/home-blocks/loginbox.html:22
@@ -1923,6 +1918,11 @@ msgstr ""
 
 #: templates/pages/home-blocks/loginbox.html:75
 msgid "Your avatar"
+msgstr ""
+
+#: templates/pages/home-blocks/loginbox.html:83
+#: templates/pages/home-blocks/loginbox.html:85
+msgid "My messages"
 msgstr ""
 
 #: templates/pages/home-blocks/newsletter-popup.html:4
