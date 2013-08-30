@@ -39,6 +39,10 @@
 
 {% block content %}	
 {% addtoblock "js" strip %}
+   <script>
+   if (!window.console) console = {};
+   if (!window.console.log) console.log = function () { };
+   </script>
 {% endaddtoblock %}
 {% include "addthis.html" %}
 {% addtoblock "js" strip %}

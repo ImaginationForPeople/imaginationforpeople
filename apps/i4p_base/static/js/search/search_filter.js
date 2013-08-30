@@ -51,7 +51,7 @@ $(document).ready(function(){
          // Update style for each element of class .hover
         $('.project-card .hover').hide();
          // update URL         
-         if ( !History.enabled ) {// History.js is disabled for this browser. This is because we can optionally choose to support HTML4 browsers or not.
+         if ( !window.History.enabled ) {// History.js is disabled for this browser. This is because we can optionally choose to support HTML4 browsers or not.
             $('#col').unblock();
             return false;}
          var History = window.History; // Note: We are using a capital H instead of a lower h
