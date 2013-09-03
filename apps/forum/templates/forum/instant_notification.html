@@ -1,9 +1,15 @@
-{% if receiving_user %}
-{% trans %}Dear{% endtrans %} {{receiving_user.get_full_name_or_username()}},
-{% endif %}
+{% extends "base_mail.html"%}
+
+{%block content %}
 {{ reply_separator }}
 {{ content_preview }}
-{% trans %}<p>Sincerely,<br/>The Imagination for People support team</p>{% endtrans %}
+{%endblock%}
+
+{%block reply_addresss %}
 {% if can_reply %}
-<p style="font-size:8px;color:#aaa">{{ reply_address }}</p>
+{{ reply_address }}
 {% endif %}
+{%endblock%}
+
+{%block footer %}
+{%endblock%}
