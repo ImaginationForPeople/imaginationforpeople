@@ -3,6 +3,7 @@
 
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_support/block/question_card.css" />
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_notification.css" />
 {% endaddtoblock %}
 
 <div id="post-id-{{question.id}}" class="question-card-top {% if question.deleted %} deleted{% endif %}">
@@ -64,12 +65,4 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript"> 
-	    $(document).ready(function(){
-	        if (askbot['data']['userIsAuthenticated'] === false){
-	            var ctrl = document.getElementById('question-controls')
-	            ctrl.parentNode.removeChild(ctrl);
-	        }
-	    });
-     </script>
  </div>
