@@ -11,6 +11,8 @@
 "use strict";
 
 $(document).ready(function () {
+   if (!window.console) console = {};
+   if (!window.console.log) console.log = function () { };
 	$('.subheader-actions .submit-button').click(function (ev) {
 		// FIXME: hide local form action buttons.
 		var thisBtn = this,
