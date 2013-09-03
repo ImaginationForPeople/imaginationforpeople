@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{"/js/wmd/wmd.css"|static_url}}" />
 {% endblock %}
 {% block forejs %}
-{% include "question/head_javascript.html" %}
+{{ include_django("project_questions/script/head_javascript.html", request) }}
 {% endblock %}
 {% block content %}
     <div>

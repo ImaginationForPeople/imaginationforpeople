@@ -9,7 +9,7 @@
         {% with question.author.get_profile() as profile %} 
         {% include "question/question_author_info.html" %}
         {% endwith %}
-        {{ include_django("project_questions/block/mail_subscription.html",request, thread=thread, question=question) }}
+        {{ include_django("project_questions/block/mail_subscription.html",request, thread=thread, question=question, favorited=favorited) }}
         
 </div><!-- end div.box author_and_follow_question-->
 

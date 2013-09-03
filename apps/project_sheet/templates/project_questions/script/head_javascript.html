@@ -7,15 +7,14 @@ BEGIN OF FORUM/QUESTION/HEAD_JAVASCRIPT.HTML
         var data = askbot['data'];
         var posts = {};
         var votes = {};
-        if (data['userIsAuthenticated']){
+        {% if request.user.is_authenticated %}
             {% for post_id in user_votes %}
                 votes['{{post_id}}'] = {{user_votes.post_id}};
             {% endfor %}
-
             {% for post_id in user_post_id_list %}
                 posts['{{post_id}}'] = 1;
             {% endfor %}  
-        }
+        {% endif %}
         data['user_posts'] = posts;
         data['user_votes'] = votes;
 
@@ -23,44 +22,50 @@ BEGIN OF FORUM/QUESTION/HEAD_JAVASCRIPT.HTML
             var upvote_btn = document.getElementById(post_type + '-img-upvote-' + post_id);
             var downvote_btn = document.getElementById(post_type + '-img-downvote-' + post_id);
             
-            if (data['userIsAuthenticated']){
-                if (post_id in data['user_votes']){
-                    var vote = data['user_votes'][post_id];
-                    if (vote == -1){
-                        var btn = downvote_btn;
-                    } else if (vote == 1){
-                        var btn = upvote_btn;
-                    } else {
-                        return;
-                    }
-                    if (post_type == 'comment'){
-                        btn.className = btn.className + ' upvoted';
-                    } else {
-                        btn.className = btn.className + ' on';
-                    }
+            {% if request.user.is_authenticated %}
+            if (post_id in data['user_votes']){
+                var vote = data['user_votes'][post_id];
+                if (vote == -1){
+                    var btn = downvote_btn;
+                } else if (vote == 1){
+                    var btn = upvote_btn;
+                } else {
+                    return;
+                }
+                if (post_type == 'comment'){
+                    btn.className = btn.className + ' upvoted';
+                } else {
+                    btn.className = btn.className + ' on';
                 }
             }
+            {% endif %}
         }
+        
         function render_post_controls(post_id){
-            if (data['userIsAdminOrMod']){
-                return;//all functions on
-            }
-            if (post_id in data['user_posts']){
-                //todo: remove edit button from older comments
-                return;//same here
-            }
-            if (data['userReputation'] < {{settings.MIN_REP_TO_DELETE_OTHERS_COMMENTS}}){
+            {% if not request.user.is_authenticated %}
+                if (post_id in data['user_posts']){
+                    //todo: remove edit button from older comments
+                    return;//same here
+                }
+                {% if request.user.get_profile.reputation < settings.MIN_REP_TO_DELETE_OTHERS_COMMENTS %}
                 var delete_btn = document.getElementById('post-' + post_id + '-delete');
                 delete_btn.parentNode.removeChild(delete_btn);
-            }
-            if (data['userReputation'] < {{settings.MIN_REP_TO_EDIT_OTHERS_POSTS}}){
+                {% endif %}
+                
+                {% if request.user.get_profile.reputation < settings.MIN_REP_TO_EDIT_OTHERS_POSTS %}
                 var edit_btn = document.getElementById('post-' + post_id + '-edit')
                 edit_btn.parentNode.removeChild(edit_btn);
-            }
-            var retag_btn = document.getElementById('retag');
-            if (data['userReputation'] < {{settings.MIN_REP_TO_RETAG_OTHERS_QUESTIONS}} && retag_btn){
-                retag_btn.parentNode.removeChild(retag_btn);
-            }
+                {% endif %}
+
+                
+                {% if request.user.get_profile.reputation < settings.MIN_REP_TO_RETAG_OTHERS_QUESTIONS %}
+                var retag_btn = document.getElementById('retag'); 
+                if (retag_btn){
+                    retag_btn.parentNode.removeChild(retag_btn);
+                }
+                {% endif %}
+            {% endif %}
+            return;
         }
         function render_add_comment_button(post_id, extra_comment_count){
             var can_add = false;
@@ -102,32 +107,31 @@ BEGIN OF FORUM/QUESTION/HEAD_JAVASCRIPT.HTML
         }
         function render_add_answer_button(){
             var add_answer_btn = document.getElementById('add-answer-btn');
-            if (askbot['data']['userIsAuthenticated']){
-                if (askbot['data']['userId'] == {{question.author_id}}){
-                    add_answer_btn.className += ' answer-own-question';
-                    add_answer_btn.setAttribute(
-                        'value',
-                        '{% trans 'Answer your own request' %}'
-                    )
-                } else {
-                    add_answer_btn.setAttribute(
-                       'value',
-                        '{% trans 'Post Your Answer' %}'
-                    )
-                }
-            } else {
-                add_answer_btn.setAttribute(
-                    'value',
-                    '{% trans 'Login/Signup to Post' %}'
-                );
-            }
+            {% if request.user.is_authenticated %}
+                {% if request.user.id == question.author_id %}
+                add_answer_btn.className += ' answer-own-question';
+                add_answer_btn.setAttribute('value', '{% trans 'Answer your own request' %}')
+                {% else %}
+                add_answer_btn.setAttribute('value', '{% trans 'Post Your Answer' %}')
+                {% endif %}
+            {% else %}
+                add_answer_btn.setAttribute('value', '{% trans 'Login/Signup to Post' %}');
+            {% endif %}
         }
         askbot['functions'] = askbot['functions'] || {};
         askbot['functions']['renderPostVoteButtons'] = render_vote_buttons;
         askbot['functions']['renderPostControls'] = render_post_controls;
         askbot['functions']['renderAddCommentButton'] = render_add_comment_button;
         askbot['functions']['renderAddAnswerButton'] = render_add_answer_button;
+
+        {% if not request.user.is_authenticated %}
+        $(document).ready(function(){
+            var ctrl = document.getElementById('question-controls');
+            ctrl.parentNode.removeChild(ctrl);
+        });
+        {% endif %}
 </script>
+
 <!-- 
 END OF FORUM/QUESTION/HEAD_JAVASCRIPT.HTML
  -->

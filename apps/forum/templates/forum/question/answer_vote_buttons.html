@@ -1,6 +1,4 @@
-{% with answer as post %}
-{% include "block/post/post_vote_buttons.html"%}
-{% endwith %}
+{{ include_django("project_support/block/post_vote_buttons.html",request, post=answer) }}
 <div id="answer-img-accept-{{ answer.id }}"class="answer-img-accept"
     {% if answer.accepted() %}
     title="{% trans %}this answer has been selected as correct{% endtrans %}"
