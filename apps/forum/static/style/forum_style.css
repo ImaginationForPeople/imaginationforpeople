@@ -5,6 +5,7 @@
 @import url(forum_widgets.css);
 @import url(forum_tabbar.css);
 @import url(forum_searchbar.css);
+@import url(forum_notification.css);
 
 /* General Predifined classes, read more in lesscss.org */
 /* Variables for Colors*/
@@ -1772,100 +1773,8 @@ ins p,
 ins {
   background-color: #E6F0A2;
 }
-/* ----- Red Popup notification ----- */
-/*.vote-notification {
-  z-index: 1;
-  cursor: pointer;
-  display: none;
-  position: absolute;
-  font-family: Arial;
-  font-size: 14px;
-  font-weight: normal;
-  color: white;
-  background-color: #8e0000;
-  text-align: center;
-  padding-bottom: 10px;
-  -webkit-box-shadow: 0px 2px 4px #370000;
-  -moz-box-shadow: 0px 2px 4px #370000;
-  box-shadow: 0px 2px 4px #370000;
-  border-radius: 4px;
-  -ms-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -khtml-border-radius: 4px;
-}
-.vote-notification h3 {
-  padding: 10px 10px 10px 10px;
-  font-size: 13px;
-  margin-bottom: 5px;
-  border-top: #8e0000 1px solid;
-  color: #fff;
-  font-weight: normal;
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
-  -moz-border-radius-topright: 4px;
-  -moz-border-radius-topleft: 4px;
-  -webkit-border-top-left-radius: 4px;
-  -webkit-border-top-right-radius: 4px;
-}
-.vote-notification a {
-  color: #fb7321;
-  text-decoration: underline;
-  font-weight: bold;
-}*/
 
-.vote-notification {
-  display: none;
-  position: absolute;
-  left:-32px;
-  width:120px;
-  z-index: 1;
-  cursor: pointer;
-  padding-top:15px;
-  background: url(../images/question/arrow_notification_tooltip.png) center 8px no-repeat;
-}
-.vote-notification h3 {
-  padding:5px;
-  font-family: 'OpenSans', Arial, sans-serif;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: normal;
-  border-radius: 4px;
-  -ms-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  background-color: #242424;    
-  text-align: center;
-}
 
-.vote-notification p{
-  position:absolute;
-  top: 15px;
-  right: -18px;
-  padding:1px;
-  text-align: center;
-  height:14px;
-  width:14px;
-  border-radius: 4px;
-  -ms-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -khtml-border-radius: 4px;
-  background-color:#242424;}
- 
- .vote-notification p span{
-  font-family: 'OpenSans', Arial, sans-serif;
-  font-size: 11px;
-  text-align: center;
-  color:#fffff;
-  display:none;}
-
-.vote-notification a {
-  color: #fb7321;
-  text-decoration: underline;
-  font-weight: bold;
-}
 /* ----- Footer links , check blocks/footer.html----- */
 #ground {
   width: 100%;

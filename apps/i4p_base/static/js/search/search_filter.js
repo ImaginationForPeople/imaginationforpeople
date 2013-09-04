@@ -1,5 +1,7 @@
 $(document).ready(function(){ 
    "use strict";
+   if (!window.console) console = {};
+   if (!window.console.log) console.log = function () { };
    // mirror filter tags in URL to tag list
     // REBUILDING TAGS LIST with values in hidden input
    function rebuild_tag_list(){
@@ -48,10 +50,11 @@ $(document).ready(function(){
          $("#projects").empty().append($(data).find('#projects').children());
          // Update style for each element of class .hover
         $('.project-card .hover').hide();
-         // update URL
-         var History = window.History; // Note: We are using a capital H instead of a lower h
-         if ( !History.enabled ) {// History.js is disabled for this browser. This is because we can optionally choose to support HTML4 browsers or not.
+         // update URL         
+         if ( !window.History.enabled ) {// History.js is disabled for this browser. This is because we can optionally choose to support HTML4 browsers or not.
+            $('#col').unblock();
             return false;}
+         var History = window.History; // Note: We are using a capital H instead of a lower h
          History.pushState('', $('title').text(), updated_bar_url); // logs {state:3}, "State 3", "?state=3"
          $('#col').unblock();
       });

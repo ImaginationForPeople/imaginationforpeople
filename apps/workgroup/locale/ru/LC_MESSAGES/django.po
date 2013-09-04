@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-07-24 15:51-0400\n"
-"PO-Revision-Date: 2013-07-24 19:53+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"POT-Creation-Date: 2013-09-04 11:40+0200\n"
+"PO-Revision-Date: 2013-09-04 09:49+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/imaginationforpeople/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,67 +25,71 @@ msgstr ""
 msgid "Group subscribers list"
 msgstr ""
 
-#: models.py:55
+#: models.py:57
 msgid "name"
 msgstr ""
 
-#: models.py:58
+#: models.py:60
 msgid "spoken language"
 msgstr ""
 
-#: models.py:62 templates/workgroup/block/workgroup_header.html:54
+#: models.py:64 templates/workgroup/block/workgroup_header.html:53
 msgid "Description"
 msgstr ""
 
-#: models.py:70
+#: models.py:72
 msgid "visible"
 msgstr ""
 
-#: models.py:73
+#: models.py:75
 msgid "Group geographic area"
 msgstr ""
 
-#: models.py:76
+#: models.py:78
 msgid ""
 "If your group is geographic in nature, specify it's outling here.   The "
 "platform will display a map of projects, and try to fit this outline in the "
 "visible area"
 msgstr ""
 
-#: models.py:80
+#: models.py:82
 msgid "Linked Projects"
 msgstr ""
 
-#: models.py:84
+#: models.py:86
 msgid "Tags of the group"
 msgstr ""
 
-#: models.py:88
+#: models.py:92
 msgid "External URL"
 msgstr ""
 
-#: models.py:91
+#: models.py:95
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
 msgstr ""
 
-#: models.py:94
+#: models.py:98
 msgid "iframe for home page source URL"
 msgstr ""
 
-#: models.py:97 models.py:103
+#: models.py:101 models.py:107
 msgid ""
 "A URL that points to the collaborative tool used by the group. If not null, "
 "will replace the built-in wiki"
 msgstr ""
 
-#: models.py:100
+#: models.py:104
 msgid "iframe for description page source URL"
 msgstr ""
 
-#: models.py:107
+#: models.py:111
 msgid "Subscribers"
+msgstr ""
+
+#: models.py:116
+msgid "auto subscription to workgroup questions"
 msgstr ""
 
 #: views.py:228
@@ -117,7 +121,7 @@ msgid "Related Groups"
 msgstr ""
 
 #: templates/workgroup/block/grouplist_fancy_wide.html:12
-#: templates/workgroup/block/workgroup_header.html:47
+#: templates/workgroup/block/workgroup_header.html:46
 msgid "See all"
 msgstr ""
 
@@ -153,43 +157,47 @@ msgstr ""
 #, python-format
 msgid ""
 "\t\n"
-"\tmember%(member_plural)s\t\n"
-"\t"
+"                member%(member_plural)s\t\n"
+"            "
 msgstr ""
 
 #: templates/workgroup/block/workgroup_header.html:41
 #, python-format
 msgid ""
 "\n"
-"\tmember%(member_plural)s\n"
-"\t"
+"                member%(member_plural)s\n"
+"            "
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:53
+#: templates/workgroup/block/workgroup_header.html:52
 msgid "Home"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:56
+#: templates/workgroup/block/workgroup_header.html:55
 msgid "List Archive"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:58
+#: templates/workgroup/block/workgroup_header.html:57
 msgid "Group Forum"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:60
+#: templates/workgroup/block/workgroup_header.html:62
+#, python-format
+msgid ""
+"\t\n"
+"                    member%(member_plural)s\t\n"
+"                "
+msgstr ""
+
+#: templates/workgroup/block/workgroup_header.html:67
 #, python-format
 msgid ""
 "\n"
-"%(subscribers_count)s member\n"
-msgid_plural ""
-"\n"
-"%(subscribers_count)s members\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+"                    member%(member_plural)s\n"
+"                "
+msgstr ""
 
-#: templates/workgroup/block/workgroup_header.html:66
+#: templates/workgroup/block/workgroup_header.html:74
 #, python-format
 msgid ""
 "\n"
@@ -201,7 +209,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: templates/workgroup/block/workgroup_sidebar.html:7
+#: templates/workgroup/block/workgroup_sidebar.html:18
 #, python-format
 msgid ""
 "\n"
@@ -213,11 +221,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: templates/workgroup/block/workgroup_sidebar.html:14
+#: templates/workgroup/block/workgroup_sidebar.html:25
 msgid "Manage linked projects"
 msgstr ""
 
-#: templates/workgroup/block/workgroup_sidebar.html:17
+#: templates/workgroup/block/workgroup_sidebar.html:28
 msgid "See all related projects"
 msgstr ""
 
@@ -308,42 +316,11 @@ msgstr ""
 msgid "answered"
 msgstr ""
 
-#: templates/workgroup/page/group_discuss_thread.html:131
-msgid "remove offensive flag"
-msgstr ""
-
-#: templates/workgroup/page/group_discuss_thread.html:133
-msgid "remove flag"
-msgstr ""
-
-#: templates/workgroup/page/group_discuss_thread.html:138
-#: templates/workgroup/page/group_discuss_thread.html:145
-msgid ""
-"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr ""
-
-#: templates/workgroup/page/group_discuss_thread.html:140
-#: templates/workgroup/page/group_discuss_thread.html:146
-msgid "flag offensive"
-msgstr ""
-
-#: templates/workgroup/page/group_discuss_thread.html:154
-msgid "edit"
-msgstr ""
-
-#: templates/workgroup/page/group_discuss_thread.html:162
-msgid "undelete"
-msgstr ""
-
-#: templates/workgroup/page/group_discuss_thread.html:162
-msgid "delete"
-msgstr ""
-
-#: templates/workgroup/page/group_discuss_thread.html:184
+#: templates/workgroup/page/group_discuss_thread.html:148
 msgid "Edit Your Previous Answer"
 msgstr ""
 
-#: templates/workgroup/page/group_discuss_thread.html:185
+#: templates/workgroup/page/group_discuss_thread.html:149
 msgid "(only one answer per question is allowed)"
 msgstr ""
 
@@ -466,4 +443,8 @@ msgstr ""
 
 #: templates/workgroup/page/workgroup_members.html:42
 msgid "Other mailing list subscribers"
+msgstr ""
+
+#: templates/workgroup/page/workgroup_members.html:50
+msgid "who are not registred on"
 msgstr ""

@@ -20,9 +20,6 @@
                 <div class="comment-votes">
                     {% if comment.score > 0 %}
                         <div id="comment-img-upvote-{{comment.id}}" class="upvote">{{comment.score}}</div>
-                        <script type="text/javascript">
-                            askbot['functions']['renderPostVoteButtons']('comment', '{{comment.id}}');
-                        </script>
                     {% else %}
                         <div class="upvote"></div>
                     {% endif %}
@@ -44,9 +41,6 @@
                     {{comment.html}}                    
                 </div>
             </div>
-            <script type="text/javascript">
-                askbot['functions']['renderPostControls']('{{comment.id}}');
-            </script>
         {% endfor %}
         <div class="controls">
             {% if show_post == post and show_comment %}

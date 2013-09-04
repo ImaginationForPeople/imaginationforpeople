@@ -33,8 +33,10 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
 }
 
 .project-subheader {
-    background-color: black;
+    background-color: #1b1b1b;
     position: relative;
+    height:300px;
+    overflow:hidden;
 
     .subheader {
         overflow: hidden;
@@ -42,11 +44,12 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
             /* necessary when there is no project image */
             min-height: 150px;
         margin-left: 0px;
-        height: 300px;
+        height: 300px;        
+        @include box-shadow(-18px 0 20px #111);
     
         .overlay {
             @include box-sizing(border-box);
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.7);
             position: absolute;
             bottom: 0;
             min-height: 6rem;
@@ -57,15 +60,55 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
             @include i4p-font-pagetitle($sizeTextHuge);
             @include i4p-editable;
             color: white;
-            margin-left: 50px;
+            margin:8px 0 0 20px;
+            padding-right:50px;
+            font-size:2.1rem;
+
+                .editing-button {
+                    background:image-url('project_sheet/edit_ico.png') no-repeat center center !important;
+                    border:0;
+
+                    &:before {
+                        background:none !important;
+                    }
+                }
             }
     
             .description {
             @include i4p-font-base($sizeTextNormal);
             @include i4p-editable;
-            margin-left: 50px;
+            margin:0 0 15px 20px;
+            padding-right:50px;
             color: white;
             font-style: italic;
+            line-height:2rem;
+            font-size:1.2rem;
+
+                .editing-button {
+                    background:image-url('project_sheet/edit_ico.png') no-repeat center center !important;
+                    border:0;
+
+                    &:before {
+                        background:none !important;
+                    }
+                }
+            }
+
+            .links {
+                height:30px;
+                background-color: rgba(0,0,0,0.3);
+                width:100%;
+
+                span { display:none }
+
+                a {
+                    float:right;
+                    color:white;
+                    font-size:1.2rem;
+                    font-style:italic;
+                    line-height:30px;
+                    margin-right:20px;
+                }
             }
         }
     
@@ -78,36 +121,81 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
             height: 300px;
             width: 620px;
             }
+
+            .i4p-button {
+                background: image-url('project_sheet/edit-corner.png') no-repeat scroll 70px 0 transparent;
+                display: block;
+                height: 66px;
+                position: absolute;
+                right: 0;
+                text-indent: -999em;
+                top: 0;
+                @include i4p-transition(all .5s ease);
+                width: 70px;
+            }
+
+            &:hover .i4p-button {
+                background: image-url('project_sheet/edit-corner.png') no-repeat scroll top left transparent;
+            }
         }
     }
 
     .infocard {
         @include i4p-sprite('sheet');
         @include i4p-sprite-header('sheet');
-
+        padding:0 10px;
+        margin-left:0;
         color: white;
-
+        height:300px;
+        overflow:hidden;
+        background:black;
+        position:relative;
+        @include box-shadow(18px 0 20px #111);
 
         h2 {
             @include i4p-font-title($sizeTextBig);
             color: white;
         }
 
-        .title {
-
+        .editing-button {
+            background: image-url('project_sheet/edit-corner.png') no-repeat scroll 70px 0 transparent;
+            display: block;
+            height: 66px;
+            position: absolute;
+            right: 0;
+            text-indent: -999em;
+            top: 0;
+            @include i4p-transition(all .5s ease);
+            width: 70px;
+            z-index:2000;
         }
 
         .infotable {
             th {
-                background-color: $colorDarkGrey;
+                background-color: #151515;
             }
     
             .infotable-location {
                 @include i4p-editable;
+
+                .map-button {
+                    float:left;
+                    margin:0 5px 0 0;
+                }
+
+                td {
+                    padding:0;
+                }
             }
     
             .infotable-website {
                 @include i4p-editable;
+
+                a {
+                    color:#04add1;
+                    font-style:italic;
+                    font-size:1.15rem;
+                }
             }
     
             .infotable-maturity {
@@ -123,6 +211,7 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
                     text-shadow: 0px 0px $sizeBorderSmall rgba(0,0,0,0.5);
                     font-style: italic;
                     padding-left: $sizePaddingSmall;
+                    font-size:1rem;
                 }
             }
             .infotable-share {
@@ -134,6 +223,10 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
                     }
                 }
             }
+        }
+
+        &:hover .editing-button {
+            background: image-url('project_sheet/edit-corner.png') no-repeat scroll top left transparent;
         }
     }
 }

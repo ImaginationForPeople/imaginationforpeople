@@ -1,9 +1,7 @@
 <div id="post-id-{{question.id}}" class="question-content{% if question.deleted %} deleted{% endif %}">
     	<div class="conteneur_question_card">
             <div class="wrapper_vote_number vote-buttons"> <!-- vote-buttons for JS callback -->
-                {% with question as post %}
-                {% include "block/post/post_vote_buttons.html"%}
-                {% endwith %}
+                {{ include_django("project_support/block/post_vote_buttons.html",request, post=question) }}
             </div> 
             <div class="share_buttons">            
                 {% if settings.ENABLE_SHARING_TWITTER %}
@@ -42,13 +40,8 @@
             <div class="question-body">
                 {{ question.html }}
             </div>
-            {#
-            {% if question.comment_count == 0 %}
-            <a id="add-first-comment-to-post" class="btn_comment"><i class="icon-bubbles icon-white"> </i> {% trans %}post a comment{% endtrans %}</a>
-            {% endif %}
-            #}
             <div id="question-controls" class="post-controls">
-                {% include "question/question_controls.html" %}
+                {{ include_django("project_support/block/question_controls.html",request, question=question) }}
             </div>
     </div><!--fin div.conteneur_question_card-->
     <div id="question-table">
@@ -56,21 +49,4 @@
         {% include "question/post_comments.html" %}
         {% endwith %}
     </div>
-    <script type="text/javascript"> 
-    (function(){
-        if (askbot['data']['userIsAuthenticated'] === false){
-            var ctrl = document.getElementById('question-controls')
-            ctrl.parentNode.removeChild(ctrl);
-        }
-        {#
-        {% if question.comment_count == 0 %}
-        $("#add-comment-to-post-{{question.id}}").hide()
-        $("#add-first-comment-to-post").click(function(){
-             $("#add-comment-to-post-{{question.id}}").click();
-             return false;
-        });
-        {% endif %}
-        #}
-    })();  
-     </script>
  </div>

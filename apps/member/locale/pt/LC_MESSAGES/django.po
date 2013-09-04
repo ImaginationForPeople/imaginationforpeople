@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-07-24 15:50-0400\n"
-"PO-Revision-Date: 2013-06-19 14:22+0000\n"
+"POT-Creation-Date: 2013-09-04 11:39+0200\n"
+"PO-Revision-Date: 2013-08-28 10:58+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
@@ -99,16 +99,20 @@ msgstr ""
 msgid "New message from %(sender)s on Imagination For People"
 msgstr ""
 
-#: views.py:186
+#: views.py:188
 msgid "Your profile has been updated."
 msgstr ""
 
-#: templates/member/block/memberfanlist_square.html:66
+#: templates/member/block/memberfanlist_square.html:45
+msgid "See all the community project"
+msgstr ""
+
+#: templates/member/block/memberfanlist_square.html:72
 #: templates/member/block/memberlist_square.html:60
 msgid "Contact"
 msgstr ""
 
-#: templates/member/block/memberfanlist_square.html:69
+#: templates/member/block/memberfanlist_square.html:75
 #: templates/member/block/memberlist_square.html:63
 msgid "Profile"
 msgstr ""
@@ -170,6 +174,30 @@ msgid ""
 "\n"
 "You can view it online at:\n"
 "%(message_url)s\n"
+msgstr ""
+
+#: templates/userena/disabled.html:4
+msgid "Disabled account or not yet activated account"
+msgstr ""
+
+#: templates/userena/disabled.html:5
+msgid "Your account has been disabled or is not yet activated"
+msgstr ""
+
+#: templates/userena/disabled.html:11
+msgid "It seems your account (created "
+msgstr ""
+
+#: templates/userena/disabled.html:11
+msgid ""
+" ago) has been disabled or you haven't yet activated your account with the "
+"email you received on this address: "
+msgstr ""
+
+#: templates/userena/disabled.html:12
+msgid ""
+"If you're having trouble to sign up or feel that injustice has been done to "
+"you, feel free to contact support team to find out why"
 msgstr ""
 
 #: templates/userena/email_change_complete.html:4

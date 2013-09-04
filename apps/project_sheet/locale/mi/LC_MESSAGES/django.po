@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-07-24 15:51-0400\n"
-"PO-Revision-Date: 2013-07-19 08:44+0000\n"
+"POT-Creation-Date: 2013-09-04 11:40+0200\n"
+"PO-Revision-Date: 2013-09-04 09:49+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Maori (http://www.transifex.com/projects/p/imaginationforpeople/language/mi/)\n"
 "MIME-Version: 1.0\n"
@@ -154,7 +154,7 @@ msgstr ""
 msgid "one line description"
 msgstr ""
 
-#: models.py:211 templates/project_sheet/block/subheader-readonly.html:123
+#: models.py:211 templates/project_sheet/block/subheader-readonly.html:124
 msgid "One line description"
 msgstr ""
 
@@ -216,20 +216,99 @@ msgstr ""
 msgid "%(timesince)s ago"
 msgstr ""
 
+#: templates/project_questions/block/answer_controls.html:7
+msgid "remove offensive flag"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:9
+msgid "remove flag"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:14
+#: templates/project_questions/block/answer_controls.html:21
+msgid ""
+"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:16
+#: templates/project_questions/block/answer_controls.html:22
+msgid "flag offensive"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:30
+#: templates/project_sheet/block/partner-block.html:29
+msgid "edit"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:38
+msgid "undelete"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:38
+msgid "delete"
+msgstr ""
+
 #: templates/project_questions/block/categories_menu.html:5
 msgid "Browse categories"
 msgstr ""
 
-#: templates/project_questions/block/post_comments.html:12
-msgid "Add your comment"
+#: templates/project_questions/block/mail_subscription.html:6
+#: templates/project_questions/block/mail_subscription.html:49
+msgid "Unfollow this discussion"
+msgstr ""
+
+#: templates/project_questions/block/mail_subscription.html:10
+#: templates/project_questions/block/mail_subscription.html:44
+msgid "Follow this discussion"
+msgstr ""
+
+#: templates/project_questions/block/mail_subscription.html:16
+#: templates/project_questions/block/mail_subscription.html:71
+msgid "No follower for the moment"
+msgstr ""
+
+#: templates/project_questions/block/mail_subscription.html:18
+#, python-format
+msgid "%(count)s follower"
+msgid_plural "%(count)s followers"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/project_questions/block/mail_subscription.html:22
+msgid "subscribe to the rss feed"
+msgstr ""
+
+#: templates/project_questions/block/mail_subscription.html:22
+msgid "subscribe to rss feed"
+msgstr ""
+
+#: templates/project_questions/block/mail_subscription.html:29
+msgid "Anonymous users cannot subscribe to questions"
+msgstr ""
+
+#: templates/project_questions/block/mail_subscription.html:30
+msgid "please login"
 msgstr ""
 
 #: templates/project_questions/block/post_comments.html:13
-msgid "Add your comment..."
+msgid "Login to add your comment"
 msgstr ""
 
 #: templates/project_questions/block/post_comments.html:14
+msgid "Login to add your comment..."
+msgstr ""
+
+#: templates/project_questions/block/post_comments.html:16
+#: templates/project_questions/block/post_comments.html:21
 msgid "Comment"
+msgstr ""
+
+#: templates/project_questions/block/post_comments.html:19
+msgid "Add your comment"
+msgstr ""
+
+#: templates/project_questions/block/post_comments.html:20
+msgid "Add your comment..."
 msgstr ""
 
 #: templates/project_questions/block/question_form.html:15
@@ -317,7 +396,7 @@ msgstr ""
 
 #: templates/project_questions/page/question_answer_edit.html:46
 #: templates/project_sheet/block/detail-list.html:58
-#: templates/project_sheet/block/subheader-readonly.html:44
+#: templates/project_sheet/block/subheader-readonly.html:45
 msgid "Cancel"
 msgstr ""
 
@@ -379,44 +458,36 @@ msgstr ""
 msgid "answered"
 msgstr ""
 
-#: templates/project_questions/page/question_thread.html:126
-msgid "remove offensive flag"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:128
-msgid "remove flag"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:133
 #: templates/project_questions/page/question_thread.html:140
-msgid ""
-"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:135
-#: templates/project_questions/page/question_thread.html:141
-msgid "flag offensive"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:149
-#: templates/project_sheet/block/partner-block.html:29
-msgid "edit"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:157
-msgid "undelete"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:157
-msgid "delete"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:179
 msgid "Edit Your Previous Answer"
 msgstr ""
 
-#: templates/project_questions/page/question_thread.html:180
+#: templates/project_questions/page/question_thread.html:141
 msgid "(only one answer per question is allowed)"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:90
+msgid "post a comment / <strong>some</strong> more"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:92
+msgid "see <strong>some</strong> more"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:96
+msgid "post a comment"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:113
+msgid "Answer your own request"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:115
+msgid "Post Your Answer"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:118
+msgid "Login/Signup to Post"
 msgstr ""
 
 #: templates/project_sheet/block/about.html:46
@@ -426,12 +497,11 @@ msgstr ""
 #: templates/project_sheet/block/about.html:52
 #: templates/project_sheet/block/detail-list.html:44
 #: templates/project_sheet/block/partner-block.html:28
-#: templates/project_sheet/block/subheader-readonly.html:67
-#: templates/project_sheet/block/subheader-readonly.html:79
-#: templates/project_sheet/block/subheader-readonly.html:119
-#: templates/project_sheet/block/subheader-readonly.html:124
-#: templates/project_sheet/block/subheader-readonly.html:217
-#: templates/project_sheet/block/subheader-readonly.html:234
+#: templates/project_sheet/block/subheader-readonly.html:68
+#: templates/project_sheet/block/subheader-readonly.html:80
+#: templates/project_sheet/block/subheader-readonly.html:120
+#: templates/project_sheet/block/subheader-readonly.html:125
+#: templates/project_sheet/block/subheader-readonly.html:144
 #: templates/project_sheet/block/subheader-readwrite.html:66
 msgid "Edit"
 msgstr ""
@@ -517,7 +587,7 @@ msgid "comments"
 msgstr ""
 
 #: templates/project_sheet/block/detail-list.html:57
-#: templates/project_sheet/block/subheader-readonly.html:45
+#: templates/project_sheet/block/subheader-readonly.html:46
 msgid "Ok"
 msgstr ""
 
@@ -603,7 +673,7 @@ msgid "Project"
 msgstr ""
 
 #: templates/project_sheet/block/menubar.html:30
-#: templates/project_sheet/page/project_sheet.html:169
+#: templates/project_sheet/page/project_sheet.html:172
 msgid "Gallery"
 msgstr ""
 
@@ -628,7 +698,7 @@ msgid "Add new translation"
 msgstr ""
 
 #: templates/project_sheet/block/menubar.html:113
-#: templates/project_sheet/block/subheader-readonly.html:250
+#: templates/project_sheet/block/subheader-readonly.html:276
 #: templates/project_sheet/block/subheader-readwrite.html:99
 msgid "Share"
 msgstr ""
@@ -670,38 +740,62 @@ msgstr ""
 msgid "Edit the references"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:80
+#: templates/project_sheet/block/subheader-readonly.html:24
+msgid "Edit the project gallery"
+msgstr ""
+
+#: templates/project_sheet/block/subheader-readonly.html:81
 msgid "my project title"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:136
+#: templates/project_sheet/block/subheader-readonly.html:131
+msgid "See the video"
+msgstr ""
+
+#: templates/project_sheet/block/subheader-readonly.html:132
+msgid "See the gallery"
+msgstr ""
+
+#: templates/project_sheet/block/subheader-readonly.html:141
 #: templates/project_sheet/block/subheader-readwrite.html:22
 #: templates/project_sheet/block/toolbar.html:37
 msgid "Information"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:208
-#: templates/project_sheet/block/subheader-readonly.html:231
+#: templates/project_sheet/block/subheader-readonly.html:217
+msgid "back to informations"
+msgstr ""
+
+#: templates/project_sheet/block/subheader-readonly.html:224
+msgid "locate on map"
+msgstr ""
+
+#: templates/project_sheet/block/subheader-readonly.html:236
+#, python-format
+msgid "See all the %(nb_loc)s locations "
+msgstr ""
+
 #: templates/project_sheet/block/subheader-readonly.html:240
+#: templates/project_sheet/block/subheader-readonly.html:254
 #: templates/project_sheet/block/subheader-readwrite.html:69
 msgid "unknown"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:223
+#: templates/project_sheet/block/subheader-readonly.html:246
 #: templates/project_sheet/block/subheader-readwrite.html:82
 msgid "Web"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:246
+#: templates/project_sheet/block/subheader-readonly.html:272
 #: templates/project_sheet/block/subheader-readwrite.html:95
 msgid "Follow"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:256
+#: templates/project_sheet/block/subheader-readonly.html:282
 msgid "Movecommons"
 msgstr ""
 
-#: templates/project_sheet/block/subheader-readonly.html:261
+#: templates/project_sheet/block/subheader-readonly.html:287
 msgid "Maturity"
 msgstr ""
 
@@ -818,43 +912,39 @@ msgstr ""
 msgid "Project Community"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:83
-msgid "More info"
-msgstr ""
-
-#: templates/project_sheet/page/project_sheet.html:91
+#: templates/project_sheet/page/project_sheet.html:94
 msgid "Join the team"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:98
+#: templates/project_sheet/page/project_sheet.html:101
 msgid "Become a fan of this project"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:102
+#: templates/project_sheet/page/project_sheet.html:105
 msgid "Become a fan"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:118
+#: templates/project_sheet/page/project_sheet.html:121
 msgid "You are a fan"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:122
+#: templates/project_sheet/page/project_sheet.html:125
 msgid "You are a member"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:184
+#: templates/project_sheet/page/project_sheet.html:187
 msgid "You find this project inspiring ?"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:190
+#: templates/project_sheet/page/project_sheet.html:193
 msgid "Become a fan, discuss, share ..."
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:198
+#: templates/project_sheet/page/project_sheet.html:201
 msgid "You might also like"
 msgstr ""
 
-#: templates/project_sheet/page/project_sheet.html:206
+#: templates/project_sheet/page/project_sheet.html:209
 #, python-format
 msgid ""
 "You need to <a href=\"%(tags_url)s\">tag this project</a> before we can "

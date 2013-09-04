@@ -101,7 +101,7 @@
                 var group_join_btn = new GroupJoinButton();
                 group_join_btn.decorate($('.group-join-btn'));
                 //setup WMD editor
-                if (askbot['data']['userIsAdminOrMod'] === true){
+                {% if request.user.get_profile().is_administrator() or request.user.get_profile().is_moderator() %}
                     //todo: this is kind of Attacklab.init ... should not be here
                     Attacklab.wmd = function(){
                         Attacklab.loadEnv = function(){
@@ -129,7 +129,7 @@
                     Attacklab.wmdBase();
                     var group_editor = new UserGroupProfileEditor();
                     group_editor.decorate($('#group-wiki-{{group.id}}'));
-                }
+                {% endif %}
                 Hilite.exact = false;
                 Hilite.elementid = "main-body";
                 Hilite.debug_referrer = location.href;

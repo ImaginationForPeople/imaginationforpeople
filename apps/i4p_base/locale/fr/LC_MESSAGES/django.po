@@ -19,9 +19,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-07-24 15:50-0400\n"
-"PO-Revision-Date: 2013-07-24 20:23+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"POT-Creation-Date: 2013-09-04 11:39+0200\n"
+"PO-Revision-Date: 2013-09-04 09:25+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,8 @@ msgstr ""
 msgid "I4PBase App"
 msgstr "I4PBase App"
 
-#: forms.py:18 templates/i4p_base/search/search.html:43
+#: forms.py:18 templates/search.html:5 templates/search.html.py:6
+#: templates/i4p_base/search/search.html:43
 msgid "Search"
 msgstr "Recherche"
 
@@ -1173,68 +1174,69 @@ msgid ""
 "                "
 msgstr "\n                    \"<strong>%(url)s</strong> est propulsée par un ensemble de composantes libres sous <strong>AGPL</strong> et <strong>Creative Commons (CC BY-SA 3.0)</strong>.\"\n\t            "
 
-#: templates/header.html:15
-msgid "Log In with"
-msgstr "Se connecter avec"
-
-#: templates/header.html:22
-msgid "Member Login"
-msgstr "Connexion "
-
-#: templates/header.html:41
-msgid "Sign in"
+#: templates/header.html:17 templates/pages/home-blocks/loginbox.html:11
+msgid "Connexion"
 msgstr "Connexion"
 
-#: templates/header.html:42
-msgid "I lost my password!"
-msgstr "Mot de passe perdu ?"
+#: templates/header.html:17 templates/pages/home-blocks/loginbox.html:12
+msgid "Inscription"
+msgstr "Inscription"
 
-#: templates/header.html:50
-msgid "Not a member yet ?"
-msgstr "Pas encore membre ?"
-
-#: templates/header.html:51
-msgid "Sign-up with your email:"
-msgstr "S'enregistrer avec son mail :"
-
-#: templates/header.html:52
-msgid "Sign-up now !"
-msgstr "Enregistrez vous maintenant !"
-
-#: templates/header.html:54
-msgid "Sign-up with a social networks:"
-msgstr "Enregistrez vous avec les réseaux sociaux :"
-
-#: templates/header.html:113 templates/header.html.py:127
-#: templates/pages/home-blocks/loginbox.html:88
-msgid "View my profile"
-msgstr "Afficher mon profil"
-
-#: templates/header.html:115 templates/backcap/feedback_detail.html:196
+#: templates/header.html:20 templates/backcap/feedback_detail.html:196
 msgid "Log In"
 msgstr "Se connecter"
 
-#: templates/header.html:115
-msgid "Register"
-msgstr "S'inscrire"
+#: templates/header.html:44
+msgid "Sign in"
+msgstr "Connexion"
 
-#: templates/header.html:123 templates/header.html.py:125
-#: templates/pages/home-blocks/loginbox.html:83
-#: templates/pages/home-blocks/loginbox.html:85
-msgid "My messages"
-msgstr "Mes messages"
+#: templates/header.html:47
+msgid "I lost my password!"
+msgstr "Mot de passe perdu ?"
 
-#: templates/header.html:128 templates/pages/home-blocks/loginbox.html:89
+#: templates/header.html:54
+msgid "Not a member yet ?"
+msgstr "Pas encore membre ?"
+
+#: templates/header.html:55
+msgid "Sign-up with your email:"
+msgstr "S'enregistrer avec son mail :"
+
+#: templates/header.html:56
+msgid "Sign-up now !"
+msgstr "Enregistrez vous maintenant !"
+
+#: templates/header.html:57
+msgid "Sign-up with a social networks:"
+msgstr "Enregistrez vous avec les réseaux sociaux :"
+
+#: templates/header.html:73
+msgid "Me"
+msgstr "Moi"
+
+#: templates/header.html:82 templates/pages/home-blocks/loginbox.html:88
+msgid "View my profile"
+msgstr "Afficher mon profil"
+
+#: templates/header.html:83 templates/pages/home-blocks/loginbox.html:89
 msgid "Edit my profile"
 msgstr "Editer mon profil"
 
-#: templates/header.html:129 templates/pages/home-blocks/loginbox.html:90
+#: templates/header.html:88
+msgid "Messages"
+msgstr "Messages"
+
+#: templates/header.html:89
+msgid "My projects"
+msgstr "Mes projets"
+
+#: templates/header.html:90
+msgid "My favourites"
+msgstr "Mes favoris"
+
+#: templates/header.html:93 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
 msgstr "Se déconnecter"
-
-#: templates/menu.html:20
-msgid "Home"
-msgstr "Accueil"
 
 #: templates/backcap/feedback_detail.html:8
 msgid "Feedback"
@@ -1893,14 +1895,6 @@ msgstr "Suivant >"
 msgid "New members"
 msgstr "Nouveaux membres"
 
-#: templates/pages/home-blocks/loginbox.html:11
-msgid "Connexion"
-msgstr "Connexion"
-
-#: templates/pages/home-blocks/loginbox.html:12
-msgid "Inscription"
-msgstr "Inscription"
-
 #: templates/pages/home-blocks/loginbox.html:15
 #: templates/pages/home-blocks/loginbox.html:16
 #: templates/pages/home-blocks/loginbox.html:22
@@ -1935,6 +1929,11 @@ msgstr "Connecté en tant que :"
 #: templates/pages/home-blocks/loginbox.html:75
 msgid "Your avatar"
 msgstr "Votre avatar"
+
+#: templates/pages/home-blocks/loginbox.html:83
+#: templates/pages/home-blocks/loginbox.html:85
+msgid "My messages"
+msgstr "Mes messages"
 
 #: templates/pages/home-blocks/newsletter-popup.html:4
 msgid "Newsletter"

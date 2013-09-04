@@ -22,6 +22,7 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.gis.db import models as geomodels
+from cms.models.fields import PlaceholderField
 
 from askbot.models.question import Thread
 from autoslug.fields import AutoSlugField
@@ -31,6 +32,7 @@ from tagging.fields import TagField
 
 
 from apps.project_sheet.models import I4pProject
+from apps.workgroup.utils import lookup_ml_membership
 
 
 def get_grouppicture_path(aWorkGroup, filename):
@@ -85,6 +87,8 @@ class WorkGroup(models.Model):
 
     picture = models.ImageField(upload_to=get_grouppicture_path, null=True, blank=True)
 
+    sidebar = PlaceholderField('Sidebar content')
+    
     outside_url = models.URLField(_('External URL'),
                                   null=True,
                                   blank=True,
@@ -108,6 +112,15 @@ class WorkGroup(models.Model):
                                          related_name='workgroups',
                                          blank=True
                                       )
+    
+    mail_auto_subscription = models.BooleanField(_('auto subscription to workgroup questions'),
+                                                 default=False)
+    
+    def get_members(self):
+        """
+        Required by specific question auto-subscription
+        """
+        return self.subscribers.all()
     
     def __unicode__(self):
         return u"%s (%s)" % (self.name,
