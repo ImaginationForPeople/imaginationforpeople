@@ -1,4 +1,7 @@
 {% load i18n %}
+
+{% if request.user.get_profile.is_administrator_or_moderator or request.user = question.author %}
+
 {% if question.offensive_flag_count > 0 %}
     <span 
         id="question-offensive-remove-flag-{{ question.id }}"
@@ -36,3 +39,5 @@
 <script type="text/javascript">
     askbot['functions']['renderPostControls']('{{question.id}}');
 </script>
+
+{% endif %}

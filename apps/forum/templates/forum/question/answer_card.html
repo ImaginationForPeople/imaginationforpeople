@@ -19,7 +19,7 @@
                 </div>
                 <div class="answer_txt">{{ answer.html }}</div>
                 <div class="answer-controls post-controls">
-                    {% include "question/answer_controls.html" %}
+                    {{ include_django("project_questions/block/answer_controls.html", request, answer=answer) }}
                 </div>
             </div>
             {% with answer as post %}

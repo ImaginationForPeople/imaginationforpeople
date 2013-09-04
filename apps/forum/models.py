@@ -64,7 +64,10 @@ def subscribe_context_object_members(sender, instance, created, **kwargs):
     context = specific_question.context_object
     if created:
         timestamp = datetime.datetime.now()
-        if hasattr(context, 'get_members'):
+        if hasattr(context, 'get_members') \
+           and hasattr(context, 'mail_auto_subscription') \
+           and context.mail_auto_subscription:
+            
             for member in context.get_members():
                 if isinstance(member, User):
                     member = member.get_profile()

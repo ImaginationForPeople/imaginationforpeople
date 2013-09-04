@@ -113,6 +113,9 @@ class WorkGroup(models.Model):
                                          blank=True
                                       )
     
+    mail_auto_subscription = models.BooleanField(_('auto subscription to workgroup questions'),
+                                                 default=False)
+    
     def get_members(self):
         """
         Required by specific question auto-subscription
