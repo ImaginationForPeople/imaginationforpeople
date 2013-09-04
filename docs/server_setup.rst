@@ -118,6 +118,12 @@ Two background jobs are required:
 
 * the email sender daemon that is a cron job. The script to schedule is *cron/askbot-cron* :
 * and the celery daemon that can be launched with ``./manage.py celeryd --purge``
+
+! KNOWN BUG !   
+
+* "UNrecoverable OSError" : in this case, try::
+
+	i4p:~$ sudo chmod 777 /dev/shm
     
 Installing SolR search engine
 *****************************
