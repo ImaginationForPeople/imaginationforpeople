@@ -1,21 +1,21 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # Simon Sarazin <simon.sarazin@gmail.com>, 2011
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-28 12:58+0200\n"
-"PO-Revision-Date: 2013-07-19 08:44+0000\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-09-04 11:40+0200\n"
+"PO-Revision-Date: 2013-09-04 09:49+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
-"Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: pt\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: cms_plugins.py:33
@@ -217,45 +217,77 @@ msgstr ""
 msgid "%(timesince)s ago"
 msgstr ""
 
+#: templates/project_questions/block/answer_controls.html:7
+msgid "remove offensive flag"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:9
+msgid "remove flag"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:14
+#: templates/project_questions/block/answer_controls.html:21
+msgid ""
+"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:16
+#: templates/project_questions/block/answer_controls.html:22
+msgid "flag offensive"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:30
+#: templates/project_sheet/block/partner-block.html:29
+msgid "edit"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:38
+msgid "undelete"
+msgstr ""
+
+#: templates/project_questions/block/answer_controls.html:38
+msgid "delete"
+msgstr ""
+
 #: templates/project_questions/block/categories_menu.html:5
 msgid "Browse categories"
 msgstr ""
 
-#: templates/project_questions/block/mail_subscription.html:4
-#: templates/project_questions/block/mail_subscription.html:46
+#: templates/project_questions/block/mail_subscription.html:6
+#: templates/project_questions/block/mail_subscription.html:49
 msgid "Unfollow this discussion"
 msgstr ""
 
-#: templates/project_questions/block/mail_subscription.html:8
-#: templates/project_questions/block/mail_subscription.html:41
+#: templates/project_questions/block/mail_subscription.html:10
+#: templates/project_questions/block/mail_subscription.html:44
 msgid "Follow this discussion"
 msgstr ""
 
-#: templates/project_questions/block/mail_subscription.html:13
-#: templates/project_questions/block/mail_subscription.html:68
+#: templates/project_questions/block/mail_subscription.html:16
+#: templates/project_questions/block/mail_subscription.html:71
 msgid "No follower for the moment"
 msgstr ""
 
-#: templates/project_questions/block/mail_subscription.html:15
+#: templates/project_questions/block/mail_subscription.html:18
 #, python-format
 msgid "%(count)s follower"
 msgid_plural "%(count)s followers"
 msgstr[0] ""
 msgstr[1] ""
 
-#: templates/project_questions/block/mail_subscription.html:19
+#: templates/project_questions/block/mail_subscription.html:22
 msgid "subscribe to the rss feed"
 msgstr ""
 
-#: templates/project_questions/block/mail_subscription.html:19
+#: templates/project_questions/block/mail_subscription.html:22
 msgid "subscribe to rss feed"
 msgstr ""
 
-#: templates/project_questions/block/mail_subscription.html:26
+#: templates/project_questions/block/mail_subscription.html:29
 msgid "Anonymous users cannot subscribe to questions"
 msgstr ""
 
-#: templates/project_questions/block/mail_subscription.html:27
+#: templates/project_questions/block/mail_subscription.html:30
 msgid "please login"
 msgstr ""
 
@@ -427,44 +459,36 @@ msgstr ""
 msgid "answered"
 msgstr ""
 
-#: templates/project_questions/page/question_thread.html:126
-msgid "remove offensive flag"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:128
-msgid "remove flag"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:133
 #: templates/project_questions/page/question_thread.html:140
-msgid ""
-"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:135
-#: templates/project_questions/page/question_thread.html:141
-msgid "flag offensive"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:149
-#: templates/project_sheet/block/partner-block.html:29
-msgid "edit"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:157
-msgid "undelete"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:157
-msgid "delete"
-msgstr ""
-
-#: templates/project_questions/page/question_thread.html:179
 msgid "Edit Your Previous Answer"
 msgstr ""
 
-#: templates/project_questions/page/question_thread.html:180
+#: templates/project_questions/page/question_thread.html:141
 msgid "(only one answer per question is allowed)"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:90
+msgid "post a comment / <strong>some</strong> more"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:92
+msgid "see <strong>some</strong> more"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:96
+msgid "post a comment"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:113
+msgid "Answer your own request"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:115
+msgid "Post Your Answer"
+msgstr ""
+
+#: templates/project_questions/script/head_javascript.html:118
+msgid "Login/Signup to Post"
 msgstr ""
 
 #: templates/project_sheet/block/about.html:46
@@ -511,8 +535,9 @@ msgstr ""
 #: templates/project_sheet/block/about.html:85
 msgid ""
 "You will then <strong>have access to the whole sheet</strong> where you can "
-"fill in all the details of your project, the same way you did for the title. "
-"If you've already used a <strong>wiki</strong> before, you'll feel at home. "
+"fill in all the details of your project, the same way you did for the title."
+" If you've already used a <strong>wiki</strong> before, you'll feel at home."
+" "
 msgstr ""
 
 #: templates/project_sheet/block/about.html:88

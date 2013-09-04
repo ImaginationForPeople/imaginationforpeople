@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # Translators:
 # benoitg <benoitg@coeus.ca>, 2013
 # FrancoisBurra <francoisburra@imaginationforpeople.org>, 2013
@@ -10,16 +10,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-28 12:58+0200\n"
-"PO-Revision-Date: 2013-07-24 20:56+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
-"Language-Team: French (http://www.transifex.com/projects/p/"
-"imaginationforpeople/language/fr/)\n"
-"Language: fr\n"
+"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
+"POT-Creation-Date: 2013-09-04 11:40+0200\n"
+"PO-Revision-Date: 2013-09-04 09:50+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
+"Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: cms_plugins.py:48
@@ -55,10 +54,7 @@ msgid ""
 "If your group is geographic in nature, specify it's outling here.   The "
 "platform will display a map of projects, and try to fit this outline in the "
 "visible area"
-msgstr ""
-"Si votre groupe est territorial par nature, spécifiez son implantation ici. "
-"La plateforme affichera une carte des projets liés and tâchera d'adapter "
-"l'implantation dans la zone visible"
+msgstr "Si votre groupe est territorial par nature, spécifiez son implantation ici. La plateforme affichera une carte des projets liés and tâchera d'adapter l'implantation dans la zone visible"
 
 #: models.py:82
 msgid "Linked Projects"
@@ -76,9 +72,7 @@ msgstr "URL externe"
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
-msgstr ""
-"URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par "
-"l'outil du site (Ex : Url du groupe sur facebook)"
+msgstr "URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par l'outil du site (Ex : Url du groupe sur facebook)"
 
 #: models.py:98
 msgid "iframe for home page source URL"
@@ -88,9 +82,7 @@ msgstr "URL source pour l'iframe de la page d'accueil"
 msgid ""
 "A URL that points to the collaborative tool used by the group. If not null, "
 "will replace the built-in wiki"
-msgstr ""
-"URL de l'outil collaboratif utilisé par le groupe. Si renseigné, cet outil "
-"remplacera le wiki fourni par défaut. "
+msgstr "URL de l'outil collaboratif utilisé par le groupe. Si renseigné, cet outil remplacera le wiki fourni par défaut. "
 
 #: models.py:104
 msgid "iframe for description page source URL"
@@ -100,14 +92,16 @@ msgstr "URL source pour l'iframe de la page description"
 msgid "Subscribers"
 msgstr "Abonnés"
 
+#: models.py:116
+msgid "auto subscription to workgroup questions"
+msgstr "activer l'abonnement automatique des membres du groupe à toute nouvelle question"
+
 #: views.py:228
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
-msgstr ""
-"Vous avez été abonné à la liste de diffusion %(workgroup_name)s  "
-"(%(user_email)s)"
+msgstr "Vous avez été abonné à la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
 
 #: views.py:235
 #, python-format
@@ -119,9 +113,7 @@ msgstr "Vous n'avez pas pu être inscrit au groupe : %s"
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
-msgstr ""
-"Vous avez été désinscrit avec succès de la liste de diffusion "
-"%(workgroup_name)s  (%(user_email)s)"
+msgstr "Vous avez été désinscrit avec succès de la liste de diffusion %(workgroup_name)s  (%(user_email)s)"
 
 #: views.py:273
 #, python-format
@@ -166,26 +158,20 @@ msgid "Spoken language :"
 msgstr "Langue parlée :"
 
 #: templates/workgroup/block/workgroup_header.html:36
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\t\n"
 "                member%(member_plural)s\t\n"
 "            "
-msgstr ""
-"\t\n"
-"\tmembre%(member_plural)s\t\n"
-"\t"
+msgstr "⇥⏎\nmembre%(member_plural)s⇥⏎"
 
 #: templates/workgroup/block/workgroup_header.html:41
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                member%(member_plural)s\n"
 "            "
-msgstr ""
-"\n"
-"\tmembre%(member_plural)s\n"
-"\t"
+msgstr "\nmembre%(member_plural)s"
 
 #: templates/workgroup/block/workgroup_header.html:52
 msgid "Home"
@@ -200,26 +186,20 @@ msgid "Group Forum"
 msgstr "Forum"
 
 #: templates/workgroup/block/workgroup_header.html:62
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\t\n"
 "                    member%(member_plural)s\t\n"
 "                "
-msgstr ""
-"\n"
-"                        %(counter)s Réponse\n"
-"                        "
+msgstr "⇥⏎\nmembre%(member_plural)s⇥⏎"
 
 #: templates/workgroup/block/workgroup_header.html:67
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                    member%(member_plural)s\n"
 "                "
-msgstr ""
-"\n"
-"                        %(counter)s Réponse\n"
-"                        "
+msgstr "\nmembre%(member_plural)s"
 
 #: templates/workgroup/block/workgroup_header.html:74
 #, python-format
@@ -229,12 +209,8 @@ msgid ""
 msgid_plural ""
 "\n"
 "%(num_projects)s projects\n"
-msgstr[0] ""
-"\n"
-"%(num_projects)s projet\n"
-msgstr[1] ""
-"\n"
-"%(num_projects)s projets\n"
+msgstr[0] "\n%(num_projects)s projet\n"
+msgstr[1] "\n%(num_projects)s projets\n"
 
 #: templates/workgroup/block/workgroup_sidebar.html:18
 #, python-format
@@ -244,12 +220,8 @@ msgid ""
 msgid_plural ""
 "\n"
 "%(num_projects)s related projects\n"
-msgstr[0] ""
-"\n"
-"%(num_projects)s projet lié\n"
-msgstr[1] ""
-"\n"
-"%(num_projects)s projets liés\n"
+msgstr[0] "\n%(num_projects)s projet lié\n"
+msgstr[1] "\n%(num_projects)s projets liés\n"
 
 #: templates/workgroup/block/workgroup_sidebar.html:25
 msgid "Manage linked projects"
@@ -297,14 +269,8 @@ msgid_plural ""
 "\n"
 "                        %(counter)s Answers\n"
 "                    "
-msgstr[0] ""
-"\n"
-"                        %(counter)s Réponse\n"
-"                        "
-msgstr[1] ""
-"\n"
-"                        %(counter)s Réponses\n"
-"                    "
+msgstr[0] "\n                        %(counter)s Réponse\n                        "
+msgstr[1] "\n                        %(counter)s Réponses\n                    "
 
 #: templates/workgroup/page/group_discuss_thread.html:68
 msgid "Sort by :"
@@ -340,8 +306,7 @@ msgstr "cette réponse a été sélectionnée comme correcte"
 
 #: templates/workgroup/page/group_discuss_thread.html:104
 msgid "mark this answer as correct (click again to undo)"
-msgstr ""
-"Sélectionnez cette réponse comme correcte (cliquer à nouveau pour annuler)"
+msgstr "Sélectionnez cette réponse comme correcte (cliquer à nouveau pour annuler)"
 
 #: templates/workgroup/page/group_discuss_thread.html:111
 #: templates/workgroup/page/group_discuss_thread.html:112
@@ -352,42 +317,11 @@ msgstr "Utilisateur anonyme"
 msgid "answered"
 msgstr "répondue"
 
-#: templates/workgroup/page/group_discuss_thread.html:131
-msgid "remove offensive flag"
-msgstr "Enlever le drapeau \"contenu offensant\""
-
-#: templates/workgroup/page/group_discuss_thread.html:133
-msgid "remove flag"
-msgstr "Enlever le drapeau"
-
-#: templates/workgroup/page/group_discuss_thread.html:138
-#: templates/workgroup/page/group_discuss_thread.html:145
-msgid ""
-"report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr "rapporter comme offensant (spam, publicité, texte malveillant, etc)"
-
-#: templates/workgroup/page/group_discuss_thread.html:140
-#: templates/workgroup/page/group_discuss_thread.html:146
-msgid "flag offensive"
-msgstr "rapporter comme offensant"
-
-#: templates/workgroup/page/group_discuss_thread.html:154
-msgid "edit"
-msgstr "modifier"
-
-#: templates/workgroup/page/group_discuss_thread.html:162
-msgid "undelete"
-msgstr "Annuler la suppression"
-
-#: templates/workgroup/page/group_discuss_thread.html:162
-msgid "delete"
-msgstr "supprimer"
-
-#: templates/workgroup/page/group_discuss_thread.html:184
+#: templates/workgroup/page/group_discuss_thread.html:148
 msgid "Edit Your Previous Answer"
 msgstr "Modifier votre réponse précédente"
 
-#: templates/workgroup/page/group_discuss_thread.html:185
+#: templates/workgroup/page/group_discuss_thread.html:149
 msgid "(only one answer per question is allowed)"
 msgstr "(une seule réponse par question est autorisée)"
 
@@ -399,9 +333,7 @@ msgstr "Éditer l'information de ce groupe"
 msgid ""
 "<strong>Warning:</strong> You are not logged in. Your IP address will be "
 "logged."
-msgstr ""
-"<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse "
-"va etre loguée."
+msgstr "<strong>Attention:</strong>Vous n'êtes pas enregistré sur IP. Votre adresse va etre loguée."
 
 #: templates/workgroup/page/wiki_edit.html:20
 msgid "Click here to log in"
@@ -450,9 +382,7 @@ msgstr "Retrouver l'historique des mails échangés"
 #: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 msgid "To subscribe/unsubscribe to this list, click the button above."
-msgstr ""
-"Pour vous inscrire ou désinscrire à cette liste, cliquer sur le bouton au "
-"dessus."
+msgstr "Pour vous inscrire ou désinscrire à cette liste, cliquer sur le bouton au dessus."
 
 #: templates/workgroup/page/workgroup_detail.html:12
 #, python-format
@@ -481,12 +411,8 @@ msgid ""
 msgid_plural ""
 "\n"
 "%(num_projects)s projects Linked to the group\n"
-msgstr[0] ""
-"\n"
-"%(num_projects)s projet lié au groupe\n"
-msgstr[1] ""
-"\n"
-"%(num_projects)s projets liés au groupe\n"
+msgstr[0] "\n%(num_projects)s projet lié au groupe\n"
+msgstr[1] "\n%(num_projects)s projets liés au groupe\n"
 
 #: templates/workgroup/page/workgroup_linked_projects.html:44
 msgid "No projects found"
@@ -521,17 +447,4 @@ msgstr "Autres abonnés de la liste de discussion"
 
 #: templates/workgroup/page/workgroup_members.html:50
 msgid "who are not registred on"
-msgstr ""
-
-#~ msgid ""
-#~ "\n"
-#~ "%(subscribers_count)s member\n"
-#~ msgid_plural ""
-#~ "\n"
-#~ "%(subscribers_count)s members\n"
-#~ msgstr[0] ""
-#~ "\n"
-#~ "%(subscribers_count)s membre\n"
-#~ msgstr[1] ""
-#~ "\n"
-#~ "%(subscribers_count)s membres\n"
+msgstr "qui ne sont pas enregistrés sur"
