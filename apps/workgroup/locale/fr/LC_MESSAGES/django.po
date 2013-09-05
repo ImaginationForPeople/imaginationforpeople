@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-28 12:58+0200\n"
-"PO-Revision-Date: 2013-07-24 20:56+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
+"POT-Creation-Date: 2013-09-05 11:57+0200\n"
+"PO-Revision-Date: 2013-09-04 12:12+0000\n"
+"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/"
 "imaginationforpeople/language/fr/)\n"
 "Language: fr\n"
@@ -166,26 +166,25 @@ msgid "Spoken language :"
 msgstr "Langue parlée :"
 
 #: templates/workgroup/block/workgroup_header.html:36
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\t\n"
 "                member%(member_plural)s\t\n"
 "            "
 msgstr ""
 "\t\n"
-"\tmembre%(member_plural)s\t\n"
-"\t"
+"                membre%(member_plural)s\t\n"
+"            "
 
 #: templates/workgroup/block/workgroup_header.html:41
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                member%(member_plural)s\n"
 "            "
 msgstr ""
 "\n"
-"\tmembre%(member_plural)s\n"
-"\t"
+"membre%(member_plural)s"
 
 #: templates/workgroup/block/workgroup_header.html:52
 msgid "Home"
@@ -200,26 +199,26 @@ msgid "Group Forum"
 msgstr "Forum"
 
 #: templates/workgroup/block/workgroup_header.html:62
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\t\n"
 "                    member%(member_plural)s\t\n"
 "                "
 msgstr ""
-"\n"
-"                        %(counter)s Réponse\n"
-"                        "
+"\t\n"
+"                    membre%(member_plural)s\t\n"
+"                "
 
 #: templates/workgroup/block/workgroup_header.html:67
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "\n"
 "                    member%(member_plural)s\n"
 "                "
 msgstr ""
 "\n"
-"                        %(counter)s Réponse\n"
-"                        "
+"                    membre%(member_plural)s\n"
+"                "
 
 #: templates/workgroup/block/workgroup_header.html:74
 #, python-format
@@ -354,34 +353,35 @@ msgstr "répondue"
 
 #: templates/workgroup/page/group_discuss_thread.html:131
 msgid "remove offensive flag"
-msgstr "Enlever le drapeau \"contenu offensant\""
+msgstr ""
 
 #: templates/workgroup/page/group_discuss_thread.html:133
 msgid "remove flag"
-msgstr "Enlever le drapeau"
+msgstr ""
 
 #: templates/workgroup/page/group_discuss_thread.html:138
 #: templates/workgroup/page/group_discuss_thread.html:145
 msgid ""
 "report as offensive (i.e containing spam, advertising, malicious text, etc.)"
-msgstr "rapporter comme offensant (spam, publicité, texte malveillant, etc)"
+msgstr ""
 
 #: templates/workgroup/page/group_discuss_thread.html:140
 #: templates/workgroup/page/group_discuss_thread.html:146
 msgid "flag offensive"
-msgstr "rapporter comme offensant"
+msgstr ""
 
 #: templates/workgroup/page/group_discuss_thread.html:154
+#, fuzzy
 msgid "edit"
-msgstr "modifier"
+msgstr "Enregistrer l'édition"
 
 #: templates/workgroup/page/group_discuss_thread.html:162
 msgid "undelete"
-msgstr "Annuler la suppression"
+msgstr ""
 
 #: templates/workgroup/page/group_discuss_thread.html:162
 msgid "delete"
-msgstr "supprimer"
+msgstr ""
 
 #: templates/workgroup/page/group_discuss_thread.html:184
 msgid "Edit Your Previous Answer"
@@ -438,7 +438,7 @@ msgstr "Description du groupe %(group_name)s | Imagination for People"
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 #, python-format
 msgid "This group uses a mailing list:&nbsp;</em>%(ml_address)s"
-msgstr "Ce groupe utilise une liste de discussion:&nbsp;</em>%(ml_address)s"
+msgstr "  Ce groupe utilise une liste mail:&nbsp;</em>%(ml_address)s"
 
 #: templates/workgroup/page/workgroup_description.html:26
 #: templates/workgroup/page/workgroup_detail.html:26
@@ -450,9 +450,7 @@ msgstr "Retrouver l'historique des mails échangés"
 #: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 msgid "To subscribe/unsubscribe to this list, click the button above."
-msgstr ""
-"Pour vous inscrire ou désinscrire à cette liste, cliquer sur le bouton au "
-"dessus."
+msgstr "S’inscrire ou se désinscrire ci dessus."
 
 #: templates/workgroup/page/workgroup_detail.html:12
 #, python-format
@@ -521,17 +519,9 @@ msgstr "Autres abonnés de la liste de discussion"
 
 #: templates/workgroup/page/workgroup_members.html:50
 msgid "who are not registred on"
-msgstr ""
+msgstr "qui ne sont pas enregistrés sur"
 
-#~ msgid ""
-#~ "\n"
-#~ "%(subscribers_count)s member\n"
-#~ msgid_plural ""
-#~ "\n"
-#~ "%(subscribers_count)s members\n"
-#~ msgstr[0] ""
-#~ "\n"
-#~ "%(subscribers_count)s membre\n"
-#~ msgstr[1] ""
-#~ "\n"
-#~ "%(subscribers_count)s membres\n"
+#~ msgid "auto subscription to workgroup questions"
+#~ msgstr ""
+#~ "activer l'abonnement automatique des membres du groupe à toute nouvelle "
+#~ "question"
