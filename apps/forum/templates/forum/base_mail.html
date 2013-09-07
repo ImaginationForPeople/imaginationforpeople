@@ -140,7 +140,7 @@
 <table style="font-family: Arial, sans-serif; font-size: 12px; color: #535353; line-height: 160%; border-bottom-left-radius: 5px; border-bottom-right-radius: 5px; margin: 0px auto; width: 610px; height: 582px;" border="0" cellspacing="0" cellpadding="0" align="center">
 <tbody>
 <tr style="background: #212121;">
-<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><!--<img style="min-height: 46px; line-height: 100%; outline: none; text-decoration: none; display: block; margin-left: 30px; margin-right: 30px;" title="Podio" src="http://imaginationforpeople.org/static/images/logo.png" alt="" height="10" />--></td>
+<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><!--<img style="min-height: 46px; line-height: 100%; outline: none; text-decoration: none; display: block; margin-left: 30px; margin-right: 30px;" title="ImaginationForPeople" src="http://imaginationforpeople.org/static/images/logo.png" alt="" height="10" />--></td>
 </tr>
 <tr>
 <td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%; background: #fff; border: 1px solid #dbdbdb; border-top: none;">
@@ -163,8 +163,8 @@
 <table style="width: 100%;" cellspacing="0" cellpadding="0">
 <tbody>
 <tr>
-<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; border-radius: 4px; display: block;" src="https://api.podio.com/email/avatar/1644481/default" alt="" width="40" height="40" /></td>
-<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;" align="right" valign="top"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; display: block;" src="https://d2cmuesa4snpwn.cloudfront.net/images/emails/arrow.gif" alt="" width="8" height="31" /></td>
+<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; border-radius: 4px; display: block;" src="{{ STATIC_URL }}images/i4p_base/email/avatar.png" alt="" width="40" height="40" /></td>
+<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;" align="right" valign="top"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; display: block;" src="{{ STATIC_URL }}images/i4p_base/email/arrow.gif" alt="" width="8" height="31" /></td>
 </tr>
 </tbody>
 </table>
@@ -194,7 +194,7 @@
 <table style="background: #6abd3d; color: #fff; font-weight: bold; border-radius: 5px; font-family: Arial,Sans-serif; font-size: 12px; padding: 0 10px;" cellspacing="0" cellpadding="5">
 <tbody>
 <tr>
-<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><a style="color: #fff; text-decoration: none;" href="https://podio.com/conversations#1100032?utm_campaign=message&amp;utm_medium=email&amp;utm_source=email_content" target="_blank"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; border: none;" src="https://d2cmuesa4snpwn.cloudfront.net/images/emails/green_button_arrow.gif" alt="" width="12" height="14" /></a></td>
+<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><a style="color: #fff; text-decoration: none;" href="http://imaginationforpeople.org/{{post.get_absolute_url()}}" target="_blank"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; border: none;" src="{{ STATIC_URL }}images/i4p_base/email/green_button_arrow.gif" alt="" width="12" height="14" /></a></td>
 <td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><a style="color: #fff; text-decoration: none;" href="http://imaginationforpeople.org/{{post.get_absolute_url()}}" target="_blank">{% trans %}Voir{% endtrans %}</a></td>
 </tr>
 </tbody>
@@ -212,7 +212,7 @@
 </tr>
 <tr>
 <td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;">&nbsp;</td>
-<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; display: inline; margin-right: 5px;" src="https://d2cmuesa4snpwn.cloudfront.net/images/emails/reply_by_email.gif" alt="" width="22" height="17" /> {% trans %}<strong> R&eacute;pondre par e-mail </strong> - Cliquez simplement sur r&eacute;pondre pour r&eacute;pondre &agrave; cette notification ou utilisez le mail suivant :{% endtrans %}{% block reply_addresss %}{% endblock %}</td>
+<td style="border-collapse: collapse; font-family: Arial,Sans-serif; font-size: 12px; color: #535353; line-height: 160%;"><img style="min-height: auto; line-height: 100%; outline: none; text-decoration: none; display: inline; margin-right: 5px;" src="{{ STATIC_URL }}images/i4p_base/email/reply_by_email.gif" alt="" width="22" height="17" /> {% trans %}<strong> R&eacute;pondre par e-mail </strong> - Cliquez simplement sur r&eacute;pondre pour r&eacute;pondre &agrave; cette notification ou utilisez le mail suivant :{% endtrans %}{% block reply_addresss %}{% endblock %}</td>
 </tr>
 </tbody>
 </table>
