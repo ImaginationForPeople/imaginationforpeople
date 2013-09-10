@@ -6,17 +6,13 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext_lazy as _
 
-from askbot.models.question import Thread, FavoriteQuestion
-
-from apps.tags.models import TaggedCategory
-
-import datetime
+from askbot.models.question import Thread
 from askbot.models.post import Post
-from askbot.tasks import record_post_update
 from askbot.models import send_instant_notifications_about_activity_in_post
 from askbot.const import TYPE_ACTIVITY_ASK_QUESTION
 from askbot.models.user import Activity
 
+from apps.tags.models import TaggedCategory
 
 QUESTION_TYPE_CHOICES = (
     ('generic', _('generic')),
@@ -61,28 +57,28 @@ def purge_specific_thread(sender, instance, **kwargs):
     if instance.thread.is_specific:
         instance.thread.delete()
 
-@receiver(post_save, sender=Activity)
+@receiver(post_save, sender=SpecificQuestion)
 def subscribe_context_object_members(sender, instance, created, **kwargs):
-    activity = instance
-    
-    if activity.content_type == ContentType.objects.get_for_model(Post) \
-       and activity.activity_type == TYPE_ACTIVITY_ASK_QUESTION:
+    specific_question = instance
+    context = specific_question.context_object
         
-        if activity.content_object.thread.specificquestion_set.count():
-            specific_question = activity.content_object.thread.specificquestion_set.all()[0] #FIXME: may have side effet
-            context = specific_question.context_object
-            
-            if hasattr(context, 'get_members') \
-               and hasattr(context, 'mail_auto_subscription') \
-               and context.mail_auto_subscription:
-                
-                recipients = []
-                for member in context.get_members():
-                    if not isinstance(member, User):
-                        member = member.user
-                    recipients.append(member)
-                
-                send_instant_notifications_about_activity_in_post(activity, 
-                                                                  post=activity.content_object, 
-                                                                  recipients=recipients)
-                            
+    if created \
+       and hasattr(context, 'get_members') \
+       and hasattr(context, 'mail_auto_subscription') \
+       and context.mail_auto_subscription:
+        
+        post = specific_question.thread.question
+        activity = Activity.objects.get(content_type=ContentType.objects.get_for_model(Post),
+                                        object_id=post.id,
+                                        activity_type=TYPE_ACTIVITY_ASK_QUESTION)
+    
+        recipients = []
+        for member in context.get_members():
+            if not isinstance(member, User):
+                member = member.user
+            recipients.append(member)
+        
+        send_instant_notifications_about_activity_in_post(activity, 
+                                                          post=post, 
+                                                          recipients=recipients)
+                        
