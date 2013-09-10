@@ -140,77 +140,79 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 	    <a title="{% trans 'Edit'|capfirst %}" href="{% url project_sheet-instance-edit-info project_translation.slug %}" class="button editing-button right"></a>
 	{% endif %}	
 	
-		{% if project_translation.master.locations.all %}
-    {% addtoblock "css" strip %}
-        {% leaflet_css plugins="markercluster" %}
-    {% endaddtoblock %}
-    {% addtoblock "sekizai_extra_head" strip %}
-        {% comment %}
-        Do NOT put this in the js block, it does
-        not tolerate compress
-        {% endcomment %}
-        {% leaflet_js plugins="markercluster" %}
-    {% endaddtoblock %}
-   <div id="map_div">
-    {% leaflet_map "projectLocationsMap" %}
-
-    {% localize off %}
-<script type="text/javascript">
-    function projectLocationsMapInit(map, bounds) {
-        
-        var markers = new L.MarkerClusterGroup();
-        var marker = null;
-        map.removeControl(map.attributionControl);
-        {% for location in project_translation.master.locations.all %}
-        {% if location.geom %}
-        var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
-        markers.addLayer(marker);
-        popup_html = '' +
-        '<div class="location-address">' +
-        '{{ location.address|escapejs }}' +
-        '</div>' +
-        '<div class="location-country">' +
-        '<img src="{{ location.country.flag|escapejs }}" alt="{{ location.country|escapejs }}"/> {{ location.country.name|escapejs }}'
-        '</div>'
-        var popup = L.popup().setContent(popup_html);
-        marker.bindPopup(popup_html);
-        {% endif %}
-        {% endfor %}
-        var numLocations = {{ project_translation.master.locations.all|length }}
-        map.addLayer(markers);
-        
-        if (numLocations == 1) {
-            if (marker != null) {
-                map.setView(marker.getLatLng(),14);
-                //This doesn't autopan if we don't give a delay
-                setTimeout(function(){ marker.openPopup();}, 250);
-            }
-        }
-        else {
-            map.fitBounds(markers.getBounds());
-        }
-        //$('#projectLocationsMap, .infocard a.back').hide();
-        $('.infotable .map-button').click(function(){
-            $('.infotable').fadeOut(300);            
-            $('#projectLocationsMap, .infocard a.back').css('display',  'block');		  
-            map.invalidateSize(true);
+    {% if project_translation.master.locations.all %}
+        {% addtoblock "css" strip %}
+            {% leaflet_css plugins="markercluster" %}
+        {% endaddtoblock %}
+        {% addtoblock "sekizai_extra_head" strip %}
+            {% comment %}
+            Do NOT put this in the js block, it does
+            not tolerate compress
+            {% endcomment %}
+            {% leaflet_js plugins="markercluster" %}
+        {% endaddtoblock %}
+        <div id="map_div">
+        {% leaflet_map "projectLocationsMap" %}
+    
+        {% localize off %}
+    <script type="text/javascript">
+        function projectLocationsMapInit(map, bounds) {
+            
+            var markers = new L.MarkerClusterGroup();
+            var marker = null;
+            map.removeControl(map.attributionControl);
+            {% for location in project_translation.master.locations.all %}
+            {% if location.geom %}
+            var marker = new L.marker([{{ location.geom.coords.1 }}, {{ location.geom.coords.0 }}]);
+            markers.addLayer(marker);
+            popup_html = '' +
+            '<div class="location-address">' +
+            '{{ location.address|escapejs }}' +
+            '</div>' +
+            '<div class="location-country">' +
+            '<img src="{{ location.country.flag|escapejs }}" alt="{{ location.country|escapejs }}"/> {{ location.country.name|escapejs }}'
+            '</div>'
+            var popup = L.popup().setContent(popup_html);
+            marker.bindPopup(popup_html);
+            {% endif %}
+            {% endfor %}
+            var numLocations = {{ project_translation.master.locations.all|length }}
+            map.addLayer(markers);
+            
             if (numLocations == 1) {
-               if (marker != null) {
-                   map.setView(marker.getLatLng(),14);
-                   //This doesn't autopan if we don't give a delay
-                   setTimeout(function(){ marker.openPopup();}, 250);
+                if (marker != null) {
+                    map.setView(marker.getLatLng(),14);
+                    //This doesn't autopan if we don't give a delay
+                    setTimeout(function(){ marker.openPopup();}, 250);
+                }
+            }
+            else {
+                map.fitBounds(markers.getBounds());
+            }
+            $('.infotable .map-button').click(function(){
+                $('.infotable').fadeOut(300);            
+                $('#projectLocationsMap, .infocard a.back').css('display',  'block');		  
+                map.invalidateSize(true);
+                if (numLocations == 1) {
+                   if (marker != null) {
+                       map.setView(marker.getLatLng(),14);
+                       //This doesn't autopan if we don't give a delay
+                       setTimeout(function(){ marker.openPopup();}, 250);
+                   }
                }
-           }
-           else {
-               map.fitBounds(markers.getBounds());
-           }
-         });
-    }
-</script>
-    	{% endlocalize %}
-	{% endif %}
+               else {
+                   map.fitBounds(markers.getBounds());
+               }
+             });
+        }
+    </script>
+        {% endlocalize %}
+        </div>
+    {% endif %}
 	<a class="back" href="#">&larr; {% trans "back to informations" %}</a>
-	</div>
+    <script type="text/javascript">
+    $('#projectLocationsMap, .infocard a.back').hide();
+    </script>
 	<table class="infotable">
 		<tr class="infotable-location location">
 			<td colspan=2>
@@ -232,7 +234,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
 		 {% endif %}
     {% endfor %}
 {% else %}
-<em>{% trans 'unknown'|capfirst %}</em>
+<em>{% trans 'No known location, please add one if you know where this project is located'|capfirst %}</em>
 {% endif %}
 			</td>
 		</tr>
