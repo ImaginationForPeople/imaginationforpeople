@@ -103,7 +103,7 @@ class I4pLocationForm(forms.ModelForm):
         geocode_results = None
         address = cleaned_data.get("address")
         geocode_picker_data = cleaned_data.get("geocode_picker")
-        if geocode_picker_data and not cleaned_data.get("force_geocode"):
+        if geocode_picker_data:
             #This replaces the map information, will be saved later
             changed_geom=geocode_picker_data
         elif address and (not geom or cleaned_data.get("force_geocode")):
@@ -141,7 +141,10 @@ class I4pLocationForm(forms.ModelForm):
         # Yes, it's insane, and yes, it's the least insane choice in django
         # http://stackoverflow.com/questions/4662848/disabled-field-is-not-passed-through-workaround-needed/4664866#4664866
         self.data=self.data.copy()
-        self.data['geom']=self.instance.geom.ewkt
+        if self.instance.geom:
+            self.data['geom']=self.instance.geom.ewkt
+        else:
+            self.data['geom']=None
         self.data['geocode_picker']=''
         return retval
     
