@@ -61,31 +61,28 @@ def purge_specific_thread(sender, instance, **kwargs):
     if instance.thread.is_specific:
         instance.thread.delete()
 
-@receiver(post_save, sender=SpecificQuestion)
+@receiver(post_save, sender=Activity)
 def subscribe_context_object_members(sender, instance, created, **kwargs):
-    specific_question = instance
-    context = specific_question.context_object
-    if created:
-        if hasattr(context, 'get_members') \
-           and hasattr(context, 'mail_auto_subscription') \
-           and context.mail_auto_subscription:
+    activity = instance
+    
+    if activity.content_type == ContentType.objects.get_for_model(Post) \
+       and activity.activity_type == TYPE_ACTIVITY_ASK_QUESTION:
+        
+        if activity.content_object.thread.specificquestion_set.count():
+            specific_question = activity.content_object.thread.specificquestion_set.all()[0] #FIXME: may have side effet
+            context = specific_question.context_object
             
-            recipients = []
-            for member in context.get_members():
-                if not isinstance(member, User):
-                    member = member.user
-                recipients.append(member)
+            if hasattr(context, 'get_members') \
+               and hasattr(context, 'mail_auto_subscription') \
+               and context.mail_auto_subscription:
                 
-            post = Post.objects.get(post_type="question", 
-                                    thread=specific_question.thread)
-            
-            update_activity = Activity.objects.get_or_create(
-                    content_type = ContentType.objects.get_for_model(post),
-                    object_id = post.id,
-                    activity_type = TYPE_ACTIVITY_ASK_QUESTION,
-                )
-            
-            send_instant_notifications_about_activity_in_post(update_activity, 
-                                                              post=post, 
-                                                              recipients=recipients)
+                recipients = []
+                for member in context.get_members():
+                    if not isinstance(member, User):
+                        member = member.user
+                    recipients.append(member)
+                
+                send_instant_notifications_about_activity_in_post(activity, 
+                                                                  post=activity.content_object, 
+                                                                  recipients=recipients)
                             
