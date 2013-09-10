@@ -11,7 +11,7 @@
 
 {{ form.non_field_errors }}
 <fieldset>
-{% if formset%}
+{% if formset %}
     <legend>
         {% if not forloop.last %}
             {% blocktrans with count=forloop.counter %}Location {{ count }}{% endblocktrans %}
@@ -24,7 +24,7 @@
     {% endif %}
 {% endif %}
 
-<div class="location_form {% if forloop.last %}new location_hide{% else %}existing{% endif %}">
+<div class="location_form {% if forloop.last %}new {% if form.errors|length = 0 %}location_hide {% endif %}{% else %}existing{% endif %}">
     <div class="field field_geom">
         {{ form.geom.errors }}
         {{ form.geom.label_tag }}
