@@ -684,37 +684,13 @@ def mirror_prod_media():
         sudo('chown www-data -R media')
         sudo('chmod u+rw -R media')
 
-@task
-def database_dump():
-    """
-    Dumps the database on remote site
-    """
-    if not exists(env.dbdumps_dir):
-        run('mkdir -m700 %s' % env.dbdumps_dir)
-
-    filename = 'db_%s.sql' % time.strftime('%Y%m%d')
-    compressed_filename = '%s.bz2' % filename
-    absolute_path = os.path.join(env.dbdumps_dir, compressed_filename)
-
-    # Dump
-    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
-        run('grep "DATABASE" -A 8 site_settings.py')
-        run('pg_dump -U%s %s | bzip2 -9 > %s' % (env.db_user,
-                                                 env.db_name,
-                                                 absolute_path)
-            )
-
-    # Make symlink to latest
-    with cd(env.dbdumps_dir):
-        run('ln -sf %s %s' % (absolute_path, remote_db_path()))
-
 def database_create():
     """
     """
     sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
 
 @task
-def database_postgis_dump():
+def database_dump():
     """
     Dumps the database on remote site
     """
@@ -768,10 +744,7 @@ def database_postgis_setup():
 
 
 @task    
-def database_postgis_restore_1_5():
-    """
-    Restores the database to the remote server.  THIS IS NOT FUNCTIONNAL YET!
-    """
+def database_restore():
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
     env.debug = True
     
@@ -818,20 +791,11 @@ def database_postgis_restore_1_5():
 
 
 @task
-def database_postgis_download():
-    """
-    Dumps and downloads the database from the target server
-    """
-    execute(database_postgis_dump)
-    get(remote_db_path(), 'current_database.sql.bz2')
-
-
-@task
 def database_download():
     """
     Dumps and downloads the database from the target server
     """
-    execute(database_dump)
+    execute(database_postgis_dump)
     get(remote_db_path(), 'current_database.sql.bz2')
 
 @task
@@ -841,33 +805,3 @@ def database_upload():
     """
     if(env.wsginame != 'dev.wsgi'):
         put('current_database.sql.bz2', remote_db_path())
-
-@task    
-def database_restore():
-    """
-    Restores the database backed up on the remote server
-    """
-    assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
-    env.debug = True
-    
-    if(env.wsginame != 'dev.wsgi'):
-        execute(webservers_stop)
-    
-    # Drop db
-    with settings(warn_only=True):
-        sudo('su - postgres -c "dropdb imaginationforpeople"')
-
-    # Create db
-    execute(database_create)
-    execute(database_postgis_setup)
-    
-    # Restore data
-    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
-        run('grep "DATABASE" -A 8 site_settings.py')
-        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path(),
-                                              env.db_user,
-                                              env.db_name)
-        )
-
-    if(env.wsginame != 'dev.wsgi'):
-        execute(webservers_start)
