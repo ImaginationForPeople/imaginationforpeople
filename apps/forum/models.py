@@ -13,6 +13,9 @@ from apps.tags.models import TaggedCategory
 import datetime
 from askbot.models.post import Post
 from askbot.tasks import record_post_update
+from askbot.models import send_instant_notifications_about_activity_in_post
+from askbot.const import TYPE_ACTIVITY_ASK_QUESTION
+from askbot.models.user import Activity
 
 
 QUESTION_TYPE_CHOICES = (
@@ -63,32 +66,26 @@ def subscribe_context_object_members(sender, instance, created, **kwargs):
     specific_question = instance
     context = specific_question.context_object
     if created:
-        timestamp = datetime.datetime.now()
         if hasattr(context, 'get_members') \
            and hasattr(context, 'mail_auto_subscription') \
            and context.mail_auto_subscription:
             
+            recipients = []
             for member in context.get_members():
-                if isinstance(member, User):
-                    member = member.get_profile()
-             
-                FavoriteQuestion.objects.create(thread=specific_question.thread,
-                                                user=member.user,
-                                                added_at=timestamp,
-                )
-                specific_question.thread.update_favorite_count()
+                if not isinstance(member, User):
+                    member = member.user
+                recipients.append(member)
                 
-                member.user.followed_threads.add(specific_question.thread)
-                
-                specific_question.thread.invalidate_cached_data()
-            
             post = Post.objects.get(post_type="question", 
                                     thread=specific_question.thread)
-
-            record_post_update(post=post,
-                               updated_by=post.author,
-                               timestamp=timestamp,
-                               newly_mentioned_users=[],
-                               created=True,
-                               diff=post.text)
+            
+            update_activity = Activity.objects.get_or_create(
+                    content_type = ContentType.objects.get_for_model(post),
+                    object_id = post.id,
+                    activity_type = TYPE_ACTIVITY_ASK_QUESTION,
+                )
+            
+            send_instant_notifications_about_activity_in_post(update_activity, 
+                                                              post=post, 
+                                                              recipients=recipients)
                             

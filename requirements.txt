@@ -104,7 +104,7 @@ django-simplegravatar==0.2
 
 # Askbot
 -e hg+https://atiberghien@bitbucket.org/atiberghien/django-keyedcache#egg=django-keyedcache
--e git://github.com/atiberghien/askbot-devel.git@d43059895a713befb5736c7cbd3f4cb1b94960a2#egg=askbot
+-e git://github.com/atiberghien/askbot-devel.git@48be3c776e218bb47b195365bfc66fe6f5470096#egg=askbot
 
 # Zinnia blog
 -e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.1#egg=django-blog-zinnia
@@ -125,7 +125,7 @@ django-leaflet==0.5.1
 django-floppyforms==1.1
 # Do NOT specify a version here, as the appropriate one depends on your GDAL version
 # Actually, it doesn't seem required on recent systems
-GDAL
+#GDAL
 
 # Testing tools
 coverage<3.4
