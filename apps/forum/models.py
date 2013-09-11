@@ -6,14 +6,15 @@ from django.db.models.signals import post_delete, post_save
 from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext_lazy as _
 
-from askbot.models.question import Thread, FavoriteQuestion
+from celery import task
+
+from askbot.models.question import Thread
+from askbot.models.post import Post
+from askbot.models import send_instant_notifications_about_activity_in_post
+from askbot.const import TYPE_ACTIVITY_ASK_QUESTION
+from askbot.models.user import Activity
 
 from apps.tags.models import TaggedCategory
-
-import datetime
-from askbot.models.post import Post
-from askbot.tasks import record_post_update
-
 
 QUESTION_TYPE_CHOICES = (
     ('generic', _('generic')),
@@ -45,6 +46,11 @@ class SpecificQuestion(models.Model):
     object_id = models.PositiveIntegerField()
     context_object = generic.GenericForeignKey('content_type', 'object_id')
     
+    def save(self, force_insert=False, force_update=False, using=None):
+        created = True if not self.id else False
+        models.Model.save(self, force_insert=force_insert, force_update=force_update, using=using)
+        send_new_question_notification.delay(self, created)
+    
     class Meta:
         unique_together = ("type", "thread", "content_type", "object_id")
 
@@ -58,37 +64,31 @@ def purge_specific_thread(sender, instance, **kwargs):
     if instance.thread.is_specific:
         instance.thread.delete()
 
-@receiver(post_save, sender=SpecificQuestion)
-def subscribe_context_object_members(sender, instance, created, **kwargs):
-    specific_question = instance
+#@receiver(post_save, sender=SpecificQuestion)
+@task(ignore_result=True)
+def send_new_question_notification(specific_question, created, **kwargs):
     context = specific_question.context_object
-    if created:
-        timestamp = datetime.datetime.now()
-        if hasattr(context, 'get_members') \
-           and hasattr(context, 'mail_auto_subscription') \
-           and context.mail_auto_subscription:
+        
+    if created \
+       and hasattr(context, 'get_members') \
+       and hasattr(context, 'mail_auto_subscription') \
+       and context.mail_auto_subscription:
+        
+        post = specific_question.thread.question
+        try:
+            activity = Activity.objects.get(content_type=ContentType.objects.get_for_model(Post),
+                                            object_id=post.id,
+                                            activity_type=TYPE_ACTIVITY_ASK_QUESTION)
+        except Activity.DoesNotExist:
+            send_new_question_notification.retry()
             
-            for member in context.get_members():
-                if isinstance(member, User):
-                    member = member.get_profile()
-             
-                FavoriteQuestion.objects.create(thread=specific_question.thread,
-                                                user=member.user,
-                                                added_at=timestamp,
-                )
-                specific_question.thread.update_favorite_count()
-                
-                member.user.followed_threads.add(specific_question.thread)
-                
-                specific_question.thread.invalidate_cached_data()
-            
-            post = Post.objects.get(post_type="question", 
-                                    thread=specific_question.thread)
-
-            record_post_update(post=post,
-                               updated_by=post.author,
-                               timestamp=timestamp,
-                               newly_mentioned_users=[],
-                               created=True,
-                               diff=post.text)
-                            
+        recipients = []
+        for member in context.get_members():
+            if not isinstance(member, User):
+                member = member.user
+            recipients.append(member)
+        
+        send_instant_notifications_about_activity_in_post(activity, 
+                                                          post=post, 
+                                                          recipients=recipients)
+                        
