@@ -4,14 +4,16 @@
 # 
 # Translators:
 # ppanhh <ppanhh@gmail.com>, 2013
+# ppanhh <ppanhh@gmail.com>, 2013
+# ppanhh <ppanhh@gmail.com>, 2013
 # Simon Sarazin <simon.sarazin@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
 "POT-Creation-Date: 2013-09-04 11:39+0200\n"
-"PO-Revision-Date: 2013-08-28 10:58+0000\n"
-"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
+"PO-Revision-Date: 2013-09-04 10:52+0000\n"
+"Last-Translator: ppanhh <ppanhh@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/projects/p/imaginationforpeople/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,28 +28,28 @@ msgstr "Ứng dụng I4PBase"
 #: forms.py:18 templates/search.html:5 templates/search.html.py:6
 #: templates/i4p_base/search/search.html:43
 msgid "Search"
-msgstr ""
+msgstr "Tìm Kiếm"
 
 #: forms.py:19 templates/i4p_base/search/search.html:142
 #: templates/i4p_base/search/search.html:175
 msgid "Best of"
-msgstr ""
+msgstr "Tốt nhất của"
 
 #: forms.py:20
 msgid "Has team"
-msgstr ""
+msgstr "Có đội"
 
 #: forms.py:21
 msgid "Has needs"
-msgstr ""
+msgstr "Có nhu cầu"
 
 #: forms.py:22
 msgid "Location"
-msgstr ""
+msgstr "Vị trí"
 
 #: forms.py:23
 msgid "Language"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: forms.py:24 templates/cmsplugin_zinnia/_entry_detail.html:97
 msgid "Tags"
@@ -55,17 +57,17 @@ msgstr "Thẻ đánh dấu"
 
 #: forms.py:25
 msgid "Order"
-msgstr ""
+msgstr "Thứ tự"
 
 #: forms.py:26
 msgid "Status"
-msgstr ""
+msgstr "Trạng thái"
 
 #: forms.py:81
 msgid ""
 "Multiple results were found.  Please chose the best one (you can refine it "
 "afterwards using the map)"
-msgstr ""
+msgstr "Tìm thấy nhiều kết quả.  Xin vui lòng chọn một trong những kết quả tốt nhất (bạn có thể tinh chỉnh kết quả đó sau khi đã sử dụng bản đồ)"
 
 #: forms.py:121
 #, python-format
@@ -73,23 +75,23 @@ msgid ""
 "%d locations were returned by the geocoders, please select the most "
 "appropriate one.  You can refine in the map after saving if none are "
 "appropriate."
-msgstr ""
+msgstr "%d địa điểm đã được trả về bởi các geocoders, xin vui lòng chọn một địa điểm thích hợp nhất.  Bạn có thể tinh chỉnh bản đồ sau khi lưu nếu không có địa điểm nào thích hợp."
 
 #: forms.py:175
 msgid "Google geocoder"
-msgstr ""
+msgstr "Google geocoder"
 
 #: forms.py:180
 msgid "MapQuest geocoder"
-msgstr ""
+msgstr "MapQuest geocoder"
 
 #: forms.py:185
 msgid "Geonames places database"
-msgstr ""
+msgstr "Cơ sở dữ liệu địa điểm của Geonames"
 
 #: forms.py:189
 msgid "Nominatim database"
-msgstr ""
+msgstr "Cơ sở dữ liệu Nominatim"
 
 #: models.py:37
 msgid "Afghanistan"
@@ -1055,7 +1057,7 @@ msgstr "quốc gia"
 msgid ""
 "The country this location is in.  Set before geocoding,you'll get more "
 "accurate results"
-msgstr ""
+msgstr "Vị trí này thuộc về một quốc gia. Hãy chỉnh trước khi mã hóa phần địa lý, và bạn sẽ nhận thêm nhiều kết quả chính xác hơn"
 
 #: models.py:303
 msgid "address"
@@ -1068,17 +1070,17 @@ msgid ""
 "(Québec) H2L 1E6)\", but can also be a less precise description of a "
 "location \"Lake Champlain, Canada\", or the name of a place location "
 "\"Museum of Fine Arts, Montréal, Québec, Canada\""
-msgstr ""
+msgstr "Phần mô tả dạng văn bản của địa điểm được hiển thị cho người dùng xem xét. Thông thường là một địa chỉ đầy đủ như \"880 rue Roy Est, espace 300 - Montréal (Québec) H2L 1E6)\", nhưng cũng có thể là một mô tả không đầy đủ lắm chẳng hạn \"Lake Champlain, Canada\", hoặc chỉ là tên của địa điểm \"Museum of Fine Arts, Montréal, Québec, Canada\""
 
 #: models.py:309
 msgid "map"
-msgstr ""
+msgstr "bản đồ"
 
 #: models.py:312
 msgid ""
 "You can chose a point on the map manually, or refine the one that was "
 "geocoded"
-msgstr ""
+msgstr "Bạn có thể chọn một điểm trên bản đồ theo cách thủ công, hoặc tinh chỉnh một trong những phần đã được mã hóa về địa lý"
 
 #: templates/404.html:19 templates/500.html:21
 msgid "Ooops!"
@@ -1142,7 +1144,7 @@ msgstr "Đóng lại cửa sổ này"
 
 #: templates/base.html:123
 msgid "Enter your email"
-msgstr ""
+msgstr "Nhập vào email của bạn"
 
 #: templates/base.html:124
 msgid "Password"
@@ -1162,7 +1164,7 @@ msgid ""
 "\n"
 "                \"<strong>%(url)s</strong> is powered by a set of free components licensed under <strong>AGPL</strong> and <strong>Creative Commons</strong>.\"\n"
 "                "
-msgstr ""
+msgstr "\n                \"<strong>%(url)s</strong> được cung cấp bởi một nhóm các giấy phép về mặt bản quyền thuộc sở hữu dưới dạng  <strong>AGPL</strong> và <strong>Creative Commons</strong>.\"\n                "
 
 #: templates/header.html:17 templates/pages/home-blocks/loginbox.html:11
 msgid "Connexion"
@@ -1182,7 +1184,7 @@ msgstr "Đăng nhập"
 
 #: templates/header.html:47
 msgid "I lost my password!"
-msgstr ""
+msgstr "Tôi đã quên mật khẩu của mình rồi!"
 
 #: templates/header.html:54
 msgid "Not a member yet ?"
@@ -1190,19 +1192,19 @@ msgstr "Vẫn chưa phải là thành viên?"
 
 #: templates/header.html:55
 msgid "Sign-up with your email:"
-msgstr ""
+msgstr "Đăng ký với email của bạn:"
 
 #: templates/header.html:56
 msgid "Sign-up now !"
-msgstr ""
+msgstr "Đăng ký ngay bây giờ!"
 
 #: templates/header.html:57
 msgid "Sign-up with a social networks:"
-msgstr ""
+msgstr "Đăng ký bằng tài khoản dạng mạng xã hội:"
 
 #: templates/header.html:73
 msgid "Me"
-msgstr ""
+msgstr "Tôi"
 
 #: templates/header.html:82 templates/pages/home-blocks/loginbox.html:88
 msgid "View my profile"
@@ -1214,15 +1216,15 @@ msgstr "Chỉnh sửa hồ sơ của tôi"
 
 #: templates/header.html:88
 msgid "Messages"
-msgstr ""
+msgstr "Các tin  nhắn"
 
 #: templates/header.html:89
 msgid "My projects"
-msgstr ""
+msgstr "Các dự án của tôi"
 
 #: templates/header.html:90
 msgid "My favourites"
-msgstr ""
+msgstr "Phần Yêu Thích Của Tôi"
 
 #: templates/header.html:93 templates/pages/home-blocks/loginbox.html:90
 msgid "Log out"
@@ -1268,7 +1270,7 @@ msgid ""
 "\n"
 "                            Posted %(since)s ago by\n"
 "                            "
-msgstr ""
+msgstr "\n                            Được đăng cách đây %(since)s bởi\n                            "
 
 #: templates/backcap/feedback_detail.html:143
 msgid "Followers:"
@@ -1385,7 +1387,7 @@ msgid ""
 "\n"
 "                                            Posted %(since)s ago by\n"
 "                                            "
-msgstr ""
+msgstr "\n                                            Được đăng cách đây %(since)s bởi\n                                            "
 
 #: templates/backcap/feedback_list.html:136
 msgid "There's no feedback yet."
@@ -1471,11 +1473,11 @@ msgstr "Chỉnh sửa phản hồi"
 
 #: templates/cms/placeholder_popup.html:6
 msgid "Notice"
-msgstr ""
+msgstr "Chú ý"
 
 #: templates/cms/plugins/twitter_recent_entries.html:13
 msgid "we said,"
-msgstr ""
+msgstr "chúng tôi đã nói,"
 
 #: templates/cms/plugins/twitter_recent_entries.html:14
 msgid "we"
@@ -1503,7 +1505,7 @@ msgstr "Twitter"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:34
 msgid "Written by"
-msgstr ""
+msgstr "Tác giả"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:38
 #, python-format
@@ -1512,11 +1514,11 @@ msgstr "Hiển thị tất cả các bài viết của %(author)s"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:41
 msgid "on"
-msgstr "£nèf_,u \nvtrên"
+msgstr "ở trên"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:43
 msgid "Written on"
-msgstr ""
+msgstr "Viết dựa trên"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:49
 msgid "in"
@@ -1529,7 +1531,7 @@ msgstr "Hiển thị tất cả các bài viết trong phần %(category)s"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:58
 msgid "Last update on"
-msgstr ""
+msgstr "Lần cập nhật cuối"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:83
 #, python-format
@@ -1560,7 +1562,7 @@ msgstr "Đường dẫn liên kết ngắn đến %(object)s"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:119
 msgid "Discussions"
-msgstr ""
+msgstr "Các cuộc thảo luận"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:123
 #, python-format
@@ -1575,7 +1577,7 @@ msgstr[0] "%(comment_count)s bình luận"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:128
 msgid "No comments yet."
-msgstr ""
+msgstr "Vẫn chưa có bình luận nào."
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:130
 #, python-format
@@ -1584,109 +1586,109 @@ msgstr "Viết bình luận về %(object)s"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:131
 msgid "Be first to comment!"
-msgstr ""
+msgstr "Hãy là người đầu tiên viết bình luận!"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:134
 msgid "Comments are closed."
-msgstr ""
+msgstr "Đã đóng lại tính năng bình luận."
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:140
 #, python-format
 msgid "Pingbacks on %(object)s"
-msgstr ""
+msgstr "Pingbacks trên %(object)s"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:141
 #, python-format
 msgid "%(pingback_count)s pingback"
 msgid_plural "%(pingback_count)s pingbacks"
-msgstr[0] ""
+msgstr[0] "%(pingback_count)s pingback"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:147
 #, python-format
 msgid "Trackbacks on %(object)s"
-msgstr ""
+msgstr "Trackbacks trên %(object)s"
 
 #: templates/cmsplugin_zinnia/_entry_detail.html:148
 #, python-format
 msgid "%(trackback_count)s trackback"
 msgid_plural "%(trackback_count)s trackbacks"
-msgstr[0] ""
+msgstr[0] "%(trackback_count)s trackback"
 
 #: templates/cmsplugin_zinnia/entry_detail.html:7
 msgid "No entries yet."
-msgstr ""
+msgstr "Không có đề mục nào."
 
 #: templates/i4p_base/location/location_form.html:17
 #, python-format
 msgid "Location %(count)s"
-msgstr ""
+msgstr "Địa điểm %(count)s"
 
 #: templates/i4p_base/location/location_form.html:19
 msgid "New location"
-msgstr ""
+msgstr "Địa điểm mới"
 
 #: templates/i4p_base/location/location_form.html:23
 msgid "Add a new location"
-msgstr ""
+msgstr "Thêm một địa điểm mới"
 
 #: templates/i4p_base/location/location_form.html:49
 msgid "Geocode again"
-msgstr ""
+msgstr "Phân mã địa lý lại lần nữa"
 
 #: templates/i4p_base/location/location_form.html:51
 msgid "Geocode"
-msgstr ""
+msgstr "Phân mã địa lý"
 
 #: templates/i4p_base/location/location_form.html:66
 #, python-format
 msgid "Delete location %(count)s"
-msgstr ""
+msgstr "Xóa địa điểm %(count)s"
 
 #: templates/i4p_base/location/location_list.html:6
 #, python-format
 msgid "%(count)s locations "
-msgstr ""
+msgstr "%(count)s địa điểm"
 
 #: templates/i4p_base/location/location_list.html:11
 msgid "Show all locations"
-msgstr ""
+msgstr "Hiển thị tất cả địa điểm"
 
 #: templates/i4p_base/location/location_list.html:16
 msgid "Show only locations with geometry information missing"
-msgstr ""
+msgstr "Chỉ hiển thị các địa điểm thiếu các thông tin về hình họa"
 
 #: templates/i4p_base/location/location_list.html:21
 msgid "Show only locations with address missing"
-msgstr ""
+msgstr "Chỉ hiển thị các địa điểm thiếu các thông tin về địa chỉ"
 
 #: templates/i4p_base/location/location_list.html:26
 msgid "Show only locations with country missing"
-msgstr ""
+msgstr "Chỉ hiển thị các địa điểm thiếu các thông tin về quốc gia"
 
 #: templates/i4p_base/location/location_list.html:35
 #, python-format
 msgid "Edit location %(id)s"
-msgstr ""
+msgstr "Chỉnh sửa địa điểm %(id)s"
 
 #: templates/i4p_base/search/search.html:41
 msgid "Search for inspiring projects"
-msgstr ""
+msgstr "Tìm kiếm các dự án thu hút khác"
 
 #: templates/i4p_base/search/search.html:42
 msgid "Enter your research..."
-msgstr ""
+msgstr "Điền vào phần bạn muốn viết..."
 
 #: templates/i4p_base/search/search.html:48
 msgid "Projects"
-msgstr ""
+msgstr "Các dự án"
 
 #: templates/i4p_base/search/search.html:63
 msgid "Discover"
-msgstr ""
+msgstr "Khám phá"
 
 #: templates/i4p_base/search/search.html:65
 msgid "Filter"
-msgstr ""
+msgstr "Lọc dữ liệu"
 
 #: templates/i4p_base/search/search.html:73
 msgid "Precise <br /> your research"
@@ -1694,77 +1696,77 @@ msgstr ""
 
 #: templates/i4p_base/search/search.html:75
 msgid "Filter by tags"
-msgstr ""
+msgstr "Lọc dữ liệu theo các thẻ đánh dấu"
 
 #: templates/i4p_base/search/search.html:75
 msgid "Erase tags"
-msgstr ""
+msgstr "Xóa thẻ đánh dấu"
 
 #: templates/i4p_base/search/search.html:81
 msgid "Enter a keyword, a theme..."
-msgstr ""
+msgstr "Điền vào từ khóa, một chủ đề nào đó..."
 
 #: templates/i4p_base/search/search.html:93
 msgid "Languages"
-msgstr ""
+msgstr "Ngôn ngữ"
 
 #: templates/i4p_base/search/search.html:94
 #: templates/i4p_base/search/search.html:118
 msgid "Refresh"
-msgstr ""
+msgstr "Cập nhật lại"
 
 #: templates/i4p_base/search/search.html:100
 msgid "Any language"
-msgstr ""
+msgstr "Bất kỳ ngôn ngữ nào"
 
 #: templates/i4p_base/search/search.html:101
 msgid "French"
-msgstr ""
+msgstr "Tiếng Pháp"
 
 #: templates/i4p_base/search/search.html:102
 msgid "English"
-msgstr ""
+msgstr "Tiếng Anh"
 
 #: templates/i4p_base/search/search.html:103
 msgid "Spanish"
-msgstr ""
+msgstr "Tiếng Tây Ban Nha"
 
 #: templates/i4p_base/search/search.html:117
 msgid "Locations"
-msgstr ""
+msgstr "Địa điểm"
 
 #: templates/i4p_base/search/search.html:136
 msgid "Project sheet status"
-msgstr ""
+msgstr "Trạng thái trang dự án"
 
 #: templates/i4p_base/search/search.html:143
 msgid "Members"
-msgstr ""
+msgstr "Thành viên"
 
 #: templates/i4p_base/search/search.html:144
 msgid "Needs"
-msgstr ""
+msgstr "Có nhu cầu"
 
 #: templates/i4p_base/search/search.html:173
 msgid "Browse the <br /> different categories"
-msgstr ""
+msgstr "Duyệ tìm <br/> các phân loại khác nhau"
 
 #: templates/i4p_base/search/search.html:176
 msgid "Latest projects"
-msgstr ""
+msgstr "Dự án mới nhất"
 
 #: templates/i4p_base/search/search.html:177
 msgid "RSS feed"
-msgstr ""
+msgstr "Feed dạng RSS"
 
 #: templates/i4p_base/search/search.html:180
 msgid "Hot topics"
-msgstr ""
+msgstr "Chủ đề đang được theo dõi nhiều"
 
 #: templates/i4p_base/search/search.html:183
 #, python-format
 msgid "%(count)s project sheets"
-msgstr ""
+msgstr "%(count)s trang dự án"
 
 #: templates/pages/contrib.html:46
 msgid "A community dedicated to"
@@ -1848,7 +1850,7 @@ msgstr ""
 
 #: templates/pages/block/homepage-video-lightbox.html:10
 msgid "Close"
-msgstr ""
+msgstr "Đóng lại"
 
 #: templates/pages/home-blocks/blog-box.html:4
 msgid "Last posts on blog"
