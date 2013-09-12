@@ -22,10 +22,7 @@
 </div>
 <div class="container" id="workgroup-detail">
       <div id="workgroup-content" class="row">
-      {% if workgroup.mailing_list %}
-             <em class="workgroup_email">{% blocktrans with ml_address=workgroup.mailing_list.email %}This group uses a mailing list:&nbsp;</em>{{ ml_address }}{% endblocktrans %}</em> - [<a class="workgroup_archive" href="{% url workgroup-list-archive workgroup.slug %}">{% trans "Find history of messages exchanged" %}</a>]. {% trans "To subscribe/unsubscribe to this list, click the button above." %}
-          {% endif %}
-          
+               
       {% if workgroup.iframe_home_src %}
         <iframe src="{{ workgroup.iframe_home_src }}" frameborder="0" width="1000" height="1400" ></iframe>
         {% else %}
