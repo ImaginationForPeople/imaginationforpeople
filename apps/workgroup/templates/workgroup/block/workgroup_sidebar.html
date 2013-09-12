@@ -20,8 +20,7 @@
 {% plural %}
 {{ num_projects }} related projects
 {% endblocktrans %}</h3>
-    {% get_obj_perms request.user for workgroup as "workgroup_perms" %}
-    {% if request.user.is_staff and "change_workgroup" in workgroup_perms %}
+    {% if request.user.is_staff %}
     [<a href="{% url admin:workgroup_workgroup_change workgroup.pk  %}">{% trans "Manage linked projects" %}</a>]
     {% endif %}
     {% include 'project_sheet/block/cardlist_fancy_wide.html' with project_list=group_projects|slice:":3" %}
