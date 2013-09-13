@@ -1,6 +1,30 @@
 /*====================================================================================================================
                                           QUESTION TEMPLATE
 ====================================================================================================================*/
+.question-body li {
+display: list-item;
+text-align: -webkit-match-parent;
+list-style: disc;
+color: white;
+font-size: 12px;
+}
+
+.question-body a {
+color: #415073;
+}
+
+.question-body p {
+padding-bottom: 6px;
+}
+
+.question-body ul {
+list-style-position: outside;
+margin-top: 0.2857em;
+margin-bottom: 0.714285em;
+margin-left: 2em;
+padding-left: 0;
+}
+
 body.question-page div.conteneur_question_card{
     position:relative;
     min-height:190px;
