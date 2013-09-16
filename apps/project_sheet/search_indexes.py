@@ -3,6 +3,8 @@ from django.utils.encoding import force_unicode
 
 from haystack import indexes
 
+from apps.forum.models import SpecificQuestion, SpecificQuestionType
+
 from .models import I4pProject, I4pProjectTranslation, Topic, Answer
 
 class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
@@ -74,9 +76,10 @@ class I4pProjectIndex(indexes.SearchIndex, indexes.Indexable):
         translations = I4pProjectTranslation.objects.filter(master=obj.id)
         projectsupport_count = 0
         for translated_project in translations:
-            projectsupport_count += translated_project.projectsupport_set.count()
+			projectsupport_count += SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-help"), object_id=translated_project.pk).count()
+			projectsupport_count += SpecificQuestion.objects.filter(type__in=SpecificQuestionType.objects.filter(type="pj-need"), object_id=translated_project.pk).count()
         return projectsupport_count > 0
-
+        
     def prepare_tags(self, obj):
         """
         Split tags by comma, strip and remove empty
