@@ -90,4 +90,43 @@
             {% trans "This user isn't fan of any project yet." %}
         {% endfor %}
     </div>
+    <!-- Workgroups -->
+    <div class="profile_projects">
+        <div class="separator">
+            <h2>
+                {% with num_groups=workgroup_member_list|length %}
+                {% if user.username == profile.user.username %}
+                    I am
+                {% else %}
+                    He/She is
+                {% endif %}
+                    {% blocktrans count num_groups=num_groups %}
+                        a member of the following group
+                    {% plural %}
+                        a member of the following {{num_groups}} groups
+                    {% endblocktrans %}
+                {% endwith %}
+            </h2>
+        </div>   
+           
+        
+            <div class="group_container project_workgroups">                
+                <ul>
+                    {% for group in workgroup_member_list %}
+                    <li style="width:150px;display: inline-block;">
+                        <a href="{% url workgroup-discussion group.slug %}">
+                            <div>
+                                <span>{{ group.name }}</span>
+                                <p>
+                                    {{ group.description|urlize }}
+                                </p>
+                            </div>
+                        </a>
+                    </li>
+                    {% empty %}
+                        {% trans "This user isn't a member of any group yet." %}
+                    {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}
