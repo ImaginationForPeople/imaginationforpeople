@@ -41,12 +41,13 @@ Parameters for this block
     </div>
     <div class="bottom">
         {% if project.members.count %}
-          <span class="supported" title="project supported">Project supported</span>
-	{% endif %}
-        <span class="country"><img src="{{ project.location.country.flag }}" alt="{{ project.location.country.code }}" /> {{ project.location.country.name }}</span>
+          <span class="supported" title="project supported">Project with members ({{project.members.count}})</span>
+        {% endif %}
+         {% if project.fans.count %}
+          <span class="supported" title="project with fans">Project with fans ({{project.fans.count}})</span>
+        {% endif %}
+        <span class="country"><img src="{{ project.locations.all.0.country.flag }}" alt="{{ project.locations.all.0.country.code }}" /> {{ project.locations.all.0.country.name }}</span>
         <p>
-	  {% get_comment_count for project.get_current_translation as comment_count %}
-            <span class="comments" title="{{ comment_coun }} comments">{{ comment_count }}</span>
 	    {% with project.get_current_translation.projectsupport_set.count as need_count %}
             <span class="needs" title="{{ need_count }} needs">{{ need_count }}</span>
 	    {% endwith %}
