@@ -25,7 +25,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/subheader-readonly.js");
       <a href="{% url project_sheet-instance-gallery project_translation.slug %}" class="i4p-button">{% trans "Edit the project gallery" %}</a>
 		{% endif %}
       {% if project_translation.master.pictures.count %}
-		<img src="{% thumbnail project_translation.master.pictures.all.0.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
+		<img src="{% thumbnail project_translation.master.cover_picture.original_image.name 620x300 upscale=1 crop='50,50' %}" alt="" />&nbsp;
 		{% else %}
 		<img src="{{ STATIC_URL }}images/project_sheet/img_projsheet.jpg" alt="" />&nbsp;
         {% endif %}
