@@ -533,9 +533,12 @@ def project_sheet_set_cover_picture(request, slug, pic_id):
     """
     Set a picture as the cover for the project sheet
     """
+    language_code = translation.get_language()
     # get the project
     try:
-        project = I4pProject.objects.get(translations__slug=slug)
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+        project = project_translation.master
     except I4pProject.DoesNotExist:
         raise Http404
 
