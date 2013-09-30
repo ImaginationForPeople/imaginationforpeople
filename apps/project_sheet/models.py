@@ -174,6 +174,8 @@ class I4pProject(TranslatableModel):
     topics = models.ManyToManyField(SiteTopic, verbose_name=_('topics'),
                                     related_name='projects')
     
+    cover_picture = models.ForeignKey('ProjectPicture', null=True, blank=True)
+    
     # dynamicsites
     site = models.ManyToManyField(Site, help_text=_('The sites on which this project sheet is accessible.'), 
                                   verbose_name=_("sites"),

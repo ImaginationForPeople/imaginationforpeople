@@ -6,9 +6,19 @@ Transifex
 =========
 
 Translation are crowdsourced on transifex (see tranlators.rst).  As a developper,
-you need to interace with transifex's servers using transifex-client.  Note that 
-the branch that is translated on git is the "develop" branch (at least untill 
-further notice).
+you need to interace with transifex's servers using transifex-client (apt-get install transifex-client).  
+You'll have to create a transifex configuration file:
+
+   cd ~
+   vim .transifexrc
+   Add the following to the .transifexrc file:
+   [https://www.transifex.net]
+   hostname = https://www.transifex.net
+   username = <your_username>
+   password = <your_password>
+   token = <should be empty>
+
+Note that the branch that is translated on git is the "develop" branch (at least untill further notice).
 
 First, pull translations from transifex::
 
