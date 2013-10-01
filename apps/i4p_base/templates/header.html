@@ -4,8 +4,11 @@
 {% load honeypot %}
 {% load umessages_tags %}               
 {% load i4p_tags %}
+{% load sekizai_tags %}
     
-
+{% addtoblock "js" strip %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/i4p_base/header.js"></script>
+{% endaddtoblock %}
     
     <div id="header-zone">
         <div id="header" class="container">
