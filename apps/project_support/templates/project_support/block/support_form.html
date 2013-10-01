@@ -19,6 +19,7 @@ $(document).ready(function(){
     $(".tag-selector").click(function(){
         $("#categ_label").html($(this).html());
         $("input[name=category]").val($(this).attr('id'));
+        $('ul.sf-main-menu').hideSuperfishUl();
         return false;
     });
 });
