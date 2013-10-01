@@ -57,8 +57,9 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 						<div class="description">{{project_picture.desc}}</div>
 						<div class="source">{{project_picture.source}}</div>
 						<div class="licence">{{project_picture.licence}}</div>
+						{% comment %} FIXME: both methods below use GET calls instead of POST (since altering DB state) {% endcomment %}
 						<a class="delete" href="{% url project_sheet-instance-picture-del project_translation.slug project_picture.id %}"></a>
-                        <a class="set-cover" href="{% url  project_sheet-instance-picture-set-cover project_translation.slug project_picture.id %}"></a>
+						<a class="set-cover" href="{% url  project_sheet-instance-picture-set-cover project_translation.slug project_picture.id %}"></a>
                        
 					</li>
 					{% endfor %}
@@ -138,7 +139,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/gallery_modal.js");
 			id="gallery-modal-actions-{{ modal_unique_counter }}"
 			>
 			<div class="action">	
-                <!-- dynamic url setting via JS -->
+                <!-- dynamic url setting via JS : you need to add there your class when you want more actions here -->
 				<a class='set-cover' href="#">{% trans 'Set as cover picture' %}</a>
 				<a class='delete' href="#">{% trans 'Delete this picture' %}</a>
                 {% comment %}                        
