@@ -518,3 +518,34 @@ section#more-filters {
 	float:left;
 	margin:0 0 0 50px;
 }
+
+.search_pagination {
+	float:left;
+	width:100%;
+	color:white;
+	text-align:center;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-family:$fontOpenSansCondensed;
+	padding:0 0 20px;
+	font-size:1.6rem;
+
+	span {
+		color:#fff;
+		background:#0088CC;
+		padding:0 8px;
+		@include border-radius(16px);
+	}
+
+	a {
+		color:#777;
+
+		&.next {
+			margin-left:15px;
+		}
+
+		&.prev {
+			margin-right:15px;
+		}
+	}
+}
