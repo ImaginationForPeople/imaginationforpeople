@@ -1,4 +1,4 @@
-@import "compass/css3/transition";
+@import "compass/css3";
 @import "i4p/_mixins";
 @import "i4p/_fonts";
 @import "i4p/_constants";
@@ -81,6 +81,11 @@
 			right:15px;
 			background:image-url('project_sheet/project_card/single_guy.png') no-repeat bottom left;
 			text-indent:-999em;
+		}
+
+		.faned {
+			right:30px;
+			@include opacity(0.5);
 		}
 
 		.country {
