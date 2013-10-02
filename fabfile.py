@@ -795,7 +795,7 @@ def database_download():
     """
     Dumps and downloads the database from the target server
     """
-    execute(database_postgis_dump)
+    execute(database_dump)
     get(remote_db_path(), 'current_database.sql.bz2')
 
 @task
