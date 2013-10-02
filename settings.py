@@ -167,7 +167,14 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = ()
+
+if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
+    MIDDLEWARE_CLASSES += (
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
+    )
+
+MIDDLEWARE_CLASSES += (
     'django.contrib.sessions.middleware.SessionMiddleware',
 
 
@@ -215,11 +222,6 @@ if DEBUG:
             'apps.project_sheet',
             'apps.i4p_base',
             )
-
-if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
-    MIDDLEWARE_CLASSES += (
-        'apps.i4p_base.middleware.profile.ProfileMiddleware',
-    )
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.twitter.TwitterBackend',
