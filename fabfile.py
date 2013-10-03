@@ -466,15 +466,8 @@ def app_fullupdate():
     Full Update: maincode and dependencies
     """
     execute(updatemaincode)
-    execute(compile_messages)
-    execute(update_compass)
-    execute(compile_stylesheets)
     execute(update_requirements, force=False)
-    execute(app_db_update)
-    execute(collect_static_files)
-    # tests()
-    execute(reloadapp)
-    execute(webservers_reload)
+    execute(app_compile)
 
 @task
 def app_update():
@@ -482,6 +475,13 @@ def app_update():
     Fast Update: don't update requirements
     """
     execute(updatemaincode)
+    execute(app_compile)
+
+@task
+def app_compile():
+    """
+    Generate every compiled resource, and update database schema
+    """
     execute(compile_messages)
     execute(compile_stylesheets)
     execute(app_db_update)
@@ -489,7 +489,7 @@ def app_update():
     # tests()
     execute(reloadapp)
     execute(webservers_reload)
-
+    
 ## Webserver
 def configure_webservers():
     """
@@ -795,7 +795,7 @@ def database_download():
     """
     Dumps and downloads the database from the target server
     """
-    execute(database_postgis_dump)
+    execute(database_dump)
     get(remote_db_path(), 'current_database.sql.bz2')
 
 @task
