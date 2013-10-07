@@ -104,19 +104,22 @@ class I4pProjectListResource(ModelResource):
 class I4pProjectDetailResource(ModelResource):
     location = fields.ForeignKey(LocationDetailResource, 'location', full=True, null=True)
     members = fields.ToManyField(UserResource, 'members', full=True)
+    objectives = fields.ListField()
     pictures = fields.ToManyField(ProjectPictureDetailResource, 'pictures', full=True, null=True)
-    videos = fields.ToManyField(ProjectVideoDetailResource, 'videos', full=True, null=True)
+    questions = fields.ListField()
     references = fields.ManyToManyField(ProjectReferenceDetailResource, 'references', full=True, null=True)
+    videos = fields.ToManyField(ProjectVideoDetailResource, 'videos', full=True, null=True)
     
     class Meta:
         queryset = I4pProject.objects.all()
         include_resource_uri = False
         fields = ['best_of','status', 'website']
         
-    def dehydrate(self, bundle):
+    def dehydrate_objectives(self, bundle):
         objectives = bundle.obj.objectives.language(translation.get_language()).all()
-        bundle.data['objectives'] = [{"name": objective.name} for objective in objectives]
+        return [{"name": objective.name} for objective in objectives]
         
+    def dehydrate_questions(self, bundle):
         questions = []
         for topic in Topic.objects.language(translation.get_language()).filter(site_topics=bundle.obj.topics.all()):
             for question in topic.questions.language(translation.get_language()).all().order_by('weight'):
@@ -126,8 +129,7 @@ class I4pProjectDetailResource(ModelResource):
                     "answer": answers and answers[0].content or None
                 })
                 
-        bundle.data['questions'] = questions
-        return bundle
+        return questions
 
 class I4pProjectTranslationResource(ModelResource):
     project = fields.ForeignKey(I4pProjectDetailResource, use_in='detail', attribute='master', full=True)
