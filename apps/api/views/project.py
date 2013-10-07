@@ -223,7 +223,7 @@ class I4pProjectTranslationResource(ModelResource):
         if limit > 50:
             limit = 50
         
-        found_projects = I4pProject.on_site.filter(location__country=kwargs["country_code"]).order_by('?')[:limit]
+        found_projects = I4pProject.on_site.filter(locations__country__icontains=kwargs["country_code"]).order_by('?')[:limit]
         return self.get_custom(request, found_projects, **kwargs)
     
     def full_dehydrate(self, bundle, for_list=False):
