@@ -47,12 +47,22 @@ class LocationListResource(ModelResource):
         queryset = Location.objects.all()
         include_resource_uri = False
         fields = ['country']
+        
+    def full_dehydrate(self, bundle, for_list=False):
+        if len(bundle.obj.all()) > 0:
+            bundle.obj = bundle.obj.all()[0] or None
+        return ModelResource.full_dehydrate(self, bundle, for_list=for_list)
 
 class LocationDetailResource(ModelResource):
     class Meta:
         queryset = Location.objects.all()
         include_resource_uri = False
         fields = ['address', 'country']
+        
+    def full_dehydrate(self, bundle, for_list=False):
+        if len(bundle.obj.all()) > 0:
+            bundle.obj = bundle.obj.all()[0]
+        return ModelResource.full_dehydrate(self, bundle, for_list=for_list)
         
 class UserResource(ModelResource):
     class Meta:
@@ -93,7 +103,7 @@ class ProjectPictureDetailResource(ModelResource):
         return bundle
     
 class I4pProjectListResource(ModelResource):
-    location = fields.ForeignKey(LocationListResource, 'location', full=True, null=True)
+    location = fields.ForeignKey(LocationListResource, 'locations', full=True, null=True)
     pictures = fields.ToManyField(ProjectPictureListResource, full=True, null=True, attribute=lambda bundle: ProjectPicture.objects.filter(project=bundle.obj)[:1])
     
     class Meta:
@@ -102,7 +112,7 @@ class I4pProjectListResource(ModelResource):
         fields = [ 'best_of','status' ]
 
 class I4pProjectDetailResource(ModelResource):
-    location = fields.ForeignKey(LocationDetailResource, 'location', full=True, null=True)
+    location = fields.ForeignKey(LocationDetailResource, 'locations', full=True, null=True)
     members = fields.ToManyField(UserResource, 'members', full=True)
     objectives = fields.ListField()
     pictures = fields.ToManyField(ProjectPictureDetailResource, 'pictures', full=True, null=True)
