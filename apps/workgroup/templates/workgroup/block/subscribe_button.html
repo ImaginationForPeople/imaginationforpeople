@@ -10,29 +10,40 @@
 {% endaddtoblock %}
 
 <div id="subscribe-button">
-{% if workgroup.outside_url %}
-<a href="{{ workgroup.outside_url }}" target="_blank">
-  <span>
-    <div class="quit">
-      {% trans "Open Group Page" %}
-    </div>
-  </span>
-</a>
-{% else %}
-{% if not request.user in workgroup.subscribers.all %}
-  <form method='GET' action='{% url workgroup-subscribe workgroup.slug %}'>
-    {% csrf_token %}
-    <button type='submit' class='button join'><span>{% trans 'Join the workgroup and follow the discussion' %}</span></button>
-	   <input type="hidden" name='next_url' value="{{ request.path }}"/>
-  </form>
-{% else %}
-  <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
-    {% csrf_token %}
-    <div class='quit'>
-      <span>{% trans 'You are part of this group' %}</span><button type="submit">{% trans 'Quit this group' %}</button>
-  	  <input type="hidden" name='next_url' value="{{ request.path }}"/>
-    </div>
-  </form>
-{% endif %}
-{% endif %}
+  {% if workgroup.outside_url %}
+  <a href="{{ workgroup.outside_url }}" target="_blank">
+    <span>
+      <div class="quit">
+        {% trans "Open Group Page" %}
+      </div>
+    </span>
+  </a>
+  {% else %}
+  {% if not request.user in workgroup.subscribers.all %}
+    <form method='GET' action='{% url workgroup-subscribe workgroup.slug %}'>
+      {% csrf_token %}
+      <button type='submit' class='button join'>  
+        {% if workgroup.register_button %}
+        <span>{{ workgroup.register_button }}</span>
+        {% else %}
+        <span>{% trans 'Join the workgroup and follow the discussion' %}</span>
+        {% endif %}
+      </button>
+       <input type="hidden" name='next_url' value="{{ request.path }}"/>
+    </form>
+  {% else %}
+    <form method='GET' action='{% url workgroup-unsubscribe workgroup.slug %}'>
+      {% csrf_token %}
+      <div class='quit'>
+        {% if workgroup.registered_button %}
+        <span>{{ workgroup.registered_button }}</span>
+        {% else %}
+        <span>{% trans 'You are part of this group' %}</span>
+        {% endif %}
+        <button type="submit">{% trans 'Quit this group' %}</button>
+        <input type="hidden" name='next_url' value="{{ request.path }}"/>
+      </div>
+    </form>
+  {% endif %}
+  {% endif %}
 </div>
