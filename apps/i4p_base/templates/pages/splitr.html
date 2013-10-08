@@ -1,0 +1,40 @@
+{% extends "cms_base.html" %}
+{% load menu_tags %}
+{% load i18n cms_tags sekizai_tags %}
+{% load compress %}
+
+{% block style %}
+{% endblock %}
+
+{% block content %}
+{% addtoblock "css" strip %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/black_page.css" />
+{% endaddtoblock %}
+{% addtoblock "css" strip %}
+    <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/i4p_base/pages/onemenu.css" />
+{% endaddtoblock %}
+
+{% if user.is_authenticated %}
+    {% cms_toolbar %}
+{% endif %}
+
+<style>
+iframe {
+width: 100% !important;
+}
+</style>
+
+<div class="content">        
+   
+        <div class="row">
+            <div style="width:47%; float: left; margin-left:2%; margin-right:1%;" class="block-content">
+                    {% placeholder "Left Column" %}
+            </div>
+            <div style="width:47%; float: left; margin-right:2%; margin-left:1%;" class="block-content">
+                    {% placeholder "Right Column" %}
+                </div>
+            </div>
+        </div>		
+ 
+</div>
+{% endblock %}
