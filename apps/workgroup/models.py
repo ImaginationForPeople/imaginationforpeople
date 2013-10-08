@@ -62,9 +62,19 @@ class WorkGroup(models.Model):
                                 choices=settings.LANGUAGES)
 
     description = models.TextField(verbose_name=_('Description'),
-                                   null=True,
-                                   blank=True)
+                                    null=True,
+                                    blank=True)
     
+    register_button = models.CharField(verbose_name=_('Text for the register button'),
+                                    max_length=50,
+                                    null=True,
+                                    blank=True)
+ 
+    registered_button = models.CharField(verbose_name=_('Text for the register button when registered'),
+                                    max_length=50,
+                                    null=True,
+                                    blank=True)
+                                    
     mailing_list = models.ForeignKey(List, 
                                      default=None, 
                                      null=True, blank=True)
