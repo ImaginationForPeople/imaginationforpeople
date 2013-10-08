@@ -596,6 +596,7 @@ CMS_TEMPLATES = (
   ('pages/contrib.html', _('Contribution page')),
   ('pages/onemenu.html', _('One menu page')),
   ('pages/popups_notifications.html', _('Popups and notifications container')),
+  ('pages/splitr.html', _('Splitr')),
 )
 
 CMS_REDIRECTS = True
