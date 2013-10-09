@@ -112,8 +112,9 @@ class ProjectFanAddForm(forms.ModelForm):
     class Meta:
         model = ProjectFan
         fields = ()
-
-    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly why you are a fan of this project...")}), required=False)
+    
+    # FIXME: Usage is not clear here as this adds a step just to become a fan. Commenting out meanwhile.
+    #comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly why you are a fan of this project...")}), required=False)
 
 ProjectFanFormSet = modelformset_factory(ProjectFan, 
                                             extra=0, 

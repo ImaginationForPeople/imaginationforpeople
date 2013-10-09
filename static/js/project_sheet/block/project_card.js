@@ -9,11 +9,11 @@ $(document).ready(function () {
 	//   mouseleave: function(){
 	//	   $(this).children('.hover').fadeOut(100);}
 	//});
-	$(document).on('mouseenter', '.project-card', function() {
-      $(this).children('.hover').fadeIn(100);
+	$(document).on('mouseenter', '.project-card .top', function() {
+      $(this).siblings('.hover').fadeIn(100);
    });
-   $(document).on('mouseleave', '.project-card', function() {
-      $(this).children('.hover').fadeOut(100);
+   $(document).on('mouseleave', '.project-card .hover', function() {
+      $(this).fadeOut(100);
    });
 	$('.project-card .hover').not('a').click(function(){
 		window.location.href=$(this).children('.more').children('a').attr('href');

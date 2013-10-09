@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
+# Camille <camillest@imaginationforpeople.org>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-09-04 11:40+0200\n"
-"PO-Revision-Date: 2013-09-04 09:49+0000\n"
-"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
+"POT-Creation-Date: 2013-10-09 15:31+0200\n"
+"PO-Revision-Date: 2013-10-09 14:38+0000\n"
+"Last-Translator: Camille <camillest@imaginationforpeople.org>\n"
 "Language-Team: Portuguese <communitypt@lists.imaginationforpeople.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,139 +20,147 @@ msgstr ""
 
 #: cms_plugins.py:48
 msgid "Group (un)subscribe button"
-msgstr ""
+msgstr "Botão (de)cadastrar do grupo"
 
 #: cms_plugins.py:61
 msgid "Group subscribers list"
-msgstr ""
+msgstr "Lista dos assinantes do grupo"
 
 #: models.py:57
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 #: models.py:60
 msgid "spoken language"
-msgstr ""
+msgstr "língua falada"
 
 #: models.py:64 templates/workgroup/block/workgroup_header.html:53
 msgid "Description"
-msgstr ""
+msgstr "Descrição"
 
-#: models.py:72
+#: models.py:68
+msgid "Text for the register button"
+msgstr "Texto para o botão de registro"
+
+#: models.py:73
+msgid "Text for the register button when registered"
+msgstr "Texto para o botão de registro quando registrado"
+
+#: models.py:82
 msgid "visible"
-msgstr ""
+msgstr "visível"
 
-#: models.py:75
+#: models.py:85
 msgid "Group geographic area"
-msgstr ""
+msgstr "Área geográfica do grupo"
 
-#: models.py:78
+#: models.py:88
 msgid ""
 "If your group is geographic in nature, specify it's outling here.   The "
 "platform will display a map of projects, and try to fit this outline in the "
 "visible area"
-msgstr ""
-
-#: models.py:82
-msgid "Linked Projects"
-msgstr ""
-
-#: models.py:86
-msgid "Tags of the group"
-msgstr ""
+msgstr "Se o seu grupo é de natureza geográfica, especifique como aqui. A plataforma vai exibir um mapa de projetos, e tentar colocar esse contorno na área visível"
 
 #: models.py:92
-msgid "External URL"
-msgstr ""
+msgid "Linked Projects"
+msgstr "Projetos Ligados"
 
-#: models.py:95
+#: models.py:96
+msgid "Tags of the group"
+msgstr "Marcações do grupo"
+
+#: models.py:102
+msgid "External URL"
+msgstr "URL Externa"
+
+#: models.py:105
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
-msgstr ""
+msgstr "Um URL que aponta para a verdadeira ferramenta de conversa, se não estamos usando o built-in (por exemplo, Facebook URL grupo)."
 
-#: models.py:98
+#: models.py:108
 msgid "iframe for home page source URL"
-msgstr ""
+msgstr "iframe para fonte URL da página inicial"
 
-#: models.py:101 models.py:107
+#: models.py:111 models.py:117
 msgid ""
 "A URL that points to the collaborative tool used by the group. If not null, "
 "will replace the built-in wiki"
-msgstr ""
+msgstr "Um URL que aponta para a ferramenta de colaboração usado pelo grupo. Se não nulo, irá substituir o built-in wiki"
 
-#: models.py:104
+#: models.py:114
 msgid "iframe for description page source URL"
-msgstr ""
+msgstr "iframe para a página de descrição do fonte URL"
 
-#: models.py:111
+#: models.py:121
 msgid "Subscribers"
-msgstr ""
+msgstr "Assinantes"
 
-#: models.py:116
+#: models.py:126
 msgid "auto subscription to workgroup questions"
-msgstr ""
+msgstr "inscrição automática as perguntas do grupo de trabalho"
 
 #: views.py:228
 #, python-format
 msgid ""
 "You have been successfully subscribed to the%(workgroup_name)s mailing list "
 "(%(user_email)s)"
-msgstr ""
+msgstr "Você se inscreveu com sucesso na%(workgroup_name)s mailing list (%(user_email)s)"
 
 #: views.py:235
 #, python-format
 msgid "You couldn't be subscribed to this group:%s"
-msgstr ""
+msgstr "Você não pode ser inscrito neste grupo:%s"
 
 #: views.py:266
 #, python-format
 msgid ""
 "You have been successfully unsubscribed from the%(workgroup_name)s mailing "
 "list (%(user_email)s)"
-msgstr ""
+msgstr "Você foi retirado com sucesso da%(workgroup_name)s mailing list (%(user_email)s)"
 
 #: views.py:273
 #, python-format
 msgid "You couldn't be unsubscribed from this group:%s"
-msgstr ""
+msgstr "Você não pode ser retirado deste grupo:%s"
 
 #: templates/workgroup/block/grouplist_fancy_wide.html:11
 msgid "Related Groups"
-msgstr ""
+msgstr "Grupos Relacionados"
 
 #: templates/workgroup/block/grouplist_fancy_wide.html:12
 #: templates/workgroup/block/workgroup_header.html:46
 msgid "See all"
-msgstr ""
+msgstr "Ver todo"
 
 #: templates/workgroup/block/grouplist_fancy_wide.html:27
 msgid "No related groups found."
-msgstr ""
+msgstr "Nenhum grupo relacionado encontrado"
 
 #: templates/workgroup/block/subscribe_button.html:17
 msgid "Open Group Page"
-msgstr ""
+msgstr "Abrir Página do Grupo"
 
-#: templates/workgroup/block/subscribe_button.html:25
+#: templates/workgroup/block/subscribe_button.html:29
 msgid "Join the workgroup and follow the discussion"
-msgstr ""
+msgstr "Junte-se ao grupo de trabalho e acompanhe a conversa"
 
-#: templates/workgroup/block/subscribe_button.html:32
+#: templates/workgroup/block/subscribe_button.html:41
 msgid "You are part of this group"
-msgstr ""
+msgstr "Você faz parte desse grupo"
 
-#: templates/workgroup/block/subscribe_button.html:32
+#: templates/workgroup/block/subscribe_button.html:43
 msgid "Quit this group"
-msgstr ""
+msgstr "Sair desse grupo"
 
 #: templates/workgroup/block/workgroup_header.html:23
 msgid "Edit Group"
-msgstr ""
+msgstr "Editar Grupo"
 
 #: templates/workgroup/block/workgroup_header.html:30
 msgid "Spoken language :"
-msgstr ""
+msgstr "Língua falada : "
 
 #: templates/workgroup/block/workgroup_header.html:36
 #, python-format
@@ -159,7 +168,7 @@ msgid ""
 "\t\n"
 "                member%(member_plural)s\t\n"
 "            "
-msgstr ""
+msgstr "\t\n                membro%(member_plural)s\t\n            "
 
 #: templates/workgroup/block/workgroup_header.html:41
 #, python-format
@@ -167,19 +176,19 @@ msgid ""
 "\n"
 "                member%(member_plural)s\n"
 "            "
-msgstr ""
+msgstr "\n                membro%(member_plural)s\n            "
 
 #: templates/workgroup/block/workgroup_header.html:52
 msgid "Home"
-msgstr ""
+msgstr "Página inicial"
 
 #: templates/workgroup/block/workgroup_header.html:55
 msgid "List Archive"
-msgstr ""
+msgstr "Lista Arquivo"
 
 #: templates/workgroup/block/workgroup_header.html:57
 msgid "Group Forum"
-msgstr ""
+msgstr "Fórum do Grupo"
 
 #: templates/workgroup/block/workgroup_header.html:62
 #, python-format
@@ -187,7 +196,7 @@ msgid ""
 "\t\n"
 "                    member%(member_plural)s\t\n"
 "                "
-msgstr ""
+msgstr "\t\n                    membro%(member_plural)s\t\n                "
 
 #: templates/workgroup/block/workgroup_header.html:67
 #, python-format
@@ -195,7 +204,7 @@ msgid ""
 "\n"
 "                    member%(member_plural)s\n"
 "                "
-msgstr ""
+msgstr "\n                    membro%(member_plural)s\n                "
 
 #: templates/workgroup/block/workgroup_header.html:74
 #, python-format
@@ -205,8 +214,8 @@ msgid ""
 msgid_plural ""
 "\n"
 "%(num_projects)s projects\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\n%(num_projects)s projetos\n"
+msgstr[1] "\n%(num_projects)s projetos\n"
 
 #: templates/workgroup/block/workgroup_sidebar.html:18
 #, python-format
@@ -216,44 +225,44 @@ msgid ""
 msgid_plural ""
 "\n"
 "%(num_projects)s related projects\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\n%(num_projects)s projetos relatados\n"
+msgstr[1] "\n%(num_projects)s projetos relacionados\n"
 
-#: templates/workgroup/block/workgroup_sidebar.html:25
+#: templates/workgroup/block/workgroup_sidebar.html:24
 msgid "Manage linked projects"
-msgstr ""
+msgstr "Gerenciar projetos ligados"
 
-#: templates/workgroup/block/workgroup_sidebar.html:28
+#: templates/workgroup/block/workgroup_sidebar.html:27
 msgid "See all related projects"
-msgstr ""
+msgstr "Mostrar todos os projetos relacionados"
 
 #: templates/workgroup/page/group_create.html:9
 msgid "Create a new group "
-msgstr ""
+msgstr "Criar um novo grupo"
 
 #: templates/workgroup/page/group_discuss_answer_edit.html:27
 msgid "Edit answer"
-msgstr ""
+msgstr "Editar resposta"
 
 #: templates/workgroup/page/group_discuss_answer_edit.html:27
 msgid "back"
-msgstr ""
+msgstr "voltar"
 
 #: templates/workgroup/page/group_discuss_answer_edit.html:31
 msgid "revision"
-msgstr ""
+msgstr "revisão"
 
 #: templates/workgroup/page/group_discuss_answer_edit.html:60
 msgid "Save edit"
-msgstr ""
+msgstr "Salvar edições"
 
 #: templates/workgroup/page/group_discuss_answer_edit.html:61
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: templates/workgroup/page/group_discuss_form.html:27
 msgid "Please ask your question here"
-msgstr ""
+msgstr "Por favor faça sua pergunta aqui"
 
 #: templates/workgroup/page/group_discuss_thread.html:61
 #, python-format
@@ -265,139 +274,136 @@ msgid_plural ""
 "\n"
 "                        %(counter)s Answers\n"
 "                    "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\n                        %(counter)s Respostas\n                    "
+msgstr[1] "\n                        %(counter)s Answers\n                    "
 
 #: templates/workgroup/page/group_discuss_thread.html:68
 msgid "Sort by :"
-msgstr ""
+msgstr "Ordenar por"
 
 #: templates/workgroup/page/group_discuss_thread.html:70
 msgid "oldest answers will be shown first"
-msgstr ""
+msgstr "respostas mais antigas serão exibidas em primeiro"
 
 #: templates/workgroup/page/group_discuss_thread.html:71
 msgid "oldest"
-msgstr ""
+msgstr "Mais antigas"
 
 #: templates/workgroup/page/group_discuss_thread.html:74
 msgid "newest answers will be shown first"
-msgstr ""
+msgstr "respostas mais recentes serão mostradas em primeiro"
 
 #: templates/workgroup/page/group_discuss_thread.html:75
 msgid "newest"
-msgstr ""
+msgstr "Mais recentes"
 
 #: templates/workgroup/page/group_discuss_thread.html:78
 msgid "most voted answers will be shown first"
-msgstr ""
+msgstr "respostas com mais votos serão mostradas em primeiro"
 
 #: templates/workgroup/page/group_discuss_thread.html:79
 msgid "most voted"
-msgstr ""
+msgstr "Mais votos"
 
 #: templates/workgroup/page/group_discuss_thread.html:102
 msgid "this answer has been selected as correct"
-msgstr ""
+msgstr "esta resposta foi escolhida como correta"
 
 #: templates/workgroup/page/group_discuss_thread.html:104
 msgid "mark this answer as correct (click again to undo)"
-msgstr ""
+msgstr "marcar esta resposta como correta (clique outra vez para desfazer)"
 
 #: templates/workgroup/page/group_discuss_thread.html:111
 #: templates/workgroup/page/group_discuss_thread.html:112
 msgid "anonymous user"
-msgstr ""
+msgstr "usuário anônimo"
 
 #: templates/workgroup/page/group_discuss_thread.html:122
 msgid "answered"
-msgstr ""
+msgstr "respondidas"
 
 #: templates/workgroup/page/group_discuss_thread.html:148
 msgid "Edit Your Previous Answer"
-msgstr ""
+msgstr "Editar Sua Resposta Anterior"
 
 #: templates/workgroup/page/group_discuss_thread.html:149
 msgid "(only one answer per question is allowed)"
-msgstr ""
+msgstr "(apenas uma resposta por pergunta é permitida)"
 
 #: templates/workgroup/page/group_edit.html:16
 msgid "Edit this group's information"
-msgstr ""
+msgstr "Editar informações deste grupo"
 
 #: templates/workgroup/page/wiki_edit.html:19
 msgid ""
 "<strong>Warning:</strong> You are not logged in. Your IP address will be "
 "logged."
-msgstr ""
+msgstr "<strong>Atenção:</strong> Você não está registrado. Seu endereço de IP será registrado."
 
 #: templates/workgroup/page/wiki_edit.html:20
 msgid "Click here to log in"
-msgstr ""
+msgstr "Clique aqui para registrar-se"
 
 #: templates/workgroup/page/wiki_edit.html:27
 msgid "Edit this workgroup"
-msgstr ""
+msgstr "Editar este grupo de trabalho"
 
 #: templates/workgroup/page/wiki_edit.html:48
 msgid "Preview"
-msgstr ""
+msgstr "Visualização"
 
 #: templates/workgroup/page/wiki_edit.html:54
 #: templates/workgroup/page/wiki_edit.html:78
 msgid "Save changes"
-msgstr ""
+msgstr "Salvar as alterações"
 
 #: templates/workgroup/page/wiki_edit.html:60
 msgid "Delete article"
-msgstr ""
+msgstr "Excluir artigo"
 
 #: templates/workgroup/page/wiki_edit.html:72
 msgid "Back to editor"
-msgstr ""
+msgstr "Voltar ao editor"
 
 #: templates/workgroup/page/workgroup_description.html:13
 #, python-format
 msgid "%(group_name)s group description | Imagination for People"
-msgstr ""
+msgstr "%(group_name)s descrição do grupo | Imagination for People"
 
 #: templates/workgroup/page/workgroup_description.html:26
-#: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 #, python-format
 msgid "This group uses a mailing list:&nbsp;</em>%(ml_address)s"
-msgstr ""
+msgstr "Este grupo usa uma mailing list:&nbsp;</em>%(ml_address)s"
 
 #: templates/workgroup/page/workgroup_description.html:26
-#: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 msgid "Find history of messages exchanged"
-msgstr ""
+msgstr "Encontrar histórico de mensagens compartilhados"
 
 #: templates/workgroup/page/workgroup_description.html:26
-#: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 msgid "To subscribe/unsubscribe to this list, click the button above."
-msgstr ""
+msgstr "Para cadastrar-se/retirar-se desta lista, clique o botão acima"
 
 #: templates/workgroup/page/workgroup_detail.html:12
 #, python-format
 msgid "%(group_name)s group home | Imagination for People"
-msgstr ""
+msgstr "%(group_name)s página inicial do grupo | Imagination for People"
 
 #: templates/workgroup/page/workgroup_discuss_list.html:13
 #, python-format
 msgid "%(group_name)s group discussions | Imagination for People"
-msgstr ""
+msgstr "%(group_name)s conversas do grupo | Imagination for People"
 
 #: templates/workgroup/page/workgroup_discuss_list.html:73
 msgid "Ask your question"
-msgstr ""
+msgstr "Faça sua pergunta"
 
 #: templates/workgroup/page/workgroup_linked_projects.html:13
 #, python-format
 msgid "%(group_name)s group projects | Imagination for People"
-msgstr ""
+msgstr "%(group_name)s projetos do grupo | Imagination for People"
 
 #: templates/workgroup/page/workgroup_linked_projects.html:35
 #, python-format
@@ -407,40 +413,40 @@ msgid ""
 msgid_plural ""
 "\n"
 "%(num_projects)s projects Linked to the group\n"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "\n%(num_projects)s projetos Relacionados ao grupo\n"
+msgstr[1] "\n%(num_projects)s projects Linked to the group\n"
 
 #: templates/workgroup/page/workgroup_linked_projects.html:44
 msgid "No projects found"
-msgstr ""
+msgstr "Nenhum projeto encontrado"
 
 #: templates/workgroup/page/workgroup_list_archive.html:13
 #, python-format
 msgid "%(group_name)s group archive | Imagination for People"
-msgstr ""
+msgstr "%(group_name)s arquivo do grupo | Imagination for People"
 
 #: templates/workgroup/page/workgroup_list_archive.html:28
 msgid "This group has no mailing list"
-msgstr ""
+msgstr "Este grupo não tem uma mailing list"
 
 #: templates/workgroup/page/workgroup_members.html:13
 #, python-format
 msgid "%(group_name)s group members | Imagination for People"
-msgstr ""
+msgstr "%(group_name)s membros do grupo | Imagination for People"
 
 #: templates/workgroup/page/workgroup_members.html:29
 #, python-format
 msgid "The %(group_name)s group members"
-msgstr ""
+msgstr "Os %(group_name)s membros do grupo"
 
 #: templates/workgroup/page/workgroup_members.html:34
 msgid "There are no group subscribers."
-msgstr ""
+msgstr "Não há assinantes do grupo."
 
 #: templates/workgroup/page/workgroup_members.html:42
 msgid "Other mailing list subscribers"
-msgstr ""
+msgstr "Outros assinantes da mailing list"
 
 #: templates/workgroup/page/workgroup_members.html:50
 msgid "who are not registred on"
-msgstr ""
+msgstr "que não estão registados no"

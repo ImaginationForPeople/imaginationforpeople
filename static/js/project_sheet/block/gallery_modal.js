@@ -141,6 +141,7 @@ $(document).ready(function () {
 				.text(slider.$currentPage.find('.licence').text())
 				.fadeIn();
 			actionsObj.find('.delete').attr('href', slider.$currentPage.find('.delete').attr('href'));
+            actionsObj.find('.set-cover').attr('href', slider.$currentPage.find('.set-cover').attr('href'));
 			jdebug('updateInformationFn: end');
 		};
 

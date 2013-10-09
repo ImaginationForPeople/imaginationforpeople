@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-09-04 11:40+0200\n"
-"PO-Revision-Date: 2013-09-04 12:12+0000\n"
-"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
+"POT-Creation-Date: 2013-10-09 15:31+0200\n"
+"PO-Revision-Date: 2013-10-09 14:09+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,58 +41,66 @@ msgstr "langue parlée"
 msgid "Description"
 msgstr "Description"
 
-#: models.py:72
+#: models.py:68
+msgid "Text for the register button"
+msgstr "Texte pour le bouton d'inscription"
+
+#: models.py:73
+msgid "Text for the register button when registered"
+msgstr "Texte pour le bouton d'inscription une fois inscrit"
+
+#: models.py:82
 msgid "visible"
 msgstr "visible"
 
-#: models.py:75
+#: models.py:85
 msgid "Group geographic area"
 msgstr "Implantation géographique du groupe"
 
-#: models.py:78
+#: models.py:88
 msgid ""
 "If your group is geographic in nature, specify it's outling here.   The "
 "platform will display a map of projects, and try to fit this outline in the "
 "visible area"
 msgstr "Si votre groupe est territorial par nature, spécifiez son implantation ici. La plateforme affichera une carte des projets liés and tâchera d'adapter l'implantation dans la zone visible"
 
-#: models.py:82
+#: models.py:92
 msgid "Linked Projects"
 msgstr "Projets liés"
 
-#: models.py:86
+#: models.py:96
 msgid "Tags of the group"
 msgstr "Tags du groupe"
 
-#: models.py:92
+#: models.py:102
 msgid "External URL"
 msgstr "URL externe"
 
-#: models.py:95
+#: models.py:105
 msgid ""
 "A URL that points to the real discussion tool, if we're not using the built-"
 "in (eg Facebook group URL)."
 msgstr "URL qui redirige vers l'outil de discussion du groupe si vous n'utilisez par l'outil du site (Ex : Url du groupe sur facebook)"
 
-#: models.py:98
+#: models.py:108
 msgid "iframe for home page source URL"
 msgstr "URL source pour l'iframe de la page d'accueil"
 
-#: models.py:101 models.py:107
+#: models.py:111 models.py:117
 msgid ""
 "A URL that points to the collaborative tool used by the group. If not null, "
 "will replace the built-in wiki"
 msgstr "URL de l'outil collaboratif utilisé par le groupe. Si renseigné, cet outil remplacera le wiki fourni par défaut. "
 
-#: models.py:104
+#: models.py:114
 msgid "iframe for description page source URL"
 msgstr "URL source pour l'iframe de la page description"
 
-#: models.py:111
+#: models.py:121
 msgid "Subscribers"
 msgstr "Abonnés"
 
-#: models.py:116
+#: models.py:126
 msgid "auto subscription to workgroup questions"
 msgstr "activer l'abonnement automatique des membres du groupe à toute nouvelle question"
 
@@ -137,15 +145,15 @@ msgstr "Pas encore de groupes reliés"
 msgid "Open Group Page"
 msgstr "Ouvrir la page du groupe"
 
-#: templates/workgroup/block/subscribe_button.html:25
+#: templates/workgroup/block/subscribe_button.html:29
 msgid "Join the workgroup and follow the discussion"
 msgstr "Rejoindre le groupe et suivre les discussions"
 
-#: templates/workgroup/block/subscribe_button.html:32
+#: templates/workgroup/block/subscribe_button.html:41
 msgid "You are part of this group"
 msgstr "Vous faites partie de ce groupe"
 
-#: templates/workgroup/block/subscribe_button.html:32
+#: templates/workgroup/block/subscribe_button.html:43
 msgid "Quit this group"
 msgstr "Quitter le groupe"
 
@@ -223,11 +231,11 @@ msgid_plural ""
 msgstr[0] "\n%(num_projects)s projet lié\n"
 msgstr[1] "\n%(num_projects)s projets liés\n"
 
-#: templates/workgroup/block/workgroup_sidebar.html:25
+#: templates/workgroup/block/workgroup_sidebar.html:24
 msgid "Manage linked projects"
 msgstr "Gérer les projets liés"
 
-#: templates/workgroup/block/workgroup_sidebar.html:28
+#: templates/workgroup/block/workgroup_sidebar.html:27
 msgid "See all related projects"
 msgstr "Retrouver tous les projets liés"
 
@@ -366,20 +374,17 @@ msgid "%(group_name)s group description | Imagination for People"
 msgstr "Description du groupe %(group_name)s | Imagination for People"
 
 #: templates/workgroup/page/workgroup_description.html:26
-#: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 #, python-format
 msgid "This group uses a mailing list:&nbsp;</em>%(ml_address)s"
 msgstr "  Ce groupe utilise une liste mail:&nbsp;</em>%(ml_address)s"
 
 #: templates/workgroup/page/workgroup_description.html:26
-#: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 msgid "Find history of messages exchanged"
 msgstr "Retrouver l'historique des mails échangés"
 
 #: templates/workgroup/page/workgroup_description.html:26
-#: templates/workgroup/page/workgroup_detail.html:26
 #: templates/workgroup/page/workgroup_discuss_list.html:70
 msgid "To subscribe/unsubscribe to this list, click the button above."
 msgstr "S’inscrire ou se désinscrire ci dessus."

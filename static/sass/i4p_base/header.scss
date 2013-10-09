@@ -256,9 +256,9 @@ $sizeTextSmall: 11px;
         }
     }
 
-    &:hover #connect-block {
+    /*&:hover #connect-block {
         display:block !important;
-    }
+    }*/
 }
 
 #me-link {
@@ -296,15 +296,15 @@ $sizeTextSmall: 11px;
         float:left;
     }
 
-    &:hover #me-block {
+    /*&:hover #me-block {
         display:block;
-    }
+    }*/
 }
 
 #me-block {
     top:50px;
     width:285px;
-    display:none;
+    display:block;
     background:white;
     z-index:10000;
     padding-top:18px;
@@ -431,7 +431,7 @@ $sizeTextSmall: 11px;
     top:45px;
     width:530px;
     height:285px;
-    display:none;
+    display:block;
     background:white;
     z-index:10000;
     border-top:5px solid #777;

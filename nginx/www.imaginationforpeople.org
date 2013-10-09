@@ -14,7 +14,7 @@ server {
 
         location /static {
                 alias
-                /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/static;
+                /home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/collectedstatic;
 		expires 7d;
         }
         
