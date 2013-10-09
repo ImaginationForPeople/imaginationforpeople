@@ -439,7 +439,6 @@ SOCIAL_AUTH_PIPELINE = (
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
-HONEYPOT_VALUE = "http://i4p.ca"
 
 # Userena
 ANONYMOUS_USER_ID = -1
@@ -529,7 +528,8 @@ HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
 
 ### STATIC FILES
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'collectedstatic/')
+STATIC_BASE = os.path.join(PROJECT_ROOT, 'static/')
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -543,12 +543,12 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    ('js', os.path.join(STATIC_ROOT, 'js')),
-    ('css', os.path.join(STATIC_ROOT, 'css')),
-    ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
-    ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
-    ('images', os.path.join(STATIC_ROOT, 'images')),
-    ('compiled_images', os.path.join(STATIC_ROOT, 'compiled_images')),
+    ('js', os.path.join(STATIC_BASE, 'js')),
+    ('css', os.path.join(STATIC_BASE, 'css')),
+    ('css', os.path.join(STATIC_BASE, 'compiled_sass')),
+    ('fonts', os.path.join(STATIC_BASE, 'fonts')),
+    ('images', os.path.join(STATIC_BASE, 'images')),
+    ('compiled_images', os.path.join(STATIC_BASE, 'compiled_images')),
 )
 
 COMPRESS_CSS_FILTERS = (

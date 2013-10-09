@@ -30,7 +30,7 @@ class ProjectSearchForm(FacetedSearchForm):
         
         if not self.is_valid():
             # FIXME Would need a random here
-            return sqs.load_all()
+            return sqs.load_all().order_by('?')
 
         if self.cleaned_data.get('q'):
             sqs = self.searchqueryset.auto_query(self.cleaned_data['q'])

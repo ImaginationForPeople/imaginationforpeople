@@ -98,7 +98,9 @@ def profile_detail(request, username):
     user = get_object_or_404(User, username__iexact=username)
 
     project_member_list = user.projects.all()
-
+    
+    workgroup_member_list = user.workgroups.all()
+    
     project_translation_ct = ContentType.objects.get_for_model(I4pProject)
 
     # FIXME : UGLY AND DOESN'T WORK !
@@ -112,6 +114,7 @@ def profile_detail(request, username):
                                         username,
                                         template_name='userena/profile_detail.html',
                                         extra_context={'project_member_list': project_member_list,
+                                                       'workgroup_member_list': workgroup_member_list,
                                                        'project_contrib_list' : project_contrib_list,
                                                        'project_fan_list' : project_fan_list}
                                         )

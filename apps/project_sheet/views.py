@@ -528,6 +528,25 @@ def project_sheet_del_picture(request, slug, pic_id):
 
     return redirect('project_sheet-instance-gallery', project_translation.slug, permanent=False)
 
+@login_required
+def project_sheet_set_cover_picture(request, slug, pic_id):
+    """
+    Set a picture as the cover for the project sheet
+    """
+    language_code = translation.get_language()
+    # get the project
+    try:
+        project_translation = get_project_translation_by_slug(project_translation_slug=slug,
+                                                              language_code=language_code)
+        project = project_translation.master
+    except I4pProject.DoesNotExist:
+        raise Http404
+
+    picture = ProjectPicture.objects.get(project=project, id=pic_id)
+    project.cover_picture = picture
+    project.save()
+    
+    return redirect('project_sheet-instance-gallery', slug, permanent=False)
 
 class ProjectGalleryAddVideoView(ProjectGalleryView):
     """

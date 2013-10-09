@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-09-04 11:40+0200\n"
-"PO-Revision-Date: 2013-09-04 09:51+0000\n"
+"POT-Creation-Date: 2013-10-09 15:31+0200\n"
+"PO-Revision-Date: 2013-10-09 14:02+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -51,11 +51,7 @@ msgstr "Spécifier votre rôle dans le projet"
 msgid "Describe briefly your work with this project..."
 msgstr "Décrire en quelques mots votre travail auprès de ce projet..."
 
-#: forms.py:116
-msgid "Describe briefly why you are a fan of this project..."
-msgstr "Décrire en quelques mots votre travail auprès de ce projet..."
-
-#: models.py:77 models.py:329
+#: models.py:77 models.py:331
 msgid "description"
 msgstr "description"
 
@@ -91,7 +87,7 @@ msgstr "En cours d'édition"
 msgid "Complete"
 msgstr "Complet"
 
-#: models.py:133 models.py:330
+#: models.py:133 models.py:332
 msgid "author"
 msgstr "auteur"
 
@@ -108,7 +104,7 @@ msgstr "fans"
 msgid "best of"
 msgstr "favoris"
 
-#: models.py:150 models.py:328
+#: models.py:150 models.py:330
 msgid "creation date"
 msgstr "date de création"
 
@@ -120,7 +116,7 @@ msgstr "objectifs"
 msgid "website"
 msgstr "site web"
 
-#: models.py:161 models.py:201
+#: models.py:161 models.py:203
 msgid "status"
 msgstr "statut"
 
@@ -136,75 +132,75 @@ msgstr "emplacements"
 msgid "topics"
 msgstr "sujets"
 
-#: models.py:178
+#: models.py:180
 msgid "The sites on which this project sheet is accessible."
 msgstr "Les sites sur lesquels cette fiche projet est accessible."
 
-#: models.py:179
+#: models.py:181
 msgid "sites"
 msgstr "sites"
 
-#: models.py:190
+#: models.py:192
 msgid "language"
 msgstr "langue"
 
-#: models.py:194
+#: models.py:196
 msgid "title"
 msgstr "titre"
 
-#: models.py:195
+#: models.py:197
 msgid "My Project Title"
 msgstr "Le titre de mon projet"
 
-#: models.py:207
+#: models.py:209
 msgid "one line description"
 msgstr "Description en une ligne"
 
-#: models.py:211 templates/project_sheet/block/subheader-readonly.html:124
+#: models.py:213 templates/project_sheet/block/subheader-readonly.html:127
 msgid "One line description"
 msgstr "Description en une ligne"
 
-#: models.py:214
+#: models.py:216
 msgid "about the project"
 msgstr "à propos du projet"
 
-#: models.py:215
+#: models.py:217
 msgid "who are the partners of this project"
 msgstr "qui sont les partenaires de ce projet "
 
-#: models.py:216
+#: models.py:218
 msgid "Help request"
 msgstr "Appel à l'aide"
 
-#: models.py:218
+#: models.py:220
 msgid "Themes of the project"
 msgstr "Thèmes du projet"
 
-#: models.py:260
+#: models.py:262
 msgid "Weight"
 msgstr "Poids"
 
-#: models.py:262 models.py:272
+#: models.py:264 models.py:274
 msgid "Content"
 msgstr "Contenu"
 
-#: models.py:331
+#: models.py:333
 msgid "source"
 msgstr "source"
 
-#: models.py:332
+#: models.py:334
 msgid "license"
 msgstr "licence"
 
-#: models.py:360
+#: models.py:362
 msgid "role"
 msgstr "rôle"
 
-#: models.py:365 models.py:382
+#: models.py:367 models.py:384
 msgid "comment"
 msgstr "commentaire"
 
-#: models.py:381
+#: models.py:383
 msgid "fan since date"
 msgstr "fan depuis date"
 
@@ -402,7 +398,7 @@ msgstr "Enregistrer l'édition"
 
 #: templates/project_questions/page/question_answer_edit.html:46
 #: templates/project_sheet/block/detail-list.html:58
-#: templates/project_sheet/block/subheader-readonly.html:45
+#: templates/project_sheet/block/subheader-readonly.html:48
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -503,11 +499,11 @@ msgstr "A propos du projet"
 #: templates/project_sheet/block/about.html:52
 #: templates/project_sheet/block/detail-list.html:44
 #: templates/project_sheet/block/partner-block.html:28
-#: templates/project_sheet/block/subheader-readonly.html:68
-#: templates/project_sheet/block/subheader-readonly.html:80
-#: templates/project_sheet/block/subheader-readonly.html:120
-#: templates/project_sheet/block/subheader-readonly.html:125
-#: templates/project_sheet/block/subheader-readonly.html:144
+#: templates/project_sheet/block/subheader-readonly.html:71
+#: templates/project_sheet/block/subheader-readonly.html:83
+#: templates/project_sheet/block/subheader-readonly.html:123
+#: templates/project_sheet/block/subheader-readonly.html:128
+#: templates/project_sheet/block/subheader-readonly.html:147
 #: templates/project_sheet/block/subheader-readwrite.html:66
 msgid "Edit"
 msgstr "Modifier"
@@ -553,7 +549,7 @@ msgid ""
 msgstr "A n'importe quel moment, si vous vous sentez perdu, cliquez sur l'onglet <strong>Feedback</strong> situé à la droite de votre écran. Nous vous répondrons le plus rapidement possible."
 
 #: templates/project_sheet/block/card_fancy_square.html:23
-#: templates/project_sheet/block/project_card.html:62
+#: templates/project_sheet/block/project_card.html:63
 msgid "See the project"
 msgstr "Voir le projet"
 
@@ -593,7 +589,7 @@ msgid "comments"
 msgstr "commentaires"
 
 #: templates/project_sheet/block/detail-list.html:57
-#: templates/project_sheet/block/subheader-readonly.html:46
+#: templates/project_sheet/block/subheader-readonly.html:49
 msgid "Ok"
 msgstr "Ok"
 
@@ -615,23 +611,27 @@ msgid "videos"
 msgstr "vidéos"
 
 #: templates/project_sheet/block/gallery_fancy_wide.html:84
-#: templates/project_sheet/page/gallery.html:98
+#: templates/project_sheet/page/gallery.html:102
 msgid "This project has no videos yet"
 msgstr "Ce projet n'a pas encore de vidéos"
 
-#: templates/project_sheet/block/gallery_modal.html:130
+#: templates/project_sheet/block/gallery_modal.html:134
 msgid "Previous"
 msgstr "Précédent"
 
-#: templates/project_sheet/block/gallery_modal.html:135
+#: templates/project_sheet/block/gallery_modal.html:139
 msgid "Next"
 msgstr "Suivant"
 
-#: templates/project_sheet/block/gallery_modal.html:150
+#: templates/project_sheet/block/gallery_modal.html:148
+msgid "Set as cover picture"
+msgstr "Choisir comme photo d'accueil"
+
+#: templates/project_sheet/block/gallery_modal.html:149
 msgid "Delete this picture"
 msgstr "Supprimer cette image"
 
-#: templates/project_sheet/block/gallery_modal.html:154
+#: templates/project_sheet/block/gallery_modal.html:157
 msgid "View gallery"
 msgstr "Voir la galerie"
 
@@ -704,7 +704,7 @@ msgid "Add new translation"
 msgstr "Ajouter une nouvelle traduction"
 
 #: templates/project_sheet/block/menubar.html:113
-#: templates/project_sheet/block/subheader-readonly.html:276
+#: templates/project_sheet/block/subheader-readonly.html:281
 #: templates/project_sheet/block/subheader-readwrite.html:99
 msgid "Share"
 msgstr "Partager"
@@ -746,62 +746,66 @@ msgstr "Aucune référence"
 msgid "Edit the references"
 msgstr "Editer les références"
 
-#: templates/project_sheet/block/subheader-readonly.html:24
+#: templates/project_sheet/block/subheader-readonly.html:27
 msgid "Edit the project gallery"
 msgstr "Editer la galerie du projet"
 
-#: templates/project_sheet/block/subheader-readonly.html:81
+#: templates/project_sheet/block/subheader-readonly.html:84
 msgid "my project title"
 msgstr "mon titre de projet"
 
-#: templates/project_sheet/block/subheader-readonly.html:131
+#: templates/project_sheet/block/subheader-readonly.html:134
 msgid "See the video"
 msgstr "Voir la vidéo"
 
-#: templates/project_sheet/block/subheader-readonly.html:132
+#: templates/project_sheet/block/subheader-readonly.html:135
 msgid "See the gallery"
 msgstr "Voir la galerie"
 
-#: templates/project_sheet/block/subheader-readonly.html:141
+#: templates/project_sheet/block/subheader-readonly.html:144
 #: templates/project_sheet/block/subheader-readwrite.html:22
 #: templates/project_sheet/block/toolbar.html:37
 msgid "Information"
 msgstr "Information"
 
-#: templates/project_sheet/block/subheader-readonly.html:217
+#: templates/project_sheet/block/subheader-readonly.html:220
 msgid "back to informations"
 msgstr "Revenir aux informations"
 
-#: templates/project_sheet/block/subheader-readonly.html:224
+#: templates/project_sheet/block/subheader-readonly.html:229
 msgid "locate on map"
 msgstr "Localiser sur la carte"
 
-#: templates/project_sheet/block/subheader-readonly.html:236
+#: templates/project_sheet/block/subheader-readonly.html:241
 #, python-format
 msgid "See all the %(nb_loc)s locations "
 msgstr "Voir les %(nb_loc)s localisations"
 
-#: templates/project_sheet/block/subheader-readonly.html:240
-#: templates/project_sheet/block/subheader-readonly.html:254
-#: templates/project_sheet/block/subheader-readwrite.html:69
-msgid "unknown"
-msgstr "inconnue"
+#: templates/project_sheet/block/subheader-readonly.html:245
+msgid ""
+"No known location, please add one if you know where this project is located"
+msgstr "Pas de localisation connue, merci d'en ajouter une si vous connaissez l'emplacement de ce projet "
 
-#: templates/project_sheet/block/subheader-readonly.html:246
+#: templates/project_sheet/block/subheader-readonly.html:251
 #: templates/project_sheet/block/subheader-readwrite.html:82
 msgid "Web"
 msgstr "Site internet"
 
-#: templates/project_sheet/block/subheader-readonly.html:272
+#: templates/project_sheet/block/subheader-readonly.html:259
+#: templates/project_sheet/block/subheader-readwrite.html:69
+msgid "unknown"
+msgstr "inconnue"
+
+#: templates/project_sheet/block/subheader-readonly.html:277
 #: templates/project_sheet/block/subheader-readwrite.html:95
 msgid "Follow"
 msgstr "Suivre"
 
-#: templates/project_sheet/block/subheader-readonly.html:282
+#: templates/project_sheet/block/subheader-readonly.html:287
 msgid "Movecommons"
 msgstr "Movecommons"
 
-#: templates/project_sheet/block/subheader-readonly.html:287
+#: templates/project_sheet/block/subheader-readonly.html:292
 msgid "Maturity"
 msgstr "Maturité"
 
@@ -887,7 +891,7 @@ msgstr "Ajouter une vidéo"
 msgid "cover picture"
 msgstr "Image du bandeau"
 
-#: templates/project_sheet/page/gallery.html:94
+#: templates/project_sheet/page/gallery.html:98
 msgid "cover video"
 msgstr "Vidéo du bandeau"
 

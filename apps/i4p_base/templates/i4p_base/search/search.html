@@ -187,6 +187,9 @@ page : pagination object
 {% endwith %}
 
             {% include "project_sheet/block/project_card_list.html" with project_list=project_list %}
+       {% with page as page_obj %}
+{% paginate using "i4p_base/search/search_pagination.html"%}
+{% endwith %}
         </div>
     </div>
 </div>

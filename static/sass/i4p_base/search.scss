@@ -7,7 +7,7 @@
 	height:169px;
 	width:100%;
 	padding:1px 0 0 0;
-	font-family:$fontOpenSans;
+	font-family:$fontOpenSansCondensed;
 
 	form {
 		width:548px;
@@ -49,7 +49,7 @@
 		    font-weight: bold;
 		    height:32px;
 		    border:0;
-		    font-family:$fontOpenSans;
+		    font-family:$fontOpenSansCondensed;
 		    margin-left:10px;
 			@include border-radius(3px,3px);
 			@include i4p-background-vertical-gradient(#04abcf,#037b95);
@@ -460,6 +460,7 @@ section#more-filters {
 	color:#706f6f;
 	padding:12px;
 	padding-bottom:25px !important;
+	margin-bottom:20px;
 
 	h1 {
 		border-bottom: 1px dashed #706F6F;
@@ -516,4 +517,35 @@ section#more-filters {
 #main {
 	float:left;
 	margin:0 0 0 50px;
+}
+
+.search_pagination {
+	float:left;
+	width:100%;
+	color:white;
+	text-align:center;
+	font-weight:bold;
+	text-transform:uppercase;
+	font-family:$fontOpenSansCondensed;
+	padding:0 0 20px;
+	font-size:1.6rem;
+
+	span {
+		color:#fff;
+		background:#0088CC;
+		padding:0 8px;
+		@include border-radius(16px);
+	}
+
+	a {
+		color:#777;
+
+		&.next {
+			margin-left:15px;
+		}
+
+		&.prev {
+			margin-right:15px;
+		}
+	}
 }
