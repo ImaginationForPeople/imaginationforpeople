@@ -439,7 +439,6 @@ SOCIAL_AUTH_PIPELINE = (
 
 # Honeypot
 HONEYPOT_FIELD_NAME = "homepage"
-HONEYPOT_VALUE = "http://i4p.ca"
 
 # Userena
 ANONYMOUS_USER_ID = -1
