@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 11:39+0200\n"
+"POT-Creation-Date: 2013-10-09 15:30+0200\n"
 "PO-Revision-Date: 2012-05-14 08:02+0000\n"
 "Last-Translator: Guillaume <glibersat@sigill.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,7 +98,7 @@ msgstr "New user registered"
 msgid "New message from %(sender)s on Imagination For People"
 msgstr "New message from %(sender)s on Imagination For People"
 
-#: views.py:188
+#: views.py:191
 msgid "Your profile has been updated."
 msgstr "Your profile has been updated."
 
@@ -426,6 +426,24 @@ msgstr ""
 msgid "This user isn't fan of any project yet."
 msgstr "This user does not have any project yet."
 
+#: templates/userena/profile_detail.html:103
+#, python-format
+msgid ""
+"\n"
+"                        a member of the following group\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        a member of the following %(num_groups)s groups\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/userena/profile_detail.html:127
+#, fuzzy
+msgid "This user isn't a member of any group yet."
+msgstr "This user does not have any project yet."
+
 #: templates/userena/profile_idbar.html:15
 #: templates/userena/profile_idbar.html:17
 msgid "Your avatar"
@@ -457,7 +475,7 @@ msgid "Signin"
 msgstr "Signin"
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:82
+#: templates/userena/signup_form.html:81
 msgid "Sign in"
 msgstr "Sign in"
 
@@ -470,7 +488,7 @@ msgid "Not a member yet?"
 msgstr "Not a member yet?"
 
 #: templates/userena/signin_form.html:69 templates/userena/signup_form.html:20
-#: templates/userena/signup_form.html:44
+#: templates/userena/signup_form.html:43
 msgid "Sign up"
 msgstr "Sign up"
 
@@ -505,11 +523,11 @@ msgstr ""
 msgid "Signup"
 msgstr "Signup"
 
-#: templates/userena/signup_form.html:50
+#: templates/userena/signup_form.html:49
 msgid "You can also use"
 msgstr "You can also use"
 
-#: templates/userena/signup_form.html:61
+#: templates/userena/signup_form.html:60
 msgid "Already a member?"
 msgstr "Already a member?"
 

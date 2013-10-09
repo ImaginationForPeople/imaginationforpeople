@@ -1,21 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-09-04 11:39+0200\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-09 15:31+0200\n"
 "PO-Revision-Date: 2013-08-28 10:58+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
-"Language-Team: Afrikaans (http://www.transifex.com/projects/p/imaginationforpeople/language/af/)\n"
+"Language-Team: Afrikaans (http://www.transifex.com/projects/p/"
+"imaginationforpeople/language/af/)\n"
+"Language: af\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: af\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: fields.py:43
@@ -99,7 +100,7 @@ msgstr ""
 msgid "New message from %(sender)s on Imagination For People"
 msgstr ""
 
-#: views.py:188
+#: views.py:191
 msgid "Your profile has been updated."
 msgstr ""
 
@@ -397,7 +398,8 @@ msgid ""
 "                    "
 msgid_plural ""
 "\n"
-"                        He/She is a fan of the following %(num_fans)s projects\n"
+"                        He/She is a fan of the following %(num_fans)s "
+"projects\n"
 "                    "
 msgstr[0] ""
 msgstr[1] ""
@@ -412,6 +414,23 @@ msgstr ""
 
 #: templates/userena/profile_detail.html:90
 msgid "This user isn't fan of any project yet."
+msgstr ""
+
+#: templates/userena/profile_detail.html:103
+#, python-format
+msgid ""
+"\n"
+"                        a member of the following group\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        a member of the following %(num_groups)s groups\n"
+"                    "
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/userena/profile_detail.html:127
+msgid "This user isn't a member of any group yet."
 msgstr ""
 
 #: templates/userena/profile_idbar.html:15
@@ -445,7 +464,7 @@ msgid "Signin"
 msgstr ""
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:82
+#: templates/userena/signup_form.html:81
 msgid "Sign in"
 msgstr ""
 
@@ -458,7 +477,7 @@ msgid "Not a member yet?"
 msgstr ""
 
 #: templates/userena/signin_form.html:69 templates/userena/signup_form.html:20
-#: templates/userena/signup_form.html:44
+#: templates/userena/signup_form.html:43
 msgid "Sign up"
 msgstr ""
 
@@ -489,11 +508,11 @@ msgstr ""
 msgid "Signup"
 msgstr ""
 
-#: templates/userena/signup_form.html:50
+#: templates/userena/signup_form.html:49
 msgid "You can also use"
 msgstr ""
 
-#: templates/userena/signup_form.html:61
+#: templates/userena/signup_form.html:60
 msgid "Already a member?"
 msgstr ""
 

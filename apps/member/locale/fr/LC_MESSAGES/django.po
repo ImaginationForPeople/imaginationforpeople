@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-09-04 11:39+0200\n"
-"PO-Revision-Date: 2013-09-04 09:27+0000\n"
+"POT-Creation-Date: 2013-10-09 15:30+0200\n"
+"PO-Revision-Date: 2013-10-09 14:07+0000\n"
 "Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -106,7 +106,7 @@ msgstr "Nouvel utilisateur enregistré"
 msgid "New message from %(sender)s on Imagination For People"
 msgstr "Nouveau message de %(sender)s sur Imagination For People"
 
-#: views.py:188
+#: views.py:191
 msgid "Your profile has been updated."
 msgstr "Votre profil a été mis à jour."
 
@@ -421,6 +421,23 @@ msgstr "\n              Je ne suis <a href=\"%(unfan_url)s\"> plus un fan </a>.\
 msgid "This user isn't fan of any project yet."
 msgstr "Cet utilisateur n'a pas encore de projet."
 
+#: templates/userena/profile_detail.html:103
+#, python-format
+msgid ""
+"\n"
+"                        a member of the following group\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        a member of the following %(num_groups)s groups\n"
+"                    "
+msgstr[0] "\n                        un membre de ce groupe\n                    "
+msgstr[1] "\n                        un membre de ces %(num_groups)s groupes\n                    "
+
+#: templates/userena/profile_detail.html:127
+msgid "This user isn't a member of any group yet."
+msgstr "Cet utilisateur n'a pas encore de projet."
+
 #: templates/userena/profile_idbar.html:15
 #: templates/userena/profile_idbar.html:17
 msgid "Your avatar"
@@ -452,7 +469,7 @@ msgid "Signin"
 msgstr "Signin"
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:82
+#: templates/userena/signup_form.html:81
 msgid "Sign in"
 msgstr "Connexion"
 
@@ -465,7 +482,7 @@ msgid "Not a member yet?"
 msgstr "Pas encore membre ?"
 
 #: templates/userena/signin_form.html:69 templates/userena/signup_form.html:20
-#: templates/userena/signup_form.html:44
+#: templates/userena/signup_form.html:43
 msgid "Sign up"
 msgstr "Inscription"
 
@@ -496,11 +513,11 @@ msgstr "Nous allons stocker vos informations d'inscription pour %(userena_activa
 msgid "Signup"
 msgstr "Inscription"
 
-#: templates/userena/signup_form.html:50
+#: templates/userena/signup_form.html:49
 msgid "You can also use"
 msgstr "Vous pouvez aussi utiliser"
 
-#: templates/userena/signup_form.html:61
+#: templates/userena/signup_form.html:60
 msgid "Already a member?"
 msgstr "Déjà membre ?"
 
