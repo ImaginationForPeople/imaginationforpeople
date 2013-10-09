@@ -169,17 +169,18 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = ()
 
-if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
-    MIDDLEWARE_CLASSES += (
-        'apps.i4p_base.middleware.profile.ProfileMiddleware',
-    )
-
 MIDDLEWARE_CLASSES += (
     'django.contrib.sessions.middleware.SessionMiddleware',
 
 
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    )
+if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
+    MIDDLEWARE_CLASSES += (
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
+    )
+MIDDLEWARE_CLASSES += (
     'django.contrib.messages.middleware.MessageMiddleware',
     'dynamicsites.middleware.DynamicSitesMiddleware',
      ## The order of these locale middleware classes matters
