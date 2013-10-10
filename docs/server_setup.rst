@@ -128,6 +128,8 @@ Two background jobs are required:
 Installing SolR search engine
 *****************************
 
+FIXME: This guide has to be used with solr 3.6.*. Current version of solr (4.5) isn't compatible with this guide.
+
 SolR is the search engine used in production environement (while Whoos backend is the default option in dev environment).
 Be sure that java is installed on your server before starting. Official Download Location: http://www.apache.org/dyn/closer.cgi/lucene/solr/
 Then choose a mirror and copy the link for a 3.* version. Create a solr dir in your virtual-env::
