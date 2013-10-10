@@ -44,7 +44,7 @@ class SearchResource(Resource):
     
     def get_project(self, request, **kwargs):
         self.language_code = request.GET.get('lang', 'en')
-        if self.language_code not in dict(settings.LANGUAGES) :
+        if self.language_code not in dict(settings.LANGUAGES):
                 self.language_code = "en"
         
         translation.activate(self.language_code)
@@ -53,8 +53,11 @@ class SearchResource(Resource):
         if limit > 50:
             limit = 50 
         
+        bundles = []
         found_projects = SearchQuerySet().models(I4pProject).filter_and(text__icontains=request.GET['q'], language_codes__icontains=self.language_code, sites=settings.SITE_ID)[:limit]
-        bundles = [self.build_bundle(obj=project, data={"language_code": self.language_code, "slug": project.object.slug, "title": project.object.title}, request=request) for project in found_projects]
+        for project in found_projects:
+            if project.object:
+                bundles.append(self.build_bundle(obj=project, data={"language_code": self.language_code, "slug": project.object.slug, "title": project.object.title}, request=request))
         to_be_serialized = [self.full_dehydrate(bundle, for_list=True) for bundle in bundles]
         to_be_serialized = self.alter_list_data_to_serialize(request, to_be_serialized)
         return self.create_response(request, to_be_serialized)
