@@ -1,6 +1,18 @@
 {% import "macros.html" as macros %}
 {% load extra_filters_jinja %}
-{% cache 0 "scope_sort_tabs" search_tags request.user author_name scope sort query context.page language_code %}
+
+{# 
+I fixed the cache id parameter list to no longer return wrong results when
+switching tabs between needs and discussion.
+However, caching this provides negligible single request performance gain at the
+cost of error prone (as we've seen) key calculation causing large cache 
+polution.
+So I've disabled it.  Unless profiling ever shows this as the bottleneck, 
+it shouldstay disabled.
+
+{% cache 300 "scope_sort_tabs" search_tags request.user author_name scope sort query context.page tab_name language_code %}
+#}
+
 <a class="rss"
     {% if feed_url %}
     href="{{feed_url}}"
@@ -21,6 +33,7 @@
             <a id="by_relevance"
                 {% if sort == "relevance-desc" %}
                     href="{{ search_state.change_sort('relevance-desc').full_url() }}"
+                    rel="nofollow"
                     class="on"
                     title="{{asc_relevance_tooltip}}"><span>{{relevance_label}} &#9660;</span>
                 {% else %}
@@ -78,4 +91,6 @@
     </div>
 </div>
 
+{#
 {% endcache %}
+#}

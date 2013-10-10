@@ -1,14 +1,17 @@
 {% load i18n extra_tags humanize %}
 
-{% block declaration %}
 <li id="question-{{question.id}}" class="short-summary">
-{% endblock %}
     <div class="wrap_question_description">
+    	{% if specific_question.type.picto %}
+    	<img class="tiotico" src="{{MEDIA_URL}}{{specific_question.type.picto}}" />
+    	{% endif %}
+    	   {% block question_url %}
         <h2>
-        	{% block thread_anchor %}
-            <a href="{{thread.get_absolute_url}}" title="{{thread.title}}">{{thread.title}}</a>
-            {% endblock %}
+            <a href="{{questions_url}}{{question.id}}/" title="{{specific_question.thread.title}}">{{specific_question.thread.title}}</a>
         </h2>
+        {% endblock %}
+        {% block extra_description %}
+        {% endblock %}
         <p>{{question.summary|escape}}</p>
 
         <ul class="tag_list">
@@ -28,11 +31,11 @@
             {% blocktrans with added_when=question.added_at|naturaltime author_link=question.author.username|escape %}Added {{ added_when }} by {{author_link}}{% endblocktrans %}
         </p>
         <p>
-            {% blocktrans with last_activity_at=thread.last_activity_at|naturaltime last_activity_author_link=thread.last_activity_by.username|escape %}Last modified {{ last_activity_at }} by {{last_activity_author_link}}{% endblocktrans %}
+            {% blocktrans with last_activity_at=specific_question.thread.last_activity_at|naturaltime last_activity_author_link=specific_question.thread.last_activity_by.username|escape %}Last modified {{ last_activity_at }} by {{last_activity_author_link}}{% endblocktrans %}
         </p>
         <div class="infos_pictos">
-            <p class="tipsed nbr_answers" title="{% trans 'Answers' %}">{{thread.answer_count}}</p>
-            <p class="tipsed nbr_views" title="{% trans 'Viewed' %}">{{thread.view_count}}</p>
+            <p class="tipsed nbr_answers" title="{% trans 'Answers' %}">{{specific_question.thread.answer_count}}</p>
+            <p class="tipsed nbr_views" title="{% trans 'Viewed' %}">{{specific_question.thread.view_count}}</p>
             <p class="tipsed nbr_votes" title="{% trans 'Votes' %}">{{question.score}}</p>
         </div>
     </div>

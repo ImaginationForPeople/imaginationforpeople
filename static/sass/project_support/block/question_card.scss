@@ -2,6 +2,30 @@
 @import "i4p/_fonts";
 @import "i4p/_constants";
 
+.question-body li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+	list-style: disc;
+	color: white;
+	font-size: 12px;
+}
+
+.question-body a {
+	color: darkgrey;
+}
+
+.question-body p {
+	padding-bottom: 6px;
+}
+
+.question-body ul {
+	list-style-position: outside;
+	margin-top: 0.2857em;
+	margin-bottom: 0.714285em;
+	margin-left: 2em;
+	padding-left: 0;
+}
+
 .question-card-top {
 	background:$colorDarkerBlue;
 
@@ -209,6 +233,18 @@
 		}
 	}
 
+	.wrapper_country_badges {
+		color:white;
+
+		img {
+			display: inline;
+		    float: left;
+		    margin: 0 4px 0 0;
+		    position: relative;
+		    top: 3px;
+		}
+	}
+
 	a.button {
 		background: none repeat scroll 0 0 #FFFFFF;
 	    border: 3px solid #518590;
@@ -262,6 +298,7 @@
 	    position: absolute;
 	    top: 135px;
 	    width: 270px;
+	    line-height:4rem;
 	}
 }
 

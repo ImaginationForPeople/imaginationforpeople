@@ -4,18 +4,20 @@
 # 
 # Translators:
 # Translators:
-# Benoit Grégoire <benoitg@coeus.ca>, 2013.
-# Guillaume  <glibersat@sigill.org>, 2012.
-#   <simonsarazin@imaginationforpeople.org>, 2012.
-# Simon Sarazin <simon.sarazin@gmail.com>, 2012-2013.
-# Slyan  <maire.sylvain@gmail.com>, 2012.
+# benoitg <benoitg@coeus.ca>, 2013
+# FrancoisBurra <francoisburra@imaginationforpeople.org>, 2013
+# freddy.limpens <freddy.limpens@gmail.com>, 2013
+# Guillaume <glibersat@sigill.org>, 2012
+#   <simonsarazin@imaginationforpeople.org>, 2012
+# Simon Sarazin <simon.sarazin@gmail.com>, 2012-2013
+# Slyan <maire.sylvain@gmail.com>, 2012
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
 "Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-03-08 17:12-0500\n"
-"PO-Revision-Date: 2013-03-08 16:43+0000\n"
-"Last-Translator: Simon Sarazin <simon.sarazin@gmail.com>\n"
+"POT-Creation-Date: 2013-10-09 15:30+0200\n"
+"PO-Revision-Date: 2013-10-09 14:07+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/imaginationforpeople/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -104,21 +106,27 @@ msgstr "Nouvel utilisateur enregistré"
 msgid "New message from %(sender)s on Imagination For People"
 msgstr "Nouveau message de %(sender)s sur Imagination For People"
 
-#: views.py:184
+#: views.py:191
 msgid "Your profile has been updated."
 msgstr "Votre profil a été mis à jour."
 
+#: templates/member/block/memberfanlist_square.html:45
+msgid "See all the community project"
+msgstr "Voir toute la communauté du projet"
+
+#: templates/member/block/memberfanlist_square.html:72
 #: templates/member/block/memberlist_square.html:60
 msgid "Contact"
 msgstr "Contact"
 
+#: templates/member/block/memberfanlist_square.html:75
 #: templates/member/block/memberlist_square.html:63
 msgid "Profile"
 msgstr "Profil"
 
 #: templates/member/block/memberlist_square.html:69
-msgid "No user associated with this project."
-msgstr "Aucun utilisateur n'est associé à ce projet."
+msgid "No members yet."
+msgstr "Pas encore membre ?"
 
 #: templates/umessages/base_message.html:21
 msgid "My Messages"
@@ -174,6 +182,30 @@ msgid ""
 "You can view it online at:\n"
 "%(message_url)s\n"
 msgstr "\nVous pouvez le voir en ligne à l'adresse :\n%(message_url)s\n"
+
+#: templates/userena/disabled.html:4
+msgid "Disabled account or not yet activated account"
+msgstr "Compte désactivé ou pas encore activé"
+
+#: templates/userena/disabled.html:5
+msgid "Your account has been disabled or is not yet activated"
+msgstr "Votre compte a été désactivé ou n'a pas été encore activé"
+
+#: templates/userena/disabled.html:11
+msgid "It seems your account (created "
+msgstr "Il semble que votre compte (créé il y a "
+
+#: templates/userena/disabled.html:11
+msgid ""
+" ago) has been disabled or you haven't yet activated your account with the "
+"email you received on this address: "
+msgstr ")  a été désactivé ou n'a pas encore été activé avec l'email reçu à cette adresse: "
+
+#: templates/userena/disabled.html:12
+msgid ""
+"If you're having trouble to sign up or feel that injustice has been done to "
+"you, feel free to contact support team to find out why"
+msgstr "Si vous rencontrez des problèmes pour voir identifier ou si vous estimez subir une injustice, merci de contacter l'équipe support pour en savoir plus"
 
 #: templates/userena/email_change_complete.html:4
 msgid "Email verification"
@@ -351,6 +383,61 @@ msgstr "Ses contributions"
 msgid "No contributions yet."
 msgstr "Pas encore de contributions."
 
+#: templates/userena/profile_detail.html:59
+#, python-format
+msgid ""
+"\n"
+"                        I am a fan of the following project\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        I am a fan of the following %(num_fans)s projects\n"
+"                    "
+msgstr[0] "\n                       Je suis fan du projet suivant\n                    "
+msgstr[1] "\n                        Je suis fan des %(num_fans)s projets suivants\n                    "
+
+#: templates/userena/profile_detail.html:65
+#, python-format
+msgid ""
+"\n"
+"                        He/She is a fan of the following project\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        He/She is a fan of the following %(num_fans)s projects\n"
+"                    "
+msgstr[0] "\n                        Il/Elle est fan du projet suivant\n                    "
+msgstr[1] "\n                        Il/Elle est fan des %(num_fans)s projets suivant\n                    "
+
+#: templates/userena/profile_detail.html:83
+#, python-format
+msgid ""
+"\n"
+"                    I am <a href=\"%(unfan_url)s\"> no longer a fan</a>.\n"
+"                "
+msgstr "\n              Je ne suis <a href=\"%(unfan_url)s\"> plus un fan </a>.\n            "
+
+#: templates/userena/profile_detail.html:90
+msgid "This user isn't fan of any project yet."
+msgstr "Cet utilisateur n'a pas encore de projet."
+
+#: templates/userena/profile_detail.html:103
+#, python-format
+msgid ""
+"\n"
+"                        a member of the following group\n"
+"                    "
+msgid_plural ""
+"\n"
+"                        a member of the following %(num_groups)s groups\n"
+"                    "
+msgstr[0] "\n                        un membre de ce groupe\n                    "
+msgstr[1] "\n                        un membre de ces %(num_groups)s groupes\n                    "
+
+#: templates/userena/profile_detail.html:127
+msgid "This user isn't a member of any group yet."
+msgstr "Cet utilisateur n'a pas encore de projet."
+
 #: templates/userena/profile_idbar.html:15
 #: templates/userena/profile_idbar.html:17
 msgid "Your avatar"
@@ -365,11 +452,11 @@ msgstr "Anonyme"
 msgid "Imagination For People Community"
 msgstr "Communauté ImaginationforPeople"
 
-#: templates/userena/profile_list.html:27
+#: templates/userena/profile_list.html:29
 msgid "Community"
 msgstr "Communauté"
 
-#: templates/userena/profile_list.html:36
+#: templates/userena/profile_list.html:38
 #, python-format
 msgid ""
 "\n"
@@ -382,7 +469,7 @@ msgid "Signin"
 msgstr "Signin"
 
 #: templates/userena/signin_form.html:18 templates/userena/signin_form.html:41
-#: templates/userena/signup_form.html:82
+#: templates/userena/signup_form.html:81
 msgid "Sign in"
 msgstr "Connexion"
 
@@ -395,7 +482,7 @@ msgid "Not a member yet?"
 msgstr "Pas encore membre ?"
 
 #: templates/userena/signin_form.html:69 templates/userena/signup_form.html:20
-#: templates/userena/signup_form.html:44
+#: templates/userena/signup_form.html:43
 msgid "Sign up"
 msgstr "Inscription"
 
@@ -426,11 +513,11 @@ msgstr "Nous allons stocker vos informations d'inscription pour %(userena_activa
 msgid "Signup"
 msgstr "Inscription"
 
-#: templates/userena/signup_form.html:50
+#: templates/userena/signup_form.html:49
 msgid "You can also use"
 msgstr "Vous pouvez aussi utiliser"
 
-#: templates/userena/signup_form.html:61
+#: templates/userena/signup_form.html:60
 msgid "Already a member?"
 msgstr "Déjà membre ?"
 

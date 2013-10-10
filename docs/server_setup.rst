@@ -118,7 +118,46 @@ Two background jobs are required:
 
 * the email sender daemon that is a cron job. The script to schedule is *cron/askbot-cron* :
 * and the celery daemon that can be launched with ``./manage.py celeryd --purge``
-    
-        
-	
 
+! KNOWN BUG !   
+
+* "UNrecoverable OSError" : in this case, try::
+
+	i4p:~$ sudo chmod 777 /dev/shm
+    
+Installing SolR search engine
+*****************************
+
+FIXME: This guide has to be used with solr 3.6.*. Current version of solr (4.5) isn't compatible with this guide.
+
+SolR is the search engine used in production environement (while Whoos backend is the default option in dev environment).
+Be sure that java is installed on your server before starting. Official Download Location: http://www.apache.org/dyn/closer.cgi/lucene/solr/
+Then choose a mirror and copy the link for a 3.* version. Create a solr dir in your virtual-env::
+
+	web@i4p-prod:~/virtualenvs$ mkdir solr   
+	web@i4p-prod:~/virtualenvs$ cd solr    
+	web@i4p-prod:~/virtualenvs/solr$ wget http://apache.mirrors.hoobly.com/lucene/solr/3.6.2/apache-solr-3.6.2.tgz   
+	web@i4p-prod:~/virtualenvs/solr$ tar xvzf apache-solr-3.6.2.tgz    
+	web@i4p-prod:~/virtualenvs/solr$ cd apache-solr-3.6.2    
+	web@i4p-prod:~/virtualenvs/solr/apache-solr-3.6.2$ cd example    
+	web@i4p-prod:~/virtualenvs/solr/apache-solr-3.6.2/example$ java -jar start.jar    
+
+You’ll need to revise your schema. You can generate this from your application (once Haystack is installed and setup)
+by running 
+	./manage.py build_solr_schema > schema.xml 
+Take the output from that command and place it in apache-solr-3.5.0/example/solr/conf/schema.xml. Then restart Solr. 
+
+KNOWN BUG: With the current setting (Haystack 2.* + SolR 3.6), SolR will normally complain it does not find stopword file
+(stopwords_en.txt e.g) in solr conf dir. This path is written in schema.xml. You should then either copy the 
+named file from conf/lang in /conf or change the path in schema.xml
+
+Upgrading the schema after installing solr with the procedure above would go something like
+
+   cd ~/virtualenvs
+   source ../bin/activate
+   ./manage.py build_solr_schema > ../solr/apache-solr-3.6.2/example/solr/conf/schema.xml
+   screen -r running_solr
+   C-c
+   java -jar start.jar
+   C-a d
+   ./manage.py rebuild_index

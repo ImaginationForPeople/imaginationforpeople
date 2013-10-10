@@ -1,21 +1,23 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: Imagination For People\n"
-"Report-Msgid-Bugs-To: http://github.com/ImaginationForPeople/imaginationforpeople/issues\n"
-"POT-Creation-Date: 2013-03-08 17:13-0500\n"
-"PO-Revision-Date: 2013-02-15 22:38+0000\n"
-"Last-Translator: benoitg <benoitg@coeus.ca>\n"
-"Language-Team: Russian (http://www.transifex.com/projects/p/imaginationforpeople/language/ru/)\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-10-09 15:31+0200\n"
+"PO-Revision-Date: 2013-06-19 14:23+0000\n"
+"Last-Translator: freddy.limpens <freddy.limpens@gmail.com>\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/"
+"imaginationforpeople/language/ru/)\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: views.py:53
 #, python-format
@@ -39,13 +41,15 @@ msgstr ""
 msgid "Mature projects"
 msgstr ""
 
-#: templates/tags/tag_view.html:73 templates/tags/tag_view.html.py:83
-#: templates/tags/tag_view.html:93 templates/tags/tag_view.html.py:131
-msgid "See more"
+#: templates/tags/tag_view.html:73
+#, python-format
+msgid ""
+"See all %(num_mature_projects_projects_with_tag)s mature projects tagged "
+"%(tag)s"
 msgstr ""
 
 #: templates/tags/tag_view.html:77 templates/tags/tag_view.html.py:87
-#: templates/tags/tag_view.html:97
+#: templates/tags/tag_view.html:101
 msgid "No projects"
 msgstr ""
 
@@ -53,23 +57,39 @@ msgstr ""
 msgid "Starting projects"
 msgstr ""
 
-#: templates/tags/tag_view.html:92
+#: templates/tags/tag_view.html:83
+#, python-format
+msgid ""
+"See all %(num_starting_projects_projects_with_tag)s starting projects tagged "
+"%(tag)s"
+msgstr ""
+
+#: templates/tags/tag_view.html:96
 msgid "Latest modifications"
 msgstr ""
 
-#: templates/tags/tag_view.html:114
+#: templates/tags/tag_view.html:97
+msgid "See more"
+msgstr ""
+
+#: templates/tags/tag_view.html:118
 msgid "People"
 msgstr ""
 
-#: templates/tags/tag_view.html:123
+#: templates/tags/tag_view.html:127
 msgid "Be the first to appear here by joining a project!"
 msgstr ""
 
-#: templates/tags/tag_view.html:129
+#: templates/tags/tag_view.html:133
 msgid "New project sheets"
 msgstr ""
 
-#: templates/tags/tag_view.html:140
+#: templates/tags/tag_view.html:136
+#, python-format
+msgid "See all %(num_projects_with_tag)s projects tagged %(tag)s"
+msgstr ""
+
+#: templates/tags/tag_view.html:144
 msgid "Add a project in this category"
 msgstr ""
 

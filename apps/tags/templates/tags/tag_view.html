@@ -19,20 +19,20 @@
 
 {% block content %}
 
-    {% if picture_project_translations|length > 0 %}
+    {% if picture_projects|length > 0 %}
         <div id="subheader-zone" class="clearfix">
             <div id="picture-zone">
                 <div class="container">
                     <div class="row">
                         <div class="prefix_1 span8 tag-header">
-                            <img src="{{ picture_project_translations.0.master.pictures.all.0.tag_header.url }}"/>
+                            <img src="{{ picture_projects.0.pictures.all.0.tag_header.url }}"/>
                             <p class="credit">
                                 {% blocktrans %}Picture from project:{% endblocktrans %}
-                                <a href="{{ picture_project_translations.0.master.get_absolute_url }}" class="project">{{ picture_project_translations.0.title }}</a>
+                                <a href="{{ picture_projects.0.get_absolute_url }}" class="project">{{ picture_projects.0.title }}</a>
                             </p>
                         </div>
                         <div class='span4'>
-                            {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=picture_project_translations|slice:'1:4' %}
+                            {% include "project_sheet/block/cardlist_fancy_wide.html" with project_list=picture_projects|slice:'1:4' %}
                         </div>
                     </div>
                 </div>
@@ -70,8 +70,8 @@
                 <div class="row">
                     <div class="project-list fancy square">
                         <h2>{% trans "Mature projects" %}</h2>
-                        <a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=END&status=WIP" class="seemore">{% trans "See more" %}</a>
-                        {% for project_translation in mature_project_translations %}
+                        <a href="{% url i4p-search %}?tags={{ tag.name }}&status=END&status=WIP" class="seemore">{% blocktrans with tag=tag|capfirst %}See all {{ num_mature_projects_projects_with_tag }} mature projects tagged {{ tag }}{% endblocktrans %}</a>
+                        {% for project in mature_projects %}
                             {% include "project_sheet/block/card_fancy_square.html" %}
                         {% empty %}
                             {% trans "No projects" %}
@@ -80,8 +80,8 @@
                     <hr class="shaded-separator" />
                     <div class="project-list fancy square">
                         <h2>{% trans "Starting projects" %}</h2>
-                        <a href="{% url project_sheet-list %}?themes={{ tag.id }}&status=IDEA&status=BEGIN" class="seemore">{% trans "See more" %}</a>
-                        {% for project_translation in starting_project_translations %}
+                        <a href="{% url i4p-search %}?tags={{ tag.name }}&status=IDEA&status=BEGIN" class="seemore">{% blocktrans with tag=tag|capfirst %}See all {{ num_starting_projects_projects_with_tag }} starting projects tagged {{ tag }}{% endblocktrans %}</a>
+                        {% for project in starting_projects %}
                             {% include "project_sheet/block/card_fancy_square.html" %}
                         {% empty %}
                             {% trans "No projects" %}
@@ -89,9 +89,12 @@
                     </div>
                     <hr class="shaded-separator" />
                     <div class="project-list fancy square clearfix">
+                        {% comment %}
+                            FIXME:  The search engine does not yet implement modification date ordering
+                        {% endcomment %}
                         <h2>{% trans "Latest modifications" %}</h2>
-                        <a href="{% url project_sheet-list %}?order=modification&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
-                        {% for project_translation in modified_project_translations %}
+                        <a href="{% url i4p-search %}?order=modification&tags={{ tag.name }}" class="seemore">{% trans "See more" %}</a>
+                        {% for project in modified_projects %}
                             {% include "project_sheet/block/card_fancy_square.html" %}
                         {% empty %}
                             {% trans "No projects" %}
@@ -127,12 +130,12 @@
                 <div class="row project-list wide-flat">
                     <h2>{% trans "New project sheets" %} </h2>
                     <!-- FIXME: must show people count in "more" -->
-                    <a href="{% url project_sheet-list %}?order=creation&themes={{ tag.id }}" class="seemore">{% trans "See more" %}</a>
-                    <ul>
-                    {% for p in new_project_translations %}
-                        {% include "project_sheet/block/card_flat_wide.html" with project_translation=p %}
+                    <a href="{% url i4p-search %}?order=created&tags={{ tag.name }}" class="seemore">
+                    {% blocktrans with tag=tag|capfirst %}See all {{ num_projects_with_tag }} projects tagged {{ tag }}{% endblocktrans %}</a>
+                    
+                    {% for p in new_projects %}
+                        {% include "project_sheet/block/card_flat_wide.html" with project=p %}
                     {% endfor %}
-                    </ul>
                 </div>
                 <div class="row">
                     <a class="tag-add-button" href="{% url project_sheet-start %}">

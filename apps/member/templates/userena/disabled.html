@@ -1,0 +1,16 @@
+{% extends 'userena/base_userena.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Disabled account or not yet activated account" %}{% endblock %}
+{% block content_title %}<h2>{% trans "Your account has been disabled or is not yet activated" %}</h2>{% endblock %}
+
+
+{% block content %}
+{% comment %}{{ profile.user.date_joined|timesince }}{% endcomment %}
+<p>{% trans "It seems your account (created "%}{{ profile.user.date_joined|timesince }}{% trans " ago) has been disabled or you haven't yet activated your account with the email you received on this address: " %}{{ profile.user.email }}</p>
+<p>{% trans "If you're having trouble to sign up or feel that injustice has been done to you, feel free to contact support team to find out why" %} <a href='mailto:support@imaginationforpeople.org' target='_top'>
+support@imaginationforpeople.org</a></p>
+
+{% endblock %}
+
+

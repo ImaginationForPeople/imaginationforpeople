@@ -46,12 +46,8 @@ class I4pProjectAdmin(VersionAdmin):
     list_display = ('__unicode__', 'status', 'best_of', 'created')
     date_hierarchy = 'created'
     list_filter = ['site', 'status', 'best_of', 'topics']
+    search_fields = ['translations__title', 'translations__baseline', 'translations__about_section']
     
-    def formfield_for_manytomany(self, db_field, request=None, **kwargs):
-        if db_field.name == "discussions":
-            kwargs["queryset"] = Thread.objects.filter(is_specific=False)
-        return VersionAdmin.formfield_for_manytomany(self, db_field, request=request, **kwargs)
-
 class QuestionAdmin(hvad.admin.TranslatableAdmin):
     list_display = ('topic', 'weight', 'all_translations')
 

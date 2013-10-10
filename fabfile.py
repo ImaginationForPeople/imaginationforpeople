@@ -4,13 +4,14 @@ from __future__ import with_statement
 
 import os.path
 import time
+import pipes
 
 import fabric.operations
-from fabric.operations import put, get
+from fabric.operations import put, get, env
 from fabric.api import *
 from fabric.colors import cyan
 from fabric.contrib.files import *
-
+from os.path import expanduser
 @task
 def reloadapp():
     """
@@ -21,6 +22,17 @@ def reloadapp():
     #hit any multisites defined. 
     with cd(env.venvfullpath + '/' + env.projectname):
         run('touch apache/*')
+    if(env.wsginame == 'prod.wsgi'):
+        flushmemcache()
+
+@task
+def flushmemcache():
+    """
+    Resetting all data in memcached
+    """
+    print(cyan('Resetting all data in memcached :'))
+    run('echo "flush_all" | /bin/netcat -q 2 127.0.0.1 11211')
+
 
 def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
     if not user:
@@ -31,6 +43,9 @@ def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
 
 def venv_prefix():
     return 'source %(venvfullpath)s/bin/activate' % env
+
+def remote_db_path():
+    return os.path.join(env.venvfullpath, env.projectname, 'current_database.sql.bz2')
 
 def printenv():
     """
@@ -53,6 +68,9 @@ def commonenv():
     #env.gitrepo = "ssh://webapp@i4p-dev.imaginationforpeople.org/var/repositories/imaginationforpeople.git"
     env.gitrepo = "git://github.com/ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "master"
+    
+    #Used to compute paths
+    env.postgis_version  = "1.5"
 
 
 @task
@@ -87,7 +105,10 @@ def stagenv():
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
-    env.gitbranch = "release/almostspring"
+    #env.gitbranch = "release/almostspring"
+    env.gitbranch = "develop"
+    #env.gitbranch = "feature/gis"
+
 
     env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
     env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
@@ -102,8 +123,8 @@ def devenv():
     commonenv()
     env.wsginame = "dev.wsgi"
     env.urlhost = "localhost"
-    #env.user = "webapp"
-    #env.home = "webapp"
+    env.user = env.local_user
+    env.home = expanduser("~")
     require('venvname', provided_by=('commonenv',))
     env.hosts = ['localhost']
 
@@ -114,6 +135,28 @@ def devenv():
 
     env.venvbasepath = os.path.normpath(os.path.join(current_path,"../../"))
     env.venvfullpath = os.path.normpath(os.path.join(current_path,"../"))
+
+@task
+def devenv2():
+    """
+    [ENVIRONMENT] Developpement (must be run from the project path: 
+    the one where the fabfile is)
+    """
+    commonenv()
+    env.wsginame = "dev.wsgi"
+    env.urlhost = "localhost"
+    #env.user = "webapp"
+    #env.home = "webapp"
+    require('venvname', provided_by=('commonenv',))
+    env.hosts = ['127.0.0.1']
+
+    current_path = local('pwd',capture=True)
+    
+    env.gitrepo = "git@github.com:ImaginationForPeople/imaginationforpeople.git"
+    env.gitbranch = "develop"
+
+    env.venvbasepath = os.path.normpath("/home/benoitg/development/assembl/venv")
+    env.venvfullpath = os.path.normpath("/home/benoitg/development/assembl/venv")
 
 ## Virtualenv
 def build_virtualenv():
@@ -126,6 +169,144 @@ def build_virtualenv():
     run('virtualenv --no-site-packages --distribute %(venvfullpath)s' % env)
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
+def _get_package_list():
+    """
+    Get the list of currently installed packages and versions via pip freeze
+    """
+    with settings(
+        hide('warnings', 'running', 'stdout', 'stderr'),
+        warn_only=True
+    ):
+        print(repr(env.hosts))
+        return venvcmd("pip freeze -l")
+
+def _execute_pip(cmd, dry_run=False):
+    if dry_run:
+        print "Dry run, would execute the following on host %s:" % (env.host_string)
+        print cmd
+        
+    else:
+        return venvcmd(cmd)
+        
+@task
+def clone_package_versions(source=None, destination=None, dry_run=False):
+    """
+    Clone python packages between virtualenv ex: fab clone_package_versions:source='prodenv',destination='devenv',dry_run=True
+    fab clone_environment:source='prodenv',destination='devenv' 
+    """
+    if dry_run == 'True':
+        dry_run = True
+    elif dry_run == 'False':
+        dry_run = False
+    print "Cloning environment %s to %s" % (source, destination)
+    (packages, environments) = _check_package_versions([source, destination]);
+    #WHATEVER YOU DO, do NOT remove this line.  Its the one that sets the 
+    #Environment where pip commands will be executed.
+    execute(destination)
+    multi_versions = {}
+    missing_servers = []
+    for package, versions in packages.items():
+        for version, version_info in versions.items():
+            for host in version_info['environments']:
+                if host == source:
+                    source_version = version
+                    pip_package_string = version_info['raw_package_string']
+                elif host == destination:
+                    destination_host = host
+                    current_destination_version = version
+        
+        if len(versions.keys()) > 1:
+            # There is more than one version installed on the servers
+            print "Wrong version (%s) of package %s installed on %s.  Replacing with version %s"% (current_destination_version, package, destination, source_version)
+            execute(_execute_pip, "pip install %s" % (pip_package_string), dry_run)
+        elif len(versions[versions.keys()[0]]['environments']) != len(environments):
+            # The package is not installed on all the environments
+            missing_hosts = set(tuple(environments)) - set(versions[versions.keys()[0]]['environments'])
+            for host in missing_hosts:
+                if host == source:
+                    print "Package %s installed on destination %s, but not on source %s.  Removing."% (package, destination, source)
+                    execute(_execute_pip, "pip uninstall %s" % (package), dry_run)
+                elif host == destination:
+                    print "Package %s installed on source %s, missing on destination %s.  Installing."% (package, source, destination)
+                    execute(_execute_pip, "pip install %s" % (pip_package_string), dry_run)
+
+
+@task
+def compare_package_versions(source=None, destination=None):
+    """
+    Compare python package versions on different environments ex: fab compare_package_versions:source='prodenv',destination='devenv'
+    prints the out of sync packages
+    """
+    (packages, environments) = _check_package_versions([source, destination])
+    return _process_packages(packages, environments)
+
+@runs_once
+def _check_package_versions(environments):
+    """
+    Check the versions of all the packages on all the servers and print out
+    the out of sync packages
+    """
+    packages = {}
+    for env_name in environments:
+        env_task = globals()[env_name]
+        execute(env_name)
+        assert(len(env.hosts) == 1)
+        #Only one host per env supported, as the goal is to compare environments
+
+        print "Getting packages on %s for environment %s" % (env.hosts[0], env_name)
+        result = execute(_get_package_list)[env.hosts[0]]
+        pkg_list = result.splitlines()
+        for package in pkg_list:
+            if package.startswith("-e"):
+                version, package_name = package.split("#egg=")
+                index = package_name.find("-")
+                if index:
+                    pkg = package_name[:index]
+                else:
+                    pkg = package_name
+            else:
+                pkg, version = package.split("==")
+            if pkg not in packages:
+                packages[pkg] = {}
+            if version not in packages[pkg]:
+                packages[pkg][version] = {}
+                packages[pkg][version]["environments"]=[]
+            packages[pkg][version]["raw_package_string"]=package
+            packages[pkg][version]["environments"].append(env_name)
+    return (packages, environments)
+    
+def _process_packages(packages, environments):
+    """
+    Convert the packages datastructure into the multiple versions and missing
+    servers lists and output the result
+    """
+    multi_versions = {}
+    missing_servers = []
+    for package, versions in packages.items():
+        if len(versions.keys()) > 1:
+            # There is more than one version installed on the servers
+            multi_versions[package] = versions
+        elif len(versions[versions.keys()[0]]['environments']) != len(environments):
+            # The package is not installed on all the environments
+            missing_hosts = set(tuple(environments)) - set(versions[versions.keys()[0]]['environments'])
+            missing_servers.append(
+                "%s: %s" % (package, ", ".join(missing_hosts))
+            )
+    if missing_servers or multi_versions:
+        print ""
+        print "Packages out-of-sync:"
+    if multi_versions:
+        print ""
+        print "Multiple versions found of these packages:"
+        for package, versions in multi_versions.items():
+            print package
+            for ver, version_info in versions.items():
+                print "  %s: %s" % (ver, ", ".join(version_info['environments']))
+    if missing_servers:
+        print ""
+        print "These packages are missing on these servers:"
+        for item in missing_servers:
+            print item
 
 @task
 def update_requirements(force=False):
@@ -285,15 +466,8 @@ def app_fullupdate():
     Full Update: maincode and dependencies
     """
     execute(updatemaincode)
-    execute(compile_messages)
-    execute(update_compass)
-    execute(compile_stylesheets)
     execute(update_requirements, force=False)
-    execute(app_db_update)
-    execute(collect_static_files)
-    # tests()
-    execute(reloadapp)
-    execute(webservers_reload)
+    execute(app_compile)
 
 @task
 def app_update():
@@ -301,6 +475,13 @@ def app_update():
     Fast Update: don't update requirements
     """
     execute(updatemaincode)
+    execute(app_compile)
+
+@task
+def app_compile():
+    """
+    Generate every compiled resource, and update database schema
+    """
     execute(compile_messages)
     execute(compile_stylesheets)
     execute(app_db_update)
@@ -308,7 +489,7 @@ def app_update():
     # tests()
     execute(reloadapp)
     execute(webservers_reload)
-
+    
 ## Webserver
 def configure_webservers():
     """
@@ -389,16 +570,15 @@ def install_database_server():
     Install a postgresql DB
     """
     print(cyan('Installing Postgresql'))
-    sudo('apt-get install -y postgresql-8.4 postgresql-8.4')
+    sudo('apt-get install -y postgresql-8.4 postgresql-8.4 postgresql-8.4-postgis postgis')
 
-def setup_database():
+def create_database_user():
     """
     Create a user and a DB for the project
     """
     # FIXME: pg_hba has to be changed by hand (see doc)
     # FIXME: Password has to be set by hand (see doc)
     sudo('createuser %s -D -R -S' % env.projectname, user='postgres')
-    sudo('createdb -O%s %s' % (env.projectname, env.projectname), user='postgres')
     
 ## Server packages    
 def install_basetools():
@@ -504,6 +684,11 @@ def mirror_prod_media():
         sudo('chown www-data -R media')
         sudo('chmod u+rw -R media')
 
+def database_create():
+    """
+    """
+    sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
+
 @task
 def database_dump():
     """
@@ -513,45 +698,56 @@ def database_dump():
         run('mkdir -m700 %s' % env.dbdumps_dir)
 
     filename = 'db_%s.sql' % time.strftime('%Y%m%d')
-    compressed_filename = '%s.bz2' % filename
+    compressed_filename = '%s.postgisdump' % filename
     absolute_path = os.path.join(env.dbdumps_dir, compressed_filename)
 
     # Dump
     with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
         run('grep "DATABASE" -A 8 site_settings.py')
-        run('pg_dump -U%s %s | bzip2 -9 > %s' % (env.db_user,
+        run('pg_dump -U%s --format=custom -b %s > %s' % (env.db_user,
                                                  env.db_name,
                                                  absolute_path)
             )
 
     # Make symlink to latest
     with cd(env.dbdumps_dir):
-        run('ln -sf %s current_database.sql.bz2' % compressed_filename)
-
-
+        run('ln -sf %s %s' % (absolute_path, remote_db_path()))
+        
 @task
-def database_download():
+def database_postgis_setup():
     """
-    Dumps and downloads the database from the target server
+    Setup or upgrade a database to postgis.  Normally run BEFORE restoring a 
+    database dump, except the first time a postgis migration is done.
     """
-    execute(database_dump)
-    get(os.path.join(env.dbdumps_dir, 'current_database.sql.bz2'), 'current_database.sql.bz2')
+    env.postgres_sharedir_path = run('pg_config --sharedir')
+    env.postgis_script_path = os.path.join(env.postgres_sharedir_path, 'contrib/postgis-%s' % env.postgis_version)
+
+    run('ls %s' % env.postgis_script_path)
+    with settings(warn_only=True):
+        sudo('su - postgres -c "createlang plpgsql %s"' % (env.db_name), shell=False)
+    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'postgis.sql')), shell=False)
+    sudo('su - postgres -c "psql -d %s -f %s"' % (env.db_name, os.path.join(env.postgis_script_path, 'spatial_ref_sys.sql')), shell=False)
+    
+    define_roles_sql = """CREATE ROLE postgis_reader INHERIT;
+                            GRANT SELECT ON geometry_columns TO postgis_reader;
+                            GRANT SELECT ON geography_columns TO postgis_reader;
+                            GRANT SELECT ON spatial_ref_sys TO postgis_reader;
+                            CREATE ROLE postgis_writer;
+                            GRANT postgis_reader TO postgis_writer;
+                            GRANT INSERT,UPDATE,DELETE ON spatial_ref_sys TO postgis_writer;
+                            GRANT INSERT,UPDATE,DELETE ON geometry_columns TO postgis_writer;
+                            GRANT INSERT,UPDATE,DELETE ON geography_columns TO postgis_writer;
+                            GRANT postgis_writer TO imaginationforpeople;"""
+    
+    with settings(warn_only=True):
+        sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(define_roles_sql)), shell=False)
+
 
 @task    
 def database_restore():
-    """
-    Restores the database to the remote server
-    """
     assert(env.wsginame in ('staging.wsgi', 'dev.wsgi'))
-
-    if(env.wsginame == 'dev.wsgi'):
-        remote_db_path = os.path.join(env.venvfullpath, env.projectname, 'current_database.sql.bz2')
-    else:
-        remote_db_path = os.path.join(env.venvfullpath, 'current_database.sql.bz2')
-
-    if(env.wsginame != 'dev.wsgi'):
-        put('current_database.sql.bz2', remote_db_path)
-
+    env.debug = True
+    
     if(env.wsginame != 'dev.wsgi'):
         execute(webservers_stop)
     
@@ -560,15 +756,52 @@ def database_restore():
         sudo('su - postgres -c "dropdb imaginationforpeople"')
 
     # Create db
-    sudo('su - postgres -c "createdb -E UNICODE -Ttemplate0 -O%s %s"' % (env.db_user, env.db_name))
-    run('pwd')
+    execute(database_create)
+    execute(database_postgis_setup)
+
     # Restore data
+#    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+#        run('grep "DATABASE" -A 8 site_settings.py')
+#        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path(),
+#                                              env.db_user,
+#                                              env.db_name)
+#        )
+    # Restore data
+    postgis_restore_script = os.path.join(env.venvfullpath, env.projectname, 'tools', 'postgis_restore-1.5.pl')
+        
+    run('%s %s %s %s' % (postgis_restore_script,
+                                         os.path.join(env.postgis_script_path, 'postgis.sql'),
+                                         env.db_name,
+                                         remote_db_path())
+        )
+    drop_geometry_columns_sql = "DROP TABLE geometry_columns;"
+    sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(drop_geometry_columns_sql)), shell=False)    
+    drop_spatial_ref_sys_sql = "DROP TABLE spatial_ref_sys;"
+    sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(drop_spatial_ref_sys_sql)), shell=False)    
     with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
         run('grep "DATABASE" -A 8 site_settings.py')
-        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path,
+    run('cat %s | psql -U%s %s' % (remote_db_path()+'.ascii',
                                               env.db_user,
                                               env.db_name)
         )
 
     if(env.wsginame != 'dev.wsgi'):
         execute(webservers_start)
+
+
+
+@task
+def database_download():
+    """
+    Dumps and downloads the database from the target server
+    """
+    execute(database_dump)
+    get(remote_db_path(), 'current_database.sql.bz2')
+
+@task
+def database_upload():
+    """
+    Uploads a local database backup to the target environment's server
+    """
+    if(env.wsginame != 'dev.wsgi'):
+        put('current_database.sql.bz2', remote_db_path())

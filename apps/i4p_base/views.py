@@ -17,25 +17,49 @@
 #
 # -*- coding: utf-8 -*-
 from datetime import datetime
+from functools import update_wrapper
 import random
+from urlparse import urlsplit
 
+from django.conf import settings
+from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.models import User
-from django.shortcuts import render_to_response
+from django.contrib.sites.models import Site
+from django.shortcuts import render_to_response, get_object_or_404
 from django.template.context import RequestContext
 from django.utils import translation
+from django.utils.decorators import classonlymethod, method_decorator
+from django.views.generic.base import TemplateResponseMixin
+from django.views.generic.base import RedirectView
+from django.views.generic import TemplateView
+
+from haystack.query import SearchQuerySet
+from haystack.views import FacetedSearchView as HaystackFacetedSearchView
 
 from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents
+from django.core.cache import cache
+
+from .models import VersionActivity, Location
+from django.db.models.fields import FieldDoesNotExist
+from .forms import ProjectSearchForm, I4pLocationForm
 
 def homepage(request):
     """
     I4P Homepage
     """
-    project_sheets = I4pProject.on_site.filter(best_of=True).order_by('?')[:14]
-    project_translations = get_project_translations_from_parents(project_sheets,
+    cache_key = 'project_slider'
+    res = cache.get(cache_key, None)
+    if not res:
+        project_sheets = I4pProject.on_site.filter(best_of=True).order_by('?')[:14]
+        project_translations = get_project_translations_from_parents(project_sheets,
                                                                  language_code=translation.get_language()
                                                                  )
-
+        res = project_sheets, project_translations
+        cache.set(cache_key, res, 3600)
+    else:
+        project_sheets, project_translations = res
+    
     latest_members = list(User.objects.filter(is_active=True).order_by('-date_joined')[:7])
     random.shuffle(latest_members)
 
@@ -52,15 +76,6 @@ def homepage(request):
                               context_instance=RequestContext(request)
                               )
 
-
-from django.shortcuts import get_object_or_404, redirect
-from django.views.generic.base import RedirectView
-
-from .models import VersionActivity
-
-from django.contrib.admin.views.decorators import staff_member_required
-from django.utils.decorators import method_decorator
-from urlparse import urlsplit
 
 class VersionActivityCheckView(RedirectView):
     """
@@ -87,3 +102,209 @@ class VersionActivityCheckView(RedirectView):
                 pass
                 
             return redirect_to
+        
+class FacetedSearchView(TemplateResponseMixin, HaystackFacetedSearchView):
+    template_name = None
+    facets = None
+    filter_models = None
+    order_by = None
+    paginate_by = getattr(settings, 'HAYSTACK_SEARCH_RESULTS_PER_PAGE', 20)
+    form_class = ProjectSearchForm
+
+    def __init__(self, *args, **kwargs):
+        form_class = kwargs.get('form_class', self.form_class)
+        super(FacetedSearchView, self).__init__(*args, **kwargs)
+        # Needed to switch out the default form class.
+        self.form_class = form_class
+        if not self.results_per_page and self.paginate_by:
+            self.results_per_page = self.paginate_by
+
+    def get_context_data(self):
+        return {}
+
+    def extra_context(self):
+        ctx = super(FacetedSearchView, self).extra_context()
+        ctx.update(self.get_context_data())
+        return ctx
+
+    def get_facets(self):
+        if not self.facets:
+            return []
+        return self.facets
+
+    def get_filter_model(self, models=None):
+        if models:
+            return (models + self.filter_models)
+        return self.filter_models
+
+    def get_order_by_fields(self):
+        return self.order_by
+
+    def get_extra_filters(self):
+        return {}
+
+    def get_search_queryset(self, queryset=None, models=None):
+        searchqueryset = queryset or self.searchqueryset or SearchQuerySet()
+        current_site = Site.objects.get_current()
+        # Multisite handling
+        searchqueryset = searchqueryset.filter(sites=current_site.id)
+        
+        searchqueryset = searchqueryset.filter(
+            **self.get_extra_filters()
+        )
+        for facet_field in self.get_facets():
+            searchqueryset = searchqueryset.facet(facet_field)
+        # check we should filter by model
+        filter_models = self.get_filter_model(models)
+        if filter_models:
+            searchqueryset = searchqueryset.models(*filter_models)
+        # check for defined order by list
+        if self.get_order_by_fields():            
+            searchqueryset = searchqueryset.order_by(
+                *self.get_order_by_fields()
+            )
+        return searchqueryset
+
+    @property
+    def template(self):
+        """ Provide property to be backwards compatible with haystack. """
+        template_names = self.get_template_names()
+        if template_names:
+            return template_names[0]
+        return None
+
+    def get(self, request, *args, **kwargs):
+        self.searchqueryset = self.get_search_queryset()
+        return super(FacetedSearchView, self).__call__(request)
+
+    def __call__(self, request, *args, **kwargs):
+        self.request = request
+        self.kwargs = kwargs
+        return self.get(request, *args, **kwargs)
+
+    @classonlymethod
+    def as_view(cls, *initargs, **initkwargs):
+        def view(request, *args, **kwargs):
+            return cls(*initargs, **initkwargs)(request, *args, **kwargs)
+        update_wrapper(view, cls, updated=())
+        return view
+        
+class SearchView(FacetedSearchView):
+    """
+    Search projects, members, etc ; using haystack
+    """
+    template_name = 'i4p_base/search/search.html'
+    filter_models = [I4pProject]
+    # more order parameters to be added later
+    sort_by = {
+       'created': '-created',       
+    }
+    
+    def get_order_by_fields(self):
+        order = self.request.GET.get('order')
+        if order in self.sort_by.keys():
+            return [self.sort_by[order]]
+        else:
+            return None
+    
+    def create_response(self):
+        """
+        Generates the actual HttpResponse to send back to the user.
+        """
+        (paginator, page) = self.build_page()
+
+        context = {
+            'query': self.query,
+            'form': self.form,
+            'page': page,
+            'paginator': paginator,
+            'suggestion': None,
+        }
+
+        self.page = page
+        
+        if getattr(settings, 'HAYSTACK_INCLUDE_SPELLING', False):
+            context['suggestion'] = self.form.get_suggestion()
+        
+        context.update(self.extra_context())
+        return render_to_response(self.template, context, context_instance=self.context_class(self.request))
+
+        
+    def get_context_data(self, **kwargs):
+        context = super(SearchView, self).get_context_data(**kwargs)
+        context['project_list']=[]
+        for result in self.page.object_list:
+            if(result):
+                context['project_list'].append(result.object)
+        return context
+    
+class LocationEditView(TemplateView, ):
+    """
+    Edit a location (any geographic place or area)
+    """
+    template_name = 'i4p_base/location/location_edit.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.location_id = kwargs['location_id']
+
+        self.location = Location.objects.get(id=self.location_id)
+
+        return super(TemplateView, self).dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        self.location_form = I4pLocationForm(instance=self.location)
+        return super(LocationEditView, self).get(request, *args, **kwargs)
+        
+    def post(self, request, *args, **kwargs):
+        POST = request.POST.copy() #Make this mutable for form redisplay
+        self.location_form = I4pLocationForm(POST, instance=self.location)
+        if self.location_form.is_valid():
+            location = self.location_form.save(commit=False);
+            location.save();
+
+        return super(LocationEditView, self).get(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(LocationEditView, self).get_context_data(**kwargs)
+        context['location_id'] = self.location_id
+        context['location_form'] = self.location_form
+        
+        return context
+
+class LocationListView(TemplateView):
+    """
+    Show all locations
+    """
+    template_name = 'i4p_base/location/location_list.html'
+    def dispatch(self, request, *args, **kwargs):
+        location_qs = Location.objects
+        if kwargs.has_key('missing_field_name'):
+            missing_field_name = kwargs['missing_field_name']
+        else:
+            missing_field_name = None
+        if missing_field_name:
+            try:
+                Location._meta.get_field_by_name(missing_field_name)
+            except FieldDoesNotExist:
+                raise ValueError
+            variable_column = missing_field_name
+            if(missing_field_name=='geom'):
+                search_type = 'isnull'
+                search_value = True
+            else:
+                search_type = 'exact'
+                search_value = ''
+            filter = variable_column + '__' + search_type
+            location_qs=location_qs.filter(**{ filter: search_value })
+        self.locations = location_qs.all()
+        return super(LocationListView, self).dispatch(request, *args, **kwargs)
+    
+    def get(self, request, *args, **kwargs):
+        return super(LocationListView, self).get(request, *args, **kwargs)
+        
+    def get_context_data(self, **kwargs):
+        context = super(LocationListView, self).get_context_data(**kwargs)
+        context['locations'] = self.locations
+        
+        return context
+

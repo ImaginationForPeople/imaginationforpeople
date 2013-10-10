@@ -37,7 +37,7 @@
 
         <div id="partner_projects" class="container">                
           <h2>{% trans 'Supported projects' %}</h2>
-        {% for project_translation in partner_projects %}
+        {% for project in partner_projects %}
         {% include "project_sheet/block/card_fancy_square.html" %}
         {% empty %}
         {% trans "No projects" %}

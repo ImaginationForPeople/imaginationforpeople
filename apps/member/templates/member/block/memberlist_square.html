@@ -43,7 +43,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");
 	>
 	<ul class="memberlist-slider" data-toggle="i4p-memberlist-slider" >
 		{% for member in members %}
-		{% include "project_sheet/block/member_fancy_square.html" %}
+			{% include "project_sheet/block/member_fancy_square.html" %}
 		{% endfor %}
 	</ul>
 </div>
@@ -64,7 +64,7 @@ $.getScript(I4P_STATIC_URL+"js/project_sheet/block/memberlist_square.js");
 
 
 {% else %}
-{% trans 'No user associated with this project.' %}
+{% trans 'No members yet.' %} 
 {% endif %}
 
 {% endwith %}

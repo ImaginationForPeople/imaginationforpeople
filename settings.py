@@ -13,8 +13,17 @@ from django.utils.translation import ugettext_lazy as _
 
 import apps.i4p_base.mdx_i4p as mdx_i4p
 
+# Default values for site_settings
+
+OVERRIDE_CACHE_BACKEND = None
+GEONAMES_USERNAME = None
+MAPQUEST_API_KEY = None
+
 # Import settings for the given site
 from site_settings import *
+
+#from django.utils.translation import gettext
+gettext = lambda s: s
 
 PROJECT_ROOT = os.path.dirname(__file__)
 sys.path.append(os.path.join(PROJECT_ROOT, '..'))
@@ -64,6 +73,57 @@ LANGUAGES = (
   ('zh-cn', u'中文'),
 )
 
+CMS_LANGUAGES = {
+    1: [
+        {
+            'code': 'en',
+            'name': u'English',
+            'fallbacks': ['fr', 'de'],
+        },
+        {
+            'code': 'fr',
+            'name': u'Français',
+            'fallbacks': ['en', 'es'],
+        },
+        {
+            'code': 'el',
+            'name': u'Ελληνικά',
+        },
+        {
+            'code': 'es',
+            'name': u'Español',
+            'fallbacks': ['fr', 'en'],
+        },
+        {
+            'code': 'pt',
+            'name': u'Português',
+        },
+        {
+            'code': 'de',
+            'name': u'Deutsch',
+        },
+        {
+            'code': 'it',
+            'name': u'Italiano',
+            'fallbacks': ['fr', 'en', 'es'],
+        },
+        {
+            'code': 'ru',
+            'name': u'Русский',
+        },
+        {
+            'code': 'zh',
+            'name': u'中文',
+        },
+    ],
+    'default': {
+        'fallbacks': ['en', 'fr', 'es'],
+        'redirect_on_fallback': False,
+        'public': True,
+        'hide_untranslated': False,
+    }
+} 
+
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
 USE_I18N = True
@@ -84,20 +144,22 @@ SECRET_KEY = '-m2v@6wb7+$!*nsed$1m5_f=1p5pf-lg^_m3+@x*%fl5a$qpqd'
 CACHE_PREFIX ='imaginationforpeople'
 
 # Cache
-if DEBUG:
-    CACHE_BACKEND = 'django.core.cache.backends.dummy.DummyCache'
-else:
-    CACHE_BACKEND = 'django.core.cache.backends.locmem.LocMemCache'
-CACHES = {
-    'default': {
-        'BACKEND': CACHE_BACKEND,
-    },
-    'askbot': {
-        #XXX: DO NOT CHANGE THIS SETTING
-       'BACKEND' : 'django.core.cache.backends.locmem.LocMemCache',
+if OVERRIDE_CACHE_BACKEND:
+    CACHES = {
+    'default': OVERRIDE_CACHE_BACKEND,
+    'askbot': OVERRIDE_CACHE_BACKEND
     }
-          
-}
+else:
+    if DEBUG:
+        CACHES = {
+        'default': {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'},
+        'askbot': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+        }
+    else:
+        CACHES = {
+        'default': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'},
+        'askbot': {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+        }
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -105,12 +167,20 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE_CLASSES = ()
+
+MIDDLEWARE_CLASSES += (
     'django.contrib.sessions.middleware.SessionMiddleware',
 
 
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    )
+if 'DEBUG_PROFILE_MIDDLEWARE_ENABLED' in locals() and DEBUG_PROFILE_MIDDLEWARE_ENABLED == True:
+    MIDDLEWARE_CLASSES += (
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
+    )
+MIDDLEWARE_CLASSES += (
     'django.contrib.messages.middleware.MessageMiddleware',
     'dynamicsites.middleware.DynamicSitesMiddleware',
      ## The order of these locale middleware classes matters
@@ -126,7 +196,7 @@ MIDDLEWARE_CLASSES = (
 
     'reversion.middleware.RevisionMiddleware',
 
-    'honeypot.middleware.HoneypotMiddleware',
+    'apps.i4p_base.middleware.i4phoneypot.I4pHoneypotMiddleware',
 
     'cms.middleware.page.CurrentPageMiddleware',
     'cms.middleware.user.CurrentUserMiddleware',
@@ -146,6 +216,7 @@ MIDDLEWARE_CLASSES = (
 if DEBUG:
     MIDDLEWARE_CLASSES += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
+        'apps.i4p_base.middleware.profile.ProfileMiddleware',
     )
     LETTUCE_APPS = (
             'apps.member',
@@ -212,6 +283,7 @@ INSTALLED_APPS = (
     'serializers',
     'tabs',
     'logentry_admin',
+    'django_lamson',
 
     'raven.contrib.django',
     'tinymce',
@@ -276,12 +348,14 @@ INSTALLED_APPS = (
     'cms.plugins.picture',
     'cms.plugins.googlemap',
     'cms.plugins.video',
+    #Deprecated, remove me as soon as all data has been removed
     'cms.plugins.twitter',
     'cms.plugins.teaser',
     'cms.plugins.snippet',
     'cmsplugin_facebook',
     'cmsplugin_iframe',
     'cmsplugin_contact',
+    'cmsplugin_twitter',
 
     'askbot.deps.livesettings',
     'askbot',
@@ -296,6 +370,10 @@ INSTALLED_APPS = (
     'categories',
     'categories.editor',
 
+    'django.contrib.gis',
+    'leaflet',
+    'floppyforms',
+    
     # Internal Apps
     'apps.forum',
     'apps.i4p_base',
@@ -305,6 +383,8 @@ INSTALLED_APPS = (
     'apps.partner',
     'apps.workgroup',
     'apps.tags',
+    'apps.forum',
+    'apps.map',
 )
 
 # django-ajax_select
@@ -383,7 +463,7 @@ DEBUG_TOOLBAR_PANELS = (
     'debug_toolbar.panels.headers.HeaderDebugPanel',
     'debug_toolbar.panels.request_vars.RequestVarsDebugPanel',
     'debug_toolbar.panels.template.TemplateDebugPanel',
-    #'debug_toolbar.panels.sql.SQLDebugPanel',
+    'debug_toolbar.panels.sql.SQLDebugPanel',
     'debug_toolbar.panels.signals.SignalDebugPanel',
     'debug_toolbar.panels.logger.LoggingPanel',
 )
@@ -403,7 +483,7 @@ if not 'EMAIL_SUBJECT_PREFIX' in locals():
 # Write emails to console if in development mode
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# else, use SMTP
+    # else, use SMTP
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = 'localhost'
@@ -426,23 +506,31 @@ LOCALE_INDEPENDENT_PATHS = (
 COUNTRIES_FLAG_URL = 'images/flags/%(code)s.gif'
 
 ### HAYSTACK
-HAYSTACK_CONNECTIONS = {
-    'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
-        'STORAGE': 'file',
-        'POST_LIMIT': 128 * 1024 * 1024,
-        'INCLUDE_SPELLING': True,
-        'BATCH_SIZE': 500,
-    },
-}
+if (not DEBUG) or USESOLR:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+           'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+          'URL': 'http://127.0.0.1:8983/solr',           
+       },
+   }
+elif DEBUG:
+   HAYSTACK_CONNECTIONS = {
+       'default': {
+         'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+         'PATH': os.path.join(PROJECT_ROOT, 'i4p_index'),
+         'STORAGE': 'file',
+         'POST_LIMIT': 128 * 1024 * 1024,
+         'INCLUDE_SPELLING': True,
+         'BATCH_SIZE': 500,
+       },
+   }
 
 HAYSTACK_ITERATOR_LOAD_PER_QUERY = 99999999
 
-
 ### STATIC FILES
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static/')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'collectedstatic/')
+STATIC_BASE = os.path.join(PROJECT_ROOT, 'static/')
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -456,12 +544,12 @@ STATICFILES_FINDERS = (
 )
 
 STATICFILES_DIRS = (
-    ('js', os.path.join(STATIC_ROOT, 'js')),
-    ('css', os.path.join(STATIC_ROOT, 'css')),
-    ('css', os.path.join(STATIC_ROOT, 'compiled_sass')),
-    ('fonts', os.path.join(STATIC_ROOT, 'fonts')),
-    ('images', os.path.join(STATIC_ROOT, 'images')),
-    ('compiled_images', os.path.join(STATIC_ROOT, 'compiled_images')),
+    ('js', os.path.join(STATIC_BASE, 'js')),
+    ('css', os.path.join(STATIC_BASE, 'css')),
+    ('css', os.path.join(STATIC_BASE, 'compiled_sass')),
+    ('fonts', os.path.join(STATIC_BASE, 'fonts')),
+    ('images', os.path.join(STATIC_BASE, 'images')),
+    ('compiled_images', os.path.join(STATIC_BASE, 'compiled_images')),
 )
 
 COMPRESS_CSS_FILTERS = (
@@ -483,7 +571,7 @@ BACKCAP_NOTIFIED_USERS = ['GuillaumeLibersat',
 ## TINYMCE
 TINYMCE_DEFAULT_CONFIG = {
                           'theme': "advanced",
-                          'plugins': 'contextmenu,table,template,blockquote,paste',
+                          'plugins': 'contextmenu,table,template,paste',
                           'relative_urls': False,
                           'remove_script_host': 0,
                           'convert_urls': False,
@@ -510,10 +598,10 @@ CMS_TEMPLATES = (
   ('pages/contrib.html', _('Contribution page')),
   ('pages/onemenu.html', _('One menu page')),
   ('pages/popups_notifications.html', _('Popups and notifications container')),
+  ('pages/splitr.html', _('Splitr')),
 )
 
 CMS_REDIRECTS = True
-CMS_HIDE_UNTRANSLATED = False
 CMS_SOFTROOT = True
 CMS_SEO_FIELDS = True
 
@@ -530,6 +618,13 @@ ASKBOT_SKINS_DIR = os.path.join(PROJECT_ROOT, 'apps/forum/templates')
 LIVESETTINGS_CACHE_TIMEOUT = 6000
 KEYEDCACHE_ALIAS = "askbot"
 CACHE_TIMEOUT = LIVESETTINGS_CACHE_TIMEOUT
+ASKBOT_DEBUG_INCOMING_EMAIL = DEBUG
+
+## REPLY BY MAIL IN ASKBOT 
+LAMSON_RECEIVER_CONFIG = {'host': '127.0.0.1', 'port': 8025}
+LAMSON_HANDLERS = ['askbot.mail.lamson_handlers']
+LAMSON_ROUTER_DEFAULTS = {'host': '.+'}
+
 
 ## Celery Settings
 # TODO: fill the admin doc : ./manage.py celeryd -l ERROR --purge
@@ -551,9 +646,23 @@ ACTSTREAM_SETTINGS = {
     'GFK_FETCH_DEPTH': 1,
 }
 
+
+
 # WIKI
 markdown_i4p = mdx_i4p.makeExtension()
 WIKI_MARKDOWN_EXTENSIONS = ['extra', 'toc', markdown_i4p]
+
+#LEAFLET
+LEAFLET_CONFIG = {
+    'TILES_URL': 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    'PLUGINS': {
+        'markercluster': {
+            'css': [os.path.join(STATIC_URL, 'css/MarkerCluster.css'), 
+                    os.path.join(STATIC_URL, 'css/MarkerCluster.Default.css')],
+            'js': os.path.join(STATIC_URL, 'js/leaflet.markercluster.js'),
+        },
+    }
+}
 
 LOGGING = {
     'version': 1,

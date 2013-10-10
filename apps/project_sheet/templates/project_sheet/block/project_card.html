@@ -1,0 +1,65 @@
+{% comment %}
+
+Parameters for this block
+=========================
+
+* project : I4pProject
+
+{% endcomment %}
+{% load cache %}
+{% load i18n %}
+{% load word_boundary_aware_truncate_chars %}
+{% load sekizai_tags %}
+{% load comments %}
+
+{% addtoblock "css" strip %}
+<link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/project_card.css" />
+{% endaddtoblock %}
+
+{% addtoblock "js" strip %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project_sheet/block/project_card.js"></script>
+{% endaddtoblock %}
+
+{% get_current_language as LANGUAGE_CODE %}
+{% cache 3600 "project" project.id LANGUAGE_CODE site %}
+
+<div class="project-card">
+    {% if project.best_of %}
+      <div class="cocarde">&nbsp;</div>
+    {% endif %}
+    <div class="top">
+        {% if project.get_primary_picture.thumbnail_idcard.url %}
+        <a href="{{ project.get_absolute_url }}"><img height="120" width="200" src="{{ project.get_primary_picture.thumbnail_idcard.url }}" alt="" /></a>
+        {% else %}
+         <a href="{{ project.get_absolute_url }}"><img height="120" width="200" src="{{ STATIC_URL }}images/project_sheet/project_card/img_projcard.jpg" alt="" /></a>
+         {% endif %}
+        <h2 title="{{ project.title }}">{{ project.title|truncatechars:40 }}</h2>
+        <div class="progressbar"><span>{{ project.get_status_display }}</span></div>
+        <p>
+            {{ project.baseline|truncatechars:110 }}
+        </p>
+    </div>
+    <div class="bottom">
+        {% if project.members.count %}
+          <span class="supported tipsed on" title="project with members">Project with members ({{project.members.count}})</span>
+        {% endif %}
+         {% if project.fans.count %}
+          <span class="supported faned tipsed on" title="project with fans">Project with fans ({{project.fans.count}})</span>
+        {% endif %}
+        <span class="country"><img src="{{ project.locations.all.0.country.flag }}" alt="{{ project.locations.all.0.country.code }}" /> {{ project.locations.all.0.country.name }}</span>
+        <p>
+	    {% with project.get_current_translation.projectsupport_set.count as need_count %}
+            <span class="needs tipsed on" class="tipsed on" title="<strong>{{ need_count }}</strong> needs">{{ need_count }}</span>
+	    {% endwith %}
+            {% comment %}<span class="fav" title="10 favorites">10</span>{% endcomment %}
+        </p>
+    </div>
+    <div class="hover">
+        <div class="name" title="{{ project.title }}">{{ project.title|truncatechars:40 }}</div>
+        <p>
+            {{ project.about_section|truncatechars:300 }}
+        </p>
+        <div class="more"><a href="{{ project.get_absolute_url }}">{% trans 'See the project' %}</a></div>
+    </div>
+</div>
+{% endcache %}

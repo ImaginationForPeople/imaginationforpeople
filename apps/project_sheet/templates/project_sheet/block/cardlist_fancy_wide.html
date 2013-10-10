@@ -3,7 +3,7 @@
 Parameters for this block
 =========================
 
-* project_translation_list : list of I4pProjectTranslation
+* project_list : list of I4pProject
 
 {% endcomment %}
 {% load i18n %}
@@ -12,7 +12,7 @@ Parameters for this block
 
 
 <div class="project-list wide-card">
-	{% for project_translation in project_translation_list %}
+	{% for project in project_list %}
 	{% include "project_sheet/block/card_fancy_wide.html" %}
 	{% empty %}
 	{% trans "No projects found" %}

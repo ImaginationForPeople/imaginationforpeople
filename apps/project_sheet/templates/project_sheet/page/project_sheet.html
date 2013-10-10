@@ -32,9 +32,10 @@
     <div class="row">
 	<div class="span8 project-main">
 
-
-	    {% include "project_sheet/block/about.html" %}
-
+        <div class="wrap-about">
+	        {% include "project_sheet/block/about.html" %}
+        </div>
+        
 	    <div class="project-details detail-list">
 		{% include "project_sheet/block/detail-list.html" %}
 	    </div> <!-- .project-details -->
@@ -44,53 +45,123 @@
 
 	    {% include "project_sheet/block/reference-block.html" with reference_block_extra_class="project-references" %}
 
+        {%comment%}
+  	    <hr class="shaded-separator" />
 
-	    <hr class="shaded-separator" />
-
-	    <div id="project-comments" class="project-comments comment-block">
-		{% include "project_sheet/block/comment-block.html" %}
-	    </div> <!-- .project-comments -->
-
+  	    <div id="project-comments" class="project-comments comment-block">
+  		{% include "project_sheet/block/comment-block.html" %}
+  	    </div> <!-- .project-comments -->
+        {%endcomment%}
 	    {% endif %}
 
 	</div> <!-- .project-main -->
 
 	<div class="span4 project-sidebar">
-	  {% if project_translation %}
-	    <div class="project-members member-block">
+	  <!-- Direct link to project admin for staff members -->
+	  {% if request.user.is_staff and project %}
+         [<a href="{% url admin:project_sheet_i4pproject_change project.pk  %}">{% trans "Manage project" %}</a>]
+     {% endif %}
+     {% if project_translation %}
+	    <div class="project-members member-block clearfix">
 		<h2>
 		    <i class="sheet-members"></i>
 		    {% trans "Project Community"|capfirst %}</h2>
+        
+		
+        {% with num_team_member=project.detailed_members.all.count num_fans=project.detailed_fans.all.count %}            
+            <p class="counts">{{ num_fans }} fan{{ num_fans|pluralize }} and  {{num_team_member}} member{{num_team_member|pluralize}}</p>             
+                
+            {% include "member/block/memberfanlist_square.html" with members=project.detailed_members.all fans=project.detailed_fans.all %}
+            {% if num_team_member > 0 or num_fans > 0 %}
+                {% unique_counter memberlist_modal %}
+                {% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
+                {% include "project_sheet/block/memberlist_modal_seeall.html" %}
+                {% comment %}
+                  <a  href="#" class="seemore"
+                    data-modal-target-id="memberlist-modal-seeall-{{ memberlist_modal_seeall_unique_counter }}" 
+                    data-toggle="i4p-memberlist-modal-seeall" 
+                    >{% trans "More info" %}</a>
+                {% endcomment %}
+                {% endwith %}
+            {% endif %}
+            
+            {% if not request.user in project.members.all %}
+               {% unique_counter memberlist_modal %}
+               {% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
+                  {% include "project_sheet/block/memberlist_modal_seeall.html" %}
+                  <a data-toggle="i4p-memberlist-modal-seeall" data-modal-target-id="memberlist-modal-seeall-1" class="join-link" href="#" onclick="$('.member-add-block').slideDown();"><span>{% trans 'Join the team'%}</span></a>
+               {% endwith %}
+            {% endif %}
+           
+        
+            {% if not request.user in project.fans.all and not request.user in project.members.all %}
+               <div class="fans-not-a-fan-block">
+               <!-- {% trans "Become a fan of this project" %} -->
+               <form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project.slug %}'>
+               {% csrf_token %}
+               {{ project_fan_add_form.as_p }}
+               <button class="fan-link" type="submit"><span>{% trans 'Become a fan' %}</span></button>
+               </form>
+               </div>
+               {%comment%} 
+              {% else %}
+                 <div class="fans-is-fan-block">
+                 You are now a fan of this project. Share it with your friends!  
+                 <div class="addthis_toolbox addthis_default_style">
+                     <a class="addthis_button_compact share"></a>
+                 </div>                        
+                 </div>
+               {%endcomment%} 
+            {% endif %}
 
-		{% unique_counter memberlist_modal %}
-		{% with memberlist_modal_seeall_unique_counter=memberlist_modal_counter %}
-		<a  href="#" class="seemore"
-		    data-modal-target-id="memberlist-modal-seeall-{{ memberlist_modal_seeall_unique_counter }}" 
-		    data-toggle="i4p-memberlist-modal-seeall" 
-		    >{% trans "See more" %}</a>
+            {% if request.user in project.fans.all %}
+            <span class="faned">{% trans 'You are a fan' %}</span>
+            {% endif %}
 
-		{% include "project_sheet/block/memberlist_modal_seeall.html" %}
-
-		{% endwith %}
-		{% include "member/block/memberlist_square.html" with members=project.detailed_members.all %}
-	    </div>
+            {% if request.user in project.members.all %}
+             <span class="joined">{% trans 'You are a member' %}</span>
+            {% endif %}
+            
+        {% endwith %}
+        {%comment%}        
+        {% with num_fans=project.detailed_fans.count %}
+        
+            {% if num_fans == 0 %}
+                <h3>{% trans "The fans" %}</h3>
+                <p class="fans-no-fans-yet">{% trans "No fans yet" %}
+            {% else %}
+                <h3>{% blocktrans count num_fans=num_fans %}
+                The fans
+                {% plural %}
+                The {{ num_fans }} fans
+                {% endblocktrans %}
+                </h3>
+                {% include "member/block/memberlist_square.html" with members=project.detailed_fans.all %}
+            {% endif %}
+        
+            {% if not request.user in project.fans.all %}
+               <div class="fans-not-a-fan-block">
+               <!-- {% trans "Become a fan of this project" %} -->
+               <form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project.slug %}'>
+               {% csrf_token %}
+               {{ project_fan_add_form.as_p }}
+               <input type="submit" value="{% trans 'Become a fan of this project' %}" />
+               </form>
+               </div>
+            {% else %}
+               <div class="fans-is-fan-block">
+               You are now a fan of this project. Share it with your friends!  
+               <div class="addthis_toolbox addthis_default_style">
+                   <a class="addthis_button_compact share"></a>
+               </div>                        
+               </div>
+            {% endif %}
+        {% endwith %}
+{%endcomment%}      
+       
+      </div>
 
 	    {% include "workgroup/block/grouplist_fancy_wide.html" %}
-
-	    <div class="project-related clearfix">
-		<!-- FIXME: use real data for related project list once in the datamodel -->
-		<h2>
-		    <i class="sheet-related"></i>
-		    {% trans "You might also like"|capfirst %}
-		</h2>
-		{% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
-		{% if related_projects %}
-		  {% include "project_sheet/block/cardlist_fancy_wide.html" with project_translation_list=related_projects %}
-		{% else %}
-		   {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
-		   {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
-		{% endif %}
-	    </div>
 
 	    <div class="project-gallery gallery-block clearfix">
 		<h2>
@@ -102,9 +173,42 @@
 
 	    </div> <!-- .project-gallery -->
 
-	    {% include "project_sheet/block/partner-block.html" %}
 	    {% endif %}
 	</div> <!-- .project-sidebar -->
+    </div>
+</div>
+
+
+<div class="project-inspirational">
+  <strong>{% trans "You find this project inspiring ?" %}</strong>
+  <div class="icos">
+    <span class="like">&nbsp;</span>
+    <span class="discu">&nbsp;</span>
+    <span class="share">&nbsp;</span>
+  </div>
+  <p>{% trans "Become a fan, discuss, share ..." %}</p>
+</div>
+
+
+<div class="project-related clearfix">
+    <div class="container">
+        <!-- FIXME: use real data for related project list once in the datamodel -->
+        <h2>
+            {% trans "You might also like"|capfirst %}
+        </h2>
+        {% comment %}<a href="#FIXME-BADURL" class="seemore">{% trans "See more" %}</a>{%endcomment%}
+        {% if related_projects %}
+          {% include "project_sheet/block/cardlist_card_wide.html" with project_list=related_projects %}
+        {% else %}
+           {% url project_sheet-instance-edit-tags project_translation.slug as tags_url %}
+           {% blocktrans with tags_url=tags_url %}You need to <a href="{{ tags_url }}">tag this project</a> before we can suggest related projects.{% endblocktrans %}
+        {% endif %}
+    </div>
+</div>
+
+<div class="wrap-partners clearfix">
+    <div class="container">
+        {% include "project_sheet/block/partner-block.html" %}
     </div>
 </div>
 

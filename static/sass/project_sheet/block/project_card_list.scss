@@ -1,0 +1,29 @@
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+#projects-list {
+	width:655px;
+
+	header {
+		@include box-shadow(7px -16px 5px -15px #ddd inset);
+		margin-bottom:15px;
+
+		h1 {
+			font-family:$fontOpenSansCondensed;
+			font-stretch:condensed;
+			font-size:1.7rem;
+			text-transform:uppercase;
+			background:image-url('i4p_base/search/light2.png') no-repeat left center;
+			padding-left:20px;
+		}
+	}
+}
+
+#projects-list.group {
+   width:900px;
+   padding-left:50px;
+   header{
+      margin-left:-50px
+   }
+}

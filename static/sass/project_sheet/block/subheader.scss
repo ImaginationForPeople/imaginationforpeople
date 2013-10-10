@@ -10,31 +10,79 @@
 	.infotable {
 	    width: 100%;
 
+	    label {
+	    	font-size:1.2rem;
+
+	    	&[for$="DELETE"] {
+	    		display:inline;
+	    	}
+
+	    	&[for$="geom"] {
+	    		display:none;
+	    	}
+	    }
+
+	    a {
+	    	color:white;
+	    }
+
 	    tr {
-		border-bottom: $sizeMarginSmall solid transparent;
+			border-bottom: 3px solid black;
 	    }
 
 	    th {
 		@include i4p-font-title($sizeTextNormal);
 		@include box-sizing(border-box);
-
-		padding: $sizePaddingSmall;
+		width:72px;
+		padding:8px 5px;
 		vertical-align: top; // FIXME: should be middle in the future
 		text-align: left;
+		font-size:1.2rem;
 	    }
 
 	    td {
 		color: white;
-		padding: $sizePaddingSmall;
+		padding:0 0 0 5px;
 	    }
-
-	    .location-form {
-		label { visibility: hidden; display: none; }
-
-		#id_address {
-		    max-height: $sizeTextNormal * 5;
-		}
+        tr.location {
+            td {
+                margin: 0;
+                border: 0;
+            }
+        }
+        .location-formset {
+            padding: 5px;
+            label {  }
+            textarea {
+                height: 100px;
+            }
+            #id_address {
+                max-height: $sizeTextNormal * 5;
+            }
 	    }
 	}
+
+
+
+		div#projectLocationsMap {
+            color: $colorMedDarkGrey;
+            min-height: 230px;
+            min-width: 300px;
+            display: none;
+        }
+         
+        a.back {
+        	color:white;
+        	font-size:0.9em;
+        	font-style:italic;   
+        	display: none;     	
+        }
+	
+}
+
+.infotable-share {
+	position:absolute;
+	bottom:10px;
+	left:6px;
 }
 

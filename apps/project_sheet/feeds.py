@@ -38,10 +38,10 @@ class LatestChangesFeed(Feed):
     description = "Latest changes in the projects"
     
     def items(self):
-        return model_stream(I4pProject)
+        return model_stream(I4pProject)[:100]
 
     def item_title(self, item):
-        return item.target.title
+        return I4pProject.objects.untranslated().use_fallbacks().get(pk=item.target.id).title
 
     def item_description(self, item):
         return str(item)
@@ -50,8 +50,7 @@ class LatestChangesFeed(Feed):
         return item.timestamp
 
     def item_link(self, item):
-        translation.activate(item.action_object.language_code)
-        return reverse('project_sheet-show', kwargs={'slug': item.target.slug})
+        return item.target.get_absolute_url()
 
     def link(self):
         return reverse('project_sheet-recent-changes')
@@ -66,13 +65,10 @@ class NewProjectsFeed(Feed):
 
     def items(self):
         language_code = translation.get_language()
-        return get_project_translations_from_parents(parents_qs=I4pProject.objects.all().order_by('-created')[:20],
-                                                     language_code=language_code,
-                                                     fallback_language='en',
-                                                     fallback_any=True)
+        return I4pProject.objects.untranslated().use_fallbacks().order_by('-created')[:20]
 
     def link(self):
-        return reverse('project_sheet-list')
+        return reverse('i4p-search')
 
     def item_link(self, item):
         translation.activate(item.language_code)
@@ -85,5 +81,5 @@ class NewProjectsFeed(Feed):
         return item.baseline
 
     def item_pubdate(self, item):
-        return item.master.created
+        return item.created
 

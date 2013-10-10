@@ -20,15 +20,16 @@ Django Forms for a Project Sheet
 """
 from django import forms
 from django.forms.models import modelformset_factory
+from django.forms.widgets import HiddenInput
 from django.utils.translation import ugettext_lazy as _
 
-from ajax_select.fields import AutoCompleteSelectField
 from hvad.forms import TranslatableModelForm
 
-from apps.i4p_base.models import Location
+from apps.forum.forms import SpecificQuestionForm
+from apps.forum.models import SpecificQuestionType
 
-from .models import I4pProject, I4pProjectTranslation, ProjectPicture, ProjectVideo
-from .models import ProjectReference, ProjectMember, Answer
+from .models import I4pProject, I4pProjectTranslation, ProjectPicture, \
+    ProjectVideo, ProjectReference, ProjectFan, ProjectMember, Answer
 
 class I4pProjectThemesForm(forms.ModelForm):
     """
@@ -61,16 +62,6 @@ class I4pProjectInfoForm(forms.ModelForm):
     class Meta:
         model = I4pProject
         fields = ('website', 'status')
-
-
-class I4pProjectLocationForm(forms.ModelForm):
-    """
-    Edit the location info of a Project
-    """
-    class Meta:
-        model = Location
-        fields = ('address', 'country',)
-
 
 class I4pProjectStatusForm(forms.ModelForm):
     """
@@ -105,13 +96,30 @@ class ProjectMemberAddForm(forms.ModelForm):
         model = ProjectMember
         fields = ('role', 'comment')
 
-    role = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _("Specify your role in the project")}))
-    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly your work with this project...")}))
+    role = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _("Specify your role in the project")}), required=False)
+    comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly your work with this project...")}), required=False)
 
 ProjectMemberFormSet = modelformset_factory(ProjectMember, 
                                             extra=0, 
                                             can_delete=True, 
                                             fields=('role', 'comment')
+                                            )
+
+class ProjectFanAddForm(forms.ModelForm):
+    """
+    Let a user adds her/hisself to the project
+    """
+    class Meta:
+        model = ProjectFan
+        fields = ()
+    
+    # FIXME: Usage is not clear here as this adds a step just to become a fan. Commenting out meanwhile.
+    #comment = forms.CharField(widget=forms.Textarea(attrs={'placeholder': _("Describe briefly why you are a fan of this project...")}), required=False)
+
+ProjectFanFormSet = modelformset_factory(ProjectFan, 
+                                            extra=0, 
+                                            can_delete=True, 
+                                            fields=('comment', )
                                             )
 
 class AnswerForm(TranslatableModelForm):
@@ -129,3 +137,9 @@ class ProjectVideoAddForm(forms.ModelForm):
     class Meta:
         model = ProjectVideo
         fields = ('video_url', )
+
+
+class ProjectSheetDiscussionForm(SpecificQuestionForm):
+    type = forms.ModelChoiceField(widget=HiddenInput(), 
+                                  queryset=SpecificQuestionType.objects.filter(type="pj-discuss"),
+                                  initial=SpecificQuestionType.objects.get(type="pj-discuss"))

@@ -81,7 +81,7 @@ class ProjectSerializer(ModelSerializer):
     """
     class Meta:
         fields = ('title', 'get_absolute_url', 'image')
-    get_absolute_url = Field(source='*', convert=lambda obj: obj.get_absolute_url())
+    get_absolute_url = Field(source='*', convert=lambda obj: obj.master.get_absolute_url())
     image = Field(source='*', convert=lambda obj: ProjectSerializer.get_mosaic(obj))
 
     @staticmethod
@@ -133,9 +133,10 @@ def globalsearch_autocomplete(request):
     if len(question) < 3:
         return HttpResponse("", content_type='application/json')
 
-    # matches. XXX: Need to filter based on 'Site'
+    # matches.
+    current_site = Site.objects.get_current()
     projects = SearchQuerySet().models(I4pProjectTranslation).filter(
-        language_code=current_language_code
+        sites=current_site.id
     ).autocomplete(content_auto=question)
 
     workgroups = SearchQuerySet().models(WorkGroup).filter(

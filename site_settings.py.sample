@@ -3,13 +3,26 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = True
+
+# Un-comment this to test static files, javascript and css compression, and 
+# 404 and 500 pages locally:
+#COMPRESS_ENABLED = True 
+
+# Enables on-page code profiling.  To use, uncomment the following and
+# add ?prof at the end of the URL to see profiling output.
+#DEBUG_PROFILE_MIDDLEWARE_ENABLED == True
+ 
+### HAYSTACK
+# We use Whoosh in dev env and SolR in prod/staging. If you want to force SolR in debug env, set USESOLR = True
+USESOLR = False
 # Un-comment this to test static files, javascript and css compression, and 
 # 404 and 500 pages locally:
 #COMPRESS_ENABLED = True 
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        #'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'imaginationforpeople', # Or path to database file if using sqlite3.
         'USER': 'imaginationforpeople', # Not used with sqlite3.
         'PASSWORD': 'plop', # Not used with sqlite3.
@@ -17,6 +30,21 @@ DATABASES = {
         'PORT': '', # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+# If set, OVERRIDE_CACHE_BACKEND will unconditionally change the cache backends
+# to the one set in, in OVERRIDE_CACHE_BACKEND, including when DEBUG=True.  This 
+# is used for two purposes:
+# 1- To change the backend in development from the DummyCache backend to debug 
+# cache problems 
+# 2- To change the backend in production from the LocMemCache default (typically
+# to MemcacheD.
+# Default value: None
+# Usefull values:
+# {'BACKEND': 'django.core.cache.backends.dummy.DummyCache'}
+# {'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'}
+# {'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 'LOCATION': '127.0.0.1:11211',}
+#
+# OVERRIDE_CACHE_BACKEND = {'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache', 'LOCATION': '127.0.0.1:11211',}
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -36,6 +64,11 @@ GOOGLE_ANALYTICS_ACCOUNT = None #Example:  UA-21778007-2
 
 GOOGLE_OAUTH2_CLIENT_ID = "TO_COMPLETE"
 GOOGLE_OAUTH2_CLIENT_SECRET = "TO_COMPLETE"
+
+# Geocoder API keys.  Enables the corresponding geocoders for location edition if
+# present 
+# MAPQUEST_API_KEY = 'TO_COMPLETE'
+# GEONAMES_USERNAME = 'TO_COMPLETE'
 
 ## Dynamicsites
 DEFAULT_HOST = 'imaginationforpeople.org'

@@ -3,8 +3,10 @@ from django.conf.urls.defaults import patterns, url, include
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.views.decorators.cache import cache_page
 
 import autocomplete_light
+from django.views.generic.base import TemplateView
 autocomplete_light.autodiscover() # Keep this before admin.autodiscover()
 
 from askbot.sitemap import QuestionsSitemap
@@ -12,9 +14,11 @@ from dynamicsites.views import site_info
 from django_notify.urls import get_pattern as get_notify_pattern
 from userena.contrib.umessages import views as messages_views
 from wiki.urls import get_pattern as get_wiki_pattern
+from filebrowser.sites import site
 
 from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
+from apps.map.views import ProjectListJsonView, ProjectCardAjaxView
 from apps.tags.sitemaps import TagSitemap
 
 
@@ -62,12 +66,17 @@ urlpatterns += i18n_patterns('',
     url(r'^comment/', include('django.contrib.comments.urls')),
     url(r'^notification/', include('notification.urls')),
     url(r'^project/', include('apps.project_sheet.urls')),
+    
+    url(r'^projects/map/$', TemplateView.as_view(template_name='map/global_map.html')),
+    url(r'^projects.json$', ProjectListJsonView.as_view(), name='projects-json'),
+    url(r'^get-project-card$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), {'template_name': 'map/project_card.html'}, name='get-project-card'),
+    url(r'^get-project-card-location$', cache_page(60 * 5)(ProjectCardAjaxView.as_view()), {'template_name': 'map/project_location_popup.html'}, name='get-project-card-location'),
+    
     url(r'^group/', include('apps.workgroup.urls')),
     url(r'^partner/', include('apps.partner.urls')),
     url(r'^member/', include('apps.member.urls')),
     url(r'^tags/', include('apps.tags.urls', namespace='tags')),
     url(r'^feedback/', include('backcap.urls')),
-    url(r'^search/', haystack.views.basic_search, name='i4p-search'),
     url(r'^ajax/search$', apps.i4p_base.ajax.globalsearch_autocomplete, name='i4p-globalsearch-complete'),
     url(r'^%s/' % settings.ASKBOT_URL , include('apps.forum.urls')),
 
@@ -116,7 +125,7 @@ urlpatterns += patterns('',
 
     url('^robots\.txt$', include('robots.urls')),
                         
-    url(r'^admin/filebrowser/', include('filebrowser.urls')),
+    url(r'^admin/filebrowser/', include(site.urls)),
 
     (r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^admin/', include(admin.site.urls)),

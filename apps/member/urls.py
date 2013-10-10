@@ -15,6 +15,10 @@ import views as member_views
 
 urlpatterns = patterns('',
                        url(r'^', include('social_auth.urls')),
+                       
+                       url(r'^quote/$',
+                           member_views.MembersQuoteView.as_view(),
+                           name='members_quotations'),
                        # Signup, signin and signout
                        url(r'^signup/$',
                            check_honeypot(member_views.signup),
@@ -112,10 +116,6 @@ urlpatterns = patterns('',
                        url(r'^$',
                            userena_views.profile_list,
                            name='userena_profile_list'),
+                       
                        )
-
-
-
-
-
 

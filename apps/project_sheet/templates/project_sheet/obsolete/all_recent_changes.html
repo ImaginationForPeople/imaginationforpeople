@@ -30,7 +30,17 @@
       <div id="changes_list">
 	<ul>
 	  {% for action in activity %}
-	  <li>{% display_action action %}<br/></li>
+	  <li>{% display_action action %}
+         {% if action.version %}
+            {% if action.version.checked_by %}
+               </br>[{% trans "Reviewed by" %} <a href="{{ action.version.checked_by.get_profile.get_absolute_url }}">{{ action.version.checked_by }}</a> {{ action.version.checked_on|timesince }} ago]
+            {% else %}
+                {% if user.is_staff %}
+                    [<a href="{% url history-check-version action.version.pk %}">={% trans "Mark as reviewed" %}=</a>]
+                {% endif %}
+            {% endif %}
+         {% endif %}
+     <br/></li>
 	  {% endfor %}
 	</ul>
       </div>

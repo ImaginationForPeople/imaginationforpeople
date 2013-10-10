@@ -10,6 +10,7 @@
 {% load sekizai_tags %}
 {% load tabs %}
 
+{% block title %}{% blocktrans with group_name=workgroup.name %}{{ group_name }} group members | Imagination for People{% endblocktrans %}{% endblock %}
 {% block content %}
    {% tab 'workgroup' 'members' %}
     {% addtoblock "css" %}
@@ -22,34 +23,38 @@
     <div class="container" id="workgroup-detail">
       {% include "workgroup/block/workgroup_header.html" %}
 
-      <div id="workgroup-content" class="row">
-	<div class="span8">
-          <div id="subscribers-list-full">
-            <h3>{% trans "Subscribers list" %}</h3>
-            <ul>
-              {% for subscriber in workgroup.subscribers.all %}
-              <li><a href="{% url userena_profile_detail subscriber.username %}"><img class="tipsed"  {% if request.user == member %}{% endif %} title="{{ subscriber.first_name }} {{ subscriber.last_name }}" src="{{ subscriber.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
-	      {% empty %}
-	      {% trans "There are no group subscribers." %}
-              {% endfor %}
-            </ul>
-	         </div>
-	    
-	       {% if workgroup.mailing_list and user.is_superuser %}
-	    
-      	  <div>
-      	    <h3>{% trans "Other mailing list subscribers" %} ({{ ml_nonmember_list|length }})</h3>
-
-      	    <ul>
-      	      {% for ml_member in ml_nonmember_list %}
-      	      <li>{{ ml_member.email }} </li>
-      	      {% endfor %}
-      	    </ul>
-          </div>
-	       {% endif %}
-	       </div>
-	       {% include "workgroup/block/workgroup_sidebar.html" %}
-      </div>
+        <div id="workgroup-content" class="row">
+            <div class="span8">
+                <div id="subscribers-list-full">
+                    <h3>{% blocktrans with group_name=workgroup.name %}The {{ group_name }} group members{% endblocktrans %}</h3>
+                    <ul>
+                    {% for subscriber in workgroup.subscribers.all %}
+                        <li><a href="{% url userena_profile_detail subscriber.username %}"><img class="tipsed"  {% if request.user == member %}{% endif %} title="{{ subscriber.first_name }} {{ subscriber.last_name }}" src="{{ subscriber.get_profile.get_mugshot_url }}" width="40px" height="40px"/></a></li>
+                    {% empty %}
+                    {% trans "There are no group subscribers." %}
+                    {% endfor %}
+                    </ul>
+                </div>
+          
+             {% if workgroup.mailing_list and user.is_superuser %}
+                <div>
+                    {% if user.is_superuser %}
+                    <h3>{% trans "Other mailing list subscribers" %} ({{ ml_nonmember_list|length }})</h3>
+  
+                    <ul>
+                    {% for ml_member in ml_nonmember_list %}
+                        <li>{{ ml_member.email }} </li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    and {{ ml_nonmember_list|length }} {% trans 'who are not registred on' %} ImaginationForPeople
+                    {%endif%}
+                </div>
+                
+            {% endif %}
+            </div>
+            {% include "workgroup/block/workgroup_sidebar.html" %}
+        </div>
     </div>
     
 {% endblock %}

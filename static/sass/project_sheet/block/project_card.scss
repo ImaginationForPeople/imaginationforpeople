@@ -1,0 +1,170 @@
+@import "compass/css3";
+@import "i4p/_mixins";
+@import "i4p/_fonts";
+@import "i4p/_constants";
+
+.project-card {
+	float:left;
+	width:200px;
+	height:320px;
+	position:relative;
+	margin:0 16px 25px 0;
+	cursor:pointer;
+	@include box-shadow(0 1px 3px #999);
+	@include border-radius(5px);
+
+	.cocarde {
+		display:block;
+		width:19px;
+		height:28px;
+		background:image-url('project_sheet/project_card/cocarde.png') no-repeat top left;
+		position:absolute;
+		top:-4px;
+		left:-9px;
+		z-index:2000
+	}
+
+	.top {
+		height:270px;
+		color:#242424;
+		background:white;
+		@include border-radius(5px 5px 0 0);
+
+		img {
+			@include border-radius(5px 5px 0 0);
+
+		}
+
+		h2 {
+			font-size: 1.3rem;
+		    font-weight: bold;
+		    line-height: 1.3rem;
+		    margin: 0;
+		    padding: 18px 14px;
+		    text-transform: uppercase;
+		}
+
+		.progressbar {
+			background:image-url('project_sheet/project_card/progressbar.png') no-repeat bottom left;
+			width:114px;
+			height:9px;
+			margin:12px 0 0 14px;
+			font-style:italic;
+			font-size:1.1rem;
+
+			span {
+				position:relative;
+				top:-20px;
+			}
+		}
+
+		p {
+			padding:10px 14px;
+			line-height:1.5rem;
+		}
+	}
+
+	.bottom {
+		height:49px;
+		padding:1px 0 0 0;
+		@include border-radius(0 0 5px 5px);
+		background:#242424;
+		color:white;
+		position:relative;
+
+		.supported {
+			display:block;
+			width:8px;
+			height:12px;
+			position:absolute;
+			top:9px;
+			right:15px;
+			background:image-url('project_sheet/project_card/single_guy.png') no-repeat bottom left;
+			text-indent:-999em;
+		}
+
+		.faned {
+			right:30px;
+			@include opacity(0.5);
+		}
+
+		.country {
+			font-size:1.1rem;
+			line-height:1.3rem;
+			display:block;
+			margin:6px 0 6px 14px;
+
+			img {
+				margin:0 6px 0 0;
+			}
+		}
+
+		p {
+			margin:0 0 0 14px;
+			font-style:italic;
+
+			span {
+				margin: 0 6px 0 0;
+    			padding: 0 0 0 20px;
+
+				&.comments { background:image-url('project_sheet/project_card/discussion.png') no-repeat center left; }
+				&.needs { background:image-url('project_sheet/project_card/speaker.png') no-repeat center left; }
+				&.fav { background:image-url('project_sheet/project_card/star.png') no-repeat center left; }
+			}
+		}
+	}
+
+	.hover {
+		height:320px;
+		width:200px;
+		position:absolute;
+		top:-5px;
+		left:-5px;
+		background:#04add1 image-url('project_sheet/project_card/card_over.jpg') no-repeat 0 48px;
+		border:5px solid #b9e5ee;
+		@include border-radius(5px);
+
+		.name {
+			font-size: 1.2rem;
+		    font-weight: bold;
+		    line-height: 1.3rem;
+		    margin: 0;
+		    padding: 18px 14px 0;
+		    text-transform: uppercase;
+		    color:white;
+		    height:30px;
+		}
+
+		p {
+			padding:10px 14px;
+			line-height:1.5rem;
+			color:white;
+			text-align:justify;
+			margin:0;
+			height:196px;
+			border-bottom:1px solid #038eab;
+		}
+
+		.more {
+			border-top: 1px solid rgba(255, 255, 255, 0.3);
+
+			a {
+				display:block;
+				padding:20px 56px 10px 0;
+				text-align:right;
+				font-size: 1.2rem;
+			    font-weight: bold;
+			    line-height: 1.3rem;
+			    color:white;
+			    text-transform: uppercase; 
+			    background:image-url('project_sheet/project_card/see.png') no-repeat 82% 20px;
+			    @include transition(background 0.2s ease-in);
+
+			    &:hover {
+			    	background-position:85% 20px;
+			    	text-decoration:none;
+			    }
+			}
+		}
+	}
+}

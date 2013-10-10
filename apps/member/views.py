@@ -1,3 +1,5 @@
+from django.views.generic.base import TemplateView
+from apps.member.models import I4pProfile
 
 #-- encoding: utf-8 --
 #
@@ -44,7 +46,7 @@ from guardian.decorators import permission_required_or_403
 from reversion.models import Version
 
 from apps.project_sheet.utils import get_project_translations_from_parents
-from apps.project_sheet.models import I4pProjectTranslation
+from apps.project_sheet.models import I4pProject
 
 from .forms import I4PEditProfileForm, I4PSignupForm
 
@@ -95,21 +97,26 @@ def profile_detail(request, username):
     """
     user = get_object_or_404(User, username__iexact=username)
 
-    project_translation_list = get_project_translations_from_parents(user.projects.all().distinct()[:3],
-                                                                     language_code=translation.get_language()
-                                                                     )
-
-    project_translation_ct = ContentType.objects.get_for_model(I4pProjectTranslation)
+    project_member_list = user.projects.all()
+    
+    workgroup_member_list = user.workgroups.all()
+    
+    project_translation_ct = ContentType.objects.get_for_model(I4pProject)
 
     # FIXME : UGLY AND DOESN'T WORK !
     version_ids = [int(id["object_id"]) for id in Version.objects.filter(content_type=project_translation_ct, revision__user=user).values('object_id').distinct()[:30]]
-    project_contrib_list = I4pProjectTranslation.objects.filter(id__in=version_ids)
+    project_contrib_list = I4pProject.objects.filter(id__in=version_ids)
+
+    project_fan_list = I4pProject.objects.filter(fans__id=user.id)
+    
 
     return userena_views.profile_detail(request,
                                         username,
                                         template_name='userena/profile_detail.html',
-                                        extra_context={'project_translation_list': project_translation_list,
-                                                       'project_contrib_list' : project_contrib_list}
+                                        extra_context={'project_member_list': project_member_list,
+                                                       'workgroup_member_list': workgroup_member_list,
+                                                       'project_contrib_list' : project_contrib_list,
+                                                       'project_fan_list' : project_fan_list}
                                         )
 
 
@@ -311,3 +318,14 @@ def direct_to_user_template(request, username, template_name,
                               template_name,
                               extra_context=extra_context)
 
+
+class MembersQuoteView(TemplateView):
+    template_name = "member/quote.html"
+    
+    def get_context_data(self, **kwargs):
+        context = TemplateView.get_context_data(self, **kwargs)
+        members = {}
+        for member in I4pProfile.objects.filter(motto__isnull=False).exclude(motto__exact='').order_by("?"):
+            members[member.get_full_name_or_username] = member.motto.replace('"', '').capitalize()
+        context["members"] = members
+        return context

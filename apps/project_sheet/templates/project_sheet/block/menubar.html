@@ -11,38 +11,42 @@
 <script src="{{ STATIC_URL }}js/compass_twitter_bootstrap/bootstrap-dropdown.js"></script>
 {% endaddtoblock %}
 
+
+{% addtoblock "js" %}
+<script src="{{ STATIC_URL }}js/project_sheet/block/menubar.js"></script>
+{% endaddtoblock %}
+
 <div class="project-menubar">
   <div class="container">
     <div class="row">
-      <div class="menubar-leftcolumn span8">
+      <div class="menubar-leftcolumn span12">
 	<ul>
 	  <!-- project -->
-	  <li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %}">
+	  <li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %} project">
 	    <a href="{{ project_translation.master.get_absolute_url  }}">{% trans "Project" %}</a>
 	  </li>
 	  <!-- gallery -->
-	  <li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %}">
+	  <li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %} gallery">
 	    <a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a>
 	  </li>
 	  <!-- discussion -->
-          <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %}">
+          <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %} discuss">
             <a href="{% url project_discussion_list project_translation.slug %}">
-              {% trans "Discussion" %}
+              {% trans "Discussions" %}
+              <span class="badge">{{discussion_count}}</span>
             </a>
           </li>
 	  <!-- support -->
-          <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %}">
+          <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %} support">
             <a href="{% url project_support_main project_translation.slug %}">
               {% trans "Needs" %}
-              <span class="badge">{{ project_translation.projectsupport_set.count }}</span>
+              <span class="badge">{{need_count}}</span>
             </a>
           </li>
 	  <!-- history -->
-	  <li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %}">
+	  <li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %} history">
 	    <a href="{% url project_sheet-instance-history project_translation.slug %}">{% trans "History" %}</a>
 	  </li>
-	  
-	  
 				{% comment %}
 				<li><a href="#FIXME-BADURL">{% trans "Activity" %}</a></li>
 				<li class="right"><a href="#FIXME-BADURL">
@@ -118,12 +122,12 @@
 				</li>
 			</ul>
 			</div>
-			<div class="menubar-rightcolumn span4">
+			<!--<div class="menubar-rightcolumn span4">
 				<ul>
 					<li class="right"><a href="#FIXME:next-project-url">&gt;</a></li>
 					<li class="right"><a href="#FIXME:prev-project-url">&lt;</a></li>
 				</ul>
-			</div>
+			</div>-->
 		</div>
 	</div>
 </div> <!-- .project-menubar -->

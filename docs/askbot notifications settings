@@ -1,0 +1,29 @@
+For administrators of the platform:   
+
+How to perform bulk changes of the notification settings   
+
+These can be changed by firing up a shell_plus from prod or staging server. These settings are set as attributes for each EmailFeedSetting object. The attribute "feed_type" can get those values:   
+
+FEED_TYPE_CHOICES = (
+                    ('q_all',_('Entire forum')),
+                    ('q_ask',_('Questions that I asked')),
+                    ('q_ans',_('Questions that I answered')),
+                    ('q_sel',_('Individually selected questions')),
+                    ('m_and_c',_('Mentions and comment responses')),
+                    )   
+And the type of email notification "frequency" can get those values:   
+UPDATE_FREQUENCY =  (
+                    ('i',_('Instantly')),
+                    ('d',_('Daily')),
+                    ('w',_('Weekly')),
+                    ('n',_('No email')),
+                    )   
+
+Examples:   
+If you want to set frequency to 'instantly receive email' (frequency='i') for all EmailFeedSetting objects excluding those whose feed_type is 'Entire forum' (feed_type='q_all'), then do :   
+
+EmailFeedSetting.objects.exclude(feed_type='q_all').update(frequency='i')   
+
+If you want to set frequency to 'receive email Daily' (frequency='d') for *only* EmailFeedSetting objects whose feed_type is 'Individually selected questions' (feed_type='q_sel'), then do:   
+
+EmailFeedSetting.objects.all().filter(feed_type='q_sel').update(frequency='d')   

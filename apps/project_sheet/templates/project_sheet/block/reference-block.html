@@ -20,7 +20,7 @@ Parameters for this block
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/reference-block.css" />
 {% endaddtoblock %}
 
-<div id="references" class="{{ reference_block_extra_class }} references-block">
+<div id="references" class="{{ reference_block_extra_class }} references-block clearfix">
 	<a name="project-references"></a>
 	<h2>
 		<i class="sheet-references"></i>
@@ -28,7 +28,6 @@ Parameters for this block
 
 	<div class="row">
 		<div class="references-links link-list span8" >{% comment %} FIXME: change back to span4 {% endcomment %}
-			<h3>{% trans "Links" %}</h3>
 			{% if reference_formset %}
 			<form method="POST" action="?">
 			  {% csrf_token %}
@@ -54,7 +53,7 @@ Parameters for this block
 				href="{% url project_sheet-instance-edit-references project_translation.slug %}#references"
 				class="button">
 				<i class="action-add"></i>
-				{% trans "Edit" %}
+				{% trans "Edit the references" %}
 			</a>
 			{% endif %}
 			{% endif %}

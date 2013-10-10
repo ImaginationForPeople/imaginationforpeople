@@ -16,8 +16,11 @@
 # along with I4P.  If not, see <http://www.gnu.org/licenses/>.
 #
 """
-Toolkit for a project sheet management
+Toolkit for a project sheet management.
+DeprecationWarning: Should now be replaced by Hvad calls
 """
+import warnings
+
 from django.contrib.contenttypes.models import ContentType
 from django.conf import settings
 from django.db import DatabaseError
@@ -25,15 +28,20 @@ from django.contrib.sites.models import Site
 
 from tagging.models import Tag
 
-from .models import I4pProject, I4pProjectTranslation, SiteTopic, VERSIONED_FIELDS
+from .models import I4pProject, SiteTopic, VERSIONED_FIELDS
+I4pProjectTranslation = I4pProject.objects.translations_model
+
 from .filters import BestOfFilterForm, NameBaselineFilterForm, TopicFilterForm
-from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectLocationFilterForm
+from .filters import ProjectStatusFilterForm, ProjectProgressFilterForm, ProjectCountriesFilterForm
 from .filters import ThemesFilterForm, WithMembersFilterForm, ProjectObjectiveFilterForm
+
+deprecation_warning_text = "You should now use HVAD instead of this function."
 
 def create_parent_project(topic_slug):
     """
     Create a parent project
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)
     project = I4pProject.objects.create()
 
     site = Site.objects.get_current().id
@@ -48,6 +56,7 @@ def get_project_translation_by_slug(project_translation_slug, language_code):
     """
     Get a translation of a given project
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)    
     return I4pProjectTranslation.objects.get(language_code=language_code,
                                              slug=project_translation_slug)
 
@@ -55,6 +64,7 @@ def get_project_translation_by_any_translation_slug(project_translation_slug, pr
     """
     Get a translation of a given project, looking at slugs in any language
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)    
     try:
         project_translation = I4pProjectTranslation.objects.get(slug=project_translation_slug,
                                                                 language_code=prefered_language_code,
@@ -84,6 +94,8 @@ def get_project_translation_from_parent(parent, language_code, fallback_language
     If we also have fallback_any, then pick the first translation.
     Otherwise, raise a DoesNotExist exception
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)
+    
     try:
         project_translation = parent.translations.get(language_code=language_code)
     except I4pProjectTranslation.DoesNotExist, e:
@@ -107,6 +119,8 @@ def get_project_translations_from_parents(parents_qs, language_code, fallback_la
     """
     Same as above, but given a queryset of parents
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)
+    
     return [get_project_translation_from_parent(project,
                                                 language_code=language_code,
                                                 fallback_language=fallback_language,
@@ -121,6 +135,8 @@ def create_project_translation(language_code, parent_project, default_title=None
     """
     Create a translation of a project.
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)
+    
     try:
         I4pProjectTranslation.objects.get(master=parent_project,
                                           language_code=language_code)
@@ -149,6 +165,8 @@ def get_or_create_project_translation_by_slug(project_translation_slug, language
     projects.
     When possible, use the "_from_parent" version instead.
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)
+    
     try:
         project_translation = get_project_translation_by_slug(project_translation_slug, language_code)
     except I4pProjectTranslation.DoesNotExist:
@@ -163,6 +181,8 @@ def get_or_create_project_translation_from_parent(parent_project, language_code,
     """
     Create a project translation for the given language_code, related to a parent project (language agnostic)
     """
+    warnings.warn(deprecation_warning_text, DeprecationWarning)
+    
     try:
         project_translation = get_project_translation_from_parent(parent_project, language_code)
     except I4pProjectTranslation.DoesNotExist:
@@ -188,7 +208,7 @@ def build_filters_and_context(request_data):
     filter_forms = {
         'topic_filter' : TopicFilterForm(request_data),
         'themes_filter' : ThemesFilterForm(request_data),
-        'location_filter' : ProjectLocationFilterForm(request_data),
+        'countries_filter' : ProjectCountriesFilterForm(request_data),
         'best_of_filter' : BestOfFilterForm(request_data),
         'status_filter' : ProjectStatusFilterForm(request_data),
         'members_filter' : WithMembersFilterForm(request_data),

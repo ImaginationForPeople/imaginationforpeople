@@ -1,0 +1,27 @@
+{% extends "project_questions/block/question_form.html" %}
+{% load i18n %}
+
+{% block tags_block %}
+<p>
+	{{form.type.label_tag}}{% if form.type.errors %}{{ form.type.errors }}{% endif %}{{form.type}}
+</p>
+<div id="categorySearch">
+    <input type="hidden" name='category' value="{{current_category}}"/>
+    {% include "project_questions/block/categories_menu.html" %}
+    <label id="categ_label">{% trans 'No selected category' %}</label>
+</div>
+<script>
+$(document).ready(function(){
+    var current_cat = $("#categorySearch input[name=category]").val()
+    if(current_cat){
+        $("#categ_label").html($("#"+current_cat+".tag-selector").html())
+    }
+    $(".tag-selector").click(function(){
+        $("#categ_label").html($(this).html());
+        $("input[name=category]").val($(this).attr('id'));
+        $('ul.sf-main-menu').hideSuperfishUl();
+        return false;
+    });
+});
+</script>
+{% endblock %}

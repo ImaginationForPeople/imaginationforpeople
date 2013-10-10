@@ -1,0 +1,71 @@
+{% load i18n %}
+{% load sekizai_tags %}
+
+{% addtoblock "sekizai_extra_head" strip %}
+{{ form.media }}
+{% endaddtoblock %}
+
+{% addtoblock "css" strip %}
+<link rel="stylesheet" type="text/css" media="screen" href="{{ STATIC_URL }}css/i4p_base/i4p_base/location/location_form.css" />
+{% endaddtoblock %}
+
+{{ form.non_field_errors }}
+<fieldset>
+{% if formset %}
+    <legend>
+        {% if not forloop.last %}
+            {% blocktrans with count=forloop.counter %}Location {{ count }}{% endblocktrans %}
+        {% else %}
+            {% blocktrans %}New location{% endblocktrans %}
+        {% endif %}
+    </legend>
+    {% if forloop.last %}
+        <button class="btn add_new" onclick="$(this).next('div.location_form').removeClass('location_hide');$(this).remove();return false;">{% trans "Add a new location" %}</button>
+    {% endif %}
+{% endif %}
+
+<div class="location_form {% if forloop.last %}new {% if form.errors|length = 0 %}location_hide {% endif %}{% else %}existing{% endif %}">
+    <div class="field field_geom">
+        {{ form.geom.errors }}
+        {{ form.geom.label_tag }}
+        {{ form.geom.help_text }}
+        {{ form.geom }}
+    </div>
+    <div class="field field_country">
+        <label class="tipsed on" original-title="{{ form.country.help_text|escape }}">{{ form.country.label }}</label>
+        {{ form.country.errors }}
+        {{ form.country }}
+    </div>
+    <div class="field field_address">
+        <label class="tipsed on" original-title="{{ form.address.help_text|escape }}">{{ form.address.label }}</label>
+        {{ form.address.errors }}
+        {{ form.address }}
+    </div>
+    <div class="field field_force_geocode">
+        {{ form.force_geocode.errors }}
+        {{ form.force_geocode }}
+        <button class="btn delete" onclick="$('#{{ form.force_geocode.auto_id }}').val('on');return true;">
+        {% if form.geocode_picker.auto_id or form.geom.value %}
+            {% blocktrans %}Geocode again{% endblocktrans %}
+        {% else %}
+            {% blocktrans %}Geocode{% endblocktrans %}
+        {% endif %}
+        </button>
+    </div>
+    {% if form.geocode_picker.auto_id %}
+    <div class="field field_geocode_picker">
+    <label class="tipsed on" original-title="{{ form.geocode_picker.help_text|escape }}">{{ form.geocode_picker.label }}</label>
+        {{ form.geocode_picker.errors }}
+        {{ form.geocode_picker }}
+    </div>
+    {% endif %}
+
+    <div class="field field_DELETE">
+    {{ form.DELETE.errors }}
+    {% if formset.can_delete and not forloop.last%}
+    <button class="btn delete" onclick="$('#{{ form.DELETE.auto_id }}').val('on');return true;">{% blocktrans with count=forloop.counter %}Delete location {{ count }}{% endblocktrans %}</button>
+    {% endif %}
+    {{ form.DELETE }}
+    </div>
+</div>
+</fieldset>

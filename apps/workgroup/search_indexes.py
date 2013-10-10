@@ -4,7 +4,7 @@ from .models import WorkGroup
 
 class WorkGroupIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, model_attr='name')
-    description = indexes.CharField(model_attr='description')
+    description = indexes.CharField(model_attr='description', default='')
     language_code = indexes.CharField(model_attr='language')
     visible = indexes.BooleanField(model_attr='visible')    
     

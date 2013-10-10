@@ -21,12 +21,17 @@ from diff_match_patch import diff_match_patch
 
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib.gis.db import models as geomodels
 from django.utils.translation import ugettext_lazy as _
+from django.db.models.signals import pre_save
 
 from actstream.models import Action
 from django_countries import CountryField
 from django_extensions.db.fields import json
+
+
 import reversion
+
 
 I4P_COUNTRIES = (
     ('AF', _(u'Afghanistan')),
@@ -279,28 +284,48 @@ I4P_COUNTRIES = (
 
 
 
-class Location(models.Model):
+class Location(geomodels.Model):
     """
     A generic location model designed to be used to localize any object
     """
-    lat = models.FloatField(verbose_name=_('latitude'),
-                            null=True, blank=True)
-
-    lon = models.FloatField(verbose_name=_('longitude'),
-                            null=True, blank=True)
+#     lat = models.FloatField(verbose_name=_('latitude'),
+#                             null=True, blank=True)
+# 
+#     lon = models.FloatField(verbose_name=_('longitude'),
+#                             null=True, blank=True)
 
     country = CountryField(verbose_name=_('country'), choices=I4P_COUNTRIES,
-                           null=True, blank=True)
+                           null=True,
+                           blank=True,
+                           help_text=_(u"The country this location is in.  Set before geocoding,you'll get more accurate results")
+                           )
 
     address = models.TextField(verbose_name=_('address'),
-                               null=True, blank=True)
+                               null=True,
+                               blank=True,
+                               help_text=_(u'The textual description of the Location to be displayed to the user.  Typically a full address such as \"880 rue Roy Est, espace 300 - Montréal (Québec) H2L 1E6)\", but can also be a less precise description of a location "Lake Champlain, Canada", or the name of a place location \"Museum of Fine Arts, Montréal, Québec, Canada\"')
+                               )
 
+    geom = geomodels.PointField(verbose_name=_('map'),
+                                null=True,
+                                blank=True,
+                                help_text=_(u"You can chose a point on the map manually, or refine the one that was geocoded")
+                                )
+    objects = geomodels.GeoManager()
+    
+    @property
+    def full_addr(self):
+        addr = u""
+        if self.address:
+            addr += "%s," % self.address
+        if self.country:
+            addr += self.get_country_display()
+        return addr
+    
     def __unicode__(self):
-        return u"%s %s (%s, %s)" % (self.address,
-                                    self.get_country_display(),
-                                    self.lon,
-                                    self.lat)
-        
+        return self.full_addr
+
+
 class VersionActivity(models.Model):
     """
     A metadata class to link an Action with a Revision
