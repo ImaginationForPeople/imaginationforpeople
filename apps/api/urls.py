@@ -15,7 +15,6 @@ v1_api.register(WorkgroupResource())
 v1_api.register(ProjectPictureResource())
 v1_api.register(I4pProjectEditResource())
 
-
 urlpatterns = patterns('',
      url(r'^', include(v1_api.urls)),
 )
