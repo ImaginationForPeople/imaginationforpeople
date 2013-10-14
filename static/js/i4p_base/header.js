@@ -14,4 +14,7 @@ $(document).ready(function () {
    $(document).on('mouseleave', '#header #connect-block', function() {
       $(this).hide();
    });
+   $(document).on('mouseleave', '#me-block', function() {
+      $(this).hide();
+   });
 });
