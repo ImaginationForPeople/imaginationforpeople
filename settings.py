@@ -439,7 +439,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 # Honeypot
-HONEYPOT_FIELD_NAME = "homepage"
+HONEYPOT_FIELD_NAME = "userlogin"
 
 # Userena
 ANONYMOUS_USER_ID = -1
