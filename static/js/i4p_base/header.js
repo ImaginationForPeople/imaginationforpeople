@@ -12,9 +12,15 @@ $(document).ready(function () {
       $(this).children('#me-block').show();
    });
    $(document).on('mouseleave', '#header #connect-block', function() {
-      $(this).hide();
+      $(this).children('#connect-block').hide();
    });
-   $(document).on('mouseleave', '#me-block', function() {
-      $(this).hide();
+   $(document).on('mouseleave', '#header #connect-link', function() {
+      $(this).children('#connect-block').hide();
+   });
+   $(document).on('mouseleave', '#header #me-block', function() {
+      $(this).children('#me-block').hide();
+   });
+   $(document).on('mouseleave', '#header #me-link', function() {
+      $(this).children('#me-block').hide();
    });
 });
