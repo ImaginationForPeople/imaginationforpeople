@@ -664,6 +664,9 @@ LEAFLET_CONFIG = {
     }
 }
 
+# ZINNIA
+ZINNIA_AUTO_MODERATE_COMMENTS = True
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': True,
