@@ -1,0 +1,39 @@
+{% load comments i18n %}
+{% load url from future %}
+<form action="{% comment_form_target %}" method="post" id="comment-form">
+  {% csrf_token %}
+  <fieldset>
+    {% if user.is_authenticated %}
+    <legend>{% trans "Post your comment" %}</legend>
+    <input type="hidden" name="next" value="{% url 'zinnia_comment_success' %}"/>
+    
+	{% for field in form %}
+	    {% if field.is_hidden %}
+		{{ field }}
+	    {% else %}
+		{% if user.is_authenticated and field.name in "namemailurl" %}
+		{% else %}
+		    <div{% if field.errors %} class="error"{% endif %}{% ifequal field.name "honeypot" %} style="display:none;"{% endifequal %}>
+		      {{ field.label_tag }}
+		      {% if field.errors %}{{ field.errors }}{% endif %}
+		      {{ field }}
+		    </div>
+		{% endif %}
+	    {% endif %}
+	{% endfor %}
+    
+    <p class="auth">
+	{% trans "Comment as " %} <strong>{% firstof user.get_full_name user.username %}</strong><a href="{{settings.LOGOUT_URL}}?next={{settings.LOGIN_URL}}">{% trans " or log out" %}</a>.
+    </p>
+   
+    <p class="submit">
+      <input type="submit" name="submit" class="submit-post" value="{% trans 'Post' %}" />
+      <input type="submit" name="preview" class="submit-preview" value="{% trans 'Preview' %}" />
+    </p>
+    {% else %}	
+	<p class="auth">
+	    <strong>{% trans "You need to login to comment. " %}</strong><a href="{{settings.LOGIN_URL}}?next={{request.get_full_path}}">{% trans "Log in" %}</a>.
+	</p>
+    {% endif %}
+  </fieldset>
+</form>
