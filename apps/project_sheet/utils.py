@@ -26,8 +26,6 @@ from django.conf import settings
 from django.db import DatabaseError
 from django.contrib.sites.models import Site
 
-from tagging.models import Tag
-
 from .models import I4pProject, SiteTopic, VERSIONED_FIELDS
 I4pProjectTranslation = I4pProject.objects.translations_model
 
@@ -191,40 +189,6 @@ def get_or_create_project_translation_from_parent(parent_project, language_code,
                                                          default_title=default_title)
 
     return project_translation
-
-
-
-def build_filters_and_context(request_data):
-    """
-    Build the set of filter in order to include them in homepage and project list page
-    
-    request : the GET variables passes to the view (i.e i4pbase.views.homepage or project_sheet.views.project_sheet_list)
-    
-    Return :
-    - the set of filters form
-    - an extra context
-    """
-
-    filter_forms = {
-        'topic_filter' : TopicFilterForm(request_data),
-        'themes_filter' : ThemesFilterForm(request_data),
-        'countries_filter' : ProjectCountriesFilterForm(request_data),
-        'best_of_filter' : BestOfFilterForm(request_data),
-        'status_filter' : ProjectStatusFilterForm(request_data),
-        'members_filter' : WithMembersFilterForm(request_data),
-        'progress_filter' : ProjectProgressFilterForm(request_data),
-        'project_sheet_search_form' : NameBaselineFilterForm(request_data),
-        'objective_filter' : ProjectObjectiveFilterForm(request_data)
-    }
-
-    project_sheet_tags = Tag.objects.usage_for_model(I4pProjectTranslation, counts=True)
-    project_sheet_tags.sort(key=lambda tag:-tag.count)
-
-    extra_context = {
-         "project_sheet_tags" : project_sheet_tags
-    }
-
-    return (filter_forms, extra_context)
 
 #-- Reversion utils --#
 def fields_diff(previous_version, current_version, versionned_fields):

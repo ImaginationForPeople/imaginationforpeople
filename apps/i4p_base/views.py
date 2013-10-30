@@ -33,6 +33,8 @@ from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.base import RedirectView
 from django.views.generic import TemplateView
 
+from tagging.models import Tag
+
 from haystack.query import SearchQuerySet
 from haystack.views import FacetedSearchView as HaystackFacetedSearchView
 
@@ -195,6 +197,7 @@ class SearchView(FacetedSearchView):
     """
     template_name = 'i4p_base/search/search.html'
     filter_models = [I4pProject]
+    
     # more order parameters to be added later
     sort_by = {
        'created': '-created',       
@@ -233,6 +236,9 @@ class SearchView(FacetedSearchView):
     def get_context_data(self, **kwargs):
         context = super(SearchView, self).get_context_data(**kwargs)
         context['project_list']=[]
+        project_sheet_tags = Tag.objects.usage_for_model(I4pProject.objects.translations_model, counts=True)
+        project_sheet_tags.sort(key=lambda tag:-tag.count)
+        context['project_sheet_tags']=project_sheet_tags
         for result in self.page.object_list:
             if(result):
                 context['project_list'].append(result.object)
