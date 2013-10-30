@@ -439,7 +439,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 # Honeypot
-HONEYPOT_FIELD_NAME = "homepage"
+HONEYPOT_FIELD_NAME = "login"
 
 # Userena
 ANONYMOUS_USER_ID = -1
@@ -554,7 +554,7 @@ STATICFILES_DIRS = (
 
 COMPRESS_CSS_FILTERS = (
     'compressor.filters.css_default.CssAbsoluteFilter',
-    'compressor.filters.cssmin.CSSMinFilter'
+    #'compressor.filters.cssmin.CSSMinFilter'
     )
 
 ### COMPRESOR
@@ -663,6 +663,9 @@ LEAFLET_CONFIG = {
         },
     }
 }
+
+# ZINNIA
+ZINNIA_AUTO_MODERATE_COMMENTS = True
 
 LOGGING = {
     'version': 1,
