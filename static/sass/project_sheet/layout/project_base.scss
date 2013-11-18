@@ -59,11 +59,15 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     		}
     		.discu {
     			display:block;
-    			width:54px;
-    			height:53px;
     			margin:0 20px 0 0;
     			float:left;
-    			background:image-url('project_sheet/big_ico_discu.png') no-repeat top left;
+
+                a {
+                    display: block;
+                    width:54px;
+                    height:53px;
+                    background:image-url('project_sheet/big_ico_discu.png') no-repeat top left;
+                }
     		}
     		.share {
     			display:block;
@@ -72,6 +76,10 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     			float:left;
     			background:image-url('project_sheet/big_ico_share.png') no-repeat top left;
     		}
+    		
+            span a:hover {
+                text-decoration: none;
+            }
     	}
 
     	p {
