@@ -50,12 +50,17 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     		margin:15px 0 0 85px;
 
     		.like {
-    			display:block;
-    			width:54px;
-    			height:53px;
     			margin:0 20px 0 0;
     			float:left;
-    			background:image-url('project_sheet/big_ico_like.png') no-repeat top left;
+    			
+    			button {
+	    			display:block;
+	    			width:54px;
+	    			height:53px;
+	    			background:image-url('project_sheet/big_ico_like.png') no-repeat top left;
+	    			border: none;
+	    			margin: auto;
+    			}
     		}
     		.discu {
     			display:block;
@@ -80,6 +85,10 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
             span a:hover {
                 text-decoration: none;
             }
+            
+            #required_field {
+				display: none;
+			}
     	}
 
     	p {

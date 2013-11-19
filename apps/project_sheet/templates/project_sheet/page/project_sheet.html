@@ -182,7 +182,11 @@
 <div class="project-inspirational">
   <strong>{% trans "You find this project inspiring ?" %}</strong>
   <div class="icos">
-    <span class="like">&nbsp;</span>
+  	<form id="fans-add-form" method='POST' action='{% url project_sheet-instance-add-fan project.slug %}'>
+  		{% csrf_token %}
+       	{{ project_fan_add_form.as_p }}
+    	<span class="like"><button type="submit">&nbsp;</button>{% trans "Become a fan" %}</span>
+    </form>
     <span class="discu"><a href="{% url project_discussion_list project_translation.slug %}">&nbsp;</a>{% trans "Discuss" %}</span>
     <span class="share">&nbsp;</span>
   </div>
