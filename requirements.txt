@@ -14,7 +14,8 @@ django-autocomplete-light==1.1.13
 easy-thumbnails==1.0.3
 
 # Django cms
--e git://github.com/divio/django-cms.git@2.4.2#egg=django-cms
+#-e git://github.com/imaginationforpeople/django-cms.git@support/2.4.x#egg=django-cms
+-e git://github.com/ImaginationForPeople/django-cms.git@601ee31eb37c96b50b4d559e275688f8ff9eabd7#egg=django-cms
 
 # Wiki
 -e git://github.com/benjaoming/django-wiki.git@64a22a81807898f3fb1d60c86a9c13bb26fe4ac8#egg=django-wiki
@@ -109,7 +110,8 @@ django-simplegravatar==0.2
 django-lamson==0.1.0.beta
 
 # Zinnia blog
--e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.1#egg=django-blog-zinnia
+#-e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.3#egg=django-blog-zinnia
+-e git://github.com/benoitg/django-blog-zinnia.git@5ed1c4b004ef6ab5d66bbf4238926543bf499483#egg=django-blog-zinnia
 -e git://github.com/Fantomas42/cmsplugin-zinnia.git@3790581ae8f669ad37dcdaedf86ee6ca61e1d06b#egg=cmsplugin-zinnia
 
 # REST API
