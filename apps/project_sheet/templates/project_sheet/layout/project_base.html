@@ -45,19 +45,16 @@
    </script>
 {% endaddtoblock %}
 {% include "addthis.html" %}
-{% addtoblock "js" strip %}
-    {% if project_translation %}
+{% if project_translation %}
     <script>
-    // Addthis configuration
-    var addthis_share = {
-        templates : {
-            twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
-        }
-    };
+        // Addthis configuration
+        var addthis_share = {
+            templates : {
+                twitter : "{{ project_translation.title }} : {{ project_translation.baseline }} | Imagination for People : http://imaginationforpeople.org{% language project_translation.language_code %}{% url project_sheet-show project_translation.slug %}{% endlanguage %} (via @ipvoices)"
+            }
+        };
     </script>
-    {% endif %}
-
-{% endaddtoblock %}
+{% endif %}
 
 {% addtoblock "css" strip %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/project_sheet/block/memberlist_square.css" />
