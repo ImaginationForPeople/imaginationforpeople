@@ -76,10 +76,15 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     		}
     		.share {
     			display:block;
-    			width:54px;
-    			height:53px;
+    			marign: 0 20px 0 0;
     			float:left;
-    			background:image-url('project_sheet/big_ico_share.png') no-repeat top left;
+    			
+    			a {
+    				display: block;
+	    			width:54px;
+	    			height:53px;
+	    			background:image-url('project_sheet/big_ico_share.png') no-repeat top left;
+    			}
     		}
     		
             span a:hover {
