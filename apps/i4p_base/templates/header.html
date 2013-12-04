@@ -97,6 +97,7 @@
                     </div>
                     {% endif %}
                     <div id="interface_lang">
+                        {% if not post %} {# a given post is only available in one language #}
                         <a class="open-panel" href="javascript:;">{{ LANGUAGE_CODE|upper}}</a>
                         <ul>
                             {% get_available_languages as languages %}
@@ -119,6 +120,7 @@
                                {% endlanguage %}
                             {% endfor %}
                         </ul>
+                        {% endif %}
                     </div>
                 </div>
                 <div class="logo">
