@@ -152,7 +152,11 @@
   
     <div class="global">   
     
-          {% block header %} {{ include_django("header.html", request) }} {% endblock %}         
+          {% block header %} 
+            {% if question %}{{ include_django("header.html", request, post=question) }}
+            {% else %}{{ include_django("header.html", request) }}
+            {% endif %}
+          {% endblock %}         
           
           
           {% include "widgets/system_messages.html" %}
