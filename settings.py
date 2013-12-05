@@ -473,7 +473,7 @@ DEBUG_TOOLBAR_PANELS = (
 FORCE_LOWERCASE_TAGS = True
 
 ### Mailer
-SERVER_EMAIL = 'noreply@imaginationforpeople.org'
+SERVER_EMAIL = 'Imagination for People <noreply@imaginationforpeople.org>'
 
 DEFAULT_FROM_EMAIL = SERVER_EMAIL
 
