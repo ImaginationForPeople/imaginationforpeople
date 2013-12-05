@@ -9,7 +9,6 @@ import autocomplete_light
 from django.views.generic.base import TemplateView
 autocomplete_light.autodiscover() # Keep this before admin.autodiscover()
 
-from askbot.sitemap import QuestionsSitemap
 from dynamicsites.views import site_info
 from django_notify.urls import get_pattern as get_notify_pattern
 from userena.contrib.umessages import views as messages_views
@@ -20,6 +19,7 @@ from apps.member.forms import AutoCompleteComposeForm
 from apps.project_sheet.sitemaps import I4pProjectTranslationSitemap
 from apps.map.views import ProjectListJsonView, ProjectCardAjaxView
 from apps.tags.sitemaps import TagSitemap
+from apps.forum.sitemaps import QuestionsSitemap
 
 
 # For server errors
