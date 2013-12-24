@@ -112,7 +112,7 @@ CMS_LANGUAGES = {
             'name': u'Русский',
         },
         {
-            'code': 'zh',
+            'code': 'zh-cn',
             'name': u'中文',
         },
     ],
