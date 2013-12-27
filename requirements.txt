@@ -102,7 +102,7 @@ feedparser==5.1.2
 -e git+https://github.com/justquick/django-template-utils.git#egg=django-template-utils
 django-simplegravatar==0.2
 
--e hg+https://bitbucket.org/andrewnelis/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
+-e hg+https://bitbucket.org/uysrc/django-dynamicsites@e3c6cad807f0#egg=django-dynamicsites
 
 # Askbot
 -e hg+https://atiberghien@bitbucket.org/atiberghien/django-keyedcache#egg=django-keyedcache
@@ -111,7 +111,7 @@ django-lamson==0.1.0.beta
 
 # Zinnia blog
 #-e git://github.com/Fantomas42/django-blog-zinnia.git@v0.12.3#egg=django-blog-zinnia
--e git://github.com/benoitg/django-blog-zinnia.git@5ed1c4b004ef6ab5d66bbf4238926543bf499483#egg=django-blog-zinnia
+-e git://github.com/benoitg/django-blog-zinnia.git@b6e2187ee65566550775fcba9a33f2c17f68769d#egg=django-blog-zinnia
 -e git://github.com/Fantomas42/cmsplugin-zinnia.git@3790581ae8f669ad37dcdaedf86ee6ca61e1d06b#egg=cmsplugin-zinnia
 
 # REST API
@@ -121,15 +121,21 @@ django-lamson==0.1.0.beta
 diff-match-patch==20120106
 
 # Our version of actstream, patched to register models manually
--e git://github.com/ImaginationForPeople/django-activity-stream.git@master#egg=django-activity-stream
+#-e git://github.com/ImaginationForPeople/django-activity-stream.git@master#egg=django-activity-stream
+#-e git+https://github.com/justquick/django-activity-stream.git@master#egg=django-activity-stream
 
 # GIS/mapping tools
 -e git://github.com/benoitg/geopy.git@7ab1b236fc2f36ec20e482c7574074d9fcb36b9e#egg=geopy
 django-leaflet==0.5.1
 django-floppyforms==1.1
 # Do NOT specify a version here, as the appropriate one depends on your GDAL version
-# Actually, it doesn't seem required on recent systems
 #GDAL
+#On ubuntu saucy, you need:
+# export CPLUS_INCLUDE_PATH=/usr/include/gdal
+# export C_INCLUDE_PATH=/usr/include/gdal
+# pip install GDAL==1.9.1
+
+
 
 # Testing tools
 coverage<3.4
@@ -142,7 +148,8 @@ pylint
 # Dev tools
 pyparsing==1.5.6
 werkzeug
-django-debug-toolbar
+#django-debug-toolbar
+-e git+https://github.com/benoitg/django-debug-toolbar.git@master#egg=django-debug-toolbar
 sphinx
 dozer==0.1
 django-mptt==0.5.5

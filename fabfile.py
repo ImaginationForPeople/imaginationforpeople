@@ -2,6 +2,7 @@
 # -*- coding:utf-8 -*-
 from __future__ import with_statement
 
+from os import getenv
 import os.path
 import time
 import pipes
@@ -17,10 +18,10 @@ def reloadapp():
     """
     Touch the wsgi
     """
-    print(cyan('Reloading all wsgi applications in : %s' % env.venvfullpath + '/' + env.projectname))
+    print(cyan('Reloading all wsgi applications in : %s' % env.projectpath))
     #this may accidentally reload staging environments and the like, but it's the only reliable way to 
     #hit any multisites defined. 
-    with cd(env.venvfullpath + '/' + env.projectname):
+    with cd(env.projectpath):
         run('touch apache/*')
     if(env.wsginame == 'prod.wsgi'):
         flushmemcache()
@@ -38,14 +39,14 @@ def venvcmd(cmd, shell=True, user=None, pty=False, subdir=""):
     if not user:
         user = env.user
 
-    with cd(env.venvfullpath + '/' + env.projectname + '/' + subdir):
-        return run('source %(venvfullpath)s/bin/activate && ' % env + cmd, shell=shell, pty=pty)
+    with cd(os.path.join(env.projectpath,subdir)):
+        return run('source %(venvpath)s/bin/activate && ' % env + cmd, shell=shell, pty=pty)
 
 def venv_prefix():
-    return 'source %(venvfullpath)s/bin/activate' % env
+    return 'source %(venvpath)s/bin/activate' % env
 
 def remote_db_path():
-    return os.path.join(env.venvfullpath, env.projectname, 'current_database.sql.bz2')
+    return os.path.join(env.projectpath, 'current_database.sql.bz2')
 
 def printenv():
     """
@@ -54,13 +55,16 @@ def printenv():
     venvcmd('env')
 
 ## Server scenarios
-def commonenv():
+def commonenv(projectpath, venvpath=None):
     """
     Base environment
     """
-    env.venvname = "imaginationforpeople.org"
-    env.projectname = "imaginationforpeople"
-
+    env.projectpath = projectpath
+    if venvpath:
+        env.venvpath = venvpath
+    else: 
+        env.venvpath = os.path.join(projectpath,"venv")
+    env.projectname = 'imaginationforpeople'
     env.db_user = 'imaginationforpeople'
     env.db_name = 'imaginationforpeople'
     env.dbdumps_dir = os.path.join(tempfile.gettempdir(), '%s_dumps' % env.projectname)
@@ -78,41 +82,41 @@ def prodenv():
     """
     [ENVIRONMENT] Production
     """
-    commonenv()
-    env.venvname = "imaginationforpeople.org"
-    env.wsginame = "prod.wsgi"
-    env.urlhost = "www.imaginationforpeople.org"
     env.user = "web"
     env.home = "www"
-    require('venvname', provided_by=('commonenv',))
+    venvname = "imaginationforpeople.org"
+    venvpath = os.path.join("/home", env.home, "virtualenvs", venvname)
+    projectpath = venvpath + '/' + 'imaginationforpeople' + '/'
+    commonenv(projectpath, venvpath)
+    env.wsginame = "prod.wsgi"
+    env.urlhost = "www.imaginationforpeople.org"
+
+    require('venvpath', provided_by=('commonenv',))
     env.hosts = ['i4p-prod.imaginationforpeople.org']
 
     env.gitbranch = "master"
 
-    env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
-    env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
+
     
 @task    
 def stagenv():
     """
     [ENVIRONMENT] Staging
     """
-    commonenv()
-    env.wsginame = "staging.wsgi"
-    env.urlhost = "staging.imaginationforpeople.org"
     env.user = "webapp"
     env.home = "webapp"
-    require('venvname', provided_by=('commonenv',))
+    venvname = "imaginationforpeople.org"
+    venvpath = os.path.join("/home", env.home, "virtualenvs", venvname)
+    projectpath = venvpath + '/' + 'imaginationforpeople' + '/'
+    commonenv(projectpath, venvpath)
+    env.wsginame = "staging.wsgi"
+    env.urlhost = "staging.imaginationforpeople.org"
+    require('venvpath', provided_by=('commonenv',))
     env.hosts = ['i4p-dev.imaginationforpeople.org']
     
     #env.gitbranch = "release/almostspring"
     env.gitbranch = "develop"
     #env.gitbranch = "feature/gis"
-
-
-    env.venvbasepath = os.path.join("/home", env.home, "virtualenvs")
-    env.venvfullpath = env.venvbasepath + '/' + env.venvname + '/'
-
 
 @task
 def devenv():
@@ -120,12 +124,12 @@ def devenv():
     [ENVIRONMENT] Developpement (must be run from the project path: 
     the one where the fabfile is)
     """
-    commonenv()
+    commonenv(os.path.normpath(current_path), os.path.normpath(os.path.join(current_path,"../")))
     env.wsginame = "dev.wsgi"
     env.urlhost = "localhost"
     env.user = env.local_user
     env.home = expanduser("~")
-    require('venvname', provided_by=('commonenv',))
+    require('venvpath', provided_by=('commonenv',))
     env.hosts = ['localhost']
 
     current_path = local('pwd',capture=True)
@@ -133,21 +137,21 @@ def devenv():
     env.gitrepo = "git@github.com:ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "develop"
 
-    env.venvbasepath = os.path.normpath(os.path.join(current_path,"../../"))
-    env.venvfullpath = os.path.normpath(os.path.join(current_path,"../"))
 
 @task
-def devenv2():
+def devenv2(projectpath=None):
     """
     [ENVIRONMENT] Developpement (must be run from the project path: 
     the one where the fabfile is)
     """
-    commonenv()
+    if not projectpath:
+        projectpath = os.path.dirname(os.path.realpath(__file__))
+    commonenv(projectpath, getenv('VIRTUAL_ENV', None))
     env.wsginame = "dev.wsgi"
     env.urlhost = "localhost"
     #env.user = "webapp"
     #env.home = "webapp"
-    require('venvname', provided_by=('commonenv',))
+    require('venvpath', provided_by=('commonenv',))
     env.hosts = ['127.0.0.1']
 
     current_path = local('pwd',capture=True)
@@ -155,18 +159,16 @@ def devenv2():
     env.gitrepo = "git@github.com:ImaginationForPeople/imaginationforpeople.git"
     env.gitbranch = "develop"
 
-    env.venvbasepath = os.path.normpath("/home/benoitg/development/assembl/venv")
-    env.venvfullpath = os.path.normpath("/home/benoitg/development/assembl/venv")
-
 ## Virtualenv
+@task
 def build_virtualenv():
     """
     Build the virtualenv
     """
     print(cyan('Creating a fresh virtualenv'))
-    require('venvfullpath', provided_by=('stagenv', 'prodenv'))
+    require('venvpath', provided_by=('commonenv'))
     sudo('rm /tmp/distribute* || echo "ok"') # clean after hudson
-    run('virtualenv --no-site-packages --distribute %(venvfullpath)s' % env)
+    run('virtualenv --no-site-packages --distribute %(venvpath)s' % env)
     sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
     
 def _get_package_list():
@@ -314,12 +316,12 @@ def update_requirements(force=False):
     update external dependencies on remote host
     """
     print(cyan('Updating requirements using PIP'))
-    run('%(venvfullpath)s/bin/pip install -U pip' % env)
+    run('%(venvpath)s/bin/pip install -U pip' % env)
     
     if force:
-        cmd = "%(venvfullpath)s/bin/pip install -I -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+        cmd = "%(venvpath)s/bin/pip install -I -r %(projectpath)s/requirements.txt" % env
     else:
-        cmd = "%(venvfullpath)s/bin/pip install -r %(venvfullpath)s/%(projectname)s/requirements.txt" % env
+        cmd = "%(venvpath)s/bin/pip install -r %(projectpath)s/requirements.txt" % env
     run("yes w | %s" % cmd)
 
 
@@ -349,7 +351,7 @@ def collect_static_files():
     venvcmd('./manage.py collectstatic --noinput')
     
     #Workaround for collectstatic bug on prod server
-    with cd(env.venvfullpath + '/' + env.projectname + '/static'):
+    with cd(env.projectpath + '/static'):
         run('cp -Rp compiled_sass/* css/')
 
 @task
@@ -357,7 +359,7 @@ def make_messages():
     """
     Run *.po file generation for translation
     """
-    appspath=env.venvfullpath + '/' + env.projectname + '/' + "apps"
+    appspath=env.projectpath + '/' + "apps"
     with cd(appspath):
         apps = run('ls -d */').split(None)
     cmd = "django-admin.py makemessages -a -e html,txt"
@@ -373,7 +375,7 @@ def compile_messages():
     """
     Run compile *.mo file from *.po
     """
-    appspath=env.venvfullpath + '/' + env.projectname + '/' + "apps"
+    appspath=env.projectpath + '/' + "apps"
     with cd(appspath):
         apps = run('ls -d */').split(None)
     cmd = "django-admin.py compilemessages -v0"
@@ -389,7 +391,7 @@ def compile_stylesheets():
     """
     Generate *.css files from *.scss
     """
-    with cd(env.venvfullpath + '/' + env.projectname + '/static'):
+    with cd(env.projectpath + '/static'):
         run('rm -rf compiled_sass')
         run('bundle exec compass compile --force', shell=True)
             
@@ -405,10 +407,9 @@ def tests():
 
 def fixperms():
     # Fix perms
-    with cd(env.venvfullpath):
-        with cd("%(projectname)s" % env):
-            run('mkdir media/uploads media/cache static/CACHE media/mugshots -p')
-            sudo('chown www-data -R media/uploads media/cache media/mugshots static/CACHE')
+    with cd(env.projectpath):
+        run('mkdir media/uploads media/cache static/CACHE media/mugshots -p')
+        sudo('chown www-data -R media/uploads media/cache media/mugshots static/CACHE')
     
 @task
 def bootstrap_venv():
@@ -425,16 +426,15 @@ def clone_repository():
     """
     print(cyan('Cloning Git repository'))
 
-    with cd(env.venvfullpath):
-        # Remove dir if necessary
-        if exists("%(projectname)s" % env):
-            sudo("rm -rf %(projectname)s" % env)
+    # Remove dir if necessary
+    if exists(env.projectpath):
+        sudo("rm -rf %(projectpath)s" % env)
 
-        # Clone
-        run("git clone --branch {0} {1} {2}".format(env.gitbranch,
-                                                    env.gitrepo,
-                                                    env.projectname)
-        )
+    # Clone
+    run("git clone --branch {0} {1} {2}".format(env.gitbranch,
+                                                env.gitrepo,
+                                                env.projectpath)
+    )
     
             
 def updatemaincode():
@@ -442,7 +442,7 @@ def updatemaincode():
     Update code and/or switch branch
     """
     print(cyan('Updating Git repository'))
-    with cd(os.path.join(env.venvfullpath, '%(projectname)s' % env)):
+    with cd(env.projectpath):
         run('git fetch')
         run('git checkout %s' % env.gitbranch)
         run('git pull %s %s' % (env.gitrepo, env.gitbranch))
@@ -497,13 +497,12 @@ def configure_webservers():
     """
     # apache
     print(cyan('Configuring Apache'))
-    fullprojectpath = env.venvfullpath + '/%(projectname)s/' % env
-    sudo('cp %sapache/%s /etc/apache2/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
+    sudo('cp %sapache/%s /etc/apache2/sites-available/%s' % (env.projectpath, env.urlhost, env.urlhost))
     sudo('a2ensite %s' % env.urlhost)
 
     # nginx
     print(cyan('Configuring Nginx'))
-    sudo('cp %snginx/%s /etc/nginx/sites-available/%s' % (fullprojectpath, env.urlhost, env.urlhost))
+    sudo('cp %snginx/%s /etc/nginx/sites-available/%s' % (env.projectpath, env.urlhost, env.urlhost))
     with cd('/etc/nginx/sites-enabled/'):
         sudo('ln -sf ../sites-available/%s .' % env.urlhost)
 
@@ -560,7 +559,7 @@ def check_or_install_logdir():
     Make sure the log directory exists and has right mode and ownership
     """
     print(cyan('Installing a log dir'))
-    with cd(env.venvfullpath + '/'):
+    with cd(env.venvpath + '/'):
         sudo('mkdir -p logs/ ; chown www-data logs; chmod o+rwx logs ; pwd')
 
 
@@ -578,7 +577,7 @@ def create_database_user():
     """
     # FIXME: pg_hba has to be changed by hand (see doc)
     # FIXME: Password has to be set by hand (see doc)
-    sudo('createuser %s -D -R -S' % env.projectname, user='postgres')
+    sudo('createuser %s -D -R -S' % env.db_user, user='postgres')
     
 ## Server packages    
 def install_basetools():
@@ -595,7 +594,7 @@ def install_builddeps():
     Will install commonly needed build deps for pip django virtualenvs.
     """
     print(cyan('Installing compilers and required libraries'))
-    sudo('apt-get install -y build-essential python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev')
+    sudo('apt-get install -y build-essential pkg-config python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev graphviz libgraphviz-dev libgdal-dev')
 
 @task
 def install_rbenv():
@@ -635,7 +634,7 @@ def install_compass():
     """
     (Re)Install compass, deleting current version 
     """
-    with cd(env.venvfullpath + '/' + env.projectname + '/'):
+    with cd(env.projectpath):
         run('rm -rf vendor/bundle')
         execute(update_compass)
 @task
@@ -643,7 +642,8 @@ def update_compass():
     """
     Make sure compass version is up to date
     """
-    with cd(env.venvfullpath + '/' + env.projectname + '/'):
+    with cd(env.projectpath):
+        run('pwd')
         run('bundle install --path=vendor/bundle')
 
 @task
@@ -677,7 +677,7 @@ def mirror_prod_media():
     assert(env.wsginame in ('staging.wsgi',))
 
     # Files
-    with cd(os.path.join(env.venvfullpath, env.projectname)):
+    with cd(env.projectpath):
         sudo('rm -rf media')
         run('scp -r web@i4p-prod.imaginationforpeople.org:/home/www/virtualenvs/imaginationforpeople.org/imaginationforpeople/media/ .')
 
@@ -702,7 +702,7 @@ def database_dump():
     absolute_path = os.path.join(env.dbdumps_dir, compressed_filename)
 
     # Dump
-    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+    with prefix(venv_prefix()), cd(env.projectpath):
         run('grep "DATABASE" -A 8 site_settings.py')
         run('pg_dump -U%s --format=custom -b %s > %s' % (env.db_user,
                                                  env.db_name,
@@ -760,14 +760,14 @@ def database_restore():
     execute(database_postgis_setup)
 
     # Restore data
-#    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+#    with prefix(venv_prefix()), cd(env.projectpath):
 #        run('grep "DATABASE" -A 8 site_settings.py')
 #        run('bunzip2 -c %s | psql -U%s %s' % (remote_db_path(),
 #                                              env.db_user,
 #                                              env.db_name)
 #        )
     # Restore data
-    postgis_restore_script = os.path.join(env.venvfullpath, env.projectname, 'tools', 'postgis_restore-1.5.pl')
+    postgis_restore_script = os.path.join(env.projectpath, 'tools', 'postgis_restore-1.5.pl')
         
     run('%s %s %s %s' % (postgis_restore_script,
                                          os.path.join(env.postgis_script_path, 'postgis.sql'),
@@ -778,7 +778,7 @@ def database_restore():
     sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(drop_geometry_columns_sql)), shell=False)    
     drop_spatial_ref_sys_sql = "DROP TABLE spatial_ref_sys;"
     sudo('su - postgres -c "psql %s -c %s"' % (env.db_name, pipes.quote(drop_spatial_ref_sys_sql)), shell=False)    
-    with prefix(venv_prefix()), cd(os.path.join(env.venvfullpath, env.projectname)):
+    with prefix(venv_prefix()), cd(env.projectpath):
         run('grep "DATABASE" -A 8 site_settings.py')
     run('cat %s | psql -U%s %s' % (remote_db_path()+'.ascii',
                                               env.db_user,

@@ -425,8 +425,8 @@ class TagCMS(CMSPlugin):
     def copy_relations(self, oldinstance):
         self.tag = oldinstance.tag
 
-from actstream.models import actstream_register_model
-actstream_register_model(I4pProject)
-actstream_register_model(I4pProject.objects.translations_model)
-actstream_register_model(User)
-actstream_register_model(Answer)
+#from actstream.models import actstream_register_model
+#actstream_register_model(I4pProject)
+#actstream_register_model(I4pProject.objects.translations_model)
+#actstream_register_model(User)
+#actstream_register_model(Answer)
