@@ -47,31 +47,53 @@ $i4p-action-sprites: sprite-map("i4p-action/*.png");
     	}
 
     	.icos {
-    		margin:15px 0 0 85px;
+    		margin:15px 0 0 77px;
 
     		.like {
-    			display:block;
-    			width:54px;
-    			height:53px;
     			margin:0 20px 0 0;
     			float:left;
-    			background:image-url('project_sheet/big_ico_like.png') no-repeat top left;
+    			
+    			button {
+	    			display:block;
+	    			width:54px;
+	    			height:53px;
+	    			background:image-url('project_sheet/big_ico_like.png') no-repeat top left;
+	    			border: none;
+	    			margin: auto;
+    			}
     		}
     		.discu {
     			display:block;
-    			width:54px;
-    			height:53px;
-    			margin:0 20px 0 0;
+    			margin:0 25px 0 0;
     			float:left;
-    			background:image-url('project_sheet/big_ico_discu.png') no-repeat top left;
+
+                a {
+                    display: block;
+                    width:54px;
+                    height:53px;
+                    background:image-url('project_sheet/big_ico_discu.png') no-repeat top left;
+                }
     		}
     		.share {
     			display:block;
-    			width:54px;
-    			height:53px;
+    			marign: 0 20px 0 0;
     			float:left;
-    			background:image-url('project_sheet/big_ico_share.png') no-repeat top left;
+    			
+    			a {
+    				display: block;
+	    			width:54px;
+	    			height:53px;
+	    			background:image-url('project_sheet/big_ico_share.png') no-repeat top left;
+    			}
     		}
+    		
+            span a:hover {
+                text-decoration: none;
+            }
+            
+            #required_field {
+				display: none;
+			}
     	}
 
     	p {
