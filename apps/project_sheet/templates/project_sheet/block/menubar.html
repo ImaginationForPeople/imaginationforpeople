@@ -25,17 +25,6 @@
 	  <li class="{% iftab 'project_sheet' 'project' %}active{% endiftab %} project">
 	    <a href="{{ project_translation.master.get_absolute_url  }}">{% trans "Project" %}</a>
 	  </li>
-	  <!-- gallery -->
-	  <li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %} gallery">
-	    <a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a>
-	  </li>
-	  <!-- discussion -->
-          <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %} discuss">
-            <a href="{% url project_discussion_list project_translation.slug %}">
-              {% trans "Discussions" %}
-              <span class="badge">{{discussion_count}}</span>
-            </a>
-          </li>
 	  <!-- support -->
           <li class="{% iftab 'project_sheet' 'support' %}active{% endiftab %} support">
             <a href="{% url project_support_main project_translation.slug %}">
@@ -43,6 +32,17 @@
               <span class="badge">{{need_count}}</span>
             </a>
           </li>
+      <!-- discussion -->
+          <li class="{% iftab 'project_sheet' 'discuss' %}active{% endiftab %} discuss">
+            <a href="{% url project_discussion_list project_translation.slug %}">
+              {% trans "Discussions" %}
+              <span class="badge">{{discussion_count}}</span>
+            </a>
+          </li>
+	  <!-- gallery -->
+	  <li class="{% iftab 'project_sheet' 'gallery' %}active{% endiftab %} gallery">
+	    <a href="{% url project_sheet-instance-gallery project_translation.slug %}">{% trans "Gallery" %}</a>
+	  </li>
 	  <!-- history -->
 	  <li class="{% iftab 'project_sheet' 'history' %}active{% endiftab %} history">
 	    <a href="{% url project_sheet-instance-history project_translation.slug %}">{% trans "History" %}</a>
