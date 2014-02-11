@@ -38,6 +38,7 @@ from tagging.models import Tag
 from haystack.query import SearchQuerySet
 from haystack.views import FacetedSearchView as HaystackFacetedSearchView
 
+from apps.project_sheet.filters import ProjectCountriesFilterForm
 from apps.project_sheet.models import I4pProject
 from apps.project_sheet.utils import get_project_translations_from_parents
 from django.core.cache import cache
@@ -222,6 +223,7 @@ class SearchView(FacetedSearchView):
             'page': page,
             'paginator': paginator,
             'suggestion': None,
+            'countries_filter': ProjectCountriesFilterForm(self.request.GET),
         }
 
         self.page = page
