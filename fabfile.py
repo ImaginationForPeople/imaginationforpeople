@@ -119,12 +119,14 @@ def stagenv():
     #env.gitbranch = "feature/gis"
 
 @task
-def devenv():
+def devenv(projectpath=None):
     """
     [ENVIRONMENT] Developpement (must be run from the project path: 
     the one where the fabfile is)
     """
-    commonenv(os.path.normpath(current_path), os.path.normpath(os.path.join(current_path,"../")))
+    if not projectpath:
+        projectpath = os.path.dirname(os.path.realpath(__file__))
+    commonenv(projectpath,  getenv('VIRTUAL_ENV', None))
     env.wsginame = "dev.wsgi"
     env.urlhost = "localhost"
     env.user = env.local_user
@@ -459,14 +461,19 @@ def app_install():
     execute(collect_static_files)
     # tests()
     execute(reloadapp)
-    
+
+@task
+def app_update_dependencies():
+    execute(update_requirements, force=False)
+
+
 @task
 def app_fullupdate():
     """
     Full Update: maincode and dependencies
     """
     execute(updatemaincode)
-    execute(update_requirements, force=False)
+    execute(app_update_dependencies)
     execute(app_compile)
 
 @task
