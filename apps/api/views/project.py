@@ -274,6 +274,29 @@ class I4pProjectEditResource(ModelResource):
         
         new_allowed_methods = ['post']
         
+    def detail_uri_kwargs(self, bundle_or_obj):
+        kwargs = {}
+        
+        if isinstance(bundle_or_obj, Bundle):
+            kwargs[self._meta.detail_uri_name] = bundle_or_obj.obj.language_code + "/" + bundle_or_obj.obj.slug
+        else:
+            kwargs[self._meta.detail_uri_name] = bundle_or_obj.language_code + "/" + bundle_or_obj.slug
+            
+        return kwargs
+        
+    def resource_uri_kwargs(self, bundle_or_obj=None):
+        kwargs = {
+            'resource_name': 'project',
+        }
+        
+        if self._meta.api_name is not None:
+            kwargs['api_name'] = self._meta.api_name
+            
+        if bundle_or_obj is not None:
+            kwargs.update(self.detail_uri_kwargs(bundle_or_obj))
+            
+        return kwargs
+        
     def prepend_urls(self):
         array = []
         array.append(url(r"^project/new%s" % trailing_slash(), self.wrap_view('dispatch_new'), name="api_dispatch_new"))
