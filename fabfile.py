@@ -351,10 +351,6 @@ def collect_static_files():
     """
     print(cyan('Collecting static files'))
     venvcmd('./manage.py collectstatic --noinput')
-    
-    #Workaround for collectstatic bug on prod server
-    with cd(env.projectpath + '/static'):
-        run('cp -Rp compiled_sass/* css/')
 
 @task
 def make_messages():
