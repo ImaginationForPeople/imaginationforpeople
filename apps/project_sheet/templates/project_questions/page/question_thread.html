@@ -32,6 +32,8 @@
 {% endaddtoblock %}
 {% endblock %}
 
+{% block title_prefix %}{{question.get_title|truncatewords:5}} | {% endblock %}
+
 
 {% block project_content %}
 
