@@ -256,13 +256,13 @@ def email_change(request, username, form=ChangeEmailForm,
 
     # Also pass the password and email forms
     extra_context.update({'password_form': PasswordChangeForm(user=request.user),
-                          'email_form': ChangeEmailForm(user=request.user),
+                          'form': ChangeEmailForm(user=request.user),
                           'profile_form': I4PEditProfileForm(instance=profile, initial=user_initial)
                           })
 
     return userena_views.email_change(request=request,
                                       username=username,
-                                      form=form,
+                                      email_form=form,
                                       template_name=template_name,
                                       success_url=success_url,
                                       extra_context=extra_context)
