@@ -1,0 +1,278 @@
+/*
+Author: Phillip Ebanks
+Author URI: http://phillipebanks.com
+*/
+
+
+/* ==========================================================================
+   MAIN STYLES
+   ========================================================================== */
+
+body { font-family: 'Open Sans', sans-serif; color: #686868; }
+h1, h2, h3, h4, h5, h6 { font-family: 'Open Sans', sans-serif; font-weight: 800; }
+h2 { font-size: 25px; }
+h3 { font-size: 19px; }
+
+.open-sans { font-family: 'Open Sans' }
+.button { font-family: 'Open Sans'; background: none; border: solid 1px rgba(255,255,255,1); text-transform: uppercase; font-weight: 600!important; }
+.button:hover { background: #FFF; color: #70c7c6; }
+
+*, *:before, *:after { -moz-box-sizing: border-box!important; -webkit-box-sizing: border-box!important; box-sizing: border-box!important; }
+.unstyled { padding: 0; margin: 0; list-style: none; }
+.row { max-width: 1080px!important; }
+a { transition: all .2s linear; }
+a:hover { transition: all .2s linear; }
+
+/* ==========================================================================
+   HEADER
+   ========================================================================== */
+
+	
+	/* ==========================================================================
+	   HELLO BAR
+	   ========================================================================== */
+	.hello-bar { display: none; background: #2b2b2b; color: #FFF; font-size: 15px; }
+	.hello-bar .row > div.table { display: table; width: 100%; }
+	.hello-bar .row > div.table > div { height: 60px; display: table-cell; vertical-align: middle; }
+	.hello-bar a { font-weight: 700; color: #FFF; }
+	.hello-bar span.picto-info, .hello-bar span.picto-close { width: 30px; height: 31px; }
+	.hello-bar span.picto-close { cursor: pointer;  }
+	.hello-bar span.picto-info img, .hello-bar span.picto-close img { width: 30px; }
+	.hello-bar .text { height: 30px; display: table-cell; vertical-align: middle; }
+
+
+header { background: #70c7c6; z-index: 5; height: 100%; overflow: hidden; min-height: 550px; }
+header h1, header h2, header h3, header h4, header h5, header h6 { color: #FFF; }
+header h2 { font-size: 33px; line-height: 40px; margin-top: 30px; }
+
+	
+	/* ==========================================================================
+	   MAIN NAV
+	   ========================================================================== */
+	
+	header #main-nav-wr { background: #FFF; height: 75px; position: relative!important; }
+	header #main-nav-wr .top-bar { background: #FFF; font-family: 'Open Sans', sans-serif; height: 65px; }
+	header #main-nav-wr .top-bar a { font-family: 'Open Sans', sans-serif; }
+	
+	header #main-nav-wr .top-bar .title-area { float: left; }
+	header #main-nav-wr .top-bar .title-area .name { margin: 0; }
+	header #main-nav-wr .top-bar .title-area .name h1 { line-height: 75px; }
+	header #main-nav-wr .top-bar .title-area .name h1 a { display: block; width: 121px; padding-right: 0; }
+	header #main-nav-wr .top-bar .title-area .name h1 a img { width: 100%; height: 100%; }
+
+	header #main-nav-wr .top-bar-section { line-height: 75px;  }
+	header #main-nav-wr #menu-sentence { margin-left: 20px; color:#c4c4c4; }
+	header #main-nav-wr > span { font-weight: 600; color: #DBDBDB; font-size: 18px; float: left; }
+	header #main-nav-wr > span > a { font-weight: 700; color: #70c7c6; }
+	header #main-nav-wr ul#connexion-nav { background: none; padding: 20px 0 20px 20px; text-transform: uppercase; height: 75px!important; }
+
+	header #main-nav-wr ul#connexion-nav li.has-dropdown { margin: 0 0 0 20px; }
+	.top-bar-section .has-dropdown > a:after { border-style: none!important; background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/arrow-down.png') no-repeat; width: 9px; height: 6px; background-size: 9px 6px; top: 50%; margin-top: -3px;  }
+	header #main-nav-wr ul#connexion-nav li.has-dropdown:hover > a { border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+	header #main-nav-wr ul#connexion-nav li.has-dropdown:hover > a:after {  background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/arrow-down-over.png') no-repeat; background-size: 9px 6px; }
+	header #main-nav-wr ul#connexion-nav li a { border: 1px solid #959595; background: #FFF; color:#777777; font-weight: 400; padding: 9px 12px; line-height: 20px; font-size: 12px; }
+	header #main-nav-wr ul#connexion-nav li a:hover { background: #55c3c2; color: #FFF; border: 1px solid #55c3c2; transition: all 300ms ease-out 0s; }
+	header #main-nav-wr ul.button-group.radius li a { border-radius: 3px 3px 3px 3px; }
+	header #main-nav-wr ul#connexion-nav .dropdown {  }
+	header #main-nav-wr ul#connexion-nav .dropdown li a { border-top-left-radius: 0; border-top-right-radius: 0; }
+
+	/* ==========================================================================
+	   INTRO HEADER
+	   ========================================================================== */
+
+	header #intro {  height: 100%; min-height: 550px; position: relative; color:#FFF; font-family: 'Open Sans', sans-serif; font-size: 18px; overflow: hidden; }
+	header #intro > div { min-height: 550px; background: url('/static/images/i4p_base/pages/homepage_bubbles/img1.jpg') no-repeat center center #000; background-size: cover; background-attachment: fixed; height: 100%; }
+	header #intro > div > .row { position: relative; top: 50%; -webkit-transform: translateY(-70%); -ms-transform: translateY(-70%); transform: translateY(-70%); }
+	header #intro > div h1 { font-size: 40px; line-height: 1.1em; font-weight: 700; }
+	header #intro > div .intro-text { font-size: 20px; line-height: 1.2em; }
+	header #intro > div .ruler hr { border-width: 1.5px; margin: 45px auto; }
+	
+	.row.video { margin-top: 40px; }
+	.row.video a.button { border-radius:2px; position: relative; z-index: 100; }
+
+/* ==========================================================================
+   SEPERATORS
+   ========================================================================== */
+
+.seperator.intro { height: 105px; }
+.seperator.intro span.picto-wr { display: block; margin-top: -50px; margin-bottom: 40px; text-transform: uppercase; }
+.seperator.intro span.picto-wr span.arrow { background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/arrow-intro.png') no-repeat center center; width: 40px; height: 34px; border-top-left-radius: 5px; border-top-right-radius: 5px; }
+.seperator.intro span.triangle { top: 34px!important; position: relative; }
+
+.seperator { height: 85px; position: relative; }
+.seperator span.triangle { position: relative; display: block; margin: 0 auto; width: 16px; height: 9px; background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/triangle.png') no-repeat; z-index: 3; bottom: -24px; }
+
+.seperator span.picto-wr { display: block; margin-top: -55px; }
+.seperator span.picto-wr > span { margin: 0 auto; }
+.seperator span.picto-wr span.title { color: #FFF; font-size: 15px; position: relative; top: -18px; }
+.seperator span.picto-wr span.arrow { cursor: pointer; display: block; width: 17px; height: 13px; background: url('/static/images/i4p_base/pages/homepage_bubbles/arrow-bottom.png') no-repeat; background-size: 17px 13px; padding: 0; margin-bottom: 15px; }
+.seperator span.picto-wr span.arrow.bulles { cursor: default; background: #FFF; width: 40px; height: 34px; margin-top: 11px; }
+.seperator span.picto-wr span.arrow.bulles span { display: block; width: 30px; height: 30px; position: relative; top: 95px; margin: 0 auto; cursor: pointer; }
+.seperator span.picto-wr span.picto { display: block; float: none; width: 57px; height: 57px; background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/sep-idees.png'); background-color: #FFF; background-size: 57px 57px; background-position: center center; background-repeat: no-repeat; border-radius: 999px; z-index: 10; }
+.seperator h3 { font-size: 22px; font-weight: 300; color: #878787; margin: 0; }
+.seperator h3 span { font-weight: 700; color: #70c7c6; }
+
+.seperator.projets span.picto-wr span.picto { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/sep-projets.png'); }
+.seperator.orange h3 span{ color: #f8a67e; }
+
+/* ==========================================================================
+   PANELS | IDÉES + PROJETS
+   ========================================================================== */
+
+#panel-projets { min-height: 593px; height: 593px; background: url('/static/images/i4p_base/pages/homepage_bubbles/panel-projets.jpg') top center no-repeat; }
+#panel-idees { min-height: 914px; height: 914px; background: url('/static/images/i4p_base/pages/homepage_bubbles/panel-idee.jpg') no-repeat top center; background-size: cover; }
+
+.panel {  padding: 0;  margin: 0; border: none!important; position: relative; background-size: cover!important; }
+.panel > .row { padding: 175px 0; position: relative; /*background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/pattern.png') repeat-y center 0;*/ z-index: 999; }
+.panel > .line { background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/pattern.png') repeat-y center 0; height: 95%; width: 100%; position: absolute; top: 0; z-index: 1!important; }
+.panel.last > .line { height: 38%; }
+.panel .tag-wr { background: #FFF; border-radius: 5px 5px 5px 5px; padding: 25px 10px; position: relative; margin: 0 0 20px 0; }
+.panel .tag-wr h4 { color: #686868; font-size: 22px; line-height: 1.1em; font-weight: 700; text-transform: uppercase; }
+.panel .tag-wr p { line-height: 1.2em; font-size: 14px; color: #686868; }
+.panel .tag-wr p a { font-weight: 700; }
+
+.panel .tag-wr a.button { text-transform: none; font-weight: 700!important; font-size: 14px; background: #70c7c6; border-radius: 3px; margin: 0; padding-left: 1rem; padding-right: 1rem; padding-top: 0.7rem; padding-bottom: 0.7rem; }
+.panel .tag-wr a.button:hover { background: #3ea09f!important; color: #FFF; }
+
+.panel .tag-wr span.picto-wr { display: block; }
+.panel .tag-wr span.picto-wr span.picto { z-index: 10; display: block; width: 78px; height: 78px; background: #FFF; right: -26px; position: absolute; /*top:50%;*/ top: 110px; margin-top: -39px; border-radius: 999px; }
+.panel .column:last-child span.picto-wr span.picto { right: auto; left: -26px; }
+.panel .tag-wr span.picto-wr span.picto span { background-size: 28px 27px; display: block; width: 57px; height: 56px; background-color: #70c7c6; background-position: center center; background-repeat: no-repeat; border-radius: 999px; top:50%; margin:-28px; left: 50%; position: absolute; }
+
+.panel .row.single { padding: 50px 0 200px 0; z-index: 4000; position: relative; }
+.panel .row.single .column span.picto-wr { position: relative; top: -145px; left: 50%; margin-left: -39px; }
+.panel .row.single .column span.picto-wr span.picto { right: auto; left: auto; }
+.panel .row.single .column span.picto-wr .branch { display: none; }
+
+.panel .tag-wr span.picto-wr span.branch { background-size: 82px 58px;  display: block; width: 82px; height: 58px; background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/branch-left.png'); position: absolute; right: -25%; /*top:50%; */ top: 110px; margin-top: -59px; }
+.panel .column:last-child span.picto-wr span.branch { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/branch-right.png'); left: -25%; } 
+
+
+.panel .tag-wr.co-construire span.picto span { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/pictos/picto-solution.png'); background-size: 28px 17px; }
+.panel .tag-wr.communaute span.picto span { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/pictos/picto-communates.png'); }
+.panel .tag-wr.acteurs span.picto span { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/pictos/picto-acteurs.png'); }
+.panel .tag-wr.projets-sociaux span.picto span { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/pictos/picto-sociaux.png'); }
+.panel .tag-wr.affaires-sociales span.picto span { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/pictos/picto-affaires-sociales.png'); }
+
+.panel .tag-wr.acteurs { padding: 35px 10px; }
+.panel .tag-wr.acteurs span.picto { top: 110px!important; }
+
+	/* ==========================================================================
+	   ORANGE PANELS
+	   ========================================================================== */
+	
+	.panel.orange .tag-wr a.button { background: #f8a67e; }
+	.panel.orange .tag-wr a.button:hover { background: #f28f5f!important;  }
+	.panel.orange .tag-wr p a { font-weight: 700; color: #f8a67e; }
+	.panel.orange .tag-wr span.picto-wr span.picto span { background-color: #f8a67e; }
+
+
+/* ==========================================================================
+   ACTUALITES
+   ========================================================================== */
+
+#actualites { background: #2b2b2b; padding: 75px 0; margin-top: -1px; }
+#actualites .column { margin-bottom: 75px; }
+#actualites h2 { color: #FFF; margin: 0 0 75px 0; font-weight: 700; }
+#actualites h3 { color: #FFF; margin: 20px 0; line-height: 1.2em; font-weight: 700; }
+#actualites h3 a { color: #FFF; }
+#actualites h3 a:hover { color: #70c7c6; transition: all .2s linear; }
+#actualites p { line-height: 1.2em; color: #bdbdbd; font-size: .9em; }
+
+#actualites a.button { /*margin-top: 75px;*/ }
+#actualites a.button:hover { color: #2b2b2b; }
+
+/* arrow-right-nav.png */
+
+/* ==========================================================================
+   SOCIAL MEDIA
+   ========================================================================== */
+
+/* #footer-zone-top overrides default style of the footer of the general website */
+/* #social, #footer-zone-top { background: #70c7c6; padding: 25px 0; color: #FFF; font-size: 16px; } */
+#social { background: #70c7c6; padding: 25px 0; color: #FFF; font-size: 16px; }
+#social .quote { line-height: 40px; }
+#social ul.social-media { margin-top: 7px; }
+#social ul.social-media li { display: inline; text-indent: -10000px; margin-right: 5px; }
+#social ul.social-media li a { display: inline-block; width: 30px; height: 30px; background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/facebook.png') no-repeat; background-size: 31px 30px; }
+#social ul.social-media li.twitter a { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/twitter.png'); }
+#social ul.social-media li.googleplus a { background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/googleplus.png'); }
+
+
+/* ==========================================================================
+   PARTENAIRES CAROUSEL
+   ========================================================================== */
+
+#partenaires { position: relative; height: 85px; overflow: hidden; }
+#partenaires ul { margin: 20px auto; }
+#partenaires ul li { opacity: .7; transition: all .2s linear; display: block; float: left; }
+#partenaires ul li:hover { opacity: 1; transition: all .2s linear; }
+#partenaires #carousel-nav { }
+#partenaires .row { position: relative; }
+#partenaires a.nav { position: absolute; top: 50%; margin-top: -13px;  display: block; height: 25px; width: 16px; text-indent: -10000px; background: url('/static/images/i4p_base/pages/homepage_bubbles/ui/arrow-left.png') no-repeat; }
+#partenaires a#prev { left: 0;  }
+#partenaires a#next { right: 0; background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/arrow-right.png'); }
+
+.controls { position: fixed; right: 35px; top: 50%; height:10em; margin-top:-5em; z-index: 9999; }
+.controls ul li a { box-shadow: 0px 0px 5px #888888; display: block; width: 16px; height: 16px; border-radius: 999px; background: #FFF; margin: 0 0 10px 0; position: relative; opacity: .3; }
+.controls ul li a:hover, .controls ul li a.active { background: #3cb5b4!important; opacity: 1; }
+.controls ul li a.active { background: #FFF; opacity: 1; }
+.controls ul li.last a { margin: 0; }
+.controls ul li a > span { display: none; opacity: 0; z-index: 990; position: absolute; background: #FFF; right: 35px; top: -10px; padding: 8px 14px; border-radius: 3px; color: #484848; text-transform: capitalize; }
+.controls ul li a:hover > span { display: block; z-index: 999; opacity: 1; transition: all .2s linear;}
+.controls ul li a > span > span { display: block; width: 7px; height: 10px; background-size: 7px 10px; right: -7px; position: absolute; top: 14px; background-image: url('/static/images/i4p_base/pages/homepage_bubbles/ui/arrow-right-nav.png') }
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+footer { background: #67bcbb; padding: 50px 0 0 0; color: #FFF; }
+footer .column { opacity: .8; transition: all .2s linear; }
+footer .column:hover { opacity: 1; }
+footer h4 { color: #FFF; font-size: 21px; font-weight: 300; }
+footer ul { padding: 0; margin: 0 0 50px 0; list-style: none; color: #FFF; line-height: 1.2em; font-size: 14px; }
+footer ul li {  }
+footer ul li a { color: #FFF; opacity: .7; }
+footer ul li a:hover { opacity: 1; color: #FFF; }
+
+
+@media only screen and (max-width: 40.063em) {
+
+	/*.panel .tag-wr span.picto { display: none; }*/
+	.panel > .row { padding: 50px 0; }
+    .column.small-centered,
+    .columns.small-centered { margin-left: auto; margin-right: auto; clear: both; float: none!important; }
+	.top-bar-section .has-dropdown > a:after { background: none; }
+	header #main-nav-wr ul#connexion-nav li.has-dropdown:hover > a:after { background: none; }
+	
+	header { min-height: auto; }
+	header #intro { min-height: auto; }
+	header #intro > div { min-height: 550px; background: url('/static/images/i4p_base/pages/homepage_bubbles/img1.jpg') no-repeat center center #000; background-size: cover; height: 100%; }
+	
+}
+
+@media only screen and (max-width: 767px) {
+	
+	header #intro > div { padding-top: 75px; }
+	#menu-sentence { font-size: 13px!important; }
+	.panel.last > .line { height: 33%; }
+	.row.single { padding-top: 0!important; }
+	
+	.panel .tag-wr span.picto-wr span.branch { right: -28%; }
+	.panel .column:last-child span.picto-wr span.branch { left: -28%; }
+/*		#social .social-wr { float: none!important; margin: 0 auto!important; }*/
+}
+
+/* override foundation.css for footer */
+#footer-zone-top table {
+	background: none;
+	border: none;
+	margin-bottom: 0;
+}
+
+/* override bootstrap.css for .table used in top alert */
+.table {
+	margin-bottom: 0;
+}
+
+
