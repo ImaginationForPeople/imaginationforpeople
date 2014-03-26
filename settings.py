@@ -584,6 +584,7 @@ CMS_PERMISSION = True
 
 CMS_TEMPLATES = (
   ('pages/homepage.html', _('Homepage')),
+  ('pages/homepage_bubbles.html', _('Homepage_bubbles')),
   ('pages/flatpage.html', _('Black Page')),
   ('pages/contrib.html', _('Contribution page')),
   ('pages/onemenu.html', _('One menu page')),
