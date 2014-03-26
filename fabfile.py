@@ -600,16 +600,41 @@ def install_builddeps():
     sudo('apt-get install -y build-essential pkg-config python-dev libjpeg62-dev libpng12-dev zlib1g-dev libfreetype6-dev liblcms-dev libpq-dev libxslt1-dev libxml2-dev graphviz libgraphviz-dev libgdal-dev')
 
 @task
+def configure_rbenv():
+    with cd(env.projectpath), settings(warn_only=True):
+        if(run('rbenv local 1.9.3-p125').failed):
+            # Install Ruby:
+            run('rbenv install 1.9.3-p125')
+            # Rehash:
+            run('rbenv rehash')
+        if(run('bundle --version').failed):
+            #install bundler
+            run('gem install bundler')
+            run('rbenv rehash')
+        
+@task
+def install_ruby_build():
+    with settings(warn_only=True):
+        if(run('ruby-build --help').failed):
+            # Install ruby-build:
+            with cd('/tmp'):
+                run('git clone git://github.com/sstephenson/ruby-build.git')
+            with cd('/tmp/ruby-build'):
+                sudo('./install.sh')
+
+@task
 def install_rbenv():
     """
     Install the appropriate ruby environment for compass.
     """
-    # Install rbenv:
-    sudo('git clone git://github.com/sstephenson/rbenv.git ~/.rbenv', user=env.user)
+    with cd(env.projectpath), settings(warn_only=True):
+        if(run('rbenv version').failed and run('ls ~/.rbenv').failed):    
+            # Install rbenv:
+            run('git clone git://github.com/sstephenson/rbenv.git ~/.rbenv')
     # Add rbenv to the path:
-    sudo('echo \'export PATH="$HOME/.rbenv/bin:$PATH"\' >> .bash_profile', user=env.user)
-    sudo('echo \'eval "$(rbenv init -)"\' >> .bash_profile', user=env.user)
-    sudo('source ~/.bash_profile', user=env.user)
+    run('echo \'export PATH="$HOME/.rbenv/bin:$PATH"\' >> .bash_profile')
+    run('echo \'eval "$(rbenv init -)"\' >> .bash_profile')
+    run('source ~/.bash_profile')
     # The above will work fine on a shell (such as on the server accessed using
     # ssh for a developement machine running a GUI, you may need to run the 
     # following from a shell (with your local user):
@@ -617,20 +642,12 @@ def install_rbenv():
     #    echo 'eval "$(rbenv init -)"' >> ~/.profile;
     #    source ~/.profile;
     
-    # Install ruby-build:
-    with cd('/tmp'):
-        sudo('git clone git://github.com/sstephenson/ruby-build.git', user=env.user)
-    with cd('/tmp/ruby-build'):
-        sudo('./install.sh')
-    # Install Ruby 1.9.3-p125:
-    sudo('rbenv install 1.9.3-p125', user=env.user)
-    sudo('rbenv global 1.9.3-p125', user=env.user)
-    # Rehash:
-    sudo('rbenv rehash', user=env.user)
+    run('echo \'export PATH="$HOME/.rbenv/bin:$PATH"\' >> .profile')
+    run('echo \'eval "$(rbenv init -)"\' >> .profile')
+    run('source ~/.profile')
     
-    #install bundler
-    sudo('gem install bundler', user=env.user)
-    sudo('rbenv rehash')
+    execute(install_ruby_build)
+    execute(configure_rbenv)
 
 @task
 def install_compass():
