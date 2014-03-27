@@ -187,14 +187,16 @@
 
       {% block subheader %}{% endblock %}
       
+      {% block feedback %}
       {% if user.is_authenticated %}
       <div>
-	<a href="#" id="feedback-trigger" class="trigger right">&nbsp;</a>
-	<div id="feedback" class="feedback-panel right">
-	  {% include 'backcap/feedback_tab.html' %}
-	</div>
+        <a href="#" id="feedback-trigger" class="trigger right">&nbsp;</a>
+        <div id="feedback" class="feedback-panel right">
+          {% include 'backcap/feedback_tab.html' %}
+        </div>
       </div>
       {% endif %}
+      {% endblock %}
 
       {% block central_content_zone %}
         {% block content %}{% endblock %}
