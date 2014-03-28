@@ -169,9 +169,9 @@ def build_virtualenv():
     """
     print(cyan('Creating a fresh virtualenv'))
     require('venvpath', provided_by=('commonenv'))
-    sudo('rm /tmp/distribute* || echo "ok"') # clean after hudson
+    run('rm /tmp/distribute* || echo "ok"') # clean after hudson
     run('virtualenv --no-site-packages --distribute %(venvpath)s' % env)
-    sudo('rm /tmp/distribute* || echo "ok"') # clean after myself
+    run('rm /tmp/distribute* || echo "ok"') # clean after myself
     
 def _get_package_list():
     """
