@@ -82,7 +82,7 @@ urlpatterns = patterns('',
                            member_views.direct_to_user_template,
                            {'template_name': 'userena/email_confirm_complete.html'},
                            name='userena_email_confirm_complete'),
-                       url(r'^(?P<username>[\.\w-]+)/confirm-email/(?P<confirmation_key>\w+)/$',
+                       url(r'^([\.\w-]+)/confirm-email/(?P<confirmation_key>\w+)/$',
                            userena_views.email_confirm,
                            name='userena_email_confirm'),
 
