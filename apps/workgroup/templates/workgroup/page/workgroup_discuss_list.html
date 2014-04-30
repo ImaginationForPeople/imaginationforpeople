@@ -13,8 +13,10 @@
 {% block title %}{% blocktrans with group_name=workgroup.name %}{{ group_name }} group discussions | Imagination for People{% endblocktrans %}{% endblock %}
 
 {% block content %}
-   {% tab 'workgroup' 'discussion' %}
-
+	{% if not iframe %}
+   	{% tab 'workgroup' 'discussion' %}
+	{% endif %}
+	
 {{block.super}}
 {% addtoblock "css" %}
 <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}style/forum_searchbar.css" />
@@ -62,7 +64,9 @@ $(document).ready(function(){
 {% endaddtoblock %}
 
 <div class="container project-content" id="workgroup-detail">      
+    {% if not iframe %}
     {% include "workgroup/block/workgroup_header.html" %}
+    {% endif %}
     
     <div class="row">
         <div class="span8">
