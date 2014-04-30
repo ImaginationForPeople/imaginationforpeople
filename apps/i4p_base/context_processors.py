@@ -41,6 +41,13 @@ def settings(request):
     return additions
 
 
+def iframe(request):
+    if request.method == "GET":
+        return {'iframe' : 'iframe' in request.GET}
+    return {}
+    
+
+
 
 
 

@@ -183,18 +183,21 @@
         </div>
       {% endblock %}      
       
-      {% block header %}{% include "header.html" %}{% endblock %}			
-
+      
+      {% block header %}{% if not iframe %}{% include "header.html" %}{% endif %}{% endblock %}			
+	  
       {% block subheader %}{% endblock %}
       
       {% block feedback %}
-      {% if user.is_authenticated %}
-      <div>
-        <a href="#" id="feedback-trigger" class="trigger right">&nbsp;</a>
-        <div id="feedback" class="feedback-panel right">
-          {% include 'backcap/feedback_tab.html' %}
-        </div>
-      </div>
+	  {% if not iframe %}
+	      {% if user.is_authenticated %}
+	      <div>
+	        <a href="#" id="feedback-trigger" class="trigger right">&nbsp;</a>
+	        <div id="feedback" class="feedback-panel right">
+	          {% include 'backcap/feedback_tab.html' %}
+	        </div>
+	      </div>
+	      {% endif %}
       {% endif %}
       {% endblock %}
 
@@ -202,7 +205,8 @@
         {% block content %}{% endblock %}
       {% endblock %}
 
-      {% block footer %} {% include "footer.html" %} {% endblock %}
+	  
+      {% block footer %}{% if not iframe %}{% include "footer.html" %}{% endif %}{% endblock %}
 
 
     </div>
