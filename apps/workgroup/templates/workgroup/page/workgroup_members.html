@@ -12,7 +12,10 @@
 
 {% block title %}{% blocktrans with group_name=workgroup.name %}{{ group_name }} group members | Imagination for People{% endblocktrans %}{% endblock %}
 {% block content %}
-   {% tab 'workgroup' 'members' %}
+	{% if not iframe %}
+  	{% tab 'workgroup' 'members' %}
+   	{% endif %}
+   	
     {% addtoblock "css" %}
     <link type="text/css" rel="stylesheet" href="{{ STATIC_URL }}css/workgroup/page/workgroup_detail.css" />
     {% endaddtoblock %}
@@ -21,8 +24,10 @@
     {% endaddtoblock %}
 
     <div class="container" id="workgroup-detail">
-      {% include "workgroup/block/workgroup_header.html" %}
-
+    	{% if not iframe %}
+      	{% include "workgroup/block/workgroup_header.html" %}
+		{% endif %}
+		
         <div id="workgroup-content" class="row">
             <div class="span8">
                 <div id="subscribers-list-full">
@@ -53,7 +58,9 @@
                 
             {% endif %}
             </div>
+            {% if not iframe %}
             {% include "workgroup/block/workgroup_sidebar.html" %}
+            {% endif %}
         </div>
     </div>
     

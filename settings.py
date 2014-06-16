@@ -249,6 +249,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'apps.i4p_base.context_processors.search_form',
     'apps.i4p_base.context_processors.settings',
+    'apps.i4p_base.context_processors.iframe',
     'apps.member.context_processors.member_forms',
 
     'cms.context_processors.media',
@@ -721,3 +722,7 @@ LOGGING = {
         },
     },
 }
+
+# CORS
+CORS_ORIGIN_ALLOW_ALL = True
+
