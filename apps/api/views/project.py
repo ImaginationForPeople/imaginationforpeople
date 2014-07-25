@@ -158,6 +158,7 @@ class I4pProjectTranslationResource(ModelResource):
         random_allowed_methods = ['get']
         bycountry_allowed_methods = ['get']
         fields = ['id', 'slug','language_code','title','baseline']
+        filtering = {'language_code' : ['exact']}
         
     def dispatch_detail(self, request, **kwargs):
         if "language_code" in kwargs:
