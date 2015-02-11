@@ -161,3 +161,13 @@ Upgrading the schema after installing solr with the procedure above would go som
    java -jar start.jar
    C-a d
    ./manage.py rebuild_index
+   
+Starting after a server reboot:
+   screen -R running_solr
+   cd ~/virtualenvs/imaginationforpeople.org/solr/apache-solr-3.6.2/example
+   java -jar start.jar
+   C-a d
+   cd ~/virtualenvs/imaginationforpeople.org/imaginationforpeople
+   source ../bin/activate
+   ./manage.py rebuild_index
+   
