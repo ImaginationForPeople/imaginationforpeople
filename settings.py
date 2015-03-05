@@ -192,6 +192,8 @@ MIDDLEWARE_CLASSES += (
     # URL based language selection (eg. from top panel)
     # We don't use django cms one, for compatibility reasons
     'django.middleware.locale.LocaleMiddleware',
+    # CORS
+    'corsheaders.middleware.CorsMiddleware',
     # CommonMiddleware MUST come after LocaleMiddleware, otherwise, 
     # url matching will not work properly
     'django.middleware.common.CommonMiddleware',
@@ -277,6 +279,7 @@ INSTALLED_APPS = (
     # External Apps
     'dynamicsites',
     'south',
+    'corsheaders',
     'django_nose',
     'django_extensions',
     'userena',

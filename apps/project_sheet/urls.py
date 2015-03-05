@@ -4,6 +4,7 @@ from django.conf.urls.defaults import patterns, url
 from . import views
 from apps.project_support import views as support_views
 from . import ajax
+from django.contrib.auth.decorators import login_required
 
 import feeds
 
@@ -44,7 +45,7 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/$', views.ProjectView.as_view(), name='project_sheet-show'),
 
     # Edits
-    url(r'^edit/(?P<topic_slug>[-\w]+)/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, views.project_sheet_edit_field, name='project_sheet-edit-field'),
+    url(r'^edit/(?P<topic_slug>[-\w]+)/(?P<field>(%s))/$' % PROJECT_AUTHORIZED_FIELDS, login_required(views.project_sheet_edit_field), name='project_sheet-edit-field'),
     url(r'^(?P<slug>[-\w]+)/edit/tags/$', views.ProjectEditTagsView.as_view(), name='project_sheet-instance-edit-tags'),                       
     url(r'^(?P<slug>[-\w]+)/edit/info/$', views.ProjectEditInfoView.as_view(), name='project_sheet-instance-edit-info'),
     url(r'^(?P<slug>[-\w]+)/edit/status/$', ajax.project_sheet_edit_status, name='project_sheet-instance-edit-status'),
